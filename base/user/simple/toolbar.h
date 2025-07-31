@@ -93,10 +93,10 @@ public:
    void _001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem);
 
    /*
-      bool LoadToolBar(const ::string & pszResourceName);
+      bool LoadToolBar(const ::scoped_string & scopedstrResourceName);
 
       bool LoadToolBar(unsigned int nIDResource);
-      bool LoadBitmap(const ::string & pszResourceName);
+      bool LoadBitmap(const ::scoped_string & scopedstrResourceName);
 
       bool LoadBitmap(unsigned int nIDResource);
    */

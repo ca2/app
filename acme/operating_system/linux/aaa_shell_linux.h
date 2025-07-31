@@ -26,10 +26,10 @@ namespace linux
 
          //virtual void defer_start();
 
-         //virtual int get_image_foo(oswindow oswindow, const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
-         //virtual int get_file_extension_image(oswindow oswindow, const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
+         //virtual int get_image_foo(oswindow oswindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
+         //virtual int get_file_extension_image(oswindow oswindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
          int get_image_by_file_extension(image_key & imagekey);
-         //virtual int get_image(oswindow oswindow, const ::string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
+         //virtual int get_image(oswindow oswindow, const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
 
 
          virtual void on_update_sizes_interest() override;

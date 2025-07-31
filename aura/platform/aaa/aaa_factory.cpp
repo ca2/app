@@ -3,7 +3,7 @@
 #ifdef WINDOWS
 
 
-bool string& str, const ::string & pszType
+bool string& str, const ::scoped_string & scopedstrType
 {
 
    str = pszType;
@@ -53,14 +53,14 @@ thread_local size_t t_sizeDemangle;
 //extern critical_section * g_pcsDemangle;
 
 
-bool demangle (string & str, const ::string & pszType)
+bool demangle (string & str, const ::scoped_string & scopedstrType)
 {
 
    //cslock cs(g_pcsDemangle);
 
    int status = -4;
 
-   t_pszDemangle = abi::__cxa_demangle(pszType, t_pszDemangle, &t_sizeDemangle, &status);
+   t_pszDemangle = abi::__cxa_demangle(scopedstrType, t_pszDemangle, &t_sizeDemangle, &status);
 
    if (status == 0)
    {

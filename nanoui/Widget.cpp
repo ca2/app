@@ -634,7 +634,7 @@ namespace nanoui
    }
 
 
-   bool Widget::keyboard_event(::user::enum_key, int, int, const ::user::e_key&, const ::string& strText)
+   bool Widget::keyboard_event(::user::enum_key, int, int, const ::user::e_key&, const ::scoped_string & scopedstrText)
    {
 
       return false;

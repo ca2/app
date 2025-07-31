@@ -50,12 +50,12 @@ namespace filehandler
       void add_menu_library(menu_library * plibrary);
 
 
-      ::pointer<::data::tree_item<item>>get_extension_tree_item(const ::string & pszExtension, bool bCreate);
-      ::pointer<::data::tree_item<item>>get_mime_type_tree_item(const ::string & pszMimeType, bool bCreate);
+      ::pointer<::data::tree_item<item>>get_extension_tree_item(const ::scoped_string & scopedstrExtension, bool bCreate);
+      ::pointer<::data::tree_item<item>>get_mime_type_tree_item(const ::scoped_string & scopedstrMimeType, bool bCreate);
 
 
-      virtual void get_extension_app(string_array & straAppId, const ::string & pszExtension);
-      virtual void get_mime_type_app(string_array & straAppId, const ::string & pszMimeType);
+      virtual void get_extension_app(string_array & straAppId, const ::scoped_string & scopedstrExtension);
+      virtual void get_mime_type_app(string_array & straAppId, const ::scoped_string & scopedstrMimeType);
 
 
       //virtual ::stream & write(::stream & stream) const override;

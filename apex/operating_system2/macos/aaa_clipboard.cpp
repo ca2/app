@@ -31,7 +31,7 @@
 //  
 //      char ** psza = mm_clipboard_get_filea(&c);
 //      
-//      patha.c_add(psza, c, false);
+//      patha.c_add(scopedstra, c, false);
 //      
 //   }
 //   catch (...)
@@ -47,7 +47,7 @@
 //   
 //   auto psza = patha.c_ansi_get();
 //   
-//   mm_clipboard_set_filea(psza.get_data(), psza.get_count());
+//   mm_clipboard_set_filea(scopedstra.get_data(), psza.get_count());
 //   
 //}
 //
@@ -63,7 +63,7 @@
 //void macos_clipboard_set_plain_text(const ::scoped_string & scopedstrPlainText)
 //{
 //   
-//   mm_clipboard_set_plain_text(pszPlainText);
+//   mm_clipboard_set_plain_text(scopedstrPlainText);
 //   
 //}
 //

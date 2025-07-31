@@ -12,7 +12,7 @@ factory_function* factory_function::g_pfactoryfunctionNext = nullptr;
 
 
 factory_function::factory_function(const char * pszName, FACTORY_FUNCTION* pfnFactory) :
-   m_pszName(pszName),
+   m_pszName(scopedstrName),
    m_pfnFactory(pfnFactory)
 {
 

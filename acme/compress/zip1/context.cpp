@@ -225,7 +225,7 @@ namespace str
 
       string strLastZip;
 
-      string strPath(pszFileName);
+      string strPath(scopedstrFileName);
 
       ::file::path pathFinal;
 
@@ -396,7 +396,7 @@ namespace str
 
                string strRelative(strTitle);
 
-               ::file::path path = ::file::path(pszDir) / strRelative;
+               ::file::path path = ::file::path(scopedstrDir) / strRelative;
 
                file_pointer spfile = file()->get_file(
                                 path,
@@ -432,7 +432,7 @@ namespace str
    bool zip_context::is_unzippable(const ::file::path & path)
    {
 
-      string str(pszFileName);
+      string str(scopedstrFileName);
 
       if(str.length() < 4)
       {
@@ -448,7 +448,7 @@ namespace str
          
       }
       
-      auto pfile = file()->get_reader(pszFileName);
+      auto pfile = file()->get_reader(scopedstrFileName);
       
       if(!pfile)
       {

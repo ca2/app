@@ -157,7 +157,7 @@ CLASS_DECL_ACME unsigned int __unsigned_int_hash(const ::scoped_string & scopeds
 
    auto psz = scopedstr.begin();
 
-   while (psz < scopedstr.end())
+   while (scopedstr < scopedstr.end())
    {
 
       u = (u << 5) + *psz;

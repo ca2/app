@@ -34,7 +34,7 @@ virtual public ::object
       pointer_array < item >               m_itema;
 
 
-      virtual void add_impact_item(const ::atom & atom, const ::string & strTitle, ::user::impact_creator * pimpactcreator);
+      virtual void add_impact_item(const ::atom & atom, const ::scoped_string & scopedstrTitle, ::user::impact_creator * pimpactcreator);
 
 
    };

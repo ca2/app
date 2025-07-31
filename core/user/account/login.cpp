@@ -71,7 +71,7 @@ namespace account
    }
 
 
-   void login::defer_translate(const ::string & strUser, const ::string & strPass, const ::string & strOpen)
+   void login::defer_translate(const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, const ::scoped_string & scopedstrOpen)
    {
 
       if (strUser.has_character())
@@ -367,7 +367,7 @@ namespace account
    }
 
 
-   bool login::on_action(const ::string & strId)
+   bool login::on_action(const ::scoped_string & scopedstrId)
    {
 
       if (strId == "submit")

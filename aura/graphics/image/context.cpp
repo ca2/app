@@ -324,7 +324,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::matter_image(const ::string& strMatter, const ::image::load_options& loadoptions)
+   ::image::image_pointer image_context::matter_image(const ::scoped_string & scopedstrMatter, const ::image::load_options& loadoptions)
    {
 
       ::image::image_pointer pimage;
@@ -387,7 +387,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::load_matter_image(const ::string& strMatter, const ::image::load_options& loadoptions)
+   ::image::image_pointer image_context::load_matter_image(const ::scoped_string & scopedstrMatter, const ::image::load_options& loadoptions)
    {
 
       ::image::image_pointer pimage;
@@ -497,7 +497,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::load_thumbnail(const ::string& strPath)
+   ::image::image_pointer image_context::load_thumbnail(const ::scoped_string & scopedstrPath)
    {
 
       ::image::image_pointer pimage;
@@ -598,7 +598,7 @@ namespace image
    }
 
 
-   void image_context::_matter_image(::image::image* pimage, const ::string& strMatter, const ::image::load_options& loadoptions)
+   void image_context::_matter_image(::image::image* pimage, const ::scoped_string & scopedstrMatter, const ::image::load_options& loadoptions)
    {
 
       if (loadoptions.sync)
@@ -626,7 +626,7 @@ namespace image
    }
 
 
-   void image_context::_load_matter_image(::image::image* pimage, const ::string& strMatter, const ::image::load_options& loadoptions)
+   void image_context::_load_matter_image(::image::image* pimage, const ::scoped_string & scopedstrMatter, const ::image::load_options& loadoptions)
    {
 
       // auto pcontext = get_context();
@@ -1124,7 +1124,7 @@ namespace image
 
       auto size = memory.size();
 
-      if (::is_null(psz))
+      if (::is_null(scopedstr))
       {
 
          pimage->set_nok();
@@ -1154,7 +1154,7 @@ namespace image
 
          }
 
-         if (memory.size() > 3 && ansi_nicmp(psz, "gif", 3) == 0)
+         if (memory.size() > 3 && ansi_nicmp(scopedstr, "gif", 3) == 0)
          {
 
             _load_multi_frame_image(pimage, memory);
@@ -1198,7 +1198,7 @@ namespace image
 
 
 
-   ::image::image_pointer image_context::matter_cache_image(const ::string& strMatter)
+   ::image::image_pointer image_context::matter_cache_image(const ::scoped_string & scopedstrMatter)
    {
 
       string str(strMatter);
@@ -1275,7 +1275,7 @@ namespace image
    //}
    //
    //
-   //::image::image_pointer image_context::matter_image(::particle * pparticle, const ::string & strMatter, const ::image::load_options & loadoptions)
+   //::image::image_pointer image_context::matter_image(::particle * pparticle, const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions)
    //{
    //
    //   string str(strMatter);

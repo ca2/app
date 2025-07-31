@@ -60,7 +60,7 @@
 //
 //   string strError;
 //
-//   auto pszCommandLine = strdup(psz);
+//   auto pszCommandLine = strdup(scopedstr);
 //
 //   const pid_t pid = fork();
 //
@@ -81,7 +81,7 @@
 //
 //      wordexp_t we{};
 //
-//      wordexp(pszCommandLine, &we, 0);
+//      wordexp(scopedstrCommandLine, &we, 0);
 //
 //      char ** argv = __allocate_array< char * >(we.we_wordc+1);
 //
@@ -102,7 +102,7 @@
 //
 //      wordfree(&we);
 //
-//      free(pszCommandLine);
+//      free(scopedstrCommandLine);
 //
 //      _exit(iErrNo);
 //
@@ -310,7 +310,7 @@ string get_current_directory_name();
 ::file::path deduct_module_path_from_current_directory(const char * pszOptionalExecutableRelativePath)
 {
 	
-   ::string strName(pszOptionalExecutableRelativePath);
+   ::string strName(scopedstrOptionalExecutableRelativePath);
 	
    if(strName.is_empty())
    {

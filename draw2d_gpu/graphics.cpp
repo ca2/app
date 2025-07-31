@@ -2410,7 +2410,7 @@ void main() {
       //}
 
 
-      //int_size graphics::GetTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, LPINT lpnTabStopPositions)
+      //int_size graphics::GetTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, LPINT lpnTabStopPositions)
       //{
 
       //   // ASSERT(m_hdc != nullptr);
@@ -2431,7 +2431,7 @@ void main() {
       //}
 
 
-      //int_size graphics::GetOutputTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, LPINT lpnTabStopPositions)
+      //int_size graphics::GetOutputTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, LPINT lpnTabStopPositions)
       //{
 
       //   // ASSERT(m_hdc != nullptr);
@@ -5459,11 +5459,11 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       //const ::scoped_string & scopedstr = lpszString;
       //while(i < iIndex)
       //{
-      //   iLen = ::str::get_utf8_char(psz).length();
+      //   iLen = ::str::get_utf8_char(scopedstr).length();
       //   iRange++;
       //   i += iLen;
-      //   unicode_increment(psz);
-      //   if(psz == nullptr)
+      //   unicode_increment(scopedstr);
+      //   if(scopedstr == nullptr)
       //      break;
       //   if(*psz == '\0')
       //      break;
@@ -5520,7 +5520,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //}
 
 
-   //int_size graphics::GetOutputTextExtent(const ::string & str)
+   //int_size graphics::GetOutputTextExtent(const ::scoped_string & scopedstr)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -5646,7 +5646,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 //   }
 //
 //
-//   bool graphics::get_text_extent(double_size & size, const ::string & str)
+//   bool graphics::get_text_extent(double_size & size, const ::scoped_string & scopedstr)
 //   {
 //
 //      //// ASSERT(m_hdc != nullptr);

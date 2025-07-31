@@ -146,7 +146,7 @@ float_point ImageImpact::pixel_to_pos(const float_point & p) const
 }
 
 
-bool ImageImpact::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & /* ekeyModifiers */, const ::string & strText) 
+bool ImageImpact::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & /* ekeyModifiers */, const ::scoped_string & scopedstrText) 
 {
 
    if (!m_bEnabled || !m_pimage)

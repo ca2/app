@@ -20,7 +20,7 @@
 
 const char * br_init_get_symbol();
 
-void apex_application_run(const ::string & pszAppName, const ::string & pszProgName);
+void apex_application_run(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrProgName);
 
 
 

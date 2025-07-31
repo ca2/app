@@ -205,7 +205,7 @@ namespace app_launch
    // {
    //
    // printf("%s\n", pszCommand);
-   // ::system(pszCommand);
+   // ::system(scopedstrCommand);
    //
    // }
 
@@ -249,7 +249,7 @@ namespace app_launch
 
          //    log_system("sudo dnf --assumeyes install freeimage libidn motif libappindicator-gtk3");
 
-         //log_system(pszCommand);
+         //log_system(scopedstrCommand);
 
       }
       else if(m_strDistro == "freebsd")
@@ -303,13 +303,13 @@ namespace app_launch
    // if (!strcasecmp(m_pszDistro, "freebsd"))
    // {
    //
-   // bOk = curl_check_http_ok(pszUrl);
+   // bOk = curl_check_http_ok(scopedstrUrl);
    //
    // }
    // else
    // {
    //
-   // bOk = wget_check_http_ok(pszUrl);
+   // bOk = wget_check_http_ok(scopedstrUrl);
    //
    // }
    //
@@ -641,7 +641,7 @@ namespace app_launch
 //    // {
 //    //
 //    // printf("%s\n", pszCommand);
-//    // ::system(pszCommand);
+//    // ::system(scopedstrCommand);
 //    //
 //    // }
 //
@@ -660,14 +660,14 @@ namespace app_launch
 //
 //    }
 //
-//    auto pszCommand = (char*) ::malloc(strlen(psz) + 1024);
+//    auto pszCommand = (char*) ::malloc(strlen(scopedstr) + 1024);
 //
-//    auto len = strlen(pszCommand);
+//    auto len = strlen(scopedstrCommand);
 //
 //    for(int i = 0; i < len; i++)
 //    {
 //
-//       if(pszCommand[i] == '\n' || pszCommand[i] == '\r')
+//       if(scopedstrCommand[i] == '\n' || pszCommand[i] == '\r')
 //       {
 //
 //          pszCommand[i] = ' ';
@@ -679,9 +679,9 @@ namespace app_launch
 //    if(!strcmp(m_pszDistro, "ubuntu") || !strcmp(m_pszDistro, "kubuntu"))
 //    {
 //
-//       sprintf(pszCommand, "sudo apt -y install %s", psz);
+//       sprintf(scopedstrCommand, "sudo apt -y install %s", psz);
 //
-//       log_system(pszCommand);
+//       log_system(scopedstrCommand);
 //
 //  //     log_system("sudo apt -y install libfreeimage3 libstartup-notification0 libunac1 libxm4");
 //
@@ -689,11 +689,11 @@ namespace app_launch
 //    else if(!strcmp(m_pszDistro, "fedora"))
 //    {
 //
-//       sprintf(pszCommand, "sudo dnf --assumeyes install %s", psz);
+//       sprintf(scopedstrCommand, "sudo dnf --assumeyes install %s", psz);
 //
 //   //    log_system("sudo dnf --assumeyes install freeimage libidn motif libappindicator-gtk3");
 //
-//       log_system(pszCommand);
+//       log_system(scopedstrCommand);
 //
 //    }
 //    else if(!strcmp(m_pszDistro, "freebsd"))
@@ -721,13 +721,13 @@ namespace app_launch
 // if (!strcasecmp(m_pszDistro, "freebsd"))
 // {
 //
-// bOk = curl_check_http_ok(pszUrl);
+// bOk = curl_check_http_ok(scopedstrUrl);
 //
 // }
 // else
 // {
 //
-// bOk = wget_check_http_ok(pszUrl);
+// bOk = wget_check_http_ok(scopedstrUrl);
 //
 // }
 //
@@ -765,7 +765,7 @@ namespace app_launch
 //    catch(const char * psz)
 //    {
 //
-//    fprintf(stderr, psz, 1, strlen(psz));
+//    fprintf(stderr, psz, 1, strlen(scopedstr));
 //    }
 //
 //       return application.m_iExitCode;
@@ -845,7 +845,7 @@ namespace app_launch
 //      while(true)
 //      {
 //
-//      auto pszNewLine = get_line(psz, psz);
+//      auto pszNewLine = get_line(scopedstr, psz);
 //
 //      if(!pszNewLine)
 //      {
@@ -855,7 +855,7 @@ namespace app_launch
 //      }
 //
 //
-//      if(pszNewLine[0] == ' '
+//      if(scopedstrNewLine[0] == ' '
 //      && pszNewLine[1] == ' '
 //      && pszNewLine[2] == 'H'
 //      && pszNewLine[3] == 'T'
@@ -864,7 +864,7 @@ namespace app_launch
 //      && pszNewLine[6] == '/')
 //      {
 //
-//      auto pszSpace = strchr(pszNewLine + 6, ' ');
+//      auto pszSpace = strchr(scopedstrNewLine + 6, ' ');
 //
 //      if(!pszSpace)
 //      {
@@ -873,11 +873,11 @@ namespace app_launch
 //
 //      }
 //
-//      auto nonSpace = strspn(pszSpace, " \t");
+//      auto nonSpace = strspn(scopedstrSpace, " \t");
 //
 //      auto pszNonSpace = pszSpace + nonSpace;
 //
-//      auto pszNewLine = strpbrk(pszNonSpace, "\r\n");
+//      auto pszNewLine = strpbrk(scopedstrNonSpace, "\r\n");
 //
 //      if(!pszNewLine)
 //      {
@@ -886,7 +886,7 @@ namespace app_launch
 //
 //      }
 //
-//      if(!strncmp(pszNonSpace, "200", pszNewLine - pszNonSpace))
+//      if(!strncmp(scopedstrNonSpace, "200", pszNewLine - pszNonSpace))
 //      {
 //
 //      return true;
@@ -904,7 +904,7 @@ namespace app_launch
 
 //      {
 //
-//      auto pszNewLine = get_line(psz, psz);
+//      auto pszNewLine = get_line(scopedstr, psz);
 //
 //      if(!pszNewLine)
 //      {
@@ -914,7 +914,7 @@ namespace app_launch
 //      }
 //
 //
-//      if(pszNewLine[0] == ' '
+//      if(scopedstrNewLine[0] == ' '
 //      && pszNewLine[1] == ' '
 //      && pszNewLine[2] == 'H'
 //      && pszNewLine[3] == 'T'
@@ -923,7 +923,7 @@ namespace app_launch
 //      && pszNewLine[6] == '/')
 //      {
 //
-//      auto pszSpace = strchr(pszNewLine + 6, ' ');
+//      auto pszSpace = strchr(scopedstrNewLine + 6, ' ');
 //
 //      if(!pszSpace)
 //      {
@@ -932,11 +932,11 @@ namespace app_launch
 //
 //      }
 //
-//      auto nonSpace = strspn(pszSpace, " \t");
+//      auto nonSpace = strspn(scopedstrSpace, " \t");
 //
 //      auto pszNonSpace = pszSpace + nonSpace;
 //
-//      auto pszNewLine = strpbrk(pszNonSpace, "\r\n");
+//      auto pszNewLine = strpbrk(scopedstrNonSpace, "\r\n");
 //
 //      if(!pszNewLine)
 //      {
@@ -945,7 +945,7 @@ namespace app_launch
 //
 //      }
 //
-//      if(!strncmp(pszNonSpace, "200", pszNewLine - pszNonSpace))
+//      if(!strncmp(scopedstrNonSpace, "200", pszNewLine - pszNonSpace))
 //      {
 //
 //      return true;

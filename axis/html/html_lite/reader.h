@@ -266,7 +266,7 @@ public:
 
 
    // parses an HTML document from the specified string
-   character_count read_form_document(const ::string & str);
+   character_count read_form_document(const ::scoped_string & scopedstr);
 
 // Helpers
    /** Parsing Helpers */

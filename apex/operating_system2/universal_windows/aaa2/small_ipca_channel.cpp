@@ -93,7 +93,7 @@
          if (!is_tx_ok())
             return false;
 
-         string anotherappURI = m_strBaseChannel + ":///send?message=" + ::apexacmesystem()->::url::encode(pszMessage);
+         string anotherappURI = m_strBaseChannel + ":///send?message=" + ::apexacmesystem()->::url::encode(scopedstrMessage);
 
          ::winrt::Windows::Foundation::Uri ^uri = ref ___new ::winrt::Windows::Foundation::Uri (anotherappURI);
 

@@ -1035,10 +1035,10 @@ namespace filemanager
    //}
 
 
-   //void file_list::schedule_file_size(const ::string & psz)
+   //void file_list::schedule_file_size(const ::scoped_string & scopedstr)
    //{
 
-   //   __UNREFERENCED_PARAMETER(psz);
+   //   __UNREFERENCED_PARAMETER(scopedstr);
 
    //   if (!is_window_visible())
    //   {

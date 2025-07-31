@@ -133,7 +133,7 @@ namespace axis
    //}
 
 
-   //string application::dialog_box(const ::string & pszMatter, ::property_set & propertyset)
+   //string application::dialog_box(const ::scoped_string & scopedstrMatter, ::property_set & propertyset)
    //{
 
    //   throw_todo();
@@ -284,7 +284,7 @@ namespace axis
 //
 //
 
-//   string CLASS_DECL_AXIS application::get_cred(const ::string & strRequestUrl, const ::int_rectangle & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+//   string CLASS_DECL_AXIS application::get_cred(const ::scoped_string & scopedstrRequestUrl, const ::int_rectangle & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
 //  throw ::not_implemented();
@@ -887,10 +887,10 @@ namespace axis
 //         }
 //
 //      }
-//      catch (const ::string & psz)
+//      catch (const ::scoped_string & scopedstr)
 //      {
 //
-//         if (!strcmp(psz, "You have not logged in! Exiting!"))
+//         if (!strcmp(scopedstr, "You have not logged in! Exiting!"))
 //         {
 //
 //            return false;
@@ -1259,7 +1259,7 @@ namespace axis
 
 
 
-   //string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
+   //string application::http_get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    //{
 
    //   throw ::interface_only();
@@ -1604,19 +1604,19 @@ namespace axis
    //}
 
 
-   //::pointer<::aura::application>application::assert_running(const ::string & pszAppId)
+   //::pointer<::aura::application>application::assert_running(const ::scoped_string & scopedstrAppId)
    //{
 
    //   ::pointer<::aura::application>papp;
 
-   //   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
+   //   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(scopedstrAppId);
 
    //   if(papp.is_null())
    //   {
 
    //      ::pointer<::create>spcreate(e_create);
 
-   //      papp = psession->start_application(pszAppId,spcreate);
+   //      papp = psession->start_application(scopedstrAppId,spcreate);
 
    //   }
 
@@ -1911,7 +1911,7 @@ namespace axis
 
    }
 //
-//void application::handle_url(const ::string & strUrl)
+//void application::handle_url(const ::scoped_string & scopedstrUrl)
 //{
 //   
 //

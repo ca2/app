@@ -1883,7 +1883,7 @@ namespace draw2d_cairo
 //// COLOR_DEST = SRC_ALPHA * BLEND_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA * BLEND_ALPHA) * COLOR_DST
 
 //
-//void graphics::text_out(double x, double y, const ::string & str)
+//void graphics::text_out(double x, double y, const ::scoped_string & scopedstr)
 //{
 //
 //    return ::draw2d::graphics::text_out(double(x), double(y), str);
@@ -1911,7 +1911,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//double_size graphics::TabbedTextOut(double x, double y, const ::string & str, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin)
+//double_size graphics::TabbedTextOut(double x, double y, const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin)
 //{
 //
 //    throw ::interface_only();
@@ -1931,7 +1931,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//double_size graphics::GetTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * lpnTabStopPositions)
+//double_size graphics::GetTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions)
 //{
 //
 //    throw ::interface_only();
@@ -1951,7 +1951,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//double_size graphics::GetOutputTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * lpnTabStopPositions)
+//double_size graphics::GetOutputTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions)
 //{
 //
 //    throw ::interface_only();
@@ -3935,7 +3935,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::draw_text(const ::string & strParam, const ::double_rectangle & rectangleParam, const ::e_align & ealign,
+   void graphics::draw_text(const ::scoped_string & scopedstrParam, const ::double_rectangle & rectangleParam, const ::e_align & ealign,
                             const ::e_draw_text & edrawtext)
    {
 
@@ -4119,7 +4119,7 @@ namespace draw2d_cairo
 #else
 
 
-   //void graphics::draw_text(const ::string & strParam, const ::double_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   //void graphics::draw_text(const ::scoped_string & scopedstrParam, const ::double_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    //{
 
    //    //return
@@ -4293,7 +4293,7 @@ namespace draw2d_cairo
 #endif
 
 
-   void graphics::draw_text_ex(const ::string & str, const ::double_rectangle & rectangle, const ::e_align & ealign,
+   void graphics::draw_text_ex(const ::scoped_string & scopedstr, const ::double_rectangle & rectangle, const ::e_align & ealign,
                                const ::e_draw_text & edrawtext)
    {
 
@@ -4349,7 +4349,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//double_size graphics::GetOutputTextExtent(const ::string & str)
+//double_size graphics::GetOutputTextExtent(const ::scoped_string & scopedstr)
 //{
 //
 //    throw ::interface_only();
@@ -4633,7 +4633,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::get_text_extent(double_size & double_size, const ::string & str)
+   void graphics::get_text_extent(double_size & double_size, const ::scoped_string & scopedstr)
    {
 
       return get_text_extent(double_size, str, str.length());
@@ -6625,7 +6625,7 @@ namespace draw2d_cairo
 //#endif
 //
 //
-//::file::path graphics::get_font_path(const ::string & str, int iWeight, bool bItalic)
+//::file::path graphics::get_font_path(const ::scoped_string & scopedstr, int iWeight, bool bItalic)
 //{
 //
 //#ifdef LINUX
@@ -6775,7 +6775,7 @@ namespace draw2d_cairo
    }
 
 
-   FT_Face graphics::ftface(const ::string & pszFontName, int iWeight, bool bItalic)
+   FT_Face graphics::ftface(const ::scoped_string & scopedstrFontName, int iWeight, bool bItalic)
    {
 
       synchronous_lock synchronouslock(::draw2d_cairo::mutex());
@@ -6789,32 +6789,32 @@ namespace draw2d_cairo
 
       }
 
-      ::file::path path = get_font_path(pszFontName, iWeight, bItalic);
+      ::file::path path = get_font_path(scopedstrFontName, iWeight, bItalic);
 
       if (path.is_empty())
       {
 
-         path = get_font_path(pszFontName, 400, bItalic);
+         path = get_font_path(scopedstrFontName, 400, bItalic);
 
          if (path.is_empty())
          {
 
-            path = get_font_path(pszFontName, 0, bItalic);
+            path = get_font_path(scopedstrFontName, 0, bItalic);
 
             if (path.is_empty() && bItalic)
             {
 
-               path = get_font_path(pszFontName, iWeight, false);
+               path = get_font_path(scopedstrFontName, iWeight, false);
 
                if (path.is_empty())
                {
 
-                  path = get_font_path(pszFontName, 400, false);
+                  path = get_font_path(scopedstrFontName, 400, false);
 
                   if (path.is_empty())
                   {
 
-                     path = get_font_path(pszFontName, 0, false);
+                     path = get_font_path(scopedstrFontName, 0, false);
 
                   }
 

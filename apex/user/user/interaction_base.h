@@ -337,7 +337,7 @@ namespace user
       void edit_on_set_focus(::user::interaction* pinteraction) override;
       void edit_on_kill_focus(::user::interaction* pinteraction) override;
 
-      void set_window_text(const ::string & pszString) override;
+      void set_window_text(const ::scoped_string & scopedstrString) override;
       void set_window_text_source(const ::a_string_function & function) override;
 
       character_count get_window_text(char * pszStringBuf,character_count nMaxCount) override;
@@ -357,9 +357,9 @@ namespace user
       bool _001IsPointInside(const ::int_point & point) override;
       ::user::interaction * _001FromPoint(::int_point point,bool bTestedIfParentVisible = false) override;
 
-      void OnLinkClick(const ::string & psz,const ::string & pszTarget = nullptr) override;
+      void OnLinkClick(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrTarget = nullptr) override;
 
-      ::user::interaction * get_child_by_name(const ::string & strName, ::collection::index iItem = -1, int iLevel = -1) override;
+      ::user::interaction * get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem = -1, int iLevel = -1) override;
       ::user::interaction * get_child_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1) override;
       ::user::element * get_primitive_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1) override;
 
@@ -538,7 +538,7 @@ namespace user
       //bool has_pending_graphical_update() override;
       void on_after_graphical_update() override;
 
-      void set_bitmap_source(const string & strBitmapSource) override;
+      void set_bitmap_source(const ::scoped_string & scopedstrBitmapSource) override;
       void clear_bitmap_source() override;
 
 
@@ -675,8 +675,8 @@ namespace user
 
       //void InputConnectionBeginBatchEdit() override;
       //void InputConnectionEndBatchEdit() override;
-      //void InputConnectionCommitText(const ::string & str, character_count iNewCursorPosition) override;
-      //void InputConnectionSetComposingText(const ::string & str, character_count iNewCursorPosition) override;
+      //void InputConnectionCommitText(const ::scoped_string & scopedstr, character_count iNewCursorPosition) override;
+      //void InputConnectionSetComposingText(const ::scoped_string & scopedstr, character_count iNewCursorPosition) override;
       //void InputConnectionSetComposingRegion(character_count iStart, character_count iEnd) override;
       //void InputConnectionSetSelection(character_count iStart, character_count iEnd) override;
       //void InputConnectionFinishComposingText() override;
@@ -698,10 +698,10 @@ namespace user
 
       //void on_check_changed() override;
 
-      //virtual void set_window_text(const ::string & pszString);
+      //virtual void set_window_text(const ::scoped_string & scopedstrString);
 
       //virtual void set_check(enum_check echeck, const ::action_context & action_context);
-      //virtual void set_text(const ::string & strText, const ::action_context & action_context);
+      //virtual void set_text(const ::scoped_string & scopedstrText, const ::action_context & action_context);
 
 
       ::user::element * first_child_user_element() override;

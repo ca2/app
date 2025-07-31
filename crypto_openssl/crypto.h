@@ -96,13 +96,13 @@ namespace crypto_openssl
       //virtual string defer_get_cryptkey();
 
       
-      ::pointer<::crypto::rsa>create_rsa_key(const ::string& strRsa) override;
+      ::pointer<::crypto::rsa>create_rsa_key(const ::scoped_string & scopedstrRsa) override;
 
       ::pointer<::crypto::rsa>generate_rsa_key() override;
 
-      ::pointer<::crypto::rsa>read_priv_pem(const ::string & strFile) override;
+      ::pointer<::crypto::rsa>read_priv_pem(const ::scoped_string & scopedstrFile) override;
 
-      ::pointer<::crypto::rsa>read_pub_pem(const ::string & strFile) override;
+      ::pointer<::crypto::rsa>read_pub_pem(const ::scoped_string & scopedstrFile) override;
 
 
       void err_load_rsa_strings();
@@ -111,17 +111,17 @@ namespace crypto_openssl
       void err_load_crypto_strings();
 
 
-      //virtual string spa_login_crypt(const ::scoped_string & scopedstr,const string & pszRsa);
-      //virtual string spa_login_decrypt(const ::scoped_string & scopedstr,const string & pszRsa);
+      //virtual string spa_login_crypt(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrRsa);
+      //virtual string spa_login_decrypt(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrRsa);
 
       //virtual string spa_auth_crypt(const ::scoped_string & scopedstr,rsa * prsa);
       //virtual string spa_auth_decrypt(const ::scoped_string & scopedstr,rsa * prsa);
-      //virtual string spa_auth_decrypt(const ::scoped_string & scopedstr,const string & pszRsa);
+      //virtual string spa_auth_decrypt(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrRsa);
 
       //virtual string txt_encrypt(const ::scoped_string & scopedstr,rsa * prsa);
       //virtual string txt_decrypt(const ::scoped_string & scopedstr,rsa * prsa);
 
-      virtual void np_make_zigbert_rsa(const ::string & strDir, const ::string & strSignerPath, const ::string & strKeyPath, const ::string & strOthersPath, const ::string & strSignature);
+      virtual void np_make_zigbert_rsa(const ::scoped_string & scopedstrDir, const ::scoped_string & scopedstrSignerPath, const ::scoped_string & scopedstrKeyPath, const ::scoped_string & scopedstrOthersPath, const ::scoped_string & scopedstrSignature);
 
 
    };

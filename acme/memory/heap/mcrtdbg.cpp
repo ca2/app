@@ -259,7 +259,7 @@
 //
 //      pblock->m_pszFileName = nullptr;
 //
-//      //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
+//      //pblock->m_pszFileName = strdup(scopedstrFileName); // not trackable, at least think so certainly causes memory leak
 //   }
 //
 //   ::acme::set_maximum(pblock->m_uiLine);

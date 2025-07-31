@@ -489,7 +489,7 @@
 //}
 //
 //
-//string scalar::Format(const ::string & strFormat)
+//string scalar::Format(const ::scoped_string & scopedstrFormat)
 //{
 //
 //   __UNREFERENCED_PARAMETER(strFormat);
@@ -502,7 +502,7 @@
 ////
 ////
 ////
-////scalar::scalar(double_scalar_source * psource, enum_scalar escalar, const ::string & strFormat)
+////scalar::scalar(double_scalar_source * psource, enum_scalar escalar, const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   m_psource = psource;
@@ -588,7 +588,7 @@
 ////
 ////}
 ////
-////string scalar::Format(const ::string & strFormat)
+////string scalar::Format(const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   string str;
@@ -599,7 +599,7 @@
 ////
 ////}
 ////
-////int_scalar::int_scalar(int_scalar_source * psource, enum_scalar escalar, const ::string & strFormat)
+////int_scalar::int_scalar(int_scalar_source * psource, enum_scalar escalar, const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   m_psource = psource;
@@ -690,7 +690,7 @@
 ////
 ////
 ////
-////string int_scalar::Format(const ::string & strFormat)
+////string int_scalar::Format(const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   string str;
@@ -750,7 +750,7 @@ bool scalar::set_rate(double dRate, int iFlags)
 }
 
 
-//string scalar::Format(const ::string & strFormat)
+//string scalar::Format(const ::scoped_string & scopedstrFormat)
 //{
 //
 //   __UNREFERENCED_PARAMETER(strFormat);
@@ -1259,7 +1259,7 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 //}
 //
 //
-//string scalar::Format(const ::string & strFormat)
+//string scalar::Format(const ::scoped_string & scopedstrFormat)
 //{
 //
 //   __UNREFERENCED_PARAMETER(strFormat);
@@ -1272,7 +1272,7 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 ////
 ////
 ////
-////scalar::scalar(double_scalar_source * psource, enum_scalar escalar, const ::string & strFormat)
+////scalar::scalar(double_scalar_source * psource, enum_scalar escalar, const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   m_psource = psource;
@@ -1358,7 +1358,7 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 ////
 ////}
 ////
-////string scalar::Format(const ::string & strFormat)
+////string scalar::Format(const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   string str;
@@ -1369,7 +1369,7 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 ////
 ////}
 ////
-////int_scalar::int_scalar(int_scalar_source * psource, enum_scalar escalar, const ::string & strFormat)
+////int_scalar::int_scalar(int_scalar_source * psource, enum_scalar escalar, const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   m_psource = psource;
@@ -1460,7 +1460,7 @@ bool scalar_source::on_set_scalar(enum_scalar escalar, ::number d, int iFlags)
 ////
 ////
 ////
-////string int_scalar::Format(const ::string & strFormat)
+////string int_scalar::Format(const ::scoped_string & scopedstrFormat)
 ////{
 ////
 ////   string str;
@@ -1834,7 +1834,7 @@ bool scalar_source::set_scalar_rate(enum_scalar escalar, double dRate, int iFlag
 }
 
 
-//scalar::scalar(scalar_source* psource, enum_scalar escalar, const ::string& strFormat)
+//scalar::scalar(scalar_source* psource, enum_scalar escalar, const ::scoped_string & scopedstrFormat)
 scalar::scalar(scalar_source* psource, enum_scalar escalar)
 {
 
@@ -1932,7 +1932,7 @@ void scalar::set(::number number)
 }
 
 
-//string scalar::printf(const ::string& strFormat)
+//string scalar::printf(const ::scoped_string & scopedstrFormat)
 //{
 //
 //   ::string str;

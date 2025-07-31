@@ -77,7 +77,7 @@ namespace filehandler
    }
 
 
-   void impact::item::parse(const ::string & pszApp)
+   void impact::item::parse(const ::scoped_string & scopedstrApp)
    {
 
       m_strApp = pszApp;
@@ -85,7 +85,7 @@ namespace filehandler
    }
 
 
-   void impact::list::parse(::filehandler::handler * phandler, const ::string & pszTopic)
+   void impact::list::parse(::filehandler::handler * phandler, const ::scoped_string & scopedstrTopic)
    {
 
       erase_all();

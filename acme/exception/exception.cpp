@@ -297,7 +297,7 @@ string exception::get_consolidated_details(::particle * pparticle) const
 //      //   nDisposition = message_box(nullptr, strErrorMessage, nType);
 //      //else
 //      //{
-//      //   if (pszMessageId == 0)
+//      //   if (scopedstrMessageId == 0)
 //      //      //pszMessageId = __IDP_NO_ERROR_AVAILABLE;
 //      //      pszMessageId = "Error message not available";
 //      nDisposition = message_box(nullptr, pszMessageId, nType);
@@ -384,7 +384,7 @@ CLASS_DECL_ACME const char* status_short_description(const ::e_status & estatus)
 
    auto psz = ::file::status_short_description(estatus);
 
-   if (::is_set(psz))
+   if (::is_set(scopedstr))
    {
 
       return psz;
@@ -466,7 +466,7 @@ CLASS_DECL_ACME const char* status_short_description(const ::e_status & estatus)
 //}
 
 
-//CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails)
+//CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::scoped_string & scopedstrMoreDetails)
 //{
 //
 //

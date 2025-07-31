@@ -206,11 +206,11 @@ namespace user
    }
 
 
-   ::collection::index list_box::_001FindListText(const string& str)
+   ::collection::index list_box::_001FindListText(const ::scoped_string & scopedstr)
    {
 
 
-      //index combo_box::_001FindListText(const ::string & str) const
+      //index combo_box::_001FindListText(const ::scoped_string & scopedstr) const
       //{
 
       //   ::collection::count ca = _001GetListCount();
@@ -267,10 +267,10 @@ namespace user
    }
 
 
-   //::collection::index list_box::add_string(const ::string & pszString, uptr dwItemData)
+   //::collection::index list_box::add_string(const ::scoped_string & scopedstrString, uptr dwItemData)
    //{
 
-   //   m_straList.add(pszString);
+   //   m_straList.add(scopedstrString);
 
    //   m_straValue.add(::as_string(dwItemData));
 
@@ -279,10 +279,10 @@ namespace user
    //}
 
 
-   //::collection::index list_box::add_string(const ::string & pszString, const string& strValue)
+   //::collection::index list_box::add_string(const ::scoped_string & scopedstrString, const ::scoped_string & scopedstrValue)
    //{
 
-   //   m_straList.add(pszString);
+   //   m_straList.add(scopedstrString);
 
    //   m_straValue.add(strValue);
 

@@ -10,7 +10,7 @@
 
 system_setup::system_setup(::system_setup::enum_flag eflag, const char * pszName) :
    m_pfnFactory(nullptr),
-   m_pszName(pszName),
+   m_pszName(scopedstrName),
    m_eflag(eflag)
 {
 
@@ -20,7 +20,7 @@ system_setup::system_setup(::system_setup::enum_flag eflag, const char * pszName
 
 system_setup::system_setup(PFN_factory pfnFactory, const char * pszName) :
    m_pfnFactory(pfnFactory),
-   m_pszName(pszName),
+   m_pszName(scopedstrName),
    m_eflag(flag_factory)
 {
 
@@ -71,7 +71,7 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const cha
    {
 
       if ((int)(psetup->m_eflag & eflag) == (int)eflag
-      && (::is_empty(pszName) || string_equals(pszName, psetup->m_pszName)))
+      && (::is_empty(scopedstrName) || string_equals(scopedstrName, psetup->m_pszName)))
       {
 
          return psetup;
@@ -88,7 +88,7 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const cha
 }
 
 
-CLASS_DECL_ACME ::string get_library_component(const string & strName)
+CLASS_DECL_ACME ::string get_library_component(const ::scoped_string & scopedstrName)
 {
    
    if (strName.begins("audio_resample_"))
@@ -137,7 +137,7 @@ CLASS_DECL_ACME ::string get_library_component(const string & strName)
 PFN_factory system_setup::get_factory_function(const char * pszName)
 {
 
-   if (::is_empty(pszName))
+   if (::is_empty(scopedstrName))
    {
 
       return nullptr;
@@ -151,7 +151,7 @@ PFN_factory system_setup::get_factory_function(const char * pszName)
       while (psetup != nullptr)
       {
 
-         if (psetup->m_eflag == flag_factory && string_equals(pszName, psetup->m_pszName))
+         if (psetup->m_eflag == flag_factory && string_equals(scopedstrName, psetup->m_pszName))
          {
 
             return psetup->m_pfnFactory;
@@ -168,7 +168,7 @@ PFN_factory system_setup::get_factory_function(const char * pszName)
 
       auto psetup = s_psetupList;
 
-      string strComponentSearch = get_library_component(pszName);
+      string strComponentSearch = get_library_component(scopedstrName);
 
       while (psetup != nullptr)
       {
@@ -207,7 +207,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const char
    {
 
       if ((int)(psetup->m_eflag & eflag) == (int)eflag
-         && (::is_empty(pszName) || ::string_equals(pszName, psetup->m_pszName)))
+         && (::is_empty(scopedstrName) || ::string_equals(scopedstrName, psetup->m_pszName)))
       {
 
          return psetup;

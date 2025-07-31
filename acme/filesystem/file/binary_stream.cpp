@@ -153,10 +153,10 @@ string binary_stream::factory_id_to_text(const ::atom & atom)
 }
 
 
-::atom binary_stream::text_to_factory_id(const ::string & str)
+::atom binary_stream::text_to_factory_id(const ::scoped_string & scopedstr)
 {
 
-   return str;
+   return scopedstr;
 
 }
 
@@ -358,7 +358,7 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
 binary_stream & binary_stream::operator <<(const ::ansi_character * psz)
 {
 
-   auto len = string_safe_length(psz);
+   auto len = string_safe_length(scopedstr);
 
    write_buffer_length(len);
 
@@ -715,7 +715,7 @@ binary_stream & binary_stream::operator >>(string & str)
 
       auto psz = str.get_buffer((character_count)i);
 
-      memsize s = character_count_to_byte_length(psz, (character_count)i);
+      memsize s = character_count_to_byte_length(scopedstr, (character_count)i);
 
       read({ psz, s });
 

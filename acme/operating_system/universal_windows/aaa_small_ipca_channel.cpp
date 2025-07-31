@@ -94,7 +94,7 @@
          if (!is_tx_ok())
             return false;
 
-         string anotherappURI = m_strBaseChannel + ":///send?message=" + ::acmeacmesystem()->url_encode(pszMessage);
+         string anotherappURI = m_strBaseChannel + ":///send?message=" + ::acmeacmesystem()->url_encode(scopedstrMessage);
 
          Uri ^uri = ref aaa_primitive_new Uri(anotherappURI);
 

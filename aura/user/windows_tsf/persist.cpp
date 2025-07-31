@@ -8,7 +8,7 @@
 //
 //void CTSFEditWnd::_SaveToFile(char * pszFile)
 //{
-//    if(pszFile)
+//    if(scopedstrFile)
 //    {
 //        HANDLE  hFile;
 //
@@ -181,7 +181,7 @@
 
 //void CTSFEditWnd::_LoadFromFile(char * pszFile)
 //{
-//    if(pszFile)
+//    if(scopedstrFile)
 //    {
 //        HANDLE  hFile;
 //

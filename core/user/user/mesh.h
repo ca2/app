@@ -337,7 +337,7 @@ namespace user
       virtual void _001OnSort(::collection::index iSubItem);
       virtual void _001OnMeshHeaderItemClick(::collection::index iHeaderItem);
       virtual void _001OnMeshHeaderItemDblClk(::collection::index iHeaderItem);
-      virtual void Filter1(const string & str);
+      virtual void Filter1(const ::scoped_string & scopedstr);
       virtual bool Filter1Step();
 
 
@@ -597,7 +597,7 @@ namespace user
       ::double_size get_page_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
       virtual string  _001GetItemId(::collection::index iStrictItem);
-      virtual ::collection::index  _001GetItemById(const ::string & pszChar);
+      virtual ::collection::index  _001GetItemById(const ::scoped_string & scopedstrChar);
 
 
    };

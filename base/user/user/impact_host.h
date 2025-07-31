@@ -55,11 +55,11 @@ namespace user
       virtual void add_impact_kit_items();
 
 
-      virtual bool add_impact(const ::string & strName, const ::atom & atomImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
-      virtual bool add_impact_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
+      virtual bool add_impact(const ::scoped_string & scopedstrName, const ::atom & atomImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
+      virtual bool add_impact_with_icon(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrIcon, const ::atom & atomImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
 
-      virtual bool set_impact(const ::string & strName, const ::atom & atomImpact = nullptr, bool bVisible = true, ::user::place_holder * pholder = nullptr);
-      virtual bool set_impact_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact = nullptr, bool bVisible = true, ::user::place_holder * pholder = nullptr);
+      virtual bool set_impact(const ::scoped_string & scopedstrName, const ::atom & atomImpact = nullptr, bool bVisible = true, ::user::place_holder * pholder = nullptr);
+      virtual bool set_impact_with_icon(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrIcon, const ::atom & atomImpact = nullptr, bool bVisible = true, ::user::place_holder * pholder = nullptr);
 
       
       bool impact_creator_create_impact(::user::impact_data * pimpactdata) override;
@@ -111,7 +111,7 @@ namespace user
       }
 
 
-      //virtual ::user::impact_data * create_impact(const atom  & atom, const string& strTitle = "", impact_creator * pcreator = nullptr);
+      //virtual ::user::impact_data * create_impact(const atom  & atom, const ::scoped_string & scopedstrTitle = "", impact_creator * pcreator = nullptr);
       //virtual void create_impact(::user::impact_data * pimpactdata, impact_creator * pcreator = nullptr);
       //virtual bool _create_impact(impact_creator * pcreator, ::user::impact_data * pimpactdata);
 

@@ -107,7 +107,7 @@ inline void __dynamic_cast(TYPE1*& ptype1, const ::pointer<TYPE2> ptype2)
 //   {
 //
 //
-//      inline string get_string(const ::property_object & object, const ::string & strKey);
+//      inline string get_string(const ::property_object & object, const ::scoped_string & scopedstrKey);
 //
 //
 //

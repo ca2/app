@@ -394,7 +394,7 @@ string directory_system::system_short_name()
    
    ::string str_iCloudContainerIdentifier;
    
-   str_iCloudContainerIdentifier = path_system()->icloud_container_identifier(psz_iCloudContainerIdentifier);
+   str_iCloudContainerIdentifier = path_system()->icloud_container_identifier(scopedstr_iCloudContainerIdentifier);
    
    ::file::path pathContainer;
    
@@ -418,7 +418,7 @@ string directory_system::system_short_name()
 ::file::path directory_system::icloud_container_documents(const char * psz_iCloudContainerIdentifier)
 {
 
-   return icloud_container2(psz_iCloudContainerIdentifier) / "Documents";
+   return icloud_container2(scopedstr_iCloudContainerIdentifier) / "Documents";
    
 }
 
@@ -428,7 +428,7 @@ bool directory_system::is_icloud_container(const ::file::path & path, const char
    
    ::file::path pathFolder;
    
-   pathFolder = icloud_container2(pszContentIdentifier);
+   pathFolder = icloud_container2(scopedstrContentIdentifier);
    
    if(path.folder() == pathFolder ||
       path.folder().begins(::string(pathFolder) + "/"))
@@ -467,7 +467,7 @@ bool directory_system::has_icloud_container(const char * pszContentIdentifier)
 }
 
 
-void directory_system::set_path_install_folder(const string & strPath)
+void directory_system::set_path_install_folder(const ::scoped_string & scopedstrPath)
 {
 
    m_pathInstallFolder = strPath;
@@ -676,7 +676,7 @@ void directory_system::set_path_install_folder(const string & strPath)
 
    ::file::path_array patha;
 
-   patha.add_tokens(pszEnv, ":", false);
+   patha.add_tokens(scopedstrEnv, ":", false);
 
    string strCandidate;
 
@@ -1166,7 +1166,7 @@ bool directory_system::list(string_array & stra, const ::scoped_string & scopeds
 //}
 //
 
-//         ::file::path pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode);
+//         ::file::path pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode);
 
 
          //::file::path archive();
@@ -1195,7 +1195,7 @@ int directory_system::make_path(const ::scoped_string & scopedstr)
 
 
       //string name(const ::file::path & path);
-      //bool mk(const ::string & strPath);
+      //bool mk(const ::scoped_string & scopedstrPath);
       //bool _mk(const  char * path); // makes a directory path (all intermediates too)
       //bool is(const ::file::path & path);
       //bool _is(const ::file::path & path);

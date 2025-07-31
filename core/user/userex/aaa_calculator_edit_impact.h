@@ -28,7 +28,7 @@ namespace calculator
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void set_format(const string& strFormat) override;
+      virtual void set_format(const ::scoped_string & scopedstrFormat) override;
       virtual void set_callback(callback* pcallback) override;
 
 

@@ -551,7 +551,7 @@ namespace user
    }
 
 
-   void document::set_title(const ::string & pszTitle)
+   void document::set_title(const ::scoped_string & scopedstrTitle)
    {
 
       m_strTitle = pszTitle;
@@ -821,7 +821,7 @@ namespace user
       }
       // store the path fully qualified
       //char szFullPath[_MAX_PATH];
-      //if ( lstrlen(pszPathName) >= _MAX_PATH )
+      //if ( lstrlen(scopedstrPathName) >= _MAX_PATH )
 
       //{
       //   ASSERT(false);
@@ -858,7 +858,7 @@ namespace user
       //Utf8ToAcp(strPathName, m_wstrPathName);
       // add it to the file MRU list
       /* xxx if (bAddToMRU)
-      guserbase::get(this)->AddToRecentFileList(pszPathName);*/
+      guserbase::get(this)->AddToRecentFileList(scopedstrPathName);*/
 
 
       /*   ASSERT_VALID(this);
@@ -1501,7 +1501,7 @@ namespace user
    }
 
 
-   void document::report_load_exception(const ::payload & payloadFile, file_pointer presult, const ::string & pszDefault)
+   void document::report_load_exception(const ::payload & payloadFile, file_pointer presult, const ::scoped_string & scopedstrDefault)
    {
 
       report_save_load_exception(payloadFile, presult, false, pszDefault);
@@ -1509,7 +1509,7 @@ namespace user
    }
 
 
-   void document::report_save_exception(const ::payload & payloadFile, file_pointer presult, const ::string & pszDefault)
+   void document::report_save_exception(const ::payload & payloadFile, file_pointer presult, const ::scoped_string & scopedstrDefault)
    {
 
       report_save_load_exception(payloadFile, presult, true, pszDefault);
@@ -1517,7 +1517,7 @@ namespace user
    }
 
 
-   void document::report_save_load_exception(const ::payload & payloadFile, file_pointer presult, bool bSave, const ::string & pszDefault)
+   void document::report_save_load_exception(const ::payload & payloadFile, file_pointer presult, bool bSave, const ::scoped_string & scopedstrDefault)
    {
 
       try
@@ -1525,7 +1525,7 @@ namespace user
 
          __UNREFERENCED_PARAMETER(bSave);
 
-         string strPrompt(pszDefault);
+         string strPrompt(scopedstrDefault);
 
          //string prompt;
 
@@ -1597,7 +1597,7 @@ namespace user
 
          //if (prompt.is_empty())
          //{
-         //   string strTitle = ::file::path(pszPathName).title();
+         //   string strTitle = ::file::path(scopedstrPathName).title();
 
          //   //throw ::interface_only();
          //   /*
@@ -2149,7 +2149,7 @@ namespace user
    }
 
 
-   //void document::on_before_navigate(::form_data * pdata,::payload & payloadFile,unsigned int nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
+   //void document::on_before_navigate(::form_data * pdata,::payload & payloadFile,unsigned int nFlags, const ::scoped_string & scopedstrTargetFrameName,byte_array& baPostedData, const ::scoped_string & scopedstrHeaders,bool* pbCancel)
    //{
 
    //   __UNREFERENCED_PARAMETER(pdata);

@@ -66,7 +66,7 @@ namespace dynamic_source
    }
 
 
-   ::pointer<ds_script>script_cache::create_new_ds_script(const ::string & strName)
+   ::pointer<ds_script>script_cache::create_new_ds_script(const ::scoped_string & scopedstrName)
    {
 
       auto pscript = __create_new< ds_script >();

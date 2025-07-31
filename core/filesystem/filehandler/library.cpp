@@ -21,14 +21,14 @@ namespace filehandler
    }
 
 
-   bool library::handles_extension(const ::string & pszExtension)
+   bool library::handles_extension(const ::scoped_string & scopedstrExtension)
    {
 
       string_array stra;
 
       get_extension_list(stra);
 
-      if(!stra.case_insensitive_contains(pszExtension))
+      if(!stra.case_insensitive_contains(scopedstrExtension))
          return false;
 
       return true;
@@ -36,14 +36,14 @@ namespace filehandler
    }
 
 
-   bool library::handles_mime_type(const ::string & pszMimeType)
+   bool library::handles_mime_type(const ::scoped_string & scopedstrMimeType)
    {
 
       string_array stra;
 
       get_mime_type_list(stra);
 
-      if(!stra.case_insensitive_contains(pszMimeType))
+      if(!stra.case_insensitive_contains(scopedstrMimeType))
          return false;
 
       return true;
@@ -51,10 +51,10 @@ namespace filehandler
    }
 
 
-   void library::get_extension_app(string_array & straAppId, const ::string & pszExtension)
+   void library::get_extension_app(string_array & straAppId, const ::scoped_string & scopedstrExtension)
    {
 
-      if(!handles_extension(pszExtension))
+      if(!handles_extension(scopedstrExtension))
          return;
 
       string_array stra;
@@ -70,10 +70,10 @@ namespace filehandler
 
    }
 
-   void library::get_mime_type_app(string_array & straAppId, const ::string & pszMimeType)
+   void library::get_mime_type_app(string_array & straAppId, const ::scoped_string & scopedstrMimeType)
    {
 
-      if(!handles_mime_type(pszMimeType))
+      if(!handles_mime_type(scopedstrMimeType))
          return;
 
       string_array stra;

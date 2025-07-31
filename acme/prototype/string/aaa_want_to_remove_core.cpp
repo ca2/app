@@ -4,12 +4,12 @@
 //
 //CLASS_DECL_ACME long long strtoi(const ::scoped_string & scopedstr)
 //{
-//   return ::str::to_long_long(psz);
+//   return ::str::to_long_long(scopedstr);
 //}
 //
 //CLASS_DECL_ACME long long strtoi(const unichar * psz)
 //{
-//   return wide_to_long_long(psz);
+//   return wide_to_long_long(scopedstr);
 //}
 
 
@@ -41,7 +41,7 @@
 //   psz[0] = '\0';
 //}
 //
-//void const_empty_string::set_string(const ::string & str, const ::action_context & context)
+//void const_empty_string::set_string(const ::scoped_string & scopedstr, const ::action_context & context)
 //{
 //   __UNREFERENCED_PARAMETER(str);
 //   __UNREFERENCED_PARAMETER(context);

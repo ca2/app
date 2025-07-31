@@ -193,8 +193,8 @@ struct MEMORY_BLOCK_HEADER;
 // inline i32 FUNCTION_XXDEBUGBOX(const char * pszMessage, const char * pszTitle, i32 iFlags)
 // {
 
-//    UNREFERENCED_PARAMETER(pszMessage);
-//    UNREFERENCED_PARAMETER(pszTitle);
+//    UNREFERENCED_PARAMETER(scopedstrMessage);
+//    UNREFERENCED_PARAMETER(scopedstrTitle);
 //    UNREFERENCED_PARAMETER(iFlags);
 
 //    return 0;
@@ -204,8 +204,8 @@ struct MEMORY_BLOCK_HEADER;
 // inline i32 FUNCTION_XXDEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, i32 iFlags)
 // {
 
-//    UNREFERENCED_PARAMETER(pszMessage);
-//    UNREFERENCED_PARAMETER(pszTitle);
+//    UNREFERENCED_PARAMETER(scopedstrMessage);
+//    UNREFERENCED_PARAMETER(scopedstrTitle);
 //    UNREFERENCED_PARAMETER(iFlags);
 
 //    return 0;
@@ -250,8 +250,8 @@ struct MEMORY_BLOCK_HEADER;
 //
 //
 //
-//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, e_trace_level elevel, const string & strContext, i32 iError, const string & strContext) override;
-//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, e_trace_level elevel, const string & strContext, i32 iError, const string & strContext) override;
+//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, e_trace_level elevel, const ::scoped_string & scopedstrContext, i32 iError, const ::scoped_string & scopedstrContext) override;
+//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, e_trace_level elevel, const ::scoped_string & scopedstrContext, i32 iError, const ::scoped_string & scopedstrContext) override;
 //
 //
 //};

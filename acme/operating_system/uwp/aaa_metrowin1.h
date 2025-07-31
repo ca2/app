@@ -46,7 +46,7 @@ typedef void (__MSG_CALL ::thread::*__PMSGT)();
 
 
 
-CLASS_DECL_ACME int delete_registry_tree_helper(HKEY hParentKey, const ::string & strKeyName);
+CLASS_DECL_ACME int delete_registry_tree_helper(HKEY hParentKey, const ::scoped_string & scopedstrKeyName);
 
 
 

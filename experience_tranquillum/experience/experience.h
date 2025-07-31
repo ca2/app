@@ -26,7 +26,7 @@ namespace experience_tranquillum
       void get_frame_list(string_array & stra) override;
 
 
-      ::pointer < ::experience::frame > frame_experience(const ::string & strFrameSchema) override;
+      ::pointer < ::experience::frame > frame_experience(const ::scoped_string & scopedstrFrameSchema) override;
 
 
    };

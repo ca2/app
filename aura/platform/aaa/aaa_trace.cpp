@@ -24,14 +24,14 @@ namespace aura
       }
 
 
-      typedef void ( * PFN_trace_v)(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::string & pszFmt, va_list args);
-      CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::string & pszFmt, va_list args);
+      typedef void ( * PFN_trace_v)(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::scoped_string & scopedstrFmt, va_list args);
+      CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::scoped_string & scopedstrFmt, va_list args);
       CLASS_DECL_AURA PFN_trace_v trace_v = &raw_trace_v;
 
 
-      void trace::TraceV(const ::string &pszFileName, int nLine, e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFormat, va_list args) const
+      void trace::TraceV(const ::string &pszFileName, int nLine, e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFormat, va_list args) const
       {
-         __UNREFERENCED_PARAMETER(pszFileName);
+         __UNREFERENCED_PARAMETER(scopedstrFileName);
          __UNREFERENCED_PARAMETER(nLine);
          /*      const category *pCategory;
          trace_module * pmodule = nullptr;
@@ -76,7 +76,7 @@ namespace aura
 
          string str;
 
-         str.formatf(pszFormat, args);
+         str.formatf(scopedstrFormat, args);
 
          ::information(str);
 
@@ -105,25 +105,25 @@ namespace aura
       }
 
 
-      CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::string & pszFmt, va_list args)
+      CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::scoped_string & scopedstrFmt, va_list args)
       {
 
-         __UNREFERENCED_PARAMETER(pszFileName);
+         __UNREFERENCED_PARAMETER(scopedstrFileName);
          __UNREFERENCED_PARAMETER(nLine);
          __UNREFERENCED_PARAMETER(dwCategory);
          __UNREFERENCED_PARAMETER(nLevel);
 
          string str;
 
-         str.formatf(pszFmt, args);
+         str.formatf(scopedstrFmt, args);
 
          ::information(str);
 
       }
 
-      /*CLASS_DECL_AURA void system_log_trace_v(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::string & pszFmt, va_list args)
+      /*CLASS_DECL_AURA void system_log_trace_v(const ::string &pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const ::scoped_string & scopedstrFmt, va_list args)
       {
-      ::auraacmesystem()->log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
+      ::auraacmesystem()->log().trace_v(scopedstrFileName, nLine, dwCategory, nLevel, pszFmt, args);
       }*/
 
 
@@ -381,7 +381,7 @@ void set_global_trace_level(enum_trace_level etracelevel)
 }
 
 
-CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string &pszFileName, int iLine, const ::string & psz)
+CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::string &pszFileName, int iLine, const ::scoped_string & scopedstr)
 {
 
    if (elevel < get_global_trace_level())
@@ -395,10 +395,10 @@ CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level el
 
    auto pszTopicText = topic_text(pparticle);
 
-   if (::is_set(pszTopicText) && *pszTopicText != '\0')
+   if (::is_set(scopedstrTopicText) && *pszTopicText != '\0')
    {
 
-      string strTopic(pszTopicText);
+      string strTopic(scopedstrTopicText);
 
       strTopic.case_insensitive_begins_eat("class ");
 
@@ -416,7 +416,7 @@ CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level el
 
    #if SIMPLE_TRACE_FUNCTION_NAME
 
-   if (::is_set(pszFunction))
+   if (::is_set(scopedstrFunction))
    {
 
       strMessage += "\nFunction: ";
@@ -429,7 +429,7 @@ CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level el
 
    #if SIMPLE_TRACE_FILE_NAME
 
-   if (::is_set(pszFileName))
+   if (::is_set(scopedstrFileName))
    {
 
       strMessage += "\nFile: ";
@@ -454,13 +454,13 @@ CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level el
 }
 
 
-CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string &pszFileName, int iLine, const ::string & pszFormat, va_list args)
+CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::string &pszFileName, int iLine, const ::scoped_string & scopedstrFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)
    //{
 
-   //   vprintf(pszFormat, args);
+   //   vprintf(scopedstrFormat, args);
 
    //   return;
 
@@ -468,7 +468,7 @@ CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level el
 
    string strMessage;
 
-   strMessage.formatf_arguments(pszFormat, args);
+   strMessage.formatf_arguments(scopedstrFormat, args);
 
    __simple_tracea(pparticle, elevel, pszFunction, pszFileName, iLine, strMessage);
 

@@ -151,10 +151,10 @@ bool html_impact::Refresh2(int i)
 }
 
 
-bool html_impact::browse(const ::string & pszUrl)
+bool html_impact::browse(const ::scoped_string & scopedstrUrl)
 {
 
-   if (!get_document()->on_open_document(pszUrl))
+   if (!get_document()->on_open_document(scopedstrUrl))
    {
 
       return false;
@@ -168,7 +168,7 @@ bool html_impact::browse(const ::string & pszUrl)
 }
 
 
-void html_impact::on_document_complete(const ::string & strUrl)
+void html_impact::on_document_complete(const ::scoped_string & scopedstrUrl)
 {
 
    __UNREFERENCED_PARAMETER(strUrl);
@@ -273,7 +273,7 @@ bool html_impact::open_document(const ::payload & payloadFile)
 }
 
 
-bool html_impact::open_html(const ::string & strHtml)
+bool html_impact::open_html(const ::scoped_string & scopedstrHtml)
 {
 
    return html_form::open_html(strHtml);

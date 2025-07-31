@@ -349,7 +349,7 @@ bool scalar_source::set_integer_scalar_rate(enum_scalar escalar, double dValue, 
 
 
 
-integer_scalar::integer_scalar(scalar_source* psource, enum_scalar escalar, const ::string& strFormat)
+integer_scalar::integer_scalar(scalar_source* psource, enum_scalar escalar, const ::scoped_string & scopedstrFormat)
 {
 
    m_psource = psource;
@@ -469,7 +469,7 @@ bool integer_scalar::set_rate(double dValue, int iFlags)
 }
 
 
-string integer_scalar::printf(const ::string& strFormat)
+string integer_scalar::printf(const ::scoped_string & scopedstrFormat)
 {
 
    ::string str;

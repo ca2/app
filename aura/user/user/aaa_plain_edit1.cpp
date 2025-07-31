@@ -254,7 +254,7 @@ namespace user
    }
 
 
-   void plain_edit::set_format(const string & strFormat)
+   void plain_edit::set_format(const ::scoped_string & scopedstrFormat)
    {
 
    }
@@ -1622,7 +1622,7 @@ namespace user
 
       m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
-      m_ptree->m_peditfile->read(psz, (memsize)iSize);
+      m_ptree->m_peditfile->read(scopedstr, (memsize)iSize);
 
       psz[(memsize)iSize] = '\0';
 
@@ -1715,7 +1715,7 @@ namespace user
 
       m_ptree->m_peditfile->seek((filesize)iBeg, ::e_seek_set);
 
-      m_ptree->m_peditfile->read(psz, (memsize)(iSize));
+      m_ptree->m_peditfile->read(scopedstr, (memsize)(iSize));
 
       psz[(memsize)iSize] = '\0';
 
@@ -1724,7 +1724,7 @@ namespace user
    }
 
 
-   void plain_edit::set_selection_text(const ::string & psz, const ::action_context & context)
+   void plain_edit::set_selection_text(const ::scoped_string & scopedstr, const ::action_context & context)
    {
 
       {
@@ -1737,7 +1737,7 @@ namespace user
 
          m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::e_seek_set);
 
-         m_ptree->m_peditfile->Insert(psz, ansi_len(psz));
+         m_ptree->m_peditfile->Insert(scopedstr, ansi_len(scopedstr));
 
       }
 
@@ -2605,7 +2605,7 @@ namespace user
       //      while (*pszNext != '\0')
       //      {
 
-      //         pszNext = unicode_next(psz);
+      //         pszNext = unicode_next(scopedstr);
 
       //         iLen = pszNext - psz;
 
@@ -2623,7 +2623,7 @@ namespace user
       //         for (int j = 0; j < iLen; j++)
       //         {
 
-      //           daExtent [(::collection::index)(psz - pszStart + j)] = size.cx();
+      //           daExtent [(::collection::index)(scopedstr - pszStart + j)] = size.cx();
 
       //         }
 
@@ -2639,7 +2639,7 @@ namespace user
       //         for (int j = 0; j < iLen; j++)
       //         {
 
-      //            daExtent[(::collection::index)(psz - pszStart)] = size.cx();
+      //            daExtent[(::collection::index)(scopedstr - pszStart)] = size.cx();
 
       //         }
 
@@ -3072,9 +3072,9 @@ namespace user
       //            while (*pszNext != '\0')
       //            {
       //
-      //               pszNext = unicode_next(psz);
+      //               pszNext = unicode_next(scopedstr);
       //
-      //               if (pszNext == nullptr)
+      //               if (scopedstrNext == nullptr)
       //               {
       //
       //                  break;
@@ -3100,7 +3100,7 @@ namespace user
       //                  while (*psz != '\0')
       //                  {
       //
-      //                     daExtent[(::collection::index)(psz - pszStart)] = -1;
+      //                     daExtent[(::collection::index)(scopedstr - pszStart)] = -1;
       //                     psz++;
       //
       //                  }
@@ -3114,7 +3114,7 @@ namespace user
       //               for (int j = 0; j < iLen; j++)
       //               {
       //
-      //                  daExtent[(::collection::index)(psz - pszStart + j)] = size.cx();
+      //                  daExtent[(::collection::index)(scopedstr - pszStart + j)] = size.cx();
       //
       //               }
       //
@@ -3127,7 +3127,7 @@ namespace user
       //
       //               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
       //
-      //               daExtent[(::collection::index)(psz - pszStart)] = size.cx();
+      //               daExtent[(::collection::index)(scopedstr - pszStart)] = size.cx();
       //
       //            }
       //
@@ -3503,9 +3503,9 @@ namespace user
             while (*pszNext != '\0')
             {
 
-               pszNext = unicode_next(psz);
+               pszNext = unicode_next(scopedstr);
 
-               if (pszNext == nullptr)
+               if (scopedstrNext == nullptr)
                {
 
                   break;
@@ -3531,7 +3531,7 @@ namespace user
                   while (*psz != '\0')
                   {
 
-                     daExtent[(::collection::index)(psz - pszStart)] = -1;
+                     daExtent[(::collection::index)(scopedstr - pszStart)] = -1;
                      psz++;
 
                   }
@@ -3545,7 +3545,7 @@ namespace user
                for (int j = 0; j < iLen; j++)
                {
 
-                  daExtent[(::collection::index)(psz - pszStart + j)] = size.cx();
+                  daExtent[(::collection::index)(scopedstr - pszStart + j)] = size.cx();
 
                }
 
@@ -3558,7 +3558,7 @@ namespace user
 
                size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
 
-               daExtent[(::collection::index)(psz - pszStart)] = size.cx();
+               daExtent[(::collection::index)(scopedstr - pszStart)] = size.cx();
 
             }
 
@@ -3863,7 +3863,7 @@ namespace user
 //      //      while (*pszNext != '\0')
 //      //      {
 //
-//      //         pszNext = unicode_next(psz);
+//      //         pszNext = unicode_next(scopedstr);
 //
 //      //         iLen = pszNext - psz;
 //
@@ -3881,7 +3881,7 @@ namespace user
 //      //         for (int j = 0; j < iLen; j++)
 //      //         {
 //
-//      //           daExtent [(::collection::index)(psz - pszStart + j)] = size.cx();
+//      //           daExtent [(::collection::index)(scopedstr - pszStart + j)] = size.cx();
 //
 //      //         }
 //
@@ -3897,7 +3897,7 @@ namespace user
 //      //         for (int j = 0; j < iLen; j++)
 //      //         {
 //
-//      //            daExtent[(::collection::index)(psz - pszStart)] = size.cx();
+//      //            daExtent[(::collection::index)(scopedstr - pszStart)] = size.cx();
 //
 //      //         }
 //
@@ -4272,10 +4272,10 @@ namespace user
 //
 //            daExtent.set_size(strLine.length() + 1);
 //
-//            while (::has_character(pszNext))
+//            while (::has_character(scopedstrNext))
 //            {
 //
-//               pszNext = unicode_next(psz);
+//               pszNext = unicode_next(scopedstr);
 //
 //               iLen = pszNext - psz;
 //
@@ -4293,7 +4293,7 @@ namespace user
 //               for (int j = 0; j < iLen; j++)
 //               {
 //
-//                  daExtent[(::collection::index)(psz - pszStart + j)] = size.cx();
+//                  daExtent[(::collection::index)(scopedstr - pszStart + j)] = size.cx();
 //
 //               }
 //
@@ -4309,7 +4309,7 @@ namespace user
 //               for (int j = 0; j < iLen; j++)
 //               {
 //
-//                  daExtent[(::collection::index)(psz - pszStart)] = size.cx();
+//                  daExtent[(::collection::index)(scopedstr - pszStart)] = size.cx();
 //
 //               }
 //
@@ -4899,14 +4899,14 @@ namespace user
 
          pszPrevious = pszEnd;
 
-         unicode_increment(pszEnd);
+         unicode_increment(scopedstrEnd);
 
-         if (pszEnd == nullptr)
+         if (scopedstrEnd == nullptr)
             break;
 
          lim1 = lim2;
 
-         strExtent = string(psz, pszEnd - psz);
+         strExtent = string(scopedstr, pszEnd - psz);
 
          replace_tab(0, strExtent, m_iTabWidth);
 
@@ -4923,7 +4923,7 @@ namespace user
          if (px >= lim1 && px <= lim1 + iMid)
          {
 
-            iSel = m_iaLineStart[iLine] + (pszPrevious - psz);
+            iSel = m_iaLineStart[iLine] + (scopedstrPrevious - psz);
 
             goto end;
 
@@ -4931,13 +4931,13 @@ namespace user
          else if (px >= lim1 + iMid && px <= lim2)
          {
 
-            iSel = m_iaLineStart[iLine] + (pszEnd - psz);
+            iSel = m_iaLineStart[iLine] + (scopedstrEnd - psz);
 
             goto end;
 
          }
 
-         if (pszEnd[0] == '\0')
+         if (scopedstrEnd[0] == '\0')
          {
 
             break;
@@ -5522,9 +5522,9 @@ namespace user
             for (character_count i = 0; i < afterLength; i++)
             {
 
-               auto pszNew = unicode_next(psz);
+               auto pszNew = unicode_next(scopedstr);
 
-               if (::is_empty(pszNew))
+               if (::is_empty(scopedstrNew))
                {
 
                   break;
@@ -5783,7 +5783,7 @@ namespace user
 
                pszNext = buf + amountRead;
 
-               pszBefore = unicode_prior(pszNext, buf);
+               pszBefore = unicode_prior(scopedstrNext, buf);
 
             }
             else
@@ -6003,14 +6003,14 @@ namespace user
    //}
 
 
-   void plain_edit::_001ReplaceSel(const ::string & pszText)
+   void plain_edit::_001ReplaceSel(const ::scoped_string & scopedstrText)
    {
 
       bool bFullUpdate = true;
 
       ::collection::index iLineUpdate = -1;
 
-      if (_001ReplaceSel(pszText, bFullUpdate, iLineUpdate))
+      if (_001ReplaceSel(scopedstrText, bFullUpdate, iLineUpdate))
       {
 
          auto psystem = system();
@@ -6026,7 +6026,7 @@ namespace user
    }
 
 
-   bool plain_edit::_001ReplaceSel(const ::string & pszText, bool & bFullUpdate, ::collection::index & iLineUpdate)
+   bool plain_edit::_001ReplaceSel(const ::scoped_string & scopedstrText, bool & bFullUpdate, ::collection::index & iLineUpdate)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -6092,7 +6092,7 @@ namespace user
 
       }
 
-      m_ptree->m_peditfile->Insert(pszText, ansi_length(pszText));
+      m_ptree->m_peditfile->Insert(scopedstrText, ansi_length(scopedstrText));
 
       IndexRegisterInsert(i1, pszText);
 
@@ -6635,7 +6635,7 @@ namespace user
 
                      //      psz = unicode_prior(&buf[iCur], buf);
 
-                     //      if (psz == nullptr)
+                     //      if (scopedstr == nullptr)
                      //      {
 
                      //         psz = maximum((char *)buf, (char *)&buf[iCur - 1]);
@@ -6904,7 +6904,7 @@ namespace user
                      }
                      else
                      {
-                        m_ptree->m_iSelEnd -= psz - unicode_prior(psz, buf);
+                        m_ptree->m_iSelEnd -= psz - unicode_prior(scopedstr, buf);
                      }
                   }
                   else
@@ -7488,7 +7488,7 @@ namespace user
    }
 
 
-   bool plain_edit::InputConnectionCommitText(const ::string & strText, character_count iNewCursorPosition, bool bSuper)
+   bool plain_edit::InputConnectionCommitText(const ::scoped_string & scopedstrText, character_count iNewCursorPosition, bool bSuper)
    {
 
       InputConnectionSetComposingText(strText, iNewCursorPosition, bSuper);
@@ -7519,7 +7519,7 @@ namespace user
    }
 
 
-   bool plain_edit::InputConnectionSetComposingText(const ::string & strTextParam, character_count iNewCursorPosition, bool bSuper)
+   bool plain_edit::InputConnectionSetComposingText(const ::scoped_string & scopedstrTextParam, character_count iNewCursorPosition, bool bSuper)
    {
 
       string strText(strTextParam);
@@ -8479,7 +8479,7 @@ namespace user
 
 
 
-   void plain_edit::set_text(const ::string & strParam, const ::action_context & action_context)
+   void plain_edit::set_text(const ::scoped_string & scopedstrParam, const ::action_context & action_context)
    {
 
       ::character_count iSelBeg = 0;
@@ -8660,7 +8660,7 @@ namespace user
    }
 
 
-   bool plain_edit::get_line_color(::color::color & color32, const ::string & strLine)
+   bool plain_edit::get_line_color(::color::color & color32, const ::scoped_string & scopedstrLine)
    {
 
       return false;
@@ -9178,7 +9178,7 @@ namespace user
 
          m_ptree->m_peditfile->seek(m_iaLineStart[iLine], ::e_seek_set);
 
-         m_ptree->m_peditfile->read(psz, iLineLen);
+         m_ptree->m_peditfile->read(scopedstr, iLineLen);
 
          strLine.release_buffer(iLineLen);
 

@@ -40,8 +40,8 @@ namespace userex
       void on_create_impact(::user::impact_data * pimpactdata) override;
 
 
-      void set_new_pane_info(atom atom, const ::string & pszMatter);
-      void set_menu_info(atom atom, const ::string & pszMatter, ::atom idCommand);
+      void set_new_pane_info(atom atom, const ::scoped_string & scopedstrMatter);
+      void set_menu_info(atom atom, const ::scoped_string & scopedstrMatter, ::atom idCommand);
    
 
       virtual void on_command_probe(::message::command * pcommand) override;

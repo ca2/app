@@ -180,7 +180,7 @@ public:
    virtual ::file::path inplace_matter_install(string strAppId, string strPlatform, string strConfiguration);
 
 
-   virtual void set_path_install_folder(const ::string & pszPath);
+   virtual void set_path_install_folder(const ::scoped_string & scopedstrPath);
 
    //virtual ::file::path pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode);
 
@@ -261,7 +261,7 @@ public:
 
 
             //virtual string name(const ::file::path & path);
-            //virtual bool mk(const ::string & strPath);
+            //virtual bool mk(const ::scoped_string & scopedstrPath);
             //virtual bool _mk(const  char * path); // makes a directory path (all intermediates too)
             //virtual bool is(const ::file::path & path);
             //virtual bool _is(const ::file::path & path);

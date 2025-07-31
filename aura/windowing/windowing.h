@@ -227,7 +227,7 @@ namespace windowing
 #endif
 
 
-      virtual wstring _windows_calc_icon_window_class(::user::interaction* pinteraction, unsigned int dwDefaultStyle, const ::string & pszMatter);
+      virtual wstring _windows_calc_icon_window_class(::user::interaction* pinteraction, unsigned int dwDefaultStyle, const ::scoped_string & scopedstrMatter);
       virtual wstring _windows_get_user_interaction_window_class(::user::interaction* pinteraction);
 
 
@@ -260,7 +260,7 @@ namespace windowing
 
       virtual void defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId);
 
-      virtual ::pointer < ::user::interaction > create_message_window(const ::string & pszName, ::user::interaction_listener * plistener = nullptr);
+      virtual ::pointer < ::user::interaction > create_message_window(const ::scoped_string & scopedstrName, ::user::interaction_listener * plistener = nullptr);
 
 
       virtual void windowing_application_main_loop() override;

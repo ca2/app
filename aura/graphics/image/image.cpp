@@ -2908,7 +2908,7 @@ void image::mult_alpha(const ::int_point& pointDstParam, const ::int_size& sizeP
 }
 
 
-void image::create_thumbnail(const ::string & psz)
+void image::create_thumbnail(const ::scoped_string & scopedstr)
 {
 
    //return false;

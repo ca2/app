@@ -415,7 +415,7 @@ char * mm_browse_folder(const char * pszStartDir, bool bCanCreateDirectories)
       
       NSURL * startDir = NULL;
       
-      if(pszStartDir != NULL)
+      if(scopedstrStartDir != NULL)
       {
          
          NSString * str = [[NSString alloc] initWithUTF8String:pszStartDir];
@@ -447,7 +447,7 @@ char** mm_browse_file_open(const char ** pszStartDir, bool bMulti)
       
       NSURL * startDir = NULL;
       
-      if(pszStartDir != NULL && *pszStartDir != NULL)
+      if(scopedstrStartDir != NULL && *pszStartDir != NULL)
       {
          
          NSString * str = [[NSString alloc] initWithUTF8String:*pszStartDir];

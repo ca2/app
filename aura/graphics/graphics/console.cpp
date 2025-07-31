@@ -235,7 +235,7 @@ namespace graphics
    }
 
 
-   void console::write(const ::string & strParam)
+   void console::write(const ::scoped_string & scopedstrParam)
    {
       synchronous_lock synchronouslock(this->synchronization());
 

@@ -113,7 +113,7 @@ namespace networking
    }
 
 
-   void application::add_handler(const ::string& strPrefix, ::networking::application_handler* phandler)
+   void application::add_handler(const ::scoped_string & scopedstrPrefix, ::networking::application_handler* phandler)
    {
 
       if (::is_null(phandler))
@@ -132,7 +132,7 @@ namespace networking
    }
 
 
-   ::e_status application::on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
+   ::e_status application::on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::scoped_string & scopedstrUrl, const ::property_set& setPost)
    {
 
       ::url::url url(strUrl);

@@ -77,7 +77,7 @@ namespace user
       {
       public:
 
-         virtual void set_expression(const ::string & pszExp)
+         virtual void set_expression(const ::scoped_string & scopedstrExp)
          {
 
          }
@@ -269,7 +269,7 @@ namespace user
 
       virtual bool is_plain_edit_modified() const;
 
-      virtual void set_format(const string& strFormat);
+      virtual void set_format(const ::scoped_string & scopedstrFormat);
       virtual void set_callback(callback* pcallback);
 
 
@@ -288,9 +288,9 @@ namespace user
 
       bool InputConnectionBeginBatchEdit(bool bSuper) override;
       bool InputConnectionEndBatchEdit(bool bSuper) override;
-      bool InputConnectionCommitText(const ::string & str, character_count iNewCursorPosition, bool bSuper) override;
+      bool InputConnectionCommitText(const ::scoped_string & scopedstr, character_count iNewCursorPosition, bool bSuper) override;
       bool InputConnectionDeleteSurroundingText(character_count iBeforeLength, character_count iAfterLength, bool bSuper) override;
-      bool InputConnectionSetComposingText(const ::string & str, character_count iNewCursorPosition, bool bSuper) override;
+      bool InputConnectionSetComposingText(const ::scoped_string & scopedstr, character_count iNewCursorPosition, bool bSuper) override;
       bool InputConnectionSetComposingRegion(character_count iStart, character_count iEnd, bool bSuper) override;
       bool InputConnectionSetSelection(character_count iStart, character_count iEnd, bool bSuper) override;
       bool InputConnectionFinishComposingText(bool bSuper) override;
@@ -313,8 +313,8 @@ namespace user
       virtual void _001DeleteSel(bool bBackIfSelectionEmpty = false);
       ///virtual bool plain_edit_delete_sel(::draw2d::graphics_pointer& pgraphics, bool & bFullUpdate, ::collection::index & iLineUpdate);
 
-      virtual void _001ReplaceSel(const ::string & pszText);
-      virtual bool _001ReplaceSel(const ::string & pszText, bool & bFullUpdate, ::collection::index & iLineUpdate);
+      virtual void _001ReplaceSel(const ::scoped_string & scopedstrText);
+      virtual bool _001ReplaceSel(const ::scoped_string & scopedstrText, bool & bFullUpdate, ::collection::index & iLineUpdate);
 
       virtual void plain_edit_on_end_update(::draw2d::graphics_pointer & pgraphics);
 
@@ -393,7 +393,7 @@ namespace user
       virtual void clipboard_copy();
       virtual void clipboard_paste();
 
-      virtual bool get_line_color(::color::color & crOverride, const ::string & strLine);
+      virtual bool get_line_color(::color::color & crOverride, const ::scoped_string & scopedstrLine);
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
@@ -448,8 +448,8 @@ namespace user
       void get_text_selection(character_count &iSelStart, character_count &iSelEnd) override;
       void _001_get_impact_sel(character_count & iSelStart, character_count & iSelEnd);
 
-      void set_text(const ::string & str, const ::action_context & action_context) override;
-      void set_selection_text(const ::string & psz, const ::action_context & action_context) override;
+      void set_text(const ::scoped_string & scopedstr, const ::action_context & action_context) override;
+      void set_selection_text(const ::scoped_string & scopedstr, const ::action_context & action_context) override;
       void _001SetSelEnd(character_count iSelEnd, const ::action_context & action_context) override;
       void _set_sel_end(::draw2d::graphics_pointer& pgraphics, character_count iSelEnd, const ::action_context & action_context);
       void _ensure_selection_visible_x(::draw2d::graphics_pointer & pgraphics);

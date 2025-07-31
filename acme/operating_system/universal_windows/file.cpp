@@ -103,8 +103,8 @@ int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scop
    return file_path_is_equal(scopedstr1, scopedstr2);
 
    //   const int iBufSize = MAX_PATH * 8;
-   //   wstring pwsz1 = utf8_to_unicode(psz1);
-   //   wstring pwsz2 = utf8_to_unicode(psz2);
+   //   wstring pwsz1 = utf8_to_unicode(scopedstr1);
+   //   wstring pwsz2 = utf8_to_unicode(scopedstr2);
    //   int iCmp = pwsz1.case_insensitive_order(pwsz2);
    ///*   unichar * pwszFile1;
    //   unichar * pwszFile2;
@@ -882,7 +882,7 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //int_bool file_set_length(const ::scoped_string & scopedstrName,size_t iSize)
 //{
 //
-//   wstring wstr(pszName);
+//   wstring wstr(scopedstrName);
 //
 //   HANDLE h = ::CreateFileW(wstr,GENERIC_READ | GENERIC_WRITE,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
 //
@@ -940,10 +940,10 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //
 //int_bool file_path_is_equal(const ::scoped_string & scopedstr1,const ::scoped_string & scopedstr2)
 //{
-//   return file_is_equal_path_dup(psz1,psz2);
+//   return file_is_equal_path_dup(scopedstr1,psz2);
 //   /*const int iBufSize = MAX_PATH * 8;
-//   wstring pwsz1 = utf8_to_unicode(psz1);
-//   wstring pwsz2 = utf8_to_unicode(psz2);
+//   wstring pwsz1 = utf8_to_unicode(scopedstr1);
+//   wstring pwsz2 = utf8_to_unicode(scopedstr2);
 //   unichar * pwszFile1;
 //   unichar * pwszFile2;
 //   unichar * pwszPath1 = ___new unichar[iBufSize];
@@ -1508,7 +1508,7 @@ unsigned int WinGetFileAttributes(const unichar* psz)
    zero(&data, sizeof(data));
 
 
-   if (!::GetFileAttributesExW(psz, GetFileExInfoStandard, &data))
+   if (!::GetFileAttributesExW(scopedstr, GetFileExInfoStandard, &data))
    {
       
       DWORD dwLastError = ::GetLastError();
@@ -1881,7 +1881,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //int_bool file_path_is_equal(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
 //
-//   return normalize_path(psz1).case_insensitive_order(normalize_path(psz2)) == 0;
+//   return normalize_path(scopedstr1).case_insensitive_order(normalize_path(scopedstr2)) == 0;
 //
 //}
 //
@@ -1911,7 +1911,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //int_bool file_set_length(const ::scoped_string & scopedstrName, size_t iSize)
 //{
 //
-//   int i = open(pszName, 0);
+//   int i = open(scopedstrName, 0);
 //
 //   ftruncate(i, iSize);
 //
@@ -1932,7 +1932,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //   try
 //   {
 //
-//      folder = get_os_folder(::file_path_folder(pszNew));
+//      folder = get_os_folder(::file_path_folder(scopedstrNew));
 //
 //      if (folder == nullptr)
 //         return false;
@@ -1951,7 +1951,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //   try
 //   {
 //
-//      fileSrc = get_os_file(pszSrc, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
+//      fileSrc = get_os_file(scopedstrSrc, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
 //
 //      if (fileSrc == nullptr)
 //         return false;
@@ -1964,7 +1964,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //
 //   }
 //
-//   wstring wstrNew(pszNew);
+//   wstring wstrNew(scopedstrNew);
 //
 //   return ::wait(fileSrc->CopyAsync(folder, wstrNew, bOverwrite ?
 //      ::winrt::Windows::Storage::NameCollisionOption::ReplaceExisting :

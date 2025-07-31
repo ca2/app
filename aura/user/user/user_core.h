@@ -133,8 +133,8 @@ namespace user
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 
-      virtual bool get_fs_size(string & strSize, const ::string & pszPath, bool & bPending);
-      virtual bool get_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending);
+      virtual bool get_fs_size(string & strSize, const ::scoped_string & scopedstrPath, bool & bPending);
+      virtual bool get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
 
       virtual void data_on_after_change(::message::message * pmessage);
 
@@ -142,7 +142,7 @@ namespace user
 
       virtual bool modal_get_color(::user::interaction * puiOwner, ::color::hls & hls);
 
-      virtual void AddToRecentFileList(const ::string & pszPathName);
+      virtual void AddToRecentFileList(const ::scoped_string & scopedstrPathName);
 
 
       virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant);

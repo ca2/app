@@ -44,7 +44,7 @@ namespace html
       return *this;
    }
 
-   ::color::color style::parse_color(const ::string & str)
+   ::color::color style::parse_color(const ::scoped_string & scopedstr)
    {
 
       return _parse_color(str);
@@ -52,7 +52,7 @@ namespace html
    }
 
 
-   float style::parse_dimension(const ::string & str)
+   float style::parse_dimension(const ::scoped_string & scopedstr)
    {
 
       return _parse_dimension(str);
@@ -60,7 +60,7 @@ namespace html
    }
 
 
-   bool style::parse_border_width(const ::string & str, float & f)
+   bool style::parse_border_width(const ::scoped_string & scopedstr, float & f)
    {
 
       return _parse_border_width(str, f);
@@ -68,7 +68,7 @@ namespace html
    }
 
 
-   bool style::parse_border_color(const ::string & str, ::color::color & color)
+   bool style::parse_border_color(const ::scoped_string & scopedstr, ::color::color & color)
    {
 
       return _parse_border_color(str, color);
@@ -76,19 +76,19 @@ namespace html
    }
 
 
-   ::color::color style::_parse_color(const ::string & psz)
+   ::color::color style::_parse_color(const ::scoped_string & scopedstr)
    {
 
       ::color::color color;
 
-      color.parse_color(psz);
+      color.parse_color(scopedstr);
 
       return color;
 
    }
 
 
-   bool style::get_dimension(bool bParent, const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, float & f)
+   bool style::get_dimension(bool bParent, const_ansi_range rangeName, const ::scoped_string & scopedstrSubClass, html_data * pdata, ::html::element * pelement, float & f)
    {
 
       f = 0.f;
@@ -137,7 +137,7 @@ namespace html
    }
 
 
-   bool style::get_surround_box(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, ::float_rectangle & rectangle)
+   bool style::get_surround_box(const_ansi_range rangeName, const ::scoped_string & scopedstrSubClass, html_data * pdata, ::html::element * pelement, ::float_rectangle & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -294,7 +294,7 @@ namespace html
    }
 
 
-   bool style::get_border_box(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, border & rectangle)
+   bool style::get_border_box(const_ansi_range rangeName, const ::scoped_string & scopedstrSubClass, html_data * pdata, ::html::element * pelement, border & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -466,7 +466,7 @@ namespace html
    }
 
 
-   bool style::get_border_color(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, border & rectangle)
+   bool style::get_border_color(const_ansi_range rangeName, const ::scoped_string & scopedstrSubClass, html_data * pdata, ::html::element * pelement, border & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -639,7 +639,7 @@ namespace html
    }
 
 
-   bool style::get_color(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, ::color::color & color32)
+   bool style::get_color(const_ansi_range rangeName, const ::scoped_string & scopedstrSubClass, html_data * pdata, const ::html::element * pelement, ::color::color & color32)
    {
 
       e_tag etag = pelement->m_etag;
@@ -671,7 +671,7 @@ namespace html
    }
 
 
-   bool style::get_text(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, string & str)
+   bool style::get_text(const_ansi_range rangeName, const ::scoped_string & scopedstrSubClass, html_data * pdata, const ::html::element * pelement, string & str)
    {
 
       e_tag etag = pelement->m_etag;
@@ -844,7 +844,7 @@ namespace html
    }
 
 
-   bool style::get_alpha(const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, double & d)
+   bool style::get_alpha(const ::scoped_string & scopedstrSubClass, html_data * pdata, const ::html::element * pelement, double & d)
    {
 
       const char* rangeName = "opacity";
@@ -872,7 +872,7 @@ namespace html
    }
 
 
-   const char * style::parse(html_data * pdata, const ::string & strParam)
+   const char * style::parse(html_data * pdata, const ::scoped_string & scopedstrParam)
    {
 
       const char * psz = strParam;
@@ -886,7 +886,7 @@ namespace html
          }
          if(*psz == '\0' || *psz == '}')
             return psz;
-         string strKey(pszStart, psz - pszStart);
+         string strKey(scopedstrStart, psz - pszStart);
          strKey.trim();
 
          char chQuote = '\0';
@@ -895,7 +895,7 @@ namespace html
          while((chQuote != '\0' || *psz != ';') && *psz != '\0' && *psz != '}')
          {
             psz++;
-            if(chQuote != '\0' && chQuote == *psz && *(psz - 1) != '\\')
+            if(chQuote != '\0' && chQuote == *psz && *(scopedstr - 1) != '\\')
             {
                chQuote = '\0';
             }
@@ -904,7 +904,7 @@ namespace html
                chQuote = *psz;
             }
          }
-         string strValue(pszStart, psz - pszStart);
+         string strValue(scopedstrStart, psz - pszStart);
          m_propertyset[strKey] = strValue;
          if(*psz == ';')
          {
@@ -917,7 +917,7 @@ namespace html
    }
 
 
-   bool style::matches(e_tag etag, const ::string & strClass, const ::string & strSubClass, const_ansi_range rangeName)
+   bool style::matches(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const_ansi_range rangeName)
    {
 
       if(etag != tag_none && m_etag != tag_none)
@@ -936,7 +936,7 @@ namespace html
    }
 
 
-   bool style::matches_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const_ansi_range rangeName, float & f)
+   bool style::matches_border_width(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const_ansi_range rangeName, float & f)
    {
       if(etag != tag_none && m_etag != tag_none)
          if(m_etag != etag)
@@ -958,7 +958,7 @@ namespace html
    }
 
 
-   bool style::matches_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, const_ansi_range rangeName, ::color::color & color32)
+   bool style::matches_border_color(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const_ansi_range rangeName, ::color::color & color32)
    {
 
       if (etag != tag_none && m_etag != tag_none)
@@ -1024,10 +1024,10 @@ namespace html
    }
 
 
-   float style::_parse_dimension(const ::string & pszParam)
+   float style::_parse_dimension(const ::scoped_string & scopedstrParam)
    {
 
-      string str(pszParam);
+      string str(scopedstrParam);
 
       str.trim();
       if(str.case_insensitive_ends_eat("px"))
@@ -1048,17 +1048,17 @@ namespace html
    }
 
 
-   bool style::_parse_border_width(const ::string & psz, float & f)
+   bool style::_parse_border_width(const ::scoped_string & scopedstr, float & f)
    {
 
-      if (psz.is_empty())
+      if (scopedstr.is_empty())
       {
        
          return false;
 
       }
 
-      string str(psz);
+      string str(scopedstr);
 
       str.trim();
 
@@ -1201,7 +1201,7 @@ namespace html
       return true;
    }
 
-   bool style::_parse_border_color(const ::string & strParam, ::color::color & color32)
+   bool style::_parse_border_color(const ::scoped_string & scopedstrParam, ::color::color & color32)
    {
 
       if(strParam.is_empty())
@@ -1278,7 +1278,7 @@ namespace html
          try
          {
             range.consume_hex();
-            color32 = parse_color(pszStart - 1);
+            color32 = parse_color(scopedstrStart - 1);
             return true;
          }
          catch(...)

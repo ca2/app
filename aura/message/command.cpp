@@ -215,7 +215,7 @@
 //
 //      }
 //
-//      void ::message::command::SetText(const ::string & pszText, const ::action_context & context)
+//      void ::message::command::SetText(const ::scoped_string & scopedstrText, const ::action_context & context)
 //      {
 //
 //         if (m_pmenu != nullptr)
@@ -228,7 +228,7 @@
 //         if (m_puiOther != nullptr)
 //         {
 //
-//            m_puiOther->set_text(pszText, ::e_source_sync);
+//            m_puiOther->set_text(scopedstrText, ::e_source_sync);
 //
 //         }
 //

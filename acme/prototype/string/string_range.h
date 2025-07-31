@@ -92,7 +92,7 @@ public:
    template < character_pointer CHARACTER_POINTER >
    string_range(CHARACTER_POINTER start) : BASE_RANGE(start, start + string_safe_length(start), e_range_null_terminated) {}
 
-   //explicit string_range(ITERATOR_TYPE psz) : string_range(psz, 0, string_safe_length(psz)) {}
+   //explicit string_range(ITERATOR_TYPE psz) : string_range(scopedstr, 0, string_safe_length(scopedstr)) {}
 
    string_range(ITERATOR_TYPE psz, character_count len) : string_range(psz, 0, len) {}
 
@@ -1500,11 +1500,11 @@ public:
    //           inline bool operator==(const ::wd32_string &str) const;
    //
    //    //inline bool operator ==(const SCOPED_STRING & scopedstr) const { return this->equals(scopedstr); }
-   //    inline bool operator==(const ::ansi_character *psz) const { return this->equals(psz); }
+   //    inline bool operator==(const ::ansi_character *psz) const { return this->equals(scopedstr); }
    //
-   //    inline bool operator==(const ::wd16_character *psz) const { return this->equals(psz); }
+   //    inline bool operator==(const ::wd16_character *psz) const { return this->equals(scopedstr); }
    //
-   //    inline bool operator==(const ::wd32_character *psz) const { return this->equals(psz); }
+   //    inline bool operator==(const ::wd32_character *psz) const { return this->equals(scopedstr); }
    //
    //    inline bool operator==(const ::inline_number_string &inline_number_string) const {
    //       return this->equals((const SCOPED_STRING &) inline_number_string);
@@ -1520,11 +1520,11 @@ public:
    //    //inline bool operator>(CHARACTER ch) const;
    //    //inline bool operator<(const string_base &str2) const;
    //    //inline bool operator<(CHARACTER ch) const;
-   //    //inline bool operator!=(const string_base &str) const { return !operator ==(psz); }
+   //    //inline bool operator!=(const string_base &str) const { return !operator ==(scopedstr); }
    //    //inline bool operator!=(CHARACTER ch) const { return !operator ==(ch); }
-   //    //inline bool operator>=(const string_base &str) const { return !operator <(psz); }
+   //    //inline bool operator>=(const string_base &str) const { return !operator <(scopedstr); }
    //    //inline bool operator>=(CHARACTER ch) const { return !operator <(ch); }
-   //    //inline bool operator<=(const CHARACTER * psz) const { return !operator >(psz); }
+   //    //inline bool operator<=(const CHARACTER * psz) const { return !operator >(scopedstr); }
    //    //inline bool operator<=(CHARACTER ch) const { return !operator >(ch); }
    //
    //
@@ -1889,7 +1889,7 @@ public:
    //::string_base < ITERATOR_TYPE > consume_command_line_argument(const ::ansi_character *& pszParse);
    string_base<ITERATOR_TYPE> consume_command_line_argument();
    void consume_until_any_character_in(const ::scoped_string & scopedstr);
-   //static bool begins_consume(::const_ansi_range & range, const ::string & psz);
+   //static bool begins_consume(::const_ansi_range & range, const ::scoped_string & scopedstr);
 
    string_range xml_consume_comment();
 

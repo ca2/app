@@ -28,7 +28,7 @@ namespace colorertake5
       errorHandler = eh;
    }
 
-   void HRCParserImpl::loadSource(const ::string & pszSourceLocation, const ::string & pszSource)
+   void HRCParserImpl::loadSource(const ::scoped_string & scopedstrSourceLocation, const ::scoped_string & scopedstrSource)
    {
       string strPreviousSourceLocation = m_strCurrentSourceLocation;
       string strPreviousSource = m_strCurrentSource;
@@ -36,7 +36,7 @@ namespace colorertake5
       m_strCurrentSource = pszSource;
       try
       {
-         parseHRC(pszSource);
+         parseHRC(scopedstrSource);
       }
       catch (const ::exception & exception)
       {
@@ -179,11 +179,11 @@ namespace colorertake5
    // protected methods
 
 
-   void HRCParserImpl::parseHRC(const ::string & psz)
+   void HRCParserImpl::parseHRC(const ::scoped_string & scopedstr)
    {
       xml::document doc(this);
       doc.m_pparseinfo->m_chEscapeValue = '\0';
-      doc.load(psz);
+      doc.load(scopedstr);
       if(doc.get_root() == nullptr)
       {
          throw ::exception(HRCParserException(string("main '<hrc>' block not found")));

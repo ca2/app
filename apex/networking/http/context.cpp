@@ -373,7 +373,7 @@ namespace http
    //bool context::request(const ::scoped_string & scopedstrRequest, const ::url::url & url, ::property_set & set)
    //{
 
-   //   return request(pszRequest, url, process_set(set, url));
+   //   return request(scopedstrRequest, url, process_set(set, url));
 
    //}
 
@@ -1275,7 +1275,7 @@ namespace http
 //
 //            auto tickBeg = ::time::now();
 //
-//            if (!open(psession, purl->get_server(pszRequest), purl->get_protocol(pszRequest), set, set["http_protocol_version"]))
+//            if (!open(psession, purl->get_server(scopedstrRequest), purl->get_protocol(scopedstrRequest), set, set["http_protocol_version"]))
 //            {
 //
 //               return false;
@@ -1303,9 +1303,9 @@ namespace http
 //
 //         auto papplication = psession->m_psockethandler->get_app();
 //
-//         string strRequest = purl->get_object(pszRequest);
+//         string strRequest = purl->get_object(scopedstrRequest);
 //
-//         string strServer = purl->get_server(pszRequest);
+//         string strServer = purl->get_server(scopedstrRequest);
 //
 //         string strUrl = psession->m_strProtocol + "://" + strServer + strRequest;
 //
@@ -1394,9 +1394,9 @@ namespace http
 //
 //         }
 //
-//         psession->m_host = purl->get_server(pszRequest);
+//         psession->m_host = purl->get_server(scopedstrRequest);
 //
-//         psession->m_strHost = purl->get_server(pszRequest);
+//         psession->m_strHost = purl->get_server(scopedstrRequest);
 //
 //         psession->m_request.m_propertysetHeader["host"] = psession->m_host;
 //
@@ -1719,7 +1719,7 @@ namespace http
 
          character_count iSize = session.m_psocket->GetContentLength();
 
-         str = string(pszData, iSize);
+         str = string(scopedstrData, iSize);
 
       }
 
@@ -2602,7 +2602,7 @@ namespace http
 
          character_count iSize = psocket->GetContentLength();
 
-         string strResponse(pszData, iSize);
+         string strResponse(scopedstrData, iSize);
 
          set["get_response"] = strResponse;
 
@@ -2620,10 +2620,10 @@ namespace http
 
             auto size = psocket->GetContentLength();
 
-            if(::is_set(pszData) && size > 0)
+            if(::is_set(scopedstrData) && size > 0)
             {
 
-               pmemory->assign(pszData, size);
+               pmemory->assign(scopedstrData, size);
 
             }
             else

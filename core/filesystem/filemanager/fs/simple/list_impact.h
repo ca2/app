@@ -43,7 +43,7 @@ namespace filemanager
             public pointer_array < Item >
          {
          public:
-            //int FindAbsolute(const ::string & pszId);
+            //int FindAbsolute(const ::scoped_string & scopedstrId);
 
          };
 
@@ -134,7 +134,7 @@ namespace filemanager
 
 
 
-            void parse(const ::string & pszSource);
+            void parse(const ::scoped_string & scopedstrSource);
 
             void start_build(int iItem = -1);
 

@@ -14,7 +14,7 @@ namespace html
    }
 
 
-   style * style_sheet_array::rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName)
+   style * style_sheet_array::rear_find(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const atom & idName)
    {
 
       style * pstyle = nullptr;
@@ -38,7 +38,7 @@ namespace html
    }
 
 
-   style * style_sheet_array::rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName, float & f)
+   style * style_sheet_array::rfind_border_width(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const atom & idName, float & f)
    {
 
       style * pstyle = nullptr;
@@ -62,7 +62,7 @@ namespace html
    }
 
 
-   style * style_sheet_array::rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName, ::color::color & color32)
+   style * style_sheet_array::rfind_border_color(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const atom & idName, ::color::color & color32)
    {
 
       style * pstyle = nullptr;

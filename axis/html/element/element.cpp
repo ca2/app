@@ -1110,7 +1110,7 @@ namespace html
 
       }
 
-      string strTag(pszTag, range.m_begin - pszTag);
+      string strTag(scopedstrTag, range.m_begin - pszTag);
 
       if (strTag[0] == '/')
       {
@@ -1199,7 +1199,7 @@ namespace html
 
       }
 
-      string strBody(pszBody, range.m_begin - pszBody);
+      string strBody(scopedstrBody, range.m_begin - pszBody);
 
       m_strBody = strBody;
 
@@ -1235,7 +1235,7 @@ namespace html
 
       }
 
-      if (pszCloseTag[0] == '/' && case_insensitive_ansi_count_compare(m_atomTagName.m_str, pszCloseTag + 1, range.m_begin - pszCloseTag - 1) == 0)
+      if (scopedstrCloseTag[0] == '/' && case_insensitive_ansi_count_compare(m_atomTagName.m_str, pszCloseTag + 1, range.m_begin - pszCloseTag - 1) == 0)
       {
 
          range.m_begin++;
@@ -1286,7 +1286,7 @@ namespace html
 
          }
 
-         string strKey(pszKey, range.m_begin - pszKey);
+         string strKey(scopedstrKey, range.m_begin - pszKey);
 
          if (*range.m_begin == '/' || *range.m_begin == '>')
          {
@@ -1350,7 +1350,7 @@ namespace html
 
          }
 
-         string strValue(pszValue, range.m_begin - pszValue);
+         string strValue(scopedstrValue, range.m_begin - pszValue);
 
          m_propertyset[strKey] = strValue;
 
@@ -1606,7 +1606,7 @@ namespace html
    }
 
 
-   void element::set_text(const ::string & str)
+   void element::set_text(const ::scoped_string & scopedstr)
    {
 
       if (m_phtmlbase->get_type() == ::html::base::type_tag)

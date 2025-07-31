@@ -118,7 +118,7 @@ void openbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolNa
          pszOffsetEnd = psz;
 
       }
-      else if (psz[0] == ' ' && psz[1] == 'a' && psz[2] == 't' && psz[3] == ' ')
+      else if (scopedstr[0] == ' ' && psz[1] == 'a' && psz[2] == 't' && psz[3] == ' ')
       {
 
          psz+=4;
@@ -129,7 +129,7 @@ void openbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolNa
 
    }
 
-   if (pszMangledName && pszOffsetBegin && pszOffsetEnd && pszMangledName < pszOffsetBegin)
+   if (scopedstrMangledName && pszOffsetBegin && pszOffsetEnd && pszMangledName < pszOffsetBegin)
    {
 
       *pszMangledName++ = '\0';
@@ -147,7 +147,7 @@ void openbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolNa
       try
       {
 
-         //acme::malloc<char *> pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
+         //acme::malloc<char *> pszRealName = abi::__cxa_demangle(scopedstrMangledName, 0, 0, &status);
 
 //         if (status == 0)
 //         {

@@ -218,10 +218,10 @@ bool load_modules_diff(string_array & straOld, string_array & straNew, const ::s
 
    size_t iLenExcept;
 
-   if(pszExceptDir != nullptr)
+   if(scopedstrExceptDir != nullptr)
    {
 
-      iLenExcept = ansi_length(pszExceptDir);
+      iLenExcept = ansi_length(scopedstrExceptDir);
 
    }
    else
@@ -325,7 +325,7 @@ unsigned long long translate_processor_affinity(int i)
 //CLASS_DECL_ACME int ui_open_url(const ::scoped_string & scopedstrUrl)
 //{
 //
-//   string strUrl(pszUrl);
+//   string strUrl(scopedstrUrl);
 //
 //   auto uri = ref ___new ::winrt::Windows::Foundation::Uri (strUrl);
 //
@@ -351,7 +351,7 @@ bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_st
 
    return false;
 
-   //return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), 0, false, (int)timeTimeout.get_total_milliseconds());
+   //return call_sync(scopedstrFile, pszParams, ::file::path(scopedstrFile).folder(), 0, false, (int)timeTimeout.get_total_milliseconds());
 
 }
 

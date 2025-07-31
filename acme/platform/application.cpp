@@ -1165,7 +1165,7 @@ void application::start_application()
    //__main(main);
 
 
-   bool application::handle_call(::payload& payload, const ::string& strObject, const ::string& strMember, ::property_set& propertyset)
+   bool application::handle_call(::payload& payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set& propertyset)
    {
 
       if (strObject == "application")
@@ -1180,7 +1180,7 @@ void application::start_application()
    }
 
 
-   bool application::handle_application_call(::payload& payload, const ::string& strMember, ::property_set& propertyset)
+   bool application::handle_application_call(::payload& payload, const ::scoped_string & scopedstrMember, ::property_set& propertyset)
    {
 
       return false;
@@ -1959,10 +1959,10 @@ void application::start_application()
       //}
       //
       //}
-      //catch (const ::string & psz)
+      //catch (const ::scoped_string & scopedstr)
       //{
       //
-      //if (!strcmp(psz, "You have not logged in! Exiting!"))
+      //if (!strcmp(scopedstr, "You have not logged in! Exiting!"))
       //{
       //
       //return false;
@@ -2382,7 +2382,7 @@ void application::start_application()
    void application::pick_media(const char* pszMediaType)
    {
 
-      __UNREFERENCED_PARAMETER(pszMediaType);
+      __UNREFERENCED_PARAMETER(scopedstrMediaType);
 
    }
 
@@ -2492,7 +2492,7 @@ void application::start_application()
 bool application_get_bool(::platform::application * papplication, const char* pszItem)
 {
 
-   return papplication->payload(pszItem).as_bool();
+   return papplication->payload(scopedstrItem).as_bool();
 
 }
 
@@ -2508,7 +2508,7 @@ CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle* 
 void application_handle_command(::platform::application * papplication, const char * pszCommand, ::user::activation_token * puseractivationtoken)
 {
    
-   papplication->on_command_final(pszCommand, puseractivationtoken);
+   papplication->on_command_final(scopedstrCommand, puseractivationtoken);
    
 }
 

@@ -77,7 +77,7 @@ namespace filemanager
             void _001OnItemExpand(::data::tree_item_base * ptreeitembase, const ::action_context & action_context) override;
 
 
-            void parse(const ::string & pszSource);
+            void parse(const ::scoped_string & scopedstrSource);
 
 
             ::pointer<::data::tree_item<::item>> FindTreeItem(long long iFolder);

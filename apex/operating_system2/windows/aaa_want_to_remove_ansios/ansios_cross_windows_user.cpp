@@ -19,7 +19,7 @@ int_bool MessageBoxAForConsole(oswindow interaction_impl, const ::scoped_string 
 
    strLine = "\n";
 
-   if(strlen(pszTitle) > 0)
+   if(strlen(scopedstrTitle) > 0)
    {
 
       strLine += pszTitle;

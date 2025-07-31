@@ -342,7 +342,7 @@ namespace platform
 
 
       // template < typename BASE_TYPE >
-      // ::pointer<BASE_TYPE> create(const ::string & strComponent, const ::string & strImplementation)
+      // ::pointer<BASE_TYPE> create(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
       // {
       //
       //    auto & pfactory = this->factory(strComponent, strImplementation);
@@ -474,7 +474,7 @@ namespace platform
       virtual class ::time get_update_poll_time(const ::atom & atom);
 
 
-      virtual ::acme::library * on_get_library(const ::string & pszLibrary);
+      virtual ::acme::library * on_get_library(const ::scoped_string & scopedstrLibrary);
 
 
 
@@ -501,7 +501,7 @@ namespace platform
       //void term_task() override;
 
 
-      virtual string __get_text(const string & str);
+      virtual string __get_text(const ::scoped_string & scopedstr);
 
 #ifdef LINUX
 
@@ -510,7 +510,7 @@ namespace platform
 #endif
 
 
-   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
    //virtual void on_initialize_window_object();
@@ -549,7 +549,7 @@ namespace platform
 //
 //      long long iValue;
 //
-//      if (m_mapTextToEnum[typeid(e).name()].lookup(psz, iValue))
+//      if (m_mapTextToEnum[typeid(e).name()].lookup(scopedstr, iValue))
 //      {
 //
 //         e = (ENUM)iValue;
@@ -593,7 +593,7 @@ namespace platform
 
       static inline ::atom atom(const ::std::type_info & info);
       static inline ::atom atom(const ::scoped_string & scopedstr);
-      static inline ::atom atom(const string & str);
+      static inline ::atom atom(const ::scoped_string & scopedstr);
       static inline ::atom atom(long long i);
       //static inline ::atom_space & atom();
       inline ::atom atom(const ::payload & payload);
@@ -601,13 +601,13 @@ namespace platform
 
       virtual void check_exit();
 
-      virtual ::regular_expression_pointer create_regular_expression(const ::string & pszStyle, const string & str);
+      virtual ::regular_expression_pointer create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr);
       //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::string &pszStyle, int iCount);
-      virtual ::pointer<::regular_expression::context> get_regular_expression_context(const ::string & pszStyle);
+      virtual ::pointer<::regular_expression::context> get_regular_expression_context(const ::scoped_string & scopedstrStyle);
 
-      virtual ::regular_expression_pointer compile_pcre(const string & str);
+      virtual ::regular_expression_pointer compile_pcre(const ::scoped_string & scopedstr);
       virtual ::pointer<::regular_expression::context> get_pcre_context();
-      //virtual int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
+      //virtual int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
 
       virtual void get_public_internet_domain_extension_list(string_array & stra);
       virtual ::string fetch_public_internet_domain_extension_list_text();
@@ -634,13 +634,13 @@ namespace platform
 
       virtual void on_open_untitled_file();
 
-      virtual void on_open_file(const ::string & pszFile);
+      virtual void on_open_file(const ::scoped_string & scopedstrFile);
 
       //template < typename BASE_TYPE >
       //::pointer<BASE_TYPE> create(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
       //{
 
-      //   auto plibrary = ([a-z0-9_]+)_factory(pszComponent, pszImplementation);
+      //   auto plibrary = ([a-z0-9_]+)_factory(scopedstrComponent, pszImplementation);
 
       //   if (!plibrary)
       //   {
@@ -681,11 +681,11 @@ namespace platform
       //virtual void windowing_post(const ::procedure & procedure);
 
 
-      //bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
+      //bool _handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset) override;
 
 
 
-      virtual string get_latest_deployment_number(const ::string & strBranch);
+      virtual string get_latest_deployment_number(const ::scoped_string & scopedstrBranch);
 
 
       //void destroy() override;
@@ -698,14 +698,14 @@ namespace platform
 
 
 
-      //::file::path library_file_name(const ::string& str);
+      //::file::path library_file_name(const ::scoped_string & scopedstr);
 
 
       //template < typename ENTRY >
       //ENTRY* library_call(const ::scoped_string & scopedstrLibrary, const ::scoped_string & scopedstrEntry)
       //{
 
-      //   return lib(pszLibrary)->get<decltype(&ENTRY)>(pszEntry));
+      //   return lib(scopedstrLibrary)->get<decltype(&ENTRY)>(scopedstrEntry));
 
       //}
 
@@ -763,13 +763,13 @@ namespace platform
 
       //::pointer < ::message_box > & realize(::pointer < ::message_box > & pmessagebox);
 
-      //::pointer < ::message_box > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box > message_console(const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
    };

@@ -64,7 +64,7 @@
 //
 ////fCLASS_DECL_AURA void os_application_system_run(::apex::system* psystem);
 //
-//CLASS_DECL_APEX void set_main_app_id(const ::string & pszAppId);
+//CLASS_DECL_APEX void set_main_app_id(const ::scoped_string & scopedstrAppId);
 //
 //
 //void application_common(::apex::system * psystem)

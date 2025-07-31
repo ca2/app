@@ -40,10 +40,10 @@ namespace userex
    }
 
 
-   void progress_control::set_progress_title(const ::string & pszTitle)
+   void progress_control::set_progress_title(const ::scoped_string & scopedstrTitle)
    {
 
-      m_pimpact->parent_frame()->set_window_text(pszTitle);
+      m_pimpact->parent_frame()->set_window_text(scopedstrTitle);
 
    }
 
@@ -130,7 +130,7 @@ namespace userex
    }
 
 
-   void progress_control::defer_show(::user::interaction * puiParent, const ::string & pszTitle, ::collection::count iStepCount)
+   void progress_control::defer_show(::user::interaction * puiParent, const ::scoped_string & scopedstrTitle, ::collection::count iStepCount)
    {
 
       m_strTitle = pszTitle;

@@ -94,7 +94,7 @@ namespace aura
    }
 
 
-   //pointer< ::extended::sequence < ::conversation > > context::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::sequence < ::conversation > > context::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
    //{
 
    //   auto pmessagebox = __øcreate < ::user::message_box >();
@@ -689,7 +689,7 @@ namespace aura
 //   }
 //
 //
-//   string context::http_get(const string& strUrl, ::property_set & set)
+//   string context::http_get(const ::scoped_string & scopedstrUrl, ::property_set & set)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(strUrl);
@@ -769,7 +769,7 @@ namespace aura
 //   }
 //
 //
-//   void context::locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const string& strLocale, const string& strSchema)
+//   void context::locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 //   {
 //
 //      if (get_app())
@@ -839,7 +839,7 @@ namespace aura
 //   }
 //
 //
-//   bool context::http_download(const ::string & pszUrl, const ::string & pszFile)
+//   bool context::http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile)
 //   {
 //
 //      string strUrl = pszUrl;
@@ -855,7 +855,7 @@ namespace aura
 //   }
 //
 //
-//   string context::http_get(const ::string & pszUrl)
+//   string context::http_get(const ::scoped_string & scopedstrUrl)
 //   {
 //
 //      ::property_set set;
@@ -905,7 +905,7 @@ namespace aura
 //   }
 //
 //
-//   string context::load_string(const ::string & psz)
+//   string context::load_string(const ::scoped_string & scopedstr)
 //   {
 //
 //      return psz;

@@ -493,7 +493,7 @@ namespace user
       virtual ::int_rectangle get_rectangle();
       virtual ::int_rectangle get_window_rectangle();
 
-      virtual void set_window_text(const ::string & psz);
+      virtual void set_window_text(const ::scoped_string & scopedstr);
       virtual void set_window_text_source(const ::a_string_function & astringfunction);
 
       virtual character_count get_window_text(char * pszStringBuf, character_count nMaxCount);
@@ -513,9 +513,9 @@ namespace user
       virtual bool _001IsPointInside(const ::int_point & point);
       virtual ::user::interaction * _001FromPoint(::int_point point, bool bTestedIfParentVisible = false);
 
-      virtual void OnLinkClick(const ::string & psz, const ::string & pszTarget = nullptr);
+      virtual void OnLinkClick(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTarget = nullptr);
 
-      virtual ::user::interaction * get_child_by_name(const ::string & strName, ::collection::index iItem = -1, int iLevel = -1);
+      virtual ::user::interaction * get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem = -1, int iLevel = -1);
       virtual ::user::interaction * get_child_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1);
       virtual ::user::element * get_primitive_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1);
 
@@ -678,7 +678,7 @@ namespace user
       virtual void on_after_graphical_update();
 
 
-      virtual void set_bitmap_source(const string & strBitmapSource);
+      virtual void set_bitmap_source(const ::scoped_string & scopedstrBitmapSource);
       virtual void clear_bitmap_source();
 
 
@@ -870,9 +870,9 @@ namespace user
 
       virtual bool InputConnectionBeginBatchEdit(bool bSuper);
       virtual bool InputConnectionEndBatchEdit(bool bSuper);
-      virtual bool InputConnectionCommitText(const ::string & str, character_count iNewCursorPosition, bool bSuper);
+      virtual bool InputConnectionCommitText(const ::scoped_string & scopedstr, character_count iNewCursorPosition, bool bSuper);
       virtual bool InputConnectionDeleteSurroundingText(character_count iBeforeLength, character_count iAfterLength, bool bSuper);
-      virtual bool InputConnectionSetComposingText(const ::string & str, character_count iNewCursorPosition, bool bSuper);
+      virtual bool InputConnectionSetComposingText(const ::scoped_string & scopedstr, character_count iNewCursorPosition, bool bSuper);
       virtual bool InputConnectionSetComposingRegion(character_count iStart, character_count iEnd, bool bSuper);
       virtual bool InputConnectionSetSelection(character_count iStart, character_count iEnd, bool bSuper);
       virtual bool InputConnectionFinishComposingText(bool bSuper);
@@ -883,10 +883,10 @@ namespace user
 
 
 
-      //virtual void set_window_text(const ::string & pszString);
+      //virtual void set_window_text(const ::scoped_string & scopedstrString);
 
       //virtual void set_check(enum_check echeck, const ::action_context & action_context);
-      //virtual void set_text(const ::string & strText, const ::action_context & action_context);
+      //virtual void set_text(const ::scoped_string & scopedstrText, const ::action_context & action_context);
 
       virtual ::user::element * first_child_user_element();
       virtual ::user::element * top_user_element();

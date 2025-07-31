@@ -68,7 +68,7 @@ extern bool g_bIntermediateThreadReferencingDebugging;
 //CLASS_DECL_ACME void aaa_clear_message_queue(itask idthread);
 
 
-CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
+CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::scoped_string & scopedstrMoreDetails);
 
 
 task::task()

@@ -40,7 +40,7 @@ CLASS_DECL_ACME void copy(::payload & payload, const int & i)
 }
 
 
-CLASS_DECL_ACME  void copy(::payload & payload, const ::string & str)
+CLASS_DECL_ACME  void copy(::payload & payload, const ::scoped_string & scopedstr)
 {
 
    payload = str;
@@ -214,12 +214,12 @@ payload::payload(const ::ansi_character * psz) :
 #if REFERENCING_DEBUGGING
    , m_preferer(nullptr)
 #endif
-   ,m_str(psz)
+   ,m_str(scopedstr)
 {
 
 }
 
-payload::payload(const ::string & str) :
+payload::payload(const ::scoped_string & scopedstr) :
    m_etype(e_type_string)
 #if REFERENCING_DEBUGGING
    , m_preferer(nullptr)
@@ -893,7 +893,7 @@ void payload::set_string(::string && str)
 }
 
 
-void payload::set_string(const ::string & str)
+void payload::set_string(const ::scoped_string & scopedstr)
 {
 
    if (get_type() == e_type_string)
@@ -977,7 +977,7 @@ void payload::unset()
 }
 
 
-void payload::unset(const ::string & strPropertySetKey)
+void payload::unset(const ::scoped_string & scopedstrPropertySetKey)
 {
 
    if (get_type() == e_type_property_set)
@@ -2513,7 +2513,7 @@ bool payload::is_new_or_null() const
 
 //::std::strong_ordering payload::case_insensitive_order(const ::scoped_string & scopedstr) const
 //{
-//   ::payload payload(psz);
+//   ::payload payload(scopedstr);
 //   return case_insensitive_order(payload);
 //}
 
@@ -2530,7 +2530,7 @@ bool payload::equals_payload(const payload & payload) const
 //bool payload::equals(const ::scoped_string & scopedstr) const
 //{
 //
-//   return order(psz) == 0;
+//   return order(scopedstr) == 0;
 //
 //}
 
@@ -2546,7 +2546,7 @@ bool payload::case_insensitive_equals(const payload & payload) const
 //bool payload::case_insensitive_equals(const ::scoped_string & scopedstr) const
 //{
 //
-//   return case_insensitive_order(psz) == 0;
+//   return case_insensitive_order(scopedstr) == 0;
 //
 //}
 
@@ -2630,7 +2630,7 @@ bool payload::case_insensitive_equals(const payload & payload) const
 //::std::strong_ordering payload::order(const ::scoped_string & scopedstr) const
 //{
 //
-//   ::payload payload(psz);
+//   ::payload payload(scopedstr);
 //
 //   return order(payload);
 //
@@ -2723,7 +2723,7 @@ bool payload::equals_scoped_string(const ::scoped_string & scopedstr) const
 //}
 
 
-//bool payload::operator == (const ::string & str) const
+//bool payload::operator == (const ::scoped_string & scopedstr) const
 //{
 //
 //   return equals(str);
@@ -2731,7 +2731,7 @@ bool payload::equals_scoped_string(const ::scoped_string & scopedstr) const
 //}
 
 
-::std::strong_ordering payload::operator <=> (const ::string & str) const
+::std::strong_ordering payload::operator <=> (const ::scoped_string & scopedstr) const
 {
 
    return order_payload(str);
@@ -2739,27 +2739,27 @@ bool payload::equals_scoped_string(const ::scoped_string & scopedstr) const
 }
 
 
-//bool payload::operator != (const ::string & str) const
+//bool payload::operator != (const ::scoped_string & scopedstr) const
 //{
 //   return get_string() != str;
 //}
 //
-//bool payload::operator < (const ::string & str) const
+//bool payload::operator < (const ::scoped_string & scopedstr) const
 //{
 //   return get_string() < str;
 //}
 //
-//bool payload::operator <= (const ::string & str) const
+//bool payload::operator <= (const ::scoped_string & scopedstr) const
 //{
 //   return get_string() <= str;
 //}
 //
-//bool payload::operator >= (const ::string & str) const
+//bool payload::operator >= (const ::scoped_string & scopedstr) const
 //{
 //   return get_string() >= str;
 //}
 //
-//bool payload::operator > (const ::string & str) const
+//bool payload::operator > (const ::scoped_string & scopedstr) const
 //{
 //   return get_string() > str;
 //}
@@ -2926,7 +2926,7 @@ bool payload::equals_unsigned(unsigned long long u) const
 //   return m_etype == e_type_string && m_str == psz;
 //}
 //
-//bool payload::strictly_equal(const ::string & str) const
+//bool payload::strictly_equal(const ::scoped_string & scopedstr) const
 //{
 //   return m_etype == e_type_string && m_str == str;
 //}
@@ -2956,7 +2956,7 @@ bool payload::equals_unsigned(unsigned long long u) const
 //   return m_etype != e_type_string || m_str != psz;
 //}
 //
-//bool payload::strictly_different(const ::string & str) const
+//bool payload::strictly_different(const ::scoped_string & scopedstr) const
 //{
 //   return m_etype != e_type_string || m_str != str;
 //}
@@ -3254,7 +3254,7 @@ string & payload::string_reference()
 //const string & payload::get_ref_string(const ::scoped_string & scopedstrOnNull) const
 //{
 //
-//   return ((::payload *)this)->get_ref_string(pszOnNull);
+//   return ((::payload *)this)->get_ref_string(scopedstrOnNull);
 //
 //}
 
@@ -5561,7 +5561,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
 //
 //   }
 //
-//   return propset().find(psz);
+//   return propset().find(scopedstr);
 //
 //}
 //
@@ -5970,7 +5970,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 
 
 
-//::payload payload::operator + (const ::string & str) const
+//::payload payload::operator + (const ::scoped_string & scopedstr) const
 //{
 //
 //   ::payload varRet(*this);
@@ -7125,7 +7125,7 @@ bool payload::is_property_false(const ::atom & atom) const
 
 
 
-bool payload::begins_eat(const ::string & strPrefix)
+bool payload::begins_eat(const ::scoped_string & scopedstrPrefix)
 {
 
    auto str = ::transfer(this->as_string());
@@ -7144,7 +7144,7 @@ bool payload::begins_eat(const ::string & strPrefix)
 }
 
 
-bool payload::ends_eat(const ::string & strSuffix)
+bool payload::ends_eat(const ::scoped_string & scopedstrSuffix)
 {
 
    auto str = ::transfer(this->as_string());
@@ -7163,7 +7163,7 @@ bool payload::ends_eat(const ::string & strSuffix)
 }
 
 
-bool payload::case_insensitive_begins_eat(const ::string & strPrefix)
+bool payload::case_insensitive_begins_eat(const ::scoped_string & scopedstrPrefix)
 {
 
    auto str = ::transfer(this->as_string());
@@ -7182,7 +7182,7 @@ bool payload::case_insensitive_begins_eat(const ::string & strPrefix)
 }
 
 
-bool payload::case_insensitive_ends_eat(const ::string & strSuffix)
+bool payload::case_insensitive_ends_eat(const ::scoped_string & scopedstrSuffix)
 {
 
    auto str = ::transfer(this->as_string());
@@ -7318,7 +7318,7 @@ bool payload::is_property_true_or_empty(const ::atom & atom) const
 //void payload::consume_identifier(::ansi_range & range)
 //{
 //
-//   consume_number(psz, psz + strlen(psz) - 1);
+//   consume_number(scopedstr, psz + strlen(scopedstr) - 1);
 //
 //}
 
@@ -7337,7 +7337,7 @@ void payload::consume_identifier(::ansi_range & range)
 
    }
 
-   ::string str(pszStart, range.m_begin - pszStart);
+   ::string str(scopedstrStart, range.m_begin - pszStart);
 
    if (str.case_insensitive_order("false") == 0)
    {
@@ -7370,7 +7370,7 @@ void payload::consume_identifier(::ansi_range & range)
 //void payload::consume_number(const char * & psz)
 //{
 //
-//   consume_number(psz, psz + strlen(psz) - 1);
+//   consume_number(scopedstr, psz + strlen(scopedstr) - 1);
 //
 //}
 
@@ -7453,7 +7453,7 @@ end:
 
    }
 
-   ::string strNumber(pszStart, range.m_begin - pszStart);
+   ::string strNumber(scopedstrStart, range.m_begin - pszStart);
 
    if(bFloat)
    {
@@ -7503,7 +7503,7 @@ end:
 //void payload::parse_network_payload(const char * & pszJson)
 //{
 //
-//   parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
+//   parse_network_payload(scopedstrJson, pszJson + strlen(scopedstrJson) - 1);
 //
 //}
 
@@ -7513,7 +7513,7 @@ end:
 
 //void var_skip_identifier(const char *& psz)
 //{
-//   var_skip_number(psz, psz + strlen(psz) - 1);
+//   var_skip_number(scopedstr, psz + strlen(scopedstr) - 1);
 //}
 
 
@@ -7524,15 +7524,15 @@ void payload_skip_identifier(::ansi_range & range)
    while (ansi_char_isalpha(*range.m_begin) && range.has_character())
       range.m_begin++;
    character_count iLen = range.m_begin - pszStart;
-   if (iLen == 5 && case_insensitive_ansi_count_compare(pszStart, "false", 5) == 0)
+   if (iLen == 5 && case_insensitive_ansi_count_compare(scopedstrStart, "false", 5) == 0)
    {
    }
    else if (iLen == 4)
    {
-      if (case_insensitive_ansi_count_compare(pszStart, "true", 4) == 0)
+      if (case_insensitive_ansi_count_compare(scopedstrStart, "true", 4) == 0)
       {
       }
-      else if (case_insensitive_ansi_count_compare(pszStart, "null", 4) == 0)
+      else if (case_insensitive_ansi_count_compare(scopedstrStart, "null", 4) == 0)
       {
       }
       else
@@ -7553,7 +7553,7 @@ void payload_skip_identifier(::ansi_range & range)
 
 //void var_skip_number(const char *& psz)
 //{
-//   var_skip_number(psz, psz + strlen(psz) - 1);
+//   var_skip_number(scopedstr, psz + strlen(scopedstr) - 1);
 //}
 
 void payload_skip_number(::ansi_range & range)
@@ -7684,7 +7684,7 @@ void payload_skip_network_payload(::ansi_range & range)
 
 //void var_skip_network_payload(const char *& pszJson)
 //{
-//   var_skip_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
+//   var_skip_network_payload(scopedstrJson, pszJson + strlen(scopedstrJson) - 1);
 //}
 
 
@@ -9858,7 +9858,7 @@ return nullptr;
 //   return payload.m_etype == ::e_type_string && payload.m_str == psz;
 //}
 //
-//bool strictly_equal(const ::string & str, const class ::payload & payload)
+//bool strictly_equal(const ::scoped_string & scopedstr, const class ::payload & payload)
 //{
 //   return payload.m_etype == ::e_type_string && str == payload.m_str;
 //}
@@ -9880,10 +9880,10 @@ return nullptr;
 //
 //bool strictly_different(const ::ansi_character * psz, const class ::payload & payload)
 //{
-//   return !strictly_equal(psz, payload);
+//   return !strictly_equal(scopedstr, payload);
 //}
 //
-//bool strictly_different(const ::string & str, const class ::payload & payload)
+//bool strictly_different(const ::scoped_string & scopedstr, const class ::payload & payload)
 //{
 //   return !strictly_equal(str, payload);
 //}
@@ -10071,7 +10071,7 @@ bool payload::is_array() const
 
 
 
-//bool operator == (const string& str, const ::payload & payload)
+//bool operator == (const ::scoped_string & scopedstr, const ::payload & payload)
 //{
 //
 //   return str == payload.get_string();
@@ -12164,7 +12164,7 @@ CLASS_DECL_ACME ::string & copy(::string & str, const ::payload * ppayload)
 
 }
 
-bool payload::begins(const ::string & strPrefix) const
+bool payload::begins(const ::scoped_string & scopedstrPrefix) const
 {
 
    return this->as_string().begins(strPrefix);
@@ -12172,7 +12172,7 @@ bool payload::begins(const ::string & strPrefix) const
 }
 
 
-bool payload::ends(const ::string & strSuffix) const
+bool payload::ends(const ::scoped_string & scopedstrSuffix) const
 {
 
    return this->as_string().ends(strSuffix);
@@ -12180,14 +12180,14 @@ bool payload::ends(const ::string & strSuffix) const
 }
 
 
-bool payload::case_insensitive_begins(const ::string & strPrefix) const
+bool payload::case_insensitive_begins(const ::scoped_string & scopedstrPrefix) const
 {
 
    return this->as_string().case_insensitive_begins(strPrefix);
 
 }
 
-bool payload::case_insensitive_ends(const ::string & strSuffix) const
+bool payload::case_insensitive_ends(const ::scoped_string & scopedstrSuffix) const
 {
 
    return this->as_string().case_insensitive_ends(strSuffix);
@@ -12220,7 +12220,7 @@ void test_payload()
 //property & payload::get_property(const char * psz)
 //{
 //
-//   return propset().get(psz);
+//   return propset().get(scopedstr);
 //
 //}
 

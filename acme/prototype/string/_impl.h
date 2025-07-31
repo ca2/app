@@ -100,7 +100,7 @@ inline ::hash32 as_hash32 < const wide_string & >(const wide_string & widestr)
 //inline ::string_base < CHARACTER2 > operator +(const CHARACTER * pszLeft, const ::string_base < CHARACTER2 > & strRight)
 //{
 //
-//   ::wstring strLeft(pszLeft);
+//   ::wstring strLeft(scopedstrLeft);
 //
 //   return strLeft + strRight;
 //
@@ -231,7 +231,7 @@ inline string as_string(NUMBER number, const ::ansi_character * pszFormat)
 
    ::string str;
 
-   str.formatf(pszFormat, number);
+   str.formatf(scopedstrFormat, number);
 
    return ::transfer(str);
 
@@ -279,7 +279,7 @@ inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat)
 
    ::string str;
 
-   str.formatf(pszFormat, f);
+   str.formatf(scopedstrFormat, f);
 
    return str;
 
@@ -353,10 +353,10 @@ namespace file
    }
 
 
-    inline bool path::operator == (const ::scoped_string & scopedstr) const
+    inline bool path::operator == (const ::string & str) const
     {
 
-       return operator == (string(scopedstr));
+       return operator == (str);
 
     }
 
@@ -615,7 +615,7 @@ bool string_range < ITERATOR_TYPE > ::defer_consume_quoted_value(string_base <IT
 
    }
 
-   str.assign(pszValueStart, this->m_begin - pszValueStart);
+   str.assign(scopedstrValueStart, this->m_begin - pszValueStart);
 
    this->m_begin++;
 
@@ -1001,7 +1001,7 @@ unsigned long long string_range < ITERATOR_TYPE >::consume_natural(unsigned long
 //::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_non_spaces(const ::ansi_character *& psz)
 //{
 //
-//   return consume_non_spaces(psz, psz + strlen(psz));
+//   return consume_non_spaces(scopedstr, psz + strlen(scopedstr));
 //
 //}
 //
@@ -1109,7 +1109,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_nc_name()
 //   ::str::utf8_char utf8char;
 
 //   auto psz = pszParse;
-//   utf8char.parse(psz); // quote character
+//   utf8char.parse(scopedstr); // quote character
 //   if(utf8char.m_chLen != 1)
 //   {
 //      throw ::parsing_exception("Quote character is required here");
@@ -1312,7 +1312,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_spaced_va
 //::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_spaced_value(const char *& psz)
 //{
 //
-//   string str(psz);
+//   string str(scopedstr);
 //
 //   character_count iOldLen = str.length();
 //
@@ -1328,7 +1328,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_spaced_va
 //::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_spaced_value(const char *& psz, const ::ansi_character * pszEnd)
 //{
 //
-//   string str(psz, pszEnd - psz);
+//   string str(scopedstr, pszEnd - psz);
 //
 //   character_count iOldLen = str.length();
 //
@@ -1383,7 +1383,7 @@ void string_range < ITERATOR_TYPE >::consume_until_any_character_in(const ::scop
 //::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_command_line_argument(const char *& psz)
 //{
 //
-//   string str(psz);
+//   string str(scopedstr);
 //
 //   character_count iOldLen = str.length();
 //
@@ -1399,7 +1399,7 @@ void string_range < ITERATOR_TYPE >::consume_until_any_character_in(const ::scop
 //::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_command_line_argument(const char *& psz, const ::ansi_character * pszEnd)
 //{
 //
-//   string str(psz, pszEnd - psz);
+//   string str(scopedstr, pszEnd - psz);
 //
 //   character_count iOldLen = str.length();
 //
@@ -1517,7 +1517,7 @@ void string_range < ITERATOR_TYPE >::_consume_quoted_value_ex(string_base<ITERAT
 
       pszNext = unicode_next(this->m_begin);
 
-      if (pszNext > this->m_end)
+      if (scopedstrNext > this->m_end)
       {
 
          throw_parsing_exception("Quote character is required here, premature end");
@@ -1559,7 +1559,7 @@ void string_range < ITERATOR_TYPE >::_consume_quoted_value_ex(string_base<ITERAT
 
          pszNext = unicode_next(this->m_begin);
 
-         if (pszNext > this->m_end)
+         if (scopedstrNext > this->m_end)
          {
 
             throw_parsing_exception("Quote character is required here, premature end");
@@ -1943,7 +1943,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_utf8_char
 
    auto pszStart = this->m_begin;
 
-   this->m_begin = unicode_next(pszStart);
+   this->m_begin = unicode_next(scopedstrStart);
 
    return { pszStart, minimum(this->m_begin, this->m_end) };
 

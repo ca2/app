@@ -42,9 +42,9 @@ inline string ansi_string_from_long_long(long long i, int iBase, enum_digit_case
 inline char * ansi_concatenate_long_long(char * psz, long long i, int iBase, enum_digit_case edigitcase)
 {
 //#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(FREEBSD) || defined(OPENBSD)
-   ansi_from_long_long(psz + strlen(psz), i, iBase, edigitcase);
+   ansi_from_long_long(scopedstr + strlen(scopedstr), i, iBase, edigitcase);
 //#else
-//   _long_longtoa(i, psz + strlen(psz), 10);
+//   _long_longtoa(i, psz + strlen(scopedstr), 10);
 //#endif
    return psz;
 }

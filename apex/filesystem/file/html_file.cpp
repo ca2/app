@@ -25,7 +25,7 @@ const ::text::context* html_file::textcontext()
 }
 
 
-void html_file::print(const ::string& str)
+void html_file::print(const ::scoped_string & scopedstr)
 {
 
    raw_print(str);
@@ -33,7 +33,7 @@ void html_file::print(const ::string& str)
 }
 
 
-void html_file::raw_print(const ::string& str)
+void html_file::raw_print(const ::scoped_string & scopedstr)
 {
 
    print(str);
@@ -70,7 +70,7 @@ void html_file::printstr(string str, ...)
 void html_file::trace(void*, const ::scoped_string & scopedstr)
 {
 
-   print(psz);
+   print(scopedstr);
 
 }
 

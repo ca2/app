@@ -226,12 +226,12 @@ string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLi
 
    const char * pszEnd = psz;
 
-   if(pszEndPtr != nullptr)
+   if(scopedstrEndPtr != nullptr)
    {
       *pszEndPtr = pszEnd + 1;
    }
 
-   return string(pszStart, pszEnd - pszStart);
+   return string(scopedstrStart, pszEnd - pszStart);
 
 }
 
@@ -267,15 +267,15 @@ string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLi
 //string get_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam)
 //{
 //
-//   string strParam(pszParam);
+//   string strParam(scopedstrParam);
 //
 //   strParam = strParam + "=";
 //
 //   string strValue;
 //
-//   const ::scoped_string & scopedstrValue = ansi_find_string(pszCommandLine, strParam);
+//   const ::scoped_string & scopedstrValue = ansi_find_string(scopedstrCommandLine, strParam);
 //
-//   if(pszValue == nullptr)
+//   if(scopedstrValue == nullptr)
 //      return "";
 //
 //   pszValue += strParam.length();
@@ -284,30 +284,30 @@ string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLi
 //   if(*pszValue == '"')
 //   {
 //
-//      const ::scoped_string & scopedstrValueEnd = ansi_find_char(pszValue + 1, '"');
+//      const ::scoped_string & scopedstrValueEnd = ansi_find_char(scopedstrValue + 1, '"');
 //
-//      if(pszValueEnd == nullptr)
+//      if(scopedstrValueEnd == nullptr)
 //      {
-//         strValue = string(pszValue);
+//         strValue = string(scopedstrValue);
 //      }
 //      else
 //      {
-//         strValue = string(pszValue, pszValueEnd - pszValue + 1);
+//         strValue = string(scopedstrValue, pszValueEnd - pszValue + 1);
 //      }
 //
 //   }
 //   else
 //   {
 //
-//      const ::scoped_string & scopedstrValueEnd = ansi_find_string(pszValue, " ");
+//      const ::scoped_string & scopedstrValueEnd = ansi_find_string(scopedstrValue, " ");
 //
-//      if(pszValueEnd == nullptr)
+//      if(scopedstrValueEnd == nullptr)
 //      {
-//         strValue = string(pszValue);
+//         strValue = string(scopedstrValue);
 //      }
 //      else
 //      {
-//         strValue = string(pszValue, pszValueEnd - pszValue);
+//         strValue = string(scopedstrValue, pszValueEnd - pszValue);
 //      }
 //
 //   }
@@ -507,7 +507,7 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 //
 //   string_array stra;
 //
-//   if (psz == nullptr)
+//   if (scopedstr == nullptr)
 //   {
 //
 //      return stra;
@@ -518,7 +518,7 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 //
 //   string_array straAfterColon;
 //
-//   const ::ansi_character * pszEnd = psz + strlen(psz);
+//   const ::ansi_character * pszEnd = psz + strlen(scopedstr);
 //
 //   string str;
 //
@@ -526,12 +526,12 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 //
 //   bool bColon = false;
 //
-//   while (psz < pszEnd)
+//   while (scopedstr < pszEnd)
 //   {
 //
-//      ::str::consume_spaces(psz, 0, pszEnd);
+//      ::str::consume_spaces(scopedstr, 0, pszEnd);
 //
-//      if (psz >= pszEnd)
+//      if (scopedstr >= pszEnd)
 //      {
 //
 //         break;
@@ -540,13 +540,13 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 //      if (*psz == '\"')
 //      {
 //
-//         str = ::str::consume_quoted_value(psz, pszEnd);
+//         str = ::str::consume_quoted_value(scopedstr, pszEnd);
 //
 //      }
 //      else if (*psz == '\'')
 //      {
 //
-//         str = ::str::consume_quoted_value(psz, pszEnd);
+//         str = ::str::consume_quoted_value(scopedstr, pszEnd);
 //
 //      }
 //      else
@@ -554,12 +554,12 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 //
 //         const ::scoped_string & scopedstrValueStart = psz;
 //
-//         while (!unicode_is_whitespace(psz))
+//         while (!unicode_is_whitespace(scopedstr))
 //         {
 //
-//            unicode_increment(psz);
+//            unicode_increment(scopedstr);
 //
-//            if (psz >= pszEnd)
+//            if (scopedstr >= pszEnd)
 //            {
 //
 //               break;
@@ -569,19 +569,19 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 //            if (*psz == '\"')
 //            {
 //
-//               ::str::consume_quoted_value_ex(psz, pszEnd);
+//               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 //
 //            }
 //            else if (*psz == '\'')
 //            {
 //
-//               ::str::consume_quoted_value_ex(psz, pszEnd);
+//               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 //
 //            }
 //
 //         }
 //
-//         str = string(pszValueStart, psz - pszValueStart);
+//         str = string(scopedstrValueStart, psz - pszValueStart);
 //
 //      }
 //
@@ -703,7 +703,7 @@ string_array get_c_args_from_c(const ::scoped_string & scopedstr)
 
          }
 
-         str = string(pszValueStart, range.m_begin - pszValueStart);
+         str = string(scopedstrValueStart, range.m_begin - pszValueStart);
 
       }
 
@@ -811,7 +811,7 @@ string_array get_c_args_for_c(const ::scoped_string & scopedstr)
 
          }
 
-         str.assign(pszValueStart, range.m_begin - pszValueStart);
+         str.assign(scopedstrValueStart, range.m_begin - pszValueStart);
 
       }
 
@@ -918,7 +918,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
          if (*pszParse == '\\')
          {
 
-            unicode_increment(pszParse);
+            unicode_increment(scopedstrParse);
 
          }
          else if (*pszParse == chQuote)
@@ -941,7 +941,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
          chQuote = '\"';
 
       }
-      else if (unicode_is_whitespace(pszParse) || *pszParse == ':')
+      else if (unicode_is_whitespace(scopedstrParse) || *pszParse == ':')
       {
 
          bNeedQuote = true;
@@ -950,7 +950,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
 
       }
 
-      unicode_increment(pszParse);
+      unicode_increment(scopedstrParse);
 
    }
 

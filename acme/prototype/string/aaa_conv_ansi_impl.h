@@ -35,7 +35,7 @@ inline string as_string(const T * & p)
 //inline string as_string(const ::ansi_character* psz)
 //{
 //
-//   return string(psz);
+//   return string(scopedstr);
 //
 //}
 //
@@ -178,7 +178,7 @@ inline string as_string(const T * & p)
    //}
 
 
-   //inline void to_string(string& str, const string& strSrc)
+   //inline void to_string(string& str, const ::scoped_string & scopedstrSrc)
    //{
 
    //   str.assign(strSrc);

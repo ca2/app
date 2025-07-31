@@ -26,7 +26,7 @@ namespace regular_expression
    }
 
 
-   void regular_expression::compile(const string& str)
+   void regular_expression::compile(const ::scoped_string & scopedstr)
    {
 
       m_str = str;
@@ -34,7 +34,7 @@ namespace regular_expression
    }
 
 
-   ::pointer<result>regular_expression::run(const ::string & str)
+   ::pointer<result>regular_expression::run(const ::scoped_string & scopedstr)
    {
 
       throw ::exception(error_interface_only, "missing \"" + str + "\" runned by regular expression \"" + m_str + "\"");
@@ -44,7 +44,7 @@ namespace regular_expression
    }
 
 
-   bool regular_expression::replace(string & strFind, const ::string & strReplace, string & strResult)
+   bool regular_expression::replace(string & strFind, const ::scoped_string & scopedstrReplace, string & strResult)
    {
 
       return false;

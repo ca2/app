@@ -98,7 +98,7 @@ void simple_debug_print(const ::scoped_string & scopedstr)
 //{
 //
 ////   os_trace(e_trace_level_information, "simple_debug_string", psz);
-//   information(psz);
+//   information(scopedstr);
 //
 //}
 
@@ -160,7 +160,7 @@ CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessagePara
 void output_debug_string_formatf(const char* pszFormat, ...)
 {
 
-   ASSERT(is_string_ok(pszFormat));
+   ASSERT(is_string_ok(scopedstrFormat));
 
    va_list argList;
 
@@ -168,7 +168,7 @@ void output_debug_string_formatf(const char* pszFormat, ...)
 
    ::string str;
 
-   str.formatf_arguments(pszFormat, argList);
+   str.formatf_arguments(scopedstrFormat, argList);
 
    va_end(argList);
 

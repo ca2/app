@@ -18,7 +18,7 @@
 //void task_set_name(htask htask, const char * psz)
 //{
 //
-//   string strName(psz);
+//   string strName(scopedstr);
 //
 //   thread_name_abbreviate(strName, 15);
 //

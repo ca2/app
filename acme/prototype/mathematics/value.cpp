@@ -90,7 +90,7 @@ namespace mathematics
          {
             if(bNumber)
             {
-               string str(pszNumber, psz - pszNumber - 1);
+               string str(scopedstrNumber, psz - pszNumber - 1);
                strNumber = str;
                if(dynamic_cast < binary_operation * > (pimpl) != nullptr)
                {

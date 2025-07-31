@@ -40,9 +40,9 @@ namespace write_text
    #ifdef WINDOWS
       font_enumeration_item(const ::wide_character* pwideszName);
    #endif
-      font_enumeration_item(const ::string & strName);
-      font_enumeration_item(const ::string & strFile, const ::string & strName);
-      font_enumeration_item(const ::string & strFile, const ::string & strBranch, const ::string & strName);
+      font_enumeration_item(const ::scoped_string & scopedstrName);
+      font_enumeration_item(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrName);
+      font_enumeration_item(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrBranch, const ::scoped_string & scopedstrName);
       ~font_enumeration_item() override;
 
 

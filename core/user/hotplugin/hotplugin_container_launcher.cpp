@@ -6,7 +6,7 @@ namespace hotplugin
 {
 
 
-   container_launcher::container_launcher(string strPlatform, const ::string & pszChannel)
+   container_launcher::container_launcher(string strPlatform, const ::scoped_string & scopedstrChannel)
    {
 
       m_strChannel   = pszChannel;

@@ -221,7 +221,7 @@ namespace user
    //}
 
 
-   bool tab::add_tab(const ::string & strTitle, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pholder)
+   bool tab::add_tab(const ::scoped_string & scopedstrTitle, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pholder)
    {
 
       ::atom atom(atomImpact);
@@ -260,7 +260,7 @@ namespace user
    }
 
 
-   bool tab::set_tab(const ::string & strName, const ::atom & atomImpact, bool bVisible)
+   bool tab::set_tab(const ::scoped_string & scopedstrName, const ::atom & atomImpact, bool bVisible)
    {
 
       return add_tab(strName, atomImpact, bVisible, true);
@@ -268,7 +268,7 @@ namespace user
    }
 
 
-   bool tab::add_tab_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplaceholder)
+   bool tab::add_tab_with_icon(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrIcon, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplaceholder)
    {
 
       ::atom atom(atomImpact);
@@ -304,7 +304,7 @@ namespace user
    }
 
 
-   bool tab::set_tab_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact, bool bVisible)
+   bool tab::set_tab_with_icon(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrIcon, const ::atom & atomImpact, bool bVisible)
    {
 
       return add_tab_with_icon(strName, strIcon, atomImpact, bVisible, true);
@@ -371,7 +371,7 @@ namespace user
    }
 
 
-   //bool tab::set_image_tab(const ::string & pcszTitle, const ::string & pszImage, const ::atom & atom, bool bVisible)
+   //bool tab::set_image_tab(const ::string & pcszTitle, const ::scoped_string & scopedstrImage, const ::atom & atom, bool bVisible)
    //{
 
    //   return add_image_tab(pcszTitle, pszImage, atom, bVisible, true);
@@ -3084,7 +3084,7 @@ namespace user
    }
 
 
-   void tab::get_prefixed_ci_id(string_array & stra, const ::string & pszPrefix)
+   void tab::get_prefixed_ci_id(string_array & stra, const ::scoped_string & scopedstrPrefix)
    {
 
       get_presuffixed_ci_id(stra, pszPrefix, nullptr);
@@ -3092,7 +3092,7 @@ namespace user
    }
 
 
-   void tab::get_suffixed_ci_id(string_array & stra, const ::string & pszSuffix)
+   void tab::get_suffixed_ci_id(string_array & stra, const ::scoped_string & scopedstrSuffix)
    {
 
       get_presuffixed_ci_id(stra, nullptr, pszSuffix);
@@ -3100,12 +3100,12 @@ namespace user
    }
 
 
-   void tab::get_presuffixed_ci_id(string_array & stra, const ::string & pszPrefix, const ::string & pszSuffix)
+   void tab::get_presuffixed_ci_id(string_array & stra, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
    {
 
-      string strPrefix(pszPrefix);
+      string strPrefix(scopedstrPrefix);
 
-      string strSuffix(pszSuffix);
+      string strSuffix(scopedstrSuffix);
 
       string strPath;
 
@@ -3135,7 +3135,7 @@ namespace user
    }
 
 
-   void tab::get_begins_ci_eat_id(string_array & stra, const ::string & pszPrefix)
+   void tab::get_begins_ci_eat_id(string_array & stra, const ::scoped_string & scopedstrPrefix)
    {
 
       get_begins_ends_ci_eat_id(stra, pszPrefix, nullptr);
@@ -3143,7 +3143,7 @@ namespace user
    }
 
 
-   void tab::get_ends_ci_eat_id(string_array & stra, const ::string & pszSuffix)
+   void tab::get_ends_ci_eat_id(string_array & stra, const ::scoped_string & scopedstrSuffix)
    {
 
       get_begins_ends_ci_eat_id(stra, nullptr, pszSuffix);
@@ -3151,12 +3151,12 @@ namespace user
    }
 
 
-   void tab::get_begins_ends_ci_eat_id(string_array & stra, const ::string & pszPrefix, const ::string & pszSuffix)
+   void tab::get_begins_ends_ci_eat_id(string_array & stra, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
    {
 
-      string strPrefix(pszPrefix);
+      string strPrefix(scopedstrPrefix);
 
-      string strSuffix(pszSuffix);
+      string strSuffix(scopedstrSuffix);
 
       string strPath;
 

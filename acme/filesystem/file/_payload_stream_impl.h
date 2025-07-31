@@ -39,7 +39,7 @@
 //inline void __exchange(::payload_stream& s, float& f) { s.default_exchange(f); }
 //inline void __exchange(::payload_stream& s, double& d) { s.default_exchange(d); }
 //inline void __exchange(::payload_stream& s, ::earth::time& time) { s.default_exchange(time.m_i); }
-//inline void __exchange(::payload_stream& s, const ::scoped_string & scopedstr) { s.write_only(psz); }
+//inline void __exchange(::payload_stream& s, const ::scoped_string & scopedstr) { s.write_only(scopedstr); }
 //inline void __exchange(::payload_stream& s, string& str) { s.default_exchange(str); }
 //inline void __exchange(::payload_stream& s, ::file::path& path) { s.default_exchange(path); }
 //inline void __exchange(::payload_stream& s, ::atom& atom) { s.default_exchange(atom); }

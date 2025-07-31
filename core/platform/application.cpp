@@ -108,7 +108,7 @@ namespace core
    }
 
 
-   ::pointer<progress::real>application::show_progress(::user::interaction * puiParent, const ::string & pszTitle, ::collection::count iProgressCount)
+   ::pointer<progress::real>application::show_progress(::user::interaction * puiParent, const ::scoped_string & scopedstrTitle, ::collection::count iProgressCount)
    {
 
       auto pprogresscontrol = __create_new <  ::userex::progress_control >();
@@ -275,7 +275,7 @@ namespace core
 
 
 
-   bool application::handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
+   bool application::handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
    {
 
       if (strObject == "pane_tab_impact")

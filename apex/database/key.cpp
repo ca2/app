@@ -155,7 +155,7 @@
 //   }
 //
 //
-//   key & key::operator +=(const ::string & strDataKey)
+//   key & key::operator +=(const ::scoped_string & scopedstrDataKey)
 //   {
 //
 //      if (m_strDataKey.is_empty())
@@ -176,7 +176,7 @@
 //   }
 //
 //
-//   key key::operator + (const ::string & strDataKey) const
+//   key key::operator + (const ::scoped_string & scopedstrDataKey) const
 //   {
 //
 //      ::string strDataKeyAdd(*this);

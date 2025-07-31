@@ -64,7 +64,7 @@ namespace database
       void     drop() override;
 
 
-      //virtual string escape(const ::string & psz);
+      //virtual string escape(const ::scoped_string & scopedstr);
 
 
       //inline ::pointer<class transaction> transaction();
@@ -76,14 +76,14 @@ namespace database
       bool in_transaction() override { return m_pdatabase->in_transaction(); };
 
 
-      bool exec(const ::string & pszQuery) override;
+      bool exec(const ::scoped_string & scopedstrQuery) override;
 
 
-      ::pointer<result_set>query_result(const ::string & pszQuery, ::collection::count iRowCount = -1, ::collection::count iColumnCount = -1) override;
-      ::pointer<result_set>query(const ::string & pszQuery, ::collection::count iRowCount = -1, ::collection::count iColumnCount = -1) override;
+      ::pointer<result_set>query_result(const ::scoped_string & scopedstrQuery, ::collection::count iRowCount = -1, ::collection::count iColumnCount = -1) override;
+      ::pointer<result_set>query(const ::scoped_string & scopedstrQuery, ::collection::count iRowCount = -1, ::collection::count iColumnCount = -1) override;
 
 
-      virtual ::payload get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser) override;
+      virtual ::payload get_agent(const ::scoped_string & scopedstrTable, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrUser) override;
      
 
       using database::query_table_item;
@@ -92,19 +92,19 @@ namespace database
       using database::query_row;
       using database::query_rows;
 
-      //virtual ::payload query(const ::string & pszQuery, ::collection::count iMaxRowCount = -1, ::collection::count iMaxColumnCount = -1);
+      //virtual ::payload query(const ::scoped_string & scopedstrQuery, ::collection::count iMaxRowCount = -1, ::collection::count iMaxColumnCount = -1);
       bool query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where) override;
-      bool query_rows(::pointer<row_array>& prowarray, const ::string & pszQuery) override;
-      bool query_row(::pointer<row>& prow, const ::string & pszQuery) override;
-      bool query_items(::pointer<payload_array>& pvara, const ::string & pszQuery) override;
-      bool query_item(::payload & payload, const ::string & pszQuery) override;
-       bool query_blob(get_memory getmemory, const ::string & pszQuery) override;
+      bool query_rows(::pointer<row_array>& prowarray, const ::scoped_string & scopedstrQuery) override;
+      bool query_row(::pointer<row>& prow, const ::scoped_string & scopedstrQuery) override;
+      bool query_items(::pointer<payload_array>& pvara, const ::scoped_string & scopedstrQuery) override;
+      bool query_item(::payload & payload, const ::scoped_string & scopedstrQuery) override;
+       bool query_blob(get_memory getmemory, const ::scoped_string & scopedstrQuery) override;
 
 
-      string escape(const ::string & psz) override;
+      string escape(const ::scoped_string & scopedstr) override;
 
-      string query_error(const ::string & pszPrefix = nullptr) override;
-      void trace_error1(const ::string & pszPrefix = nullptr) override;
+      string query_error(const ::scoped_string & scopedstrPrefix = nullptr) override;
+      void trace_error1(const ::scoped_string & scopedstrPrefix = nullptr) override;
 
       ::payload get_insert_id() override;
 

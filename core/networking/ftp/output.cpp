@@ -60,7 +60,7 @@ namespace ftp
 
    }
 
-   void output::OnInternalError(const string& strErrorMsg, const string& strFileName, unsigned int dwLineNr)
+   void output::OnInternalError(const ::scoped_string & scopedstrErrorMsg, const ::scoped_string & scopedstrFileName, unsigned int dwLineNr)
    {
 
       string strMessage;
@@ -71,7 +71,7 @@ namespace ftp
 
    }
 
-   void output::WriteLine(const ::string & strLine, const string &  strStatus)
+   void output::WriteLine(const ::scoped_string & scopedstrLine, const string &  strStatus)
    {
 
       informationf("%s: %s", strStatus.c_str(), strLine.c_str());

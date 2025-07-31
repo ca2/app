@@ -15,11 +15,11 @@ struct CLASS_DECL_ACME action_item_exchange
    {
 
       m_iIndex = iIndex;
-      m_pszName = strdup(pszName);
-      m_pszId = strdup(pszId);
-      m_pszLabel = strdup(pszLabel);
-      m_pszAccelerator = strdup(pszAccelerator);
-      m_pszDescription = strdup(pszDescription);
+      m_pszName = strdup(scopedstrName);
+      m_pszId = strdup(scopedstrId);
+      m_pszLabel = strdup(scopedstrLabel);
+      m_pszAccelerator = strdup(scopedstrAccelerator);
+      m_pszDescription = strdup(scopedstrDescription);
 
    }
 

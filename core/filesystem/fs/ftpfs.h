@@ -64,7 +64,7 @@ public:
    ~ftpfs() override;
 
 
-   virtual void initialize_ftpfs(::particle * pparticle, const ::string & pszRoot);
+   virtual void initialize_ftpfs(::particle * pparticle, const ::scoped_string & scopedstrRoot);
 
 
    virtual bool has_subdir(const ::file::path & pszPath) override;
@@ -75,8 +75,8 @@ public:
 
    virtual void defer_initialize(::ftp::client_socket ** client, string strPath);
 
-   //virtual string file_name(const ::string & pszPath);
-   //virtual string dir_path(const ::string & psz1, const ::string & psz2);
+   //virtual string file_name(const ::scoped_string & scopedstrPath);
+   //virtual string dir_path(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2);
 
    virtual bool file_move(const ::file::path & pszDst, const ::file::path & pszSrc) override;
 

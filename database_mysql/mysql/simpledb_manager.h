@@ -43,7 +43,7 @@ namespace simpledb
       bool initialize_thread() override;
 
 
-      ::simpledb::session * & get_session(const ::string & pszId);
+      ::simpledb::session * & get_session(const ::scoped_string & scopedstrId);
 
 
       using thread::handle;

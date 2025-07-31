@@ -442,12 +442,12 @@ namespace image
    //}
    //
 
-   //int image_list::add_matter_icon(const ::string & pszMatter, int iItem)
+   //int image_list::add_matter_icon(const ::scoped_string & scopedstrMatter, int iItem)
    //{
    //
    //   // auto pcontext = get_context();
    //
-   //   return add_icon(directory()->matter(pszMatter));
+   //   return add_icon(directory()->matter(scopedstrMatter));
    //
    //}
    //

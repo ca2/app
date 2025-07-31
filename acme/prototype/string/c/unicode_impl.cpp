@@ -10,10 +10,10 @@
 //CLASS_DECL_ACME bool _str_safe_precmp(int & i, const ::ansi_character * pszA, const ::ansi_character * pszB)
 //{
 //
-//   if (::is_null(pszA))
+//   if (::is_null(scopedstrA))
 //   {
 //
-//      if (::is_null(pszB))
+//      if (::is_null(scopedstrB))
 //      {
 //
 //         i = 0;
@@ -31,7 +31,7 @@
 //      }
 //
 //   }
-//   else if (::is_null(pszB))
+//   else if (::is_null(scopedstrB))
 //   {
 //
 //      i = -1;

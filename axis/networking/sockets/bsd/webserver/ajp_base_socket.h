@@ -66,7 +66,7 @@ namespace sockets
       void put_byte(char *buf, int& ptr, uchar zz);
       void put_boolean(char *buf, int& ptr, bool zz);
       void put_integer(char *buf, int& ptr, short zz);
-      void put_string(char *buf, int& ptr, const ::string & psz);
+      void put_string(char *buf, int& ptr, const ::scoped_string & scopedstr);
 
    };
 

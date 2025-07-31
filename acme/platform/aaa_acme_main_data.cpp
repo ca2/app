@@ -323,7 +323,7 @@ string apex_main_data::get_env(const ::scoped_string & scopedstrVariableName) co
    if (m_wenvp)
    {
 
-      wstring wstrPrefix(pszVariableName);
+      wstring wstrPrefix(scopedstrVariableName);
 
       wstrPrefix += "=";
 
@@ -347,7 +347,7 @@ string apex_main_data::get_env(const ::scoped_string & scopedstrVariableName) co
    else if (m_envp)
    {
 
-      string strPrefix(pszVariableName);
+      string strPrefix(scopedstrVariableName);
 
       strPrefix += "=";
 

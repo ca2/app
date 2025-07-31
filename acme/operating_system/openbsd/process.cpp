@@ -27,7 +27,7 @@
 //
 //   __UNREFERENCED_PARAMETER(dwa);
 //   __UNREFERENCED_PARAMETER(straProcesses);
-//   __UNREFERENCED_PARAMETER(pszDll);
+//   __UNREFERENCED_PARAMETER(scopedstrDll);
 //
 //}
 //
@@ -39,7 +39,7 @@
 //
 //   string_array stra;
 //
-//   stra = get_c_args_for_c(pszCommandLine);
+//   stra = get_c_args_for_c(scopedstrCommandLine);
 //
 //   address_array < char * > argv;
 //
@@ -148,7 +148,7 @@
 //
 //   string_array stra;
 //
-//   stra = get_c_args_for_c(pszCommandLine);
+//   stra = get_c_args_for_c(scopedstrCommandLine);
 //
 //   char ** argv = (char **) malloc(sizeof(char *) * (stra.get_size() + 1));
 //
@@ -254,7 +254,7 @@
 //
 //   string_array stra;
 //
-//   stra = get_c_args_for_c(pszCommandLine);
+//   stra = get_c_args_for_c(scopedstrCommandLine);
 //
 //   char ** argv = (char **) malloc(sizeof(char *) * (stra.get_size() + 1));
 //
@@ -330,7 +330,7 @@
 //
 //   strCmdLine = pszPath;
 //
-//   if(ansi_length(pszParam) > 0)
+//   if(ansi_length(scopedstrParam) > 0)
 //   {
 //
 //      strCmdLine +=  " ";
@@ -374,7 +374,7 @@
 //
 //   strCmdLine = pszPath;
 //
-//   if(ansi_length(pszParam) > 0)
+//   if(ansi_length(scopedstrParam) > 0)
 //   {
 //
 //      strCmdLine +=  " ";
@@ -530,7 +530,7 @@
 //      atom_array node::module_path_get_pid(const ::scoped_string & scopedstr)
 //      {
 //
-//         informationf("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
+//         informationf("os/linux_process.cpp app_get_pid (" + string(scopedstr) + ")");
 //
 //         atom_array ia;
 //
@@ -538,11 +538,11 @@
 //
 //         ::dir::ls_dir(stra, "/proc/");
 //
-//         string str(psz);
+//         string str(scopedstr);
 //
 //         str = "app=" + str;
 //
-//         string strApp(psz);
+//         string strApp(scopedstr);
 //
 //         strApp.replace("-", "_");
 //
@@ -698,7 +698,7 @@
 //
 //   ::property_set set;
 //
-//   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), e_display_none, timeTimeout, set);
+//   return call_sync(scopedstrFile, pszParams, ::file::path(scopedstrFile).folder(), e_display_none, timeTimeout, set);
 //
 //}
 //
@@ -716,7 +716,7 @@
 //
 //   string_array stra;
 //
-//   stra = get_c_args_for_c(pszCommandLine);
+//   stra = get_c_args_for_c(scopedstrCommandLine);
 //
 //   char ** argv = (char **) malloc(sizeof(char *) * (stra.get_size() + 1));
 //

@@ -168,7 +168,7 @@ namespace micro
    }
 
 
-   ::collection::count get_line_count(const ::string& str)
+   ::collection::count get_line_count(const ::scoped_string & scopedstr)
    {
 
       ::collection::index iFind = 0;
@@ -408,7 +408,7 @@ namespace micro
    }
 
 
-   //void message_box::initialize_message_box(const ::string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   //void message_box::initialize_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
    //{
    //
    //   m_functionClose = [this](micro::interchange * pinterchange)
@@ -429,7 +429,7 @@ namespace micro
    //}
 
 
-   //void message_box::do_message_box(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails)
+   //void message_box::do_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
    //{
    //
    //   m_functionClose = [this](micro::interchange* pinterchange)
@@ -521,7 +521,7 @@ namespace micro
    }
 
 
-   //pointer< ::sequence < ::conversation > > message_box::display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //pointer< ::sequence < ::conversation > > message_box::display(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
    //{
    //
    //   auto psequence = __allocate ::sequence <::conversation > ();
@@ -808,7 +808,7 @@ namespace micro
 //////
 //////   manual_reset_happening happening;
 //////
-//////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
+//////   pmessagebox->display(scopedstrMessage, pszTitle, emessagebox, pszDetails);
 //////
 //////   pmessagebox->m_functionClose = [&idResult, &happening](micro::interchange * pinterchange)
 //////   {
@@ -910,7 +910,7 @@ namespace micro
 //////
 //////   manual_reset_happening happening;
 //////
-//////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
+//////   pmessagebox->display(scopedstrMessage, pszTitle, emessagebox, pszDetails);
 //////
 //////   pmessagebox->m_functionClose = [&idResult, &happening](micro::interchange * pinterchange)
 //////   {

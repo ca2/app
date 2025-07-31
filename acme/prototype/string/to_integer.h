@@ -60,12 +60,12 @@
 
 #ifdef __cplusplus
 
-inline void ansi_to(unsigned int & u, const ::ansi_character * psz) { u = ansi_to_unsigned_int(psz); }
-inline void ansi_to(unsigned long long & u, const ::ansi_character * psz) { u = ansi_to_unsigned_long_long(psz); }
-//inline void ansi_to(uptr & u, const ::ansi_character * psz) { u = ansi_to_uptr(psz); }
+inline void ansi_to(unsigned int & u, const ::ansi_character * psz) { u = ansi_to_unsigned_int(scopedstr); }
+inline void ansi_to(unsigned long long & u, const ::ansi_character * psz) { u = ansi_to_unsigned_long_long(scopedstr); }
+//inline void ansi_to(uptr & u, const ::ansi_character * psz) { u = ansi_to_uptr(scopedstr); }
 
-inline void wide_to(unsigned int & u, const ::wide_character * psz) { u = wide_to_unsigned_int(psz); }
-inline void wide_to(unsigned long long & u, const ::wide_character * psz) { u = wide_to_unsigned_long_long(psz); }
-//inline void wide_to(uptr & u, const ::wide_character * psz) { u = wide_to_uptr(psz); }
+inline void wide_to(unsigned int & u, const ::wide_character * psz) { u = wide_to_unsigned_int(scopedstr); }
+inline void wide_to(unsigned long long & u, const ::wide_character * psz) { u = wide_to_unsigned_long_long(scopedstr); }
+//inline void wide_to(uptr & u, const ::wide_character * psz) { u = wide_to_uptr(scopedstr); }
 
 #endif

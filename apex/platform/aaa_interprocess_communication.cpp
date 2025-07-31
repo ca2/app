@@ -24,7 +24,7 @@ interprocess_intercommunication::~interprocess_intercommunication()
 }
 
 
-void interprocess_intercommunication::initialize_interprocess_communication(::particle * pparticle, const ::string & strApp)
+void interprocess_intercommunication::initialize_interprocess_communication(::particle * pparticle, const ::scoped_string & scopedstrApp)
 {
 
    ::object::initialize(pparticle);
@@ -109,7 +109,7 @@ void interprocess_intercommunication::destroy()
 }
 
 
-void interprocess_intercommunication::start(const ::string & strApp)
+void interprocess_intercommunication::start(const ::scoped_string & scopedstrApp)
 {
 
    synchronous_lock sl1(mutex());
@@ -210,7 +210,7 @@ started:
 }
 
 
-void interprocess_intercommunication::connect(const ::string & strApp, const ::atom & idPid)
+void interprocess_intercommunication::connect(const ::scoped_string & scopedstrApp, const ::atom & idPid)
 {
 
    string strKey = strApp + ":" + as_string(idPid);
@@ -234,7 +234,7 @@ void interprocess_intercommunication::connect(const ::string & strApp, const ::a
 }
 
 
-::inteprocess::caller & interprocess_intercommunication::tx(const ::string & strApp, const ::atom & iPid)
+::inteprocess::caller & interprocess_intercommunication::tx(const ::scoped_string & scopedstrApp, const ::atom & iPid)
 {
 
    string strKey = strApp + ":" + as_string(iPid);
@@ -339,7 +339,7 @@ string interprocess_intercommunication::str_from_va(const payload_array & payloa
 }
 
 
-bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::handler * prx, const ::string & strMessage)
+bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::handler * prx, const ::scoped_string & scopedstrMessage)
 {
 
 
@@ -543,7 +543,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 }
 
 
-::pointer<::interprocess::call>interprocess_intercommunication::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
+::pointer<::interprocess::call>interprocess_intercommunication::create_call(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
 {
 
    return __allocate ::interprocess::call(this, strApp, strObject, strMember);
@@ -551,7 +551,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 }
 
 
-::pointer<::interprocess::call>interprocess_intercommunication::create_call(const ::string & strObject, const ::string & strMember)
+::pointer<::interprocess::call>interprocess_intercommunication::create_call(const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
 {
 
    return create_call(m_strApp, strObject, strMember);
@@ -559,7 +559,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 }
 
 
-bool interprocess_intercommunication::on_interprocess_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
+bool interprocess_intercommunication::on_interprocess_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
 {
 
    if(strObject == "application")
@@ -615,7 +615,7 @@ bool interprocess_intercommunication::on_interprocess_call(::payload & payload, 
 }
 
 
-void interprocess_intercommunication::on_new_instance(const ::string & strModule, const ::atom & idPid)
+void interprocess_intercommunication::on_new_instance(const ::scoped_string & scopedstrModule, const ::atom & idPid)
 {
 
    defer_add_module(strModule, idPid);
@@ -625,7 +625,7 @@ void interprocess_intercommunication::on_new_instance(const ::string & strModule
 }
 
 
-atom_array interprocess_intercommunication::get_pid(const ::string & strApp)
+atom_array interprocess_intercommunication::get_pid(const ::scoped_string & scopedstrApp)
 {
 
    atom_array idaPid;
@@ -737,7 +737,7 @@ repeat:
 }
 
 
-void interprocess_intercommunication::defer_add_module(const ::string & strModule, const ::atom & idPid)
+void interprocess_intercommunication::defer_add_module(const ::scoped_string & scopedstrModule, const ::atom & idPid)
 {
    
    auto psystem = system();

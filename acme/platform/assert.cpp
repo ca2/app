@@ -49,7 +49,7 @@ namespace acme
 //      const ::e_message_box &     m_emessagebox;
 //
 //
-//      message_box_synchronous(const ::string & strText, const ::string & strTitle, const ::e_message_box & emessagebox) :
+//      message_box_synchronous(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox) :
 //         m_strText(strText),
 //         m_strTitle(strTitle),
 //         m_emessagebox(emessagebox)
@@ -91,7 +91,7 @@ namespace acme
 //void message_box_synchronous(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::future & future)
 //{
 //
-//   return _os_message_box(pszText, pszTitle, emessagebox, process);
+//   return _os_message_box(scopedstrText, pszTitle, emessagebox, process);
 //
 //}
 //
@@ -102,7 +102,7 @@ namespace acme
 ////void message_box_synchronous(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::future & future)
 ////{
 ////
-////   auto posmessagebox = __allocate ::acme::auto pmessagebox = __initialize_new ::message_box(pszText, pszTitle, emessagebox);
+////   auto posmessagebox = __allocate ::acme::auto pmessagebox = __initialize_new ::message_box(scopedstrText, pszTitle, emessagebox);
 
 //pmessagebox->sync();
 ////
@@ -135,7 +135,7 @@ CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int iLineNum
 
 #endif
 
-   auto edialogresult = __cpp_assert_failed_line(pszFileName, iLineNumber);
+   auto edialogresult = __cpp_assert_failed_line(scopedstrFileName, iLineNumber);
 
    if(edialogresult == e_dialog_result_cancel)
    {

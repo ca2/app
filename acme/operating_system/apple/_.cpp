@@ -116,7 +116,7 @@ int defer_run_system()
 //int defer_run_system(const ::file::path & path)
 //{
 //
-//   return __start_system_with_file(pszFileName);
+//   return __start_system_with_file(scopedstrFileName);
 //
 //}
 //
@@ -208,11 +208,11 @@ string apple_get_executable_path()
 //   else if(iCount == 1)
 //   {
 //
-//      ::acmeacmesystem()->on_open_file(psza[0], pszExtra);
+//      ::acmeacmesystem()->on_open_file(scopedstra[0], pszExtra);
 //
 //      ::free((void *) psza[0]);
 //
-//      ::free(psza);
+//      ::free(scopedstra);
 //
 //   }
 //   else

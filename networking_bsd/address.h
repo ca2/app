@@ -135,8 +135,8 @@ namespace networking_bsd
 
       void set_address(::networking::address * paddress);
       void set_family(int family, ::networking::port_t port = 0);
-      //void set_address(const ::string & strAddress, ::networking::port_t port = 0);
-      //void set_address(::particle * pparticle, const ::string & strAddress, const ::string & strServiceName);
+      //void set_address(const ::scoped_string & scopedstrAddress, ::networking::port_t port = 0);
+      //void set_address(::particle * pparticle, const ::scoped_string & scopedstrAddress, const ::scoped_string & scopedstrServiceName);
 #if defined(BSD_STYLE_SOCKETS)
       void set_address(const in_addr & a, ::networking::port_t port = 0);
       void set_address(const in6_addr & a, ::networking::port_t port = 0);
@@ -182,7 +182,7 @@ namespace networking_bsd
 
 #endif
 
-      //void parse_string(const ::string & strAddress);
+      //void parse_string(const ::scoped_string & scopedstrAddress);
       //string get_string() const;
 
 #ifdef BSD_STYLE_SOCKETS

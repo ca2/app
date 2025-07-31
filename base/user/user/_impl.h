@@ -70,7 +70,7 @@ namespace user
 
 
    template < class TOOLBAR >
-      void frame_window::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, unsigned int dwCtrlStyle, unsigned int uStyle)
+      void frame_window::load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar, unsigned int dwCtrlStyle, unsigned int uStyle)
       {
 
          return load_toolbar(::type < TOOLBAR >(), idToolbar, strToolbar, dwCtrlStyle, uStyle);

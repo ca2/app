@@ -750,7 +750,7 @@ namespace filemanager
          }
 
 
-         void list_impact::parse(const ::string & strXml)
+         void list_impact::parse(const ::scoped_string & scopedstrXml)
          {
 
             m_itema.erase_all();
@@ -848,7 +848,7 @@ namespace filemanager
          }
 
 
-         /*int ItemArray::FindAbsolute(const ::string & pszId)
+         /*int ItemArray::FindAbsolute(const ::scoped_string & scopedstrId)
 
          {
             for(int i = 0; i < this->get_size(); i++)

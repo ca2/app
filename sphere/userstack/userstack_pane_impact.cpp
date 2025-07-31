@@ -329,16 +329,16 @@ namespace userstack
    void pane_impact::check_3click_dir(const ::file::path & psz)
    {
 
-      if(directory()->is(psz))
+      if(directory()->is(scopedstr))
       {
 
          return;
 
       }
 
-      directory()->create(psz);
+      directory()->create(scopedstr);
 
-      string strDir(psz);
+      string strDir(scopedstr);
 
       POSITION pos = psystem->m_mapAppLibrary.get_start_position();
 
@@ -367,7 +367,7 @@ namespace userstack
             directory()->rls(directory()->userquicklaunch(), &straPath, nullptr, &straRelative);
             for(int i = 0; i < straPath.get_size(); i++)
             {
-               string str = directory()->path(psz, straRelative[i]);
+               string str = directory()->path(scopedstr, straRelative[i]);
                directory()->create(directory()->name(str));
                ::CopyFile(straPath[i], str, true);
             }*/

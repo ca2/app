@@ -47,10 +47,10 @@
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::string & pszString)
+character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::scoped_string & scopedstrString)
 
 {
-   ASSERT(is_string_ok(pszString));
+   ASSERT(is_string_ok(scopedstrString));
 
 
    const char *   pszBegin = pszString;
@@ -83,7 +83,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
             (*pszEnd != '_') && (*pszEnd != '.') )
 
       {
-         ASSERT(pszEnd != pszBegin);
+         ASSERT(scopedstrEnd != pszBegin);
 
 
          // only white-space characters, a nullptr-character, an
@@ -109,7 +109,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
    while (true);
 
    // extract attribute name
-   string   strAttrName(pszBegin, int(pszEnd - pszBegin));
+   string   strAttrName(scopedstrBegin, int(scopedstrEnd - pszBegin));
 
 
    // skip leading white-space characters
@@ -124,7 +124,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
    {
       m_strName = strAttrName;
       m_strValue.empty();
-      return (pszEnd - pszString);
+      return (scopedstrEnd - pszString);
 
    }
    else
@@ -146,7 +146,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
 
       if(strChar == "&")
       {
-         if(string(pszEnd, 6) == "&#039;")
+         if(string(scopedstrEnd, 6) == "&#039;")
 
          {
             strChar = "&#039;";
@@ -167,7 +167,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
          // was used at the starting of the attribute value.
          // Anything within these quotes is considered valid!
          // NOTE that the entity references are resolved later.
-         while (*pszEnd != '\0' && !case_insensitive_string_begins(pszEnd, strChar));
+         while (*pszEnd != '\0' && !case_insensitive_string_begins(scopedstrEnd, strChar));
 
       }
 
@@ -190,7 +190,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
       }
 
       m_strName = strAttrName;
-      if (pszEnd == pszBegin)   // is_empty attribute value?
+      if (scopedstrEnd == pszBegin)   // is_empty attribute value?
 
          m_strValue.empty();
       else
@@ -198,11 +198,11 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
          // this will automatically normalize data before
          // assigning according to the specs and will
          // also resolve entity references!!!
-         putValue(preader, string(pszBegin,int(pszEnd - pszBegin)));
+         putValue(preader, string(scopedstrBegin,int(scopedstrEnd - pszBegin)));
 
 
       // calculate and return the ::collection::count of characters successfully parsed
-      return (pszEnd - pszString) + strChar.length();
+      return (scopedstrEnd - pszString) + strChar.length();
 
    }
 
@@ -232,7 +232,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-character_count LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const ::string & pszString, character_count iLen)
+character_count LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const ::scoped_string & scopedstrString, character_count iLen)
 
 {
 
@@ -299,13 +299,13 @@ LCleanExit:
    return (nRetVal);
 }
 
-LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const ::string & lpszName, const ::string & pszValue)
+LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const ::string & lpszName, const ::scoped_string & scopedstrValue)
 
 {
 
    ASSERT(is_string_ok(lpszName));
 
-   ASSERT(is_string_ok(pszValue));
+   ASSERT(is_string_ok(scopedstrValue));
 
 
    LiteHTMLElemAttr   *pItem = __raw_new LiteHTMLElemAttr(lpszName, pszValue);
@@ -331,11 +331,11 @@ LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const ::string & lpszName, co
 }
 
 
-void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::string & pszValue)
+void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::scoped_string & scopedstrValue)
 
 {
 
-   ASSERT(is_string_ok(pszValue));
+   ASSERT(is_string_ok(scopedstrValue));
 
 
    m_strValue = pszValue;

@@ -127,13 +127,13 @@ public:
    using ::experience::frame_window::frame_experience;
    virtual ::pointer < ::experience::frame > frame_experience();
 
-   //virtual bool LoadFrame(const ::string & pszMatter, unsigned int dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
+   //virtual bool LoadFrame(const ::scoped_string & scopedstrMatter, unsigned int dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
 
-   virtual bool LoadFrame(const ::string & pszMatter, unsigned int dwDefaultStyle = FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
+   virtual bool LoadFrame(const ::scoped_string & scopedstrMatter, unsigned int dwDefaultStyle = FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
 
    void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
 
-   //virtual bool LoadToolBar(::type sptype,atom idToolBar, const ::string & pszToolBar,unsigned int dwCtrlStyle = TBSTYLE_FLAT,unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+   //virtual bool LoadToolBar(::type sptype,atom idToolBar, const ::scoped_string & scopedstrToolBar,unsigned int dwCtrlStyle = TBSTYLE_FLAT,unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 
 
 

@@ -54,13 +54,13 @@ namespace aqua
    }
 
 
-   void multimedia::on_song_added(const string& strId)
+   void multimedia::on_song_added(const ::scoped_string & scopedstrId)
    {
 
    }
 
 
-   string multimedia::get_media_call_title(const ::string & str)
+   string multimedia::get_media_call_title(const ::scoped_string & scopedstr)
    {
 
       return str;
@@ -75,7 +75,7 @@ namespace aqua
    }
 
 
-   ::pointer<::user::controller>multimedia::defer_create_impact(::particle * pparticle, const string& strImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom)
+   ::pointer<::user::controller>multimedia::defer_create_impact(::particle * pparticle, const ::scoped_string & scopedstrImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom)
    {
 
       return nullptr;
@@ -98,7 +98,7 @@ namespace aqua
    }
 
 
-   string_array multimedia::detect_language(const string& str)
+   string_array multimedia::detect_language(const ::scoped_string & scopedstr)
    {
 
       string_array stra;

@@ -236,7 +236,7 @@ namespace networking
 //   }
 //
 //
-//   address::address(::particle * pparticle, const string & host, const ::string & strService)
+//   address::address(::particle * pparticle, const string & host, const ::scoped_string & scopedstrService)
 //   {
 //
 //#ifdef BSD_STYLE_SOCKETS
@@ -528,7 +528,7 @@ namespace networking
 //#endif
 //
 
-//   void address::parse_string(const ::string & strAddress)
+//   void address::parse_string(const ::scoped_string & scopedstrAddress)
 //   {
 //
 ////#if defined(BSD_STYLE_SOCKETS)

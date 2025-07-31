@@ -340,7 +340,7 @@ namespace sockets_bsd
    }
 
 
-   void udp_socket::SendTo(const string & a, ::networking::port_t port, const ::string & str, int flags)
+   void udp_socket::SendTo(const string & a, ::networking::port_t port, const ::scoped_string & scopedstr, int flags)
    {
       
       SendToBuf(a, port, str, (int)str.length(), flags);
@@ -348,7 +348,7 @@ namespace sockets_bsd
    }
 
 
-   void udp_socket::SendTo(in_addr a, ::networking::port_t port, const ::string & str, int flags)
+   void udp_socket::SendTo(in_addr a, ::networking::port_t port, const ::scoped_string & scopedstr, int flags)
    {
 
       SendToBuf(a, port, str, (int)str.length(), flags);
@@ -356,7 +356,7 @@ namespace sockets_bsd
    }
 
 
-   void udp_socket::SendTo(in6_addr a, ::networking::port_t port, const ::string & str, int flags)
+   void udp_socket::SendTo(in6_addr a, ::networking::port_t port, const ::scoped_string & scopedstr, int flags)
    {
       
       SendToBuf(a, port, str, (int)str.length(), flags);
@@ -364,7 +364,7 @@ namespace sockets_bsd
    }
 
 
-   void udp_socket::SendTo(::networking::address * ad, const ::string & str, int flags)
+   void udp_socket::SendTo(::networking::address * ad, const ::scoped_string & scopedstr, int flags)
    {
 
       SendToBuf(ad, str, (int)str.length(), flags);

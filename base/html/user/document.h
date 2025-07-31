@@ -32,7 +32,7 @@ public:
 
    virtual bool open_document(const ::payload & payloadFile) override;
 
-   virtual bool load_html(const ::string & str);
+   virtual bool load_html(const ::scoped_string & scopedstr);
 
    bool on_new_document() override;
 

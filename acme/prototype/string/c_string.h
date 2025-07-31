@@ -28,7 +28,7 @@ namespace c
             m_psz = nullptr;
          }
       }
-      string(const string & str)
+      string(const ::c::string & str)
       {
          if (str.m_psz)
          {
@@ -39,7 +39,7 @@ namespace c
             m_psz = nullptr;
          }
       }
-      string(string && str)
+      string(::c::string && str)
       {
          auto psz = str.m_psz;
          str.m_psz = nullptr;
@@ -60,7 +60,7 @@ namespace c
          destroy(); 
          return *this;
       }
-      string & operator = (const string & str) {
+      string & operator = (const ::c::string & str) {
          if (m_psz != str.m_psz) {
             destroy();
             if (str.m_psz)

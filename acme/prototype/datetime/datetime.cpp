@@ -32,7 +32,7 @@ namespace datetime
 
    }
 
-   ::earth::time datetime::from_string(const ::text::context* pcontext, const ::string & str, const class ::time & timeshift)
+   ::earth::time datetime::from_string(const ::text::context* pcontext, const ::scoped_string & scopedstr, const class ::time & timeshift)
    {
 
       int iPathCount;
@@ -42,7 +42,7 @@ namespace datetime
    }
 
 
-   //::earth::time datetime::from_utc(const ::text::context* pcontext, const string& str)
+   //::earth::time datetime::from_utc(const ::text::context* pcontext, const ::scoped_string & scopedstr)
    //{
 
    //   int iPathCount;
@@ -215,7 +215,7 @@ namespace datetime
    }
 
 
-   posix_time datetime::strtotime(const ::text::context * pcontext, const string & str, int iPath, int & iPathCount, const class ::time & timeshift)
+   posix_time datetime::strtotime(const ::text::context * pcontext, const ::scoped_string & scopedstr, int iPath, int & iPathCount, const class ::time & timeshift)
    {
 
       if (str.trimmed().is_empty())
@@ -247,7 +247,7 @@ namespace datetime
    }
 
 
-   posix_time datetime::strtotime(const ::text::context * pcontext, const string & str, posix_time timeParam, int iPath, int & iPathCount, const class ::time& timeshift)
+   posix_time datetime::strtotime(const ::text::context * pcontext, const ::scoped_string & scopedstr, posix_time timeParam, int iPath, int & iPathCount, const class ::time& timeshift)
    {
 
       if (str.trimmed().is_empty())
@@ -273,7 +273,7 @@ namespace datetime
    //long long datetime::utc_strtotime(const ::text::context * pcontext, const ::scoped_string & scopedstr, int iPath, int & iPathCount)
    //{
 
-   //   if (::is_null(psz) || string(psz).trimmed().is_empty())
+   //   if (::is_null(scopedstr) || string(scopedstr).trimmed().is_empty())
    //   {
 
    //      return 0;
@@ -309,7 +309,7 @@ namespace datetime
    //}
 
 
-   void datetime::parse_text(const string & strSrc, ::property_set & set)
+   void datetime::parse_text(const ::scoped_string & scopedstrSrc, ::property_set & set)
    {
       
       string src(strSrc);
@@ -423,7 +423,7 @@ namespace datetime
    }
 
 
-   ::earth::time datetime::parse_text(const string& str)
+   ::earth::time datetime::parse_text(const ::scoped_string & scopedstr)
    {
 
       ::property_set set;
@@ -458,7 +458,7 @@ namespace datetime
    }
 
 
-   ::posix_time datetime::parse(const string & strParam)
+   ::posix_time datetime::parse(const ::scoped_string & scopedstrParam)
    {
 
       ::string str(strParam);
@@ -990,7 +990,7 @@ namespace datetime
    }
 
 
-   //string datetime::format(const string & strFormatParam, const ::earth::time & time, const class ::time & timeshift)
+   //string datetime::format(const ::scoped_string & scopedstrFormatParam, const ::earth::time & time, const class ::time & timeshift)
    //{
 
    //   string strFormat(strFormatParam);
@@ -1017,7 +1017,7 @@ namespace datetime
    //}
 
 
-   //string datetime::format(const string & str, const class ::time& timeshift)
+   //string datetime::format(const ::scoped_string & scopedstr, const class ::time& timeshift)
    //{
 
    //   return format(str, ::earth::time::now(), timeshift);
@@ -1028,7 +1028,7 @@ namespace datetime
    //string datetime::strftime(const ::scoped_string & scopedstr, const ::earth::time & time, const class ::time& timeshift)
    //{
 
-   //   string strFormat(psz);
+   //   string strFormat(scopedstr);
 
    //   string str;
 
@@ -1055,7 +1055,7 @@ namespace datetime
    //string datetime::utc_strftime(const ::scoped_string & scopedstr)
    //{
    //   
-   //   return utc_strftime(psz, ::earth::time::now());
+   //   return utc_strftime(scopedstr, ::earth::time::now());
    //   
    //}
 
@@ -1456,7 +1456,7 @@ namespace datetime
 {
 
 
-   result datetime::span_parse_time(const ::text::context* pcontext, const string & strSpanExpression, const class ::time & timeshift)
+   result datetime::span_parse_time(const ::text::context* pcontext, const ::scoped_string & scopedstrSpanExpression, const class ::time & timeshift)
    {
 
       static auto idCalendarDay("calendar:day");
@@ -1483,8 +1483,8 @@ namespace datetime
       string strChar;
       for (int i = 0; *psz; psz += strChar.length())
       {
-         strChar = get_utf8_char(psz);
-         if (unicode_is_whitespace(psz))
+         strChar = get_utf8_char(scopedstr);
+         if (unicode_is_whitespace(scopedstr))
          {
             i++;
             //if(strNumber.has_character() && strText.has_character())
@@ -1592,11 +1592,11 @@ namespace datetime
             bMinus = true;
             strNumber.empty();
          }
-         else if (unicode_is_digit(psz))
+         else if (unicode_is_digit(scopedstr))
          {
             strNumber += strChar;
          }
-         else if (unicode_is_letter(psz))
+         else if (unicode_is_letter(scopedstr))
          {
             strText1 += strChar;
          }
@@ -1671,7 +1671,7 @@ namespace datetime
    }
 
 
-   result datetime::parse_time(const ::text::context* pcontext, const string & strParam, int& iPath, int& iPathCount, const class ::time& timeshift)
+   result datetime::parse_time(const ::text::context* pcontext, const ::scoped_string & scopedstrParam, int& iPath, int& iPathCount, const class ::time& timeshift)
    {
       ::earth::time time;
       string str(strParam);

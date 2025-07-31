@@ -129,7 +129,7 @@ namespace platform
 
          auto pszError = strerror(iError);
 
-         if (pszError != nullptr)
+         if (scopedstrError != nullptr)
          {
 
             strMessage += pszError;
@@ -195,7 +195,7 @@ namespace platform
 
       auto pszError = strerror(iError);
 
-      if (pszError != nullptr)
+      if (scopedstrError != nullptr)
       {
 
          strMessage += pszError;
@@ -204,7 +204,7 @@ namespace platform
 
       auto pszDlError = dlerror();
 
-      if (pszDlError != nullptr)
+      if (scopedstrDlError != nullptr)
       {
 
          strMessage += pszDlError;

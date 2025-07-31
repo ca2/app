@@ -96,7 +96,7 @@ public:
    void common_construct();
 
 
-   virtual void initialize_command_line2(const string& strCommandLine);
+   virtual void initialize_command_line2(const ::scoped_string & scopedstrCommandLine);
 
    virtual void initialize_arguments(::string_array& straArguments);
 
@@ -104,17 +104,17 @@ public:
    //command_line & operator = (const command_line & commandline);
 
 
-   virtual void ParseParam(const ::string& strParam, bool bFlag, bool bLast);
-   virtual void ParseParamFlag(const ::string& strParam);
-   virtual void ParseParamNotFlag(const ::string& strParam);
+   virtual void ParseParam(const ::scoped_string & scopedstrParam, bool bFlag, bool bLast);
+   virtual void ParseParamFlag(const ::scoped_string & scopedstrParam);
+   virtual void ParseParamNotFlag(const ::scoped_string & scopedstrParam);
    virtual void ParseLast(bool bLast);
 
 
-   virtual void _001ParseCommandLine(const ::string& strCommandLine);
-   virtual void _001ParseCommandLineUri(const ::string& strCommandLine);
+   virtual void _001ParseCommandLine(const ::scoped_string & scopedstrCommandLine);
+   virtual void _001ParseCommandLineUri(const ::scoped_string & scopedstrCommandLine);
 
-   virtual void _001ParseCommandFork(const ::string& strCommandFork);
-   virtual void _001ParseCommandForkUri(const ::string& strCommandFork);
+   virtual void _001ParseCommandFork(const ::scoped_string & scopedstrCommandFork);
+   virtual void _001ParseCommandForkUri(const ::scoped_string & scopedstrCommandFork);
 
 
    virtual void _001ParseCommandArguments(::string_array& straArguments);

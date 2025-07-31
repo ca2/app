@@ -88,7 +88,7 @@ namespace platform
 
 #else
 
-      void system_construct(const ::string & pszCommandLine, const ::e_display& edisplay = ::e_display_none);
+      void system_construct(const ::scoped_string & scopedstrCommandLine, const ::e_display& edisplay = ::e_display_none);
 
 #endif
 
@@ -151,7 +151,7 @@ namespace platform
       //virtual void initialize_context();
 
 
-      virtual ::pointer<::data::node>load_xml(const ::string & pszXml);
+      virtual ::pointer<::data::node>load_xml(const ::scoped_string & scopedstrXml);
 
       //virtual void verb(); // ambigous inheritance from ::apex::system/::axis::application
 
@@ -159,7 +159,7 @@ namespace platform
       //virtual bool is_system() const;
 
 
-      virtual string crypto_md5_text(const ::string & str);
+      virtual string crypto_md5_text(const ::scoped_string & scopedstr);
 
 
 
@@ -174,11 +174,11 @@ namespace platform
       virtual void process_exit_status(::object* pparticle, const ::e_status & estatus);
 
 
-      virtual void hist_hist(const ::string & psz);
+      virtual void hist_hist(const ::scoped_string & scopedstr);
 
 
 
-      //virtual string ::url::encode(const ::string & str);
+      //virtual string ::url::encode(const ::scoped_string & scopedstr);
 
 
       //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
@@ -193,7 +193,7 @@ namespace platform
       virtual ::networking::networking * networking();
 
 
-      virtual void on_allocation_error(const ::string & strName, ::object * pobjectSometimes);
+      virtual void on_allocation_error(const ::scoped_string & scopedstrName, ::object * pobjectSometimes);
 
 
 
@@ -203,10 +203,10 @@ namespace platform
 
       //virtual void __set_thread_on();
 
-      //virtual string get_local_mutex_name(const ::string & pszAppName);
-      //virtual string get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId);
-      //virtual string get_global_mutex_name(const ::string & pszAppName);
-      //virtual string get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId);
+      //virtual string get_local_mutex_name(const ::scoped_string & scopedstrAppName);
+      //virtual string get_local_id_mutex_name(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId);
+      //virtual string get_global_mutex_name(const ::scoped_string & scopedstrAppName);
+      //virtual string get_global_id_mutex_name(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId);
 
 
       virtual void initialize_networking();
@@ -248,26 +248,26 @@ namespace platform
 
 
 
-      virtual int _001OnDebugReport(int i1,const ::string & psz1,int i2,const ::string & psz2,const ::string & psz3,va_list args);
-      virtual int _debug_logging_report(int iReportType, const ::string & pszFilename, int iLinenumber, const ::string & iModuleName, const char * pszFormat, va_list list);
-      virtual bool assert_failed_line(const ::string & pszFileName,int iLine);
+      virtual int _001OnDebugReport(int i1,const ::scoped_string & scopedstr1,int i2,const ::scoped_string & scopedstr2,const ::scoped_string & scopedstr3,va_list args);
+      virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::string & iModuleName, const char * pszFormat, va_list list);
+      virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine);
 
-      virtual bool on_assert_failed_line(const ::string & pszFileName,int iLine);
-
-
+      virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine);
 
 
 
 
-      virtual void initialize_log(const ::string & pszId);
+
+
+      virtual void initialize_log(const ::scoped_string & scopedstrId);
 
 
       virtual void appa_load_string_table();
-      virtual void appa_set_locale(const ::string & pszLocale, const ::action_context & action_context);
-      virtual void appa_set_schema(const ::string & pszStyle, const ::action_context & action_context);
+      virtual void appa_set_locale(const ::scoped_string & scopedstrLocale, const ::action_context & action_context);
+      virtual void appa_set_schema(const ::scoped_string & scopedstrStyle, const ::action_context & action_context);
 
-      virtual bool assert_running_global(const ::string & pszAppName,const ::string & pszId = nullptr);
-      virtual bool assert_running_local(const ::string & pszAppName,const ::string & pszId = nullptr);
+      virtual bool assert_running_global(const ::scoped_string & scopedstrAppName,const ::scoped_string & scopedstrId = nullptr);
+      virtual bool assert_running_local(const ::scoped_string & scopedstrAppName,const ::scoped_string & scopedstrId = nullptr);
 
 
       virtual ::collection::count get_application_count();
@@ -309,7 +309,7 @@ namespace platform
 
       virtual bool on_open_file(::payload payloadFile, string strExtra);
 
-      virtual void on_open_file(const ::string & pszFile);
+      virtual void on_open_file(const ::scoped_string & scopedstrFile);
 
 
       virtual void on_os_text(enum_os_text etext, string strText);
@@ -354,7 +354,7 @@ namespace platform
 
 
 
-      virtual bool sync_load_url(string& str, const ::string & pszUrl,  ::http::cookies* pcookies = nullptr);
+      virtual bool sync_load_url(string& str, const ::scoped_string & scopedstrUrl,  ::http::cookies* pcookies = nullptr);
 
 
 
@@ -418,7 +418,7 @@ namespace platform
 
       virtual bool _handle_uri(const ::block & block);
 
-      virtual void application_main(int argc, char *argv[], const ::string & pszCommandLine);
+      virtual void application_main(int argc, char *argv[], const ::scoped_string & scopedstrCommandLine);
 
       virtual int console_end(::e_status estatus);
 

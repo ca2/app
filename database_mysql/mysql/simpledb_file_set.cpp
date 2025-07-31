@@ -57,14 +57,14 @@ namespace simpledb
    }
 
 
-   bool file_set::add_search(const ::string & pszSearchDirectory)
+   bool file_set::add_search(const ::scoped_string & scopedstrSearchDirectory)
    {
 
       string_array stra;
 
       datastream()->get(::base::system::idEmpty, stra);
 
-      if(stra.add_unique(pszSearchDirectory) < 0)
+      if(stra.add_unique(scopedstrSearchDirectory) < 0)
          return true;
 
       if(!datastream()->set(::base::system::idEmpty, stra))

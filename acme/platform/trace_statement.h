@@ -98,7 +98,7 @@ public:
 
 //   string str;
 
-//   str.formatf_arguments(psz, arguments);
+//   str.formatf_arguments(scopedstr, arguments);
 
 //   operator << (str);
 
@@ -114,7 +114,7 @@ public:
 
 //   string str;
 
-//   str.formatf_arguments(psz, arguments);
+//   str.formatf_arguments(scopedstr, arguments);
 
 //   operator << (str);
 

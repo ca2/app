@@ -10,7 +10,7 @@ namespace apex
 {
 
 
-   assert_running_task::assert_running_task(::platform::application_container * pcontainer,const ::string & strAppId, const ::string & strLocale, const ::string & strSchema):
+   assert_running_task::assert_running_task(::platform::application_container * pcontainer,const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema):
       m_pcontainer(pcontainer),
       m_strLocale(strLocale),
       m_strSchema(strSchema)

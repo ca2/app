@@ -371,7 +371,7 @@ namespace experience
    }
 
 
-   ::pointer<::experience::experience>frame_window::create_experience(const ::string & strExperience)
+   ::pointer<::experience::experience>frame_window::create_experience(const ::scoped_string & scopedstrExperience)
    {
 
       auto puser = user();
@@ -381,7 +381,7 @@ namespace experience
    }
 
 
-   ::pointer<::experience::experience>frame_window::experience(const ::string & strExperience)
+   ::pointer<::experience::experience>frame_window::experience(const ::scoped_string & scopedstrExperience)
    {
 
       auto puser = user();
@@ -391,7 +391,7 @@ namespace experience
    }
 
 
-   ::pointer<::experience::frame>frame_window::frame_experience(const ::string & strExperience, const ::string & strFrame, const ::string & strStyle)
+   ::pointer<::experience::frame>frame_window::frame_experience(const ::scoped_string & scopedstrExperience, const ::scoped_string & scopedstrFrame, const ::scoped_string & scopedstrStyle)
    {
 
       auto puser = user();

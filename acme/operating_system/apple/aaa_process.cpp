@@ -153,7 +153,7 @@ namespace apple
    bool process::create_child_process(const ::scoped_string & scopedstrCmdLine,bool bPiped,const ::scoped_string & scopedstrDir, ::enum_priority epriority)
    {
 
-      if(!::operating_system::process::create_child_process(pszCmdLine, bPiped, pszDir, epriority))
+      if(!::operating_system::process::create_child_process(scopedstrCmdLine, bPiped, pszDir, epriority))
       {
          
          return false;
@@ -164,7 +164,7 @@ namespace apple
 
       address_array < char * > argv;
 
-      straParam.explode_command_line(pszCmdLine, &argv);
+      straParam.explode_command_line(scopedstrCmdLine, &argv);
 
       posix_spawnattr_t attr;
 
@@ -212,7 +212,7 @@ namespace apple
 
          const ::scoped_string & scopedstr;
 
-         while((psz = environ[i]) != nullptr)
+         while((scopedstr = environ[i]) != nullptr)
          {
             if(i <= iPrevious)
                break;
@@ -382,7 +382,7 @@ namespace apple
 
       uid_t uid = getuid();
 
-      string str(pszCmdLineParam);
+      string str(scopedstrCmdLineParam);
 
       {
 
@@ -511,7 +511,7 @@ namespace apple
 //
 //      straParam.add("-c");
 //
-//      string strC = "ignit_phase2 () { export DYLD_FALLBACK_LIBRARY_PATH=\""+strFallback+"\" ; cd "+strFolder+" ; "+string(pszCmdLineParam)+" ; } ; ignit_phase2 ;";
+//      string strC = "ignit_phase2 () { export DYLD_FALLBACK_LIBRARY_PATH=\""+strFallback+"\" ; cd "+strFolder+" ; "+string(scopedstrCmdLineParam)+" ; } ; ignit_phase2 ;";
 ////            string strC = "export DYLD_FALLBACK_LIBRARY_PATH="+strFallback;
 //
 //      straParam.add(strC);
@@ -526,17 +526,17 @@ namespace apple
 //      argv.add(nullptr);
 
 
-      //string strParam(pszCmdLineParam);
+      //string strParam(scopedstrCmdLineParam);
 
 
       string_array straParam;
 
-      straParam = get_c_args_for_c(pszCmdLineParam);
+      straParam = get_c_args_for_c(scopedstrCmdLineParam);
       //straParam.add("uid=" + as_string(uid));
       for(::collection::index i = 0; i < straParam.get_count(); i++)
       {
          char * psz = (char *)(const char *)straParam[i];
-         argv.add(psz);
+         argv.add(scopedstr);
 
       }
 
@@ -584,7 +584,7 @@ namespace apple
       ref_array < char > argv;
 
 
-      straParam.explode_command_line(pszCmdLineParam, &argv);
+      straParam.explode_command_line(scopedstrCmdLineParam, &argv);
 
       posix_spawnattr_t attr;
 
@@ -633,7 +633,7 @@ auto tickStart = ::duration::now();
 
       straParam.erase_all();
       argv.erase_all();
-      straParam.explode_command_line(pszCmdLineParam, &argv);
+      straParam.explode_command_line(scopedstrCmdLineParam, &argv);
 
       tool = (char * )argv[0];
       args = (char **) &argv.get_data()[1];
@@ -786,7 +786,7 @@ auto tickStart = ::duration::now();
 
       straParam.add("/usr/bin/osascript");
       straParam.add("-e");
-      straParam.add("'do shell script \"" + string(pszCmdLineParam) + "\" with administrator privileges'");
+      straParam.add("'do shell script \"" + string(scopedstrCmdLineParam) + "\" with administrator privileges'");
 
       argv.add((char *) (const char *) straParam[0]);
       argv.add((char *) (const char *) straParam[1]);
@@ -806,9 +806,9 @@ auto tickStart = ::duration::now();
 
       }
 
-      string pszCmdLine = "/usr/bin/gksu " + string(pszCmdLineParam);
+      string pszCmdLine = "/usr/bin/gksu " + string(scopedstrCmdLineParam);
 
-      straParam.explode_command_line(pszCmdLine, &argv);
+      straParam.explode_command_line(scopedstrCmdLine, &argv);
 
 #endif
 

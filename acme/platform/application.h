@@ -692,8 +692,8 @@ namespace platform
       virtual void add_capability(enum_application_capability ecapability) override;
 
 
-      bool handle_call(::payload& payload, const ::string& strObject, const ::string& strMember, ::property_set& propertyset) override;
-      virtual bool handle_application_call(::payload& payload, const ::string& strMember, ::property_set& propertyset) override;
+      bool handle_call(::payload& payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set& propertyset) override;
+      virtual bool handle_application_call(::payload& payload, const ::scoped_string & scopedstrMember, ::property_set& propertyset) override;
 
 
       virtual ::file::path get_app_localconfig_folder() override;

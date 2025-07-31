@@ -165,7 +165,7 @@ namespace ansios
    bool process::create_child_process(const ::scoped_string & scopedstrCmdLine,bool bPiped,const ::scoped_string & scopedstrDir, ::enum_priority epriority)
    {
 
-      if(!::operating_system::process::create_child_process(pszCmdLine, bPiped, pszDir, epriority))
+      if(!::operating_system::process::create_child_process(scopedstrCmdLine, bPiped, pszDir, epriority))
       {
 
          return false;
@@ -176,7 +176,7 @@ namespace ansios
 
       address_array < char * > argv;
 
-      straParam.explode_command_line(pszCmdLine, &argv);
+      straParam.explode_command_line(scopedstrCmdLine, &argv);
 
       posix_spawnattr_t attr;
 
@@ -233,7 +233,7 @@ namespace ansios
 
          const ::scoped_string & scopedstr;
 
-         while((psz = environ[i]) != nullptr)
+         while((scopedstr = environ[i]) != nullptr)
          {
             if(i <= iPrevious)
                break;
@@ -387,9 +387,9 @@ namespace ansios
 
       }
 
-      string pszCmdLine = "/usr/bin/gksu " + string(pszCmdLineParam);
+      string pszCmdLine = "/usr/bin/gksu " + string(scopedstrCmdLineParam);
 
-      straParam.explode_command_line(pszCmdLine, &argv);
+      straParam.explode_command_line(scopedstrCmdLine, &argv);
 
       posix_spawnattr_t attr;
 

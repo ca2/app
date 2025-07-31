@@ -107,7 +107,7 @@ namespace account
    }
 
 
-   void impact::defer_translate(const ::string & strUser, const ::string & strPass, const ::string & strOpen)
+   void impact::defer_translate(const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, const ::scoped_string & scopedstrOpen)
    {
 
       if (strUser.has_character())
@@ -373,10 +373,10 @@ namespace account
    }
 
 
-   bool impact::on_action(const ::string & pszId)
+   bool impact::on_action(const ::scoped_string & scopedstrId)
    {
 
-      if (!ansi_cmp(pszId, "submit"))
+      if (!ansi_cmp(scopedstrId, "submit"))
       {
 
          if (!m_bCred)
@@ -399,7 +399,7 @@ namespace account
          m_happeningSubmit.set_happening();
 
       }
-      else if (!ansi_cmp(pszId, "escape"))
+      else if (!ansi_cmp(scopedstrId, "escape"))
       {
 
          get_parent()->display(e_display_none);

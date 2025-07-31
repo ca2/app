@@ -6,7 +6,7 @@
 
 
 
-string_exchange &string_exchange::operator = (const ::string & str )const
+string_exchange &string_exchange::operator = (const ::scoped_string & scopedstr )const
 {
 
    *m_pstr = str; return (string_exchange &)(*this);

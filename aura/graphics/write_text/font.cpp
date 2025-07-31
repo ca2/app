@@ -86,7 +86,7 @@ namespace write_text
    }
 
 
-//   bool font::create_point_font(const ::string & pszFacename, double dSize, int iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
+//   bool font::create_point_font(const ::scoped_string & scopedstrFacename, double dSize, int iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
 //   {
 //
 //      m_strFontFamilyName = pszFacename;
@@ -148,10 +148,10 @@ namespace write_text
    }
 
 
-   void font::set_family_name(const ::string & pszFamilyName)
+   void font::set_family_name(const ::scoped_string & scopedstrFamilyName)
    {
 
-      m_pfontfamily = font_family_pointer(pszFamilyName);
+      m_pfontfamily = font_family_pointer(scopedstrFamilyName);
 
       set_modified();
 

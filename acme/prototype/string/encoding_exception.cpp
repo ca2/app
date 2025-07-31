@@ -3,7 +3,7 @@
 
 
 
-encoding_exception::encoding_exception(const ::string & strMessage) :
+encoding_exception::encoding_exception(const ::scoped_string & scopedstrMessage) :
    exception(::error_encoding, strMessage)
 {
 

@@ -333,7 +333,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
    }
 
 
-   //bool session::open_by_file_extension(const ::string & pszPathName, ::request * prequest)
+   //bool session::open_by_file_extension(const ::scoped_string & scopedstrPathName, ::request * prequest)
    //{
 
    //   auto pcreateNew = __create_new < ::create >();
@@ -432,7 +432,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
    }
 
 
-   bool session::is_licensed(const ::string & pszAppId, bool bInteractive)
+   bool session::is_licensed(const ::scoped_string & scopedstrAppId, bool bInteractive)
    {
 
       if (has_property("install"))
@@ -458,7 +458,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
       //}
 
-      //return m_paccount->is_licensed(pszAppId, bInteractive);
+      //return m_paccount->is_licensed(scopedstrAppId, bInteractive);
 
    }
 
@@ -508,14 +508,14 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 //   }
 
 
-   bool session::get_auth(const string & pszForm, string & strUsername, string & strPassword)
+   bool session::get_auth(const ::scoped_string & scopedstrForm, string & strUsername, string & strPassword)
    {
 
       throw 0;
 
       return false;
 
-      //return account()->get_auth(pszForm, strUsername, strPassword);
+      //return account()->get_auth(scopedstrForm, strUsername, strPassword);
 
    }
 
@@ -2175,18 +2175,18 @@ namespace aura
    }
 
 
-   void session::launch_app(const ::string & psz)
+   void session::launch_app(const ::scoped_string & scopedstr)
    {
 
-      __UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(scopedstr);
 
    }
 
 
-   void session::install_app(const ::string & psz)
+   void session::install_app(const ::scoped_string & scopedstr)
    {
 
-      __UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(scopedstr);
 
    }
 
@@ -2446,7 +2446,7 @@ namespace aura
    }
 
 
-   void session::set_app_title(const ::string & strAppId, const ::string & strTitle)
+   void session::set_app_title(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrTitle)
    {
 
       ::pointer<::platform::application>papplication;
@@ -2459,7 +2459,7 @@ namespace aura
          //if(ppaneimpact != nullptr)
          //{
 
-         //   string strAppName(pszAppId);
+         //   string strAppName(scopedstrAppId);
 
          //   ::user::tab::pane * ppane = ppaneimpact->get_pane_by_id("app:" + strAppName);
 

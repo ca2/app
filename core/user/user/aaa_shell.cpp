@@ -39,7 +39,7 @@ namespace user
       }
 
 
-      shell::image_key::image_key(const ::string & strPath, const ::string & strShellThemePrefix, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+      shell::image_key::image_key(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrShellThemePrefix, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
          if (color32_byte_opacity(crBk) != 255)
@@ -73,7 +73,7 @@ namespace user
       }
 
 
-      void shell::image_key::set_path(const ::string & strPath, bool bSetExtension)
+      void shell::image_key::set_path(const ::scoped_string & scopedstrPath, bool bSetExtension)
       {
 
          m_strPath = strPath;
@@ -95,7 +95,7 @@ namespace user
       }
 
 
-      void shell::image_key::set_extension(const ::string & strPath)
+      void shell::image_key::set_extension(const ::scoped_string & scopedstrPath)
       {
 
          character_count iFind1 = strPath.rear_find('/');
@@ -554,7 +554,7 @@ namespace user
       }
 
 
-      int shell::get_file_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+      int shell::get_file_image(const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
@@ -566,7 +566,7 @@ namespace user
       }
 
 
-      int shell::get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+      int shell::get_file_extension_image(const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
          //int iImage = I32_MINIMUM;
@@ -756,7 +756,7 @@ namespace user
       }
 
 
-      int shell::create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation)
+      int shell::create_file_icon_image(const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation)
       {
 
          image_key imagekey(strPath, m_strShellThemePrefix, eattribute, eicon);

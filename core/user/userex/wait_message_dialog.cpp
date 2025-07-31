@@ -24,10 +24,10 @@ namespace userex
    }
 
 
-   void wait_message_dialog::on_show(const ::string & pszMatter)
+   void wait_message_dialog::on_show(const ::scoped_string & scopedstrMatter)
    {
 
-      ::dialog::on_show(pszMatter);
+      ::dialog::on_show(scopedstrMatter);
 
    }
 

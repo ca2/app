@@ -35,7 +35,7 @@ namespace regular_expression_pcre2
    }
 
 
-   void regular_expression::compile(const string& str)
+   void regular_expression::compile(const ::scoped_string & scopedstr)
    {
 
       m_str = str;
@@ -78,7 +78,7 @@ namespace regular_expression_pcre2
 
 
 
-   ::pointer<::regular_expression::result>regular_expression::run(const string& str)
+   ::pointer<::regular_expression::result>regular_expression::run(const ::scoped_string & scopedstr)
    {
 
       auto presult = __allocate class result ();
@@ -112,7 +112,7 @@ namespace regular_expression_pcre2
 
 
 
-   bool regular_expression::replace(string& str, const string& strPrefix, string& strRet)
+   bool regular_expression::replace(string& str, const ::scoped_string & scopedstrPrefix, string& strRet)
    {
 
       size_t s = maximum(256, str.length() + strPrefix.length() * 3);

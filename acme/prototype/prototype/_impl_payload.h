@@ -9,20 +9,20 @@
 //inline ::payload payload::operator[] (const ::scoped_string & scopedstr) const { return find_property(scopedstr); }
 
 
-//inline ::property & operator[] (const ::string & str) { return get_property(::atom(str)); }
-//inline ::payload operator[] (const ::string & str) const { return find_property(::atom(str)); }
+//inline ::property & operator[] (const ::scoped_string & scopedstr) { return get_property(::atom(str)); }
+//inline ::payload operator[] (const ::scoped_string & scopedstr) const { return find_property(::atom(str)); }
 
 
 //inline ::property & payload::operator[] (::iptr i) { return get_property(i); }
 //inline ::payload payload::operator[] (::iptr i) const { return find_property(i); }
 
 
-//inline ::payload payload::operator + (const ::string & str) const { return ::transfer(*this + ::scoped_string(str)); }
+//inline ::payload payload::operator + (const ::scoped_string & scopedstr) const { return ::transfer(*this + ::scoped_string(str)); }
 //inline ::payload payload::operator + (const ::inline_number_string & inline_number_string) const { return ::transfer(*this + ::scoped_string(inline_number_string)); }
 
 
 //inline ::payload & payload::operator += (const ::scoped_string & scopedstr) { return *this = (*this + scopedstr); }
-//inline ::payload & payload::operator += (const ::string & str) { return *this += ::scoped_string(str); }
+//inline ::payload & payload::operator += (const ::scoped_string & scopedstr) { return *this += ::scoped_string(str); }
 //inline ::payload & payload::operator += (const ::inline_number_string & inline_number_string) { return *this = (*this + inline_number_string); }
 
 
@@ -93,19 +93,19 @@ inline class payload & payload::operator = (const inline_number_string & inlinen
 //   if (get_type() == e_type_pstring)
 //   {
 //
-//      m_pstr->assign(psz, size);
+//      m_pstr->assign(scopedstr, size);
 //
 //   }
 //   else if (get_type() == e_type_payload_pointer)
 //   {
 //
-//      m_ppayload->set_string(psz, size);
+//      m_ppayload->set_string(scopedstr, size);
 //
 //   }
 //   else if (get_type() == e_type_property)
 //   {
 //
-//      m_pproperty->set_string(psz, size);
+//      m_pproperty->set_string(scopedstr, size);
 //
 //   }
 //   else
@@ -113,14 +113,14 @@ inline class payload & payload::operator = (const inline_number_string & inlinen
 //
 //      set_type(e_type_string, false);
 //
-//      m_str.assign(psz, size);
+//      m_str.assign(scopedstr, size);
 //
 //   }
 //
 //}
 
 
-//inline void payload::set_string(const ::string & str)
+//inline void payload::set_string(const ::scoped_string & scopedstr)
 //{
 //
 //   if(get_type() == e_type_pstring)
@@ -401,7 +401,7 @@ inline ::payload & payload::operator *= (FLOATING f)
 //template < primitive_payload PAYLOAD >
 //inline bool strictly_equal(const ::scoped_string & scopedstr, const PAYLOAD & payload);
 //template < primitive_payload PAYLOAD >
-//inline bool strictly_equal(const ::string & str, const PAYLOAD & payload);
+//inline bool strictly_equal(const ::scoped_string & scopedstr, const PAYLOAD & payload);
 //template < primitive_payload PAYLOAD >
 //inline bool strictly_equal(double d, const PAYLOAD & payload);
 //template < primitive_payload PAYLOAD >
@@ -413,7 +413,7 @@ inline ::payload & payload::operator *= (FLOATING f)
 template < primitive_payload PAYLOAD >
 inline bool strictly_different(const ::scoped_string & scopedstr, const PAYLOAD & payload);
 template < primitive_payload PAYLOAD >
-inline bool strictly_different(const ::string & str, const PAYLOAD & payload);
+inline bool strictly_different(const ::scoped_string & scopedstr, const PAYLOAD & payload);
 template < primitive_payload PAYLOAD >
 inline bool strictly_different(double d, const PAYLOAD & payload);
 template < primitive_payload PAYLOAD >
@@ -894,7 +894,7 @@ inline ::payload & copy(::payload & payload1, const ::payload & payload2)
 }
 
 
-//inline ::string operator +(const ::string & str, const ::payload & payload)
+//inline ::string operator +(const ::scoped_string & scopedstr, const ::payload & payload)
 //{
 //
 //   return ::transfer(str + payload.as_string());
@@ -905,7 +905,7 @@ inline ::payload & copy(::payload & payload1, const ::payload & payload2)
 //inline ::string operator +(const ::scoped_string & scopedstr, const ::payload & payload)
 //{
 //
-//   return ::string(psz) + ::string(payload);
+//   return ::string(scopedstr) + ::string(payload);
 //
 //}
 

@@ -21,7 +21,7 @@ string get_class_name( io_object_t& obj );
 io_registry_entry_t get_parent_iousb_device( io_object_t& serial_port );
 string get_string_property( io_object_t& device, const char* property );
 unsigned short get_int_property( io_object_t& device, const char* property );
-string rtrim(const string& str);
+string rtrim(const ::scoped_string & scopedstr);
 
 string
 cfstring_to_string( CFStringRef cfstring )
@@ -186,7 +186,7 @@ get_int_property( io_object_t& device, const char* property )
    return result;
 }
 
-string rtrim(const string& str)
+string rtrim(const ::scoped_string & scopedstr)
 {
    string result = str;
 

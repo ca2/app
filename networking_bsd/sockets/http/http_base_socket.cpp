@@ -372,7 +372,7 @@ namespace sockets
 
       string str = strExtension;
       str.make_lower();
-      string strContentType(pszContentType);
+      string strContentType(scopedstrContentType);
 
       string strName(pcsz);
 

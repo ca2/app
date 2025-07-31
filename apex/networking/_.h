@@ -49,7 +49,7 @@ namespace netserver
 
 //CLASS_DECL_APEX string c_gethostbyname(const char * hostname);
 //
-//CLASS_DECL_APEX string get_file_extension_mime_type(const ::string & strExtension);
+//CLASS_DECL_APEX string get_file_extension_mime_type(const ::scoped_string & scopedstrExtension);
 
 //
 //#include "byte_order.h"

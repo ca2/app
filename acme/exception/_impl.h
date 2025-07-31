@@ -16,19 +16,19 @@
 //   if (estatus == error_not_implemented)
 //   {
 //
-//      throw ::not_implemented(pszMessage);
+//      throw ::not_implemented(scopedstrMessage);
 //
 //   }
 //   else if (estatus == error_interface_only)
 //   {
 //
-//      throw ::interface_only(pszMessage);
+//      throw ::interface_only(scopedstrMessage);
 //
 //   }
 //   else if (estatus == error_io)
 //   {
 //
-//      throw io_exception(pszMessage);
+//      throw io_exception(scopedstrMessage);
 //
 //   }
 //   else

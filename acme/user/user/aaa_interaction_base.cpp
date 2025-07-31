@@ -143,7 +143,7 @@
 //   void interaction_base::_on_window_simple_action(const char * pszActionName)
 //   {
 //
-//      ::string strActionName(pszActionName);
+//      ::string strActionName(scopedstrActionName);
 //
 //      if(strActionName == "minimize")
 //      {

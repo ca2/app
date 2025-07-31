@@ -32,7 +32,7 @@ namespace xml
    }
 
 
-   ::xml::node * output_tree::export_node(const ::string & strName, exportable & exportable)
+   ::xml::node * output_tree::export_node(const ::scoped_string & scopedstrName, exportable & exportable)
    {
 
       if(m_pnode == nullptr)
@@ -81,7 +81,7 @@ namespace xml
    }
 
 
-   ::xml::node * output_tree::export_node(const ::string & strName, ::payload payload)
+   ::xml::node * output_tree::export_node(const ::scoped_string & scopedstrName, ::payload payload)
    {
 
       m_varexchange.m_ppayload = &payload;
@@ -135,7 +135,7 @@ namespace xml
    }
 
 
-   void output_tree::set_node_name(const ::string & strName)
+   void output_tree::set_node_name(const ::scoped_string & scopedstrName)
    {
 
       m_pnode->set_name(strName);

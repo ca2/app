@@ -86,10 +86,10 @@ namespace app_shader
    }
 
 
-   void render::defer_load_fragment(const ::string & pszPathPrefix)
+   void render::defer_load_fragment(const ::scoped_string & scopedstrPathPrefix)
    {
 
-      if (string(pszPathPrefix) == "default")
+      if (string(scopedstrPathPrefix) == "default")
       {
 
          m_strProjection.empty();
@@ -111,10 +111,10 @@ namespace app_shader
       //for (auto& path : listing)
       //{
 
-      //   if (path.name().case_insensitive_begins(pszPathPrefix))
+      //   if (path.name().case_insensitive_begins(scopedstrPathPrefix))
       //   {
 
-      m_strFragment = m_pgpucontext->load_fragment(pszPathPrefix, m_eshadersource);
+      m_strFragment = m_pgpucontext->load_fragment(scopedstrPathPrefix, m_eshadersource);
 
       //      break;
 

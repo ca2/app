@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-::collection::count regex::matches(string_array& stra, const string& str)
+::collection::count regex::matches(string_array& stra, const ::scoped_string & scopedstr)
 {
 
    auto prangeaMatches = matches_ranges(str);
@@ -20,7 +20,7 @@
 }
 
 
-//index regex::match(string_array & stra, const ::string & strParam, character_count iSize)
+//index regex::match(string_array & stra, const ::scoped_string & scopedstrParam, character_count iSize)
 //{
 //
 //   stra.erase_all();

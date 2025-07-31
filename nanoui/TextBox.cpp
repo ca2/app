@@ -840,7 +840,7 @@ namespace nanoui
    }
 
 
-   bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key& ekeyModifiers, const ::string& strText)
+   bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText)
    {
 
       if (m_bEditable && focused())

@@ -507,16 +507,16 @@ bool  stream_base::is_version(int i)
 //void stream::write(const ::ansi_character * psz)
 //{
 //
-//   auto len = ::str::string_safe_length(psz);
+//   auto len = ::str::string_safe_length(scopedstr);
 //
 //   write_buffer_length(len);
 //
-//   write(psz, len);
+//   write(scopedstr, len);
 //
 //}
 //
 //
-//void stream::write(const ::string & str)
+//void stream::write(const ::scoped_string & scopedstr)
 //{
 //
 //   write_buffer_length(str.length());
@@ -586,7 +586,7 @@ bool  stream_base::is_version(int i)
 ////}
 ////
 ////
-////void stream::set_object_link(const ::matter * preference, const ::string & strLink, bool bReadOnly)
+////void stream::set_object_link(const ::matter * preference, const ::scoped_string & scopedstrLink, bool bReadOnly)
 ////{
 ////
 ////}
@@ -613,7 +613,7 @@ bool  stream_base::is_version(int i)
 ////}
 //
 //
-////void stream::write_link(const ::matter * preference, const ::string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions)
+////void stream::write_link(const ::matter * preference, const ::scoped_string & scopedstrLink, bool bReadOnly, ::matter * pobjectSaveOptions)
 ////{
 ////
 ////   write(bReadOnly);
@@ -961,7 +961,7 @@ bool  stream_base::is_version(int i)
 //   else
 //   {
 //
-//      write(string(psz));
+//      write(string(scopedstr));
 //
 //   }
 //

@@ -87,7 +87,7 @@ namespace filemanager
    }
 
 
-   bool is_valid_manager_id(const ::string & strParam)
+   bool is_valid_manager_id(const ::scoped_string & scopedstrParam)
    {
 
       const ::ansi_character * psz = strParam;
@@ -130,7 +130,7 @@ namespace filemanager
    }
 
 
-   bool is_valid_filemanager_project_entry(const ::string & strParam)
+   bool is_valid_filemanager_project_entry(const ::scoped_string & scopedstrParam)
    {
 
       const ::ansi_character * psz = strParam;
@@ -183,7 +183,7 @@ namespace filemanager
    }
 
 
-   ::file::path filemanager_project_entry(string & strManagerId, const ::string & str, ::aura::context * pcontext)
+   ::file::path filemanager_project_entry(string & strManagerId, const ::scoped_string & scopedstr, ::aura::context * pcontext)
    {
 
       if (is_valid_filemanager_project_entry(str))
@@ -520,7 +520,7 @@ namespace filemanager
    }
 
 
-   void document::InitializeFileManager(const ::string & strMatter)
+   void document::InitializeFileManager(const ::scoped_string & scopedstrMatter)
    {
 
       m_pfilemanagerdata->m_pfilelistcallback = this;

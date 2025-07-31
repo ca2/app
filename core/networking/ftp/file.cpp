@@ -19,7 +19,7 @@ namespace ftp
    }
 
 
-   bool file::Open(const string& strFileName, ::file::e_open eopen)
+   bool file::Open(const ::scoped_string & scopedstrFileName, ::file::e_open eopen)
    {
 
       m_strFileName = strFileName;
@@ -142,7 +142,7 @@ namespace ftp
 
    void file::OnPreBytesSend(unsigned char* pszBuffer, memsize bufferSize, memsize& bytesToSend)
    {
-      bytesToSend = Read(pszBuffer, sizeof(char), bufferSize);
+      bytesToSend = Read(scopedstrBuffer, sizeof(char), bufferSize);
    }
 
 

@@ -104,7 +104,7 @@ path_system::~path_system()
 ::string path_system::icloud_container_identifier(const char * psz_iCloudContainerIdentifier)
 {
    
-   ::string str_iCloudContainerIdentifier(psz_iCloudContainerIdentifier);
+   ::string str_iCloudContainerIdentifier(scopedstr_iCloudContainerIdentifier);
    
    if(str_iCloudContainerIdentifier.is_empty())
    {
@@ -121,7 +121,7 @@ path_system::~path_system()
 //::string path_system::icloud_container_id_from_app_id(const char * pszAppId)
 //{
 //   
-//   ::string strAppId(pszAppId);
+//   ::string strAppId(scopedstrAppId);
 //   
 //   if(strAppId.is_empty())
 //   {
@@ -152,7 +152,7 @@ path_system::~path_system()
       
    }
    
-   return directory_system()->icloud_container2(pszAppId) / path;
+   return directory_system()->icloud_container2(scopedstrAppId) / path;
    
 }
 
@@ -624,7 +624,7 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
 
 
-   if (::is_null(psz))
+   if (::is_null(scopedstr))
    {
 
       return false;
@@ -634,19 +634,19 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
 
 
-   char* pszRealPath = ::realpath(psz, NULL);
+   char* pszRealPath = ::realpath(scopedstr, NULL);
 
-   if (pszRealPath == NULL)
+   if (scopedstrRealPath == NULL)
    {
 
       return false;
 
    }
 
-   if (strcmp(psz, pszRealPath) == 0)
+   if (strcmp(scopedstr, pszRealPath) == 0)
    {
 
-      ::free(pszRealPath);
+      ::free(scopedstrRealPath);
 
       return false;
 
@@ -663,7 +663,7 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
    }
 
-   ::free(pszRealPath);
+   ::free(scopedstrRealPath);
 
    return true;
 

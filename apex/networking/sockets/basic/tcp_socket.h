@@ -205,20 +205,20 @@ namespace sockets
 
       
       
-      virtual void set_host(const ::string & strHost);
+      virtual void set_host(const ::scoped_string & scopedstrHost);
       virtual string get_host() const;
 
 
-      virtual void set_tls_hostname(const ::string & strTlsHostname);
+      virtual void set_tls_hostname(const ::scoped_string & scopedstrTlsHostname);
 
 
-      virtual void set_connect_host(const ::string & strConnectHost);
+      virtual void set_connect_host(const ::scoped_string & scopedstrConnectHost);
       virtual string get_connect_host() const;
       virtual void set_connect_port(const ::networking::port_t portConnect);
       virtual ::networking::port_t get_connect_port() const;
 
 
-      virtual void set_url(const ::string & strUrl);
+      virtual void set_url(const ::scoped_string & scopedstrUrl);
       virtual string get_url() const;
 
 
@@ -289,7 +289,7 @@ namespace sockets
       virtual void InitSSLClient();
 
 
-      virtual void set_init_ssl_client_context(const ::string & strInitSSLClientContext);
+      virtual void set_init_ssl_client_context(const ::scoped_string & scopedstrInitSSLClientContext);
 
 
       /** This method must be implemented to initialize

@@ -47,7 +47,7 @@ namespace write_text
       virtual void TextOutRaw(double x, double y, const ::scoped_string & scopedstr);
 
 
-      virtual void create_simple_multiline_layout(::write_text::text_out_array& textouta, const string& str, const ::int_rectangle& rectangle, ::write_text::font* pfont, const ::e_align& ealign, enum_text_wrap etextwrap);
+      virtual void create_simple_multiline_layout(::write_text::text_out_array& textouta, const ::scoped_string & scopedstr, const ::int_rectangle& rectangle, ::write_text::font* pfont, const ::e_align& ealign, enum_text_wrap etextwrap);
       virtual void split_text(string_array & stra, double w, enum_text_wrap etextwrap);
       virtual ::collection::count _split_text(string_array & stra, ::collection::index i, double w, enum_text_wrap etextwrap);
       virtual ::collection::count _split_text_word(string_array & stra, ::collection::index i, double w);

@@ -41,7 +41,7 @@ namespace simpledb
       
       virtual bool init_thread() override;
 
-      ::simpledb::session * & get_session(const ::string & pszId);
+      ::simpledb::session * & get_session(const ::scoped_string & scopedstrId);
 
       using thread::handle;
       bool handle(socket * psocket);

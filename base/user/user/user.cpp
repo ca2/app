@@ -1328,7 +1328,7 @@ namespace base
    }
 
 
-   ::user::style_pointer user::get_user_style(const ::string & pszExperienceLibrary, ::platform::application * papp)
+   ::user::style_pointer user::get_user_style(const ::scoped_string & scopedstrExperienceLibrary, ::platform::application * papp)
    {
 
       auto & pstyle = m_mapUserStyle[pszExperienceLibrary];
@@ -1336,7 +1336,7 @@ namespace base
       if (!pstyle)
       {
 
-         auto pstyleNew = instantiate_user_style(pszExperienceLibrary, papp);
+         auto pstyleNew = instantiate_user_style(scopedstrExperienceLibrary, papp);
 
          pstyle = pstyleNew;
 
@@ -1347,7 +1347,7 @@ namespace base
    }
 
 
-   ::user::style_pointer user::instantiate_user_style(const ::string & strExperience, ::platform::application * papp)
+   ::user::style_pointer user::instantiate_user_style(const ::scoped_string & scopedstrExperience, ::platform::application * papp)
    {
 
       auto pexperience = experience()->experience(papp, strExperience);
@@ -1775,13 +1775,13 @@ namespace base
    }
 
 
-   void user::defer_instantiate_user_style(const ::string & pszUiInteractionLibrary)
+   void user::defer_instantiate_user_style(const ::scoped_string & scopedstrUiInteractionLibrary)
    {
 
       if (!m_puserstyle)
       {
 
-         m_puserstyle = get_user_style(pszUiInteractionLibrary);
+         m_puserstyle = get_user_style(scopedstrUiInteractionLibrary);
 
          if (!m_puserstyle)
          {
@@ -1931,24 +1931,24 @@ namespace base
 //}
 
 
-//CLASS_DECL_BASE int __c_get_text_length(const ::string & psz)
+//CLASS_DECL_BASE int __c_get_text_length(const ::scoped_string & scopedstr)
 //{
 //
-//   string str = __get_text(psz);
+//   string str = __get_text(scopedstr);
 //
 //   return (int)str.length();
 //
 //}
 
 
-//CLASS_DECL_BASE void __c_get_text(char* pszText, int iLen, const ::string & psz)
+//CLASS_DECL_BASE void __c_get_text(char* pszText, int iLen, const ::scoped_string & scopedstr)
 //{
 //
-//   string str = __get_text(psz);
+//   string str = __get_text(scopedstr);
 //
 //   iLen = minimum(iLen, (int)str.length());
 //
-//   strncpy(pszText, str, iLen);
+//   strncpy(scopedstrText, str, iLen);
 //
 //   pszText[iLen] = '\0';
 //

@@ -861,14 +861,14 @@
 ////
 ////   const ::scoped_string & scopedstr = str;
 ////
-////   while (psz != nullptr && *psz != '\0')
+////   while (scopedstr != nullptr && *psz != '\0')
 ////   {
 ////
-////      int iIndex = unicode_index(psz);
+////      int iIndex = unicode_index(scopedstr);
 ////
 ////      send_input_unicode(iIndex, iSleep);
 ////
-////      unicode_increment(psz);
+////      unicode_increment(scopedstr);
 ////
 ////   }
 ////

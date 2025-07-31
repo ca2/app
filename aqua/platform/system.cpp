@@ -344,7 +344,7 @@ bool system::has_audio() const
 
       //auto pszName = ::multimedia_get_library_name();
 
-      //if (::is_set(pszName) && !strcmp(pszName, "veriwell_multimedia"))
+      //if (::is_set(scopedstrName) && !strcmp(scopedstrName, "veriwell_multimedia"))
       //{
 
       //   strName = "veriwell_multimedia";

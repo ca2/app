@@ -642,7 +642,7 @@ namespace acme
       inline ::collection::index add(string_array& stra, const ::property& property);
       inline ::collection::index add(string_array& stra, const ::property_set& propertyset);
 
-      inline ::collection::index add(::file::path_array& patha, const ::string& str);
+      inline ::collection::index add(::file::path_array& patha, const ::scoped_string & scopedstr);
 
       inline ::collection::index add(string_array& stra, const string_array& straSource);
 
@@ -1365,7 +1365,7 @@ namespace acme
       ////   Adding ITEM
       ////      to array
 
-      ////inline ::collection::index add(string_array & stra, const ::scoped_string & scopedstr) { return stra.add_item(psz); }
+      ////inline ::collection::index add(string_array & stra, const ::scoped_string & scopedstr) { return stra.add_item(scopedstr); }
       ////inline ::collection::index add(string_array & stra, const char & ch) { return stra.add_item(ch); }
       ////inline ::collection::index add(string_array & stra, const ansi_string & str) { return stra.add_item(str); }
       ////inline ::collection::index add(string_array & stra, const wd16_string & str) { return stra.add_item(str); }
@@ -1373,7 +1373,7 @@ namespace acme
       ////inline ::collection::index add(string_array & stra, const ::file::path & path) { return stra.add_item(path); }
 
 
-      ////inline ::collection::index add(::file::path_array & patha, const ::scoped_string & scopedstr) { return patha.add_item(psz); }
+      ////inline ::collection::index add(::file::path_array & patha, const ::scoped_string & scopedstr) { return patha.add_item(scopedstr); }
       ////inline ::collection::index add(::file::path_array & patha, const char & ch) { return patha.add_item(ch); }
       ////inline ::collection::index add(::file::path_array & patha, const ansi_string & str) { return patha.add_item(str); }
       ////inline ::collection::index add(::file::path_array & patha, const wd16_string & str) { return patha.add_item(str); }

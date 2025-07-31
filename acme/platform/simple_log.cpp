@@ -97,31 +97,31 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
    char * psz = str.get_buffer(iLen + 8);
 
-   ansi_ncpy(psz, scopedstrText, scopedstrText.size());
+   ansi_ncpy(scopedstr, scopedstrText, scopedstrText.size());
 
    if (scopedstrFile.has_character())
    {
 
-      ansi_concatenate(psz, ", \"");
+      ansi_concatenate(scopedstr, ", \"");
 
-      ansi_concatenate(psz, scopedstrText.begin(), scopedstrText.size());
+      ansi_concatenate(scopedstr, scopedstrText.begin(), scopedstrText.size());
 
       if (iLine >= 1)
       {
 
          char pszNum[30];
 
-         ansi_from_long_long(pszNum, iLine, 10, e_digit_case_upper);
+         ansi_from_long_long(scopedstrNum, iLine, 10, e_digit_case_upper);
 
-         ansi_concatenate(psz, "(");
+         ansi_concatenate(scopedstr, "(");
 
-         ansi_concatenate(psz, pszNum);
+         ansi_concatenate(scopedstr, pszNum);
 
-         ansi_concatenate(psz, ")");
+         ansi_concatenate(scopedstr, ")");
 
       }
 
-      ansi_concatenate(psz, "\"");
+      ansi_concatenate(scopedstr, "\"");
 
    }
 
@@ -461,10 +461,10 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 
    auto pszTopicText = topic_text(pparticle);
 
-   if (::is_set(pszTopicText) && *pszTopicText != '\0')
+   if (::is_set(scopedstrTopicText) && *pszTopicText != '\0')
    {
 
-      string strTopic(pszTopicText);
+      string strTopic(scopedstrTopicText);
 
       strTopic.case_insensitive_begins_eat("class ");
 
@@ -482,7 +482,7 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 
 #if SIMPLE_TRACE_FUNCTION_NAME
 
-   if (::is_set(pszFunction))
+   if (::is_set(scopedstrFunction))
    {
 
       strMessage += "\nFunction: ";
@@ -495,7 +495,7 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 
 #if SIMPLE_TRACE_FILE_NAME
 
-   if (::is_set(pszFileName))
+   if (::is_set(scopedstrFileName))
    {
 
       strMessage += "\nFile: ";
@@ -526,7 +526,7 @@ CLASS_DECL_ACME void __simple_tracev(::particle * pparticle, enum_trace_level el
    //if (s_pstringmanager == nullptr)
    //{
 
-   //   vprintf(pszFormat, args);
+   //   vprintf(scopedstrFormat, args);
 
    //   return;
 
@@ -534,7 +534,7 @@ CLASS_DECL_ACME void __simple_tracev(::particle * pparticle, enum_trace_level el
 
    string strMessage;
 
-   strMessage.formatf_arguments(pszFormat, args);
+   strMessage.formatf_arguments(scopedstrFormat, args);
 
    __simple_tracea(pparticle, elevel, pszFunction, pszFileName, iLine, strMessage);
 

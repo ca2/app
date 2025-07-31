@@ -386,7 +386,7 @@ void window_base::handle(::topic * ptopic, ::handler_context * phandlercontext)
 //    // //
 //    // //   manual_reset_happening happening;
 //    // //
-//    // //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
+//    // //   pmessagebox->display(scopedstrMessage, pszTitle, emessagebox, pszDetails);
 //    // //
 //    // //   pmessagebox->m_functionClose = [&idResult, &happening](micro::interchange * pwindow)
 //    // //   {
@@ -454,7 +454,7 @@ void window_base::handle(::topic * ptopic, ::handler_context * phandlercontext)
 
       }
 
-      m_puserinteractionbase->_on_window_simple_action(pszActionName);
+      m_puserinteractionbase->_on_window_simple_action(scopedstrActionName);
 
    }
 

@@ -78,10 +78,10 @@
          {
             for(int j = 0; j < jCount; j++)
             {
-               m_oswindow = ::FindWindowW(nullptr,wstring(pszKey));
+               m_oswindow = ::FindWindowW(nullptr,wstring(scopedstrKey));
                if(m_oswindow != nullptr)
                   break;
-               //         m_oswindow = FindDesktopWindow(pszKey);
+               //         m_oswindow = FindDesktopWindow(scopedstrKey);
                //       if(m_oswindow != nullptr)
                //        break;
                if(i <= 0)
@@ -138,7 +138,7 @@
          COPYDATASTRUCT cds;
 
          cds.dwData = I32_MINIMUM;
-         cds.cbData = (unsigned int)strlen(pszMessage);
+         cds.cbData = (unsigned int)strlen(scopedstrMessage);
          cds.lpData = (void *)pszMessage;
 
 
@@ -278,7 +278,7 @@
 
          ATOM atom = rx_register_class(hinstance);
 
-         wstring wstrKey(pszKey);
+         wstring wstrKey(scopedstrKey);
 
          m_oswindow = ::CreateWindowExW(0,L"small_ipc_rx_::color::e_channel_message_queue_class", wstrKey,0,0,0,0,0,HWND_MESSAGE,nullptr,hinstance,nullptr);
 
@@ -324,7 +324,7 @@
       void * rx::on_interprocess_receive(rx * prx,const ::scoped_string & scopedstrMessage)
       {
 
-         string strMessage(pszMessage);
+         string strMessage(scopedstrMessage);
 
          if (case_insensitive_string_begins(strMessage, "synch_"))
          {

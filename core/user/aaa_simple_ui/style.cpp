@@ -82,7 +82,7 @@ namespace simple_ui
    }
 
 
-   string style::defer_get(const ::string & pszUrl)
+   string style::defer_get(const ::scoped_string & scopedstrUrl)
    {
 
       string str;
@@ -167,7 +167,7 @@ namespace simple_ui
 
       }
 
-      return papp->http_get_locale_schema(pszUrl,m_strLocale,m_strSchema);
+      return papp->http_get_locale_schema(scopedstrUrl,m_strLocale,m_strSchema);
 
    }
 

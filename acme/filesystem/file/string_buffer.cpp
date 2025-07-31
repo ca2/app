@@ -222,23 +222,23 @@ bool string_buffer_base::unget_if(::ansi_character ch)
 //void string_buffer::set(const ::scoped_string & scopedstr,character_count len)
 //{
 //      
-//   if(psz == nullptr || *psz == '\0' || len <= 0)
+//   if(scopedstr == nullptr || *psz == '\0' || len <= 0)
 //   {
 //      psz = "";
 //      len = 0;
 //   }
 //
-//   m_str.assign(psz, len);
+//   m_str.assign(scopedstr, len);
 //
 //}
 //
 //void string_buffer::append(const ::scoped_string & scopedstr,character_count len)
 //{
 //
-//   if(psz == nullptr || *psz == '\0' || len <= 0)
+//   if(scopedstr == nullptr || *psz == '\0' || len <= 0)
 //      return;
 //
-//   m_str.append(psz, len);
+//   m_str.append(scopedstr, len);
 //
 //}
 ////
@@ -358,7 +358,7 @@ bool string_reference_buffer::unget_if(::ansi_character ch)
 
 //}
 
-//void set(const ::string& str)
+//void set(const ::scoped_string & scopedstr)
 //{
 //   set(str, str.length());
 //}
@@ -371,7 +371,7 @@ bool string_reference_buffer::unget_if(::ansi_character ch)
 
 //}
 
-//void append(const ::string& str)
+//void append(const ::scoped_string & scopedstr)
 //{
 //   append(str, str.length());
 //}
@@ -389,13 +389,13 @@ bool string_reference_buffer::unget_if(::ansi_character ch)
 //string as_string() const;
 
 
-//string_buffer& operator += (const ::string& str)
+//string_buffer& operator += (const ::scoped_string & scopedstr)
 //{
 //   append(str);
 //   return *this;
 //}
 
-//string_buffer& operator = (const ::string& str)
+//string_buffer& operator = (const ::scoped_string & scopedstr)
 //{
 //   set(str);
 //   return *this;

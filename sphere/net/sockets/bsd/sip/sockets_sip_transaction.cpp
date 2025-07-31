@@ -28,7 +28,7 @@ namespace sip
    }
 
 
-   property & transaction::header(const ::string & pszKey)
+   property & transaction::header(const ::scoped_string & scopedstrKey)
    {
 
       return m_propertysetHeader[pszKey];
@@ -207,7 +207,7 @@ namespace sip
       m_cookies.erase_all();
    }
 
-   property & transaction::attr(const ::string & psz)
+   property & transaction::attr(const ::scoped_string & scopedstr)
    {
       return m_propertysetAttribute[psz];
    }

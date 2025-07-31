@@ -25,7 +25,7 @@
 //   }
 //
 //
-//::pointer < ::subparticle > message_box::create_sequencer(::particle * pparticle, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+//::pointer < ::subparticle > message_box::create_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //{
 //
 //   //auto psequencer = pparticle->__create_new < ::sequencer < ::conversation > >();

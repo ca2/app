@@ -116,7 +116,7 @@ public:
 enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, enum_message_box emessagebox)
 {
    
-   class ns_alert_box nsalertbox(pszMessage, pszTitle, emessagebox);
+   class ns_alert_box nsalertbox(scopedstrMessage, pszTitle, emessagebox);
    
    auto edialogresult = nsalertbox.run_modal();
    

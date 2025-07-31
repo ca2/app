@@ -9,7 +9,7 @@ namespace windowing
 
 
    button::button(const ::string &psz, enum_dialog_result edialogresult) :
-      m_strLabel(psz),
+      m_strLabel(scopedstr),
       m_edialogresult(edialogresult)
    {
 

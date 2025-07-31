@@ -20,7 +20,7 @@ namespace html
       return type_value;
    }
 
-   void value::set_value(const ::string & pszValue)
+   void value::set_value(const ::scoped_string & scopedstrValue)
    {
       m_strValue = pszValue;
    }

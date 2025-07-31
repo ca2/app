@@ -496,11 +496,11 @@ pdirectorysystem->config() / "android/app_theme" / m_strShellThemePrefix + strEx
 //
 //                  HICON hicon32 = nullptr;
 //
-//                  if (strlen(pszPathParam) > 0)
+//                  if (strlen(scopedstrPathParam) > 0)
 //                  {
 //
 //                     SHGetFileInfoW(
-//                        wstring(pszPathParam),
+//                        wstring(scopedstrPathParam),
 //                        FILE_ATTRIBUTE_NORMAL,
 //                        &shfi16,
 //                        sizeof(shfi16),
@@ -508,7 +508,7 @@ pdirectorysystem->config() / "android/app_theme" / m_strShellThemePrefix + strEx
 //                        | SHGFI_SMALLICON);
 //                     hicon16 = shfi16.hIcon;
 //                     SHGetFileInfoW(
-//                        wstring(pszPathParam),
+//                        wstring(scopedstrPathParam),
 //                        FILE_ATTRIBUTE_NORMAL,
 //                        &shfi48,
 //                        sizeof(shfi48),
@@ -1584,7 +1584,7 @@ pdirectorysystem->is(strPath))
 
 
 
-   int shell::get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+   int shell::get_file_extension_image(const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
    {
 
       int iImage = I32_MINIMUM;

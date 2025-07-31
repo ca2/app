@@ -24,8 +24,8 @@ namespace simpledb
 
       virtual class ::simpledb::dataset * create_dataset();
 
-      table * get_table(const ::string & pszName);
-      table * create_table(const ::string & pszName);
+      table * get_table(const ::scoped_string & scopedstrName);
+      table * create_table(const ::scoped_string & scopedstrName);
 
 
       // class ::database::database

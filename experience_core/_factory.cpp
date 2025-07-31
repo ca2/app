@@ -27,28 +27,28 @@
 //      }
 //
 //
-//      ::matter * library::new_object(const ::string & pszClass)
+//      ::matter * library::new_object(const ::scoped_string & scopedstrClass)
 //      {
 //
-//         if(string(pszClass) == "experience")
+//         if(string(scopedstrClass) == "experience")
 //         {
 //
 //            return ___new experience();
 //
 //         }
-//         else if(string(pszClass) == "control_box")
+//         else if(string(scopedstrClass) == "control_box")
 //         {
 //
 //            return ___new control_box();
 //
 //         }
-//         else if(string(pszClass) == "button")
+//         else if(string(scopedstrClass) == "button")
 //         {
 //
 //            return ___new button();
 //
 //         }
-//         else if(string(pszClass) == "user_theme")
+//         else if(string(scopedstrClass) == "user_theme")
 //         {
 //
 //            return ___new style();

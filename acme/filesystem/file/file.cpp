@@ -702,18 +702,18 @@ namespace file
 
 
 
-   void file::print(const ::string & str)
+   void file::print(const ::scoped_string & scopedstr)
    {
 
-      write(str);
+      write(scopedstr);
 
    }
 
 
-   void file::println(const ::string & str)
+   void file::println(const ::scoped_string & scopedstr)
    {
 
-      print(str);
+      print(scopedstr);
 
       write({ LINE_SEPARATOR, STATIC_ASCII_STRING_LENGTH(LINE_SEPARATOR) });
 
@@ -746,7 +746,7 @@ namespace file
    }
 
 
-//   void file::write(const ::string & str)
+//   void file::write(const ::scoped_string & scopedstr)
 //   {
 //
 //      write(str,  str.length());
@@ -1250,7 +1250,7 @@ namespace file
    void file::from_hex(const ::scoped_string & scopedstr)
    {
       memory memory;
-      memory.from_hex(psz);
+      memory.from_hex(scopedstr);
       write(memory.data(), memory.size());
    }*/
 
@@ -1358,7 +1358,7 @@ namespace file
 
    void file::write (const ::scoped_string & scopedstr)
    {
-      __UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(scopedstr);
       throw ::interface_only();
    }
 
@@ -1374,7 +1374,7 @@ namespace file
       throw ::interface_only();
    }
 
-   void file::write (const ::string & str)
+   void file::write (const ::scoped_string & scopedstr)
    {
       __UNREFERENCED_PARAMETER(str);
       throw ::interface_only();

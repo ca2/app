@@ -78,7 +78,7 @@ int __atom_sgn(T x)
 #define __atom_is_null_ptr(p) (!(p))
 
 
-#define __atom_str_is_empty(psz) (__atom_is_null_ptr(psz) || *psz == '\0')
+#define __atom_str_is_empty(scopedstr) (__atom_is_null_ptr(scopedstr) || *psz == '\0')
 
 
 
@@ -372,7 +372,7 @@ public:
    atom(UNSIGNED u);
    template < primitive_enum ENUM >
    atom(ENUM e);
-   atom(const ::string & str);
+   atom(const ::scoped_string & scopedstr);
    //atom(const const_ansi_range & range);
    //atom(const_ansi_range && range);
    //atom(const const_ansi_range && range);
@@ -535,13 +535,13 @@ public:
 //#ifndef NO_TEMPLATE
 
 
-   //inline ::std::strong_ordering order(const ::string & str) const;
-   //inline bool operator == (const ::string & str) const;
-   //inline ::std::strong_ordering operator <=>(const ::string & str) const;
-   //inline bool operator < (const ::string & str) const;
-   //inline bool operator <= (const ::string & str) const;
-   //inline bool operator > (const ::string & str) const;
-   //inline bool operator >= (const ::string & str) const;
+   //inline ::std::strong_ordering order(const ::scoped_string & scopedstr) const;
+   //inline bool operator == (const ::scoped_string & scopedstr) const;
+   //inline ::std::strong_ordering operator <=>(const ::scoped_string & scopedstr) const;
+   //inline bool operator < (const ::scoped_string & scopedstr) const;
+   //inline bool operator <= (const ::scoped_string & scopedstr) const;
+   //inline bool operator > (const ::scoped_string & scopedstr) const;
+   //inline bool operator >= (const ::scoped_string & scopedstr) const;
 
 
 
@@ -647,7 +647,7 @@ public:
 //
 //   atom & operator = (const ::payload & payload);
 //   atom & operator = (const property & prop);
-//   atom & operator = (const ::string & str);
+//   atom & operator = (const ::scoped_string & scopedstr);
 //
 //
    //template < primitive_integer INTEGRAL >
@@ -723,7 +723,7 @@ public:
    inline void clear();
    
 
-   //inline ::std::strong_ordering CompareNoCase(const ::scoped_string & scopedstr) const { return case_insensitive_order(psz); }
+   //inline ::std::strong_ordering CompareNoCase(const ::scoped_string & scopedstr) const { return case_insensitive_order(scopedstr); }
    inline ::std::strong_ordering case_insensitive_order(const ::scoped_string & scopedstr) const;
 
 
@@ -750,7 +750,7 @@ public:
 
    //inline string operator +(const atom & atom) const;
    inline ::string operator +(const ::ansi_character * psz) const;
-   inline ::string operator +(const ::string & str) const;
+   inline ::string operator +(const ::scoped_string & scopedstr) const;
 
 
    operator ::hash32() const

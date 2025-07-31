@@ -760,7 +760,7 @@ namespace sockets_bsd
 
       using ::sockets::base_socket::write;
       void write(const void * p, ::memsize s) override;
-      //void inline print(const ::string & str) { write(str.c_str(), str.length()); }
+      //void inline print(const ::scoped_string & scopedstr) { write(str.c_str(), str.length()); }
 
 
       /** write traffic to an IFile. base_socket will not delete this object. */
@@ -785,7 +785,7 @@ namespace sockets_bsd
       //bool step() override;
 
       //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, ...);
-      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::string & strContext, int err, const ::string & strMessage);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::scoped_string & scopedstrContext, int err, const ::scoped_string & scopedstrMessage);
 
       string get_short_description() override;
 

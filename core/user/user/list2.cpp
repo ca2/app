@@ -799,7 +799,7 @@ namespace user
    //}
 
 
-   //void list2::parse(const ::string& strXml)
+   //void list2::parse(const ::scoped_string & scopedstrXml)
    //{
 
    //   m_useritema.erase_all();
@@ -896,7 +896,7 @@ namespace user
    //}
 
 
-   /*int ItemArray::FindAbsolute(const ::string & pszId)
+   /*int ItemArray::FindAbsolute(const ::scoped_string & scopedstrId)
 
    {
       for(int i = 0; i < this->get_size(); i++)

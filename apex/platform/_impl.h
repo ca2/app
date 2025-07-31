@@ -9,7 +9,7 @@
 //   ::pointer<::matter>single_application_library < APP > ::new_application(const ::scoped_string & scopedstrAppId)
 //   {
 //
-//      if(!contains_app(pszAppId))
+//      if(!contains_app(scopedstrAppId))
 //      {
 //
 //         return error_not_found;
@@ -488,13 +488,13 @@
 //   //   try
 //   //   {
 //   //
-//   //      ::free(pszType);
+//   //      ::free(scopedstrType);
 //   //
 //   //   }
 //   //   catch (...)
 //   //   {
 //   //
-//   //      informationf("exception release ::free(pszType)\n");
+//   //      informationf("exception release ::free(scopedstrType)\n");
 //   //
 //   //   }
 //   //

@@ -81,7 +81,7 @@ namespace windowing
    // }
 
 
-   // ::menu::item * menu::find_item(const ::string & pszParent, const ::string & pszId)
+   // ::menu::item * menu::find_item(const ::scoped_string & scopedstrParent, const ::scoped_string & scopedstrId)
    // {
 
    //    for (int i = 0; i < m_itema.get_count(); i++)
@@ -89,10 +89,10 @@ namespace windowing
 
    //       auto pitem = m_itema[i];
 
-   //       if (!strcmp(pszParent, pitem->m_strParent))
+   //       if (!strcmp(scopedstrParent, pitem->m_strParent))
    //       {
 
-   //          if (!strcmp(pszId, pitem->id().to_string()))
+   //          if (!strcmp(scopedstrId, pitem->id().to_string()))
    //          {
 
    //             return pitem;

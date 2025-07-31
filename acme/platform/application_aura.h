@@ -182,7 +182,7 @@ namespace platform
       //virtual void load_string_table() override;
       //virtual bool load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable) override;
       //virtual bool load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable) override;
-      //virtual void load_string_table(const string & pszApp, const string & pszId) override;
+      //virtual void load_string_table(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrId) override;
 
 
 
@@ -251,8 +251,8 @@ namespace platform
       // virtual void on_uninstall() override;
       //
 
-      //virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative) override;
-      //virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle) override;
+      //virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const ::scoped_string & scopedstrRelative) override;
+      //virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle) override;
 
       //virtual void SetCurrentHandles() override;
 
@@ -260,7 +260,7 @@ namespace platform
       //virtual void process_exception(const ::exception & e) override;
 
 
-      //virtual ::pointer<::aura::application>assert_running(const ::string & pszAppId) override;
+      //virtual ::pointer<::aura::application>assert_running(const ::scoped_string & scopedstrAppId) override;
 
       //virtual bool is_running() override;
 
@@ -272,7 +272,7 @@ namespace platform
 
       //virtual bool assert_user_logged_in() override;
 
-      //virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2 = nullptr) override;
+      //virtual string matter_as_string(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2 = nullptr) override;
 
 
 
@@ -318,7 +318,7 @@ namespace platform
       //virtual void set_env_var(const string & payload, const string & value) override;
 
 
-      virtual ::draw2d::printer * get_printer(const ::string & pszDeviceName);
+      virtual ::draw2d::printer * get_printer(const ::scoped_string & scopedstrDeviceName);
 
 
       virtual ::image::icon * set_icon(::object * pobject, ::image::icon * picon, bool bBigIcon);
@@ -332,8 +332,8 @@ namespace platform
       //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
-      //virtual int hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
-      //virtual int hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      //virtual int hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      //virtual int hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
       //virtual void on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
@@ -352,7 +352,7 @@ namespace platform
 
       //virtual ::html::html * create_html();
 
-      //virtual string http_get(const ::string & strUrl, ::property_set & set) override;
+      //virtual string http_get(const ::scoped_string & scopedstrUrl, ::property_set & set) override;
 
       //virtual bool compress_ungz(const ::stream & os, const ::stream & is) override;
 
@@ -368,7 +368,7 @@ namespace platform
       //application();
       //~ application() override;
 
-      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
+      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
       //virtual string get_locale_schema_dir();
 
 
@@ -397,7 +397,7 @@ namespace platform
 
       //void install_message_routing(::channel * pchannel) override;
 
-      //virtual string dialog_box(const ::string & pszMatter, ::property_set & propertyset) override;
+      //virtual string dialog_box(const ::scoped_string & scopedstrMatter, ::property_set & propertyset) override;
 
       //virtual void application_menu_update() override;
 
@@ -451,18 +451,18 @@ namespace platform
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 //pmessagebox->sync();
 
 
-      //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void ui_message_box_timeout(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::aura::context_thread::message_box;
-      //virtual void message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void message_box_timeout(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //virtual void on_file_new() override;
@@ -472,7 +472,7 @@ namespace platform
       //virtual string_array get_categories() override;
 
       //virtual void defer_create_keyboard() override;
-      //virtual bool set_keyboard_layout(const ::string & pszPath, const ::action_context & action_context);
+      //virtual bool set_keyboard_layout(const ::scoped_string & scopedstrPath, const ::action_context & action_context);
 
 
       //virtual bool enable_application_events(::particle * pparticle, bool bEnable) override;
@@ -587,7 +587,7 @@ namespace platform
       //virtual bool on_install();
       //virtual bool on_uninstall();
 
-      //virtual bool system_add_app_install(const ::string & pszId, const ::string & pszBuild) override;
+      //virtual bool system_add_app_install(const ::scoped_string & scopedstrId, const ::scoped_string & scopedstrBuild) override;
 
       //virtual void TermThread(HINSTANCE hInstTerm);
 
@@ -607,9 +607,9 @@ namespace platform
       //virtual string multimedia_audio_mixer_get_default_implementation_name() override;
       //virtual string veriwell_multimedia_music_midi_get_default_implementation_name() override;
 
-      //virtual bool get_temp_file_name_template(string & str, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate) override;
+      //virtual bool get_temp_file_name_template(string & str, const ::string & lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate) override;
 
-      //virtual bool get_temp_file_name(string & str, const ::string & lpszName, const ::string & pszExtension) override;
+      //virtual bool get_temp_file_name(string & str, const ::string & lpszName, const ::scoped_string & scopedstrExtension) override;
 
       //service_base * get_service();
       //virtual service_base * allocate_new_service() override;
@@ -674,10 +674,10 @@ namespace platform
       //// name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
       //// get/set serializables to user directory
       //template < typename TYPE >
-      //bool gudo_get(const ::string & strKey, TYPE & t);
+      //bool gudo_get(const ::scoped_string & scopedstrKey, TYPE & t);
 
       //template < typename TYPE >
-      //bool gudo_set(const ::string & strKey, const TYPE & t);
+      //bool gudo_set(const ::scoped_string & scopedstrKey, const TYPE & t);
 
 
       //virtual bool assert_user_logged_in();
@@ -692,15 +692,15 @@ namespace platform
 
 
 
-      //virtual string http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema) override;
+      //virtual string http_get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
 
       //virtual void on_update_matter_locator() override;
 
-      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
-      //virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
+      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      //virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
 
-      //virtual string get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema) override;
-      //virtual string get_locale_schema_dir(const ::string & strLocale) override;
+      //virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      //virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale) override;
       //virtual string get_locale_schema_dir() override;
 
       //virtual void set_locale(const string & pcsz, const ::action_context & action_context) override;
@@ -714,9 +714,9 @@ namespace platform
 
 
       //virtual void fill_locale_schema(::text::international::locale_schema & localeschema) override;
-      //virtual void fill_locale_schema(::text::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema) override;
+      //virtual void fill_locale_schema(::text::international::locale_schema & localeschema,const ::scoped_string & scopedstrLocale,const ::scoped_string & scopedstrSchema) override;
 
-      //virtual bool platform_open_by_file_extension(::collection::index iEdge, const ::string & pszPathName, ::request * prequest = nullptr) override;
+      //virtual bool platform_open_by_file_extension(::collection::index iEdge, const ::scoped_string & scopedstrPathName, ::request * prequest = nullptr) override;
       //virtual bool platform_open_by_file_extension(::collection::index iEdge,::create * pcc) override;
 
 
@@ -751,7 +751,7 @@ namespace platform
 
       //virtual void play_audio(::payload payloadFile, bool bSynch = false);
 
-      //virtual void post_critical_error_message(const ::string & pszMessage, bool bShowLog = true) override;
+      //virtual void post_critical_error_message(const ::scoped_string & scopedstrMessage, bool bShowLog = true) override;
 
       //virtual void show_critical_error_log() override;
 
@@ -777,7 +777,7 @@ namespace platform
       //virtual string get_app_id(string wstr) override;
 
 
-      //virtual void install_trace(const ::string & str) override;
+      //virtual void install_trace(const ::scoped_string & scopedstr) override;
       //virtual void install_trace(double dRate) override;
       //virtual bool register_spa_file_type() override;
 
@@ -881,9 +881,9 @@ namespace platform
       //virtual bool is_system() const override;
       //virtual bool is_session() const override;
 
-      //virtual unsigned int guess_code_page(const string& str) override;
+      //virtual unsigned int guess_code_page(const ::scoped_string & scopedstr) override;
 
-      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, unsigned int fuStyle) override;
+      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int fuStyle) override;
 
       //virtual bool is_serviceable() const override;
       //
@@ -927,7 +927,7 @@ namespace platform
 
       // set regsitry key name to be used by application's
       // profile member functions; prevents writing to an INI spfile->
-      virtual void SetRegistryKey(const ::string & pszRegistryKey);
+      virtual void SetRegistryKey(const ::scoped_string & scopedstrRegistryKey);
 
       virtual void SetRegistryKey(unsigned int nIDRegistryKey);
 
@@ -982,10 +982,10 @@ namespace platform
 
       virtual int track_popup_menu(::menu::track_popup* ptrackpopup);
 
-      // virtual bool get_fs_size(string& strSize, const ::string & pszPath, bool& bPending) override;
-      // virtual bool get_fs_size(long long& i64Size, const ::string & pszPath, bool& bPending) override;
+      // virtual bool get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending) override;
+      // virtual bool get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending) override;
       //
-      // virtual void set_title(const ::string & pszTitle) override;
+      // virtual void set_title(const ::scoped_string & scopedstrTitle) override;
 
 
       virtual bool _001CloseApplicationByUser(::pointer<::user::interaction>puserinteractionExcept);
@@ -1008,7 +1008,7 @@ namespace platform
       virtual void prepare_form(atom atom, ::form_document* pformdocument);
 
 
-      // void report_error(const ::exception & exception, int iMessageFlags, const ::string & pszTopic) override;
+      // void report_error(const ::exception & exception, int iMessageFlags, const ::scoped_string & scopedstrTopic) override;
       //
       //
       // bool can_close_application() override;
@@ -1021,13 +1021,13 @@ namespace platform
 
       virtual ::user::interaction* create_menu_interaction();
 
-      // void on_song_added(const string& str) override;
+      // void on_song_added(const ::scoped_string & scopedstr) override;
       //
       //
       // virtual string get_visual_studio_build() override;
       //
       //
-      // string sound_path(const ::string & psz) override;
+      // string sound_path(const ::scoped_string & scopedstr) override;
       // string get_default_playlist_path() override;
 
 

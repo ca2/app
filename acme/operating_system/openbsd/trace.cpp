@@ -26,7 +26,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 
       const ::scoped_string & scopedstrCommands = (const char *)::GlobalLock(hCommands);
 
-      ENSURE_THROW(pszCommands != nullptr, ::windows_definition::ThrowMemoryException() );
+      ENSURE_THROW(scopedstrCommands != nullptr, ::windows_definition::ThrowMemoryException() );
 
 //      ::information(::ca2::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", pszPrefix, pszCommands);
 
@@ -89,7 +89,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //void __trace_message(const ::scoped_string & scopedstrPrefix, ::message::message * pmessage)
 
 //{
-////   ENSURE_ARG(::windows_definition::IsValidString(pszPrefix));
+////   ENSURE_ARG(::windows_definition::IsValidString(scopedstrPrefix));
 
 //   ENSURE_ARG(pmessage != nullptr);
 //   ::pointer<::user::message>pusermessage(pmessage);
@@ -146,7 +146,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //      }
 //   }
 //
-//   if (pszMsgName != nullptr)
+//   if (scopedstrMsgName != nullptr)
 
 //   {
 //#ifdef OS64BIT
@@ -177,7 +177,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //   }
 //
 ///*   if (pusermessage->id() >= WM_DDE_FIRST && pusermessage->id() <= WM_DDE_LAST)
-//      TraceDDE(pszPrefix, pMsg);  */
+//      TraceDDE(scopedstrPrefix, pMsg);  */
 
 //}
 //
@@ -186,7 +186,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //void __trace_message(const ::scoped_string & scopedstrPrefix, MESSAGE * lpmsg)
 
 //{
-//   //ENSURE_ARG(::windows_definition::IsValidString(pszPrefix));
+//   //ENSURE_ARG(::windows_definition::IsValidString(scopedstrPrefix));
 
 //   ENSURE_ARG(pmsg != nullptr);
 
@@ -260,7 +260,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //      }
 //   }
 //
-//   if (pszMsgName != nullptr)
+//   if (scopedstrMsgName != nullptr)
 
 //   {
 //#ifdef WIN64
@@ -294,7 +294,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //
 ///*   if (pmsg->message >= WM_DDE_FIRST && lpmsg->message <= WM_DDE_LAST)
 
-//      TraceDDE(pszPrefix, pMsg);*/
+//      TraceDDE(scopedstrPrefix, pMsg);*/
 
 //}
 //

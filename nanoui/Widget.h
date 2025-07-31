@@ -424,7 +424,7 @@ namespace nanoui
       virtual bool focus_event(bool focused);
 
       /// Handle a keyboard happening (default implementation: do nothing)
-      virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::string& strText);
+      virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText);
 
       /// Handle text input (UTF-32 format) (default implementation: do nothing)
       virtual bool keyboard_character_event(unsigned int codepoint);

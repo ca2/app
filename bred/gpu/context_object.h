@@ -12,7 +12,7 @@ namespace gpu
    public:
 
 
-      ::pointer < context > m_pgpucontext;
+      ::pointer < ::gpu::context > m_pgpucontext;
 
       context_object();
       ~context_object() override;

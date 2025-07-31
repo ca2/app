@@ -64,7 +64,7 @@
 
 //
 //  void acme_system_layer::exception_message_box(::particle* pparticle, ::exception& exception,
-//                                            const ::string& strMoreDetails)
+//                                            const ::scoped_string & scopedstrMoreDetails)
 //  {
 //
 //
@@ -1050,7 +1050,7 @@ namespace platform
    //    //   if (!m_ptracelog)
    //    //   {
    //
-   //    //      ::information(psz);
+   //    //      ::information(scopedstr);
    //
    //    //      return;
    //
@@ -1115,7 +1115,7 @@ namespace platform
    //
    //    }
    //
-   //    string system::__get_text(const ::string& str)
+   //    string system::__get_text(const ::scoped_string & scopedstr)
    //    {
    //
    //       return str;
@@ -1123,7 +1123,7 @@ namespace platform
    //    }
    //
    //
-   //    //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   //    //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
    //    //{
    //
    //    //   auto psequence = __allocate ::sequence < ::conversation > ();
@@ -1134,7 +1134,7 @@ namespace platform
    //
    //    //   //auto pprocess = __allocate status < enum_dialog_result > ();
    //
-   //    //   //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
+   //    //   //pprocess->set_result(message_box_for_console(scopedstrText, pszTitle, emessagebox));
    //
    //    //   return psequence;
    //
@@ -1447,7 +1447,7 @@ namespace platform
    //
    //
    //
-   //    //::pointer<::acme::library> system::library(const ::string& strComponent, const ::string& strImplementationParam)
+   //    //::pointer<::acme::library> system::library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementationParam)
    //    //{
    //
    //    //   string strImplementation(strImplementationParam);
@@ -1476,7 +1476,7 @@ namespace platform
    //
    //
    //
-   //    //::pointer<::acme::library>& system::library(const ::string & strComponent, const ::string & strImplementation)
+   //    //::pointer<::acme::library>& system::library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    //    //{
    //
    //    //   // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
@@ -1512,14 +1512,14 @@ namespace platform
    //    //}
    //
    //
-   //    //::pointer<::acme::library>system::open_containerized_component_library(const ::string & pszComponent, const ::string & pszImplementation)
+   //    //::pointer<::acme::library>system::open_containerized_component_library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    //    //{
    //
    //    //   // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
    //
-   //    //   string strComponent(pszComponent);
+   //    //   string strComponent(scopedstrComponent);
    //
-   //    //   string strImplementation(pszImplementation);
+   //    //   string strImplementation(scopedstrImplementation);
    //
    //    //   strComponent.trim();
    //
@@ -1614,14 +1614,14 @@ namespace platform
    //    }
    //
    //
-   //    //   ::extended::transport < ::factory::factory > system::([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation)
+   //    //   ::extended::transport < ::factory::factory > system::([a-z0-9_]+)_factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    //    //   {
    //    //
    //    //      auto& pfactory = m_mapFactoryMap[strComponent][strImplementation];
    //    //
-   //    //      string strComponent(pszComponent);
+   //    //      string strComponent(scopedstrComponent);
    //    //
-   //    //      string strImplementation(pszImplementation);
+   //    //      string strImplementation(scopedstrImplementation);
    //    //
    //    //      strImplementation.case_insensitive_begins_eat(strComponent + "_");
    //    //
@@ -1677,7 +1677,7 @@ namespace platform
    //    //
    //    //   #else
    //    //
-   //    //      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
+   //    //      auto plibrary = open_containerized_component_library(scopedstrComponent, pszImplementation);
    //    //
    //    //      if (!plibrary)
    //    //      {
@@ -1731,10 +1731,10 @@ namespace platform
    //    }
    //
    //
-   //    ::regular_expression_pointer system::create_regular_expression(const ::string& pszStyle, const string& str)
+   //    ::regular_expression_pointer system::create_regular_expression(const ::string& pszStyle, const ::scoped_string & scopedstr)
    //    {
    //
-   //       auto pcontext = get_regular_expression_context(pszStyle);
+   //       auto pcontext = get_regular_expression_context(scopedstrStyle);
    //
    //       if (!pcontext)
    //       {
@@ -1787,7 +1787,7 @@ namespace platform
    //    }
    //
    //
-   //    ::regular_expression_pointer system::compile_pcre(const string& str)
+   //    ::regular_expression_pointer system::compile_pcre(const ::scoped_string & scopedstr)
    //    {
    //
    //       return create_regular_expression("pcre2", str);
@@ -1803,7 +1803,7 @@ namespace platform
    //    }
    //
    //
-   //    //   int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
+   //    //   int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
    //    //   {
    //    //
    //    //      throw_todo();
@@ -2624,7 +2624,7 @@ namespace platform
    //
    //             auto pszUrl = (const char *) ptopic->payload("wparam").as_iptr();
    //
-   //             application()->did_pick_document_at_url(pszUrl);
+   //             application()->did_pick_document_at_url(scopedstrUrl);
    //
    //          }
    //
@@ -2940,7 +2940,7 @@ namespace platform
    //
    //
    //
-   //    //::pointer < ::subparticle > system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   //    //::pointer < ::subparticle > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
    //    //{
    //    //
    //    //   auto psequencer = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -3161,7 +3161,7 @@ namespace platform
    //    }
    //
    //
-   //    bool system::_handle_call(::payload& payload, const ::string& strObject, const ::string& strMember, ::property_set& propertyset)
+   //    bool system::_handle_call(::payload& payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set& propertyset)
    //    {
    //
    //       try
@@ -3192,7 +3192,7 @@ namespace platform
    //    }
    //
    //
-   //    string system::get_latest_deployment_number(const ::string& strBranch)
+   //    string system::get_latest_deployment_number(const ::scoped_string & scopedstrBranch)
    //    {
    //
    //       return "(lastest deployed build)";
@@ -3770,9 +3770,9 @@ namespace platform
    //    //}
    //
    //
-   // //   ::pointer < ::message_box > system::message_box(const ::string & strMessage, const ::string & strTitle,
+   // //   ::pointer < ::message_box > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
    // //                                                       const ::e_message_box & emessagebox,
-   // //                                                       const ::string & strDetails, ::nano::graphics::icon * picon)
+   // //                                                       const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    // //   {
    // //
    // //
@@ -3786,9 +3786,9 @@ namespace platform
    //
    //
    //    //::pointer < ::message_box > system::exception_message_box(
-   //    //    const ::exception & exception, const ::string & strMessage,
-   //    //   const ::string & strTitle,
-   //    //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //    //    const ::exception & exception, const ::scoped_string & scopedstrMessage,
+   //    //   const ::scoped_string & scopedstrTitle,
+   //    //    const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //    //{
    //    //   return micro_user()->exception_message_box(
    //    //exception,
@@ -3801,9 +3801,9 @@ namespace platform
    //    //}
    //
    //
-   //    //::pointer < ::message_box > system::message_console(const ::string & strMessage, const ::string & strTitle,
+   //    //::pointer < ::message_box > system::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
    //    //                                                           const ::e_message_box & emessagebox,
-   //    //                                                           const ::string & strDetails, ::nano::graphics::icon * picon)
+   //    //                                                           const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //    //{
    //    //
    //    //   return micro_user()->message_console(
@@ -3817,9 +3817,9 @@ namespace platform
    //
    //
    //    //::pointer < ::message_box > system::exception_message_console(
-   //    //    const ::exception & exception, const ::string & strMessage,
-   //    //   const ::string & strTitle,
-   //    //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //    //    const ::exception & exception, const ::scoped_string & scopedstrMessage,
+   //    //   const ::scoped_string & scopedstrTitle,
+   //    //    const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //    //{
    //
    //    //   return micro_user()->exception_message_console(
@@ -4224,7 +4224,7 @@ return nullptr;
 
 
    // template < typename BASE_TYPE >
-   // ::pointer<BASE_TYPE> create(const ::string & strComponent, const ::string & strImplementation)
+   // ::pointer<BASE_TYPE> create(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    // {
    //
    //    auto & pfactory = this->factory(strComponent, strImplementation){}
@@ -4491,7 +4491,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    //void acme_system_layer::term_task() override{}
 
 
-   string acme_system_layer::__get_text(const string& str)
+   string acme_system_layer::__get_text(const ::scoped_string & scopedstr)
    {
       return {};
    }
@@ -4503,7 +4503,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
 #endif
 
 
-   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override{}
+   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override{}
 
 
    //void acme_system_layer::on_initialize_window_object(){}
@@ -4542,7 +4542,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    //
    //      long long iValue{}
    //
-   //      if (m_mapTextToEnum[typeid(e).name()].lookup(psz, iValue))
+   //      if (m_mapTextToEnum[typeid(e).name()].lookup(scopedstr, iValue))
    //      {
    //
    //         e = (ENUM)iValue{}
@@ -4600,7 +4600,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    // }
    //
 
-   // static inline ::atom atom(const string& str)
+   // static inline ::atom atom(const ::scoped_string & scopedstr)
    // {
    // }
 
@@ -4628,7 +4628,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    }
 
 
-   ::regular_expression_pointer acme_system_layer::create_regular_expression(const ::string& pszStyle, const string& str)
+   ::regular_expression_pointer acme_system_layer::create_regular_expression(const ::string& pszStyle, const ::scoped_string & scopedstr)
    {
       return {};
    }
@@ -4641,7 +4641,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    }
 
 
-   ::regular_expression_pointer acme_system_layer::compile_pcre(const string& str)
+   ::regular_expression_pointer acme_system_layer::compile_pcre(const ::scoped_string & scopedstr)
    {
       return {};
    }
@@ -4653,7 +4653,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    }
 
 
-   //virtual int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
+   //virtual int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
 
    void acme_system_layer::get_public_internet_domain_extension_list(string_array& stra)
    {
@@ -4727,7 +4727,7 @@ void acme_system_layer::on_open_untitled_file()
    //::pointer<BASE_TYPE> create(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    //{
 
-   //   auto plibrary = ([a-z0-9_]+)_factory(pszComponent, pszImplementation){}
+   //   auto plibrary = ([a-z0-9_]+)_factory(scopedstrComponent, pszImplementation){}
 
    //   if (!plibrary)
    //   {
@@ -4808,12 +4808,12 @@ void acme_system_layer::on_open_untitled_file()
    //void acme_system_layer::windowing_post(const ::procedure & procedure){}
 
 
-   //bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override{}
+   //bool _handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset) override{}
 
 
    //void acme_system_layer::windowing_post_quit(){}
 
-   string acme_system_layer::get_latest_deployment_number(const ::string& strBranch)
+   string acme_system_layer::get_latest_deployment_number(const ::scoped_string & scopedstrBranch)
    {
       return {};
    }
@@ -4825,14 +4825,14 @@ void acme_system_layer::on_open_untitled_file()
    //CLASS_DECL_ACME ::acme::library * lib(const ::scoped_string & scopedstr){}
 
 
-   //::file::path library_file_name(const ::string& str){}
+   //::file::path library_file_name(const ::scoped_string & scopedstr){}
 
 
    //template < typename ENTRY >
    //ENTRY* library_call(const ::scoped_string & scopedstrLibrary, const ::scoped_string & scopedstrEntry)
    //{
 
-   //   return lib(pszLibrary)->get<decltype(&ENTRY)>(pszEntry)){}
+   //   return lib(scopedstrLibrary)->get<decltype(&ENTRY)>(scopedstrEntry)){}
 
    //}
 
@@ -4976,13 +4976,13 @@ void acme_system_layer::on_open_untitled_file()
 
    //::pointer < ::message_box > & realize(::pointer < ::message_box > & pmessagebox);
 
-   //::pointer < ::message_box > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-   //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-   //::pointer < ::message_box > message_console(const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-   //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
 } // namespace platform
@@ -5004,7 +5004,7 @@ void acme_system_layer::on_open_untitled_file()
 // ////}
 // //
 // //
-// //CLASS_DECL_ACME string get_latest_deployment_number(const ::string & strBranch)
+// //CLASS_DECL_ACME string get_latest_deployment_number(const ::scoped_string & scopedstrBranch)
 // //{
 // //
 // //   return system()->get_latest_deployment_number(strBranch);
@@ -5013,7 +5013,7 @@ void acme_system_layer::on_open_untitled_file()
 //
 //
 // //
-// //CLASS_DECL_ACME string __get_text(const string & str)
+// //CLASS_DECL_ACME string __get_text(const ::scoped_string & scopedstr)
 // //{
 // //
 // //   return ::g_psystem->__get_text(str);
@@ -5091,7 +5091,7 @@ void acme_system_layer::on_open_untitled_file()
 //
 //    auto psystem = (::platform::system *)pSystem;
 //
-//    psystem->on_open_file(pszFile);
+//    psystem->on_open_file(scopedstrFile);
 //
 //
 // }
@@ -5100,7 +5100,7 @@ void acme_system_layer::on_open_untitled_file()
 // //::pointer<::platform::system>platform_create_system(const ::scoped_string & scopedstrAppId)
 // //{
 // //
-// //   string strAppId(pszAppId);
+// //   string strAppId(scopedstrAppId);
 // //
 // //#if !defined(CUBE)
 // //

@@ -803,7 +803,7 @@ void interchange::release_capture()
 }
 
 
-void interchange::display_temporary_file_with_text(const ::string & str)
+void interchange::display_temporary_file_with_text(const ::scoped_string & scopedstr)
 {
    
    string strAppId;
@@ -860,7 +860,7 @@ void interchange::_run_modal_loop()
        // //
        // //   manual_reset_happening happening;
        // //
-       // //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
+       // //   pmessagebox->display(scopedstrMessage, pszTitle, emessagebox, pszDetails);
        // //
        // //   pmessagebox->m_functionClose = [&idResult, &happening](micro::interchange * pwindow)
        // //   {

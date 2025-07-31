@@ -35,22 +35,22 @@ namespace aqua
 
 
       virtual string text_to_speech_implementation();
-      virtual void text_to_speech_implementation(const ::string & strImplementation);
+      virtual void text_to_speech_implementation(const ::scoped_string & scopedstrImplementation);
 
-      virtual ::pointer<::text_to_speech::speaker>create_text_to_speech_speaker(const ::string& strImplementation = nullptr);
+      virtual ::pointer<::text_to_speech::speaker>create_text_to_speech_speaker(const ::scoped_string & scopedstrImplementation = nullptr);
 
 
-      virtual void speak(const ::string & strText);
-      virtual void speak(const ::string & strLang, const ::string & strText, bool bSynch, const ::string & strImplementation = nullptr);
-      //virtual void trans_speak(const ::string & strLang, const ::string & strText, bool bSynch);
-      //virtual void google_speak(const ::string & strLang, const ::string & strText, bool bSynch);
+      virtual void speak(const ::scoped_string & scopedstrText);
+      virtual void speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSynch, const ::scoped_string & scopedstrImplementation = nullptr);
+      //virtual void trans_speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSynch);
+      //virtual void google_speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSynch);
 
       
 
       virtual ::file_pointer get_rtp_file(const ::payload & payloadFile);
 
 
-      virtual LPFN_NEW_MULTIMEDIA_DECODER get_multimedia_decoder_factory(const ::string & pszTitle);
+      virtual LPFN_NEW_MULTIMEDIA_DECODER get_multimedia_decoder_factory(const ::scoped_string & scopedstrTitle);
 
 
       virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);

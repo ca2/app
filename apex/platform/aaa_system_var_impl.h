@@ -142,7 +142,7 @@
 //
 //
 //
-//inline bool CLASS_DECL_APEX operator == (const ::string & str, const ::payload & payload)
+//inline bool CLASS_DECL_APEX operator == (const ::scoped_string & scopedstr, const ::payload & payload)
 //{
 //
 //   return str == payload.get_string();

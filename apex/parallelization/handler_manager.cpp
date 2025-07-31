@@ -20,7 +20,7 @@ handler_manager::~handler_manager()
 }
 
 
-void handler_manager::initialize_handler_manager(::particle * pparticle, const string & strThreadName, int iAliveCount)
+void handler_manager::initialize_handler_manager(::particle * pparticle, const ::scoped_string & scopedstrThreadName, int iAliveCount)
 {
 
    initialize(pparticle);

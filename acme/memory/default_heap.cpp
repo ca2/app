@@ -167,7 +167,7 @@
 //         //   string strCallStack;
 //         //   g_ee->xxxstack_trace(1);
 //         //   pblock->m_pszCallStack = strdup(g_ee->_strS);
-//         //   pblock->m_pszFileName = strdup(pszFileName == nullptr ? "" : pszFileName);
+//         //   pblock->m_pszFileName = strdup(scopedstrFileName == nullptr ? "" : pszFileName);
 //         //}
 //
 //         //
@@ -346,7 +346,7 @@
 //void set_last_block_file_name(const ::scoped_string & scopedstr)
 //{
 //
-//   //t_plastblock->m_pszFileName = strdup(psz == nullptr ? "" : psz);
+//   //t_plastblock->m_pszFileName = strdup(scopedstr == nullptr ? "" : psz);
 //
 //}
 //#endif

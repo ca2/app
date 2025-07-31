@@ -134,7 +134,7 @@ int networking_application::wait_get_current_port(const ::duration& duration)
 }
 
 
-void networking_application::add_handler(const ::string& strPrefix, networking_application_handler* phandler)
+void networking_application::add_handler(const ::scoped_string & scopedstrPrefix, networking_application_handler* phandler)
 {
 
    if (::is_null(phandler))
@@ -153,7 +153,7 @@ void networking_application::add_handler(const ::string& strPrefix, networking_a
 }
 
 
-::e_status networking_application::on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
+::e_status networking_application::on_html_response(::string & strHtml, const ::scoped_string & scopedstrUrl, const ::property_set& setPost)
 {
 
    string strRequestScript = system()->url()->get_script(strUrl);

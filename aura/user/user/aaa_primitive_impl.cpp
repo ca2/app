@@ -551,7 +551,7 @@ namespace user
    }
 
 
-   void primitive_impl::set_bitmap_source(const string& strBitmapSource)
+   void primitive_impl::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
 

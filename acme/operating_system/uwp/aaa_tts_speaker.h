@@ -47,7 +47,7 @@ namespace universal_windows
          //--------------------------------------------------------------------
          virtual bool speak(const string & text) override;
 
-         virtual bool speak(const ::string & strLang, const string & text, bool bSync = false) override;
+         virtual bool speak(const ::scoped_string & scopedstrLang, const string & text, bool bSync = false) override;
 
          virtual bool is_speaking(string strLang) override;
 

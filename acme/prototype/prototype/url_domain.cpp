@@ -6,7 +6,7 @@
 #include "acme/nano/nano.h"
 #include "acme/nano/idn/idn.h"
 
-//string idn_from_punycode(const ::string & str);
+//string idn_from_punycode(const ::scoped_string & scopedstr);
 
 
 url_domain_base::url_domain_base()
@@ -90,7 +90,7 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
    }
    const char * pszPreTopLevel = m_pszTopLevel - 2;
    int iLenPreTopLevel = 0;
-   while(pszPreTopLevel > psz && *pszPreTopLevel != '.')
+   while(scopedstrPreTopLevel > psz && *pszPreTopLevel != '.')
    {
       pszPreTopLevel--;
       iLenPreTopLevel++;
@@ -112,7 +112,7 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
    if(m_iCount >= 4)
    {
       pszPreTopLevel2 = pszPreTopLevel - 2;
-      while(pszPreTopLevel2 > psz && *pszPreTopLevel2 != '.')
+      while(scopedstrPreTopLevel2 > psz && *pszPreTopLevel2 != '.')
       {
          pszPreTopLevel2--;
          iLenPreTopLevel2++;
@@ -128,7 +128,7 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
       if(m_iCount >= 5)
       {
          pszPreTopLevel3 = pszPreTopLevel2 - 2;
-         while(pszPreTopLevel3 > psz && *pszPreTopLevel3 != '.')
+         while(scopedstrPreTopLevel3 > psz && *pszPreTopLevel3 != '.')
          {
             pszPreTopLevel3--;
             iLenPreTopLevel2++;
@@ -157,23 +157,23 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
       if(m_iCount <= 4)
       {
          m_pszRadix     = psz;
-         m_iLenRadix    = (pszPreTopLevel - 1) - psz;
+         m_iLenRadix    = (scopedstrPreTopLevel - 1) - psz;
       }
       else
       {
          m_pszRadix     = pszPreTopLevel3;
-         m_iLenRadix    = (pszPreTopLevel - 1) - pszPreTopLevel3;
+         m_iLenRadix    = (scopedstrPreTopLevel - 1) - pszPreTopLevel3;
          m_pszPrefix    = psz;
-         m_iLenPrefix   = (pszPreTopLevel3 - 1) - psz;
+         m_iLenPrefix   = (scopedstrPreTopLevel3 - 1) - psz;
       }
    }
    else if(m_iLenTopLevel == 2
       && m_pszTopLevel[0] == 'a'
       && m_pszTopLevel[1] == 'm'
       && iLenPreTopLevel == 5
-      && ((pszPreTopLevel[0] == 'n'
+      && ((scopedstrPreTopLevel[0] == 'n'
       &&   pszPreTopLevel[2] == 'r') ||
-      (pszPreTopLevel[0] == 's'
+      (scopedstrPreTopLevel[0] == 's'
       &&   pszPreTopLevel[2] == 'u'))
       && pszPreTopLevel[1] == 'o'
       && pszPreTopLevel[3] == 't'
@@ -187,16 +187,16 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
       if(m_iCount <= 3)
       {
          m_pszRadix     = psz;
-         m_iLenRadix    = (pszPreTopLevel - 1) - psz;
+         m_iLenRadix    = (scopedstrPreTopLevel - 1) - psz;
          m_pszName      = m_pszRadix;
          m_iLenName     = pszEnd - m_pszName;
       }
       else
       {
          m_pszRadix     = pszPreTopLevel2;
-         m_iLenRadix    = (pszPreTopLevel - 1) - pszPreTopLevel2;
+         m_iLenRadix    = (scopedstrPreTopLevel - 1) - pszPreTopLevel2;
          m_pszPrefix    = psz;
-         m_iLenPrefix   = (pszPreTopLevel2 - 1) - psz;
+         m_iLenPrefix   = (scopedstrPreTopLevel2 - 1) - psz;
          m_pszName      = m_pszPrefix;
          m_iLenName     = pszEnd - m_pszPrefix;
       }
@@ -211,14 +211,14 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
       if(m_iCount <= 3)
       {
          m_pszRadix     = psz;
-         m_iLenRadix    = (pszPreTopLevel - 1) - psz;
+         m_iLenRadix    = (scopedstrPreTopLevel - 1) - psz;
       }
       else
       {
          m_pszRadix     = pszPreTopLevel2;
-         m_iLenRadix    = (pszPreTopLevel - 1) - pszPreTopLevel2;
+         m_iLenRadix    = (scopedstrPreTopLevel - 1) - pszPreTopLevel2;
          m_pszPrefix    = psz;
-         m_iLenPrefix   = (pszPreTopLevel2 - 1) - psz;
+         m_iLenPrefix   = (scopedstrPreTopLevel2 - 1) - psz;
       }
    }
    else
@@ -228,7 +228,7 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
       m_pszRadix        = pszPreTopLevel;
       m_iLenRadix       = (m_pszTopLevel - 1) - pszPreTopLevel;
       m_pszPrefix       = psz;
-      m_iLenPrefix      = (pszPreTopLevel - 1) - psz;
+      m_iLenPrefix      = (scopedstrPreTopLevel - 1) - psz;
    }
    m_pszDomain       = m_pszRadix;
    m_iLenDomain      = pszEnd - m_pszDomain;
@@ -524,7 +524,7 @@ bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, character_count 
             }
             else if(alen == 5)
             {
-               if(ansi_count_compare(pszTop2, "radio", 5) == 0)
+               if(ansi_count_compare(scopedstrTop2, "radio", 5) == 0)
                {
                   return true;
                }
@@ -1073,7 +1073,7 @@ bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, character_count 
    }
    else if(blen == 10)
    {
-        if(ansi_count_compare(pszTop1, "xn--fiqs8s", 10))
+        if(ansi_count_compare(scopedstrTop1, "xn--fiqs8s", 10))
         {
             return true;
         }

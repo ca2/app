@@ -311,7 +311,7 @@ namespace platform
    //}
 
 
-   ::pointer<::platform::application>application_container::instantiate_application(const ::string& strAppId)
+   ::pointer<::platform::application>application_container::instantiate_application(const ::scoped_string & scopedstrAppId)
    {
 
       information() <<  "apex::application::instantiate_application";
@@ -409,7 +409,7 @@ namespace platform
    }
 
 
-   ::pointer<::platform::application>application_container::create_application(const ::string& strAppId)
+   ::pointer<::platform::application>application_container::create_application(const ::scoped_string & scopedstrAppId)
    {
 
       auto papplication = instantiate_application(strAppId);
@@ -447,7 +447,7 @@ namespace platform
    }
 
 
-   ::pointer<::platform::application>application_container::assert_running(const ::string& strAppId)
+   ::pointer<::platform::application>application_container::assert_running(const ::scoped_string & scopedstrAppId)
    {
 
       ::pointer<::platform::application>papplication;
@@ -472,7 +472,7 @@ namespace platform
    }
 
 
-   //   ::pointer<::platform::application>application_container::start_application(const ::string & strAppId, ::request * prequest)
+   //   ::pointer<::platform::application>application_container::start_application(const ::scoped_string & scopedstrAppId, ::request * prequest)
    //   {
    //
    //      auto papplication = application_get(strAppId, true, true, prequest);
@@ -577,7 +577,7 @@ namespace platform
    //   }
 
 
-   ::platform::application* application_container::get_application(const ::string& strAppId, bool bCreate, ::request* prequest)
+   ::platform::application* application_container::get_application(const ::scoped_string & scopedstrAppId, bool bCreate, ::request* prequest)
    {
 
       ::pointer<::platform::application>papplication;

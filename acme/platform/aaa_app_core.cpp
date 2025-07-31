@@ -243,7 +243,7 @@ void app_core::system_init()
 
    //   //const ::scoped_string & scopedstr = str1;
 
-   //   //string str = ::str::consume_quoted_value(psz);
+   //   //string str = ::str::consume_quoted_value(scopedstr);
 
    //   //information(str);
 

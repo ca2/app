@@ -216,7 +216,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //
 //   auto ppredtask = __allocate predicate_task < PRED > (pparticle, pred);
 //
-//   string strTag(pszTag);
+//   string strTag(scopedstrTag);
 //
 //   if (is_callstack_enabled(callstack_fork_global))
 //   {
@@ -301,7 +301,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //inline ::task_pointer object::defer_fork(const ::scoped_string & scopedstrTag, PRED pred)
 //{
 //
-//   ::pointer<task>ptask = running(pszTag);
+//   ::pointer<task>ptask = running(scopedstrTag);
 //
 //   if (ptask)
 //   {

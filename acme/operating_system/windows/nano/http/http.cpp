@@ -140,7 +140,7 @@ namespace windows
                //   else
                //   {
                //      // Read the Data.            
-               //      ZeroMemory(pszOutBuffer, dwSize + 1);
+               //      ZeroMemory(scopedstrOutBuffer, dwSize + 1);
                //      if (!WinHttpReadData(hRequest, (LPVOID)pszOutBuffer, dwSize, &dwDownloaded))
                //      {
                //         printf("Error %u in WinHttpReadData.\n", GetLastError());

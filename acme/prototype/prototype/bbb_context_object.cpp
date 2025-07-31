@@ -284,7 +284,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
    }
 
-   void object::set_topic_text(const string& str)
+   void object::set_topic_text(const ::scoped_string & scopedstr)
    {
 
 
@@ -385,7 +385,7 @@ void object::process_exit_status(const ::e_status & estatus)
    //::image::image_pointer create_image(const ::int_size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
    //::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
-   //::image::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
+   //::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true);
 
    //template < typename BASE_TYPE >
    //inline ::pointer<BASE_TYPE>__øcreate();
@@ -1016,7 +1016,7 @@ void object::delete_this()
 //
 //      va_list valist;
 //      va_start(valist, psz);
-//      format_topic_text_v(psz, valist);
+//      format_topic_text_v(scopedstr, valist);
 //      va_end(valist);
 //
 //   }
@@ -1026,7 +1026,7 @@ void object::delete_this()
 //   {
 //
 //      string str;
-//      str.formatf_arguments(psz, valist);
+//      str.formatf_arguments(scopedstr, valist);
 //      set_topic_text(str);
 //
 //   }

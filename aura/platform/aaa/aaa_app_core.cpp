@@ -240,7 +240,7 @@ void app_core::system_init()
 
       //const ::scoped_string & scopedstr = str1;
 
-      //string str = ::str::consume_quoted_value(psz);
+      //string str = ::str::consume_quoted_value(scopedstr);
 
       //information(str);
 
@@ -551,7 +551,7 @@ string app_core::get_command_line()
 }
 
 
-void app_core::set_command_line(const ::string & psz)
+void app_core::set_command_line(const ::scoped_string & scopedstr)
 {
 
    m_strCommandLine = psz;
@@ -562,7 +562,7 @@ void app_core::set_command_line(const ::string & psz)
 
 pdirectorysystem->ca2roaming() / "program";
 
-   string strAppId = get_command_line_parameter(psz, "app");
+   string strAppId = get_command_line_parameter(scopedstr, "app");
 
    if (strAppId.has_character())
    {
@@ -573,7 +573,7 @@ pdirectorysystem->ca2roaming() / "program";
 
       file_system()->put_contents(path, get_command_line());
 
-      ::file::path pathExecutable = consume_command_line_parameter(psz, nullptr);
+      ::file::path pathExecutable = consume_command_line_parameter(scopedstr, nullptr);
 
       string strAppTitle = executable_title_from_appid(strAppId);
 
@@ -915,7 +915,7 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-//CLASS_DECL_AURA int aura_entry_point(int argc, char * argv[], const ::string & pszMainAppId)
+//CLASS_DECL_AURA int aura_entry_point(int argc, char * argv[], const ::scoped_string & scopedstrMainAppId)
 //{
 //
 //   int iResult = 0;
@@ -1028,12 +1028,12 @@ struct heap_test_struct :
 
 
 
-string_array get_c_args_from_string(const ::string & psz)
+string_array get_c_args_from_string(const ::scoped_string & scopedstr)
 {
 
    string_array stra;
 
-   if (psz == nullptr)
+   if (scopedstr == nullptr)
    {
 
       return stra;
@@ -1044,7 +1044,7 @@ string_array get_c_args_from_string(const ::string & psz)
 
    string_array straAfterColon;
 
-   const ::ansi_character * pszEnd = psz + strlen(psz);
+   const ::ansi_character * pszEnd = psz + strlen(scopedstr);
 
    string str;
 
@@ -1052,12 +1052,12 @@ string_array get_c_args_from_string(const ::string & psz)
 
    bool bColon = false;
 
-   while (psz < pszEnd)
+   while (scopedstr < pszEnd)
    {
 
-      ::str::consume_spaces(psz, 0, pszEnd);
+      ::str::consume_spaces(scopedstr, 0, pszEnd);
 
-      if (psz >= pszEnd)
+      if (scopedstr >= pszEnd)
       {
 
          break;
@@ -1066,13 +1066,13 @@ string_array get_c_args_from_string(const ::string & psz)
       if (*psz == '\"')
       {
 
-         str = ::str::consume_quoted_value(psz, pszEnd);
+         str = ::str::consume_quoted_value(scopedstr, pszEnd);
 
       }
       else if (*psz == '\'')
       {
 
-         str = ::str::consume_quoted_value(psz, pszEnd);
+         str = ::str::consume_quoted_value(scopedstr, pszEnd);
 
       }
       else
@@ -1080,12 +1080,12 @@ string_array get_c_args_from_string(const ::string & psz)
 
          const ::scoped_string & scopedstrValueStart = psz;
 
-         while (!unicode_is_whitespace(psz))
+         while (!unicode_is_whitespace(scopedstr))
          {
 
-            unicode_increment(psz);
+            unicode_increment(scopedstr);
 
-            if (psz >= pszEnd)
+            if (scopedstr >= pszEnd)
             {
 
                break;
@@ -1095,19 +1095,19 @@ string_array get_c_args_from_string(const ::string & psz)
             if (*psz == '\"')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 
             }
             else if (*psz == '\'')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 
             }
 
          }
 
-         str = string(pszValueStart, psz - pszValueStart);
+         str = string(scopedstrValueStart, psz - pszValueStart);
 
       }
 
@@ -1150,12 +1150,12 @@ string_array get_c_args_from_string(const ::string & psz)
 }
 
 
-string_array get_c_args_from_c(const ::string & psz)
+string_array get_c_args_from_c(const ::scoped_string & scopedstr)
 {
 
    string_array stra;
 
-   if(psz == nullptr)
+   if(scopedstr == nullptr)
    {
 
       return stra;
@@ -1166,7 +1166,7 @@ string_array get_c_args_from_c(const ::string & psz)
 
    string_array straAfterColon;
 
-   const ::ansi_character * pszEnd = psz + strlen(psz);
+   const ::ansi_character * pszEnd = psz + strlen(scopedstr);
 
    string str;
 
@@ -1174,12 +1174,12 @@ string_array get_c_args_from_c(const ::string & psz)
 
    bool bColon = false;
 
-   while(psz < pszEnd)
+   while(scopedstr < pszEnd)
    {
 
-      ::str::consume_spaces(psz, 0, pszEnd);
+      ::str::consume_spaces(scopedstr, 0, pszEnd);
 
-      if(psz >= pszEnd)
+      if(scopedstr >= pszEnd)
       {
 
          break;
@@ -1188,13 +1188,13 @@ string_array get_c_args_from_c(const ::string & psz)
       if(*psz == '\"')
       {
 
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
+         str = ::str::consume_c_quoted_value(scopedstr, pszEnd);
 
       }
       else if(*psz == '\'')
       {
 
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
+         str = ::str::consume_c_quoted_value(scopedstr, pszEnd);
 
       }
       else
@@ -1202,12 +1202,12 @@ string_array get_c_args_from_c(const ::string & psz)
 
          const ::scoped_string & scopedstrValueStart = psz;
 
-         while (!unicode_is_whitespace(psz))
+         while (!unicode_is_whitespace(scopedstr))
          {
 
-            unicode_increment(psz);
+            unicode_increment(scopedstr);
 
-            if (psz >= pszEnd)
+            if (scopedstr >= pszEnd)
             {
 
                break;
@@ -1217,19 +1217,19 @@ string_array get_c_args_from_c(const ::string & psz)
             if (*psz == '\"')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 
             }
             else if (*psz == '\'')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 
             }
 
          }
 
-         str = string(pszValueStart, psz - pszValueStart);
+         str = string(scopedstrValueStart, psz - pszValueStart);
 
       }
 
@@ -1272,28 +1272,28 @@ string_array get_c_args_from_c(const ::string & psz)
 }
 
 
-string_array get_c_args_for_c(const ::string & psz)
+string_array get_c_args_for_c(const ::scoped_string & scopedstr)
 {
 
    string_array stra;
 
-   if(psz == nullptr)
+   if(scopedstr == nullptr)
    {
 
       return stra;
 
    }
 
-   const ::ansi_character * pszEnd = psz + strlen(psz);
+   const ::ansi_character * pszEnd = psz + strlen(scopedstr);
 
    string str;
 
-   while(psz < pszEnd)
+   while(scopedstr < pszEnd)
    {
 
-      ::str::consume_spaces(psz, 0, pszEnd);
+      ::str::consume_spaces(scopedstr, 0, pszEnd);
 
-      if(psz >= pszEnd)
+      if(scopedstr >= pszEnd)
       {
 
          break;
@@ -1303,13 +1303,13 @@ string_array get_c_args_for_c(const ::string & psz)
       if(*psz == '\"')
       {
 
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
+         str = ::str::consume_c_quoted_value(scopedstr, pszEnd);
 
       }
       else if(*psz == '\'')
       {
 
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
+         str = ::str::consume_c_quoted_value(scopedstr, pszEnd);
 
       }
       else
@@ -1317,12 +1317,12 @@ string_array get_c_args_for_c(const ::string & psz)
 
          const ::scoped_string & scopedstrValueStart = psz;
 
-         while(!unicode_is_whitespace(psz))
+         while(!unicode_is_whitespace(scopedstr))
          {
 
-            unicode_increment(psz);
+            unicode_increment(scopedstr);
 
-            if(psz >= pszEnd)
+            if(scopedstr >= pszEnd)
             {
 
                break;
@@ -1332,19 +1332,19 @@ string_array get_c_args_for_c(const ::string & psz)
             if(*psz == '\"')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 
             }
             else if(*psz == '\'')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str::consume_quoted_value_ex(scopedstr, pszEnd);
 
             }
 
          }
 
-         str = string(pszValueStart, psz - pszValueStart);
+         str = string(scopedstrValueStart, psz - pszValueStart);
 
       }
 
@@ -1437,7 +1437,7 @@ string apple_get_bundle_identifier()
 #endif
 
 
-string transform_to_c_arg(const ::string & psz)
+string transform_to_c_arg(const ::scoped_string & scopedstr)
 {
 
    bool bNeedQuote = false;
@@ -1455,7 +1455,7 @@ string transform_to_c_arg(const ::string & psz)
          if(*pszParse == '\\')
          {
 
-            unicode_increment(pszParse);
+            unicode_increment(scopedstrParse);
 
          }
          else if(*pszParse == chQuote)
@@ -1478,7 +1478,7 @@ string transform_to_c_arg(const ::string & psz)
          chQuote = '\"';
 
       }
-      else if(unicode_is_whitespace(pszParse)
+      else if(unicode_is_whitespace(scopedstrParse)
          || character_isspace((unsigned char) *pszParse)
               || *pszParse == ':')
       {
@@ -1489,7 +1489,7 @@ string transform_to_c_arg(const ::string & psz)
 
       }
 
-      unicode_increment(pszParse);
+      unicode_increment(scopedstrParse);
 
    }
 
@@ -1827,7 +1827,7 @@ bool app_core::has_aura_application_factory() const
 }
 
 
-::pointer<::aura::application>app_core::get_new_application(::object* pparticle, const ::string & pszAppId)
+::pointer<::aura::application>app_core::get_new_application(::object* pparticle, const ::scoped_string & scopedstrAppId)
 {
 
    ::pointer<::aura::application>papp;
@@ -2315,7 +2315,7 @@ const char * get_cube_app_id()
 }
 
 
-void cube_set_app_id(const ::string & pszAppId)
+void cube_set_app_id(const ::scoped_string & scopedstrAppId)
 {
 
    g_pszCubeAppId = pszAppId;

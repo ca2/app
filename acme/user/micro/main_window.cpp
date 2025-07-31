@@ -409,7 +409,7 @@ namespace micro
    //void main_window::_on_window_simple_action(const char * pszActionName)
    //{
 
-   //   ::string strActionName(pszActionName);
+   //   ::string strActionName(scopedstrActionName);
 
    //   if (strActionName == "minimize")
    //   {
@@ -1441,7 +1441,7 @@ namespace micro
    }
 
 
-   void main_window::display_temporary_file_with_text(const ::string & str)
+   void main_window::display_temporary_file_with_text(const ::scoped_string & scopedstr)
    {
 
       string strAppId;
@@ -1613,7 +1613,7 @@ namespace micro
    void main_window::_on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken)
    {
 
-      ::string strActionName(pszActionName);
+      ::string strActionName(scopedstrActionName);
 
       if (strActionName == "***move")
       {
@@ -1639,7 +1639,7 @@ namespace micro
       else
       {
 
-         ::acme::user::interaction::_on_window_simple_action(pszActionName, puseractivationtoken);
+         ::acme::user::interaction::_on_window_simple_action(scopedstrActionName, puseractivationtoken);
 
       }
 

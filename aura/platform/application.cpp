@@ -61,7 +61,7 @@ extern "C"
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//CLASS_DECL_ACME void windows_install_crash_dump_reporting(const ::string & strModuleNameWithTheExeExtension);
+//CLASS_DECL_ACME void windows_install_crash_dump_reporting(const ::scoped_string & scopedstrModuleNameWithTheExeExtension);
 //
 //
 //#endif
@@ -105,7 +105,7 @@ void ns_launch_app(const ::scoped_string & scopedstr, const char ** argv, int iF
 
 
 #if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS)
-CLASS_DECL_AURA int ui_open_url(const ::string & psz);
+CLASS_DECL_AURA int ui_open_url(const ::scoped_string & scopedstr);
 #endif
 
 
@@ -790,7 +790,7 @@ namespace aura
    //}
 
 
-   //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::auto pmessagebox = __initialize_new ::message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -800,7 +800,7 @@ namespace aura
    //}
 
 
-   //void application::ui_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -815,7 +815,7 @@ namespace aura
    //}
 
 
-   //void application::ui_message_box_timeout(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -830,7 +830,7 @@ namespace aura
    //}
 
 
-   //void application::message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -849,7 +849,7 @@ namespace aura
    //}
 
 
-   //void application::message_box_timeout(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
@@ -1075,7 +1075,7 @@ namespace aura
    //}
 
 
-   //void application::load_string_table(const string & pszApp, const string & pszId)
+   //void application::load_string_table(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrId)
    //{
 
    //}
@@ -1145,7 +1145,7 @@ namespace aura
 
 
 
-//   ::file::path command_find_path(const ::string & pszCommand)
+//   ::file::path command_find_path(const ::scoped_string & scopedstrCommand)
 //   {
 //
 //#ifdef UNIVERSAL_WINDOWS
@@ -1431,7 +1431,7 @@ namespace aura
 //
 //
 
-//   string CLASS_DECL_AURA application::get_cred(const ::string & strRequestUrl, const ::int_rectangle & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+//   string CLASS_DECL_AURA application::get_cred(const ::scoped_string & scopedstrRequestUrl, const ::int_rectangle & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
 //  throw ::not_implemented();
@@ -1441,7 +1441,7 @@ namespace aura
 
 
 
-   //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
+   //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate)
    //{
 
    //   throw ::not_implemented();
@@ -1451,7 +1451,7 @@ namespace aura
    //}
 
 
-   //bool application::get_temp_file_name(string & strRet, const ::string & lpszName, const ::string & pszExtension)
+   //bool application::get_temp_file_name(string & strRet, const ::string & lpszName, const ::scoped_string & scopedstrExtension)
    //{
 
    //   return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
@@ -2418,10 +2418,10 @@ retry_license:
 //         }
 //
 //      }
-//      catch (const ::string & psz)
+//      catch (const ::scoped_string & scopedstr)
 //      {
 //
-//         if (!strcmp(psz, "You have not logged in! Exiting!"))
+//         if (!strcmp(scopedstr, "You have not logged in! Exiting!"))
 //         {
 //
 //            return false;
@@ -2888,7 +2888,7 @@ retry_license:
    //}
 
 
-   ////int application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, unsigned int fuStyle)
+   ////int application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, const ::scoped_string & scopedstrTitle, ::time timeTimeOut, unsigned int fuStyle)
    ////{
 
    ////   __UNREFERENCED_PARAMETER(timeTimeOut);
@@ -2905,7 +2905,7 @@ retry_license:
 
 
 
-   //string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
+   //string application::http_get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    //{
 
    //   throw ::interface_only();
@@ -2985,7 +2985,7 @@ retry_license:
    //}
 
 
-   //string application::get_locale_schema_dir(const ::string & strLocale)
+   //string application::get_locale_schema_dir(const ::scoped_string & scopedstrLocale)
    //{
 
    //   return ::str::_001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
@@ -2993,7 +2993,7 @@ retry_license:
    //}
 
 
-   //void application::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
+   //void application::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    //{
 
    //   if (strLocale.is_empty() || strSchema.is_empty())
@@ -3015,7 +3015,7 @@ retry_license:
    //}
 
 
-   //void application::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
+   //void application::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    //{
 
    //  if (straMatterLocator.has_elements())
@@ -3054,7 +3054,7 @@ retry_license:
    //}
 
 
-   //string application::get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema)
+   //string application::get_locale_schema_dir(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    //{
 
    //  return ::str::_001Concat(strLocale, "/", strSchema);
@@ -3062,7 +3062,7 @@ retry_license:
    //}
 
 
-   //void application::fill_locale_schema(::text::international::locale_schema & localeschema, const string & pszLocale, const string & pszSchema)
+   //void application::fill_locale_schema(::text::international::locale_schema & localeschema, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    //{
 
 
@@ -3070,8 +3070,8 @@ retry_license:
    //  localeschema.m_straSchema.erase_all();
 
 
-   //  string strLocale(pszLocale);
-   //  string strSchema(pszSchema);
+   //  string strLocale(scopedstrLocale);
+   //  string strSchema(scopedstrSchema);
 
 
    //  localeschema.m_atomLocale = pszLocale;
@@ -3175,7 +3175,7 @@ retry_license:
 //  }
 
 
-   //bool application::platform_open_by_file_extension(::collection::index iEdge, const ::string & pszPathName, ::request * prequest)
+   //bool application::platform_open_by_file_extension(::collection::index iEdge, const ::scoped_string & scopedstrPathName, ::request * prequest)
    //{
 
    //   return false;
@@ -3193,7 +3193,7 @@ retry_license:
 
 
 
-   ////int application::hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+   ////int application::hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
    ////{
 
    //   return -1;
@@ -3262,7 +3262,7 @@ retry_license:
 
    //}
 //
-//   void application::post_critical_error_message(const ::string & pszMessage, bool bShowLog)
+//   void application::post_critical_error_message(const ::scoped_string & scopedstrMessage, bool bShowLog)
 //   {
 //
 //      string strMessage;
@@ -3452,7 +3452,7 @@ retry_license:
 
 
 
-   //void application::install_trace(const ::string & str)
+   //void application::install_trace(const ::scoped_string & scopedstr)
    //{
 
    //   _synchronous_lock synchronouslock(this->synchronization());
@@ -3658,7 +3658,7 @@ retry_license:
 //
 //      //const ::scoped_string & scopedstr = doc.GetChildAttrValue("launch", "app");
 //
-//      //if (psz == nullptr || *psz == '\0')
+//      //if (scopedstr == nullptr || *psz == '\0')
 //      //{
 //
 //      //   return "";
@@ -4714,7 +4714,7 @@ retry_license:
    //}
 
 
-   //void application::load_string_table(const string & pszApp, const string & pszId)
+   //void application::load_string_table(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrId)
    //{
 
 
@@ -5035,19 +5035,19 @@ retry_license:
    //}
 
 
-   //::pointer<::aura::application>application::assert_running(const ::string & pszAppId)
+   //::pointer<::aura::application>application::assert_running(const ::scoped_string & scopedstrAppId)
    //{
 
    //   ::pointer<::aura::application>papp;
 
-   //   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
+   //   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(scopedstrAppId);
 
    //   if(papp.is_null())
    //   {
 
    //      ::pointer<::create>spcreate(e_create);
 
-   //      papp = psession->start_application(pszAppId,spcreate);
+   //      papp = psession->start_application(scopedstrAppId,spcreate);
 
    //   }
 
@@ -5107,14 +5107,14 @@ retry_license:
    //}
 
 
-   void application::update_appmatter( ::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative)
+   void application::update_appmatter( ::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const ::scoped_string & scopedstrRelative)
    {
 
       auto plocaleschema = __create_new < ::text::international::locale_schema >();
 
       //psession->fill_locale_schema(localeschema);
 
-      bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
+      bool bIgnoreStdStd = string(scopedstrRoot) == "app" && (string(scopedstrRelative) == "main" || string(scopedstrRelative) == "bergedge");
 
       //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
 
@@ -5148,7 +5148,7 @@ retry_license:
    }
 
 
-   void application::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative, const string & pszLocale, const string & pszStyle)
+   void application::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle)
    {
 
       string strLocale;
@@ -5157,7 +5157,7 @@ retry_license:
 
       informationf("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
       
-      ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
+      ::file::path strRelative = ::file::path(scopedstrRoot) / "_matter" / pszRelative / get_locale_schema_dir(scopedstrLocale, pszStyle) + ".zip";
 
       // auto pcontext = get_context();
 
@@ -5300,7 +5300,7 @@ retry_license:
 
 
 
-   string application::matter_as_string(const ::string & pszMatter, const ::string & pszMatter2)
+   string application::matter_as_string(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2)
    {
 
       ::payload payloadFile;
@@ -5309,7 +5309,7 @@ retry_license:
 
       // auto pcontext = get_context();
 
-      string strMatter = directory()->matter(::file::path(pszMatter) / pszMatter2);
+      string strMatter = directory()->matter(::file::path(scopedstrMatter) / pszMatter2);
 
       payloadFile["url"] = strMatter;
 
@@ -5317,24 +5317,24 @@ retry_license:
 
    }
 
-   //string application::directory()->matter(const ::string & pszMatter, const ::string & pszMatter2)
+   //string application::directory()->matter(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2)
    //{
 
-   //   return directory()->matter(pszMatter,pszMatter2);
+   //   return directory()->matter(scopedstrMatter,pszMatter2);
 
    //}
 
-   //bool application::is_inside_time_dir(const ::string & pszPath)
+   //bool application::is_inside_time_dir(const ::scoped_string & scopedstrPath)
    //{
-   //   return directory()->is_inside_time(pszPath);
+   //   return directory()->is_inside_time(scopedstrPath);
    //}
 
 
-   //bool application::file_is_read_only(const ::string & pszPath)
+   //bool application::file_is_read_only(const ::scoped_string & scopedstrPath)
    //{
 
    //   return false;
-   //   //return file()->is_read_only(pszPath);
+   //   //return file()->is_read_only(scopedstrPath);
 
    //}
 
@@ -5460,7 +5460,7 @@ retry_license:
 
 
 
-   ::draw2d::printer * application::get_printer(const ::string & pszDeviceName)
+   ::draw2d::printer * application::get_printer(const ::scoped_string & scopedstrDeviceName)
    {
 
       throw ::interface_only();
@@ -5485,7 +5485,7 @@ retry_license:
    //}
 
 
-   string application::dialog_box(const ::string & pszMatter, ::property_set& propertyset)
+   string application::dialog_box(const ::scoped_string & scopedstrMatter, ::property_set& propertyset)
    {
 
       throw ::exception(todo, "core and os");
@@ -5509,7 +5509,7 @@ retry_license:
 
 
 
-   //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
+   //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate)
    //{
 
    //   throw ::not_implemented();
@@ -5519,7 +5519,7 @@ retry_license:
    //}
 
 
-   //bool application::get_temp_file_name(string & strRet, const ::string & lpszName, const ::string & pszExtension)
+   //bool application::get_temp_file_name(string & strRet, const ::string & lpszName, const ::scoped_string & scopedstrExtension)
    //{
 
    //   return get_temp_file_name_template(strRet,lpszName,pszExtension,nullptr);
@@ -5594,7 +5594,7 @@ retry_license:
 //
 //
 //
-//   int application::hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+//   int application::hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
 //   {
 //
 //      {
@@ -5633,13 +5633,13 @@ retry_license:
 //      else
 //      {
 //
-//         return hotplugin_host_host_starter_start_sync(pszCommandLine, get_app(), nullptr);
+//         return hotplugin_host_host_starter_start_sync(scopedstrCommandLine, get_app(), nullptr);
 //
 //      }
 //
 //   }
 //
-//   int application::hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+//   int application::hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
 //   {
 //
 //      return -1;
@@ -5733,7 +5733,7 @@ retry_license:
    //
    //   }
    //
-   //   void application::set_cred(string strToken, const ::string & pszUsername, const ::string & pszPassword)
+   //   void application::set_cred(string strToken, const ::scoped_string & scopedstrUsername, const ::scoped_string & scopedstrPassword)
    //   {
    //
    //      ::account::set_cred(this,strToken, pszUsername, pszPassword);
@@ -5755,7 +5755,7 @@ retry_license:
       //}
 
 
-      //string application::http_get(const ::string & strUrl, ::property_set & set)
+      //string application::http_get(const ::scoped_string & scopedstrUrl, ::property_set & set)
       //{
 
       //   return http()->get(strUrl, set);
@@ -5964,7 +5964,7 @@ namespace aura
    //}
 
 
-   //unsigned int application::guess_code_page(const string& str)
+   //unsigned int application::guess_code_page(const ::scoped_string & scopedstr)
    //{
 
    //   return 0;
@@ -6171,9 +6171,9 @@ namespace aura
 
 
    /*
-   bool application::hex_to_memory(memory & memory, const ::string & pszHex)
+   bool application::hex_to_memory(memory & memory, const ::scoped_string & scopedstrHex)
    {
-   ::collection::count len = strlen(pszHex);
+   ::collection::count len = strlen(scopedstrHex);
    ::collection::count count = (len + 1) / 2;
    memory.set_size(count);
    ::collection::index i = 0;
@@ -6566,13 +6566,13 @@ namespace aura
    const ::scoped_string & scopedstrParam = __targv[i];
    bool bFlag = false;
    bool bLast = ((i + 1) == __argc);
-   if (pszParam[0] == '-' || pszParam[0] == '/')
+   if (scopedstrParam[0] == '-' || pszParam[0] == '/')
    {
    // erase flag specifier
    bFlag = true;
    ++pszParam;
    }
-   rCmdInfo.ParseParam(pszParam, bFlag, bLast);
+   rCmdInfo.ParseParam(scopedstrParam, bFlag, bLast);
    }
    }*/
 
@@ -6591,27 +6591,27 @@ namespace aura
    {
    }
 
-   void CCommandLineInfo::ParseParam(const ::string & pszParam,bool bFlag,bool bLast)
+   void CCommandLineInfo::ParseParam(const ::scoped_string & scopedstrParam,bool bFlag,bool bLast)
    {
    if (bFlag)
    {
-   const astring strParam(pszParam);
+   const astring strParam(scopedstrParam);
    ParseParamFlag(strParam.GetString());
    }
    else
-   ParseParamNotFlag(pszParam);
+   ParseParamNotFlag(scopedstrParam);
 
    ParseLast(bLast);
    }*/
 
    /*
    #ifdef UNICODE
-   void CCommandLineInfo::ParseParam(const ::string & pszParam, bool bFlag, bool bLast)
+   void CCommandLineInfo::ParseParam(const ::scoped_string & scopedstrParam, bool bFlag, bool bLast)
    {
    if (bFlag)
-   ParseParamFlag(pszParam);
+   ParseParamFlag(scopedstrParam);
    else
-   ParseParamNotFlag(pszParam);
+   ParseParamNotFlag(scopedstrParam);
 
    ParseLast(bLast);
    }
@@ -6619,38 +6619,38 @@ namespace aura
    */
 
    /*
-   void CCommandLineInfo::ParseParamFlag(const ::string & pszParam)
+   void CCommandLineInfo::ParseParamFlag(const ::scoped_string & scopedstrParam)
    {
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
 
-   if (lstrcmpA(pszParam, "int_point") == 0)
+   if (lstrcmpA(scopedstrParam, "int_point") == 0)
    m_nShellCommand = FilePrintTo;
-   else if (lstrcmpA(pszParam, "int_point") == 0)
+   else if (lstrcmpA(scopedstrParam, "int_point") == 0)
    m_nShellCommand = FilePrint;
-   else if (::__invariant_stricmp(pszParam, "Register") == 0 ||
-   ::__invariant_stricmp(pszParam, "Regserver") == 0)
+   else if (::__invariant_stricmp(scopedstrParam, "Register") == 0 ||
+   ::__invariant_stricmp(scopedstrParam, "Regserver") == 0)
    m_nShellCommand = AppRegister;
-   else if (::__invariant_stricmp(pszParam, "Unregister") == 0 ||
-   ::__invariant_stricmp(pszParam, "Unregserver") == 0)
+   else if (::__invariant_stricmp(scopedstrParam, "Unregister") == 0 ||
+   ::__invariant_stricmp(scopedstrParam, "Unregserver") == 0)
    m_nShellCommand = AppUnregister;
-   else if (lstrcmpA(pszParam, "dde") == 0)
+   else if (lstrcmpA(scopedstrParam, "dde") == 0)
    {
    m_nShellCommand = FileDDE;
    }
-   else if (::__invariant_stricmp(pszParam, "Embedding") == 0)
+   else if (::__invariant_stricmp(scopedstrParam, "Embedding") == 0)
    {
    m_bRunEmbedded = true;
    m_bShowSplash = false;
    }
-   else if (::__invariant_stricmp(pszParam, "Automation") == 0)
+   else if (::__invariant_stricmp(scopedstrParam, "Automation") == 0)
    {
    m_bRunAutomated = true;
    m_bShowSplash = false;
    }
    }
 
-   void CCommandLineInfo::ParseParamNotFlag(const ::string & pszParam)
+   void CCommandLineInfo::ParseParamNotFlag(const ::scoped_string & scopedstrParam)
    {
    if (m_strFileName.is_empty())
    m_strFileName = pszParam;
@@ -6663,7 +6663,7 @@ namespace aura
    }
 
    #ifdef UNICODE
-   void CCommandLineInfo::ParseParamNotFlag(const ::string & pszParam)
+   void CCommandLineInfo::ParseParamNotFlag(const ::scoped_string & scopedstrParam)
    {
    if (m_strFileName.is_empty())
    m_strFileName = pszParam;
@@ -6816,10 +6816,10 @@ namespace aura
    //}
 
 
-   /*   bool application::open_link(const ::string & pszLink, const ::string & pszTarget)
+   /*   bool application::open_link(const ::scoped_string & scopedstrLink, const ::scoped_string & scopedstrTarget)
    {
-   __UNREFERENCED_PARAMETER(pszLink);
-   __UNREFERENCED_PARAMETER(pszTarget);
+   __UNREFERENCED_PARAMETER(scopedstrLink);
+   __UNREFERENCED_PARAMETER(scopedstrTarget);
    return false;
    }
    */
@@ -6865,14 +6865,14 @@ namespace aura
 
 
 
-   /*void ::aura::FormatString1(string & rString, unsigned int nIDS, const ::string & psz1)
+   /*void ::aura::FormatString1(string & rString, unsigned int nIDS, const ::scoped_string & scopedstr1)
 
    {
    __format_strings(rString, nIDS, &psz1, 1);
 
    }
 
-   void ::aura::FormatString2(string & rString, unsigned int nIDS, const ::string & psz1,
+   void ::aura::FormatString2(string & rString, unsigned int nIDS, const ::scoped_string & scopedstr1,
 
    const ::scoped_string & scopedstr2)
 
@@ -7114,7 +7114,7 @@ namespace aura
    //
    //   {
    //      /*      if (m_pdocmanager != nullptr)
-   //      return document_manager()->OnDDECommand(pszCommand);
+   //      return document_manager()->OnDDECommand(scopedstrCommand);
    //
    //      else*/
    //      return false;
@@ -7196,17 +7196,17 @@ namespace aura
    // application Settings Helpers
 
 
-   void application::SetRegistryKey(const ::string & pszRegistryKey)
+   void application::SetRegistryKey(const ::scoped_string & scopedstrRegistryKey)
 
    {
       //ASSERT(m_pszRegistryKey == nullptr);
-      //ASSERT(pszRegistryKey != nullptr);
+      //ASSERT(scopedstrRegistryKey != nullptr);
 
       //ASSERT(m_strAppName.has_character());
 
       ////bool bEnable = __enable_memory_tracking(false);
       //free((void *)m_pszRegistryKey);
-      //m_pszRegistryKey = strdup(pszRegistryKey);
+      //m_pszRegistryKey = strdup(scopedstrRegistryKey);
 
       //free((void *)m_pszProfileName);
       //m_pszProfileName = strdup(m_strAppName);
@@ -7264,10 +7264,10 @@ namespace aura
    //
    //   // creating it if it doesn't exist.
    //   // responsibility of the caller to call RegCloseKey() on the returned HKEY
-   //   HKEY application::GetSectionKey(const ::string & pszSection)
+   //   HKEY application::GetSectionKey(const ::scoped_string & scopedstrSection)
    //   {
    //
-   //      ASSERT(pszSection != nullptr);
+   //      ASSERT(scopedstrSection != nullptr);
    //
    //      HKEY hSectionKey = nullptr;
    //
@@ -7282,7 +7282,7 @@ namespace aura
    //
    //      DWORD dw;
    //
-   //      RegCreateKeyExW(hAppKey, wstring(pszSection), 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, nullptr, &hSectionKey, &dw);
+   //      RegCreateKeyExW(hAppKey, wstring(scopedstrSection), 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, nullptr, &hSectionKey, &dw);
    //
    //      RegCloseKey(hAppKey);
    //
@@ -7293,17 +7293,17 @@ namespace aura
    //
    //#endif
 
-   /*   unsigned int application::GetProfileInt(const ::string & pszSection, const ::string & pszEntry,
+   /*   unsigned int application::GetProfileInt(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
    int nDefault)
    {
-   ASSERT(pszSection != nullptr);
+   ASSERT(scopedstrSection != nullptr);
 
-   ASSERT(pszEntry != nullptr);
+   ASSERT(scopedstrEntry != nullptr);
 
    if (m_pszRegistryKey != nullptr) // use registry
    {
-   HKEY hSecKey = GetSectionKey(pszSection);
+   HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
    return nDefault;
@@ -7325,24 +7325,24 @@ namespace aura
    else
    {
    ASSERT(m_pszProfileName != nullptr);
-   return ::GetPrivateProfileInt(pszSection, pszEntry, nDefault,
+   return ::GetPrivateProfileInt(scopedstrSection, pszEntry, nDefault,
 
    m_pszProfileName);
    }
    }
 
-   string application::GetProfileString(const ::string & pszSection, const ::string & pszEntry,
+   string application::GetProfileString(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
    const ::scoped_string & scopedstrDefault)
 
    {
-   ASSERT(pszSection != nullptr);
+   ASSERT(scopedstrSection != nullptr);
 
-   ASSERT(pszEntry != nullptr);
+   ASSERT(scopedstrEntry != nullptr);
 
    if (m_pszRegistryKey != nullptr)
    {
-   HKEY hSecKey = GetSectionKey(pszSection);
+   HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
    return pszDefault;
@@ -7374,12 +7374,12 @@ namespace aura
    {
    ASSERT(m_pszProfileName != nullptr);
 
-   if (pszDefault == nullptr)
+   if (scopedstrDefault == nullptr)
 
    pszDefault = "";   // don't pass in nullptr
 
    char szT[4096];
-   unsigned int dw = ::GetPrivateProfileString(pszSection, pszEntry,
+   unsigned int dw = ::GetPrivateProfileString(scopedstrSection, pszEntry,
 
    pszDefault, szT, _countof(szT), m_pszProfileName);
 
@@ -7388,13 +7388,13 @@ namespace aura
    }
    }
 
-   bool application::GetProfileBinary(const ::string & pszSection, const ::string & pszEntry,
+   bool application::GetProfileBinary(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
    unsigned char** ppData, unsigned int* pBytes)
    {
-   ASSERT(pszSection != nullptr);
+   ASSERT(scopedstrSection != nullptr);
 
-   ASSERT(pszEntry != nullptr);
+   ASSERT(scopedstrEntry != nullptr);
 
    ASSERT(ppData != nullptr);
    ASSERT(pBytes != nullptr);
@@ -7402,7 +7402,7 @@ namespace aura
    *pBytes = 0;
    if (m_pszRegistryKey != nullptr)
    {
-   HKEY hSecKey = GetSectionKey(pszSection);
+   HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
    {
@@ -7442,7 +7442,7 @@ namespace aura
    {
    ASSERT(m_pszProfileName != nullptr);
 
-   string str = GetProfileString(pszSection, pszEntry, nullptr);
+   string str = GetProfileString(scopedstrSection, pszEntry, nullptr);
 
    if (str.is_empty())
    return false;
@@ -7460,17 +7460,17 @@ namespace aura
    }
 
 
-   bool application::WriteProfileInt(const ::string & pszSection, const ::string & pszEntry,
+   bool application::WriteProfileInt(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
    int nValue)
    {
-   ASSERT(pszSection != nullptr);
+   ASSERT(scopedstrSection != nullptr);
 
-   ASSERT(pszEntry != nullptr);
+   ASSERT(scopedstrEntry != nullptr);
 
    if (m_pszRegistryKey != nullptr)
    {
-   HKEY hSecKey = GetSectionKey(pszSection);
+   HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
    return false;
@@ -7486,23 +7486,23 @@ namespace aura
 
    char szT[16];
    _stprintf_s(szT, _countof(szT), "%d", nValue);
-   return ::WritePrivateProfileString(pszSection, pszEntry, szT,
+   return ::WritePrivateProfileString(scopedstrSection, pszEntry, szT,
 
    m_pszProfileName);
    }
    }
 
-   bool application::WriteProfileString(const ::string & pszSection, const ::string & pszEntry,
+   bool application::WriteProfileString(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
    const ::scoped_string & scopedstrValue)
 
    {
-   ASSERT(pszSection != nullptr);
+   ASSERT(scopedstrSection != nullptr);
 
    if (m_pszRegistryKey != nullptr)
    {
    int lResult;
-   if (pszEntry == nullptr) //delete whole department
+   if (scopedstrEntry == nullptr) //delete whole department
 
    {
    HKEY hAppKey = GetAppRegistryKey();
@@ -7512,10 +7512,10 @@ namespace aura
 
    RegCloseKey(hAppKey);
    }
-   else if (pszValue == nullptr)
+   else if (scopedstrValue == nullptr)
 
    {
-   HKEY hSecKey = GetSectionKey(pszSection);
+   HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
    return false;
@@ -7526,13 +7526,13 @@ namespace aura
    }
    else
    {
-   HKEY hSecKey = GetSectionKey(pszSection);
+   HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
    return false;
    lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_SZ,
 
-   (unsigned char *)pszValue, (lstrlen(pszValue)+1)*sizeof(char));
+   (unsigned char *)pszValue, (lstrlen(scopedstrValue)+1)*sizeof(char));
 
    RegCloseKey(hSecKey);
    }
@@ -7542,22 +7542,22 @@ namespace aura
    {
    ASSERT(m_pszProfileName != nullptr);
    ASSERT(lstrlen(m_pszProfileName) < 4095); // can't read in bigger
-   return ::WritePrivateProfileString(pszSection, pszEntry, pszValue,
+   return ::WritePrivateProfileString(scopedstrSection, pszEntry, pszValue,
 
    m_pszProfileName);
    }
    }
 
-   bool application::WriteProfileBinary(const ::string & pszSection, const ::string & pszEntry,
+   bool application::WriteProfileBinary(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
    unsigned char * pData, unsigned int nBytes)
    {
-   ASSERT(pszSection != nullptr);
+   ASSERT(scopedstrSection != nullptr);
 
    if (m_pszRegistryKey != nullptr)
    {
    int lResult;
-   HKEY hSecKey = GetSectionKey(pszSection);
+   HKEY hSecKey = GetSectionKey(scopedstrSection);
 
    if (hSecKey == nullptr)
    return false;
@@ -7584,7 +7584,7 @@ namespace aura
 
    ASSERT(m_pszProfileName != nullptr);
 
-   bool bResult = WriteProfileString(pszSection, pszEntry, psz);
+   bool bResult = WriteProfileString(scopedstrSection, pszEntry, psz);
 
    delete[] psz;
 
@@ -7866,12 +7866,12 @@ namespace aura
    //}
 
 
-   //string application::sync_message_box(const string & pszMatter, ::property_set & propertyset)
+   //string application::sync_message_box(const ::scoped_string & scopedstrMatter, ::property_set & propertyset)
    //{
    //
    //   __UNREFERENCED_PARAMETER(propertyset);
    //
-   //   __UNREFERENCED_PARAMETER(pszMatter);
+   //   __UNREFERENCED_PARAMETER(scopedstrMatter);
    //
    //   return "";
 
@@ -7991,7 +7991,7 @@ namespace aura
    ////      //string strFileName = ::PathFindFileName(strShortName);
    ////      // strip out extension
    ////      //char * pszFileName = strFileName.GetBuffer();
-   ////      //::PathRemoveExtension(pszFileName);
+   ////      //::PathRemoveExtension(scopedstrFileName);
    ////      //strFileName.ReleaseBuffer();
    ////
    ////      //      m_atomApp = ::GlobalAddAtom(strFileName);
@@ -8113,7 +8113,7 @@ namespace aura
    }
 
 
-   //::aura::printer* application::get_printer(const ::string & pszDeviceName)
+   //::aura::printer* application::get_printer(const ::scoped_string & scopedstrDeviceName)
    //{
 
    //   return nullptr;
@@ -8121,10 +8121,10 @@ namespace aura
    //}
 
 
-   //bool application::set_keyboard_layout(const ::string & pszPath, const ::action_context& context)
+   //bool application::set_keyboard_layout(const ::scoped_string & scopedstrPath, const ::action_context& context)
    //{
 
-   //   return psession->keyboard().load_layout(pszPath, context);
+   //   return psession->keyboard().load_layout(scopedstrPath, context);
 
    //}
 
@@ -8139,7 +8139,7 @@ namespace aura
    }
 
 
-   bool application::get_fs_size(string& strSize, const ::string & pszPath, bool& bPending)
+   bool application::get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending)
    {
 
       long long i64Size;
@@ -8202,7 +8202,7 @@ namespace aura
    }
 
 
-   bool application::get_fs_size(long long& i64Size, const ::string & pszPath, bool& bPending)
+   bool application::get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending)
    {
       return false;
       //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
@@ -8219,7 +8219,7 @@ namespace aura
    }
 
 
-   void application::set_title(const ::string & pszTitle)
+   void application::set_title(const ::scoped_string & scopedstrTitle)
    {
 
       auto psession = session();
@@ -8255,21 +8255,21 @@ namespace aura
    }
 
 
-   //oswindow application::get_ca2_app_wnd(const ::string & psz)
+   //oswindow application::get_ca2_app_wnd(const ::scoped_string & scopedstr)
    //{
 
-   //   __UNREFERENCED_PARAMETER(psz);
+   //   __UNREFERENCED_PARAMETER(scopedstr);
 
    //   return nullptr;
 
    //}
    //
    //
-   //   int application::send_simple_command(const ::string & psz, void* osdataSender)
+   //   int application::send_simple_command(const ::scoped_string & scopedstr, void* osdataSender)
    //   {
    //      string strApp;
    //      string_array stra;
-   //      stra.add_tokens(psz, "::", true);
+   //      stra.add_tokens(scopedstr, "::", true);
    //      if (stra.get_size() > 0)
    //      {
    //         strApp = stra[0];
@@ -8283,7 +8283,7 @@ namespace aura
    //   }
    //
    ////
-   //   int application::send_simple_command(void* osdata, const ::string & psz, void* osdataSender)
+   //   int application::send_simple_command(void* osdata, const ::scoped_string & scopedstr, void* osdataSender)
    //   {
    //#ifdef WINDOWS_DESKTOP
    //      ::windowing::window * pwindow = (::oswindow) osdata;
@@ -8292,7 +8292,7 @@ namespace aura
    //      COPYDATASTRUCT cds;
    //      memory_set(&cds, 0, sizeof(cds));
    //      cds.dwData = 888888;
-   //      cds.cbData = (unsigned int)strlen(psz);
+   //      cds.cbData = (unsigned int)strlen(scopedstr);
    //      cds.lpData = (PVOID)psz;
    //
    //      return (int)SendMessage(oswindow, WM_COPYDATA, (wparam)osdataSender, (lparam)&cds);
@@ -8413,10 +8413,10 @@ namespace aura
    //}
 
 
-   //bool application::platform_open_by_file_extension(int iEdge, const ::string & pszPathName, application_bias * pappbias)
+   //bool application::platform_open_by_file_extension(int iEdge, const ::scoped_string & scopedstrPathName, application_bias * pappbias)
    //{
 
-   //   return psystem->get_platform(iEdge)->open_by_file_extension(pszPathName, pappbias);
+   //   return psystem->get_platform(iEdge)->open_by_file_extension(scopedstrPathName, pappbias);
    //}
 
    //bool application::platform_open_by_file_extension(int iEdge, ::create * pcc)
@@ -8473,7 +8473,7 @@ namespace aura
    }
 
 
-   void application::report_error(const ::exception & e, int iMessageFlags, const ::string & pszTopic)
+   void application::report_error(const ::exception & e, int iMessageFlags, const ::scoped_string & scopedstrTopic)
    {
 
       string strMessage;
@@ -8937,7 +8937,7 @@ namespace aura
 
 
 
-   /*string application::get_cred(const ::string & strRequestUrlParam,const ::int_rectangle & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   /*string application::get_cred(const ::scoped_string & scopedstrRequestUrlParam,const ::int_rectangle & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
       string str = ::account::get_cred(this,strUsername,strPassword,strToken);
@@ -9179,7 +9179,7 @@ namespace aura
    //}
 
 
-   void application::on_song_added(const string& str)
+   void application::on_song_added(const ::scoped_string & scopedstr)
    {
 
    }
@@ -9217,10 +9217,10 @@ namespace aura
    }
 
 
-   string application::sound_path(const ::string & psz)
+   string application::sound_path(const ::scoped_string & scopedstr)
    {
 
-      string strFileName = string(psz) + string(".wav");
+      string strFileName = string(scopedstr) + string(".wav");
 
       string strFilePath = directory()->matter(strFileName);
 
@@ -9321,7 +9321,7 @@ namespace aura
    //   }
 
 
-   //bool application::on_application_menu_action(const ::string & pszCommand)
+   //bool application::on_application_menu_action(const ::scoped_string & scopedstrCommand)
    //{
 
    //   if (m_pacmeuserinteractionMain != nullptr)
@@ -9329,7 +9329,7 @@ namespace aura
 
    //      ::message::command command;
 
-   //      command.id() = ::atom(pszCommand);
+   //      command.id() = ::atom(scopedstrCommand);
 
    //      __channel(m_pacmeuserinteractionMain)->route_command_message(&command);
 
@@ -9515,7 +9515,7 @@ namespace aura
 
       }
 
-      pwindow->pick_media(pszMediaType);
+      pwindow->pick_media(scopedstrMediaType);
 
    }
 

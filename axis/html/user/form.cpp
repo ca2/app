@@ -90,10 +90,10 @@ bool html_form::on_open_document(const ::payload & payloadFile) const
 }
 
 
-bool html_form::browse(const ::string & pszUrl)
+bool html_form::browse(const ::scoped_string & scopedstrUrl)
 {
 
-   return on_open_document(pszUrl);
+   return on_open_document(scopedstrUrl);
 
 }
 
@@ -600,7 +600,7 @@ bool html_form::open_document(const ::payload & payloadFile)
 }
 
 
-bool html_form::open_html(const ::string & str)
+bool html_form::open_html(const ::scoped_string & scopedstr)
 {
 
    auto phtmldata = get_html_data();
@@ -642,7 +642,7 @@ bool html_form::open_html(const ::string & str)
 }
 
 
-//void html_form::set_text(const ::string & str, const ::action_context & context)
+//void html_form::set_text(const ::scoped_string & scopedstr, const ::action_context & context)
 void html_form::set_html_form_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext)
 {
 
@@ -839,7 +839,7 @@ void html_form::set_edit_mode(bool bSet)
 }
 
 
-bool html_form::load_html(const ::string & str)
+bool html_form::load_html(const ::scoped_string & scopedstr)
 {
 
    get_html_data()->load(str);

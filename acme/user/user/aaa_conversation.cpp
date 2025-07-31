@@ -3,14 +3,14 @@
 #include "conversation.h"
 
 
-void conversation::initialize_conversation(const ::string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+void conversation::initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
 
 }
 
 
-void conversation::do_conversation(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+void conversation::do_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
 

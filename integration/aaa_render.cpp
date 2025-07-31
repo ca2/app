@@ -166,7 +166,7 @@ namespace app_integration
    }
 
 
-   ::e_status render::set_font(const ::string & strFont)
+   ::e_status render::set_font(const ::scoped_string & scopedstrFont)
    {
 
       if (strFont.is_empty())
@@ -189,7 +189,7 @@ namespace app_integration
    }
 
 
-   ::e_status render::set_hover_font(const ::string & strHoverFont)
+   ::e_status render::set_hover_font(const ::scoped_string & scopedstrHoverFont)
    {
 
       m_strHoverFont = strHoverFont;

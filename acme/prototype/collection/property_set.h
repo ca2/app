@@ -37,9 +37,9 @@ public:
 
    //::payload operator()(const ::atom & atom, const ::payload & payloadDefault = ::error_not_found) const;
 
-   string _001Replace(const ::string & str) const;
+   string _001Replace(const ::scoped_string & scopedstr) const;
 
-   inline string format(const ::string & str) const { return _001Replace(str); }
+   inline string format(const ::scoped_string & scopedstr) const { return _001Replace(scopedstr); }
 
 
    string as_string(const ::scoped_string& scopedstrSeparator1, const ::scoped_string& scopedstrSeparator2);
@@ -124,11 +124,11 @@ public:
    //inline ::property & operator[](const ::atom & atom) { return payload(atom); }
    //inline const ::property & operator[](const ::atom & atom) const { return payload(atom); }
 
-   //inline ::property & operator[](const ::scoped_string & scopedstrName) { return payload(pszName); }
-   //inline const ::property & operator[](const ::scoped_string & scopedstrName) const { return payload(pszName); }
+   //inline ::property & operator[](const ::scoped_string & scopedstrName) { return payload(scopedstrName); }
+   //inline const ::property & operator[](const ::scoped_string & scopedstrName) const { return payload(scopedstrName); }
 
-   //inline ::property & operator[](const ::string & strName) { return payload(strName); }
-   //inline const ::property & operator[](const ::string & strName) const { return payload(strName); }
+   //inline ::property & operator[](const ::scoped_string & scopedstrName) { return payload(strName); }
+   //inline const ::property & operator[](const ::scoped_string & scopedstrName) const { return payload(strName); }
 
    //inline ::property & operator[](::collection::index iIndex) { return payload(iIndex); }
    //inline const ::property & operator[](::collection::index iIndex) const { return payload(iIndex); }
@@ -232,7 +232,7 @@ public:
    bool get_bool(const ::atom & atom, bool bDefault = false) const;
    int get_int(const ::atom & atom, int iDefault = 0) const;
    unsigned int get_unsigned_int(const ::atom & atom, unsigned int uDefault = 0) const;
-   ::string get_string(const ::atom & atom, const ::string & strDefault = nullptr) const;
+   ::string get_string(const ::atom & atom, const ::scoped_string & scopedstrDefault = nullptr) const;
    ::file::path get_file_path(const ::atom & atom, const ::file::path & pathDefault ={}) const;
 
    //template < typename TYPE >
@@ -362,8 +362,8 @@ public:
    void _008ParseCommandFork(const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile, string & strApp);
    void _008Parse(bool bApp, const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile, string & strApp);
    void _008AddArgumentPairs(::string_array & straArguments);
-   void _008AddArgumentOrFile(::payload & payloadFile, const ::string & strArgument);
-   void _008AddArgument(const ::string & strArgument);
+   void _008AddArgumentOrFile(::payload & payloadFile, const ::scoped_string & scopedstrArgument);
+   void _008AddArgument(const ::scoped_string & scopedstrArgument);
    void _008Add(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrValue);
 
    void _008ParseCommandArguments(string_array & straArguments, ::payload & payloadFile, string & strApp);
@@ -372,26 +372,26 @@ public:
 
    void clear();
 
-   //virtual string eval(const ::string & str);
+   //virtual string eval(const ::scoped_string & scopedstr);
 
-   //virtual string gen_eval(const ::string & str);
+   //virtual string gen_eval(const ::scoped_string & scopedstr);
 
-   //virtual string gen_string(const ::string & str);
-
-
-   string evaluate(const ::string & str) const;
-
-   bool get_evaluation(::string & str, const ::string & strExpression) const;
+   //virtual string gen_string(const ::scoped_string & scopedstr);
 
 
-   void parse_ini(const ::string & strIni);
+   string evaluate(const ::scoped_string & scopedstr) const;
+
+   bool get_evaluation(::string & str, const ::scoped_string & scopedstrExpression) const;
+
+
+   void parse_ini(const ::scoped_string & scopedstrIni);
    ::string get_ini() const;
    ::string_array get_ini_lines() const;
-   void parse_standard_configuration(const ::string & strStandardConfiguration);
+   void parse_standard_configuration(const ::scoped_string & scopedstrStandardConfiguration);
    //void parse_ini_file(const ::file::path& path);
    //void parse_ini_folder(const ::file::path& path);
 
-   void parse_network_payload(const ::string & strNetworkPayload);
+   void parse_network_payload(const ::scoped_string & scopedstrNetworkPayload);
    void parse_network_payload(::ansi_range & range);
    void parse_network_arguments(const ::scoped_string & scopedstrUrl);
    void _parse_network_arguments(const ::scoped_string & scopedstrUrlQuery);

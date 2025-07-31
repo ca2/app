@@ -71,10 +71,10 @@ namespace user
       // button int_size should be bigger than image
       void SetHeight(::collection::index cyHeight);
       // call after SetSizes, height overrides bitmap int_size
-      //bool LoadToolBar(const ::string & pszResourceName);
+      //bool LoadToolBar(const ::scoped_string & scopedstrResourceName);
 
       //bool LoadToolBar(unsigned int nIDResource);
-      //bool LoadBitmap(const ::string & pszResourceName);
+      //bool LoadBitmap(const ::scoped_string & scopedstrResourceName);
 
       //bool LoadBitmap(unsigned int nIDResource);
 //#ifdef WINDOWS_DESKTOP
@@ -116,7 +116,7 @@ namespace user
 
       ::collection::index tool_item_image(const ::atom & atom);
       void set_tool_item_image(const ::atom & atom, ::collection::index iImage);
-      void set_tool_item_text(const ::atom & atom, const ::string & pszText);
+      void set_tool_item_text(const ::atom & atom, const ::scoped_string & scopedstrText);
 
       string tool_item_text(const ::atom & atom);
 //      void GetButtonText(const ::atom & atom, string & rString) const;

@@ -91,7 +91,7 @@ trace_category::~trace_category()
 //}
 //
 //
-//tracer & tracer::operator << (const string & str)
+//tracer & tracer::operator << (const ::scoped_string & scopedstr)
 //{
 //
 //   m_str += str;
@@ -104,7 +104,7 @@ trace_category::~trace_category()
 //tracer & tracer::operator << (const ::scoped_string & scopedstr)
 //{
 //
-//   m_str += string(psz);
+//   m_str += string(scopedstr);
 //
 //   return *this;
 //
@@ -121,7 +121,7 @@ trace_category::~trace_category()
 //}
 //
 //
-////void tracer::print(const ::string & str)
+////void tracer::print(const ::scoped_string & scopedstr)
 ////{
 ////
 ////   m_str += str;

@@ -1419,7 +1419,7 @@ return g_pdraw2dcairo;
 //   }
 
 
-   cairo_font_face_t * draw2d::private_ftface_from_memory(const ::block & block, const ::string & strName)
+   cairo_font_face_t * draw2d::private_ftface_from_memory(const ::block & block, const ::scoped_string & scopedstrName)
    {
 
       auto & pprivatefont = m_mapPrivateFont[strName];

@@ -534,10 +534,10 @@ namespace gpu_opengl
 
    //}
 
-   //   string device::load_fragment(const ::string & pszPath, enum_shader & eshader)
+   //   string device::load_fragment(const ::scoped_string & scopedstrPath, enum_shader & eshader)
    //   {
    //
-   //      ::file::path path(pszPath);
+   //      ::file::path path(scopedstrPath);
    //
    //      auto & app = papp;
    //

@@ -65,7 +65,7 @@ public:
 
    //      statement(e_trace_level_information);
 
-   //      statement.formatf_output_arguments(pszFormat, arguments);
+   //      statement.formatf_output_arguments(scopedstrFormat, arguments);
 
    //   }
 
@@ -87,7 +87,7 @@ public:
 
    //      statement(e_trace_level_warning);
 
-   //      statement.formatf_output_arguments(pszFormat, arguments);
+   //      statement.formatf_output_arguments(scopedstrFormat, arguments);
 
    //   }
 
@@ -109,7 +109,7 @@ public:
 
    //      statement(e_trace_level_error);
 
-   //      statement.formatf_output_arguments(pszFormat, arguments);
+   //      statement.formatf_output_arguments(scopedstrFormat, arguments);
 
    //   }
 
@@ -131,7 +131,7 @@ public:
 
    //      statement(e_trace_level_fatal);
 
-   //      statement.formatf_output_arguments(pszFormat, arguments);
+   //      statement.formatf_output_arguments(scopedstrFormat, arguments);
 
    //   }
 

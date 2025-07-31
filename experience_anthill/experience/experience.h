@@ -28,7 +28,7 @@ namespace experience_anthill
 
 
 
-      ::pointer < ::experience::frame > frame_experience(const ::string & strFrameSchema) override;
+      ::pointer < ::experience::frame > frame_experience(const ::scoped_string & scopedstrFrameSchema) override;
 
 
    };

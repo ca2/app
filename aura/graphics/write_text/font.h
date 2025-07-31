@@ -123,7 +123,7 @@ namespace write_text
 
       font & operator = (const font & font);
 
-      virtual void set_family_name(const ::string & pszFamilyName);
+      virtual void set_family_name(const ::scoped_string & scopedstrFamilyName);
       virtual void set_size(const font_size & fontsize);
       virtual void set_bold(bool bBold = true);
       virtual void set_italic(bool bItalic = true);

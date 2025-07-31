@@ -220,7 +220,7 @@ namespace universal_windows
    }
 
 
-   bool copydesk::_set_plain_text(const ::string & str)
+   bool copydesk::_set_plain_text(const ::scoped_string & scopedstr)
    {
 
       auto package = ref aaa_primitive_new ::winrt::Windows::ApplicationModel::DataTransfer::DataPackage;

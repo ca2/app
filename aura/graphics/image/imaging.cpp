@@ -7101,7 +7101,7 @@ void image_context::load_svg(::image::image *pimage, memory & memory)
 
    auto size = memory.size();
 
-   if (::is_null(psz))
+   if (::is_null(scopedstr))
    {
 
       //return pimage->m_estatus;
@@ -7110,12 +7110,12 @@ void image_context::load_svg(::image::image *pimage, memory & memory)
 
    }
 
-   if (memory_find(psz, size, "<svg", 4) != nullptr)
+   if (memory_find(scopedstr, size, "<svg", 4) != nullptr)
    {
 
       char * pszXml = (char *) memory.data();
 
-      pimage->create_nanosvg(pszXml);
+      pimage->create_nanosvg(scopedstrXml);
 
       pimage->mult_alpha_fast();
 

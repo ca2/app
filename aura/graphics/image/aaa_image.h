@@ -66,7 +66,7 @@
 ////
 ////
 ////   //virtual bool load_image(::payload payloadFile, bool bCache = true, bool bCreateHelperMaps = false)= 0;
-////   //virtual bool load_image(const ::string & pszMatter, bool bCache = true, bool bCreateHelperMaps = false)= 0;
+////   //virtual bool load_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bCreateHelperMaps = false)= 0;
 ////   ////virtual bool read_from_file(file_pointer  pfile)= 0;
 ////
 ////
@@ -82,10 +82,10 @@
 ////   virtual image get_image(::payload payloadFile, bool bSync = false) = 0;
 ////   virtual image matter_image(string strMatter, bool bSync = false) = 0;
 ////   virtual image load_image(::payload payloadFile, bool bCreateHelperMaps = false) = 0;
-////   virtual image load_matter_image(const ::string & pszMatter, bool bCache = true, bool bCreateHelperMaps = false) = 0;
+////   virtual image load_matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bCreateHelperMaps = false) = 0;
 ////   virtual image load_matter_icon(string_array & straMatter, string strIcon) = 0;
 ////   virtual image load_thumbnail(::payload payloadFile, int w, int h) = 0;
-////   virtual image load_thumbnail(const ::string & pszPath) = 0;
+////   virtual image load_thumbnail(const ::scoped_string & scopedstrPath) = 0;
 ////   virtual image load_dib(const ::file::path & pathDib) = 0;
 ////
 ////
@@ -229,7 +229,7 @@
 ////   virtual bool channel_mask(unsigned char uchFind, unsigned char uchSet, unsigned char uchUnset, ::color::enum_channel echannel)= 0;
 ////   virtual bool transparent_color(::color::color color)= 0;
 ////
-////   virtual bool create_thumbnail(const ::string & pszPath) = 0;
+////   virtual bool create_thumbnail(const ::scoped_string & scopedstrPath) = 0;
 ////
 ////   virtual bool create(const ::int_size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)= 0;
 ////   virtual bool create(int iWidth, int iHeight, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)= 0;

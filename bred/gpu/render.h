@@ -51,13 +51,13 @@ namespace gpu
 
       //virtual void initialize_render(::user::interaction * puserinteraction);
       ///// Initialization routines
-      //virtual void set_vertex_source_code(const string & strVertexSourceCode);
-      //virtual void set_fragment_source_code(const string & strFragmentSourceCode);
+      //virtual void set_vertex_source_code(const ::scoped_string & scopedstrVertexSourceCode);
+      //virtual void set_fragment_source_code(const ::scoped_string & scopedstrFragmentSourceCode);
       //virtual void set_model_path(const ::payload & payloadFile);
 
 
       //string get_font();
-      //::e_status set_font(const string & strFont);
+      //::e_status set_font(const ::scoped_string & scopedstrFont);
 
       //virtual void set_update_shader();
       //virtual void defer_update_shader();

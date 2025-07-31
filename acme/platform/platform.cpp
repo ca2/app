@@ -875,7 +875,7 @@ g_bWindowingOutputDebugString = true;
 
 
 
-   ::factory::factory_pointer & platform::factory(const ::string & strLibraryRequest)
+   ::factory::factory_pointer & platform::factory(const ::scoped_string & scopedstrLibraryRequest)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
@@ -940,7 +940,7 @@ g_bWindowingOutputDebugString = true;
    }
 
 
-   ::factory::factory * platform::component_factory(const ::string& strComponent)
+   ::factory::factory * platform::component_factory(const ::scoped_string & scopedstrComponent)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
@@ -1038,7 +1038,7 @@ g_bWindowingOutputDebugString = true;
    }
 
 
-   ::string platform::component_factory_implementation_name(const ::string& strComponent)
+   ::string platform::component_factory_implementation_name(const ::scoped_string & scopedstrComponent)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
@@ -1059,7 +1059,7 @@ g_bWindowingOutputDebugString = true;
    }
 
 
-   ::factory::factory_pointer & platform::factory(const ::string & strComponent, const ::string & strImplementation)
+   ::factory::factory_pointer & platform::factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
@@ -1159,7 +1159,7 @@ g_bWindowingOutputDebugString = true;
    }
 
 
-   //::factory::factory_pointer& platform::_factory(const ::string& strLibraryRequest)
+   //::factory::factory_pointer& platform::_factory(const ::scoped_string & scopedstrLibraryRequest)
    ////{
    ////
    ////   critical_section_lock criticalsectionlock(&m_criticalsection);
@@ -1236,7 +1236,7 @@ g_bWindowingOutputDebugString = true;
    }
 
 
-   ::pointer<::factory::factory> & platform::impact_factory(const ::string & strComponent, const ::string & strImplementation)
+   ::pointer<::factory::factory> & platform::impact_factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
@@ -1270,7 +1270,7 @@ g_bWindowingOutputDebugString = true;
    }
 
    
-   ::pointer<::acme::library> platform::create_library_dynamically(const ::string & strLibrary)
+   ::pointer<::acme::library> platform::create_library_dynamically(const ::scoped_string & scopedstrLibrary)
    {
 
       //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
@@ -1319,7 +1319,7 @@ g_bWindowingOutputDebugString = true;
    }
 
 
-   ::pointer<::acme::library> platform::create_library_statically(const ::string & strLibrary)
+   ::pointer<::acme::library> platform::create_library_statically(const ::scoped_string & scopedstrLibrary)
    {
 
       auto pfnFactory = ::factory_function::get(strLibrary);
@@ -1343,7 +1343,7 @@ g_bWindowingOutputDebugString = true;
 
 
 
-   ::pointer<::acme::library> platform::create_library(const ::string & strLibrary)
+   ::pointer<::acme::library> platform::create_library(const ::scoped_string & scopedstrLibrary)
    {
 
 #ifdef CUBE
@@ -1389,7 +1389,7 @@ g_bWindowingOutputDebugString = true;
    }
 
 
-   ::pointer<::acme::library> & platform::library(const ::string & str)
+   ::pointer<::acme::library> & platform::library(const ::scoped_string & scopedstr)
    {
 
       // Ex. "audio" (library)
@@ -1477,42 +1477,42 @@ g_bWindowingOutputDebugString = true;
 
       // 0123-56-89-12-45-78
 
-      auto len = ansi_length(pszStaticText);
+      auto len = ansi_length(scopedstrStaticText);
 
       if (len >= 10
-         && ::character_isdigit(pszStaticText[0])
-         && ::character_isdigit(pszStaticText[1])
-         && ::character_isdigit(pszStaticText[2])
-         && ::character_isdigit(pszStaticText[3])
-         && !::character_isalnum(pszStaticText[4])
-         && ::character_isdigit(pszStaticText[5])
-         && ::character_isdigit(pszStaticText[6])
-         && !::character_isalnum(pszStaticText[7])
-         && ::character_isdigit(pszStaticText[8])
-         && ::character_isdigit(pszStaticText[9])
+         && ::character_isdigit(scopedstrStaticText[0])
+         && ::character_isdigit(scopedstrStaticText[1])
+         && ::character_isdigit(scopedstrStaticText[2])
+         && ::character_isdigit(scopedstrStaticText[3])
+         && !::character_isalnum(scopedstrStaticText[4])
+         && ::character_isdigit(scopedstrStaticText[5])
+         && ::character_isdigit(scopedstrStaticText[6])
+         && !::character_isalnum(scopedstrStaticText[7])
+         && ::character_isdigit(scopedstrStaticText[8])
+         && ::character_isdigit(scopedstrStaticText[9])
          )
       {
 
-         releasetimeforproject.m_iYear = ::as_int(scoped_ansi_string(pszStaticText + 0, 4));
-         releasetimeforproject.m_iMonth = ::as_int(scoped_ansi_string(pszStaticText + 5, 2));
-         releasetimeforproject.m_iDay = ::as_int(scoped_ansi_string(pszStaticText + 8, 2));
+         releasetimeforproject.m_iYear = ::as_int(scoped_ansi_string(scopedstrStaticText + 0, 4));
+         releasetimeforproject.m_iMonth = ::as_int(scoped_ansi_string(scopedstrStaticText + 5, 2));
+         releasetimeforproject.m_iDay = ::as_int(scoped_ansi_string(scopedstrStaticText + 8, 2));
 
          if (len >= 19
-            && !::character_isalnum(pszStaticText[10])
-            && ::character_isdigit(pszStaticText[11])
-            && ::character_isdigit(pszStaticText[12])
-            && !::character_isalnum(pszStaticText[13])
-            && ::character_isdigit(pszStaticText[14])
-            && ::character_isdigit(pszStaticText[15])
-            && !::character_isalnum(pszStaticText[16])
-            && ::character_isdigit(pszStaticText[17])
-            && ::character_isdigit(pszStaticText[18])
+            && !::character_isalnum(scopedstrStaticText[10])
+            && ::character_isdigit(scopedstrStaticText[11])
+            && ::character_isdigit(scopedstrStaticText[12])
+            && !::character_isalnum(scopedstrStaticText[13])
+            && ::character_isdigit(scopedstrStaticText[14])
+            && ::character_isdigit(scopedstrStaticText[15])
+            && !::character_isalnum(scopedstrStaticText[16])
+            && ::character_isdigit(scopedstrStaticText[17])
+            && ::character_isdigit(scopedstrStaticText[18])
             )
          {
 
-            releasetimeforproject.m_iHour = ::as_int(scoped_ansi_string(pszStaticText + 11, 2));
-            releasetimeforproject.m_iMinute = ::as_int(scoped_ansi_string(pszStaticText + 14, 2));
-            releasetimeforproject.m_iSecond = ::as_int(scoped_ansi_string(pszStaticText + 17, 2));
+            releasetimeforproject.m_iHour = ::as_int(scoped_ansi_string(scopedstrStaticText + 11, 2));
+            releasetimeforproject.m_iMinute = ::as_int(scoped_ansi_string(scopedstrStaticText + 14, 2));
+            releasetimeforproject.m_iSecond = ::as_int(scoped_ansi_string(scopedstrStaticText + 17, 2));
 
          }
 

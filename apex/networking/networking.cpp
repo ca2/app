@@ -330,7 +330,7 @@ namespace networking
    } // rfc1738_decode
 
 
-   bool networking::is_ip4(const string& str)
+   bool networking::is_ip4(const ::scoped_string & scopedstr)
    {
       int dots = 0;
       // %! ignore :port?
@@ -347,7 +347,7 @@ namespace networking
    }
 
 
-   bool networking::is_ip6(const string& str)
+   bool networking::is_ip6(const ::scoped_string & scopedstr)
    {
       if (str.is_empty())
          return false;
@@ -393,7 +393,7 @@ namespace networking
    }
 
 
-   address_pointer networking::create_address(const ::string & strAddress, enum_address_type eaddresstypePreferred, port_t port)
+   address_pointer networking::create_address(const ::scoped_string & scopedstrAddress, enum_address_type eaddresstypePreferred, port_t port)
    {
 
       if (is_ip6(strAddress))
@@ -428,7 +428,7 @@ namespace networking
    }
 
 
-//   bool networking::convert(in_addr& l, const string& str, int ai_flags)
+//   bool networking::convert(in_addr& l, const ::scoped_string & scopedstr, int ai_flags)
 //   {
 //
 //      if (str.is_empty())
@@ -574,7 +574,7 @@ namespace networking
 //   }
 //
 //
-//   //bool networking::convert(struct in6_addr& l, const ::string & str, int ai_flags)
+//   //bool networking::convert(struct in6_addr& l, const ::scoped_string & scopedstr, int ai_flags)
 //   //{
 //
 //
@@ -1380,7 +1380,7 @@ namespace networking
    }
 
 
-   int networking::service_port(const string& str, int flags)
+   int networking::service_port(const ::scoped_string & scopedstr, int flags)
    {
 
       if (::str::is_simple_natural(str))
@@ -1684,7 +1684,7 @@ namespace networking
 //}
 
 
-   ::pointer<::networking::address>networking::create_ip4_address(const ::string & strIp4, ::networking::port_t port)
+   ::pointer<::networking::address>networking::create_ip4_address(const ::scoped_string & scopedstrIp4, ::networking::port_t port)
    {
 
       return nullptr;
@@ -1692,7 +1692,7 @@ namespace networking
    }
 
 
-   ::pointer<::networking::address>networking::create_ip6_address(const ::string & strIp6, ::networking::port_t port)
+   ::pointer<::networking::address>networking::create_ip6_address(const ::scoped_string & scopedstrIp6, ::networking::port_t port)
    {
 
       return nullptr;
@@ -1723,7 +1723,7 @@ namespace networking
 
 
 
-//string get_file_extension_mime_type(const ::string & strExtension)
+//string get_file_extension_mime_type(const ::scoped_string & scopedstrExtension)
 //{
 //
 //   if (strExtension == "iso")

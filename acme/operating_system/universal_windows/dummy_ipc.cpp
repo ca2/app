@@ -59,7 +59,7 @@
 //      bool tx::open(const ::scoped_string & scopedstrKey,launcher * plauncher)
 //      {
 //
-//         m_strBaseChannel = "acme\\appdata\\inteprocess_channel\\" + string(pszKey);
+//         m_strBaseChannel = "acme\\appdata\\inteprocess_channel\\" + string(scopedstrKey);
 //
 //         if(m_strBaseChannel.is_empty())
 //         {
@@ -172,7 +172,7 @@
 //            g_pfnChangeWindowMessageFilter(WM_COPYDATA,MSGFLT_ADD);
 //         }
 //
-//         m_strBaseChannel = "acme\\appdata\\inteprocess_channel\\" + string(pszKey);
+//         m_strBaseChannel = "acme\\appdata\\inteprocess_channel\\" + string(scopedstrKey);
 //
 //         if(m_strBaseChannel.is_empty())
 //         {
@@ -250,7 +250,7 @@
 //
 //         ::wait(m_pp->result->GetFilesAsync());
 //
-//         //HINSTANCE hinstance = ::GetModuleHandleA(pszWindowProcModule);
+//         //HINSTANCE hinstance = ::GetModuleHandleA(scopedstrWindowProcModule);
 //
 //         //ATOM atom = register_class(hinstance);
 //

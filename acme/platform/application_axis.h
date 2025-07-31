@@ -113,15 +113,15 @@ namespace platform
 
 
 
-      //virtual string http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema);
+      //virtual string http_get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
       //virtual void on_update_matter_locator() override;
 
-      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
-      //virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
+      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      //virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
-      //virtual string get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema);
-      //virtual string get_locale_schema_dir(const ::string & strLocale);
+      //virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+      //virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale);
       //virtual string get_locale_schema_dir() override;
 
       //virtual void set_locale(const string & pcsz, const ::action_context & action_context);

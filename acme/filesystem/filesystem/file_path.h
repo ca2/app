@@ -33,7 +33,7 @@ CLASS_DECL_ACME bool file_path_is_equal(const ::file::path & path1, const ::file
 CLASS_DECL_ACME string url_dir_name_for_relative(const ::file::path & path);
 
 CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bOnlyNativeFileSep, strsize_array & iaSlash);
-CLASS_DECL_ACME string solve_relative(const ::string & strParam, bool * pbUrl = nullptr);
+CLASS_DECL_ACME string solve_relative(const ::scoped_string & scopedstrParam, bool * pbUrl = nullptr);
 CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrAbsolute);
 
 inline char file_path_separator(enum_path epath);
@@ -42,7 +42,7 @@ inline const char * file_path_separator_sz(enum_path epath);
 
 inline char file_path_other_separator(enum_path epath);
 
-CLASS_DECL_ACME enum_path file_path_get_type(const ::string & str, enum_path epathForce = e_path_none);
+CLASS_DECL_ACME enum_path file_path_get_type(const ::scoped_string & scopedstr, enum_path epathForce = e_path_none);
 
 CLASS_DECL_ACME string file_path_normalize(string strPath, enum_path epath = e_path_none);
 

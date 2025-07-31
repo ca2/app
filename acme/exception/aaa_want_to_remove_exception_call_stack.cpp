@@ -9,7 +9,7 @@ e_callstack g_ecallstack = callstack_none;
 
 
 callstack::callstack(const ::scoped_string & scopedstrFormat, int iSkip, void * address, int iCount) :
-   m_pszFormat(pszFormat),
+   m_pszFormat(scopedstrFormat),
    m_iCount(iCount),
    m_caller_address(address)
 {
@@ -101,7 +101,7 @@ string get_callstack(particle * pparticle, const ::scoped_string & scopedstrForm
 
    }
 
-   auto pcallstack = __allocate callstack(pszFormat, (int)iSkip, caller_address, (int)iCount);
+   auto pcallstack = __allocate callstack(scopedstrFormat, (int)iSkip, caller_address, (int)iCount);
 
    return pcallstack;
 

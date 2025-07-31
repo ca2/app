@@ -43,9 +43,9 @@ void file_put_contents_raw(const ::file::path & path, const ::scoped_string & sc
    if (f == nullptr)
       return;
 
-   ::collection::count iSize = strlen(psz);
+   ::collection::count iSize = strlen(scopedstr);
 
-   ::collection::count iRead = fwrite(psz, 1, (size_t)iSize, f);
+   ::collection::count iRead = fwrite(scopedstr, 1, (size_t)iSize, f);
 
    fclose(f);
 
@@ -59,9 +59,9 @@ void file_add_contents_raw(const ::file::path & path, const ::scoped_string & sc
    if (f == nullptr)
       return;
 
-   ::collection::count iSize = strlen(psz);
+   ::collection::count iSize = strlen(scopedstr);
 
-   ::collection::count iRead = fwrite(psz, 1, (size_t)iSize, f);
+   ::collection::count iRead = fwrite(scopedstr, 1, (size_t)iSize, f);
 
    fclose(f);
 
@@ -75,7 +75,7 @@ void file_beg_contents_raw(const ::file::path & path, const ::scoped_string & sc
 
    long lLen;
 
-   lLen = (long) ( strlen(psz));
+   lLen = (long) ( strlen(scopedstr));
 
    fseek(f, lLen, SEEK_END);
 
@@ -106,7 +106,7 @@ void file_beg_contents_raw(const ::file::path & path, const ::scoped_string & sc
 
    fseek(f, 0, SEEK_SET);
 
-   auto lRead = fwrite(psz, 1, lLen, f);
+   auto lRead = fwrite(scopedstr, 1, lLen, f);
 
    if (lRead != lLen)
    {
@@ -219,7 +219,7 @@ bool file_set_line_dup(const ::file::path & path, ::collection::index iLine, con
 
    string str;
 
-   ::file::path path(pszPath);
+   ::file::path path(scopedstrPath);
 
             auto psystem = system();
 
@@ -298,7 +298,7 @@ pdirectorysystem->create(path.folder());
 
       fwrite("\n", 1, (size_t)iLine, file);
 
-      fwrite(pszLine, 1, strlen(pszLine), file);
+      fwrite(scopedstrLine, 1, strlen(scopedstrLine), file);
 
       fclose(file);
 
@@ -329,7 +329,7 @@ pdirectorysystem->create(path.folder());
 
       }
 
-      fwrite(pszLine, 1, strlen(pszLine), file2);
+      fwrite(scopedstrLine, 1, strlen(scopedstrLine), file2);
 
       ::collection::index iEnd = fseek(file, 0, SEEK_END);
 

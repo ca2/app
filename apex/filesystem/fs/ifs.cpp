@@ -339,8 +339,8 @@ int ifs::is_dir(const ::file::path & path)
 
 bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 {
-   __UNREFERENCED_PARAMETER(pszDst);
-   __UNREFERENCED_PARAMETER(pszSrc);
+   __UNREFERENCED_PARAMETER(scopedstrDst);
+   __UNREFERENCED_PARAMETER(scopedstrSrc);
    return true;
 }
 
@@ -369,7 +369,7 @@ file_pointer ifs::get_file(const ::payload & payloadFile, ::file::e_open eopen, 
 bool ifs::file_exists(const ::file::path & pszPath)
 {
 
-   return ::fs::data::file_exists(pszPath);
+   return ::fs::data::file_exists(scopedstrPath);
 
 }
 
@@ -377,7 +377,7 @@ bool ifs::file_exists(const ::file::path & pszPath)
 ::payload ifs::file_length(const ::file::path & pszPath)
 {
 
-   return ::fs::data::file_length(pszPath);
+   return ::fs::data::file_length(scopedstrPath);
 
 }
 

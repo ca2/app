@@ -81,7 +81,7 @@ namespace filemanager
 
       string strBase;
 
-      if(pszSrcBase.has_character())
+      if(scopedstrSrcBase.has_character())
       {
 
          strBase = pszSrcBase;
@@ -206,7 +206,7 @@ namespace filemanager
 
       // auto pcontext = get_context();
 
-      if(directory()->is(pszSrc) && !case_insensitive_string_ends(pszSrc,".zip"))
+      if(directory()->is(scopedstrSrc) && !case_insensitive_string_ends(scopedstrSrc,".zip"))
       {
 
          directory()->create(strDst.folder());
@@ -215,7 +215,7 @@ namespace filemanager
 
       }
 
-      m_fileSrc = file()->get_file(pszSrc,::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_write);
+      m_fileSrc = file()->get_file(scopedstrSrc,::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_write);
 
       if(m_fileSrc.is_null())
       {
@@ -229,11 +229,11 @@ namespace filemanager
       if(!m_bReplaceAll)
       {
 
-         //if(file()->exists(pszDst))
+         //if(file()->exists(scopedstrDst))
          //{
          //   ::property_set propertyset;
-         //   propertyset["srcfile"].get_value().set_string(pszSrc);
-         //   propertyset["dstfile"].get_value().set_string(pszDst);
+         //   propertyset["srcfile"].get_value().set_string(scopedstrSrc);
+         //   propertyset["dstfile"].get_value().set_string(scopedstrDst);
          //   output_error_message("filemanager\\do_you_want_to_replace_the_file.xml", propertyset);
          //   return false;
          //}

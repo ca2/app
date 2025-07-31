@@ -282,7 +282,7 @@ namespace gpu_opengl
          auto pszVersion = (const char *)glGetString(GL_VERSION);
          //::e_status estatus = 
 
-         ::string strVersion(pszVersion);
+         ::string strVersion(scopedstrVersion);
 
          if (strVersion.case_insensitive_contains("mesa"))
          {
@@ -470,7 +470,7 @@ namespace gpu_opengl
             auto pszVersion = (const char *)glGetString(GL_VERSION);
             //::e_status estatus = 
 
-            ::string strVersion(pszVersion);
+            ::string strVersion(scopedstrVersion);
 
             if (strVersion.case_insensitive_contains("mesa"))
             {

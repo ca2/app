@@ -123,7 +123,7 @@
 //
 //    char * buffer = nullptr;
 //
-//    FILE * f = fopen (pszFilename, "rb");
+//    FILE * f = fopen (scopedstrFilename, "rb");
 //
 //    if (f)
 //    {
@@ -162,7 +162,7 @@
 //    }
 //
 //    char * psz = (char*)malloc (str - start + 1);
-//    strncpy(psz, start, str - start);
+//    strncpy(scopedstr, start, str - start);
 //    psz[str-start] ='\0';
 //    return psz;
 //
@@ -171,8 +171,8 @@
 // char * case_insensitive_begins_skip(char * psz, const char * pszPrefix)
 // {
 //
-//    auto iLenPrefix = strlen(pszPrefix);
-//    if(strncmp(psz, pszPrefix, iLenPrefix) == 0)
+//    auto iLenPrefix = strlen(scopedstrPrefix);
+//    if(strncmp(scopedstr, pszPrefix, iLenPrefix) == 0)
 //    {
 //       return psz + iLenPrefix;
 //
@@ -184,16 +184,16 @@
 // char * trim_quotes(char * psz)
 // {
 //
-//    auto iLen = strlen(psz);
+//    auto iLen = strlen(scopedstr);
 //    if(*psz == '\"' && psz[iLen-1] == '\"')
 //    {
 //       char * pszTrimmed = (char*)malloc (iLen - 2 + 1);
-//       strncpy(pszTrimmed, psz + 1, iLen -2);
+//       strncpy(scopedstrTrimmed, psz + 1, iLen -2);
 //       psz[iLen -2] ='\0';
 //       return pszTrimmed;
 //
 //    }
-//    return strdup(psz);
+//    return strdup(scopedstr);
 //
 // }
 
@@ -234,7 +234,7 @@ m_pszDistro = nullptr;
 m_pszVersion = nullptr;
 m_pszBranch = nullptr;
 
-if (pszEtcOsRelease)
+if (scopedstrEtcOsRelease)
 {
 
 //printf("%s", pszEtcOsRelease);
@@ -244,7 +244,7 @@ auto psz = pszEtcOsRelease;
 while (true)
 {
 
-auto pszNewLine = get_line(psz, psz);
+auto pszNewLine = get_line(scopedstr, psz);
 
 if (!pszNewLine)
 {
@@ -253,17 +253,17 @@ break;
 
 }
 
-if (auto pszName = case_insensitive_begins_skip(pszNewLine, "ID="))
+if (auto pszName = case_insensitive_begins_skip(scopedstrNewLine, "ID="))
 {
 
-pszName = trim_quotes(pszName);
+pszName = trim_quotes(scopedstrName);
 
-if (!strcasecmp(pszName, "ubuntu"))
+if (!strcasecmp(scopedstrName, "ubuntu"))
 {
 
 auto pszXdgCurrentDesktop = getenv("XDG_CURRENT_DESKTOP");
 
-if (strstr(pszXdgCurrentDesktop, "KDE"))
+if (strstr(scopedstrXdgCurrentDesktop, "KDE"))
 {
 
 printf("This is Kubuntu System...\n");
@@ -282,7 +282,7 @@ m_pszDistro = "ubuntu";
 
 
 }
-else if (!strcasecmp(pszName, "fedora"))
+else if (!strcasecmp(scopedstrName, "fedora"))
 {
 
 printf("This is Fedora Linux System...\n");
@@ -290,7 +290,7 @@ printf("This is Fedora Linux System...\n");
 m_pszDistro = "fedora";
 
 }
-else if (!strcasecmp(pszName, "freebsd"))
+else if (!strcasecmp(scopedstrName, "freebsd"))
 {
 
 printf("This is FreeBSD System...\n");
@@ -301,7 +301,7 @@ m_pszVersion = strdup(m_pszVersion);
 
 auto pszDot = (char *) strchr(m_pszVersion, '.');
 
-if (pszDot)
+if (scopedstrDot)
 {
 
 *pszDot = '\0';
@@ -310,7 +310,7 @@ if (pszDot)
 
 auto pszXdgCurrentDesktop = getenv("XDG_CURRENT_DESKTOP");
 
-if (strstr(pszXdgCurrentDesktop, "GNOME"))
+if (strstr(scopedstrXdgCurrentDesktop, "GNOME"))
 {
 
 printf("This is GNOME System...\n");
@@ -318,7 +318,7 @@ printf("This is GNOME System...\n");
 m_pszBranch = "gnome";
 
 }
-else if (strstr(pszXdgCurrentDesktop, "KDE"))
+else if (strstr(scopedstrXdgCurrentDesktop, "KDE"))
 {
 
 printf("This is KDE System...\n");
@@ -335,7 +335,7 @@ printf("This is unknown branch...\n");
 
 
 }
-else if (!strcasecmp(pszName, "opensuse-tumbleweed"))
+else if (!strcasecmp(scopedstrName, "opensuse-tumbleweed"))
 {
 
 printf("This is openSUSE Tumbleweed System...\n");
@@ -344,7 +344,7 @@ m_pszDistro = "opensuse-tumbleweed";
 
 auto pszXdgCurrentDesktop = getenv("XDG_CURRENT_DESKTOP");
 
-if (strstr(pszXdgCurrentDesktop, "GNOME"))
+if (strstr(scopedstrXdgCurrentDesktop, "GNOME"))
 {
 
 printf("This is GNOME System...\n");
@@ -352,7 +352,7 @@ printf("This is GNOME System...\n");
 m_pszBranch = "gnome";
 
 }
-else if (strstr(pszXdgCurrentDesktop, "KDE"))
+else if (strstr(scopedstrXdgCurrentDesktop, "KDE"))
 {
 
 printf("This is KDE System...\n");
@@ -372,18 +372,18 @@ printf("This is unknown branch...\n");
 }
 
 }
-else if (auto pszVersionId = case_insensitive_begins_skip(pszNewLine, "VERSION_ID="))
+else if (auto pszVersionId = case_insensitive_begins_skip(scopedstrNewLine, "VERSION_ID="))
 {
 
-m_pszVersion = trim_quotes(pszVersionId);
+m_pszVersion = trim_quotes(scopedstrVersionId);
 
 printf("This System version is %s ...\n", m_pszVersion);
 
 }
-else if (auto pszBranchId = case_insensitive_begins_skip(pszNewLine, "VARIANT_ID="))
+else if (auto pszBranchId = case_insensitive_begins_skip(scopedstrNewLine, "VARIANT_ID="))
 {
 
-m_pszBranch = trim_quotes(pszBranchId);
+m_pszBranch = trim_quotes(scopedstrBranchId);
 
 printf("This System branch is %s ...\n", m_pszBranch);
 
@@ -434,7 +434,7 @@ return strdup(szUrl);
    {
 
    printf("%s\n", pszCommand);
-   ::system(pszCommand);
+   ::system(scopedstrCommand);
 
    }
 
@@ -453,14 +453,14 @@ void application::install_dependencies()
 
    }
 
-   auto pszCommand = (char*) ::malloc(strlen(psz) + 1024);
+   auto pszCommand = (char*) ::malloc(strlen(scopedstr) + 1024);
 
-   auto len = strlen(pszCommand);
+   auto len = strlen(scopedstrCommand);
 
    for(int i = 0; i < len; i++)
    {
 
-      if(pszCommand[i] == '\n' || pszCommand[i] == '\r')
+      if(scopedstrCommand[i] == '\n' || pszCommand[i] == '\r')
       {
 
          pszCommand[i] = ' ';
@@ -472,9 +472,9 @@ void application::install_dependencies()
    if(!strcmp(m_pszDistro, "ubuntu") || !strcmp(m_pszDistro, "kubuntu"))
    {
 
-      sprintf(pszCommand, "sudo apt -y install %s", psz);
+      sprintf(scopedstrCommand, "sudo apt -y install %s", psz);
 
-      log_system(pszCommand);
+      log_system(scopedstrCommand);
 
  //     log_system("sudo apt -y install libfreeimage3 libstartup-notification0 libunac1 libxm4");
 
@@ -482,11 +482,11 @@ void application::install_dependencies()
    else if(!strcmp(m_pszDistro, "fedora"))
    {
 
-      sprintf(pszCommand, "sudo dnf --assumeyes install %s", psz);
+      sprintf(scopedstrCommand, "sudo dnf --assumeyes install %s", psz);
 
   //    log_system("sudo dnf --assumeyes install freeimage libidn motif libappindicator-gtk3");
 
-      log_system(pszCommand);
+      log_system(scopedstrCommand);
 
    }
    else if(!strcmp(m_pszDistro, "freebsd"))
@@ -514,13 +514,13 @@ bool bOk = false;
 if (!strcasecmp(m_pszDistro, "freebsd"))
 {
 
-bOk = curl_check_http_ok(pszUrl);
+bOk = curl_check_http_ok(scopedstrUrl);
 
 }
 else
 {
 
-bOk = wget_check_http_ok(pszUrl);
+bOk = wget_check_http_ok(scopedstrUrl);
 
 }
 
@@ -756,7 +756,7 @@ m_pszDistro = nullptr;
 m_pszVersion = nullptr;
 m_pszBranch = nullptr;
 
-if (pszEtcOsRelease)
+if (scopedstrEtcOsRelease)
 {
 
 //printf("%s", pszEtcOsRelease);
@@ -766,7 +766,7 @@ auto psz = pszEtcOsRelease;
 while (true)
 {
 
-auto pszNewLine = get_line(psz, psz);
+auto pszNewLine = get_line(scopedstr, psz);
 
 if (!pszNewLine)
 {
@@ -775,17 +775,17 @@ break;
 
 }
 
-if (auto pszName = case_insensitive_begins_skip(pszNewLine, "ID="))
+if (auto pszName = case_insensitive_begins_skip(scopedstrNewLine, "ID="))
 {
 
-pszName = trim_quotes(pszName);
+pszName = trim_quotes(scopedstrName);
 
-if (!strcasecmp(pszName, "ubuntu"))
+if (!strcasecmp(scopedstrName, "ubuntu"))
 {
 
 auto pszXdgCurrentDesktop = getenv("XDG_CURRENT_DESKTOP");
 
-if (strstr(pszXdgCurrentDesktop, "KDE"))
+if (strstr(scopedstrXdgCurrentDesktop, "KDE"))
 {
 
 printf("This is Kubuntu System...\n");
@@ -804,7 +804,7 @@ m_pszDistro = "ubuntu";
 
 
 }
-else if (!strcasecmp(pszName, "fedora"))
+else if (!strcasecmp(scopedstrName, "fedora"))
 {
 
 printf("This is Fedora Linux System...\n");
@@ -812,7 +812,7 @@ printf("This is Fedora Linux System...\n");
 m_pszDistro = "fedora";
 
 }
-else if (!strcasecmp(pszName, "freebsd"))
+else if (!strcasecmp(scopedstrName, "freebsd"))
 {
 
 printf("This is FreeBSD System...\n");
@@ -823,7 +823,7 @@ m_pszVersion = strdup(m_pszVersion);
 
 auto pszDot = (char *) strchr(m_pszVersion, '.');
 
-if (pszDot)
+if (scopedstrDot)
 {
 
 *pszDot = '\0';
@@ -832,7 +832,7 @@ if (pszDot)
 
 auto pszXdgCurrentDesktop = getenv("XDG_CURRENT_DESKTOP");
 
-if (strstr(pszXdgCurrentDesktop, "GNOME"))
+if (strstr(scopedstrXdgCurrentDesktop, "GNOME"))
 {
 
 printf("This is GNOME System...\n");
@@ -840,7 +840,7 @@ printf("This is GNOME System...\n");
 m_pszBranch = "gnome";
 
 }
-else if (strstr(pszXdgCurrentDesktop, "KDE"))
+else if (strstr(scopedstrXdgCurrentDesktop, "KDE"))
 {
 
 printf("This is KDE System...\n");
@@ -857,7 +857,7 @@ printf("This is unknown branch...\n");
 
 
 }
-else if (!strcasecmp(pszName, "opensuse-tumbleweed"))
+else if (!strcasecmp(scopedstrName, "opensuse-tumbleweed"))
 {
 
 printf("This is openSUSE Tumbleweed System...\n");
@@ -866,7 +866,7 @@ m_pszDistro = "opensuse-tumbleweed";
 
 auto pszXdgCurrentDesktop = getenv("XDG_CURRENT_DESKTOP");
 
-if (strstr(pszXdgCurrentDesktop, "GNOME"))
+if (strstr(scopedstrXdgCurrentDesktop, "GNOME"))
 {
 
 printf("This is GNOME System...\n");
@@ -874,7 +874,7 @@ printf("This is GNOME System...\n");
 m_pszBranch = "gnome";
 
 }
-else if (strstr(pszXdgCurrentDesktop, "KDE"))
+else if (strstr(scopedstrXdgCurrentDesktop, "KDE"))
 {
 
 printf("This is KDE System...\n");
@@ -894,18 +894,18 @@ printf("This is unknown branch...\n");
 }
 
 }
-else if (auto pszVersionId = case_insensitive_begins_skip(pszNewLine, "VERSION_ID="))
+else if (auto pszVersionId = case_insensitive_begins_skip(scopedstrNewLine, "VERSION_ID="))
 {
 
-m_pszVersion = trim_quotes(pszVersionId);
+m_pszVersion = trim_quotes(scopedstrVersionId);
 
 printf("This System version is %s ...\n", m_pszVersion);
 
 }
-else if (auto pszBranchId = case_insensitive_begins_skip(pszNewLine, "VARIANT_ID="))
+else if (auto pszBranchId = case_insensitive_begins_skip(scopedstrNewLine, "VARIANT_ID="))
 {
 
-m_pszBranch = trim_quotes(pszBranchId);
+m_pszBranch = trim_quotes(scopedstrBranchId);
 
 printf("This System branch is %s ...\n", m_pszBranch);
 
@@ -956,7 +956,7 @@ return strdup(szUrl);
    {
 
    printf("%s\n", pszCommand);
-   ::system(pszCommand);
+   ::system(scopedstrCommand);
 
    }
 
@@ -975,14 +975,14 @@ void application::install_dependencies()
 
    }
 
-   auto pszCommand = (char*) ::malloc(strlen(psz) + 1024);
+   auto pszCommand = (char*) ::malloc(strlen(scopedstr) + 1024);
 
-   auto len = strlen(pszCommand);
+   auto len = strlen(scopedstrCommand);
 
    for(int i = 0; i < len; i++)
    {
 
-      if(pszCommand[i] == '\n' || pszCommand[i] == '\r')
+      if(scopedstrCommand[i] == '\n' || pszCommand[i] == '\r')
       {
 
          pszCommand[i] = ' ';
@@ -994,9 +994,9 @@ void application::install_dependencies()
    if(!strcmp(m_pszDistro, "ubuntu") || !strcmp(m_pszDistro, "kubuntu"))
    {
 
-      sprintf(pszCommand, "sudo apt -y install %s", psz);
+      sprintf(scopedstrCommand, "sudo apt -y install %s", psz);
 
-      log_system(pszCommand);
+      log_system(scopedstrCommand);
 
  //     log_system("sudo apt -y install libfreeimage3 libstartup-notification0 libunac1 libxm4");
 
@@ -1004,11 +1004,11 @@ void application::install_dependencies()
    else if(!strcmp(m_pszDistro, "fedora"))
    {
 
-      sprintf(pszCommand, "sudo dnf --assumeyes install %s", psz);
+      sprintf(scopedstrCommand, "sudo dnf --assumeyes install %s", psz);
 
   //    log_system("sudo dnf --assumeyes install freeimage libidn motif libappindicator-gtk3");
 
-      log_system(pszCommand);
+      log_system(scopedstrCommand);
 
    }
    else if(!strcmp(m_pszDistro, "freebsd"))
@@ -1036,13 +1036,13 @@ bool bOk = false;
 if (!strcasecmp(m_pszDistro, "freebsd"))
 {
 
-bOk = curl_check_http_ok(pszUrl);
+bOk = curl_check_http_ok(scopedstrUrl);
 
 }
 else
 {
 
-bOk = wget_check_http_ok(pszUrl);
+bOk = wget_check_http_ok(scopedstrUrl);
 
 }
 
@@ -1080,7 +1080,7 @@ int main(int argc, char * argv[])
    catch(const char * psz)
    {
 
-   fprintf(stderr, psz, 1, strlen(psz));
+   fprintf(stderr, psz, 1, strlen(scopedstr));
    }
 
       return application.m_iExitCode;
@@ -1160,7 +1160,7 @@ int main(int argc, char * argv[])
 //      while(true)
 //      {
 //
-//      auto pszNewLine = get_line(psz, psz);
+//      auto pszNewLine = get_line(scopedstr, psz);
 //
 //      if(!pszNewLine)
 //      {
@@ -1170,7 +1170,7 @@ int main(int argc, char * argv[])
 //      }
 //
 //
-//      if(pszNewLine[0] == ' '
+//      if(scopedstrNewLine[0] == ' '
 //      && pszNewLine[1] == ' '
 //      && pszNewLine[2] == 'H'
 //      && pszNewLine[3] == 'T'
@@ -1179,7 +1179,7 @@ int main(int argc, char * argv[])
 //      && pszNewLine[6] == '/')
 //      {
 //
-//      auto pszSpace = strchr(pszNewLine + 6, ' ');
+//      auto pszSpace = strchr(scopedstrNewLine + 6, ' ');
 //
 //      if(!pszSpace)
 //      {
@@ -1188,11 +1188,11 @@ int main(int argc, char * argv[])
 //
 //      }
 //
-//      auto nonSpace = strspn(pszSpace, " \t");
+//      auto nonSpace = strspn(scopedstrSpace, " \t");
 //
 //      auto pszNonSpace = pszSpace + nonSpace;
 //
-//      auto pszNewLine = strpbrk(pszNonSpace, "\r\n");
+//      auto pszNewLine = strpbrk(scopedstrNonSpace, "\r\n");
 //
 //      if(!pszNewLine)
 //      {
@@ -1201,7 +1201,7 @@ int main(int argc, char * argv[])
 //
 //      }
 //
-//      if(!strncmp(pszNonSpace, "200", pszNewLine - pszNonSpace))
+//      if(!strncmp(scopedstrNonSpace, "200", pszNewLine - pszNonSpace))
 //      {
 //
 //      return true;
@@ -1219,7 +1219,7 @@ int main(int argc, char * argv[])
 
 //      {
 //
-//      auto pszNewLine = get_line(psz, psz);
+//      auto pszNewLine = get_line(scopedstr, psz);
 //
 //      if(!pszNewLine)
 //      {
@@ -1229,7 +1229,7 @@ int main(int argc, char * argv[])
 //      }
 //
 //
-//      if(pszNewLine[0] == ' '
+//      if(scopedstrNewLine[0] == ' '
 //      && pszNewLine[1] == ' '
 //      && pszNewLine[2] == 'H'
 //      && pszNewLine[3] == 'T'
@@ -1238,7 +1238,7 @@ int main(int argc, char * argv[])
 //      && pszNewLine[6] == '/')
 //      {
 //
-//      auto pszSpace = strchr(pszNewLine + 6, ' ');
+//      auto pszSpace = strchr(scopedstrNewLine + 6, ' ');
 //
 //      if(!pszSpace)
 //      {
@@ -1247,11 +1247,11 @@ int main(int argc, char * argv[])
 //
 //      }
 //
-//      auto nonSpace = strspn(pszSpace, " \t");
+//      auto nonSpace = strspn(scopedstrSpace, " \t");
 //
 //      auto pszNonSpace = pszSpace + nonSpace;
 //
-//      auto pszNewLine = strpbrk(pszNonSpace, "\r\n");
+//      auto pszNewLine = strpbrk(scopedstrNonSpace, "\r\n");
 //
 //      if(!pszNewLine)
 //      {
@@ -1260,7 +1260,7 @@ int main(int argc, char * argv[])
 //
 //      }
 //
-//      if(!strncmp(pszNonSpace, "200", pszNewLine - pszNonSpace))
+//      if(!strncmp(scopedstrNonSpace, "200", pszNewLine - pszNonSpace))
 //      {
 //
 //      return true;

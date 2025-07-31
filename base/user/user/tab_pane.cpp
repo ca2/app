@@ -97,10 +97,10 @@ namespace user
    }
 
 
-   void tab_pane::set_title(const ::string & pszTitle)
+   void tab_pane::set_title(const ::scoped_string & scopedstrTitle)
    {
 
-      //string strTitle(pszTitle);
+      //string strTitle(scopedstrTitle);
 
       //auto psystem = system();
 
@@ -115,7 +115,7 @@ namespace user
 
       //}
 
-      m_textTitle = m_ptab->__text(pszTitle);
+      m_textTitle = m_ptab->__text(scopedstrTitle);
 
       m_ptab->set_need_layout();
 

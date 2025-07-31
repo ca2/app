@@ -6425,7 +6425,7 @@ namespace user
    }
 
 
-   void list2::Filter1(const string& strFilter)
+   void list2::Filter1(const ::scoped_string & scopedstrFilter)
    {
 
       if (m_eview == impact_icon)

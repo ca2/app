@@ -171,13 +171,13 @@ public:
    //
    //       ::string strText;
    //
-   //       ASSERT(is_string_ok(pszFormat));
+   //       ASSERT(is_string_ok(scopedstrFormat));
    //
    //       va_list argList;
    //
    //       va_start(argList, pszFormat);
    //
-   //       strText.formatf_arguments(pszFormat, argList);
+   //       strText.formatf_arguments(scopedstrFormat, argList);
    //
    //       va_end(argList);
    //
@@ -480,7 +480,7 @@ public:
    //
    //       }
    //
-   //       print(psz);
+   //       print(scopedstr);
    //
    //       if (m_fmtflags & ::file::network_payload)
    //       {
@@ -588,7 +588,7 @@ public:
        // void network_payload_write(const ::matter & matter);
 
 
-   void raw_print(const ::string & str);
+   void raw_print(const ::scoped_string & scopedstr);
    //    {
    //
    //       print(str);
@@ -596,7 +596,7 @@ public:
    //    }
 
 
-       //void print_number(const ::string& str)
+       //void print_number(const ::scoped_string & scopedstr)
        //{
 
        //   print_number(str);
@@ -612,7 +612,7 @@ public:
 
 //    {
 //
-//       m_pfile->write(psz, s);
+//       m_pfile->write(scopedstr, s);
 //
 //    }
 

@@ -48,9 +48,9 @@ namespace database
    //   return *this;
    //}
 
-   field_definition_item::enum_type field_definition_item::field_str_to_type(const ::string & pszType)
+   field_definition_item::enum_type field_definition_item::field_str_to_type(const ::scoped_string & scopedstrType)
    {
-      string strType(pszType);
+      string strType(scopedstrType);
       strType.make_lower();
       if(strType == "text")
       {

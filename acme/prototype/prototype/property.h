@@ -227,7 +227,7 @@ using property_holder_array = ::array < ::holder < ::property > >;
 //using property_map = map < ::atom, const ::atom &, payload, const ::payload &, ::property >;
 
 
-//inline bool operator == (const ::string & str, const property & prop)
+//inline bool operator == (const ::scoped_string & scopedstr, const property & prop)
 //{
 //
 //   return str == prop.get_string();

@@ -50,7 +50,7 @@ namespace userex
       virtual ::user::interaction * get_font_interaction();
       virtual ::user::interaction * get_color_interaction();
 
-      void add_pane_tab_impact_handler_library(const ::string & strLibrary);
+      void add_pane_tab_impact_handler_library(const ::scoped_string & scopedstrLibrary);
 
 
       // ::core::application* get_app();

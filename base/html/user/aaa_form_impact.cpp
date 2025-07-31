@@ -121,16 +121,16 @@ bool html_form_impact::Refresh2(int i)
 }
 
 
-bool html_form_impact::browse(const ::string & pszUrl)
+bool html_form_impact::browse(const ::scoped_string & scopedstrUrl)
 {
    ASSERT(false);
-   /*   if(!open_document(pszUrl))
+   /*   if(!open_document(scopedstrUrl))
          return false;*/
    m_strPath = pszUrl;
    return true;
 }
 
-void html_form_impact::on_document_complete(const ::string & strUrl)
+void html_form_impact::on_document_complete(const ::scoped_string & scopedstrUrl)
 {
    __UNREFERENCED_PARAMETER(strUrl);
 }

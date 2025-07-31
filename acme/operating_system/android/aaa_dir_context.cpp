@@ -289,7 +289,7 @@ namespace android
    //      if(!strName.begins_eat(strDir))
    //         continue;
 
-   //      if(!matches_wildcard_criteria(pszPattern, strName))
+   //      if(!matches_wildcard_criteria(scopedstrPattern, strName))
    //         continue;
 
    //      if(pstraPath != nullptr)
@@ -688,7 +688,7 @@ namespace android
    }
 
 
-   //bool directory_context::is(const ::string & strPath)
+   //bool directory_context::is(const ::scoped_string & scopedstrPath)
    //{
 
    //   if(::file::system_dir::is(strPath))
@@ -861,7 +861,7 @@ namespace android
    }
 
 
-   ::file::path directory_context::time_log(const ::string & strId)
+   ::file::path directory_context::time_log(const ::scoped_string & scopedstrId)
    {
 
       return appdata() / "log";
@@ -952,7 +952,7 @@ namespace android
 
          ::file::listing straPath(get_context());
 
-         straPath.ls(psz);
+         straPath.ls(scopedstr);
 
          for (int i = 0; i < straPath.get_count(); i++)
          {
@@ -960,7 +960,7 @@ namespace android
             if (is(straPath[i]))
             {
 
-               rm(psz / straPath[i].name(), true);
+               rm(scopedstr / straPath[i].name(), true);
 
             }
             else
@@ -974,7 +974,7 @@ namespace android
 
       }
 
-      return ::rmdir(psz) != false;
+      return ::rmdir(scopedstr) != false;
 
    }
 
@@ -1066,12 +1066,12 @@ pdirectorysystem->system() / "temp");
    ::file::path directory_context::trash_that_is_not_trash(const ::file::path & pszParam)
    {
 
-      if (pszParam == nullptr)
+      if (scopedstrParam == nullptr)
          return "";
 
-      ::file::path psz(pszParam);
+      ::file::path psz(scopedstrParam);
 
-      if (psz[1] == ':')
+      if (scopedstr[1] == ':')
       {
          string strDir = psz.folder();
          string str;
@@ -1297,7 +1297,7 @@ pdirectorysystem->system() / ".ca2/app/appdata";
    bool directory_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return case_insensitive_string_begins(pszDir, pszPath);
+      return case_insensitive_string_begins(scopedstrDir, pszPath);
 
    }
 
@@ -1307,7 +1307,7 @@ pdirectorysystem->system() / ".ca2/app/appdata";
 
       ::file::listing ls(get_context());
 
-      ls.ls_dir(pszDir);
+      ls.ls_dir(scopedstrDir);
 
       return ls.get_size() > 0;
 

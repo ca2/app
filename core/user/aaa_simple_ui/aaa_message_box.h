@@ -23,7 +23,7 @@ namespace simple_ui
       manual_reset_happening               m_happeningReady;
 
 
-      message_box(::particle * pparticle, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::duration durationTimeout);
+      message_box(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::duration durationTimeout);
       virtual ~message_box();
 
 
@@ -33,11 +33,11 @@ namespace simple_ui
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool on_action(const ::string & pszId) override;
+      bool on_action(const ::scoped_string & scopedstrId) override;
 
-      virtual void create_a_button(atom atom, const ::string & pszText);
-      virtual void create_b_button(atom atom, const ::string & pszText);
-      virtual void create_button(pointer_array < tap > & tapa, atom atom, const ::string & pszText);
+      virtual void create_a_button(atom atom, const ::scoped_string & scopedstrText);
+      virtual void create_b_button(atom atom, const ::scoped_string & scopedstrText);
+      virtual void create_button(pointer_array < tap > & tapa, atom atom, const ::scoped_string & scopedstrText);
 
 
       virtual void pre_translate_message(::message::message * pmessage) override;

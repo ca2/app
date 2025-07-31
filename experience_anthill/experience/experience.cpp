@@ -71,10 +71,10 @@ namespace experience_anthill
    }
 
 
-   ::pointer < ::experience::frame > experience::frame_experience(const ::string & pszSchema)
+   ::pointer < ::experience::frame > experience::frame_experience(const ::scoped_string & scopedstrSchema)
    {
 
-      string strSchema(pszSchema);
+      string strSchema(scopedstrSchema);
 
       if (strSchema == "001")
       {

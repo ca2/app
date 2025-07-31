@@ -32,7 +32,7 @@ namespace micro
       void calculate_size_and_position(int x = INT_MIN, int y = INT_MIN);
 
 
-      virtual void initialize_popup_button(const ::string& strText, int x, int y,
+      virtual void initialize_popup_button(const ::scoped_string & scopedstrText, int x, int y,
                                            ::acme::user::interaction * pacmeuserinteractionOwner);
 
 

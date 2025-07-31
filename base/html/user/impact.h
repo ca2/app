@@ -31,9 +31,9 @@ public:
 
    string GetLocationURL();
    bool Refresh2(int i);
-   virtual bool browse(const ::string & pszUrl) override;
+   virtual bool browse(const ::scoped_string & scopedstrUrl) override;
 
-   virtual void on_document_complete(const ::string & strUrl);
+   virtual void on_document_complete(const ::scoped_string & scopedstrUrl);
 
 
    void install_message_routing(::channel * pchannel) override;
@@ -46,7 +46,7 @@ public:
 
 
    bool open_document(const ::payload & payloadFile) override;
-   bool open_html(const ::string & strHtml) override;
+   bool open_html(const ::scoped_string & scopedstrHtml) override;
    void soft_reload() override;
 
 

@@ -28,7 +28,7 @@ CLASS_DECL_ACME void * memory_allocate(memsize size, memsize * psizeAllocated, c
       
    }
 
-   if(::is_set(pszAnnotation))
+   if(::is_set(scopedstrAnnotation))
    {
 
       information() << "memory_allocate annotation : " << pszAnnotation;
@@ -109,7 +109,7 @@ CLASS_DECL_ACME void * memory_allocate_debug(memsize size, int nType, const char
 
    void * p;
 
-   if(::is_null(pszAnnotation))
+   if(::is_null(scopedstrAnnotation))
    {
 
       information() << "memory_allocate_debug annotation : " << pszAnnotation;
@@ -147,7 +147,7 @@ CLASS_DECL_ACME void * memory_reallocate_debug(void * p, memsize size, int nType
 
    auto pheapmemory = heap_memory_get(p);
 
-   if(::is_null(pszAnnotation))
+   if(::is_null(scopedstrAnnotation))
    {
 
       information() << "memory_reallocate_debug annotation : " << pszAnnotation;

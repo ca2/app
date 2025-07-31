@@ -378,7 +378,7 @@ browse(pathInitialBrowse, ::e_source_initialize);
 //   }
 
 
-   string data::get_last_browse_path(::particle * pparticle, const ::string & pszDefault)
+   string data::get_last_browse_path(::particle * pparticle, const ::scoped_string & scopedstrDefault)
    {
 
       string strPath;
@@ -417,7 +417,7 @@ browse(pathInitialBrowse, ::e_source_initialize);
 
       }
 
-    /*  if (pszDefault != nullptr && strlen(pszDefault) > 0)
+    /*  if (scopedstrDefault != nullptr && strlen(scopedstrDefault) > 0)
       {
 
          strPath = pszDefault;

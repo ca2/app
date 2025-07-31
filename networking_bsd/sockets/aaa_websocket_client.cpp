@@ -374,7 +374,7 @@ namespace networking_bsd
    }
 
 
-   websocket_client::websocket_client(const string & url_in, const ::string & strProtocol) :
+   websocket_client::websocket_client(const string & url_in, const ::scoped_string & scopedstrProtocol) :
       //::object(&h),
       //base_socket(h),
       //socket(h),

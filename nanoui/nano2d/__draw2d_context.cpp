@@ -791,7 +791,7 @@ namespace nano2d
       while (*psz && iChar < maxPositions)
       {
 
-         int iLen = get_utf8_char_length(psz);
+         int iLen = get_utf8_char_length(scopedstr);
 
          positions[iChar].str = psz;
 

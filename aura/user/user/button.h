@@ -74,7 +74,7 @@ namespace user
 
 
       button();
-      button(const ::string & pszName, const ::atom & atom);
+      button(const ::scoped_string & scopedstrName, const ::atom & atom);
       ~button() override;
 
 

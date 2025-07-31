@@ -767,13 +767,13 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
 
 
-   bool plugin::hist(const ::string & pszUrl)
+   bool plugin::hist(const ::scoped_string & scopedstrUrl)
    {
-      return open_link(pszUrl, "");
+      return open_link(scopedstrUrl, "");
    }
 
 
-   void plugin::run_start_install(const ::string & pszType, const ::string & pszInstall, const ::string & pszLocale, const ::string & pszSchema)
+   void plugin::run_start_install(const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrInstall, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
       {
@@ -806,12 +806,12 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
          if(lpnodeInstalled == nullptr)
             goto run_install;
 
-         ::xml::node * lpnodeType = lpnodeInstalled->get_child(pszType);
+         ::xml::node * lpnodeType = lpnodeInstalled->get_child(scopedstrType);
 
          if(lpnodeType == nullptr)
             goto run_install;
 
-         ::xml::node * pnode = lpnodeType->GetChildByAttr(pszType, "id", pszInstall);
+         ::xml::node * pnode = lpnodeType->GetChildByAttr(scopedstrType, "id", pszInstall);
 
          if(pnode == nullptr)
             goto run_install;
@@ -824,7 +824,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
 run_install:
 
-      m_phost->start_app_install(pszInstall);
+      m_phost->start_app_install(scopedstrInstall);
 
 
    }
@@ -1056,7 +1056,7 @@ run_install:
          ::FillSolidRect_dup(hdc, &rectangle, rgb(255, 255, 255));
          ::SetTextColor(hdc, rgb(255, 0, 255));
          const ::scoped_string & scopedstr = "ca is not installed! You may try to install using low level installer_install.exe.";
-         ::TextOutU_dup(hdc, 10, 10, psz, ansi_length(psz));*/
+         ::TextOutU_dup(hdc, 10, 10, psz, ansi_length(scopedstr));*/
       }
       else
       {
@@ -1501,7 +1501,7 @@ retry_get_prompt:
    }
 
 
-   void plugin::on_login_result(const ::e_status & estatus, const ::string & pszResponse)
+   void plugin::on_login_result(const ::e_status & estatus, const ::scoped_string & scopedstrResponse)
    {
 
       if(eresult == ::account::result_auth)

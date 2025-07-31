@@ -734,7 +734,7 @@ public:
 //
 
 //   template < primitive_character CHARACTER2 >
-//   string_base operator + (const CHARACTER2 * psz) const { auto str = *this; str.append(psz); return ::transfer(str); }
+//   string_base operator + (const CHARACTER2 * psz) const { auto str = *this; str.append(scopedstr); return ::transfer(str); }
 
 
     // maybe it doesn't because of ambiguity with global
@@ -962,7 +962,7 @@ public:
 //   template < primitive_character CHARACTER2 >
 //   inline string_base & assign(const CHARACTER2 * pszSrc, character_count length)
 //   {
-//      return assign(pszSrc, 0, length);
+//      return assign(scopedstrSrc, 0, length);
 //   }
    //template < primitive_block BLOCK >
    //inline string_base& assign(const BLOCK & pszSrc, character_count length);
@@ -2184,7 +2184,7 @@ public:
 //inline ::string operator +(const ::string & cstr, const ::ansi_character * psz)
 //{
 //
-//   return str + ::string(psz);
+//   return str + ::string(scopedstr);
 //
 //}
 
@@ -2196,7 +2196,7 @@ public:
 //template < character_count m_sizeMaximumLength >
 //inline ::string operator +(const ::string & cstr, const ::inline_string < char, m_sizeMaximumLength > & inlinestring);
 
-//inline ::string operator +(const string & str, const ::string & cstr)
+//inline ::string operator +(const ::scoped_string & scopedstr, const ::string & cstr)
 //{
 //
 //   return ::string(str) + str;
@@ -2248,7 +2248,7 @@ public:
 //inline ::string_base < const CHARACTER1 * > operator + (const CHARACTER1 * psz, const inline_string<CHARACTER2, sizeMaximumLength > & inlinestring)
 //{
 //
-//   return ::string_base < const CHARACTER1 * >(psz) + ::string_base < const CHARACTER1 * >(inlinestring);
+//   return ::string_base < const CHARACTER1 * >(scopedstr) + ::string_base < const CHARACTER1 * >(inlinestring);
 //
 //}
 //
@@ -2256,7 +2256,7 @@ public:
 //constexpr ::string_base < const CHARACTER * > operator + (::str < const CHARACTER * > str, const CHARACTER2 * psz)
 //{
 //
-//   return ::transfer(::string_base < const CHARACTER * >(str) + ::string_base < const CHARACTER * >(psz));
+//   return ::transfer(::string_base < const CHARACTER * >(str) + ::string_base < const CHARACTER * >(scopedstr));
 //
 //}
 
@@ -2358,7 +2358,7 @@ public:
 //inline ::string_base < ITERATOR_TYPE > operator + (const char * psz, const string_base < ITERATOR_TYPE > & str)
 //{
 //
-//   return ::transfer(::string_base < ITERATOR_TYPE >(psz) + str);
+//   return ::transfer(::string_base < ITERATOR_TYPE >(scopedstr) + str);
 //
 //}
 
@@ -2466,7 +2466,7 @@ template < primitive_character CHARACTER2, has_as_string HAS_AS_STRING >
 //const_string_range_static_array < const CHARACTER *, t_size + 1 > operator + (const const_string_range_static_array < const CHARACTER *, t_size > & a, TYPED_CHARACTER_POINTER psz)
 //{
 //
-//   return { a, {psz, psz + string_safe_length(psz), e_range_null_terminated } };
+//   return { a, {psz, psz + string_safe_length(scopedstr), e_range_null_terminated } };
 //
 //}
 
@@ -2557,7 +2557,7 @@ template < >
 struct std::formatter<::string > :
    public ::std::formatter< ::std::string_view >
 {
-   auto format(const ::string& str, std::format_context& ctx) const {
+   auto format(const ::scoped_string & scopedstr, std::format_context& ctx) const {
       return ::std::formatter<::std::string_view>::format(::std::string_view{ str.begin(), str.end() }, ctx);
    }
 };

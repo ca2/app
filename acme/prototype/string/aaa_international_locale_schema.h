@@ -70,7 +70,7 @@ namespace str
       inline bool locale_schema::defer_add_locale(const ::scoped_string & scopedstrLocale, character_count iLen, atom idSchema)
       {
 
-         return defer_add_locale(localeid(pszLocale, iLen), idSchema);
+         return defer_add_locale(localeid(scopedstrLocale, iLen), idSchema);
 
       }
 

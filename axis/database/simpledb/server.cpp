@@ -28,7 +28,7 @@ namespace simpledb
 
 
 
-   void server::initialize_simpledb_server(::particle * pparticle, const ::string & pszDatabase)
+   void server::initialize_simpledb_server(::particle * pparticle, const ::scoped_string & scopedstrDatabase)
    {
 
       //auto estatus =
@@ -51,7 +51,7 @@ namespace simpledb
 
       }
 
-      ::file::path pathDatabase(pszDatabase);
+      ::file::path pathDatabase(scopedstrDatabase);
 
       //if (!
       directory()->create(pathDatabase.folder());
@@ -108,7 +108,7 @@ namespace simpledb
 
       //estatus = 
       
-      m_pdatabaseLocal->connect(pszDatabase);
+      m_pdatabaseLocal->connect(scopedstrDatabase);
 
  /*     if (!estatus)
       {
@@ -180,7 +180,7 @@ namespace simpledb
    }
 
 
-   void server::initialize_user(::database::database * pdatabaseUser, const ::string & pszUser)
+   void server::initialize_user(::database::database * pdatabaseUser, const ::scoped_string & scopedstrUser)
    {
 
       if (::is_null(pdatabaseUser))

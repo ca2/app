@@ -106,7 +106,7 @@ namespace user
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool set_sel_by_name(const string & strName) override;
+      bool set_sel_by_name(const ::scoped_string & scopedstrName) override;
 
       void ensure_sel_visible() override;
 

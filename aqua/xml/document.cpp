@@ -64,7 +64,7 @@ namespace xml
 
    //   auto psystem = system();
 
-   //   str = file()->as_string(psz);
+   //   str = file()->as_string(scopedstr);
 
    //   load(str);
 
@@ -87,7 +87,7 @@ namespace xml
    //}
 
 
-   void document::create_root(const ::string & strName)
+   void document::create_root(const ::scoped_string & scopedstrName)
    {
 
       create_root();
@@ -226,7 +226,7 @@ namespace xml
    }
 
 
-   void document::set_name(const ::string & strName)
+   void document::set_name(const ::scoped_string & scopedstrName)
    {
 
       ensure_root();
@@ -275,14 +275,14 @@ namespace xml
 
    //   pszRet = LoadOtherNodes(&bRet, pszNext, m_pparseinfo);
 
-   //   if (pszRet != nullptr)
+   //   if (scopedstrRet != nullptr)
    //   {
 
    //      pszNext = pszRet;
 
    //   }
 
-   //   if((pszNext = root()->_load(pszNext, m_pparseinfo )) == nullptr)
+   //   if((scopedstrNext = root()->_load(scopedstrNext, m_pparseinfo )) == nullptr)
    //   {
 
    //      m_nodea.erase_all();
@@ -304,7 +304,7 @@ namespace xml
 
    //   pszRet = LoadOtherNodes(&bRet, pszNext, m_pparseinfo);
 
-   //   if (pszRet != nullptr)
+   //   if (scopedstrRet != nullptr)
    //   {
 
    //      pszNext = pszRet;
@@ -380,7 +380,7 @@ namespace xml
 
       }
 
-      strName.assign(pszStart, rangeXml.m_begin - pszStart);
+      strName.assign(scopedstrStart, rangeXml.m_begin - pszStart);
 
       rangeXml.m_begin++;
 
@@ -488,7 +488,7 @@ namespace xml
 
       char * pszRight = (char *)m_memoryData.data() + iRight;
 
-      memory_transfer(pszRight + iDiff, pszRight, m_memoryData.size() - iRight - iDiff);
+      memory_transfer(scopedstrRight + iDiff, pszRight, m_memoryData.size() - iRight - iDiff);
 
       memory_copy(m_memoryData.data() + iPos, strValue, strValue.length_in_bytes());
 

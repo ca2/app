@@ -28,7 +28,7 @@ namespace interprocess
    }
 
 
-   void task::do_task(const string & strObject, const string & strMember, const ::property_set & propertyset)
+   void task::do_task(const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, const ::property_set & propertyset)
    {
 
       try

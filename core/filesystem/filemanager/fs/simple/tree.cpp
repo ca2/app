@@ -89,14 +89,14 @@ namespace filemanager
 //         }
 
 
-         void tree::parse(const ::string & pszSource)
+         void tree::parse(const ::scoped_string & scopedstrSource)
          {
 
             string str;
 
             auto pxmldocument = __create_new < ::xml::document >();
 
-            pxmldocument->load(pszSource);
+            pxmldocument->load(scopedstrSource);
 
             m_iParentFolder = pxmldocument->root()->attribute("id");
 

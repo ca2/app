@@ -495,7 +495,7 @@ namespace linux
    }
 
 
-   //bool copydesk::set_plain_text(const ::string & strParam)
+   //bool copydesk::set_plain_text(const ::scoped_string & scopedstrParam)
    //{
 
    //   string str(strParam);
@@ -511,7 +511,7 @@ namespace linux
    //}
 
 
-   bool copydesk::_set_plain_text(const ::string & str)
+   bool copydesk::_set_plain_text(const ::scoped_string & scopedstr)
    {
 
       gdk_fork([this, str]

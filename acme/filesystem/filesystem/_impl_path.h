@@ -22,7 +22,7 @@ namespace file
    //    inline path path::operator/(const ::ansi_character *psz) const
    //    {
    //
-   //       return ::transfer(*this / ::scoped_string(psz));
+   //       return ::transfer(*this / ::scoped_string(scopedstr));
    //
    //    }
 
@@ -311,13 +311,13 @@ namespace file
 
 
    //   path::path(const ::scoped_string & scopedstr, e_path epath, e_type etype):
-   //      path(string(psz), epath, iDir)
+   //      path(string(scopedstr), epath, iDir)
    //   {
    //
    //   }
 
    //   path::path(const unichar * psz, e_path epath, e_type etype) :
-   //      path(string(psz), epath, iDir)
+   //      path(string(scopedstr), epath, iDir)
    //   {
    //
    //   }
@@ -578,12 +578,12 @@ namespace file
        //}
 
 
-   inline path & path::operator += (const ::string & str)
+   inline path & path::operator += (const ::scoped_string & scopedstr)
    {
 
       auto pathThis = *this;
 
-      ::string::operator = (file_path_normalize(((const ::string &)pathThis) + str, this->m_epath));
+      ::string::operator = (file_path_normalize(((const ::string &)pathThis) + scopedstr, this->m_epath));
 
       return *this;
 
@@ -703,11 +703,11 @@ namespace file
     //::file::path path::replace_extension(const ::scoped_string & scopedstrNewExtension, const ::scoped_string & scopedstrOldExtension)
     //{
 
-    //   string strNewExtension(pszNewExtension);
+    //   string strNewExtension(scopedstrNewExtension);
 
     //   strNewExtension.case_insensitive_begins_eat(".");
 
-    //   string strOldExtension(pszOldExtension);
+    //   string strOldExtension(scopedstrOldExtension);
 
     //   strOldExtension.case_insensitive_begins_eat(".");
 
@@ -1106,7 +1106,7 @@ namespace file
        //inline path path::operator + (const ::scoped_string & scopedstr) const
        //{
 
-       //   return operator + (string(psz));
+       //   return operator + (string(scopedstr));
 
        //}
 
@@ -1115,7 +1115,7 @@ namespace file
    //   inline path& path::operator = (const ::scoped_string & scopedstr)
    //   {
    //
-   //      return operator = (string(psz));
+   //      return operator = (string(scopedstr));
    //
    //   }
 
@@ -1123,7 +1123,7 @@ namespace file
        //inline path& path::operator += (const ::scoped_string & scopedstr)
        //{
 
-       //   return operator += (string(psz));
+       //   return operator += (string(scopedstr));
 
        //}
 
@@ -1136,8 +1136,8 @@ namespace file
 
        //inline path& path::operator += (const wstring& wstr) { return operator += (string(wstr)); }
 
-       ////inline path& path::operator = (const ::wide_character* psz) { return operator = (wstring(psz)); }
-       //inline path& path::operator += (const ::wide_character* psz) { return operator += (wstring(psz)); }
+       ////inline path& path::operator = (const ::wide_character* psz) { return operator = (wstring(scopedstr)); }
+       //inline path& path::operator += (const ::wide_character* psz) { return operator += (wstring(scopedstr)); }
 
        //void path::to_string(string & str) const
        //{
@@ -1309,10 +1309,10 @@ namespace file
    }
 
 
-   inline bool path::operator == (const ::string & str) const
+   inline bool path::operator == (const ::scoped_string & scopedstr) const
    {
 
-      return operator == (path(str));
+      return operator == (path(scopedstr));
 
    }
 
@@ -1378,7 +1378,7 @@ namespace file
 
 
 // For MSVC, but not for GCC?
-//inline ::file::path operator +(const ::file::path & path, const ::string & str)
+//inline ::file::path operator +(const ::file::path & path, const ::scoped_string & scopedstr)
 //{
 //
 //   return ((const::string &)path) + str;
@@ -1427,7 +1427,7 @@ namespace file
 //}
 //
 //
-//inline ::file::path operator +(const ::string & str, const ::file::path & path)
+//inline ::file::path operator +(const ::scoped_string & scopedstr, const ::file::path & path)
 //{
 //
 //   return str + ((const::string &)path);
@@ -1470,8 +1470,8 @@ namespace file
 //    //inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
 //    inline path path::folder() const { return { ::file_path_folder(*this), m_epath }; }
 //    inline path path::sibling(const path & path) const { return { ::file_path_folder(*this) + ::string(this->separator()) + ::string(::sz::trim_left_path_sep(path)), m_epath }; }
-//    inline path path::sibling(const ::string & str) const { return { ::file_path_folder(*this) + ::string(this->separator()) + ::string(::sz::trim_left_path_sep(str)), m_epath }; }
-//    //inline path path::sibling(const ::string & psz) const { return { ::file_path_folder(*this) + sep() + ::sz::trim_left_path_sep(psz), m_epath }; }
+//    inline path path::sibling(const ::scoped_string & scopedstr) const { return { ::file_path_folder(*this) + ::string(this->separator()) + ::string(::sz::trim_left_path_sep(str)), m_epath }; }
+//    //inline path path::sibling(const ::scoped_string & scopedstr) const { return { ::file_path_folder(*this) + sep() + ::sz::trim_left_path_sep(scopedstr), m_epath }; }
 //    //inline string path::extension() const { return &m_pdata[find_skip_or_length('.', rear_find(sep()) + 1)]; }
 //    inline string path::final_extension() const { return file_path_final_extension(operator const char * ()); }
 //    //inline patha path::ascendants_path() const { patha patha; return ascendants_path(patha); }

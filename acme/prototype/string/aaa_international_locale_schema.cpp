@@ -318,7 +318,7 @@ namespace str
          //   }
          //}
 
-         return string(pszLocale, iLen);
+         return string(scopedstrLocale, iLen);
       }
 
 

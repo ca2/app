@@ -46,7 +46,7 @@ namespace simpledb
       virtual bool InitializeDataCentral();
       virtual bool FinalizeDataCentral();
 
-      virtual void on_set_keyboard_layout(const ::string & pszPath, const ::action_context & action_context);
+      virtual void on_set_keyboard_layout(const ::scoped_string & scopedstrPath, const ::action_context & action_context);
 
    };
 

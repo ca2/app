@@ -51,10 +51,10 @@
          }
 
 
-         ::pointer<::experience::frame>experience::get_frame(const ::string & pszSchema)
+         ::pointer<::experience::frame>experience::get_frame(const ::scoped_string & scopedstrSchema)
          {
 
-            string strSchema(pszSchema);
+            string strSchema(scopedstrSchema);
 
             if(strSchema == "001")
             {

@@ -2222,7 +2222,7 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
 }
 
 
-bool simple_frame_window::LoadFrame(const ::string & pszMatter, unsigned int dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
+bool simple_frame_window::LoadFrame(const ::scoped_string & scopedstrMatter, unsigned int dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
 {
 
 //   if (pusersystem->id().is_set())
@@ -2390,7 +2390,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, unsigned int dwD
 //
 //   }
 
-   if(!::experience::frame_window::LoadFrame(pszMatter, dwDefaultStyle,puiParent,  pusersystem))
+   if(!::experience::frame_window::LoadFrame(scopedstrMatter, dwDefaultStyle,puiParent,  pusersystem))
    {
 
 
@@ -3356,10 +3356,10 @@ void simple_frame_window::design_up()
 }
 
 
-//bool simple_frame_window::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, const ::string & pszMenuName, unsigned int dwExStyle, ::request * prequest)
+//bool simple_frame_window::create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, const ::scoped_string & scopedstrMenuName, unsigned int dwExStyle, ::request * prequest)
 //{
 //
-//   return ::user::frame_window::create_interaction(pszClassName, pszWindowName, uStyle, rectangle, puiParent, pszMenuName, dwExStyle, pcreate);
+//   return ::user::frame_window::create_interaction(scopedstrClassName, pszWindowName, uStyle, rectangle, puiParent, pszMenuName, dwExStyle, pcreate);
 //
 //}
 
@@ -3519,7 +3519,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //   // execute the command
 //   //LPWSTR pszCommand = strCommand.alloc(strCommand.length());
 //
-//   //if (!psystem->OnDDECommand(pszCommand))
+//   //if (!psystem->OnDDECommand(scopedstrCommand))
 //
 //   //   information(trace_category_appmsg, e_trace_level_warning, "Error: failed to execute DDE command '%s'.\n", pszCommand);
 //

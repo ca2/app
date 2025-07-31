@@ -16,7 +16,7 @@ namespace str
    public:
 
 
-      tokenizer(const ::string & strSrc);
+      tokenizer(const ::scoped_string & scopedstrSrc);
       tokenizer(const char * pch, int nLength );
 
       tokenizer();

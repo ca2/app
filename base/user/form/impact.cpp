@@ -97,10 +97,10 @@ namespace user
    }
 
 
-   bool form_impact::Navigate(const ::string & pszUrl)
+   bool form_impact::Navigate(const ::scoped_string & scopedstrUrl)
    {
 
-      __UNREFERENCED_PARAMETER(pszUrl);
+      __UNREFERENCED_PARAMETER(scopedstrUrl);
 
       return false;
 
@@ -230,7 +230,7 @@ namespace user
    }
 
 
-   bool form_impact::open_html(const ::string & str)
+   bool form_impact::open_html(const ::scoped_string & scopedstr)
    {
 
       synchronous_lock synchronouslock(this->synchronization());

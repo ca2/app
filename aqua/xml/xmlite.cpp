@@ -146,7 +146,7 @@ namespace xml
    //   // find
    //   if(i == len)
    //      return 0;
-   //   if(psz[i] > des[i])
+   //   if(scopedstr[i] > des[i])
    //      return 1;
    //   return -1;
    //}
@@ -194,7 +194,7 @@ namespace xml
    //char * _tcseistr(const ::ansi_character * psz,const char * str,int escape)
    //{
    //   character_count len = strlen(str);
-   //   return _tcsenistr(psz,str,len,escape);
+   //   return _tcsenistr(scopedstr,str,len,escape);
    //}
 
    

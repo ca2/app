@@ -76,7 +76,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   int resolveEntity(const ::string & pszEntity, string & strChar);
+   int resolveEntity(const ::scoped_string & scopedstrEntity, string & strChar);
 
 
 };

@@ -41,7 +41,7 @@
 #include <ctype.h>
 #endif
 
-//unsigned int RunSilent(const ::string & strFunct, const ::string & strstrParams);
+//unsigned int RunSilent(const ::scoped_string & scopedstrFunct, const ::scoped_string & scopedstrstrParams);
 
 
 
@@ -409,7 +409,7 @@ namespace dynamic_source
 
       auto pszBufferMillis = strMillis.get_buffer(3);
 
-      ::ansi_zero_pad(pszBufferMillis, 3);
+      ::ansi_zero_pad(scopedstrBufferMillis, 3);
 
       strMillis.release_buffer();
 
@@ -1452,7 +1452,7 @@ namespace dynamic_source
 
       single_lock slLibrary(m_pmutexLibrary, true);
 
-      auto p = m_mapLib.plookup(pszLibrary);
+      auto p = m_mapLib.plookup(scopedstrLibrary);
 
       if (::is_ok(p))
       {
@@ -1478,7 +1478,7 @@ namespace dynamic_source
 
       //unload_library();
 
-      string strLibrary(pszLibrary);
+      string strLibrary(scopedstrLibrary);
 
       ::file::path strName = strLibrary;
 
@@ -2006,7 +2006,7 @@ namespace dynamic_source
 
    string script_compiler::cppize2(const string& psz, bool bScript, string_array& straId)
    {
-      string str(psz);
+      string str(scopedstr);
       str.trim();
       bool bInSimpleQuote = false;
       bool bInDoubleQuote = false;
@@ -2636,15 +2636,15 @@ namespace dynamic_source
          return false;
       if (iIdLen == iLen)
       {
-         if (string_compare(psz, pszId) == 0)
+         if (string_compare(scopedstr, pszId) == 0)
          {
             iIdLenRet = iIdLen;
             return true;
          }
       }
-      if (string_begins(psz, pszId)
-         && !::character_isdigit(psz[iIdLen])
-         && !::character_isalpha(psz[iIdLen])
+      if (string_begins(scopedstr, pszId)
+         && !::character_isdigit(scopedstr[iIdLen])
+         && !::character_isalpha(scopedstr[iIdLen])
          && psz[iIdLen] != '_')
       {
          iIdLenRet = iIdLen;
@@ -2654,7 +2654,7 @@ namespace dynamic_source
    }
 
 
-   const char* script_compiler::next_nonspace(const ::string& strParam)
+   const char* script_compiler::next_nonspace(const ::scoped_string & scopedstrParam)
    {
 
       const ::ansi_character* psz = strParam;
@@ -2777,9 +2777,9 @@ namespace dynamic_source
 
    bool script_compiler::defer_run_persistent(const ::string& psz)
    {
-      string str(psz);
+      string str(scopedstr);
 
-      if (::str::case_insensitive_find("pstr_set", psz) && case_insensitive_string_ends(psz, ".txt"))
+      if (::str::case_insensitive_find("pstr_set", psz) && case_insensitive_string_ends(scopedstr, ".txt"))
       {
 
          parse_pstr_set();
@@ -2937,7 +2937,7 @@ namespace dynamic_source
 
    string script_compiler::get_ds_print(const ::string& psz)
    {
-      string strSource(psz);
+      string strSource(scopedstr);
       string strDest;
       while (strSource.length() > 0)
       {
@@ -3052,7 +3052,7 @@ namespace dynamic_source
 
       auto psystem = system();
 
-      psystem->texttable()->set(pszTopic, idLocale, idSchema, psz);
+      psystem->texttable()->set(scopedstrTopic, idLocale, idSchema, psz);
 
    }
 

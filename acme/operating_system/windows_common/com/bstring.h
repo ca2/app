@@ -15,7 +15,7 @@ public:
    bstring() { m_bstr = nullptr; }
    bstring(const OLECHAR * sz) { m_bstr = allocate_string(sz); }
 
-   bstring(const char * psz, int len = -1) { m_bstr = ::is_null(psz) ? nullptr : string_byte_len(psz, len < 0 ? (unsigned int) strlen(psz) : len); }
+   bstring(const char * psz, int len = -1) { m_bstr = ::is_null(scopedstr) ? nullptr : string_byte_len(scopedstr, len < 0 ? (unsigned int) strlen(scopedstr) : len); }
 
    ~bstring() { if(m_bstr) allocate_string(m_bstr); m_bstr = nullptr; }
 

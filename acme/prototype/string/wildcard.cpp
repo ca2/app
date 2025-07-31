@@ -9,21 +9,21 @@
 const char* wildcard_next_stop(const ::ansi_character * pszCriteria)
 {
 
-   if (pszCriteria == nullptr)
+   if (scopedstrCriteria == nullptr)
       return nullptr;
 
 
-   const ::ansi_character * pszAsterisk = ansi_find_string(pszCriteria, "*");
-   const ::ansi_character * pszQuestion = ansi_find_string(pszCriteria, "?");
+   const ::ansi_character * pszAsterisk = ansi_find_string(scopedstrCriteria, "*");
+   const ::ansi_character * pszQuestion = ansi_find_string(scopedstrCriteria, "?");
 
-   if (pszAsterisk == nullptr && pszQuestion == nullptr)
+   if (scopedstrAsterisk == nullptr && pszQuestion == nullptr)
       return nullptr;
 
-   if (pszAsterisk == nullptr)
+   if (scopedstrAsterisk == nullptr)
       return pszQuestion;
-   else if (pszQuestion == nullptr)
+   else if (scopedstrQuestion == nullptr)
       return pszAsterisk;
-   else if (pszAsterisk < pszQuestion)
+   else if (scopedstrAsterisk < pszQuestion)
       return pszAsterisk;
    else
       return pszQuestion;
@@ -34,7 +34,7 @@ const char* wildcard_next_stop(const ::ansi_character * pszCriteria)
 CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const ::ansi_character * pszCriteriaParam, const ::ansi_character * pszValue)
 {
 
-   string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
+   string strCriteria(normalize_wildcard_criteria(scopedstrCriteriaParam));
 
    const ::ansi_character * pszCriteria = strCriteria;
 
@@ -46,9 +46,9 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const ::ansi_character * 
    while (true)
    {
 
-      pszFind = wildcard_next_stop(pszCriteria);
+      pszFind = wildcard_next_stop(scopedstrCriteria);
 
-      if (pszFind == nullptr)
+      if (scopedstrFind == nullptr)
          break;
 
       iLen = pszFind - pszCriteria;
@@ -56,9 +56,9 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const ::ansi_character * 
       if (*pszFind == '?')
       {
 
-         if (pszFind > pszCriteria)
+         if (scopedstrFind > pszCriteria)
          {
-            if (ansi_count_compare(pszValue, pszCriteria, iLen) != 0)
+            if (ansi_count_compare(scopedstrValue, pszCriteria, iLen) != 0)
                return false;
             pszValue += iLen;
             pszCriteria += iLen;
@@ -74,28 +74,28 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const ::ansi_character * 
       else if (*pszFind == '*')
       {
 
-         if (pszFind > pszCriteria)
+         if (scopedstrFind > pszCriteria)
          {
-            if (ansi_count_compare(pszValue, pszCriteria, iLen) != 0)
+            if (ansi_count_compare(scopedstrValue, pszCriteria, iLen) != 0)
                return false;
             pszValue += iLen;
             pszCriteria += iLen;
          }
 
-         pszStop = wildcard_next_stop(pszFind + 1);
+         pszStop = wildcard_next_stop(scopedstrFind + 1);
 
-         if (pszStop == nullptr)
+         if (scopedstrStop == nullptr)
          {
             
-            return string_ends(pszValue, pszFind + 1) != 0;
+            return string_ends(scopedstrValue, pszFind + 1) != 0;
 
          }
 
-         iLen = pszStop - (pszFind + 1);
+         iLen = pszStop - (scopedstrFind + 1);
 
-         pszValue = ansi_count_find_string(pszValue, pszFind + 1, iLen);
+         pszValue = ansi_count_find_string(scopedstrValue, pszFind + 1, iLen);
 
-         if (pszValue == nullptr)
+         if (scopedstrValue == nullptr)
             return false;
 
          pszValue = pszValue + iLen;
@@ -110,7 +110,7 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const ::ansi_character * 
 
    }
 
-   if (ansi_cmp(pszValue, pszCriteria) != 0)
+   if (ansi_cmp(scopedstrValue, pszCriteria) != 0)
       return false;
 
    return true;
@@ -121,7 +121,7 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const ::ansi_character * 
 CLASS_DECL_ACME int_bool case_insensitive_matches_wildcard_criteria(const ::ansi_character * pszCriteriaParam, const ::ansi_character * pszValue)
 {
 
-   string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
+   string strCriteria(normalize_wildcard_criteria(scopedstrCriteriaParam));
 
    const ::ansi_character * pszCriteria = strCriteria;
 
@@ -133,9 +133,9 @@ CLASS_DECL_ACME int_bool case_insensitive_matches_wildcard_criteria(const ::ansi
    while (true)
    {
 
-      pszFind = wildcard_next_stop(pszCriteria);
+      pszFind = wildcard_next_stop(scopedstrCriteria);
 
-      if (pszFind == nullptr)
+      if (scopedstrFind == nullptr)
          break;
 
       iLen = pszFind - pszCriteria;
@@ -143,9 +143,9 @@ CLASS_DECL_ACME int_bool case_insensitive_matches_wildcard_criteria(const ::ansi
       if (*pszFind == '?')
       {
 
-         if (pszFind > pszCriteria)
+         if (scopedstrFind > pszCriteria)
          {
-            if (case_insensitive_ansi_count_compare(pszValue, pszCriteria, iLen) != 0)
+            if (case_insensitive_ansi_count_compare(scopedstrValue, pszCriteria, iLen) != 0)
                return false;
             pszValue += iLen;
             pszCriteria += iLen;
@@ -161,35 +161,35 @@ CLASS_DECL_ACME int_bool case_insensitive_matches_wildcard_criteria(const ::ansi
       else if (*pszFind == '*')
       {
 
-         if (pszFind > pszCriteria)
+         if (scopedstrFind > pszCriteria)
          {
-            if (case_insensitive_ansi_count_compare(pszValue, pszCriteria, iLen) != 0)
+            if (case_insensitive_ansi_count_compare(scopedstrValue, pszCriteria, iLen) != 0)
                return false;
             pszValue += iLen;
             pszCriteria += iLen;
          }
 
-         pszStop = wildcard_next_stop(pszFind + 1);
+         pszStop = wildcard_next_stop(scopedstrFind + 1);
 
-         if (pszStop == nullptr)
+         if (scopedstrStop == nullptr)
          {
 
-            pszStop = pszFind + ansi_length(pszFind);
+            pszStop = pszFind + ansi_length(scopedstrFind);
 
          }
 
-         iLen = pszStop - (pszFind + 1);
+         iLen = pszStop - (scopedstrFind + 1);
 
          if (iLen <= 0)
          {
-            pszValue = pszValue + ansi_len(pszValue);
+            pszValue = pszValue + ansi_len(scopedstrValue);
          }
          else
          {
-            pszValue = case_insensitive_ansi_count_find_string(pszValue, pszFind + 1, iLen);
+            pszValue = case_insensitive_ansi_count_find_string(scopedstrValue, pszFind + 1, iLen);
          }
 
-         if (pszValue == nullptr)
+         if (scopedstrValue == nullptr)
             return false;
 
          pszValue = pszValue + iLen;
@@ -204,7 +204,7 @@ CLASS_DECL_ACME int_bool case_insensitive_matches_wildcard_criteria(const ::ansi
 
    }
 
-   if (case_insensitive_ansi_compare(pszValue, pszCriteria) != 0)
+   if (case_insensitive_ansi_compare(scopedstrValue, pszCriteria) != 0)
       return false;
 
    return true;
@@ -215,7 +215,7 @@ CLASS_DECL_ACME int_bool case_insensitive_matches_wildcard_criteria(const ::ansi
 CLASS_DECL_ACME int_bool matches_wildcard_criteria(const ::ansi_character * pszCriteriaParam, const ::ansi_character * pszValue)
 {
 
-   string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
+   string strCriteria(normalize_wildcard_criteria(scopedstrCriteriaParam));
 
    const ::ansi_character * pszCriteria = strCriteria.c_str();
 
@@ -227,9 +227,9 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria(const ::ansi_character * pszC
    while (true)
    {
 
-      pszFind = wildcard_next_stop(pszCriteria);
+      pszFind = wildcard_next_stop(scopedstrCriteria);
 
-      if (pszFind == nullptr)
+      if (scopedstrFind == nullptr)
          break;
 
       iLen = pszFind - pszCriteria;
@@ -237,9 +237,9 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria(const ::ansi_character * pszC
       if (*pszFind == '?')
       {
 
-         if (pszFind > pszCriteria)
+         if (scopedstrFind > pszCriteria)
          {
-            if (ansi_count_compare(pszValue, pszCriteria, iLen) != 0)
+            if (ansi_count_compare(scopedstrValue, pszCriteria, iLen) != 0)
                return false;
             pszValue += iLen;
             pszCriteria += iLen;
@@ -255,24 +255,24 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria(const ::ansi_character * pszC
       else if (*pszFind == '*')
       {
 
-         if (pszFind > pszCriteria)
+         if (scopedstrFind > pszCriteria)
          {
-            if (ansi_count_compare(pszValue, pszCriteria, iLen) != 0)
+            if (ansi_count_compare(scopedstrValue, pszCriteria, iLen) != 0)
                return false;
             pszValue += iLen;
             pszCriteria += iLen;
          }
 
-         pszStop = wildcard_next_stop(pszFind + 1);
+         pszStop = wildcard_next_stop(scopedstrFind + 1);
 
-         if (pszStop == nullptr)
-            pszStop = pszFind + ansi_length(pszFind);
+         if (scopedstrStop == nullptr)
+            pszStop = pszFind + ansi_length(scopedstrFind);
 
-         iLen = pszStop - (pszFind + 1);
+         iLen = pszStop - (scopedstrFind + 1);
 
-         pszValue = ansi_count_find_string(pszValue, pszFind + 1, iLen);
+         pszValue = ansi_count_find_string(scopedstrValue, pszFind + 1, iLen);
 
-         if (pszValue == nullptr)
+         if (scopedstrValue == nullptr)
             return false;
 
          pszValue = pszValue + iLen;
@@ -286,7 +286,7 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria(const ::ansi_character * pszC
 
    }
 
-   if (ansi_compare(pszValue, pszCriteria) != 0)
+   if (ansi_compare(scopedstrValue, pszCriteria) != 0)
       return false;
 
    return true;

@@ -400,7 +400,7 @@ namespace linux
             registry::Key keyKar(HKEY_LOcaL_MACHINE, "SOFTWARE\\Micros_contextoft\\Windows\\CurrentVersion\\Run", true);
 
 
-            keyKar.SetValue(pszKey, pszCommand);
+            keyKar.SetValue(scopedstrKey, pszCommand);
 
 
             return true;
@@ -417,7 +417,7 @@ namespace linux
       /*    registry::Key keyKar(HKEY_LOcaL_MACHINE, "SOFTWARE\\Micros_contextoft\\Windows\\CurrentVersion\\RunOnce", true);
 
 
-            keyKar.SetValue(pszKey, pszCommand);
+            keyKar.SetValue(scopedstrKey, pszCommand);
       */
 
       return false;
@@ -434,7 +434,7 @@ namespace linux
             registry::Key keyKar(HKEY_CURRENT_USER, "SOFTWARE\\Micros_contextoft\\Windows\\CurrentVersion\\Run", true);
 
 
-            keyKar.SetValue(pszKey, pszCommand);
+            keyKar.SetValue(scopedstrKey, pszCommand);
       */
 
       return false;
@@ -451,7 +451,7 @@ namespace linux
             registry::Key keyKar(HKEY_CURRENT_USER, "SOFTWARE\\Micros_contextoft\\Windows\\CurrentVersion\\RunOnce", true);
 
 
-            keyKar.SetValue(pszKey, pszCommand);
+            keyKar.SetValue(scopedstrKey, pszCommand);
 
       */
       return false;
@@ -543,7 +543,7 @@ namespace linux
       return false;
 
       /*
-            string strExtensionNamingClass(pszExtensionNamingClass);
+            string strExtensionNamingClass(scopedstrExtensionNamingClass);
 
             registry::Key keyLink3(HKEY_CLASSES_ROOT, strExtensionNamingClass, true);
             keyLink3.SetValue("DefaultIcon", pszIconPath);
@@ -569,7 +569,7 @@ namespace linux
             strExt = ".";
             strExt += pszExtension;
 
-            string strExtensionNamingClass(pszExtensionNamingClass);
+            string strExtensionNamingClass(scopedstrExtensionNamingClass);
 
             registry::Key key(HKEY_CLASSES_ROOT, strExt, true);
             key.SetValue(nullptr, strExtensionNamingClass);
@@ -616,9 +616,9 @@ namespace linux
                try
                {
 
-                  strCommand = ::str::consume_quoted_value(psz);
-                  ::str::consume_spaces(psz);
-                  ::str::consume(psz, "\"%L\"");
+                  strCommand = ::str::consume_quoted_value(scopedstr);
+                  ::str::consume_spaces(scopedstr);
+                  ::str::consume(scopedstr, "\"%L\"");
                   strParam = psz;
 
                }
@@ -1023,9 +1023,9 @@ namespace linux
 //         if(pid == 0)
 //         {
 //
-//            int iExitCode = ::system(pszCommandLine);
+//            int iExitCode = ::system(scopedstrCommandLine);
 //
-//            free(pszCommandLine);
+//            free(scopedstrCommandLine);
 //
 //            exit(iExitCode);
 //
@@ -1033,7 +1033,7 @@ namespace linux
 //         else if(pid < 0)
 //         {
 //
-//            free(pszCommandLine);
+//            free(scopedstrCommandLine);
 //
 //            return false;
 //

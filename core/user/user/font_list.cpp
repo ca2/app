@@ -662,7 +662,7 @@ namespace user
    }
 
 
-   bool font_list::set_sel_by_name(const ::string & strName)
+   bool font_list::set_sel_by_name(const ::scoped_string & scopedstrName)
    {
 
       if (!m_pfontlist)

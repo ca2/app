@@ -5,7 +5,7 @@
 
 
 // parsing_exception::parsing_exception(const ::scoped_string & scopedstrMessage) :
-//    ::exception(pszMessage)
+//    ::exception(scopedstrMessage)
 // {
 
 //    informationf("parsing_exception");
@@ -37,7 +37,7 @@ CLASS_DECL_ACME void set_avoid_parsing_exception(bool bSet)
 }
 
 
-CLASS_DECL_ACME bool throw_parsing_exception(const ::string & strMessage)
+CLASS_DECL_ACME bool throw_parsing_exception(const ::scoped_string & scopedstrMessage)
 {
 
    if (get_avoid_parsing_exception())
@@ -77,7 +77,7 @@ avoid_parsing_exception::~avoid_parsing_exception()
 
 
 network_payload_parsing_exception::network_payload_parsing_exception(const ::scoped_string & scopedstrMessage) :
-   parsing_exception(pszMessage)
+   parsing_exception(scopedstrMessage)
 {
 
    informationf("parsing_exception");
@@ -92,7 +92,7 @@ network_payload_parsing_exception::~network_payload_parsing_exception()
 
 
 
-CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const ::string & strMessage)
+CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const ::scoped_string & scopedstrMessage)
 {
 
    if (get_avoid_parsing_exception())

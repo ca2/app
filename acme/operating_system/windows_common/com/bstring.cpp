@@ -6,7 +6,7 @@
 BSTR bstring::string_byte_len(const char * psz, character_count len)
 {
 
-   auto srclen = len < 0 ? strlen(psz) : len;
+   auto srclen = len < 0 ? strlen(scopedstr) : len;
 
    BSTR bstr = nullptr;
 
@@ -39,7 +39,7 @@ BSTR bstring::allocate_string(const OLECHAR * sz)
 BSTR bstring::allocate_string(const char * psz)
 {
 
-   wstring wstr(psz);
+   wstring wstr(scopedstr);
 
    return ::SysAllocString(wstr);
 

@@ -56,7 +56,7 @@
       
       NSMenuItem * item = NULL;
 
-      if(strcasecmp(pszName, "separator") == 0)
+      if(strcasecmp(scopedstrName, "separator") == 0)
       {
          
          strTitle = [[NSString alloc] initWithUTF8String: pszName];
@@ -85,11 +85,11 @@
       
       [m_menuida addObject: strId];
       
-      if(pszName) free(pszName);
-      if(pszId) free(pszId);
-      if(pszLabel) free(pszLabel);
-      if(pszAccelerator) free(pszAccelerator);
-      if(pszDescription) free(pszDescription);
+      if(scopedstrName) free(scopedstrName);
+      if(scopedstrId) free(scopedstrId);
+      if(scopedstrLabel) free(scopedstrLabel);
+      if(scopedstrAccelerator) free(scopedstrAccelerator);
+      if(scopedstrDescription) free(scopedstrDescription);
 
    }
    
@@ -132,7 +132,7 @@
          
          const char * psz = [[m_menuida objectAtIndex:i] UTF8String];
          
-         m_pbridge->call_notification_area_action(psz);
+         m_pbridge->call_notification_area_action(scopedstr);
          
          return;
          

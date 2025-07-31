@@ -198,7 +198,7 @@ namespace mysql
    }
 
 
-   string database::query_error(const ::string & strPrefixParam)
+   string database::query_error(const ::scoped_string & scopedstrPrefixParam)
    {
       
       string strPrefix(strPrefixParam);
@@ -226,7 +226,7 @@ namespace mysql
    }
 
 
-   bool database::exec(const ::string & pszSql)
+   bool database::exec(const ::scoped_string & scopedstrSql)
    {
 
       m_strLastError = "";
@@ -309,10 +309,10 @@ namespace mysql
    }
 
 
-   MYSQL_RES* database::_mysql_query_result(const ::string & pszSql)
+   MYSQL_RES* database::_mysql_query_result(const ::scoped_string & scopedstrSql)
    {
 
-      if (!exec(pszSql))
+      if (!exec(scopedstrSql))
       {
 
          return nullptr;
@@ -485,10 +485,10 @@ namespace mysql
    }
 
 
-   ::pointer<::database::result_set>database::query_result(const ::string & pszQuery, ::collection::count iRowCount, ::collection::count iColumnCount)
+   ::pointer<::database::result_set>database::query_result(const ::scoped_string & scopedstrQuery, ::collection::count iRowCount, ::collection::count iColumnCount)
    {
 
-      MYSQL_RES* pres = _mysql_query_result(pszQuery);
+      MYSQL_RES* pres = _mysql_query_result(scopedstrQuery);
 
       if (::is_null(pres))
       {
@@ -589,10 +589,10 @@ namespace mysql
 
    
 
-   bool database::query_item(::payload & payload, const ::string & pszSql)
+   bool database::query_item(::payload & payload, const ::scoped_string & scopedstrSql)
    {
 
-      MYSQL_RES* pres = _mysql_query_result(pszSql);
+      MYSQL_RES* pres = _mysql_query_result(scopedstrSql);
 
       if (::is_null(pres))
       {
@@ -628,10 +628,10 @@ namespace mysql
    }
 
 
-   bool database::query_blob(memory_base& memory, const ::string & pszSql)
+   bool database::query_blob(memory_base& memory, const ::scoped_string & scopedstrSql)
    {
 
-      MYSQL_RES* pres = _mysql_query_result(pszSql);
+      MYSQL_RES* pres = _mysql_query_result(scopedstrSql);
 
       if (::is_null(pres))
       {
@@ -675,10 +675,10 @@ namespace mysql
    }
 
 
-   bool database::query_items(::pointer<payload_array>& pvara, const ::string & pszSql)
+   bool database::query_items(::pointer<payload_array>& pvara, const ::scoped_string & scopedstrSql)
    {
 
-      MYSQL_RES* pres = _mysql_query_result(pszSql);
+      MYSQL_RES* pres = _mysql_query_result(scopedstrSql);
 
       if (::is_null(pres))
       {
@@ -729,10 +729,10 @@ namespace mysql
    }
 
 
-   bool database::query_row(::pointer<::database::row>& prow, const ::string & pszSql)
+   bool database::query_row(::pointer<::database::row>& prow, const ::scoped_string & scopedstrSql)
    {
 
-      MYSQL_RES* pres = _mysql_query_result(pszSql);
+      MYSQL_RES* pres = _mysql_query_result(scopedstrSql);
 
       if (::is_null(pres))
       {
@@ -777,10 +777,10 @@ namespace mysql
    }
 
 
-   bool database::query_rows(::pointer<::database::row_array>& prowarray, const ::string & pszQuery)
+   bool database::query_rows(::pointer<::database::row_array>& prowarray, const ::scoped_string & scopedstrQuery)
    {
 
-      auto pset = query_result(pszQuery);
+      auto pset = query_result(scopedstrQuery);
 
       if (pset.is_null())
       {
@@ -802,11 +802,11 @@ namespace mysql
    //}
 
 
-   ::payload database::get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser)
+   ::payload database::get_agent(const ::scoped_string & scopedstrTable, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrUser)
    {
       string strSql;
-      string strAgent(psz);
-      string strTable(pszTable);
+      string strAgent(scopedstr);
+      string strTable(scopedstrTable);
       strSql = "SELECT atom FROM " + strTable + " WHERE value='" + strAgent + "'";
       string strId = query_item(strSql);
 
@@ -828,9 +828,9 @@ namespace mysql
          if (!query(strSql))
             return false;
       }
-      if (pszUser != nullptr)
+      if (scopedstrUser != nullptr)
       {
-         if (!query("UPDATE " + strTable + " SET `user` = '" + string(pszUser) + "' WHERE `atom` = '" + strId + "'"))
+         if (!query("UPDATE " + strTable + " SET `user` = '" + string(scopedstrUser) + "' WHERE `atom` = '" + strId + "'"))
             return false;
       }
       return strId;
@@ -852,7 +852,7 @@ namespace mysql
 
       char* pszEscaped = strEscaped.get_buffer(iLen * 2 + 1);
 
-      if (psz == nullptr)
+      if (scopedstr == nullptr)
       {
 
          throw ::exception(error_no_memory);
@@ -868,7 +868,7 @@ namespace mysql
    }
 
 
-   string database::escape(const ::string & str)
+   string database::escape(const ::scoped_string & scopedstr)
    {
 
       return escape(str.c_str(), str.length());

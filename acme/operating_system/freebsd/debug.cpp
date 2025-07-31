@@ -171,7 +171,7 @@ gdb_check(void)
 
 //       auto pszEnd = scopedstrFormat.m_end;
 
-//       fwrite(pszBegin, 1, scopedstrFormat.size(), stdout);
+//       fwrite(scopedstrBegin, 1, scopedstrFormat.size(), stdout);
 
 //       //fflush(stdout);
 

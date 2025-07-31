@@ -2,7 +2,7 @@
 
 
 
-db_set::db_set(db_server * pserver, const ::string & pszTable)
+db_set::db_set(db_server * pserver, const ::scoped_string & scopedstrTable)
 {
 
    m_pdataserver = pserver;
@@ -36,7 +36,7 @@ db_server * db_set::db()
 
 
 
-simpledb_set::simpledb_set(db_server * pserver, const ::string & pszTable)
+simpledb_set::simpledb_set(db_server * pserver, const ::scoped_string & scopedstrTable)
 {
    m_pdataserver = pserver;
    ::simpledb::base * pdb   = db()->m_pbase;

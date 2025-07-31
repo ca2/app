@@ -618,7 +618,7 @@ namespace application_build_helper
    }
 
 
-   package_reference_array application_build_helper::get_package_list(const ::string & strList, const ::string & strPackageParam)
+   package_reference_array application_build_helper::get_package_list(const ::scoped_string & scopedstrList, const ::scoped_string & scopedstrPackageParam)
    {
 
       ::file::path path;
@@ -707,7 +707,7 @@ namespace application_build_helper
    }
 
 
-   package_reference_array application_build_helper::get_package_references(const ::string & strPackage)
+   package_reference_array application_build_helper::get_package_references(const ::scoped_string & scopedstrPackage)
    {
 
       return get_package_list("_references", strPackage);
@@ -715,7 +715,7 @@ namespace application_build_helper
    }
 
 
-   package_reference_array application_build_helper::get_package_dependencies(const ::string & strPackage)
+   package_reference_array application_build_helper::get_package_dependencies(const ::scoped_string & scopedstrPackage)
    {
 
       return get_package_list("_dependencies", strPackage);
@@ -723,7 +723,7 @@ namespace application_build_helper
    }
 
 
-   package_reference_array application_build_helper::get_package_extensions(const ::string & strPackage)
+   package_reference_array application_build_helper::get_package_extensions(const ::scoped_string & scopedstrPackage)
    {
 
       return get_package_list("_extensions", strPackage);
@@ -731,7 +731,7 @@ namespace application_build_helper
    }
 
 
-   package_reference_array application_build_helper::get_all_package_dependencies(const ::string & strPackage)
+   package_reference_array application_build_helper::get_all_package_dependencies(const ::scoped_string & scopedstrPackage)
    {
 
       package_reference_array packagereferencea;
@@ -925,7 +925,7 @@ namespace application_build_helper
    //
    //#ifdef WINDOWS_DESKTOP
    //
-   //   string str(psz);
+   //   string str(scopedstr);
    //
    //   wstring wstr;
    //
@@ -946,7 +946,7 @@ namespace application_build_helper
    //#else
    //
    //   printf("%s\n", psz);
-   //   ::system(psz);
+   //   ::system(scopedstr);
    //
    //#endif
    //}
@@ -1249,7 +1249,7 @@ namespace application_build_helper
    }
 
 
-   void application_build_helper::static_factory(const ::string & strFileDst, const ::string & strFileSrc)
+   void application_build_helper::static_factory(const ::scoped_string & scopedstrFileDst, const ::scoped_string & scopedstrFileSrc)
    {
 
       //auto estatus =
@@ -1372,7 +1372,7 @@ namespace application_build_helper
    }
 
 
-   void application_build_helper::translate_items(const ::string & strFileDst, const ::string & strFileSrc)
+   void application_build_helper::translate_items(const ::scoped_string & scopedstrFileDst, const ::scoped_string & scopedstrFileSrc)
    {
 
       //auto estatus =

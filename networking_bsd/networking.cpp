@@ -429,7 +429,7 @@ namespace networking_bsd
    } // rfc1738_decode
 
 
-   bool networking::is_ip4(const string& str)
+   bool networking::is_ip4(const ::scoped_string & scopedstr)
    {
       int dots = 0;
       // %! ignore :port?
@@ -446,7 +446,7 @@ namespace networking_bsd
    }
 
 
-   bool networking::is_ip6(const string& str)
+   bool networking::is_ip6(const ::scoped_string & scopedstr)
    {
       if (str.is_empty())
          return false;
@@ -503,7 +503,7 @@ namespace networking_bsd
    }
 
 
-   bool networking::convert(in_addr& l, const string& str, int ai_flags)
+   bool networking::convert(in_addr& l, const ::scoped_string & scopedstr, int ai_flags)
    {
 
       if (str.is_empty())
@@ -649,7 +649,7 @@ namespace networking_bsd
    }
 
 
-   //bool networking::convert(struct in6_addr& l, const ::string & str, int ai_flags)
+   //bool networking::convert(struct in6_addr& l, const ::scoped_string & scopedstr, int ai_flags)
    //{
 
 
@@ -1413,7 +1413,7 @@ namespace networking_bsd
    }
 
 
-   int networking::service_port(const string& str, int flags)
+   int networking::service_port(const ::scoped_string & scopedstr, int flags)
    {
 
       if (::str::is_simple_natural(str))
@@ -1841,7 +1841,7 @@ namespace networking_bsd
    //} // rfc1738_decode
 
 
-   //bool networking::is_ip4(const ::string & str)
+   //bool networking::is_ip4(const ::scoped_string & scopedstr)
    //{
    //   int dots = 0;
    //   // %! ignore :port?
@@ -1858,7 +1858,7 @@ namespace networking_bsd
    //}
 
 
-   //bool networking::is_ip6(const ::string & str)
+   //bool networking::is_ip6(const ::scoped_string & scopedstr)
    //{
    //   if (str.is_empty())
    //      return false;
@@ -1904,7 +1904,7 @@ namespace networking_bsd
    //   return true;
    //}
 
-   //   bool networking::convert(in_addr & l, const ::string & str, int ai_flags)
+   //   bool networking::convert(in_addr & l, const ::scoped_string & scopedstr, int ai_flags)
    //   {
    //
    //      if(str.is_empty())
@@ -2050,7 +2050,7 @@ namespace networking_bsd
    //}
    //
 
-   //bool networking::convert(struct in6_addr& l, const ::string & str, int ai_flags)
+   //bool networking::convert(struct in6_addr& l, const ::scoped_string & scopedstr, int ai_flags)
    //{
 
 
@@ -2766,7 +2766,7 @@ namespace networking_bsd
 //   }
 //
 //
-//   int networking::service_port(const ::string & str, int flags)
+//   int networking::service_port(const ::scoped_string & scopedstr, int flags)
 //   {
 //
 //      if (::str::is_simple_natural(str))
@@ -3358,7 +3358,7 @@ namespace networking_bsd
    }
 
 
-   bool networking::lookup(::networking_bsd::address* paddress, ::networking::enum_address_type eaddresstypePreferred, const ::string& strAddress)
+   bool networking::lookup(::networking_bsd::address* paddress, ::networking::enum_address_type eaddresstypePreferred, const ::scoped_string & scopedstrAddress)
    {
 
       if (eaddresstypePreferred == ::networking::e_address_type_ipv4)
@@ -3403,7 +3403,7 @@ namespace networking_bsd
    }
 
 
-   bool networking::lookup_ipv4(::networking_bsd::address* paddress, const ::string& strAddress)
+   bool networking::lookup_ipv4(::networking_bsd::address* paddress, const ::scoped_string & scopedstrAddress)
    {
 
       if (convert(paddress->u.m_addr.sin_addr, strAddress))
@@ -3430,7 +3430,7 @@ namespace networking_bsd
    }
 
 
-   bool networking::lookup_ipv6(::networking_bsd::address* paddress, const ::string& strAddress)
+   bool networking::lookup_ipv6(::networking_bsd::address* paddress, const ::scoped_string & scopedstrAddress)
    {
 
       if (convert(paddress->u.m_addr6.sin6_addr, strAddress))
@@ -3457,7 +3457,7 @@ namespace networking_bsd
    }
 
 
-   ::pointer<::networking::address> networking::create_address(const ::string& strAddress, ::networking::enum_address_type eaddresstypePreferred, ::networking::port_t port)
+   ::pointer<::networking::address> networking::create_address(const ::scoped_string & scopedstrAddress, ::networking::enum_address_type eaddresstypePreferred, ::networking::port_t port)
    {
 
       auto paddress = __allocate address();
@@ -3516,7 +3516,7 @@ namespace networking_bsd
    }
 
 
-   ::pointer<::networking::address>networking::create_ip4_address(const ::string& strAddress, ::networking::port_t port)
+   ::pointer<::networking::address>networking::create_ip4_address(const ::scoped_string & scopedstrAddress, ::networking::port_t port)
    {
 
       auto paddress = __allocate address();
@@ -3537,7 +3537,7 @@ namespace networking_bsd
    }
 
 
-   ::pointer<::networking::address>networking::create_ip6_address(const ::string& strAddress, ::networking::port_t port)
+   ::pointer<::networking::address>networking::create_ip6_address(const ::scoped_string & scopedstrAddress, ::networking::port_t port)
    {
 
       auto paddress2 = __allocate address();
@@ -3558,7 +3558,7 @@ namespace networking_bsd
    }
 
 
-   //address_pointer networking::create_address(const ::string & strAddress, port_t port)
+   //address_pointer networking::create_address(const ::scoped_string & scopedstrAddress, port_t port)
    //{
 
    //   if (is_ip6(strAddress))

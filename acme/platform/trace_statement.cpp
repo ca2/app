@@ -45,11 +45,11 @@ trace_statement::~trace_statement()
 void trace_statement::formatf_output_arguments(const ::ansi_character * psz, va_list & arguments)
 {
 
-   //m_ptracer->format_output_arguments(psz, arguments);
+   //m_ptracer->format_output_arguments(scopedstr, arguments);
 
    string str;
 
-   str.formatf_arguments(psz, arguments);
+   str.formatf_arguments(scopedstr, arguments);
 
    operator << (str);
 
@@ -66,7 +66,7 @@ void trace_statement::formatf_output_arguments(const ::ansi_character * psz, va_
 //
 //   string str;
 //
-//   str.formatf_arguments(pszFormat, arguments);
+//   str.formatf_arguments(scopedstrFormat, arguments);
 //
 //   operator << (str);
 //

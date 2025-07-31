@@ -31,7 +31,7 @@
             virtual void get_frame_list(string_array & stra);
 
 
-            virtual ::pointer<::experience::frame>get_frame(const ::string & pszSchema);
+            virtual ::pointer<::experience::frame>get_frame(const ::scoped_string & scopedstrSchema);
 
 
          };

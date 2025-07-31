@@ -215,12 +215,12 @@ namespace filehandler
    }
 
 
-   ::pointer<::data::tree_item<item>>handler::get_extension_tree_item(const ::string & pszExtension, bool bCreate)
+   ::pointer<::data::tree_item<item>>handler::get_extension_tree_item(const ::scoped_string & scopedstrExtension, bool bCreate)
    {
 
       auto ptreeitem = m_ptree->get_base_item()->get_next();
 
-      if(ansi_cmp(pszExtension, "*") == 0)
+      if(ansi_cmp(scopedstrExtension, "*") == 0)
       {
 
          while(ptreeitem)
@@ -260,7 +260,7 @@ namespace filehandler
             auto pitem = ptreeitem->m_pitem.cast < item >();
 
             if(pitem && pitem->m_etopictype == item::topic_type_extension
-                  && pitem->m_strTopic.case_insensitive_order(pszExtension) == 0)
+                  && pitem->m_strTopic.case_insensitive_order(scopedstrExtension) == 0)
             {
 
                return pitem;
@@ -293,7 +293,7 @@ namespace filehandler
    }
 
 
-   ::pointer<::data::tree_item<item>>handler::get_mime_type_tree_item(const ::string & pszMimeType, bool bCreate)
+   ::pointer<::data::tree_item<item>>handler::get_mime_type_tree_item(const ::scoped_string & scopedstrMimeType, bool bCreate)
    {
 
       auto ptreeitem = m_ptree->get_base_item()->get_child_next_or_parent();
@@ -304,7 +304,7 @@ namespace filehandler
          auto pitem = ptreeitem->m_pitem.cast < item >();
 
          if (pitem && pitem->m_etopictype == item::topic_type_mime_type
-            && pitem->m_strTopic.case_insensitive_order(pszMimeType) == 0)
+            && pitem->m_strTopic.case_insensitive_order(scopedstrMimeType) == 0)
          {
 
             return pitem;
@@ -335,10 +335,10 @@ namespace filehandler
    }
 
 
-   void handler::get_extension_app(string_array & straAppId, const ::string & pszExtension)
+   void handler::get_extension_app(string_array & straAppId, const ::scoped_string & scopedstrExtension)
    {
 
-      auto ptreeitem = get_extension_tree_item(pszExtension, false);
+      auto ptreeitem = get_extension_tree_item(scopedstrExtension, false);
 
       if (!ptreeitem)
       {
@@ -359,10 +359,10 @@ namespace filehandler
    }
 
 
-   void handler::get_mime_type_app(string_array & straAppId, const ::string & pszMimeType)
+   void handler::get_mime_type_app(string_array & straAppId, const ::scoped_string & scopedstrMimeType)
    {
 
-      auto ptreeitem = get_mime_type_tree_item(pszMimeType, false);
+      auto ptreeitem = get_mime_type_tree_item(scopedstrMimeType, false);
 
       if (ptreeitem)
       {

@@ -14,14 +14,14 @@ namespace crypto_openssl
 
 
    rsa::rsa(
-      const string& strN,
-      const string& strE,
-      const string& strD,
-      const string& strP,
-      const string& strQ,
-      const string& strDmp1,
-      const string& strDmq1,
-      const string& strIqmp)
+      const ::scoped_string & scopedstrN,
+      const ::scoped_string & scopedstrE,
+      const ::scoped_string & scopedstrD,
+      const ::scoped_string & scopedstrP,
+      const ::scoped_string & scopedstrQ,
+      const ::scoped_string & scopedstrDmp1,
+      const ::scoped_string & scopedstrDmq1,
+      const ::scoped_string & scopedstrIqmp)
    {
 
       BIGNUM* n = BN_new();
@@ -623,7 +623,7 @@ namespace crypto_openssl
 } //  namespace crypto_openssl
 
 //
-//::pointer<::crypto::rsa>__create_rsa(const string& str)
+//::pointer<::crypto::rsa>__create_rsa(const ::scoped_string & scopedstr)
 //{
 //
 //   return __allocate ::openssl::rsa(str);

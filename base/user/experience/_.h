@@ -34,7 +34,7 @@ namespace experience
 {
 
 
-   CLASS_DECL_BASE string experience_name(const ::string& str);
+   CLASS_DECL_BASE string experience_name(const ::scoped_string & scopedstr);
 
 
 } // namespace experience

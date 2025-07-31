@@ -80,7 +80,7 @@
 //
 //   }
 //
-//   return pproperty->string(pszDefault);
+//   return pproperty->string(scopedstrDefault);
 //
 //}
 //

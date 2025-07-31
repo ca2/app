@@ -308,10 +308,10 @@ namespace platform
 
 
       ::factory::factory_pointer & factory();
-      ::factory::factory_pointer & factory(const ::string & strLibrary);
-      ::factory::factory_pointer & factory(const ::string & strComponent, const ::string & strImplementation);
-      ::factory::factory* component_factory(const ::string& strComponent);
-      virtual ::string component_factory_implementation_name(const ::string& strComponent);
+      ::factory::factory_pointer & factory(const ::scoped_string & scopedstrLibrary);
+      ::factory::factory_pointer & factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
+      ::factory::factory* component_factory(const ::scoped_string & scopedstrComponent);
+      virtual ::string component_factory_implementation_name(const ::scoped_string & scopedstrComponent);
 
 
       ::pointer<::factory::factory_item_interface> & get_factory_item(const ::atom & atom, const ::atom & atomSource);
@@ -343,15 +343,15 @@ namespace platform
 
       //virtual ::pointer<::acme::library> open_component_library(const ::string &pszComponent, const ::string &pszImplementation);
 
-      virtual ::pointer<::acme::library> create_library(const ::string & strLibrary);
-      virtual ::pointer<::acme::library> create_library_dynamically(const ::string & strLibrary);
-      virtual ::pointer<::acme::library> create_library_statically(const ::string & strLibrary);
+      virtual ::pointer<::acme::library> create_library(const ::scoped_string & scopedstrLibrary);
+      virtual ::pointer<::acme::library> create_library_dynamically(const ::scoped_string & scopedstrLibrary);
+      virtual ::pointer<::acme::library> create_library_statically(const ::scoped_string & scopedstrLibrary);
 
-      virtual ::pointer<::acme::library> & library(const ::string & str);
+      virtual ::pointer<::acme::library> & library(const ::scoped_string & scopedstr);
 
-      //virtual ::pointer<::acme::library>& library(const ::string& strComponent, const ::string& strImplementation);
+      //virtual ::pointer<::acme::library>& library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
-      virtual ::pointer<::factory::factory> & impact_factory(const ::string & strComponent, const ::string & strImplementation);
+      virtual ::pointer<::factory::factory> & impact_factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
       //void initialize_memory_counter();
       //void finalize_memory_counter();

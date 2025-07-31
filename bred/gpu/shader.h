@@ -177,14 +177,14 @@ namespace gpu
       //virtual void setMat3(const ::scoped_string & scopedstrName, const float p[3*3]);
       //virtual void setMat4(const ::scoped_string & scopedstrName, const float p[4*4]);
 
-      //virtual shader * create_shader(const ::string & pszVertex, enum_shader eshader);
+      //virtual shader * create_shader(const ::scoped_string & scopedstrVertex, enum_shader eshader);
 
       //static void shader_compile_errors(GLuint shader, enum_shader eshader, string & strSummary);
 
       //static void program_compile_errors(GLuint program, string & strSummary);
 
 
-      //virtual payload * get_uniform(const ::string & strName);
+      //virtual payload * get_uniform(const ::scoped_string & scopedstrName);
 
       //virtual ::gpu::payload * get_payload(const ::scoped_string & scopedstrName);
       virtual void draw();

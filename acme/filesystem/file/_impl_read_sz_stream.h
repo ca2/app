@@ -64,7 +64,7 @@ inline    double read_sz_stream::read_floating()
 inline   ::string read_sz_stream::get_word(const ::ansi_character * pszBreakCharacters = " \n\t\r,;")
     {
 
-       return read_find_first_character_in(pszBreakCharacters);
+       return read_find_first_character_in(scopedstrBreakCharacters);
 
     }
 
@@ -104,7 +104,7 @@ inline   ::string read_sz_stream::read_find_first_character_in(const ::ansi_char
 //
 //   text_stream& operator <<(const ::ansi_character * psz);
 //   //text_stream & operator <<(const ::atom & atom) ;
-//   text_stream& operator <<(const ::string& str);
+//   text_stream& operator <<(const ::scoped_string & scopedstr);
 //   //text_stream & operator <<(const ::property_set & set) ;
 //   template < typename TYPE >
 //   void network_payload_write(const TYPE& t);

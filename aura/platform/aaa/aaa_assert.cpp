@@ -2,16 +2,16 @@
 #include <stdio.h>
 
 
-CLASS_DECL_AURA int __cpp_assert_failed_line(const ::string & pszFileName, int iLineNumber);
+CLASS_DECL_AURA int __cpp_assert_failed_line(const ::scoped_string & scopedstrFileName, int iLineNumber);
 
 
 
 
-CLASS_DECL_AURA int __assert_failed_line(const ::string & pszFileName, int iLineNumber)
+CLASS_DECL_AURA int __assert_failed_line(const ::scoped_string & scopedstrFileName, int iLineNumber)
 
 {
 
-   return __cpp_assert_failed_line(pszFileName, iLineNumber);
+   return __cpp_assert_failed_line(scopedstrFileName, iLineNumber);
 
 
 }
@@ -19,7 +19,7 @@ CLASS_DECL_AURA int __assert_failed_line(const ::string & pszFileName, int iLine
 
 
 //
-//CLASS_DECL_AURA int __cpp_assert_failed_line(const ::string & pszFileName, int iLineNumber)
+//CLASS_DECL_AURA int __cpp_assert_failed_line(const ::scoped_string & scopedstrFileName, int iLineNumber)
 //{
 //
 //   thread * pthread = get_task();
@@ -27,7 +27,7 @@ CLASS_DECL_AURA int __assert_failed_line(const ::string & pszFileName, int iLine
 //   if(pthread != nullptr)
 //   {
 //
-//      pthread->::auraacmesystem()->assert_failed_line(pszFileName,iLineNumber);
+//      pthread->::auraacmesystem()->assert_failed_line(scopedstrFileName,iLineNumber);
 //
 //   }
 //

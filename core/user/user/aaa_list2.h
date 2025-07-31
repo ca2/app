@@ -145,7 +145,7 @@ namespace user
       //virtual void _001OnSort(::collection::index iSubItem);
       virtual void _001OnListHeaderItemClick(::collection::index iHeaderItem);
       virtual void _001OnListHeaderItemDblClk(::collection::index iHeaderItem);
-      //virtual void Filter1(const string& str);
+      //virtual void Filter1(const ::scoped_string & scopedstr);
       //bool Filter1Step() override;
 
 

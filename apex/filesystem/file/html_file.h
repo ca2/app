@@ -24,9 +24,9 @@ public:
 
    virtual const ::text::context * textcontext();
 
-   virtual void print(const ::string & str);
+   virtual void print(const ::scoped_string & scopedstr);
 
-   virtual void raw_print(const ::string & str);
+   virtual void raw_print(const ::scoped_string & scopedstr);
 
 
 #ifndef VARIADIC_TEMPLATE_FORMAT
@@ -45,7 +45,7 @@ public:
 
       string_format format(this,&::html_file::trace,nullptr);
 
-      format.format(pszFmt);
+      format.format(scopedstrFmt);
 
    }
 
@@ -55,7 +55,7 @@ public:
 
       string_format format(this,&::html_file::trace,nullptr);
 
-      format.format(pszFmt,value,args...);
+      format.format(scopedstrFmt,value,args...);
 
    }
 

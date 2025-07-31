@@ -538,7 +538,7 @@ namespace user
    bool document_manager::OnDDECommand(char * pszCommand)
 
    {
-      __UNREFERENCED_PARAMETER(pszCommand);
+      __UNREFERENCED_PARAMETER(scopedstrCommand);
 
       /*string strCommand = pszCommand;
 
@@ -801,14 +801,14 @@ namespace user
       /*char szPath[_MAX_PATH];
       ASSERT(lstrlen(varFileName) < _countof(szPath));
       char szTemp[_MAX_PATH];
-      if (pszFileName[0] == '\"')
+      if (scopedstrFileName[0] == '\"')
 
       ++pszFileName;
 
       ::aura::tcsncpy_s(szTemp, _countof(szTemp), varFileName, _TRUNCATE);
       char * pszLast = _tcsrchr(szTemp, '\"');
 
-      if (pszLast != nullptr)
+      if (scopedstrLast != nullptr)
 
       *pszLast = 0;*/
 
@@ -988,7 +988,7 @@ namespace user
 //   //}
 //
 //
-//   //::user::document * application::open_document_file(::particle * pparticle, const ::string & pszFileName)
+//   //::user::document * application::open_document_file(::particle * pparticle, const ::scoped_string & scopedstrFileName)
 //
 //   //{
 //

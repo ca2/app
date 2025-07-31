@@ -148,12 +148,12 @@ return {};
    //::pointer < ::menu::menu > menu_from_xml(::particle * pparticleContext, const ::scoped_string & scopedstrXml) override{}
 
 
-   void base_user_layer::defer_instantiate_user_style(const ::string& strExperience)
+   void base_user_layer::defer_instantiate_user_style(const ::scoped_string & scopedstrExperience)
    {
    }
 
 
-   ::user::style_pointer base_user_layer::instantiate_user_style(const ::string& strExperience,
+   ::user::style_pointer base_user_layer::instantiate_user_style(const ::scoped_string & scopedstrExperience,
                                                                  ::platform::application* papp)
    {
 
@@ -162,7 +162,7 @@ return {};
    }
 
 
-   ::user::style_pointer base_user_layer::get_user_style(const ::string& strExperience, ::platform::application* papp)
+   ::user::style_pointer base_user_layer::get_user_style(const ::scoped_string & scopedstrExperience, ::platform::application* papp)
    {
 
 return {};

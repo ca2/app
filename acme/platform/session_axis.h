@@ -35,13 +35,13 @@ namespace platform
 
       virtual void on_erase_user(::account::user * puser);
 
-      //virtual bool is_licensed(const ::string & pszId, bool bInteractive = true) override;
+      //virtual bool is_licensed(const ::scoped_string & scopedstrId, bool bInteractive = true) override;
 
-      //virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword) override;
+      //virtual bool get_auth(const ::scoped_string & scopedstrForm, string & strUsername, string & strPassword) override;
 
       virtual void interactive_credentials(::account::credentials * pcredentials);
 
-      //::aura::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest) override;
+      //::aura::application * application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest) override;
 
       //virtual void install_message_routing(::channel * pchannel) override;
 

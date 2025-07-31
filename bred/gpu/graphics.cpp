@@ -1065,11 +1065,11 @@ namespace gpu
       //const ::scoped_string & scopedstr = lpszString;
       //while(i < iIndex)
       //{
-      //   iLen = ::str::get_utf8_char(psz).length();
+      //   iLen = ::str::get_utf8_char(scopedstr).length();
       //   iRange++;
       //   i += iLen;
-      //   unicode_increment(psz);
-      //   if(psz == nullptr)
+      //   unicode_increment(scopedstr);
+      //   if(scopedstr == nullptr)
       //      break;
       //   if(*psz == '\0')
       //      break;

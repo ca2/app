@@ -199,7 +199,7 @@ public:
 
    //virtual void do_request(::request * prequest);
 
-   //virtual pointer< ::extended::sequence < ::conversation > >  message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
+   //virtual pointer< ::extended::sequence < ::conversation > >  message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
    //{
    //
    //   return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);
@@ -214,8 +214,8 @@ public:
 
    //}
 
-   //virtual void message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
-   //virtual void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
 
    //virtual void release_references();
 

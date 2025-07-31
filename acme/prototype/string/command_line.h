@@ -11,7 +11,7 @@ CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const ::scope
 CLASS_DECL_ACME string get_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam);
 
 
-CLASS_DECL_ACME string_array command_arguments_from_command_line(const ::string & strCommandLine);
+CLASS_DECL_ACME string_array command_arguments_from_command_line(const ::scoped_string & scopedstrCommandLine);
 //CLASS_DECL_ACME string executable_title_from_appid(string str);
 
 

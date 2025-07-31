@@ -163,18 +163,18 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 //   bool process::create_child_process(const ::scoped_string & scopedstrCmdLine,bool bPiped,const ::scoped_string & scopedstrDir,int iCa2Priority)
 //   {
 //
-//      if(!::operating_system::process::create_child_process(pszCmdLine,bPiped,pszDir,iCa2Priority))
+//      if(!::operating_system::process::create_child_process(scopedstrCmdLine,bPiped,pszDir,iCa2Priority))
 //         return false;
 //
 //      string_array straParam;
 //
 //      address_array < char * > argv;
 //
-//      straParam.explode_command_line(pszCmdLine, &argv);
+//      straParam.explode_command_line(scopedstrCmdLine, &argv);
 //
 //      char *   cmd_line;
 //
-//      cmd_line = strdup(pszCmdLine);
+//      cmd_line = strdup(scopedstrCmdLine);
 //
 //      if(cmd_line == nullptr)
 //      {
@@ -356,13 +356,13 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 //
 //      }
 //
-//      string pszCmdLine = "/usr/bin/gksu " + string(pszCmdLineParam);
+//      string pszCmdLine = "/usr/bin/gksu " + string(scopedstrCmdLineParam);
 //
-//      straParam.explode_command_line(pszCmdLine, &argv);
+//      straParam.explode_command_line(scopedstrCmdLine, &argv);
 //
 //      char *   cmd_line;
 //
-//      cmd_line = (char *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(pszCmdLine ) + 1 );
+//      cmd_line = (char *) ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(scopedstrCmdLine ) + 1 );
 //
 //      if(cmd_line == nullptr)
 //      {

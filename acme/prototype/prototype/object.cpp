@@ -655,7 +655,7 @@ void object::add_each_routine_from(const ::atom& atom, ::object* pobjectSource)
 //}
 
 
-//void object::set_topic_text(const ::string& strTopicText)
+//void object::set_topic_text(const ::scoped_string & scopedstrTopicText)
 //{
 //
 //   get_meta()->m_strTopicText = strTopicText;
@@ -741,7 +741,7 @@ void object::branch_send(const ::procedure & procedure, manual_reset_happening *
 //   try
 //   {
 //
-//      auto pelement = running(pszTag);
+//      auto pelement = running(scopedstrTag);
 //
 //      if (pelement.is_null())
 //      {
@@ -761,13 +761,13 @@ void object::branch_send(const ::procedure & procedure, manual_reset_happening *
 //}
 //
 //
-//void object::child_post_quit_and_wait(const ::string & pszTag, const time& time)
+//void object::child_post_quit_and_wait(const ::scoped_string & scopedstrTag, const time& time)
 //{
 //
 //   try
 //   {
 //
-//      auto pelement = running(pszTag);
+//      auto pelement = running(scopedstrTag);
 //
 //      if (pelement.is_null())
 //      {
@@ -778,7 +778,7 @@ void object::branch_send(const ::procedure & procedure, manual_reset_happening *
 //
 //      pelement->destroy();
 //
-//      string strTag(pszTag);
+//      string strTag(scopedstrTag);
 //
 //      predicate_Sleep(time,
 //         [this, strTag]()
@@ -849,7 +849,7 @@ void object::destruct()
 }
 
 
-//void object::system(const ::string & strProjectName)
+//void object::system(const ::scoped_string & scopedstrProjectName)
 //{
 //
 //   __UNREFERENCED_PARAMETER(strProjectName);
@@ -2382,7 +2382,7 @@ void object::_001OnUpdate(::message::message* pmessage)
 // }
 
 
-//::particle_pointerobject::running(const ::string & pszTag) const
+//::particle_pointerobject::running(const ::scoped_string & scopedstrTag) const
 //{
 //
 //   //if (m_pcompositea)
@@ -2653,7 +2653,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 
 
-//pointer< ::extended::sequence < ::conversation > > object::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box& emessagebox)
+//pointer< ::extended::sequence < ::conversation > > object::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox)
 //{
 //
 //   auto psystem = system();
@@ -2665,7 +2665,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 
 
-//void object::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, const ::future & future)
+//void object::message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, const ::future & future)
 //{
 //
 //   ::e_status estatus = error_failed;
@@ -2680,7 +2680,7 @@ void call_sync(const ::procedure_array& methoda)
 //   if (!estatus)
 //   {
 //
-////      estatus = ::auto pmessagebox = __initialize_new ::message_box(pszMessage, pszTitle, emessagebox, process);
+////      estatus = ::auto pmessagebox = __initialize_new ::message_box(scopedstrMessage, pszTitle, emessagebox, process);
 
 //pmessagebox->sync();
 //
@@ -3072,7 +3072,7 @@ void object::initialize(::particle * pparticle)
 //
 //}
 
-//void object::set_topic_text(const string& str)
+//void object::set_topic_text(const ::scoped_string & scopedstr)
 //{
 //
 //
@@ -3173,7 +3173,7 @@ void object::initialize(::particle * pparticle)
 //::image::image_pointer create_image(const ::int_size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
 //::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
-//::image::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
+//::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true);
 
 //template < typename BASE_TYPE >
 //inline ::pointer<BASE_TYPE>__øcreate();
@@ -3294,7 +3294,7 @@ void object::initialize(::particle * pparticle)
 //
 //}
 
-//void object::system(const ::string & pszProjectName)
+//void object::system(const ::scoped_string & scopedstrProjectName)
 //{
 //
 //}
@@ -3395,14 +3395,14 @@ void object::initialize(::particle * pparticle)
 //}
 
 
-//void object::child_post_quit(const ::string & pszTag)
+//void object::child_post_quit(const ::scoped_string & scopedstrTag)
 //{
 //
 //
 //}
 
 
-//void object::child_post_quit_and_wait(const ::string & pszTag, const time& time)
+//void object::child_post_quit_and_wait(const ::scoped_string & scopedstrTag, const time& time)
 //{
 //
 //
@@ -3505,7 +3505,7 @@ void object::initialize(::particle * pparticle)
 //}
 
 
-//pointer< ::extended::future < ::conversation > >  object::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box& emessagebox)
+//pointer< ::extended::future < ::conversation > >  object::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox)
 //{
 //
 //   return nullptr;
@@ -3525,15 +3525,15 @@ void object::initialize(::particle * pparticle)
 
 //}
 
-// void message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
-// void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+// void message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+// void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
 
 //void object::release_references()
 //{
 //
 //}
 
-//::pointer<::element>object::running(const ::string & pszTag) const
+//::pointer<::element>object::running(const ::scoped_string & scopedstrTag) const
 //{
 //
 //   return nullptr;
@@ -3800,7 +3800,7 @@ bool object::IsSerializable() const
 //
 //      va_list valist;
 //      va_start(valist, psz);
-//      format_topic_text_v(psz, valist);
+//      format_topic_text_v(scopedstr, valist);
 //      va_end(valist);
 //
 //   }
@@ -3810,7 +3810,7 @@ bool object::IsSerializable() const
 //   {
 //
 //      string str;
-//      str.formatf_arguments(psz, valist);
+//      str.formatf_arguments(scopedstr, valist);
 //      set_topic_text(str);
 //
 //   }

@@ -85,7 +85,7 @@ namespace user
 
    {
 
-      ASSERT(pszPathName.has_character());
+      ASSERT(scopedstrPathName.has_character());
 
 
       rpDocMatch = nullptr;

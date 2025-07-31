@@ -18,7 +18,7 @@
 //
 //
 //      using ::text_stream::write;
-//      virtual stream & write (const ::string & str);
+//      virtual stream & write (const ::scoped_string & scopedstr);
 //
 //
 //      using ::text_stream::operator<<;

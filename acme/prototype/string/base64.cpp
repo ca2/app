@@ -661,7 +661,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, uns
    //bool base64::decode(::matter & matter, const ::scoped_string & scopedstrBase64)
    //{
 
-   //   ::string_buffer fileIn(pszBase64);
+   //   ::string_buffer fileIn(scopedstrBase64);
 
    //   ::memory_stream streamObject;
 

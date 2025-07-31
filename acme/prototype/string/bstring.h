@@ -112,7 +112,7 @@
 //   void assign(const ::scoped_string & scopedstr)
 //   {
 //
-//      assign(psz, strlen(psz) + 1);
+//      assign(scopedstr, strlen(scopedstr) + 1);
 //
 //   }
 //
@@ -192,7 +192,7 @@
 //   bstring & operator += (const ::scoped_string & scopedstr);
 //
 //
-//   bstring & operator += (const ::string & str);
+//   bstring & operator += (const ::scoped_string & scopedstr);
 //
 //
 //   bstring & operator += (const bstring & bstr);

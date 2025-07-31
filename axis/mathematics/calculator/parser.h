@@ -25,14 +25,14 @@ namespace calculator
       ~parser() override;
 
 
-      ::calculator::element * parse(const ::string & psz);
+      ::calculator::element * parse(const ::scoped_string & scopedstr);
 
       ::calculator::element * expr(::calculator::element* pelement1);
       ::calculator::element * term(::calculator::element* pelement1);
       ::calculator::element * factor();
 
-      void error(const ::string & pszMessage);
-      void syntax_error(const ::string & pszMessage);
+      void error(const ::scoped_string & scopedstrMessage);
+      void syntax_error(const ::scoped_string & scopedstrMessage);
       void expect(char ch);
 
 

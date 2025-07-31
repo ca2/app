@@ -2467,7 +2467,7 @@ namespace user
    }
 
 
-   void interaction::set_place_child_title(const ::string & pszTitle)
+   void interaction::set_place_child_title(const ::scoped_string & scopedstrTitle)
    {
 
       payload("place_child_title") = pszTitle;
@@ -4348,7 +4348,7 @@ namespace user
    }
 
 
-   bool interaction::set_sel_by_name(const ::string & strName)
+   bool interaction::set_sel_by_name(const ::scoped_string & scopedstrName)
    {
 
       return false;
@@ -6964,13 +6964,13 @@ namespace user
 
       //      auto pszType = typeid(*this).name();
       //
-      //      if(::string(pszType).case_insensitive_contains("line_layout"))
+      //      if(::string(scopedstrType).case_insensitive_contains("line_layout"))
       //      {
       //
       //         information() << "interaction::_000OnDraw line_layout";
       //
       //      }
-      //      else if (::string(pszType).case_insensitive_contains("user::list_box"))
+      //      else if (::string(scopedstrType).case_insensitive_contains("user::list_box"))
       //      {
       //
       //         information() << "interaction::_000OnDraw user::list_box";
@@ -9622,10 +9622,10 @@ if(get_parent())
          }
 
          for (auto psz = pmessage->m_union.m_pkey->m_strText.c_str();
-              psz < pmessage->m_union.m_pkey->m_strText.end(); psz = ::unicode_next(psz))
+              psz < pmessage->m_union.m_pkey->m_strText.end(); psz = ::unicode_next(scopedstr))
          {
 
-            m_pappearance->on_character(unicode_index(psz));
+            m_pappearance->on_character(unicode_index(scopedstr));
 
          }
 
@@ -9668,7 +9668,7 @@ if(get_parent())
    //}
 
 
-   ::user::interaction * interaction::get_child_by_name(const ::string & strName, ::collection::index iItem, int iLevel)
+   ::user::interaction * interaction::get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem, int iLevel)
    {
 
       ::pointer<interaction> pinteraction = top_child();
@@ -11802,7 +11802,7 @@ if(get_parent())
          while (*psz)
          {
 
-            string strUtf8Character = get_utf8_char(psz);
+            string strUtf8Character = get_utf8_char(scopedstr);
 
             auto iCharacter = unicode_index(strUtf8Character);
 
@@ -11817,7 +11817,7 @@ if(get_parent())
    }
 
 
-   void interaction::set_window_text(const ::string & pszString)
+   void interaction::set_window_text(const ::scoped_string & scopedstrString)
    {
 
       {
@@ -11825,7 +11825,7 @@ if(get_parent())
          _synchronous_lock synchronouslock(this->synchronization());
 
          //m_strWindowText2 = pszString;
-         m_textproperty.set_property(pszString, ::e_source_sync);
+         m_textproperty.set_property(scopedstrString, ::e_source_sync);
 
       }
 
@@ -11893,7 +11893,7 @@ if(get_parent())
    //
    //      character_count n = minimum(nMaxCount, strWindowText.length());
    //
-   //      ansi_count_copy(pszStringBuf, strWindowText, n);
+   //      ansi_count_copy(scopedstrStringBuf, strWindowText, n);
    //
    //      return n;
    //
@@ -18031,7 +18031,7 @@ if(get_parent())
    //}
 
 
-   void interaction::OnLinkClick(const ::string & psz, const ::string & pszTarget)
+   void interaction::OnLinkClick(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTarget)
    {
 
       auto phyperlink = __create_new<::hyperlink>();
@@ -18042,7 +18042,7 @@ if(get_parent())
 
       phyperlink->run();
 
-      //hyperlink.open_link(psz, "", pszTarget);
+      //hyperlink.open_link(scopedstr, "", pszTarget);
 
    }
 
@@ -22354,7 +22354,7 @@ if(get_parent())
    }
 
 
-   void interaction::create_message_queue(const ::string & strName)
+   void interaction::create_message_queue(const ::scoped_string & scopedstrName)
    {
 
       //if (is_window())
@@ -23803,7 +23803,7 @@ if(get_parent())
    //}
 
 
-   void interaction::show_tooltip(const ::string & str, bool bError)
+   void interaction::show_tooltip(const ::scoped_string & scopedstr, bool bError)
    {
 
       //
@@ -24728,7 +24728,7 @@ void interaction::on_control_box_zoom(){
    }
 
 
-   void interaction::set_bitmap_source(const string & strBitmapSource)
+   void interaction::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
       if (!window())
@@ -24970,7 +24970,7 @@ void interaction::on_control_box_zoom(){
    //
    //      auto strWindowText = _get_window_text();
    //
-   //      strncpy(psz, strWindowText, n);
+   //      strncpy(scopedstr, strWindowText, n);
    //
    //      psz[n - 1] = '\0';
    //
@@ -27273,7 +27273,7 @@ __check_refdbg;
 
       auto pszType = typeid(*this).name();
 
-      information("interaction::on_message_left_button_double_click" + ::string(pszType));
+      information("interaction::on_message_left_button_double_click" + ::string(scopedstrType));
 
       if (!is_window_enabled())
       {
@@ -28616,7 +28616,7 @@ __check_refdbg;
    //}
 
 
-   bool interaction::on_action(const ::string & pszId)
+   bool interaction::on_action(const ::scoped_string & scopedstrId)
    {
 
       auto pinteractionParent = get_parent();
@@ -28624,7 +28624,7 @@ __check_refdbg;
       if (::is_set(pinteractionParent))
       {
 
-         if (pinteractionParent->on_action(pszId))
+         if (pinteractionParent->on_action(scopedstrId))
          {
 
             return true;
@@ -28977,7 +28977,7 @@ __check_refdbg;
    }
 
 
-   //pointer< ::sequence < ::conversation > > interaction::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
+   //pointer< ::sequence < ::conversation > > interaction::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox)
    //{
 
    //   auto pmessagebox = __øcreate < ::user::message_box >();
@@ -29091,7 +29091,7 @@ __check_refdbg;
       while (*psz)
       {
 
-         string strCharacter = get_utf8_char(psz);
+         string strCharacter = get_utf8_char(scopedstr);
 
          int iCharacter = unicode_index(strCharacter);
 

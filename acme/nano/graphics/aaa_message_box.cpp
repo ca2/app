@@ -108,7 +108,7 @@ void message_box::defer_create_details_still()
 }
 
 
-::collection::count get_line_count(const ::string & str)
+::collection::count get_line_count(const ::scoped_string & scopedstr)
 {
 
    ::collection::index iFind = 0;
@@ -176,7 +176,7 @@ void message_box::calculate_size()
 }
 
 
-void message_box::initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+void message_box::initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
    
    conversation_message::initialize_conversation(strMessage, strTitle, emessagebox, strDetails, picon);
@@ -270,7 +270,7 @@ void message_box::initialize_conversation(const ::string & strMessage, const ::s
 }
 
 
-//void message_box::initialize_message_box(const ::string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+//void message_box::initialize_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 //{
 //
 //   m_functionClose = [this](micro::interchange * pinterchange)
@@ -292,7 +292,7 @@ void message_box::initialize_conversation(const ::string & strMessage, const ::s
 
 
 
-//void message_box::do_message_box(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails)
+//void message_box::do_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
 //{
 //
 //   m_functionClose = [this](micro::interchange* pinterchange)
@@ -350,7 +350,7 @@ void message_box::on_create_window()
 }
 
 
-//pointer< ::sequence < ::conversation > > message_box::display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+//pointer< ::sequence < ::conversation > > message_box::display(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
 //{
 //
 //   auto psequence = __allocate ::sequence <::conversation > ();
@@ -578,7 +578,7 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
 ////
 ////   manual_reset_happening happening;
 ////
-////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
+////   pmessagebox->display(scopedstrMessage, pszTitle, emessagebox, pszDetails);
 ////
 ////   pmessagebox->m_functionClose = [&idResult, &happening](micro::interchange * pinterchange)
 ////   {
@@ -678,7 +678,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 ////
 ////   manual_reset_happening happening;
 ////
-////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
+////   pmessagebox->display(scopedstrMessage, pszTitle, emessagebox, pszDetails);
 ////
 ////   pmessagebox->m_functionClose = [&idResult, &happening](micro::interchange * pinterchange)
 ////   {

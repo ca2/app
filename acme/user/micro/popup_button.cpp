@@ -87,7 +87,7 @@ namespace micro
    }
 
 
-   void popup_button::initialize_popup_button(const ::string & strText, int x, int y, ::acme::user::interaction * pacmeuserinteractionOwner)
+   void popup_button::initialize_popup_button(const ::scoped_string & scopedstrText, int x, int y, ::acme::user::interaction * pacmeuserinteractionOwner)
    {
 
       m_pacmeuserinteractionOwner = pacmeuserinteractionOwner;

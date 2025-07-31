@@ -56,7 +56,7 @@ namespace sockets
 
       void OnConnect() override;
 
-      void OnLine(const ::string & strParam) override;
+      void OnLine(const ::scoped_string & scopedstrParam) override;
 
       virtual bool http_request_step();
 

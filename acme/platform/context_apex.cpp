@@ -71,7 +71,7 @@ namespace platform
 
 
    //bool apex_context_layer::http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile){}
-   //::string apex_context_layer::http_get(const string& strUrl, ::property_set & set){}
+   //::string apex_context_layer::http_get(const ::scoped_string & scopedstrUrl, ::property_set & set){}
    //::string apex_context_layer::http_get(const ::scoped_string & scopedstrUrl){}
 
    ::string apex_context_layer::get_latest_build_number(const ::scoped_string& scopedstrConfiguration,
@@ -101,7 +101,7 @@ namespace platform
    //      ::file::path _defer_process_path(::file::path path) override{}
    //      ::file::path __defer_process_path(::file::path path) override{}
 
-   bool apex_context_layer::_001IsProtocol(::file::path& path, const ::string& strProtocol)
+   bool apex_context_layer::_001IsProtocol(::file::path& path, const ::scoped_string & scopedstrProtocol)
    {
       return false;
    }
@@ -164,23 +164,23 @@ namespace platform
 
 
    //virtual ::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true){}
-   //virtual ::image::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true){}
+   //virtual ::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true){}
 
    //virtual ::image::image_pointer load_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false) override{}
-   //virtual ::image::image_pointer load_matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false){}
+   //virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false){}
    //virtual ::image::image_pointer load_matter_icon(string_array & straMatter, string strIcon) override{}
    //virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h) override{}
-   //virtual ::image::image_pointer load_thumbnail(const ::string & strPath){}
+   //virtual ::image::image_pointer load_thumbnail(const ::scoped_string & scopedstrPath){}
    //virtual ::image::image_pointer load_dib(const ::file::path & pathDib) override{}
    //virtual ::icon_pointer load_icon(const ::payload & payloadFile){}
 
 
    //void apex_context_layer::_get_image(::image::image *pimage, const ::payload & payloadFile, bool bSync = true){}
-   //void apex_context_layer::_matter_image(::image::image *pimage, const ::string & strMatter, bool bSync = true){}
+   //void apex_context_layer::_matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, bool bSync = true){}
 
 
    //void apex_context_layer::_load_image(::image::image *pimage, const ::payload & payloadFile, bool bSync = true, bool bCreateHelperMaps = false){}
-   //void apex_context_layer::_load_matter_image(::image::image *pimage, const string & pszMatter, bool bSync = true, bool bCreateHelperMaps = false){}
+   //void apex_context_layer::_load_matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCreateHelperMaps = false){}
    //void apex_context_layer::_load_matter_icon(::image::image *pimage, string_array & straMatter, string strIcon){}
    //void apex_context_layer::_load_thumbnail(::image::image *pimage, const ::payload & payloadFile, int w, int h){}
    //void apex_context_layer::_load_thumbnail(::image::image *pimage, const ::payload & payloadFile){}

@@ -321,7 +321,7 @@
    
    const char * pszText = [text UTF8String];
    
-   if(p->round_window_on_text(pszText, -1, -1))
+   if(p->round_window_on_text(scopedstrText, -1, -1))
          return;
    
 }
@@ -383,7 +383,7 @@
 //
 //   const char * pszText = [[self text] UTF8String];
 //
-//   if(p->round_window_on_text(pszText))
+//   if(p->round_window_on_text(scopedstrText))
 //      return;
    
 }

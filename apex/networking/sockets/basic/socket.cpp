@@ -119,7 +119,7 @@ namespace sockets
    }
 
 
-//   socket_id socket::CreateSocket(int af, int iType, const ::string & strProtocol)
+//   socket_id socket::CreateSocket(int af, int iType, const ::scoped_string & scopedstrProtocol)
 //   {
 //
 //      socket_id s;

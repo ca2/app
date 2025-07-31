@@ -149,7 +149,7 @@ namespace simpledb
       ::sockets::httpd_socket::OnSSLAccept();
    }
 
-   void socket::simple_file_server(const ::file::path & psz, const ::string & pszRelative)
+   void socket::simple_file_server(const ::file::path & psz, const ::scoped_string & scopedstrRelative)
    {
       pointer_array < ::int_array > rangea;
       if(strlen(inheader("range")) > 0)
@@ -179,9 +179,9 @@ namespace simpledb
          }
       }
       string strRelative;
-      if(pszRelative != nullptr)
+      if(scopedstrRelative != nullptr)
       {
-         strRelative = string(pszRelative);
+         strRelative = string(scopedstrRelative);
       }
       else
       {
@@ -193,12 +193,12 @@ namespace simpledb
    }
 
 
-   bool socket::read_file(const ::file::path & lpcsz,pointer_array < ::int_array > * prangea, const ::string & pszContentType)
+   bool socket::read_file(const ::file::path & lpcsz,pointer_array < ::int_array > * prangea, const ::scoped_string & scopedstrContentType)
    {
       string strExtension = lpcsz.extension();
       string str = strExtension;
       str.make_lower();
-      string strContentType(pszContentType);
+      string strContentType(scopedstrContentType);
       if(strContentType.has_character() && strContentType.case_insensitive_order("unknown") != 0)
       {
          outheader("content-type") = strContentType;

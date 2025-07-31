@@ -846,10 +846,10 @@ pstate->m_ppen->m_color = color;
 
       int iChar = 0;
 
-      while (psz < scopedstr.end() && iChar < maxPositions)
+      while (scopedstr < scopedstr.end() && iChar < maxPositions)
       {
 
-         int iLen = get_utf8_char_length(psz);
+         int iLen = get_utf8_char_length(scopedstr);
 
          positions[iChar].str = psz;
 

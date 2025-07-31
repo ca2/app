@@ -60,9 +60,9 @@
 
 
 
-CLASS_DECL_NETWORKING_BSD int_bool to(in6_addr & addr,const ::string & str);
+CLASS_DECL_NETWORKING_BSD int_bool to(in6_addr & addr,const ::scoped_string & scopedstr);
 CLASS_DECL_NETWORKING_BSD ::string as_string(const in6_addr & addr);
-CLASS_DECL_NETWORKING_BSD int_bool to(in_addr & addr,const ::string & str);
+CLASS_DECL_NETWORKING_BSD int_bool to(in_addr & addr,const ::scoped_string & scopedstr);
 CLASS_DECL_NETWORKING_BSD ::string as_string(const in_addr & addr);
 CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr_in &  addr);
 CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr_in6 &  addr);

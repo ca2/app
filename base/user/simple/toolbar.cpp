@@ -1182,15 +1182,15 @@ void simple_toolbar::SetSizes(const ::int_size & sizeButton, const ::int_size & 
 }
 
 /*
-bool simple_toolbar::LoadBitmap(const ::string & pszResourceName)
+bool simple_toolbar::LoadBitmap(const ::scoped_string & scopedstrResourceName)
 
 {
 ASSERT_VALID(this);
-ASSERT(pszResourceName != nullptr);
+ASSERT(scopedstrResourceName != nullptr);
 
 
 // determine location of the bitmap in resource fork
-HINSTANCE hInstImageWell = ::aura::FindResourceHandle(pszResourceName, RT_BITMAP);
+HINSTANCE hInstImageWell = ::aura::FindResourceHandle(scopedstrResourceName, RT_BITMAP);
 
 HRSRC hRsrcImageWell = ::FindResource(hInstImageWell, pszResourceName, RT_BITMAP);
 

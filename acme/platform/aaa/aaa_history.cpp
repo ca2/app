@@ -28,7 +28,7 @@ namespace acme
       if(m_phistory != nullptr)
       {
 
-         return m_phistory->hist(psz);
+         return m_phistory->hist(scopedstr);
 
       }
 

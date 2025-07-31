@@ -184,7 +184,7 @@ namespace api_ca2
    }
 
 
-   ::e_status api::on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string & strUrl, const ::property_set & setPost)
+   ::e_status api::on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::scoped_string & scopedstrUrl, const ::property_set & setPost)
    {
 
       if (::is_set(psocket))
@@ -296,7 +296,7 @@ namespace api_ca2
    }
 
 
-   bool api::check_authenticated(const ::string & strAppState, const ::string & strAppCode)
+   bool api::check_authenticated(const ::scoped_string & scopedstrAppState, const ::scoped_string & scopedstrAppCode)
    {
 
       string strAppLogin = get_app_login();

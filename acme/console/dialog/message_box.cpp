@@ -129,7 +129,7 @@ namespace console
 
       }
 
-      if (ansi_len(pszAcceptedAnswer) > 0)
+      if (ansi_len(scopedstrAcceptedAnswer) > 0)
       {
 
          int c = safe_get_char(stdin, 100_ms);
@@ -150,7 +150,7 @@ namespace console
 
          }
 
-         bAnswer = ::ansi_chr(pszAcceptedAnswer, c) != nullptr;
+         bAnswer = ::ansi_chr(scopedstrAcceptedAnswer, c) != nullptr;
 
          switch (c)
          {

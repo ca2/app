@@ -17,11 +17,11 @@ namespace simpledb
       virtual ~server();
 
       
-      virtual bool open(const ::string & pszDatabase);
+      virtual bool open(const ::scoped_string & scopedstrDatabase);
       virtual bool close();
 
 
-      virtual bool sql(const ::string & pszQuery, ::payload & payload);
+      virtual bool sql(const ::scoped_string & scopedstrQuery, ::payload & payload);
       
 
    };

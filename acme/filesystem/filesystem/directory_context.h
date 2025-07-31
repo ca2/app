@@ -122,13 +122,13 @@
       virtual ::file::path module();
       //virtual ::file::path ca2module();
       virtual ::file::path time_square();
-      virtual ::file::path time_log(const ::string & strId);
+      virtual ::file::path time_log(const ::scoped_string & scopedstrId);
 
 
       virtual void get_matter_locator(string_array & straMatterLocator, bool bIncludeMain = true);
 
 
-      virtual ::file::path locale_schema_matter(const ::string & strLocale, const ::string & strSchema, const ::file::path & pathRoot, const ::file::path & pathDomain);
+      virtual ::file::path locale_schema_matter(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema, const ::file::path & pathRoot, const ::file::path & pathDomain);
       virtual ::file::path matter(const ::file::path & path, const ::file::path & pathRoot, const ::file::path & pathDomain);
 
       virtual ::file::path matter(const ::file::path_array & patha);
@@ -150,10 +150,10 @@
       virtual ::file::path trash_that_is_not_trash(const ::file::path & psz);
 
       virtual ::file::path cache();
-      virtual ::file::path appdata(const ::string & strAppId = "");
+      virtual ::file::path appdata(const ::scoped_string & scopedstrAppId = "");
       virtual ::file::path commonappdata_root();
       virtual ::file::path commonappdata();
-      virtual ::file::path element_commonappdata(const ::string & strElement);
+      virtual ::file::path element_commonappdata(const ::scoped_string & scopedstrElement);
 
       virtual ::file::path localfolder();
 
@@ -162,7 +162,7 @@
 
       virtual ::file::path commonprograms();
 
-      virtual ::file::path pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode);
+      virtual ::file::path pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode);
 
       //virtual void initialize(::particle * pparticle) override;
 
@@ -191,8 +191,8 @@
 
       virtual ::file::path standalone();
 
-      //virtual string_array locale_schema_matter(string & strLocale, const ::string & strStyle);
-      //virtual string_array locale_schema_matter(string & strLocale, const ::string & strStyle, const string & pathRoot, const ::file::path & pathDomain);
+      //virtual string_array locale_schema_matter(string & strLocale, const ::scoped_string & scopedstrStyle);
+      //virtual string_array locale_schema_matter(string & strLocale, const ::scoped_string & scopedstrStyle, const string & pathRoot, const ::file::path & pathDomain);
       //virtual string matter(const ::file::path_array & patha, bool bDir);
       //virtual string matter(const ::file::path & path, bool bDir );
 
@@ -226,7 +226,7 @@
 
       //virtual bool  is(const ::file::path & path);
 
-      //virtual bool  is(const ::string & str);
+      //virtual bool  is(const ::scoped_string & scopedstr);
       //virtual bool  is(const ::payload & payload);
       //virtual bool  is_inside(const ::file::path & pathDir, const ::file::path & lpcszPath);
 
@@ -237,7 +237,7 @@
 
       //virtual bool  rm(const ::file::path & psz, bool bRecursive = true);
 
-      //virtual ::file::path pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode);
+      //virtual ::file::path pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode);
 
       //virtual ::file::path dropbox();
 

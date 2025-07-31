@@ -102,7 +102,7 @@ namespace userex
    }
 
    
-   void pane_impact::set_new_pane_info(atom atom, const ::string & pszMatter)
+   void pane_impact::set_new_pane_info(atom atom, const ::scoped_string & scopedstrMatter)
    {
    
       set_menu_info(atom, pszMatter, "new_pane");
@@ -110,7 +110,7 @@ namespace userex
    }
 
 
-   void pane_impact::set_menu_info(atom atom, const ::string & pszMatter, ::atom idCommand)
+   void pane_impact::set_menu_info(atom atom, const ::scoped_string & scopedstrMatter, ::atom idCommand)
    {
 
       ::pointer<menu>pmenu;

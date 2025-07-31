@@ -112,7 +112,7 @@
 //      pblock->m_iStack = sizeof(pblock->m_puiStack) / sizeof(pblock->m_puiStack[0]);
 //      g_ee->backtrace(pblock->m_puiStack, pblock->m_iStack);
 //      pblock->m_pszFileName = nullptr;
-//      //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
+//      //pblock->m_pszFileName = strdup(scopedstrFileName); // not trackable, at least think so certainly causes memory leak
 //   }
 //
 //   ::acme::set_maximum(pblock->m_uiLine);

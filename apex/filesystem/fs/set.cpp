@@ -198,12 +198,12 @@ namespace fs
    ::pointer<data>set::node_path_data(const  ::file::path & psz)
    {
 
-      ::pointer<data>pdata = path_data(psz);
+      ::pointer<data>pdata = path_data(scopedstr);
 
       if(pdata == nullptr)
          return this;
 
-      return pdata->node_path_data(psz);
+      return pdata->node_path_data(scopedstr);
 
    }
 
@@ -311,11 +311,11 @@ namespace fs
    //string set::file_name(const ::file::path & psz)
    //{
 
-   //   ::fs::data * pdata = path_data(psz);
+   //   ::fs::data * pdata = path_data(scopedstr);
 
    //   if(pdata != nullptr)
    //   {
-   //      return pdata->file_name(psz);
+   //      return pdata->file_name(scopedstr);
    //   }
 
    //   return "";
@@ -326,18 +326,18 @@ namespace fs
    bool set::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
    {
 
-      ::fs::data * pdataDst = path_data(pszDst);
-      ::fs::data * pdataSrc = path_data(pszSrc);
+      ::fs::data * pdataDst = path_data(scopedstrDst);
+      ::fs::data * pdataSrc = path_data(scopedstrSrc);
 
       if(pdataDst != nullptr && pdataSrc == pdataDst)
       {
-         return pdataDst->file_move(pszDst, pszSrc);
+         return pdataDst->file_move(scopedstrDst, pszSrc);
       }
       else
       {
          try
          {
-            file()->copy(pszDst, pszSrc);
+            file()->copy(scopedstrDst, pszSrc);
          }
          catch(...)
          {
@@ -430,11 +430,11 @@ namespace fs
    //void set::get_ascendants_path(const ::file::path & psz,::file::path_array & stra)
    //{
 
-   //   ::fs::data * pdata = path_data(psz);
+   //   ::fs::data * pdata = path_data(scopedstr);
 
    //   if(pdata != nullptr)
    //   {
-   //      pdata->get_ascendants_path(psz, stra);
+   //      pdata->get_ascendants_path(scopedstr, stra);
    //   }
 
    //}
@@ -443,11 +443,11 @@ namespace fs
    //string set::eat_end_level(const ::scoped_string & scopedstr, int iLevel)
    //{
 
-   //   ::fs::data * pdata = path_data(psz);
+   //   ::fs::data * pdata = path_data(scopedstr);
 
    //   if(pdata != nullptr)
    //   {
-   //      return pdata->eat_end_level(psz, iLevel);
+   //      return pdata->eat_end_level(scopedstr, iLevel);
    //   }
 
    //   return "";
@@ -458,14 +458,14 @@ namespace fs
    //string set::dir_path(const ::file::path & path1, const ::file::path & path2)
    //{
 
-   //   ::fs::data * pdata = path_data(pszPath1);
+   //   ::fs::data * pdata = path_data(scopedstrPath1);
 
    //   if(pdata != nullptr)
    //   {
-   //      return pdata->dir_path(pszPath1, pszPath2);
+   //      return pdata->dir_path(scopedstrPath1, pszPath2);
    //   }
 
-   //   return ::file::path(pszPath1) / pszPath2;
+   //   return ::file::path(scopedstrPath1) / pszPath2;
 
    //}
 
@@ -473,14 +473,14 @@ namespace fs
    bool set::is_zero_latency(const ::file::path & psz)
    {
 
-      ::fs::data * pdata = path_data(psz);
+      ::fs::data * pdata = path_data(scopedstr);
 
       if(pdata != nullptr)
       {
-         return pdata->is_zero_latency(psz);
+         return pdata->is_zero_latency(scopedstr);
       }
 
-      return ::fs::data::is_zero_latency(psz);
+      return ::fs::data::is_zero_latency(scopedstr);
 
    }
 

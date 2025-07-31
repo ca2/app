@@ -370,13 +370,13 @@ namespace draw2d_cairo
 
       // Text Functions
       //virtual bool text_out(double x, double y, const ::string & lpszString, character_count nCount) override;
-      //virtual bool text_out(double x, double y, const ::string & str) override;
+      //virtual bool text_out(double x, double y, const ::scoped_string & scopedstr) override;
       void TextOutRaw(double x, double y, const ::scoped_string & scopedstr) override;
-      ///virtual bool text_out(double x, double y, const ::string & str) override;
+      ///virtual bool text_out(double x, double y, const ::scoped_string & scopedstr) override;
       //virtual bool ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & double_rectangle, const ::string & lpszString, character_count nCount, int * lpDxWidths) override;
-      //virtual bool ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & double_rectangle, const ::string & str, int * lpDxWidths) override;
+      //virtual bool ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & double_rectangle, const ::scoped_string & scopedstr, int * lpDxWidths) override;
 //      virtual double_size TabbedTextOut(double x, double y, const ::string & lpszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin) override;
-//      virtual double_size TabbedTextOut(double x, double y, const ::string & str, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin) override;
+//      virtual double_size TabbedTextOut(double x, double y, const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin) override;
 
       virtual void internal_draw_text_cairo(const block & block, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnText = nullptr);
       virtual void internal_draw_text(const block & block, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
@@ -387,11 +387,11 @@ namespace draw2d_cairo
 //      virtual void internal_draw_text(const block & block, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnTtext);
 #endif
       //virtual bool draw_text(const ::string & lpszString, character_count nCount, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
-      void draw_text(const ::string & str, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      void draw_text(const ::scoped_string & scopedstr, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
       //virtual bool draw_text_ex(char * lpszString, character_count nCount, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
-      //virtual bool draw_text_ex(const ::string & str, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams = nullptr) override;
-      void draw_text_ex(const ::string & str, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      //virtual bool draw_text_ex(const ::scoped_string & scopedstr, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams = nullptr) override;
+      void draw_text_ex(const ::scoped_string & scopedstr, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
       double_size get_text_extent(const ::scoped_string & scopedstr, character_count iIndex) override;
       double_size get_text_extent(const ::scoped_string & scopedstr) override;
@@ -399,13 +399,13 @@ namespace draw2d_cairo
       bool _GetTextExtent(double_size & double_size, const char * lpszString, character_count nCount, character_count iIndex);
       //double_size get_text_extent(const ::scoped_string & scopedstr, character_count iIndex) override;
       //double_size get_text_extent(const ::scoped_string & scopedstr) override;
-      ///double_size get_text_extent(const ::string & str) override;
+      ///double_size get_text_extent(const ::scoped_string & scopedstr) override;
       //double_size GetOutputTextExtent(const char * lpszString, character_count nCount) override;
-      //double_size GetOutputTextExtent(const ::string & str) override;
+      //double_size GetOutputTextExtent(const ::scoped_string & scopedstr) override;
       //double_size GetTabbedTextExtent(const ::string & lpszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
-      //double_size GetTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
+      //double_size GetTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
       //double_size GetOutputTabbedTextExtent(const ::string & lpszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
-      //double_size GetOutputTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
+      //double_size GetOutputTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
       //virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount, double x, double y, double nWidth, double nHeight) override;
       unsigned int GetTextAlign() override;
       unsigned int SetTextAlign(unsigned int nFlags) override;
@@ -624,10 +624,10 @@ namespace draw2d_cairo
 
       //virtual void enum_fonts(::write_text::font_enumeration_item_array & itema) override;
 
-      //virtual ::file::path get_font_path(const ::string & strName, int iWeight, bool bItalic) override;
+      //virtual ::file::path get_font_path(const ::scoped_string & scopedstrName, int iWeight, bool bItalic) override;
 
 
-      FT_Face ftface(const ::string & pszFontName, int iWeight, bool bItalic);
+      FT_Face ftface(const ::scoped_string & scopedstrFontName, int iWeight, bool bItalic);
       //FT_Face ftface(const ::block & block);
 
       //virtual void on_apply_clip_region() override;

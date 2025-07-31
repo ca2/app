@@ -52,10 +52,10 @@ namespace android
       //virtual void initialize() override;
 
       //virtual void defer_start();
-      //virtual void open_folder(oswindow oswindow, const ::string & strFolder);
-      //virtual void close_folder(const ::string & strFolder);
+      //virtual void open_folder(oswindow oswindow, const ::scoped_string & scopedstrFolder);
+      //virtual void close_folder(const ::scoped_string & scopedstrFolder);
 
-      virtual int get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
+      virtual int get_file_extension_image(const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
       virtual int impl_get_file_image( const image_key& imagekey) override;
 
       virtual ::user::shell::e_folder get_folder_type(::particle * pparticle, const ::wide_character * lpcszPath) override;
@@ -73,8 +73,8 @@ namespace android
 
 
       //virtual bool do_call();
-      //int calc_image_foo(oswindow oswindow, const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
-      //int calc_get_image(oswindow oswindow, const ::string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
+      //int calc_image_foo(oswindow oswindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
+      //int calc_get_image(oswindow oswindow, const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
 
 
 
@@ -92,7 +92,7 @@ namespace android
 
 
       //         ::windows::comptr < IShellFolder> _017GetShellParentFolder(per_fork * pfork, LPITEMIDLIST lpiidlChild);
-      //         //::windows::comptr < IShellFolder> _017GetShellFolder(const ::string & str, LPITEMIDLIST lpiidlChild);
+      //         //::windows::comptr < IShellFolder> _017GetShellFolder(const ::scoped_string & scopedstr, LPITEMIDLIST lpiidlChild);
       //         ::windows::comptr < IShellFolder> _017GetShellFolder(per_fork * pfork, LPITEMIDLIST lpiidlChild);
       //         void _017ItemIDListParsePath(per_fork * pfork, oswindow oswindow, LPITEMIDLIST * lpiidl, const ::scoped_string & scopedstr);
 

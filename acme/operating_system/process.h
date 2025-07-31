@@ -26,15 +26,15 @@ namespace operating_system
       ~process() override;
 
 
-      virtual bool create_child_process(const ::string & pszCmdLine, bool bPiped = false, const ::string & pszDir = nullptr, ::enum_priority epriority = ::e_priority_none);
+      virtual bool create_child_process(const ::scoped_string & scopedstrCmdLine, bool bPiped = false, const ::scoped_string & scopedstrDir = nullptr, ::enum_priority epriority = ::e_priority_none);
 
       virtual void wait_until_exit(const class time & timeWait);
       virtual bool has_exited();
 
-      virtual bool write(const ::string & psz);
+      virtual bool write(const ::scoped_string & scopedstr);
       virtual string read(bool bUntilExit = false);
 
-      virtual bool synch_elevated(const ::string & pszCmdLine,int iShow,const class ::time & timeTimeOut,bool * pbTimeOut);
+      virtual bool synch_elevated(const ::scoped_string & scopedstrCmdLine,int iShow,const class ::time & timeTimeOut,bool * pbTimeOut);
 
       virtual bool kill();
 

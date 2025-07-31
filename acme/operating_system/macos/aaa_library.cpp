@@ -18,14 +18,14 @@ void * __node_library_touch(const ::file::path & path, string & strMessage)
 
       const char *image_name = _dyld_get_image_name(i);
 
-      if(::file::path(image_name).title().case_insensitive_order(::file::path(pszPath).title()) == 0)
+      if(::file::path(image_name).title().case_insensitive_order(::file::path(scopedstrPath).title()) == 0)
       {
 
          goto found;
 
       }
 
-      if(::file::path(image_name).title().case_insensitive_order(("lib" + ::file::path(pszPath).title())) == 0)
+      if(::file::path(image_name).title().case_insensitive_order(("lib" + ::file::path(scopedstrPath).title())) == 0)
       {
 
          goto found;
@@ -36,7 +36,7 @@ void * __node_library_touch(const ::file::path & path, string & strMessage)
 
    return nullptr;
 found:
-   return __node_library_open(pszPath, strMessage);
+   return __node_library_open(scopedstrPath, strMessage);
 
 }
 
@@ -46,7 +46,7 @@ void * __node_library_open(const ::file::path & path, string & strMessage)
 
    strMessage.empty();
 
-   string strPath(pszPath);
+   string strPath(scopedstrPath);
 
    string strError;
 
@@ -187,7 +187,7 @@ void * __node_library_raw_get(void * plibrary, const ::scoped_string & scopedstr
 void * __node_library_open_ca2(const ::file::path & path, string & strMessage)
 {
 
-   string strPath(pszPath);
+   string strPath(scopedstrPath);
    
    if(!strPath.case_insensitive_begins("lib"))
    {

@@ -104,7 +104,7 @@ namespace image
 
       NSVGimage * psvgimage;
 
-      psvgimage = nsvgParse(pszXml, "px", 300.0f);
+      psvgimage = nsvgParse(scopedstrXml, "px", 300.0f);
 
       if (::is_null(psvgimage))
       {
@@ -149,7 +149,7 @@ namespace image
 
       }
 
-      psvgimage = nsvgParse(pszXml, "px", (float)dDpi);
+      psvgimage = nsvgParse(scopedstrXml, "px", (float)dDpi);
 
       if (::is_null(psvgimage))
       {

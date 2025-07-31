@@ -223,8 +223,8 @@ namespace file
       //virtual ::string right_string();
       //virtual void right_string(::string & str);
 
-      virtual void print(const ::string & str);
-      virtual void println(const ::string & str);
+      virtual void print(const ::scoped_string & scopedstr);
+      virtual void println(const ::scoped_string & scopedstr);
       virtual void printf(const char * format, ...);
 
       ///virtual void write(const string &);
@@ -249,7 +249,7 @@ namespace file
          ::file::e_open_binary, ::pointer < ::file::exception > * pfileexception = nullptr)
       {
 
-         open(pszFileName, eopen | ::file::e_open_read); 
+         open(scopedstrFileName, eopen | ::file::e_open_read); 
 
       }
       
@@ -258,7 +258,7 @@ namespace file
          ::file::e_open_binary | ::file::e_open_defer_create_directory, ::pointer < ::file::exception > * pfileexception = nullptr)
       {
 
-         open(pszFileName, eopen | ::file::e_open_write);
+         open(scopedstrFileName, eopen | ::file::e_open_write);
 
       }
 

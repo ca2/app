@@ -236,7 +236,7 @@ pdirectorysystem->system() / "log.txt"))
 
 //   extern ::pointer<::aura::application>g_papp;
 
-   CLASS_DECL_AURA int SimpleDebugReport(int iReportType, const ::string & pszFileName,int iLine, const ::string &, const ::string & pszFormat, va_list list)
+   CLASS_DECL_AURA int SimpleDebugReport(int iReportType, const ::scoped_string & scopedstrFileName,int iLine, const ::string &, const ::scoped_string & scopedstrFormat, va_list list)
    {
 #ifdef WIN32
 
@@ -262,7 +262,7 @@ pdirectorysystem->system() / "log.txt"))
             information(wstring(str));
             /*if(message_box(nullptr, str, strCaption, e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
             {
-               string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+as_string(iLine)+"\"";
+               string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(scopedstrFileName)+ "\" /command \"edit.goto "+as_string(iLine)+"\"";
                ::system(strCmdLine);
                exit(0);
             }
@@ -282,7 +282,7 @@ pdirectorysystem->system() / "log.txt"))
       }
 
 #else
-      vprintf(pszFormat, list);
+      vprintf(scopedstrFormat, list);
 #endif
       return 0;
    }
@@ -298,27 +298,27 @@ pdirectorysystem->system() / "log.txt"))
    }
 
 
-   void log::success(const ::string & psz)
+   void log::success(const ::scoped_string & scopedstr)
    {
 
-      print(psz);
+      print(scopedstr);
 
    }
 
 
-   //void log::tracev(e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & pszFormat, va_list args)
+   //void log::tracev(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, va_list args)
    //{
 
    //   string str;
 
-   //   str.formatf(pszFormat, args);
+   //   str.formatf(scopedstrFormat, args);
 
    //   alog(ecategory, elevel, pszFunction, pszFile, iLine, str);
 
    //}
 
 
-   void log::__tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz)
+   void log::__tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr)
    {
 
       const ::scoped_string & scopedstrTopicText = ::is_set(pparticle) ? pparticle->topic_text() : nullptr;
@@ -349,10 +349,10 @@ pdirectorysystem->system() / "log.txt"))
 
             string str;
 
-            if (::is_set(pszTopicText))
+            if (::is_set(scopedstrTopicText))
             {
 
-               string strTopicText(pszTopicText);
+               string strTopicText(scopedstrTopicText);
 
                if (strTopicText.has_character())
                {
@@ -383,7 +383,7 @@ pdirectorysystem->system() / "log.txt"))
 
       string_array stra;
 
-      stra.add_lines(psz, false);
+      stra.add_lines(scopedstr, false);
 
       string strPre;
 
@@ -424,7 +424,7 @@ pdirectorysystem->system() / "log.txt"))
 
       //string strCat(pcategory->m_pszName);
 
-      string strCat(pszTopicText);
+      string strCat(scopedstrTopicText);
 
       string strMiddle;
 
@@ -438,14 +438,14 @@ pdirectorysystem->system() / "log.txt"))
       if (m_bLogFunctionName)
       {
 
-         strMiddle += "[" + string(pszFunction) + "] ";
+         strMiddle += "[" + string(scopedstrFunction) + "] ";
 
       }
 
       if (m_bLogFileName)
       {
 
-         strMiddle += "\""+ string(pszFile) + "\"";
+         strMiddle += "\""+ string(scopedstrFile) + "\"";
 
          strMiddle += "(" + as_string(iLine) + "): ";
 
@@ -617,7 +617,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
 
    }
 
-   //void log::trace2(e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFormat, ...)
+   //void log::trace2(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFormat, ...)
    //{
    //   if(!m_bTrace)
    //      return;
@@ -631,7 +631,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
 
 
 
-   void log::print(const ::string & pszFormat, ...)
+   void log::print(const ::scoped_string & scopedstrFormat, ...)
    {
 
       va_list valist;
@@ -645,10 +645,10 @@ skip_further_possible_recursive_impossible_logging_in_file:
    }
 
 
-   //void log::initialize_aura_log(enum_trace_level etracelevelMin, const ::string & pszId)
+   //void log::initialize_aura_log(enum_trace_level etracelevelMin, const ::scoped_string & scopedstrId)
    //{
 
-   //   //if (!initialize(atom(pszId)))
+   //   //if (!initialize(atom(scopedstrId)))
    //   //{
 
    //   //   return false;
@@ -768,14 +768,14 @@ skip_further_possible_recursive_impossible_logging_in_file:
 
 
 
-   //void log::trace(const ::string & pszFormat, ...)
+   //void log::trace(const ::scoped_string & scopedstrFormat, ...)
    //{
 
    //   if (void_ptr_is_null(this))
    //   {
    //      va_list ptr;
    //      va_start(ptr, pszFormat);
-   //      vprintf(pszFormat, ptr);
+   //      vprintf(scopedstrFormat, ptr);
    //      va_end(ptr);
    //      return;
    //   }
@@ -786,7 +786,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    //   va_end(ptr);
    //}
 
-   /*void log::trace2(e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFormat, ...)
+   /*void log::trace2(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFormat, ...)
    {
       if(!m_bTrace)
          return;

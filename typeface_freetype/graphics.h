@@ -423,7 +423,7 @@ namespace typeface_freetype
 
       void draw_text(const ::scoped_string & str,const ::double_rectangle & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
-      //void draw_text_ex(const ::string & str, const ::double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      //void draw_text_ex(const ::scoped_string & scopedstr, const ::double_rectangle & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
       //virtual double_size get_text_extent(const ::scoped_string & lpszString, character_count nCount, character_count iIndex) override;
       //virtual double_size get_text_extent(const ::scoped_string & lpszString, character_count nCount) override;

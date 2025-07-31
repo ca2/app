@@ -80,7 +80,7 @@ CLASS_DECL_ACME void monitor_pointer(void *p);
 //CLASS_DECL_AURA bool task_set_name(const ::string &psz);
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
-//void windowing_output_debug_string(const ::string & pszDebugString);
+//void windowing_output_debug_string(const ::scoped_string & scopedstrDebugString);
 
 #define REDRAW_PROFILE_NORMAL 5
 
@@ -1263,9 +1263,9 @@ namespace user
 //
 ////#ifdef WINDOWS
 ////
-////      wstring wstrClassName(pszClassName);
+////      wstring wstrClassName(scopedstrClassName);
 ////      pusersystem->m_createstruct.lpszClass = wstrClassName;
-////      wstring wstrWindowName(pszWindowName);
+////      wstring wstrWindowName(scopedstrWindowName);
 ////      pusersystem->m_createstruct.lpszName = wstrWindowName;
 ////
 ////#else
@@ -3224,12 +3224,12 @@ namespace user
    }
 
 
-   //int interaction_impl::message_box(const ::string & pszText, const ::string & pszCaption,unsigned int nType)
+   //int interaction_impl::message_box(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption,unsigned int nType)
 
    //{
-   //   __UNREFERENCED_PARAMETER(pszText);
+   //   __UNREFERENCED_PARAMETER(scopedstrText);
 
-   //   __UNREFERENCED_PARAMETER(pszCaption);
+   //   __UNREFERENCED_PARAMETER(scopedstrCaption);
 
    //   __UNREFERENCED_PARAMETER(nType);
    //   throw ::interface_only();
@@ -3437,11 +3437,11 @@ namespace user
    //      throw ::interface_only();
    //   }
    //
-   //   void interaction_impl::OnSettingChange(unsigned int uFlags, const ::string & pszSection)
+   //   void interaction_impl::OnSettingChange(unsigned int uFlags, const ::scoped_string & scopedstrSection)
 
    //   {
    //      __UNREFERENCED_PARAMETER(uFlags);
-   //      __UNREFERENCED_PARAMETER(pszSection);
+   //      __UNREFERENCED_PARAMETER(scopedstrSection);
 
    //      throw ::interface_only();
    //   }
@@ -3564,10 +3564,10 @@ namespace user
 //   /////////////////////////////////////////////////////////////////////////////
 //   // Dialog initialization support
 //
-//   void interaction_impl::ExecuteDlgInit(const ::string & pszResourceName)
+//   void interaction_impl::ExecuteDlgInit(const ::scoped_string & scopedstrResourceName)
 //
 //   {
-//      __UNREFERENCED_PARAMETER(pszResourceName);
+//      __UNREFERENCED_PARAMETER(scopedstrResourceName);
 //
 //      throw ::interface_only();
 //
@@ -4088,7 +4088,7 @@ namespace user
    //
    //   {
    //
-   //      __UNREFERENCED_PARAMETER(pszString);
+   //      __UNREFERENCED_PARAMETER(scopedstrString);
    //
    //
    //      throw ::interface_only();
@@ -4099,7 +4099,7 @@ namespace user
    //character_count interaction_impl::GetWindowText(char * pszString,int nMaxCount)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pszString);
+   //   __UNREFERENCED_PARAMETER(scopedstrString);
    //   __UNREFERENCED_PARAMETER(nMaxCount);
    //   throw ::interface_only();
 
@@ -4891,11 +4891,11 @@ namespace user
    //   throw ::interface_only();
    //}
 
-   //void interaction_impl::SetDlgItemText(int nID, const ::string & pszString)
+   //void interaction_impl::SetDlgItemText(int nID, const ::scoped_string & scopedstrString)
 
    //{
    //   __UNREFERENCED_PARAMETER(nID);
-   //   __UNREFERENCED_PARAMETER(pszString);
+   //   __UNREFERENCED_PARAMETER(scopedstrString);
 
    //   throw ::interface_only();
    //}

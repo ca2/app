@@ -217,7 +217,7 @@ public:
    payload(const ::ansi_character * begin, INTEGRAL count) : payload(begin, begin + count) {}
    payload(const ::ansi_character * begin, const ::ansi_character * end);
    payload(const ::ansi_character * psz);
-   payload(const ::string & str);
+   payload(const ::scoped_string & scopedstr);
    payload(const ::type_atom & typeatom);
    payload(const ::atom & atom);
    payload(const ::earth::time & time);
@@ -570,7 +570,7 @@ public:
    void set_string(::string && str);
    void set_id(const ::atom & atom);
    void unset();
-   void unset(const ::string & strPropertySetKey);
+   void unset(const ::scoped_string & scopedstrPropertySetKey);
 
    bool is_set() const;
    bool is_new() const;
@@ -597,15 +597,15 @@ public:
    bool is_property_false(const ::atom & atom) const;
 
 
-   bool begins(const ::string & strPrefix) const;
-   bool ends(const ::string & strSuffix) const;
-   bool case_insensitive_begins(const ::string & strPrefix) const;
-   bool case_insensitive_ends(const ::string & strSuffix) const;
+   bool begins(const ::scoped_string & scopedstrPrefix) const;
+   bool ends(const ::scoped_string & scopedstrSuffix) const;
+   bool case_insensitive_begins(const ::scoped_string & scopedstrPrefix) const;
+   bool case_insensitive_ends(const ::scoped_string & scopedstrSuffix) const;
 
-   bool begins_eat(const ::string & strPrefix);
-   bool ends_eat(const ::string & strSuffix);
-   bool case_insensitive_begins_eat(const ::string & strPrefix);
-   bool case_insensitive_ends_eat(const ::string & strSuffix);
+   bool begins_eat(const ::scoped_string & scopedstrPrefix);
+   bool ends_eat(const ::scoped_string & scopedstrSuffix);
+   bool case_insensitive_begins_eat(const ::scoped_string & scopedstrPrefix);
+   bool case_insensitive_ends_eat(const ::scoped_string & scopedstrSuffix);
 
    payload get_topic(const ::atom & atom) const;
    //payload defer_get(const ::atom & atom) const;
@@ -1299,26 +1299,26 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
    //   bool strictly_equal(const payload & payload) const;
    //   bool strictly_equal(const ::scoped_string & scopedstr) const;
-   //   bool strictly_equal(const ::string & str) const;
+   //   bool strictly_equal(const ::scoped_string & scopedstr) const;
    //   bool strictly_equal(double d) const;
    //   bool strictly_equal(int i) const;
    //   bool strictly_equal(bool b) const;
    //
    //   bool strictly_different(const payload & payload) const;
    //   bool strictly_different(const ::scoped_string & scopedstr) const;
-   //   bool strictly_different(const ::string & str) const;
+   //   bool strictly_different(const ::scoped_string & scopedstr) const;
    //   bool strictly_different(double d) const;
    //   bool strictly_different(int i) const;
    //   bool strictly_different(bool b) const;
 
       //friend bool CLASS_DECL_ACME strict_equal(const ::scoped_string & scopedstr,const payload & payload);
-      //friend bool CLASS_DECL_ACME strict_equal(const ::string & str,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_equal(const ::scoped_string & scopedstr,const payload & payload);
       //friend bool CLASS_DECL_ACME strict_equal(double d,const payload & payload);
       //friend bool CLASS_DECL_ACME strict_equal(int i,const payload & payload);
       //friend bool CLASS_DECL_ACME strict_equal(bool b,const payload & payload);
 
       //friend bool CLASS_DECL_ACME strict_different(const ::scoped_string & scopedstr,const payload & payload);
-      //friend bool CLASS_DECL_ACME strict_different(const ::string & str,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_different(const ::scoped_string & scopedstr,const payload & payload);
       //friend bool CLASS_DECL_ACME strict_different(double d,const payload & payload);
       //friend bool CLASS_DECL_ACME strict_different(int i,const payload & payload);
       //friend bool CLASS_DECL_ACME strict_different(bool b,const payload & payload);
@@ -1349,7 +1349,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    bool operator == (const string_base < const CHARACTER * > & string) const { return equals_scoped_string(string); }
    template < primitive_character CHARACTER  >
    bool operator == (const string_range < const CHARACTER * > & string_range) const { return equals_scoped_string(string_range); }
-   //bool operator == (const ::string & str) const;
+   //bool operator == (const ::scoped_string & scopedstr) const;
    template < primitive_signed SIGNED >
    bool operator == (SIGNED i) const { return equals_signed(i); }
    template < primitive_unsigned UNSIGNED >
@@ -1359,7 +1359,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
    //bool operator != (const payload & payload) const;
    //bool operator != (const ::scoped_string & scopedstr) const;
-   //bool operator != (const ::string & str) const;
+   //bool operator != (const ::scoped_string & scopedstr) const;
    //bool operator != (long long i) const;
    //bool operator != (int i) const;
    //bool operator != (bool b) const;
@@ -1373,21 +1373,21 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
    //bool operator <= (const payload & payload) const;
    //bool operator <= (const ::scoped_string & scopedstr) const;
-   //bool operator <= (const ::string & str) const;
+   //bool operator <= (const ::scoped_string & scopedstr) const;
    //bool operator <= (long long i) const;
    //bool operator <= (int i) const;
    //bool operator <= (bool b) const;
 
    //bool operator >= (const payload & payload) const;
    //bool operator >= (const ::scoped_string & scopedstr) const;
-   //bool operator >= (const ::string & str) const;
+   //bool operator >= (const ::scoped_string & scopedstr) const;
    //bool operator >= (long long i) const;
    //bool operator >= (int i) const;
    //bool operator >= (bool b) const;
 
    //bool operator > (const payload & payload) const;
    //bool operator > (const ::scoped_string & scopedstr) const;
-   //bool operator > (const ::string & str) const;
+   //bool operator > (const ::scoped_string & scopedstr) const;
    //bool operator > (long long i) const;
    //bool operator > (int i) const;
    //bool operator > (bool b) const;
@@ -1480,7 +1480,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    ::payload operator + (FLOATING f) const;
 
    //::payload operator + (const ::scoped_string & scopedstr) const;
-   //::payload operator + (const ::string & str) const;
+   //::payload operator + (const ::scoped_string & scopedstr) const;
    //::payload operator + (const ::inline_number_string & inline_number_string) const;
 
    template < primitive_integral INTEGRAL >
@@ -1509,7 +1509,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    ::payload & operator += (FLOATING f);
 
    //::payload & operator += (const ::scoped_string & scopedstr);
-   //::payload & operator += (const ::string & str);
+   //::payload & operator += (const ::scoped_string & scopedstr);
    //::payload & operator += (const ::inline_number_string & inline_number_string);
    //template < character_count n >
    //::payload & operator += (const ::ansi_character (&cha)[n]) { return *this += ::scoped_string(cha);}
@@ -1897,7 +1897,7 @@ inline PAYLOAD & operator +=(PAYLOAD & payload, const CHARACTER * psz)
 
 CLASS_DECL_ACME void copy(::string & str, const ::payload & payload);
 CLASS_DECL_ACME void copy(::payload & payload, const int & i);
-CLASS_DECL_ACME  void copy(::payload & payload, const ::string & str);
+CLASS_DECL_ACME  void copy(::payload & payload, const ::scoped_string & scopedstr);
 
 
 template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >

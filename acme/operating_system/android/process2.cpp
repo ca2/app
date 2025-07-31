@@ -93,7 +93,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //   string strCmdLine;
 //
 //   strCmdLine = pszPath;
-//   if(ansi_length(pszParam) > 0)
+//   if(ansi_length(scopedstrParam) > 0)
 //   {
 //      strCmdLine +=  " ";
 //      strCmdLine += pszParam;
@@ -120,7 +120,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //   string strCmdLine;
 //
 //   strCmdLine = pszPath;
-//   if(ansi_length(pszParam) > 0)
+//   if(ansi_length(scopedstrParam) > 0)
 //   {
 //      strCmdLine +=  " ";
 //      strCmdLine += pszParam;
@@ -251,7 +251,7 @@ CLASS_DECL_ACME bool main_finalize()
 //
 //   strCmdLine = pszPath;
 //
-//   if (ansi_length(pszParam) > 0)
+//   if (ansi_length(scopedstrParam) > 0)
 //   {
 //
 //      strCmdLine += " ";

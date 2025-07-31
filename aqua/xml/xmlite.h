@@ -101,7 +101,7 @@ namespace xml
 
    //========================================================
    // Name   : _SetString
-   // Desc   : put string of (psz~end) on ps string
+   // Desc   : put string of (scopedstr~end) on ps string
    // Param  : trim - will be trim?
    // Return :
    //--------------------------------------------------------
@@ -167,7 +167,7 @@ namespace xml
 
    //========================================================
    // Name   : _SetString
-   // Desc   : put string of (psz~end) on ps string
+   // Desc   : put string of (scopedstr~end) on ps string
    // Param  : trim - will be trim?
    // Return :
    //--------------------------------------------------------
@@ -249,7 +249,7 @@ namespace xml
    {
       while(*psz)
       {
-         if(ansi_chr(pszchs,*psz))
+         if(ansi_chr(scopedstrchs,*psz))
             return (char *)psz;
          psz++;
       }

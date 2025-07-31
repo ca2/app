@@ -215,7 +215,7 @@ namespace user
 
    }
 
-   void ::message::command::SetText(const ::string & pszText, const ::action_context & context)
+   void ::message::command::SetText(const ::scoped_string & scopedstrText, const ::action_context & context)
 
    {
 
@@ -229,7 +229,7 @@ namespace user
       if (m_puiOther != nullptr)
       {
 
-         m_puiOther->set_window_text(pszText);
+         m_puiOther->set_window_text(scopedstrText);
 
 
       }

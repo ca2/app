@@ -30,7 +30,7 @@
 
       CLASS_DECL_ACME wstring multibyte_to_unicode(unsigned int uCodePage, const ::scoped_string & scopedstr);
 
-      //CLASS_DECL_ACME wstring multibyte_to_unicode(unsigned int uCodePage, const ::string & str);
+      //CLASS_DECL_ACME wstring multibyte_to_unicode(unsigned int uCodePage, const ::scoped_string & scopedstr);
 
       character_count  CLASS_DECL_ACME multibyte_to_unicode_count(unsigned int uCodePage, const ::scoped_string & scopedstr);
 
@@ -81,7 +81,7 @@
 
       CLASS_DECL_ACME character_count utf8_to_unicode_count(const ::scoped_string & scopedstr);
 
-      //CLASS_DECL_ACME character_count utf8_to_unicode_count(const ::string & str);
+      //CLASS_DECL_ACME character_count utf8_to_unicode_count(const ::scoped_string & scopedstr);
 
       CLASS_DECL_ACME bool multibyte_to_utf8(unsigned int uCodePageSrc, string & str, const ::scoped_string & scopedstr);
 
@@ -106,7 +106,7 @@
 //} // namespace str
 
 
-//inline wstring unicode(const ::scoped_string & scopedstr) { return utf8_to_unicode(psz);  }
+//inline wstring unicode(const ::scoped_string & scopedstr) { return utf8_to_unicode(scopedstr);  }
 //inline string utf8(const ::wide_character * pwsz) { return unicode_to_utf8(pwsz); }
 
 

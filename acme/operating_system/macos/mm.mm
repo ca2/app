@@ -22,7 +22,7 @@ void ns_launch_app_at_url(NSURL * url, const char ** argv, int iFlags);
 //   CFURLRef url = CFURLCreateWithBytes(
 //                  nullptr,                        // allocator
 //                  (const unsigned char*)psz,     // URLBytes
-//                  strlen(psz),            // length
+//                  strlen(scopedstr),            // length
 //                  kCFStringEncodingASCII,      // encoding
 //                  nullptr                         // baseURL
 //                  );

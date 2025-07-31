@@ -74,11 +74,11 @@ namespace account
 //
 //      }
 //
-//      if(pszText == nullptr)
+//      if(scopedstrText == nullptr)
 //      {
 //         pszText = "https://ca2.network/";
 //      }
-//      string strText(pszText);
+//      string strText(scopedstrText);
 //      if(strText.is_empty())
 //      {
 //         strText = "https://ca2.network/";
@@ -108,7 +108,7 @@ namespace account
 //
 //      }
 //      class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true, bInteractive);
-//      ::pointer < user > puser = authuser.get_user(pszText);
+//      ::pointer < user > puser = authuser.get_user(scopedstrText);
 //      if(puser == nullptr)
 //         strSessId = "not_auth";
 //      else
@@ -125,11 +125,11 @@ namespace account
 //
 //   void user::set_sessid(const char * pszSessid, const char * pszText)
 //   {
-//      if(pszText == nullptr)
+//      if(scopedstrText == nullptr)
 //      {
 //         pszText = "https://ca2.network/";
 //      }
-//      string strText(pszText);
+//      string strText(scopedstrText);
 //      if(strText.is_empty())
 //      {
 //         strText = "https://ca2.network/";
@@ -142,7 +142,7 @@ namespace account
 //   string user::get_ca2_server(const char * pszPrefix)
 //   {
 //
-//      string strPrefix(pszPrefix);
+//      string strPrefix(scopedstrPrefix);
 //      string strDomain(".ca2.network");
 //
 //      string_array straServer;

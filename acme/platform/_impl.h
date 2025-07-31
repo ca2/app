@@ -67,7 +67,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //   ::pointer<::platform::application>single_application_library < APP > ::get_new_application(::particle * pparticle, const ::scoped_string & scopedstrAppId)
 //   {
 //
-//      if(!contains_app(pszAppId))
+//      if(!contains_app(scopedstrAppId))
 //      {
 //
 //         return error_not_found;
@@ -148,7 +148,7 @@ const char * memory_counter_id(T * pthis)
 //
 //      auto psz = memory_counter_id(pthis);
 //
-//      _memory_counter_increment(psz);
+//      _memory_counter_increment(scopedstr);
 //
 //      //synchronous_lock synchronouslock(g_pmutexMemoryCounters);
 //
@@ -169,7 +169,7 @@ const char * memory_counter_id(T * pthis)
 //
 //      auto psz = memory_counter_id(pthis);
 //
-//      _memory_counter_decrement(psz);
+//      _memory_counter_decrement(scopedstr);
 //
 //      //int i = atoi(file_system()->as_string(path));
 //

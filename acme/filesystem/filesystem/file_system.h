@@ -215,12 +215,12 @@ public:
 
    //virtual string file_path_final_extension(const ::file::path & path);
    //virtual string url_dir_name_for_relative(const ::file::path & path);
-   //virtual string solve_relative(const ::string & str, bool * pbUrl = nullptr);
+   //virtual string solve_relative(const ::scoped_string & scopedstr, bool * pbUrl = nullptr);
    //virtual bool solve_relative_inline(string & str, bool & bUrl, bool & bOnlyNativeFileSep, character_count * iaSlash, int * piSlashCount); // returns true if original string had trailing slash
    //virtual string defer_solve_relative(const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrCurrent);
-   virtual void append(const ::string & strFile, const block & block);
-   virtual void append_wait(const ::string & strFile, const block & block, const class time & timeWait = ::time::infinity());
-   //virtual bool file_append_wait(const ::string & strFile, const ::scoped_string & scopedstr, character_count s, const class ::time & millisTimeout = ::time::infinite());
+   virtual void append(const ::scoped_string & scopedstrFile, const block & block);
+   virtual void append_wait(const ::scoped_string & scopedstrFile, const block & block, const class time & timeWait = ::time::infinity());
+   //virtual bool file_append_wait(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstr, character_count s, const class ::time & millisTimeout = ::time::infinite());
 
    //virtual void write(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
 
@@ -230,7 +230,7 @@ public:
 
 
 
-   virtual ::file::path time_put_contents(const ::file::path& pathFolder, const ::string& strPrefix, const ::string& strExtension, const ::string& str);
+   virtual ::file::path time_put_contents(const ::file::path& pathFolder, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstr);
 
 
 

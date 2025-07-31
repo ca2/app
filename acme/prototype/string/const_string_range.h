@@ -678,7 +678,7 @@ public:
       return this->is_empty()?
          (::is_empty(psz) ? true :
          false) :
-         (::is_empty(psz) ? false : 
+         (::is_empty(psz) ? false :
             (_case_insensitive_string_count_compare(this->m_begin, psz, sizeThis) == 0
             && psz[sizeThis] == CHARACTER{})
                );
@@ -785,7 +785,7 @@ public:
       return this->is_empty() ?
          (::is_empty(psz) ? ::std::strong_ordering::equal :
             ::std::strong_ordering::less) :
-         (::is_empty(psz) ? ::std::strong_ordering::greater : 
+         (::is_empty(psz) ? ::std::strong_ordering::greater :
             ((ordering = _case_insensitive_string_count_compare(this->m_begin, psz, sizeThis)) == 0 ?
                (psz[sizeThis] == CHARACTER{}?
                   ::std::strong_ordering::equal :
@@ -2454,11 +2454,11 @@ public:
    //inline bool operator>(CHARACTER ch) const;
    //inline bool operator<(const string_base &str2) const;
    //inline bool operator<(CHARACTER ch) const;
-   //inline bool operator!=(const string_base &str) const { return !operator ==(psz); }
+   //inline bool operator!=(const string_base &str) const { return !operator ==(scopedstr); }
    //inline bool operator!=(CHARACTER ch) const { return !operator ==(ch); }
-   //inline bool operator>=(const string_base &str) const { return !operator <(psz); }
+   //inline bool operator>=(const string_base &str) const { return !operator <(scopedstr); }
    //inline bool operator>=(CHARACTER ch) const { return !operator <(ch); }
-   //inline bool operator<=(const CHARACTER * psz) const { return !operator >(psz); }
+   //inline bool operator<=(const CHARACTER * psz) const { return !operator >(scopedstr); }
    //inline bool operator<=(CHARACTER ch) const { return !operator >(ch); }
 
 

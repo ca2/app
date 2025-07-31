@@ -57,9 +57,9 @@ namespace sockets
 
       ::pointer<socket>create_attend_socket() override;
 
-      void set_ssl_catalog(const ::string & strCat) override;
+      void set_ssl_catalog(const ::scoped_string & scopedstrCat) override;
 
-      void set_ssl_cipher_list(const ::string & strCipherList) override;
+      void set_ssl_cipher_list(const ::scoped_string & scopedstrCipherList) override;
 
       /** close file descriptor. */
       void close() override;

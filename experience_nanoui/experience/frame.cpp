@@ -196,10 +196,10 @@ namespace experience_nanoui
    //}
 
 
-   //frame::e_style frame::translate_style(const ::string & pszStyle)
+   //frame::e_style frame::translate_style(const ::scoped_string & scopedstrStyle)
    //{
 
-   //   string strStyle(pszStyle);
+   //   string strStyle(scopedstrStyle);
 
    //   if(strStyle == "TranslucidLightBlue")
    //   {

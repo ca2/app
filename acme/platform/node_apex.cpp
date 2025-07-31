@@ -136,7 +136,7 @@ namespace platform
    //void set_file_extension_mime_type(::get_file_extension_mime_type * pgetfileextensionmimetype) override{}
 
    //void initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch) override{}
-   //void shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder) override{}
+   //void shell_open(const ::file::path & path, const ::scoped_string & scopedstrParams, const ::file::path & pathFolder) override{}
 
 
    void apex_node_layer::show_wait_cursor(bool bShow)

@@ -10,17 +10,17 @@
 //
 //   m_all = {};
 //
-//   if(psz != nullptr)
+//   if(scopedstr != nullptr)
 //   {
 //
-//      operator = (::apex::system::atom(psz));
+//      operator = (::apex::system::atom(scopedstr));
 //
 //   }
 //
 //}
 //
 //
-//inline atom::atom(const ::string & str)
+//inline atom::atom(const ::scoped_string & scopedstr)
 //{
 //
 //   m_all = {};

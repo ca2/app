@@ -38,7 +38,7 @@ namespace multimedia
 
 
       virtual string          multimedia_get_origin_path();
-      virtual void            multimedia_set_origin_path(const ::string & strOriginPath);
+      virtual void            multimedia_set_origin_path(const ::scoped_string & scopedstrOriginPath);
 
 
       virtual bool            multimedia_get_attribute(::enum_id attribute, ::payload & payload);

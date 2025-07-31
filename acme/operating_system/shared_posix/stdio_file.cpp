@@ -95,7 +95,7 @@ void stdio_file::open(const ::file::path & path, ::file::e_open eopen, ::pointer
 }
 
 
-void stdio_file::open(const ::file::path & path, const ::string & strAttributes, int iShare)
+void stdio_file::open(const ::file::path & path, const ::scoped_string & scopedstrAttributes, int iShare)
 {
 
    m_path = path;
@@ -606,7 +606,7 @@ memory file_system::__safe_get_memory(const ::file::path& pathParam, character_c
 
 memsize file_system::__safe_find_string(const ::file::path& path, const char* psz)
 {
-   int targetLength = strlen(psz);
+   int targetLength = strlen(scopedstr);
 
    if (targetLength >= BUFFER_SIZE)
    {
@@ -764,19 +764,19 @@ void __cdecl __clearerr_s(FILE * stream)
 
    auto pszBuffer = str.get_buffer(iBufferSize);
 
-   if (::is_null(pszBuffer))
+   if (::is_null(scopedstrBuffer))
    {
 
       return error_resource;
 
    }
 
-   auto psz = fgets(pszBuffer, (int)iBufferSize, pfile);
+   auto psz = fgets(scopedstrBuffer, (int)iBufferSize, pfile);
 
-   if (::is_null(psz))
+   if (::is_null(scopedstr))
    {
 
-      zero(pszBuffer, iBufferSize);
+      zero(scopedstrBuffer, iBufferSize);
 
       str.release_buffer();
 
@@ -1073,7 +1073,7 @@ string file_system::line(const ::file::path & pathParam, ::collection::index iLi
 }
 
 
-void file_system::append_wait(const ::string & strFile, const block & block, const class time & time)
+void file_system::append_wait(const ::scoped_string & scopedstrFile, const block & block, const class time & time)
 {
 
    m_pdirectorysystem->create(::file_path_folder(strFile));

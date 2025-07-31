@@ -24,7 +24,7 @@ namespace user
 {
 
 
-   //message_box::message_box(const ::string & strMessageParam, const ::string & strTitle, const ::e_message_box & emessagebox) :
+   //message_box::message_box(const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox) :
    message_box::message_box() :
       m_strFontName("serif"),
       m_size(100, 40),
@@ -511,7 +511,7 @@ namespace aura
 {
 
 
-   //pointer< ::extended::future < ::conversation > > system::message_box(oswindow oswindow, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::future < ::conversation > > system::message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
    //{
 
    //   auto pnode = m_pnode;
@@ -520,7 +520,7 @@ namespace aura
 
    //   //auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::future();
 
-   //   //pmessagebox->show(pszMessage, pszTitle, emessagebox);
+   //   //pmessagebox->show(scopedstrMessage, pszTitle, emessagebox);
 
    //   return pfuture;
 

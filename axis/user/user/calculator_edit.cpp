@@ -77,7 +77,7 @@ namespace calculator
    }
 
 
-   void edit::set_format(const string& strFormat)
+   void edit::set_format(const ::scoped_string & scopedstrFormat)
    {
 
       m_strFormat = strFormat;

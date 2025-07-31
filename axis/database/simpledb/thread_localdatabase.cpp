@@ -238,7 +238,7 @@ namespace simpledb
    }
 
 
-   void thread_localdatabase::queue(const ::string & pszKey, block block)
+   void thread_localdatabase::queue(const ::scoped_string & scopedstrKey, block block)
    {
 
       synchronous_lock synchronouslock(this->synchronization());

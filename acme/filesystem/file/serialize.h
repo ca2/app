@@ -94,10 +94,10 @@ enum e_set_version
 //   virtual stream & write(const ::int_size * psize) ;
 //   virtual stream & write (const ::int_rectangle * prectangle) ;
 //   virtual stream & write (const ::scoped_string & scopedstr) override;
-//   virtual stream & write (const ::string & str) override;
+//   virtual stream & write (const ::scoped_string & scopedstr) override;
 //
 //   virtual void write_from_hex(const ::scoped_string & scopedstr, character_count iLen = -1);
-//   virtual void write_from_hex(const ::string & str);
+//   virtual void write_from_hex(const ::scoped_string & scopedstr);
 //
 //};
 

@@ -39,7 +39,7 @@ namespace xml
 
       virtual void ensure_root();
       void create_root();
-      void create_root(const ::string & strName);
+      void create_root(const ::scoped_string & scopedstrName);
 
    
       string consume_entity_ref(::ansi_range & rangeXml, string & strName, bool useExtEnt, bool & bExt, ::platform::context * pacmecontext);
@@ -55,7 +55,7 @@ namespace xml
       inline operator bool() const { return ::is_set(this) && root(); }
       inline bool operator !() const { return !operator bool(); }
 
-      void set_name(const ::string & strName) override;
+      void set_name(const ::scoped_string & scopedstrName) override;
 
       document & operator = (const document & document);
 

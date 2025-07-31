@@ -193,38 +193,38 @@ namespace http
       ::pointer<class cookie> cookie(__allocate class cookie ());
       cookie->m_bSecure = false;
       //string_array stra;
-      //stra.add_tokens(psz, ";", true);
+      //stra.add_tokens(scopedstr, ";", true);
       auto psz = scopedstr.begin();
       bool bRun = true;
       int i = 0;
       while(bRun)
       {
-         const ::ansi_character * pszEnd = ansi_chr(psz, ';');
+         const ::ansi_character * pszEnd = ansi_chr(scopedstr, ';');
          bRun = pszEnd != nullptr;
          if(!bRun)
-            pszEnd = psz + ansi_len(psz);
+            pszEnd = psz + ansi_len(scopedstr);
 
-         const ::ansi_character * pszEqual = ansi_chr(psz, '=');
-         if(pszEqual > pszEnd)
+         const ::ansi_character * pszEqual = ansi_chr(scopedstr, '=');
+         if(scopedstrEqual > pszEnd)
             pszEqual = nullptr;
          if(i == 0)
          {
-            if(pszEqual != nullptr)
+            if(scopedstrEqual != nullptr)
             { 
-               cookie->m_strName = string(psz, pszEqual - psz);
+               cookie->m_strName = string(scopedstr, pszEqual - psz);
                cookie->m_strNameLow = cookie->m_strName;
                cookie->m_strNameLow.make_lower();
-               cookie->m_payload = string(pszEqual + 1, pszEnd - pszEqual - 1);
+               cookie->m_payload = string(scopedstrEqual + 1, pszEnd - pszEqual - 1);
             }
             else
             {
                return;
             }
          }
-         else if(pszEqual != nullptr)
+         else if(scopedstrEqual != nullptr)
          {
-            string strKey = string(psz, pszEqual - psz);
-            string strValue = string(pszEqual + 1, pszEnd - pszEqual - 1);
+            string strKey = string(scopedstr, pszEqual - psz);
+            string strValue = string(scopedstrEqual + 1, pszEnd - pszEqual - 1);
             if(strKey == "expires")
             {
                cookie->m_strExpire = strValue;
@@ -240,7 +240,7 @@ namespace http
          }
          else
          {
-            if(string(psz, pszEnd - psz) == "secure")
+            if(string(scopedstr, pszEnd - psz) == "secure")
             {
                cookie->m_bSecure = true;
             }
@@ -374,15 +374,15 @@ namespace http
          }
          if(*pszParam == '\0')
             break;
-         pszParamEnd = ansi_chr(pszParam, ';');
-         pszKeyEnd = ansi_chr(pszParam, '=');
-         if(pszParamEnd == nullptr)
+         pszParamEnd = ansi_chr(scopedstrParam, ';');
+         pszKeyEnd = ansi_chr(scopedstrParam, '=');
+         if(scopedstrParamEnd == nullptr)
          {
 
-            if(pszKeyEnd == nullptr)
+            if(scopedstrKeyEnd == nullptr)
             {
 
-               auto & cookie = this->cookie(pszParam);
+               auto & cookie = this->cookie(scopedstrParam);
 
                cookie.m_payload.set_type(::e_type_empty);
 
@@ -390,9 +390,9 @@ namespace http
             else
             {
 
-               auto& cookie = this->cookie(string(pszParam, pszKeyEnd - pszParam));
+               auto& cookie = this->cookie(string(scopedstrParam, pszKeyEnd - pszParam));
 
-               cookie.m_payload = string(pszKeyEnd + 1);
+               cookie.m_payload = string(scopedstrKeyEnd + 1);
 
             }
 
@@ -402,10 +402,10 @@ namespace http
          else
          {
 
-            if(pszKeyEnd == nullptr || pszKeyEnd > pszParamEnd)
+            if(scopedstrKeyEnd == nullptr || pszKeyEnd > pszParamEnd)
             {
 
-               auto& cookie = this->cookie(string(pszParam, pszParamEnd - pszParam));
+               auto& cookie = this->cookie(string(scopedstrParam, pszParamEnd - pszParam));
 
                cookie.m_payload.set_type(::e_type_empty);
 
@@ -413,9 +413,9 @@ namespace http
             else
             {
 
-               auto& cookie = this->cookie(string(pszParam, pszKeyEnd - pszParam));
+               auto& cookie = this->cookie(string(scopedstrParam, pszKeyEnd - pszParam));
 
-               cookie.m_payload = string(pszKeyEnd + 1, pszParamEnd - (pszKeyEnd + 1));
+               cookie.m_payload = string(scopedstrKeyEnd + 1, pszParamEnd - (scopedstrKeyEnd + 1));
 
             }
 

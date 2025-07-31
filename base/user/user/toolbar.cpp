@@ -53,7 +53,7 @@ public: // re-implementations only
    //   virtual void set_check(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
    //void set_check(const e_check & echeck, const ::action_context & context = ::e_source_system) override;   // 0, 1 or 2 (indeterminate)
    //   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
-      //void set_text(const ::string & pszText, const ::action_context & context = ::e_source_system) override;
+      //void set_text(const ::scoped_string & scopedstrText, const ::action_context & context = ::e_source_system) override;
 
    void on_check_changed(::data::check_change & change) override;
 
@@ -1299,7 +1299,7 @@ namespace user
    //   }
 
 
-   void toolbar::set_tool_item_text(const ::atom & atom, const ::string & str)
+   void toolbar::set_tool_item_text(const ::atom & atom, const ::scoped_string & scopedstr)
    {
 
       tool_item_by_atom(atom)->m_str = str;
@@ -1308,7 +1308,7 @@ namespace user
 //      // attempt to lookup string index in map
 //      iptr nString = -1;
 //      void * p;
-//      string wstrText(pszText);
+//      string wstrText(scopedstrText);
 //
 //      if (m_pStringMap != nullptr && m_pStringMap->lookup(wstrText, p))
 //         nString = (iptr)p;

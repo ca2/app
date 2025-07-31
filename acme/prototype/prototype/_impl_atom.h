@@ -476,7 +476,7 @@ inline atom::atom(const domain_id & domainid)  :
 }
 
 inline atom::atom(const ::ansi_character * psz) :
-   m_str(psz)
+   m_str(scopedstr)
 {
 
    m_etype = e_type_text;
@@ -484,8 +484,8 @@ inline atom::atom(const ::ansi_character * psz) :
 }
 
 
-inline atom::atom(const ::string & str) :
-   m_str(str)
+inline atom::atom(const ::scoped_string & scopedstr) :
+   m_str(scopedstr)
 {
 
    m_etype = e_type_text;
@@ -703,7 +703,7 @@ inline bool atom::operator == (const RANGE & range) const
 }
 
 
-//inline ::std::strong_ordering atom::operator <=>(const ::string & str) const
+//inline ::std::strong_ordering atom::operator <=>(const ::scoped_string & scopedstr) const
 //{
 //
 //   return is_text() ? m_str <=> str : m_etype <=> e_type_text;
@@ -712,7 +712,7 @@ inline bool atom::operator == (const RANGE & range) const
 
 
 
-//inline ::std::strong_ordering atom::operator <=> (const ::string & str) const
+//inline ::std::strong_ordering atom::operator <=> (const ::scoped_string & scopedstr) const
 //{
 //
 //   return order(str);
@@ -720,7 +720,7 @@ inline bool atom::operator == (const RANGE & range) const
 //}
 //
 //
-//inline bool atom::operator < (const ::string & str) const
+//inline bool atom::operator < (const ::scoped_string & scopedstr) const
 //{
 //
 //   return order(str) < 0;
@@ -728,7 +728,7 @@ inline bool atom::operator == (const RANGE & range) const
 //}
 //
 //
-//inline bool atom::operator <= (const ::string & str) const
+//inline bool atom::operator <= (const ::scoped_string & scopedstr) const
 //{
 //
 //   return order(str) <= 0;
@@ -736,7 +736,7 @@ inline bool atom::operator == (const RANGE & range) const
 //}
 //
 //
-//inline bool atom::operator > (const ::string & str) const
+//inline bool atom::operator > (const ::scoped_string & scopedstr) const
 //{
 //
 //   return order(str) > 0;
@@ -744,7 +744,7 @@ inline bool atom::operator == (const RANGE & range) const
 //}
 //
 //
-//inline bool atom::operator >= (const ::string & str) const
+//inline bool atom::operator >= (const ::scoped_string & scopedstr) const
 //{
 //
 //   return order(str) >= 0;
@@ -818,7 +818,7 @@ inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 //inline bool atom::operator != (const ::scoped_string & scopedstr) const
 //{
 //
-//   return order(psz) != 0;
+//   return order(scopedstr) != 0;
 //
 //
 //}
@@ -826,7 +826,7 @@ inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 //inline bool atom::operator < (const ::scoped_string & scopedstr) const
 //{
 //
-//   return order(psz) < 0;
+//   return order(scopedstr) < 0;
 //
 //}
 //
@@ -834,7 +834,7 @@ inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 //inline bool atom::operator > (const ::scoped_string & scopedstr) const
 //{
 //
-//   return order(psz) > 0;
+//   return order(scopedstr) > 0;
 //
 //}
 //
@@ -843,7 +843,7 @@ inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 //inline bool atom::operator <= (const ::scoped_string & scopedstr) const
 //{
 //
-//   return order(psz) <= 0;
+//   return order(scopedstr) <= 0;
 //
 //}
 //
@@ -851,7 +851,7 @@ inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 //inline bool atom::operator >= (const ::scoped_string & scopedstr) const
 //{
 //
-//   return order(psz) >= 0;
+//   return order(scopedstr) >= 0;
 //
 //}
 
@@ -1407,7 +1407,7 @@ inline void atom::clear()
 }
 
 
-//inline CLASS_DECL_ACME atom & atom::operator += (const ::scoped_string & scopedstr) { return operator = (string(*this) + string(psz)); }
+//inline CLASS_DECL_ACME atom & atom::operator += (const ::scoped_string & scopedstr) { return operator = (string(*this) + string(scopedstr)); }
 
 
 inline ::std::strong_ordering atom::case_insensitive_order(const ::scoped_string & scopedstr) const
@@ -1627,12 +1627,12 @@ inline void from_string(::atom & atom, const ::ansi_character * psz)
 
 
 //inline atom::atom(const ::ansi_character * psz) :
-//        m_str(psz)
+//        m_str(scopedstr)
 //{
 //
 //   m_etype = e_type_text;
 //
-//   //m_str.::string::string(psz);
+//   //m_str.::string::string(scopedstr);
 //
 //}
 
@@ -1647,7 +1647,7 @@ inline void from_string(::atom & atom, const ::ansi_character * psz)
 //}
 //
 //
-//inline atom::atom(const ::string& str) :
+//inline atom::atom(const ::scoped_string & scopedstr) :
 //        m_str(str)
 //{
 //
@@ -1807,12 +1807,12 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 //inline ::string operator +(const ::ansi_character * psz, const ::atom & atom)
 //{
 //
-//   return ::string(psz) + atom.as_string();
+//   return ::string(scopedstr) + atom.as_string();
 //
 //}
 
 
-//inline ::string operator +(const ::string & str, const ::atom & atom)
+//inline ::string operator +(const ::scoped_string & scopedstr, const ::atom & atom)
 //{
 //
 //   return str + atom.as_string();
@@ -1933,10 +1933,10 @@ inline ::string atom::operator +(const ::ansi_character * psz) const
 }
 
 
-inline ::string atom::operator +(const ::string & str) const
+inline ::string atom::operator +(const ::scoped_string & scopedstr) const
 {
 
-   return this->as_string() + str;
+   return this->as_string() + scopedstr;
 
 }
 

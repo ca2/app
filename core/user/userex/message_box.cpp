@@ -12,7 +12,7 @@ namespace userex
    }
 
    
-   void message_box::on_show(const ::string & pszMatter)
+   void message_box::on_show(const ::scoped_string & scopedstrMatter)
    {
       
       //auto pformpropertyset = get_form_property_set();
@@ -37,7 +37,7 @@ namespace userex
 
       //m_timeDelay = fetch_property("message_box_timeout")->time();
       
-      wait_message_dialog::on_show(pszMatter);
+      wait_message_dialog::on_show(scopedstrMatter);
       
    }
    
@@ -64,7 +64,7 @@ namespace userex
 //{
 //
 //   
-//   string application::dialog_box(const ::string & pszMatter, ::property_set & propertyset)
+//   string application::dialog_box(const ::scoped_string & scopedstrMatter, ::property_set & propertyset)
 //   {
 //      
 //      auto pbox = __create_new <::userex::message_box >();
@@ -73,7 +73,7 @@ namespace userex
 //      
 //      pbox->get_property_set().merge(propertyset);
 //      
-//      pbox->show(pszMatter);
+//      pbox->show(scopedstrMatter);
 //      
 //      return pbox->m_atomResponse;
 //      

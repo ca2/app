@@ -367,7 +367,7 @@ namespace mathematics
 
       char * psz = str.get_buffer(s);
 
-      gen_rand_alnum(psz, s);
+      gen_rand_alnum(scopedstr, s);
 
       str.release_buffer(s);
 

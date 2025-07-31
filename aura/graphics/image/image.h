@@ -254,7 +254,7 @@ namespace image
       virtual void transparent_color(::color::color color);
 
 
-      virtual void create_thumbnail(const ::string & pszPath);
+      virtual void create_thumbnail(const ::scoped_string & scopedstrPath);
 
       virtual void create_ex(const ::int_size & size, ::image32_t * pimage32, int iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
       virtual void create(::draw2d::graphics* pgraphics);

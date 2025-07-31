@@ -17,7 +17,7 @@
 //
 //
 //      ini();
-//      ini(const ::string & str);
+//      ini(const ::scoped_string & scopedstr);
 //      ini(::file::file * pfile);
 //      ini(const ::property_set & set);
 //      ini(::property_set && set);
@@ -48,6 +48,6 @@
 //inline ::pointer<::handle::ini>operator ""_pini(const char * psz, size_t s)
 //{
 //
-//   return __allocate ::handle::ini(string(psz, s));
+//   return __allocate ::handle::ini(string(scopedstr, s));
 //
 //}

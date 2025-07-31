@@ -48,7 +48,7 @@ namespace fs
 
       //string strUrl;
 
-      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::url::encode(pszPath);
+      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::url::encode(scopedstrPath);
 
       //string strSource;
 
@@ -287,7 +287,7 @@ namespace fs
 
       /*string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::url::encode(pszPath);
+      strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::url::encode(scopedstrPath);
 
       string strSource;
 
@@ -309,7 +309,7 @@ namespace fs
    //string remote_native::file_name(const ::file::path & pszPath)
    //{
 
-   //   string strPath(pszPath);
+   //   string strPath(scopedstrPath);
 
    //   if(!strPath.case_insensitive_begins_eat("fs://"))
    //   {
@@ -327,8 +327,8 @@ namespace fs
 
    bool remote_native::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
    {
-      __UNREFERENCED_PARAMETER(pszDst);
-      __UNREFERENCED_PARAMETER(pszSrc);
+      __UNREFERENCED_PARAMETER(scopedstrDst);
+      __UNREFERENCED_PARAMETER(scopedstrSrc);
       return true;
    }
 
@@ -356,7 +356,7 @@ namespace fs
    bool remote_native::file_exists(const ::file::path & pszPath)
    {
 
-      return ::fs::data::file_exists(pszPath);
+      return ::fs::data::file_exists(scopedstrPath);
 
    }
 

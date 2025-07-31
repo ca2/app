@@ -677,13 +677,13 @@ string_array_base < Type, RawType, t_etypeContainer >& string_array_base < Type,
 //   if(i == -1)
 //   {
 //
-//      return add(Type(psz));
+//      return add(Type(scopedstr));
 //
 //   }
 //   else
 //   {
 //
-//      insert_at(i,Type(psz));
+//      insert_at(i,Type(scopedstr));
 //
 //      return get_upper_bound();
 //
@@ -3725,7 +3725,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::decode_v16(const SC
 {
    //::collection::index iSize = 1024;
    //char * str = nullptr;
-   //if(psz == nullptr)
+   //if(scopedstr == nullptr)
    //   return;
    //while(*psz != '\0')
    //{

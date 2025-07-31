@@ -31,21 +31,21 @@ namespace simpledb
       // }
    }
 
-   bool set::exec(const ::string & pszSql)
+   bool set::exec(const ::scoped_string & scopedstrSql)
    {
       ::database::result_set * r = (::database::result_set *) &m_resultset;
       r->record_header.erase_all();
       r->records.erase_all();
 
-      string strInstruction = sql_consume_keyword(pszSql);
+      string strInstruction = sql_consume_keyword(scopedstrSql);
 
       if(strInstruction == "select")
       {
-         return sql_do_select(pszSql);
+         return sql_do_select(scopedstrSql);
       }
       else if(strInstruction == "insert")
       {
-         return sql_do_insert(pszSql);
+         return sql_do_insert(scopedstrSql);
       }
 
       return false;
@@ -218,17 +218,17 @@ namespace simpledb
       string str;
 
 
-      ::str::consume_spaces(pszSql, 0);
+      ::str::consume_spaces(scopedstrSql, 0);
 
-      if(::str::begins_consume(pszSql, "*"))
+      if(::str::begins_consume(scopedstrSql, "*"))
       {
-         ::str::consume_spaces(pszSql, 0);
+         ::str::consume_spaces(scopedstrSql, 0);
       }
       else
       {
          for(;;)
          {
-            str = sql_consume_field(pszSql);
+            str = sql_consume_field(scopedstrSql);
             if(str.is_empty())
             {
                return false;
@@ -236,7 +236,7 @@ namespace simpledb
             straField.add(str);
             try
             {
-               ::str::consume(pszSql, ",");
+               ::str::consume(scopedstrSql, ",");
             }
             catch(...)
             {
@@ -244,14 +244,14 @@ namespace simpledb
             }
          }
       }
-      str = sql_consume_keyword(pszSql);
+      str = sql_consume_keyword(scopedstrSql);
       if(str != "from")
          return false;
 
       string_array straTable;
       for(;;)
       {
-         str = sql_consume_table(pszSql);
+         str = sql_consume_table(scopedstrSql);
          if(str.is_empty())
          {
             return false;
@@ -259,27 +259,27 @@ namespace simpledb
          straTable.add("table:" + str);
          try
          {
-            ::str::consume(pszSql, ",");
+            ::str::consume(scopedstrSql, ",");
          }
          catch(...)
          {
             try
             {
 
-               str = sql_consume_keyword(pszSql);
+               str = sql_consume_keyword(scopedstrSql);
                if(str == "inner")
                {
-                  str = sql_consume_keyword(pszSql);
+                  str = sql_consume_keyword(scopedstrSql);
                   if(str != "join")
                      return false;
                   straTable.add("join:inner");
                }
                else if(str == "left")
                {
-                  str = sql_consume_keyword(pszSql);
+                  str = sql_consume_keyword(scopedstrSql);
                   if(str != "outer")
                      return false;
-                  str = sql_consume_keyword(pszSql);
+                  str = sql_consume_keyword(scopedstrSql);
                   if(str != "join")
                      return false;
                   straTable.add("join:left_outer");
@@ -287,10 +287,10 @@ namespace simpledb
                }
                else if(str == "right")
                {
-                  str = sql_consume_keyword(pszSql);
+                  str = sql_consume_keyword(scopedstrSql);
                   if(str != "outer")
                      return false;
-                  str = sql_consume_keyword(pszSql);
+                  str = sql_consume_keyword(scopedstrSql);
                   if(str != "join")
                      return false;
                   straTable.add("join:right_outer");
@@ -298,7 +298,7 @@ namespace simpledb
                }
                else if(str == "on")
                {
-                  str = sql_consume_join_on(pszSql);
+                  str = sql_consume_join_on(scopedstrSql);
                   if(str.is_empty())
                      return false;
                   straTable.add("on:" + str);
@@ -351,44 +351,44 @@ namespace simpledb
 
       try
       {
-         string str = sql_consume_keyword(pszSql);
+         string str = sql_consume_keyword(scopedstrSql);
          if(str != "into")
             return false;
 
          string strTable;
-         strTable = sql_consume_table(pszSql);
+         strTable = sql_consume_table(scopedstrSql);
          if(strTable.is_empty())
          {
             return false;
          }
 
-         str = sql_consume_keyword(pszSql);
+         str = sql_consume_keyword(scopedstrSql);
          if(str != "values")
             return false;
 
-         ::str::consume_spaces(pszSql, 0);
+         ::str::consume_spaces(scopedstrSql, 0);
 
-         if(!::str::begins_consume(pszSql, "("))
+         if(!::str::begins_consume(scopedstrSql, "("))
             return false;
 
-         ::str::consume_spaces(pszSql, 0);
+         ::str::consume_spaces(scopedstrSql, 0);
 
          string_array straValue;
          for(;;)
          {
             try
             {
-               str = sql_consume_value(pszSql);
+               str = sql_consume_value(scopedstrSql);
             }
             catch(...)
             {
                break;
             }
             straValue.add(str);
-            ::str::consume_spaces(pszSql, 0);
-            if(::str::begins_consume(pszSql, ")"))
+            ::str::consume_spaces(scopedstrSql, 0);
+            if(::str::begins_consume(scopedstrSql, ")"))
                break;
-            if(!::str::begins_consume(pszSql, ","))
+            if(!::str::begins_consume(scopedstrSql, ","))
                return false;
 
          }
@@ -427,7 +427,7 @@ namespace simpledb
    string set::consume_quoted_value(const char * & pszXml)
    {
       const char * psz = pszXml;
-      string qc = ::str::get_utf8_char(psz);
+      string qc = ::str::get_utf8_char(scopedstr);
       if(qc != "\'")
       {
          throw ::exception(::exception("Quote character is required here"));
@@ -435,8 +435,8 @@ namespace simpledb
       string str;
       while(true)
       {
-         unicode_increment(psz);
-         string qc2 = ::str::get_utf8_char(psz);
+         unicode_increment(scopedstr);
+         string qc2 = ::str::get_utf8_char(scopedstr);
          //string str = utf8_to_unicode(qc2);
          if(qc2.is_empty())
          {
@@ -446,42 +446,42 @@ namespace simpledb
             break;
          str += qc2;
       }
-      unicode_increment(psz);
+      unicode_increment(scopedstr);
       pszXml = psz;
       return str;
    }
 
    string set::sql_consume_value(const char * & pszSql)
    {
-      ::str::consume_spaces(pszSql, 0);
-      string str = consume_quoted_value(pszSql);
+      ::str::consume_spaces(scopedstrSql, 0);
+      string str = consume_quoted_value(scopedstrSql);
       str.make_lower();
       return str;
    }
 
    string set::sql_consume_keyword(const char * & pszSql)
    {
-      ::str::consume_spaces(pszSql, 0);
-      string str = ::str::consume_nc_name(pszSql);
+      ::str::consume_spaces(scopedstrSql, 0);
+      string str = ::str::consume_nc_name(scopedstrSql);
       str.make_lower();
       return str;
    }
 
    string set::sql_consume_field(const char * & pszSql)
    {
-      ::str::consume_spaces(pszSql, 0);
-      return ::str::consume_nc_name(pszSql);
+      ::str::consume_spaces(scopedstrSql, 0);
+      return ::str::consume_nc_name(scopedstrSql);
    }
 
    string set::sql_consume_table(const char * & pszSql)
    {
-      ::str::consume_spaces(pszSql, 0);
-      return ::str::consume_nc_name(pszSql);
+      ::str::consume_spaces(scopedstrSql, 0);
+      return ::str::consume_nc_name(scopedstrSql);
    }
 
    string set::sql_consume_join_on(const char * & pszSql)
    {
-      __UNREFERENCED_PARAMETER(pszSql);
+      __UNREFERENCED_PARAMETER(scopedstrSql);
       return "";
    }
 
@@ -895,9 +895,9 @@ namespace simpledb
       throw ::exception(::database::exception("not in Select state"));
    }
 
-   void set::query_items(string_array & stra, const ::string & pszSql)
+   void set::query_items(string_array & stra, const ::scoped_string & scopedstrSql)
    {
-      if(query(pszSql))
+      if(query(scopedstrSql))
       {
          first();
          while(!eof())

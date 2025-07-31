@@ -29,7 +29,7 @@ ftpfs::~ftpfs()
 }
 
 
-void ftpfs::initialize_ftpfs(::particle * pparticle, const ::string & pszRoot)
+void ftpfs::initialize_ftpfs(::particle * pparticle, const ::scoped_string & scopedstrRoot)
 {
 
    //auto estatus = 
@@ -402,8 +402,8 @@ retry:
 
 bool ftpfs::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
 {
-   __UNREFERENCED_PARAMETER(pszDst);
-   __UNREFERENCED_PARAMETER(pszSrc);
+   __UNREFERENCED_PARAMETER(scopedstrDst);
+   __UNREFERENCED_PARAMETER(scopedstrSrc);
    return true;
 }
 
@@ -506,7 +506,7 @@ retry:
 bool ftpfs::file_exists(const ::file::path & pszPath)
 {
 
-   return ::fs::data::file_exists(pszPath);
+   return ::fs::data::file_exists(scopedstrPath);
 
 }
 
@@ -514,7 +514,7 @@ bool ftpfs::file_exists(const ::file::path & pszPath)
 ::payload ftpfs::file_length(const ::file::path & pszPath)
 {
 
-   return ::fs::data::file_length(pszPath);
+   return ::fs::data::file_length(scopedstrPath);
 
 }
 

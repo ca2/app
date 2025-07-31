@@ -53,12 +53,12 @@ namespace multimedia
    }
 
 
-   void decoder_plugin::Load(const ::string & strTitle)
+   void decoder_plugin::Load(const ::scoped_string & scopedstrTitle)
    {
 
 //#ifdef APPLE_IOS
 //
-//      m_lpfnNewDecoder = paudio->get_multimedia_decoder_factory(pszTitle);
+//      m_lpfnNewDecoder = paudio->get_multimedia_decoder_factory(scopedstrTitle);
 //
 //      if (m_lpfnNewDecoder == nullptr)
 //      {
@@ -86,7 +86,7 @@ namespace multimedia
 
       //}
 //
-//      string strTitle = ::file::path(pszTitle).title();
+//      string strTitle = ::file::path(scopedstrTitle).title();
 //
 //      strTitle.case_insensitive_begins_eat("lib");
 //
@@ -116,7 +116,7 @@ namespace multimedia
 //
 //            m_plibrary->close();
 //
-//            informationf("\"" + m_strNewDecoder + "\" function not found in library " + string(pszTitle));
+//            informationf("\"" + m_strNewDecoder + "\" function not found in library " + string(scopedstrTitle));
 //
 //            return false;
 //

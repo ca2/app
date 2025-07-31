@@ -822,7 +822,7 @@ namespace text
       //bool locale_schema::defer_add_locale(const scoped_string& strLocale, character_count iLen, const ::string& idSchema)
       //{
 
-      //   return defer_add_locale(localeid(pszLocale, iLen), idSchema);
+      //   return defer_add_locale(localeid(scopedstrLocale, iLen), idSchema);
 
       //}
 

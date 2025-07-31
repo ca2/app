@@ -80,7 +80,7 @@ namespace sockets
    }
 
 
-   void httpd_socket::Send64(const ::string & str64, const string & type)
+   void httpd_socket::Send64(const ::scoped_string & scopedstr64, const string & type)
    {
       //   Base64 bb;
 

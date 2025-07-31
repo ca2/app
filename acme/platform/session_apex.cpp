@@ -94,11 +94,11 @@ namespace platform
    //void request(::request * prequest) override{}
 
 
-   //virtual string matter_as_string(const ::string & pszMatter,const ::string & pszMatter2){}
-   //virtual string directory()->matter(const ::string & pszMatter,const ::string & pszMatter2){}
+   //virtual string matter_as_string(const ::scoped_string & scopedstrMatter,const ::scoped_string & scopedstrMatter2){}
+   //virtual string directory()->matter(const ::scoped_string & scopedstrMatter,const ::scoped_string & scopedstrMatter2){}
 
-   //bool apex_session_layer::is_inside_time_dir(const ::string & pszPath){}
-   //bool apex_session_layer::file_is_read_only(const ::string & pszPath){}
+   //bool apex_session_layer::is_inside_time_dir(const ::scoped_string & scopedstrPath){}
+   //bool apex_session_layer::file_is_read_only(const ::scoped_string & scopedstrPath){}
 
    // Long PhRESSing time
    // time in ::times that a pressing is considered a double click
@@ -115,7 +115,7 @@ namespace platform
 
    //bool apex_session_layer::on_create_frame_window(){}
 
-   //virtual string account_get_user_sessid(const ::string & str) override{}
+   //virtual string account_get_user_sessid(const ::scoped_string & scopedstr) override{}
 
    // apex commented
    //void apex_session_layer::translate_os_key_message(::user::key * pkey){}
@@ -229,7 +229,7 @@ namespace platform
    //void on_instantiate_application(::platform::application* papp) override{}
 
 
-   //::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest) override{}
+   //::application * application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest) override{}
 
    ::user::e_key apex_session_layer::key_modifiers()
    {
@@ -306,9 +306,9 @@ namespace platform
    //virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction){}
 
 
-   //void apex_session_layer::defer_instantiate_user_theme(const ::string & pszUiInteractionLibrary){}
-   //::pointer<::user::theme>instantiate_user_theme(const ::string & pszExperienceLibrary, ::apex::application * papp){}
-   //::pointer<::user::theme>get_user_theme(const ::string & pszExperienceLibrary, ::apex::application * papp){}
+   //void apex_session_layer::defer_instantiate_user_theme(const ::scoped_string & scopedstrUiInteractionLibrary){}
+   //::pointer<::user::theme>instantiate_user_theme(const ::scoped_string & scopedstrExperienceLibrary, ::apex::application * papp){}
+   //::pointer<::user::theme>get_user_theme(const ::scoped_string & scopedstrExperienceLibrary, ::apex::application * papp){}
 
 
    //void apex_session_layer::_001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText){}

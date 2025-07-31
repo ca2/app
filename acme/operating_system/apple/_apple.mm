@@ -45,14 +45,14 @@ char * __strdup(NSString * str)
 
    const char * pszUtf8 = [str UTF8String];
 
-   if(pszUtf8 == NULL)
+   if(scopedstrUtf8 == NULL)
    {
 
       return NULL;
 
    }
 
-   return strdup(pszUtf8);
+   return strdup(scopedstrUtf8);
 
 }
 
@@ -60,7 +60,7 @@ char * __strdup(NSString * str)
 NSString * nsstring_from_strdup(char * pszUtf8)
 {
    
-   if(pszUtf8 == nullptr)
+   if(scopedstrUtf8 == nullptr)
    {
       
       return NULL;
@@ -69,7 +69,7 @@ NSString * nsstring_from_strdup(char * pszUtf8)
    
    NSString * pstr = [ [NSString alloc] initWithUTF8String:pszUtf8 ];
    
-   free(pszUtf8);
+   free(scopedstrUtf8);
    
    return pstr;
    

@@ -222,7 +222,7 @@ CLASS_DECL_APEX bool __node_apex_pos_term()
 //
 //   char * psz = str.get_buffer(len);
 //
-//   _get_exe_path(psz, len);
+//   _get_exe_path(scopedstr, len);
 //
 //   str.ReleaseBuffer(len);
 //

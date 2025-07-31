@@ -1801,7 +1801,7 @@ namespace linux
 //
 //      string strCaption;
 //
-//      if (pszcaption == nullptr)
+//      if (scopedstrcaption == nullptr)
 //      {
 //
 //         strCaption = get_app()->m_strAppName;
@@ -3203,7 +3203,7 @@ pmessagebox->sync();
 
 //   {
 //
-//      ansi_count_copy(pszString, m_strWindowText, nMaxCount);
+//      ansi_count_copy(scopedstrString, m_strWindowText, nMaxCount);
 
 //
 //      return minimum(nMaxCount, m_strWindowText.length());

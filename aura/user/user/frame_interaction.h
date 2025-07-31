@@ -71,7 +71,7 @@ void on_before_create_window(acme::windowing::window* pacmewindowingwindow) over
       using box::get_style;
       virtual style * get_style() const;
 
-      virtual void set_frame_title(const string& strFrameTitle);
+      virtual void set_frame_title(const ::scoped_string & scopedstrFrameTitle);
       virtual string get_frame_title();
 
      
@@ -90,11 +90,11 @@ void on_before_create_window(acme::windowing::window* pacmewindowingwindow) over
 
       
       virtual bool is_translucid_user_style(enum_style estyle);
-      virtual ::user::enum_style translate_user_style(const ::string & pszStyle);
+      virtual ::user::enum_style translate_user_style(const ::scoped_string & scopedstrStyle);
       virtual ::color::color get_moveable_border_color();
 
       virtual void set_user_style(enum_style estyle);
-      virtual void set_user_style(const ::string & strStyle);
+      virtual void set_user_style(const ::scoped_string & scopedstrStyle);
       virtual void on_user_style_change();
 
 
@@ -110,7 +110,7 @@ void on_before_create_window(acme::windowing::window* pacmewindowingwindow) over
 
       virtual ::color::color get_border_main_body_color();
 
-      void add_menu_item(const ::string & strPath, const ::string & strText, const ::string & strId);
+      void add_menu_item(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrId);
 
 
       virtual ::user::tool_window * tool_window(enum_tool etool, bool bCreate = false);
@@ -126,7 +126,7 @@ void on_before_create_window(acme::windowing::window* pacmewindowingwindow) over
       void hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      //virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP, const ::type_atom & typeatom = "user::toolbar");
+      //virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP, const ::type_atom & typeatom = "user::toolbar");
 
 
       virtual void on_create_bars();

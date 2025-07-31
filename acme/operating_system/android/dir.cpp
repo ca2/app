@@ -14,7 +14,7 @@
 
 //    }
 
-//    g_pszCacheDir = _strdup(pszDir);
+//    g_pszCacheDir = _strdup(scopedstrDir);
 
 // }
 
@@ -40,7 +40,7 @@
 
 //    }
 
-//    g_pszHome = _strdup(pszDir);
+//    g_pszHome = _strdup(scopedstrDir);
 
 // }
 
@@ -66,7 +66,7 @@
 
 //    }
 
-//    g_pszTemp = _strdup(pszDir);
+//    g_pszTemp = _strdup(scopedstrDir);
 
 // }
 

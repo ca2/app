@@ -17,7 +17,7 @@
 #if defined(LINUX) || defined(__ANDROID__) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
 void my_munmap(void * pimage32,HANDLE hfile);
-void * my_open_map(const ::string & psz,HANDLE * pfile,bool bRead,bool bWrite,long long int_size);
+void * my_open_map(const ::scoped_string & scopedstr,HANDLE * pfile,bool bRead,bool bWrite,long long int_size);
 #endif
 
 
@@ -79,7 +79,7 @@ namespace hotplugin
    }
 
 
-   bool plugin::open_link(const ::string & strLink, const ::string & strTarget)
+   bool plugin::open_link(const ::scoped_string & scopedstrLink, const ::scoped_string & scopedstrTarget)
    {
 
       if(m_phost != nullptr)
@@ -717,7 +717,7 @@ namespace hotplugin
    }
 
 
-   void plugin::set_status(const ::string & pszStatus)
+   void plugin::set_status(const ::scoped_string & scopedstrStatus)
    {
 
       m_strStatus = pszStatus;

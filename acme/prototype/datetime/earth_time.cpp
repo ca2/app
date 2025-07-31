@@ -690,7 +690,7 @@ return str;
    }
 
 
-   //string utc_format(const string & strFormat, const ::earth::time & time)
+   //string utc_format(const ::scoped_string & scopedstrFormat, const ::earth::time & time)
    //{
 
    //   string str;
@@ -825,11 +825,11 @@ return str;
 ////   psz[0] = '\0';
 ////
 //////   posix_time tmp = time.get_time();
-//////   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
+//////   errno_t err = _ctime64_s(scopedstr, sizeof(scopedstr), &tmp);
 ////
 ////   errno_t err = 0;
 ////
-////   if ((err != 0) || (psz[0] == '\0') || (time.get_time() == 0))
+////   if ((err != 0) || (scopedstr[0] == '\0') || (time.get_time() == 0))
 ////   {
 ////      dumpcontext << "::earth::time(invalid #" << (iptr) time.get_time() << ")";
 ////

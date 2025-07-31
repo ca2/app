@@ -93,9 +93,9 @@ CLASS_DECL_APEX bool __node_apex_pos_term()
 //
 //   char * psz = mm_ca2_command_line();
 //
-//   string str(psz);
+//   string str(scopedstr);
 //
-//   free(psz);
+//   free(scopedstr);
 //
 //   return str;
 //

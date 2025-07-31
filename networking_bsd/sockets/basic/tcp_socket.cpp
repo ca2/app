@@ -917,7 +917,7 @@ m_ibuf(isize)
    }
 
 
-   void tcp_socket::set_host(const ::string& strHost)
+   void tcp_socket::set_host(const ::scoped_string & scopedstrHost)
    {
 
       m_strHost = strHost;
@@ -933,7 +933,7 @@ m_ibuf(isize)
    }
 
 
-   void tcp_socket::set_tls_hostname(const ::string& strTlsHostname)
+   void tcp_socket::set_tls_hostname(const ::scoped_string & scopedstrTlsHostname)
    {
 
       m_strTlsHostName = strTlsHostname;
@@ -941,7 +941,7 @@ m_ibuf(isize)
    }
 
 
-   void tcp_socket::set_connect_host(const ::string& strConnectHost)
+   void tcp_socket::set_connect_host(const ::scoped_string & scopedstrConnectHost)
    {
 
       m_strConnectHost = strConnectHost;
@@ -973,7 +973,7 @@ m_ibuf(isize)
    }
 
 
-   void tcp_socket::set_url(const ::string& strUrl)
+   void tcp_socket::set_url(const ::scoped_string & scopedstrUrl)
    {
 
       m_strUrl = strUrl;
@@ -1813,7 +1813,7 @@ m_ibuf(isize)
    }
 
 
-   void tcp_socket::OnLine(const string& str)
+   void tcp_socket::OnLine(const ::scoped_string & scopedstr)
    {
 
       m_ptcpsocketInterface->OnLine(str);
@@ -2469,7 +2469,7 @@ m_ibuf(isize)
    }
 
 
-   void tcp_socket::set_init_ssl_client_context(const ::string& strInitSSLClientContext)
+   void tcp_socket::set_init_ssl_client_context(const ::scoped_string & scopedstrInitSSLClientContext)
    {
 
       m_strInitSSLClientContext = strInitSSLClientContext;

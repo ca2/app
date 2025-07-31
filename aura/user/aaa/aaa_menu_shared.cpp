@@ -63,16 +63,16 @@ char * const * alloc_c_string_array(const string_array & stra);
 }
 
 
-void * menu_shared::find_item(const ::string & pszParent, const ::string & pszId)
+void * menu_shared::find_item(const ::scoped_string & scopedstrParent, const ::scoped_string & scopedstrId)
 {
 
    for(int i = 0; i < m_iCount; i++)
    {
 
-      if(!strcmp(pszParent, m_ppszParent[i]))
+      if(!strcmp(scopedstrParent, m_ppszParent[i]))
       {
 
-         if(!strcmp(pszId, m_ppszId[i]))
+         if(!strcmp(scopedstrId, m_ppszId[i]))
          {
 
             return m_ositema[i];
@@ -201,7 +201,7 @@ public: // re-implementations only
       }
    }
 //   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
-   //virtual void SetText(const ::string & pszText, const ::action_context & context = ::e_source_system);
+   //virtual void SetText(const ::scoped_string & scopedstrText, const ::action_context & context = ::e_source_system);
 
 };
 

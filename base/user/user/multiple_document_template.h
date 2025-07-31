@@ -19,7 +19,7 @@ namespace user
       unsigned int m_nUntitledCount;   // start at 0, for "Document1" title
 
 
-      multiple_document_template(const ::string & pszMatter, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & typeatomImpact, const ::type_atom & typeatomData = {});
+      multiple_document_template(const ::scoped_string & scopedstrMatter, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & typeatomImpact, const ::type_atom & typeatomData = {});
       ~multiple_document_template() override;
 
 

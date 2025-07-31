@@ -34,7 +34,7 @@ namespace str
    inline  CHAR_TYPE *         string_lowercase(CHAR_TYPE * psz, character_count size) noexcept;
    inline  CHAR_TYPE *         string_reverse(CHAR_TYPE * psz) noexcept;
    inline  character_count            string_get_length(const CHAR_TYPE * psz) noexcept;
-   inline  character_count            get_char_length(const CHAR_TYPE * psz) noexcept { return string_get_length(psz); }
+   inline  character_count            get_char_length(const CHAR_TYPE * psz) noexcept { return string_get_length(scopedstr); }
    inline  character_count            get_formatted_length(const CHAR_TYPE * pszFormat, va_list args) noexcept;
    inline  character_count            string_format(CHAR_TYPE * pszBuffer, const CHAR_TYPE * pszFormat, va_list args) noexcept;
    inline  character_count            string_format(CHAR_TYPE * pszBuffer, character_count nlength, const CHAR_TYPE * pszFormat, va_list args) noexcept;

@@ -24,7 +24,7 @@ namespace aura
    }
 
 
-   void inteprocess_channel::task::do_task(const ::string & strObject, const ::string & strMember, const payload_array & payloada)
+   void inteprocess_channel::task::do_task(const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, const payload_array & payloada)
    {
 
       ::aura::ipc::tx & txc = m_pcall->m_pinterprocesscommunication->tx(m_pcall->m_strApp, m_atomPid);
@@ -63,7 +63,7 @@ namespace aura
    }
 
 
-   inteprocess_channel::call::call(inteprocess_channel * pipi, const ::string & strApp, const ::string & strObject, const ::string & strMember) :
+   inteprocess_channel::call::call(inteprocess_channel * pipi, const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember) :
       ::object(pipi),
       m_pinterprocesscommunication(pipi),
       m_strApp(strApp),
@@ -219,7 +219,7 @@ namespace aura
    }
 
 
-   inteprocess_channel::inteprocess_channel(const ::string & strApp) :
+   inteprocess_channel::inteprocess_channel(const ::scoped_string & scopedstrApp) :
       m_strApp(strApp)
    {
 
@@ -317,7 +317,7 @@ namespace aura
 
 
 
-   bool inteprocess_channel::start(const ::string & strApp)
+   bool inteprocess_channel::start(const ::scoped_string & scopedstrApp)
    {
 
       synchronous_lock sl1(mutex());
@@ -408,7 +408,7 @@ started:
    }
 
 
-   bool inteprocess_channel::connect(const ::string & strApp, const ::atom & idPid)
+   bool inteprocess_channel::connect(const ::scoped_string & scopedstrApp, const ::atom & idPid)
    {
 
       string strKey = strApp + ":" + as_string(idPid);
@@ -436,7 +436,7 @@ started:
    }
 
 
-   ::aura::ipc::tx & inteprocess_channel::caller(const ::string & strApp, const ::atom & iPid)
+   ::aura::ipc::tx & inteprocess_channel::caller(const ::scoped_string & scopedstrApp, const ::atom & iPid)
    {
 
       string strKey = strApp + ":" + as_string(iPid);
@@ -543,10 +543,10 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    }
 
 
-   void inteprocess_channel::on_ipc_receive(::aura::ipc::rx * prx, const ::string & pszMessage)
+   void inteprocess_channel::on_ipc_receive(::aura::ipc::rx * prx, const ::scoped_string & scopedstrMessage)
    {
 
-      string str(pszMessage);
+      string str(scopedstrMessage);
 
       informationf("interprocess_intercommunication::on_receive %s", pszMessage);
 
@@ -700,7 +700,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    }
 
 
-   ::pointer<class inteprocess_channel::call> inteprocess_channel::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
+   ::pointer<class inteprocess_channel::call> inteprocess_channel::create_call(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
    {
 
       return __allocate class call (this, strApp, strObject, strMember);
@@ -708,7 +708,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    }
 
 
-   ::pointer<class inteprocess_channel::call> inteprocess_channel::create_call(const ::string & strObject, const ::string & strMember)
+   ::pointer<class inteprocess_channel::call> inteprocess_channel::create_call(const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
    {
 
       return create_call(m_strApp, strObject, strMember);
@@ -716,7 +716,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    }
 
 
-   void inteprocess_channel::on_interprocess_call(::payload & payload, const ::string & strObject, const ::string & strMember, payload_array & payloada)
+   void inteprocess_channel::on_interprocess_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, payload_array & payloada)
    {
 
       if(strObject == "application")
@@ -752,7 +752,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    }
 
 
-   void inteprocess_channel::on_new_instance(const ::string & strModule, const ::atom & idPid)
+   void inteprocess_channel::on_new_instance(const ::scoped_string & scopedstrModule, const ::atom & idPid)
    {
 
       defer_add_module(strModule, idPid);
@@ -762,7 +762,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    }
 
 
-   atom_array inteprocess_channel::get_pid(const ::string & strApp)
+   atom_array inteprocess_channel::get_pid(const ::scoped_string & scopedstrApp)
    {
 
       atom_array idaPid;
@@ -866,7 +866,7 @@ repeat:
    }
 
 
-   void inteprocess_channel::defer_add_module(const ::string & strModule, const ::atom & idPid)
+   void inteprocess_channel::defer_add_module(const ::scoped_string & scopedstrModule, const ::atom & idPid)
    {
 
 #ifndef UNIVERSAL_WINDOWS

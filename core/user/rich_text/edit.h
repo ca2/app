@@ -84,7 +84,7 @@ namespace user
          virtual void get_selection_intersection_format(format * pformat, ::collection::index iSelBeg, ::collection::index iSelEnd);
 
          virtual void _001SetSelFontFormat(const format * pformat, const e_attribute & eattribute);
-         virtual void _001InsertText(const ::string & psz, format * pformatParam = nullptr);
+         virtual void _001InsertText(const ::scoped_string & scopedstr, format * pformatParam = nullptr);
          virtual void _001GetLayoutText(string & str) const;
 
 

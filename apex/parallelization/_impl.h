@@ -179,7 +179,7 @@ inline int_bool critical_section::Unlock()
 //
 //   }
 //
-//   void set_error_message(const ::string & strErrorMessage)
+//   void set_error_message(const ::scoped_string & scopedstrErrorMessage)
 //   {
 //
 //      m_strErrorMessage = strErrorMessage;
@@ -447,7 +447,7 @@ inline int_bool critical_section::Unlock()
 //
 //   }
 //
-//   void set_error_message(const string& strErrorMessage)
+//   void set_error_message(const ::scoped_string & scopedstrErrorMessage)
 //   {
 //
 //      m_strErrorMessage = strErrorMessage;

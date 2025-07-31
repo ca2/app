@@ -137,7 +137,7 @@
 
          char * psz = str.get_buffer(lenTarget); // worst guess?!?
 
-         character_count iLen = unichar_to_utf8(psz, scopedwstr, scopedwstr.size());
+         character_count iLen = unichar_to_utf8(scopedstr, scopedwstr, scopedwstr.size());
 
          str.release_buffer(iLen);
 
@@ -263,7 +263,7 @@
       }
 
 
-      wstring multibyte_to_unicode(unsigned int uCodePage, const ::string & str)
+      wstring multibyte_to_unicode(unsigned int uCodePage, const ::scoped_string & scopedstr)
       {
          //if(uCodePage == CP_UTF8)
          {
@@ -574,7 +574,7 @@
       }
 
 
-      wstring utf8_to_unicode(const ::string & str)
+      wstring utf8_to_unicode(const ::scoped_string & scopedstr)
       {
 
          return multibyte_to_unicode(CodePageUtf8, str);
@@ -598,7 +598,7 @@
       }
 
 
-      character_count utf8_to_unicode_count(const ::string & str)
+      character_count utf8_to_unicode_count(const ::scoped_string & scopedstr)
       {
 
          return multibyte_to_unicode_count(CodePageUtf8, str);

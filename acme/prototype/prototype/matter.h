@@ -255,18 +255,18 @@ public:
 
 
 
-   //::pointer < ::subparticle > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+   //::pointer < ::subparticle > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr);
 
 
    //::topic_pointer create_topic(const ::atom & atom);
 
 
-   bool _handle_uri(const ::string & strUri) override;
-   bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
+   bool _handle_uri(const ::scoped_string & scopedstrUri) override;
+   bool _handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset) override;
 
 
-   virtual bool handle_uri(const ::string & stringUri);
-   virtual bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset);
+   virtual bool handle_uri(const ::scoped_string & scopedstringUri);
+   virtual bool handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset);
 
 
    inline ::file_pointer get_reader(const ::payload& payloadFile, ::file::e_open eopen = ::file::e_open());

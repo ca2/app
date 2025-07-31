@@ -28,10 +28,10 @@ public:
 
 
    virtual bool open_document(const ::payload & payloadFile);
-   virtual bool open_html(const ::string & str);
+   virtual bool open_html(const ::scoped_string & scopedstr);
 
 
-   virtual bool open_link(const ::string & pszPath);
+   virtual bool open_link(const ::scoped_string & scopedstrPath);
 
 
    virtual ::user::form * get_form();
@@ -51,7 +51,7 @@ public:
 
    DECLARE_MESSAGE_HANDLER(on_message_key_down);
 
-   ::image::image_pointer get_image(const ::string & pszUrl);
+   ::image::image_pointer get_image(const ::scoped_string & scopedstrUrl);
    //void load_image_asynch(::html::image::image *pimage);
    //bool load_image(::html::image::image *pimage);
 

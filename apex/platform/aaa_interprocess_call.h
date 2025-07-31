@@ -20,7 +20,7 @@ public:
    string                                       m_strMember;
 
 
-   ::interprocess::call(interprocess_intercommunication* pipi, const string& strApp, const string& strObject, const string& strMember);
+   ::interprocess::call(interprocess_intercommunication* pipi, const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember);
    ~::interprocess::call() override;
 
    void set_auto_launch(bool bSet = true);

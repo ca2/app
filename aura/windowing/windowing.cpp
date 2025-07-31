@@ -837,7 +837,7 @@ namespace windowing
    }
 
 
-   wstring windowing::_windows_calc_icon_window_class(::user::interaction* pinteraction, unsigned int dwDefaultStyle, const ::string & pszMatter)
+   wstring windowing::_windows_calc_icon_window_class(::user::interaction* pinteraction, unsigned int dwDefaultStyle, const ::scoped_string & scopedstrMatter)
    {
    
       return "windows_interaction_impl";
@@ -978,7 +978,7 @@ namespace windowing
    // }
 
 
-   ::pointer < ::user::interaction > windowing::create_message_window(const ::string & pszName, ::user::interaction_listener * plistener)
+   ::pointer < ::user::interaction > windowing::create_message_window(const ::scoped_string & scopedstrName, ::user::interaction_listener * plistener)
    {
 
       return nullptr;

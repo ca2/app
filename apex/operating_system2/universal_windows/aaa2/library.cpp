@@ -5,7 +5,7 @@
 void * __node_library_touch(const ::file::path & path, string & strMessage)
 {
 
-   return __node_library_open(pszPath, strMessage);
+   return __node_library_open(scopedstrPath, strMessage);
 
 }
 
@@ -15,7 +15,7 @@ void * __node_library_open(const ::file::path & path, string & strMessage)
 
    void * plibrary = nullptr;
 
-   string strPath(pszPath);
+   string strPath(scopedstrPath);
 
    if(case_insensitive_ansi_ends(strPath,".ilk"))
       return false;
@@ -144,7 +144,7 @@ void * __node_library_open(const ::file::path & path, string & strMessage)
 
 void * __node_library_open_ca2(const ::scoped_string & scopedstr, string & strMessage)
 {
-   /*      string str(psz);
+   /*      string str(scopedstr);
    if(str.find("..") >= 0)
    return false;
    if(str.find(":") >= 0)
@@ -161,7 +161,7 @@ void * __node_library_open_ca2(const ::scoped_string & scopedstr, string & strMe
    //::SetDllDirectory(dir::install("stage\\x86") + "\\");
    #endif*/
 
-   wstring wstr(psz);
+   wstring wstr(scopedstr);
 
    return LoadPackagedLibrary(wstr, 0);
 

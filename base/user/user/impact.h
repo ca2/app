@@ -112,7 +112,7 @@ namespace user
       virtual void OnActivateFrame(enum_activate eactivate,  ::pointer<::user::frame_window>pFrameWnd);
 
 
-      virtual void set_impact_title(const ::string & strImpactTitle);
+      virtual void set_impact_title(const ::scoped_string & scopedstrImpactTitle);
       virtual string get_impact_title() const;
 
       enum_window_type get_window_type() override;

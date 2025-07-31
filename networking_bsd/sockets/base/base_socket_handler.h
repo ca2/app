@@ -213,7 +213,7 @@ namespace sockets_bsd
       /** Indicates that the handler runs under socket_thread. */
       //virtual bool IsSlave() = 0;
 
-      //virtual void __tracef(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, base_socket * psocket, const ::string & strContext, int err, const ::string & strMessage);
+      //virtual void __tracef(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, base_socket * psocket, const ::scoped_string & scopedstrContext, int err, const ::scoped_string & scopedstrMessage);
 
 
    };

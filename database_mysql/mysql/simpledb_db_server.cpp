@@ -31,7 +31,7 @@ db_server::~db_server()
 
 
 
-bool db_server::initialize_user(mysql::database * pmysqldbUser, const ::string & pszUser)
+bool db_server::initialize_user(mysql::database * pmysqldbUser, const ::scoped_string & scopedstrUser)
 {
 
    if(pmysqldbUser == nullptr)

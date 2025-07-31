@@ -138,7 +138,7 @@ namespace gpu_opengl
       //      if (bGeometry)
       //      {
       //
-      //         uGeometry = create_shader(pszGeometry, GL_GEOMETRY_SHADER);
+      //         uGeometry = create_shader(scopedstrGeometry, GL_GEOMETRY_SHADER);
       //
       //      }
       //      

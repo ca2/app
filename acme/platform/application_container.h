@@ -30,7 +30,7 @@ namespace platform
       ~application_container() override;
 
 
-      virtual ::platform::application * get_application(const ::string & strAppId, bool bCreate = true, ::request * prequest = nullptr);
+      virtual ::platform::application * get_application(const ::scoped_string & scopedstrAppId, bool bCreate = true, ::request * prequest = nullptr);
 
 
       //virtual ::pointer<::apex::application>create_application(const ::scoped_string & scopedstrAppId, bool bSynch, ::request * prequest);
@@ -38,7 +38,7 @@ namespace platform
       
       
       virtual ::pointer<::platform::application > instantiate_application(const::string& strAppIdd);
-      virtual ::pointer<::platform::application > create_application(const ::string & strAppId);
+      virtual ::pointer<::platform::application > create_application(const ::scoped_string & scopedstrAppId);
 
 
       virtual void exit_application() override;
@@ -52,7 +52,7 @@ namespace platform
       virtual void erase_application(::platform::application * papplication);
 
 
-      ::pointer<::platform::application>assert_running(const ::string & strAppId);
+      ::pointer<::platform::application>assert_running(const ::scoped_string & scopedstrAppId);
 
 
       virtual void on_instantiate_application(::platform::application * papplication);

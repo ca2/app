@@ -5065,7 +5065,7 @@ namespace user
    }
 
 
-   void mesh::Filter1(const string & strFilter)
+   void mesh::Filter1(const ::scoped_string & scopedstrFilter)
    {
 
       if(m_eview == impact_icon)
@@ -6555,12 +6555,12 @@ namespace user
 
    }
 
-   ::collection::index mesh::_001GetItemById(const ::string & pszChar)
+   ::collection::index mesh::_001GetItemById(const ::scoped_string & scopedstrChar)
    {
 
       ::collection::count c = _001GetItemCount();
 
-      string strId(pszChar);
+      string strId(scopedstrChar);
 
       for (::collection::index iItem = 0; iItem < c; iItem++)
       {

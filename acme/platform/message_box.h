@@ -46,9 +46,9 @@ public:
    ::payload                              m_payloadResult;
    ::pointer < ::user::activation_token > m_puseractivationtoken;
 
-   message_box(const ::string & strMessage, const ::string & strTitle = {}, const ::e_message_box & emessagebox = {}, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = {}, const ::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
    message_box(const ::exception & exception, const ::scoped_string & strMoreDetails);
-   message_box(const ::exception & exception, const ::scoped_string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox = {}, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   message_box(const ::exception & exception, const ::scoped_string & strMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
    ~message_box() override;
 
 #ifdef _DEBUG

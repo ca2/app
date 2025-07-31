@@ -100,16 +100,16 @@ namespace sockets
       /** Transfer coding 'chunked' */
       bool IsChunked() { return m_b_chunked; }
 
-      property & inattr(const ::string & pszName);
+      property & inattr(const ::scoped_string & scopedstrName);
       ::property_set & inattrs();
 
-      property & inheader(const ::string & pszName);
+      property & inheader(const ::scoped_string & scopedstrName);
       ::property_set & inheaders();
 
-      property & outattr(const ::string & pszName);
+      property & outattr(const ::scoped_string & scopedstrName);
       ::property_set & outattrs();
 
-      property & outheader(const ::string & pszName);
+      property & outheader(const ::scoped_string & scopedstrName);
       ::property_set & outheaders();
 
       sip::request & request();

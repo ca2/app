@@ -181,7 +181,7 @@ namespace windows
                // 
                memory.zero();
                // Read the Data.            
-               //ZeroMemory(pszOutBuffer, dwSize + 1);
+               //ZeroMemory(scopedstrOutBuffer, dwSize + 1);
                DWORD dwDownloaded = 0;
                if (!WinHttpReadData(m_hinternet, (LPVOID)memory.data(), dwSize, &dwDownloaded))
                {

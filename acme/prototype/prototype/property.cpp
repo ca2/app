@@ -57,12 +57,12 @@ void prop_id_debug(::particle * pparticle);
 //::payload property::operator + (const ::scoped_string & scopedstr) const
 //{
 //
-//   return get_value() + payload(psz);
+//   return get_value() + payload(scopedstr);
 //
 //}
 //
 //
-//::payload property::operator + (const ::string & str) const
+//::payload property::operator + (const ::scoped_string & scopedstr) const
 //{
 //
 //   return get_value() + payload(str);
@@ -184,18 +184,18 @@ void prop_id_debug(::particle * pparticle);
 //
 //string property::implode(const ::scoped_string & scopedstrGlue) const
 //{
-//   return implode(pszGlue);
+//   return implode(scopedstrGlue);
 //}
 //
-//void property::parse_network_payload(const ::string & str)
+//void property::parse_network_payload(const ::scoped_string & scopedstr)
 //{
 //   const ::ansi_character * pszJson = str;
-//   parse_network_payload(pszJson, str.length());
+//   parse_network_payload(scopedstrJson, str.length());
 //}
 //
 //void property::parse_network_payload(const char * & pszJson, character_count length)
 //{
-//   parse_network_payload(pszJson, pszJson + length - 1);
+//   parse_network_payload(scopedstrJson, pszJson + length - 1);
 //}
 //
 //void property::parse_network_payload(const char * & pszJson,const ::ansi_character * pszEnd)
@@ -335,7 +335,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //void property::string(char * psz) const
 //{
-//   string(psz);
+//   string(scopedstr);
 //}
 //
 //::payload property::element_at(::collection::index iIndex) const
@@ -384,18 +384,18 @@ string & property::get_network_arguments(::string & str) const
 //
 //bool property::array_contains(const ::scoped_string & scopedstr, index first, ::collection::index last) const
 //{
-//   return array_contains(psz, first, last);
+//   return array_contains(scopedstr, first, last);
 //}
 //
 //bool property::case_insensitive_array_contains(const ::scoped_string & scopedstr, index first, ::collection::index last) const
 //{
-//   return case_insensitive_array_contains(psz, first, last);
+//   return case_insensitive_array_contains(scopedstr, first, last);
 //}
 //
 //
 //::payload property::equals_ci_get(const ::scoped_string & scopedstrCompare, ::payload varOnEqual, ::payload varOnDifferent) const
 //{
-//   if(case_insensitive_compare_value(pszCompare) == 0)
+//   if(case_insensitive_compare_value(scopedstrCompare) == 0)
 //   {
 //      return varOnEqual;
 //   }
@@ -407,7 +407,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //::payload property::equals_ci_get(const ::scoped_string & scopedstrCompare, ::payload varOnEqual) const
 //{
-//   if(case_insensitive_compare_value(pszCompare) == 0)
+//   if(case_insensitive_compare_value(scopedstrCompare) == 0)
 //   {
 //      return varOnEqual;
 //   }
@@ -435,7 +435,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //int property::case_insensitive_compare_value(const ::scoped_string & scopedstr) const
 //{
-//   return case_insensitive_order(psz);
+//   return case_insensitive_order(scopedstr);
 //}
 //
 //::comparison::var_strict property::strict_compare() const
@@ -464,10 +464,10 @@ string & property::get_network_arguments(::string & str) const
 //
 //bool property::strict_equal(const ::scoped_string & scopedstr) const
 //{
-//   return strict_equal(psz);
+//   return strict_equal(scopedstr);
 //}
 //
-//bool property::strict_equal(const ::string & str) const
+//bool property::strict_equal(const ::scoped_string & scopedstr) const
 //{
 //   return strict_equal(str);
 //}
@@ -500,10 +500,10 @@ string & property::get_network_arguments(::string & str) const
 //
 //bool property::strict_different(const ::scoped_string & scopedstr) const
 //{
-//   return strict_different(psz);
+//   return strict_different(scopedstr);
 //}
 //
-//bool property::strict_different(const ::string & str) const
+//bool property::strict_different(const ::scoped_string & scopedstr) const
 //{
 //   return strict_different(str);
 //}
@@ -539,7 +539,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() == psz;
 //}
 //
-//bool property::operator == (const ::string & str) const
+//bool property::operator == (const ::scoped_string & scopedstr) const
 //{
 //   return get_value() == str;
 //}
@@ -570,7 +570,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() != psz;
 //}
 //
-//bool property::operator != (const ::string & str) const
+//bool property::operator != (const ::scoped_string & scopedstr) const
 //{
 //   return get_value() != str;
 //}
@@ -587,7 +587,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //::payload property::explode(const ::scoped_string & scopedstrSeparator, bool bAddEmpty) const
 //{
-//   return explode(pszSeparator, bAddEmpty);
+//   return explode(scopedstrSeparator, bAddEmpty);
 //}
 //
 //
@@ -623,7 +623,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() < psz;
 //}
 //
-//bool property::operator < (const ::string & str) const
+//bool property::operator < (const ::scoped_string & scopedstr) const
 //{
 //   return get_value() < str;
 //}
@@ -677,7 +677,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() <= psz;
 //}
 //
-//bool property::operator <= (const ::string & str) const
+//bool property::operator <= (const ::scoped_string & scopedstr) const
 //{
 //   return get_value() <= str;
 //}
@@ -730,7 +730,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() >= psz;
 //}
 //
-//bool property::operator >= (const ::string & str) const
+//bool property::operator >= (const ::scoped_string & scopedstr) const
 //{
 //   return get_value() >= str;
 //}
@@ -783,7 +783,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() > psz;
 //}
 //
-//bool property::operator > (const ::string & str) const
+//bool property::operator > (const ::scoped_string & scopedstr) const
 //{
 //   return get_value() > str;
 //}
@@ -1216,7 +1216,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator += (const ::string & str)
+//property & property::operator += (const ::scoped_string & scopedstr)
 //{
 //   operator=(*this + str);
 //   return *this;
@@ -1490,7 +1490,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//string  operator + (const ::string & str, const property & prop)
+//string  operator + (const ::scoped_string & scopedstr, const property & prop)
 //{
 //
 //   return str +  (const ::payload &) prop;
@@ -1501,7 +1501,7 @@ string & property::get_network_arguments(::string & str) const
 //string operator + (const ::scoped_string & scopedstr, const property & prop)
 //{
 //
-//   return string(psz) + (const ::payload &)prop;
+//   return string(scopedstr) + (const ::payload &)prop;
 //
 //}
 
@@ -1808,7 +1808,7 @@ string & property::get_network_arguments(::string & str) const
 
 
 //
-//payload & payload::operator += (const ::string & str)
+//payload & payload::operator += (const ::scoped_string & scopedstr)
 //{
 //
 //   operator=(*this + str);

@@ -8,7 +8,7 @@ namespace user
 {
 
 
-   void impact_kit::add_impact_item(const ::atom & atom, const ::string & strTitle, ::user::impact_creator * pimpactcreator)
+   void impact_kit::add_impact_item(const ::atom & atom, const ::scoped_string & scopedstrTitle, ::user::impact_creator * pimpactcreator)
    {
 
       auto pitem = __create_new < item >();

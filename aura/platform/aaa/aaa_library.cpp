@@ -31,7 +31,7 @@ namespace aura
    }
 
 
-   void library::initialize_aura_library(::particle * pparticle,int iDesambig, const ::string & pszRoot, const ::string & pszName, const ::string & pszFolder)
+   void library::initialize_aura_library(::particle * pparticle,int iDesambig, const ::scoped_string & scopedstrRoot, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrFolder)
    {
 
       auto estatus = initialize(pparticle);
@@ -43,7 +43,7 @@ namespace aura
 
       }
 
-      string strRoot(pszRoot);
+      string strRoot(scopedstrRoot);
 
       strRoot.trim();
 
@@ -60,9 +60,9 @@ namespace aura
 
       }
 
-      m_strName = ::is_null(pszName) ? strRoot : string(pszName);
+      m_strName = ::is_null(scopedstrName) ? strRoot : string(scopedstrName);
 
-      if (::is_set(pszFolder))
+      if (::is_set(scopedstrFolder))
       {
 
          m_strFolder = pszFolder;
@@ -108,14 +108,14 @@ namespace aura
    }
 
 
-   bool library::open(const ::string & pszPath,bool bAutoClose,bool bCa2Path)
+   bool library::open(const ::scoped_string & scopedstrPath,bool bAutoClose,bool bCa2Path)
    {
 
       synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
       m_strMessage.empty();
 
-      auto pfnNewAuraLibrary = get_get_new_aura_library(pszPath);
+      auto pfnNewAuraLibrary = get_get_new_aura_library(scopedstrPath);
 
       if (pfnNewAuraLibrary != nullptr)
       {
@@ -139,13 +139,13 @@ namespace aura
          if(bCa2Path)
          {
 
-            m_plibrary = __node_library_open_ca2(pszPath, m_strMessage);
+            m_plibrary = __node_library_open_ca2(scopedstrPath, m_strMessage);
 
          }
          else
          {
 
-            m_plibrary = __node_library_open(pszPath, m_strMessage);
+            m_plibrary = __node_library_open(scopedstrPath, m_strMessage);
 
          }
 
@@ -450,12 +450,12 @@ namespace aura
    }
 
 
-   string library::get_app_id(const ::string & pszAppName)
+   string library::get_app_id(const ::scoped_string & scopedstrAppName)
    {
 
       synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
-      if(!contains_app(pszAppName))
+      if(!contains_app(scopedstrAppName))
          return "";
 
       string strPrefix(get_root());
@@ -504,12 +504,12 @@ namespace aura
    }
 
 
-   string library::get_app_name(const ::string & pszAppId)
+   string library::get_app_name(const ::scoped_string & scopedstrAppId)
    {
 
       synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
-      string strAppName(pszAppId);
+      string strAppName(scopedstrAppId);
 
       string strPrefix(get_root());
 
@@ -564,7 +564,7 @@ namespace aura
    }
 
 
-   ::pointer<::aura::application>library::get_new_application(::particle * pparticle, const ::string & pszAppId)
+   ::pointer<::aura::application>library::get_new_application(::particle * pparticle, const ::scoped_string & scopedstrAppId)
    {
 
       synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
@@ -607,7 +607,7 @@ namespace aura
          if(get_ca2_library() != nullptr)
          {
 
-            string strAppName = get_app_name(pszAppId);
+            string strAppName = get_app_name(scopedstrAppId);
 
             if (strAppName.is_empty())
             {
@@ -728,7 +728,7 @@ namespace aura
    }
 
 
-   ::matter* library::new_object(::object* pparticle, const ::string & pszClassId)
+   ::matter* library::new_object(::object* pparticle, const ::scoped_string & scopedstrClassId)
    {
 
       return nullptr;
@@ -736,12 +736,12 @@ namespace aura
    }
 
 
-   ::pointer<::matter>library::create_object(::particle * pparticle, const ::string & pszClass)
+   ::pointer<::matter>library::create_object(::particle * pparticle, const ::scoped_string & scopedstrClass)
    {
 
       synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
-      if (factory_has_object_class(pszClass))
+      if (factory_has_object_class(scopedstrClass))
       {
 
          return factory_create(pparticle, pszClass);
@@ -779,12 +779,12 @@ namespace aura
    }
 
 
-   bool library::has_object_class(const ::string & pszClassId)
+   bool library::has_object_class(const ::scoped_string & scopedstrClassId)
    {
 
       synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
-      if (factory_has_object_class(pszClassId))
+      if (factory_has_object_class(scopedstrClassId))
       {
 
          return false;
@@ -798,12 +798,12 @@ namespace aura
 
       }
 
-      return get_ca2_library()->has_object_class(pszClassId);
+      return get_ca2_library()->has_object_class(scopedstrClassId);
 
    }
 
 
-   bool library::contains_app(const ::string & pszAppId)
+   bool library::contains_app(const ::scoped_string & scopedstrAppId)
    {
 
       synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
@@ -812,7 +812,7 @@ namespace aura
 
       get_app_list(stra);
 
-      return stra.contains(pszAppId);
+      return stra.contains(scopedstrAppId);
 
    }
 
@@ -862,7 +862,7 @@ namespace aura
    }
 
 
-   void * library::raw_get(const ::string & pszEntryName)
+   void * library::raw_get(const ::scoped_string & scopedstrEntryName)
    {
 
       synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
@@ -968,7 +968,7 @@ namespace aura
 //string_map < ::pointer<::acme::library >>* g_pmapLibCall = nullptr;
 
 
-::acme::library * lib(const ::string & psz)
+::acme::library * lib(const ::scoped_string & scopedstr)
 {
 
    //if (::auraacmesystem()->m_mapLibCall == nullptr)
@@ -987,7 +987,7 @@ namespace aura
 
       plibrary->initialize(::get_task());
 
-      plibrary->open(psz);
+      plibrary->open(scopedstr);
 
    }
 
@@ -999,28 +999,28 @@ namespace aura
 
 #if defined(LINUX)
 
-::file::path library_file_name(const ::string & str)
+::file::path library_file_name(const ::scoped_string & scopedstr)
 {
    return "lib" + str + ".so";
 }
 
 #elif defined(__ANDROID__)
 
-::file::path library_file_name(const ::string & str)
+::file::path library_file_name(const ::scoped_string & scopedstr)
 {
    return "lib" + str + ".so";
 }
 
 #elif defined(WINDOWS)
 
-::file::path library_file_name(const ::string & str)
+::file::path library_file_name(const ::scoped_string & scopedstr)
 {
    return str + ".dll";
 }
 
 #elif defined(__APPLE__)
 
-::file::path library_file_name(const ::string & str)
+::file::path library_file_name(const ::scoped_string & scopedstr)
 {
    return "lib" + str + ".dylib";
 }

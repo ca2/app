@@ -5,7 +5,7 @@
 ////#include "acme/prototype/collection/numeric_array.h"
 //
 
-//CLASS_DECL_ACME string ::url::decode(const string & str);
+//CLASS_DECL_ACME string ::url::decode(const ::scoped_string & scopedstr);
 
 //CLASS_DECL_ACME::file::path __xxxnode_full_file_path(file::path path);
 

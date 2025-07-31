@@ -590,7 +590,7 @@ namespace xml
          pnode->m_pdocument = m_pdocument;
          pnode->m_enode = ::data::e_node_xml_pi;
 
-         const char* pTagEnd = ::ansi_range(pszStart, rangeXml.m_end).find_first_character_in(" ?>");
+         const char* pTagEnd = ::ansi_range(scopedstrStart, rangeXml.m_end).find_first_character_in(" ?>");
 
          _SetString({ pszStart, pTagEnd }, &pnode->m_strName);
 
@@ -651,7 +651,7 @@ namespace xml
 //         // XML Attr Name
 //         auto pszEnd = rangeXml.find_first_character_in(" =");
 //
-//         if(::not_found(pszEnd))
+//         if(::not_found(scopedstrEnd))
 //         {
 //            //// error
 //            //if( pparseinfo->m_bErrorOccur == false )
@@ -999,7 +999,7 @@ namespace xml
    }
 
    
-   void node::load(const ::string & strXml, parse_info * pparseinfo)
+   void node::load(const ::scoped_string & scopedstrXml, parse_info * pparseinfo)
    {
 
       auto rangeXml = strXml();
@@ -1197,13 +1197,13 @@ namespace xml
                //rangeXml.m_begin = strchr(rangeXml.m_begin, '<');
                //while (*pszEnd != '<' && *pszEnd != '\0')
                //{
-               //   //   if(pszEnd[0] == '&')
+               //   //   if(scopedstrEnd[0] == '&')
                //   ////   {
                //   ////      pszEnd = m_pdocument->patch_entity_ref((const char * &) pszEnd, true, &xml, nullptr);
                //   ////   }
                //   ////   else
                //   ////   {
-               //   unicode_increment(pszEnd);
+               //   unicode_increment(scopedstrEnd);
                //   //   }
                //}
                _SetString({ pszStart, rangeXml.m_begin }, &pnode->m_strValue, trim, escape);
@@ -1264,7 +1264,7 @@ namespace xml
 
                      const char * pszEnd = rangeXml.find_first_character_in(" >");
 
-                     if (pszEnd == nullptr)
+                     if (scopedstrEnd == nullptr)
                      {
                         //if( pparseinfo->m_bErrorOccur == false )
                         //{
@@ -1361,16 +1361,16 @@ namespace xml
                      //pszEnd = xml;
                      //while(*pszEnd != '<' && *pszEnd != '\0' && pszEnd < pszEndXml)
                      //{
-                     //   if(pszEnd[0] == '&')
+                     //   if(scopedstrEnd[0] == '&')
                      //   {
                      //      pszEnd = m_pdocument->patch_entity_ref((const char * &) pszEnd, true, &xml, nullptr);
                      //   }
                      //   else
                      //   {
-                     //      pszEnd = (char *) ::str::__utf8_inc(pszEnd);
+                     //      pszEnd = (char *) ::str::__utf8_inc(scopedstrEnd);
                      //   }
                      //}
-                     //if (pszEnd > pszEndXml)
+                     //if (scopedstrEnd > pszEndXml)
                        // pszEnd = (char *)pszEndXml;
                      _SetString({pszStart, rangeXml.m_begin}, &pnode->m_strValue, trim, escape);
                      //xml = pszEnd;
@@ -2313,7 +2313,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   node * node::add_child( const ::string & strName /*= nullptr*/, const ::scoped_string & scopedstrValue /*= nullptr*/ )
+   node * node::add_child( const ::scoped_string & scopedstrName /*= nullptr*/, const ::scoped_string & scopedstrValue /*= nullptr*/ )
    {
       
       auto pnode = __allocate node((node *) this);
@@ -2331,7 +2331,7 @@ namespace xml
    }
 
 
-   node * node::add_child(const ::string & strName, const ::property_set & set, const ::scoped_string & scopedstrValue)
+   node * node::add_child(const ::scoped_string & scopedstrName, const ::property_set & set, const ::scoped_string & scopedstrValue)
    {
 
       auto pnode = __allocate node((node *) this);
@@ -3077,7 +3077,7 @@ namespace xml
 
    
 
-   void node::set_name(const ::string & strName)
+   void node::set_name(const ::scoped_string & scopedstrName)
    {
 
       m_strName = strName;
@@ -3096,7 +3096,7 @@ namespace xml
 
    }
 
-   void node::set_value(const ::string & strValue)
+   void node::set_value(const ::scoped_string & scopedstrValue)
    {
 
       m_strValue = strValue;

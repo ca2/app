@@ -672,10 +672,10 @@ namespace gpu_opengl
 
    }
 
-   //   string context::load_fragment(const ::string & pszPath, enum_shader & eshader)
+   //   string context::load_fragment(const ::scoped_string & scopedstrPath, enum_shader & eshader)
    //   {
    //
-   //      ::file::path path(pszPath);
+   //      ::file::path path(scopedstrPath);
    //
    //      auto & app = papp;
    //
@@ -2040,7 +2040,7 @@ void main() {
       //   auto pszVersion = (const char*)glGetString(GL_VERSION);
       //   //::e_status estatus = 
 
-      //   ::string strVersion(pszVersion);
+      //   ::string strVersion(scopedstrVersion);
 
       //   if (strVersion.case_insensitive_contains("mesa"))
       //   {
@@ -2228,7 +2228,7 @@ void main() {
       //         auto pszVersion = (const char*)glGetString(GL_VERSION);
       //         //::e_status estatus = 
 
-      //         ::string strVersion(pszVersion);
+      //         ::string strVersion(scopedstrVersion);
 
       //         if (strVersion.case_insensitive_contains("mesa"))
       //         {

@@ -135,7 +135,7 @@ namespace sockets_bsd
    }
 
 
-   SOCKET socket::CreateSocket(int af, int iType, const ::string & strProtocol)
+   SOCKET socket::CreateSocket(int af, int iType, const ::scoped_string & scopedstrProtocol)
    {
 
       SOCKET s;

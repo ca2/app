@@ -687,7 +687,7 @@ namespace universal_windows
    }
 
 
-   directx_application_source::directx_application_source(::platform::system * paxissystem, const ::string & strId)
+   directx_application_source::directx_application_source(::platform::system * paxissystem, const ::scoped_string & scopedstrId)
    {
 
       system()     = paxissystem;
@@ -705,7 +705,7 @@ namespace universal_windows
    }
 
 
-   directx_application_source ^ new_directx_application_source(::platform::system * paurasystem, const ::string & strId)
+   directx_application_source ^ new_directx_application_source(::platform::system * paurasystem, const ::scoped_string & scopedstrId)
    {
 
       string str = strId;

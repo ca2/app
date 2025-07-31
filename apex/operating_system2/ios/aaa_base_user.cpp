@@ -22,9 +22,9 @@ CLASS_DECL_APEX string message_box_result_to_string(int iResult);
 void message_box_synchronous(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback )
 {
 
-   string strMessage(pszMessage); // string "absorbs" nullptr pointers into ""
+   string strMessage(scopedstrMessage); // string "absorbs" nullptr pointers into ""
 
-   string strHeader(pszTitle); // string "absorbs" nullptr pointers into ""
+   string strHeader(scopedstrTitle); // string "absorbs" nullptr pointers into ""
 
    int iResult = ui_MessageBoxA((void *) oswindow, strMessage, strHeader, emessagebox);
    

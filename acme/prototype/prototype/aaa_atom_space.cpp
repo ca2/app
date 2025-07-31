@@ -14,7 +14,7 @@
 //const char * atom_space::get_id(const ::scoped_string & scopedstr)
 //{
 //
-//   if (::is_null(psz) || *psz == '\0')
+//   if (::is_null(scopedstr) || *psz == '\0')
 //   {
 //
 //      return nullptr;
@@ -25,23 +25,23 @@
 //
 //   index iIndex = 0;
 //
-//   if (find(psz, iIndex))
+//   if (find(scopedstr, iIndex))
 //   {
 //
 //      return m_psza.element_at(iIndex);
 //
 //   }
 //
-//   char * pszNew = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(psz) + 1);
+//   char * pszNew = (char *)::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(scopedstr) + 1);
 //
-//   if (pszNew == nullptr)
+//   if (scopedstrNew == nullptr)
 //   {
 //
 //      throw ::exception(error_no_memory);
 //
 //   }
 //
-//   strcpy(pszNew, psz);
+//   strcpy(scopedstrNew, psz);
 //
 //   m_psza.insert_at(iIndex, pszNew);
 //
@@ -75,7 +75,7 @@
 //
 //            char * psz = (char *)m_psza.element_at(i);
 //
-//            ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz);
+//            ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->free(scopedstr);
 //
 //         }
 //         catch (...)
@@ -99,7 +99,7 @@
 //atom atom_space::operator()(const ::scoped_string & scopedstr)
 //{
 //
-//   return ::atom(get_id(psz), this);
+//   return ::atom(get_id(scopedstr), this);
 //
 //}
 //
@@ -235,7 +235,7 @@
 //
 //      psz =  m_psza[iIndex];
 //
-//      iCompare = strcmp(pszFind,psz);
+//      iCompare = strcmp(scopedstrFind,psz);
 //
 //      if(iCompare == 0)
 //      {

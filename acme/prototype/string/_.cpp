@@ -51,7 +51,7 @@ int debug_string_iterator()
 //
 //   va_start(argList, pszFormat);
 //
-//   str.formatf_arguments(pszFormat, argList);
+//   str.formatf_arguments(scopedstrFormat, argList);
 //
 //   va_end(argList);
 //
@@ -77,7 +77,7 @@ CLASS_DECL_ACME inline character_count safe_strlen(void * p, character_count n)
    for (; i < n; i++)
    {
 
-      if (psz[i] == '\0')
+      if (scopedstr[i] == '\0')
       {
 
          break;

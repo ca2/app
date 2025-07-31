@@ -176,7 +176,7 @@ namespace platform
 
    void * platform::operating_system_library_open_ca2(const ::file::path & path, ::string & strMessage)
    {
-      /*      string str(psz);
+      /*      string str(scopedstr);
       if(str.find("..") >= 0)
       return false;
       if(str.find(":") >= 0)

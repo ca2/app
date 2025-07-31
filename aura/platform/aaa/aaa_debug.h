@@ -207,15 +207,15 @@
 //
 //
 //
-//// CLASS_DECL_AURA int FUNCTION_DEBUGBOX(const ::string & pszMessage, const ::string & pszTitle, int iFlags);
+//// CLASS_DECL_AURA int FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, int iFlags);
 //
 //// CLASS_DECL_AURA int FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, int iFlags);
 //
-//// inline int FUNCTION_XXDEBUGBOX(const ::string & pszMessage, const ::string & pszTitle, int iFlags)
+//// inline int FUNCTION_XXDEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, int iFlags)
 //// {
 //
-////    __UNREFERENCED_PARAMETER(pszMessage);
-////    __UNREFERENCED_PARAMETER(pszTitle);
+////    __UNREFERENCED_PARAMETER(scopedstrMessage);
+////    __UNREFERENCED_PARAMETER(scopedstrTitle);
 ////    __UNREFERENCED_PARAMETER(iFlags);
 //
 ////    return 0;
@@ -225,8 +225,8 @@
 //// inline int FUNCTION_XXDEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, int iFlags)
 //// {
 //
-////    __UNREFERENCED_PARAMETER(pszMessage);
-////    __UNREFERENCED_PARAMETER(pszTitle);
+////    __UNREFERENCED_PARAMETER(scopedstrMessage);
+////    __UNREFERENCED_PARAMETER(scopedstrTitle);
 ////    __UNREFERENCED_PARAMETER(iFlags);
 //
 ////    return 0;
@@ -271,8 +271,8 @@
 ////
 ////
 ////
-////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::string & strContext, int iError, const ::string & strContext) override;
-////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::string & strContext, int iError, const ::string & strContext) override;
+////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrContext) override;
+////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrContext) override;
 ////
 ////
 ////};
@@ -281,8 +281,8 @@
 //extern critical_section * g_pcsTrace;
 //extern object * g_pobjecTracer;
 //
-//CLASS_DECL_AURA void os_trace(enum_trace_level elevel, const ::string & pszTag, const ::string & pszMessage);
-//CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::string & pszTag, const ::string & psz, const ::string & pszFile = nullptr, int iLine = -1);
+//CLASS_DECL_AURA void os_trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstrMessage);
+//CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrFile = nullptr, int iLine = -1);
 //
 //
 //

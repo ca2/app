@@ -7,7 +7,7 @@ public:
 
    ::string m_str;
 
-   title(const ::string & str) : m_str(str) {}
+   title(const ::scoped_string & scopedstr) : m_str(str) {}
 
 };
 

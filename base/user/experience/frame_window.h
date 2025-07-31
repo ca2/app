@@ -64,9 +64,9 @@ namespace experience
 #endif
 
 
-      virtual ::pointer<::experience::experience>create_experience(const ::string & strExperience);
-      virtual ::pointer<::experience::experience>experience(const ::string & strExperience);
-      virtual ::pointer<::experience::frame>frame_experience(const ::string & strExperience, const ::string & strFrame, const ::string & strStyle = nullptr);
+      virtual ::pointer<::experience::experience>create_experience(const ::scoped_string & scopedstrExperience);
+      virtual ::pointer<::experience::experience>experience(const ::scoped_string & scopedstrExperience);
+      virtual ::pointer<::experience::frame>frame_experience(const ::scoped_string & scopedstrExperience, const ::scoped_string & scopedstrFrame, const ::scoped_string & scopedstrStyle = nullptr);
 
 
 

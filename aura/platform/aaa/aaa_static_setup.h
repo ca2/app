@@ -40,7 +40,7 @@ public:
    static system_setup *         s_psetupList;
 
 
-   system_setup(::system_setup::enum_flag eflag, const ::string & pszName);
+   system_setup(::system_setup::enum_flag eflag, const ::scoped_string & scopedstrName);
 
 
    void construct();
@@ -50,7 +50,7 @@ public:
    bool has_flag(::system_setup::enum_flag eflag) { return ((int)m_eflag & (int)eflag) == (int)eflag; }
 
 
-   static system_setup* get_first(::system_setup::enum_flag eflag, const ::string & pszName = nullptr);
+   static system_setup* get_first(::system_setup::enum_flag eflag, const ::scoped_string & scopedstrName = nullptr);
 
    virtual ::matter * create_new_object();
    virtual ::aura::application* create_new_application();
@@ -74,7 +74,7 @@ public:
    virtual ::acme::library* new_library() override { return aaa_primitive_new LIBRARY; }
 
 
-   static_library_factory(const ::string & pszName = "") :
+   static_library_factory(const ::scoped_string & scopedstrName = "") :
       system_setup(flag_library, pszName)
    {
 
@@ -95,7 +95,7 @@ public:
    virtual ::matter * new_object() override { return aaa_primitive_new OBJECT; }
 
 
-   static_object_factory(::system_setup::enum_flag eflag, const ::string & pszName = "") :
+   static_object_factory(::system_setup::enum_flag eflag, const ::scoped_string & scopedstrName = "") :
       system_setup(eflag, pszName)
    {
 

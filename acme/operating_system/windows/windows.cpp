@@ -431,7 +431,7 @@ string read_resource_as_string(hinstance hinst, unsigned int nID, const ::scoped
 
       psz = str.get_buffer(iReadAtMostByteCount);
 
-      ::memory_copy(psz, pnRes, iReadAtMostByteCount);
+      ::memory_copy(scopedstr, pnRes, iReadAtMostByteCount);
 
       psz[dwResSize] = '\0';
 
@@ -472,7 +472,7 @@ void operating_system_get_main_screen_size(int& cx, int& cy)
 // CLASS_DECL_ACME void operating_system_open_url(const ::scoped_string & scopedstrUrl)
 // {
 
-//    wstring wstrUrl(pszUrl);
+//    wstring wstrUrl(scopedstrUrl);
 
 //    ::ShellExecuteW(nullptr, L"open", wstrUrl, nullptr, nullptr, SW_SHOWNORMAL);
 

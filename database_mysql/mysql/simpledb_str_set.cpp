@@ -116,7 +116,7 @@ public:
 
    virtual int run();
 
-   void queue(const ::string & pszKey, const ::string & psz);
+   void queue(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstr);
 
 };
 
@@ -223,7 +223,7 @@ repeat:;
 }
 
 
-void db_str_sync_queue::queue(const ::string & pszKey, const ::string & psz)
+void db_str_sync_queue::queue(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstr)
 {
 
    single_lock synchronouslock(m_pmutex, true);

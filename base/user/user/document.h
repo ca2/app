@@ -81,7 +81,7 @@ namespace user
       virtual void on_create(::request * prequest);
 
       const string & get_title() const;
-      virtual void set_title(const ::string & pszTitle);
+      virtual void set_title(const ::scoped_string & scopedstrTitle);
 
       virtual string get_save_file_extension();
 
@@ -303,9 +303,9 @@ namespace user
       virtual void on_close_document();
       virtual void pre_close_document();
       virtual void close_document();
-      virtual void report_load_exception(const ::payload & payloadFile, ::file_pointer presult, const ::string & pszDefault);
-      virtual void report_save_exception(const ::payload & payloadFile, ::file_pointer presult, const ::string & pszDefault);
-      virtual void report_save_load_exception(const ::payload & payloadFile, ::file_pointer presult, bool bSave, const ::string & pszDefault);
+      virtual void report_load_exception(const ::payload & payloadFile, ::file_pointer presult, const ::scoped_string & scopedstrDefault);
+      virtual void report_save_exception(const ::payload & payloadFile, ::file_pointer presult, const ::scoped_string & scopedstrDefault);
+      virtual void report_save_load_exception(const ::payload & payloadFile, ::file_pointer presult, bool bSave, const ::scoped_string & scopedstrDefault);
 
 
       // advanced overridables, closing down frame/doc, etc.

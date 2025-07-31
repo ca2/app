@@ -17,19 +17,19 @@ CLASS_DECL_ACME int __ansicharishexadecimal(int i) { return __ansicharisxdigit(i
 CLASS_DECL_ACME ::ansi_character * overlap_safe_ansincpy(::ansi_character * pszDst, const ::ansi_character * pszSrc, character_count len)
 {
 
-   if (pszDst != pszSrc)
+   if (scopedstrDst != pszSrc)
    {
 
-      if (address_overlaps(pszDst, pszSrc, len))
+      if (address_overlaps(scopedstrDst, pszSrc, len))
       {
 
-         memory_transfer(pszDst, pszSrc, len);
+         memory_transfer(scopedstrDst, pszSrc, len);
 
       }
       else
       {
 
-         ansi_ncpy(pszDst, pszSrc, len);
+         ansi_ncpy(scopedstrDst, pszSrc, len);
 
       }
 
@@ -149,7 +149,7 @@ CLASS_DECL_ACME ::ansi_character * __ansitok_r(::ansi_character * psz, const ::a
 CLASS_DECL_ACME const ::ansi_character * __ansirchr(const ::ansi_character * psz, ::ansi_character ch)
 {
 
-   auto p = psz + __ansilen(psz) - 1;
+   auto p = psz + __ansilen(scopedstr) - 1;
 
    while (p >= psz)
    {
@@ -221,7 +221,7 @@ CLASS_DECL_ACME int __ansincmp(const ::ansi_character * psz1, const ::ansi_chara
 CLASS_DECL_ACME const ::ansi_character * __ansistr(const ::ansi_character * psz, const ::ansi_character * pszFind)
 {
 
-   auto lenFind = __ansilen(pszFind);
+   auto lenFind = __ansilen(scopedstrFind);
 
    if (lenFind <= 0)
    {
@@ -230,7 +230,7 @@ CLASS_DECL_ACME const ::ansi_character * __ansistr(const ::ansi_character * psz,
 
    }
 
-   auto p = __ansichr(psz, *pszFind);
+   auto p = __ansichr(scopedstr, *pszFind);
 
    if (lenFind == 1)
    {
@@ -251,7 +251,7 @@ CLASS_DECL_ACME const ::ansi_character * __ansistr(const ::ansi_character * psz,
 
       psz++;
 
-      p = __ansichr(psz, *pszFind);
+      p = __ansichr(scopedstr, *pszFind);
 
    } while (p);
 
@@ -443,7 +443,7 @@ CLASS_DECL_ACME int __ansiincmp(const ::ansi_character * psz1, const ::ansi_char
 CLASS_DECL_ACME const ::ansi_character * __ansiistr(const ::ansi_character * psz, const ::ansi_character * pszFind)
 {
 
-   auto lenFind = ansi_len(pszFind);
+   auto lenFind = ansi_len(scopedstrFind);
 
    if (lenFind <= 0)
    {
@@ -452,7 +452,7 @@ CLASS_DECL_ACME const ::ansi_character * __ansiistr(const ::ansi_character * psz
 
    }
 
-   auto p = ansi_ichr(psz, *pszFind);
+   auto p = ansi_ichr(scopedstr, *pszFind);
 
    if (lenFind == 1)
    {
@@ -473,7 +473,7 @@ CLASS_DECL_ACME const ::ansi_character * __ansiistr(const ::ansi_character * psz
 
       psz++;
 
-      p = ansi_ichr(psz, *pszFind);
+      p = ansi_ichr(scopedstr, *pszFind);
 
    } while (p);
 
@@ -482,13 +482,13 @@ CLASS_DECL_ACME const ::ansi_character * __ansiistr(const ::ansi_character * psz
 }
 
 
-CLASS_DECL_ACME int __ansicoll(const ::ansi_character * psz1, const ::ansi_character * psz2) { return __ansicmp(psz1, psz2); }
+CLASS_DECL_ACME int __ansicoll(const ::ansi_character * psz1, const ::ansi_character * psz2) { return __ansicmp(scopedstr1, psz2); }
 
-CLASS_DECL_ACME int __ansincoll(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s) { return __ansincmp(psz1, psz2, s); }
+CLASS_DECL_ACME int __ansincoll(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s) { return __ansincmp(scopedstr1, psz2, s); }
 
-CLASS_DECL_ACME int __ansiicoll(const ::ansi_character * psz1, const ::ansi_character * psz2) { return __ansiicmp(psz1, psz2); }
+CLASS_DECL_ACME int __ansiicoll(const ::ansi_character * psz1, const ::ansi_character * psz2) { return __ansiicmp(scopedstr1, psz2); }
 
-CLASS_DECL_ACME int __ansinicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s) { return __ansiincmp(psz1, psz2, s); }
+CLASS_DECL_ACME int __ansinicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s) { return __ansiincmp(scopedstr1, psz2, s); }
 
 CLASS_DECL_ACME character_count __ansispn(const ::ansi_character * psz1, const ::ansi_character * psz2)
 {

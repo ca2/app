@@ -862,7 +862,7 @@ m_position += nCount;
    }
 
    
-   void edit_file::change_insert_item_data(class insert_item * pinsertitem, const ::string & str)
+   void edit_file::change_insert_item_data(class insert_item * pinsertitem, const ::scoped_string & scopedstr)
    {
 
       memsize iOldLen = pinsertitem->m_size;
@@ -878,7 +878,7 @@ m_position += nCount;
    }
 
 
-   void edit_file::append_insert_item_data(class insert_item * pinsertitem, const ::string & str)
+   void edit_file::append_insert_item_data(class insert_item * pinsertitem, const ::scoped_string & scopedstr)
    {
 
       //memsize iOldLen = pinsertitem->m_memstorage.size();
@@ -930,7 +930,7 @@ m_position += nCount;
       pdelete->m_size = pdelete->m_memstorage.size();
       seek((filesize)m_position,::e_seek_set);
       auto pszData = (char *)pdelete->m_memstorage.data();
-      read(pszData,uiCount);
+      read(scopedstrData,uiCount);
       TreeInsert(pdelete);
       m_sizeEditFile -= uiCount;
 

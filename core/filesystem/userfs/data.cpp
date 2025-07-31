@@ -179,7 +179,7 @@ namespace userfs
 //   }
 
 
-   //string data::get_last_browse_path(::particle * pparticle, const ::string & pszDefault)
+   //string data::get_last_browse_path(::particle * pparticle, const ::scoped_string & scopedstrDefault)
    //{
 
    //   return {};

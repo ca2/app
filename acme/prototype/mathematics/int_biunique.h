@@ -676,7 +676,7 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 //   catch(const ::scoped_string & scopedstr)
 //   {
 //      m.erase_all();
-//      throw ::exception(psz);
+//      throw ::exception(scopedstr);
 //   }
 //}
 //
@@ -744,7 +744,7 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 //      biunique.m_iEmptyB = -1;
 //      biunique.m_iMaxA = -1;
 //      biunique.m_iMaxB = -1;
-//      throw ::exception(psz);
+//      throw ::exception(scopedstr);
 //   }
 //
 //   return stream;

@@ -4783,9 +4783,9 @@ namespace windowing
 //
 ////#ifdef WINDOWS
 ////
-////      wstring wstrClassName(pszClassName);
+////      wstring wstrClassName(scopedstrClassName);
 ////      pusersystem->m_createstruct.lpszClass = wstrClassName;
-////      wstring wstrWindowName(pszWindowName);
+////      wstring wstrWindowName(scopedstrWindowName);
 ////      pusersystem->m_createstruct.lpszName = wstrWindowName;
 ////
 ////#else
@@ -6837,12 +6837,12 @@ namespace windowing
    }
 
 
-   //int window::message_box(const ::string & pszText, const ::string & pszCaption,unsigned int nType)
+   //int window::message_box(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption,unsigned int nType)
 
    //{
-   //   __UNREFERENCED_PARAMETER(pszText);
+   //   __UNREFERENCED_PARAMETER(scopedstrText);
 
-   //   __UNREFERENCED_PARAMETER(pszCaption);
+   //   __UNREFERENCED_PARAMETER(scopedstrCaption);
 
    //   __UNREFERENCED_PARAMETER(nType);
    //   throw ::interface_only();
@@ -7050,11 +7050,11 @@ namespace windowing
    //      throw ::interface_only();
    //   }
    //
-   //   void window::OnSettingChange(unsigned int uFlags, const ::string & pszSection)
+   //   void window::OnSettingChange(unsigned int uFlags, const ::scoped_string & scopedstrSection)
 
    //   {
    //      __UNREFERENCED_PARAMETER(uFlags);
-   //      __UNREFERENCED_PARAMETER(pszSection);
+   //      __UNREFERENCED_PARAMETER(scopedstrSection);
 
    //      throw ::interface_only();
    //   }
@@ -7177,10 +7177,10 @@ namespace windowing
 //   /////////////////////////////////////////////////////////////////////////////
 //   // Dialog initialization support
 //
-//   void window::ExecuteDlgInit(const ::string & pszResourceName)
+//   void window::ExecuteDlgInit(const ::scoped_string & scopedstrResourceName)
 //
 //   {
-//      __UNREFERENCED_PARAMETER(pszResourceName);
+//      __UNREFERENCED_PARAMETER(scopedstrResourceName);
 //
 //      throw ::interface_only();
 //
@@ -7701,7 +7701,7 @@ namespace windowing
    //
    //   {
    //
-   //      __UNREFERENCED_PARAMETER(pszString);
+   //      __UNREFERENCED_PARAMETER(scopedstrString);
    //
    //
    //      throw ::interface_only();
@@ -7712,7 +7712,7 @@ namespace windowing
    //character_count window::GetWindowText(char * pszString,int nMaxCount)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pszString);
+   //   __UNREFERENCED_PARAMETER(scopedstrString);
    //   __UNREFERENCED_PARAMETER(nMaxCount);
    //   throw ::interface_only();
 
@@ -8533,11 +8533,11 @@ namespace windowing
    //   throw ::interface_only();
    //}
 
-   //void window::SetDlgItemText(int nID, const ::string & pszString)
+   //void window::SetDlgItemText(int nID, const ::scoped_string & scopedstrString)
 
    //{
    //   __UNREFERENCED_PARAMETER(nID);
-   //   __UNREFERENCED_PARAMETER(pszString);
+   //   __UNREFERENCED_PARAMETER(scopedstrString);
 
    //   throw ::interface_only();
    //}
@@ -10630,7 +10630,7 @@ namespace windowing
    //}
 
 
-   void window::set_bitmap_source(const string& strBitmapSource)
+   void window::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
       m_strBitmapSource = strBitmapSource;
@@ -14266,7 +14266,7 @@ namespace windowing
    }
 
 
-   //void window::set_bitmap_source(const string & strBitmapSource)
+   //void window::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    //{
 
 

@@ -44,7 +44,7 @@ namespace calculator
    }
 
 
-   void scanner::initialize(const ::string & str)
+   void scanner::initialize(const ::scoped_string & scopedstr)
    {
       
       //m_range.m_begin          = psz;

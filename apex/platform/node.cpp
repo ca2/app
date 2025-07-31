@@ -476,7 +476,7 @@ namespace apex
    }
 
 
-   /*void node::shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
+   /*void node::shell_open(const ::file::path & path, const ::scoped_string & scopedstrParams, const ::file::path & pathFolder)
    {
 
       node()->file_open(path, strParams, pathFolder);

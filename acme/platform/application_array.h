@@ -25,11 +25,11 @@ namespace platform
       application_array & operator = (const application_array & a);
       application_array & operator = (application_array && a);
 
-      ::platform::application * find_by_app_id(const ::string & strAppId);
+      ::platform::application * find_by_app_id(const ::scoped_string & scopedstrAppId);
 
-      ::platform::application * find_running_defer_try_quit_damaged(const string & strAppid);
+      ::platform::application * find_running_defer_try_quit_damaged(const ::scoped_string & scopedstrAppid);
 
-      bool lookup(const string & strAppId, ::pointer<::platform::application>& papp);
+      bool lookup(const ::scoped_string & scopedstrAppId, ::pointer<::platform::application>& papp);
 
 
    };

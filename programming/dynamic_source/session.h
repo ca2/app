@@ -35,7 +35,7 @@ namespace dynamic_source
 #endif
 
       
-      virtual void initialize_dynamic_source_session(const string& strId, ::dynamic_source::script_manager* pmanager);
+      virtual void initialize_dynamic_source_session(const ::scoped_string & scopedstrId, ::dynamic_source::script_manager* pmanager);
 
 
    };

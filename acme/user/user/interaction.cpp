@@ -516,7 +516,7 @@ namespace acme
          void interaction::_on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken)
          {
 
-            ::string strActionName(pszActionName);
+            ::string strActionName(scopedstrActionName);
 
             if (strActionName == "minimize")
             {
@@ -1660,7 +1660,7 @@ namespace acme
          }
 
 
-         void interaction::display_temporary_file_with_text(const ::string & str)
+         void interaction::display_temporary_file_with_text(const ::scoped_string & scopedstr)
          {
 
             string strAppId;

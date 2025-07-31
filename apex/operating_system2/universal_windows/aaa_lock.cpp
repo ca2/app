@@ -5,7 +5,7 @@ int _c_lock_is_active(const ::scoped_string & scopedstrName)
 
    HANDLE h;
 
-   if(_c_lock(pszName, &h))
+   if(_c_lock(scopedstrName, &h))
    {
       _c_unlock(&h);
       return false;
@@ -19,7 +19,7 @@ int _c_lock_is_active(const ::scoped_string & scopedstrName)
 int _c_lock(const ::scoped_string & scopedstrName, void ** pdata)
 {
 #ifdef UNIVERSAL_WINDOWS
-   wstring wstrName(pszName);
+   wstring wstrName(scopedstrName);
    HANDLE hmutex = ::CreateMutexEx(nullptr, wstrName, 0, SYNCHRONIZE);
 #else
    HANDLE hmutex = ::CreateMutex(nullptr, false, pszName);

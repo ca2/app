@@ -4,14 +4,14 @@
 void * __node_library_touch(const ::file::path & path, string & strMessage)
 {
 
-   return __node_library_open(pszPath, strMessage);
+   return __node_library_open(scopedstrPath, strMessage);
 
 }
 
 void * __node_library_open(const ::file::path & path, string & strMessage)
 {
 
-   string strPath(pszPath);
+   string strPath(scopedstrPath);
 
    strMessage.empty();
 
@@ -171,7 +171,7 @@ void * __node_library_open_ca2(const ::file::path & path, string & strMessage)
 
    string strError;
 
-   ::file::path path(pszPath);
+   ::file::path path(scopedstrPath);
 
    void * plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
 

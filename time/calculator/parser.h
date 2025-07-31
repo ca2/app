@@ -31,15 +31,15 @@ namespace datetime
       virtual void initialize_datetime_parse(::text::context * pcontext);
 
 
-      ::datetime::element * parse(const ::string & psz);
+      ::datetime::element * parse(const ::scoped_string & scopedstr);
 
       ::datetime::element * expr(::datetime::element * pelement1);
       ::datetime::element * term(::datetime::element * pelement1);
       ::datetime::element * factor();
 
 
-      void error(const ::string & pszMessage);
-      void syntax_error(const ::string & pszMessage);
+      void error(const ::scoped_string & scopedstrMessage);
+      void syntax_error(const ::scoped_string & scopedstrMessage);
       void expect(char ch);
 
 

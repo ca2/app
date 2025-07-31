@@ -96,7 +96,7 @@ string_array get_c_args_from_string(const ::scoped_string & scopedstr)
 
          }
 
-         str = string(pszValueStart, range.m_begin - pszValueStart);
+         str = string(scopedstrValueStart, range.m_begin - pszValueStart);
 
       }
 
@@ -195,7 +195,7 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
                else
                {
 
-                  //::str::no_escape_consume_quoted_value(psz, pszEnd);
+                  //::str::no_escape_consume_quoted_value(scopedstr, pszEnd);
 
                   throw ::parsing_exception("Quote character not expected here");
 
@@ -220,13 +220,13 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
                else
                {
 
-                  //::str::no_escape_consume_quoted_value(psz, pszEnd);
+                  //::str::no_escape_consume_quoted_value(scopedstr, pszEnd);
 
                   throw ::parsing_exception("Quote character not expected here");
 
                }
 
-               ////::str::no_escape_consume_quoted_value(psz, pszEnd);
+               ////::str::no_escape_consume_quoted_value(scopedstr, pszEnd);
 
                //throw ::parsing_exception("Quote character not expected here");
 
@@ -234,7 +234,7 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
 
          }
 
-         str = string(pszValueStart, range.m_begin - pszValueStart);
+         str = string(scopedstrValueStart, range.m_begin - pszValueStart);
 
       }
 
@@ -283,7 +283,7 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
 //          proc_pidinfo((pid_t) uiPid, PROC_PIDTASKALLINFO, SHOW_ZOMBIES, &info, sizeof(struct proc_taskallinfo));
 // return info.pbsd.pbi_comm;
 // )
-string_array command_arguments_from_command_line(const ::string & strCommandLine)
+string_array command_arguments_from_command_line(const ::scoped_string & scopedstrCommandLine)
 {
 
    string_array stra;
@@ -297,7 +297,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
    while(*psz != '\0')
    {
 
-      strChar = get_utf8_char(psz);
+      strChar = get_utf8_char(scopedstr);
 
       if(strChar.is_empty())
       {
@@ -314,7 +314,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
          while(*psz != '\0')
          {
 
-            strChar = get_utf8_char(psz);
+            strChar = get_utf8_char(scopedstr);
 
             if(strChar.is_empty())
             {
@@ -334,7 +334,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
             else if(strChar == "\\")
             {
 
-               strChar = get_utf8_char(psz);
+               strChar = get_utf8_char(scopedstr);
 
                if(strChar.is_empty())
                {
@@ -391,7 +391,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
       else if(strChar == "\\")
       {
 
-         strChar = get_utf8_char(psz);
+         strChar = get_utf8_char(scopedstr);
 
          if(strChar.is_empty())
          {

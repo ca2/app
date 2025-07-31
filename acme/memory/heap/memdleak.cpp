@@ -79,7 +79,7 @@
 //      pblock->m_iStack = sizeof(pblock->m_stacka) / sizeof(pblock->m_stacka[0]);
 //      ::get_call_stack_frames(pblock->m_stacka, pblock->m_iStack);
 //      pblock->m_pszFileName = nullptr;
-//      //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
+//      //pblock->m_pszFileName = strdup(scopedstrFileName); // not trackable, at least think so certainly causes memory leak
 //#endif
 //
 //   //::acme::set_maximum(pblock->m_uiLine);
@@ -320,7 +320,7 @@
 //      pblock->m_iStack = sizeof(pblock->m_stacka) / sizeof(pblock->m_stacka[0]);
 //      ::get_call_stack_frames(pblock->m_stacka, pblock->m_iStack);
 //      pblock->m_pszFileName = nullptr;
-//      //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
+//      //pblock->m_pszFileName = strdup(scopedstrFileName); // not trackable, at least think so certainly causes memory leak
 //#endif
 //
 //   //::acme::set_maximum(pblock->m_uiLine);
@@ -871,8 +871,8 @@
 //
 //   if (piUse)
 //      ::free(piUse);
-//   if (pszFile)
-//      ::free(pszFile);
+//   if (scopedstrFile)
+//      ::free(scopedstrFile);
 //   if (puiLine)
 //      ::free(puiLine);
 //   if (psize)

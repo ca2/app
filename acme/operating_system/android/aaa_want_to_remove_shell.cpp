@@ -334,7 +334,7 @@ namespace android
       char pszPathA[MAX_PATH * 2];
       if(!::SHGetPathFromIDListA(pidl, pszPathA))
          return false;
-      return ACPToUnicode(pszPath, MAX_PATH * 2, pszPathA) ? true : false;
+      return ACPToUnicode(scopedstrPath, MAX_PATH * 2, pszPathA) ? true : false;
    }
 
    int_bool shell::_MoveFile(const unichar * lpExistingFileName, const unichar * lpNewFileName)
@@ -348,9 +348,9 @@ namespace android
    HANDLE shell::_FindFirstFile(const unichar * lpcsz, WIN32_FIND_DATAW * lpdata)
    {
       char pszPathA[MAX_PATH * 2];
-      UnicodeToACP(pszPathA, MAX_PATH * 2, lpcsz);
+      UnicodeToACP(scopedstrPathA, MAX_PATH * 2, lpcsz);
       WIN32_FIND_DATAA data;
-      HANDLE handle = ::FindFirstFileA(pszPathA, &data);
+      HANDLE handle = ::FindFirstFileA(scopedstrPathA, &data);
       if(handle == INVALID_HANDLE_VALUE)
          return INVALID_HANDLE_VALUE;
 
@@ -446,11 +446,11 @@ namespace android
    unichar ** lpFilePart)
    {
    char pszPathA[MAX_PATH * 2];
-   UnicodeToACP(pszPathA, MAX_PATH * 2, lpFileName);
+   UnicodeToACP(scopedstrPathA, MAX_PATH * 2, lpFileName);
    string str;
    char * lpsz = str.GetBuffer(nBufferLength * 2);
    char * lpszFilePart;
-   unsigned int dw = ::GetFullPathName(pszPathA, nBufferLength, lpsz, &lpszFilePart);
+   unsigned int dw = ::GetFullPathName(scopedstrPathA, nBufferLength, lpsz, &lpszFilePart);
    str.ReleaseBuffer();
    ACPToUnicode(lpBuffer, nBufferLength, str);
    *lpFilePart = lpBuffer + ((int) (lpszFilePart - lpsz));

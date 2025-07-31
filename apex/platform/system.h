@@ -107,7 +107,7 @@ namespace apex
 //
 //#else
 //
-//      void system_construct(const ::string & pszCommandLine, const ::e_display& edisplay = ::e_display_none);
+//      void system_construct(const ::scoped_string & scopedstrCommandLine, const ::e_display& edisplay = ::e_display_none);
 //
 //#endif
 
@@ -178,7 +178,7 @@ namespace apex
       //virtual void initialize_context() override;
 
 
-      virtual ::pointer<::data::node>load_xml(const ::string & pszXml) override;
+      virtual ::pointer<::data::node>load_xml(const ::scoped_string & scopedstrXml) override;
 
       //virtual void verb() override; // ambigous inheritance from ::apex::system/::axis::application
 
@@ -189,7 +189,7 @@ namespace apex
       void initialize_crypto() override;
       
 
-      virtual string crypto_md5_text(const ::string & str) override;
+      virtual string crypto_md5_text(const ::scoped_string & scopedstr) override;
 
 
 
@@ -201,11 +201,11 @@ namespace apex
       virtual void process_exit_status(::object* pparticle, const ::e_status & estatus) override;
 
 
-      virtual void hist_hist(const ::string & psz) override;
+      virtual void hist_hist(const ::scoped_string & scopedstr) override;
 
 
 
-      //virtual string ::url::encode(const ::string & str);
+      //virtual string ::url::encode(const ::scoped_string & scopedstr);
 
 
       //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
@@ -220,7 +220,7 @@ namespace apex
       virtual ::networking::networking * networking() override;
 
 
-      virtual void on_allocation_error(const ::string & strName, ::object * pobjectSometimes) override;
+      virtual void on_allocation_error(const ::scoped_string & scopedstrName, ::object * pobjectSometimes) override;
 
 
 
@@ -240,10 +240,10 @@ namespace apex
 
       //virtual void __set_thread_on() override;
 
-      //virtual string get_local_mutex_name(const ::string & pszAppName);
-      //virtual string get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId);
-      //virtual string get_global_mutex_name(const ::string & pszAppName);
-      //virtual string get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId);
+      //virtual string get_local_mutex_name(const ::scoped_string & scopedstrAppName);
+      //virtual string get_local_id_mutex_name(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId);
+      //virtual string get_global_mutex_name(const ::scoped_string & scopedstrAppName);
+      //virtual string get_global_id_mutex_name(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId);
 
 
       virtual void initialize_networking() override;
@@ -285,26 +285,26 @@ namespace apex
 
 
 
-      virtual int _001OnDebugReport(int i1,const ::string & psz1,int i2,const ::string & psz2,const ::string & psz3,va_list args) override;
-      virtual int _debug_logging_report(int iReportType, const ::string & pszFilename, int iLinenumber, const ::string & iModuleName, const char * pszFormat, va_list list) override;
-       virtual bool assert_failed_line(const ::string & pszFileName,int iLine) override;
+      virtual int _001OnDebugReport(int i1,const ::scoped_string & scopedstr1,int i2,const ::scoped_string & scopedstr2,const ::scoped_string & scopedstr3,va_list args) override;
+      virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::string & iModuleName, const char * pszFormat, va_list list) override;
+       virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
 
-      virtual bool on_assert_failed_line(const ::string & pszFileName,int iLine) override;
-
-
+      virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
 
 
 
 
-      virtual void initialize_log(const ::string & pszId) override;
+
+
+      virtual void initialize_log(const ::scoped_string & scopedstrId) override;
 
 
       virtual void appa_load_string_table() override;
-      virtual void appa_set_locale(const ::string & pszLocale, const ::action_context & action_context) override;
-      virtual void appa_set_schema(const ::string & pszStyle, const ::action_context & action_context) override;
+      virtual void appa_set_locale(const ::scoped_string & scopedstrLocale, const ::action_context & action_context) override;
+      virtual void appa_set_schema(const ::scoped_string & scopedstrStyle, const ::action_context & action_context) override;
 
-      virtual bool assert_running_global(const ::string & pszAppName,const ::string & pszId = nullptr) override;
-      virtual bool assert_running_local(const ::string & pszAppName,const ::string & pszId = nullptr) override;
+      virtual bool assert_running_global(const ::scoped_string & scopedstrAppName,const ::scoped_string & scopedstrId = nullptr) override;
+      virtual bool assert_running_local(const ::scoped_string & scopedstrAppName,const ::scoped_string & scopedstrId = nullptr) override;
 
 
       virtual ::collection::count get_application_count() override;
@@ -346,7 +346,7 @@ namespace apex
 
       virtual bool on_open_file(::payload payloadFile, string strExtra) override;
       
-      void on_open_file(const ::string & pszFile) override;
+      void on_open_file(const ::scoped_string & scopedstrFile) override;
 
 
       virtual void on_os_text(enum_os_text etext, string strText) override;
@@ -391,7 +391,7 @@ namespace apex
 
 
 
-      bool sync_load_url(string& str, const ::string & pszUrl,  ::http::cookies* pcookies = nullptr) override;
+      bool sync_load_url(string& str, const ::scoped_string & scopedstrUrl,  ::http::cookies* pcookies = nullptr) override;
 
 //
 //
@@ -445,11 +445,11 @@ namespace apex
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      bool _handle_uri(const ::string & str) override;
+      bool _handle_uri(const ::scoped_string & scopedstr) override;
 
       using ::platform::system::application_main;
 
-      virtual void application_main(int argc, char *argv[], const ::string & pszCommandLine) override;
+      virtual void application_main(int argc, char *argv[], const ::scoped_string & scopedstrCommandLine) override;
 
       virtual int console_end(::e_status estatus) override;
 
@@ -520,7 +520,7 @@ CLASS_DECL_APEX ::apex::system * create_apex_system();
 
 //#ifdef UNIVERSAL_WINDOWS
 //
-//CLASS_DECL_APEX int app_core_main(const ::string & psz);
+//CLASS_DECL_APEX int app_core_main(const ::scoped_string & scopedstr);
 //
 //#endif
 

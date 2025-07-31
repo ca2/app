@@ -22,7 +22,7 @@ namespace operating_system
    }
 
 
-   bool process::create_child_process(const ::string & strCmdLine, bool bPiped, const ::string & strDir, ::enum_priority epriority)
+   bool process::create_child_process(const ::scoped_string & scopedstrCmdLine, bool bPiped, const ::scoped_string & scopedstrDir, ::enum_priority epriority)
    {
 
       if(bPiped)
@@ -42,7 +42,7 @@ namespace operating_system
    }
 
 
-   bool process::write(const ::string & str)
+   bool process::write(const ::scoped_string & scopedstr)
    {
 
       return m_pipe.m_ppipeIn->write(str);
@@ -110,7 +110,7 @@ namespace operating_system
    }
 
 
-   bool process::synch_elevated(const ::string & strCmdLine,int iShow,const class time & timeTimeOut,bool * pbTimeOut)
+   bool process::synch_elevated(const ::scoped_string & scopedstrCmdLine,int iShow,const class time & timeTimeOut,bool * pbTimeOut)
    {
 
       return false;

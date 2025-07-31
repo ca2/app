@@ -230,7 +230,7 @@ namespace user
 
 
 
-   bool impact_host::add_impact(const ::string & strName, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
+   bool impact_host::add_impact(const ::scoped_string & scopedstrName, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
    {
 
       throw interface_only();
@@ -240,7 +240,7 @@ namespace user
    }
 
 
-   bool impact_host::add_impact_with_icon(const ::string & strName, const ::string & strImage, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
+   bool impact_host::add_impact_with_icon(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrImage, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
    {
 
       throw interface_only();
@@ -250,7 +250,7 @@ namespace user
    }
 
 
-   bool impact_host::set_impact(const ::string & strName, const ::atom & atomImpact, bool bVisible, ::user::place_holder * pplaceholder)
+   bool impact_host::set_impact(const ::scoped_string & scopedstrName, const ::atom & atomImpact, bool bVisible, ::user::place_holder * pplaceholder)
    {
 
       return add_impact(strName, atomImpact, bVisible, true, pplaceholder);
@@ -258,7 +258,7 @@ namespace user
    }
 
 
-   bool impact_host::set_impact_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact, bool bVisible, ::user::place_holder * pplaceholder)
+   bool impact_host::set_impact_with_icon(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrIcon, const ::atom & atomImpact, bool bVisible, ::user::place_holder * pplaceholder)
    {
 
       return add_impact_with_icon(strName, strIcon, atomImpact, bVisible, true, pplaceholder);

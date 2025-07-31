@@ -75,7 +75,7 @@ string file_path_title(const ::file::path & path)
 int_bool file_path_is_relative(const ::scoped_string & scopedstr)
 {
 
-   string strPath(psz);
+   string strPath(scopedstr);
    if(strPath.find(':') != -1 && strPath.find(':') < 10)
       return false;
    if(strPath.find('/') == 0 || strPath.find('\\') == 0)
@@ -94,11 +94,11 @@ CLASS_DECL_APEX int_bool dir_appdata(char * psz,size_t size)
 
 #ifdef WINDOWS
 
-   return strncpy_s(psz,size, ::dir::appdata(),size) == 0;
+   return strncpy_s(scopedstr,size, ::dir::appdata(),size) == 0;
 
 #else
 
-   return ansi_count_copy(psz,::dir::appdata(), size) != nullptr;
+   return ansi_count_copy(scopedstr,::dir::appdata(), size) != nullptr;
 
 #endif
 
@@ -111,22 +111,22 @@ int dir_mk(const ::scoped_string & scopedstr)
 
          auto pdirectorysystem = psystem->m_pdirectorysystem;
 
-pdirectorysystem->create(psz) != 0;
+pdirectorysystem->create(scopedstr) != 0;
 }
 
 int_bool is_absolute_path(const ::scoped_string & scopedstr)
 {
-   if(psz == nullptr)
+   if(scopedstr == nullptr)
       return false;
    if(*psz == '\0')
       return false;
 #ifdef WINDOWS
-   if(isalpha(psz[0]) && psz[1] == ':')
+   if(isalpha(scopedstr[0]) && psz[1] == ':')
       return true;
-   if(psz[0] == '\\' && psz[1] == '\\')
+   if(scopedstr[0] == '\\' && psz[1] == '\\')
       return true;
 #else
-   if(psz[0] == '/')
+   if(scopedstr[0] == '/')
       return true;
 #endif
    return false;

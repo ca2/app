@@ -81,7 +81,7 @@ public:
    // parses tag information from the given string
    unsigned int parseFromStr(
       lite_html_reader * preader,
-      const ::string & strString, 
+      const ::scoped_string & scopedstrString, 
       character_count iPos,
       bool &bIsOpeningTag, 
       bool &bIsClosingTag, 

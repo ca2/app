@@ -34,7 +34,7 @@
 ////
 ////#endif
 ////
-////   void write(const ::string & str) override ;
+////   void write(const ::scoped_string & scopedstr) override ;
 ////   void write(const void * p);
 ////          
 ////   void write(const ::particle * pparticle) override;

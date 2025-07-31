@@ -102,7 +102,7 @@ namespace user
 
       virtual ::collection::index add_item(const ::scoped_string & scopedstr, const ::atom & atom);
       virtual ::collection::index erase_item_at(::collection::index nIndex);
-      virtual ::collection::index insert_item_at(::collection::index nIndex, const ::string & pszString);
+      virtual ::collection::index insert_item_at(::collection::index nIndex, const ::scoped_string & scopedstrString);
 
       virtual void reset_content();
       

@@ -5,7 +5,7 @@
 //CLASS_DECL_APEX void * __node_library_touch(const ::file::path & path, string & strMessage)
 //{
 //
-//   return __node_library_open(pszPath, strMessage);
+//   return __node_library_open(scopedstrPath, strMessage);
 //
 //}
 //
@@ -15,7 +15,7 @@
 //
 //   strMessage.empty();
 //
-//   string strPath(pszPath);
+//   string strPath(scopedstrPath);
 //
 //   if(strPath == "os")
 //   {
@@ -64,17 +64,17 @@
 //
 //      strMessage += "Failed to load library : \"" + strPath + "\"!";
 //
-//      if (psz != nullptr)
+//      if (scopedstr != nullptr)
 //      {
 //
-//         strMessage += "strerror("+as_string(iError) +") = " + string(psz);
+//         strMessage += "strerror("+as_string(iError) +") = " + string(scopedstr);
 //
 //      }
 //
-//      if (psz2 != nullptr)
+//      if (scopedstr2 != nullptr)
 //      {
 //
-//         strMessage += "dlerror = " + string(psz2);
+//         strMessage += "dlerror = " + string(scopedstr2);
 //
 //      }
 //
@@ -90,14 +90,14 @@
 //
 //   strMessage.empty();
 //
-//   //void * plibrary = dlopen(pszPath,RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
-//   void * plibrary = dlopen(pszPath,RTLD_LOCAL | RTLD_NOW);
+//   //void * plibrary = dlopen(scopedstrPath,RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
+//   void * plibrary = dlopen(scopedstrPath,RTLD_LOCAL | RTLD_NOW);
 //
 //   int iError = errno;
 //
 //   const ::scoped_string & scopedstr = strerror(iError);
 //
-//   if(psz != nullptr)
+//   if(scopedstr != nullptr)
 //   {
 //
 //      strMessage += psz;
@@ -106,7 +106,7 @@
 //
 //   const ::scoped_string & scopedstr2 = dlerror();
 //
-//   if(psz2 != nullptr)
+//   if(scopedstr2 != nullptr)
 //   {
 //
 //      strMessage += psz2;

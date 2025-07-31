@@ -27,7 +27,7 @@ namespace simple_ui
 {
 
 
-   message_box::message_box(::particle * pparticle, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::duration durationTimeout):
+   message_box::message_box(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::duration durationTimeout):
       ::object(pparticle)
    {
 
@@ -59,7 +59,7 @@ namespace simple_ui
    }
 
 
-   void message_box::create_a_button(atom atom, const ::string & pszText)
+   void message_box::create_a_button(atom atom, const ::scoped_string & scopedstrText)
    {
 
       create_button(m_tapaA,atom,pszText);
@@ -67,7 +67,7 @@ namespace simple_ui
    }
 
 
-   void message_box::create_b_button(atom atom, const ::string & pszText)
+   void message_box::create_b_button(atom atom, const ::scoped_string & scopedstrText)
    {
 
       create_button(m_tapaB,atom,pszText);
@@ -75,14 +75,14 @@ namespace simple_ui
    }
 
 
-   void message_box::create_button(pointer_array < tap > & tapa,atom atom, const ::string & pszText)
+   void message_box::create_button(pointer_array < tap > & tapa,atom atom, const ::scoped_string & scopedstrText)
    {
 
       auto ptap = __allocate ::simple_ui::tap();
 
       ptap->create_child(this);
 
-      ptap->set_window_text(pszText);
+      ptap->set_window_text(scopedstrText);
 
       tapa.add(ptap);
 
@@ -330,10 +330,10 @@ namespace simple_ui
    }
 
 
-   bool message_box::on_action(const ::string & pszId)
+   bool message_box::on_action(const ::scoped_string & scopedstrId)
    {
 
-      if(case_insensitive_ansi_compare(pszId,"ok") == 0)
+      if(case_insensitive_ansi_compare(scopedstrId,"ok") == 0)
       {
 
          m_iResult = e_dialog_result_ok;
@@ -343,7 +343,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(case_insensitive_ansi_compare(pszId,"yes") == 0)
+      else if(case_insensitive_ansi_compare(scopedstrId,"yes") == 0)
       {
 
          m_iResult = e_dialog_result_yes;
@@ -353,7 +353,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(case_insensitive_ansi_compare(pszId,"no") == 0)
+      else if(case_insensitive_ansi_compare(scopedstrId,"no") == 0)
       {
 
          m_iResult = e_dialog_result_no;
@@ -363,7 +363,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(case_insensitive_ansi_compare(pszId,"cancel") == 0)
+      else if(case_insensitive_ansi_compare(scopedstrId,"cancel") == 0)
       {
 
          m_iResult = e_dialog_result_cancel;
@@ -373,7 +373,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(case_insensitive_ansi_compare(pszId,"abort") == 0)
+      else if(case_insensitive_ansi_compare(scopedstrId,"abort") == 0)
       {
 
          m_iResult = e_dialog_result_abort;
@@ -383,7 +383,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(case_insensitive_ansi_compare(pszId,"retry") == 0)
+      else if(case_insensitive_ansi_compare(scopedstrId,"retry") == 0)
       {
 
          m_iResult = e_dialog_result_retry;
@@ -393,7 +393,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(case_insensitive_ansi_compare(pszId,"ignore") == 0)
+      else if(case_insensitive_ansi_compare(scopedstrId,"ignore") == 0)
       {
 
          m_iResult = e_dialog_result_ignore;
@@ -403,7 +403,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(case_insensitive_ansi_compare(pszId,"try") == 0)
+      else if(case_insensitive_ansi_compare(scopedstrId,"try") == 0)
       {
 
          m_iResult = e_dialog_result_try_again;
@@ -413,7 +413,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(case_insensitive_ansi_compare(pszId,"continue") == 0)
+      else if(case_insensitive_ansi_compare(scopedstrId,"continue") == 0)
       {
 
          m_iResult = e_dialog_result_continue;
@@ -490,7 +490,7 @@ namespace simple_ui
 
 
 //extern "C"
-//CLASS_DECL_CORE void system_message_box(oswindow oswindow, const ::string & pszText, const ::string & pszCaption,unsigned int uFlags)
+//CLASS_DECL_CORE void system_message_box(oswindow oswindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption,unsigned int uFlags)
 //{
 //
 //   return auto pmessagebox = __initialize_new ::message_box(oswindow, pszText, pszCaption, uFlags, function);
@@ -530,7 +530,7 @@ pmessagebox->sync();
 //}
 
 
-//int ui_message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle, unsigned int uFlags, const ::function_arg & function)
+//int ui_message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int uFlags, const ::function_arg & function)
 //{
 //
 //   int iResult = 0;

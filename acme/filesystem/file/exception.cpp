@@ -103,7 +103,7 @@ namespace file
 
          const char * psz = ::file::status_short_description(estatus);
 
-         if (psz == NULL)
+         if (scopedstr == NULL)
          {
 
             psz = ::file::status_short_description(error_file);

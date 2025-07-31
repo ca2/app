@@ -435,7 +435,7 @@ namespace user
       return pSBP->strText;
    }
 
-   bool status_bar::SetPaneText(int nIndex, const ::string & pszNewText, bool bUpdate)
+   bool status_bar::SetPaneText(int nIndex, const ::scoped_string & scopedstrNewText, bool bUpdate)
 
    {
       ASSERT_VALID(this);
@@ -446,7 +446,7 @@ namespace user
       if (!(pSBP->nFlags & SBPF_UPDATE) &&
             ((!pszNewText && pSBP->strText.is_empty()) ||
 
-             (pszNewText && pSBP->strText.equals(pszNewText))))
+             (scopedstrNewText && pSBP->strText.equals(scopedstrNewText))))
 
       {
          // nothing to change
@@ -455,7 +455,7 @@ namespace user
 
       try
       {
-         if (pszNewText)
+         if (scopedstrNewText)
 
             pSBP->strText = pszNewText;
 
@@ -736,7 +736,7 @@ namespace user
 
          }
 
-         ::memory_copy(pszDest, (const ::string &)pSBP->strText, nLen*sizeof(char));
+         ::memory_copy(scopedstrDest, (const ::string &)pSBP->strText, nLen*sizeof(char));
 
       }
 
@@ -805,7 +805,7 @@ namespace user
 
       virtual void enable(bool bOn);
       //void set_check(const ::e_check & echeck, const ::action_context & context) override;
-      //void set_text(const ::string & strText, const ::action_context & context) override;
+      //void set_text(const ::scoped_string & scopedstrText, const ::action_context & context) override;
 
       void delete_this() override;
 
@@ -874,7 +874,7 @@ namespace user
 
    }
 
-   //void status_command::set_text(const ::string & strText, const ::action_context & context)
+   //void status_command::set_text(const ::scoped_string & scopedstrText, const ::action_context & context)
    void status_command::on_text_changed(::data::text_change & change)
    {
 
@@ -1004,10 +1004,10 @@ namespace user
    //   //SetPaneInfo(nIndex, iId, nStyle, cxWidth);
    //}
 
-   //void status_bar::SetPaneInfo(int nIndex, const ::string & pszId, unsigned int nStyle, int cxWidth)
+   //void status_bar::SetPaneInfo(int nIndex, const ::scoped_string & scopedstrId, unsigned int nStyle, int cxWidth)
    //{
    //   __UNREFERENCED_PARAMETER(nIndex);
-   //   __UNREFERENCED_PARAMETER(pszId);
+   //   __UNREFERENCED_PARAMETER(scopedstrId);
    //   __UNREFERENCED_PARAMETER(nStyle);
    //   __UNREFERENCED_PARAMETER(cxWidth);
    //   //SetPaneInfo(nIndex, pszId, nStyle, cxWidth);

@@ -226,8 +226,8 @@ namespace platform
 
    void apex_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession,
                                                  const ::file::path& pszRoot,
-                                                 const string& pszRelative, const ::string& strLocale,
-                                                 const ::string& strStyle)
+                                                 const string& pszRelative, const ::scoped_string & scopedstrLocale,
+                                                 const ::scoped_string & scopedstrStyle)
    {
    }
 
@@ -250,7 +250,7 @@ namespace platform
 
    //bool pump_runnable(){}
 
-   void apex_application_layer::add_activation_message(const ::string& strMessage)
+   void apex_application_layer::add_activation_message(const ::scoped_string & scopedstrMessage)
    {
    }
 
@@ -815,19 +815,19 @@ namespace platform
    }
 
 
-   bool apex_application_layer::erase_exclusive(const ::string& strId)
+   bool apex_application_layer::erase_exclusive(const ::scoped_string & scopedstrId)
    {
       return false;
    }
 
 
-   bool apex_application_layer::exclusive_fails(const ::string& str, security_attributes* psecurityattributes)
+   bool apex_application_layer::exclusive_fails(const ::scoped_string & scopedstr, security_attributes* psecurityattributes)
    {
       return false;
    }
 
 
-   bool apex_application_layer::exclusive_erase(const ::string& str)
+   bool apex_application_layer::exclusive_erase(const ::scoped_string & scopedstr)
    {
       return false;
    }
@@ -1009,7 +1009,7 @@ namespace platform
    }
 
 
-   void apex_application_layer::install_trace(const ::string& str)
+   void apex_application_layer::install_trace(const ::scoped_string & scopedstr)
    {
    }
 
@@ -1149,7 +1149,7 @@ namespace platform
    //virtual ::application * get_app() const override{}
 
 
-   //virtual unsigned int guess_code_page(const string& str){}
+   //virtual unsigned int guess_code_page(const ::scoped_string & scopedstr){}
 
    //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, unsigned int fuStyle) override{}
 
@@ -1174,7 +1174,7 @@ namespace platform
 
    // bool apex_application_layer::base_support(){}
 
-   //::string apex_application_layer::apex_application_layer::sync_message_box(const string & pszMatter,::property_set & propertyset) override{}
+   //::string apex_application_layer::apex_application_layer::sync_message_box(const ::scoped_string & scopedstrMatter,::property_set & propertyset) override{}
 
 
    //virtual ::pointer<::user::interaction>uie_from_point(const ::int_point& point){}
@@ -1378,7 +1378,7 @@ namespace platform
    //      virtual ::pointer<::apex::application>create_platform(::apex::session* psession){}
 
 
-   ::pointer<::progress::real> apex_application_layer::show_progress(::user::interaction* puiParent, const ::string& strTitle,
+   ::pointer<::progress::real> apex_application_layer::show_progress(::user::interaction* puiParent, const ::scoped_string & scopedstrTitle,
                                                      ::collection::count iProgressCount)
    {
       return {};
@@ -1409,7 +1409,7 @@ namespace platform
    }
 
 
-   void apex_application_layer::on_song_added(const string& str)
+   void apex_application_layer::on_song_added(const ::scoped_string & scopedstr)
    {
    }
 
@@ -1470,11 +1470,11 @@ namespace platform
    }
 
 
-   //::e_status on_html_response(::networking::application_socket* psocket, ::string& strHtml, const ::string& strUrl,
+   //::e_status on_html_response(::networking::application_socket* psocket, ::string& strHtml, const ::scoped_string & scopedstrUrl,
    //const ::property_set& setPost) override{}
 
 
-   //bool _handle_uri(const ::string& strUri) override{}
+   //bool _handle_uri(const ::scoped_string & scopedstrUri) override{}
 
 
    //bool on_interprocess_handle(const ::scoped_string & scopedstrUri) override{}

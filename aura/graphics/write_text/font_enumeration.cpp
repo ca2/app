@@ -84,7 +84,7 @@ namespace write_text
    }
 
 
-   bool font_enumeration::has_font_name(const string& str)
+   bool font_enumeration::has_font_name(const ::scoped_string & scopedstr)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -106,7 +106,7 @@ namespace write_text
    }
 
 
-   ::pointer<::write_text::font_enumeration_item>font_enumeration::similar_font(const ::string & psz)
+   ::pointer<::write_text::font_enumeration_item>font_enumeration::similar_font(const ::scoped_string & scopedstr)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());

@@ -150,7 +150,7 @@ Theme::Theme()
 //   char * buffer;
 //   long    numbytes;
 //
-//   ::string str(psz);
+//   ::string str(scopedstr);
 //
 //   char sz[2048];
 //   GetModuleFileNameA(
@@ -217,7 +217,7 @@ Theme::Theme()
 //   char * buffer;
 //   long    numbytes;
 //
-//   ::string str(psz);
+//   ::string str(scopedstr);
 //
 //   char sz[2048];
 //   GetModuleFileNameA(

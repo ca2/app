@@ -145,10 +145,10 @@ namespace colorertake5
 
    }
 
-   void LineRegionsSupport::clearLine(index lno, const ::string & pszLine)
+   void LineRegionsSupport::clearLine(index lno, const ::scoped_string & scopedstrLine)
    {
 
-      __UNREFERENCED_PARAMETER(pszLine);
+      __UNREFERENCED_PARAMETER(scopedstrLine);
 
       if(!checkLine(lno))
          return;

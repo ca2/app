@@ -523,7 +523,7 @@ namespace sockets
    }
 
 
-   /*   socket_id base_socket::CreateSocket(int af,int iType, const ::string & strProtocol)
+   /*   socket_id base_socket::CreateSocket(int af,int iType, const ::scoped_string & scopedstrProtocol)
    {
    struct protoent *point = nullptr;
    socket_id s;
@@ -851,7 +851,7 @@ namespace sockets
    }
 
 
-   void base_socket::OnLine(const string & str)
+   void base_socket::OnLine(const ::scoped_string & scopedstr)
    {
 
       base_socket_impl()->OnLine(str);
@@ -1260,7 +1260,7 @@ namespace sockets
    }
 
 
-   void base_socket::SetSocketProtocol(const ::string & strProtocol)
+   void base_socket::SetSocketProtocol(const ::scoped_string & scopedstrProtocol)
    {
 
       base_socket_impl()->SetSocketProtocol(strProtocol);

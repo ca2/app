@@ -46,7 +46,7 @@ namespace platform
    //void aura_application_layer::load_string_table() override{}
    //bool aura_application_layer::load_cached_string(string & str, const ::atom & atom, bool bLoadStringTable) override{}
    //bool aura_application_layer::load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable) override{}
-   //void aura_application_layer::load_string_table(const string & pszApp, const string & pszId) override{}
+   //void aura_application_layer::load_string_table(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrId) override{}
 
 
    //bool aura_application_layer::is_system() const override{}
@@ -116,8 +116,8 @@ namespace platform
    // void aura_application_layer::on_uninstall() override{}
    //
 
-   //void aura_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative) override{}
-   //void aura_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle) override{}
+   //void aura_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const ::scoped_string & scopedstrRelative) override{}
+   //void aura_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle) override{}
 
    //void aura_application_layer::SetCurrentHandles() override{}
 
@@ -125,7 +125,7 @@ namespace platform
    //void aura_application_layer::process_exception(const ::exception & e) override{}
 
 
-   //virtual ::pointer<::aura::application>assert_running(const ::string & pszAppId) override{}
+   //virtual ::pointer<::aura::application>assert_running(const ::scoped_string & scopedstrAppId) override{}
 
    //bool aura_application_layer::is_running() override{}
 
@@ -135,7 +135,7 @@ namespace platform
 
    //bool aura_application_layer::assert_user_logged_in() override{}
 
-   //::string aura_application_layer::matter_as_string(const ::string & pszMatter, const ::string & pszMatter2 = nullptr) override{}
+   //::string aura_application_layer::matter_as_string(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2 = nullptr) override{}
 
 
    //bool aura_application_layer::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument){}
@@ -189,8 +189,8 @@ namespace platform
    //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow){}
 
 
-   //virtual int hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
-   //virtual int hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
+   //virtual int hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
+   //virtual int hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr){}
 
    //void aura_application_layer::on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint){}
 
@@ -207,7 +207,7 @@ namespace platform
 
    //virtual ::html::html * create_html(){}
 
-   //::string aura_application_layer::http_get(const ::string & strUrl, ::property_set & set) override{}
+   //::string aura_application_layer::http_get(const ::scoped_string & scopedstrUrl, ::property_set & set) override{}
 
    //bool aura_application_layer::compress_ungz(const ::stream & os, const ::stream & is) override{}
 
@@ -223,7 +223,7 @@ namespace platform
    //application(){}
    //~ application() override{}
 
-   //void aura_application_layer::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema){}
+   //void aura_application_layer::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema){}
    //::string aura_application_layer::get_locale_schema_dir(){}
 
 
@@ -252,7 +252,7 @@ namespace platform
 
    //void install_message_routing(::channel * pchannel) override{}
 
-   //::string aura_application_layer::dialog_box(const ::string & pszMatter, ::property_set & propertyset) override{}
+   //::string aura_application_layer::dialog_box(const ::scoped_string & scopedstrMatter, ::property_set & propertyset) override{}
 
    //void aura_application_layer::application_menu_update() override{}
 
@@ -304,18 +304,18 @@ namespace platform
    //// os_* functions generally
    //// reserves a lot of surprises from each
    //// operating system specific behavior
-   //void aura_application_layer::auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
+   //void aura_application_layer::auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
 
    //pmessagebox->sync(){}
 
 
-   //void aura_application_layer::ui_message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
-   //void aura_application_layer::ui_message_box_timeout(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
+   //void aura_application_layer::ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
+   //void aura_application_layer::ui_message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
 
 
    //using ::aura::context_thread::message_box{}
-   //void aura_application_layer::message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
-   //void aura_application_layer::message_box_timeout(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
+   //void aura_application_layer::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
+   //void aura_application_layer::message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
 
 
    //void aura_application_layer::on_file_new() override{}
@@ -325,7 +325,7 @@ namespace platform
    //virtual string_array get_categories() override{}
 
    //void aura_application_layer::defer_create_keyboard() override{}
-   //bool aura_application_layer::set_keyboard_layout(const ::string & pszPath, const ::action_context & action_context){}
+   //bool aura_application_layer::set_keyboard_layout(const ::scoped_string & scopedstrPath, const ::action_context & action_context){}
 
 
    //bool aura_application_layer::enable_application_events(::particle * pparticle, bool bEnable) override{}
@@ -438,7 +438,7 @@ namespace platform
    //bool aura_application_layer::on_install(){}
    //bool aura_application_layer::on_uninstall(){}
 
-   //bool aura_application_layer::system_add_app_install(const ::string & pszId, const ::string & pszBuild) override{}
+   //bool aura_application_layer::system_add_app_install(const ::scoped_string & scopedstrId, const ::scoped_string & scopedstrBuild) override{}
 
    //void aura_application_layer::TermThread(HINSTANCE hInstTerm){}
 
@@ -458,9 +458,9 @@ namespace platform
    //::string aura_application_layer::multimedia_audio_mixer_get_default_implementation_name() override{}
    //::string aura_application_layer::veriwell_multimedia_music_midi_get_default_implementation_name() override{}
 
-   //bool aura_application_layer::get_temp_file_name_template(string & str, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate) override{}
+   //bool aura_application_layer::get_temp_file_name_template(string & str, const ::string & lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate) override{}
 
-   //bool aura_application_layer::get_temp_file_name(string & str, const ::string & lpszName, const ::string & pszExtension) override{}
+   //bool aura_application_layer::get_temp_file_name(string & str, const ::string & lpszName, const ::scoped_string & scopedstrExtension) override{}
 
    //service_base * get_service(){}
    //virtual service_base * allocate_new_service() override{}
@@ -524,10 +524,10 @@ namespace platform
    //// name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
    //// get/set serializables to user directory
    //template < typename TYPE >
-   //bool gudo_get(const ::string & strKey, TYPE & t){}
+   //bool gudo_get(const ::scoped_string & scopedstrKey, TYPE & t){}
 
    //template < typename TYPE >
-   //bool gudo_set(const ::string & strKey, const TYPE & t){}
+   //bool gudo_set(const ::scoped_string & scopedstrKey, const TYPE & t){}
 
 
    //bool aura_application_layer::assert_user_logged_in(){}
@@ -541,15 +541,15 @@ namespace platform
    //void aura_application_layer::message_handler(::user::message * pusermessage) override{}
 
 
-   //::string aura_application_layer::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema) override{}
+   //::string aura_application_layer::http_get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
 
    //void aura_application_layer::on_update_matter_locator() override{}
 
-   //void aura_application_layer::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override{}
-   //void aura_application_layer::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override{}
+   //void aura_application_layer::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
+   //void aura_application_layer::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
 
-   //::string aura_application_layer::get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema) override{}
-   //::string aura_application_layer::get_locale_schema_dir(const ::string & strLocale) override{}
+   //::string aura_application_layer::get_locale_schema_dir(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
+   //::string aura_application_layer::get_locale_schema_dir(const ::scoped_string & scopedstrLocale) override{}
    //::string aura_application_layer::get_locale_schema_dir() override{}
 
    //void aura_application_layer::set_locale(const string & pcsz, const ::action_context & action_context) override{}
@@ -562,9 +562,9 @@ namespace platform
 
 
    //void aura_application_layer::fill_locale_schema(::text::international::locale_schema & localeschema) override{}
-   //void aura_application_layer::fill_locale_schema(::text::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema) override{}
+   //void aura_application_layer::fill_locale_schema(::text::international::locale_schema & localeschema,const ::scoped_string & scopedstrLocale,const ::scoped_string & scopedstrSchema) override{}
 
-   //bool aura_application_layer::platform_open_by_file_extension(::collection::index iEdge, const ::string & pszPathName, ::request * prequest = nullptr) override{}
+   //bool aura_application_layer::platform_open_by_file_extension(::collection::index iEdge, const ::scoped_string & scopedstrPathName, ::request * prequest = nullptr) override{}
    //bool aura_application_layer::platform_open_by_file_extension(::collection::index iEdge,::create * pcc) override{}
 
 
@@ -597,7 +597,7 @@ namespace platform
 
    //void aura_application_layer::play_audio(::payload payloadFile, bool bSynch){}
 
-   //void aura_application_layer::post_critical_error_message(const ::string & pszMessage, bool bShowLog = true) override{}
+   //void aura_application_layer::post_critical_error_message(const ::scoped_string & scopedstrMessage, bool bShowLog = true) override{}
 
    //void aura_application_layer::show_critical_error_log() override{}
 
@@ -622,7 +622,7 @@ namespace platform
    //::string aura_application_layer::get_app_id(string wstr) override{}
 
 
-   //void aura_application_layer::install_trace(const ::string & str) override{}
+   //void aura_application_layer::install_trace(const ::scoped_string & scopedstr) override{}
    //void aura_application_layer::install_trace(double dRate) override{}
    //bool aura_application_layer::register_spa_file_type() override{}
 
@@ -751,9 +751,9 @@ namespace platform
    //bool aura_application_layer::is_system() const override{}
    //bool aura_application_layer::is_session() const override{}
 
-   //virtual unsigned int guess_code_page(const string& str) override{}
+   //virtual unsigned int guess_code_page(const ::scoped_string & scopedstr) override{}
 
-   //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, unsigned int fuStyle) override{}
+   //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int fuStyle) override{}
 
    //bool aura_application_layer::is_serviceable() const override{}
    //
@@ -883,10 +883,10 @@ namespace platform
    }
 
 
-   // bool aura_application_layer::get_fs_size(string& strSize, const ::string & pszPath, bool& bPending) override{}
-   // bool aura_application_layer::get_fs_size(long long& i64Size, const ::string & pszPath, bool& bPending) override{}
+   // bool aura_application_layer::get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending) override{}
+   // bool aura_application_layer::get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending) override{}
    //
-   // void aura_application_layer::set_title(const ::string & pszTitle) override{}
+   // void aura_application_layer::set_title(const ::scoped_string & scopedstrTitle) override{}
 
 
    bool aura_application_layer::_001CloseApplicationByUser(::pointer<::user::interaction> puserinteractionExcept)
@@ -931,7 +931,7 @@ namespace platform
    }
 
 
-   // void report_error(const ::exception & exception, int iMessageFlags, const ::string & pszTopic) override{}
+   // void report_error(const ::exception & exception, int iMessageFlags, const ::scoped_string & scopedstrTopic) override{}
    //
    //
    // bool can_close_application() override{}
@@ -952,13 +952,13 @@ namespace platform
    }
 
 
-   // void on_song_added(const string& str) override{}
+   // void on_song_added(const ::scoped_string & scopedstr) override{}
    //
    //
    // ::string aura_application_layer::get_visual_studio_build() override{}
    //
    //
-   // string sound_path(const ::string & psz) override{}
+   // string sound_path(const ::scoped_string & scopedstr) override{}
    // string get_default_playlist_path() override{}
 
 

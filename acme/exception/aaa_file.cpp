@@ -5,7 +5,7 @@
 #endif
 
 
-file_exception::file_exception(::e_status estatus, int iOsError, const string & strPath, const ::string & strMessage) :
+file_exception::file_exception(::e_status estatus, int iOsError, const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrMessage) :
    m_iOsError(iOsError),
    m_strPath(strPath),
    ::exception(estatus, strMessage)

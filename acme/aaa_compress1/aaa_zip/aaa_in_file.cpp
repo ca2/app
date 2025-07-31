@@ -63,7 +63,7 @@ namespace zip
 
       }
 
-      if(case_insensitive_string_ends(pszFileName,".zip"))
+      if(case_insensitive_string_ends(scopedstrFileName,".zip"))
 
       {
 
@@ -257,7 +257,7 @@ namespace zip
 
    bool in_file::locate(const ::file::path & path)
    {
-      string strFile(pszFileName);
+      string strFile(scopedstrFileName);
       auto pFind = strFile.find(":");
       if(::is_set(pFind))
          strFile = strFile(0, pFind);
@@ -635,7 +635,7 @@ namespace zip
    void in_file::add_file(const ::file::path & pszRelative, ::file::file * pfile)
    {
 
-      //::file::path strPath(pszDir / pszRelative);
+      //::file::path strPath(scopedstrDir / pszRelative);
 
       ::file::file_status status;
 

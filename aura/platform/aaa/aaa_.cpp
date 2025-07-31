@@ -26,10 +26,10 @@ namespace aura
 
 
 
-   bool extract_sub_string(string& rString, const ::string & pszFullString, int iSubString, char chSep)
+   bool extract_sub_string(string& rString, const ::scoped_string & scopedstrFullString, int iSubString, char chSep)
    {
 
-      if (pszFullString == nullptr)
+      if (scopedstrFullString == nullptr)
       {
 
          return false;
@@ -38,9 +38,9 @@ namespace aura
 
       while (iSubString--)
       {
-         pszFullString = strchr(pszFullString, chSep);
+         pszFullString = strchr(scopedstrFullString, chSep);
 
-         if (pszFullString == nullptr)
+         if (scopedstrFullString == nullptr)
 
          {
             rString.empty();        // return is_empty string as well
@@ -50,10 +50,10 @@ namespace aura
 
       }
 
-      const char* pchEnd = strchr(pszFullString, chSep);
+      const char* pchEnd = strchr(scopedstrFullString, chSep);
 
 
-      character_count nLen = (pchEnd == nullptr) ? strlen(pszFullString) : (int)(pchEnd - pszFullString);
+      character_count nLen = (pchEnd == nullptr) ? strlen(scopedstrFullString) : (int)(pchEnd - pszFullString);
 
 
       ASSERT(nLen >= 0);
@@ -170,10 +170,10 @@ CLASS_DECL_AURA unsigned int g_tickStartTime = 0;
 
 
 //extern "C"
-CLASS_DECL_AURA void debug_print(const ::string & pszFormat, ...)
+CLASS_DECL_AURA void debug_print(const ::scoped_string & scopedstrFormat, ...)
 {
 
-   if (is_ptr_null(pszFormat, 1024))
+   if (is_ptr_null(scopedstrFormat, 1024))
    {
 
       return;
@@ -235,12 +235,12 @@ CLASS_DECL_AURA string_map < ::pointer<::acme::library >> __library()
 
 
 
-CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const ::string & psz)
+CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const ::scoped_string & scopedstr)
 {
 
    synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
-   auto ppair = ::auraacmesystem()->m_mapNewAuraLibrary.plookup(psz);
+   auto ppair = ::auraacmesystem()->m_mapNewAuraLibrary.plookup(scopedstr);
 
    if (::is_null(ppair))
    {
@@ -254,7 +254,7 @@ CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const ::string & p
 }
 
 
-CLASS_DECL_AURA::acme::library& get_library(const ::string & psz)
+CLASS_DECL_AURA::acme::library& get_library(const ::scoped_string & scopedstr)
 {
 
    synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
@@ -264,7 +264,7 @@ CLASS_DECL_AURA::acme::library& get_library(const ::string & psz)
 }
 
 
-CLASS_DECL_AURA void register_get_new_aura_library(const ::string & psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
+CLASS_DECL_AURA void register_get_new_aura_library(const ::scoped_string & scopedstr, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
 {
 
    synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
@@ -274,7 +274,7 @@ CLASS_DECL_AURA void register_get_new_aura_library(const ::string & psz, PFN_NEW
 }
 
 
-CLASS_DECL_AURA void register_library(const ::string & psz, ::acme::library* plibrary)
+CLASS_DECL_AURA void register_library(const ::scoped_string & scopedstr, ::acme::library* plibrary)
 {
 
    synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
@@ -418,12 +418,12 @@ int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszM
    string strExtra;
    va_list argList;
    va_start(argList, pszFormat);
-   strExtra.formatf(pszFormat, argList);
+   strExtra.formatf(scopedstrFormat, argList);
    va_end(argList);
 
    string strModule;
 
-   if (pszModuleName != nullptr && *pszModuleName != '\0')
+   if (scopedstrModuleName != nullptr && *pszModuleName != '\0')
    {
 
       strModule.formatf("%s: ", pszModuleName);
@@ -432,7 +432,7 @@ int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszM
 
    string strType = get_debug_report_type_text(iType);
 
-   information(strType + ": file: " + string(psz) + " line:" + as_string(iLine) + strModule + strExtra);
+   information(strType + ": file: " + string(scopedstr) + " line:" + as_string(iLine) + strModule + strExtra);
 
    return 1;
 
@@ -456,7 +456,7 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
 
    string strType = get_debug_report_type_text(iType);
 
-   if (pszModuleName != nullptr && *pszModuleName != '\0')
+   if (scopedstrModuleName != nullptr && *pszModuleName != '\0')
    {
 
       strModule.formatf("%S: ", pszModuleName);
@@ -464,7 +464,7 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
    }
 
 
-   information(strType + ": file: " + string(pszFile) + " line:" + as_string(iLine) + strModule + strExtra);
+   information(strType + ": file: " + string(scopedstrFile) + " line:" + as_string(iLine) + strModule + strExtra);
 
    return 1;
 

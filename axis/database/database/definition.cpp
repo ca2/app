@@ -34,7 +34,7 @@ namespace database
       try
       {
 
-         str.formatf_arguments(pszFormat, args);
+         str.formatf_arguments(scopedstrFormat, args);
 
       }
       catch (...)

@@ -143,7 +143,7 @@ namespace user
 
       route_command(pcommand);
 
-//      m_plistener->call_notification_area_action(pszId);
+//      m_plistener->call_notification_area_action(scopedstrId);
 
       return pcommand->m_bRet;
 

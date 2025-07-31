@@ -6620,7 +6620,7 @@ namespace user
    }
 
 
-   void list::Filter1(const string & strFilter)
+   void list::Filter1(const ::scoped_string & scopedstrFilter)
    {
 
       if (m_eview == impact_icon)

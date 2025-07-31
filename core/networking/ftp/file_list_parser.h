@@ -43,7 +43,7 @@ namespace ftp
    {
    public:
       virtual ~ifile_list_parser() {}
-      virtual bool Parse(file_status& ftpFileStatus, const string& strLineToParse) = 0;
+      virtual bool Parse(file_status& ftpFileStatus, const ::scoped_string & scopedstrLineToParse) = 0;
    };
 
 
@@ -61,7 +61,7 @@ namespace ftp
       file_list_parser();
       virtual ~file_list_parser();
 
-      bool Parse(file_status& ftpFileStatus, const ::string & strLineToParse);
+      bool Parse(file_status& ftpFileStatus, const ::scoped_string & scopedstrLineToParse);
 
       bool IsEPLS(const ::scoped_string & scopedstrLine);
       bool ParseEPLF(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine);
@@ -75,7 +75,7 @@ namespace ftp
       bool IsMSDOSListing(const ::scoped_string & scopedstrLine);
       bool ParseMSDOSListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine);
 
-      bool CheckMonth(const ::scoped_string & scopedstr, const ::string & pszMonthName) const;
+      bool CheckMonth(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrMonthName) const;
       int  GetMonth(const ::scoped_string & scopedstr) const;
       bool GetLong(const ::scoped_string & scopedstrLong, long& lResult) const;
       long GetYear(posix_time time) const;

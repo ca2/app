@@ -145,7 +145,7 @@ void message_box_synchronous(oswindow oswindow, const ::scoped_string & scopedst
 
    message_box_w a;
 
-   int iResult = a.show(wstring(pszText),wstring(pszCaption), emessagebox, callback);
+   int iResult = a.show(wstring(scopedstrText),wstring(scopedstrCaption), emessagebox, callback);
 
    return iResult;
 

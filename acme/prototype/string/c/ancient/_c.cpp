@@ -13,7 +13,7 @@
 char * libc_strdup(const char * psz)
 {
    
-   return strdup(psz);
+   return strdup(scopedstr);
    
 }
 

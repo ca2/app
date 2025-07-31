@@ -70,7 +70,7 @@ CLASS_DECL_ACME::string get_operating_system_name();
 
 
 CLASS_DECL_ACME void exception_message_box(::particle* pparticle, ::exception& exception,
-   const ::string& strMoreDetails);
+   const ::scoped_string & scopedstrMoreDetails);
 
 
 CLASS_DECL_ACME void trace_category_static_init(::platform::system* psystem);
@@ -1873,7 +1873,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //   if (!m_ptracelog)
    //   {
 
-   //      ::information(psz);
+   //      ::information(scopedstr);
 
    //      return;
 
@@ -1937,7 +1937,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   string system::__get_text(const ::string& str)
+   string system::__get_text(const ::scoped_string & scopedstr)
    {
 
       return str;
@@ -1945,7 +1945,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
    //{
 
    //   auto psequence = __allocate ::sequence < ::conversation > ();
@@ -1956,7 +1956,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    //   //auto pprocess = __allocate status < enum_dialog_result > ();
 
-   //   //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
+   //   //pprocess->set_result(message_box_for_console(scopedstrText, pszTitle, emessagebox));
 
    //   return psequence;
 
@@ -2319,7 +2319,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   //::pointer<::acme::library> system::library(const ::string& strComponent, const ::string& strImplementationParam)
+   //::pointer<::acme::library> system::library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementationParam)
    //{
 
    //   string strImplementation(strImplementationParam);
@@ -2344,7 +2344,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   //::pointer<::acme::library>& system::library(const ::string & strComponent, const ::string & strImplementation)
+   //::pointer<::acme::library>& system::library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    //{
 
    //   // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
@@ -2380,14 +2380,14 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   //::pointer<::acme::library>system::open_containerized_component_library(const ::string & pszComponent, const ::string & pszImplementation)
+   //::pointer<::acme::library>system::open_containerized_component_library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    //{
 
    //   // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
 
-   //   string strComponent(pszComponent);
+   //   string strComponent(scopedstrComponent);
 
-   //   string strImplementation(pszImplementation);
+   //   string strImplementation(scopedstrImplementation);
 
    //   strComponent.trim();
 
@@ -2482,14 +2482,14 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //   ::extended::transport < ::factory::factory > system::([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation)
+   //   ::extended::transport < ::factory::factory > system::([a-z0-9_]+)_factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    //   {
    //
    //      auto& pfactory = m_mapFactoryMap[strComponent][strImplementation];
    //
-   //      string strComponent(pszComponent);
+   //      string strComponent(scopedstrComponent);
    //
-   //      string strImplementation(pszImplementation);
+   //      string strImplementation(scopedstrImplementation);
    //
    //      strImplementation.case_insensitive_begins_eat(strComponent + "_");
    //
@@ -2545,7 +2545,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //
    //   #else
    //
-   //      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
+   //      auto plibrary = open_containerized_component_library(scopedstrComponent, pszImplementation);
    //
    //      if (!plibrary)
    //      {
@@ -2599,10 +2599,10 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::regular_expression_pointer system::create_regular_expression(const ::string& pszStyle, const string& str)
+   ::regular_expression_pointer system::create_regular_expression(const ::string& pszStyle, const ::scoped_string & scopedstr)
    {
 
-      auto pcontext = get_regular_expression_context(pszStyle);
+      auto pcontext = get_regular_expression_context(scopedstrStyle);
 
       if (!pcontext)
       {
@@ -2655,7 +2655,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::regular_expression_pointer system::compile_pcre(const string& str)
+   ::regular_expression_pointer system::compile_pcre(const ::scoped_string & scopedstr)
    {
 
       return create_regular_expression("pcre2", str);
@@ -2671,7 +2671,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //   int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
+   //   int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
    //   {
    //
    //      throw_todo();
@@ -3692,7 +3692,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
             auto pszUrl = (const char*)ptopic->payload("wparam").as_iptr();
 
-            application()->did_pick_document_at_url(pszUrl);
+            application()->did_pick_document_at_url(scopedstrUrl);
 
          }
 
@@ -4052,7 +4052,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //::pointer < ::subparticle > system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   //::pointer < ::subparticle > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
    //{
    //
    //   auto psequencer = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -4286,7 +4286,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   bool system::_handle_call(::payload& payload, const ::string& strObject, const ::string& strMember,
+   bool system::_handle_call(::payload& payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember,
       ::property_set& propertyset)
    {
 
@@ -4318,7 +4318,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   string system::get_latest_deployment_number(const ::string& strBranch)
+   string system::get_latest_deployment_number(const ::scoped_string & scopedstrBranch)
    {
 
       return "(lastest deployed build)";
@@ -4953,9 +4953,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   //   ::pointer < ::message_box > system::message_box(const ::string & strMessage, const ::string & strTitle,
+   //   ::pointer < ::message_box > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
    //                                                       const ::e_message_box & emessagebox,
-   //                                                       const ::string & strDetails, ::nano::graphics::icon * picon)
+   //                                                       const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //   {
    //
    //
@@ -4969,9 +4969,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 
    //::pointer < ::message_box > system::exception_message_box(
-   //    const ::exception & exception, const ::string & strMessage,
-   //   const ::string & strTitle,
-   //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //    const ::exception & exception, const ::scoped_string & scopedstrMessage,
+   //   const ::scoped_string & scopedstrTitle,
+   //    const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
    //   return micro_user()->exception_message_box(
    //exception,
@@ -4984,9 +4984,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   //::pointer < ::message_box > system::message_console(const ::string & strMessage, const ::string & strTitle,
+   //::pointer < ::message_box > system::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
    //                                                           const ::e_message_box & emessagebox,
-   //                                                           const ::string & strDetails, ::nano::graphics::icon * picon)
+   //                                                           const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
    //
    //   return micro_user()->message_console(
@@ -5000,9 +5000,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 
    //::pointer < ::message_box > system::exception_message_console(
-   //    const ::exception & exception, const ::string & strMessage,
-   //   const ::string & strTitle,
-   //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //    const ::exception & exception, const ::scoped_string & scopedstrMessage,
+   //   const ::scoped_string & scopedstrTitle,
+   //    const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
 
    //   return micro_user()->exception_message_console(
@@ -5052,7 +5052,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 ////}
 //
 //
-//CLASS_DECL_ACME string get_latest_deployment_number(const ::string & strBranch)
+//CLASS_DECL_ACME string get_latest_deployment_number(const ::scoped_string & scopedstrBranch)
 //{
 //
 //   return system()->get_latest_deployment_number(strBranch);
@@ -5061,7 +5061,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 
 //
-//CLASS_DECL_ACME string __get_text(const string & str)
+//CLASS_DECL_ACME string __get_text(const ::scoped_string & scopedstr)
 //{
 //
 //   return ::g_psystem->__get_text(str);
@@ -5141,7 +5141,7 @@ void system_on_open_untitled_file(::platform::system* psystem)
 void system_on_open_file(::platform::system* psystem, const char* pszFile)
 {
 
-   psystem->on_open_file(pszFile);
+   psystem->on_open_file(scopedstrFile);
 
 }
 
@@ -5149,7 +5149,7 @@ void system_on_open_file(::platform::system* psystem, const char* pszFile)
 //::pointer<::platform::system>platform_create_system(const ::scoped_string & scopedstrAppId)
 //{
 //
-//   string strAppId(pszAppId);
+//   string strAppId(scopedstrAppId);
 //
 //#if !defined(CUBE)
 //

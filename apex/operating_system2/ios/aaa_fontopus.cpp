@@ -745,7 +745,7 @@ namespace account
    bool account::on_action(const ::scoped_string & scopedstrId)
    {
 
-      if (!strcmp(pszId, "submit"))
+      if (!strcmp(scopedstrId, "submit"))
       {
 
 
@@ -765,7 +765,7 @@ namespace account
          return true;
 
       }
-      else if (!strcmp(pszId, "escape"))
+      else if (!strcmp(scopedstrId, "escape"))
       {
          m_happeningReady.set_happening();
       }

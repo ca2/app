@@ -85,7 +85,7 @@ unsigned int * puiPid)
    string strCmdLine;
 
    strCmdLine = pszPath;
-   if(ansi_length(pszParam) > 0)
+   if(ansi_length(scopedstrParam) > 0)
    {
       strCmdLine +=  " ";
       strCmdLine += pszParam;
@@ -112,7 +112,7 @@ CLASS_DECL_APEX unsigned int call_sync(const ::file::path & path, const ::scoped
    string strCmdLine;
 
    strCmdLine = pszPath;
-   if(ansi_length(pszParam) > 0)
+   if(ansi_length(scopedstrParam) > 0)
    {
       strCmdLine +=  " ";
       strCmdLine += pszParam;
@@ -235,7 +235,7 @@ CLASS_DECL_APEX bool shell_execute_sync(const ::file::path & path, const ::scope
 
    strCmdLine = pszPath;
 
-   if (ansi_length(pszParam) > 0)
+   if (ansi_length(scopedstrParam) > 0)
    {
 
       strCmdLine += " ";

@@ -39,7 +39,7 @@ namespace filemanager
    }
 
 
-   bool is_valid_manager_id(const ::string & psz)
+   bool is_valid_manager_id(const ::scoped_string & scopedstr)
    {
 
       ::collection::count c = 0;
@@ -80,7 +80,7 @@ namespace filemanager
    }
 
 
-   bool is_valid_filemanager_project_entry(const ::string & psz)
+   bool is_valid_filemanager_project_entry(const ::scoped_string & scopedstr)
    {
 
       ::collection::count c = 0;
@@ -131,13 +131,13 @@ namespace filemanager
    }
 
 
-   ::file::path filemanager_project_entry(string& strManagerId, const ::string & psz, ::handler_context* pcontext)
+   ::file::path filemanager_project_entry(string& strManagerId, const ::scoped_string & scopedstr, ::handler_context* pcontext)
    {
 
-      if (is_valid_filemanager_project_entry(psz))
+      if (is_valid_filemanager_project_entry(scopedstr))
       {
 
-         strManagerId = string(psz, get_manager_id_len());
+         strManagerId = string(scopedstr, get_manager_id_len());
 
          return psz + get_manager_id_len() + 1;
 
@@ -362,7 +362,7 @@ namespace filemanager
    //}
 
 
-   //void document::InitializeFileManager(const ::string & pszMatter)
+   //void document::InitializeFileManager(const ::scoped_string & scopedstrMatter)
    //{
 
    //   m_pfilemanagerdata->m_pfilelistcallback = this;

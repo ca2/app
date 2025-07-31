@@ -20,7 +20,7 @@ namespace text_to_speech
    }
 
 
-   void speaker::speak(const ::string & strText)
+   void speaker::speak(const ::scoped_string & scopedstrText)
    {
 
       if (m_pspeakerFallback.is_null())
@@ -35,7 +35,7 @@ namespace text_to_speech
    }
 
 
-   void speaker::speak(const ::string & strLang, const ::string & strText, bool bSynch)
+   void speaker::speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSynch)
    {
 
       if (m_pspeakerFallback.is_null())
@@ -52,7 +52,7 @@ namespace text_to_speech
    }
 
 
-   void speaker::speak(const ::string & strAttributes, const ::string & strLang, const ::string & strText, bool bSynch)
+   void speaker::speak(const ::scoped_string & scopedstrAttributes, const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSynch)
    {
 
       if (m_pspeakerFallback.is_null())

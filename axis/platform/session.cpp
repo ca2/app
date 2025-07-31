@@ -195,12 +195,12 @@ namespace axis
    }
 
 
-   //::aura::application * session::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest)
+   //::aura::application * session::application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest)
    //{
 
    //   ::pointer<::apex::application>papp;
 
-   //   if (m_applicationa.lookup(pszAppId, papp))
+   //   if (m_applicationa.lookup(scopedstrAppId, papp))
    //   {
 
    //      return papp;
@@ -221,7 +221,7 @@ namespace axis
    //      try
    //      {
 
-   //         papp = create_application(pszAppId, bSynch, pcreate);
+   //         papp = create_application(scopedstrAppId, bSynch, pcreate);
 
    //      }
    //      catch (const ::exception & e)
@@ -270,10 +270,10 @@ namespace axis
    //}
 
 
-//   ::pointer<::aura::application>session::get_new_application(::particle * pparticle, const ::string & pszAppId)
+//   ::pointer<::aura::application>session::get_new_application(::particle * pparticle, const ::scoped_string & scopedstrAppId)
 //   {
 //
-//      string strAppId(pszAppId);
+//      string strAppId(scopedstrAppId);
 //
 //      ::pointer<::aura::application>papp;
 //
@@ -323,7 +323,7 @@ namespace axis
 //            else
 //            {
 //
-//               ::aura_app * pauraapp = ::aura_app::get(pszAppId);
+//               ::aura_app * pauraapp = ::aura_app::get(scopedstrAppId);
 //
 //               if (pauraapp != nullptr)
 //               {
@@ -368,7 +368,7 @@ namespace axis
 //
 //                     plibrary->initialize_aura_library(pparticle, 0, nullptr);
 //
-//                     //g_pmapLibrary[string(pszAppId)] = plibrary;
+//                     //g_pmapLibrary[string(scopedstrAppId)] = plibrary;
 //
 //                     string strLibrary = strAppId;
 //
@@ -550,7 +550,7 @@ namespace axis
    //}
 
 
-   bool session::is_licensed(const ::string & pszAppId, bool bInteractive)
+   bool session::is_licensed(const ::scoped_string & scopedstrAppId, bool bInteractive)
    {
 
       if (has_property("install"))
@@ -574,7 +574,7 @@ namespace axis
 
       }
 
-      return m_paccount->is_licensed(pszAppId, bInteractive);
+      return m_paccount->is_licensed(scopedstrAppId, bInteractive);
 
    }
 
@@ -624,14 +624,14 @@ namespace axis
 //   }
 
 
-   bool session::get_auth(const string & pszForm, string & strUsername, string & strPassword)
+   bool session::get_auth(const ::scoped_string & scopedstrForm, string & strUsername, string & strPassword)
    {
 
       throw 0;
 
       return false;
 
-      //return account()->get_auth(pszForm, strUsername, strPassword);
+      //return account()->get_auth(scopedstrForm, strUsername, strPassword);
 
    }
 

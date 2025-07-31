@@ -300,7 +300,7 @@ namespace apex
       //void os_native_bergedge_start() override;
 
 
-      //virtual bool on_application_menu_action(const ::string & pszCommand);
+      //virtual bool on_application_menu_action(const ::scoped_string & scopedstrCommand);
 
 
       void term() override;
@@ -344,7 +344,7 @@ namespace apex
 
 
       virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path& pszRoot,
-                                    const string& pszRelative, const ::string& strLocale, const ::string& strStyle) override;
+                                    const string& pszRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle) override;
 
       //virtual void SetCurrentHandles() override;
 
@@ -354,14 +354,14 @@ namespace apex
       virtual void process_exception(const ::exception& e) override;
 
 
-      //virtual ::pointer<::apex::application>assert_running(const ::string & pszAppId) override;
+      //virtual ::pointer<::apex::application>assert_running(const ::scoped_string & scopedstrAppId) override;
 
       virtual bool is_task_set() const override;
 
 
       //bool pump_runnable() override;
 
-      virtual void add_activation_message(const ::string& strMessage) override;
+      virtual void add_activation_message(const ::scoped_string & scopedstrMessage) override;
 
 
       virtual bool has_activation_message() const override;
@@ -504,18 +504,18 @@ namespace apex
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
       //pmessagebox->sync();
 
 
-      //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void ui_message_box_timeout(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::platform::context::message_box;
-      //virtual void message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void message_box_timeout(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       virtual void on_file_new() override;
@@ -530,7 +530,7 @@ namespace apex
       virtual void defer_create_keyboard() override;
 
 
-      //virtual bool set_keyboard_layout(const ::string & pszPath, const ::action_context & action_context);
+      //virtual bool set_keyboard_layout(const ::scoped_string & scopedstrPath, const ::action_context & action_context);
 
 
       virtual bool enable_application_events(::particle* pparticle, bool bEnable) override;
@@ -566,7 +566,7 @@ namespace apex
       //virtual bool Ex2OnAppInstall();
       //virtual bool Ex2OnAppUninstall();
 
-      //virtual bool on_application_menu_action(const ::string & pszCommand);
+      //virtual bool on_application_menu_action(const ::scoped_string & scopedstrCommand);
       //virtual void _001CloseApplication();
 
       //virtual string get_license_id();
@@ -758,13 +758,13 @@ namespace apex
       virtual bool check_exclusive(::request* prequest, bool& bHandled) override;
 
 
-      virtual bool erase_exclusive(const ::string& strId) override;
+      virtual bool erase_exclusive(const ::scoped_string & scopedstrId) override;
 
 
-      virtual bool exclusive_fails(const ::string& str, security_attributes* psecurityattributes = nullptr) override;
+      virtual bool exclusive_fails(const ::scoped_string & scopedstr, security_attributes* psecurityattributes = nullptr) override;
 
 
-      virtual bool exclusive_erase(const ::string& str) override;
+      virtual bool exclusive_erase(const ::scoped_string & scopedstr) override;
 
 
       virtual void release_exclusive() override;
@@ -790,10 +790,10 @@ namespace apex
       // name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
       // get/set serializables to user directory
       //template < typename TYPE >
-      //bool gudo_get(const ::string & strKey, TYPE & t);
+      //bool gudo_get(const ::scoped_string & scopedstrKey, TYPE & t);
 
       //template < typename TYPE >
-      //bool gudo_set(const ::string & strKey, const TYPE & t);
+      //bool gudo_set(const ::scoped_string & scopedstrKey, const TYPE & t);
 
 
       //virtual bool assert_user_logged_in();
@@ -905,7 +905,7 @@ namespace apex
       virtual string get_app_id(string wstr) override;
 
 
-      virtual void install_trace(const ::string& str) override;
+      virtual void install_trace(const ::scoped_string & scopedstr) override;
 
 
       virtual void install_trace(double dRate) override;
@@ -1013,9 +1013,9 @@ namespace apex
       //virtual ::application * get_app() const override;
 
 
-      //virtual unsigned int guess_code_page(const string& str);
+      //virtual unsigned int guess_code_page(const ::scoped_string & scopedstr);
 
-      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, unsigned int fuStyle) override;
+      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int fuStyle) override;
 
 
       virtual void pre_translate_message(::message::message* pmessage) override;
@@ -1038,12 +1038,12 @@ namespace apex
 
       // virtual bool base_support();
 
-      //virtual string sync_message_box(const string & pszMatter,::property_set & propertyset) override;
+      //virtual string sync_message_box(const ::scoped_string & scopedstrMatter,::property_set & propertyset) override;
 
 
       //virtual ::pointer<::user::interaction>uie_from_point(const ::int_point& point);
 
-      //virtual bool on_application_menu_action(const ::string & pszCommand) override;
+      //virtual bool on_application_menu_action(const ::scoped_string & scopedstrCommand) override;
 
       //virtual bool on_install() override;
       //virtual bool on_uninstall() override;
@@ -1092,15 +1092,15 @@ namespace apex
       void route_command(::message::command* pcommand, bool bRouteToKeyDescendant = false) override;
 
 
-      //virtual pointer< ::extended::future < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
-      //virtual ::enum_dialog_result message_box_timeout(const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override;
+      //virtual pointer< ::extended::future < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override;
 
 
       //void EnableHtmlHelp();
 
 
-      //virtual int sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::string & pszTitle, class ::time timeTimeout,unsigned int fuStyle = e_message_box_ok) override;
-      //virtual int sync_message_box(::user::interaction_base * puiOwner,const ::string & pszMessage, const ::string & pszTitle, unsigned int fuStyle = e_message_box_ok) override;
+      //virtual int sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::scoped_string & scopedstrTitle, class ::time timeTimeout,unsigned int fuStyle = e_message_box_ok) override;
+      //virtual int sync_message_box(::user::interaction_base * puiOwner,const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int fuStyle = e_message_box_ok) override;
 
 
       //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override;
@@ -1116,14 +1116,14 @@ namespace apex
 
 
       //virtual bool on_install() override;
-      //virtual bool on_application_menu_action(const ::string & pszCommand) override;
+      //virtual bool on_application_menu_action(const ::scoped_string & scopedstrCommand) override;
 
 
       //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle,::menu::item * pitem) override;
 
       // set regsitry key name to be used by application's
       // profile member functions; prevents writing to an INI spfile->
-      //void SetRegistryKey(const ::string & pszRegistryKey);
+      //void SetRegistryKey(const ::scoped_string & scopedstrRegistryKey);
 
       //void SetRegistryKey(unsigned int nIDRegistryKey);
 
@@ -1166,7 +1166,7 @@ namespace apex
       //virtual void close(::apex::e_end eend) override; // close documents before exiting
 
       // Advanced: to override message boxes and other hooks
-      //virtual int DoMessageBox(const ::string & pszPrompt,unsigned int nType,unsigned int nIDPrompt);
+      //virtual int DoMessageBox(const ::scoped_string & scopedstrPrompt,unsigned int nType,unsigned int nIDPrompt);
 
 
       // Advanced: process async DDE request
@@ -1205,7 +1205,7 @@ namespace apex
       //      virtual ::pointer<::apex::application>create_platform(::apex::session* psession);
 
 
-      virtual ::pointer<::progress::real> show_progress(::user::interaction* puiParent, const ::string& strTitle,
+      virtual ::pointer<::progress::real> show_progress(::user::interaction* puiParent, const ::scoped_string & scopedstrTitle,
                                                         ::collection::count iProgressCount) override;
 
 
@@ -1225,7 +1225,7 @@ namespace apex
       virtual void create_impact_system() override;
 
 
-      virtual void on_song_added(const string& str) override;
+      virtual void on_song_added(const ::scoped_string & scopedstr) override;
 
 
       //string get_visual_studio_build();
@@ -1260,11 +1260,11 @@ namespace apex
                                                  ::networking::application_handler*
                                                  papplicationhandlerCreateNetworkApplication = nullptr) override;
 
-      ::e_status on_html_response(::networking::application_socket* psocket, ::string& strHtml, const ::string& strUrl,
+      ::e_status on_html_response(::networking::application_socket* psocket, ::string& strHtml, const ::scoped_string & scopedstrUrl,
                                   const ::property_set& setPost) override;
 
 
-      bool _handle_uri(const ::string& strUri) override;
+      bool _handle_uri(const ::scoped_string & scopedstrUri) override;
 
 
       //bool on_interprocess_handle(const ::scoped_string & scopedstrUri) override;

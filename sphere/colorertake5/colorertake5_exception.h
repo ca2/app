@@ -16,7 +16,7 @@ namespace colorertake5
    {
    public:
 
-      exception(const ::string & pszMessage = nullptr);
+      exception(const ::scoped_string & scopedstrMessage = nullptr);
       virtual ~exception();
 
    };

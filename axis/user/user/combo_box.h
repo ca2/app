@@ -82,11 +82,11 @@ namespace user
 
 
       //virtual void get_text(string & str) override;
-      //virtual void set_text(const ::string & str, const ::action_context & action_context) override;
+      //virtual void set_text(const ::scoped_string & scopedstr, const ::action_context & action_context) override;
 
 
       virtual bool _001GetListText(::collection::index iSel, string & str) const;
-      virtual ::collection::index _001FindListText(const ::string & str) const;
+      virtual ::collection::index _001FindListText(const ::scoped_string & scopedstr) const;
       virtual ::collection::count _001GetListCount() const;
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
@@ -184,7 +184,7 @@ namespace user
 
       int SetItemHeight(::collection::index nIndex, unsigned int cyItemHeight);
       int GetItemHeight(::collection::index nIndex);
-      ::collection::index FindStringExact(::collection::index nIndexStart, const ::string & pszFind);
+      ::collection::index FindStringExact(::collection::index nIndexStart, const ::scoped_string & scopedstrFind);
 
       int SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
@@ -197,17 +197,17 @@ namespace user
       void ShowDropDown(bool bShowIt = true);
 
       // manipulating listbox items
-      //virtual ::collection::index add_string(const ::string & pszString, uptr dwItemData = 0);
-      //virtual ::collection::index add_string(const ::string & pszString, const string& strValue);
+      //virtual ::collection::index add_string(const ::scoped_string & scopedstrString, uptr dwItemData = 0);
+      //virtual ::collection::index add_string(const ::scoped_string & scopedstrString, const ::scoped_string & scopedstrValue);
 
       virtual ::collection::index add_item(const ::scoped_string & scopedstr, const ::atom & atom);
 
 
       virtual ::collection::index erase_item_at(::collection::index nIndex);
-      virtual ::collection::index insert_item_at(::collection::index nIndex, const ::string & pszString);
+      virtual ::collection::index insert_item_at(::collection::index nIndex, const ::scoped_string & scopedstrString);
 
       virtual void reset_content();
-      ::collection::index Dir(::collection::index attr, const ::string & pszWildCard);
+      ::collection::index Dir(::collection::index attr, const ::scoped_string & scopedstrWildCard);
 
 
 

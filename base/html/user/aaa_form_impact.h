@@ -23,9 +23,9 @@ public:
 
    string GetLocationURL();
    bool Refresh2(int i);
-   bool browse(const ::string & pszUrl) override;
+   bool browse(const ::scoped_string & scopedstrUrl) override;
 
-   virtual void on_document_complete(const ::string & strUrl);
+   virtual void on_document_complete(const ::scoped_string & scopedstrUrl);
 
    void install_message_routing(::channel * pchannel) override;
    bool pre_create_window(::user::system * pusersystem) override;

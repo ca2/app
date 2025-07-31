@@ -70,7 +70,7 @@ namespace app_build
    }
 
 
-   void build::write_log(const ::string & str)
+   void build::write_log(const ::scoped_string & scopedstr)
    {
 
 

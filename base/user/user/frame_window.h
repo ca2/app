@@ -161,15 +161,15 @@ namespace user
       void _001OnNcDraw(::draw2d::graphics_pointer &pgraphics) override;
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool LoadAccelTable(const ::string & pszResourceName);
+      bool LoadAccelTable(const ::scoped_string & scopedstrResourceName);
 
-      //virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, unsigned int uStyle, const ::int_rectangle & rectangle = nullptr, ::user::interaction * puiParent = nullptr, const ::string & pszMenuName = nullptr, unsigned int dwExStyle = 0, ::request * prequest = nullptr);
+      //virtual bool create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, const ::int_rectangle & rectangle = nullptr, ::user::interaction * puiParent = nullptr, const ::scoped_string & scopedstrMenuName = nullptr, unsigned int dwExStyle = 0, ::request * prequest = nullptr);
 
       
       ::string calculate_data_key() override;
 
 
-      virtual bool LoadFrame(const ::string & pszMatter,
+      virtual bool LoadFrame(const ::scoped_string & scopedstrMatter,
                              //unsigned int dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
                               unsigned int dwDefaultStyle = FWS_ADDTOTITLE,
                               ::user::interaction * puiParent = nullptr,
@@ -186,23 +186,23 @@ namespace user
       void hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      virtual ::pointer<toolbar>get_toolbar(const ::atom & idToolBar, bool bCreate = true, const ::string & strToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP, const ::type_atom & typeatom = "user::toolbar");
+      virtual ::pointer<toolbar>get_toolbar(const ::atom & idToolBar, bool bCreate = true, const ::scoped_string & scopedstrToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP, const ::type_atom & typeatom = "user::toolbar");
 
 
-      virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP, const ::type_atom & typeatom = "user::toolbar") ;
+      virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP, const ::type_atom & typeatom = "user::toolbar") ;
 
       //   template < class TOOLBAR >
-      // bool load_toolbar(atom idToolBar, const ::string & pszToolBar,unsigned int dwCtrlStyle = TBSTYLE_FLAT,unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+      // bool load_toolbar(atom idToolBar, const ::scoped_string & scopedstrToolBar,unsigned int dwCtrlStyle = TBSTYLE_FLAT,unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
       template < class TOOLBAR >
-      void load_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP);
+      void load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP);
 
 
-      //   virtual bool load_toolbar(atom idToolBar, const ::string & pszToolBar, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override
+      //   virtual bool load_toolbar(atom idToolBar, const ::scoped_string & scopedstrToolBar, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override
       //   {
       //      return load_toolbar < ::user::toolbar >(idToolBar, pszToolBar, dwCtrlStyle, uStyle);
       //   }
 
-//      virtual void load_toolbar(const ::atom & idToolbar, const ::string & strToolBar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT,unsigned int uStyle = CBRS_ALIGN_TOP);
+//      virtual void load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolBar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT,unsigned int uStyle = CBRS_ALIGN_TOP);
 //      {
 //
 //         return load_toolbar < ::user::toolbar >(idToolbar, strToolBar, dwCtrlStyle, uStyle);
@@ -232,7 +232,7 @@ namespace user
       //bool _001FancyInitialFramePlacement(bool bForceRestore = false) override;
 
       // to set text of standard status bar
-      //void SetMessageText(const ::string & pszText);
+      //void SetMessageText(const ::scoped_string & scopedstrText);
 
       //void SetMessageText(unsigned int nID);
 
@@ -281,7 +281,7 @@ namespace user
       virtual void ExitHelpMode() override;
 
 
-      void UpdateFrameTitleForDocument(const ::string & pszDocName);
+      void UpdateFrameTitleForDocument(const ::scoped_string & scopedstrDocName);
 
       virtual bool pre_create_window(::user::system * pusersystem) override;
       //virtual bool OnCommand(WPARAM wParam, LPARAM lParam);

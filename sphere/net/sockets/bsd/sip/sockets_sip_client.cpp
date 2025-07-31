@@ -6,11 +6,11 @@ namespace sockets
 {
 
 
-   void sip_client::invite(const ::string & pszTo, const ::string & pszFrom)
+   void sip_client::invite(const ::scoped_string & scopedstrTo, const ::scoped_string & scopedstrFrom)
    {
 
-      __UNREFERENCED_PARAMETER(pszTo);
-      __UNREFERENCED_PARAMETER(pszFrom);
+      __UNREFERENCED_PARAMETER(scopedstrTo);
+      __UNREFERENCED_PARAMETER(scopedstrFrom);
       /*m_psocket = aaa_memory_new
       m_psocket->m_strTo = pszTo;
       m_psocket->m_strFrom = pszFrom;

@@ -36,8 +36,8 @@ namespace windows_common
             ~idn() override;
 
 
-            string idn_to_punycode(const ::string& str) override;
-            string idn_from_punycode(const ::string& str) override;
+            string idn_to_punycode(const ::scoped_string & scopedstr) override;
+            string idn_from_punycode(const ::scoped_string & scopedstr) override;
 
 
          };

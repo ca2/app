@@ -600,7 +600,7 @@ void property_set::_008AddArgumentPairs(::string_array & straArguments)
 }
 
 
-void property_set::_008AddArgumentOrFile(::payload & payloadFile, const ::string & strArgument)
+void property_set::_008AddArgumentOrFile(::payload & payloadFile, const ::scoped_string & scopedstrArgument)
 {
 
    auto range = strArgument();
@@ -642,7 +642,7 @@ void property_set::_008AddArgumentOrFile(::payload & payloadFile, const ::string
 }
 
 
-void property_set::_008AddArgument(const ::string & strArg)
+void property_set::_008AddArgument(const ::scoped_string & scopedstrArg)
 {
 
    auto range = strArg();
@@ -748,8 +748,8 @@ void property_set::_008Parse(bool bApp, const ::scoped_string & scopedstrCmdLine
 
    }
 
-   //string_array stra = get_c_args_for_c(pszCmdLine);
-   //string_array stra = get_c_args_from_c(pszCmdLine);
+   //string_array stra = get_c_args_for_c(scopedstrCmdLine);
+   //string_array stra = get_c_args_from_c(scopedstrCmdLine);
 
    auto range = scopedstrCmdLine();
 
@@ -813,7 +813,7 @@ void property_set::_008ParseArguments(bool bApp, ::string_array & straArguments,
 //void property_set_skip_network_payload(const char *& pszJson)
 //{
 //
-//   property_set_skip_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
+//   property_set_skip_network_payload(scopedstrJson, pszJson + strlen(scopedstrJson) - 1);
 //
 //}
 
@@ -886,7 +886,7 @@ void property_set_skip_network_payload(::ansi_range & range)
 }
 
 
-void property_set::parse_ini(const ::string & strIni)
+void property_set::parse_ini(const ::scoped_string & scopedstrIni)
 {
 
    string_array stra;
@@ -998,7 +998,7 @@ void property_set::parse_ini(const ::string & strIni)
 /// PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
 /// UBUNTU_CODENAME=kinetic
 /// LOGO=ubuntu-logo
-void property_set::parse_standard_configuration(const ::string & strStandardConfiguration)
+void property_set::parse_standard_configuration(const ::scoped_string & scopedstrStandardConfiguration)
 {
 
    ::string_array straLines;
@@ -1029,7 +1029,7 @@ void property_set::parse_standard_configuration(const ::string & strStandardConf
 }
 
 
-void property_set::parse_network_payload(const ::string & strNetworkPayload)
+void property_set::parse_network_payload(const ::scoped_string & scopedstrNetworkPayload)
 {
 
 // #ifdef LINUX
@@ -1058,7 +1058,7 @@ void property_set::parse_network_payload(const ::string & strNetworkPayload)
 //   uselocale(this->::system()->m_localeC);
 //#endif
 //
-//   parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
+//   parse_network_payload(scopedstrJson, pszJson + strlen(scopedstrJson) - 1);
 //
 //}
 
@@ -1206,7 +1206,7 @@ void property_set::parse_network_arguments(const ::scoped_string & scopedstrUriO
 
    auto pszNetworkArguments = scopedstrUriOrNetworkArguments.find('?');
 
-   if (::is_empty(pszNetworkArguments))
+   if (::is_empty(scopedstrNetworkArguments))
    {
 
       return _parse_network_arguments(scopedstrUriOrNetworkArguments);
@@ -1215,7 +1215,7 @@ void property_set::parse_network_arguments(const ::scoped_string & scopedstrUriO
    else
    {
 
-      return _parse_network_arguments(pszNetworkArguments + 1);
+      return _parse_network_arguments(scopedstrNetworkArguments + 1);
 
    }
 
@@ -1247,21 +1247,21 @@ void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNet
    while (true)
    {
 
-      pszArgumentEnd1 = ansi_chr(pszArgument, '&');
+      pszArgumentEnd1 = ansi_chr(scopedstrArgument, '&');
 
-      pszArgumentEnd2 = ansi_chr(pszArgument, '?');
+      pszArgumentEnd2 = ansi_chr(scopedstrArgument, '?');
 
-      pszArgumentEnd = ::minimum_non_null(pszArgumentEnd1, pszArgumentEnd2);
+      pszArgumentEnd = ::minimum_non_null(scopedstrArgumentEnd1, pszArgumentEnd2);
 
-      pszKeyEnd = ansi_chr(pszArgument, '=');
+      pszKeyEnd = ansi_chr(scopedstrArgument, '=');
 
-      if (pszArgumentEnd == nullptr)
+      if (scopedstrArgumentEnd == nullptr)
       {
 
-         if (pszKeyEnd == nullptr)
+         if (scopedstrKeyEnd == nullptr)
          {
 
-            strKey = ::url::decode({ pszArgument, scopedstrNetworkArguments.size() - (pszArgument - scopedstrNetworkArguments.begin()) });
+            strKey = ::url::decode({ pszArgument, scopedstrNetworkArguments.size() - (scopedstrArgument - scopedstrNetworkArguments.begin()) });
 
             _008Add(strKey, "");
 
@@ -1271,7 +1271,7 @@ void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNet
 
             string strKey = ::url::decode({ pszArgument, pszKeyEnd - pszArgument });
 
-            string strValue = ::url::decode({ pszKeyEnd + 1, scopedstrNetworkArguments.size() - (pszKeyEnd + 1 - scopedstrNetworkArguments.begin()) });
+            string strValue = ::url::decode({ pszKeyEnd + 1, scopedstrNetworkArguments.size() - (scopedstrKeyEnd + 1 - scopedstrNetworkArguments.begin()) });
 
             _008Add(strKey, strValue);
 
@@ -1281,7 +1281,7 @@ void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNet
 
       }
 
-      if (pszKeyEnd == nullptr || pszKeyEnd > pszArgumentEnd)
+      if (scopedstrKeyEnd == nullptr || pszKeyEnd > pszArgumentEnd)
       {
 
          strKey = ::url::decode({ pszArgument, pszArgumentEnd - pszArgument });
@@ -1294,7 +1294,7 @@ void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNet
 
          string strKey = ::url::decode({ pszArgument, pszKeyEnd - pszArgument });
 
-         string strValue = ::url::decode({ pszKeyEnd + 1, pszArgumentEnd - (pszKeyEnd + 1) });
+         string strValue = ::url::decode({ pszKeyEnd + 1, pszArgumentEnd - (scopedstrKeyEnd + 1) });
 
          _008Add(strKey, strValue);
 
@@ -1351,7 +1351,7 @@ void property_set::parse_network_headers(const ::scoped_string & scopedstrHeader
 }
 
 
-string property_set::_001Replace(const ::string & str) const
+string property_set::_001Replace(const ::scoped_string & scopedstr) const
 {
 
    return evaluate(str);
@@ -1395,7 +1395,7 @@ string property_set::_001Replace(const ::string & str) const
 
 //
 //
-//string property_set::eval(const ::string & strParam)
+//string property_set::eval(const ::scoped_string & scopedstrParam)
 //{
 //
 //   return property_ptra::eval(strParam);
@@ -1403,7 +1403,7 @@ string property_set::_001Replace(const ::string & str) const
 //}
 //
 //
-//string property_set::gen_eval(const ::string & str)
+//string property_set::gen_eval(const ::scoped_string & scopedstr)
 //{
 //
 //   ASSERT(str[0] == '$' && str.length() >= 2);
@@ -1413,7 +1413,7 @@ string property_set::_001Replace(const ::string & str) const
 //}
 //
 //
-//string property_set::gen_string(const string& str)
+//string property_set::gen_string(const ::scoped_string & scopedstr)
 //{
 //
 //   return operator[](str);
@@ -1490,7 +1490,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 //   for(const_iterator it = begin(); it != end(); it++)
 //   {
 //
-//      if(it->string().case_insensitive_order(psz) == 0)
+//      if(it->string().case_insensitive_order(scopedstr) == 0)
 //      {
 //
 //         return (property *) &it->m_var;
@@ -2448,7 +2448,7 @@ unsigned int property_set::get_unsigned_int(const atom & atom, unsigned int uDef
 
 
 
-::string property_set::get_string(const atom & atom, const ::string & strDefault) const
+::string property_set::get_string(const atom & atom, const ::scoped_string & scopedstrDefault) const
 {
 
    auto pproperty = lookup(atom);
@@ -2926,7 +2926,7 @@ bool property_set::is_true_or_empty(const atom & atom) const
 // str = "SELECT field1, field2, field3 FROM table1 WHERE table1.field5 = '$var5'"
 //
 // real-ization: "SELECT field1, field2, field3 FROM table1 WHERE table1.field5 = 'searching value'"
-string property_set::evaluate(const ::string & strSource) const
+string property_set::evaluate(const ::scoped_string & scopedstrSource) const
 {
 
    string str(strSource);
@@ -3054,7 +3054,7 @@ string property_set::evaluate(const ::string & strSource) const
 }
 
 
-bool property_set::get_evaluation(::string & str, const ::string & strExpression) const
+bool property_set::get_evaluation(::string & str, const ::scoped_string & scopedstrExpression) const
 {
 
    return get_string(str, strExpression);

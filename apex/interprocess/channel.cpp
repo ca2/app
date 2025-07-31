@@ -43,7 +43,7 @@ namespace interprocess
 
 
    // calls restart if confirm_tx failed
-   bool channel::ensure_caller(const ::string & strUri,const class time & timeTimeout)
+   bool channel::ensure_caller(const ::scoped_string & scopedstrUri,const class time & timeTimeout)
    {
 
       try
@@ -108,7 +108,7 @@ namespace interprocess
    //#ifdef WINDOWS
    //
    //
-   //      bool channel::open_ab(const ::string & pszKey, const ::string & pszModule, launcher * plauncher)
+   //      bool channel::open_ab(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrModule, launcher * plauncher)
    //      {
    //
    //         m_strChannel = pszKey;
@@ -138,7 +138,7 @@ namespace interprocess
    //      }
    //
 
-        /* bool channel::open_ba(const ::string & pszKey, const ::string & pszModule, launcher * plauncher)
+        /* bool channel::open_ba(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrModule, launcher * plauncher)
          {
 
             m_strChannel = pszKey;
@@ -170,7 +170,7 @@ namespace interprocess
    #else*/
 
 
-   bool channel::open_ab(const ::string & pszKey, launcher * plauncher)
+   bool channel::open_ab(const ::scoped_string & scopedstrKey, launcher * plauncher)
    {
 
       m_strChannel = pszKey;
@@ -190,7 +190,7 @@ namespace interprocess
    }
 
 
-   bool channel::open_ba(const ::string & pszKey, launcher * plauncher)
+   bool channel::open_ba(const ::scoped_string & scopedstrKey, launcher * plauncher)
    {
 
       m_strChannel = pszKey;

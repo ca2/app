@@ -532,7 +532,7 @@ namespace draw2d
    }
 
 
-   bool path::add_text_out(const ::double_point & point, const ::string & strText,::write_text::font_pointer pfont)
+   bool path::add_text_out(const ::double_point & point, const ::scoped_string & scopedstrText,::write_text::font_pointer pfont)
    {
 
       auto pitem = __create_new < ::geometry2d::text_out_item >();
@@ -561,7 +561,7 @@ namespace draw2d
    }
 
 
-   bool path::add_draw_text(const string& strText, const ::double_rectangle& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext , ::write_text::font_pointer pfont)
+   bool path::add_draw_text(const ::scoped_string & scopedstrText, const ::double_rectangle& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext , ::write_text::font_pointer pfont)
    {
 
       auto pitem = __create_new < ::geometry2d::draw_text_item >();

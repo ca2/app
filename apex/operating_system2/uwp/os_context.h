@@ -63,7 +63,7 @@ namespace universal_windows
       virtual void start_service() override;
       virtual void stop_service() override;
 
-      virtual bool resolve_link(string & strTarget, string & strFolder, string & strParams, const ::string & strSource, ::user::interaction_base * puiMessageParentOptional = nullptr);
+      virtual bool resolve_link(string & strTarget, string & strFolder, string & strParams, const ::scoped_string & scopedstrSource, ::user::interaction_base * puiMessageParentOptional = nullptr);
 
       virtual DECLSPEC_NO_RETURN void raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags = EXCEPTION_NONCONTINUABLE) override;
 

@@ -30,7 +30,7 @@ namespace graphics
 
       bool ipc_copy(const pixmap * ppixmap) override;
 
-      void set_bitmap_source(const string& strBitmapSource) override;
+      void set_bitmap_source(const ::scoped_string & scopedstrBitmapSource) override;
 
       void clear_bitmap_source() override;
 

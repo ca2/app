@@ -1655,7 +1655,7 @@ class __site
 {
 public:
 
-   CLASS_DECL_ACME ::string operator()(const string & str);
+   CLASS_DECL_ACME ::string operator()(const ::scoped_string & scopedstr);
 
 };
 

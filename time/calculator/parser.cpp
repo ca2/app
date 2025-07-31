@@ -77,7 +77,7 @@ namespace datetime
 
    }
 
-   //element * parser::parse(const ::string & psz)
+   //element * parser::parse(const ::scoped_string & scopedstr)
 /********************************************/
 /* Parsing functions */
 
@@ -90,12 +90,12 @@ namespace datetime
 */
 
 
-element * parser::parse(const ::string & psz)
+element * parser::parse(const ::scoped_string & scopedstr)
 {
 
    ::datetime::element *node;
 
-   m_pscanner->initialize_scanner(psz);
+   m_pscanner->initialize_scanner(scopedstr);
 
    node = expr(term(factor()));
 
@@ -275,11 +275,11 @@ element * parser::expr(::datetime::element * pelement1)
    
 
 
-   void parser::syntax_error(const ::string & psz)
+   void parser::syntax_error(const ::scoped_string & scopedstr)
    {
       error(string("syntax") + psz);
    }
-   void parser::error(const ::string & psz)
+   void parser::error(const ::scoped_string & scopedstr)
    {
       string str;
       str = "error: ";

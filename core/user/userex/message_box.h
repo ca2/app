@@ -20,7 +20,7 @@ namespace userex
       message_box();
 
       
-      virtual void on_show(const ::string & pszMatter) override;
+      virtual void on_show(const ::scoped_string & scopedstrMatter) override;
       virtual bool on_timeout() override;
       virtual void on_timer_soft_reload(const class time & tickTimeout) override;
 

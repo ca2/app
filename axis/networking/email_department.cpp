@@ -73,7 +73,7 @@ namespace networking
    }
 
 
-   bool email_department::syntax_is_valid(const ::string & strEmailAddress)
+   bool email_department::syntax_is_valid(const ::scoped_string & scopedstrEmailAddress)
    {
 
       auto iAt = strEmailAddress.find_index('@');
@@ -115,7 +115,7 @@ namespace networking
    }
 
 
-   bool email_department::is_valid_public_address(const string& strEmailAddress)
+   bool email_department::is_valid_public_address(const ::scoped_string & scopedstrEmailAddress)
    {
 
       auto iAt = strEmailAddress.find_index('@');

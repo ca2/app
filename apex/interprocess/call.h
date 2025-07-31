@@ -34,7 +34,7 @@ namespace interprocess
       string                                       m_strMember;
 
 
-      call(communication * pcommunication, const string & strApp, const string & strObject, const string & strMember);
+      call(communication * pcommunication, const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember);
       ~call() override;
 
       void set_auto_launch(bool bSet = true);

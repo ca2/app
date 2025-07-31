@@ -31,7 +31,7 @@ CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < ba
 //wstring::wstring(const ::scoped_string & scopedstr)
 //{
 //
-//   operator = (psz);
+//   operator = (scopedstr);
 //
 //}
 //
@@ -46,7 +46,7 @@ CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < ba
 //wstring::wstring(const unsigned char* psz, character_count iSize)
 //{
 //
-//   operator = ((const char*)string(psz, iSize));
+//   operator = ((const char*)string(scopedstr, iSize));
 //
 //}
 //
@@ -160,7 +160,7 @@ CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < ba
 //
 //wstring& wstring::operator = (const ::scoped_string & scopedstr)
 //{
-//   assign(psz);
+//   assign(scopedstr);
 //
 //   return *this;
 //
@@ -171,7 +171,7 @@ CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < ba
 //void wstring::assign(const ::scoped_string & scopedstr)
 //{
 //
-//   if (::is_null(psz) || *psz == '\0')
+//   if (::is_null(scopedstr) || *psz == '\0')
 //   {
 //
 //      natural_release();
@@ -180,7 +180,7 @@ CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < ba
 //
 //   }
 //
-//   auto character_count = utf16_len(psz);
+//   auto character_count = utf16_len(scopedstr);
 //
 //   auto pNew = create_meta_data(character_count + 1);
 //
@@ -231,7 +231,7 @@ CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < ba
 //
 //   wstring wstr;
 //
-//   ::collection::count iLen = utf16_len(psz);
+//   ::collection::count iLen = utf16_len(scopedstr);
 //
 //   if (iLen < 0)
 //      return wstr;
@@ -325,7 +325,7 @@ CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < ba
 //   const unichar* psz = m_psz + iStart;
 //   for (int i = 0; i < nCount; i++)
 //   {
-//      if (psz[i] == ch)
+//      if (scopedstr[i] == ch)
 //      {
 //         return iStart + i;
 //      }
@@ -337,9 +337,9 @@ CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < ba
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
-//   ASSERT(is_string_ok(pszSub));
+//   ASSERT(is_string_ok(scopedstrSub));
 //
-//   if (pszSub == nullptr)
+//   if (scopedstrSub == nullptr)
 //   {
 //      return(-1);
 //   }
@@ -350,7 +350,7 @@ CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < ba
 //      return(-1);
 //   }
 //
-//   character_count nLength2 = unilen(pszSub);
+//   character_count nLength2 = unilen(scopedstrSub);
 //
 //   if (nCount < 0)
 //      nCount = nLength;
@@ -368,7 +368,7 @@ CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < ba
 //      int j;
 //      for (j = 0; j < nLength2; j++)
 //      {
-//         if (psz[j] != pszSub[j])
+//         if (scopedstr[j] != pszSub[j])
 //         {
 //            bFound = false;
 //            break;
@@ -376,7 +376,7 @@ CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < ba
 //      }
 //      if (bFound && j == nLength2)
 //      {
-//         if (pszTail)
+//         if (scopedstrTail)
 //            *pszTail = &psz[j];
 //         return i + iStart;
 //      }

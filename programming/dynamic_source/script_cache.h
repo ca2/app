@@ -34,7 +34,7 @@ namespace dynamic_source
       void set_out_of_date(string str);
 
       //void cache(script * pscript);
-      ::pointer<ds_script>create_new_ds_script(const ::string & strName);
+      ::pointer<ds_script>create_new_ds_script(const ::scoped_string & scopedstrName);
       void uncache(script * pscript);
 
       script * get(const ::string & lpcszName);

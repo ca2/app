@@ -190,7 +190,7 @@ const char * particle::topic_text() const
 //
 //   auto pszName =  typeid(*this).name();
 //
-//   auto pszLastColon = strrchr(pszName, ':');
+//   auto pszLastColon = strrchr(scopedstrName, ':');
 //
 //   if(!pszLastColon)
 //   {
@@ -577,7 +577,7 @@ networking::networking* particle::networking() const
 }
 
 
-::factory::factory_pointer & particle::factory(const ::string & strLibrary) const
+::factory::factory_pointer & particle::factory(const ::scoped_string & scopedstrLibrary) const
 {
 
    return platform()->factory(strLibrary);
@@ -585,7 +585,7 @@ networking::networking* particle::networking() const
 }
 
 
-::factory::factory * particle::component_factory(const ::string& strComponent) const
+::factory::factory * particle::component_factory(const ::scoped_string & scopedstrComponent) const
 {
 
    return platform()->component_factory(strComponent);
@@ -593,7 +593,7 @@ networking::networking* particle::networking() const
 }
 
 
-::factory::factory_pointer& particle::factory(const ::string& strComponent, const ::string& strImplementation) const
+::factory::factory_pointer& particle::factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation) const
 {
 
    //informationf("particle::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
@@ -819,7 +819,7 @@ void particle::print_out(const ::scoped_string & scopedstr) const
 //
 //   va_start(arguments, pszFormat);
 //
-//   ::string strLine(pszFormat);
+//   ::string strLine(scopedstrFormat);
 //
 //   strLine += "\n";
 //
@@ -839,7 +839,7 @@ void particle::printf_line(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
    
-   ::string strLine(pszFormat);
+   ::string strLine(scopedstrFormat);
    
    strLine += "\n";
 
@@ -859,7 +859,7 @@ void particle::printf_out(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   vprintf(pszFormat, arguments);
+   vprintf(scopedstrFormat, arguments);
 
    va_end(arguments);
    
@@ -901,7 +901,7 @@ void particle::errf_line(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
    
-   ::string strLine(pszFormat);
+   ::string strLine(scopedstrFormat);
    
    strLine += "\n";
 
@@ -951,7 +951,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //{
 //
 //
-//   get_tracer()(m_papplication, etracelevel, etracecategory).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, etracelevel, etracecategory).format_output_arguments(scopedstrFormat, arguments);
 //
 //}
 
@@ -959,7 +959,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_information_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_papplication, e_trace_level_information, etracecategory).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_information, etracecategory).format_output_arguments(scopedstrFormat, arguments);
 //
 //}
 //
@@ -967,7 +967,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_warning_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_papplication, e_trace_level_warning, etracecategory).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_warning, etracecategory).format_output_arguments(scopedstrFormat, arguments);
 //
 //}
 //
@@ -975,7 +975,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_error_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_papplication, e_trace_level_error, etracecategory).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_error, etracecategory).format_output_arguments(scopedstrFormat, arguments);
 //
 //}
 //
@@ -983,7 +983,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_fatal_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_papplication, e_trace_level_fatal, etracecategory).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_fatal, etracecategory).format_output_arguments(scopedstrFormat, arguments);
 //
 //}
 //
@@ -993,7 +993,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_arguments(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_papplication, etracelevel, trace_category()).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, etracelevel, trace_category()).format_output_arguments(scopedstrFormat, arguments);
 //
 //}
 //
@@ -1001,7 +1001,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_information_arguments(const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_papplication, e_trace_level_information, trace_category()).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_information, trace_category()).format_output_arguments(scopedstrFormat, arguments);
 //
 //}
 //
@@ -1009,7 +1009,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_warning_arguments(const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_papplication, e_trace_level_warning, trace_category()).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_warning, trace_category()).format_output_arguments(scopedstrFormat, arguments);
 //
 //}
 //
@@ -1017,7 +1017,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_error_arguments(const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_papplication, e_trace_level_error, trace_category()).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_error, trace_category()).format_output_arguments(scopedstrFormat, arguments);
 //
 //}
 //
@@ -1025,7 +1025,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //void particle::trace_log_fatal_arguments(const ::ansi_character * pszFormat, va_list & arguments)
 //{
 //
-//   get_tracer()(m_papplication, e_trace_level_fatal, trace_category()).format_output_arguments(pszFormat, arguments);
+//   get_tracer()(m_papplication, e_trace_level_fatal, trace_category()).format_output_arguments(scopedstrFormat, arguments);
 //
 //}
 
@@ -1246,7 +1246,7 @@ void particle::formatf_trace(enum_trace_level etracelevel, const ::ansi_characte
 
    statement(etracelevel)(trace_category());
 
-   statement.formatf_output_arguments(pszFormat, arguments);
+   statement.formatf_output_arguments(scopedstrFormat, arguments);
 
 }
 
@@ -1264,7 +1264,7 @@ void particle::tracef(enum_trace_level etracelevel, const ::ansi_character * psz
 
        statement(etracelevel)(trace_category());
 
-       statement.formatf_output_arguments(pszFormat, arguments);
+       statement.formatf_output_arguments(scopedstrFormat, arguments);
 
     }
 
@@ -1830,7 +1830,7 @@ void particle::handle_item(::item * pmessage)
 }
 
 
-bool particle::_handle_uri(const ::string & strUri)
+bool particle::_handle_uri(const ::scoped_string & scopedstrUri)
 {
 
    return false;
@@ -1838,7 +1838,7 @@ bool particle::_handle_uri(const ::string & strUri)
 }
 
 
-bool particle::_handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
+bool particle::_handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
 {
 
    return false;
@@ -1846,14 +1846,14 @@ bool particle::_handle_call(::payload & payload, const ::string & strObject, con
 }
 
 
-//bool handler::_handle_call(::payload & payload, const ::string & strMember, ::property_set & propertyset)
+//bool handler::_handle_call(::payload & payload, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
 //{
 //
 //   return false;
 //
 //}
 
-//bool handler::handle_text_command(const ::string & strTextCommand)
+//bool handler::handle_text_command(const ::scoped_string & scopedstrTextCommand)
 //{
 //
 //   return false;
@@ -1870,7 +1870,7 @@ bool particle::_handle_call(::payload & payload, const ::string & strObject, con
 //}
 
 
-//bool handler::on_interprocess_handle(::interprocess::target * ptarget, const ::string & strUri)
+//bool handler::on_interprocess_handle(::interprocess::target * ptarget, const ::scoped_string & scopedstrUri)
 //{
 //
 //   return handle_uri(blockUri);
@@ -2116,7 +2116,7 @@ bool particle::should_run_async() const
 
 
 
-::pointer < ::message_box > particle::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+::pointer < ::message_box > particle::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
    return __initialize_new::message_box(strMessage, strTitle, emessagebox, strDetails, picon);
@@ -2124,7 +2124,7 @@ bool particle::should_run_async() const
 }
 
 
-::pointer < ::message_box > particle::message_box(const ::exception & exception, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+::pointer < ::message_box > particle::message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
    return __initialize_new::message_box(exception, strMessage, strTitle, emessagebox, strDetails, picon);
@@ -2250,7 +2250,7 @@ void particle::kick_idle()
 }
 //
 //
-//::pointer < ::message_box > particle::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
+//::pointer < ::message_box > particle::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //{
 //   
 //   ::micro::user * pmicrouser = nullptr;
@@ -2281,7 +2281,7 @@ void particle::kick_idle()
 //}
 
 
-//::pointer < ::message_box > particle::exception_message_box(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
+//::pointer < ::message_box > particle::exception_message_box(const ::exception& exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //{
 //
 //   return system()->micro_user()->exception_message_box(exception, strMessage, strTitle, emessagebox, strDetails, picon);
@@ -2289,7 +2289,7 @@ void particle::kick_idle()
 //}
 //
 //
-//::pointer < ::message_box > particle::message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
+//::pointer < ::message_box > particle::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //{
 //
 //   return system()->micro_user()->message_console(strMessage, strTitle, emessagebox, strDetails, picon);
@@ -2297,7 +2297,7 @@ void particle::kick_idle()
 //}
 //
 //
-//::pointer < ::message_box > particle::exception_message_console(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
+//::pointer < ::message_box > particle::exception_message_console(const ::exception& exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //{
 //
 //   return system()->micro_user()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails, picon);

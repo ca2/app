@@ -1535,7 +1535,7 @@ namespace acme
       //    // //
       //    // //   manual_reset_happening happening;
       //    // //
-      //    // //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
+      //    // //   pmessagebox->display(scopedstrMessage, pszTitle, emessagebox, pszDetails);
       //    // //
       //    // //   pmessagebox->m_functionClose = [&idResult, &happening](micro::window * pwindow)
       //    // //   {
@@ -1603,7 +1603,7 @@ namespace acme
 
          }
 
-         m_pacmeuserinteraction->_on_window_simple_action(pszActionName, puseractivationtoken);
+         m_pacmeuserinteraction->_on_window_simple_action(scopedstrActionName, puseractivationtoken);
 
       }
 

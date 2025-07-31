@@ -109,7 +109,7 @@ CLASS_DECL_ACME string_array get_c_args(int argc, char** argv);
 //          proc_pidinfo((pid_t) uiPid, PROC_PIDTASKALLINFO, SHOW_ZOMBIES, &info, sizeof(struct proc_taskallinfo));
 // return info.pbsd.pbi_comm;
 // )
-CLASS_DECL_ACME string_array command_arguments_from_command_line(const ::string & strCommandLine);
+CLASS_DECL_ACME string_array command_arguments_from_command_line(const ::scoped_string & scopedstrCommandLine);
 //#ifdef WINDOWS_DESKTOP
 //CLASS_DECL_ACME string ca2_command_line(hinstance hinstance);
 //#else

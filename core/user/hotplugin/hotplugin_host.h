@@ -45,7 +45,7 @@ namespace hotplugin
 
       virtual void redraw() override;
 
-      virtual bool open_link(const ::string & strLink,const string & pszTarget) override;
+      virtual bool open_link(const ::scoped_string & scopedstrLink,const ::scoped_string & scopedstrTarget) override;
       virtual bool reload_plugin() override;
 
       // Host location is not the updated url - if there is a way to update the url and
@@ -92,15 +92,15 @@ namespace hotplugin
       virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle) override;
 
 
-      virtual int start_app_install(const ::string & pszCommandLine);
+      virtual int start_app_install(const ::scoped_string & scopedstrCommandLine);
 
-      static int s_start_app_install(const ::string & pszCommandLine,::aura::application * papp,host * phost, plugin * pplugin = nullptr);
+      static int s_start_app_install(const ::scoped_string & scopedstrCommandLine,::aura::application * papp,host * phost, plugin * pplugin = nullptr);
 
-      int start_app_install(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
+      int start_app_install(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
 
-      static int s_host_starter_start_sync(const ::string & pszCommandLine,::aura::application * papp,host * phost,plugin * pplugin = nullptr);
+      static int s_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine,::aura::application * papp,host * phost,plugin * pplugin = nullptr);
 
-      int host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
+      int host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
 
       virtual void deferred_prodevian_redraw() override;
 
@@ -114,7 +114,7 @@ namespace hotplugin
 
       virtual bool is_ca2_installation_ready();
 
-      virtual void set_status(const ::string & pszStatus) override;
+      virtual void set_status(const ::scoped_string & scopedstrStatus) override;
 
       virtual void set_bitmap(::draw2d::graphics * pimage, const ::int_rectangle & rectangle);
 

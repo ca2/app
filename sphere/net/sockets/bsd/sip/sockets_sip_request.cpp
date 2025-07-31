@@ -35,10 +35,10 @@ namespace sip
    }
 
 
-   void request::add_cookie(const ::string & pszSetCookie)
+   void request::add_cookie(const ::scoped_string & scopedstrSetCookie)
    {
 
-      m_cookies.add(pszSetCookie);
+      m_cookies.add(scopedstrSetCookie);
 
    }
 

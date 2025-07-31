@@ -82,7 +82,7 @@
 //CLASS_DECL_APEX int_bool file_copy_dup(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrSrc, int_bool bOverwrite)
 //{
 //
-//   string strNew(pszNew);
+//   string strNew(scopedstrNew);
 //
 //   if (strNew.length() >= MAX_PATH)
 //   {
@@ -91,7 +91,7 @@
 //
 //   }
 //
-//   string strSrc(pszSrc);
+//   string strSrc(scopedstrSrc);
 //
 //   if (strSrc.length() >= MAX_PATH)
 //   {

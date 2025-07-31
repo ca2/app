@@ -109,7 +109,7 @@ tracer::~tracer()
 //
 //   va_start(arguments, psz);
 //
-//   get_tracer()(::get_task()->m_papplication, e_trace_level_information).format_output_arguments(psz, arguments);
+//   get_tracer()(::get_task()->m_papplication, e_trace_level_information).format_output_arguments(scopedstr, arguments);
 //
 //   va_end(arguments);
 //
@@ -123,7 +123,7 @@ tracer::~tracer()
 //
 //   va_start(arguments, psz);
 //
-//   get_tracer()(::get_task()->m_papplication, e_trace_level_warning).format_output_arguments(psz, arguments);
+//   get_tracer()(::get_task()->m_papplication, e_trace_level_warning).format_output_arguments(scopedstr, arguments);
 //
 //   va_end(arguments);
 //
@@ -137,7 +137,7 @@ tracer::~tracer()
 //
 //   va_start(arguments, psz);
 //
-//   get_tracer()(::get_task()->m_papplication, e_trace_level_error).format_output_arguments(psz, arguments);
+//   get_tracer()(::get_task()->m_papplication, e_trace_level_error).format_output_arguments(scopedstr, arguments);
 //
 //   va_end(arguments);
 //
@@ -151,7 +151,7 @@ tracer::~tracer()
 //
 //   va_start(arguments, psz);
 //
-//   get_tracer()(::get_task()->m_papplication, e_trace_level_fatal).format_output_arguments(psz, arguments);
+//   get_tracer()(::get_task()->m_papplication, e_trace_level_fatal).format_output_arguments(scopedstr, arguments);
 //
 //   va_end(arguments);
 //

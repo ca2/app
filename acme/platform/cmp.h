@@ -424,14 +424,14 @@ inline int icmp(const TYPE1 & t1,const TYPE2 & t2)
 }
 
 template < >
-inline int cmp(const ::string & str1, const ::string & str2)
+inline int cmp(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 {
    return str1.compare(str2);
 }
 
 
 template < >
-inline int icmp(const ::string & str1,const ::string & str2)
+inline int icmp(const ::scoped_string & scopedstr1,const ::scoped_string & scopedstr2)
 {
    return str1.case_insensitive_order(str2);
 }

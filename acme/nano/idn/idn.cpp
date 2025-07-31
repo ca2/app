@@ -23,7 +23,7 @@ namespace nano
       }
 
 
-      ::string idn::idn_to_punycode(const ::string & str)
+      ::string idn::idn_to_punycode(const ::scoped_string & scopedstr)
       {
 
          return ::transfer(str);
@@ -31,7 +31,7 @@ namespace nano
       }
 
 
-      ::string idn::idn_from_punycode(const ::string & str)
+      ::string idn::idn_from_punycode(const ::scoped_string & scopedstr)
       {
 
          return ::transfer(str);

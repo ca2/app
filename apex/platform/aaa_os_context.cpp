@@ -155,7 +155,7 @@
 //   }
 //
 //
-//   void os_context::link_open(const string & strUrl, const string & strProfile)
+//   void os_context::link_open(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile)
 //   {
 //
 //      node()->open_url(strUrl);
@@ -172,10 +172,10 @@
 //   }
 //
 //
-//   void os_context::local_machine_set_run(const ::string & pszKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+//   void os_context::local_machine_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(pszKey);
+//      __UNREFERENCED_PARAMETER(scopedstrKey);
 //      __UNREFERENCED_PARAMETER(pathExecutable);
 //
 //      //return false;
@@ -183,10 +183,10 @@
 //   }
 //
 //
-//   void os_context::local_machine_set_run_once(const ::string & pszKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+//   void os_context::local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(pszKey);
+//      __UNREFERENCED_PARAMETER(scopedstrKey);
 //      __UNREFERENCED_PARAMETER(pathExecutable);
 //
 //      //return false;
@@ -194,10 +194,10 @@
 //   }
 //
 //
-//   void os_context::current_user_set_run(const ::string & pszKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+//   void os_context::current_user_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(pszKey);
+//      __UNREFERENCED_PARAMETER(scopedstrKey);
 //      __UNREFERENCED_PARAMETER(pathExecutable);
 //
 //      //return false;
@@ -205,10 +205,10 @@
 //   }
 //
 //
-//   void os_context::current_user_set_run_once(const ::string & pszKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+//   void os_context::current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(pszKey);
+//      __UNREFERENCED_PARAMETER(scopedstrKey);
 //      __UNREFERENCED_PARAMETER(pathExecutable);
 //
 //      //return false;
@@ -224,57 +224,57 @@
 //   }
 //
 //
-//   void os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension)
+//   void os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(straKey);
-//      __UNREFERENCED_PARAMETER(pszExtension);
+//      __UNREFERENCED_PARAMETER(scopedstrExtension);
 //
 //      //return false;
 //
 //   }
 //
 //
-//   void os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension)
+//   void os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(straCommand);
-//      __UNREFERENCED_PARAMETER(pszExtension);
+//      __UNREFERENCED_PARAMETER(scopedstrExtension);
 //
 //      //return false;
 //
 //   }
 //
 //
-//   void os_context::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
+//   void os_context::file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrIconPath)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(pszExtension);
-//      __UNREFERENCED_PARAMETER(pszExtensionNamingClass);
-//      __UNREFERENCED_PARAMETER(pszIconPath);
+//      __UNREFERENCED_PARAMETER(scopedstrExtension);
+//      __UNREFERENCED_PARAMETER(scopedstrExtensionNamingClass);
+//      __UNREFERENCED_PARAMETER(scopedstrIconPath);
 //
 //      //return false;
 //
 //   }
 //
 //
-//   void os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::string & pszCommand, const ::string & pszParam)
+//   void os_context::file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass,  const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(pszExtension);
-//      __UNREFERENCED_PARAMETER(pszExtensionNamingClass);
-//      __UNREFERENCED_PARAMETER(pszCommand);
-//      __UNREFERENCED_PARAMETER(pszParam);
+//      __UNREFERENCED_PARAMETER(scopedstrExtension);
+//      __UNREFERENCED_PARAMETER(scopedstrExtensionNamingClass);
+//      __UNREFERENCED_PARAMETER(scopedstrCommand);
+//      __UNREFERENCED_PARAMETER(scopedstrParam);
 //
 //      //return false;
 //
 //   }
 //
 //
-//   void os_context::file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+//   void os_context::file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(pszExtension);
+//      __UNREFERENCED_PARAMETER(scopedstrExtension);
 //      __UNREFERENCED_PARAMETER(strExtensionNamingClass);
 //      __UNREFERENCED_PARAMETER(strCommand);
 //      __UNREFERENCED_PARAMETER(strParam);
@@ -360,7 +360,7 @@
 //   }
 //
 //
-//   void os_context::enable_service(const ::string & strServiceName,const ::string & strDisplayName,const ::string & strCommand,const ::string & strUser,const ::string & strPass)
+//   void os_context::enable_service(const ::scoped_string & scopedstrServiceName,const ::scoped_string & scopedstrDisplayName,const ::scoped_string & scopedstrCommand,const ::scoped_string & scopedstrUser,const ::scoped_string & scopedstrPass)
 //   {
 //
 //
@@ -370,7 +370,7 @@
 //   }
 //
 //
-//   void os_context::disable_service(const ::string & strServiceName)
+//   void os_context::disable_service(const ::scoped_string & scopedstrServiceName)
 //   {
 //
 //
@@ -380,7 +380,7 @@
 //   }
 //
 //
-//   void os_context::start_service(const ::string & strServiceName)
+//   void os_context::start_service(const ::scoped_string & scopedstrServiceName)
 //   {
 //
 //
@@ -390,7 +390,7 @@
 //   }
 //
 //
-//   void os_context::stop_service(const ::string & strServiceName)
+//   void os_context::stop_service(const ::scoped_string & scopedstrServiceName)
 //   {
 //
 //
@@ -519,7 +519,7 @@
 ////
 ////
 ////
-////      if (::is_null(psz))
+////      if (::is_null(scopedstr))
 ////      {
 ////
 ////         return false;
@@ -529,19 +529,19 @@
 ////
 ////
 ////
-////      char* pszRealPath = ::realpath(psz, NULL);
+////      char* pszRealPath = ::realpath(scopedstr, NULL);
 ////
-////      if (pszRealPath == NULL)
+////      if (scopedstrRealPath == NULL)
 ////      {
 ////
 ////         return false;
 ////
 ////      }
 ////
-////      if (strcmp(psz, pszRealPath) == 0)
+////      if (strcmp(scopedstr, pszRealPath) == 0)
 ////      {
 ////
-////         ::free(pszRealPath);
+////         ::free(scopedstrRealPath);
 ////
 ////         return false;
 ////
@@ -558,7 +558,7 @@
 ////
 ////      }
 ////
-////      ::free(pszRealPath);
+////      ::free(scopedstrRealPath);
 ////
 ////      return true;
 ////
@@ -711,7 +711,7 @@
 //   }
 //
 //
-//   void os_context::file_open(const ::file::path & pathTarget, const ::string & strParams, const ::file::path & pathFolder)
+//   void os_context::file_open(const ::file::path & pathTarget, const ::scoped_string & scopedstrParams, const ::file::path & pathFolder)
 //   {
 //
 //      throw ::interface_only();
@@ -719,7 +719,7 @@
 //   }
 //
 //
-//   void os_context::hidden_start(const ::file::path& pathTarget, const ::string& strParams, const ::file::path& pathFolder)
+//   void os_context::hidden_start(const ::file::path& pathTarget, const ::scoped_string & scopedstrParams, const ::file::path& pathFolder)
 //   {
 //
 //      throw ::interface_only();
@@ -727,7 +727,7 @@
 //   }
 //
 //
-//   void os_context::hidden_run(const class time & timeWait, const ::file::path& pathTarget, const ::string& strParams, const ::file::path& pathFolder)
+//   void os_context::hidden_run(const class time & timeWait, const ::file::path& pathTarget, const ::scoped_string & scopedstrParams, const ::file::path& pathFolder)
 //   {
 //
 //      throw ::interface_only();
@@ -803,7 +803,7 @@
 //   }
 //
 //
-//   void os_context::register_user_auto_start(const string & strAppId, const ::file::path & pathExecutable, const string & strArguments, bool bRegister)
+//   void os_context::register_user_auto_start(const ::scoped_string & scopedstrAppId, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bRegister)
 //   {
 //
 //      throw interface_only();
@@ -811,7 +811,7 @@
 //   }
 //
 //
-//   bool os_context::is_user_auto_start(const string & strAppId)
+//   bool os_context::is_user_auto_start(const ::scoped_string & scopedstrAppId)
 //   {
 //
 //      throw interface_only();
@@ -821,7 +821,7 @@
 //   }
 //
 //
-//   ::file::path os_context::get_app_path(const ::string & strApp)
+//   ::file::path os_context::get_app_path(const ::scoped_string & scopedstrApp)
 //   {
 //
 //      return strApp;
@@ -918,14 +918,14 @@
 //}
 //
 //
-//void os_context::set_this_application_as_default_for_file_extension(const ::string& strExtension)
+//void os_context::set_this_application_as_default_for_file_extension(const ::scoped_string & scopedstrExtension)
 //{
 //
 //
 //}
 //
 //
-//string os_context::get_file_extension_mime_type(const ::string & strExtension)
+//string os_context::get_file_extension_mime_type(const ::scoped_string & scopedstrExtension)
 //{
 //
 //   if (strExtension == "iso")

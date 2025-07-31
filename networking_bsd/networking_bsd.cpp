@@ -418,19 +418,19 @@ struct c_in_addr
 //
 //   char * psz = str.get_buffer(20);
 //
-//   ansi_concatenate_long_long(psz, b1);
+//   ansi_concatenate_long_long(scopedstr, b1);
 //
-//   ansi_concatenate(psz, ".");
+//   ansi_concatenate(scopedstr, ".");
 //
-//   ansi_concatenate_long_long(psz, b2);
+//   ansi_concatenate_long_long(scopedstr, b2);
 //
-//   ansi_concatenate(psz, ".");
+//   ansi_concatenate(scopedstr, ".");
 //
-//   ansi_concatenate_long_long(psz, b3);
+//   ansi_concatenate_long_long(scopedstr, b3);
 //
-//   ansi_concatenate(psz, ".");
+//   ansi_concatenate(scopedstr, ".");
 //
-//   ansi_concatenate_long_long(psz, b4);
+//   ansi_concatenate_long_long(scopedstr, b4);
 //
 //   str.release_buffer();
 //

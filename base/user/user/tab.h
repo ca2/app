@@ -37,7 +37,7 @@ namespace user
 
          string m_strHint;
 
-         erase_tab_exception(const ::string & pszHint)
+         erase_tab_exception(const ::scoped_string & scopedstrHint)
          {
             m_strHint = pszHint;
          }
@@ -180,13 +180,13 @@ namespace user
 
       virtual void GetTabClientRect(::long_long_rectangle & rectangle);
 
-      virtual bool add_tab(const ::string & strName, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
+      virtual bool add_tab(const ::scoped_string & scopedstrName, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
 
       virtual bool set_tab(const ::string & pcsz, const ::atom & idTab = nullptr, bool bVisible = true);
 
-      virtual bool add_tab_with_icon(const ::string & strName, const ::string & strImage, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
+      virtual bool add_tab_with_icon(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrImage, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
 
-      virtual bool set_tab_with_icon(const ::string & pcsz, const ::string & pszImage, const ::atom & idTab = nullptr, bool bVisible = true);
+      virtual bool set_tab_with_icon(const ::string & pcsz, const ::scoped_string & scopedstrImage, const ::atom & idTab = nullptr, bool bVisible = true);
 
       virtual bool erase_tab_by_id(const ::atom & idTab);
       virtual void erase_tab(::collection::index iTab, bool bVisible = true);
@@ -199,8 +199,8 @@ namespace user
       virtual bool hide_place_holder_by_id(const ::atom & atomTab);
 
 
-      virtual bool set_title(::collection::index iTab, const ::string & psz);
-      virtual bool set_title_by_id(const ::atom & idTab, const ::string & psz);
+      virtual bool set_title(::collection::index iTab, const ::scoped_string & scopedstr);
+      virtual bool set_title_by_id(const ::atom & idTab, const ::scoped_string & scopedstr);
 
 
       virtual ::collection::index find_child_pane(::user::interaction * pinteraction);
@@ -232,13 +232,13 @@ namespace user
 
       virtual void get_text_id(string_array & stra);
 
-      virtual void get_prefixed_ci_id(string_array & stra, const ::string & pszPrefix);
-      virtual void get_suffixed_ci_id(string_array & stra, const ::string & pszSuffix);
-      virtual void get_presuffixed_ci_id(string_array & stra, const ::string & pszPrefix, const ::string & pszSuffixed);
+      virtual void get_prefixed_ci_id(string_array & stra, const ::scoped_string & scopedstrPrefix);
+      virtual void get_suffixed_ci_id(string_array & stra, const ::scoped_string & scopedstrSuffix);
+      virtual void get_presuffixed_ci_id(string_array & stra, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffixed);
 
-      virtual void get_begins_ci_eat_id(string_array & stra, const ::string & pszPrefix);
-      virtual void get_ends_ci_eat_id(string_array & stra, const ::string & pszSuffix);
-      virtual void get_begins_ends_ci_eat_id(string_array & stra, const ::string & pszPrefix, const ::string & pszSuffixed);
+      virtual void get_begins_ci_eat_id(string_array & stra, const ::scoped_string & scopedstrPrefix);
+      virtual void get_ends_ci_eat_id(string_array & stra, const ::scoped_string & scopedstrSuffix);
+      virtual void get_begins_ends_ci_eat_id(string_array & stra, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffixed);
 
       virtual void _001ConnectParent(::channel * pchannel);
 

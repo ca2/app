@@ -191,7 +191,7 @@ Atom osdisplay_data::intern_atom(const ::scoped_string & scopedstrAtomName, bool
    if(atom == None)
    {
 
-      windowing_output_debug_string("ERROR: cannot find atom for " + string(pszAtomName) + "\n");
+      windowing_output_debug_string("ERROR: cannot find atom for " + string(scopedstrAtomName) + "\n");
 
       return None;
 

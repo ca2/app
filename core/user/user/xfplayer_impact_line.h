@@ -124,7 +124,7 @@ public:
 
    void embossed_text_out(
    ::draw2d::graphics_pointer & pgraphics,
-   const string & str,
+   const ::scoped_string & scopedstr,
 
    int left,
    int top,

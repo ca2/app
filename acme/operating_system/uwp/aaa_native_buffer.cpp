@@ -104,7 +104,7 @@ CLASS_DECL_ACME ::winrt::Windows::Storage::StorageFolder ^ winrt_folder(string &
 }
 
 
-CLASS_DECL_ACME ::winrt::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::string & strFolder, string & strPrefix)
+CLASS_DECL_ACME ::winrt::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::scoped_string & scopedstrFolder, string & strPrefix)
 {
 
    string strPath = strFolder;
@@ -136,7 +136,7 @@ CLASS_DECL_ACME ::winrt::Windows::Storage::StorageFolder ^ winrt_get_folder(cons
 }
 
 
-CLASS_DECL_ACME::winrt::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::string & strFolder)
+CLASS_DECL_ACME::winrt::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::scoped_string & scopedstrFolder)
 {
 
    string strPrefix;
@@ -146,7 +146,7 @@ CLASS_DECL_ACME::winrt::Windows::Storage::StorageFolder ^ winrt_get_folder(const
 }
 
 
-CLASS_DECL_ACME ::winrt::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::string & strFolder, string & strPrefix, string & strRelative)
+CLASS_DECL_ACME ::winrt::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::scoped_string & scopedstrFolder, string & strPrefix, string & strRelative)
 {
 
    string strPath = strFolder;
@@ -189,7 +189,7 @@ namespace universal_windows
       // attempt to fully qualify path first
       wstring wstrFullName;
       wstring wstrnative_bufferName;
-      wstrnative_bufferName = utf8_to_unicode(pszfileName);
+      wstrnative_bufferName = utf8_to_unicode(scopedstrfileName);
 
       if (!windows_full_path(wstrFullName, wstrnative_bufferName))
       {

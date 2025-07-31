@@ -52,7 +52,7 @@ db_server::~db_server()
 }
 
 
-bool db_server::initialize_user(::simpledb::database * pmysqldbUser, const ::string & pszUser)
+bool db_server::initialize_user(::simpledb::database * pmysqldbUser, const ::scoped_string & scopedstrUser)
 {
 
    if(pmysqldbUser == nullptr)

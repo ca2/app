@@ -19,7 +19,7 @@
 //
 //   int iLen;
 //
-//   return unicode_index_length(pszUtf8, iLen);
+//   return unicode_index_length(scopedstrUtf8, iLen);
 //
 //}
 //

@@ -49,7 +49,7 @@ int create_process2(const char * _cmd_line, int * pprocessId);
 //
 //   unsigned int size = 1024;
 //
-//   if(_NSGetExecutablePath(psz, &size) == 0)
+//   if(_NSGetExecutablePath(scopedstr, &size) == 0)
 //
 //   {
 //
@@ -62,7 +62,7 @@ int create_process2(const char * _cmd_line, int * pprocessId);
 //      psz = str.get_buffer(size);
 //
 //
-//      if(_NSGetExecutablePath(psz, &size) == 0)
+//      if(_NSGetExecutablePath(scopedstr, &size) == 0)
 //
 //      {
 //

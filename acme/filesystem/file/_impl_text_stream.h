@@ -5,12 +5,12 @@
 inline ::string ellipsis(const ::ansi_character * psz, character_count len)
 {
 
-   auto lenTotal = string_safe_length(psz, len);
+   auto lenTotal = string_safe_length(scopedstr, len);
 
    if (lenTotal < 0)
    {
 
-      return ::string(psz, len - 3) + "...";
+      return ::string(scopedstr, len - 3) + "...";
 
    }
    else
@@ -29,19 +29,19 @@ inline unsigned long long consume_natural(const char*& psz, const ::ansi_charact
 
    char* endptr = nullptr;
 
-   auto u = strtoull(psz, &endptr, iRadix);
+   auto u = strtoull(scopedstr, &endptr, iRadix);
 
    if (!endptr)
    {
 
-      if (::is_null(pszBegin))
+      if (::is_null(scopedstrBegin))
       {
 
          pszBegin = psz;
 
       }
 
-      throw_exception(error_premature_end_of_file, "not natural number near \"" + ellipsis(maximum(psz - 10, pszBegin), 20) + "\"");
+      throw_exception(error_premature_end_of_file, "not natural number near \"" + ellipsis(maximum(scopedstr - 10, pszBegin), 20) + "\"");
 
    }
 
@@ -58,19 +58,19 @@ inline long long consume_integer(const char * & psz, const ::ansi_character * ps
 
    char* endptr = nullptr;
 
-   auto i = strtoll(psz, &endptr, 10);
+   auto i = strtoll(scopedstr, &endptr, 10);
 
    if (!endptr)
    {
 
-      if (::is_null(pszBegin))
+      if (::is_null(scopedstrBegin))
       {
 
          pszBegin = psz;
 
       }
 
-      throw_exception(error_parsing, "not integer near \"" + ellipsis(maximum(psz - 10, pszBegin), 20) + "\"");
+      throw_exception(error_parsing, "not integer near \"" + ellipsis(maximum(scopedstr - 10, pszBegin), 20) + "\"");
 
    }
 
@@ -86,19 +86,19 @@ inline double consume_floating(const char*& psz, const ::ansi_character * pszBeg
 
    char* endptr = nullptr;
 
-   auto d = strtod(psz, &endptr);
+   auto d = strtod(scopedstr, &endptr);
 
    if (!endptr)
    {
 
-      if (::is_null(pszBegin))
+      if (::is_null(scopedstrBegin))
       {
 
          pszBegin = psz;
 
       }
 
-      throw_exception(error_premature_end_of_file, "not floating near \"" + ellipsis(maximum(psz - 10, pszBegin), 20) + "\"");
+      throw_exception(error_premature_end_of_file, "not floating near \"" + ellipsis(maximum(scopedstr - 10, pszBegin), 20) + "\"");
 
    }
 

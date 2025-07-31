@@ -39,7 +39,7 @@ namespace windowing
 
       printf_line("XDG_CURRENT_DESKTOP %s", pszDesktop);
 
-      string strDesktop(pszDesktop);
+      string strDesktop(scopedstrDesktop);
 
       if (strDesktop.case_insensitive_order("kde") == 0)
       {
@@ -96,10 +96,10 @@ namespace windowing
 
       // // uname(&name);
 
-      // if(pszDesktop != nullptr)
+      // if(scopedstrDesktop != nullptr)
       // {
 
-      //    if(strcasecmp(pszDesktop, "Unity") == 0)
+      //    if(strcasecmp(scopedstrDesktop, "Unity") == 0)
       //    {
 
       //       return ::windowing::e_operating_ambient_unity_gnome;

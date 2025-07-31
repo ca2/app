@@ -12,7 +12,7 @@ public:
 
 
    static_string(const TYPE_CHAR* psz) :
-      m_psz(psz)
+      m_psz(scopedstr)
    {
    }
 

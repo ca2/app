@@ -21,7 +21,7 @@ dialog::dialog()
 }
 
 
-dialog::dialog(const ::string & pszMatter, ::pointer<::user::interaction>puiParent)
+dialog::dialog(const ::scoped_string & scopedstrMatter, ::pointer<::user::interaction>puiParent)
 {
 
    initialize(puiParent);
@@ -66,10 +66,10 @@ void dialog::handle(::topic * ptopic, ::handler_context * phandlercontext)
 }
 
 
-bool dialog::show(const ::string & pszMatter)
+bool dialog::show(const ::scoped_string & scopedstrMatter)
 {
 
-   string strMatter(pszMatter);
+   string strMatter(scopedstrMatter);
 
    if(!case_insensitive_string_begins(strMatter, "matter://"))
    {
@@ -142,7 +142,7 @@ bool dialog::show(const ::string & pszMatter)
 }
 
 
-void dialog::on_show(const ::string & pszMatter)
+void dialog::on_show(const ::scoped_string & scopedstrMatter)
 {
 
    m_pform->set_need_redraw();

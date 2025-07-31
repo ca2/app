@@ -103,7 +103,7 @@ jfieldID os_object::field_d(const ::scoped_string & scopedstr)
 void os_object::set_str(const ::scoped_string & scopedstrField, const ::scoped_string & scopedstr)
 {
 
-   set_str(field_str(pszField), psz);
+   set_str(field_str(scopedstrField), psz);
 
 }
 
@@ -111,7 +111,7 @@ void os_object::set_str(const ::scoped_string & scopedstrField, const ::scoped_s
 string os_object::get_str(const ::scoped_string & scopedstrField)
 {
 
-   return get_str(field_str(pszField));
+   return get_str(field_str(scopedstrField));
 
 }
 
@@ -119,7 +119,7 @@ string os_object::get_str(const ::scoped_string & scopedstrField)
 void os_object::set_b(const ::scoped_string & scopedstrField, bool b)
 {
 
-   set_b(field_b(pszField), b);
+   set_b(field_b(scopedstrField), b);
 
 }
 
@@ -127,7 +127,7 @@ void os_object::set_b(const ::scoped_string & scopedstrField, bool b)
 bool os_object::get_b(const ::scoped_string & scopedstrField)
 {
 
-   return get_b(field_b(pszField));
+   return get_b(field_b(scopedstrField));
 
 }
 
@@ -136,7 +136,7 @@ bool os_object::get_b(const ::scoped_string & scopedstrField)
 void os_object::set_uch(const ::scoped_string & scopedstrField, unsigned char b)
 {
 
-   set_uch(field_uch(pszField), b);
+   set_uch(field_uch(scopedstrField), b);
 
 }
 
@@ -144,7 +144,7 @@ void os_object::set_uch(const ::scoped_string & scopedstrField, unsigned char b)
 unsigned char os_object::get_uch(const ::scoped_string & scopedstrField)
 {
 
-   return get_uch(field_uch(pszField));
+   return get_uch(field_uch(scopedstrField));
 
 }
 
@@ -153,7 +153,7 @@ unsigned char os_object::get_uch(const ::scoped_string & scopedstrField)
 void os_object::set_ch(const ::scoped_string & scopedstrField, char ch)
 {
 
-   set_ch(field_ch(pszField), ch);
+   set_ch(field_ch(scopedstrField), ch);
 
 }
 
@@ -161,7 +161,7 @@ void os_object::set_ch(const ::scoped_string & scopedstrField, char ch)
 char os_object::get_ch(const ::scoped_string & scopedstrField)
 {
 
-   return get_ch(field_ch(pszField));
+   return get_ch(field_ch(scopedstrField));
 
 }
 
@@ -170,7 +170,7 @@ char os_object::get_ch(const ::scoped_string & scopedstrField)
 void os_object::set_sh(const ::scoped_string & scopedstrField, short sh)
 {
 
-   set_sh(field_sh(pszField), sh);
+   set_sh(field_sh(scopedstrField), sh);
 
 }
 
@@ -178,7 +178,7 @@ void os_object::set_sh(const ::scoped_string & scopedstrField, short sh)
 short os_object::get_sh(const ::scoped_string & scopedstrField)
 {
 
-   return get_sh(field_sh(pszField));
+   return get_sh(field_sh(scopedstrField));
 
 }
 
@@ -187,7 +187,7 @@ short os_object::get_sh(const ::scoped_string & scopedstrField)
 void os_object::set_i(const ::scoped_string & scopedstrField, int i)
 {
 
-   set_i(field_i(pszField), i);
+   set_i(field_i(scopedstrField), i);
 
 }
 
@@ -196,7 +196,7 @@ void os_object::set_i(const ::scoped_string & scopedstrField, int i)
 int os_object::get_i(const ::scoped_string & scopedstrField)
 {
 
-   return get_i(field_i(pszField));
+   return get_i(field_i(scopedstrField));
 
 }
 
@@ -205,7 +205,7 @@ int os_object::get_i(const ::scoped_string & scopedstrField)
 void os_object::set_l(const ::scoped_string & scopedstrField, long long hi)
 {
 
-   set_l(field_l(pszField), hi);
+   set_l(field_l(scopedstrField), hi);
 
 }
 
@@ -214,7 +214,7 @@ void os_object::set_l(const ::scoped_string & scopedstrField, long long hi)
 long long os_object::get_l(const ::scoped_string & scopedstrField)
 {
 
-   return get_l(field_l(pszField));
+   return get_l(field_l(scopedstrField));
 
 }
 
@@ -222,7 +222,7 @@ long long os_object::get_l(const ::scoped_string & scopedstrField)
 void os_object::set_f(const ::scoped_string & scopedstrField, float f)
 {
 
-   set_f(field_f(pszField), f);
+   set_f(field_f(scopedstrField), f);
 
 }
 
@@ -230,7 +230,7 @@ void os_object::set_f(const ::scoped_string & scopedstrField, float f)
 float os_object::get_f(const ::scoped_string & scopedstrField)
 {
 
-   return get_f(field_f(pszField));
+   return get_f(field_f(scopedstrField));
 
 }
 
@@ -238,7 +238,7 @@ float os_object::get_f(const ::scoped_string & scopedstrField)
 void os_object::set_d(const ::scoped_string & scopedstrField, double d)
 {
 
-   set_d(field_d(pszField), d);
+   set_d(field_d(scopedstrField), d);
 
 }
 
@@ -246,7 +246,7 @@ void os_object::set_d(const ::scoped_string & scopedstrField, double d)
 double os_object::get_d(const ::scoped_string & scopedstrField)
 {
 
-   return get_d(field_d(pszField));
+   return get_d(field_d(scopedstrField));
 
 }
 
@@ -254,7 +254,7 @@ double os_object::get_d(const ::scoped_string & scopedstrField)
 void os_object::set_str(jfieldID jfieldid, const ::scoped_string & scopedstr)
 {
 
-   jstring jstring = t_pjnienv->NewStringUTF(psz);
+   jstring jstring = t_pjnienv->NewStringUTF(scopedstr);
 
    if (!jstring)
    {

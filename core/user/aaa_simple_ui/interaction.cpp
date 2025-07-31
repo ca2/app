@@ -421,7 +421,7 @@ namespace simple_ui
 //   }
 //
 //
-//   bool interaction::on_action(const ::string & pszId)
+//   bool interaction::on_action(const ::scoped_string & scopedstrId)
 //   {
 //
 //      ::user::interaction * pinteraction = get_typed_parent < ::user::interaction >();
@@ -429,7 +429,7 @@ namespace simple_ui
 //      if (pinteraction != nullptr)
 //      {
 //
-//         if(pinteraction->on_action(pszId))
+//         if(pinteraction->on_action(scopedstrId))
 //            return true;
 //
 //      }

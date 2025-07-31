@@ -100,7 +100,7 @@ public:
 
 
    //string as_string() const;
-   void set_string(const ::string & str);
+   void set_string(const ::scoped_string & scopedstr);
 
 
 };

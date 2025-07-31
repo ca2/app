@@ -70,7 +70,7 @@ public:
 
    virtual void switch_profile_folder(const ::file::path & pathFolder);
 
-   //virtual void api_login(const ::string & strConfig, const ::string & strProfile);
+   //virtual void api_login(const ::scoped_string & scopedstrConfig, const ::scoped_string & scopedstrProfile);
 
    virtual void api_login();
 

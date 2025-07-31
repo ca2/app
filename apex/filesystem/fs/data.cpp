@@ -31,7 +31,7 @@ namespace fs
    bool data::has_subdir(const ::file::path & pszPath)
    {
 
-      __UNREFERENCED_PARAMETER(pszPath);
+      __UNREFERENCED_PARAMETER(scopedstrPath);
 
       return false;
 
@@ -40,26 +40,26 @@ namespace fs
 
    bool data::fast_has_subdir(const ::file::path & pszPath)
    {
-      return has_subdir(pszPath);
+      return has_subdir(scopedstrPath);
    }
 
 
    //string data::file_name(const ::file::path & pszPath)
    //{
-   //   __UNREFERENCED_PARAMETER(pszPath);
+   //   __UNREFERENCED_PARAMETER(scopedstrPath);
    //   return "";
    //}
 
    bool data::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
    {
-      __UNREFERENCED_PARAMETER(pszDst);
-      __UNREFERENCED_PARAMETER(pszSrc);
+      __UNREFERENCED_PARAMETER(scopedstrDst);
+      __UNREFERENCED_PARAMETER(scopedstrSrc);
       return false;
    }
 
    //string data::dir_path(const ::file::path & psz1, const ::file::path & psz2)
    //{
-   //   string str(psz1);
+   //   string str(scopedstr1);
    //   if(str.right(1) != '/')
    //      str += "/";
    //   return str + psz2;
@@ -75,7 +75,7 @@ namespace fs
 
    //string data::eat_end_level(const ::file::path & pszPath, int iCount)
    //{
-   //   string strPath(pszPath);
+   //   string strPath(scopedstrPath);
    //   auto pFind = 0;
    //   character_count iStart = strPath.length() - 1;
    //   if(iCount <= 0)

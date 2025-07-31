@@ -46,7 +46,7 @@ namespace freedesktop
       void set_file_path(const ::file::path & path);
       ::file::path get_file_path();
 
-      virtual void set_app_id(const ::string & strAppId);
+      virtual void set_app_id(const ::scoped_string & scopedstrAppId);
       virtual string get_app_id();
 
       virtual ::string get_SessionKeyPayload(const ::scoped_string & scopedstrSession, const ::scoped_string & scopedstrKey);

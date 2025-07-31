@@ -22,7 +22,7 @@
 //
 //   ::file::path pathFolder = ::dir::program_data();
 //
-//   string strAppId = get_command_line_parameter(psz, "app");
+//   string strAppId = get_command_line_parameter(scopedstr, "app");
 //
 //   if (strAppId.has_character())
 //   {
@@ -33,7 +33,7 @@
 //
 //      file_system()->put_contents(path, get_command_line_string());
 //
-//      ::file::path pathExecutable = consume_command_line_parameter(psz, nullptr);
+//      ::file::path pathExecutable = consume_command_line_parameter(scopedstr, nullptr);
 //
 //      string strAppTitle = executable_title_from_appid(strAppId);
 //
@@ -54,7 +54,7 @@
 //CLASS_DECL_APEX void get_command_line(char * psz, int iBuffer)
 //{
 //
-//   strncpy(psz, get_command_line(), iBuffer);
+//   strncpy(scopedstr, get_command_line(), iBuffer);
 //
 //}
 

@@ -84,7 +84,7 @@ namespace experience
    }
 
 
-   ::pointer < ::experience::frame > experience::frame_experience(const ::string & strFrameSchema)
+   ::pointer < ::experience::frame > experience::frame_experience(const ::scoped_string & scopedstrFrameSchema)
    {
 
       __UNREFERENCED_PARAMETER(strFrameSchema);

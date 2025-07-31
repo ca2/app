@@ -13,11 +13,11 @@ namespace gpu
 
       int m_iFrameIndex = -1;
       int m_iLayerIndex = -1;
-      ::pointer < renderer >        m_pgpurenderer;
+      ::pointer < ::gpu::renderer >        m_pgpurenderer;
       //::pointer < renderer >        m_pgpurendererTarget;
       //::int_rectangle m_rectangleTarget;
-      ::pointer_array <texture >    m_texturea;
-      ::pointer_array <texture >    m_textureaSource;
+      ::pointer_array <::gpu::texture >    m_texturea;
+      ::pointer_array <::gpu::texture >    m_textureaSource;
       ::pointer < ::gpu::frame > m_pgpuframe;
       //::comptr < ID3D12Resource > m_presource;
 

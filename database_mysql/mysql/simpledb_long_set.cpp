@@ -109,7 +109,7 @@ public:
    virtual int run();
 
 
-   void queue(const ::string & pszKey,long long l);
+   void queue(const ::scoped_string & scopedstrKey,long long l);
 
 };
 
@@ -175,7 +175,7 @@ repeat:;
 
 }
 
-void db_long_sync_queue::queue(const ::string & pszKey,long long l)
+void db_long_sync_queue::queue(const ::scoped_string & scopedstrKey,long long l)
 {
 
    single_lock synchronouslock(m_pmutex, true);

@@ -50,9 +50,9 @@ public:
    ::user::control_bar * m_pBar;    // bar which this refers to (transient)
 
    //   void Serialize(CArchive& ar, BaseDockState* pDockState);
-   bool LoadState(const ::string & pszProfileName, int nIndex, BaseDockState* pDockState);
+   bool LoadState(const ::scoped_string & scopedstrProfileName, int nIndex, BaseDockState* pDockState);
 
-   bool SaveState(const ::string & pszProfileName, int nIndex);
+   bool SaveState(const ::scoped_string & scopedstrProfileName, int nIndex);
 
 };
 

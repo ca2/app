@@ -137,7 +137,7 @@ void progress_control::redraw()
 void progress_control::format_status(const ::string &pszFormat)
 {
 
-   string strStatus(pszFormat);
+   string strStatus(scopedstrFormat);
 
    strStatus.replace("%1", as_string(m_iStep));
    strStatus.replace("%2", as_string(m_iStepCount));

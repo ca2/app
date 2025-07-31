@@ -64,10 +64,10 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
 }
 
 
-//bool simple_scroll_bar::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, unsigned int uStyle, ::user::interaction * puiParent, const ::atom & atom, ::request * prequest)
+//bool simple_scroll_bar::create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, ::user::interaction * puiParent, const ::atom & atom, ::request * prequest)
 //{
 //
-//   if(!::user::interaction::create_interaction(pszClassName, pszWindowName, uStyle, puiParent, atom, pcreate))
+//   if(!::user::interaction::create_interaction(scopedstrClassName, pszWindowName, uStyle, puiParent, atom, pcreate))
 //   {
 //
 //      return false;

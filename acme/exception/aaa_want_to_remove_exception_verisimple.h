@@ -10,7 +10,7 @@
 //   string m_strMessage;
 //
 //
-//   veri::exception(const string& strMessage = "");
+//   veri::exception(const ::scoped_string & scopedstrMessage = "");
 //   virtual ~veri::exception();
 //
 //

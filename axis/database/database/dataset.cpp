@@ -25,7 +25,7 @@ namespace database
    }
 
 
-   void dataset::set_sql(enum_sql esql, const ::string & pszSql)
+   void dataset::set_sql(enum_sql esql, const ::scoped_string & scopedstrSql)
    {
 
       switch(esql)
@@ -40,13 +40,13 @@ namespace database
          m_strSqlSelect = pszSql;
          break;
       case e_sql_update:
-         m_straSqlUpdate.add(pszSql);
+         m_straSqlUpdate.add(scopedstrSql);
          break;
       case e_sql_insert:
-         m_straSqlInsert.add(pszSql);
+         m_straSqlInsert.add(scopedstrSql);
          break;
       case e_sql_delete:
-         m_straSqlDelete.add(pszSql);
+         m_straSqlDelete.add(scopedstrSql);
          break;
       default:
          ASSERT(false);
@@ -533,7 +533,7 @@ namespace database
    //   return -1;
    //}
 
-   ::pointer<row_array>dataset::query_rows(const ::string & pszQuery)
+   ::pointer<row_array>dataset::query_rows(const ::scoped_string & scopedstrQuery)
    {
 
       ::pointer<row_array>rows;
@@ -550,10 +550,10 @@ namespace database
    }
 
 
-   bool dataset::query_rows(::pointer<row_array>& rows, const ::string & pszQuery)
+   bool dataset::query_rows(::pointer<row_array>& rows, const ::scoped_string & scopedstrQuery)
    {
 
-      if (!query(pszQuery))
+      if (!query(scopedstrQuery))
       {
 
          informationf("database::query_items::query failed");
@@ -569,7 +569,7 @@ namespace database
    }
 
 
-   ::pointer<payload_array>dataset::query_items(const ::string & pszQuery)
+   ::pointer<payload_array>dataset::query_items(const ::scoped_string & scopedstrQuery)
    {
 
       ::pointer<payload_array>items;
@@ -586,10 +586,10 @@ namespace database
    }
 
 
-   bool dataset::query_items(::pointer<payload_array>& items, const ::string & pszQuery)
+   bool dataset::query_items(::pointer<payload_array>& items, const ::scoped_string & scopedstrQuery)
    {
 
-      if (!query(pszQuery))
+      if (!query(scopedstrQuery))
       {
 
          informationf("database::query_items::query failed");
@@ -610,7 +610,7 @@ namespace database
    }
 
 
-   ::payload dataset::query_item(const ::string & pszQuery)
+   ::payload dataset::query_item(const ::scoped_string & scopedstrQuery)
    {
 
       ::payload item;
@@ -627,10 +627,10 @@ namespace database
    }
 
 
-   bool dataset::query_item(::payload & item, const ::string & pszQuery)
+   bool dataset::query_item(::payload & item, const ::scoped_string & scopedstrQuery)
    {
 
-      if (!query(pszQuery))
+      if (!query(scopedstrQuery))
       {
 
          informationf("database::query_items::query failed");

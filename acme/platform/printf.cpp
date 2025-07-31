@@ -63,10 +63,10 @@ int vwprintf_dup(const ::wide_character *format, va_list args)
 //
 //   char * psz = ecvt(d, i, pi1, pi2);
 //
-//   if(psz == nullptr)
+//   if(scopedstr == nullptr)
 //      return -1;
 //
-//   if(strlen(psz) > (size - 1))
+//   if(strlen(scopedstr) > (size - 1))
 //      return -1;
 //
 //   strcpy(sz, psz);
@@ -82,10 +82,10 @@ int vwprintf_dup(const ::wide_character *format, va_list args)
 //
 //   char * psz = fcvt(d, i, pi1, pi2);
 //
-//   if(psz == nullptr)
+//   if(scopedstr == nullptr)
 //      return -1;
 //
-//   if(strlen(psz) > (size - 1))
+//   if(strlen(scopedstr) > (size - 1))
 //      return -1;
 //
 //   strcpy(sz, psz);

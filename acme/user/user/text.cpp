@@ -197,7 +197,7 @@ namespace user
    //}
 
 
-   //void text_property::set_selection_text(const ::string & psz, const ::action_context & context)
+   //void text_property::set_selection_text(const ::scoped_string & scopedstr, const ::action_context & context)
    //{
 
    //   string_reference() = psz;
@@ -205,7 +205,7 @@ namespace user
    //}
 
 
-   //void text_property::set_text(const ::string & str, const ::action_context & context)
+   //void text_property::set_text(const ::scoped_string & scopedstr, const ::action_context & context)
    //{
 
    //   string_reference() = str;
@@ -232,7 +232,7 @@ namespace user
 
    //   get_text(str);
 
-   //   ansi_count_copy(psz,str,len);
+   //   ansi_count_copy(scopedstr,str,len);
 
    //}
 
@@ -255,7 +255,7 @@ namespace user
    //}
 
 
-   //void text_property::set_text(const ::string & str, character_count iLen, const ::action_context & context)
+   //void text_property::set_text(const ::scoped_string & scopedstr, character_count iLen, const ::action_context & context)
    //{
 
    //   set_text(str.substr(0, iLen),context);

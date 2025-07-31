@@ -84,7 +84,7 @@ namespace windowing
       virtual long long release();
 
 
-      button * new_button(const ::string & pszLabel, enum_dialog_result edialogresult);
+      button * new_button(const ::scoped_string & scopedstrLabel, enum_dialog_result edialogresult);
 
 
       void common_construct();

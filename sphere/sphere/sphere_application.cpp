@@ -94,7 +94,7 @@ namespace sphere
 
 
 
-   unsigned int application::guess_code_page(const ::string & str)
+   unsigned int application::guess_code_page(const ::scoped_string & scopedstr)
    {
 
       return charguess(str)();
@@ -606,15 +606,15 @@ namespace sphere
    }
 
 
-   void application::launch_app(const ::string & psz)
+   void application::launch_app(const ::scoped_string & scopedstr)
    {
-      __UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(scopedstr);
    }
 
-   void application::install_app(const ::string & psz)
+   void application::install_app(const ::scoped_string & scopedstr)
    {
 
-      __UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(scopedstr);
 
    }
 
@@ -723,12 +723,12 @@ namespace sphere
    }
 
 
-   ::pointer<::aura::application>application::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, application_bias * pappbias)
+   ::pointer<::aura::application>application::application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, application_bias * pappbias)
    {
 
       ::pointer<::aura::application>papp;
 
-      if (appptra().lookup(pszAppId, papp))
+      if (appptra().lookup(scopedstrAppId, papp))
       {
 
          return papp;
@@ -747,7 +747,7 @@ namespace sphere
       try
       {
 
-         papp = create_application(pszAppId, bSynch, pappbias);
+         papp = create_application(scopedstrAppId, bSynch, pappbias);
 
       }
       catch (...)
@@ -810,12 +810,12 @@ namespace sphere
    //}
 
 
-   void application::set_app_title(const ::string & pszType, const ::string & pszAppId, const ::string & pszTitle)
+   void application::set_app_title(const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrTitle)
    {
 
       ::pointer<::aura::application>papp;
 
-      if (appptra().lookup(string(pszType) + ":" + string(pszAppId), papp) && papp.is_set())
+      if (appptra().lookup(string(scopedstrType) + ":" + string(scopedstrAppId), papp) && papp.is_set())
       {
 
          //::pointer<pane_impact>ppaneimpact = m_ppaneimpact;
@@ -823,14 +823,14 @@ namespace sphere
          //if (ppaneimpact != nullptr)
          //{
 
-         //   string strAppName(pszAppId);
+         //   string strAppName(scopedstrAppId);
 
          //   ::user::tab_pane * ppane = ppaneimpact->get_pane_by_id("app:" + strAppName);
 
          //   if (ppane != nullptr)
          //   {
 
-         //      ppane->set_title(pszTitle);
+         //      ppane->set_title(scopedstrTitle);
 
          //      ppaneimpact->on_layout(pgraphics);
 

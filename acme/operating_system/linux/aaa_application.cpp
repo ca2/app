@@ -149,7 +149,7 @@ namespace acme
                         &uiSize);
 
 
-                     string strVersion(psz, uiSize);
+                     string strVersion(scopedstr, uiSize);
 
 
                      return strVersion;
@@ -363,7 +363,7 @@ namespace acme
 //      /*
 //      char * pszExt = ::PathFindExtension(szBuff);
 
-//      ASSERT(pszExt != nullptr);
+//      ASSERT(scopedstrExt != nullptr);
 
 //      if( pszExt == nullptr )
 

@@ -24,9 +24,9 @@ bool is_url(const ::scoped_string & scopedstrCandidate,const char ** ppszRequest
    {
       psz++;
    }
-   if(psz == pszCandidate)
+   if(scopedstr == pszCandidate)
       return false;
-   if(psz == pszCandidate + 1)
+   if(scopedstr == pszCandidate + 1)
       return false;
    if(*psz != ':')
       return false;
@@ -59,7 +59,7 @@ bool is_url(const ::scoped_string & scopedstrCandidate,const char ** ppszRequest
 CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 {
 
-   if (is_empty(psz))
+   if (is_empty(scopedstr))
    {
 
       return false;
@@ -73,7 +73,7 @@ CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 
    }
 
-   if (*psz == ':' && (psz[1] == '\0' || (psz[1] == '/' && psz[2] == '/' && psz[3] == '\0')))
+   if (*psz == ':' && (scopedstr[1] == '\0' || (scopedstr[1] == '/' && psz[2] == '/' && psz[3] == '\0')))
    {
 
       return true;
@@ -87,7 +87,7 @@ CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 
    }
 
-   if (*psz == ':' && (psz[1] == '\0' || (psz[1] == '/' && psz[2] == '/' && psz[3] == '\0')))
+   if (*psz == ':' && (scopedstr[1] == '\0' || (scopedstr[1] == '/' && psz[2] == '/' && psz[3] == '\0')))
    {
 
       return true;
@@ -288,9 +288,9 @@ namespace url
          strKey += pszKey;
          strKey += "=";
 
-         pszBeg = ansi_find_string(pszUrl, strKey);
+         pszBeg = ansi_find_string(scopedstrUrl, strKey);
 
-         if (pszBeg != nullptr)
+         if (scopedstrBeg != nullptr)
          {
 
             pszBeg += strKey.length();
@@ -309,9 +309,9 @@ namespace url
          strKey += pszKey;
          strKey += "=";
 
-         pszBeg = ansi_find_string(pszUrl, strKey);
+         pszBeg = ansi_find_string(scopedstrUrl, strKey);
 
-         if (pszBeg != nullptr)
+         if (scopedstrBeg != nullptr)
          {
 
             pszBeg += strKey.length();
@@ -330,9 +330,9 @@ namespace url
          strKey += pszKey;
          strKey += "&";
 
-         pszBeg = ansi_find_string(pszUrl, strKey);
+         pszBeg = ansi_find_string(scopedstrUrl, strKey);
 
-         if (pszBeg != nullptr)
+         if (scopedstrBeg != nullptr)
          {
 
             strParam = "";
@@ -351,9 +351,9 @@ namespace url
          strKey += pszKey;
          strKey += "&";
 
-         pszBeg = ansi_find_string(pszUrl, strKey);
+         pszBeg = ansi_find_string(scopedstrUrl, strKey);
 
-         if (pszBeg != nullptr)
+         if (scopedstrBeg != nullptr)
          {
 
             strParam = "";
@@ -368,15 +368,15 @@ namespace url
 
    success:
 
-      pszEnd = ansi_find_string(pszBeg, "&");
+      pszEnd = ansi_find_string(scopedstrBeg, "&");
 
-      if (pszEnd == nullptr)
+      if (scopedstrEnd == nullptr)
       {
          strParam = pszBeg;
       }
       else
       {
-         strParam = string(pszBeg, pszEnd - pszBeg);
+         strParam = string(scopedstrBeg, pszEnd - pszBeg);
       }
 
       return true;
@@ -395,7 +395,7 @@ namespace url
 
       auto pszInput = (const char*)block.get_data();
 
-      ::memory_set(pszEncoded, 0, block.get_size() * 5);
+      ::memory_set(scopedstrEncoded, 0, block.get_size() * 5);
 
       while (*pszInput != '\0')
       {
@@ -408,23 +408,23 @@ namespace url
             || ch == '_')
          {
 
-            pszEncoded = string_append_character(pszEncoded, ch);
+            pszEncoded = string_append_character(scopedstrEncoded, ch);
 
          }
          else if (ch == ' ')
          {
 
-            pszEncoded = string_append_character(pszEncoded, '+');
+            pszEncoded = string_append_character(scopedstrEncoded, '+');
 
          }
          else
          {
 
-            pszEncoded = string_append_character(pszEncoded, '%');
+            pszEncoded = string_append_character(scopedstrEncoded, '%');
 
-            pszEncoded = string_append_character(pszEncoded, ::hex::nibble_upper_from((ch >> 4) & 0xf));
+            pszEncoded = string_append_character(scopedstrEncoded, ::hex::nibble_upper_from((ch >> 4) & 0xf));
 
-            pszEncoded = string_append_character(pszEncoded, ::hex::nibble_upper_from(ch & 0xf));
+            pszEncoded = string_append_character(scopedstrEncoded, ::hex::nibble_upper_from(ch & 0xf));
 
          }
 
@@ -432,7 +432,7 @@ namespace url
 
       }
 
-      strEncoded.release_buffer(pszEncoded - pszEncodedStart);
+      strEncoded.release_buffer(scopedstrEncoded - pszEncodedStart);
 
       return ::transfer(strEncoded);
 
@@ -558,11 +558,11 @@ void openURL(const string& url_str)
 //
 //   //string strToken;
 //
-//   credentials.m_strToken = Sys(papp).crypto_md5_text(pszServerName);
+//   credentials.m_strToken = Sys(papp).crypto_md5_text(scopedstrServerName);
 //
 //   //string strTitle;
 //
-//   credentials.m_strTitle = "Enter Credentials for : " + string(pszServerName);
+//   credentials.m_strTitle = "Enter Credentials for : " + string(scopedstrServerName);
 //
 //   credentials.m_bInteractive = bInteractive;
 //
@@ -649,7 +649,7 @@ void openURL(const string& url_str)
 //CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //{
 //
-//   string strCandidate(pszCandidate);
+//   string strCandidate(scopedstrCandidate);
 //
 //   character_count iLen = strCandidate.length();
 //
@@ -687,7 +687,7 @@ void openURL(const string& url_str)
 //CLASS_DECL_ACME string ::url::decode(const ::scoped_string & scopedstr)
 //{
 //
-//   string str(psz);
+//   string str(scopedstr);
 //
 //   string strDecode;
 //
@@ -780,7 +780,7 @@ void openURL(const string& url_str)
 //         {
 //            i++;
 //            iLen--;
-//            *psz = (char)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(pszUrl + 1)));
+//            *psz = (char)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(scopedstrUrl + 1)));
 //
 //            psz++;
 //            pszUrl += 2;
@@ -823,9 +823,9 @@ void openURL(const string& url_str)
 //      strKey += pszKey;
 //      strKey += "=";
 //
-//      pszBeg = ansi_find_string(pszUrl, strKey);
+//      pszBeg = ansi_find_string(scopedstrUrl, strKey);
 //
-//      if (pszBeg != nullptr)
+//      if (scopedstrBeg != nullptr)
 //      {
 //
 //         pszBeg += strKey.length();
@@ -844,9 +844,9 @@ void openURL(const string& url_str)
 //      strKey += pszKey;
 //      strKey += "=";
 //
-//      pszBeg = ansi_find_string(pszUrl, strKey);
+//      pszBeg = ansi_find_string(scopedstrUrl, strKey);
 //
-//      if (pszBeg != nullptr)
+//      if (scopedstrBeg != nullptr)
 //      {
 //
 //         pszBeg += strKey.length();
@@ -865,9 +865,9 @@ void openURL(const string& url_str)
 //      strKey += pszKey;
 //      strKey += "&";
 //
-//      pszBeg = ansi_find_string(pszUrl, strKey);
+//      pszBeg = ansi_find_string(scopedstrUrl, strKey);
 //
-//      if (pszBeg != nullptr)
+//      if (scopedstrBeg != nullptr)
 //      {
 //
 //         strParam = "";
@@ -886,9 +886,9 @@ void openURL(const string& url_str)
 //      strKey += pszKey;
 //      strKey += "&";
 //
-//      pszBeg = ansi_find_string(pszUrl, strKey);
+//      pszBeg = ansi_find_string(scopedstrUrl, strKey);
 //
-//      if (pszBeg != nullptr)
+//      if (scopedstrBeg != nullptr)
 //      {
 //
 //         strParam = "";
@@ -903,15 +903,15 @@ void openURL(const string& url_str)
 //
 //success:
 //
-//   pszEnd = ansi_find_string(pszBeg, "&");
+//   pszEnd = ansi_find_string(scopedstrBeg, "&");
 //
-//   if (pszEnd == nullptr)
+//   if (scopedstrEnd == nullptr)
 //   {
 //      strParam = pszBeg;
 //   }
 //   else
 //   {
-//      strParam = string(pszBeg, pszEnd - pszBeg);
+//      strParam = string(scopedstrBeg, pszEnd - pszBeg);
 //   }
 //
 //   return true;
@@ -1126,11 +1126,11 @@ int ui_open_url(const ::scoped_string & scopedstr);
 //
 //   //string strToken;
 //
-//   credentials.m_strToken = Sys(papp).crypto_md5_text(pszServerName);
+//   credentials.m_strToken = Sys(papp).crypto_md5_text(scopedstrServerName);
 //
 //   //string strTitle;
 //
-//   credentials.m_strTitle = "Enter Credentials for : " + string(pszServerName);
+//   credentials.m_strTitle = "Enter Credentials for : " + string(scopedstrServerName);
 //
 //   credentials.m_bInteractive = bInteractive;
 //

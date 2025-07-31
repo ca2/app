@@ -329,7 +329,7 @@ namespace filemanager
    }
 
 
-   void document::on_file_manager_item_command(const ::string & pszId, const ::file::item_array & itema)
+   void document::on_file_manager_item_command(const ::scoped_string & scopedstrId, const ::file::item_array & itema)
    {
 
       auto pfilemanagerdata = filemanager_data();

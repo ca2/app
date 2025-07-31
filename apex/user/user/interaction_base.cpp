@@ -831,7 +831,7 @@ namespace user
    //}
 
 
-   //int interaction_base::sync_message_box_timeout(const ::string & pszMessage, ::time timeTimeOut, unsigned int fuStyle)
+   //int interaction_base::sync_message_box_timeout(const ::scoped_string & scopedstrMessage, ::time timeTimeOut, unsigned int fuStyle)
    //{
 
    //   return papp->sync_message_box_timeout(this, pszMessage, get_title(), timeTimeOut, fuStyle);
@@ -1057,7 +1057,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_base::get_child_by_name(const ::string & strName, ::collection::index iItem, int iLevel)
+   ::user::interaction * interaction_base::get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem, int iLevel)
    {
 
       throw ::interface_only();
@@ -1768,7 +1768,7 @@ namespace user
    }
 
 
-   void interaction_base::set_window_text(const ::string & pszString)
+   void interaction_base::set_window_text(const ::scoped_string & scopedstrString)
    {
 
    }
@@ -2704,7 +2704,7 @@ namespace user
    //}
 
 
-   void interaction_base::OnLinkClick(const ::string & psz,const ::string & pszTarget)
+   void interaction_base::OnLinkClick(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrTarget)
    {
 
       throw ::interface_only();
@@ -3502,7 +3502,7 @@ namespace user
    }
 
 
-   void interaction_base::set_bitmap_source(const string & strBitmapSource)
+   void interaction_base::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
       //auto estatus = 
@@ -4644,7 +4644,7 @@ namespace user
    //}
 
 
-   //void interaction_base::InputConnectionCommitText(const ::string & str, character_count iNewCursorPosition)
+   //void interaction_base::InputConnectionCommitText(const ::scoped_string & scopedstr, character_count iNewCursorPosition)
    //{
 
 
@@ -4658,7 +4658,7 @@ namespace user
    //}
 
 
-   //void interaction_base::InputConnectionSetComposingText(const ::string & str, character_count iNewCursorPosition)
+   //void interaction_base::InputConnectionSetComposingText(const ::scoped_string & scopedstr, character_count iNewCursorPosition)
    //{
 
 

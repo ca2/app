@@ -154,20 +154,20 @@ namespace sockets_bsd
       bool open(const string &host,::networking::port_t port) override;
 
 
-      void set_host(const ::string & strHost) override;
+      void set_host(const ::scoped_string & scopedstrHost) override;
       ::string get_host() const override;
 
 
-      void set_tls_hostname(const ::string & strTlsHostname) override;
+      void set_tls_hostname(const ::scoped_string & scopedstrTlsHostname) override;
 
 
-      void set_connect_host(const ::string & strConnectHost) override;
+      void set_connect_host(const ::scoped_string & scopedstrConnectHost) override;
       ::string get_connect_host() const override;
       void set_connect_port(const ::networking::port_t portConnect) override;
       ::networking::port_t get_connect_port() const override;
 
 
-      void set_url(const ::string & strUrl) override;
+      void set_url(const ::scoped_string & scopedstrUrl) override;
       string get_url() const override;
 
 
@@ -238,7 +238,7 @@ namespace sockets_bsd
       the ssl action_context for an outgoing connection. */
       void InitSSLClient()override;
 
-      void set_init_ssl_client_context(const ::string & strInitSSLClientContext) override;
+      void set_init_ssl_client_context(const ::scoped_string & scopedstrInitSSLClientContext) override;
 
       /** This method must be implemented to initialize
       the ssl action_context for an incoming connection. */

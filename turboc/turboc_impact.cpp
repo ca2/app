@@ -400,7 +400,7 @@ namespace turboc
 
    }
 
-   void impact::turboc_fast_render(const ::string & strHelloMultiverse)
+   void impact::turboc_fast_render(const ::scoped_string & scopedstrHelloMultiverse)
    {
 
       if(m_cx <= 0 || m_cy <= 0)

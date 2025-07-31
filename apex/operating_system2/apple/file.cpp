@@ -13,16 +13,16 @@
 //   bool context::_os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)
 //   {
 //
-//      char * pszTarget = ns_resolve_alias(psz, bNoUI, bNoMount);
+//      char * pszTarget = ns_resolve_alias(scopedstr, bNoUI, bNoMount);
 //
-//      if (::is_null(pszTarget))
+//      if (::is_null(scopedstrTarget))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      path = ::string_from_strdup(pszTarget);
+//      path = ::string_from_strdup(scopedstrTarget);
 //
 //      return true;
 //

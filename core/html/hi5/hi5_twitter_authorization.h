@@ -43,12 +43,12 @@ namespace hi5
          virtual ~authorization();
 
 
-         virtual void initialize_twitter_authorization(::object* pparticle, const ::string & pszAuthorizationUrl, const ::string & pszForm, bool bAuth, bool bInteractive);
+         virtual void initialize_twitter_authorization(::object* pparticle, const ::scoped_string & scopedstrAuthorizationUrl, const ::scoped_string & scopedstrForm, bool bAuth, bool bInteractive);
 
          void ensure_main_document();
          void display_main_frame();
          void page1();
-         void pageMessage(const ::string & pszMatter, ::property_set & set);
+         void pageMessage(const ::scoped_string & scopedstrMatter, ::property_set & set);
 
          string get_pin();
 

@@ -57,7 +57,7 @@
 //inline ::payload operator + (const ::scoped_string & scopedstr, const ::enum_message_box& emessagebox)
 //{
 //
-//   return ::payload(psz) + emessagebox;
+//   return ::payload(scopedstr) + emessagebox;
 //
 //}
 //

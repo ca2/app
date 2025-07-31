@@ -43,7 +43,7 @@ namespace user
       bool open_document(const ::payload & payloadFile) override;
       //::type controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
-      bool open_html(const ::string & str) override;
+      bool open_html(const ::scoped_string & scopedstr) override;
 
 
       //using ::user::interaction::_001IsPointInside;

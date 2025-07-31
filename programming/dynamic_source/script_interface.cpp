@@ -188,7 +188,7 @@ namespace dynamic_source
    //}
 
 
-   //property & script_interface::get(const ::string & pszKey)
+   //property & script_interface::get(const ::scoped_string & scopedstrKey)
    //{
    //   return netnodesocket()->m_request.form().get()[pszKey];
    //}
@@ -295,7 +295,7 @@ namespace dynamic_source
    }
 
 
-   void script_interface::set_auth_email(const string& strEmail)
+   void script_interface::set_auth_email(const ::scoped_string & scopedstrEmail)
    {
 
       set_session_payload("auth_email", strEmail);
@@ -303,7 +303,7 @@ namespace dynamic_source
    }
 
 
-   void script_interface::auth(const string& strAuth)
+   void script_interface::auth(const ::scoped_string & scopedstrAuth)
    {
 
       exit(401);
@@ -585,7 +585,7 @@ namespace dynamic_source
    }
 
 
-   void script_interface::uri_set_param(string& strUrl, const ::string& pszUrl, const ::string& pszKey, const string& strParam)
+   void script_interface::uri_set_param(string& strUrl, const ::string& pszUrl, const ::string& pszKey, const ::scoped_string & scopedstrParam)
    {
 
 
@@ -747,7 +747,7 @@ namespace dynamic_source
    void script_interface::uri_set_var(string& strUrl, const ::string& pszUrl, const ::string& pszKey, ::payload payload)
    {
 
-      ::url::parts parts(pszUrl);
+      ::url::parts parts(scopedstrUrl);
 
       parts.arguments()[pszKey] = payload;
 
@@ -756,10 +756,10 @@ namespace dynamic_source
    }
 
 
-   void script_interface::uri_set_param(string& strUrl, const ::string& pszUrl, const ::string& pszKey, const string& strParam)
+   void script_interface::uri_set_param(string& strUrl, const ::string& pszUrl, const ::string& pszKey, const ::scoped_string & scopedstrParam)
    {
 
-      ::url::parts parts(pszUrl);
+      ::url::parts parts(scopedstrUrl);
 
       parts.arguments()[pszKey] = strParam;
 
@@ -771,7 +771,7 @@ namespace dynamic_source
    string script_interface::query_get_param(const ::string& pszUrl, const ::string& pszKey)
    {
 
-      ::url::parts parts(pszUrl);
+      ::url::parts parts(scopedstrUrl);
 
       auto str = parts.arguments()[pszKey].as_string();
 
@@ -783,7 +783,7 @@ namespace dynamic_source
    ::payload script_interface::query_get_var(const ::string& pszUrl, const ::string& pszKey)
    {
 
-      ::url::parts parts(pszUrl);
+      ::url::parts parts(scopedstrUrl);
 
       auto payload = parts.arguments()[pszKey];
 
@@ -798,7 +798,7 @@ namespace dynamic_source
       if (m_pmain && m_pmain->m_iDebug > 0)
       {
 
-         print(psz);
+         print(scopedstr);
 
       }
 

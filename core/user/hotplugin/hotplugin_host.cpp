@@ -6,7 +6,7 @@
 #if defined(LINUX) || defined(__ANDROID__) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
 void my_munmap(void * pimage32,HANDLE hfile);
-void * my_open_map(const ::string & psz,HANDLE * pfile,bool bRead,bool bWrite,long long int_size);
+void * my_open_map(const ::scoped_string & scopedstr,HANDLE * pfile,bool bRead,bool bWrite,long long int_size);
 #endif
 
 
@@ -38,7 +38,7 @@ namespace hotplugin
    }
 
 
-   bool host::open_link(const ::string & strLink, const ::string & strTarget)
+   bool host::open_link(const ::scoped_string & scopedstrLink, const ::scoped_string & scopedstrTarget)
    {
 
       if(m_pbasecomposer != nullptr)
@@ -354,23 +354,23 @@ namespace hotplugin
    }
 
 
-   int host::start_app_install(const ::string & pszCommandLine)
+   int host::start_app_install(const ::scoped_string & scopedstrCommandLine)
    {
 
-      return start_app_install(pszCommandLine, get_app(), this);
+      return start_app_install(scopedstrCommandLine, get_app(), this);
 
    }
 
 
-   int host::s_start_app_install(const ::string & pszCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
+   int host::s_start_app_install(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
    {
 
-      return phost->start_app_install(pszCommandLine, papp, pplugin);
+      return phost->start_app_install(scopedstrCommandLine, papp, pplugin);
 
    }
 
 
-   int host::start_app_install(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin)
+   int host::start_app_install(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin)
    {
 
       if(m_bHostStarterStart)
@@ -395,15 +395,15 @@ namespace hotplugin
    }
 
 
-   int host::s_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
+   int host::s_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
    {
 
-      return phost->host_starter_start_sync(pszCommandLine, papp, pplugin);
+      return phost->host_starter_start_sync(scopedstrCommandLine, papp, pplugin);
 
    }
 
 
-   int host::host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin)
+   int host::host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::aura::application * papp, plugin * pplugin)
    {
 
       if (m_bHostStarterStart)
@@ -450,15 +450,15 @@ namespace hotplugin
    }
 
 
-   void host::set_status(const ::string & pszStatus)
+   void host::set_status(const ::scoped_string & scopedstrStatus)
    {
 
-      ::hotplugin::plugin::set_status(pszStatus);
+      ::hotplugin::plugin::set_status(scopedstrStatus);
 
       if(m_pplugin != nullptr)
       {
 
-         m_pplugin->set_status(pszStatus);
+         m_pplugin->set_status(scopedstrStatus);
 
       }
 

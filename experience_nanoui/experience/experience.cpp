@@ -81,7 +81,7 @@ namespace experience_nanoui
    }
 
 
-   ::pointer < ::experience::frame > experience::frame_experience(const ::string & strFrameSchema)
+   ::pointer < ::experience::frame > experience::frame_experience(const ::scoped_string & scopedstrFrameSchema)
    {
 
       string strSchema(strFrameSchema);

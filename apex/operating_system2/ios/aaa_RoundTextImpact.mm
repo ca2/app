@@ -105,7 +105,7 @@ NSRange RangeIntersection(NSRange first, NSRange second);
    
    NSRange range = self.selectedTextRange;
 
-   m_pwindow->m_pwindow->round_window_on_text(psz,
+   m_pwindow->m_pwindow->round_window_on_text(scopedstr,
                                               range.location, range.location + range.length);
    
 }

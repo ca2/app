@@ -239,8 +239,8 @@ void acme_application_layer::start_application()
    }
 
 
-   //bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override{}
-   bool acme_application_layer::handle_application_call(::payload& payload, const ::string& strMember,
+   //bool handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset) override{}
+   bool acme_application_layer::handle_application_call(::payload& payload, const ::scoped_string & scopedstrMember,
                                                         ::property_set& propertyset)
    {
       return false;

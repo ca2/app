@@ -259,7 +259,7 @@ namespace html
    }
 
 
-   void core_data::load(const ::string & psz)
+   void core_data::load(const ::scoped_string & scopedstr)
    {
 
       delete_contents();
@@ -272,7 +272,7 @@ namespace html
 
       phtmlreader->setEventHandler(&reader);
 
-      phtmlreader->read_form_document(psz);
+      phtmlreader->read_form_document(scopedstr);
 
       if (m_ptag != nullptr)
       {
@@ -570,10 +570,10 @@ namespace html
    }
 
 
-   ::image::image_pointer core_data::get_image(const ::string & pszUrl)
+   ::image::image_pointer core_data::get_image(const ::scoped_string & scopedstrUrl)
    {
 
-      string strUrl = process_url(pszUrl);
+      string strUrl = process_url(scopedstrUrl);
 
       auto pimage = ::particle::image()->get_image(strUrl);
 
@@ -655,10 +655,10 @@ namespace html
    }
 
 
-   bool core_data::open_link(const ::string & pszPath)
+   bool core_data::open_link(const ::scoped_string & scopedstrPath)
    {
 
-      string strPath(pszPath);
+      string strPath(scopedstrPath);
 
       if (strPath.begins_eat("ext://"))
       {
@@ -679,7 +679,7 @@ namespace html
       if (m_pform != nullptr && m_pform->has_document())
       {
 
-         return m_pform->on_open_document(pszPath);
+         return m_pform->on_open_document(scopedstrPath);
 
       }
 
@@ -842,7 +842,7 @@ namespace html
    }
    
    
-   bool core_data::open_html(const ::string & strParam)
+   bool core_data::open_html(const ::scoped_string & scopedstrParam)
    {
       
       string str(strParam);
@@ -887,7 +887,7 @@ namespace html
    }
 
 
-   //void core_data::on_before_navigate(::payload& payloadFile, unsigned int nFlags, const ::string & pszTargetFrameName, byte_array& baPostedData, const ::string & pszHeaders, bool* pbCancel)
+   //void core_data::on_before_navigate(::payload& payloadFile, unsigned int nFlags, const ::scoped_string & scopedstrTargetFrameName, byte_array& baPostedData, const ::scoped_string & scopedstrHeaders, bool* pbCancel)
 
    //{
    //   if (m_pcallback != nullptr)

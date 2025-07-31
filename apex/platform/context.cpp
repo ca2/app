@@ -442,7 +442,7 @@ namespace apex
    }
 
 
-   bool context::_001IsProtocol(::file::path & path, const ::string & strProtocol)
+   bool context::_001IsProtocol(::file::path & path, const ::scoped_string & scopedstrProtocol)
    {
 
       if (path.case_insensitive_begins_eat(strProtocol))
@@ -778,7 +778,7 @@ namespace apex
    //CLASS_DECL_APEX  bool _os_may_have_alias(const ::scoped_string & scopedstr)
    //{
    //
-   //   string str(psz);
+   //   string str(scopedstr);
    //
    //   return str.case_insensitive_ends(".lnk") || str.case_insensitive_contains(".lnk/") || str.case_insensitive_contains(".lnk\\");
    //
@@ -874,7 +874,7 @@ namespace apex
 
 //      return node()->is_alias(path);
 
-      //return case_insensitive_string_ends(psz, ".lnk");
+      //return case_insensitive_string_ends(scopedstr, ".lnk");
 
    }
 //
@@ -897,7 +897,7 @@ namespace apex
    }*/
 
    //
-   // string context::get(const ::string & strUrl, ::property_set & set)
+   // string context::get(const ::scoped_string & scopedstrUrl, ::property_set & set)
    // {
    //
    //    __UNREFERENCED_PARAMETER(strUrl);

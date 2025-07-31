@@ -16,8 +16,8 @@
 #endif
 
 
-//::string idn_to_punycode(const ::string & str);
-//::string idn_from_punycode(const ::string & str);
+//::string idn_to_punycode(const ::scoped_string & scopedstr);
+//::string idn_from_punycode(const ::scoped_string & scopedstr);
 
 
 namespace url
@@ -629,16 +629,16 @@ namespace url
 
    //   m_rangeHost.m_begin = pszHost;
 
-   //   auto pszRequest = strchr(pszHost, '/');
+   //   auto pszRequest = strchr(scopedstrHost, '/');
 
    //   if (!pszRequest)
    //   {
 
    //      m_rangeHost.m_end = url.m_str.m_end;
 
-   //      auto pszPortColon = strchr(pszHost, ':');
+   //      auto pszPortColon = strchr(scopedstrHost, ':');
 
-   //      if (pszPortColon)
+   //      if (scopedstrPortColon)
    //      {
 
    //         m_rangeHost.m_end = pszPortColon;
@@ -663,12 +663,12 @@ namespace url
 
    //   m_bIsUrl = true;
 
-   //   auto pszPortColon = strchr(pszHost, ':');
+   //   auto pszPortColon = strchr(scopedstrHost, ':');
 
-   //   if (pszPortColon)
+   //   if (scopedstrPortColon)
    //   {
 
-   //      if (pszPortColon > pszRequest)
+   //      if (scopedstrPortColon > pszRequest)
    //      {
 
    //         pszPortColon = nullptr;
@@ -677,7 +677,7 @@ namespace url
 
    //   }
 
-   //   if (pszPortColon)
+   //   if (scopedstrPortColon)
    //   {
 
    //      m_rangePort.m_begin = pszPortColon + 1;
@@ -866,40 +866,40 @@ namespace url
 
    ////   auto pszScript = url.m_str.c_str();
 
-   ////   auto pszLastSlashOnScript = strrchr(pszScript, '/');
+   ////   auto pszLastSlashOnScript = strrchr(scopedstrScript, '/');
 
-   ////   const char * pszQuestion = strchr(pszScript, '?');
+   ////   const char * pszQuestion = strchr(scopedstrScript, '?');
 
    ////   const char* pszFragment;
 
-   ////   if (pszQuestion)
+   ////   if (scopedstrQuestion)
    ////   {
 
-   ////      pszFragment = strchr(pszQuestion, '#');
+   ////      pszFragment = strchr(scopedstrQuestion, '#');
 
    ////   }
    ////   else
    ////   {
 
-   ////      pszFragment = strchr(pszScript, '#');
+   ////      pszFragment = strchr(scopedstrScript, '#');
 
    ////   }
 
    ////   m_rangePath.m_begin = pszScript;
 
-   ////   auto pszPathEnd = minimum_non_null(url.m_str.m_end, minimum_non_null(pszQuestion, pszFragment));
+   ////   auto pszPathEnd = minimum_non_null(url.m_str.m_end, minimum_non_null(scopedstrQuestion, pszFragment));
 
    ////   m_rangePath.m_end = pszPathEnd;
 
    ////   m_rangeName.m_end = pszPathEnd;
 
-   ////   if (pszLastSlashOnScript < pszPathEnd)
+   ////   if (scopedstrLastSlashOnScript < pszPathEnd)
    ////   {
 
    ////      m_rangeName.m_begin = pszLastSlashOnScript + 1;
 
    ////   }
-   ////   else if (::is_empty(pszScript))
+   ////   else if (::is_empty(scopedstrScript))
    ////   {
 
    ////      m_rangeName.m_begin = m_rangeName.m_end;
@@ -912,12 +912,12 @@ namespace url
 
    ////   }
 
-   ////   if (pszQuestion)
+   ////   if (scopedstrQuestion)
    ////   {
 
    ////      m_rangeQuery.m_begin = pszQuestion + 1;
 
-   ////      if (pszFragment)
+   ////      if (scopedstrFragment)
    ////      {
 
    ////         m_rangeQuery.m_end = pszFragment;
@@ -932,7 +932,7 @@ namespace url
 
    ////   }
 
-   ////   if (pszFragment)
+   ////   if (scopedstrFragment)
    ////   {
 
    ////      m_rangeFragment.m_begin = pszFragment + 1;
@@ -1129,16 +1129,16 @@ namespace url
 
       m_rangeHost.m_begin = pszHost;
 
-      auto pszRequest = strchr(pszHost, '/');
+      auto pszRequest = strchr(scopedstrHost, '/');
 
       if (!pszRequest)
       {
 
          m_rangeHost.m_end = range.m_end;
 
-         auto pszPortColon = strchr(pszHost, ':');
+         auto pszPortColon = strchr(scopedstrHost, ':');
 
-         if (pszPortColon)
+         if (scopedstrPortColon)
          {
 
             m_rangeHost.m_end = pszPortColon;
@@ -1168,12 +1168,12 @@ namespace url
 
       m_bIsUrl = true;
 
-      auto pszPortColon = strchr(pszHost, ':');
+      auto pszPortColon = strchr(scopedstrHost, ':');
 
-      if (pszPortColon)
+      if (scopedstrPortColon)
       {
 
-         if (pszPortColon > pszRequest)
+         if (scopedstrPortColon > pszRequest)
          {
 
             pszPortColon = nullptr;
@@ -1182,7 +1182,7 @@ namespace url
 
       }
 
-      if (pszPortColon)
+      if (scopedstrPortColon)
       {
 
          m_rangePort.m_begin = pszPortColon + 1;
@@ -1240,40 +1240,40 @@ namespace url
 
       auto pszScript = range.begin();
 
-      auto pszLastSlashOnScript = strrchr(pszScript, '/');
+      auto pszLastSlashOnScript = strrchr(scopedstrScript, '/');
 
-      const char* pszQuestion = strchr(pszScript, '?');
+      const char* pszQuestion = strchr(scopedstrScript, '?');
 
       const char* pszFragment;
 
-      if (pszQuestion)
+      if (scopedstrQuestion)
       {
 
-         pszFragment = strchr(pszQuestion, '#');
+         pszFragment = strchr(scopedstrQuestion, '#');
 
       }
       else
       {
 
-         pszFragment = strchr(pszScript, '#');
+         pszFragment = strchr(scopedstrScript, '#');
 
       }
 
       m_rangePath.m_begin = pszScript;
 
-      auto pszPathEnd = minimum_non_null(range.m_end, minimum_non_null(pszQuestion, pszFragment));
+      auto pszPathEnd = minimum_non_null(range.m_end, minimum_non_null(scopedstrQuestion, pszFragment));
 
       m_rangePath.m_end = pszPathEnd;
 
       m_rangeName.m_end = pszPathEnd;
 
-      if (pszLastSlashOnScript < pszPathEnd)
+      if (scopedstrLastSlashOnScript < pszPathEnd)
       {
 
          m_rangeName.m_begin = pszLastSlashOnScript + 1;
 
       }
-      else if (::is_empty(pszScript))
+      else if (::is_empty(scopedstrScript))
       {
 
          m_rangeName.m_begin = m_rangeName.m_end;
@@ -1286,12 +1286,12 @@ namespace url
 
       }
 
-      if (pszQuestion)
+      if (scopedstrQuestion)
       {
 
          m_rangeQuery.m_begin = pszQuestion + 1;
 
-         if (pszFragment)
+         if (scopedstrFragment)
          {
 
             m_rangeQuery.m_end = pszFragment;
@@ -1306,7 +1306,7 @@ namespace url
 
       }
 
-      if (pszFragment)
+      if (scopedstrFragment)
       {
 
          m_rangeFragment.m_begin = pszFragment + 1;
@@ -1501,7 +1501,7 @@ namespace url
 
       auto pszInput = (const char*)block.begin();
 
-      memory_set(pszEncoded, 0, block.size() * 5);
+      memory_set(scopedstrEncoded, 0, block.size() * 5);
 
       while (*pszInput != '\0')
       {
@@ -1515,7 +1515,7 @@ namespace url
             || (bPath && ch == '/'))
          {
 
-            pszEncoded = string_append_character(pszEncoded, ch);
+            pszEncoded = string_append_character(scopedstrEncoded, ch);
 
          }
          else if (ch == ' ')
@@ -1524,15 +1524,15 @@ namespace url
             if (bPath)
             {
 
-               pszEncoded = string_append_character(pszEncoded, '%');
-               pszEncoded = string_append_character(pszEncoded, '2');
-               pszEncoded = string_append_character(pszEncoded, '0');
+               pszEncoded = string_append_character(scopedstrEncoded, '%');
+               pszEncoded = string_append_character(scopedstrEncoded, '2');
+               pszEncoded = string_append_character(scopedstrEncoded, '0');
 
             }
             else
             {
 
-               pszEncoded = string_append_character(pszEncoded, '+');
+               pszEncoded = string_append_character(scopedstrEncoded, '+');
 
             }
 
@@ -1540,11 +1540,11 @@ namespace url
          else
          {
 
-            pszEncoded = string_append_character(pszEncoded, '%');
+            pszEncoded = string_append_character(scopedstrEncoded, '%');
 
-            pszEncoded = string_append_character(pszEncoded, ::hex::nibble_upper_case_from((ch >> 4) & 0xf));
+            pszEncoded = string_append_character(scopedstrEncoded, ::hex::nibble_upper_case_from((ch >> 4) & 0xf));
 
-            pszEncoded = string_append_character(pszEncoded, ::hex::nibble_upper_case_from(ch & 0xf));
+            pszEncoded = string_append_character(scopedstrEncoded, ::hex::nibble_upper_case_from(ch & 0xf));
 
          }
 
@@ -1552,7 +1552,7 @@ namespace url
 
       }
 
-      strEncoded.release_buffer(pszEncoded - pszEncodedStart);
+      strEncoded.release_buffer(scopedstrEncoded - pszEncodedStart);
 
       return ::transfer(strEncoded);
 

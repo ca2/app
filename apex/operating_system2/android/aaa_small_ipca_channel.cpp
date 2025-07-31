@@ -73,7 +73,7 @@
          data_struct data;
          data.mtype        = 20170101;
          data.request      = 0;
-         data.int_size         = ansi_length(pszMessage);
+         data.int_size         = ansi_length(scopedstrMessage);
          if(data.int_size > 512)
             return false;
 
@@ -110,7 +110,7 @@
          data_struct data;
          data.mtype        = 20170101;
          data.request      = I32_MINIMUM;
-         data.int_size         = (int)ansi_length(pszMessage);
+         data.int_size         = (int)ansi_length(scopedstrMessage);
 
          ::collection::count cPos = 0;
 

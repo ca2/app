@@ -135,7 +135,7 @@ namespace helloaxis
       ::image::image_pointer & image23(string strDib);
 
       virtual bool in_anime();
-      virtual void helloaxis_fast_render(const ::string & strHelloAxis);
+      virtual void helloaxis_fast_render(const ::scoped_string & scopedstrHelloAxis);
 
 
    };

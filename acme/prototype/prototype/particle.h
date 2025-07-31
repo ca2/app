@@ -13,6 +13,7 @@
 
 
 #include "acme/platform/allocator.h"
+#include "acme/prototype/string/scoped_string_base.h"
 //#include "acme/prototype/prototype/signal.h"
 //#include "acme/prototype/prototype/post_procedure_continuation.h"
 
@@ -223,9 +224,9 @@ public:
 
 
    virtual ::factory::factory_pointer & factory() const;
-   virtual ::factory::factory_pointer & factory(const ::string& strLibrary) const;
-   virtual ::factory::factory_pointer & factory(const ::string& strComponent, const ::string& strImplementation) const;
-   virtual ::factory::factory * component_factory(const ::string& strComponent) const;
+   virtual ::factory::factory_pointer & factory(const ::scoped_string & scopedstrLibrary) const;
+   virtual ::factory::factory_pointer & factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation) const;
+   virtual ::factory::factory * component_factory(const ::scoped_string & scopedstrComponent) const;
    //::factory::factory* factory(const ::atom& atom);
 
    //virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);
@@ -457,8 +458,8 @@ public:
    virtual void call_handle_message(::message::message* pmessage);
    virtual void call_handle_item(::item* pitem);
 
-   virtual bool _handle_uri(const ::string & strUri);
-   virtual bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset);
+   virtual bool _handle_uri(const ::scoped_string & scopedstrUri);
+   virtual bool _handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset);
 
    // <3ThomasBorregaardSorensen__!! likes handler concept...
    //void route(::signal * psignal) override;
@@ -505,14 +506,14 @@ public:
    [[nodiscard]] virtual bool should_run_async() const;
 
 
-   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::string & strMessage, const ::string & strTitle = {}, const ::e_message_box & emessagebox = {}, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::exception & exception, const ::string & strMessage = {}, const ::string & strTitle = {}, const ::e_message_box & emessagebox = {}, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
-   //virtual ::pointer < ::message_box > message_box(const string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   //virtual ::pointer < ::message_box > exception_message_box(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   //virtual ::pointer < ::message_box > message_console(const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   //virtual ::pointer < ::message_box > exception_message_console(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > exception_message_box(const ::exception& exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > exception_message_console(const ::exception& exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
    //virtual void display(::message_box * pmessagebox);
    //virtual void display_exception(const ::exception& exception, ::message_box * pmessagebox);

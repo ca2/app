@@ -217,7 +217,7 @@ namespace freedesktop
    }
 
 
-   void desktop_file::set_app_id(const ::string & strAppId)
+   void desktop_file::set_app_id(const ::scoped_string & scopedstrAppId)
    {
 
       m_strAppId = strAppId;

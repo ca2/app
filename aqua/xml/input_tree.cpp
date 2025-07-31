@@ -8,7 +8,7 @@ namespace xml
 {
 
 
-   input_tree::input_tree(const ::string & strXml)
+   input_tree::input_tree(const ::scoped_string & scopedstrXml)
    {
 
       m_pdocument = __allocate ::xml::document();
@@ -41,7 +41,7 @@ namespace xml
    }
 
 
-   ::xml::node * input_tree::import_node(const ::string & strName, importable & importable)
+   ::xml::node * input_tree::import_node(const ::scoped_string & scopedstrName, importable & importable)
    {
 
       ::xml::node * pnodePrev = m_pnode;
@@ -86,7 +86,7 @@ namespace xml
    }
 
 
-   node * input_tree::import_node(const ::string & strName, ::property_set & set, importable & importable)
+   node * input_tree::import_node(const ::scoped_string & scopedstrName, ::property_set & set, importable & importable)
    {
 
       ::xml::node * pnodePrev = m_pnode;
@@ -145,7 +145,7 @@ namespace xml
    }
 
 
-   ::xml::node * input_tree::import_node(const ::string & strName, ::payload & payload)
+   ::xml::node * input_tree::import_node(const ::scoped_string & scopedstrName, ::payload & payload)
    {
 
       m_varexchange.m_ppayload = &payload;

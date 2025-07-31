@@ -840,7 +840,7 @@ namespace user
 
       //task_pointer defer_fork(const ::atom& atom, const matter_pointer& pmatter);
 
-      virtual void set_place_child_title(const ::string & pszTitle);
+      virtual void set_place_child_title(const ::scoped_string & scopedstrTitle);
 
       virtual ::user::interaction_base * get_bind_ui();
 
@@ -1057,7 +1057,7 @@ namespace user
 
       virtual bool on_child_from_point_mouse_message_routing(::message::mouse * pmouse);
 
-      virtual void create_message_queue(const ::string & strName) override;
+      virtual void create_message_queue(const ::scoped_string & scopedstrName) override;
 
       virtual ::pointer<::message::message>get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
 
@@ -1471,7 +1471,7 @@ namespace user
       /// returns true if set_need_redraw was posted
       virtual bool post_pending_set_need_redraw();
 
-      // virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, unsigned int uStyle, ::user::interaction * puiParent, ::request * prequest = nullptr) override;
+      // virtual bool create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, ::user::interaction * puiParent, ::request * prequest = nullptr) override;
 
       //virtual bool create_window_ex(::pointer<::user::system>pcs, ::user::interaction* puiParent = nullptr, const ::atom& atom = ::atom()) override;
       //enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
@@ -1697,7 +1697,7 @@ namespace user
       virtual void get_text_composition_area(::int_rectangle & rectangle);
 
 
-      virtual void set_window_text(const ::string & pszString) override;
+      virtual void set_window_text(const ::scoped_string & scopedstrString) override;
       virtual void set_window_text_source(const ::a_string_function & astringfunction) override;
       virtual void clear_window_text_source();
 
@@ -1888,12 +1888,12 @@ namespace user
 
       ::user::interaction* _001FromPoint(::int_point point, bool bTestedIfParentVisible = false) override;
 
-      void OnLinkClick(const ::string & psz, const ::string & pszTarget = nullptr) override;
+      void OnLinkClick(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTarget = nullptr) override;
 
       void pre_translate_message(::message::message* pmessage) override;
 
 
-      ::user::interaction * get_child_by_name(const ::string & strName, ::collection::index iItem = -1, int iLevel = -1) override;
+      ::user::interaction * get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem = -1, int iLevel = -1) override;
       ::user::interaction * get_child_by_id(const atom & atom, ::collection::index iItem = -1, int iLevel = -1) override;
       ::user::element * get_primitive_by_id(const atom & atom, ::collection::index iItem, int iLevel) override;
 
@@ -2307,7 +2307,7 @@ namespace user
       void get_text_selection(character_count& iBeg, character_count& iEnd) const override;
 
       
-      virtual bool set_sel_by_name(const ::string & strName);
+      virtual bool set_sel_by_name(const ::scoped_string & scopedstrName);
       virtual string get_sel_by_name();
       virtual string get_hover_by_name();
       virtual void ensure_sel_visible();
@@ -2369,7 +2369,7 @@ namespace user
       bool is_descendant_of_or_owned_by(::user::element * puiAscendantCandidate, bool bIncludeSelf) override;
       bool is_ascendant_or_owner_of(::user::element * puiDescendantCandidate, bool bIncludeSelf) override;
 
-      virtual void show_tooltip(const string& str, bool bError);
+      virtual void show_tooltip(const ::scoped_string & scopedstr, bool bError);
 
       virtual void layout_tooltip(bool bForceShow = false);
 
@@ -2448,7 +2448,7 @@ namespace user
       virtual bool is_window_repositioning();
       virtual bool is_window_docking();
 
-      virtual void set_bitmap_source(const string & strBitmapFileTitle) override;
+      virtual void set_bitmap_source(const ::scoped_string & scopedstrBitmapFileTitle) override;
       virtual void clear_bitmap_source() override;
 
 
@@ -2473,7 +2473,7 @@ namespace user
       virtual void simple_ui_draw_border(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual bool on_action(const ::string & pszId);
+      virtual bool on_action(const ::scoped_string & scopedstrId);
 
       bool keyboard_focus_is_focusable() override;
 
@@ -2848,7 +2848,7 @@ namespace user
 
       virtual void enable(bool bOn);
       virtual void SetCheck(int nCheck);
-      virtual void SetText(const ::string & pszText);
+      virtual void SetText(const ::scoped_string & scopedstrText);
 
       atom GetControlCommand(atom atom);
 

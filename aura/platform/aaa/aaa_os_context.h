@@ -40,20 +40,20 @@
 
       virtual void     link_open(string strUrl);
 
-      virtual bool local_machine_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet);
-      virtual bool local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet);
-      virtual bool current_user_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet);
-      virtual bool current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet);
+      virtual bool local_machine_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet);
+      virtual bool local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet);
+      virtual bool current_user_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet);
+      virtual bool current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet);
 
       virtual bool defer_register_ca2_plugin_for_mozilla();
 
 
-      virtual bool file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension);
-      virtual bool file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension);
+      virtual bool file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension);
+      virtual bool file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension);
 
-      virtual bool file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath);
-      virtual bool file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszCommand, const ::string & pszParam);
-      virtual bool file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam);
+      virtual bool file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrIconPath);
+      virtual bool file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam);
+      virtual bool file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam);
 
       virtual bool native_full_web_browser(const ::string & pcsz);
 
@@ -69,13 +69,13 @@
 
       virtual void stop_service();
 
-      virtual bool create_service(const ::string & strServiceName, const ::string & strDisplayName, const ::string & strCommand, const ::string & strUser = "", const ::string & strPass = "");
+      virtual bool create_service(const ::scoped_string & scopedstrServiceName, const ::scoped_string & scopedstrDisplayName, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrUser = "", const ::scoped_string & scopedstrPass = "");
 
-      virtual bool erase_service(const ::string & strServiceName);
+      virtual bool erase_service(const ::scoped_string & scopedstrServiceName);
 
-      virtual bool start_service(const ::string & strServiceName);
+      virtual bool start_service(const ::scoped_string & scopedstrServiceName);
 
-      virtual bool stop_service(const ::string & strServiceName);
+      virtual bool stop_service(const ::scoped_string & scopedstrServiceName);
 
 #ifdef WINDOWS
       virtual DECLSPEC_NO_RETURN void raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
@@ -83,10 +83,10 @@
 
       virtual bool is_remote_session();
 
-      virtual void set_file_status(const ::string & pszFileName, const ::file::file_status& status);
+      virtual void set_file_status(const ::scoped_string & scopedstrFileName, const ::file::file_status& status);
 
 
-      virtual bool resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr, ::user::interaction_base * puiMessageParentOptional = nullptr);
+      virtual bool resolve_link(::file::path & path, const ::scoped_string & scopedstrSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr, ::user::interaction_base * puiMessageParentOptional = nullptr);
 
       virtual bool initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch);
 
@@ -104,7 +104,7 @@
 
       virtual bool is_user_auto_start(string strId);
 
-      virtual ::file::path get_app_path(const ::string & strApp);
+      virtual ::file::path get_app_path(const ::scoped_string & scopedstrApp);
 
       virtual void on_process_command(::create * pcommand);
 

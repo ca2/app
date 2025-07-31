@@ -61,7 +61,7 @@ binary_stream & operator >> (binary_stream & istream, biunique< T, T_to_T > & b)
       m_iEmptyB = -1;
       m_iMaxA = -1;
       m_iMaxB = -1;
-      throw ::exception(psz);
+      throw ::exception(scopedstr);
    }
    return istream;
 }

@@ -79,7 +79,7 @@
 
 //#ifdef MACOS
 //
-//bool macos_set_user_wallpaper(int iScreen, const ::string & psz);
+//bool macos_set_user_wallpaper(int iScreen, const ::scoped_string & scopedstr);
 //
 ////long long mm_get_user_wallpaper(long long llScreen, char ** ppp);
 ////
@@ -92,12 +92,12 @@
 ////
 ////   mm_get_user_wallpaper(iScreen, &psz);
 ////
-////   if(psz != nullptr)
+////   if(scopedstr != nullptr)
 ////   {
 ////
 ////      str = psz;
 ////
-////      free(psz);
+////      free(scopedstr);
 ////
 ////   }
 ////
@@ -565,7 +565,7 @@ namespace core
    }
 
 
-   //pointer< ::sequence < ::conversation > > user::dialog_box(::particle * pparticle, const ::string & pszMatter, ::property_set & propertyset)
+   //pointer< ::sequence < ::conversation > > user::dialog_box(::particle * pparticle, const ::scoped_string & scopedstrMatter, ::property_set & propertyset)
    //{
 
    //   return nullptr;
@@ -580,7 +580,7 @@ namespace core
 
    //   ////r
 
-   //   //if (!pbox->show(pszMatter))
+   //   //if (!pbox->show(scopedstrMatter))
    //   //{
 
    //   //   //pfuture->set_status(::error_failed);
@@ -596,7 +596,7 @@ namespace core
    //}
 
 
-   //pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   //pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
    //{
 
    //   return nullptr;
@@ -731,7 +731,7 @@ namespace core
    //}
 
 
-   //pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox)
+   //pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::e_message_box & emessagebox)
    //{
 
    //   //__UNREFERENCED_PARAMETER(puiOwner);
@@ -785,19 +785,19 @@ namespace core
    //}
 
 //
-//   int user::track_popup_menu(const ::string & pszMatter, const ::int_point & point, ::pointer<::user::interaction>puie)
+//   int user::track_popup_menu(const ::scoped_string & scopedstrMatter, const ::int_point & point, ::pointer<::user::interaction>puie)
 //   {
 //
-//      //__UNREFERENCED_PARAMETER(pszMatter);
+//      //__UNREFERENCED_PARAMETER(scopedstrMatter);
 //      //__UNREFERENCED_PARAMETER(point);
 //      //__UNREFERENCED_PARAMETER(puie);
 //
-//      return ::bred::user::track_popup_menu(pszMatter, point, puie);
+//      return ::bred::user::track_popup_menu(scopedstrMatter, point, puie);
 //
 //   }
 
 
-   bool user::get_fs_size(string & strSize, const ::string & pszPath, bool & bPending)
+   bool user::get_fs_size(string & strSize, const ::scoped_string & scopedstrPath, bool & bPending)
    {
 
       long long i64Size;
@@ -860,7 +860,7 @@ namespace core
    }
 
 
-   bool user::get_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending)
+   bool user::get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
    {
 
       //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
@@ -957,11 +957,11 @@ namespace core
    }
 
 
-   void  user::AddToRecentFileList(const ::string & pszPathName)
+   void  user::AddToRecentFileList(const ::scoped_string & scopedstrPathName)
 
    {
 
-      __UNREFERENCED_PARAMETER(pszPathName);
+      __UNREFERENCED_PARAMETER(scopedstrPathName);
 
 
    }
@@ -1592,10 +1592,10 @@ namespace core
    //}
 
 
-   //int application::sync_message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, unsigned int fuStyle)
+   //int application::sync_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, unsigned int fuStyle)
    //{
 
-   //   informationf("\n\napp_message_box: " + string(pszMessage) + "\n\n");
+   //   informationf("\n\napp_message_box: " + string(scopedstrMessage) + "\n\n");
 
    //   if (&Session == nullptr || user() == nullptr)
    //      return ::base::application::sync_message_box(puiOwner, pszMessage, fuStyle);
@@ -1855,7 +1855,7 @@ namespace core
    }
 
 
-   //void application::message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, unsigned int uFlags, ::function_arg function)
+   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int uFlags, ::function_arg function)
    //{
 
    //   auto estatus = ui_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, fuStyle, functionarg);

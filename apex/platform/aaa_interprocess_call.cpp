@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-::interprocess::call::interprocess::call(interprocess_intercommunication* pipi, const string& strApp, const string& strObject, const string& strMember) :
+::interprocess::call::interprocess::call(interprocess_intercommunication* pipi, const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember) :
    //::object(pipi),
    m_pinterprocesscommunication(pipi),
    m_strApp(strApp),

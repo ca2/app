@@ -479,14 +479,14 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Special processing etc
 
-   bool frame_window::LoadAccelTable(const ::string & pszResourceName)
+   bool frame_window::LoadAccelTable(const ::scoped_string & scopedstrResourceName)
    {
 
 
       //ASSERT(m_hAccelTable == nullptr);  // only do once
-      //ASSERT(pszResourceName != nullptr);
+      //ASSERT(scopedstrResourceName != nullptr);
 
-      /*   HINSTANCE hInst = ::aura::FindResourceHandle(pszResourceName, RT_ACCELERATOR);
+      /*   HINSTANCE hInst = ::aura::FindResourceHandle(scopedstrResourceName, RT_ACCELERATOR);
 
       m_hAccelTable = ::LoadAccelerators(hInst, pszResourceName);*/
 //#ifdef WINDOWS_DESKTOP
@@ -950,10 +950,10 @@ namespace user
    }
 
 
-   //bool frame_window::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, const ::string & pszMenuName, unsigned int dwExStyle, ::request * prequest)
+   //bool frame_window::create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, const ::scoped_string & scopedstrMenuName, unsigned int dwExStyle, ::request * prequest)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pszMenuName);
+   //   __UNREFERENCED_PARAMETER(scopedstrMenuName);
 
    //   m_strFrameTitle = pszWindowName;    // save title for later
 
@@ -1115,7 +1115,7 @@ namespace user
    }
 
 
-   bool frame_window::LoadFrame(const ::string & pszMatter, unsigned int dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
+   bool frame_window::LoadFrame(const ::scoped_string & scopedstrMatter, unsigned int dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
    {
 
       __UNREFERENCED_PARAMETER(puiParent);
@@ -1998,7 +1998,7 @@ namespace user
    }
 
 
-   ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::string & strToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type_atom & typeatom)
+   ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type_atom & typeatom)
    {
 
       try
@@ -2075,7 +2075,7 @@ namespace user
    }
 
 
-   ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::string & strToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type_atom & typeatom)
+   ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type_atom & typeatom)
    {
 
       ::pointer < toolbar> ptoolbar = __id_create (typeatom);
@@ -2242,9 +2242,9 @@ namespace user
 
       {
       // first newline terminates actual string
-      psz = _tcschr(psz, '\n');
+      psz = _tcschr(scopedstr, '\n');
 
-      if (psz != nullptr)
+      if (scopedstr != nullptr)
 
       *psz = '\0';
 
@@ -2314,7 +2314,7 @@ namespace user
 
    //      }
 
-   //      pMessageBar->set_window_text(psz);
+   //      pMessageBar->set_window_text(scopedstr);
 
 
    //      // update owner of the bar in terms of last message selected
@@ -2366,7 +2366,7 @@ namespace user
 //      ASSERT(m_nIDTracking == m_nIDLastMessage);
 //   }
 
-   //void frame_window::SetMessageText(const ::string & pszText)
+   //void frame_window::SetMessageText(const ::scoped_string & scopedstrText)
 
    //{
    //   send_message(WM_SETMESSAGESTRING, 0, (lparam)pszText);
@@ -2404,7 +2404,7 @@ namespace user
    }
 
 
-   void frame_window::UpdateFrameTitleForDocument(const ::string & strDocName)
+   void frame_window::UpdateFrameTitleForDocument(const ::scoped_string & scopedstrDocName)
 
    {
 
@@ -2809,7 +2809,7 @@ namespace user
    }
 
 
-//   void frame_window::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, unsigned int dwCtrlStyle, unsigned int uStyle)
+//   void frame_window::load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar, unsigned int dwCtrlStyle, unsigned int uStyle)
 //   {
 //
 //      throw ::interface_only();

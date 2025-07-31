@@ -635,7 +635,7 @@ namespace dynamic_source
    }
 
 
-   ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, const ::string& strNameParam)
+   ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, const ::scoped_string & scopedstrNameParam)
    {
 
       string strName = ::str::get_word(strNameParam, "?");
@@ -1239,10 +1239,10 @@ namespace dynamic_source
    }
 
    // #ifdef WINDOWS
-   // #define is_absolute_path(psz) ((isalpha(psz[0]) && psz[1] == ':') \
-   //    || (psz[0] == '\\' && psz[1] == '\\'))
+   // #define is_absolute_path(scopedstr) ((isalpha(scopedstr[0]) && psz[1] == ':') \
+   //    || (scopedstr[0] == '\\' && psz[1] == '\\'))
    // #else
-   // #define is_absolute_path(psz) (psz[0] == '/')
+   // #define is_absolute_path(scopedstr) (scopedstr[0] == '/')
    // #endif
 
 
@@ -1436,7 +1436,7 @@ namespace dynamic_source
    {
    }
 
-   void script_manager::register_plugin(const ::string& strHost, const ::string& strScript, const ::string& strName, script* pscript)
+   void script_manager::register_plugin(const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrScript, const ::scoped_string & scopedstrName, script* pscript)
    {
 
       plugin_map_item item;
@@ -1464,7 +1464,7 @@ namespace dynamic_source
       while (true)
       {
 
-         if (has_link_out_link(pszServer, pinsocket, nullptr))
+         if (has_link_out_link(scopedstrServer, pinsocket, nullptr))
             break;
 
          sleep(100_ms);
@@ -1479,7 +1479,7 @@ namespace dynamic_source
 
       _synchronous_lock synchronouslock(m_pmutexOutLink);
 
-      auto p = m_mapOutLink.plookup(pszServer);
+      auto p = m_mapOutLink.plookup(scopedstrServer);
 
       ::sockets::link_out_socket* psocket = nullptr;
 
@@ -1512,7 +1512,7 @@ namespace dynamic_source
 
          }
 
-         m_mapOutLink.erase_item(pszServer);
+         m_mapOutLink.erase_item(scopedstrServer);
 
       }
 
@@ -1539,7 +1539,7 @@ namespace dynamic_source
          item.m_strServer = pszServer;
          item.m_time.Now();
 
-         m_mapTunnel.set_at(pszServer, item);
+         m_mapTunnel.set_at(scopedstrServer, item);
 
       }
 
@@ -1560,7 +1560,7 @@ namespace dynamic_source
 
       _synchronous_lock synchronouslock(m_pmutexTunnel);
 
-      auto p = m_mapTunnel.plookup(pszServer);
+      auto p = m_mapTunnel.plookup(scopedstrServer);
 
       if (::is_end(p))
       {
@@ -1599,7 +1599,7 @@ namespace dynamic_source
          item.m_strServer = pszServer;
          item.m_time.Now();
 
-         m_mapTunnel.set_at(pszServer, item);
+         m_mapTunnel.set_at(scopedstrServer, item);
 
       }
 
@@ -1607,7 +1607,7 @@ namespace dynamic_source
 
          _synchronous_lock synchronouslock(m_pmutexOutLink);
 
-         m_mapOutLink.set_at(pszServer, psocket);
+         m_mapOutLink.set_at(scopedstrServer, psocket);
 
       }
 
@@ -1800,7 +1800,7 @@ namespace dynamic_source
    }
 
 
-   ::file::path script_manager::get_script_path(const ::file::path& strName, const ::string& strModifier)
+   ::file::path script_manager::get_script_path(const ::file::path& strName, const ::scoped_string & scopedstrModifier)
    {
 
       ::file::path strTransformName = strName;

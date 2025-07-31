@@ -47,7 +47,7 @@ size_t get_file_size(int32_t fd)
 int_bool file_set_length(const ::scoped_string & scopedstrName, size_t iSize)
 {
 
-   int32_t fd = ::open(pszName, O_RDONLY);
+   int32_t fd = ::open(scopedstrName, O_RDONLY);
 
    int_bool bSet = ::ensure_file_size_fd(fd, iSize) != -1;
 
@@ -283,14 +283,14 @@ int_bool file_copy_dup(const ::scoped_string & scopedstrNew, const ::scoped_stri
    int32_t flags = O_RDWR|O_CREAT|O_TRUNC;
    if(!bOverwrite)
       flags |= O_EXCL;
-   if((output = open(pszNew, flags, 0666)) == -1)
+   if((output = open(scopedstrNew, flags, 0666)) == -1)
    {
       fprintf(stderr, "Error: opening file: %s\n", pszNew);
       return false;
    }
 
 
-   if((input = open(pszSrc, O_RDONLY)) == -1)
+   if((input = open(scopedstrSrc, O_RDONLY)) == -1)
    {
       fprintf(stderr, "Error: opening file: %s\n", pszSrc);
       return false;
@@ -335,7 +335,7 @@ int_bool file_copy_dup(const ::scoped_string & scopedstrNew, const ::scoped_stri
 
 int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 {
-   if(stricmp_dup(psz1, psz2) == 0)
+   if(stricmp_dup(scopedstr1, psz2) == 0)
       return true;
 
    throw ::exception(::exception(" // TODO: it should follow links "));
@@ -375,8 +375,8 @@ int_bool file_path_is_equal(const ::file::path & pathParam1, const ::file::path 
 {
 
    const int32_t iBufSize = MAX_PATH * 8;
-   wstring pwsz1 = utf8_to_unicode(psz1);
-   wstring pwsz2 = utf8_to_unicode(psz2);
+   wstring pwsz1 = utf8_to_unicode(scopedstr1);
+   wstring pwsz2 = utf8_to_unicode(scopedstr2);
 //   unichar * pwszFile1;
    // unichar * pwszFile2;
    unichar * pwszPath1 = ___new unichar[iBufSize];
@@ -409,7 +409,7 @@ int_bool file_path_is_equal(const ::file::path & pathParam1, const ::file::path 
 int32_t ansi_open(const ::scoped_string & scopedstr,int32_t i)
 {
 
-   return open(psz,i);
+   return open(scopedstr,i);
 
 }
 
@@ -421,7 +421,7 @@ void ansi_get_errno(int32_t * perrno)
 FILE * ansi_fopen(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrMode)
 {
 
-   return fopen(psz,pszMode);
+   return fopen(scopedstr,pszMode);
 
 }
 
@@ -470,7 +470,7 @@ int ansi_file_flag(int iFlag)
 void ansi_unlink(const ::scoped_string & scopedstr)
 {
 
-   unlink(psz);
+   unlink(scopedstr);
 
 }
 
@@ -500,7 +500,7 @@ int_bool is_dir(const ::file::path & path1)
 
 #ifdef __cplusplus
 
-string file_first_line_dup(const ::string & strPath)
+string file_first_line_dup(const ::scoped_string & scopedstrPath)
 {
 
    string line;

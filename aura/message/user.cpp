@@ -76,7 +76,7 @@ namespace message
    
    }
 
-   void create::failed(const ::string & strErrorMessage)
+   void create::failed(const ::scoped_string & scopedstrErrorMessage)
    {
 
       m_lresult = -1;

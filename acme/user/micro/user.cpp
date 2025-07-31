@@ -40,7 +40,7 @@ namespace micro
       }
 
 
-      //::pointer < ::subparticle > user::micro()->message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+      //::pointer < ::subparticle > user::micro()->message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
       //{
 
       //   auto psequencer = node()->micro()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -50,7 +50,7 @@ namespace micro
       //}
 
 
-      //::pointer < ::subparticle > user::micro()->message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+      //::pointer < ::subparticle > user::micro()->message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
       //{
 
       //   auto psequencer = node()->micro()->message_console(strMessage, strTitle, emessagebox, strDetails);
@@ -59,9 +59,9 @@ namespace micro
 
       //}
 
-      //::pointer < ::message_box > user::message_box(const ::string & strMessage, const ::string & strTitle,
+      //::pointer < ::message_box > user::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
       //                                                       const ::e_message_box & emessagebox,
-      //                                                       const ::string & strDetails, ::nano::graphics::icon * picon)
+      //                                                       const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
       //{
       //   auto pnode = node();
 
@@ -72,8 +72,8 @@ namespace micro
 
 
       //::pointer < ::message_box > user::exception_message_box(
-      //    const ::exception & exception, const ::string & strMessageParam, const ::string & strTitleParam,
-      //    const ::e_message_box & emessagebox, const ::string & strDetailsParam, ::nano::graphics::icon * picon)
+      //    const ::exception & exception, const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrTitleParam,
+      //    const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetailsParam, ::nano::graphics::icon * picon)
       //{
       //   string strExceptionDetails = exception.get_consolidated_details(this);
 
@@ -114,9 +114,9 @@ namespace micro
       //}
 
 
-      //::pointer < ::message_box > user::message_console(const ::string & strMessage, const ::string & strTitle,
+      //::pointer < ::message_box > user::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
       //                                                           const ::e_message_box & emessagebox,
-      //                                                           const ::string & strDetails, ::nano::graphics::icon * picon)
+      //                                                           const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
       //{
       //   auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
 
@@ -125,8 +125,8 @@ namespace micro
 
 
       //::pointer < ::message_box > user::exception_message_console(
-      //    const ::exception & exception, const ::string & strMessage, const ::string & strTitle,
-      //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+      //    const ::exception & exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
+      //    const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
       //{
       //   string strExceptionDetails = exception.get_consolidated_details(this);
 

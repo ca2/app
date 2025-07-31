@@ -18,16 +18,16 @@ public:
 
 
    dialog();
-   dialog(const ::string & pszMatter, ::pointer<::user::interaction>puiParent);
+   dialog(const ::scoped_string & scopedstrMatter, ::pointer<::user::interaction>puiParent);
    ~dialog() override;
 
    virtual void on_position_parent_frame();
 
    virtual void EndModalLoop(atom nResult);
 
-   virtual bool show(const ::string & pszMatter = nullptr);
+   virtual bool show(const ::scoped_string & scopedstrMatter = nullptr);
 
-   virtual void on_show(const ::string & pszMatter);
+   virtual void on_show(const ::scoped_string & scopedstrMatter);
 
    virtual void do_data_exchange(::user::data_exchange * pdx);
 

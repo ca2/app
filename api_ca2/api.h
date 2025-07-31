@@ -38,7 +38,7 @@ namespace api_ca2
       string get_name_for_profile() override;
       
 
-      //void api_login(const ::string& strConfig, const ::string& strProfile) override;
+      //void api_login(const ::scoped_string & scopedstrConfig, const ::scoped_string & scopedstrProfile) override;
 
       void api_login() override;
 
@@ -51,9 +51,9 @@ namespace api_ca2
       ::memory api_memory(const ::scoped_string & scopedstrUrl, ::property_set & set) override;
 
 
-      ::e_status on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
+      ::e_status on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::scoped_string & scopedstrUrl, const ::property_set& setPost) override;
 
-      virtual bool check_authenticated(const ::string & strAppState, const ::string & strAppCode);
+      virtual bool check_authenticated(const ::scoped_string & scopedstrAppState, const ::scoped_string & scopedstrAppCode);
       
       virtual string get_app_login();
 

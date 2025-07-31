@@ -20,7 +20,7 @@ namespace sip
 
 
       /** Cookies */
-      void add_cookie(const ::string & pszSetCookie);
+      void add_cookie(const ::scoped_string & scopedstrSetCookie);
 
       /** open file for body data */
       void InitBody( size_t sz );

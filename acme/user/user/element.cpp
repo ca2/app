@@ -729,7 +729,7 @@ namespace user
    //}
 
 
-   //int element::sync_message_box_timeout(const ::string & pszMessage, ::time timeTimeOut, unsigned int fuStyle)
+   //int element::sync_message_box_timeout(const ::scoped_string & scopedstrMessage, ::time timeTimeOut, unsigned int fuStyle)
    //{
 
    //   return papp->sync_message_box_timeout(this, pszMessage, get_title(), timeTimeOut, fuStyle);
@@ -955,7 +955,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_child_by_name(const ::string & strName, ::collection::index iItem, int iLevel)
+   ::user::interaction * element::get_child_by_name(const ::scoped_string & scopedstrName, ::collection::index iItem, int iLevel)
    {
 
       throw ::interface_only();
@@ -1681,7 +1681,7 @@ namespace user
    }
 
 
-   void element::set_window_text(const ::string & pszString)
+   void element::set_window_text(const ::scoped_string & scopedstrString)
    {
 
    }
@@ -2599,7 +2599,7 @@ namespace user
    //}
 
 
-   void element::OnLinkClick(const ::string & psz, const ::string & pszTarget)
+   void element::OnLinkClick(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTarget)
    {
 
       throw ::interface_only();
@@ -3834,7 +3834,7 @@ namespace user
    }
 
 
-   void element::set_bitmap_source(const string & strBitmapSource)
+   void element::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
       throw ::interface_only();
@@ -4871,7 +4871,7 @@ namespace user
    }
 
 
-   bool element::InputConnectionCommitText(const ::string & str, character_count iNewCursorPosition, bool bSuper)
+   bool element::InputConnectionCommitText(const ::scoped_string & scopedstr, character_count iNewCursorPosition, bool bSuper)
    {
 
       return bSuper;
@@ -4887,7 +4887,7 @@ namespace user
    }
 
 
-   bool element::InputConnectionSetComposingText(const ::string & str, character_count iNewCursorPosition, bool bSuper)
+   bool element::InputConnectionSetComposingText(const ::scoped_string & scopedstr, character_count iNewCursorPosition, bool bSuper)
    {
 
       return bSuper;

@@ -650,7 +650,7 @@ inline short  __hiword(INTEGRAL i) {return (i >> 16) & 0xffff; }
 //
 //   const char * pszEnd = nullptr;
 //
-//   return ansi_to_long_long(psz, &pszEnd, iBase);
+//   return ansi_to_long_long(scopedstr, &pszEnd, iBase);
 //
 //}
 

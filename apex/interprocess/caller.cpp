@@ -20,7 +20,7 @@ namespace interprocess
    }
 
 
-   void caller::open(const ::string & strChannel, launcher * plauncher)
+   void caller::open(const ::scoped_string & scopedstrChannel, launcher * plauncher)
    {
 
       //return true;
@@ -47,7 +47,7 @@ namespace interprocess
    }
 
 
-   void caller::call(const ::string & pszMessage, const class time & timeTimeout)
+   void caller::call(const ::scoped_string & scopedstrMessage, const class time & timeTimeout)
    {
 
       if (!is_caller_ok())

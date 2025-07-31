@@ -32,7 +32,7 @@ namespace windows_common
          }
 
 
-         ::string idn::idn_to_punycode(const ::string& str)
+         ::string idn::idn_to_punycode(const ::scoped_string & scopedstr)
          {
 
             wstring wstr(str);
@@ -54,7 +54,7 @@ namespace windows_common
          }
 
 
-         ::string idn::idn_from_punycode(const ::string& str)
+         ::string idn::idn_from_punycode(const ::scoped_string & scopedstr)
          {
 
             wstring wstrSource(str);

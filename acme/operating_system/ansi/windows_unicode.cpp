@@ -303,7 +303,7 @@ int_bool *  pUsedDefaultChar)
 
      char * psz = str.get_buffer(len);
 
-     unichar_to_utf8(psz, wstr, len);
+     unichar_to_utf8(scopedstr, wstr, len);
 
   }
   else

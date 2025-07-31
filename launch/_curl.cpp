@@ -33,7 +33,7 @@ bool curl_check_http_ok(const char * pszUrl)
    while(true)
    {
 
-      auto pszNewLine = get_line(psz, psz);
+      auto pszNewLine = get_line(scopedstr, psz);
 
       if(!pszNewLine)
       {
@@ -42,14 +42,14 @@ bool curl_check_http_ok(const char * pszUrl)
 
       }
 
-      if(pszNewLine[0] == 'H'
+      if(scopedstrNewLine[0] == 'H'
       && pszNewLine[1] == 'T'
       && pszNewLine[2] == 'T'
       && pszNewLine[3] == 'P'
       && pszNewLine[4] == '/')
       {
 
-         auto pszSpace = strchr(pszNewLine + 4, ' ');
+         auto pszSpace = strchr(scopedstrNewLine + 4, ' ');
 
          if(!pszSpace)
          {
@@ -58,11 +58,11 @@ bool curl_check_http_ok(const char * pszUrl)
 
          }
 
-         auto nonSpace = strspn(pszSpace, " \t");
+         auto nonSpace = strspn(scopedstrSpace, " \t");
 
          auto pszNonSpace = pszSpace + nonSpace;
 
-         auto pszNewLine = strpbrk(pszNonSpace, "\r\n");
+         auto pszNewLine = strpbrk(scopedstrNonSpace, "\r\n");
 
          if(!pszNewLine)
          {
@@ -71,7 +71,7 @@ bool curl_check_http_ok(const char * pszUrl)
 
          }
 
-         if(!strncmp(pszNonSpace, "200", pszNewLine - pszNonSpace))
+         if(!strncmp(scopedstrNonSpace, "200", pszNewLine - pszNonSpace))
          {
 
             return true;

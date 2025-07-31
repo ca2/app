@@ -198,7 +198,7 @@ namespace netserver
 
 
 
-   ////void incoming_socket::simple_file_server(const ::string & pszPath, bool bMatter)
+   ////void incoming_socket::simple_file_server(const ::scoped_string & scopedstrPath, bool bMatter)
    ////{
 
    ////   pointer_array < ::int_array > rangea;
@@ -248,24 +248,24 @@ namespace netserver
 
    ////   }
 
-   ////   read_file(pszPath, &rangea);
+   ////   read_file(scopedstrPath, &rangea);
 
    ////}
 
 
-   ////void incoming_socket::simple_image_server(const ::string & pszPath, int iMaxWidth, int iMaxHeight)
+   ////void incoming_socket::simple_image_server(const ::scoped_string & scopedstrPath, int iMaxWidth, int iMaxHeight)
    ////{
 
    ////   if (iMaxWidth <= 0 && iMaxHeight <= 0)
    ////   {
-   ////      simple_file_server(pszPath);
+   ////      simple_file_server(scopedstrPath);
    ////   }
    ////   else
    ////   {
    ////
    ////      ::image::image_pointer pimage;
 
-   ////      pimage->load_image(pszPath);
+   ////      pimage->load_image(scopedstrPath);
 
    ////      double dRateW = 1.0;
 

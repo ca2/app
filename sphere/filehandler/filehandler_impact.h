@@ -31,7 +31,7 @@ namespace filehandler
 
          item(::particle * pparticle);
 
-         void parse(const ::string & pszApp);
+         void parse(const ::scoped_string & scopedstrApp);
 
          void draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics, list * plist);
 
@@ -47,7 +47,7 @@ namespace filehandler
          list(::particle * pparticle);
 
 
-         void parse(::filehandler::handler * phandler, const ::string & pszTopic);
+         void parse(::filehandler::handler * phandler, const ::scoped_string & scopedstrTopic);
 
          void on_layout(const ::int_rectangle * lpcrect);
          void draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics);

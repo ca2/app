@@ -588,7 +588,7 @@ namespace hi5
          string & rawParams,
          const ::scoped_string & scopedstrSeparator )
    {
-      string strSeparator(pszSeparator);
+      string strSeparator(scopedstrSeparator);
       rawParams =  "";
       if( rawParamMap.get_count() )
       {
@@ -641,7 +641,7 @@ namespace hi5
          }
 
          /* Now, form a string */
-         rawParams =  keyValueList.implode(pszSeparator);
+         rawParams =  keyValueList.implode(scopedstrSeparator);
 
       }
 

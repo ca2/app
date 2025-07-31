@@ -120,7 +120,7 @@ int uni_to_utf8_2_or_more(char * dest, int ch)
 
 CLASS_DECL_ACME ::collection::count unichar_len(const ::wide_character * psz)
 {
-   if(psz == nullptr)
+   if(scopedstr == nullptr)
       return -1;
    int count = 0;
    while(*psz != 0)
@@ -134,10 +134,10 @@ CLASS_DECL_ACME ::collection::count unichar_len(const ::wide_character * psz)
 
 ::collection::count utf16_len(const ::ansi_character * psz)
 {
-   if(psz == nullptr)
+   if(scopedstr == nullptr)
       return -1;
    int count = 0;
-   while((psz = unicode_next(psz)) != nullptr)
+   while((scopedstr = unicode_next(scopedstr)) != nullptr)
    {
       count++;
    }
@@ -146,10 +146,10 @@ CLASS_DECL_ACME ::collection::count unichar_len(const ::wide_character * psz)
 
 ::collection::count utf16_len_len(const ::ansi_character * psz, character_count srclen)
 {
-   if(psz == nullptr)
+   if(scopedstr == nullptr)
       return -1;
    int count = 0;
-   while(srclen > 0 && (psz = unicode_next(psz)) != nullptr)
+   while(srclen > 0 && (scopedstr = unicode_next(scopedstr)) != nullptr)
    {
       count++;
       srclen--;
@@ -166,7 +166,7 @@ void ansi_to_wd16(::wd16_character * pwsz, const ::ansi_character * psz)
 
       int len;
 
-      auto iWd32 = unicode_index_length(psz, len);
+      auto iWd32 = unicode_index_length(scopedstr, len);
 
       if (iWd32 < 0 || psz == nullptr)
       {
@@ -203,7 +203,7 @@ void ansi_to_wd16_len(::wd16_character * pwsz, const ::ansi_character * psz, cha
 
       int len;
 
-      auto iWd32 = unicode_index_length(psz, len);
+      auto iWd32 = unicode_index_length(scopedstr, len);
 
       if (iWd32)
       {
@@ -251,7 +251,7 @@ void ansi_to_wd16_len(::wd16_character * pwsz, const ::ansi_character * psz, cha
 WCHAR * ansi_to_wd16(const ::ansi_character * psz)
 {
 
-   ::collection::count iCount = utf16_len(psz);
+   ::collection::count iCount = utf16_len(scopedstr);
 
    if(iCount < 0)
       return nullptr;

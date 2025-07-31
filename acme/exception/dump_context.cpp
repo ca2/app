@@ -14,7 +14,7 @@
 //
 //   va_start (args, pszFormat);
 //
-//   vsprintf(pszBuffer, pszFormat, args);
+//   vsprintf(scopedstrBuffer, pszFormat, args);
 //
 //   va_end (args);
 //
@@ -24,7 +24,7 @@
 //
 //inline size_t lstrlen(const ::scoped_string & scopedstr)
 //{
-//   return strlen(psz);
+//   return strlen(scopedstr);
 //}
 //
 //#endif
@@ -53,15 +53,15 @@
 //   //if (!m_p)
 //   //{
 //
-//   //   ::information(psz);
+//   //   ::information(scopedstr);
 //
 //   //   return;
 //
 //   //}
 //
-//   //ASSERT(psz != nullptr);
+//   //ASSERT(scopedstr != nullptr);
 //
-//   //if (psz == nullptr)
+//   //if (scopedstr == nullptr)
 //   //{
 //
 //   //   throw ::exception(error_null_pointer);
@@ -69,7 +69,7 @@
 //   //}
 //
 //   // otherwise, write the string to the file
-//   //m_p->write(psz, strlen(psz)*sizeof(char));
+//   //m_p->write(scopedstr, strlen(scopedstr)*sizeof(char));
 //
 //}
 //
@@ -116,7 +116,7 @@
 ////void dump_context::write(const ::scoped_string & scopedstr)
 ////{
 ////
-////   if (psz == nullptr)
+////   if (scopedstr == nullptr)
 ////   {
 ////
 ////      output_string("nullptr");
@@ -125,9 +125,9 @@
 ////
 ////   }
 ////
-////   ASSERT(psz != nullptr);
+////   ASSERT(scopedstr != nullptr);
 ////
-////   if (psz == nullptr)
+////   if (scopedstr == nullptr)
 ////   {
 ////
 ////      throw ::exception(error_null_pointer);
@@ -174,7 +174,7 @@
 ////
 ////   }
 ////
-////   m_p->write(psz, strlen(psz)*sizeof(char));
+////   m_p->write(scopedstr, strlen(scopedstr)*sizeof(char));
 ////
 ////   return;
 ////
@@ -524,9 +524,9 @@
 ////
 ////   }
 ////
-////   ASSERT(is_string_ok(pszLine));
+////   ASSERT(is_string_ok(scopedstrLine));
 ////
-////   if (pszLine == nullptr)
+////   if (scopedstrLine == nullptr)
 ////   {
 ////
 ////      throw ::exception(error_bad_argument);
@@ -546,7 +546,7 @@
 ////
 ////      if (nRow == 0)
 ////      {
-////         str.formatf(pszLine, pby);
+////         str.formatf(scopedstrLine, pby);
 ////
 ////         *this << str;
 ////      }
@@ -573,7 +573,7 @@
 ////void dump_context::write(const unichar * psz)
 ////{
 ////
-////   if (psz == nullptr)
+////   if (scopedstr == nullptr)
 ////   {
 ////
 ////      output_string("(nullptr)");
@@ -582,7 +582,7 @@
 ////
 ////   }
 ////
-////   return write(unicode_to_utf8(psz));
+////   return write(unicode_to_utf8(scopedstr));
 ////   
 ////}
 ////
@@ -590,7 +590,7 @@
 ////#endif
 ////
 ////
-////void dump_context::write(const ::string & str)
+////void dump_context::write(const ::scoped_string & scopedstr)
 ////{
 ////
 ////   return write((const char *) str.c_str());

@@ -220,7 +220,7 @@ namespace html
       void initialize_html_data(html_data * pdata) override;
 
 
-      virtual string process_url(const ::string & pszUrl);
+      virtual string process_url(const ::scoped_string & scopedstrUrl);
       //virtual long long increment_reference_count() override;
       //virtual long long decrement_reference_count() override;
 
@@ -228,10 +228,10 @@ namespace html
       bool open_document(const ::payload & payloadFile) override;
 
 
-      bool open_html(const ::string & str) override;
+      bool open_html(const ::scoped_string & scopedstr) override;
 
 
-      bool open_link(const ::string & pszPath) override;
+      bool open_link(const ::scoped_string & scopedstrPath) override;
 
 
       ::user::form* get_form() override;
@@ -251,7 +251,7 @@ namespace html
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
 
-      ::image::image_pointer get_image(const ::string & pszUrl);
+      ::image::image_pointer get_image(const ::scoped_string & scopedstrUrl);
       void load_image_asynch(image* pimage);
       bool load_image(image* pimage);
 

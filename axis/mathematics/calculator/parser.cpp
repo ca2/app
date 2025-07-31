@@ -34,7 +34,7 @@ namespace calculator
    }
 
 
-   //::calculator::matter * parser::parse(const ::string & psz)
+   //::calculator::matter * parser::parse(const ::scoped_string & scopedstr)
    /********************************************/
    /* Parsing functions */
 
@@ -47,12 +47,12 @@ namespace calculator
    */
 
 
-   ::calculator::element* parser::parse(const ::string & psz)
+   ::calculator::element* parser::parse(const ::scoped_string & scopedstr)
    {
       
       ::calculator::element * pelement = nullptr;
 
-      m_scanner.initialize(psz);
+      m_scanner.initialize(scopedstr);
 
       pelement = expr(term(factor()));
 
@@ -363,7 +363,7 @@ namespace calculator
    }
 
 
-   void parser::syntax_error(const ::string & psz)
+   void parser::syntax_error(const ::scoped_string & scopedstr)
    {
 
       error(string("syntax") + psz);
@@ -371,7 +371,7 @@ namespace calculator
    }
 
 
-   void parser::error(const ::string & psz)
+   void parser::error(const ::scoped_string & scopedstr)
    {
 
       string str;

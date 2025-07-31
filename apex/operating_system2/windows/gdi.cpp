@@ -19,7 +19,7 @@
 //
 //   plf->lfHeight = nPointSize;
 //
-//   wstring wstr(pszFaceName);
+//   wstring wstr(scopedstrFaceName);
 //
 //
 //   wstr = wstr.substr(0, sizeof(plf->lfFaceName));

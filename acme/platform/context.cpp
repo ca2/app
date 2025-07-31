@@ -177,7 +177,7 @@ namespace platform
 
       return node()->is_alias(path);
 
-      //return case_insensitive_string_ends(psz, ".lnk");
+      //return case_insensitive_string_ends(scopedstr, ".lnk");
 
    }
 
@@ -583,7 +583,7 @@ namespace platform
 
             auto psz = ansi_rchr(ptextdata->m_atom.m_str.c_str() + 7, '/');
 
-            if (psz)
+            if (scopedstr)
             {
 
                ptextdata->m_str = psz + 1;

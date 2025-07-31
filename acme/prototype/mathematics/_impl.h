@@ -2,7 +2,7 @@
 
 
 //template < typename T >
-//inline c_number < T > & c_number < T >::from(const ::string & str)
+//inline c_number < T > & c_number < T >::from(const ::scoped_string & scopedstr)
 //{
 //
 //   ::from_string(m_number, str);

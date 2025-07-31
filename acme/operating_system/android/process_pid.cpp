@@ -72,7 +72,7 @@ string module_path_from_pid(unsigned int iPid)
    str = "/proc/" + as_string(iPid) + "/exe";
 
    /* the easiest case: we are in linux */
-   ssize_t s = readlink(pszBuffer,(char *) (const char *) path,iSize);
+   ssize_t s = readlink(scopedstrBuffer,(char *) (const char *) path,iSize);
 
    if(s == -1)
    {
@@ -134,11 +134,11 @@ string module_path_from_pid(unsigned int iPid)
 //
 //   ::dir::ls_dir(stra,"/proc/");
 //
-//   string str(psz);
+//   string str(scopedstr);
 //
 //   str = "app=" + str;
 //
-//   string strApp(psz);
+//   string strApp(scopedstr);
 //
 //   strApp.replace("-","_");
 //

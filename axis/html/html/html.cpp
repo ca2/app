@@ -225,9 +225,9 @@ namespace html
    }
 
 
-   string html::special_chars(const ::string & psz)
+   string html::special_chars(const ::scoped_string & scopedstr)
    {
-      string str(psz);
+      string str(scopedstr);
       str.replace_with("&amp;"     , "&"     );
       str.replace_with( "&quot;"   , "\""    ); // when ENT_NOQUOTES isn't defined
       str.replace_with("&#039;"    , "'"     ); // only when ENT_QUOTES is defined
@@ -238,12 +238,12 @@ namespace html
 
 
 
-   string html::entities(const ::string & strParam)
+   string html::entities(const ::scoped_string & scopedstrParam)
    {
       
       const char * psz = strParam;
 
-      if (psz == nullptr || *psz == '\0')
+      if (scopedstr == nullptr || *psz == '\0')
       {
 
          return "";
@@ -254,7 +254,7 @@ namespace html
       string strChar;
       while (*psz != '\0')
       {
-         int iChar = (int) unicode_index(psz);
+         int iChar = (int) unicode_index(scopedstr);
          if (iChar == '&')
          {
             str += "&amp;";
@@ -284,18 +284,18 @@ namespace html
             strChar.formatf("&#%d;", iChar);
             str += strChar;
          }
-         unicode_increment(psz);
+         unicode_increment(scopedstr);
       }
       return str;
    }
 
 
-   string html::htmlpre(const ::string & strParam)
+   string html::htmlpre(const ::scoped_string & scopedstrParam)
    {
 
       const char * psz = strParam;
 
-      if (psz == nullptr || *psz == '\0')
+      if (scopedstr == nullptr || *psz == '\0')
       {
 
          return "";
@@ -306,7 +306,7 @@ namespace html
       string strChar;
       while (*psz != '\0')
       {
-         int iChar = (int) unicode_index(psz);
+         int iChar = (int) unicode_index(scopedstr);
          if (iChar == '&')
          {
             str += "&amp;";
@@ -337,22 +337,22 @@ namespace html
             str += strChar;
          }
          
-         unicode_increment(psz);
+         unicode_increment(scopedstr);
 
       }
       return str;
    }
 
 
-   int html::resolve_entity(const ::string & pszEntity, string& strChar)
+   int html::resolve_entity(const ::scoped_string & scopedstrEntity, string& strChar)
    {
 
-      return m_pentitysolver->resolveEntity(pszEntity, strChar);
+      return m_pentitysolver->resolveEntity(scopedstrEntity, strChar);
 
 
    }
 
-   string html::resolve_entities(const string& strParam)
+   string html::resolve_entities(const ::scoped_string & scopedstrParam)
    {
 
       string str(strParam);

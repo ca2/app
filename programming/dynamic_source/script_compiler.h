@@ -86,8 +86,8 @@ namespace dynamic_source
 
       bool defer_run_persistent(const ::string &psz);
 
-      bool is_id(const ::string & psz, character_count iLen, const ::string & pszId, character_count iLenId, character_count & iIdLen);
-      const char * next_nonspace(const ::string & psz);
+      bool is_id(const ::scoped_string & scopedstr, character_count iLen, const ::scoped_string & scopedstrId, character_count iLenId, character_count & iIdLen);
+      const char * next_nonspace(const ::scoped_string & scopedstr);
 
       void compile(ds_script * pscript);
 
@@ -97,14 +97,14 @@ namespace dynamic_source
       void cppize1(ds_script * pscript);
       void cppize1(const ::file::path & pszSource,const ::file::path & pszDest,ecpptype enum_type);
 
-      string cppize2(const string & pszSource,bool bScript,string_array & straId);
+      string cppize2(const ::scoped_string & scopedstrSource,bool bScript,string_array & straId);
 
       string get_ds_print(const ::string &psz)   ;
 
       void folder_watch();
 
-      library & lib(const ::string & pszLibrary);
-      void process_include(const ::string & pszInclude);
+      library & lib(const ::scoped_string & scopedstrLibrary);
+      void process_include(const ::scoped_string & scopedstrInclude);
 
       //    bool library_DoesMatchVersion();
 
@@ -112,12 +112,12 @@ namespace dynamic_source
       void operator()(::file::action * paction) override;
 
 
-      //void prepare1(const ::string & pszSource, const ::string & pszDest);
+      //void prepare1(const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrDest);
 
 
       virtual void parse_pstr_set();
 
-      virtual void pstr_set(atom pszTopic,atom idLocale,atom idSchema, const ::string & psz);
+      virtual void pstr_set(atom pszTopic,atom idLocale,atom idSchema, const ::scoped_string & scopedstr);
 
    };
 

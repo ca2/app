@@ -357,7 +357,7 @@ namespace user
       }
 
 
-      character_count data::_001InsertText(character_count i1, character_count i2, const ::string & strNewText, format * pformatParam)
+      character_count data::_001InsertText(character_count i1, character_count i2, const ::scoped_string & scopedstrNewText, format * pformatParam)
       {
 
          ::string strProcess(strNewText);

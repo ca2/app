@@ -29,7 +29,7 @@ namespace experience
    }
 
 
-   ::pointer<::experience::experience>department::create_experience(::particle * pparticle, const ::string & strExperienceRequest)
+   ::pointer<::experience::experience>department::create_experience(::particle * pparticle, const ::scoped_string & scopedstrExperienceRequest)
    {
 
       string strExperience = experience_name(strExperienceRequest);
@@ -63,7 +63,7 @@ namespace experience
    }
 
 
-   ::pointer<::experience::experience>department::experience(::particle * pparticle, const ::string & strExperienceRequest)
+   ::pointer<::experience::experience>department::experience(::particle * pparticle, const ::scoped_string & scopedstrExperienceRequest)
    {
 
       auto & pexperience = m_mapExperience[experience_name(strExperienceRequest)];
@@ -205,7 +205,7 @@ namespace experience
    }
 
 
-   ::pointer<::experience::frame>department::frame_experience(::particle * pparticle, const ::string & strExperienceRequest, const ::string & strFrameSchema)
+   ::pointer<::experience::frame>department::frame_experience(::particle * pparticle, const ::scoped_string & scopedstrExperienceRequest, const ::scoped_string & scopedstrFrameSchema)
    {
 
       auto strExperience = experience_name(strExperienceRequest);
@@ -243,7 +243,7 @@ namespace experience
    }
 
 
-   CLASS_DECL_BASE string experience_name(const ::string& str)
+   CLASS_DECL_BASE string experience_name(const ::scoped_string & scopedstr)
    {
 
       string strExperience;

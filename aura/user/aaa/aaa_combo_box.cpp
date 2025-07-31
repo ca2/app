@@ -405,7 +405,7 @@ namespace user
    }
 
 
-   void combo_box::set_text(const ::string & str, const ::action_context & context)
+   void combo_box::set_text(const ::scoped_string & scopedstr, const ::action_context & context)
    {
 
       if(m_bEdit)
@@ -1135,7 +1135,7 @@ namespace user
 
    }
 
-   ::collection::index combo_box::InsertString(index nIndex, const ::string & pszString)
+   ::collection::index combo_box::InsertString(index nIndex, const ::scoped_string & scopedstrString)
 
    {
 
@@ -1164,7 +1164,7 @@ namespace user
    }
 
 
-   ::collection::index combo_box::Dir(index attr, const ::string & pszWildCard)
+   ::collection::index combo_box::Dir(index attr, const ::scoped_string & scopedstrWildCard)
 
    {
 
@@ -1178,14 +1178,14 @@ namespace user
    }
 
 
-   //index combo_box::FindString(index nStartAfter, const ::string & pszString)
+   //index combo_box::FindString(index nStartAfter, const ::scoped_string & scopedstrString)
 
    //{
 
    //   for (::collection::index i = nStartAfter++; i < m_straList.get_count(); i++)
    //   {
 
-   //      if (m_straList[i].compare(pszString) == 0)
+   //      if (m_straList[i].compare(scopedstrString) == 0)
 
    //      {
 
@@ -1200,7 +1200,7 @@ namespace user
    //}
 
 
-   //index combo_box::SelectString(index nStartAfter, const ::string & pszString, const ::action_context & context)
+   //index combo_box::SelectString(index nStartAfter, const ::scoped_string & scopedstrString, const ::action_context & context)
 
    //{
 
@@ -1278,7 +1278,7 @@ namespace user
 
    }
 
-   ::collection::index combo_box::FindStringExact(index nIndexStart, const ::string & pszFind)
+   ::collection::index combo_box::FindStringExact(index nIndexStart, const ::scoped_string & scopedstrFind)
 
    {
 
@@ -1454,11 +1454,11 @@ namespace user
    }
 
 
-   ::collection::index combo_box::_001FindListText(const ::string & str) const
+   ::collection::index combo_box::_001FindListText(const ::scoped_string & scopedstr) const
    {
 
 
-      //index combo_box::_001FindListText(const ::string & str) const
+      //index combo_box::_001FindListText(const ::scoped_string & scopedstr) const
       //{
 
       //   ::collection::count ca = _001GetListCount();
@@ -1509,7 +1509,7 @@ namespace user
 
 
 
-   ::collection::index combo_box::AddString(const ::string & pszString,uptr dwItemData)
+   ::collection::index combo_box::AddString(const ::scoped_string & scopedstrString,uptr dwItemData)
 
    {
 
@@ -1520,7 +1520,7 @@ namespace user
       if(m_edatamode != data_mode_opaque)
          return -1;
 
-      m_straList.add(pszString);
+      m_straList.add(scopedstrString);
 
 
       m_straValue.add(as_string(dwItemData));
@@ -1530,7 +1530,7 @@ namespace user
    }
 
 
-   ::collection::index combo_box::AddString(const ::string & pszString, const ::string & strValue)
+   ::collection::index combo_box::AddString(const ::scoped_string & scopedstrString, const ::scoped_string & scopedstrValue)
 
    {
 
@@ -1539,7 +1539,7 @@ namespace user
       if(m_edatamode != data_mode_string)
          return -1;
 
-      m_straList.add(pszString);
+      m_straList.add(scopedstrString);
 
 
       m_straValue.add(strValue);
@@ -1564,7 +1564,7 @@ namespace user
    }
 
 
-   void combo_box::set_current_item_by_string_value(const ::string & strValue, const ::action_context & context)
+   void combo_box::set_current_item_by_string_value(const ::scoped_string & scopedstrValue, const ::action_context & context)
    {
 
       ::collection::index iSel = m_straValue.find_first(strValue);

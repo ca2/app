@@ -9,7 +9,7 @@ namespace progress
 {
 
 
-   progress::progress(::user::interaction_base * pprimitiveParent, const ::string & strTitle, ::collection::count iStepCount)
+   progress::progress(::user::interaction_base * pprimitiveParent, const ::scoped_string & scopedstrTitle, ::collection::count iStepCount)
    {
 
       auto puserinteractionTopLevel = pprimitiveParent->_top_level();

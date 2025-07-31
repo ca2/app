@@ -27,7 +27,7 @@ namespace acme
 
       auto pszFullString = scopedstrFullString.begin();
 
-      if (pszFullString == nullptr)
+      if (scopedstrFullString == nullptr)
       {
 
          return false;
@@ -36,9 +36,9 @@ namespace acme
 
       while (iSubString--)
       {
-         pszFullString = ansi_chr(pszFullString, chSep);
+         pszFullString = ansi_chr(scopedstrFullString, chSep);
 
-         if (pszFullString == nullptr)
+         if (scopedstrFullString == nullptr)
 
          {
             rString.empty();        // return is_empty string as well
@@ -48,10 +48,10 @@ namespace acme
 
       }
 
-      const char* pchEnd = ansi_chr(pszFullString, chSep);
+      const char* pchEnd = ansi_chr(scopedstrFullString, chSep);
 
 
-      character_count nLen = (pchEnd == nullptr) ? ansi_len(pszFullString) : (int)(pchEnd - pszFullString);
+      character_count nLen = (pchEnd == nullptr) ? ansi_len(scopedstrFullString) : (int)(pchEnd - pszFullString);
 
 
       ASSERT(nLen >= 0);
@@ -222,12 +222,12 @@ int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszM
    string strExtra;
    va_list argList;
    va_start(argList, pszFormat);
-   strExtra.formatf(pszFormat, argList);
+   strExtra.formatf(scopedstrFormat, argList);
    va_end(argList);
 
    string strModule;
 
-   if (pszModuleName != nullptr && *pszModuleName != '\0')
+   if (scopedstrModuleName != nullptr && *pszModuleName != '\0')
    {
 
       strModule.formatf("%s: ", pszModuleName);
@@ -236,7 +236,7 @@ int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszM
 
    string strType = get_debug_report_type_text(iType);
 
-   information(strType + ": file: " + string(psz) + " line:" + as_string(iLine) + strModule + strExtra);
+   information(strType + ": file: " + string(scopedstr) + " line:" + as_string(iLine) + strModule + strExtra);
 
    return 1;
 
@@ -260,14 +260,14 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
 
    string strType = get_debug_report_type_text(iType);
 
-   if (pszModuleName != nullptr && *pszModuleName != '\0')
+   if (scopedstrModuleName != nullptr && *pszModuleName != '\0')
    {
 
       strModule.formatf("%S: ", pszModuleName);
 
    }
 
-   information(strType + ": file: " + string(pszFile) + " line:" + as_string(iLine) + strModule + strExtra);
+   information(strType + ": file: " + string(scopedstrFile) + " line:" + as_string(iLine) + strModule + strExtra);
 
    return 1;
 

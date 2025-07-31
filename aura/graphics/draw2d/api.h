@@ -52,7 +52,7 @@ namespace draw2d
       const double_rectangle &                 pcrect,
       double                        dRateX,
       double                        dHeight,
-      const ::string & str);
+      const ::scoped_string & scopedstr);
 
 
       void embossed_text_out(

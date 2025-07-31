@@ -82,7 +82,7 @@ namespace mysql
    }
 
 
-   string database::error1(const ::string & pszPrefix)
+   string database::error1(const ::scoped_string & scopedstrPrefix)
    {
 
       return "";
@@ -90,7 +90,7 @@ namespace mysql
    }
 
 
-   bool database::exec(const ::string & pszSql)
+   bool database::exec(const ::scoped_string & scopedstrSql)
    {
 
       m_strLastError = "";
@@ -102,7 +102,7 @@ namespace mysql
    }
 
 
-   ::pointer<::database::result_set>database::query_result(const ::string & pszQuery, ::collection::count iRowCount, ::collection::count iColumnCount)
+   ::pointer<::database::result_set>database::query_result(const ::scoped_string & scopedstrQuery, ::collection::count iRowCount, ::collection::count iColumnCount)
    {
 
       return nullptr;
@@ -110,7 +110,7 @@ namespace mysql
    }
 
 
-   ::payload database::query_item(const ::string & pszSql, ::payload varDefault)
+   ::payload database::query_item(const ::scoped_string & scopedstrSql, ::payload varDefault)
    {
 
       throw ::interface_only();
@@ -118,7 +118,7 @@ namespace mysql
    }
 
 
-   bool database::query_blob(memory_base & memory, const ::string & pszSql)
+   bool database::query_blob(memory_base & memory, const ::scoped_string & scopedstrSql)
    {
 
       return false;
@@ -126,7 +126,7 @@ namespace mysql
    }
 
 
-   ::pointer<payload_array>database::query_items(const ::string & pszSql)
+   ::pointer<payload_array>database::query_items(const ::scoped_string & scopedstrSql)
    {
 
       return nullptr;
@@ -134,7 +134,7 @@ namespace mysql
    }
 
 
-   ::pointer<::database::row>database::query_row(const ::string & pszSql)
+   ::pointer<::database::row>database::query_row(const ::scoped_string & scopedstrSql)
    {
 
       return nullptr;
@@ -142,7 +142,7 @@ namespace mysql
    }
 
 
-   ::pointer<::database::row_array>database::query_rows(const ::string & pszQuery)
+   ::pointer<::database::row_array>database::query_rows(const ::scoped_string & scopedstrQuery)
    {
 
       return nullptr;
@@ -158,7 +158,7 @@ namespace mysql
    }
 
 
-   ::payload database::get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser)
+   ::payload database::get_agent(const ::scoped_string & scopedstrTable, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrUser)
    {
 
       throw ::interface_only();
@@ -182,7 +182,7 @@ namespace mysql
    }
 
 
-   string database::escape(const ::string & psz)
+   string database::escape(const ::scoped_string & scopedstr)
    {
 
       return "";

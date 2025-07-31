@@ -592,7 +592,7 @@ void property_object::write_configuration_to_ini(const ::payload & payloadFile)
 //}
 
 
-string property_object::property_set_evaluate(const ::string & str) const
+string property_object::property_set_evaluate(const ::scoped_string & scopedstr) const
 {
 
    return m_ppropertyset ? m_ppropertyset->evaluate(str) : str;
@@ -600,7 +600,7 @@ string property_object::property_set_evaluate(const ::string & str) const
 }
 
 
-string property_object::property_set_get_evaluation(const ::string & str) const
+string property_object::property_set_get_evaluation(const ::scoped_string & scopedstr) const
 {
 
    return property_set_get_string(str.c_str() + 1);
@@ -608,7 +608,7 @@ string property_object::property_set_get_evaluation(const ::string & str) const
 }
 
 
-bool property_object::property_set_get_evaluation(string & strResult, const string& str) const
+bool property_object::property_set_get_evaluation(string & strResult, const ::scoped_string & scopedstr) const
 {
 
    return property_set_get_string(strResult, str.c_str() + 1);
@@ -616,7 +616,7 @@ bool property_object::property_set_get_evaluation(string & strResult, const stri
 }
 
 
-string property_object::property_set_get_string(const ::string & str) const
+string property_object::property_set_get_string(const ::scoped_string & scopedstr) const
 {
 
    // auto pproperty = on_fetch_property(str);
@@ -635,7 +635,7 @@ string property_object::property_set_get_string(const ::string & str) const
 }
 
 
-bool property_object::property_set_get_string(string & strResult, const string& str) const
+bool property_object::property_set_get_string(string & strResult, const ::scoped_string & scopedstr) const
 {
 
    // auto linkedproperty = on_fetch_property(str);
@@ -708,7 +708,7 @@ void property_object::on_property_changed(::property* pproperty, const action_co
 // }
 
 //
-//string property_object::property_set_get_evaluation(const ::string & str) const
+//string property_object::property_set_get_evaluation(const ::scoped_string & scopedstr) const
 //{
 //
 //   return property_set_get_string(str.c_str() + 1);
@@ -716,7 +716,7 @@ void property_object::on_property_changed(::property* pproperty, const action_co
 //}
 //
 //
-//string property_object::property_set_evaluate(const ::string & strParam) const
+//string property_object::property_set_evaluate(const ::scoped_string & scopedstrParam) const
 //{
 //
 //   return ::lemon::property_set::evaluate(*this, strParam);
@@ -725,7 +725,7 @@ void property_object::on_property_changed(::property* pproperty, const action_co
 //
 //
 //
-//string property_object::property_set_get_string(const ::string & str) const
+//string property_object::property_set_get_string(const ::scoped_string & scopedstr) const
 //{
 //
 //   auto pproperty = on_fetch_property(str);

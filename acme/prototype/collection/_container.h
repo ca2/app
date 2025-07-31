@@ -7,7 +7,7 @@
 
 CLASS_DECL_ACME void copy(::string & str, const ::payload & payload);
 CLASS_DECL_ACME void copy(::payload & payload, const int & i);
-CLASS_DECL_ACME void copy(::payload & payload, const ::string & str);
+CLASS_DECL_ACME void copy(::payload & payload, const ::scoped_string & scopedstr);
 
 namespace generic
 {

@@ -55,14 +55,14 @@ namespace write_text
 
    public:
 
-      //bool similar_font(char sz[256], const ::string & psz);
+      //bool similar_font(char sz[256], const ::scoped_string & scopedstr);
       //void default_font_name(char sz[256]);
-      //double font_similarity(const ::string & pszSystem, const ::string & pszUser);
+      //double font_similarity(const ::scoped_string & scopedstrSystem, const ::scoped_string & scopedstrUser);
 
 
-      virtual ::pointer<font_enumeration_item>similar_font(const ::string & psz);
+      virtual ::pointer<font_enumeration_item>similar_font(const ::scoped_string & scopedstr);
       virtual void adapt_font_name(string & str);
-      virtual bool has_font_name(const string& str);
+      virtual bool has_font_name(const ::scoped_string & scopedstr);
 
 
       //void adapt_font_name(string& str)
@@ -82,10 +82,10 @@ namespace write_text
       //}
 
 
-      //double font_similarity(const ::string & pszSystem, const ::string & pszUser)
+      //double font_similarity(const ::scoped_string & scopedstrSystem, const ::scoped_string & scopedstrUser)
       //{
 
-      //   if (!strcmp(pszSystem, pszUser))
+      //   if (!strcmp(scopedstrSystem, pszUser))
       //   {
 
       //      return 1.0;

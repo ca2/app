@@ -599,7 +599,7 @@ namespace acme
       inline ::collection::index add(string_array & stra, const ::property & property);
       inline ::collection::index add(string_array & stra, const ::property_set & propertyset);
 
-      inline ::collection::index add(::file::path_array & patha, const ::string & str);
+      inline ::collection::index add(::file::path_array & patha, const ::scoped_string & scopedstr);
 
       inline ::collection::index add(string_array & stra, const string_array & straSource);
 

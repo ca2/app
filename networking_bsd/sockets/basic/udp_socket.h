@@ -90,7 +90,7 @@ namespace sockets_bsd
       \lparam port Port number
       \lparam range Port range
       \return 0 if bind succeeded */
-      int Bind(const ::string & strHost, ::networking::port_t & port, int range = 1);
+      int Bind(const ::scoped_string & scopedstrHost, ::networking::port_t & port, int range = 1);
       /** To receive data on a specific interface:port, use this.
       \lparam a Ip address
       \lparam port Port number

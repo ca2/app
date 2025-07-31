@@ -65,7 +65,7 @@ namespace hotplugin
       void install_message_routing(::channel * pchannel) override;
 
       // host should implement
-      virtual bool         open_link(const ::string & strLink,const string & pszTarget);
+      virtual bool         open_link(const ::scoped_string & scopedstrLink,const ::scoped_string & scopedstrTarget);
       virtual bool         reload_plugin();
 
       virtual void delete_this() override;
@@ -172,7 +172,7 @@ namespace hotplugin
 
       virtual void set_ca2_installation_ready(bool bReady = true);
 
-      virtual void set_status(const ::string & pszStatus);
+      virtual void set_status(const ::scoped_string & scopedstrStatus);
 
       virtual void restart_aura_ipc() override;
 

@@ -425,7 +425,7 @@ void matter::notify_on_destroy(::property_object * pparticle)
 //
 //   va_copy(ptr1, valist);
 //
-//   str.formatf_arguments(pszFormat, valist);
+//   str.formatf_arguments(scopedstrFormat, valist);
 //
 //   va_end(ptr1);
 //
@@ -682,7 +682,7 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 
 
 
-//::pointer < ::subparticle > matter::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+//::pointer < ::subparticle > matter::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 //{
 //
 //   auto psequence = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -697,7 +697,7 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 
 
 
-bool matter::_handle_uri(const ::string & strUri)
+bool matter::_handle_uri(const ::scoped_string & scopedstrUri)
 {
 
    return handle_uri(strUri);
@@ -705,7 +705,7 @@ bool matter::_handle_uri(const ::string & strUri)
 }
 
 
-bool matter::_handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
+bool matter::_handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
 {
 
    return handle_call(payload, strObject, strMember, propertyset);
@@ -713,7 +713,7 @@ bool matter::_handle_call(::payload & payload, const ::string & strObject, const
 }
 
 
-//bool matter::_handle_call(::payload & payload, const ::string & strMember, ::property_set & propertyset)
+//bool matter::_handle_call(::payload & payload, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
 //{
 //
 //   return handle_call(payload, blockMember, propertyset);
@@ -721,7 +721,7 @@ bool matter::_handle_call(::payload & payload, const ::string & strObject, const
 //}
 
 
-bool matter::handle_uri(const ::string & stringUri)
+bool matter::handle_uri(const ::scoped_string & scopedstringUri)
 {
 
    return _handle_uri(stringUri);
@@ -729,7 +729,7 @@ bool matter::handle_uri(const ::string & stringUri)
 }
 
 
-bool matter::handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
+bool matter::handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
 {
 
    return false;
@@ -737,7 +737,7 @@ bool matter::handle_call(::payload & payload, const ::string & strObject, const 
 }
 
 //
-//bool matter::handle_call(::payload & payload, const ::string & strMember, ::property_set & propertyset)
+//bool matter::handle_call(::payload & payload, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
 //{
 //
 //   return false;

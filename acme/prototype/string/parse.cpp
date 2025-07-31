@@ -54,7 +54,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    }
 
    parse::parse(const ::ansi_character * psz, character_count iLen)
-      :m_psz(psz)
+      :m_psz(scopedstr)
    ,pa_splits("")
    ,m_strWord("")
    ,m_iPos(0)

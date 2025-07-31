@@ -29,7 +29,7 @@ namespace console
       virtual void SetCursorPosition(int y, int x) override;
       virtual void SetTextColor(int color) override;
       virtual void SetScreenColor(enum_dos_color edoscolor, int iLineStart = 0, int iLineCount = -1) override;
-      virtual void write(const ::string & str) override;
+      virtual void write(const ::scoped_string & scopedstr) override;
       virtual ::int_rectangle get_position_rectangle(int y, int x) override;
 
    };

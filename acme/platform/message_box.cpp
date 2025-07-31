@@ -63,7 +63,7 @@ namespace acme
 //}
 
 
-message_box::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+message_box::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
    preempt(30_s);
@@ -129,7 +129,7 @@ message_box::message_box(const ::exception & exception, const ::scoped_string & 
 
 
 
-message_box::message_box(const ::exception & exception, const ::scoped_string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+message_box::message_box(const ::exception & exception, const ::scoped_string & strMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
    preempt(30_s);

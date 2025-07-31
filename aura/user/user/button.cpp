@@ -31,7 +31,7 @@ namespace user
    }
 
 
-   button::button(const ::string & pszName, const ::atom & atom)
+   button::button(const ::scoped_string & scopedstrName, const ::atom & atom)
    {
 
       user_button_construct();

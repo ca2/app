@@ -7,7 +7,7 @@
 //public:
 //
 //
-//   datetime_parsing_exception(const ::string & strMessage);
+//   datetime_parsing_exception(const ::scoped_string & scopedstrMessage);
 //   virtual ~datetime_parsing_exception();
 //
 //

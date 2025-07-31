@@ -26,7 +26,7 @@ namespace datetime
 //#include "parser_exception.h"
 
 CLASS_DECL_CA2_TIME bool should_avoid_datetime_parsing_exception();
-CLASS_DECL_CA2_TIME bool throw_datetime_parsing_exception(const ::string & strMessage);
+CLASS_DECL_CA2_TIME bool throw_datetime_parsing_exception(const ::scoped_string & scopedstrMessage);
 
 
 

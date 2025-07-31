@@ -55,7 +55,7 @@ CLASS_DECL_ACME bool _istlead(int ch)
 //string apple_browse_folder(const ::scoped_string & scopedstrStartDir, bool bCanCreateDirectories)
 //{
 //
-//   return ::string_from_strdup(mm_browse_folder(pszStartDir, bCanCreateDirectories));
+//   return ::string_from_strdup(mm_browse_folder(scopedstrStartDir, bCanCreateDirectories));
 //
 //}
 //
@@ -70,7 +70,7 @@ CLASS_DECL_ACME bool _istlead(int ch)
 //
 //
 //
-//   return ::stra::from_strdup(mm_browse_file_open(pszStartDir, bMulti));
+//   return ::stra::from_strdup(mm_browse_file_open(scopedstrStartDir, bMulti));
 //
 //}
 
@@ -79,7 +79,7 @@ CLASS_DECL_ACME bool _istlead(int ch)
 //void _openURL(const ::scoped_string & scopedstr);
 //
 //
-//void openURL(const ::string & str)
+//void openURL(const ::scoped_string & scopedstr)
 //{
 //   
 //   _openURL(str);

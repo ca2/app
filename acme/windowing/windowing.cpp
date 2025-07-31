@@ -48,7 +48,7 @@ namespace acme
       }
 
 
-      //::pointer < ::subparticle > windowing::nano()->message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+      //::pointer < ::subparticle > windowing::nano()->message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
       //{
 
       //   auto psequencer = node()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -58,7 +58,7 @@ namespace acme
       //}
 
 
-      //::pointer < ::subparticle > windowing::nano()->message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+      //::pointer < ::subparticle > windowing::nano()->message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
       //{
 
       //   auto psequencer = node()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
@@ -67,9 +67,9 @@ namespace acme
 
       //}
 
-      //::pointer < ::subparticle > windowing::message_box(const ::string & strMessage, const ::string & strTitle,
+      //::pointer < ::subparticle > windowing::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
       //                                                       const ::e_message_box & emessagebox,
-      //                                                       const ::string & strDetails, ::nano::graphics::icon * picon)
+      //                                                       const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
       //{
       //   auto pnode = node();
 
@@ -80,8 +80,8 @@ namespace acme
 
 
       //::pointer < ::subparticle > windowing::exception_message_box(
-      //    const ::exception & exception, const ::string & strMessageParam, const ::string & strTitleParam,
-      //    const ::e_message_box & emessagebox, const ::string & strDetailsParam, ::nano::graphics::icon * picon)
+      //    const ::exception & exception, const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrTitleParam,
+      //    const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetailsParam, ::nano::graphics::icon * picon)
       //{
       //   string strExceptionDetails = exception.get_consolidated_details(this);
 
@@ -122,9 +122,9 @@ namespace acme
       //}
 
 
-      //::pointer < ::subparticle > windowing::message_console(const ::string & strMessage, const ::string & strTitle,
+      //::pointer < ::subparticle > windowing::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
       //                                                           const ::e_message_box & emessagebox,
-      //                                                           const ::string & strDetails, ::nano::graphics::icon * picon)
+      //                                                           const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
       //{
       //   auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
 
@@ -133,8 +133,8 @@ namespace acme
 
 
       //::pointer < ::subparticle > windowing::exception_message_console(
-      //    const ::exception & exception, const ::string & strMessage, const ::string & strTitle,
-      //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+      //    const ::exception & exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
+      //    const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
       //{
       //   string strExceptionDetails = exception.get_consolidated_details(this);
 

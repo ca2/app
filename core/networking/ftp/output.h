@@ -17,11 +17,11 @@ namespace ftp
       output();
       virtual ~output();
 
-      virtual void OnInternalError(const string& strErrorMsg, const string& strFileName, unsigned int dwLineNr);
+      virtual void OnInternalError(const ::scoped_string & scopedstrErrorMsg, const ::scoped_string & scopedstrFileName, unsigned int dwLineNr);
       virtual void OnSendCommand(const command& strComamnd, const string_array& straArguments);
       virtual void OnResponse(const reply & Reply);
 
-      virtual void WriteLine(const string & cszLine, const ::string & strStatus);
+      virtual void WriteLine(const string & cszLine, const ::scoped_string & scopedstrStatus);
 
    };
 

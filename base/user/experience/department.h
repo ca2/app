@@ -23,9 +23,9 @@ namespace experience
       ~department() override;
 
 
-      virtual ::pointer<::experience::experience>create_experience(::particle * pparticle, const ::string & strExperience);
-      virtual ::pointer<::experience::experience>experience(::particle * pparticle, const ::string & strExperience);
-      virtual ::pointer<::experience::frame>frame_experience(::particle * pparticle, const ::string & strExperience, const ::string & strFrameSchema);
+      virtual ::pointer<::experience::experience>create_experience(::particle * pparticle, const ::scoped_string & scopedstrExperience);
+      virtual ::pointer<::experience::experience>experience(::particle * pparticle, const ::scoped_string & scopedstrExperience);
+      virtual ::pointer<::experience::frame>frame_experience(::particle * pparticle, const ::scoped_string & scopedstrExperience, const ::scoped_string & scopedstrFrameSchema);
 
 
    };

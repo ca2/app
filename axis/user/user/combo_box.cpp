@@ -495,7 +495,7 @@ namespace user
 //   }
 
 
-//   void combo_box::set_text(const ::string & str, const ::action_context & context)
+//   void combo_box::set_text(const ::scoped_string & scopedstr, const ::action_context & context)
 //   {
 //
 //      //if(m_bEdit)
@@ -1342,7 +1342,7 @@ namespace user
    }
 
 
-   ::collection::index combo_box::insert_item_at(::collection::index nIndex, const ::string & pszString)
+   ::collection::index combo_box::insert_item_at(::collection::index nIndex, const ::scoped_string & scopedstrString)
    {
 
       //ASSERT(is_window());
@@ -1371,7 +1371,7 @@ namespace user
    }
 
 
-   ::collection::index combo_box::Dir(::collection::index attr, const ::string & pszWildCard)
+   ::collection::index combo_box::Dir(::collection::index attr, const ::scoped_string & scopedstrWildCard)
    {
 
 //      ASSERT(is_window());
@@ -1448,7 +1448,7 @@ namespace user
    }
 
 
-   ::collection::index combo_box::FindStringExact(::collection::index nIndexStart, const ::string & pszFind)
+   ::collection::index combo_box::FindStringExact(::collection::index nIndexStart, const ::scoped_string & scopedstrFind)
    {
 
       //ASSERT(is_window());
@@ -1620,7 +1620,7 @@ namespace user
    }
 
 
-   ::collection::index combo_box::_001FindListText(const ::string & str) const
+   ::collection::index combo_box::_001FindListText(const ::scoped_string & scopedstr) const
    {
 
       return m_plistbox->_001FindListText(str);
@@ -1647,7 +1647,7 @@ namespace user
 
    }
 
-   //::collection::index combo_box::add_string(const ::string & pszString,uptr dwItemData)
+   //::collection::index combo_box::add_string(const ::scoped_string & scopedstrString,uptr dwItemData)
    //{
 
    //   synchronous_lock synchronouslock(this->synchronization());
@@ -1663,12 +1663,12 @@ namespace user
 
    //   defer_create_list_box();
 
-   //   return m_plistbox->add_item(pszString, dwItemData);
+   //   return m_plistbox->add_item(scopedstrString, dwItemData);
 
    //}
 
 
-   //::collection::index combo_box::add_string(const ::string & pszString, const ::string & strValue)
+   //::collection::index combo_box::add_string(const ::scoped_string & scopedstrString, const ::scoped_string & scopedstrValue)
    //{
 
    //   ASSERT(m_edatamode == data_mode_string);
@@ -1682,7 +1682,7 @@ namespace user
 
    //   defer_create_list_box();
 
-   //   auto iIndex = m_plistbox->add_string(pszString, strValue);
+   //   auto iIndex = m_plistbox->add_string(scopedstrString, strValue);
 
    //   return iIndex;
 

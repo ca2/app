@@ -24,7 +24,7 @@ namespace file_lock
 
    //    m_iFileDescriptor = -1;
 
-   //    set_name(pszName);
+   //    set_name(scopedstrName);
 
    // }
 
@@ -44,7 +44,7 @@ namespace file_lock
 
    //    m_strName = pszName;
 
-   //    m_strPath = _get_file_name(pszName);
+   //    m_strPath = _get_file_name(scopedstrName);
 
    //    return true;
 

@@ -55,7 +55,7 @@ CLASS_DECL_APEX bool _istlead(int ch)
 //string apple_browse_folder(const ::scoped_string & scopedstrStartDir, bool bCanCreateDirectories)
 //{
 //
-//   return ::string_from_strdup(mm_browse_folder(pszStartDir, bCanCreateDirectories));
+//   return ::string_from_strdup(mm_browse_folder(scopedstrStartDir, bCanCreateDirectories));
 //
 //}
 //
@@ -70,6 +70,6 @@ CLASS_DECL_APEX bool _istlead(int ch)
 //
 //
 //
-//   return ::stra::from_strdup(mm_browse_file_open(pszStartDir, bMulti));
+//   return ::stra::from_strdup(mm_browse_file_open(scopedstrStartDir, bMulti));
 //
 //}

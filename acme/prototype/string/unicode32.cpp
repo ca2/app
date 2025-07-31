@@ -115,7 +115,7 @@ character_count wd32_to_ansi(char* psz, const ::wd32_character* pwsz, character_
    }
    while (srclen != 0 && *pwsz != L'\0')
    {
-      n = wd32_to_ansi_char(psz, *pwsz);
+      n = wd32_to_ansi_char(scopedstr, *pwsz);
       if (n <= 0)
          break;
       c += n;
@@ -136,7 +136,7 @@ character_count ansi_to_wd32_len(const ::ansi_character * psz, character_count s
 
    character_count utf32len = 0;
 
-   while (psz != nullptr && *psz != '\0')
+   while (scopedstr != nullptr && *psz != '\0')
    {
       
       if(srclen == 0)
@@ -146,7 +146,7 @@ character_count ansi_to_wd32_len(const ::ansi_character * psz, character_count s
          
       }
 
-      len = unicode_len(psz);
+      len = unicode_len(scopedstr);
 
       if (srclen > 0 && len > srclen)
       {
@@ -179,7 +179,7 @@ character_count ansi_to_wd32(::wd32_character* pwsz, const ::ansi_character * ps
    while (srclen != 0 && psz != nullptr && *psz != '\0')
    {
 
-      auto iWd32 = unicode_index_length(psz, len);
+      auto iWd32 = unicode_index_length(scopedstr, len);
 
       if (iWd32 < 0)
       {
@@ -198,7 +198,7 @@ character_count ansi_to_wd32(::wd32_character* pwsz, const ::ansi_character * ps
 
    }
 
-   if (psz != nullptr)
+   if (scopedstr != nullptr)
    {
 
       *pwsz = L'\0';
@@ -243,7 +243,7 @@ string wd32_to_ansi_str(const ::wd32_character * pwszUni32, character_count iUni
 
    char * psz = str.get_buffer(iUtf8Len);
 
-   wd32_to_ansi(psz, pwszUni32, iUni32Len);
+   wd32_to_ansi(scopedstr, pwszUni32, iUni32Len);
 
    str.release_buffer(iUtf8Len);
 

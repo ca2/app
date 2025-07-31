@@ -4,7 +4,7 @@
 #include "apex/os/_application.h"
 
 
-CLASS_DECL_APEX int main_uwp(Array < String^ >^ stra, const ::string & strCommandLine)
+CLASS_DECL_APEX int main_uwp(Array < String^ >^ stra, const ::scoped_string & scopedstrCommandLine)
 {
 
    //int iStatus = -1;

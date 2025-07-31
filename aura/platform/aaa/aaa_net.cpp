@@ -1,9 +1,9 @@
 #include "framework.h"
 
 
-CLASS_DECL_AURA string url_decode(const ::string & psz)
+CLASS_DECL_AURA string url_decode(const ::scoped_string & scopedstr)
 {
-   string str(psz);
+   string str(scopedstr);
 
    string strDecode;
 
@@ -55,7 +55,7 @@ CLASS_DECL_AURA string url_decode(const ::string & psz)
 
 
 
-string url_decode(const ::string & pszUrl,character_count iLen)
+string url_decode(const ::scoped_string & scopedstrUrl,character_count iLen)
 
 {
 
@@ -96,7 +96,7 @@ string url_decode(const ::string & pszUrl,character_count iLen)
          {
             i++;
             iLen--;
-            *psz = (char)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(pszUrl + 1)));
+            *psz = (char)(uchar)(hex::to(*pszUrl) * 16 + hex::to(*(scopedstrUrl + 1)));
 
             psz++;
             pszUrl += 2;
@@ -125,7 +125,7 @@ string url_decode(const ::string & pszUrl,character_count iLen)
 
 
 
-CLASS_DECL_AURA bool url_query_get_param(string & strParam, const ::string & pszKey, const ::string & pszUrl)
+CLASS_DECL_AURA bool url_query_get_param(string & strParam, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrUrl)
 {
 
    const ::scoped_string & scopedstrBeg;
@@ -139,9 +139,9 @@ CLASS_DECL_AURA bool url_query_get_param(string & strParam, const ::string & psz
       strKey += pszKey;
       strKey += "=";
 
-      pszBeg = ansi_find_string(pszUrl,strKey);
+      pszBeg = ansi_find_string(scopedstrUrl,strKey);
 
-      if(pszBeg != nullptr)
+      if(scopedstrBeg != nullptr)
       {
 
          pszBeg += strKey.length();
@@ -160,9 +160,9 @@ CLASS_DECL_AURA bool url_query_get_param(string & strParam, const ::string & psz
       strKey += pszKey;
       strKey += "=";
 
-      pszBeg = ansi_find_string(pszUrl,strKey);
+      pszBeg = ansi_find_string(scopedstrUrl,strKey);
 
-      if(pszBeg != nullptr)
+      if(scopedstrBeg != nullptr)
       {
 
          pszBeg += strKey.length();
@@ -181,9 +181,9 @@ CLASS_DECL_AURA bool url_query_get_param(string & strParam, const ::string & psz
       strKey += pszKey;
       strKey += "&";
 
-      pszBeg = ansi_find_string(pszUrl,strKey);
+      pszBeg = ansi_find_string(scopedstrUrl,strKey);
 
-      if(pszBeg != nullptr)
+      if(scopedstrBeg != nullptr)
       {
 
          strParam = "";
@@ -202,9 +202,9 @@ CLASS_DECL_AURA bool url_query_get_param(string & strParam, const ::string & psz
       strKey += pszKey;
       strKey += "&";
 
-      pszBeg = ansi_find_string(pszUrl,strKey);
+      pszBeg = ansi_find_string(scopedstrUrl,strKey);
 
-      if(pszBeg != nullptr)
+      if(scopedstrBeg != nullptr)
       {
 
          strParam = "";
@@ -219,15 +219,15 @@ CLASS_DECL_AURA bool url_query_get_param(string & strParam, const ::string & psz
 
 success:
 
-   pszEnd = ansi_find_string(pszBeg,"&");
+   pszEnd = ansi_find_string(scopedstrBeg,"&");
 
-   if(pszEnd == nullptr)
+   if(scopedstrEnd == nullptr)
    {
       strParam = pszBeg;
    }
    else
    {
-      strParam = string(pszBeg,pszEnd - pszBeg);
+      strParam = string(scopedstrBeg,pszEnd - pszBeg);
    }
 
    return true;
@@ -241,7 +241,7 @@ success:
 
 
 
-string url_encode(const ::string & psz)
+string url_encode(const ::scoped_string & scopedstr)
 {
 
    string str;
@@ -383,7 +383,7 @@ void openURL(const string &url_str)
 
 void openURL(const string &url_str);
 
-int ui_open_url(const ::string & psz);
+int ui_open_url(const ::scoped_string & scopedstr);
 
 void openURL(const string &url_str)
 {
@@ -419,7 +419,7 @@ void openURL(const string &url_str)
 //#define strdup _strdup
 //#endif
 //
-//CLASS_DECL_AURA int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const ::string & pszServerName, int bInteractive)
+//CLASS_DECL_AURA int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const ::scoped_string & scopedstrServerName, int bInteractive)
 //{
 //
 //   ::aura::application * papp = (::aura::application *) instance;
@@ -442,11 +442,11 @@ void openURL(const string &url_str)
 //
 //   //string strToken;
 //
-//   credentials.m_strToken = Sys(papp).crypto_md5_text(pszServerName);
+//   credentials.m_strToken = Sys(papp).crypto_md5_text(scopedstrServerName);
 //
 //   //string strTitle;
 //
-//   credentials.m_strTitle = "Enter Credentials for : " + string(pszServerName);
+//   credentials.m_strTitle = "Enter Credentials for : " + string(scopedstrServerName);
 //
 //   credentials.m_bInteractive = bInteractive;
 //

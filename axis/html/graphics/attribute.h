@@ -22,7 +22,7 @@ namespace html
       void set_name(atom idName);
       atom get_name() const;
 
-      void set_value(const ::string & pszValue);
+      void set_value(const ::scoped_string & scopedstrValue);
       string get_value() const;
 
 

@@ -23,9 +23,9 @@ namespace simpledb
       ~set();
 
 
-      virtual void query_items(string_array & stra, const ::string & pszSql);
+      virtual void query_items(string_array & stra, const ::scoped_string & scopedstrSql);
 
-      virtual bool exec(const ::string & pszSql);
+      virtual bool exec(const ::scoped_string & scopedstrSql);
 
 
       virtual bool sql_do_select(const char * & pszSql);

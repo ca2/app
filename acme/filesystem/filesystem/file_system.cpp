@@ -21,7 +21,7 @@
 
 
 CLASS_DECL_ACME void exception_message_box(::particle* pparticle, ::exception& exception,
-                                           const ::string& strMoreDetails);
+                                           const ::scoped_string & scopedstrMoreDetails);
 
 
 file_system::file_system()
@@ -277,7 +277,7 @@ string file_system::as_string(const ::file::path& pathParam, character_count iRe
    //while (iReadAtMostByteCount - iPos > 0)
    //{
 
-   //   auto dwRead = pfile->read(psz + iPos, (size_t)iReadAtMostByteCount - iPos);
+   //   auto dwRead = pfile->read(scopedstr + iPos, (size_t)iReadAtMostByteCount - iPos);
 
    //   if (dwRead <= 0)
    //   {
@@ -1111,7 +1111,7 @@ void file_system::synchronize(const ::file::path& path1, const ::file::path& pat
 
       //}
 
-      //estatus = set_modification_time(psz1, time2);
+      //estatus = set_modification_time(scopedstr1, time2);
 
       //if (!estatus)
       //{
@@ -1133,7 +1133,7 @@ void file_system::synchronize(const ::file::path& path1, const ::file::path& pat
 
       //#if !defined(WINDOWS)
       //
-      //estatus = set_modification_time(psz2, time1);
+      //estatus = set_modification_time(scopedstr2, time1);
 
       //if (!estatus)
       //{
@@ -1556,7 +1556,7 @@ void file_system::set_line(const ::file::path& pathParam, ::collection::index iL
 //
 //      path /= as_string(i);
 //
-//      path /= (string(lpszName) + "." + string(pszExtension));
+//      path /= (string(lpszName) + "." + string(scopedstrExtension));
 //
 //      if (exists(path))
 //      {
@@ -1676,7 +1676,7 @@ void file_system::set_line(const ::file::path& pathParam, ::collection::index iL
 //}
 
 
-void file_system::append(const ::string& strFile, const block& block)
+void file_system::append(const ::scoped_string & scopedstrFile, const block& block)
 {
 
    return append_wait(strFile, block, 0_s);
@@ -1711,8 +1711,8 @@ void file_system::_erase(const ::file::path& path)
 }
 
 
-::file::path file_system::time_put_contents(const ::file::path& pathFolder, const ::string& strPrefix,
-                                            const ::string& strExtension, const ::string& str)
+::file::path file_system::time_put_contents(const ::file::path& pathFolder, const ::scoped_string & scopedstrPrefix,
+                                            const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstr)
 {
 
    ::file::path path;

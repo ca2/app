@@ -207,12 +207,12 @@ namespace write_text
 
       bool bWhitespace = true;
 
-      while (pszEnd)
+      while (scopedstrEnd)
       {
 
          auto pszLast = pszEnd;
 
-         bool bWhitespaceNow = unicode_is_whitespace(pszEnd);
+         bool bWhitespaceNow = unicode_is_whitespace(scopedstrEnd);
 
          if (bWhitespaceNow && !bWhitespace)
          {
@@ -229,42 +229,42 @@ namespace write_text
 
          bWhitespace = bWhitespaceNow;
 
-         pszEnd = unicode_increment(pszEnd);
+         pszEnd = unicode_increment(scopedstrEnd);
 
-         if (::is_empty(pszEnd))
+         if (::is_empty(scopedstrEnd))
          {
 
             break;
 
          }
 
-         string strNow = string(pszStart, pszEnd - pszStart);
+         string strNow = string(scopedstrStart, pszEnd - pszStart);
 
          auto extent = get_text_extent(strNow).cx();
 
-         if (extent > w || is_empty(pszEnd))
+         if (extent > w || is_empty(scopedstrEnd))
          {
 
             if (extent <= w)
             {
 
-               strNow = string(pszStart, ::is_null(pszEnd) ? -1:pszEnd - pszStart);
+               strNow = string(scopedstrStart, ::is_null(scopedstrEnd) ? -1:pszEnd - pszStart);
 
                pszStart = pszEnd;
 
             }
-            else if (pszLastWordboundaryStart > pszStart)
+            else if (scopedstrLastWordboundaryStart > pszStart)
             {
 
-               strNow = string(pszStart, pszLastWordboundaryStart - pszStart);
+               strNow = string(scopedstrStart, pszLastWordboundaryStart - pszStart);
 
                pszStart = pszLastWordboundaryEnd;
 
             }
-            else if (pszLast > pszStart)
+            else if (scopedstrLast > pszStart)
             {
 
-               strNow = string(pszStart, pszLast - pszStart);
+               strNow = string(scopedstrStart, pszLast - pszStart);
 
                pszStart = pszLast;
 
@@ -293,10 +293,10 @@ namespace write_text
 
          }
 
-         if (is_empty(pszEnd) && !is_empty(pszStart))
+         if (is_empty(scopedstrEnd) && !is_empty(scopedstrStart))
          {
 
-            strNow = string(pszStart, ::is_null(pszEnd) ? -1 : pszEnd - pszStart);
+            strNow = string(scopedstrStart, ::is_null(scopedstrEnd) ? -1 : pszEnd - pszStart);
 
             if (strNow.has_character())
             {
@@ -329,14 +329,14 @@ namespace write_text
 
       string strNow;
 
-      while (pszEnd)
+      while (scopedstrEnd)
       {
 
          auto pszLast = pszEnd;
 
-         unicode_increment(pszEnd);
+         unicode_increment(scopedstrEnd);
 
-         string strNow = string(pszStart, pszEnd - pszStart);
+         string strNow = string(scopedstrStart, pszEnd - pszStart);
          
          auto extentx = get_text_extent(strNow).cx();
 
@@ -346,10 +346,10 @@ namespace write_text
             if(extentx > w)
             {
                
-               if (pszLast > pszStart)
+               if (scopedstrLast > pszStart)
                {
 
-                  strNow = string(pszStart, pszLast - pszStart);
+                  strNow = string(scopedstrStart, pszLast - pszStart);
 
                   pszStart = pszLast;
 
@@ -395,7 +395,7 @@ namespace write_text
 
 
 
-   void drawer::create_simple_multiline_layout(::write_text::text_out_array & textouta, const string & str, const ::int_rectangle & rectangle, ::write_text::font * pfont, const ::e_align & ealign, enum_text_wrap etextwrap)
+   void drawer::create_simple_multiline_layout(::write_text::text_out_array & textouta, const ::scoped_string & scopedstr, const ::int_rectangle & rectangle, ::write_text::font * pfont, const ::e_align & ealign, enum_text_wrap etextwrap)
    {
 
       string_array stra;

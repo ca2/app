@@ -411,9 +411,9 @@ namespace sockets
       return m_response;
    }
 
-   property & sip_base_client_socket::inattr(const ::string & pszName)
+   property & sip_base_client_socket::inattr(const ::scoped_string & scopedstrName)
    {
-      return m_request.attr(pszName);
+      return m_request.attr(scopedstrName);
    }
 
    ::property_set & sip_base_client_socket::inattrs()
@@ -421,9 +421,9 @@ namespace sockets
       return m_request.attrs();
    }
 
-   property & sip_base_client_socket::outattr(const ::string & pszName)
+   property & sip_base_client_socket::outattr(const ::scoped_string & scopedstrName)
    {
-      return m_response.attr(pszName);
+      return m_response.attr(scopedstrName);
    }
 
    ::property_set & sip_base_client_socket::outattrs()
@@ -431,9 +431,9 @@ namespace sockets
       return m_response.attrs();
    }
 
-   property & sip_base_client_socket::inheader(const ::string & pszName)
+   property & sip_base_client_socket::inheader(const ::scoped_string & scopedstrName)
    {
-      return m_request.header(pszName);
+      return m_request.header(scopedstrName);
    }
 
    ::property_set & sip_base_client_socket::inheaders()
@@ -441,9 +441,9 @@ namespace sockets
       return m_request.headers();
    }
 
-   property & sip_base_client_socket::outheader(const ::string & pszName)
+   property & sip_base_client_socket::outheader(const ::scoped_string & scopedstrName)
    {
-      return m_response.header(pszName);
+      return m_response.header(scopedstrName);
    }
 
    ::property_set & sip_base_client_socket::outheaders()

@@ -59,9 +59,9 @@ namespace app_integration
 
       string get_font();
 
-      ::e_status set_font(const string& strFont);
+      ::e_status set_font(const ::scoped_string & scopedstrFont);
 
-      ::e_status set_hover_font(const string& strHoverFont);
+      ::e_status set_hover_font(const ::scoped_string & scopedstrHoverFont);
 
       virtual void initialize_simple_drawing(int iDrawing);
 

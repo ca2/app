@@ -74,7 +74,7 @@ public:
    virtual void set_status(const ::file::path & path, const ::file::file_status & status);
 
 
-   virtual void replace_with(const ::file::path & pszContext, const string & pszNew, const string & pszOld);
+   virtual void replace_with(const ::file::path & pszContext, const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrOld);
 
 
    virtual ::file::enum_type get_type(const ::file::path & path, ::payload * pvarQuery);
@@ -92,12 +92,12 @@ public:
    virtual ::file::path module();
 
    
-   ::file::path time(const ::file::path & pathBasePath, int iDepth = 0, const ::string & strPrefix = nullptr, const ::string & strSuffix = nullptr, bool bTryDelete = false);
-   ::file::path time_square(const ::string & strPrefix = nullptr, const ::string & strSuffix = nullptr);
-   ::file::path time_log(const ::string & str);
+   ::file::path time(const ::file::path & pathBasePath, int iDepth = 0, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr, bool bTryDelete = false);
+   ::file::path time_square(const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
+   ::file::path time_log(const ::scoped_string & scopedstr);
 
 
-   virtual file_pointer time_square_file(const string & pszPrefix = nullptr, const string & pszSuffix = nullptr);
+   virtual file_pointer time_square_file(const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
    virtual file_pointer get(const ::file::path & name);
 
    virtual file_pointer get_temporary_upload_file(const ::file::path & pathCurrent);
@@ -216,7 +216,7 @@ public:
    virtual ::file::path sys_temp_unique(const ::file::path & lpszName);
 
 
-   virtual ::file::path replace_with_extension(const ::string & strExtension,  const ::file::path & pszFile);
+   virtual ::file::path replace_with_extension(const ::scoped_string & scopedstrExtension,  const ::file::path & pszFile);
    virtual void set_extension(::file::path & str, const ::scoped_string & scopedstrExtension);
 
 
@@ -240,7 +240,7 @@ public:
 
    virtual bool is_link(const ::file::path & path);
 
-   virtual void get_last_write_time(file_time_t * pfile_time, const ::string & strFilename);
+   virtual void get_last_write_time(file_time_t * pfile_time, const ::scoped_string & scopedstrFilename);
 
    //virtual void dtf(const ::file::path & pszFile, const ::file::path & pszDir);
 
@@ -311,7 +311,7 @@ public:
    //virtual void trash_that_is_not_trash(::file::path_array & stra);
 
 
-   //virtual ::extended::status replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace);
+   //virtual ::extended::status replace(const ::file::path & pszContext, const ::scoped_string & scopedstrFind, const ::scoped_string & scopedstrReplace);
 
   virtual bool exists(const ::file::path & pszPath);
 
@@ -319,7 +319,7 @@ public:
   // virtual ::payload length(const ::file::path & pszPath);
 
 
-   //::file::path time(const ::file::path & pszBasePath, int iDepth = 1, const string & pszPrefix = nullptr, const string & pszSuffix = nullptr);
+   //::file::path time(const ::file::path & pszBasePath, int iDepth = 1, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
 
 
    //virtual file_pointer time_square_file(const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);

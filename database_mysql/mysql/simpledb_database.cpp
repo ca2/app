@@ -46,10 +46,10 @@ namespace simpledb
       return DB_COMMAND_OK;
    }
 
-   table * database::get_table(const ::string & pszName)
+   table * database::get_table(const ::scoped_string & scopedstrName)
    {
       table * ptable = nullptr;
-      string strName(pszName);
+      string strName(scopedstrName);
       strName.make_lower();
       if(!m_mapTable.lookup(strName, ptable))
       {
@@ -59,7 +59,7 @@ namespace simpledb
       return ptable;
    }
 
-   table * database::create_table(const ::string & pszName)
+   table * database::create_table(const ::scoped_string & scopedstrName)
    {
       return ___new table(this, pszName);
    }

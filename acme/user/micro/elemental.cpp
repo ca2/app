@@ -445,7 +445,7 @@ namespace micro
          //void elemental::_on_window_simple_action(const char * pszActionName)
          //{
 
-         //   ::string strActionName(pszActionName);
+         //   ::string strActionName(scopedstrActionName);
 
          //   if (strActionName == "***move")
          //   {
@@ -471,7 +471,7 @@ namespace micro
          //   else
          //   {
 
-         //      ::acme::user::interaction::_on_window_simple_action(pszActionName);
+         //      ::acme::user::interaction::_on_window_simple_action(scopedstrActionName);
 
          //   }
 
@@ -1887,7 +1887,7 @@ namespace micro
    }
 
 
-   void elemental::display_temporary_file_with_text(const ::string & str)
+   void elemental::display_temporary_file_with_text(const ::scoped_string & scopedstr)
    {
 
       string strAppId;

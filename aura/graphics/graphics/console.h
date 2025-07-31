@@ -62,7 +62,7 @@ namespace graphics
       void SetCursorPosition(int y, int x) override;
       void SetTextColor(int color) override;
       void SetScreenColor(::enum_dos_color color, int iLineStart = 0, int iLineCount = -1) override;
-      void write(const ::string & psz) override;
+      void write(const ::scoped_string & scopedstr) override;
 
 
       using ::string_buffer::write;

@@ -17,7 +17,7 @@ CLASS_DECL_APEX void dll_processes(unsigned_int_array & dwa, string_array & stra
 
    __UNREFERENCED_PARAMETER(dwa);
    __UNREFERENCED_PARAMETER(straProcesses);
-   __UNREFERENCED_PARAMETER(pszDll);
+   __UNREFERENCED_PARAMETER(scopedstrDll);
 
 }
 
@@ -29,7 +29,7 @@ int create_process(const ::scoped_string & scopedstrCommandLine, int * pprocessI
 
    string_array stra;
 
-   stra = get_c_args_for_c(pszCommandLine);
+   stra = get_c_args_for_c(scopedstrCommandLine);
 
    address_array < char * > argv;
 
@@ -126,7 +126,7 @@ int daemonize_process(const ::scoped_string & scopedstrCommandLine, int * pproce
 
    string_array stra;
 
-   stra = get_c_args_for_c(pszCommandLine);
+   stra = get_c_args_for_c(scopedstrCommandLine);
 
    char ** argv = (char **) malloc(sizeof(char *) * (stra.get_size() + 1));
 
@@ -232,7 +232,7 @@ int create_process4(const ::scoped_string & scopedstrCommandLine, int * pprocess
 
    string_array stra;
 
-   stra = get_c_args_for_c(pszCommandLine);
+   stra = get_c_args_for_c(scopedstrCommandLine);
 
    char ** argv = (char **) malloc(sizeof(char *) * (stra.get_size() + 1));
 
@@ -308,7 +308,7 @@ CLASS_DECL_APEX int call_async(const ::file::path & path, const ::scoped_string 
 
    strCmdLine = pszPath;
 
-   if(ansi_length(pszParam) > 0)
+   if(ansi_length(scopedstrParam) > 0)
    {
 
       strCmdLine +=  " ";
@@ -352,7 +352,7 @@ CLASS_DECL_APEX unsigned int call_sync(const ::file::path & path, const ::scoped
 
    strCmdLine = pszPath;
 
-   if(ansi_length(pszParam) > 0)
+   if(ansi_length(scopedstrParam) > 0)
    {
 
       strCmdLine +=  " ";
@@ -502,7 +502,7 @@ retry:
 //atom_array app_get_pid(const ::scoped_string & scopedstr)
 //{
 //
-//   informationf("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
+//   informationf("os/linux_process.cpp app_get_pid (" + string(scopedstr) + ")");
 //
 //   atom_array ia;
 //
@@ -510,11 +510,11 @@ retry:
 //
 //   ::dir::ls_dir(stra, "/proc/");
 //
-//   string str(psz);
+//   string str(scopedstr);
 //
 //   str = "app=" + str;
 //
-//   string strApp(psz);
+//   string strApp(scopedstr);
 //
 //   strApp.replace("-", "_");
 //
@@ -645,7 +645,7 @@ bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_st
 
    ::property_set set;
 
-   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), e_display_none, durationTimeout, set);
+   return call_sync(scopedstrFile, pszParams, ::file::path(scopedstrFile).folder(), e_display_none, durationTimeout, set);
 
 }
 
@@ -675,7 +675,7 @@ int create_process2(const ::scoped_string & scopedstrCommandLine, int * pprocess
 
    string_array stra;
 
-   stra = get_c_args_for_c(pszCommandLine);
+   stra = get_c_args_for_c(scopedstrCommandLine);
 
    char ** argv = (char **) malloc(sizeof(char *) * (stra.get_size() + 1));
 

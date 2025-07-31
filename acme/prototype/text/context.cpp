@@ -768,12 +768,12 @@ namespace text
 //
 //         pszEnd = psz + rstr.m_iSize;
 //
-//         while(unicode_is_whitespace(psz))
+//         while(unicode_is_whitespace(scopedstr))
 //         {
 //            
 //            psz += utf8_unicode_length(*psz);
 //
-//            if (psz >= pszEnd)
+//            if (scopedstr >= pszEnd)
 //            {
 //
 //               goto cont;
@@ -799,7 +799,7 @@ namespace text
 //            
 //            psz += utf8_unicode_length(*psz);
 //
-//            if (psz >= pszEnd)
+//            if (scopedstr >= pszEnd)
 //            {
 //
 //               goto cont;
@@ -809,12 +809,12 @@ namespace text
 //         strRoot.assign(s, psz - s);
 //         psz++;
 //
-//         while(unicode_is_whitespace(psz))
+//         while(unicode_is_whitespace(scopedstr))
 //         {
 //            
 //            psz += utf8_unicode_length(*psz);
 //
-//            if (psz >= pszEnd)
+//            if (scopedstr >= pszEnd)
 //            {
 //
 //               goto end;
@@ -828,12 +828,12 @@ namespace text
 //
 //         psz++;
 //
-//         while(unicode_is_whitespace(psz))
+//         while(unicode_is_whitespace(scopedstr))
 //         {
 //            
 //            psz += utf8_unicode_length(*psz);
 //
-//            if (psz >= pszEnd)
+//            if (scopedstr >= pszEnd)
 //            {
 //            
 //               goto end;

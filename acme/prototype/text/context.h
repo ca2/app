@@ -109,7 +109,7 @@ namespace text
       string body(const ::scoped_string & scopedstr);
 
       bool matches(const ::text::context * pcontext, const ::atom & atom, const ::scoped_string & scopedstr) const;
-      bool begins(const ::text::context * pcontext, const ::string & str, const ::atom & atom) const;
+      bool begins(const ::text::context * pcontext, const ::scoped_string & scopedstr, const ::atom & atom) const;
       bool begins_eat(const ::text::context * pcontext, string & str, const ::atom & atom) const;
 
 

@@ -206,11 +206,11 @@ namespace universal_windows
                                   nullptr,
                                   nullptr)))
       {
-         stra.add(pszBuf);
+         stra.add(scopedstrBuf);
          dwIndex++;
          dwLen = dwMaxValueNameLen;
       }
-      free(pszBuf);
+      free(scopedstrBuf);
       return stra.get_count();
    }
 #endif

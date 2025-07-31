@@ -165,7 +165,7 @@ namespace folder_zip
    void folder::add_file(const ::file::path& pszRelative, ::file::file* pfile)
    {
 
-      //::file::path strPath(pszDir / pszRelative);
+      //::file::path strPath(scopedstrDir / pszRelative);
 
       zip_fileinfo zipfi;
 
@@ -394,7 +394,7 @@ namespace folder_zip
    void didnt_locate_file(const char * pszFile)
    {
 
-      information("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
+      information("The file \"" + ::string(scopedstrFile) + "\" wasn't find in the zip folder.");
 
       //::fflush(stdout);
 
@@ -592,12 +592,12 @@ namespace folder_zip
 
       strFile.replace_with("/", "\\");
 
-      if (!locate([strFile](const char* psz) {return strFile.case_insensitive_equals(psz); }))
+      if (!locate([strFile](const char* psz) {return strFile.case_insensitive_equals(scopedstr); }))
       {
 
          strFile.replace_with("\\", "/");
 
-         if (!locate([strFile](const char* psz) {return strFile.case_insensitive_equals(psz); }))
+         if (!locate([strFile](const char* psz) {return strFile.case_insensitive_equals(scopedstr); }))
          {
 
             didnt_locate_file(strFile);
@@ -769,7 +769,7 @@ namespace folder_zip
       bool bLocated = locate([strPrefix](const char* pszItem)
          {
 
-            string strItem(pszItem);
+            string strItem(scopedstrItem);
 
             if (strItem.case_insensitive_begins(strPrefix))
             {
@@ -820,7 +820,7 @@ namespace folder_zip
       bool bLocated = locate([strPrefix](const char* pszItem)
          {
 
-            string strItem(pszItem);
+            string strItem(scopedstrItem);
 
             if (strItem.case_insensitive_begins_eat(strPrefix))
             {

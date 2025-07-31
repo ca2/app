@@ -20,9 +20,9 @@ namespace networking
       bool utf8_mail(class ::networking::email * pemail);
 
 
-      virtual bool syntax_is_valid(const ::string & strEmailAddress);
+      virtual bool syntax_is_valid(const ::scoped_string & scopedstrEmailAddress);
 
-      virtual bool is_valid_public_address(const string& strEmailAddress);
+      virtual bool is_valid_public_address(const ::scoped_string & scopedstrEmailAddress);
 
 
    };

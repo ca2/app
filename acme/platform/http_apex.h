@@ -35,7 +35,7 @@ namespace platform
       //virtual void clean_proxy_auth(::account::user * puser);
 
 
-      virtual bool open(::pointer<::sockets::http_session>& psession, const class ::url::connect_range & connectrange, ::property_set & set, const ::string & strVersion);
+      virtual bool open(::pointer<::sockets::http_session>& psession, const class ::url::connect_range & connectrange, ::property_set & set, const ::scoped_string & scopedstrVersion);
 
 
       virtual bool request(::pointer<::sockets::http_session>& spsession, const class ::url::request_range & requestrange, ::property_set & set);

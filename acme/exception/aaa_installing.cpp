@@ -4,7 +4,7 @@
 
 
 installing_exception::installing_exception(const ::scoped_string & scopedstrTip):
-   temporary_exception(pszTip)
+   temporary_exception(scopedstrTip)
 {
 
 }

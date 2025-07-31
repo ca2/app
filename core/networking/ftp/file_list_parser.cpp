@@ -75,7 +75,7 @@ namespace ftp
    {
    }
 
-   bool file_list_parser::CheckMonth(const ::scoped_string & scopedstr, const ::string & pszMonthName) const
+   bool file_list_parser::CheckMonth(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrMonthName) const
    {
       if (character_tolower(scopedstr.begin()[0]) != pszMonthName[0] ||
          character_tolower(scopedstr.begin()[1]) != pszMonthName[1] ||
@@ -640,7 +640,7 @@ namespace ftp
       return true;
    }
 
-   bool file_list_parser::Parse(file_status& ftpFileStatus, const string& strLineToParse)
+   bool file_list_parser::Parse(file_status& ftpFileStatus, const ::scoped_string & scopedstrLineToParse)
    {
       ftpFileStatus.reset();
       auto scopedstrLine = strLineToParse();

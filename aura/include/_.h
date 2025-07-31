@@ -230,16 +230,16 @@ namespace aura
 ////
 ////
 //////CLASS_DECL_AURA void set_last_status(const ::e_status & estatus);
-//////CLASS_DECL_AURA void windowing_output_debug_string(const ::string & pszDebugString);
+//////CLASS_DECL_AURA void windowing_output_debug_string(const ::scoped_string & scopedstrDebugString);
 //////CLASS_DECL_AURA void c_function_call(void * p);
 //////extern CLASS_DECL_AURA int g_bAura;
-//////CLASS_DECL_AURA int __assert_failed_line(const ::string & pszFileName,int iLineNumber);
+//////CLASS_DECL_AURA int __assert_failed_line(const ::scoped_string & scopedstrFileName,int iLineNumber);
 //////CLASS_DECL_AURA int is_debugger_attached(void);
-//////CLASS_DECL_AURA void debug_print(const ::string & psz,...);
+//////CLASS_DECL_AURA void debug_print(const ::scoped_string & scopedstr,...);
 //////
 //////
-//////CLASS_DECL_AURA int throw_assert_exception(const ::string & pszFileName,int iLineNumber);
-//////CLASS_DECL_AURA void throw_what_exclamation_exclamation(const ::string & psz);
+//////CLASS_DECL_AURA int throw_assert_exception(const ::scoped_string & scopedstrFileName,int iLineNumber);
+//////CLASS_DECL_AURA void throw_what_exclamation_exclamation(const ::scoped_string & scopedstr);
 //////
 ////
 ////
@@ -482,7 +482,7 @@ namespace aura
 ////typedef struct rdp_freerdp freerdp;
 ////
 ////
-////CLASS_DECL_AURA int_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const ::string & pszServerName, int bInteractive);
+////CLASS_DECL_AURA int_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const ::scoped_string & scopedstrServerName, int bInteractive);
 ////
 ////
 ////#if !defined(O_BINARY) && !defined(WINDOWS)
@@ -490,11 +490,11 @@ namespace aura
 ////#endif
 ////
 ////
-////CLASS_DECL_AURA int     ansi_open(const ::string & psz,int i);
-////CLASS_DECL_AURA FILE *  ansi_fopen(const ::string & psz, const ::string & pszMode);
+////CLASS_DECL_AURA int     ansi_open(const ::scoped_string & scopedstr,int i);
+////CLASS_DECL_AURA FILE *  ansi_fopen(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrMode);
 ////CLASS_DECL_AURA int     ansi_file_flag(int iFlag);
 ////CLASS_DECL_AURA void    ansi_get_errno(int * perrno);
-////CLASS_DECL_AURA void    ansi_unlink(const ::string & psz);
+////CLASS_DECL_AURA void    ansi_unlink(const ::scoped_string & scopedstr);
 ////
 ////
 ////CLASS_DECL_AURA unsigned int get_last_error();
@@ -587,9 +587,9 @@ namespace aura
 ////inline ::matter * context_trace_object() { return general_trace_object(); }
 ////
 ////
-////CLASS_DECL_AURA void __tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz);
-////CLASS_DECL_AURA void __tracef(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz, ...);
-////CLASS_DECL_AURA void __tracev(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz, va_list vargs);
+////CLASS_DECL_AURA void __tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr);
+////CLASS_DECL_AURA void __tracef(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr, ...);
+////CLASS_DECL_AURA void __tracev(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr, va_list vargs);
 ////CLASS_DECL_AURA const char * trace_category_name(e_trace_category ecategory);
 ////
 ////
@@ -1324,12 +1324,12 @@ namespace aura
 //CLASS_DECL_AURA void __node_aura_pos_term();
 ////
 ////
-//////extern "C" CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const ::string & psz);
-//////extern "C" CLASS_DECL_AURA void register_get_new_aura_library(const ::string & psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary);
+//////extern "C" CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const ::scoped_string & scopedstr);
+//////extern "C" CLASS_DECL_AURA void register_get_new_aura_library(const ::scoped_string & scopedstr, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary);
 ////
 ////
-//////CLASS_DECL_AURA ::acme::library & get_library(const ::string & psz);
-//////CLASS_DECL_AURA void register_aura_library(const ::string & psz, ::acme::library* plibrary);
+//////CLASS_DECL_AURA ::acme::library & get_library(const ::scoped_string & scopedstr);
+//////CLASS_DECL_AURA void register_aura_library(const ::scoped_string & scopedstr, ::acme::library* plibrary);
 //////
 //////CLASS_DECL_AURA ::handler_context * get_context();
 //////CLASS_DECL_AURA inline ::handler_context * get_context(::particle * pparticle);

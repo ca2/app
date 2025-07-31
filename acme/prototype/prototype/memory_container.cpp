@@ -295,7 +295,7 @@ paged_memory * memory_container::get_virtual_memory()
 }
 
 
-void memory_container::set_string(const ::string & str)
+void memory_container::set_string(const ::scoped_string & scopedstr)
 {
 
    memory().assign(str);

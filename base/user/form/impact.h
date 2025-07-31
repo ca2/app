@@ -41,9 +41,9 @@ namespace user
 
       bool open_document(const ::payload & payloadFile) override;
       
-      bool open_html(const ::string & str) override;
+      bool open_html(const ::scoped_string & scopedstr) override;
 
-      virtual bool Navigate(const ::string & pszUrl);
+      virtual bool Navigate(const ::scoped_string & scopedstrUrl);
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

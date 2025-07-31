@@ -232,7 +232,7 @@ xfplayer_impact_line_selection & xfplayer_impact_linea::GetSelection()
 }
 
 
-void xfplayer_impact_linea::get_sel_text(string & strSelText, const ::string & pszLineSeparator)
+void xfplayer_impact_linea::get_sel_text(string & strSelText, const ::scoped_string & scopedstrLineSeparator)
 {
    _synchronous_lock synchronouslock(this->synchronization());
    ::collection::index iLineStart;
@@ -285,7 +285,7 @@ void xfplayer_impact_linea::get_sel_text(string & strSelText, const ::string & p
 
 }
 
-string xfplayer_impact_linea::get_sel_text(const ::string & pszLineSeparator)
+string xfplayer_impact_linea::get_sel_text(const ::scoped_string & scopedstrLineSeparator)
 {
 
    string strSelText;
@@ -297,7 +297,7 @@ string xfplayer_impact_linea::get_sel_text(const ::string & pszLineSeparator)
 }
 
 
-void xfplayer_impact_linea::get_text(string & strText, const ::string & pszLineSeparator)
+void xfplayer_impact_linea::get_text(string & strText, const ::scoped_string & scopedstrLineSeparator)
 {
    _synchronous_lock synchronouslock(this->synchronization());
    if (line_count() > 0)
@@ -318,7 +318,7 @@ void xfplayer_impact_linea::get_text(string & strText, const ::string & pszLineS
 
 }
 
-string xfplayer_impact_linea::get_text(const ::string & pszLineSeparator)
+string xfplayer_impact_linea::get_text(const ::scoped_string & scopedstrLineSeparator)
 {
 
    string strText;

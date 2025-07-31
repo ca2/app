@@ -14,7 +14,7 @@ string cxxabi_demangle (const char* name);
 string demangle(const char * psz)
 {
 
-   if (psz[0] == 'c' &&
+   if (scopedstr[0] == 'c' &&
       psz[1] == 'l' &&
       psz[2] == 'a' &&
       psz[3] == 's' &&
@@ -25,7 +25,7 @@ string demangle(const char * psz)
       return psz + 6;
 
    }
-   else if (psz[0] == 's' &&
+   else if (scopedstr[0] == 's' &&
       psz[1] == 't' &&
       psz[2] == 'r' &&
       psz[3] == 'u' &&
@@ -153,7 +153,7 @@ string demangle(const char* name)
 //}
 //
 //
-//type_atom::type_atom(const ::string & strName, const ::string & strFriendlyName)
+//type_atom::type_atom(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrFriendlyName)
 //{
 //
 //   m_pfactoryitem = nullptr;
@@ -222,7 +222,7 @@ string demangle(const char* name)
 //}
 //
 //
-//bool type_atom::operator == (const ::string & strName) const
+//bool type_atom::operator == (const ::scoped_string & scopedstrName) const
 //{
 //
 //   return id() == strName;
@@ -262,7 +262,7 @@ string demangle(const char* name)
 //}
 //
 //
-//bool type_atom::operator != (const ::string & strName) const
+//bool type_atom::operator != (const ::scoped_string & scopedstrName) const
 //{
 //
 //   return id() != strName;
@@ -375,7 +375,7 @@ bool type_atom::operator == (const ::std::type_info& typeinfo) const
 //}
 //
 //
-//bool type_atom::operator == (const ::string& strType) const
+//bool type_atom::operator == (const ::scoped_string & scopedstrType) const
 //{
 //
 //   return ::atom::operator == (strType);
@@ -434,7 +434,7 @@ bool type_atom::operator == (const ::std::type_info& typeinfo) const
 //}
 //
 //
-//bool typea:: operator == (const ::string& strType) const
+//bool typea:: operator == (const ::scoped_string & scopedstrType) const
 //{
 //
 //   return ::atom::operator == (strType);

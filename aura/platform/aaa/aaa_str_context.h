@@ -101,19 +101,19 @@
 //      inline auto& operator[](const ::atom& atom) { return m_map[atom]; }
 //      inline auto& operator[](const ::atom& atom)const { return m_map[atom]; }
 //
-//      void set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const ::string & psz);
+//      void set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const ::scoped_string & scopedstr);
 //      string get(const str_context * pcontext, const ::atom & atom, bool bIdAsDefaultValue = true) const;
 //      string get(const str_context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue = true) const;
 //      void get(string_array & stra, const str_context * pcontext, const ::atom & atom) const;
 //      void _get(string_array & stra, const str_context * pcontext, const ::atom & atom) const ;
 //
-//      bool load(const ::string & pszBaseDir);
-//      bool load_uistr_file(const ::atom & idLocale, const ::atom & idSchema, const ::string & pszFile);
+//      bool load(const ::scoped_string & scopedstrBaseDir);
+//      bool load_uistr_file(const ::atom & idLocale, const ::atom & idSchema, const ::scoped_string & scopedstrFile);
 //
-//      string body(const ::string & psz);
+//      string body(const ::scoped_string & scopedstr);
 //
-//      bool matches(const str_context * pcontext, const ::atom & atom, const ::string & psz) const;
-//      bool begins(const str_context * pcontext, const ::string & psz, const ::atom & atom) const;
+//      bool matches(const str_context * pcontext, const ::atom & atom, const ::scoped_string & scopedstr) const;
+//      bool begins(const str_context * pcontext, const ::scoped_string & scopedstr, const ::atom & atom) const;
 //      bool begins_eat(const str_context * pcontext, string & str, const ::atom & atom) const;
 //
 //
@@ -193,7 +193,7 @@
 //         return *m_plocaleschema;
 //      }
 //
-//      inline bool matches(const ::atom & atom, const ::string & psz) const
+//      inline bool matches(const ::atom & atom, const ::scoped_string & scopedstr) const
 //      {
 //
 //         return m_pstr->matches(this, atom, psz);
@@ -201,7 +201,7 @@
 //      }
 //
 //
-//      inline bool begins(const ::atom & atom, const ::string & psz) const
+//      inline bool begins(const ::atom & atom, const ::scoped_string & scopedstr) const
 //      {
 //
 //         return m_pstr->begins(this, as_string(atom), psz);
@@ -234,9 +234,9 @@
 //
 //      }
 //
-//      //virtual bool match(const regex * pregexp, string_array & stra, const ::string & psz, atom pszExp, atom pszRoot);
+//      //virtual bool match(const regex * pregexp, string_array & stra, const ::scoped_string & scopedstr, atom pszExp, atom pszRoot);
 //
-//      virtual bool match(string_array & stra, const ::string & psz, atom pszExp, atom pszRoot) const;
+//      virtual bool match(string_array & stra, const ::scoped_string & scopedstr, atom pszExp, atom pszRoot) const;
 //
 //
 //   };

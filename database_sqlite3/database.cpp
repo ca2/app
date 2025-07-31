@@ -154,7 +154,7 @@ namespace sqlite
    }
 
 
-   bool database::exec(const ::string & pszQuery)
+   bool database::exec(const ::scoped_string & scopedstrQuery)
    {
 
       char * errmsg = nullptr;
@@ -186,7 +186,7 @@ namespace sqlite
    }
 
 
-   ::pointer<::database::result_set>database::query_result(const ::string & pszQuery, ::collection::count iRowCount,
+   ::pointer<::database::result_set>database::query_result(const ::scoped_string & scopedstrQuery, ::collection::count iRowCount,
                                                             ::collection::count iColumnCount)
    {
 
@@ -241,10 +241,10 @@ namespace sqlite
    }
 
 
-   ::pointer<::database::result_set>database::query(const ::string & pszQuery, ::collection::count iRowCount, ::collection::count iColumnCount)
+   ::pointer<::database::result_set>database::query(const ::scoped_string & scopedstrQuery, ::collection::count iRowCount, ::collection::count iColumnCount)
    {
 
-      return query_result(pszQuery, iRowCount, iColumnCount);
+      return query_result(scopedstrQuery, iRowCount, iColumnCount);
 
    }
 
@@ -273,26 +273,26 @@ namespace sqlite
    }
 
 
-   ::pointer<class payload_array> database::query_row(const ::string & psz)
+   ::pointer<class payload_array> database::query_row(const ::scoped_string & scopedstr)
    {
 
-      return ::database::database_impl::query_row(psz);
+      return ::database::database_impl::query_row(scopedstr);
 
    }
 
 
-   ::payload database::query_item(const ::string & psz)
+   ::payload database::query_item(const ::scoped_string & scopedstr)
    {
 
-      return ::database::database_impl::query_item(psz);
+      return ::database::database_impl::query_item(scopedstr);
 
    }
 
 
-   ::pointer<payload_array>database::query_items(const ::string & psz)
+   ::pointer<payload_array>database::query_items(const ::scoped_string & scopedstr)
    {
 
-      return ::database::database_impl::query_items(psz);
+      return ::database::database_impl::query_items(scopedstr);
 
    }
 
@@ -330,15 +330,15 @@ namespace sqlite
    }
 
 
-   pointer< pointer_array < payload_array > > database::query_rows(const ::string & psz)
+   pointer< pointer_array < payload_array > > database::query_rows(const ::scoped_string & scopedstr)
    {
 
-      return ::database::database_impl::query_rows(psz);
+      return ::database::database_impl::query_rows(scopedstr);
 
    }
 
 
-   bool database::memory_query_item(get_memory getmemory, const ::string & psz)
+   bool database::memory_query_item(get_memory getmemory, const ::scoped_string & scopedstr)
    {
 
       return false;
@@ -394,10 +394,10 @@ namespace sqlite
 //         {
 //            informationf("Error: %s", err);
 //            const ::scoped_string & scopedstrErrorMessage = get_error_message();
-//            if(pszErrorMessage != nullptr)
+//            if(scopedstrErrorMessage != nullptr)
 //            {
 //
-//               information(pszErrorMessage);
+//               information(scopedstrErrorMessage);
 //            }
 //            //throw ::exception(::database::exception(get_error_message()));
 //         }
@@ -474,7 +474,7 @@ namespace sqlite
 
    }
 
-   string database::add_error_message(const ::string & str)
+   string database::add_error_message(const ::scoped_string & scopedstr)
    {
 
       m_strError += str;
@@ -618,10 +618,10 @@ namespace sqlite
 
    }
 
-   string database::escape(const ::string & psz)
+   string database::escape(const ::scoped_string & scopedstr)
    {
       
-      string str(psz);
+      string str(scopedstr);
       
       str.replace_with("\'\'", "\'");
 
@@ -632,7 +632,7 @@ namespace sqlite
    }
 
 
-   //void database::create_long_set(const ::string & strTable)
+   //void database::create_long_set(const ::scoped_string & scopedstrTable)
    //{
 
    //   _synchronous_lock synchronouslock(this->synchronization());
@@ -661,7 +661,7 @@ namespace sqlite
    //}
 
 
-   //void database::create_string_set(const ::string & strTable)
+   //void database::create_string_set(const ::scoped_string & scopedstrTable)
    //{
 
    //   _synchronous_lock synchronouslock(this->synchronization());
@@ -896,7 +896,7 @@ namespace sqlite
 
       character_count iLen = sqlite3_column_bytes(m_pstmtSelect, 0);
 
-      if (!getmemory.get(psz, iLen))
+      if (!getmemory.get(scopedstr, iLen))
       {
 
          throw ::exception(error_failed);

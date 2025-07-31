@@ -150,10 +150,10 @@ namespace file
       }
 
 
-      listing & ignore(const ::string & strName)
+      listing & ignore(const ::scoped_string & scopedstrName)
       {
 
-         m_straIgnoreName.add(strName);
+         m_straIgnoreName.add(scopedstrName);
 
          return *this;
 
@@ -272,10 +272,10 @@ namespace file
 
 
 
-CLASS_DECL_ACME string normalize_wildcard_criteria(const ::string & strPattern);
+CLASS_DECL_ACME string normalize_wildcard_criteria(const ::scoped_string & scopedstrPattern);
 
 
-CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria, const ::string & strValue);
-CLASS_DECL_ACME bool case_insensitive_matches_wildcard_criteria(const string_array & straCriteria, const ::string & strValue);
+CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria, const ::scoped_string & scopedstrValue);
+CLASS_DECL_ACME bool case_insensitive_matches_wildcard_criteria(const string_array & straCriteria, const ::scoped_string & scopedstrValue);
 
 

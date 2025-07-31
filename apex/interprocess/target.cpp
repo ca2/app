@@ -38,7 +38,7 @@ namespace interprocess
    }
 
 
-   void target::create(const ::string & strChannel)
+   void target::create(const ::scoped_string & scopedstrChannel)
    {
 
       //return true;
@@ -57,7 +57,7 @@ namespace interprocess
    }
 
 
-   bool target::_handle_uri(const ::string & strUri)
+   bool target::_handle_uri(const ::scoped_string & scopedstrUri)
    {
 
       for (auto & phandler : m_particleaHandler)
@@ -88,7 +88,7 @@ namespace interprocess
    }
 
 
-   //bool target::on_interprocess_handle(const ::string & strUri)
+   //bool target::on_interprocess_handle(const ::scoped_string & scopedstrUri)
    //{
 
    //   string strUri = blockUri;
@@ -266,7 +266,7 @@ namespace interprocess
    //}
 
 
-   //bool target::on_interprocess_handle(const ::string & strUri)
+   //bool target::on_interprocess_handle(const ::scoped_string & scopedstrUri)
    //{
 
    //   //if (case_insensitive_string_begins(strMessage, "synch_"))

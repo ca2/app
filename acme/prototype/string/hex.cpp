@@ -63,7 +63,7 @@ namespace hex
       return num;
    }
 
-   unsigned int to_unsigned_int(const ::string & str)
+   unsigned int to_unsigned_int(const ::scoped_string & scopedstr)
    {
       unsigned int r = 0;
       for (int i = 0; i < str.length(); i++)
@@ -73,7 +73,7 @@ namespace hex
       return r;
    }
 
-   unsigned long long to_unsigned_long_long(const ::string & str)
+   unsigned long long to_unsigned_long_long(const ::scoped_string & scopedstr)
    {
       unsigned long long r = 0;
       for(int i = 0; i < str.length(); i++)
@@ -124,7 +124,7 @@ namespace hex
 
          }
 
-         if ((pszNext - range.m_begin == 1) &&
+         if ((scopedstrNext - range.m_begin == 1) &&
             ((*range.m_begin >= '0' && *range.m_begin <= '9') 
                || (*range.m_begin >= 'A' && *range.m_begin <= 'F')
                || (*range.m_begin >= 'a' && *range.m_begin <= 'f')))

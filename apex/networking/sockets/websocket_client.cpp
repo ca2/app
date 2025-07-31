@@ -380,7 +380,7 @@ namespace sockets
    }
 
 
-   //websocket_client::websocket_client(const string & url_in, const ::string & strProtocol) :
+   //websocket_client::websocket_client(const string & url_in, const ::scoped_string & scopedstrProtocol) :
    //   //::object(&h),
    //   //base_socket(h),
    //   //socket(h),
@@ -431,7 +431,7 @@ namespace sockets
    }
 
 
-   void websocket_client::initialize_websocket_client(const string & url_in, const ::string & strProtocol)
+   void websocket_client::initialize_websocket_client(const string & url_in, const ::scoped_string & scopedstrProtocol)
    {
 
       initialize_http_client_socket(url_in);

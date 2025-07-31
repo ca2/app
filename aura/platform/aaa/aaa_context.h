@@ -52,16 +52,16 @@ public:
    virtual string get_schema();
 
 
-   virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
+   virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
    virtual string get_locale_schema_dir();
 
 
 
-   virtual bool http_download(const ::string & pszUrl, const ::string & pszFile);
-   virtual string http_get(const ::string & strUrl, ::property_set & set);
-   virtual string http_get(const ::string & pszUrl);
+   virtual bool http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile);
+   virtual string http_get(const ::scoped_string & scopedstrUrl, ::property_set & set);
+   virtual string http_get(const ::scoped_string & scopedstrUrl);
 
-   string get_latest_build_number(const ::string & pszConfiguration, const ::string & pszAppId);
+   string get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId);
 
    virtual ::file::path defer_make_file_system_url(string str);
    virtual string defer_get_file_title(string str);
@@ -86,42 +86,42 @@ public:
    virtual file_pointer friendly_get_file(::payload payloadFile, unsigned int nOpenFlags);
 
 
-   virtual bool os_resolve_alias(::file::path & path, const ::string & psz, ::user::interaction_base * pinteraction, bool bNoUI = false, bool bNoMount = false);
+   virtual bool os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::interaction_base * pinteraction, bool bNoUI = false, bool bNoMount = false);
 
-   //CLASS_DECL_AURA bool os_is_folder_alias(::particle * pparticle, const ::string & psz, bool bNoUI = false, bool bNoMount = false);
+   //CLASS_DECL_AURA bool os_is_folder_alias(::particle * pparticle, const ::scoped_string & scopedstr, bool bNoUI = false, bool bNoMount = false);
 
-   virtual bool _os_resolve_alias(::file::path & path, const ::string & psz, ::user::interaction_base * pinteraction, bool bNoUI, bool bNoMount);
+   virtual bool _os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::interaction_base * pinteraction, bool bNoUI, bool bNoMount);
 
-   virtual bool os_is_alias(const ::string & psz);
+   virtual bool os_is_alias(const ::scoped_string & scopedstr);
 
    virtual bool sys_set(string strPath, string strValue);
    virtual string sys_get(string strPath, string strDefault = "");
 
 
-   virtual string load_string(const ::string & psz);
+   virtual string load_string(const ::scoped_string & scopedstr);
 
    virtual ::file::listing & perform_file_listing(::file::listing & listing) override;
    virtual ::file::listing & perform_file_relative_name_listing(::file::listing & listing) override;
 
 
    virtual ::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
-   virtual ::image::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
+   virtual ::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true);
 
    virtual ::image::image_pointer load_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false) override;
-   virtual ::image::image_pointer load_matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
+   virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
    virtual ::image::image_pointer load_matter_icon(string_array & straMatter, string strIcon) override;
    virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h) override;
-   virtual ::image::image_pointer load_thumbnail(const ::string & strPath);
+   virtual ::image::image_pointer load_thumbnail(const ::scoped_string & scopedstrPath);
    virtual ::image::image_pointer load_dib(const ::file::path & pathDib) override;
    virtual ::icon_pointer load_icon(const ::payload & payloadFile);
 
 
    virtual void _get_image(::image::image *pimage, const ::payload & payloadFile, bool bSync = true);
-   virtual void _matter_image(::image::image *pimage, const ::string & strMatter, bool bSync = true);
+   virtual void _matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, bool bSync = true);
 
 
    virtual void _load_image(::image::image *pimage, const ::payload & payloadFile, bool bSync = true, bool bCreateHelperMaps = false);
-   virtual void _load_matter_image(::image::image *pimage, const string & pszMatter, bool bSync = true, bool bCreateHelperMaps = false);
+   virtual void _load_matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCreateHelperMaps = false);
    virtual void _load_matter_icon(::image::image *pimage, string_array & straMatter, string strIcon);
    virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile, int w, int h);
    virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile);

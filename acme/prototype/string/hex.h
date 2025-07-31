@@ -11,15 +11,15 @@ namespace hex
 {
 
 
-   CLASS_DECL_ACME string to_asc(const ::string & strHex);
-   CLASS_DECL_ACME string from_asc(const string& strAsc);
+   CLASS_DECL_ACME string to_asc(const ::scoped_string & scopedstrHex);
+   CLASS_DECL_ACME string from_asc(const ::scoped_string & scopedstrAsc);
 
 
    CLASS_DECL_ACME long long to_long_long(const ::scoped_string & scopedstr);
 
    CLASS_DECL_ACME unsigned long long to_unsigned_long_long(const string & pcsz);
 
-   CLASS_DECL_ACME unsigned int to_unsigned_int(const ::string & str);
+   CLASS_DECL_ACME unsigned int to_unsigned_int(const ::scoped_string & scopedstr);
 
    inline CLASS_DECL_ACME int to_nibble(char ch)
    {
@@ -203,12 +203,12 @@ namespace hex
    }
 
 
-   inline void to(unsigned int & u,const ::string & str) { u = to_unsigned_int(str); }
-   inline void to(unsigned long long & u,const ::string & str) { u = to_unsigned_long_long(str); }
+   inline void to(unsigned int & u,const ::scoped_string & scopedstr) { u = to_unsigned_int(scopedstr); }
+   inline void to(unsigned long long & u,const ::scoped_string & scopedstr) { u = to_unsigned_long_long(scopedstr); }
 #ifdef __APPLE__
-   inline void to(unsigned long & u,const ::string & str) { u = to_unsigned_long_long(str); }
+   inline void to(unsigned long & u,const ::scoped_string & scopedstr) { u = to_unsigned_long_long(str); }
 #endif
-   inline uptr to_uptr(const ::string & str) { uptr u; to(u,str); return u; }
+   inline uptr to_uptr(const ::scoped_string & scopedstr) { uptr u; to(u,scopedstr); return u; }
 
    unsigned short parse_u16_exc(::const_ansi_range & range);
 

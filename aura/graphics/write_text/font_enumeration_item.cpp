@@ -20,7 +20,7 @@ namespace write_text
    }
 
 
-   font_enumeration_item::font_enumeration_item(const ::string & strName) :
+   font_enumeration_item::font_enumeration_item(const ::scoped_string & scopedstrName) :
       m_strName(strName)
    {
 
@@ -53,7 +53,7 @@ namespace write_text
 #endif
 
 
-   font_enumeration_item::font_enumeration_item(const ::string & strFile, const ::string & strName) :
+   font_enumeration_item::font_enumeration_item(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrName) :
       m_strName(strName)
    {
 
@@ -68,7 +68,7 @@ namespace write_text
    }
 
 
-   font_enumeration_item::font_enumeration_item(const ::string & strFile, const ::string & strBranch, const ::string & strName) :
+   font_enumeration_item::font_enumeration_item(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrBranch, const ::scoped_string & scopedstrName) :
       m_strName(strName)
    {
 

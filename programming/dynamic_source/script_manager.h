@@ -171,7 +171,7 @@ namespace dynamic_source
       ::pointer<script_instance>get(const ::scoped_string & scopedstrName);
       ::pointer<script_instance>get(const ::scoped_string & scopedstrName, ::pointer<script> & pscript);
       virtual void handle(::dynamic_source::httpd_socket * psocket);
-      ::payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::string & strName);
+      ::payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::scoped_string & scopedstrName);
       void run(const ::scoped_string & scopedstrName);
 
       void LoadEnv();
@@ -196,17 +196,17 @@ namespace dynamic_source
 
       virtual void on_load_env();
 
-      virtual void register_plugin(const ::string & strHost, const ::string & strScript, const ::string & strName, script * pscript);
+      virtual void register_plugin(const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrScript, const ::scoped_string & scopedstrName, script * pscript);
 
 
       virtual string get_root_plugin();
 
 
-      void wait_link_out(const ::string & pszServer, ::sockets::link_in_socket * pinsocket);
-      bool has_link_out_link(const ::string & pszServer, ::sockets::link_in_socket * pinsocket, ::httpd::socket * phttpdsocket);
-      ::sockets::link_in_socket * get_link_in(const ::string & pszServer, ::sockets::link_out_socket * poutsocket);
-      bool is_online(const ::string & pszServer);
-      ::sockets::link_out_socket * create_link_out(const ::string & pszServer, ::httpd::socket * phttpdsocket);
+      void wait_link_out(const ::scoped_string & scopedstrServer, ::sockets::link_in_socket * pinsocket);
+      bool has_link_out_link(const ::scoped_string & scopedstrServer, ::sockets::link_in_socket * pinsocket, ::httpd::socket * phttpdsocket);
+      ::sockets::link_in_socket * get_link_in(const ::scoped_string & scopedstrServer, ::sockets::link_out_socket * poutsocket);
+      bool is_online(const ::scoped_string & scopedstrServer);
+      ::sockets::link_out_socket * create_link_out(const ::scoped_string & scopedstrServer, ::httpd::socket * phttpdsocket);
       ::int_size get_image_size(const ::file::path & strFile);
       bool extract_image_size(const ::file::path & strFile,::int_size * psize);
 
@@ -219,7 +219,7 @@ namespace dynamic_source
 
       virtual bool should_build(const ::file::path & strScript);
 
-      virtual ::file::path get_script_path(const ::file::path & strName, const ::string & strModifier);
+      virtual ::file::path get_script_path(const ::file::path & strName, const ::scoped_string & scopedstrModifier);
 
    };
 

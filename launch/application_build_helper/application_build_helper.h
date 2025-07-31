@@ -104,11 +104,11 @@ namespace application_build_helper
       void add_package(package_reference & packagereference);
       void add_package_dependencies(const package_reference & packagereference);
       string_array get_lines(const ::file::path & path, bool bNoExceptionIfNotFound = true);
-      package_reference_array get_package_list(const ::string & strList, const ::string & strPackage);
-      package_reference_array get_package_references(const ::string & strPackage);
-      package_reference_array get_package_dependencies(const ::string & strPackage);
-      package_reference_array get_package_extensions(const ::string & strPackage);
-      package_reference_array get_all_package_dependencies(const ::string & strPackage);
+      package_reference_array get_package_list(const ::scoped_string & scopedstrList, const ::scoped_string & scopedstrPackage);
+      package_reference_array get_package_references(const ::scoped_string & scopedstrPackage);
+      package_reference_array get_package_dependencies(const ::scoped_string & scopedstrPackage);
+      package_reference_array get_package_extensions(const ::scoped_string & scopedstrPackage);
+      package_reference_array get_all_package_dependencies(const ::scoped_string & scopedstrPackage);
 
 
       void package();
@@ -124,9 +124,9 @@ namespace application_build_helper
       void generate_deployment_rc();
 
 
-      void translate_items(const ::string & strFileDst, const ::string & strFileSrc);
-      //void static_factory(const ::string& strFileDst, const ::string & strFileFactory, const ::string& strFileSrc);
-      void static_factory(const ::string & strFileDst, const ::string & strFileSrc);
+      void translate_items(const ::scoped_string & scopedstrFileDst, const ::scoped_string & scopedstrFileSrc);
+      //void static_factory(const ::scoped_string & scopedstrFileDst, const ::scoped_string & scopedstrFileFactory, const ::scoped_string & scopedstrFileSrc);
+      void static_factory(const ::scoped_string & scopedstrFileDst, const ::scoped_string & scopedstrFileSrc);
       string defer_translate_dependency(string strDependency);
       string defer_binary_to_project(string strBinary);
       string defer_project_to_binary(string strProject);

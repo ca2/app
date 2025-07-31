@@ -42,7 +42,7 @@ CLASS_DECL_ACME long long long_long_nanosecond()
 //
 //#ifdef WINDOWS
 //
-//   auto len = utf8_to_unichar_len(psz);
+//   auto len = utf8_to_unichar_len(scopedstr);
 //
 //   memory memory;
 //

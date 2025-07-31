@@ -57,7 +57,7 @@ namespace sockets
       ~websocket_client() override;
 
 
-      virtual void initialize_websocket_client(const string & url, const ::string & strProtocol);
+      virtual void initialize_websocket_client(const string & url, const ::scoped_string & scopedstrProtocol);
 
       virtual void InitSSLClient() override;
 

@@ -86,7 +86,7 @@ namespace acme
       //virtual string get_root();
 
 
-      //virtual ::pointer<::object>new_application(const ::string & strAppId);
+      //virtual ::pointer<::object>new_application(const ::scoped_string & scopedstrAppId);
       //virtual void get_app_list(string_array & stra);
 
       
@@ -114,14 +114,14 @@ namespace acme
 
       //virtual bool add_factory_item();
 
-      //virtual ::pointer<::factory::factory>& factory(const ::string & strComponent, const ::string & strImplementation);
+      //virtual ::pointer<::factory::factory>& factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
-      //virtual ::pointer<::factory::factory>& factory(const ::string & strLibrary);
+      //virtual ::pointer<::factory::factory>& factory(const ::scoped_string & scopedstrLibrary);
 
-      //virtual void _load_factory(::pointer<::factory::factory>& pfactory, const ::string& strComponent);
+      //virtual void _load_factory(::pointer<::factory::factory>& pfactory, const ::scoped_string & scopedstrComponent);
 
-      //virtual void factory_exchange(const ::string & strName = nullptr, ::factory::factory * pfactory = nullptr);
-      //virtual ::pointer<::factory::factory>create_factory(const ::string& strLibrary);
+      //virtual void factory_exchange(const ::scoped_string & scopedstrName = nullptr, ::factory::factory * pfactory = nullptr);
+      //virtual ::pointer<::factory::factory>create_factory(const ::scoped_string & scopedstrLibrary);
 
       virtual ::factory::factory_pointer & factory() const override;
 
@@ -227,16 +227,16 @@ CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::particle *
 //
 //
 
-CLASS_DECL_ACME string implementation_name(const ::string & strComponent, const ::string & strImplementation);
+CLASS_DECL_ACME string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
 
-CLASS_DECL_ACME string library_name(const ::string & strComponent, const ::string & strImplementation);
+CLASS_DECL_ACME string library_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
 
-CLASS_DECL_ACME string factory_name(const ::string & strLibrary);
+CLASS_DECL_ACME string factory_name(const ::scoped_string & scopedstrLibrary);
 
 
-CLASS_DECL_ACME string library_filter(const ::string & str);
+CLASS_DECL_ACME string library_filter(const ::scoped_string & scopedstr);
 
 
 

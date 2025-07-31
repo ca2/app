@@ -28,7 +28,7 @@
 //      void complete_step(sequencer & sequencer) override;
 //
 //      
-//      static ::pointer < ::subparticle > create_sequencer(::particle * pparticle, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon);
+//      static ::pointer < ::subparticle > create_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
 //
 //      
 //   };

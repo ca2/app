@@ -268,7 +268,7 @@ namespace factory
       inline void __call__raw_construct(::pointer<ORIGIN_TYPE> & p);
 
 
-      virtual ::particle_pointer __call__create(const ::string & strType, ::particle * pparticle);
+      virtual ::particle_pointer __call__create(const ::scoped_string & scopedstrType, ::particle * pparticle);
 
 
       virtual bool has(const ::atom & atom) const;
@@ -316,13 +316,13 @@ namespace factory
 //
 //#ifdef WINDOWS
 //
-//      pszTypename = c_demangle(pszTypename);
+//      pszTypename = c_demangle(scopedstrTypename);
 //
 //      return pszTypename;
 //
 //#else
 //
-//      auto strTypename = ::transfer(demangle(pszTypename));
+//      auto strTypename = ::transfer(demangle(scopedstrTypename));
 //
 //      return strTypename;
 //

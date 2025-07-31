@@ -12,7 +12,7 @@ int _c_lock_is_active(const ::scoped_string & scopedstrName)
 
    int * pfd;
 
-   if(_c_lock(pszName, (void **) &pfd))
+   if(_c_lock(scopedstrName, (void **) &pfd))
    {
       _c_unlock((void **) &pfd);
       return false;
@@ -85,7 +85,7 @@ int _c_unlock(void ** pdata)
 vsstring _ca_get_file_name(const ::scoped_string & scopedstrName, bool bCreate, int * pfd)
 {
 
-   vsstring str(pszName);
+   vsstring str(scopedstrName);
 
    str.replace("\\", "/");
    str.replace("::", "_");

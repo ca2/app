@@ -2,7 +2,7 @@
 
 
 todo::todo(const ::scoped_string & scopedstrMessage) :
-   not_implemented(pszMessage)
+   not_implemented(scopedstrMessage)
 {
 
 }

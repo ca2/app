@@ -87,8 +87,8 @@ namespace data
       //virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd);
 
 
-      //virtual void set_text(const ::string & str, const ::action_context & action_context);
-      //virtual void set_text(const ::string & psz, character_count len, const ::action_context & action_context);
+      //virtual void set_text(const ::scoped_string & scopedstr, const ::action_context & action_context);
+      //virtual void set_text(const ::scoped_string & scopedstr, character_count len, const ::action_context & action_context);
 
 
 
@@ -98,7 +98,7 @@ namespace data
 
 
       //virtual void get_selection_text(string & str);
-      //virtual void set_selection_text(const ::string & psz, const ::action_context & action_context);
+      //virtual void set_selection_text(const ::scoped_string & scopedstr, const ::action_context & action_context);
 
 
       //virtual void get_text_selection(character_count &iSelStart, character_count &iSelEnd);
@@ -150,8 +150,8 @@ namespace data
             virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd);
 
 
-            virtual void set_text(const ::string & str, const ::action_context & action_context);
-            virtual void set_text(const ::string & psz, character_count len, const ::action_context & action_context);
+            virtual void set_text(const ::scoped_string & scopedstr, const ::action_context & action_context);
+            virtual void set_text(const ::scoped_string & scopedstr, character_count len, const ::action_context & action_context);
 
 
 
@@ -161,7 +161,7 @@ namespace data
 
 
             virtual void get_selection_text(string & str);
-            virtual void set_selection_text(const ::string & psz, const ::action_context & action_context);
+            virtual void set_selection_text(const ::scoped_string & scopedstr, const ::action_context & action_context);
 
 
             virtual void get_text_selection(character_count &iSelStart, character_count &iSelEnd);

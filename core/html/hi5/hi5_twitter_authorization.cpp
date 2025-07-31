@@ -47,7 +47,7 @@ namespace hi5
       }
 
 
-      void authorization::initialize_twitter_authorization(::object* pparticle, const ::string & pszAuthorizationUrl, const ::string & pszForm, bool bAuth, bool bInteractive)
+      void authorization::initialize_twitter_authorization(::object* pparticle, const ::scoped_string & scopedstrAuthorizationUrl, const ::scoped_string & scopedstrForm, bool bAuth, bool bInteractive)
       {
 
          // auto estatus = 
@@ -251,7 +251,7 @@ namespace hi5
       }
 
 
-      void authorization::pageMessage(const ::string & pszMatter, ::property_set & set)
+      void authorization::pageMessage(const ::scoped_string & scopedstrMatter, ::property_set & set)
       {
 
          ensure_main_document();
@@ -260,7 +260,7 @@ namespace hi5
 
          // auto pcontext = get_context();
 
-         m_pformdocumentAuth->on_open_document(directory()->matter(pszMatter));
+         m_pformdocumentAuth->on_open_document(directory()->matter(scopedstrMatter));
          display_main_frame();
          //m_ptabimpact->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 

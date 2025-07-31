@@ -120,7 +120,7 @@ namespace universal_windows
    {
 #ifdef WINDOWS_DESKTOP
       unsigned int dwPid;
-      while(get_pid_by_title(pszName, dwPid))
+      while(get_pid_by_title(scopedstrName, dwPid))
       {
          HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
                                         PROCESS_VM_READ,
@@ -154,7 +154,7 @@ namespace universal_windows
       get_all_processes(dwa);
       for(int i = 0; i < dwa.get_count(); i++)
       {
-         if(get_process_path(dwa[i]).case_insensitive_order(pszName) == 0)
+         if(get_process_path(dwa[i]).case_insensitive_order(scopedstrName) == 0)
          {
             dwPid = dwa[i];
             return true;
@@ -170,7 +170,7 @@ namespace universal_windows
       get_all_processes(dwa);
       for(int i = 0; i < dwa.get_count(); i++)
       {
-         if(get_process_path(dwa[i]).title().case_insensitive_order(pszName) == 0)
+         if(get_process_path(dwa[i]).title().case_insensitive_order(scopedstrName) == 0)
          {
             dwPid = dwa[i];
             return true;
@@ -323,7 +323,7 @@ namespace universal_windows
       registry::Key keyKar(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
 
-      keyKar.SetValue(pszKey, pszCommand);
+      keyKar.SetValue(scopedstrKey, pszCommand);
 
 #else
 
@@ -343,7 +343,7 @@ namespace universal_windows
 
       registry::Key keyKar(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce", true);
 
-      keyKar.SetValue(pszKey, pszCommand);
+      keyKar.SetValue(scopedstrKey, pszCommand);
 
 #else
 
@@ -363,7 +363,7 @@ namespace universal_windows
 
       registry::Key keyKar(HKEY_CURRENT_USER, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
-      keyKar.SetValue(pszKey, pszCommand);
+      keyKar.SetValue(scopedstrKey, pszCommand);
 
 #else
 
@@ -382,7 +382,7 @@ namespace universal_windows
 
       registry::Key keyKar(HKEY_CURRENT_USER, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce", true);
 
-      keyKar.SetValue(pszKey, pszCommand);
+      keyKar.SetValue(scopedstrKey, pszCommand);
 
 #else
 
@@ -565,7 +565,7 @@ namespace universal_windows
 
 #ifdef WINDOWS_DESKTOP
 
-      string strExtensionNamingClass(pszExtensionNamingClass);
+      string strExtensionNamingClass(scopedstrExtensionNamingClass);
 
       registry::Key keyLink3(HKEY_CLASSES_ROOT, strExtensionNamingClass, true);
 
@@ -914,7 +914,7 @@ namespace universal_windows
    }
 
 
-   bool os_context::resolve_link(string & strTarget, string & strFolder, string & strParams, const string & pszSource, ::user::interaction_base * puiMessageParentOptional)
+   bool os_context::resolve_link(string & strTarget, string & strFolder, string & strParams, const ::scoped_string & scopedstrSource, ::user::interaction_base * puiMessageParentOptional)
    {
 
       return false;

@@ -21,11 +21,11 @@ namespace text_to_speech
       ~speaker() override;
 
 
-      virtual void speak(const ::string & strText);
+      virtual void speak(const ::scoped_string & scopedstrText);
 
-      virtual void speak(const ::string & strLang, const ::string & strText, bool bSynch = false);
+      virtual void speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSynch = false);
 
-      virtual void speak(const ::string & strAttributes, const ::string & strLang, const ::string & strText, bool bSynch = false);
+      virtual void speak(const ::scoped_string & scopedstrAttributes, const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSynch = false);
 
       virtual void stop(string strLang);
 

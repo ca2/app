@@ -44,7 +44,7 @@
 //
 //   }
 //
-//   if (pszAddress && pszMangledName)
+//   if (scopedstrAddress && pszMangledName)
 //   {
 //
 //      *pszMangledName++ = '\0';
@@ -52,7 +52,7 @@
 //
 //      int status;
 //
-//      acme::malloc < char * > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
+//      acme::malloc < char * > pszRealName = abi::__cxa_demangle(scopedstrMangledName, 0, 0, &status);
 //
 //      const ::ansi_character * pszSymbolName;
 //
@@ -115,7 +115,7 @@ void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * 
 
     }
 
-    if (pszMangledName && pszOffsetBegin && pszOffsetEnd && pszMangledName < pszOffsetBegin)
+    if (scopedstrMangledName && pszOffsetBegin && pszOffsetEnd && pszMangledName < pszOffsetBegin)
     {
 
         *pszMangledName++ = '\0';
@@ -124,7 +124,7 @@ void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * 
 
         int status;
 
-        acme::malloc < char * > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
+        acme::malloc < char * > pszRealName = abi::__cxa_demangle(scopedstrMangledName, 0, 0, &status);
 
         const ::ansi_character * pszSymbolName;
 

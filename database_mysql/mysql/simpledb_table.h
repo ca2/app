@@ -21,7 +21,7 @@ namespace simpledb
       database::field_definition    m_fielddefinition;
 
 
-      table(base * pdatabase, const ::string & pszName);
+      table(base * pdatabase, const ::scoped_string & scopedstrName);
 
       base * get_database();
 

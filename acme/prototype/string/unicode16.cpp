@@ -84,7 +84,7 @@ character_count wd16_to_ansi(char* psz, const ::wd16_character* pwsz, character_
    while (srclen != 0 && *pwsz != L'\0')
    {
 
-      n = wd16_to_ansi_char(psz, &pwsz, &srclen);
+      n = wd16_to_ansi_char(scopedstr, &pwsz, &srclen);
 
       if (n <= 0)
       {
@@ -116,7 +116,7 @@ character_count ansi_to_wd16_len_len(const ::ansi_character * psz, character_cou
    while (srclen > 0 && psz != nullptr && *psz != '\0')
    {
 
-      len = unicode_len(psz);
+      len = unicode_len(scopedstr);
 
       if (len > srclen)
       {
@@ -148,7 +148,7 @@ character_count ansi_to_wd16_len_len(const ::ansi_character * psz, character_cou
 //   while (srclen != 0 && psz != nullptr && *psz != '\0')
 //   {
 //
-//      *pwsz++ = (::wd16_character) unicode_index_length(psz, len);
+//      *pwsz++ = (::wd16_character) unicode_index_length(scopedstr, len);
 //
 //      psz += len;
 //
@@ -156,7 +156,7 @@ character_count ansi_to_wd16_len_len(const ::ansi_character * psz, character_cou
 //
 //   }
 //
-//   if (psz != nullptr)
+//   if (scopedstr != nullptr)
 //   {
 //
 //      *pwsz = L'\0';
@@ -328,29 +328,29 @@ extern "C"
 // CLASS_DECL_ACME const char* yoshi_strcat(const ::ansi_character * psz1, const ::ansi_character * psz2, bool bFree2)
 // {
 
-//    character_count iLen1 = psz1 == nullptr ? 0 : strlen(psz1);
+//    character_count iLen1 = psz1 == nullptr ? 0 : strlen(scopedstr1);
 
-//    character_count iLen2 = psz2 == nullptr ? 0 : strlen(psz2);
+//    character_count iLen2 = psz2 == nullptr ? 0 : strlen(scopedstr2);
 
 //    character_count iLen = iLen1 + iLen2 + 1;
 
 //    char* psz = (char*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iLen);
 
-//    strcpy(psz, "");
+//    strcpy(scopedstr, "");
 
-//    if (psz1 != nullptr)
+//    if (scopedstr1 != nullptr)
 //    {
 
-//       ansi_concatenate(psz, psz1);
+//       ansi_concatenate(scopedstr, psz1);
 
 //       ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free((void*)psz1);
 
 //    }
 
-//    if (psz2 != nullptr)
+//    if (scopedstr2 != nullptr)
 //    {
 
-//       ansi_concatenate(psz, psz2);
+//       ansi_concatenate(scopedstr, psz2);
 
 //       if (bFree2)
 //       {
@@ -653,7 +653,7 @@ extern "C"
 //   }
 //   while (srclen > 0 && *pwsz != L'\0')
 //   {
-//      n = wd16_to_ansichar(psz, *pwsz);
+//      n = wd16_to_ansichar(scopedstr, *pwsz);
 //      if (n <= 0)
 //         break;
 //      c += n;
@@ -676,7 +676,7 @@ extern "C"
 //
 //   char* psz = str.get_buffer(iUtf8Len);
 //
-//   wd16_to_ansi(psz, pwszUni32, iUni32Len);
+//   wd16_to_ansi(scopedstr, pwszUni32, iUni32Len);
 //
 //   str.release_buffer(iUtf8Len);
 //
@@ -697,7 +697,7 @@ character_count ansi_to_wd16_len(const ::ansi_character * psz, character_count s
 
       int len;
 
-      int iChar = unicode_index_length(psz, len);
+      int iChar = unicode_index_length(scopedstr, len);
 
       if (iChar < 0)
       {
@@ -936,7 +936,7 @@ character_count utf16_to_utf16(::wd16_character * p, const ::wd16_character* cod
 //
 //   char * psz = str.get_buffer(iUtf8Len);
 //
-//   wd16_to_ansi(psz, pwszUni32, iUni32Len);
+//   wd16_to_ansi(scopedstr, pwszUni32, iUni32Len);
 //
 //   str.release_buffer(iUtf8Len);
 //
@@ -966,7 +966,7 @@ string wd16_to_ansi_str(const ::wd16_character * pwsz, character_count srclen)
 
    char * psz = str.get_buffer(iUtf8Len);
 
-   wd16_to_ansi(psz, pwsz, srclen);
+   wd16_to_ansi(scopedstr, pwsz, srclen);
 
    str.release_buffer(iUtf8Len);
 

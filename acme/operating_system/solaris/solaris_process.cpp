@@ -81,7 +81,7 @@ int iShow)
    vsstring strCmdLine;
 
    strCmdLine = pszPath;
-   if(ansi_length(pszParam) > 0)
+   if(ansi_length(scopedstrParam) > 0)
    {
       strCmdLine +=  " ";
       strCmdLine += pszParam;
@@ -101,7 +101,7 @@ CLASS_DECL_ACME unsigned int call_sync(const ::file::path & path, const ::scoped
    vsstring strCmdLine;
 
    strCmdLine = pszPath;
-   if(ansi_length(pszParam) > 0)
+   if(ansi_length(scopedstrParam) > 0)
    {
       strCmdLine +=  " ";
       strCmdLine += pszParam;

@@ -143,7 +143,7 @@ namespace xcb
 
                }
 
-               atom = intern_atom(pszName, bCreate);
+               atom = intern_atom(scopedstrName, bCreate);
 
                m_atoma[eatom] = atom;
 

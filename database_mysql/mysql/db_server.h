@@ -63,11 +63,11 @@ public:
    bool load(const ::string & lpKey, string & str);
    bool load(const ::string & lpKey, ::file::output_stream & writer);
 
-   bool save(const ::string & lpKey, const ::string & psz);
+   bool save(const ::string & lpKey, const ::scoped_string & scopedstr);
    bool save(const ::string & lpKey, ::file::input_stream & reader);
 
 
-   virtual bool initialize_user(mysql::database * pmysqldbUser, const ::string & pszUser);
+   virtual bool initialize_user(mysql::database * pmysqldbUser, const ::scoped_string & scopedstrUser);
    virtual bool initialize();
    virtual bool destroy();
 

@@ -55,7 +55,7 @@ namespace user
    }
 
 
-   shell::image_key::image_key(const ::string & strPath, const ::string & strShellThemePrefix, enum_file_attribute eattribute, enum_icon eicon)
+   shell::image_key::image_key(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrShellThemePrefix, enum_file_attribute eattribute, enum_icon eicon)
    {
 
       m_strPath = strPath;
@@ -78,7 +78,7 @@ namespace user
    }
 
 
-   void shell::image_key::set_path(const ::string & strPath, bool bSetExtension)
+   void shell::image_key::set_path(const ::scoped_string & scopedstrPath, bool bSetExtension)
    {
 
       m_strPath = strPath;
@@ -99,7 +99,7 @@ namespace user
    }
 
 
-   void shell::image_key::set_extension(const ::string & strPath)
+   void shell::image_key::set_extension(const ::scoped_string & scopedstrPath)
    {
 
       character_count iFind1 = strPath.rear_find_index('/');
@@ -657,7 +657,7 @@ namespace user
    }
 
 
-   shell::enum_folder shell::get_folder_type(::particle * pparticle, const ::string & strPath)
+   shell::enum_folder shell::get_folder_type(::particle * pparticle, const ::scoped_string & scopedstrPath)
    {
 
       wstring wstr(strPath);
@@ -1845,7 +1845,7 @@ namespace user
    }
 
 
-   int shell::create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIcon, _get_file_image_ & getfileimage)
+   int shell::create_file_icon_image(const ::scoped_string & scopedstrPath, enum_file_attribute eattribute, enum_icon eicon, const ::scoped_string & scopedstrIcon, _get_file_image_ & getfileimage)
    {
 
       int iReturn = -1;
@@ -1868,7 +1868,7 @@ namespace user
    }
 
 
-   int shell::_create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIconParam, _get_file_image_ & getfileimage)
+   int shell::_create_file_icon_image(const ::scoped_string & scopedstrPath, enum_file_attribute eattribute, enum_icon eicon, const ::scoped_string & scopedstrIconParam, _get_file_image_ & getfileimage)
    {
 
       getfileimage.m_imagekey.set_path(strIconParam, false);

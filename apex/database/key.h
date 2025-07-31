@@ -41,9 +41,9 @@
 //      key operator + (const key & key) const;
 //
 //
-//      key & operator +=(const ::string & strDataKey);
+//      key & operator +=(const ::scoped_string & scopedstrDataKey);
 //
-//      key operator + (const ::string & strDataKey) const;
+//      key operator + (const ::scoped_string & scopedstrDataKey) const;
 //
 //
 //      bool is_empty() const;

@@ -1346,7 +1346,7 @@ namespace user
    }
 
 
-   bool form_control::open_html(const ::string & str)
+   bool form_control::open_html(const ::scoped_string & scopedstr)
    {
 
       auto bOk = ::user::form::open_html(str);
@@ -1623,16 +1623,16 @@ namespace user
    //}
 
 
-   //void form_control::on_before_navigate(::payload & payloadFile,unsigned int nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
+   //void form_control::on_before_navigate(::payload & payloadFile,unsigned int nFlags, const ::scoped_string & scopedstrTargetFrameName,byte_array& baPostedData, const ::scoped_string & scopedstrHeaders,bool* pbCancel)
 
    //{
 
    //   __UNREFERENCED_PARAMETER(payloadFile);
    //   __UNREFERENCED_PARAMETER(nFlags);
-   //   __UNREFERENCED_PARAMETER(pszTargetFrameName);
+   //   __UNREFERENCED_PARAMETER(scopedstrTargetFrameName);
 
    //   __UNREFERENCED_PARAMETER(baPostedData);
-   //   __UNREFERENCED_PARAMETER(pszHeaders);
+   //   __UNREFERENCED_PARAMETER(scopedstrHeaders);
 
    //   __UNREFERENCED_PARAMETER(pbCancel);
 

@@ -27,7 +27,7 @@ public:
    virtual bool on_open_document(const ::payload & payloadFile) const;
 
    
-   virtual bool browse(const ::string & pszUrl);
+   virtual bool browse(const ::scoped_string & scopedstrUrl);
 
 
    void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -43,7 +43,7 @@ public:
    string get_path() override;
 
    bool open_document(const ::payload & payloadFile) override;
-   bool open_html(const ::string & str) override;
+   bool open_html(const ::scoped_string & scopedstr) override;
 
 
    ::html_data * get_html_data();
@@ -66,7 +66,7 @@ public:
 
 
    //virtual void get_text(string & str) override;
-   //virtual void set_text(const ::string & str, const ::action_context & action_context) override;
+   //virtual void set_text(const ::scoped_string & scopedstr, const ::action_context & action_context) override;
    virtual ::string get_html_form_text();
    virtual void set_html_form_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
 
@@ -80,7 +80,7 @@ public:
 
    virtual bool get_edit_mode();
    virtual void set_edit_mode(bool bSet = true);
-   virtual bool load_html(const ::string & str);
+   virtual bool load_html(const ::scoped_string & scopedstr);
    
    virtual void soft_reload() override;
 

@@ -19,7 +19,7 @@ namespace colorertake5
 
       void setErrorHandler(ErrorHandler *eh);
 
-      void loadSource(const ::string & pszSourceLocation, const ::string & pszSource);
+      void loadSource(const ::scoped_string & scopedstrSourceLocation, const ::scoped_string & scopedstrSource);
       file_type *getFileType(const ::string &name);
       file_type *enumerateFileTypes(int index);
       file_type *chooseFileType(const ::string &fileName, const ::string &firstLine, int typeNo = 0);
@@ -61,7 +61,7 @@ namespace colorertake5
 
       void loadFileType(file_type *filetype);
 
-      void parseHRC(const ::string & psz);
+      void parseHRC(const ::scoped_string & scopedstr);
       void addPrototype(::pointer<::xml::node>lem);
       void addType(::pointer<::xml::node>lem);
 

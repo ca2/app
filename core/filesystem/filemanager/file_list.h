@@ -44,7 +44,7 @@ namespace filemanager
 
 
 
-      //void schedule_file_size(const ::string & psz);
+      //void schedule_file_size(const ::scoped_string & scopedstr);
 
       void _017OpenContextMenuFolder(::pointer<::file::item>item, const ::action_context & action_context) override;
       void _017OpenContextMenuFile(const ::file::item_array &itema, const ::action_context & action_context) override;

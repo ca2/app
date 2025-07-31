@@ -50,7 +50,7 @@ namespace http
 
       auto purl = psystem->url();
 
-      string strServer = purl->get_root(pszUrl);
+      string strServer = purl->get_root(scopedstrUrl);
 
       if (strServer == "ca2.network")
       {
@@ -83,9 +83,9 @@ namespace http
 
       set["get_memory"] = pmemory;
 
-      //auto estatus = _get(pszUrl, process_set(set, pszUrl));
+      //auto estatus = _get(scopedstrUrl, process_set(set, pszUrl));
 
-      _get(pszUrl, process_set(set, pszUrl));
+      _get(scopedstrUrl, process_set(set, pszUrl));
 
       set.erase_by_name("get_memory");
 
@@ -113,7 +113,7 @@ namespace http
 
       set["disable_common_name_cert_check"] = true;
 
-      return api_get(pszUrl, set);
+      return api_get(scopedstrUrl, set);
 
    }
 
@@ -139,9 +139,9 @@ namespace http
 
       set["get_response"] = ""; // create get_response field
 
-      //auto estatus = _get(pszUrl, set);
+      //auto estatus = _get(scopedstrUrl, set);
 
-      _get(pszUrl, set);
+      _get(scopedstrUrl, set);
 
       //if (!estatus)
       //{
@@ -160,7 +160,7 @@ namespace http
 
       set["get_response"] = "";
 
-      set["bool_result"] = get(pszUrl, process_set(set, pszUrl));
+      set["bool_result"] = get(scopedstrUrl, process_set(set, pszUrl));
 
       str = set["get_response"].string();
 
@@ -172,7 +172,7 @@ namespace http
    ::file::enum_type context::get_type(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, ::property_set & set)
    {
 
-      string strUrl(pszUrl);
+      string strUrl(scopedstrUrl);
 
       string strFile(strUrl);
 
@@ -227,7 +227,7 @@ namespace http
 
       auto purl = psystem->url();
 
-      if (::str::find_wwci("ca2", purl->get_server(pszUrl)) < 0 && purl->get_object(pszUrl).case_insensitive_find("/matter/") < 0)
+      if (::str::find_wwci("ca2", purl->get_server(scopedstrUrl)) < 0 && purl->get_object(scopedstrUrl).case_insensitive_find("/matter/") < 0)
       {
 
          set["raw_http"] = true;
@@ -271,7 +271,7 @@ namespace http
    //::payload context::length(const ::scoped_string & scopedstrUrl, ::property_set & set)
    //{
 
-   //   return length(pszUrl, nullptr, set);
+   //   return length(scopedstrUrl, nullptr, set);
 
    //}
 
@@ -279,7 +279,7 @@ namespace http
    ::payload context::length(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, ::property_set & set)
    {
 
-      string strUrl(pszUrl);
+      string strUrl(scopedstrUrl);
 
       string strFile(strUrl);
 
@@ -345,7 +345,7 @@ namespace http
    //bool context::request(const ::scoped_string & scopedstrRequest, const ::scoped_string & scopedstrUrl, ::property_set & set)
    //{
 
-   //   return request(pszRequest, pszUrl, process_set(set, pszUrl));
+   //   return request(scopedstrRequest, pszUrl, process_set(set, pszUrl));
 
    //}
 
@@ -360,18 +360,18 @@ namespace http
 
  /*  bool context::download(const ::scoped_string & scopedstrUrl, ::payload payloadFile, ::property_set & set)
    {
-      return download(pszUrl, payloadFile, process_set(set, pszUrl));
+      return download(scopedstrUrl, payloadFile, process_set(set, pszUrl));
    }*/
 
    bool context::put(const ::scoped_string & scopedstrUrl, memory_base * pmemory, ::property_set & set)
    {
 
-      return put(pszUrl, *pmemory, process_set(set, pszUrl));
+      return put(scopedstrUrl, *pmemory, process_set(set, pszUrl));
    }
 
    //bool context::put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, ::property_set & set)
    //{
-   //   return put(pszUrl, pfile, process_set(set, pszUrl));
+   //   return put(scopedstrUrl, pfile, process_set(set, pszUrl));
    //}
 
 
@@ -383,7 +383,7 @@ namespace http
 
       //      int iAttempt = 0;
 
-      string strUrl(pszUrl);
+      string strUrl(scopedstrUrl);
 
       if (strUrl.find("?") >= 0)
       {
@@ -398,7 +398,7 @@ namespace http
 
       }
 
-      strUrl += "lang=" + string(pszLocale) + "&styl=" + string(pszSchema);
+      strUrl += "lang=" + string(scopedstrLocale) + "&styl=" + string(scopedstrSchema);
 
       return strUrl;
 
@@ -412,7 +412,7 @@ namespace http
 
       informationf("What?!");
 
-      string strUrl = locale_schema_url(pszUrl, pszLocale, pszSchema);
+      string strUrl = locale_schema_url(scopedstrUrl, pszLocale, pszSchema);
 
       string str;
 
@@ -424,8 +424,8 @@ namespace http
       //
       //      string strFontopusServer;
       //
-      //      if(atoi(purl->get_param(pszUrl, "authnone")) == 1
-      //            || purl->get_param(pszUrl,"sessid").case_insensitive_order("noauth") == 0)
+      //      if(atoi(purl->get_param(scopedstrUrl, "authnone")) == 1
+      //            || purl->get_param(scopedstrUrl,"sessid").case_insensitive_order("noauth") == 0)
       //      {
       //
       //         strFontopusServer = pszUrl;
@@ -434,7 +434,7 @@ namespace http
       //      else
       //      {
       //
-      //         strFontopusServer = psession->account()->authenticator()->get_account_server(pszUrl);
+      //         strFontopusServer = psession->account()->authenticator()->get_account_server(scopedstrUrl);
       //
       //      }
       //
@@ -625,14 +625,14 @@ namespace http
 
       single_lock synchronouslock(m_pmutexPac, true);
 
-      auto ppair = m_mapPac.plookup(pszUrl);
+      auto ppair = m_mapPac.plookup(scopedstrUrl);
 
       if (ppair == nullptr || ppair->element2()->m_durationLastChecked.elapsed() > 120_s)
       {
          if (ppair != nullptr)
          {
             //            delete ppair->element2();
-            m_mapPac.erase_key(pszUrl);
+            m_mapPac.erase_key(scopedstrUrl);
          }
 
          auto ppac = __create_new < class pac >();
@@ -650,7 +650,7 @@ namespace http
          ppac->m_strAutoConfigScript = file()->as_string(payloadFile);
 
 
-         m_mapPac.set_at(pszUrl, ppac);
+         m_mapPac.set_at(scopedstrUrl, ppac);
 
          if (ppac->m_strAutoConfigScript.is_empty())
          {
@@ -662,7 +662,7 @@ namespace http
          //registerJavascriptFunctions(ppac->m_pjs);
          //ppac->m_pjs->execute(ppac->m_strAutoConfigScript);
 
-         ppair = m_mapPac.plookup(pszUrl);
+         ppair = m_mapPac.plookup(scopedstrUrl);
 
          if (ppair == nullptr)
             return nullptr;
@@ -702,14 +702,14 @@ namespace http
 
       single_lock synchronouslock(m_pmutexProxy, true);
 
-      auto ppair = m_mapProxy.plookup(pszUrl);
+      auto ppair = m_mapProxy.plookup(scopedstrUrl);
 
       if (ppair == nullptr || ppair->element2()->m_durationLastChecked.elapsed() > 120_s)
       {
          if (ppair != nullptr)
          {
             //            delete ppair->element2();
-            m_mapPac.erase_key(pszUrl);
+            m_mapPac.erase_key(scopedstrUrl);
          }
 
          auto pproxy = __create_new < class ::http::context::proxy >();
@@ -718,9 +718,9 @@ namespace http
 
          pproxy->m_strUrl = pszUrl;
 
-         config_proxy(pszUrl, pproxy);
+         config_proxy(scopedstrUrl, pproxy);
 
-         m_mapProxy.set_at(pszUrl, pproxy);
+         m_mapProxy.set_at(scopedstrUrl, pproxy);
 
          return pproxy;
 
@@ -738,15 +738,15 @@ namespace http
 
       string strProxyServer;
 
-      string strUrl(pszScriptUrl);
+      string strUrl(scopedstrScriptUrl);
 
-      if (string_begins(pszUrl, strUrl))
+      if (string_begins(scopedstrUrl, strUrl))
       {
          pproxy->m_bDirect = true;
          return true;
       }
 
-      class pac * ppac = get_pac(pszScriptUrl);
+      class pac * ppac = get_pac(scopedstrScriptUrl);
 
       if (ppac == nullptr)
          return false;
@@ -757,9 +757,9 @@ namespace http
 
       auto purl = psystem->url();
 
-      strHost = purl->get_server(pszUrl);
+      strHost = purl->get_server(scopedstrUrl);
 
-      int port = purl->get_port(pszUrl);
+      int port = purl->get_port(scopedstrUrl);
 
       ::networking::address ad(strHost, port);
 
@@ -769,7 +769,7 @@ namespace http
       //throw ::exception(todo("scripting"));
       //try
       //{
-      //   payload = ppac->m_pjs->evaluate("FindProxyForURL('" + string(pszUrl) + "', '" + strHost + "');");
+      //   payload = ppac->m_pjs->evaluate("FindProxyForURL('" + string(scopedstrUrl) + "', '" + strHost + "');");
       //}
       //catch (...)
       //{
@@ -810,7 +810,7 @@ namespace http
 
 #else
 
-      ::http::context::proxy * pproxy = get_proxy(pszUrl);
+      ::http::context::proxy * pproxy = get_proxy(scopedstrUrl);
 
       if (pproxy == nullptr)
          return;
@@ -895,9 +895,9 @@ namespace http
 
       //bool bOk = true;
 
-      //string strHost = purl->get_server(pszUrl);
+      //string strHost = purl->get_server(scopedstrUrl);
 
-      //int iHostPort = purl->get_port(pszUrl);
+      //int iHostPort = purl->get_port(scopedstrUrl);
 
       //::networking::address ipHost(strHost, iHostPort);
       //for (int iNode = 0; iNode < doc.root()->get_children_count(); iNode++)
@@ -1068,7 +1068,7 @@ namespace http
    //}
 
 
-   bool context::open(::pointer<::sockets::http_session>& psession, const ::string & strHost, const ::string & strProtocolParam, ::property_set & set, const string &strVersionParam)
+   bool context::open(::pointer<::sockets::http_session>& psession, const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrProtocolParam, ::property_set & set, const string &strVersionParam)
    {
 
       auto tickTimeProfile1 = ::duration::now();
@@ -1257,7 +1257,7 @@ namespace http
 
             auto tickBeg = ::duration::now();
 
-            if (!open(psession, purl->get_server(pszRequest), purl->get_protocol(pszRequest), set, set["http_protocol_version"]))
+            if (!open(psession, purl->get_server(scopedstrRequest), purl->get_protocol(scopedstrRequest), set, set["http_protocol_version"]))
             {
 
                return false;
@@ -1285,9 +1285,9 @@ namespace http
 
          auto papplication = psession->m_psockethandler->get_app();
 
-         string strRequest = purl->get_object(pszRequest);
+         string strRequest = purl->get_object(scopedstrRequest);
 
-         string strServer = purl->get_server(pszRequest);
+         string strServer = purl->get_server(scopedstrRequest);
 
          string strUrl = psession->m_strProtocol + "://" + strServer + strRequest;
 
@@ -1376,9 +1376,9 @@ namespace http
 
          }
 
-         psession->m_host = purl->get_server(pszRequest);
+         psession->m_host = purl->get_server(scopedstrRequest);
 
-         psession->m_strHost = purl->get_server(pszRequest);
+         psession->m_strHost = purl->get_server(scopedstrRequest);
 
          psession->m_request.m_propertysetHeader[__id(host)] = psession->m_host;
 
@@ -1701,7 +1701,7 @@ namespace http
 
          character_count iSize = session.m_psocket->GetContentLength();
 
-         str = string(pszData, iSize);
+         str = string(scopedstrData, iSize);
 
       }
 
@@ -2481,7 +2481,7 @@ namespace http
          //if (strSessId.has_character() && puser.is_set() && iRetrySession < 3)
          //{
 
-         //   psession->account()->not_auth(pszUrl);
+         //   psession->account()->not_auth(scopedstrUrl);
 
          //   iRetrySession++;
 
@@ -2515,7 +2515,7 @@ namespace http
 
          character_count iSize = psocket->GetContentLength();
 
-         string strResponse(pszData, iSize);
+         string strResponse(scopedstrData, iSize);
 
          set["get_response"] = strResponse;
 
@@ -2717,7 +2717,7 @@ namespace http
    bool context::exists(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
-      auto etype = get_type(pszUrl, set);
+      auto etype = get_type(scopedstrUrl, set);
 
       return ::exists(etype);
 
@@ -2734,7 +2734,7 @@ namespace http
       try
       {
 
-         while (m_straExists.contains(pszUrl))
+         while (m_straExists.contains(scopedstrUrl))
          {
 
             synchronouslock.unlock();
@@ -2745,7 +2745,7 @@ namespace http
 
          }
 
-         m_straExists.add(pszUrl);
+         m_straExists.add(scopedstrUrl);
 
          synchronouslock.unlock();
 
@@ -2759,9 +2759,9 @@ namespace http
 
          auto purl = psystem->url();
 
-         domain.create(purl->get_server(pszUrl));
+         domain.create(purl->get_server(scopedstrUrl));
 
-         if (string_begins(purl->get_object(pszUrl), "/matter/"))
+         if (string_begins(purl->get_object(scopedstrUrl), "/matter/"))
          {
 
             set["raw_http"] = true;
@@ -2775,7 +2775,7 @@ namespace http
 
             synchronouslock.lock();
 
-            m_straExists.erase(pszUrl);
+            m_straExists.erase(scopedstrUrl);
 
             return ::file::e_type_doesnt_exist;
 
@@ -2791,7 +2791,7 @@ namespace http
 
       }
 
-      m_straExists.erase(pszUrl);
+      m_straExists.erase(scopedstrUrl);
 
       bool bExists = iStatusCode == 200;
 
@@ -2813,9 +2813,9 @@ namespace http
 
       auto purl = psystem->url();
 
-      domain.create(purl->get_server(pszUrl));
+      domain.create(purl->get_server(scopedstrUrl));
 
-      if (string_begins(purl->get_object(pszUrl), "/matter/"))
+      if (string_begins(purl->get_object(scopedstrUrl), "/matter/"))
       {
 
          set["disable_ca2_sessid"] = true;
@@ -2976,7 +2976,7 @@ namespace http
 
       ::memory_file file(memory);
 
-      return put(pszUrl, &file, set);
+      return put(scopedstrUrl, &file, set);
 
    }
 
@@ -2988,7 +2988,7 @@ namespace http
 
       set["noclose"] = false;
 
-      return get(pszUrl, set).is_true();
+      return get(scopedstrUrl, set).is_true();
 
    }
 
@@ -2998,7 +2998,7 @@ namespace http
 
       set[__id(http_method)] = pszMethod;
 
-      return get(pszUrl, set).is_true();
+      return get(scopedstrUrl, set).is_true();
 
    }
 

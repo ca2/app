@@ -307,7 +307,7 @@ bool file_context::exists(const ::file::path & pathParam)
 ::payload file_context::length(const ::file::path & pszPath)
 {
 
-   return length(pszPath, nullptr);
+   return length(scopedstrPath, nullptr);
 
 }
 
@@ -399,22 +399,22 @@ bool file_context::exists(const ::file::path & pathParam)
 //}
 
 
-::file::path file_context::time_square(const string & pszPrefix, const string & pszSuffix)
+::file::path file_context::time_square(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
 {
 
-   return time(directory()->time_square(), 25, pszPrefix, pszSuffix);
+   return time(directory()->time_square(), 25, scopedstrPrefix, scopedstrSuffix);
 
 }
 
 
-::file::path file_context::time_log(const string & pszId)
+::file::path file_context::time_log(const ::scoped_string & scopedstrId)
 {
-   return time(directory()->time_log(pszId), 9);
+   return time(directory()->time_log(scopedstrId), 9);
 }
 
 
 ::file::path
-file_context::time(const ::file::path & psz, int iMaxLevel, const string & pszPrefix, const string & pszSuffix,
+file_context::time(const ::file::path & psz, int iMaxLevel, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix,
                    bool bTryDelete)
 {
 
@@ -426,9 +426,9 @@ file_context::time(const ::file::path & psz, int iMaxLevel, const string & pszPr
 
    ::file::path path;
 
-   string strPrefix(pszPrefix);
+   string strPrefix(scopedstrPrefix);
 
-   string strSuffix(pszSuffix);
+   string strSuffix(scopedstrSuffix);
 
    int iIncLevel = 0;
 
@@ -514,7 +514,7 @@ restart:
 
          directory()->enumerate(listing);
 
-         int iMax = bTryDelete ? 0 : filterex_time_square(pszPrefix, listing);
+         int iMax = bTryDelete ? 0 : filterex_time_square(scopedstrPrefix, listing);
 
          do
          {
@@ -705,7 +705,7 @@ bool file_context::try_create_file(const ::file::path & path, bool bTryDelete)
 
    ::payload v;
 
-   v.parse_network_payload(pszJson);
+   v.parse_network_payload(scopedstrJson);
 
    return v;
 
@@ -733,7 +733,7 @@ bool file_context::try_create_file(const ::file::path & path, bool bTryDelete)
    try
    {
 
-      v.parse_network_payload(pszJson);
+      v.parse_network_payload(scopedstrJson);
 
    }
    catch (const ::exception & e)
@@ -1978,8 +1978,8 @@ void file_context::transfer(const ::file::path & pszNew, const ::file::path & ps
 //#ifdef WINDOWS_DESKTOP
 //
 //   if (!::MoveFileW(
-//      utf8_to_unicode(psz),
-//      utf8_to_unicode(pszNew)))
+//      utf8_to_unicode(scopedstr),
+//      utf8_to_unicode(scopedstrNew)))
 //   {
 //
 //      DWORD dwError = ::GetLastError();
@@ -1988,12 +1988,12 @@ void file_context::transfer(const ::file::path & pszNew, const ::file::path & ps
 //      {
 //
 //         if (::CopyFileW(
-//            utf8_to_unicode(psz),
-//            utf8_to_unicode(pszNew),
+//            utf8_to_unicode(scopedstr),
+//            utf8_to_unicode(scopedstrNew),
 //            false))
 //         {
 //
-//            if (!::DeleteFileW(utf8_to_unicode(psz)))
+//            if (!::DeleteFileW(utf8_to_unicode(scopedstr)))
 //            {
 //
 //               dwError = ::GetLastError();
@@ -2024,7 +2024,7 @@ void file_context::transfer(const ::file::path & pszNew, const ::file::path & ps
 //
 //#elif defined(UNIVERSAL_WINDOWS)
 //
-//   ::winrt::Windows::Storage::StorageFile ^ file = get_os_file(psz, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
+//   ::winrt::Windows::Storage::StorageFile ^ file = get_os_file(scopedstr, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
 //
 //   if (file == nullptr)
 //   {
@@ -2066,7 +2066,7 @@ void file_context::transfer(const ::file::path & pszNew, const ::file::path & ps
 //
 //
 //#else
-//   if (::rename(psz, pszNew) != 0)
+//   if (::rename(scopedstr, pszNew) != 0)
 //   {
 //      int err = errno;
 //      string strError;
@@ -2131,7 +2131,7 @@ void file_context::erase(const ::file::path & path)
 //
 //#else
 //
-//   if (unlink(psz) != 0)
+//   if (unlink(scopedstr) != 0)
 //   {
 //      int err = errno;
 //      if (err != ENOENT) // already does not exist - consider removal successful - does not issue an exception
@@ -2152,7 +2152,7 @@ void file_context::erase(const ::file::path & path)
 {
    string strCopy("copy");
    string strNew;
-   if (directory()->is(psz))
+   if (directory()->is(scopedstr))
    {
       int i = 1;
       while (i <= 100)
@@ -2221,7 +2221,7 @@ void file_context::erase(const ::file::path & path)
 void file_context::trash_that_is_not_trash(const ::file::path & psz)
 {
 
-   ::file::path strDir = directory()->trash_that_is_not_trash(psz);
+   ::file::path strDir = directory()->trash_that_is_not_trash(scopedstr);
 
    directory()->create(strDir);
 
@@ -2301,7 +2301,7 @@ void file_context::set_status(const ::file::path & path, const ::file::file_stat
 }
 
 
-void file_context::replace_with(const ::file::path & pathContext, const string & strNew, const string & strOld)
+void file_context::replace_with(const ::file::path & pathContext, const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrOld)
 {
 
    ::file::listing listing;
@@ -2376,7 +2376,7 @@ bool file_context::is_read_only(const ::file::path & psz)
 
    //#ifdef WINDOWS_DESKTOP
    //
-   //   unsigned int dwAttrib = windows_get_file_attributes(psz);
+   //   unsigned int dwAttrib = windows_get_file_attributes(scopedstr);
    //
    //   if (dwAttrib & FILE_ATTRIBUTE_READONLY)
    //   {
@@ -2395,7 +2395,7 @@ bool file_context::is_read_only(const ::file::path & psz)
    //
    //   struct stat st;
    //
-   //   if (stat(psz, &st) != 0)
+   //   if (stat(scopedstr, &st) != 0)
    //      return true;
    //
    //   return !(st.st_mode & S_IWUSR);
@@ -2466,10 +2466,10 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 }
 
 
-file_pointer file_context::time_square_file(const string & pszPrefix, const string & pszSuffix)
+file_pointer file_context::time_square_file(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
 {
 
-   return get(time_square(pszPrefix, pszSuffix));
+   return get(time_square(scopedstrPrefix, pszSuffix));
 
 }
 
@@ -2551,7 +2551,7 @@ file_pointer file_context::get(const ::file::path & path)
 }
 
 
-::file::path file_context::replace_with_extension(const ::string & strExtension, const ::file::path & path)
+::file::path file_context::replace_with_extension(const ::scoped_string & scopedstrExtension, const ::file::path & path)
 {
 
    ::file::path pathNew(path);
@@ -2614,9 +2614,9 @@ void file_context::normalize(string & str)
 
 ::std::strong_ordering file_context::cmp(const ::file::path & psz1, const ::file::path & psz2)
 {
-   string str1(psz1);
+   string str1(scopedstr1);
    normalize(str1);
-   string str2(psz2);
+   string str2(scopedstr2);
    normalize(str2);
    return str1.case_insensitive_order(str2);
 }
@@ -2638,8 +2638,8 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 
    }
 
-   //if (transfer(pszNew, psz).failed())
-   transfer(pszNew, psz);
+   //if (transfer(scopedstrNew, psz).failed())
+   transfer(scopedstrNew, psz);
    //{
 
    //   return ::error_failed;
@@ -2658,7 +2658,7 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 //
 //   directory()->rls(ls, pszDir);
 //
-//   dtf(pszFile, ls);
+//   dtf(scopedstrFile, ls);
 //
 //}
 //
@@ -2666,7 +2666,7 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 //void file_context::dtf(const ::file::path & pszFile, ::file::path_array & stra)
 //{
 //
-//   file_pointer pfile = get_file(pszFile, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary);
+//   file_pointer pfile = get_file(scopedstrFile, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary);
 //
 //   if (pfile.is_null())
 //   {
@@ -2737,7 +2737,7 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 //
 //   string strVersion;
 //
-//   file_pointer pfile = get_file(pszFile, ::file::e_open_read | ::file::e_open_binary);
+//   file_pointer pfile = get_file(scopedstrFile, ::file::e_open_read | ::file::e_open_binary);
 //
 //   if (pfile.is_null())
 //      throw ::exception(::exception("failed"));
@@ -2769,7 +2769,7 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 //         read_gen_string(pfile, nullptr, strMd5);
 //         MD5_Init(&ctx);
 //         read_gen_string(pfile, &ctx, strRelative);
-//         ::file::path strPath = ::file::path(pszDir) / strRelative;
+//         ::file::path strPath = ::file::path(scopedstrDir) / strRelative;
 //         directory()->create(strPath.folder());
 //         if (pfile2->open(strPath, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write).failed())
 //            throw ::exception(::exception("failed"));
@@ -2867,7 +2867,7 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 //   read_n_number(pfile, pctx, iLen);
 //   char * psz = str.get_buffer((character_count)(iLen + 1));
 //
-//   pfile->read(psz, (memsize)iLen);
+//   pfile->read(scopedstr, (memsize)iLen);
 //
 //   if (pctx != nullptr)
 //   {
@@ -2976,7 +2976,7 @@ string file_context::nessie(const ::payload & payloadFile)
 }
 
 
-void file_context::get_last_write_time(file_time_t * pfile_time, const string & strFilename)
+void file_context::get_last_write_time(file_time_t * pfile_time, const ::scoped_string & scopedstrFilename)
 {
 
    throw ::interface_only();
@@ -3859,7 +3859,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 //bool file_context::transfer(const path & pszOutput, ::file::file * pfileIn)
 //{
 
-//   return output(pszOutput, this, &file_context::transfer, pfileIn);
+//   return output(scopedstrOutput, this, &file_context::transfer, pfileIn);
 
 //}
 
@@ -3867,7 +3867,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 //bool file_context::transfer(const path & pszOutput, ::stream & istream)
 //{
 
-//   return output(pszOutput, this, &file_context::transfer, istream);
+//   return output(scopedstrOutput, this, &file_context::transfer, istream);
 
 //}
 
@@ -4014,24 +4014,24 @@ bool file_context::is_link(const ::file::path & path)
 //::extended::status file_context::transfer(const ::file::path & pszNew, const ::file::path & pszOld)
 //{
 //
-//   return psystem->m_spfile->transfer(pszNew, pszOld, get_app());
+//   return psystem->m_spfile->transfer(scopedstrNew, pszOld, get_app());
 //
 //}
 
 //
 //::extended::status file_context::del(const ::file::path & psz)
 //{
-//   return psystem->m_spfile->del(psz, get_app());
+//   return psystem->m_spfile->del(scopedstr, get_app());
 //}
 
 //::extended::status file_context::rename(const ::file::path & pszNew, const ::file::path & pszOld)
 //{
-//   return psystem->m_spfile->rename(pszNew, pszOld, get_app());
+//   return psystem->m_spfile->rename(scopedstrNew, pszOld, get_app());
 //}
 
 //void file_context::trash_that_is_not_trash(const ::file::path & psz)
 //{
-//   return psystem->m_spfile->trash_that_is_not_trash(psz, get_app());
+//   return psystem->m_spfile->trash_that_is_not_trash(scopedstr, get_app());
 //}
 //
 //void file_context::trash_that_is_not_trash(::file::path_array & stra)
@@ -4039,16 +4039,16 @@ bool file_context::is_link(const ::file::path & path)
 //   return psystem->m_spfile->trash_that_is_not_trash(stra, get_app());
 //}
 
-//::extended::status file_context::replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace)
+//::extended::status file_context::replace(const ::file::path & pszContext, const ::scoped_string & scopedstrFind, const ::scoped_string & scopedstrReplace)
 //{
-//   return psystem->m_spfile->replace(pszContext, pszFind, pszReplace, get_app());
+//   return psystem->m_spfile->replace(scopedstrContext, pszFind, pszReplace, get_app());
 //}
 
 
 //bool file_context::exists(const ::file::path & pszPath)
 //{
 //
-//   return psystem->m_spfile->exists(pszPath, get_app());
+//   return psystem->m_spfile->exists(scopedstrPath, get_app());
 //
 //}
 
@@ -4087,7 +4087,7 @@ bool file_context::is_link(const ::file::path & path)
 }
 
 
-/*  bool file_context::exists(const ::string & strPath)
+/*  bool file_context::exists(const ::scoped_string & scopedstrPath)
    {
 
       return psystem->m_spfile->exists(strPath, get_app());
@@ -4097,7 +4097,7 @@ bool file_context::is_link(const ::file::path & path)
    bool file_context::exists(const ::payload & payload)
    {
 
-      const ::string & strPath = payload.get_string();
+      const ::scoped_string & scopedstrPath = payload.get_string();
 
 
       return psystem->m_spfile->exists(strPath, get_app());
@@ -4108,12 +4108,12 @@ bool file_context::is_link(const ::file::path & path)
    //::payload file_context::length(const ::file::path & pszPath)
    //{
    //
-   //   return psystem->m_spfile->length(pszPath, get_app());
+   //   return psystem->m_spfile->length(scopedstrPath, get_app());
    //
    //}
 
 
-   //::payload file_context::length(const ::string & strPath)
+   //::payload file_context::length(const ::scoped_string & scopedstrPath)
    //{
 
 
@@ -4130,7 +4130,7 @@ bool file_context::is_link(const ::file::path & path)
    //}
 
    //
-   //::file::path file_context::time(const ::file::path & pszBasePath, int iDepth, const string & pszPrefix, const string & pszSuffix)
+   //::file::path file_context::time(const ::file::path & pszBasePath, int iDepth, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
    //{
    //
    //   return psystem->m_spfile->time(get_app(), pszBasePath, iDepth, pszPrefix, pszSuffix);
@@ -4138,14 +4138,14 @@ bool file_context::is_link(const ::file::path & path)
    //}
 
 
-   //::file::path file_context::time_square(const string & pszPrefix, const string & pszSuffix)
+   //::file::path file_context::time_square(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
    //{
    //
    //   return psystem->m_spfile->time_square(get_app(), pszPrefix, pszSuffix);
    //
    //}
 
-   //::file::path file_context::time_log(const string & pszId)
+   //::file::path file_context::time_log(const ::scoped_string & scopedstrId)
    //{
    //   return psystem->m_spfile->time_log(get_app(), pszId);
    //}
@@ -4291,21 +4291,21 @@ bool file_context::is_link(const ::file::path & path)
 //void file_context::dtf(const ::file::path & pszFile, const ::file::path & pszDir)
 //{
 //
-//   return psystem->m_spfile->dtf(pszFile, pszDir, get_app());
+//   return psystem->m_spfile->dtf(scopedstrFile, pszDir, get_app());
 //
 //}
 
 //bool file_context::is_read_only(const path & psz)
 //{
 //
-//   return psystem->m_spfile->is_read_only(psz, get_app());
+//   return psystem->m_spfile->is_read_only(scopedstr, get_app());
 //}
 
 
 //void file_context::dtf(const ::file::path & pszFile, ::file::path_array & stra, ::file::path_array & straRelative)
 //{
 //
-//   return psystem->m_spfile->dtf(pszFile, stra, get_app());
+//   return psystem->m_spfile->dtf(scopedstrFile, stra, get_app());
 //
 //}
 //
@@ -4313,7 +4313,7 @@ bool file_context::is_link(const ::file::path & path)
 //void file_context::ftd(const ::file::path & pszDir, const ::file::path & pszFile)
 //{
 //
-//   return psystem->m_spfile->ftd(pszDir, pszFile, get_app());
+//   return psystem->m_spfile->ftd(scopedstrDir, pszFile, get_app());
 //
 //}
 
@@ -4622,7 +4622,7 @@ CLASS_DECL_ACME void * file_as_memory_dup(long & size, const char * psz)
    try
    {
 
-      auto mem = ::system()->application()->file()->as_memory(psz);
+      auto mem = ::system()->application()->file()->as_memory(scopedstr);
 
       size = (long)mem.size();
 

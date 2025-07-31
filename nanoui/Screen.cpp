@@ -849,7 +849,7 @@ namespace nanoui
    }
 
 
-   bool Screen::keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::string& strText)
+   bool Screen::keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText)
    {
 
       if (m_focus_path.size() > 0)
@@ -1827,7 +1827,7 @@ namespace nanoui
    //}
 
 
-   bool Screen::on_key_down(::user::enum_key ekey, long long scancode, const ::user::e_key& ekeyModifiers, const ::string& strText)
+   bool Screen::on_key_down(::user::enum_key ekey, long long scancode, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText)
    {
 
       return keyboard_event(ekey, (int)scancode, e_message_key_down, ekeyModifiers, strText);

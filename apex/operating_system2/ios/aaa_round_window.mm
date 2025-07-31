@@ -167,7 +167,7 @@ void round_window::round_window_get_title(char * pszTitle, long iSize)
    
    NSString * str = [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE] title];
 
-   strncpy(pszTitle, [str UTF8String], iSize);
+   strncpy(scopedstrTitle, [str UTF8String], iSize);
    
 }
 
@@ -240,7 +240,7 @@ void round_window::round_window_get_text(char * pszText, long iSize)
 {
    
    // UITextView --> UIView
-//   strncpy(pszText, [[m_proundwindow->m_controller->childContentView text] UTF8String], iSize);
+//   strncpy(scopedstrText, [[m_proundwindow->m_controller->childContentView text] UTF8String], iSize);
    
 }
 

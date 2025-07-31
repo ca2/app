@@ -24,7 +24,7 @@ void __assert_particle_ok(const ::particle * pOb, const ::ansi_character * pszFi
    if (pOb == nullptr)
    {
 
-      if(!__assert_failed_line(pszFileName, nLine))
+      if(!__assert_failed_line(scopedstrFileName, nLine))
       {
 
          debug_break();
@@ -38,7 +38,7 @@ void __assert_particle_ok(const ::particle * pOb, const ::ansi_character * pszFi
    if (!is_memory_segment_ok(pOb, sizeof(::particle)))
    {
 
-      if (__assert_failed_line(pszFileName, nLine))
+      if (__assert_failed_line(scopedstrFileName, nLine))
       {
 
          debug_break();
@@ -52,7 +52,7 @@ void __assert_particle_ok(const ::particle * pOb, const ::ansi_character * pszFi
    if (!is_memory_segment_ok(*(const void **)pOb, sizeof(void *)))
    {
 
-      if (!__assert_failed_line(pszFileName, nLine))
+      if (!__assert_failed_line(scopedstrFileName, nLine))
       {
 
          debug_break();

@@ -16,7 +16,7 @@ CLASS_DECL_ACME string demangle(const char * pszMangledName);
 inline const char * c_demangle(const ::ansi_character * psz)
 {
 
-   if (psz[0] == 'c' &&
+   if (scopedstr[0] == 'c' &&
       psz[1] == 'l' &&
       psz[2] == 'a' &&
       psz[3] == 's' &&
@@ -27,7 +27,7 @@ inline const char * c_demangle(const ::ansi_character * psz)
       return psz + 6;
 
    }
-   else if (psz[0] == 's' &&
+   else if (scopedstr[0] == 's' &&
       psz[1] == 't' &&
       psz[2] == 'r' &&
       psz[3] == 'u' &&
@@ -104,7 +104,7 @@ public:
 
 
    //type_atom(const ::scoped_string & scopedstrTypeName) :
-   //   atom(pszTypeName)
+   //   atom(scopedstrTypeName)
    //{
    //   
    //}
@@ -161,7 +161,7 @@ public:
 //   bool operator == (const ::type_atom& datatype) const;
 //
 //
-//   bool operator == (const ::string& strType) const;
+//   bool operator == (const ::scoped_string & scopedstrType) const;
 
 
    bool operator == (const ::atom& atom) const;

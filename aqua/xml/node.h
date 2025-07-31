@@ -49,8 +49,8 @@ namespace xml
       inline const ::pointer<::xml::document>get_document() const { return m_pdocument; }
 
 
-      virtual void set_name(const ::string & strName);
-      virtual void set_value(const ::string & strValue);
+      virtual void set_name(const ::scoped_string & scopedstrName);
+      virtual void set_value(const ::scoped_string & scopedstrValue);
 
       virtual void get_name(string & strName) const { strName = m_strName; }
       virtual void get_value(string & strValue) const { strValue = m_strValue; }
@@ -81,7 +81,7 @@ namespace xml
 
 
       // Load/Save XML
-      virtual void load(const ::string & strXml, parse_info * pi = nullptr);
+      virtual void load(const ::scoped_string & scopedstrXml, parse_info * pi = nullptr);
 
 
    protected:
@@ -157,8 +157,8 @@ namespace xml
       ::collection::count get_children_count(const ::scoped_string & scopedstrName, ::collection::index iDepth);
       node *                  child_at(::collection::index i);
       //node *                create_node( const char * name = nullptr, const char * value = nullptr );
-      node *                  add_child(const ::string & strName = nullptr, const ::scoped_string & scopedstrValue = nullptr);
-      node *                  add_child(const ::string & strName, const ::property_set & set, const ::scoped_string & scopedstrValue = nullptr);
+      node *                  add_child(const ::scoped_string & scopedstrName = nullptr, const ::scoped_string & scopedstrValue = nullptr);
+      node *                  add_child(const ::scoped_string & scopedstrName, const ::property_set & set, const ::scoped_string & scopedstrValue = nullptr);
       node *                  add_child( node * node );
       bool                    erase_child( node * node );
       node *                  detach_child( node * node );

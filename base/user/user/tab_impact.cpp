@@ -138,7 +138,7 @@ namespace user
    }
 
 
-   bool tab_impact::add_impact(const ::string & strName, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
+   bool tab_impact::add_impact(const ::scoped_string & scopedstrName, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
    {
 
       return add_tab(strName, atomImpact, bVisible, bPermanent, pplacehoder);
@@ -146,7 +146,7 @@ namespace user
    }
 
 
-   bool tab_impact::add_impact_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
+   bool tab_impact::add_impact_with_icon(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrIcon, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
    {
 
       return add_tab_with_icon(strName, strIcon, atomImpact, bVisible, bPermanent, pplacehoder);

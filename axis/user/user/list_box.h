@@ -123,18 +123,18 @@ namespace user
 
 
       virtual bool _001GetListText(::collection::index iSel, string& str);
-      virtual ::collection::index _001FindListText(const string& str);
+      virtual ::collection::index _001FindListText(const ::scoped_string & scopedstr);
       virtual ::collection::count _001GetListCount();
 
 
       
-      //virtual ::collection::index add_string(const ::string & pszString, uptr dwItemData = 0);
-      //virtual ::collection::index add_string(const ::string & pszString, const string& strValue);
+      //virtual ::collection::index add_string(const ::scoped_string & scopedstrString, uptr dwItemData = 0);
+      //virtual ::collection::index add_string(const ::scoped_string & scopedstrString, const ::scoped_string & scopedstrValue);
       virtual ::collection::index add_item(const ::scoped_string & scopedstr, const ::atom & atom);
 
       
       virtual ::collection::index erase_item_at(::collection::index nIndex);
-      virtual ::collection::index insert_item_at(::collection::index nIndex, const ::string & pszString);
+      virtual ::collection::index insert_item_at(::collection::index nIndex, const ::scoped_string & scopedstrString);
 
 
       virtual void reset_content();

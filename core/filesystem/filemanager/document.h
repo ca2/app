@@ -74,19 +74,19 @@ namespace filemanager
 
       ::pointer<::filemanager::data>create_file_manager_data(::request * prequest = nullptr);
 
-      //virtual void Initialize(int iTemplate, const ::string & pszMatter);
+      //virtual void Initialize(int iTemplate, const ::scoped_string & scopedstrMatter);
 
       void browse_initial_path(const ::action_context & actioncontext) override;
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::file::item_array & itema);
 
 
-      virtual void InitializeFileManager(const ::string & pszMatter);
+      virtual void InitializeFileManager(const ::scoped_string & scopedstrMatter);
       
       
       virtual void _001Refresh();
 
-      string get_initial_browse_path(const ::string & pszDefault = nullptr);
+      string get_initial_browse_path(const ::scoped_string & scopedstrDefault = nullptr);
 
       virtual void browse(const ::file::path & path, const ::action_context & action_context) override;
       virtual bool browse(::pointer<::file::item>pitem, const ::action_context & action_context) override;
@@ -102,7 +102,7 @@ namespace filemanager
       virtual void on_file_manager_open_folder(::pointer<::file::item> str, const ::action_context & action_context);
 
       virtual void on_file_manager_item_update(::message::command * pcommand, const ::file::item_array & itema);
-      virtual void on_file_manager_item_command(const ::string & pszId, const ::file::item_array & itema);
+      virtual void on_file_manager_item_command(const ::scoped_string & scopedstrId, const ::file::item_array & itema);
 
       //critical_section * GetItemIdListCriticalSection();
 
@@ -185,7 +185,7 @@ namespace filemanager
 
    CLASS_DECL_CORE bool is_valid_filemanager_project_entry(const ::string &);
 
-   CLASS_DECL_CORE ::file::path filemanager_project_entry(string & strManagerId, const ::string & psz, ::aura::context * pcontext);
+   CLASS_DECL_CORE ::file::path filemanager_project_entry(string & strManagerId, const ::scoped_string & scopedstr, ::aura::context * pcontext);
 
 
 } // namespace filemanager

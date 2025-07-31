@@ -7,7 +7,7 @@ public:
 
    ::string m_str;
 
-   title(const ::string & str) : m_str(str) {}
+   title(const ::scoped_string & scopedstr) : m_str(str) {}
 
 };
 
@@ -31,7 +31,7 @@ inline ::payload operator + (::payload payload, const ::title& title)
 
 
 
-inline ::payload operator + (const ::string & psz, const ::title& title)
+inline ::payload operator + (const ::scoped_string & scopedstr, const ::title& title)
 {
 
    return operator +((payload)psz, title);

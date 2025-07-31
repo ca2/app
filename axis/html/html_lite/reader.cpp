@@ -319,7 +319,7 @@ LEndParse:
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-character_count lite_html_reader::read_form_document(const ::string & str)
+character_count lite_html_reader::read_form_document(const ::scoped_string & scopedstr)
 {
 
    m_strBuffer    = str;
@@ -467,11 +467,11 @@ bool lite_html_reader::parseComment(string &rComment)
    const char *   pszBegin = &m_strBuffer[m_dwBufPos + 4];
 
    // HTML comments end with two hyphen symbols '--'
-   const char *   pszEnd = ::ansi_str(pszBegin, "--");
+   const char *   pszEnd = ::ansi_str(scopedstrBegin, "--");
 
 
    // comment ending delimeter could not be found?
-   if (pszEnd == nullptr)
+   if (scopedstrEnd == nullptr)
 
       // consider everything after current buffer position a comment
    {
@@ -481,11 +481,11 @@ bool lite_html_reader::parseComment(string &rComment)
       return (true);
    }
 
-   string   strComment(pszBegin, int(pszEnd - pszBegin));
+   string   strComment(scopedstrBegin, int(scopedstrEnd - pszBegin));
 
 
    // end of buffer?
-   if (pszEnd + (sizeof(char) * 2) >= &m_strBuffer[0] + m_strBuffer.size())
+   if (scopedstrEnd + (sizeof(char) * 2) >= &m_strBuffer[0] + m_strBuffer.size())
 
       return (false);
 
@@ -504,7 +504,7 @@ bool lite_html_reader::parseComment(string &rComment)
 
    pszEnd++;
 
-   m_dwBufPos += (pszEnd - &m_strBuffer[m_dwBufPos]);
+   m_dwBufPos += (scopedstrEnd - &m_strBuffer[m_dwBufPos]);
 
    rComment = strComment;
    return (true);

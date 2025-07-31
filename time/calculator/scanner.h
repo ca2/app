@@ -57,7 +57,7 @@ namespace datetime
       virtual void initialize_datetime_scanner(::text::context* ptextcontext);
 
 
-      void initialize_scanner(const ::string & strInput);
+      void initialize_scanner(const ::scoped_string & scopedstrInput);
       void peek();
       void next();
       token * look_ahead();

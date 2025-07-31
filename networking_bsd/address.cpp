@@ -220,7 +220,7 @@ namespace networking_bsd
 //   }
 
 
-//   void address::set_address(::particle * pparticle, const string & host, const ::string & strService)
+//   void address::set_address(::particle * pparticle, const string & host, const ::scoped_string & scopedstrService)
 //   {
 //
 //      auto psystem = pparticle->system();
@@ -498,7 +498,7 @@ namespace networking_bsd
 #endif
 
 
-//   void address::parse_string(const ::string & strAddress)
+//   void address::parse_string(const ::scoped_string & scopedstrAddress)
 //   {
 //
 //#if defined(BSD_STYLE_SOCKETS)

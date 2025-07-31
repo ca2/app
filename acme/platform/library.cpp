@@ -56,7 +56,7 @@ namespace acme
 
    //   }
 
-   //   string strRoot(pszRoot);
+   //   string strRoot(scopedstrRoot);
 
    //   strRoot.trim();
 
@@ -73,9 +73,9 @@ namespace acme
 
    //   }
 
-   //   m_strName = ::is_null(pszName) ? strRoot : string(pszName);
+   //   m_strName = ::is_null(scopedstrName) ? strRoot : string(scopedstrName);
 
-   //   if (::is_set(pszFolder))
+   //   if (::is_set(scopedstrFolder))
    //   {
 
    //      m_strFolder = pszFolder;
@@ -144,7 +144,7 @@ namespace acme
 
       m_strMessage.empty();
 
-      //auto pfnNewAuraLibrary = psystem->load_(pszPath);
+      //auto pfnNewAuraLibrary = psystem->load_(scopedstrPath);
 
       //if (pfnNewAuraLibrary != nullptr)
       //{
@@ -168,7 +168,7 @@ namespace acme
          //if(bCa2Path)
          //{
 
-         //   m_plibrary = __node_library_open_ca2(pszPath, m_strMessage);
+         //   m_plibrary = __node_library_open_ca2(scopedstrPath, m_strMessage);
 
          //}
          //else
@@ -572,7 +572,7 @@ namespace acme
 //
 //      synchronous_lock synchronouslock(&psystem->m_pmutexRawLibrary);
 //
-//      if (!contains_app(pszAppName))
+//      if (!contains_app(scopedstrAppName))
 //      {
 //
 //         return "";
@@ -632,7 +632,7 @@ namespace acme
 //
 //      synchronous_lock synchronouslock(&psystem->m_pmutexRawLibrary);
 //
-//      string strAppName(pszAppId);
+//      string strAppName(scopedstrAppId);
 //
 //      string strPrefix(get_root());
 //
@@ -687,7 +687,7 @@ namespace acme
 //   }
 
 
-   //::pointer<::object>library::new_application(const ::string & strAppId)
+   //::pointer<::object>library::new_application(const ::scoped_string & scopedstrAppId)
    //{
 
    //   auto psystem = system();
@@ -713,7 +713,7 @@ namespace acme
 
    //      }
 
-   //      string strAppId(pszAppId);
+   //      string strAppId(scopedstrAppId);
 
    //      strAppId.replace("/", "_");
 
@@ -721,7 +721,7 @@ namespace acme
 
    //      auto & pfactory = this->factory(strAppId);
 
-   //         //string strAppName = get_app_name(pszAppId);
+   //         //string strAppName = get_app_name(scopedstrAppId);
 
    //      if (!pfactory)
    //      {
@@ -848,7 +848,7 @@ namespace acme
 
    //   }
 
-   //   return m_pca2library->new_object(pszClassId);
+   //   return m_pca2library->new_object(scopedstrClassId);
 
    //}
 
@@ -866,7 +866,7 @@ namespace acme
 
    //   get_app_list(stra);
 
-   //   return stra.contains(pszAppId);
+   //   return stra.contains(scopedstrAppId);
 
    //}
 
@@ -1028,7 +1028,7 @@ namespace acme
 
 
 
-CLASS_DECL_ACME string implementation_name(const ::string& strComponent, const ::string& strImplementation)
+CLASS_DECL_ACME string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
 {
 
    if (strImplementation.case_insensitive_begins(strComponent) && strImplementation[strComponent.length()] == '_')
@@ -1043,7 +1043,7 @@ CLASS_DECL_ACME string implementation_name(const ::string& strComponent, const :
 }
 
 
-CLASS_DECL_ACME string library_name(const ::string& strComponent, const ::string& strImplementation)
+CLASS_DECL_ACME string library_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
 {
 
    string strLibrary;
@@ -1055,7 +1055,7 @@ CLASS_DECL_ACME string library_name(const ::string& strComponent, const ::string
 }
 
 
-CLASS_DECL_ACME string factory_name(const ::string& strLibrary)
+CLASS_DECL_ACME string factory_name(const ::scoped_string & scopedstrLibrary)
 {
 
    string strFactory;
@@ -1067,7 +1067,7 @@ CLASS_DECL_ACME string factory_name(const ::string& strLibrary)
 }
 
 
-CLASS_DECL_ACME string library_filter(const ::string& str)
+CLASS_DECL_ACME string library_filter(const ::scoped_string & scopedstr)
 {
 
    string strLibrary;

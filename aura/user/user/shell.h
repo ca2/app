@@ -63,13 +63,13 @@ namespace user
 
          image_key();
          image_key(const image_key & imagekey);
-         image_key(const ::string & strPath, const ::string & strShellThemePrefix, enum_file_attribute eattribute, enum_icon eicon);
+         image_key(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrShellThemePrefix, enum_file_attribute eattribute, enum_icon eicon);
          ~image_key();
 
 
          bool operator == (const image_key & key) const;
-         void set_path(const ::string & strPath, bool bSetExtension = true);
-         void set_extension(const ::string & strPath);
+         void set_path(const ::scoped_string & scopedstrPath, bool bSetExtension = true);
+         void set_extension(const ::scoped_string & scopedstrPath);
 
          inline operator ::hash32() const
          {
@@ -216,8 +216,8 @@ namespace user
       
 
       virtual void get_file_extension_image(_get_file_image_ & getfileimage);
-      virtual int create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIcon, _get_file_image_ & getfileimage);
-      virtual int _create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIcon, _get_file_image_ & getfileimage);
+      virtual int create_file_icon_image(const ::scoped_string & scopedstrPath, enum_file_attribute eattribute, enum_icon eicon, const ::scoped_string & scopedstrIcon, _get_file_image_ & getfileimage);
+      virtual int _create_file_icon_image(const ::scoped_string & scopedstrPath, enum_file_attribute eattribute, enum_icon eicon, const ::scoped_string & scopedstrIcon, _get_file_image_ & getfileimage);
 
 
 
@@ -253,7 +253,7 @@ namespace user
 
 
       virtual enum_folder get_folder_type(::particle * pparticle, const ::wstring & wstrPath);
-      virtual enum_folder get_folder_type(::particle * pparticle, const ::string & strPath);
+      virtual enum_folder get_folder_type(::particle * pparticle, const ::scoped_string & scopedstrPath);
 
 
 //      void set_image(int iIndex, int iSize, ::image::image *pimage);

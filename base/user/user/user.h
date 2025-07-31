@@ -122,9 +122,9 @@ namespace base
       ::pointer < ::menu::menu > menu_from_xml(::particle * pparticleContext, const ::scoped_string & scopedstrXml) override;
 
 
-      void defer_instantiate_user_style(const ::string & strExperience = nullptr) override;
-      ::user::style_pointer instantiate_user_style(const ::string & strExperience, ::platform::application* papp = nullptr) override;
-      ::user::style_pointer get_user_style(const ::string & strExperience, ::platform::application* papp = nullptr) override;
+      void defer_instantiate_user_style(const ::scoped_string & scopedstrExperience = nullptr) override;
+      ::user::style_pointer instantiate_user_style(const ::scoped_string & scopedstrExperience, ::platform::application* papp = nullptr) override;
+      ::user::style_pointer get_user_style(const ::scoped_string & scopedstrExperience, ::platform::application* papp = nullptr) override;
 
 
       //virtual ::type_atom get_pane_tab_impact_type_info();

@@ -52,8 +52,8 @@ namespace user
       virtual void show_about_tab_pane();
 
 
-      virtual bool add_impact(const ::string & strName, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr) override;
-      virtual bool add_impact_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr) override;
+      virtual bool add_impact(const ::scoped_string & scopedstrName, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr) override;
+      virtual bool add_impact_with_icon(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrIcon, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr) override;
 
 
       void on_change_tab_count(::array < ::user::tab_pane * > array = ::array < ::user::tab_pane * >()) override;

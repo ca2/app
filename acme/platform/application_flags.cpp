@@ -127,11 +127,11 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //
 //#ifdef LINUX
 //
-//   br_init_set_symbol(pszAppId);
+//   br_init_set_symbol(scopedstrAppId);
 //
 //#endif
 //
-//   executable_set_app_id(pszAppId);
+//   executable_set_app_id(scopedstrAppId);
 //
 //}
 
@@ -156,16 +156,16 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //app_flag::app_flag(::main & main, const ::scoped_string & scopedstrFlag)
 //{
 //
-//   if(!::is_empty(pszFlag))
+//   if(!::is_empty(scopedstrFlag))
 //   {
 //
-//      if(!strcmp(pszFlag, "no_audio"))
+//      if(!strcmp(scopedstrFlag, "no_audio"))
 //      {
 //
 //         main.m_bAudio = false;
 //
 //      }
-//      else if(!strcmp(pszFlag, "no_imaging"))
+//      else if(!strcmp(scopedstrFlag, "no_imaging"))
 //      {
 //
 //         main.m_bImaging = false;
@@ -764,7 +764,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //   //   //const ::scoped_string & scopedstr = str1;
 //
-//   //   //string str = ::str::consume_quoted_value(psz);
+//   //   //string str = ::str::consume_quoted_value(scopedstr);
 //
 //   //   //information(str);
 //
@@ -1921,10 +1921,10 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //::string quote_if_has_space(const char *psz)
 //{
 //
-//   if(strchr(psz, ' ') != nullptr)
+//   if(strchr(scopedstr, ' ') != nullptr)
 //   {
 //
-//      return "\"" + string(psz) + "\"";
+//      return "\"" + string(scopedstr) + "\"";
 //
 //   }
 //   else

@@ -150,13 +150,13 @@ inline bool myspace(char ch)
 #define string_STRCAT2_beg_char_end(strCat, ch, str1, str2, beg1, end1, beg2, end2) \
 { \
    string & psz = strCat.get_buffer(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
-   ansi_count_copy(psz, &((const string &)str1)[beg1], end1 - beg1 + 1); \
+   ansi_count_copy(scopedstr, &((const string &)str1)[beg1], end1 - beg1 + 1); \
    psz[end1 - beg1 + 1] = ch; \
    ansi_count_copy(&psz[end1 - beg1 + 2], &((const string &)str2)[beg2], end2 - beg2 + 1); \
    strPath.ReleaseBuffer(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
 }
 
-//::file::path directory_context::simple_path(const ::string & strFolder, const ::string & strRelative)
+//::file::path directory_context::simple_path(const ::scoped_string & scopedstrFolder, const ::scoped_string & scopedstrRelative)
 //{
 
 //   if(strRelative.is_empty())
@@ -214,7 +214,7 @@ inline bool myspace(char ch)
 //   else
 //   {
 //      string & psz = strPath.get_buffer(iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1);
-//      ansi_count_copy(psz, &((const string &)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
+//      ansi_count_copy(scopedstr, &((const string &)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
 //      #if defined(LINUX) || defined(__APPLE__)
 //      psz[iFolderEnd - iFolderBeg + 1] = '/';
 //      #else
@@ -228,7 +228,7 @@ inline bool myspace(char ch)
 //   return strPath;
 //}
 
-//::file::path directory_context::simple_path(const ::string & strFolder, const ::string & strRelative, const ::string & str2)
+//::file::path directory_context::simple_path(const ::scoped_string & scopedstrFolder, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstr2)
 //{
 
 //   if(strRelative.is_empty())
@@ -373,7 +373,7 @@ inline bool myspace(char ch)
 //   string strPath;
 
 //   string & psz = strPath.get_buffer(iEnd2 - iBeg2 + 1 + iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1 + 1);
-//   ansi_count_copy(psz, &((const string &)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
+//   ansi_count_copy(scopedstr, &((const string &)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
 //   #if defined(LINUX) || defined(__APPLE__)
 //   psz[iFolderEnd - iFolderBeg + 1] = '/';
 //   #else
@@ -404,14 +404,14 @@ inline bool myspace(char ch)
 //}
 
 
-//::file::path directory_context::relpath(const string & pcszSource, const string & lpcszRelative, const string & psz2)
+//::file::path directory_context::relpath(const string & pcszSource, const string & lpcszRelative, const ::scoped_string & scopedstr2)
 
 //{
 //   __UNREFERENCED_PARAMETER(pcszSource);
 
 //   __UNREFERENCED_PARAMETER(pcszRelative);
 
-//   __UNREFERENCED_PARAMETER(psz2);
+//   __UNREFERENCED_PARAMETER(scopedstr2);
 //   throw ::interface_only("this is an interface");
 //}
 
@@ -1606,16 +1606,16 @@ bool directory_context::name_is(const ::file::path& strPath)
 //
 //         char * psz3 = find.m_psz;
 //
-//         while (psz3 != nullptr && psz3 < pszEnd)
+//         while (scopedstr3 != nullptr && psz3 < pszEnd)
 //         {
 //
 //            char * psz1 = strchr(find.m_psz, '/');
 //
 //            char * psz2 = strchr(find.m_psz, '\\');
 //
-//            psz3 = min_non_null(psz1, psz2);
+//            psz3 = min_non_null(scopedstr1, psz2);
 //
-//            if (psz3 != nullptr)
+//            if (scopedstr3 != nullptr)
 //            {
 //
 //               *psz3 = '\0';
@@ -1640,13 +1640,13 @@ bool directory_context::name_is(const ::file::path& strPath)
 //
 //            find.m_psz = psz3 + 1;
 //
-//            if (psz1 == nullptr)
+//            if (scopedstr1 == nullptr)
 //            {
 //
 //               goto lookup_backslash;
 //
 //            }
-//            else if (psz2 == nullptr)
+//            else if (scopedstr2 == nullptr)
 //            {
 //
 //               goto lookup_slash;
@@ -1659,12 +1659,12 @@ bool directory_context::name_is(const ::file::path& strPath)
 //
 //lookup_slash:
 //
-//         while (psz3 != nullptr && psz3 < pszEnd)
+//         while (scopedstr3 != nullptr && psz3 < pszEnd)
 //         {
 //
 //            psz3 = strchr(find.m_psz, '/');
 //
-//            if (psz3 != nullptr)
+//            if (scopedstr3 != nullptr)
 //            {
 //
 //               *psz3 = '\0';
@@ -1694,12 +1694,12 @@ bool directory_context::name_is(const ::file::path& strPath)
 //         goto end;
 //
 //lookup_backslash:
-//         while (psz3 != nullptr && psz3 < pszEnd)
+//         while (scopedstr3 != nullptr && psz3 < pszEnd)
 //         {
 //
 //            psz3 = strchr(find.m_psz, '\\');
 //
-//            if (psz3 != nullptr)
+//            if (scopedstr3 != nullptr)
 //            {
 //
 //               *psz3 = '\0';
@@ -2011,7 +2011,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::time_log(const string& pszId)
 {
 
-   __UNREFERENCED_PARAMETER(pszId);
+   __UNREFERENCED_PARAMETER(scopedstrId);
 
    throw ::interface_only("this is an interface");
 
@@ -2086,7 +2086,7 @@ void directory_context::get_matter_locator(string_array& straMatterLocator, bool
 }
 
 
-::file::path directory_context::locale_schema_matter(const ::string& strLocale, const ::string& strSchema, const ::file::path& pathRoot, const ::file::path& pathDomain)
+::file::path directory_context::locale_schema_matter(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema, const ::file::path& pathRoot, const ::file::path& pathDomain)
 {
 
    string strHint = pathRoot / "_matter" / pathDomain / get_app()->get_locale_schema_dir(strLocale, strSchema);
@@ -2905,7 +2905,7 @@ ret:
 ::file::path directory_context::trash_that_is_not_trash(const ::file::path& psz)
 {
 
-   __UNREFERENCED_PARAMETER(psz);
+   __UNREFERENCED_PARAMETER(scopedstr);
 
    throw ::interface_only("this is an interface");
 
@@ -2914,7 +2914,7 @@ ret:
 }
 
 
-::file::path directory_context::appdata(const ::string& strAppIdParameter)
+::file::path directory_context::appdata(const ::scoped_string & scopedstrAppIdParameter)
 {
 
    ::string strAppId(strAppIdParameter);
@@ -2955,7 +2955,7 @@ ret:
 }
 
 
-::file::path directory_context::element_commonappdata(const ::string& strElement)
+::file::path directory_context::element_commonappdata(const ::scoped_string & scopedstrElement)
 {
 
    string strRelative;
@@ -3097,7 +3097,7 @@ ret:
 bool directory_context::is_inside_time(const ::file::path& pszPath)
 {
 
-   __UNREFERENCED_PARAMETER(pszPath);
+   __UNREFERENCED_PARAMETER(scopedstrPath);
 
    throw ::interface_only("this is an interface");
 
@@ -3109,8 +3109,8 @@ bool directory_context::is_inside_time(const ::file::path& pszPath)
 bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path& pszPath)
 {
 
-   __UNREFERENCED_PARAMETER(pszDir);
-   __UNREFERENCED_PARAMETER(pszPath);
+   __UNREFERENCED_PARAMETER(scopedstrDir);
+   __UNREFERENCED_PARAMETER(scopedstrPath);
 
    throw ::interface_only("this is an interface");
 
@@ -3129,12 +3129,12 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 // }
 
 
-//::file::path directory_context::pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode)
+//::file::path directory_context::pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode)
 //{
 //
 //   ::file::path_array stra;
 //
-//   stra.add_tokens(pszEnv, ":", false);
+//   stra.add_tokens(scopedstrEnv, ":", false);
 //
 //   string strCandidate;
 //
@@ -3498,7 +3498,7 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 // }
 //
 
-//string_array directory_context::locale_schema_matter(string & strLocale, const ::string & strStyle)
+//string_array directory_context::locale_schema_matter(string & strLocale, const ::scoped_string & scopedstrStyle)
 //{
 
 //   return psystem->m_spdir->locale_schema_matter(get_app(), strLocale, strStyle);
@@ -3506,7 +3506,7 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 //}
 
 
-//string_array directory_context::locale_schema_matter(string & strLocale, const ::string & strStyle, const string & pathRoot, const ::file::path & pathDomain)
+//string_array directory_context::locale_schema_matter(string & strLocale, const ::scoped_string & scopedstrStyle, const string & pathRoot, const ::file::path & pathDomain)
 //{
 
 //   return psystem->m_spdir->locale_schema_matter(get_app(), strLocale, strStyle, pathRoot, pathDomain);
@@ -3654,7 +3654,7 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 ::file::path directory_context::pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode)
 {
 
-   return directory_system()->pathfind(pszEnv, pszTopic, pszMode);
+   return directory_system()->pathfind(scopedstrEnv, pszTopic, pszMode);
 
 }
 

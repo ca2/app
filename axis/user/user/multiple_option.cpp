@@ -772,7 +772,7 @@ namespace user
    }
 
 
-   ::collection::index multiple_option::insert_item_at(::collection::index nIndex, const ::string & pszString)
+   ::collection::index multiple_option::insert_item_at(::collection::index nIndex, const ::scoped_string & scopedstrString)
    {
 
       //ASSERT(is_window());
@@ -816,7 +816,7 @@ namespace user
 
    }
 
-   //::collection::index multiple_option::add_string(const ::string & pszString,uptr dwItemData)
+   //::collection::index multiple_option::add_string(const ::scoped_string & scopedstrString,uptr dwItemData)
    //{
 
    //   synchronous_lock synchronouslock(this->synchronization());
@@ -832,12 +832,12 @@ namespace user
 
    //   defer_create_list_box();
 
-   //   return m_plistbox->add_item(pszString, dwItemData);
+   //   return m_plistbox->add_item(scopedstrString, dwItemData);
 
    //}
 
 
-   //::collection::index multiple_option::add_string(const ::string & pszString, const ::string & strValue)
+   //::collection::index multiple_option::add_string(const ::scoped_string & scopedstrString, const ::scoped_string & scopedstrValue)
    //{
 
    //   ASSERT(m_edatamode == data_mode_string);
@@ -851,7 +851,7 @@ namespace user
 
    //   defer_create_list_box();
 
-   //   auto iIndex = m_plistbox->add_string(pszString, strValue);
+   //   auto iIndex = m_plistbox->add_string(scopedstrString, strValue);
 
    //   return iIndex;
 

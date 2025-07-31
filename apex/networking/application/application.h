@@ -44,10 +44,10 @@ namespace networking
       virtual int wait_get_current_port(const class time & time);
 
 
-      virtual void add_handler(const ::string& strPrefix, ::networking::application_handler* phandler);
+      virtual void add_handler(const ::scoped_string & scopedstrPrefix, ::networking::application_handler* phandler);
 
 
-      ::e_status on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
+      ::e_status on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::scoped_string & scopedstrUrl, const ::property_set& setPost) override;
 
 
    };

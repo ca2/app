@@ -174,7 +174,7 @@ void message_box_synchronous(oswindow window, const ::scoped_string & scopedstrM
 {
    
    
-   _os_message_box(pszMessage, pszTitle, emessagebox, future);
+   _os_message_box(scopedstrMessage, pszTitle, emessagebox, future);
    
    return ::success;
    

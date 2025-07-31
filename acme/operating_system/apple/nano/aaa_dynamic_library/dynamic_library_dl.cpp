@@ -251,7 +251,7 @@ namespace dl
 
                const char * psz = strerror(iError);
 
-               if (psz != nullptr)
+               if (scopedstr != nullptr)
                {
 
                   strMessage += psz;
@@ -316,7 +316,7 @@ namespace dl
 
             const char * psz = strerror(iError);
 
-            if (psz != nullptr)
+            if (scopedstr != nullptr)
             {
 
                strMessage += psz;
@@ -325,7 +325,7 @@ namespace dl
 
             const char * psz2 = dlerror();
 
-            if (psz2 != nullptr)
+            if (scopedstr2 != nullptr)
             {
 
                strMessage += psz2;

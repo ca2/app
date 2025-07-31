@@ -180,7 +180,7 @@ namespace filemanager
          }
 
 
-         void impact::open_file(long long iFolder, const ::string & pszFileName, const ::string & pszExtension)
+         void impact::open_file(long long iFolder, const ::scoped_string & scopedstrFileName, const ::scoped_string & scopedstrExtension)
          {
 
             string strUrl;
@@ -189,7 +189,7 @@ namespace filemanager
 
             auto purl = psystem->url();
             
-            string strFileNameEncoded =  ::url::encode(pszFileName);
+            string strFileNameEncoded =  ::url::encode(scopedstrFileName);
 
             strUrl.formatf("http://file.ca2.network/ifs/get?name=%s&folder=%I64d&extension=.%s",strFileNameEncoded.c_str(), iFolder, pszExtension.c_str());
 

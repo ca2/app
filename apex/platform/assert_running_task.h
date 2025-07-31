@@ -21,7 +21,7 @@ namespace apex
       ::pointer<::platform::application_container>     m_pcontainer;
 
 
-      assert_running_task(::platform::application_container * pcontainer,const ::string & strAppId, const ::string & strLocale, const ::string & strSchema);
+      assert_running_task(::platform::application_container * pcontainer,const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
       ~assert_running_task() override;
 
 

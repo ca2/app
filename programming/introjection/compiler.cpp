@@ -21,7 +21,7 @@
 
 #ifdef LINUX
 //#include <unistd.h>
-int create_process(const ::string & pszCommandLine, int * pprocessId);
+int create_process(const ::scoped_string & scopedstrCommandLine, int * pprocessId);
 #elif defined(MACOS)
 #include <unistd.h>
 #endif
@@ -48,7 +48,7 @@ string vs_build(::particle * pparticle)
 #endif
 
 
-//unsigned int RunSilent(const ::string & strFunct, const ::string & strstrParams);
+//unsigned int RunSilent(const ::scoped_string & scopedstrFunct, const ::scoped_string & scopedstrstrParams);
 
 
 namespace introjection
@@ -180,7 +180,7 @@ namespace introjection
    }
 
 
-   //void compiler::initialize_compiler(const ::string & pszRepos, const ::string & pszApp, const ::string & pszProjectName)
+   //void compiler::initialize_compiler(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrProjectName)
    //{
 
    //   m_strRepos = pszRepos;

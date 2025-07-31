@@ -24,7 +24,7 @@ int _get_exe_path_len()
 void _get_exe_path(char * pszPath, int size)
 {
    
-   strncpy(pszPath, [[[NSBundle mainBundle] executablePath] UTF8String], size);
+   strncpy(scopedstrPath, [[[NSBundle mainBundle] executablePath] UTF8String], size);
    
 }
 
@@ -63,7 +63,7 @@ bool _ui_library_dir(char * psz, unsigned int * puiSize)
    
    *puiSize = (unsigned int) strlen([pstr UTF8String]);
    
-   strncpy(psz, [pstr UTF8String], *puiSize);
+   strncpy(scopedstr, [pstr UTF8String], *puiSize);
    
    return true;
    
@@ -179,7 +179,7 @@ bool ns_open_url(const char * psz)
 bool ns_open_file(const char * psz)
 {
    
-   return ns_open_url(psz);
+   return ns_open_url(scopedstr);
 //   NSString * path = [NSString stringWithUTF8String:psz];
 //   
 //   if(path == NULL)

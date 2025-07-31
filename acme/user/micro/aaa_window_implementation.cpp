@@ -314,7 +314,7 @@
 //    //
 //    //   manual_reset_happening happening;
 //    //
-//    //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
+//    //   pmessagebox->display(scopedstrMessage, pszTitle, emessagebox, pszDetails);
 //    //
 //    //   pmessagebox->m_functionClose = [&idResult, &happening](micro::interchange * pwindow)
 //    //   {

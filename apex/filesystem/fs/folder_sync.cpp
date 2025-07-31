@@ -183,7 +183,7 @@ namespace fs
    //void folder_sync::get_ascendants_path(const ::file::path & pszPath,::file::path_array & stra)
    //{
 
-   //   return file()->get_ascendants_path(pszPath, stra);
+   //   return file()->get_ascendants_path(scopedstrPath, stra);
 
    //}
 
@@ -201,7 +201,7 @@ namespace fs
    //string folder_sync::eat_end_level(const ::file::path & path, int iCount)
    //{
 
-   //   string strPath(pszPath);
+   //   string strPath(scopedstrPath);
 
    //   while(iCount > 0)
    //   {
@@ -220,7 +220,7 @@ namespace fs
    //string folder_sync::file_name(const ::file::path & path)
    //{
 
-   //   return file()->name_(pszPath);
+   //   return file()->name_(scopedstrPath);
 
    //}
 
@@ -228,7 +228,7 @@ namespace fs
    //string folder_sync::dir_path(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
    //{
 
-   //   return ::file::path(psz1) / ::file::path(psz2);
+   //   return ::file::path(scopedstr1) / ::file::path(scopedstr2);
 
    //}
 
@@ -711,7 +711,7 @@ namespace fs
    bool folder_sync::file_move(const ::file::path& pszDst, const ::file::path& pszSrc)
    {
 
-      auto pathSource(pszSrc);
+      auto pathSource(scopedstrSrc);
 
       if (!pathSource.case_insensitive_begins_eat(m_pathProtocol))
       {
@@ -722,7 +722,7 @@ namespace fs
 
       pathSource = local_folder_path() / pathSource;
 
-      auto pathTarget(pszDst);
+      auto pathTarget(scopedstrDst);
 
       if (!pathTarget.case_insensitive_begins_eat(m_pathProtocol))
       {

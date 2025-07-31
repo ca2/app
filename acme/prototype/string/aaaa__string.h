@@ -59,7 +59,7 @@
 ////CLASS_DECL_ACME ::string as_string(const long int & i);
 ////
 //////
-//////CLASS_DECL_ACME ::string as_string(const ::string & strSrc);
+//////CLASS_DECL_ACME ::string as_string(const ::scoped_string & scopedstrSrc);
 //////CLASS_DECL_ACME ::string as_string(const ::atom & atom);
 //////CLASS_DECL_ACME ::string as_string(const ::wd16_string & wd16str);
 //////CLASS_DECL_ACME ::string as_string(const ::wd32_string & wd16str);

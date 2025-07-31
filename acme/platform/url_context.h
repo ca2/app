@@ -41,7 +41,7 @@ namespace url
    CLASS_DECL_ACME string __parameter_erased(const ::scoped_string& scopedstr, character_count iStartParam, const ::scoped_string& scopedstrKey);
    CLASS_DECL_ACME bool __has_parameter_replace(::string& str, const ::scoped_string& scopedstr, character_count iStart, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstrParameter);
    CLASS_DECL_ACME bool __get_parameter(::string& strParameter, const ::scoped_string& scopedstr, character_count iStart, const ::scoped_string& scopedstrParam);
-   //CLASS_DECL_ACME bool query_has_parameter_replace(const ::string& strQuery, const ::scoped_string& scopedstrQuery, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstrParameter);
+   //CLASS_DECL_ACME bool query_has_parameter_replace(const ::scoped_string & scopedstrQuery, const ::scoped_string& scopedstrQuery, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstrParameter);
    //CLASS_DECL_ACME ::string query_has_parameter_replace(const ::scoped_string& scopedstrQuery, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstrParameter);
    //CLASS_DECL_ACME bool query_get_parameter(::string & strParameter, const ::scoped_string& scopedstrQuery, const ::scoped_string& scopedstrParam);
    //CLASS_DECL_ACME ::string query_get_parameter(const ::scoped_string& scopedstrQuery, const ::scoped_string& scopedstrParam);

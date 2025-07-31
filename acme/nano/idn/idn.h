@@ -31,8 +31,8 @@ namespace nano
          ~idn() override;
 
 
-         virtual string idn_to_punycode(const ::string & str);
-         virtual string idn_from_punycode(const ::string & str);
+         virtual string idn_to_punycode(const ::scoped_string & scopedstr);
+         virtual string idn_from_punycode(const ::scoped_string & scopedstr);
 
 
       };

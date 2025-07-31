@@ -48,7 +48,7 @@ namespace interprocess
    }
 
 
-   void communication::initialize_interprocess_communication(::particle * pparticle, const ::string & strApp)
+   void communication::initialize_interprocess_communication(::particle * pparticle, const ::scoped_string & scopedstrApp)
    {
 
       ::object::initialize(pparticle);
@@ -133,7 +133,7 @@ namespace interprocess
    }
 
 
-   bool communication::_handle_uri(const ::string & strUri)
+   bool communication::_handle_uri(const ::scoped_string & scopedstrUri)
    {
 
       information() << "::interprocess::communication::on_interprocess_handle " << strUri;
@@ -316,7 +316,7 @@ namespace interprocess
    }
 
 
-   void communication::start(const ::string & strApp)
+   void communication::start(const ::scoped_string & scopedstrApp)
    {
 
       synchronous_lock sl1(synchronization());
@@ -417,7 +417,7 @@ namespace interprocess
    }
 
 
-   void communication::connect(const ::string & strApp, const ::atom & idPid)
+   void communication::connect(const ::scoped_string & scopedstrApp, const ::atom & idPid)
    {
 
       string strKey = strApp + ":" + idPid;
@@ -441,7 +441,7 @@ namespace interprocess
    }
 
 
-   ::interprocess::caller & communication::caller(const ::string & strApp, const ::atom & iPid)
+   ::interprocess::caller & communication::caller(const ::scoped_string & scopedstrApp, const ::atom & iPid)
    {
 
       string strKey = strApp + ":" + iPid;
@@ -465,7 +465,7 @@ namespace interprocess
    }
 
 
-   string communication::key(const string & strApp, const ::atom & idPid)
+   string communication::key(const ::scoped_string & scopedstrApp, const ::atom & idPid)
    {
 
       string strKey;
@@ -546,7 +546,7 @@ namespace interprocess
    }
 
 
-   //bool communication::on_interprocess_handle(::interprocess::handler * pphandler, const ::string & strMessage)
+   //bool communication::on_interprocess_handle(::interprocess::handler * pphandler, const ::scoped_string & scopedstrMessage)
    //{
 
 
@@ -750,7 +750,7 @@ namespace interprocess
    }
 
 
-   ::pointer<::interprocess::call>communication::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
+   ::pointer<::interprocess::call>communication::create_call(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
    {
 
       return __allocate ::interprocess::call(this, strApp, strObject, strMember);
@@ -758,7 +758,7 @@ namespace interprocess
    }
 
 
-   ::pointer<::interprocess::call>communication::create_call(const ::string & strObject, const ::string & strMember)
+   ::pointer<::interprocess::call>communication::create_call(const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
    {
 
       return create_call(m_strApp, strObject, strMember);
@@ -766,7 +766,7 @@ namespace interprocess
    }
 
 
-   bool communication::_handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
+   bool communication::_handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
    {
 
       if (m_phandler)
@@ -849,7 +849,7 @@ namespace interprocess
    }
 
 
-   void communication::on_new_instance(const ::string & strModule, const ::atom & idPid)
+   void communication::on_new_instance(const ::scoped_string & scopedstrModule, const ::atom & idPid)
    {
 
       defer_add_module(strModule, idPid);
@@ -859,7 +859,7 @@ namespace interprocess
    }
 
 
-   ::atom_array communication::get_pid(const ::string & strApp)
+   ::atom_array communication::get_pid(const ::scoped_string & scopedstrApp)
    {
 
       ::atom_array idaPid;
@@ -908,7 +908,7 @@ namespace interprocess
    }
 
 
-   void communication::defer_add_module(const ::string & strModule, const ::atom & idPid)
+   void communication::defer_add_module(const ::scoped_string & scopedstrModule, const ::atom & idPid)
    {
 
       auto psystem = system();

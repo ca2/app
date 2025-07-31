@@ -25,7 +25,7 @@ template < typename ARG_TYPE >
 //template < >
 //inline long long from_string(const ::scoped_string & scopedstr)
 //{
-//   return to_long_long(string(psz));
+//   return to_long_long(string(scopedstr));
 //}
 
 

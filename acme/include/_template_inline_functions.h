@@ -186,7 +186,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //inline bool is_string_ok(const ::scoped_string & scopedstr, memsize nMaxLength)
 //{
 //
-//   return ::is_memory_segment_ok(psz, nMaxLength);
+//   return ::is_memory_segment_ok(scopedstr, nMaxLength);
 //
 //}
 //
@@ -383,14 +383,14 @@ inline bool __sort(T1& t1, T2& t2)
 //inline long long ansi_to_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 //{
 //
-//   return strtoll(psz, (::ansi_character **) ppszEnd, iBase);
+//   return strtoll(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //}
 //
 //inline unsigned long long ansi_to_unsigned_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 //{
 //
-//   return strtoull(psz, (::ansi_character **) ppszEnd, iBase);
+//   return strtoull(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //}
 //
@@ -400,11 +400,11 @@ inline bool __sort(T1& t1, T2& t2)
 //
 //#ifdef WINDOWS
 //
-//   return strtol(psz, (::ansi_character **) ppszEnd, iBase);
+//   return strtol(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //#else
 //
-//   long l = strtol(psz, (::ansi_character **) ppszEnd, iBase);
+//   long l = strtol(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //   if(l > INT_MAX)
 //   {
@@ -435,11 +435,11 @@ inline bool __sort(T1& t1, T2& t2)
 //
 //#ifdef WINDOWS
 //
-//   return strtoul(psz, (::ansi_character **) ppszEnd, iBase);
+//   return strtoul(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //#else
 //
-//   unsigned long ul = strtoul(psz, (::ansi_character **) ppszEnd, iBase);
+//   unsigned long ul = strtoul(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //   if(ul > UINT_MAX)
 //   {

@@ -97,18 +97,18 @@ inline const char * FormatArgument(const string & value) noexcept { return value
 
 
 //template < primitive_atom ATOM >
-//inline ::string operator +(const ::scoped_string & scopedstr, const ATOM & atom) { return string(psz) + string(atom); }
+//inline ::string operator +(const ::scoped_string & scopedstr, const ATOM & atom) { return string(scopedstr) + string(atom); }
 //
 //
 //template < primitive_payload PAYLOAD >
-//inline ::string operator +(const ::scoped_string & scopedstr, const PAYLOAD & payload) { return string(psz) + string(payload); }
+//inline ::string operator +(const ::scoped_string & scopedstr, const PAYLOAD & payload) { return string(scopedstr) + string(payload); }
 
 //
 //template < primitive_character CHARACTER, primitive_character CHARACTER2 >
 //inline ::string_base < CHARACTER2 > operator +(const CHARACTER * pszLeft, const ::string_base < CHARACTER2 > & strRight)
 //{
 //
-//   ::wstring strLeft(pszLeft);
+//   ::wstring strLeft(scopedstrLeft);
 //
 //   return strLeft + strRight;
 //

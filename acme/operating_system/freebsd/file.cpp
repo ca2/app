@@ -27,7 +27,7 @@ bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
 //bool context::_os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::interaction_base * pprimitive, bool bNoUI, bool bNoMount)
 //{
 //
-//    if(::is_null(psz))
+//    if(::is_null(scopedstr))
 //    {
 //
 //        return false;
@@ -37,19 +37,19 @@ bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
 //
 //
 //
-//   char * pszRealPath = ::realpath(psz, NULL);
+//   char * pszRealPath = ::realpath(scopedstr, NULL);
 //
-//   if(pszRealPath == NULL)
+//   if(scopedstrRealPath == NULL)
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   if(strcmp(psz, pszRealPath) == 0)
+//   if(strcmp(scopedstr, pszRealPath) == 0)
 //   {
 //
-//    ::free(pszRealPath);
+//    ::free(scopedstrRealPath);
 //
 //    return false;
 //
@@ -66,7 +66,7 @@ bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
 //
 //   }
 //
-//   ::free(pszRealPath);
+//   ::free(scopedstrRealPath);
 //
 //   return true;
 //

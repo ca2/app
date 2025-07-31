@@ -38,7 +38,7 @@ namespace experience
 
       virtual void get_frame_list(string_array & stra);
 
-      virtual ::pointer < frame > frame_experience(const ::string & strFrameSchema);
+      virtual ::pointer < frame > frame_experience(const ::scoped_string & scopedstrFrameSchema);
 
 
    };

@@ -198,10 +198,10 @@ namespace experience_anthill
    //}
 
 
-   //void frame::set_style(const ::string & pszStyle)
+   //void frame::set_style(const ::scoped_string & scopedstrStyle)
    //{
 
-   //   string strStyle(pszStyle);
+   //   string strStyle(scopedstrStyle);
 
    //   if (strStyle == "TranslucidWarmGray")
    //   {

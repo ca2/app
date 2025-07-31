@@ -282,7 +282,7 @@ namespace gpu
       //virtual void make_current();
       //virtual void release_current();
 
-      virtual string load_fragment(const ::string & pszPath, enum_shader_source & eshadersource);
+      virtual string load_fragment(const ::scoped_string & scopedstrPath, enum_shader_source & eshadersource);
 
       virtual string get_shader_version_text();
 

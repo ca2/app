@@ -1967,7 +1967,7 @@ namespace user
       }
 
 
-      void edit::_001InsertText(const ::string & str, format * pformat)
+      void edit::_001InsertText(const ::scoped_string & scopedstr, format * pformat)
       {
 
          auto prichtextdata = get_rich_text_data();

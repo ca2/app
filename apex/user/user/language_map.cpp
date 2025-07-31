@@ -287,7 +287,7 @@ namespace user
    }
 
 
-   string language_map::__get_text(const ::string & strId)
+   string language_map::__get_text(const ::scoped_string & scopedstrId)
    {
 
       if (::is_null(m_pstringmap))

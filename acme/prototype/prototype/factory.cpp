@@ -290,7 +290,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 }
 
 
-//CLASS_DECL_ACME ::pointer<alloc_interface>& get_factory_item2(const ::string & strName)
+//CLASS_DECL_ACME ::pointer<alloc_interface>& get_factory_item2(const ::scoped_string & scopedstrName)
 //{
 //
 //   string_array stra;
@@ -971,7 +971,7 @@ bool demangle (string & str, const ::ansi_character * pszType)
 
    int status = -4;
 
-   t_pszDemangle = abi::__cxa_demangle(pszType, t_pszDemangle, &t_sizeDemangle, &status);
+   t_pszDemangle = abi::__cxa_demangle(scopedstrType, t_pszDemangle, &t_sizeDemangle, &status);
 
    if (status == 0)
    {
@@ -1002,7 +1002,7 @@ namespace factory
 {
 
 
-   ::particle_pointer factory::__call__create(const ::string & strType, ::particle * pparticle)
+   ::particle_pointer factory::__call__create(const ::scoped_string & scopedstrType, ::particle * pparticle)
    {
 
       //auto psystem = system();
@@ -1014,13 +1014,13 @@ namespace factory
       ////if (get_library() != nullptr)
       ////{
 
-      ////   p = get_library()->new_object(pszClass);
+      ////   p = get_library()->new_object(scopedstrClass);
 
       ////}
       ////else
       //{
 
-      //   p = new_object(pszClass);
+      //   p = new_object(scopedstrClass);
 
       //}
 

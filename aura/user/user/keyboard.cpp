@@ -299,10 +299,10 @@ namespace user
 
       // auto pcontext = get_context();
 
-      string str = file()->as_string(pszPath);
+      string str = file()->as_string(scopedstrPath);
 
 
-      informationf(pszPath);
+      informationf(scopedstrPath);
 
       informationf(str);
 
@@ -419,13 +419,13 @@ namespace user
    //   m_playout->process_escape(pnode, set);
    //}
 
-//   bool keyboard::load_layout(const ::string & pszPath, const ::action_context & context)
+//   bool keyboard::load_layout(const ::scoped_string & scopedstrPath, const ::action_context & context)
 //   {
 //
 //      auto playout = __allocate ::user::keyboard_layout();
 //
 //      string strPath;
-//      if(pszPath == nullptr)
+//      if(scopedstrPath == nullptr)
 //      {
 //         strPath = get_current_system_layout();
 //      }
@@ -508,22 +508,22 @@ namespace user
 
    //}
 
-   //string keyboard::process_char(const ::string & pszKey)
+   //string keyboard::process_char(const ::scoped_string & scopedstrKey)
    //{
    //   if(m_playout == nullptr)
    //   {
    //      return pszKey;
    //   }
-   //   return m_playout->process_char(pszKey);
+   //   return m_playout->process_char(scopedstrKey);
    //}
 
-   //string keyboard::process_escape(const ::string & pszEscape)
+   //string keyboard::process_escape(const ::scoped_string & scopedstrEscape)
    //{
    //   if(m_playout == nullptr)
    //   {
    //      return pszEscape;
    //   }
-   //   return m_playout->process_char(pszEscape);
+   //   return m_playout->process_char(scopedstrEscape);
    //}
 
 
@@ -660,13 +660,13 @@ namespace user
 //   }
 
 
-//   bool keyboard::initialize(keyboard_layout_id * playoutid, const ::string & pszPath)
+//   bool keyboard::initialize(keyboard_layout_id * playoutid, const ::scoped_string & scopedstrPath)
 //   {
 //
-//      if(!file()->exists(pszPath))
+//      if(!file()->exists(scopedstrPath))
 //         return false;
 //
-//      string str = file()->as_string(pszPath);
+//      string str = file()->as_string(scopedstrPath);
 //
 //      if(str.is_empty())
 //         return false;

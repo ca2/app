@@ -245,9 +245,9 @@ typename const_string_range < ITERATOR_TYPE >::THIS_RANGE const_string_range < I
 
    auto pszStart = this->m_begin;
 
-   auto pszNext = unicode_next(pszStart);
+   auto pszNext = unicode_next(scopedstrStart);
 
-   return { pszStart, minimum(pszNext, this->m_end) };
+   return { pszStart, minimum(scopedstrNext, this->m_end) };
 
 }
 

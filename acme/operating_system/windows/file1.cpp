@@ -7,7 +7,7 @@
 #include <ShlObj.h>
 
 
-string CLASS_DECL_ACME windows_get_short_file_name(const string & strPath)
+string CLASS_DECL_ACME windows_get_short_file_name(const ::scoped_string & scopedstrPath)
 {
 
    wstring wstrLongName("\\\\?\\" + strPath);

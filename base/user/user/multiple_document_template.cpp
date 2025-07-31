@@ -14,8 +14,8 @@ namespace user
 {
 
 
-   multiple_document_template::multiple_document_template(const ::string & pszMatter, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & typeatomImpact, const ::type_atom & typeatomData) :
-      ::user::impact_system(pszMatter, typeatomDocument, typeatomFrame, typeatomImpact, typeatomData)
+   multiple_document_template::multiple_document_template(const ::scoped_string & scopedstrMatter, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & typeatomImpact, const ::type_atom & typeatomData) :
+      ::user::impact_system(scopedstrMatter, typeatomDocument, typeatomFrame, typeatomImpact, typeatomData)
    {
 
       defer_create_synchronization();

@@ -24,7 +24,7 @@ namespace windowing
 
 
       virtual void set_editor_selection(character_count iStart, character_count iEnd);
-      virtual void set_editor_text(const ::string & strText);
+      virtual void set_editor_text(const ::scoped_string & scopedstrText);
       virtual void show_software_keyboard();
       virtual void hide_software_keyboard();
 

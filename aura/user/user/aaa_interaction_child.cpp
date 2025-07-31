@@ -247,7 +247,7 @@ namespace user
    }
 
 //
-//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction_base * puiParent, atom atom, ::request * prequest)
+//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction_base * puiParent, atom atom, ::request * prequest)
 //   bool interaction_child::create_child(::user::interaction * pinteraction, ::user::interaction_base * pprimitiveParent)
 //   {
 //
@@ -271,11 +271,11 @@ namespace user
 //
 ////#ifdef WINDOWS
 ////
-////      wstring wstrClassName(pszClassName);
+////      wstring wstrClassName(scopedstrClassName);
 ////
 ////      pusersystem->m_createstruct.lpszClass = wstrClassName;
 ////
-////      wstring wstrWindowName(pszWindowName);
+////      wstring wstrWindowName(scopedstrWindowName);
 ////
 ////      pusersystem->m_createstruct.lpszName = wstrWindowName;
 ////

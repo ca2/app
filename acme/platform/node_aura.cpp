@@ -59,7 +59,7 @@ namespace platform
    //virtual ::windowing::windowing * windowing(){}
 
 
-   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox) override{}
+   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox) override{}
 
 
    void aura_node_layer::BeginWaitCursor()
@@ -94,7 +94,7 @@ namespace platform
 
    //pointer< ::sequence < ::conversation > > get_new_conversation_sequence() override{}
 
-   //pointer< ::sequence < ::conversation > > message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox) override{}
+   //pointer< ::sequence < ::conversation > > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox) override{}
 
 
    bool  aura_node_layer::defer_windowing_post(const ::procedure& procedure)

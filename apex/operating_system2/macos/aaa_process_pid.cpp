@@ -185,7 +185,7 @@ string module_path_from_pid(unsigned int uiPid)
 //
 //   ::file::path path1;
 //
-//   path1 = get_last_run_application_path_file(psz);
+//   path1 = get_last_run_application_path_file(scopedstr);
 //
 //   if(file_system()->exists(path1))
 //   {
@@ -194,11 +194,11 @@ string module_path_from_pid(unsigned int uiPid)
 //
 //   }
 //
-//   string str(psz);
+//   string str(scopedstr);
 //
 //   str = "app=" + str;
 //
-//   string strApp(psz);
+//   string strApp(scopedstr);
 //
 //   strApp.replace("-", "_");
 //
@@ -283,7 +283,7 @@ string_array cmdline_from_pid(unsigned int uiPid)
    while(*psz != '\0')
    {
 
-      strChar = ::str::get_utf8_char(psz);
+      strChar = ::str::get_utf8_char(scopedstr);
 
       if(strChar.is_empty())
       {
@@ -300,7 +300,7 @@ string_array cmdline_from_pid(unsigned int uiPid)
          while(*psz != '\0')
          {
 
-            strChar = ::str::get_utf8_char(psz);
+            strChar = ::str::get_utf8_char(scopedstr);
 
             if(strChar.is_empty())
             {
@@ -321,7 +321,7 @@ string_array cmdline_from_pid(unsigned int uiPid)
             if(strChar == "\\")
             {
 
-               strChar = ::str::get_utf8_char(psz);
+               strChar = ::str::get_utf8_char(scopedstr);
 
                if(strChar.is_empty())
                {
@@ -371,7 +371,7 @@ string_array cmdline_from_pid(unsigned int uiPid)
       else if(strChar == "\\")
       {
 
-         strChar = ::str::get_utf8_char(psz);
+         strChar = ::str::get_utf8_char(scopedstr);
 
          if(strChar.is_empty())
          {

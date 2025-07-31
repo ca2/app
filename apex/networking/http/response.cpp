@@ -55,7 +55,7 @@ namespace http
    //   
    //   string str;
    //   
-   //   str.formatf_arguments(pszFormat, args);
+   //   str.formatf_arguments(scopedstrFormat, args);
    //   
    //   va_end(args);
    //     

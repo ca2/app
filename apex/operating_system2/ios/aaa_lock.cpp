@@ -29,7 +29,7 @@
 //
 //   int * pfd;
 //
-//   if(_c_lock(pszName, (void **) &pfd))
+//   if(_c_lock(scopedstrName, (void **) &pfd))
 //   {
 //      _c_unlock((void **) &pfd);
 //      return false;
@@ -102,7 +102,7 @@
 //string _ca_get_file_name(const ::scoped_string & scopedstrName, bool bCreate, int * pfd)
 //{
 //
-//   string str(pszName);
+//   string str(scopedstrName);
 //
 //   str.replace("\\", "/");
 //   str.replace("::", "_");

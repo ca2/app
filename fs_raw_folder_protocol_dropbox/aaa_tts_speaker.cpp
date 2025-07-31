@@ -89,7 +89,7 @@ inline HRESULT SpGetCategoryFromId(const WCHAR * pszCategoryId, ISpObjectTokenCa
 
    if (SUCCEEDED(hr))
    {
-      hr = pcategory->SetId(pszCategoryId, fCreateIfNotExist);
+      hr = pcategory->SetId(scopedstrCategoryId, fCreateIfNotExist);
    }
 
    if (SUCCEEDED(hr))
@@ -130,7 +130,7 @@ inline HRESULT SpGetDefaultTokenFromCategoryId(
    HRESULT hr;
 
    comptr<ISpObjectTokenCategory> pcategory;
-   hr = SpGetCategoryFromId(pszCategoryId, &pcategory, fCreateCategoryIfNotExist);
+   hr = SpGetCategoryFromId(scopedstrCategoryId, &pcategory, fCreateCategoryIfNotExist);
 
    if (SUCCEEDED(hr))
    {
@@ -138,7 +138,7 @@ inline HRESULT SpGetDefaultTokenFromCategoryId(
       hr = pcategory->GetDefaultTokenId(&pszTokenId);
       if (SUCCEEDED(hr))
       {
-         hr = SpGetTokenFromId(pszTokenId, ppToken);
+         hr = SpGetTokenFromId(scopedstrTokenId, ppToken);
 
       }
    }
@@ -159,9 +159,9 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
 
    comptr<ISpObjectTokenCategory> pcategory;
 
-   hr = SpGetCategoryFromId(pszCategoryId, &pcategory, fCreateCategoryIfNotExist);
+   hr = SpGetCategoryFromId(scopedstrCategoryId, &pcategory, fCreateCategoryIfNotExist);
 
-   string str(pszLang);
+   string str(scopedstrLang);
 
    str.make_lower();
 
@@ -191,7 +191,7 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
       try
       {
 
-         set.parse_network_payload(pszJson);
+         set.parse_network_payload(scopedstrJson);
 
       }
       catch (...)
@@ -214,7 +214,7 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
 
    }
 
-   string strAttributes(pszAttributes);
+   string strAttributes(scopedstrAttributes);
 
    string_array straAttributes;
 
@@ -550,7 +550,7 @@ namespace tts_sapi
       // Speaks some text.
       // (The input text must not be empty.)
       //--------------------------------------------------------------------
-      bool speaker::speak(const ::string & strLangParam, const ::string & strTextParam, bool bSync)
+      bool speaker::speak(const ::scoped_string & scopedstrLangParam, const ::scoped_string & scopedstrTextParam, bool bSync)
       {
 
          string strLang(strLangParam);
@@ -753,7 +753,7 @@ namespace tts_sapi
       // Speaks some text.
       // (The input text must not be empty.)
       //--------------------------------------------------------------------
-      bool speaker::speak(const ::string & strAttributes, const ::string & strLangParam, const ::string & strTextParam, bool bSync)
+      bool speaker::speak(const ::scoped_string & scopedstrAttributes, const ::scoped_string & scopedstrLangParam, const ::scoped_string & scopedstrTextParam, bool bSync)
       {
 
          string strLang(strLangParam);

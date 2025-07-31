@@ -11,7 +11,7 @@ namespace interprocess
 {
 
 
-   call::call(communication * pcommunication, const string & strApp, const string & strObject, const string & strMember) :
+   call::call(communication * pcommunication, const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember) :
       //::object(pipi),
       m_pinterprocesscommunication(pcommunication),
       m_strApp(strApp),

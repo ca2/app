@@ -22,13 +22,13 @@ namespace regular_expression_pcre2
       ~regular_expression() override;
 
 
-      void compile(const string& str) override;
+      void compile(const ::scoped_string & scopedstr) override;
 
 
-      ::pointer<::regular_expression::result>run(const ::string & str) override;
+      ::pointer<::regular_expression::result>run(const ::scoped_string & scopedstr) override;
 
 
-      bool replace(string& str, const string& strPrefix, string& strRet) override;
+      bool replace(string& str, const ::scoped_string & scopedstrPrefix, string& strRet) override;
 
 
    };

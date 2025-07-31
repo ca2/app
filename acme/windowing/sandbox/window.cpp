@@ -806,7 +806,7 @@ void windowing::finalize_windowing()
 //   Atom window::x11_display()->intern_atom(const char *pszAtomName, bool bCreate)
 //   {
 //
-//      return m_osdisplay->x11_display()->intern_atom(pszAtomName, bCreate);
+//      return m_osdisplay->x11_display()->intern_atom(scopedstrAtomName, bCreate);
 //
 //   }
 
@@ -2391,7 +2391,7 @@ void window::set_window_text(const ::scoped_string & scopedstrString)
    
    //x11_store_name(m_oswindow, m_strWindowText);
    
-   //x11_store_name(pszString);
+   //x11_store_name(scopedstrString);
    
    //windowing_output_debug_string("\nfreebsd::interaction_impl::set_window_text END");
    
@@ -3088,12 +3088,12 @@ bool window::is_window()
 
 //   synchronous_lock synchronouslock(user_synchronization());
 
-//   Atom atomFlag = x11_display()->intern_atom(pszNetStateFlag, 1);
+//   Atom atomFlag = x11_display()->intern_atom(scopedstrNetStateFlag, 1);
 
 //   if (atomFlag == None)
 //   {
 
-//      windowing_output_debug_string("ERROR: cannot find atom for " + string(pszNetStateFlag) + "!\n");
+//      windowing_output_debug_string("ERROR: cannot find atom for " + string(scopedstrNetStateFlag) + "!\n");
 
 //      return 0;
 
@@ -3133,7 +3133,7 @@ bool window::is_window()
 
 //   }
 
-//   int i = wm_test_state_raw(pszNetStateFlag);
+//   int i = wm_test_state_raw(scopedstrNetStateFlag);
 
 //   windowing_output_debug_string("::wm_test_state 2");
 

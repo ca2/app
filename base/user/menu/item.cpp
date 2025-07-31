@@ -20,7 +20,7 @@ public: // re-implementations only
    //   virtual void set_check(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
    //void set_check(const e_check & echeck, const ::action_context & context = ::e_source_system) override;   // 0, 1 or 2 (indeterminate)
 //   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
-   //void set_text(const ::string & pszText, const ::action_context & context = ::e_source_system) override;
+   //void set_text(const ::scoped_string & scopedstrText, const ::action_context & context = ::e_source_system) override;
 
 };
 

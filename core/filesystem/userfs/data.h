@@ -40,7 +40,7 @@ namespace userfs
 
       ::user::document * get_document();
 
-      //virtual string get_last_browse_path(::particle * pparticle, const ::string & pszDefault = nullptr);
+      //virtual string get_last_browse_path(::particle * pparticle, const ::scoped_string & scopedstrDefault = nullptr);
 
       //virtual ::aura::application * get_app() const override;
 

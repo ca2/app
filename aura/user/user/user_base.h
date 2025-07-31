@@ -108,13 +108,13 @@ namespace user
       //::pointer < ::menu::menu > menu_from_xml(::particle * pparticleContext, const ::scoped_string & scopedstrXml) override;
 
 
-      virtual void defer_instantiate_user_style(const ::string & strExperience = nullptr);
+      virtual void defer_instantiate_user_style(const ::scoped_string & scopedstrExperience = nullptr);
 
 
-      virtual ::user::style_pointer instantiate_user_style(const ::string & strExperience, ::platform::application* papp = nullptr);
+      virtual ::user::style_pointer instantiate_user_style(const ::scoped_string & scopedstrExperience, ::platform::application* papp = nullptr);
 
 
-      virtual ::user::style_pointer get_user_style(const ::string & strExperience, ::platform::application* papp = nullptr);
+      virtual ::user::style_pointer get_user_style(const ::scoped_string & scopedstrExperience, ::platform::application* papp = nullptr);
 
 
       //virtual ::type_atom get_pane_tab_impact_type_info();

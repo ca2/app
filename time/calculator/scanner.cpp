@@ -807,7 +807,7 @@ namespace datetime
    }
 
 
-   void scanner::initialize_scanner(const ::string & strInput)
+   void scanner::initialize_scanner(const ::scoped_string & scopedstrInput)
    {
 
       input          = strInput;

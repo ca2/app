@@ -77,12 +77,12 @@ namespace user
       // specific to status_bar
       void GetPaneText(int nIndex, string & rString);
       string GetPaneText(int nIndex);
-      bool SetPaneText(int nIndex, const ::string & pszNewText, bool bUpdate = true);
+      bool SetPaneText(int nIndex, const ::scoped_string & scopedstrNewText, bool bUpdate = true);
 
       void GetPaneInfo(int nIndex, atom & atom, unsigned int& nStyle, int& cxWidth);
       void SetPaneInfo(int nIndex, const ::atom & atom, unsigned int nStyle, int cxWidth);
       //void SetPaneInfo(int nIndex, int iId, unsigned int nStyle, int cxWidth);
-      //void SetPaneInfo(int nIndex, const ::string & pszId, unsigned int nStyle, int cxWidth);
+      //void SetPaneInfo(int nIndex, const ::scoped_string & scopedstrId, unsigned int nStyle, int cxWidth);
       unsigned int GetPaneStyle(int nIndex);
       void SetPaneStyle(int nIndex, unsigned int nStyle);
 

@@ -264,7 +264,7 @@ namespace file
 
 
 
-CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria, const ::string & strValue)
+CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria, const ::scoped_string & scopedstrValue)
 {
 
    if (straCriteria.is_empty())
@@ -277,7 +277,7 @@ CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria
    for (auto & strCriteria : straCriteria)
    {
 
-      if (matches_wildcard_criteria(strCriteria.c_str(), strValue.c_str()))
+      if (matches_wildcard_criteria(strCriteria.c_str(), scopedstrValue.c_str()))
       {
 
          return true;
@@ -291,7 +291,7 @@ CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria
 }
 
 
-CLASS_DECL_ACME bool case_insensitive_matches_wildcard_criteria(const string_array & straCriteria, const ::string & strValue)
+CLASS_DECL_ACME bool case_insensitive_matches_wildcard_criteria(const string_array & straCriteria, const ::scoped_string & scopedstrValue)
 {
 
    if (straCriteria.is_empty())
@@ -304,14 +304,14 @@ CLASS_DECL_ACME bool case_insensitive_matches_wildcard_criteria(const string_arr
    for (auto & strCriteria : straCriteria)
    {
 
-      if (strValue.case_insensitive_begins("resident"))
+      if (scopedstrValue.case_insensitive_begins("resident"))
       {
 
          //informationf("resident*");
 
       }
 
-      if (case_insensitive_matches_wildcard_criteria(strCriteria.c_str(), strValue.c_str()))
+      if (case_insensitive_matches_wildcard_criteria(strCriteria.c_str(), scopedstrValue.c_str()))
       {
 
          return true;
@@ -327,10 +327,10 @@ CLASS_DECL_ACME bool case_insensitive_matches_wildcard_criteria(const string_arr
 
 
 
-CLASS_DECL_ACME string normalize_wildcard_criteria(const ::string & strPattern)
+CLASS_DECL_ACME string normalize_wildcard_criteria(const ::scoped_string & scopedstrPattern)
 {
 
-   if (strPattern.is_empty() || strPattern == "*.*")
+   if (scopedstrPattern.is_empty() || scopedstrPattern == "*.*")
    {
 
       return "*";
@@ -339,7 +339,7 @@ CLASS_DECL_ACME string normalize_wildcard_criteria(const ::string & strPattern)
    else
    {
 
-      return strPattern;
+      return scopedstrPattern;
 
    }
 

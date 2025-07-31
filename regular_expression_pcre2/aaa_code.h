@@ -17,7 +17,7 @@ namespace regular_expression_pcre2
 
       pcre_code();
 
-      //static ::pointer<pcre_code> compile(pcre_context* pcreContext, const string& str);
+      //static ::pointer<pcre_code> compile(pcre_context* pcreContext, const ::scoped_string & scopedstr);
       //protected:
 
    };

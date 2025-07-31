@@ -115,7 +115,7 @@ void set_apex_system_as_thread();
 //         
 //         const char * psz = [[m_menuida objectAtIndex:i] UTF8String];
 //         
-//         //m_pbridge->notification_area_action(psz);
+//         //m_pbridge->notification_area_action(scopedstr);
 //         
 //         application_on_menu_action(m_papplication, psz);
 //         
@@ -137,7 +137,7 @@ void set_apex_system_as_thread();
 //{
 //         const char * psz = [str UTF8String];
 //         
-//         //m_pbridge->notification_area_action(psz);
+//         //m_pbridge->notification_area_action(scopedstr);
 //         
 //         application_on_menu_action(m_papplication, psz);
 //         
@@ -262,7 +262,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
       
    }
    
-//   defer_run_system(psza, (int) ulCount);
+//   defer_run_system(scopedstra, (int) ulCount);
 //
 //
 }
@@ -321,7 +321,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
       
    }
    
-   //defer_run_system(psza, (int) ulCount);
+   //defer_run_system(scopedstra, (int) ulCount);
 
 }
 
@@ -414,7 +414,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
 //            [menuParent addItem: menuitem];
 //
 //         }
-//         else if(!strcmp(pszParent, pmenushared->m_ppszParent[i]))
+//         else if(!strcmp(scopedstrParent, pmenushared->m_ppszParent[i]))
 //         {
 //
 //            NSString * strTitle = [[NSString alloc] initWithUTF8String:pmenushared->m_ppszMenu[i]];
@@ -452,7 +452,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
 //         
 //         const char * psz = [[m_menuida objectAtIndex:i] UTF8String];
 //         
-//         //m_pbridge->notification_area_action(psz);
+//         //m_pbridge->notification_area_action(scopedstr);
 //         
 //         application_on_menu_action(m_papplication, psz);
 //         
@@ -767,9 +767,9 @@ void acme_ios_application_main(::platform::application * papplication, int argc,
 //{
 //         const char * psz = [str UTF8String];
 //         
-//         //m_pbridge->notification_area_action(psz);
+//         //m_pbridge->notification_area_action(scopedstr);
 //         
-//         on_application_menu_action(psz);
+//         on_application_menu_action(scopedstr);
 //         
 //         return;
 //         
@@ -870,7 +870,7 @@ void acme_ios_application_main(::platform::application * papplication, int argc,
 //      
 //   }
 //   
-//   defer_run_system(psza, (int) ulCount);
+//   defer_run_system(scopedstra, (int) ulCount);
 //   
 //   
 //}
@@ -917,7 +917,7 @@ void acme_ios_application_main(::platform::application * papplication, int argc,
 //      
 //   }
 //   
-//   defer_run_system(psza, (int) ulCount);
+//   defer_run_system(scopedstra, (int) ulCount);
 //   
 //   
 //

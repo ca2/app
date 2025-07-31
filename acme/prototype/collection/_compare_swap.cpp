@@ -279,7 +279,7 @@ namespace test_compilation_some_strong_ordering_swap_functions
 
 
 
-   void test_compilation_some_strong_ordering_swap_functions(string_array & straPath, const ::string & strSuffix)
+   void test_compilation_some_strong_ordering_swap_functions(string_array & straPath, const ::scoped_string & scopedstrSuffix)
    {
 
       ::array < ::function < ::std::strong_ordering(void *, iptr, iptr) > > comparefna;

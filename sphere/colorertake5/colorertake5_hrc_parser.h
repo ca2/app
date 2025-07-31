@@ -13,8 +13,8 @@ namespace colorertake5
    {
    public:
 
-      HRCParserException(const ::string & pszMessage = nullptr) :
-         exception(pszMessage)
+      HRCParserException(const ::scoped_string & scopedstrMessage = nullptr) :
+         exception(scopedstrMessage)
       {
 
       }
@@ -42,7 +42,7 @@ namespace colorertake5
       real type load must be performed before using with #loadType() method
       @param is input_source stream of HRC file
       */
-      virtual void loadSource(const ::string & pszSourceLocation, const ::string & pszSource) = 0;
+      virtual void loadSource(const ::scoped_string & scopedstrSourceLocation, const ::scoped_string & scopedstrSource) = 0;
 
       /** Enumerates sequentially all prototypes
       @param index index of type.

@@ -140,7 +140,7 @@ write_text_stream::~write_text_stream()
 //}
 
 //// // template < typename FILE >
-//void write_text_stream::print(const ::string& str)
+//void write_text_stream::print(const ::scoped_string & scopedstr)
 //{
 //
 //   m_pfile->write(str.c_str(), str.length_in_bytes());
@@ -209,13 +209,13 @@ void write_text_stream::append_format(const ::ansi_character * pszFormat, ...)
 
    ::string strText;
 
-   ASSERT(is_string_ok(pszFormat));
+   ASSERT(is_string_ok(scopedstrFormat));
 
    va_list argList;
 
    va_start(argList, pszFormat);
 
-   strText.formatf_arguments(pszFormat, argList);
+   strText.formatf_arguments(scopedstrFormat, argList);
 
    va_end(argList);
 
@@ -441,7 +441,7 @@ write_text_stream & write_text_stream::operator <<(const ::ansi_character * psz)
 
    }
 
-   print(psz);
+   print(scopedstr);
 
    if (this->fmtflags() & ::file::network_payload)
    {
@@ -515,15 +515,15 @@ write_text_stream & write_text_stream::operator <<(const ::scoped_string & scope
 
 
 // // template < typename FILE >
-void write_text_stream::raw_print(const ::string & str)
+void write_text_stream::raw_print(const ::scoped_string & scopedstr)
 {
 
-   print(str);
+   print(scopedstr);
 
 }
 
 
-//void print_number(const ::string& str)
+//void print_number(const ::scoped_string & scopedstr)
 //{
 
 //   print_number(str);
@@ -588,7 +588,7 @@ void write_text_stream::print(const ::range < const char * > & range)
 //
 //   }
 //
-//   print(psz);
+//   print(scopedstr);
 //
 //   if (this->fmtflags() & ::file::network_payload)
 //   {
@@ -610,7 +610,7 @@ void write_text_stream::print(const ::range < const char * > & range)
 
 
 //// // template < typename FILE >
-//write_text_stream & write_text_stream::operator <<(const ::string & str)
+//write_text_stream & write_text_stream::operator <<(const ::scoped_string & scopedstr)
 //{
 //
 //   return this->operator <<((const ::scoped_string &)str);
@@ -702,7 +702,7 @@ void write_text_stream::print(const ::range < const char * > & range)
 //// void network_payload_write(const ::matter & matter);
 //
 //// // template < typename FILE >
-//void write_text_stream::raw_print(const ::string& str)
+//void write_text_stream::raw_print(const ::scoped_string & scopedstr)
 //{
 //
 //   print(str);

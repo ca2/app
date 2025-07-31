@@ -23,7 +23,7 @@ using utf8_character = inline_string < ::ansi_character, 8 >;
 //   //utf8_character(const ::scoped_string & scopedstr)
 //   //{
 //
-//   //   auto len = string_safe_length(psz, 7);
+//   //   auto len = string_safe_length(scopedstr, 7);
 //
 //   //   int i = 0;
 //

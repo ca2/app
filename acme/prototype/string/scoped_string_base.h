@@ -95,9 +95,9 @@ public:
 //   scoped_string_base(const ::ansi_character ch) :m_str(ch), BASE_RANGE(m_str) { }
 //   scoped_string_base(const ::wd16_character ch) :m_str(ch), BASE_RANGE(m_str) { }
 //   scoped_string_base(const ::wd32_character ch) :m_str(ch), BASE_RANGE(m_str) { }
-   //scoped_string_base(const ::ansi_character * psz) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(psz); }
-   //scoped_string_base(const ::wd16_character * psz) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(psz); }
-   //scoped_string_base(const ::wd32_character * psz) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(psz); }
+   //scoped_string_base(const ::ansi_character * psz) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(scopedstr); }
+   //scoped_string_base(const ::wd16_character * psz) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(scopedstr); }
+   //scoped_string_base(const ::wd32_character * psz) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(scopedstr); }
 //   scoped_string_base(const ::const_ansi_range & range) :m_str(e_zero_initialize), BASE_RANGE(range) { }
 //   scoped_string_base(const ::const_wd16_range & range) :m_str(e_zero_initialize), BASE_RANGE(range) { }
 //   scoped_string_base(const ::const_wd32_range & range) :m_str(e_zero_initialize), BASE_RANGE(range) { }
@@ -349,13 +349,13 @@ public:
    //   {
 
    //      this->m_begin = psz;
-   //      this->m_end = psz + string_safe_length(psz);
+   //      this->m_end = psz + string_safe_length(scopedstr);
 
    //   }
    //   else
    //   {
 
-   //      this->str(psz);
+   //      this->str(scopedstr);
 
    //   }
 

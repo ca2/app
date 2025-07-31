@@ -25,12 +25,12 @@ namespace aura
 #endif
    }
 
-   inline atom system::atom(const ::string & psz)
+   inline atom system::atom(const ::scoped_string & scopedstr)
    {
-      return get_id_space()(psz);
+      return get_id_space()(scopedstr);
    }
 
-   inline atom system::atom(const ::string & str)
+   inline atom system::atom(const ::scoped_string & scopedstr)
    {
       return get_id_space()(str);
    }
@@ -50,22 +50,22 @@ namespace aura
 
 
 
-inline atom::atom(const ::string & psz)
+inline atom::atom(const ::scoped_string & scopedstr)
 {
 
    m_all = {};
 
-   if(psz != nullptr)
+   if(scopedstr != nullptr)
    {
 
-      operator = (::aura::system::atom(psz));
+      operator = (::aura::system::atom(scopedstr));
 
    }
 
 }
 
 
-inline atom::atom(const ::string & str)
+inline atom::atom(const ::scoped_string & scopedstr)
 {
 
    m_all = {};

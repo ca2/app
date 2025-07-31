@@ -111,7 +111,7 @@ namespace app_shader
 #endif
 
 
-   string application::get_next_shader_path(const string& strPath)
+   string application::get_next_shader_path(const ::scoped_string & scopedstrPath)
    {
 
       ::file::listing listing;

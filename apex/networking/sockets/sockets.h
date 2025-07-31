@@ -64,7 +64,7 @@ namespace sockets
 
       //virtual string get_http_post_boundary();
 
-      virtual ::pointer<::networking::address>create_address(const ::string & strHostname);
+      virtual ::pointer<::networking::address>create_address(const ::scoped_string & scopedstrHostname);
 
 
    };

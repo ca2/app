@@ -36,7 +36,7 @@ int create_process(const ::scoped_string & scopedstrCommandLine, int * pprocessI
 
    string_array stra;
    
-   stra = get_c_args_for_c(pszCommandLine);
+   stra = get_c_args_for_c(scopedstrCommandLine);
 
    char * argv[1024 + 1];
 
@@ -154,7 +154,7 @@ unsigned int * puiPid)
 
    strCmdLine = pszPath;
 
-   if(ansi_length(pszParam) > 0)
+   if(ansi_length(scopedstrParam) > 0)
    {
 
       strCmdLine +=  " ";
@@ -165,7 +165,7 @@ unsigned int * puiPid)
 
    int processId;
 
-   chdir(pszDir);
+   chdir(scopedstrDir);
 
    if(!create_process(strCmdLine, &processId))
    {
@@ -193,7 +193,7 @@ CLASS_DECL_APEX unsigned int call_sync(const ::file::path & path, const ::scoped
 
    strCmdLine = pszPath;
 
-   if(ansi_length(pszParam) > 0)
+   if(ansi_length(scopedstrParam) > 0)
    {
 
       strCmdLine +=  " ";
@@ -243,7 +243,7 @@ bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_st
    
    ::property_set set;
 
-   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), e_display_none, durationTimeout, set);
+   return call_sync(scopedstrFile, pszParams, ::file::path(scopedstrFile).folder(), e_display_none, durationTimeout, set);
 
 }
 
@@ -257,7 +257,7 @@ string apple_app_module_path()
 
    unsigned int size = 1024;
 
-   if(_NSGetExecutablePath(psz, &size) == 0)
+   if(_NSGetExecutablePath(scopedstr, &size) == 0)
 
    {
 
@@ -270,7 +270,7 @@ string apple_app_module_path()
       psz = str.get_buffer(size);
 
 
-      if(_NSGetExecutablePath(psz, &size) == 0)
+      if(_NSGetExecutablePath(scopedstr, &size) == 0)
 
       {
 
@@ -340,7 +340,7 @@ bool launch_command(const char * const pszCommand)
    
    string strParams;
    
-   string strCommand(pszCommand);
+   string strCommand(scopedstrCommand);
    
    strCommand.replace("\"", "\\\"");
    

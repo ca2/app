@@ -414,7 +414,7 @@ pdirectorysystem->ca2roaming() / "home";
    }
 
 
-   ::file::path directory_context::time_square(const ::string & strPrefix, const ::string & strSuffix)
+   ::file::path directory_context::time_square(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
    {
 
       __UNREFERENCED_PARAMETER(strPrefix);
@@ -578,7 +578,7 @@ try1:;
             if(is(straPath[i]))
             {
 
-               rm(psz / straPath[i].name(),true);
+               rm(scopedstr / straPath[i].name(),true);
 
             }
             else
@@ -592,7 +592,7 @@ try1:;
 
       }
 
-      return RemoveDirectoryW(utf8_to_unicode(psz)) != false;
+      return RemoveDirectoryW(utf8_to_unicode(scopedstr)) != false;
 
    }
 
@@ -603,10 +603,10 @@ try1:;
    ::file::path directory_context::trash_that_is_not_trash(const ::file::path & psz)
    {
 
-      if(psz == nullptr)
+      if(scopedstr == nullptr)
          return "";
 
-      if(psz[1] == ':')
+      if(scopedstr[1] == ':')
       {
 
          string strDir = psz.folder();
@@ -642,7 +642,7 @@ try1:;
    }
 
 
-   //::file::path directory_context::usersystemappdata(const ::string & strPrefix)
+   //::file::path directory_context::usersystemappdata(const ::scoped_string & scopedstrPrefix)
    //{
 
    //   __UNREFERENCED_PARAMETER(pparticle);
@@ -703,7 +703,7 @@ try1:;
    //}
 
 
-   //::file::path directory_context::default_userfolder(const ::string & strPrefix,const ::string & strLogin)
+   //::file::path directory_context::default_userfolder(const ::scoped_string & scopedstrPrefix,const ::scoped_string & scopedstrLogin)
    //{
 
    //   return userfolder(pparticle) / strPrefix / strLogin;
@@ -746,7 +746,7 @@ try1:;
    bool directory_context::is_inside(const ::file::path & pszDir,const ::file::path & strPath)
    {
 
-      return case_insensitive_string_begins(pszDir,strPath);
+      return case_insensitive_string_begins(scopedstrDir,strPath);
 
    }
 
@@ -754,7 +754,7 @@ try1:;
    bool directory_context::has_subdir(const ::file::path & pszDir)
    {
 
-      return ::directory_context::has_subdir(pszDir);
+      return ::directory_context::has_subdir(scopedstrDir);
 
    }
 

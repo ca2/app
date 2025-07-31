@@ -152,7 +152,7 @@
 //                        &uiSize);
 //
 //
-//                     string strVersion(psz, uiSize);
+//                     string strVersion(scopedstr, uiSize);
 //
 //
 //                     return strVersion;
@@ -366,7 +366,7 @@
 //      /*
 //      char * pszExt = ::PathFindExtension(szBuff);
 
-//      ASSERT(pszExt != nullptr);
+//      ASSERT(scopedstrExt != nullptr);
 
 //      if( pszExt == nullptr )
 

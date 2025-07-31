@@ -75,7 +75,7 @@ namespace user
          virtual void _001SetFontFormat(::character_count iSelBeg, ::character_count iEnd, const format * pformat, const e_attribute & eattribute);
 
          virtual void _001Delete(character_count i1, character_count i2);
-         virtual character_count _001InsertText(character_count i1, character_count i2, const ::string & psz, format * pformatParam = nullptr);
+         virtual character_count _001InsertText(character_count i1, character_count i2, const ::scoped_string & scopedstr, format * pformatParam = nullptr);
 
          //virtual void get_text(string & str) const;
 

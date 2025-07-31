@@ -5,7 +5,7 @@
 //public:
 //
 //
-//   virtual void __tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz) = 0;
+//   virtual void __tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) = 0;
 //
 //
 //};
@@ -22,7 +22,7 @@ public:
    virtual ~simple_trace();
 
 
-   virtual void __tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz) override;
+   virtual void __tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) override;
 
 
 };
@@ -51,14 +51,14 @@ public:
    const int                  m_iLine;
 
 
-   trace_logger(const ::string & pszFunction, const ::string & pszFile, int iLine, ::particle * pparticle) :
-      m_pszFunction(pszFunction), m_pszFile(pszFile), m_iLine(iLine), m_pobject(pparticle)
+   trace_logger(const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, ::particle * pparticle) :
+      m_pszFunction(scopedstrFunction), m_pszFile(scopedstrFile), m_iLine(iLine), m_pobject(pparticle)
    {
 
    }
 
 
-   inline void __cdecl operator()(e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFormat, ...) const
+   inline void __cdecl operator()(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFormat, ...) const
    {
 
       va_list ptr;
@@ -80,7 +80,7 @@ public:
    }
 
 
-   inline void __cdecl operator()(const ::string & pszFormat, ...) const
+   inline void __cdecl operator()(const ::scoped_string & scopedstrFormat, ...) const
    {
 
       va_list valist;
@@ -94,7 +94,7 @@ public:
    }
 
 
-   inline void __cdecl operator()(e_log elog, const ::string & strContext, int iError, const ::string & strMessage) const
+   inline void __cdecl operator()(e_log elog, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrMessage) const
    {
 
       ::__tracef(m_pobject, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
@@ -102,7 +102,7 @@ public:
    }
 
 
-   inline void __cdecl operator()(::particle * pparticle, const ::string & strContext, int iError, const ::string & strMessage) const
+   inline void __cdecl operator()(::particle * pparticle, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrMessage) const
    {
 
       ::__tracef(pparticle, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
@@ -122,15 +122,15 @@ public:
    enum_trace_level           m_elevel;
 
 
-   trace_logger_level(const ::string & pszFunction, const ::string & pszFile, int iLine, ::particle * pparticle, enum_trace_level elevel) :
-      trace_logger(pszFunction, pszFile, iLine, pparticle),
+   trace_logger_level(const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, ::particle * pparticle, enum_trace_level elevel) :
+      trace_logger(scopedstrFunction, pszFile, iLine, pparticle),
       m_elevel(elevel)
    {
 
    }
 
 
-   inline void operator()(e_trace_category ecategory, const ::string & pszFormat, ...) const
+   inline void operator()(e_trace_category ecategory, const ::scoped_string & scopedstrFormat, ...) const
    {
 
       va_list ptr;
@@ -151,7 +151,7 @@ public:
 
    }
 
-   inline void operator()(const ::string & pszFormat, ...) const
+   inline void operator()(const ::scoped_string & scopedstrFormat, ...) const
    {
 
       if(m_pobject->has(e_object_log_disable))
@@ -172,7 +172,7 @@ public:
    }
 
 
-   inline void operator()(e_log elog, const ::string & strContext, int iError, const ::string & strMessage) const
+   inline void operator()(e_log elog, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrMessage) const
    {
 
       if (iError == 0)
@@ -191,7 +191,7 @@ public:
    }
 
 
-   inline void operator()(::particle * pparticle, const ::string & strContext, int iError, const ::string & strMessage) const
+   inline void operator()(::particle * pparticle, const ::scoped_string & scopedstrContext, int iError, const ::scoped_string & scopedstrMessage) const
    {
 
       ::__tracef(pparticle, m_elevel, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
@@ -250,7 +250,7 @@ namespace aura
 {
 
 
-   CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName,int nLine,unsigned int dwCategory,unsigned int nLevel, const ::string & pszFmt,va_list args);
+   CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName,int nLine,unsigned int dwCategory,unsigned int nLevel, const ::scoped_string & scopedstrFmt,va_list args);
 
 
    namespace trace
@@ -327,13 +327,13 @@ namespace aura
 
          }
 
-         void TraceV(const ::string &pszFileName,int nLine,e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFmt,va_list args) const;
+         void TraceV(const ::string &pszFileName,int nLine,e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFmt,va_list args) const;
 
 
-         /*bool LoadSettings(const ::string & pszFileName = nullptr) const
-         { return 0 != gen_TraceLoadSettings(pszFileName);}
-         void SaveSettings(const ::string & pszFileName = nullptr) const
-         { gen_TraceSaveSettings(pszFileName);}*/
+         /*bool LoadSettings(const ::scoped_string & scopedstrFileName = nullptr) const
+         { return 0 != gen_TraceLoadSettings(scopedstrFileName);}
+         void SaveSettings(const ::scoped_string & scopedstrFileName = nullptr) const
+         { gen_TraceSaveSettings(scopedstrFileName);}*/
 
          //map < uptr,uptr,category,category > m_map;
 
@@ -342,9 +342,9 @@ namespace aura
 
 
 
-      //CLASS_DECL_AURA void __cdecl information(const ::string & pszFormat,...);
+      //CLASS_DECL_AURA void __cdecl information(const ::scoped_string & scopedstrFormat,...);
       //CLASS_DECL_AURA void __cdecl information(const unichar * pszFormat,...);
-      //CLASS_DECL_AURA void __cdecl information(uptr dwCategory,unsigned int nLevel, const ::string & pszFormat,...);
+      //CLASS_DECL_AURA void __cdecl information(uptr dwCategory,unsigned int nLevel, const ::scoped_string & scopedstrFormat,...);
       //CLASS_DECL_AURA void __cdecl information(uptr dwCategory,unsigned int nLevel,const unichar * pszFormat,...);
 
    } // namespace trace

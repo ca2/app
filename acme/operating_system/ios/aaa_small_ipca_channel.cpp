@@ -87,13 +87,13 @@ namespace acme
             
          }
 
-         ::collection::count c = ansi_length(pszMessage);
+         ::collection::count c = ansi_length(scopedstrMessage);
 
          ::collection::count cSend;
 
          memory m;
 
-         m.assign(pszMessage, c);
+         m.assign(scopedstrMessage, c);
 
          CFDataRef data = m.get_os_cf_data();
 

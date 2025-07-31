@@ -21,7 +21,7 @@ namespace platform
 
 #else
 
-      void apex_system_layer::system_construct(const ::string & pszCommandLine, const ::e_display& edisplay)
+      void apex_system_layer::system_construct(const ::scoped_string & scopedstrCommandLine, const ::e_display& edisplay)
 {
          
          
@@ -130,7 +130,7 @@ namespace platform
    //bool apex_system_layer::is_system() const{}
 
 
-   ::string apex_system_layer::crypto_md5_text(const ::string& str)
+   ::string apex_system_layer::crypto_md5_text(const ::scoped_string & scopedstr)
    {
       return {};
    }
@@ -158,7 +158,7 @@ namespace platform
    }
 
 
-   //::string apex_system_layer::url::encode(const ::string & str){}
+   //::string apex_system_layer::url::encode(const ::scoped_string & scopedstr){}
 
 
    //void apex_system_layer::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema){}
@@ -196,7 +196,7 @@ namespace platform
    }
 
 
-   void apex_system_layer::on_allocation_error(const ::string& strName, ::object* pobjectSometimes)
+   void apex_system_layer::on_allocation_error(const ::scoped_string & scopedstrName, ::object* pobjectSometimes)
    {
    }
 
@@ -216,10 +216,10 @@ namespace platform
    // }
 
 
-   //::string apex_system_layer::get_local_mutex_name(const ::string & pszAppName){}
-   //::string apex_system_layer::get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId){}
-   //::string apex_system_layer::get_global_mutex_name(const ::string & pszAppName){}
-   //::string apex_system_layer::get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId){}
+   //::string apex_system_layer::get_local_mutex_name(const ::scoped_string & scopedstrAppName){}
+   //::string apex_system_layer::get_local_id_mutex_name(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId){}
+   //::string apex_system_layer::get_global_mutex_name(const ::scoped_string & scopedstrAppName){}
+   //::string apex_system_layer::get_global_id_mutex_name(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId){}
 
 
    void apex_system_layer::initialize_networking()

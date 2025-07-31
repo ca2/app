@@ -147,7 +147,7 @@ inline int unicode_index_length(const ::wd32_character *& input, character_count
 inline int unicode_index_length(const ::ansi_character * pszUtf8, int & len)
 {
 
-   if (is_empty(pszUtf8))
+   if (is_empty(scopedstrUtf8))
    {
 
       len = 0;
@@ -198,7 +198,7 @@ inline int consume_unicode_index(const ::ansi_character *& pszUtf8)
 
    int len = 0;
 
-   auto i = unicode_index_length(pszUtf8, len);
+   auto i = unicode_index_length(scopedstrUtf8, len);
 
    if(i < 0)
    {
@@ -305,7 +305,7 @@ inline int unicode_to_upper_case(int i)
 //
 //   const CHARACTER * psz;
 //
-//   if (_string_scan_prefix(psz, block, blockCharacters))
+//   if (_string_scan_prefix(scopedstr, block, blockCharacters))
 //   {
 //
 //      return psz;
@@ -526,7 +526,7 @@ inline int unicode_size_of_tables()
 inline const ::ansi_character * unicode_next(const ::ansi_character * psz)
 {
 
-   if (psz == nullptr)
+   if (scopedstr == nullptr)
    {
 
       return nullptr;
@@ -620,7 +620,7 @@ inline const ::ansi_character * unicode_next(const ::ansi_character * psz)
 inline const ::ansi_character * unicode_next(const ::ansi_character * psz, int * piError)
 {
 
-   if (psz == nullptr)
+   if (scopedstr == nullptr)
    {
 
       return nullptr;
@@ -716,7 +716,7 @@ inline const ::ansi_character * unicode_next(const ::ansi_character * psz, int *
 inline const ::wd16_character * unicode_next(const ::wd16_character * psz)
 {
 
-   auto len = wd16_to_wd32_len(psz, 2);
+   auto len = wd16_to_wd32_len(scopedstr, 2);
 
    if (len > 0)
    {
@@ -741,17 +741,17 @@ inline const ::wd32_character * unicode_next(const ::wd32_character * psz)
 inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_character * pszBeg)
 {
 
-   if (psz <= pszBeg)
+   if (scopedstr <= pszBeg)
    {
 
       return nullptr;
 
    }
 
-   if ((*(psz - 1) & 0x80) == 0x00)
+   if ((*(scopedstr - 1) & 0x80) == 0x00)
    {
 
-      if ((psz - 1) < pszBeg)
+      if ((scopedstr - 1) < pszBeg)
       {
 
          return nullptr;
@@ -761,10 +761,10 @@ inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_cha
       return psz - 1;
 
    }
-   else if ((*(psz - 2) & 0xE0) == 0xC0)
+   else if ((*(scopedstr - 2) & 0xE0) == 0xC0)
    {
 
-      if ((psz - 2) < pszBeg)
+      if ((scopedstr - 2) < pszBeg)
       {
 
          return nullptr;
@@ -774,10 +774,10 @@ inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_cha
       return psz - 2;
 
    }
-   else if ((*(psz - 3) & 0xF0) == 0xE0)
+   else if ((*(scopedstr - 3) & 0xF0) == 0xE0)
    {
 
-      if ((psz - 3) < pszBeg)
+      if ((scopedstr - 3) < pszBeg)
       {
 
          return nullptr;
@@ -787,10 +787,10 @@ inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_cha
       return psz - 3;
 
    }
-   else if ((*(psz - 4) & 0xF8) == 0xF0)
+   else if ((*(scopedstr - 4) & 0xF8) == 0xF0)
    {
 
-      if ((psz - 4) < pszBeg)
+      if ((scopedstr - 4) < pszBeg)
       {
 
          return nullptr;
@@ -800,10 +800,10 @@ inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_cha
       return psz - 4;
 
    }
-   else if ((*(psz - 5) & 0xFC) == 0xF8)
+   else if ((*(scopedstr - 5) & 0xFC) == 0xF8)
    {
 
-      if ((psz - 5) < pszBeg)
+      if ((scopedstr - 5) < pszBeg)
       {
 
          return nullptr;
@@ -813,10 +813,10 @@ inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_cha
       return psz - 5;
 
    }
-   else if ((*(psz - 6) & 0xFE) == 0xFC)
+   else if ((*(scopedstr - 6) & 0xFE) == 0xFC)
    {
 
-      if ((psz - 6) < pszBeg)
+      if ((scopedstr - 6) < pszBeg)
       {
 
          return nullptr;
@@ -827,7 +827,7 @@ inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_cha
 
    }
 
-   if ((psz - 1) < pszBeg)
+   if ((scopedstr - 1) < pszBeg)
    {
 
       return nullptr;
@@ -842,17 +842,17 @@ inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_cha
 inline const ::wd16_character * unicode_prior(const ::wd16_character * psz, const ::wd16_character * pszBeg)
 {
 
-   if (psz <= pszBeg)
+   if (scopedstr <= pszBeg)
    {
 
       return nullptr;
 
    }
 
-   if (utf16_is_2nd_surrogate(*(psz - 1)))
+   if (utf16_is_2nd_surrogate(*(scopedstr - 1)))
    {
 
-      if (psz - 1 <= pszBeg)
+      if (scopedstr - 1 <= pszBeg)
       {
 
          return nullptr;
@@ -871,7 +871,7 @@ inline const ::wd16_character * unicode_prior(const ::wd16_character * psz, cons
 inline const ::wd32_character * unicode_prior(const ::wd32_character * psz, const ::wd32_character * pszBeg)
 {
 
-   if (psz <= pszBeg)
+   if (scopedstr <= pszBeg)
    {
 
       return nullptr;
@@ -1052,7 +1052,7 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 //
 //   }
 //
-//   return string_count_compare(psz, pszPrefix, lenPrefix) == 0;
+//   return string_count_compare(scopedstr, pszPrefix, lenPrefix) == 0;
 //
 //}
 
@@ -1073,7 +1073,7 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 //
 //   auto pszCompare = psz + offset;
 //
-//   return string_count_compare(pszCompare, pszSuffix, lenSuffix) == 0;
+//   return string_count_compare(scopedstrCompare, pszSuffix, lenSuffix) == 0;
 //
 //}
 
@@ -1089,7 +1089,7 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 //
 //   }
 //
-//   return case_insensitive_string_count_compare(psz, pszPrefix, lenPrefix) == 0;
+//   return case_insensitive_string_count_compare(scopedstr, pszPrefix, lenPrefix) == 0;
 //
 //}
 
@@ -1109,7 +1109,7 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 //
 //   auto pszCompare = psz + offset;
 //
-//   return case_insensitive_string_count_compare(pszCompare, pszSuffix, lenSuffix) == 0;
+//   return case_insensitive_string_count_compare(scopedstrCompare, pszSuffix, lenSuffix) == 0;
 //
 //}
 
@@ -1202,7 +1202,7 @@ inline int unicode_len(const ::ansi_character * pszUtf8)
 
    int len;
 
-   if (unicode_index_length(pszUtf8, len) < 0)
+   if (unicode_index_length(scopedstrUtf8, len) < 0)
    {
 
       return -1;

@@ -73,7 +73,7 @@ namespace acme
          data_struct data;
          data.mtype        = 20170101;
          data.request      = 0;
-         data.size         = ansi_length(pszMessage);
+         data.size         = ansi_length(scopedstrMessage);
          if(data.size > 512)
             return false;
 
@@ -110,7 +110,7 @@ namespace acme
          data_struct data;
          data.mtype        = 20170101;
          data.request      = I32_MINIMUM;
-         data.size         = (int)ansi_length(pszMessage);
+         data.size         = (int)ansi_length(scopedstrMessage);
 
          ::collection::count cPos = 0;
 

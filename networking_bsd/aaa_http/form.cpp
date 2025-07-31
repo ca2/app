@@ -54,7 +54,7 @@ namespace http
 
       character_count extra = 2;
 
-      string content-type(pszContentType);
+      string content-type(scopedstrContentType);
 
       infil->seek_to_begin();
 

@@ -47,11 +47,11 @@ public:
 
    xfplayer_impact_line_selection & GetSelection();
 
-   void get_sel_text(string & strSelText, const ::string & pszLineSeparator = "\r\n");
-   string get_sel_text(const ::string & pszLineSeparator = "\r\n");
+   void get_sel_text(string & strSelText, const ::scoped_string & scopedstrLineSeparator = "\r\n");
+   string get_sel_text(const ::scoped_string & scopedstrLineSeparator = "\r\n");
 
-   void get_text(string & strSelText, const ::string & pszLineSeparator = "\r\n");
-   string get_text(const ::string & pszLineSeparator = "\r\n");
+   void get_text(string & strSelText, const ::scoped_string & scopedstrLineSeparator = "\r\n");
+   string get_text(const ::scoped_string & scopedstrLineSeparator = "\r\n");
 
 };
 

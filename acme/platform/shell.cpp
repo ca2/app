@@ -50,7 +50,7 @@ namespace acme
 
       char quote = '\0';
 
-      while (psz != nullptr && *psz != '\0')
+      while (scopedstr != nullptr && *psz != '\0')
       {
 
          if (e == e_state_initial)
@@ -59,7 +59,7 @@ namespace acme
             if (*psz == ' ')
             {
 
-               unicode_increment(psz);
+               unicode_increment(scopedstr);
 
             }
             else if (*psz == '\"')
@@ -67,7 +67,7 @@ namespace acme
 
                quote = '\"';
 
-               unicode_increment(psz);
+               unicode_increment(scopedstr);
 
                argv[argc++] = (char*)psz;
 
@@ -79,7 +79,7 @@ namespace acme
 
                quote = '\'';
 
-               unicode_increment(psz);
+               unicode_increment(scopedstr);
 
                argv[argc++] = (char*)psz;
 
@@ -91,7 +91,7 @@ namespace acme
 
                argv[argc++] = (char*)psz;
 
-               unicode_increment(psz);
+               unicode_increment(scopedstr);
 
                e = state_non_space;
 
@@ -104,15 +104,15 @@ namespace acme
             if (*psz == '\\')
             {
 
-               memory_transfer(psz, psz + 1, ansi_len(psz));
+               memory_transfer(scopedstr, psz + 1, ansi_len(scopedstr));
 
-               unicode_increment(psz);
+               unicode_increment(scopedstr);
 
             }
             else if (*psz == quote)
             {
 
-               p = unicode_next(psz);
+               p = unicode_next(scopedstr);
 
                *psz = '\0';
 
@@ -124,7 +124,7 @@ namespace acme
             else
             {
 
-               unicode_increment(psz);
+               unicode_increment(scopedstr);
 
             }
 
@@ -135,7 +135,7 @@ namespace acme
             if (*psz == ' ')
             {
 
-               p = unicode_next(psz);
+               p = unicode_next(scopedstr);
 
                *psz = '\0';
 
@@ -147,7 +147,7 @@ namespace acme
             else
             {
 
-               unicode_increment(psz);
+               unicode_increment(scopedstr);
 
             }
 

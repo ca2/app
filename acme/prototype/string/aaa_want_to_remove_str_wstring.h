@@ -325,7 +325,7 @@ public:
    wstring & replace(::collection::index iStart,::collection::count c, const unichar * psz);
 
 
-   wstring & operator = (const ::string & str);
+   wstring & operator = (const ::scoped_string & scopedstr);
 
    void assign(const unichar * pwsz);
    void assign(const ::scoped_string & scopedstr);

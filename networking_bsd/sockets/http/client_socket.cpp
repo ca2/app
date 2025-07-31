@@ -51,7 +51,7 @@ string dump_hex(::file::file* pfile)
 
       }
 
-      ::hex::upper_pad_from(psz, &iPos, 4);
+      ::hex::upper_pad_from(scopedstr, &iPos, 4);
 
       psz += 8;
       *psz = ' ';
@@ -63,7 +63,7 @@ string dump_hex(::file::file* pfile)
          if (i < iRead)
          {
 
-            ::hex::upper_pad_from(psz, buf + i, 1);
+            ::hex::upper_pad_from(scopedstr, buf + i, 1);
             psz += 2;
 
          }
@@ -177,7 +177,7 @@ namespace sockets
    }
 
 
-   http_client_socket::http_client_socket(const ::string & strUrlParam) //:
+   http_client_socket::http_client_socket(const ::scoped_string & scopedstrUrlParam) //:
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -709,7 +709,7 @@ namespace sockets
    }
 
 
-   CLASS_DECL_APEX e_http_method string_http_method(const ::string & str)
+   CLASS_DECL_APEX e_http_method string_http_method(const ::scoped_string & scopedstr)
    {
 
       string strMethod(str);

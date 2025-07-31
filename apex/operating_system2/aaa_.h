@@ -96,7 +96,7 @@ inline bool predicate_Sleep(int iTime, PRED pred);
 ////}
 //////
 ////
-////::pointer<regex>pcre_regex::compile(::object* pparticle, const string& str)
+////::pointer<regex>pcre_regex::compile(::object* pparticle, const ::scoped_string & scopedstr)
 ////{
 ////
 ////   ::pointer<pcre_context_impl>pcreContextImpl = pcre_context::create_context(pparticle, 0);
@@ -110,7 +110,7 @@ inline bool predicate_Sleep(int iTime, PRED pred);
 ////}
 ////
 ////
-////::pointer<pcre_code>pcre_code::compile(pcre_context* m_pcreContext, const string& str)
+////::pointer<pcre_code>pcre_code::compile(pcre_context* m_pcreContext, const ::scoped_string & scopedstr)
 ////{
 ////
 ////   ::pointer<pcre_context_impl>pimpl = m_pcreContext;
@@ -128,7 +128,7 @@ inline bool predicate_Sleep(int iTime, PRED pred);
 ////{
 ////
 ////
-////   ::pointer<regex>system::compile_pcre(const string& str)
+////   ::pointer<regex>system::compile_pcre(const ::scoped_string & scopedstr)
 ////   {
 ////
 ////      return pcre_regex::compile(this, str);
@@ -142,7 +142,7 @@ inline bool predicate_Sleep(int iTime, PRED pred);
 ////   }
 ////
 ////
-////   int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
+////   int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
 ////   {
 ////
 ////      throw_todo();

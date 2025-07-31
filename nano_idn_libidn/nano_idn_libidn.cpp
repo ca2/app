@@ -56,9 +56,9 @@ namespace libidn
 
             }
 
-            string strReturn(psz);
+            string strReturn(scopedstr);
 
-            free(psz);
+            free(scopedstr);
 
             return strReturn;
 
@@ -96,9 +96,9 @@ namespace libidn
 
             }
 
-            string strReturn(psz);
+            string strReturn(scopedstr);
 
-            free(psz);
+            free(scopedstr);
 
             return strReturn;
 

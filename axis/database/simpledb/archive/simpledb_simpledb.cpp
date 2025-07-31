@@ -235,7 +235,7 @@ namespace simpledb
 
 
 
-   void simpledb::on_set_keyboard_layout(const ::string & pszPath, const ::action_context & context)
+   void simpledb::on_set_keyboard_layout(const ::scoped_string & scopedstrPath, const ::action_context & context)
    {
 
       if(context.is_user_source())

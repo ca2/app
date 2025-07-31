@@ -21,7 +21,7 @@ namespace ftp
       file();
       virtual ~file();
 
-      bool Open( const string& strFileName, ::file::e_open eopen);
+      bool Open( const ::scoped_string & scopedstrFileName, ::file::e_open eopen);
 
       bool close();
 

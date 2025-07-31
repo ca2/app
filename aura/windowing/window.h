@@ -697,7 +697,7 @@ namespace windowing
       virtual void post_message(::message::message * pusermessage);
 
 
-      void set_bitmap_source(const string & strBitmapSource) override;
+      void set_bitmap_source(const ::scoped_string & scopedstrBitmapSource) override;
       void clear_bitmap_source() override;
 
 
@@ -858,7 +858,7 @@ namespace windowing
       //virtual oswindow unsubclass_window() override;
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
-      //virtual bool ExecuteDlgInit(const ::string & pszResourceName);
+      //virtual bool ExecuteDlgInit(const ::scoped_string & scopedstrResourceName);
 
       //virtual bool ExecuteDlgInit(void * pResource);
 
@@ -947,7 +947,7 @@ namespace windowing
 
 
       // Window Text Functions
-      //virtual void set_window_text(const ::string & pszString) override;
+      //virtual void set_window_text(const ::scoped_string & scopedstrString) override;
 
       //void on_set_window_text() override;
 
@@ -1103,7 +1103,7 @@ namespace windowing
       //virtual unsigned int IsDlgButtonChecked(int nIDButton) const;
       //virtual lresult SendDlgItemMessage(int nID,unsigned int message,const ::wparam & wparam = {},const ::lparam & lparam = {});
       //virtual void SetDlgItemInt(int nID,unsigned int nValue,bool bSigned = true);
-      //virtual void SetDlgItemText(int nID, const ::string & pszString);
+      //virtual void SetDlgItemText(int nID, const ::scoped_string & scopedstrString);
 
 
       //virtual int GetScrollPos(int nBar) const;
@@ -1153,7 +1153,7 @@ namespace windowing
 
       //bool FlashWindow(bool bInvert);
 
-      //virtual int message_box(const ::string & pszText, const ::string & pszCaption = nullptr,unsigned int nType = e_message_box_ok);
+      //virtual int message_box(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption = nullptr,unsigned int nType = e_message_box_ok);
 
 
 //#if(WINVER >= 0x0500)
@@ -1229,7 +1229,7 @@ namespace windowing
 
 
       // for creating dialogs and dialog-like windows
-      //virtual bool CreateDlg(const ::string & pszTemplateName, ::windowing::window * puiParent);
+      //virtual bool CreateDlg(const ::scoped_string & scopedstrTemplateName, ::windowing::window * puiParent);
 
       //virtual bool CreateDlgIndirect(LPCDLGTEMPLATE pDialogTemplate, ::windowing::window * puiParent,
 
@@ -1449,7 +1449,7 @@ namespace windowing
 
 
 
-      //virtual void set_bitmap_source(const string & strBitmapSource);
+      //virtual void set_bitmap_source(const ::scoped_string & scopedstrBitmapSource);
       //virtual void clear_bitmap_source();
 
       //virtual void set_tool_window(bool bSet);

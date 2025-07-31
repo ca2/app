@@ -193,11 +193,11 @@ namespace platform
       //void request(::request * prequest) override;
 
 
-      //virtual string matter_as_string(const ::string & pszMatter,const ::string & pszMatter2);
-      //virtual string directory()->matter(const ::string & pszMatter,const ::string & pszMatter2);
+      //virtual string matter_as_string(const ::scoped_string & scopedstrMatter,const ::scoped_string & scopedstrMatter2);
+      //virtual string directory()->matter(const ::scoped_string & scopedstrMatter,const ::scoped_string & scopedstrMatter2);
 
-      //virtual bool is_inside_time_dir(const ::string & pszPath);
-      //virtual bool file_is_read_only(const ::string & pszPath);
+      //virtual bool is_inside_time_dir(const ::scoped_string & scopedstrPath);
+      //virtual bool file_is_read_only(const ::scoped_string & scopedstrPath);
 
       // Long PhRESSing time
       // time in ::times that a pressing is considered a double click
@@ -209,7 +209,7 @@ namespace platform
 
       //virtual bool on_create_frame_window();
 
-      //virtual string account_get_user_sessid(const ::string & str) override;
+      //virtual string account_get_user_sessid(const ::scoped_string & scopedstr) override;
 
       // apex commented
       //virtual void translate_os_key_message(::user::key * pkey);
@@ -264,7 +264,7 @@ namespace platform
       // apex commented
       //::user::keyboard& keyboard();
 
-      virtual bool open_by_file_extension(const ::string & pszPathName, ::request * prequest = nullptr);
+      virtual bool open_by_file_extension(const ::scoped_string & scopedstrPathName, ::request * prequest = nullptr);
 
       virtual bool open_by_file_extension(::request * prequest);
 
@@ -274,13 +274,13 @@ namespace platform
 
       virtual void frame_pre_translate_message(::message::message * pmessage);
 
-      virtual bool is_licensed(const ::string & pszId, bool bInteractive = true);
+      virtual bool is_licensed(const ::scoped_string & scopedstrId, bool bInteractive = true);
 
-      virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
+      virtual bool get_auth(const ::scoped_string & scopedstrForm, string & strUsername, string & strPassword);
 
       //void on_instantiate_application(::platform::application* papp) override;
 
-      //::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::request * prequest) override;
+      //::application * application_get(const ::scoped_string & scopedstrAppId, bool bCreate, bool bSynch, ::request * prequest) override;
 
       virtual ::user::e_key key_modifiers();
 
@@ -345,9 +345,9 @@ namespace platform
       //virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction);
 
 
-      //virtual void defer_instantiate_user_theme(const ::string & pszUiInteractionLibrary = nullptr);
-      //::pointer<::user::theme>instantiate_user_theme(const ::string & pszExperienceLibrary, ::apex::application * papp = nullptr);
-      //::pointer<::user::theme>get_user_theme(const ::string & pszExperienceLibrary, ::apex::application * papp = nullptr);
+      //virtual void defer_instantiate_user_theme(const ::scoped_string & scopedstrUiInteractionLibrary = nullptr);
+      //::pointer<::user::theme>instantiate_user_theme(const ::scoped_string & scopedstrExperienceLibrary, ::apex::application * papp = nullptr);
+      //::pointer<::user::theme>get_user_theme(const ::scoped_string & scopedstrExperienceLibrary, ::apex::application * papp = nullptr);
 
 
       //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText);
@@ -430,8 +430,8 @@ namespace platform
       //virtual void check_topic_file_change();
 
 
-      virtual void launch_app(const ::string & psz);
-      virtual void install_app(const ::string & psz);
+      virtual void launch_app(const ::scoped_string & scopedstr);
+      virtual void install_app(const ::scoped_string & scopedstr);
 
 
 
@@ -458,7 +458,7 @@ namespace platform
 
       ::pointer<::apex::application>get_current_application();
 
-      virtual void set_app_title(const ::string & pszAppId, const ::string & pszTitle);
+      virtual void set_app_title(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrTitle);
 
       virtual ::pointer<::apex::session>get_session();
 

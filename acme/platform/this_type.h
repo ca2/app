@@ -25,7 +25,7 @@ public:
    
    
    this_type(const ::scoped_string & scopedstr) :
-   m_psz(psz)
+   m_psz(scopedstr)
    {
    
       this_type_init(m_psz);

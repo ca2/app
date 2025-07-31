@@ -198,7 +198,7 @@ namespace file
       path(const CHARACTER2 * start, character_count len, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) :
          path(::string(start, len), epath, etype, bNormalize, iSize) {}
 //      template < primitive_character CHARACTER2 >
-//      path(const CHARACTER2 * pszSource, character_count start, character_count len) :path(::string(pszSource, start, len)){}
+//      path(const CHARACTER2 * pszSource, character_count start, character_count len) :path(::string(scopedstrSource, start, len)){}
       template < primitive_character CHARACTER2, character_count sizeMaximumLength >
       path(const inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
          path(inlinestring.begin(), inlinestring.end())
@@ -297,7 +297,7 @@ namespace file
 //      path(const ::atom & atom) : path(::string(atom)){}
 //      path(const ::payload & payload);
 //      path(const ::property & property);
-////      path(const ::string & str);
+////      path(const ::scoped_string & scopedstr);
       ~path() noexcept;
 
 
@@ -459,7 +459,7 @@ namespace file
 
       }
 
-      bool operator == (const ::string & str) const;
+      bool operator == (const ::scoped_string & scopedstr) const;
       /*{
 
          return is_equal_fast(path(block));
@@ -471,7 +471,7 @@ namespace file
       //bool operator == (const ::ansi_string & str) const;
 
 
-      bool operator == (const ::scoped_string & scopedstr) const;
+      bool operator == (const ::string & str) const;
 
 
       bool operator != (const path & path) const;
@@ -496,7 +496,7 @@ namespace file
 
 
       //path & operator += (const path & path);
-      path & operator += (const ::string & str);
+      path & operator += (const ::scoped_string & scopedstr);
       //path & operator += (const ::const_ansi_range & ansirange);
       //using path_meta::operator +=;
 
@@ -505,7 +505,7 @@ namespace file
       //path operator / (const ::scoped_string & scopedstr) const;
       //path operator / (const path & path) const;
       //path operator / (const ::ansi_character * psz) const;
-      //path operator / (const ::string & str) const;
+      //path operator / (const ::scoped_string & scopedstr) const;
 
       path slash_path(const ::scoped_string & scopedstr) const;
       //path & operator /= (const path & path);
@@ -685,7 +685,7 @@ inline ::hash32 as_hash32 < const ::file::path & >(const ::file::path & key);
 //inline ::file::path operator / (const ::ansi_character * psz, const ::file::path & pathConcat)
 //{
 //
-//   string str(psz);
+//   string str(scopedstr);
 //
 //   ::file::path path(str);
 //

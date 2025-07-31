@@ -142,7 +142,7 @@ inline bool payload::is_array() const
 
 
 
-inline bool CLASS_DECL_AURA operator == (const ::string & str, const ::payload & payload)
+inline bool CLASS_DECL_AURA operator == (const ::scoped_string & scopedstr, const ::payload & payload)
 {
 
    return str == payload.get_string();

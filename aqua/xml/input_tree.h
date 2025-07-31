@@ -24,16 +24,16 @@ namespace xml
 
 
       input_tree();
-      input_tree(const ::string & strXml);
+      input_tree(const ::scoped_string & scopedstrXml);
       input_tree(tree_schema * pschema);
       ~input_tree() override;
 
 
-      virtual ::xml::node * import_node(const ::string & strName, importable & importable);
+      virtual ::xml::node * import_node(const ::scoped_string & scopedstrName, importable & importable);
 
-      virtual ::xml::node * import_node(const ::string & strName, ::property_set & set, importable & importable);
+      virtual ::xml::node * import_node(const ::scoped_string & scopedstrName, ::property_set & set, importable & importable);
 
-      virtual ::xml::node * import_node(const ::string & strName, ::payload & payload);
+      virtual ::xml::node * import_node(const ::scoped_string & scopedstrName, ::payload & payload);
 
 
 

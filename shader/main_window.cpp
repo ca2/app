@@ -292,7 +292,7 @@ namespace app_shader
    }
 
 
-   void main_window::update_shader(const ::string & strShaderPath)
+   void main_window::update_shader(const ::scoped_string & scopedstrShaderPath)
    {
 
       {

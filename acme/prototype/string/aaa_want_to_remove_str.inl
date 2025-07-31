@@ -23,13 +23,13 @@ inline void std_string_assign(string_base & t, const bstring * pbstr)
 template < >
 inline void std_string_assign(stdstring < memory > & t, const ::scoped_string & scopedstr)
 {
-   t.assign(psz);
+   t.assign(scopedstr);
 }
 
 template < >
 inline void std_string_assign(stdstring < memory > & t, const unichar * psz)
 {
-   t.assign(::str::ch().international::unicode_to_utf8(psz));
+   t.assign(::str::ch().international::unicode_to_utf8(scopedstr));
 }
 
 template < >

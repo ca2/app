@@ -177,9 +177,9 @@ namespace user
 
                  //#ifdef WINDOWS_DESKTOP
                  //
-                 //            wstring wstrClassName(pszClassName);
+                 //            wstring wstrClassName(scopedstrClassName);
                  //
-                 //            wstring wstrWindowName(pszWindowName);
+                 //            wstring wstrWindowName(scopedstrWindowName);
                  //
                  //            ::user::system pusersystem(0, wstrClassName, wstrWindowName, uStyle, rectangle, pcreate);
                  //
@@ -579,7 +579,7 @@ namespace user
    }
 
 
-   void frame_interaction::add_menu_item(const ::string & strPath, const ::string & strText, const ::string & strId)
+   void frame_interaction::add_menu_item(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrId)
    {
 
       m_straMenuParent.add(strPath);
@@ -647,7 +647,7 @@ namespace user
    }
 
 
-//   ::pointer<::utoolbar>frame_interaction::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type_atom & typeatom)
+//   ::pointer<::utoolbar>frame_interaction::load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type_atom & typeatom)
 //   {
 //
 //      return false;
@@ -712,7 +712,7 @@ namespace user
 
 
 
-   void frame_interaction::set_frame_title(const string& strFrameTitle)
+   void frame_interaction::set_frame_title(const ::scoped_string & scopedstrFrameTitle)
    {
 
       m_strFrameTitle = strFrameTitle;
@@ -825,10 +825,10 @@ namespace user
    }
 
 
-   ::user::enum_style frame_interaction::translate_user_style(const ::string & pszStyle)
+   ::user::enum_style frame_interaction::translate_user_style(const ::scoped_string & scopedstrStyle)
    {
 
-      string strStyle(pszStyle);
+      string strStyle(scopedstrStyle);
 
       if (strStyle == "TranslucidLightBlue")
       {
@@ -933,7 +933,7 @@ namespace user
    }
 
 
-   void frame_interaction::set_user_style(const ::string & strStyle)
+   void frame_interaction::set_user_style(const ::scoped_string & scopedstrStyle)
    {
 
       m_strStyle = strStyle;

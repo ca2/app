@@ -172,7 +172,7 @@ void message_box_synchronous(oswindow window, const ::scoped_string & scopedstrM
 {
    
    
-   int iResult = _os_message_box(pszMessage, pszTitle, emessagebox);
+   int iResult = _os_message_box(scopedstrMessage, pszTitle, emessagebox);
    
    string strResult = message_box_result_to_string(iResult);
 

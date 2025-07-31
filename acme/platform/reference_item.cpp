@@ -154,10 +154,10 @@ CLASS_DECL_ACME::collection::index new_reference_item_serial()
 //
 //         string strNote = ::type(pReferer).name();
 //
-//         if (::is_set(pszObjRefDbg))
+//         if (::is_set(scopedstrObjRefDbg))
 //         {
 //
-//            strNote += " - " + string(pszObjRefDbg);
+//            strNote += " - " + string(scopedstrObjRefDbg);
 //
 //         }
 //

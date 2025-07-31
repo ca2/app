@@ -44,7 +44,7 @@ const char * g_pszaNetWmState[]=
 e_net_wm_state net_wm_state(const ::scoped_string & scopedstrText)
 {
 
-   if(::is_null(pszText))
+   if(::is_null(scopedstrText))
    {
 
       return net_wm_state_count;
@@ -58,7 +58,7 @@ e_net_wm_state net_wm_state(const ::scoped_string & scopedstrText)
    while(ppsz[i] != NULL)
    {
 
-      if(!case_insensitive_ansi_compare(pszText, ppsz[i]))
+      if(!case_insensitive_ansi_compare(scopedstrText, ppsz[i]))
       {
 
          break;
@@ -446,7 +446,7 @@ int oswindow_data::x_change_property(Atom property, Atom type, int format, int m
 Atom oswindow_data::intern_atom(const ::scoped_string & scopedstrAtomName, bool bCreate)
 {
 
-   return m_osdisplay->intern_atom(pszAtomName, bCreate);
+   return m_osdisplay->intern_atom(scopedstrAtomName, bCreate);
 
 }
 

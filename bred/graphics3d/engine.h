@@ -47,7 +47,7 @@ namespace graphics3d
 
 		bool													m_bWireframeMode = false;
 
-		::std::chrono::steady_clock::time_point	m_stdtimepoint;
+		::std::chrono::high_resolution_clock::time_point	m_stdtimepoint;
 		bool	m_bCreatedGlobalUbo;
 		::int_rectangle									m_rectanglePlacementNew;
 		::int_rectangle									m_rectanglePlacement;

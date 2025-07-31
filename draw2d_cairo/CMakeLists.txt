@@ -84,8 +84,8 @@ if (MSVC)
 elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
-    if(HAS_PKGCONFIG)
-        pkg_check_modules(PKGCONFIG freetype2 pango cairo pangocairo)
+    if(${USE_PKGCONFIG})
+        pkg_check_modules(${PROJECT_NAME}_PKGCONFIG freetype2 pango cairo pangocairo)
     else()
         list(APPEND library_references cairo)
     endif()

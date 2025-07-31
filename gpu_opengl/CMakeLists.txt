@@ -161,8 +161,8 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
       list(APPEND extra_pkg_modules gl osmesa)
    endif()
 
-    #if (USE_PKGCONFIG)
-        pkg_check_modules(PKGCONFIG glew egl assimp ${extra_pkg_modules})
+    #if (${USE_PKGCONFIG})
+        pkg_check_modules(${PROJECT_NAME}_PKGCONFIG glew egl assimp ${extra_pkg_modules})
 
     #endif ()
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

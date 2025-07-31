@@ -68,8 +68,8 @@ if (${MSVC})
 elseif (${FREEBSD})
 
 
-    #pkg_check_modules(PKGCONFIG librsvg-2.0 freeimage)
-    pkg_check_modules(PKGCONFIG_${PROJECT_NAME} freeimage)
+    #pkg_check_modules(${PROJECT_NAME}_PKGCONFIG librsvg-2.0 freeimage)
+    pkg_check_modules(${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME} freeimage)
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_${PROJECT_NAME}_CFLAGS})
     target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_${PROJECT_NAME}_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE  ${PKGCONFIG_${PROJECT_NAME}_LDFLAGS})
@@ -90,7 +90,7 @@ elseif (${LINUX} OR ${OPENBSD} OR ${NETBSD} OR ${ANDROID})
 
 
     #if(USE_PKGCONFIG)
-    #    pkg_check_modules(PKGCONFIG_${PROJECT_NAME} librsvg-2.0)
+    #    pkg_check_modules(${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME} librsvg-2.0)
     #endif()
 
 

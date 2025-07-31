@@ -58,7 +58,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
    if(USE_PKGCONFIG)
-      pkg_check_modules(PKGCONFIG sqlite3)
+      pkg_check_modules(${PROJECT_NAME}_PKGCONFIG sqlite3)
    else()
       list(APPEND library_references
               sqlite)

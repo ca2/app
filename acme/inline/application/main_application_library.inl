@@ -7,10 +7,11 @@
 CLASS_DECL_ACME void string_short_test();
 
 
+
 namespace APPLICATION_NAMESPACE
 {
-   
-   CLASS_DECL_IMPORT void application_factory(::factory::factory * pfactory);
+
+   CLASS_DECL_IMPORT void application_factory(::factory::factory* pfactory);
 
 }
 
@@ -82,7 +83,7 @@ extern char _binary__matter_zip_end[];
 //
 //#endif
 
-void set_argc_argv_envp(int argc, char ** argv, char ** envp);
+void set_argc_argv_envp(int argc, char** argv, char** envp);
 
 #endif
 
@@ -92,74 +93,305 @@ void set_argc_argv_envp(int argc, char ** argv, char ** envp);
 void set_global_exit_code(int iExitCode);
 extern "C" void netbsd_cleanup(int signo);
 #endif
-	
+
 bool os_on_init_thread();
 void os_on_term_thread();
 
 int __implement();
 
+//#if defined(WINDOWS)
+//CLASS_DECL_APPLICATION_NAMESPACE int APPLICATION_NAMESPACE_MAIN(wWinMain)(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow)
+//#elif defined(ANDROID)
+//extern "C" int APPLICATION_NAMESPACE_MAIN(android_main)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
+//#else
+//extern "C" int APPLICATION_NAMESPACE_MAIN(main)(int argc, char* argv[], char* envp[])
+//#endif
+//{
+//
+//   int iExitCode = -1;
+//
+//   {
+//
+//      auto psystem = ::as_pointer(new ::PLATFORM_LAYER_NAME::system());
+//
+//#ifdef NETBSD
+//
+//      ::print_line("NETBSD SIGINT installation");
+//      ::signal(SIGINT, netbsd_cleanup);
+//      ::print_line("NETBSD SIGTERM installation");
+//      ::signal(SIGTERM, netbsd_cleanup);
+//      ::print_line("NETBSD SIGHUP installation");
+//      ::signal(SIGHUP, netbsd_cleanup);
+//
+//#endif
+//
+//
+//      //if (this->::system()->m_papplication->has_finishing_flag())
+//      //{
+//
+//      //   return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
+//
+//      //}
+//
+//#if defined(WINDOWS)
+//
+//      psystem->initialize_system(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+//
+//#else
+//
+//      psystem->initialize_system(argc, argv, envp);
+//
+//#endif
+//
+//#if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
+//
+//      psystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
+//
+//#elif defined(ANDROID)
+//
+//      psystem->set_resource_block(p1, p2);
+//
+//#endif
+//
+//      string_short_test();
+//
+//   }
+//
+//   {
+//
+//      ::os_on_init_thread();
+//
+//      set_main_thread();
+//
+//      ::APPLICATION_NAMESPACE::application_factory(psystem->factory());
+//
+//      psystem->application_main();
+//
+//      ::os_on_term_thread();
+//
+//   }
+//
+//   iExitCode = psystem->m_iExitCode;
+//
+//}
+//
+////system.on_system_before_destroy();
+//
+//#ifdef NETBSD
+//
+//set_global_exit_code(iExitCode);
+//
+//netbsd_cleanup(0);
+//
+//#else
+//
+//return iExitCode;
+//
+//#endif
+////::acme::sub_application::g_p->m_pacmeapplicationSub->m_bConsole = true;
+//
+//////   application.m_applicationflags.m_bConsole = true;
+//////
+//////
+//   //::acme::acme::g_pacme->m_papplication->implement_application();
+//
+//   //return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
+//
+////   acme::acme acme;
+////
+////   auto pplatform = __allocate subsystem();
+////
+////   auto pmainhold = __allocate main_hold();
+//
+////   ::main acme;
+////
+////   ::sub_system subsystem(&acme);
+////
+////   main_hold mainhold;
+////
+////   #ifdef WINDOWS
+////
+////#ifdef WINDOWS_DESKTOP
+////
+////   //if (!m_hinstanceThis)
+////   //{
+////
+////   subsystem.m_hinstanceThis = hinstanceThis;
+////   subsystem.m_hinstancePrev = hinstancePrev;
+////   //}
+////   subsystem.m_nCmdShow = nCmdShow;
+////   //m_hPrevInstance = nullptr;
+////
+////   if (subsystem.m_nCmdShow == -1000)
+////   {
+////
+////      subsystem.m_nCmdShow = SW_SHOWDEFAULT;
+////
+////   }
+////
+////#elif defined(LINUX)
+////
+////   m_bGtkApp = false;
+////
+////#endif
+////
+////
+////      //set_winmain(hinstanceThis, hinstancePrev, nCmdShow);
+////   
+////   #else
+////
+////      subsystem.m_argc = argc;
+////
+////      subsystem.m_argv = argv;
+////
+////      subsystem.m_envp = envp;
+////
+////
+////   #endif
+////
+////   int iExitCode = __implement();
+////
+////   return iExitCode;
+////
+//////   ///auto pmainhold = __allocate main_hold();
+//////
+//////   auto papp = IDENTIFIER_CONCATENATE(new_, APP)();
+//////
+//////   //pmainhold->m_papplication = papp;
+//////
+//////#ifdef WINDOWS_DESKTOP
+//////   //{
+//////
+//////   //   auto papp = ::app_factory::new_app();
+//////
+//////      papp->m_argc = __argc;
+//////
+//////      papp->m_argv = __argv;
+//////
+//////      papp->m_wargv = __wargv;
+//////
+//////      papp->m_envp = *__p__environ();
+//////
+//////      papp->m_wenvp = *__p__wenviron();
+//////
+//////      papp->m_hinstanceThis = hinstanceThis;
+//////
+//////      papp->m_hinstancePrev = hinstancePrev;
+//////
+//////      papp->m_strCommandLine = ::GetCommandLineW();
+//////
+//////      papp->m_nCmdShow = nCmdShow;
+//////
+//////      //papp->m_bConsole = false;
+//////
+//////      //int iExitCode = papp->main_loop();
+//////
+//////      //return iExitCode;
+//////
+//////#elif !defined(UNIVERSAL_WINDOWS)
+//////
+//////   papp->set_args(argc, argv, envp);
+//////
+//////#endif
+//////
+//////#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(RASPBERRYPIOS)
+//////
+//////   papp->m_pchar_binary__matter_zip_start = _binary__matter_zip_start;
+//////
+//////   papp->m_pchar_binary__matter_zip_end = _binary__matter_zip_end;
+//////
+//////#elif defined(ANDROID)
+//////
+//////   papp->m_pchar_binary__matter_zip_start = p1;
+//////
+//////   papp->m_pchar_binary__matter_zip_end = p2;
+//////
+//////#endif
+//////
+//////   int iExitCode = papp->main_loop();
+//////
+//////   return papp->m_estatus;
+//
+//}
+//
+//
+
+
+
 #if defined(WINDOWS)
-CLASS_DECL_APPLICATION_NAMESPACE int APPLICATION_NAMESPACE_MAIN(wWinMain)(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow)
+CLASS_DECL_APPLICATION_NAMESPACE::platform::system* APPLICATION_NAMESPACE_MAIN(create_system)(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow)
 #elif defined(ANDROID)
-extern "C" int APPLICATION_NAMESPACE_MAIN(android_main)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
+extern "C" ::platform::system* APPLICATION_NAMESPACE_MAIN(create_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
 #else
-extern "C" int APPLICATION_NAMESPACE_MAIN(main)(int argc, char * argv[], char * envp[])
+extern "C" ::platform::system* APPLICATION_NAMESPACE_MAIN(create_system)(int argc, char* argv[], char* envp[])
 #endif
 {
-   
-   int iExitCode = -1;
-   
+
    {
-      
-      auto psystem = ::as_pointer(new ::PLATFORM_LAYER_NAME::system());
-      
+
+      auto psystem = new ::PLATFORM_LAYER_NAME::system();
+
 #ifdef NETBSD
-      
+
       ::print_line("NETBSD SIGINT installation");
       ::signal(SIGINT, netbsd_cleanup);
       ::print_line("NETBSD SIGTERM installation");
       ::signal(SIGTERM, netbsd_cleanup);
       ::print_line("NETBSD SIGHUP installation");
       ::signal(SIGHUP, netbsd_cleanup);
-      
+
 #endif
-      
-      
+
+
       //if (this->::system()->m_papplication->has_finishing_flag())
       //{
-      
+
       //   return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
-      
+
       //}
-      
+
 #if defined(WINDOWS)
-      
+
       psystem->initialize_system(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
-      
+
 #else
-      
+
       psystem->initialize_system(argc, argv, envp);
-      
+
 #endif
-      
+
 #if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
-      
+
       psystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
-      
+
 #elif defined(ANDROID)
-      
+
       psystem->set_resource_block(p1, p2);
-      
+
 #endif
 
       string_short_test();
-      
+
+      return psystem;
+
+   }
+
+}
+
+
+CLASS_DECL_APPLICATION_NAMESPACE int APPLICATION_NAMESPACE_MAIN(main)(::platform::system* psystem)
+{
+
+   int iExitCode = -1;
+
+   {
+
       {
-         
+
          ::os_on_init_thread();
 
          set_main_thread();
-         
+
          ::APPLICATION_NAMESPACE::application_factory(psystem->factory());
 
          psystem->application_main();
@@ -167,147 +399,24 @@ extern "C" int APPLICATION_NAMESPACE_MAIN(main)(int argc, char * argv[], char * 
          ::os_on_term_thread();
 
       }
-      
+
       iExitCode = psystem->m_iExitCode;
-      
+
    }
 
    //system.on_system_before_destroy();
 
 #ifdef NETBSD
 
-set_global_exit_code(iExitCode);
+   set_global_exit_code(iExitCode);
 
-netbsd_cleanup(0);
+   netbsd_cleanup(0);
 
 #else
 
    return iExitCode;
-   
+
 #endif
-   //::acme::sub_application::g_p->m_pacmeapplicationSub->m_bConsole = true;
-
-   ////   application.m_applicationflags.m_bConsole = true;
-////
-////
-   //::acme::acme::g_pacme->m_papplication->implement_application();
-
-   //return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
-
-//   acme::acme acme;
-//
-//   auto pplatform = __allocate subsystem();
-//
-//   auto pmainhold = __allocate main_hold();
-
-//   ::main acme;
-//
-//   ::sub_system subsystem(&acme);
-//
-//   main_hold mainhold;
-//
-//   #ifdef WINDOWS
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//   //if (!m_hinstanceThis)
-//   //{
-//
-//   subsystem.m_hinstanceThis = hinstanceThis;
-//   subsystem.m_hinstancePrev = hinstancePrev;
-//   //}
-//   subsystem.m_nCmdShow = nCmdShow;
-//   //m_hPrevInstance = nullptr;
-//
-//   if (subsystem.m_nCmdShow == -1000)
-//   {
-//
-//      subsystem.m_nCmdShow = SW_SHOWDEFAULT;
-//
-//   }
-//
-//#elif defined(LINUX)
-//
-//   m_bGtkApp = false;
-//
-//#endif
-//
-//
-//      //set_winmain(hinstanceThis, hinstancePrev, nCmdShow);
-//   
-//   #else
-//
-//      subsystem.m_argc = argc;
-//
-//      subsystem.m_argv = argv;
-//
-//      subsystem.m_envp = envp;
-//
-//
-//   #endif
-//
-//   int iExitCode = __implement();
-//
-//   return iExitCode;
-//
-////   ///auto pmainhold = __allocate main_hold();
-////
-////   auto papp = IDENTIFIER_CONCATENATE(new_, APP)();
-////
-////   //pmainhold->m_papplication = papp;
-////
-////#ifdef WINDOWS_DESKTOP
-////   //{
-////
-////   //   auto papp = ::app_factory::new_app();
-////
-////      papp->m_argc = __argc;
-////
-////      papp->m_argv = __argv;
-////
-////      papp->m_wargv = __wargv;
-////
-////      papp->m_envp = *__p__environ();
-////
-////      papp->m_wenvp = *__p__wenviron();
-////
-////      papp->m_hinstanceThis = hinstanceThis;
-////
-////      papp->m_hinstancePrev = hinstancePrev;
-////
-////      papp->m_strCommandLine = ::GetCommandLineW();
-////
-////      papp->m_nCmdShow = nCmdShow;
-////
-////      //papp->m_bConsole = false;
-////
-////      //int iExitCode = papp->main_loop();
-////
-////      //return iExitCode;
-////
-////#elif !defined(UNIVERSAL_WINDOWS)
-////
-////   papp->set_args(argc, argv, envp);
-////
-////#endif
-////
-////#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(RASPBERRYPIOS)
-////
-////   papp->m_pchar_binary__matter_zip_start = _binary__matter_zip_start;
-////
-////   papp->m_pchar_binary__matter_zip_end = _binary__matter_zip_end;
-////
-////#elif defined(ANDROID)
-////
-////   papp->m_pchar_binary__matter_zip_start = p1;
-////
-////   papp->m_pchar_binary__matter_zip_end = p2;
-////
-////#endif
-////
-////   int iExitCode = papp->main_loop();
-////
-////   return papp->m_estatus;
 
 }
 

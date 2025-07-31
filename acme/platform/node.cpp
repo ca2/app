@@ -3629,7 +3629,7 @@ bool node::_is_smart_git_installed()
 #endif
 
 
-#if !defined(ANDROID)
+#if !defined(ANDROID) && !defined(LINUX)
 
    string node::_get_call_stack_trace(const ::scoped_string & scopedstrFormat, int iSkip, void * caller_address, int iCount)
    {

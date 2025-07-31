@@ -1746,6 +1746,7 @@
     <ClInclude Include="constant\call.h" />
     <ClInclude Include="platform\http.h" />
     <ClInclude Include="prototype\collection\static_array.h" />
+    <ClInclude Include="prototype\geometry\Matrix.h" />
     <ClInclude Include="prototype\prototype\call.h" />
     <ClInclude Include="compress\compress.h" />
     <ClInclude Include="compress\uncompress.h" />

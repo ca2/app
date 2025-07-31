@@ -4221,6 +4221,9 @@
     <ClInclude Include="prototype\collection\static_array.h">
       <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\geometry\Matrix.h">
+      <Filter>Header Files\prototype\geometry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

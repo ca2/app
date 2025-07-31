@@ -318,13 +318,7 @@ int __implement();
 
 
 
-#if defined(WINDOWS)
-CLASS_DECL_APPLICATION_NAMESPACE::platform::system* APPLICATION_NAMESPACE_MAIN(create_system)(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow)
-#elif defined(ANDROID)
-extern "C" ::platform::system* APPLICATION_NAMESPACE_MAIN(create_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
-#else
-extern "C" ::platform::system* APPLICATION_NAMESPACE_MAIN(create_system)(int argc, char* argv[], char* envp[])
-#endif
+CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(create_system)()
 {
 
    {
@@ -342,6 +336,23 @@ extern "C" ::platform::system* APPLICATION_NAMESPACE_MAIN(create_system)(int arg
 
 #endif
 
+   }
+
+}
+
+
+#if defined(WINDOWS)
+CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(initialize_system)(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow)
+#elif defined(ANDROID)
+extern "C" void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
+#else
+extern "C" void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[])
+#endif
+{
+
+   {
+
+      auto psystem = ::system();
 
       //if (this->::system()->m_papplication->has_finishing_flag())
       //{
@@ -372,19 +383,20 @@ extern "C" ::platform::system* APPLICATION_NAMESPACE_MAIN(create_system)(int arg
 
       string_short_test();
 
-      return psystem;
-
    }
 
 }
 
 
-CLASS_DECL_APPLICATION_NAMESPACE int APPLICATION_NAMESPACE_MAIN(main)(::platform::system* psystem)
+
+CLASS_DECL_APPLICATION_NAMESPACE int APPLICATION_NAMESPACE_MAIN(main)()
 {
 
    int iExitCode = -1;
 
    {
+
+      auto psystem = ::system();
 
       {
 

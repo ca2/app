@@ -32,17 +32,17 @@ extern "C" int main(int argc, char* argv[], char* envp[])
 #endif
 {
 
-   ::platform::system* psystem;
+   APPLICATION_NAMESPACE_MAIN(create_system)();
 
 #if defined(WINDOWS)
-   psystem = APPLICATION_NAMESPACE_MAIN(create_system)(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+   APPLICATION_NAMESPACE_MAIN(initialize_system)(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
 #elif defined(__ANDROID__)
-   psystem = APPLICATION_NAMESPACE_MAIN(create_system)(argc, argv, envp, p1, p2);
+   APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp, p1, p2);
 #else
-   psystem = APPLICATION_NAMESPACE_MAIN(create_system)(int argc, char* argv[], char* envp[]);
+   APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[]);
 #endif
 
-   auto iExitCode = APPLICATION_NAMESPACE_MAIN(main)(psystem);
+   auto iExitCode = APPLICATION_NAMESPACE_MAIN(main)();
 
    return iExitCode;
 

@@ -78,7 +78,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 #    else ()
 
 
-#        if (USE_PKGCONFIG)
+#        if (${USE_PKGCONFIG})
 #            pkg_check_modules(PKGCONFIG bzip2)
 #        endif ()
         target_compile_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})

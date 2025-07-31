@@ -8,7 +8,7 @@ namespace draw2d
 {
 
 
-   enum enum_model
+   enum enum_model : int
    {
 
       e_model_none,

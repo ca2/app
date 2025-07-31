@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "frame_001.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/path.h"
 #include "base/user/experience/frame_window.h"
 #include "base/user/experience/move_manager.h"
 #include "base/user/experience/size_manager.h"

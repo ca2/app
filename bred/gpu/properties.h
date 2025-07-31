@@ -32,6 +32,7 @@ namespace gpu
 		int m_iCachedOffset = -1;
 
 		property() {}
+        property(nullptr_t) {}
 		property(const char* pszName, ::gpu::enum_type etype) :
 			m_pszName(pszName), m_etype(etype)
 		{
@@ -468,9 +469,9 @@ namespace gpu
 #define GPU_PROPERTY(...) {__VA_ARGS__},
 
 #define END_GPU_PROPERTIES() \
-   {  } \
+   nullptr \
    }; \
-   return { s_pproperty };  \
+   return s_pproperty;  \
 } 
  
 

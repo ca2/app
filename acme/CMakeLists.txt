@@ -2151,7 +2151,7 @@ if (UWP)
 endif ()
 
 
-if (WIN32)
+if (${WIN32})
 
     list(APPEND library_source
             #      operating_system/windows/console.cpp
@@ -3058,8 +3058,7 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-        operating_system/windows_common/nano/compress/_factory.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

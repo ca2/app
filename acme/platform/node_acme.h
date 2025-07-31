@@ -140,6 +140,7 @@ namespace platform
       virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state* pkeystate);
 
 
+      virtual void notify_system_started();
       //idaPid = pnode->(path, false);
 
 

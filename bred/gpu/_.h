@@ -137,7 +137,7 @@ namespace draw2d
 {
 
 
-   enum enum_model;
+   enum enum_model : int;
 
 
 } // namespace draw2d

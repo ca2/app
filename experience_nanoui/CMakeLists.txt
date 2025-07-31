@@ -62,7 +62,7 @@ if (MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_nanoui.lib")
     target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_nanoui.def")
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis base)
-elseif(${LINUX})
+elseif(${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

@@ -98,7 +98,7 @@ namespace graphics3d
 		//void on_begin_frame() override;
 		virtual void run_cpu_buffer();
 
-		virtual void run();
+		void run() override;
 
 		
       virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics);

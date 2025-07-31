@@ -44,6 +44,12 @@ namespace platform
    }
 
 
+    void acme_node_layer::notify_system_started()
+    {
+
+
+    }
+
    //idaPid = pnode->(path, false){}
 
 

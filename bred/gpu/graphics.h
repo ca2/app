@@ -118,7 +118,7 @@ namespace gpu
 
       void thread_select() override;
 
-      void _set(const ::geometry2d::matrix& matrix);
+      void _set(const ::geometry2d::matrix& matrix) override;
 
       void do_on_context(const ::procedure& procedure) override;
 
@@ -152,7 +152,7 @@ namespace gpu
 
       virtual void _fill_quad(const ::double_point points[4], const ::color::color& color);
 
-      void fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color);
+      void fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color) override;
 
 
       using ::draw2d::graphics::get_text_extent;

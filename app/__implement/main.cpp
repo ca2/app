@@ -1,6 +1,6 @@
 #include "framework.h"
 #define APPLICATION_NAMESPACE app_app
-#include "acme/inline/application/main.inl"
+#include "acme/inline/application/main_executable.inl"
 //
 //
 //void application_main(::platform::system * psystem)

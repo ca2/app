@@ -9,13 +9,19 @@
 #define APPLICATION_NAMESPACE_MAIN(function) IDENTIFIER_CONCATENATE(IDENTIFIER_CONCATENATE(IDENTIFIER_CONCATENATE(APPLICATION_NAMESPACE, _main), _), function)
 
 
+#if defined(WINDOWS)
 CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(create_system)();
+#elif defined(__ANDROID__)
+extern "C" void APPLICATION_NAMESPACE_MAIN(create_system)();
+#else
+extern "C" void APPLICATION_NAMESPACE_MAIN(create_system)();
+#endif
 
 
 #if defined(WINDOWS)
 CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(initialize_system)(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow);
 #elif defined(__ANDROID__)
-CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
+CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2);
 #else
 CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[]);
 #endif

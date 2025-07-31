@@ -316,9 +316,13 @@ int __implement();
 //
 //
 
-
-
+#if defined(WINDOWS)
 CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(create_system)()
+#elif defined(__ANDROID__)
+extern "C" void APPLICATION_NAMESPACE_MAIN(create_system)()
+#else
+extern "C" void APPLICATION_NAMESPACE_MAIN(create_system)()
+#endif
 {
 
    {
@@ -343,10 +347,10 @@ CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(create_system)(
 
 #if defined(WINDOWS)
 CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(initialize_system)(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow)
-#elif defined(ANDROID)
-extern "C" void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
+#elif defined(__ANDROID__)
+extern "C" APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
 #else
-extern "C" void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[])
+extern "C" APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[])
 #endif
 {
 

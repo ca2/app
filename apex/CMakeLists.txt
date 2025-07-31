@@ -1485,8 +1485,8 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 
-   #   if (USE_PKGCONFIG)
-   #      pkg_check_modules(PKGCONFIG libarchive)
+   #   if (${USE_PKGCONFIG})
+   #      pkg_check_modules(${PROJECT_NAME}_PKGCONFIG libarchive)
    #   endif ()
    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
    target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

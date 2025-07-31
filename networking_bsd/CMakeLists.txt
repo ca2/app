@@ -195,7 +195,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
    if (${USE_PKGCONFIG})
       message(STATUS "networking_bsd USE_PKGCONFIG")
-      pkg_check_modules(PKGCONFIG libcrypto libssl)
+      pkg_check_modules(${PROJECT_NAME}_PKGCONFIG libcrypto libssl)
    else()
       list(APPEND library_references
       crypto ssl)

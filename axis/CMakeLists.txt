@@ -442,7 +442,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
    if (${HAS_SYSTEM_UNAC})
-      pkg_check_modules(PKGCONFIG unac)
+      pkg_check_modules(${PROJECT_NAME}_PKGCONFIG unac)
    endif ()
    #endif()
    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

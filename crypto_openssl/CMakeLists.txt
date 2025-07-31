@@ -56,7 +56,7 @@ if (MSVC)
 elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
     if(${USE_PKGCONFIG})
-        pkg_check_modules(PKGCONFIG libcrypto)
+        pkg_check_modules(${PROJECT_NAME}_PKGCONFIG libcrypto)
     endif()
 
 

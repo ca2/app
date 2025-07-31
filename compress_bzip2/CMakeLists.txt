@@ -72,7 +72,7 @@ else()
 
 
    if(USE_PKGCONFIG)
-      pkg_check_modules(PKGCONFIG bzip2)
+      pkg_check_modules(${PROJECT_NAME}_PKGCONFIG bzip2)
    endif()
    target_compile_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
 target_compile_options(static_${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})

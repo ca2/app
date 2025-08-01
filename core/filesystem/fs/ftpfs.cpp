@@ -43,7 +43,7 @@ void ftpfs::initialize_ftpfs(::particle * pparticle, const ::scoped_string & sco
 
    //}
 
-   m_strRoot = pszRoot;
+   m_strRoot = scopedstrRoot;
    m_bInitialized = false;
 
    m_straFtpServer.add("localhost");
@@ -402,8 +402,8 @@ retry:
 
 bool ftpfs::file_move(const ::file::path & pathTarget, const ::file::path & pathSource)
 {
-   __UNREFERENCED_PARAMETER(scopedstrDst);
-   __UNREFERENCED_PARAMETER(scopedstrSrc);
+   __UNREFERENCED_PARAMETER(pathTarget);
+   __UNREFERENCED_PARAMETER(pathSource);
    return true;
 }
 

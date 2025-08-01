@@ -1317,7 +1317,7 @@ bool file_exists(const ::file::path & path)
 //
 //   string strName;
 //
-//   ::file::path pathDir;
+//   ::file::path pathFolder;
 //
 //   character_count iLastPos = -1;
 //

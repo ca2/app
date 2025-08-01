@@ -812,7 +812,7 @@ void directory_system::create(const ::file::path & pathParam)
 
    string strName;
 
-   ::file::path pathDir;
+   ::file::path pathFolder;
 
    character_count iLastPo = -1;
 

@@ -4323,9 +4323,9 @@ namespace aura
 //
 //         }
 //
-//         ::file::path pathDir;
+//         ::file::path pathFolder;
 //
-//         pathDir = path.folder();
+//         pathFolder = path.folder();
 //
 //         ::file::path shell;
 //
@@ -4405,9 +4405,9 @@ namespace aura
 //
 //#endif
 //
-//      ::file::path pathDir;
+//      ::file::path pathFolder;
 //
-//      pathDir = path.folder();
+//      pathFolder = path.folder();
 //
 //      ::file::path pathAppDataDir(directory_system()->ca2roaming());
 //
@@ -4497,7 +4497,7 @@ namespace aura
 //
 //pdirectorysystem->localconfig() / "app-core/commander/chrome.txt");
 //
-//            call_async(path, strParam, pathDir, e_display_default, false);
+//            call_async(path, strParam, pathFolder, e_display_default, false);
 //
 //         }
 //
@@ -4552,7 +4552,7 @@ namespace aura
 //
 //         information(strParam);
 //
-//         call_async(shell, strParam, pathDir, e_display_default, false);
+//         call_async(shell, strParam, pathFolder, e_display_default, false);
 //
 //#endif
 //
@@ -4581,9 +4581,9 @@ namespace aura
 //
 //      }
 //
-//      ::file::path pathDir;
+//      ::file::path pathFolder;
 //
-//      pathDir = pathFirefox.folder();
+//      pathFolder = pathFirefox.folder();
 //
 //      ::file::path pathProfileDir;
 //
@@ -4595,7 +4595,7 @@ namespace aura
 //
 //      ::property_set set;
 //
-//      call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_min, set);
+//      call_sync(pathFirefox, strParam, pathFolder, e_display_default, 3_min, set);
 //
 //#endif
 //

@@ -217,13 +217,13 @@ namespace filemanager
       if(bDeleteOriginOnSuccessfulCopy)
       {
 
-         poperation->set_move(stra, pszDstBase);
+         poperation->set_move(stra, pathTargetBase);
 
       }
       else
       {
 
-         poperation->set_copy(stra, pszDstBase, pszSrcBase, bExpand);
+         poperation->set_copy(stra, pathTargetBase, pathSourceBase, bExpand);
 
       }
 

@@ -284,7 +284,7 @@ namespace filehandler
 
          pitem->m_etopictype      = item::topic_type_extension;
 
-         pitem->m_strTopic        = pszExtension;
+         pitem->m_strTopic        = scopedstrExtension;
 
       }
 
@@ -328,7 +328,7 @@ namespace filehandler
 
       pdataitem->m_etopictype      = item::topic_type_mime_type;
 
-      pdataitem->m_strTopic        = pszMimeType;
+      pdataitem->m_strTopic        = scopedstrMimeType;
 
       return ptreeitem;
 

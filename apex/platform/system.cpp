@@ -3707,9 +3707,9 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
          }
 
-         ::file::path pathDir;
+         ::file::path pathFolder;
 
-         pathDir = path.folder();
+         pathFolder = path.folder();
 
          ::file::path shell;
 
@@ -3789,9 +3789,9 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
 #endif
 
-      ::file::path pathDir;
+      ::file::path pathFolder;
 
-      pathDir = path.folder();
+      pathFolder = path.folder();
 
       ::file::path pathAppDataDir(directory_system()->ca2roaming());
 
@@ -3879,7 +3879,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
             auto pnode = node();
 
-            pnode->call_async(path, strParam, pathDir, e_display_default, false);
+            pnode->call_async(path, strParam, pathFolder, e_display_default, false);
 
          }
 
@@ -3934,7 +3934,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
          auto pnode = node();
 
-         pnode->call_async(shell, strParam, pathDir, e_display_default, false);
+         pnode->call_async(shell, strParam, pathFolder, e_display_default, false);
 
 #endif
 
@@ -3963,9 +3963,9 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       }
 
-      ::file::path pathDir;
+      ::file::path pathFolder;
 
-      pathDir = pathFirefox.folder();
+      pathFolder = pathFirefox.folder();
 
       ::file::path pathProfileDir;
 
@@ -3981,7 +3981,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       int iExitCode = 0;
 
-      pnode->call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_minute, set, &iExitCode);
+      pnode->call_sync(pathFirefox, strParam, pathFolder, e_display_default, 3_minute, set, &iExitCode);
 
 #endif
 

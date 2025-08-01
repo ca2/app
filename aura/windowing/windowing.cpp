@@ -208,7 +208,7 @@ namespace windowing
    }
 
 
-   void windowing::set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathDir)
+   void windowing::set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathFolder)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -229,7 +229,7 @@ namespace windowing
 
       m_pcursormanager->m_pwindowing = this;
 
-      m_pcursormanager->set_cursor_set_from_matter(pobjectContext, pathDir);
+      m_pcursormanager->set_cursor_set_from_matter(pobjectContext, pathFolder);
 
    }
 

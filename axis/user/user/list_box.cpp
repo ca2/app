@@ -331,7 +331,7 @@ namespace user
 
       }
 
-      m_straList.insert_at(iIndex, pszString);
+      m_straList.insert_at(iIndex, scopedstrString);
 
       m_atoma.insert_at(iIndex, ::atom::e_type_null);
 

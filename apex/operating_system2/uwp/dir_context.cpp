@@ -450,9 +450,9 @@ pdirectorysystem->ca2roaming() / "home";
       for (; i >= 0; i--)
       {
 
-         ::file::path pathDir = stra[i];
+         ::file::path pathFolder = stra[i];
 
-         if(is(pathDir))
+         if(is(pathFolder))
          {
 
             break;
@@ -471,9 +471,9 @@ pdirectorysystem->ca2roaming() / "home";
       for(; i < stra.get_size(); i++)
       {
 
-         ::file::path pathDir = stra[i];
+         ::file::path pathFolder = stra[i];
 
-         if (!::dir::mkdir(pathDir))
+         if (!::dir::mkdir(pathFolder))
          {
 
             unsigned int dwError = ::GetLastError();
@@ -483,7 +483,7 @@ pdirectorysystem->ca2roaming() / "home";
 
                string str;
 
-               str = "\\\\?\\" + pathDir;
+               str = "\\\\?\\" + pathFolder;
 
                str.trim_right("\\/");
 
@@ -743,7 +743,7 @@ try1:;
    }
 
 
-   bool directory_context::is_inside(const ::file::path & pathDir,const ::file::path & strPath)
+   bool directory_context::is_inside(const ::file::path & pathFolder,const ::file::path & strPath)
    {
 
       return case_insensitive_string_begins(scopedstrDir,strPath);
@@ -751,7 +751,7 @@ try1:;
    }
 
 
-   bool directory_context::has_subdir(const ::file::path & pathDir)
+   bool directory_context::has_subdir(const ::file::path & pathFolder)
    {
 
       return ::directory_context::has_subdir(scopedstrDir);

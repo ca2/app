@@ -226,7 +226,7 @@ namespace universal_windows
    //}
 
 
-   //bool directory_system::is_inside(const ::file::path & pathDir, const ::file::path& strPath)
+   //bool directory_system::is_inside(const ::file::path & pathFolder, const ::file::path& strPath)
    //{
 
    //   return case_insensitive_string_begins(scopedstrDir, strPath);
@@ -234,7 +234,7 @@ namespace universal_windows
    //}
 
 
-   //bool directory_system::has_subdir(::object* pparticle, const ::file::path & pathDir)
+   //bool directory_system::has_subdir(::object* pparticle, const ::file::path & pathFolder)
    //{
 
    //   return ::file::system_dir::has_subdir(pparticle, pszDir);

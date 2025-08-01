@@ -1185,7 +1185,7 @@ namespace platform
       ////#ifdef WINDOWS
       ////      HENHMETAFILE LoadEnhMetaFile(unsigned int uResource);
       ////#endif
-      //      bool GetResourceData(unsigned int nID, const ::string & lcszType, memory& storage);
+      //      bool GetResourceData(unsigned int nID, const ::scoped_string & scopedstrType, memory& storage);
 
       //#ifdef WINDOWS
       //      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
@@ -1194,7 +1194,7 @@ namespace platform
       //      virtual bool OnX11WindowMessage(void* pev);
       //#endif
 
-      //bool CreateFileFromRawResource(unsigned int nID, const ::string & lcszType, const ::scoped_string & scopedstrFilePath);
+      //bool CreateFileFromRawResource(unsigned int nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath);
 
       //virtual LRESULT GetPaintMsgProc(int nCode, WPARAM wParam, LPARAM lParam);
 

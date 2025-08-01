@@ -331,8 +331,8 @@ namespace ftp
    public:
       extended_info(const ::scoped_string & scopedstrServerString, const ::scoped_string & scopedstrCompleteServerStringSyntax, unsigned int uNumberOfParameters,
                     unsigned int uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType) :
-         m_strServerString(strServerString),
-         m_strCompleteServerStringSyntax(strCompleteServerStringSyntax),
+         m_strServerString(scopedstrServerString),
+         m_strCompleteServerStringSyntax(scopedstrCompleteServerStringSyntax),
          m_uNumberOfParameters(uNumberOfParameters),
          m_uNumberOfOptionalParameters(uNumberOfOptionalParameters),
          m_enSpecification(enSpecification),
@@ -448,14 +448,14 @@ namespace ftp
          const char * Value() const { return m_szCode; }
          bool Set(const ::scoped_string & scopedstrCode)
          {
-            if( strCode.length()!=3 ||
-                  strCode[0]<'1' || strCode[0]>'5' ||
-                  strCode[1]<'0' || strCode[1]>'5' )
+            if( scopedstrCode.length()!=3 ||
+                  scopedstrCode[0]<'1' || scopedstrCode[0]>'5' ||
+                  scopedstrCode[1]<'0' || scopedstrCode[1]>'5' )
             {
                zero(m_szCode);
                return false;
             }
-            ansi_cpy(m_szCode, strCode);
+            ansi_cpy(m_szCode, scopedstrCode);
             return true;
          }
 
@@ -478,7 +478,7 @@ namespace ftp
    public:
       bool Set(const ::scoped_string & scopedstrResponse)
       {
-         m_strResponse = strResponse;
+         m_strResponse = scopedstrResponse;
          if( m_strResponse.length()>2 )
             return m_Code.Set(m_strResponse.substr(0, 3));
          return false;

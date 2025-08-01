@@ -3819,7 +3819,7 @@ namespace windowing
          if (puserinteraction)
          {
 
-            user_interaction()->set_window_text(lpszName);
+            user_interaction()->set_window_text(scopedstrName);
 
          }
 
@@ -10633,12 +10633,12 @@ namespace windowing
    void window::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
-      m_strBitmapSource = strBitmapSource;
+      m_strBitmapSource = scopedstrBitmapSource;
 
       if (m_pgraphicsgraphics)
       {
 
-         m_pgraphicsgraphics->set_bitmap_source(strBitmapSource);
+         m_pgraphicsgraphics->set_bitmap_source(scopedstrBitmapSource);
 
       }
 

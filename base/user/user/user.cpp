@@ -1331,7 +1331,7 @@ namespace base
    ::user::style_pointer user::get_user_style(const ::scoped_string & scopedstrExperienceLibrary, ::platform::application * papp)
    {
 
-      auto & pstyle = m_mapUserStyle[pszExperienceLibrary];
+      auto & pstyle = m_mapUserStyle[scopedstrExperienceLibrary];
 
       if (!pstyle)
       {
@@ -1350,7 +1350,7 @@ namespace base
    ::user::style_pointer user::instantiate_user_style(const ::scoped_string & scopedstrExperience, ::platform::application * papp)
    {
 
-      auto pexperience = experience()->experience(papp, strExperience);
+      auto pexperience = experience()->experience(papp, scopedstrExperience);
 
       ::user::style_pointer pstyle;
 

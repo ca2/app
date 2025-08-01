@@ -75,7 +75,7 @@ namespace wallpaper_system_summary
 
       //virtual bool locate(const ::file::path & path);
 
-      //virtual void add_file(const ::file::path & pathDir,const ::file::path & pathRelative);
+      //virtual void add_file(const ::file::path & pathFolder,const ::file::path & pathRelative);
 
       //bool dump(file_pointer pfile);
 

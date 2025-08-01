@@ -2818,7 +2818,7 @@ bool directory_context::is_inside_time(const ::file::path & path)
 }
 
 
-bool directory_context::is_inside(const ::file::path & pathDir, const ::file::path & path)
+bool directory_context::is_inside(const ::file::path & pathFolder, const ::file::path & path)
 {
 
    __UNREFERENCED_PARAMETER(scopedstrDir);
@@ -3191,7 +3191,7 @@ bool directory_context::is_inside(const ::file::path & pathDir, const ::file::pa
 //}
 //
 
-//bool directory_context::is_inside(const ::file::path & pathDir, const ::file::path & lpcszPath)
+//bool directory_context::is_inside(const ::file::path & pathFolder, const ::file::path & lpcszPath)
 //
 //{
 //

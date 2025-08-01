@@ -777,7 +777,7 @@ namespace platform
    //void aura_application_layer::process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override{}
 
    //      void EnableModelessEx(bool bEnable){}
-   //      bool GetResourceData(unsigned int nID, const ::string & lcszType, memory& storage){}
+   //      bool GetResourceData(unsigned int nID, const ::scoped_string & scopedstrType, memory& storage){}
 
    //#ifdef WINDOWS
    //      bool aura_application_layer::OnMessageWindowMessage(MESSAGE * pmsg){}

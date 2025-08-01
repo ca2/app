@@ -2470,7 +2470,7 @@ namespace user
    void interaction::set_place_child_title(const ::scoped_string & scopedstrTitle)
    {
 
-      payload("place_child_title") = pszTitle;
+      payload("place_child_title") = scopedstrTitle;
 
       //::pointer<::user::place_holder>pholder = get_parent();
 
@@ -9622,10 +9622,10 @@ if(get_parent())
          }
 
          for (auto psz = pmessage->m_union.m_pkey->m_strText.c_str();
-              psz < pmessage->m_union.m_pkey->m_strText.end(); psz = ::unicode_next(scopedstr))
+              psz < pmessage->m_union.m_pkey->m_strText.end(); psz = ::unicode_next(psz))
          {
 
-            m_pappearance->on_character(unicode_index(scopedstr));
+            m_pappearance->on_character(unicode_index(psz));
 
          }
 

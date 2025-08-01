@@ -5114,9 +5114,9 @@ retry_license:
 
       //psession->fill_locale_schema(localeschema);
 
-      bool bIgnoreStdStd = string(scopedstrRoot) == "app" && (string(scopedstrRelative) == "main" || string(scopedstrRelative) == "bergedge");
+      bool bIgnoreStdStd = string(pathRoot) == "app" && (string(scopedstrRelative) == "main" || string(scopedstrRelative) == "bergedge");
 
-      //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
+      //update_appmatter(h, psession, pathRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
 
       ::collection::count iCount = plocaleschema->m_straLocale.get_count();
 
@@ -5134,7 +5134,7 @@ retry_license:
 
          strSchema = plocaleschema->m_straSchema[i];
 
-         update_appmatter(psession, pszRoot, pszRelative, strLocale, strSchema);
+         update_appmatter(psession, pathRoot, scopedstrRelative, strLocale, strSchema);
 
          auto psystem = system();
 
@@ -5155,9 +5155,9 @@ retry_license:
       
       string strSchema;
 
-      informationf("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
-      
-      ::file::path strRelative = ::file::path(scopedstrRoot) / "_matter" / pszRelative / get_locale_schema_dir(scopedstrLocale, pszStyle) + ".zip";
+      informationf("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pathRoot.c_str(), scopedstrRelative.c_str(), scopedstrLocale.c_str(), scopedstrStyle.c_str());
+
+      ::file::path strRelative = ::file::path(pathRoot) / "_matter" / scopedstrRelative / get_locale_schema_dir(scopedstrLocale, scopedstrStyle) + ".zip";
 
       // auto pcontext = get_context();
 
@@ -5309,7 +5309,7 @@ retry_license:
 
       // auto pcontext = get_context();
 
-      string strMatter = directory()->matter(::file::path(scopedstrMatter) / pszMatter2);
+      string strMatter = directory()->matter(::file::path(scopedstrMatter) / scopedstrMatter2);
 
       payloadFile["url"] = strMatter;
 
@@ -5988,8 +5988,8 @@ namespace aura
    {
 
       __UNREFERENCED_PARAMETER(nID);
-      __UNREFERENCED_PARAMETER(pcszType);
-      __UNREFERENCED_PARAMETER(pcszFilePath);
+      __UNREFERENCED_PARAMETER(scopedstrType);
+      __UNREFERENCED_PARAMETER(scopedstrFilePath);
 
       return false;
 
@@ -8144,7 +8144,7 @@ namespace aura
 
       long long i64Size;
 
-      if (!get_fs_size(i64Size, pszPath, bPending))
+      if (!get_fs_size(i64Size, scopedstrPath, bPending))
       {
 
          strSize.empty();
@@ -8224,7 +8224,7 @@ namespace aura
 
       auto psession = session();
 
-      psession->set_app_title(m_strAppName, pszTitle);
+      psession->set_app_title(m_strAppName, scopedstrTitle);
 
    }
 
@@ -8478,7 +8478,7 @@ namespace aura
 
       string strMessage;
 
-      strMessage += pszTopic;
+      strMessage += scopedstrTopic;
 
       strMessage += " : ";
 
@@ -8488,7 +8488,7 @@ namespace aura
 
       //puserinteractionMain->message_box(strMessage, nullptr, ::enum_message_box(iMessageFlags));
 
-      output_error_message(strMessage, pszTopic, iMessageFlags);
+      output_error_message(strMessage, scopedstrTopic, iMessageFlags);
 
    }
 
@@ -9494,7 +9494,7 @@ namespace aura
    }
 
 
-   void application::pick_media(const char *pszMediaType)
+   void application::pick_media(const ::scoped_string & scopedstrMediaType)
    {
 
       auto puserinteraction = m_pacmeuserinteractionMain;

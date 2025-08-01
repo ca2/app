@@ -908,7 +908,7 @@ namespace platform
       //virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 
 //      void EnableModelessEx(bool bEnable);
-//      bool GetResourceData(unsigned int nID, const ::string & lcszType, memory& storage);
+//      bool GetResourceData(unsigned int nID, const ::scoped_string & scopedstrType, memory& storage);
 
 //#ifdef WINDOWS
 //      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
@@ -917,7 +917,7 @@ namespace platform
 //      virtual bool OnX11WindowMessage(void* pev);
 //#endif
 
-      bool CreateFileFromRawResource(unsigned int nID, const ::string & lcszType, const ::scoped_string & scopedstrFilePath);
+      bool CreateFileFromRawResource(unsigned int nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath);
 
       void OnUpdateRecentFileMenu(::message::command* pcommand);
 

@@ -46,7 +46,7 @@ namespace universal_windows
       //virtual bool  is(const ::scoped_string & scopedstr);
       virtual bool  name_is(const ::file::path & str);
       virtual bool  has_subdir( const ::file::path & path);
-      virtual bool  is_inside(const ::file::path & pathDir, const ::file::path & path);
+      virtual bool  is_inside(const ::file::path & pathFolder, const ::file::path & path);
       virtual bool  is_inside_time(const ::file::path & path);
       virtual ::file::listing & root_ones(::file::listing & listing);
       virtual bool mk(const ::file::path & path);

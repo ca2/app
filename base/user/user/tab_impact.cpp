@@ -141,7 +141,7 @@ namespace user
    bool tab_impact::add_impact(const ::scoped_string & scopedstrName, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
    {
 
-      return add_tab(strName, atomImpact, bVisible, bPermanent, pplacehoder);
+      return add_tab(scopedstrName, atomImpact, bVisible, bPermanent, pplacehoder);
 
    }
 
@@ -149,7 +149,7 @@ namespace user
    bool tab_impact::add_impact_with_icon(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrIcon, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
    {
 
-      return add_tab_with_icon(strName, strIcon, atomImpact, bVisible, bPermanent, pplacehoder);
+      return add_tab_with_icon(scopedstrName, scopedstrIcon, atomImpact, bVisible, bPermanent, pplacehoder);
 
    }
 

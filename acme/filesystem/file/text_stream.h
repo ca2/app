@@ -760,7 +760,7 @@ public:
 
 
 inline read_sz_stream::read_sz_stream(const ::ansi_character * psz, const ::ansi_character * pszBegin) :
-   m_psz(scopedstr),
+   m_psz(psz),
    m_pszBegin(!pszBegin ? psz : pszBegin)
 {
 

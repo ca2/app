@@ -92,7 +92,7 @@
       virtual bool name_is(const ::file::path & path);
 
 
-      virtual bool is_inside(const ::file::path & pathDir, const ::file::path & lpcszPath);
+      virtual bool is_inside(const ::file::path & pathFolder, const ::file::path & lpcszPath);
 
       virtual bool is_inside_time(const ::file::path & path);
 
@@ -228,7 +228,7 @@
 
       //virtual bool  is(const ::scoped_string & scopedstr);
       //virtual bool  is(const ::payload & payload);
-      //virtual bool  is_inside(const ::file::path & pathDir, const ::file::path & lpcszPath);
+      //virtual bool  is_inside(const ::file::path & pathFolder, const ::file::path & lpcszPath);
 
       //virtual bool  is_inside_time(const ::file::path & path);
 

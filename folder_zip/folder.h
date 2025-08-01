@@ -40,7 +40,7 @@ namespace folder_zip
 
       bool locate(const ::function < bool(const char*) >& function) override;
 
-      bool has_sub_folder(const ::file::path & pathDir = nullptr) override;
+      bool has_sub_folder(const ::file::path & pathFolder = nullptr) override;
 
       void extract(memory& m, const ::file::path & pathFile = nullptr) override;
 

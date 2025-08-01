@@ -940,7 +940,7 @@ void initialize_context() override;
       virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 
 //      void EnableModelessEx(bool bEnable);
-//      bool GetResourceData(unsigned int nID, const ::string & lcszType, memory& storage);
+//      bool GetResourceData(unsigned int nID, const ::scoped_string & scopedstrType, memory& storage);
 
 //#ifdef WINDOWS
 //      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
@@ -949,7 +949,7 @@ void initialize_context() override;
 //      virtual bool OnX11WindowMessage(void* pev);
 //#endif
 
-      bool CreateFileFromRawResource(unsigned int nID, const ::string & lcszType, const ::scoped_string & scopedstrFilePath);
+      bool CreateFileFromRawResource(unsigned int nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath);
 
       void OnUpdateRecentFileMenu(::message::command* pcommand);
 
@@ -1087,8 +1087,8 @@ void initialize_context() override;
 
       void pick_browse(const ::function < void(const ::file::path & path) > & callback) override;
       
-      void pick_media(const char * pszMediaType) override;
-      
+      void pick_media(const ::scoped_string & scopedstrMediaType) override;
+
       void on_prompt_write_file(::user::controller * pusercontroller) override;
       
       //::pointer < ::innate_ui::icon > innate_ui_icon(const ::int_size & size) override;

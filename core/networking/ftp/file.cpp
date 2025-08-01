@@ -22,9 +22,9 @@ namespace ftp
    bool file::Open(const ::scoped_string & scopedstrFileName, ::file::e_open eopen)
    {
 
-      m_strFileName = strFileName;
+      m_strFileName = scopedstrFileName;
 
-      m_file = ::particle::file()->get_file(strFileName, eopen);
+      m_file = ::particle::file()->get_file(scopedstrFileName, eopen);
 
       return m_file.is_set();
 
@@ -142,7 +142,7 @@ namespace ftp
 
    void file::OnPreBytesSend(unsigned char* pszBuffer, memsize bufferSize, memsize& bytesToSend)
    {
-      bytesToSend = Read(scopedstrBuffer, sizeof(char), bufferSize);
+      bytesToSend = Read(pszBuffer, sizeof(char), bufferSize);
    }
 
 

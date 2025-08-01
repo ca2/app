@@ -759,7 +759,7 @@ namespace filemanager
 
             auto pxmldocument = __create_new < xml::document >();
 
-            pxmldocument->load(strXml);
+            pxmldocument->load(scopedstrXml);
 
             m_iParentFolder = pxmldocument->root()->attribute("id").as_int();
 

@@ -219,12 +219,12 @@ namespace windowing
    }
 
 
-   void cursor_manager::load_hotspot(const ::file::path & pathDir)
+   void cursor_manager::load_hotspot(const ::file::path & pathFolder)
    {
 
       // auto pcontext = get_context();
 
-      parse_hotspot_text(file()->as_string(pathDir / "hotspot.txt"));
+      parse_hotspot_text(file()->as_string(pathFolder / "hotspot.txt"));
 
    }
 
@@ -300,7 +300,7 @@ namespace windowing
    }
 
 
-   void cursor_manager::set_cursor_set_from_dir(::object * pobjectContext, const ::file::path & pathDir, bool bFromCache)
+   void cursor_manager::set_cursor_set_from_dir(::object * pobjectContext, const ::file::path & pathFolder, bool bFromCache)
    {
 
       ::collection::count countSuccess = 0;
@@ -316,10 +316,10 @@ namespace windowing
 
          strCursorName.formatf("%s.png", pcursorpair->m_pszName);
 
-         if (set_cursor_file(pcursorpair->m_ecursor, pathDir / strCursorName, bFromCache))
+         if (set_cursor_file(pcursorpair->m_ecursor, pathFolder / strCursorName, bFromCache))
          {
 
-            information() << "set_cursor_file : " << (pathDir / strCursorName);
+            information() << "set_cursor_file : " << (pathFolder / strCursorName);
 
             countSuccess++;
 
@@ -335,7 +335,7 @@ namespace windowing
 
       }
 
-      //if (set_cursor_file(e_cursor_arrow, pathDir / "arrow.png", bFromCache))
+      //if (set_cursor_file(e_cursor_arrow, pathFolder / "arrow.png", bFromCache))
       //{
 
       //   countSuccess++;
@@ -348,7 +348,7 @@ namespace windowing
 
       //}
 
-      //if (set_cursor_file(e_cursor_hand, pathDir / "hand.png", bFromCache))
+      //if (set_cursor_file(e_cursor_hand, pathFolder / "hand.png", bFromCache))
       //{
 
       //   countSuccess++;
@@ -361,7 +361,7 @@ namespace windowing
 
       //}
 
-      //if (set_cursor_file(e_cursor_text_select, pathDir / "text_select.png", bFromCache))
+      //if (set_cursor_file(e_cursor_text_select, pathFolder / "text_select.png", bFromCache))
       //{
 
       //   countSuccess++;
@@ -374,7 +374,7 @@ namespace windowing
 
       //}
 
-      //if (set_cursor_file(e_cursor_size_top_left, pathDir / "size_top_left.png", bFromCache))
+      //if (set_cursor_file(e_cursor_size_top_left, pathFolder / "size_top_left.png", bFromCache))
       //{
 
       //   countSuccess++;
@@ -387,7 +387,7 @@ namespace windowing
 
       //}
 
-      //if (set_cursor_file(e_cursor_size_top, pathDir / "size_top.png", bFromCache))
+      //if (set_cursor_file(e_cursor_size_top, pathFolder / "size_top.png", bFromCache))
       //{
 
       //   countSuccess++;
@@ -400,7 +400,7 @@ namespace windowing
 
       //}
 
-      //if (set_cursor_file(e_cursor_size_top_right, pathDir / "size_top_right.png", bFromCache))
+      //if (set_cursor_file(e_cursor_size_top_right, pathFolder / "size_top_right.png", bFromCache))
       //{
 
       //   countSuccess++;
@@ -413,73 +413,7 @@ namespace windowing
 
       //}
 
-      //if (set_cursor_file(e_cursor_size_right, pathDir / "size_right.png", bFromCache))
-      //{
-
-      //   countSuccess++;
-
-      //}
-      //else
-      //{
-
-      //   countFailed++;
-
-      //}
-
-
-      //if (set_cursor_file(e_cursor_size_bottom_right, pathDir / "size_bottom_right.png", bFromCache))
-      //{
-
-      //   countSuccess++;
-
-      //}
-      //else
-      //{
-
-      //   countFailed++;
-
-      //}
-
-      //if (set_cursor_file(e_cursor_size_bottom, pathDir / "size_bottom.png", bFromCache))
-      //{
-
-      //   countSuccess++;
-
-      //}
-      //else
-      //{
-
-      //   countFailed++;
-
-      //}
-
-      //if (set_cursor_file(e_cursor_size_bottom_left, pathDir / "size_bottom_left.png", bFromCache))
-      //{
-
-      //   countSuccess++;
-
-      //}
-      //else
-      //{
-
-      //   countFailed++;
-
-      //}
-
-      //if (set_cursor_file(e_cursor_size_left, pathDir / "size_left.png", bFromCache))
-      //{
-
-      //   countSuccess++;
-
-      //}
-      //else
-      //{
-
-      //   countFailed++;
-
-      //}
-
-      //if (set_cursor_file(e_cursor_size_vertical, pathDir / "size_vertical.png", bFromCache))
+      //if (set_cursor_file(e_cursor_size_right, pathFolder / "size_right.png", bFromCache))
       //{
 
       //   countSuccess++;
@@ -493,7 +427,7 @@ namespace windowing
       //}
 
 
-      //if (set_cursor_file(e_cursor_size_horizontal, pathDir / "size_horizontal.png", bFromCache))
+      //if (set_cursor_file(e_cursor_size_bottom_right, pathFolder / "size_bottom_right.png", bFromCache))
       //{
 
       //   countSuccess++;
@@ -506,7 +440,7 @@ namespace windowing
 
       //}
 
-      //if (set_cursor_file(e_cursor_move, pathDir / "transfer.png", false))
+      //if (set_cursor_file(e_cursor_size_bottom, pathFolder / "size_bottom.png", bFromCache))
       //{
 
       //   countSuccess++;
@@ -519,7 +453,73 @@ namespace windowing
 
       //}
 
-      load_hotspot(pathDir);
+      //if (set_cursor_file(e_cursor_size_bottom_left, pathFolder / "size_bottom_left.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+      //if (set_cursor_file(e_cursor_size_left, pathFolder / "size_left.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+      //if (set_cursor_file(e_cursor_size_vertical, pathFolder / "size_vertical.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+
+      //if (set_cursor_file(e_cursor_size_horizontal, pathFolder / "size_horizontal.png", bFromCache))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+      //if (set_cursor_file(e_cursor_move, pathFolder / "transfer.png", false))
+      //{
+
+      //   countSuccess++;
+
+      //}
+      //else
+      //{
+
+      //   countFailed++;
+
+      //}
+
+      load_hotspot(pathFolder);
 
       //return _003CountStatus(countFailed, countSuccess);
 

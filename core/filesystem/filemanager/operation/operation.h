@@ -17,11 +17,11 @@ namespace filemanager
 
 
       enum_operation             m_eoperation;
-      ::file::listing            m_stra;
+      ::file::listing            m_filelisting;
       double_array               m_daRead;
       double_array               m_daSize;
-      ::file::path               m_str;
-      ::file::path               m_strBase;
+      ::file::path               m_path;
+      ::file::path               m_pathBase;
       double                     m_dSize;
       double                     m_dRead;
       file_pointer               m_fileSrc;
@@ -61,7 +61,7 @@ namespace filemanager
 
 
       void initialize(::particle * pparticle) override;
-      virtual bool open_src_dst(const ::file::path & pathSource,::file::path & strDst,const ::file::path & pathDir);
+      virtual bool open_src_dst(const ::file::path & pathSource,::file::path & pathTarget,const ::file::path & pathFolder);
 
       virtual void set_operation(enum_operation eoperation);
       virtual enum_operation get_operation();

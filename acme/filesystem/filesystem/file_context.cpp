@@ -2192,11 +2192,11 @@ void file_context::erase(const ::file::path & path)
 ::file::path file_context::paste(const ::file::path & pathLocation, const ::file::path & path)
 {
 
-   ::file::path pathDir = path.folder();
+   ::file::path pathFolder = path.folder();
 
    ::file::path pathDst = pathLocation;
 
-   ::file::path pathSrc = pathDir;
+   ::file::path pathSrc = pathFolder;
 
    if (pathDst == pathSrc)
    {
@@ -2651,7 +2651,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 }
 
 
-//void file_context::dtf(const ::file::path & pathFile, const ::file::path & pathDir)
+//void file_context::dtf(const ::file::path & pathFile, const ::file::path & pathFolder)
 //{
 //
 //   ::file::listing ls;
@@ -2732,7 +2732,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //}
 //
 //
-//void file_context::ftd(const ::file::path & pathDir, const ::file::path & pathFile)
+//void file_context::ftd(const ::file::path & pathFolder, const ::file::path & pathFile)
 //{
 //
 //   string strVersion;
@@ -4288,7 +4288,7 @@ bool file_context::is_link(const ::file::path & path)
 
 
 //
-//void file_context::dtf(const ::file::path & pathFile, const ::file::path & pathDir)
+//void file_context::dtf(const ::file::path & pathFile, const ::file::path & pathFolder)
 //{
 //
 //   return psystem->m_spfile->dtf(scopedstrFile, pszDir, get_app());
@@ -4310,7 +4310,7 @@ bool file_context::is_link(const ::file::path & path)
 //}
 //
 //
-//void file_context::ftd(const ::file::path & pathDir, const ::file::path & pathFile)
+//void file_context::ftd(const ::file::path & pathFolder, const ::file::path & pathFile)
 //{
 //
 //   return psystem->m_spfile->ftd(scopedstrDir, pszFile, get_app());

@@ -69,7 +69,7 @@ namespace zip
 
       virtual bool locate(const ::file::path & path);
 
-      //virtual void add_file(const ::file::path & pathDir,const ::file::path & pathRelative);
+      //virtual void add_file(const ::file::path & pathFolder,const ::file::path & pathRelative);
 
       virtual void add_file(const ::file::path & pathRelative, ::file::file * pfile);
 

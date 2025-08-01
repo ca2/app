@@ -242,11 +242,11 @@ public:
 
    virtual void get_last_write_time(file_time_t * pfile_time, const ::scoped_string & scopedstrFilename);
 
-   //virtual void dtf(const ::file::path & pathFile, const ::file::path & pathDir);
+   //virtual void dtf(const ::file::path & pathFile, const ::file::path & pathFolder);
 
    //virtual void dtf(const ::file::path & pathFile, ::file::path_array & stra);
 
-   //virtual void ftd(const ::file::path & pathDir, const ::file::path & pathFile);
+   //virtual void ftd(const ::file::path & pathFolder, const ::file::path & pathFile);
 
    // 'n' (natural) terminated ascii number, example: 245765487n
    // pmd5ctx = openssl/md5.h's MD5_CTX
@@ -412,9 +412,9 @@ public:
    virtual ::file_pointer friendly_get_file(const ::payload & payloadFile, ::file::e_open eopen);
 
 
-   //void dtf(const ::file::path & pathFile, const ::file::path & pathDir);
+   //void dtf(const ::file::path & pathFile, const ::file::path & pathFolder);
    void dtf(const ::file::path & pathFile, ::file::path_array & stra, ::file::path_array & straRelative);
-   //void ftd(const ::file::path & pathDir, const ::file::path & pathFile);
+   //void ftd(const ::file::path & pathFolder, const ::file::path & pathFile);
 
 
    virtual void crypto_set(const ::payload & payloadFile, const ::scoped_string & scopedstrData, const ::scoped_string & scopedstrSalt);

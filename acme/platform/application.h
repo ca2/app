@@ -756,8 +756,8 @@ namespace platform
       virtual get_file_extension_mime_type* get_get_file_extension_mime_type() override;
 
       virtual void pick_browse(const ::function < void(const ::file::path& path) >& callback) override;
-      virtual void pick_media(const char* pszMediaType) override;
-      virtual void did_pick_document_at_url(const char* pszUrl) override;
+      virtual void pick_media(const ::scoped_string & scopedstrMediaType) override;
+      virtual void did_pick_document_at_url(const ::scoped_string & scopedstrUrl) override;
       virtual void did_pick_document_at_urls(const ::string_array& stra) override;
       virtual void on_prompt_write_file(::user::controller* pusercontroller) override;
       virtual void file_manager_save_as(::user::controller* pusercontroller) override;

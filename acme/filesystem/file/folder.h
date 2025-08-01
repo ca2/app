@@ -40,7 +40,7 @@ public:
    
    ::file::enum_type type(const ::file::path & pathItem = nullptr);
 
-   virtual bool has_sub_folder(const ::file::path & pathDir = nullptr);
+   virtual bool has_sub_folder(const ::file::path & pathFolder = nullptr);
    virtual void extract(memory& m, const ::file::path & pathFile = nullptr);
    virtual bool is_compressed(const ::file::path & pathItem = nullptr);
 

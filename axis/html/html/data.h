@@ -40,7 +40,7 @@ public:
 
    //virtual bool is_locked();
 
-   void load(const ::string &);
+   void load(const ::scoped_string & scopedstr);
    void implement(::draw2d::graphics_pointer & pgraphics);
    void on_layout(::draw2d::graphics_pointer & pgraphics);
    void _001OnDraw(::draw2d::graphics_pointer & pgraphics);

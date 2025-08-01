@@ -614,7 +614,7 @@ bool html_form::open_html(const ::scoped_string & scopedstr)
 
    ///auto estatus =
    
-   phtmldata->open_html(str);
+   phtmldata->open_html(scopedstr);
 
    //if(::failed(estatus))
    //{
@@ -842,7 +842,7 @@ void html_form::set_edit_mode(bool bSet)
 bool html_form::load_html(const ::scoped_string & scopedstr)
 {
 
-   get_html_data()->load(str);
+   get_html_data()->load(scopedstr);
 
    return true;
 

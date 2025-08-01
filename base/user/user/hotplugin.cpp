@@ -58,7 +58,7 @@ namespace hotplugin
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      string str(strEntryHallText);
+      string str(scopedstrEntryHallText);
 
       if (str.is_empty())
       {

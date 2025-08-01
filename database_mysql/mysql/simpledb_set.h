@@ -56,13 +56,13 @@ namespace simpledb
 
       /* opens a query  & then sets a query results */
       virtual void open();
-      virtual void open(const ::string & sql);
+      virtual void open(const ::scoped_string & scopedstrSql);
       /* func. executes a query without results to return */
       virtual bool exec();
-      //     virtual bool exec(const ::string & sql);
+      //     virtual bool exec(const ::scoped_string & scopedstrSql);
       virtual const void * getExecRes();
       /* as open, but with our query exept Sql */
-      virtual bool query(const ::string &query);
+      virtual bool query(const ::scoped_string & scopedstrQuery);
       /* func. closes a query */
       virtual void close();
       /* Cancel changes, made in insert or edit states of set */

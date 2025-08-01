@@ -554,7 +554,7 @@ namespace user
    void document::set_title(const ::scoped_string & scopedstrTitle)
    {
 
-      m_strTitle = pszTitle;
+      m_strTitle = scopedstrTitle;
 
       update_frame_counts();        // will cause name machine in views
 
@@ -1504,7 +1504,7 @@ namespace user
    void document::report_load_exception(const ::payload & payloadFile, file_pointer presult, const ::scoped_string & scopedstrDefault)
    {
 
-      report_save_load_exception(payloadFile, presult, false, pszDefault);
+      report_save_load_exception(payloadFile, presult, false, scopedstrDefault);
 
    }
 
@@ -1512,7 +1512,7 @@ namespace user
    void document::report_save_exception(const ::payload & payloadFile, file_pointer presult, const ::scoped_string & scopedstrDefault)
    {
 
-      report_save_load_exception(payloadFile, presult, true, pszDefault);
+      report_save_load_exception(payloadFile, presult, true, scopedstrDefault);
 
    }
 

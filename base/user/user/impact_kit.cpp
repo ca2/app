@@ -15,7 +15,7 @@ namespace user
 
       pitem->id() = atom;
 
-      pitem->m_strName = strTitle;
+      pitem->m_strName = scopedstrTitle;
 
       pitem->m_pimpactcreator = pimpactcreator;
 

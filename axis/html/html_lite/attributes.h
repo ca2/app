@@ -32,18 +32,23 @@ public:
 
    {
       Init();
-      m_strName = pszAttribName;
+      m_strName = scopedstrAttribName;
 
-      m_strValue = pszAttribValue;
+      m_strValue = scopedstrAttribValue;
 
    }
+
 
    LiteHTMLElemAttr(const LiteHTMLElemAttr &rSource)
    {
+
       Init();
+
       m_strName = rSource.m_strName;
       m_strValue = rSource.m_strValue;
+
    }
+
 
    static void Init();
 
@@ -455,8 +460,12 @@ public:
     * @author Gurmeet S. Kochar
     */
    string getValueFromName(const ::scoped_string & scopedstrAttributeName) const
+   {
 
-   { return ((*this)[pszAttributeName].m_strValue); }
+      return ((*this)[scopedstrAttributeName].m_strValue);
+
+
+   }
 
 
 

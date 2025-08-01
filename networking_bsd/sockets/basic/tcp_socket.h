@@ -208,7 +208,7 @@ namespace sockets_bsd
 
       /** Callback fires when a socket in line protocol has read one full line.
       \lparam line Line read */
-      void OnLine(const string & line) override;
+      void OnLine(const ::scoped_string & scopedstrLine) override;
       /** get counter of number of bytes received. */
       unsigned long long GetBytesReceived(bool clear = false) override;
       /** get counter of number of bytes sent. */

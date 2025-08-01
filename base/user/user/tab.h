@@ -39,7 +39,7 @@ namespace user
 
          erase_tab_exception(const ::scoped_string & scopedstrHint)
          {
-            m_strHint = pszHint;
+            m_strHint = scopedstrHint;
          }
 
       };

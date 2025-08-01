@@ -444,7 +444,7 @@ namespace user
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
 
       if (!(pSBP->nFlags & SBPF_UPDATE) &&
-            ((!pszNewText && pSBP->strText.is_empty()) ||
+            ((!scopedstrNewText && pSBP->strText.is_empty()) ||
 
              (scopedstrNewText && pSBP->strText.equals(scopedstrNewText))))
 
@@ -457,7 +457,7 @@ namespace user
       {
          if (scopedstrNewText)
 
-            pSBP->strText = pszNewText;
+            pSBP->strText = scopedstrNewText;
 
          else
             pSBP->strText.empty();
@@ -736,7 +736,7 @@ namespace user
 
          }
 
-         ::memory_copy(scopedstrDest, (const ::string &)pSBP->strText, nLen*sizeof(char));
+         ::memory_copy(pszDest, (const ::string &)pSBP->strText, nLen*sizeof(char));
 
       }
 

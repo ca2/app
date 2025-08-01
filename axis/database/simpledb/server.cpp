@@ -173,7 +173,7 @@ namespace simpledb
 
       m_bWorking = true;
 
-      m_strDatabase = pszDatabase;
+      m_strDatabase = scopedstrDatabase;
 
       // return ::success;
 
@@ -194,7 +194,7 @@ namespace simpledb
 
       m_pdatabaseUser = pdatabaseUser;
 
-      m_strUser = pszUser;
+      m_strUser = scopedstrUser;
 
       //auto estatus = 
       

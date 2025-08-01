@@ -1302,7 +1302,7 @@ namespace user
    void toolbar::set_tool_item_text(const ::atom & atom, const ::scoped_string & scopedstr)
    {
 
-      tool_item_by_atom(atom)->m_str = str;
+      tool_item_by_atom(atom)->m_str = scopedstr;
 
       //throw todo;
 //      // attempt to lookup string index in map

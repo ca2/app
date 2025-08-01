@@ -58,9 +58,9 @@ namespace user
    shell::image_key::image_key(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrShellThemePrefix, enum_file_attribute eattribute, enum_icon eicon)
    {
 
-      m_strPath = strPath;
+      m_strPath = scopedstrPath;
 
-      m_strShellThemePrefix = strShellThemePrefix;
+      m_strShellThemePrefix = scopedstrShellThemePrefix;
 
       m_eattribute = eattribute;
 
@@ -81,12 +81,12 @@ namespace user
    void shell::image_key::set_path(const ::scoped_string & scopedstrPath, bool bSetExtension)
    {
 
-      m_strPath = strPath;
+      m_strPath = scopedstrPath;
 
       if (bSetExtension)
       {
 
-         set_extension(strPath);
+         set_extension(scopedstrPath);
 
       }
       else
@@ -102,13 +102,13 @@ namespace user
    void shell::image_key::set_extension(const ::scoped_string & scopedstrPath)
    {
 
-      character_count iFind1 = strPath.rear_find_index('/');
+      character_count iFind1 = scopedstrPath.rear_find_index('/');
 
-      character_count iFind2 = strPath.rear_find_index('\\');
+      character_count iFind2 = scopedstrPath.rear_find_index('\\');
 
       auto iFind = maximum(iFind1, iFind2) + 1;
 
-      character_count iDot = strPath.find_index('.', iFind);
+      character_count iDot = scopedstrPath.find_index('.', iFind);
 
       if (iDot < 0)
       {
@@ -119,7 +119,7 @@ namespace user
       else
       {
 
-         m_strExtension = strPath.substr(iDot + 1);
+         m_strExtension = scopedstrPath.substr(iDot + 1);
 
       }
 
@@ -647,20 +647,20 @@ namespace user
    }
 
 
-   shell::enum_folder shell::get_folder_type(::particle * pparticle, const ::wstring & wstrPath)
-   {
-
-      string str(wstrPath);
-
-      return get_folder_type(pparticle, str);
-
-   }
+   // shell::enum_folder shell::get_folder_type(::particle * pparticle, const ::wstring & wstrPath)
+   // {
+   //
+   //    string str(wstrPath);
+   //
+   //    return get_folder_type(pparticle, str);
+   //
+   // }
 
 
    shell::enum_folder shell::get_folder_type(::particle * pparticle, const ::scoped_string & scopedstrPath)
    {
 
-      wstring wstr(strPath);
+      wstring wstr(scopedstrPath);
 
       return get_folder_type(pparticle, wstr);
 
@@ -1852,16 +1852,16 @@ namespace user
 
       auto pcontext = m_papplication;
 
-      auto pathFinal = pcontext->defer_process_path(strPath);
+      auto pathFinal = pcontext->defer_process_path(scopedstrPath);
 
-      if (pathFinal != strPath)
+      if (pathFinal != scopedstrPath)
       {
 
-         iReturn = _create_file_icon_image(pathFinal, eattribute, eicon, strIcon, getfileimage);
+         iReturn = _create_file_icon_image(pathFinal, eattribute, eicon, scopedstrIcon, getfileimage);
 
       }
 
-      iReturn = _create_file_icon_image(strPath, eattribute, eicon, strIcon, getfileimage);
+      iReturn = _create_file_icon_image(scopedstrPath, eattribute, eicon, scopedstrIcon, getfileimage);
 
       return iReturn;
 
@@ -1871,14 +1871,14 @@ namespace user
    int shell::_create_file_icon_image(const ::scoped_string & scopedstrPath, enum_file_attribute eattribute, enum_icon eicon, const ::scoped_string & scopedstrIconParam, _get_file_image_ & getfileimage)
    {
 
-      getfileimage.m_imagekey.set_path(strIconParam, false);
+      getfileimage.m_imagekey.set_path(scopedstrIconParam, false);
       getfileimage.m_imagekey.m_strShellThemePrefix = m_strShellThemePrefix;
       getfileimage.m_imagekey.m_eattribute = eattribute;
       getfileimage.m_imagekey.m_eicon = eicon;
 
       bool bReserved = reserve_image(getfileimage);
 
-      getfileimage.m_imagekey.set_path(strPath, false);
+      getfileimage.m_imagekey.set_path(scopedstrPath, false);
 
       auto & iImage = m_imagemap[getfileimage.m_imagekey];
 
@@ -1891,7 +1891,7 @@ namespace user
 
       }
 
-      string strIcon(strIconParam);
+      string strIcon(scopedstrIconParam);
 
       ::file::path pathIcon;
 

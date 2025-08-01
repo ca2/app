@@ -19,10 +19,10 @@ namespace html
       string      m_strValue;
 
 
-      void set_name(atom idName);
+      void set_name(const ::atom & atom);
       atom get_name() const;
 
-      void set_value(const ::scoped_string & scopedstrValue);
+      void set_value(const ::scoped_string & scopedstr);
       string get_value() const;
 
 
@@ -34,9 +34,9 @@ namespace html
    public:
 
 
-      ::pointer<class attribute> get(atom idName);
-      ::pointer<class attribute> get(atom idName) const;
-      string get_value(atom idName) const;
+      ::pointer<class attribute> get(const ::atom & atom);
+      ::pointer<class attribute> get(const ::atom & atom) const;
+      string get_value(const ::atom & atom) const;
 
 
    };

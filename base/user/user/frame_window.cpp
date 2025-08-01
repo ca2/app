@@ -1124,7 +1124,7 @@ namespace user
       //   ASSERT_VALID_IDR(nIDResource);
       //   ASSERT(m_nIDHelp == 0 || m_nIDHelp == nIDResource);
 
-      m_strMatterHelp = pszMatter;    // ID for help context (+HID_BASE_RESOURCE)
+      m_strMatterHelp = scopedstrMatter;    // ID for help context (+HID_BASE_RESOURCE)
 
       //   string strFullString;
       //   if (strFullString.load_string(nIDResource))
@@ -1191,7 +1191,7 @@ namespace user
 
    }
 
-   m_strMatterHelp = pszMatter;    // ID for help context (+HID_BASE_RESOURCE)
+   m_strMatterHelp = scopedstrMatter;    // ID for help context (+HID_BASE_RESOURCE)
 
    auto papp = get_app();
 
@@ -2009,7 +2009,7 @@ namespace user
          if (bCreate && !ptoolbartransport)
          {
 
-            ptoolbartransport = create_toolbar(idToolbar, strToolbarParam, dwCtrlStyle, uStyle, "simple_toolbar");
+            ptoolbartransport = create_toolbar(idToolbar, scopedstrToolbarParam, dwCtrlStyle, uStyle, "simple_toolbar");
 
             add_control_bar(ptoolbartransport);
 
@@ -2097,7 +2097,7 @@ namespace user
 
       //// auto pcontext = get_context();
 
-      string strToolbar(strToolbarParam);
+      string strToolbar(scopedstrToolbarParam);
 
       if(strToolbar.is_empty())
       {
@@ -2414,10 +2414,10 @@ namespace user
       if(m_bPrefixTitle)
       {
          // get name of currently active ::user::impact
-         if (strDocName.has_character())
+         if (scopedstrDocName.has_character())
 
          {
-            WindowText += strDocName;
+            WindowText += scopedstrDocName;
 
 
             // add current interaction_impl # if needed
@@ -2442,11 +2442,11 @@ namespace user
       {
          // get name of currently active ::user::impact
          WindowText += m_strFrameTitle;
-         if (strDocName.has_character())
+         if (scopedstrDocName.has_character())
 
          {
             WindowText += " - ";
-            WindowText += strDocName;
+            WindowText += scopedstrDocName;
 
 
             // add current interaction_impl # if needed

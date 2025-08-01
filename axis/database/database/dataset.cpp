@@ -34,10 +34,10 @@ namespace database
       case e_sql_none:
          break;
       case       e_sql_execute:
-         m_strSqlExecute = pszSql;
+         m_strSqlExecute = scopedstrSql;
          break;
       case e_sql_select:
-         m_strSqlSelect = pszSql;
+         m_strSqlSelect = scopedstrSql;
          break;
       case e_sql_update:
          m_straSqlUpdate.add(scopedstrSql);
@@ -112,7 +112,7 @@ namespace database
    }
 
 
-   void dataset::parse_sql(const ::string & sql)
+   void dataset::parse_sql(const ::scoped_string & scopedstrSql)
    {
 
       string fpattern;
@@ -538,7 +538,7 @@ namespace database
 
       ::pointer<row_array>rows;
 
-      if (!query_rows(rows, pszQuery))
+      if (!query_rows(rows, scopedstrQuery))
       {
 
          return nullptr;
@@ -574,7 +574,7 @@ namespace database
 
       ::pointer<payload_array>items;
 
-      if (!query_items(items, pszQuery))
+      if (!query_items(items, scopedstrQuery))
       {
 
          return nullptr;
@@ -615,7 +615,7 @@ namespace database
 
       ::payload item;
 
-      if (!query_item(item, pszQuery) || item.failed())
+      if (!query_item(item, scopedstrQuery) || item.failed())
       {
 
          return false;

@@ -356,7 +356,7 @@ namespace file
     inline bool path::operator == (const ::string & str) const
     {
 
-       return operator == (str);
+       return ::string::operator == (str);
 
     }
 

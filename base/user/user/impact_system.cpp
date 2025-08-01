@@ -85,7 +85,7 @@ namespace user
 
    {
 
-      ASSERT(scopedstrPathName.has_character());
+      ASSERT(pathName.has_character());
 
 
       rpDocMatch = nullptr;
@@ -95,7 +95,7 @@ namespace user
       for (::collection::index index = 0; index < count; index++)
       {
          ::pointer<::user::document>pdocument = get_document(index);
-         if (pdocument->get_file_path() == pszPathName)
+         if (pdocument->get_file_path() == pathName)
 
          {
             // already open
@@ -111,7 +111,7 @@ namespace user
       {
          // see if extension matches
          ASSERT(strFilterExt[0] == '.');
-         string strExtension = pszPathName.final_extension();
+         string strExtension = pathName.final_extension();
 
          if (strExtension.has_character())
          {

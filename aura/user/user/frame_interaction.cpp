@@ -582,9 +582,9 @@ namespace user
    void frame_interaction::add_menu_item(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrId)
    {
 
-      m_straMenuParent.add(strPath);
-      m_straMenuName.add(strText);
-      m_straMenuId.add(strId);
+      m_straMenuParent.add(scopedstrPath);
+      m_straMenuName.add(scopedstrText);
+      m_straMenuId.add(scopedstrId);
 
       //return ::success;
 
@@ -715,7 +715,7 @@ namespace user
    void frame_interaction::set_frame_title(const ::scoped_string & scopedstrFrameTitle)
    {
 
-      m_strFrameTitle = strFrameTitle;
+      m_strFrameTitle = scopedstrFrameTitle;
 
       //auto pparent = get_parent();
 
@@ -936,9 +936,9 @@ namespace user
    void frame_interaction::set_user_style(const ::scoped_string & scopedstrStyle)
    {
 
-      m_strStyle = strStyle;
+      m_strStyle = scopedstrStyle;
 
-      auto estyle = translate_user_style(strStyle);
+      auto estyle = translate_user_style(scopedstrStyle);
 
       set_user_style(estyle);
 

@@ -696,7 +696,7 @@ namespace user
    void impact::set_impact_title(const ::scoped_string & scopedstrImpactTitle)
    {
 
-      m_strImpactTitle = strImpactTitle;
+      m_strImpactTitle = scopedstrImpactTitle;
 
    }
 

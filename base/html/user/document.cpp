@@ -417,7 +417,7 @@ bool html_document::open_document(const ::payload & payloadFile)
 bool html_document::load_html(const ::scoped_string & scopedstr)
 {
 
-   get_html_data()->load(str);
+   get_html_data()->load(scopedstr);
 
    return true;
 
@@ -430,8 +430,6 @@ bool html_document::load_html(const ::scoped_string & scopedstr)
    return get_html_data()->get_frame();
 
 }
-
-
 
 
 void html_document::form_document_set_impact(::user::form * pimpact)

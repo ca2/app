@@ -47,7 +47,7 @@ namespace html
    ::color::color style::parse_color(const ::scoped_string & scopedstr)
    {
 
-      return _parse_color(str);
+      return _parse_color(scopedstr);
 
    }
 
@@ -55,7 +55,7 @@ namespace html
    float style::parse_dimension(const ::scoped_string & scopedstr)
    {
 
-      return _parse_dimension(str);
+      return _parse_dimension(scopedstr);
 
    }
 
@@ -63,7 +63,7 @@ namespace html
    bool style::parse_border_width(const ::scoped_string & scopedstr, float & f)
    {
 
-      return _parse_border_width(str, f);
+      return _parse_border_width(scopedstr, f);
 
    }
 
@@ -71,7 +71,7 @@ namespace html
    bool style::parse_border_color(const ::scoped_string & scopedstr, ::color::color & color)
    {
 
-      return _parse_border_color(str, color);
+      return _parse_border_color(scopedstr, color);
 
    }
 
@@ -100,7 +100,7 @@ namespace html
       if(m_propertyset.is_new_or_null(rangeName))
       {
 
-         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, rangeName);
+         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, scopedstrSubClass, rangeName);
 
          if(pstyle == nullptr)
          {
@@ -111,7 +111,7 @@ namespace html
                if(pelement->m_pparent != nullptr && rangeName.case_insensitive_equals("background-color"))
                {
 
-                  if(pelement->m_pparent->m_pstyle->get_dimension(true, rangeName, strSubClass, pdata, pelement->m_pparent, f))
+                  if(pelement->m_pparent->m_pstyle->get_dimension(true, rangeName, scopedstrSubClass, pdata, pelement->m_pparent, f))
                   {
 
                      return true;
@@ -126,7 +126,7 @@ namespace html
 
          }
 
-         return pstyle->get_dimension(bParent, rangeName, strSubClass, pdata, pelement, f);
+         return pstyle->get_dimension(bParent, rangeName, scopedstrSubClass, pdata, pelement, f);
 
       }
 
@@ -159,7 +159,7 @@ namespace html
       if(m_propertyset.has_property(rangeName))
          pstyle = this;
       else
-         pstyle = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, rangeName);
+         pstyle = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, scopedstrSubClass, rangeName);
 
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.index_of(rangeName);
@@ -171,7 +171,7 @@ namespace html
       if(m_propertyset.has_property(puser->m_phtml->concat(rangeName, "html_css_suffix_left")))
          pstyleLeft = this;
       else
-         pstyleLeft = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_left"));
+         pstyleLeft = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_left"));
 
       if(pstyleLeft != nullptr)
          iLeft = pstyleLeft->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_left"));
@@ -179,7 +179,7 @@ namespace html
       if (m_propertyset.has_property(puser->m_phtml->concat(rangeName, "html_css_suffix_top")))
          pstyleTop = this;
       else
-         pstyleTop = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_top"));
+         pstyleTop = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_top"));
 
       if(pstyleTop != nullptr)
          iTop = pstyleTop->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_top"));
@@ -187,7 +187,7 @@ namespace html
       if (m_propertyset.has_property(puser->m_phtml->concat(rangeName, "html_css_suffix_right")))
          pstyleRight = this;
       else
-         pstyleRight = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_right"));
+         pstyleRight = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_right"));
 
       if(pstyleRight != nullptr)
          iRight = pstyleRight->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_right"));
@@ -195,7 +195,7 @@ namespace html
       if (m_propertyset.has_property(puser->m_phtml->concat(rangeName, "html_css_suffix_bottom")))
          pstyleBottom = this;
       else
-         pstyleBottom = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_bottom"));
+         pstyleBottom = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_bottom"));
 
       if(pstyleBottom != nullptr)
          iBottom = pstyleBottom->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_bottom"));
@@ -335,7 +335,7 @@ namespace html
       if(m_propertyset.has_property(rangeName) && parse_border_width(m_propertyset[rangeName], f))
          pstyle = this;
       else
-         pstyle = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, rangeName, f);
+         pstyle = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, scopedstrSubClass, rangeName, f);
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.index_of(rangeName);
 
@@ -347,7 +347,7 @@ namespace html
             && parse_border_width(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_width")], fW))
          pstyleW = this;
       else
-         pstyleW = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, rangeName, fW);
+         pstyleW = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, scopedstrSubClass, rangeName, fW);
       if(pstyleW != nullptr)
          iW = pstyleW->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_width"));
 
@@ -355,7 +355,7 @@ namespace html
             && parse_border_width(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_left")], fLeft))
          pstyleLeft = this;
       else
-         pstyleLeft = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_left"), fLeft);
+         pstyleLeft = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_left"), fLeft);
 
       if(pstyleLeft != nullptr)
          iLeft = pstyleLeft->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_left"));
@@ -364,7 +364,7 @@ namespace html
                                      && parse_border_width(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_left_width")], fLeftW))
          pstyleLeftW = this;
       else
-         pstyleLeftW = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_left_width"), fLeftW);
+         pstyleLeftW = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_left_width"), fLeftW);
 
       if(pstyleLeftW != nullptr)
          iLeftW = pstyleLeftW->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_left_width"));
@@ -373,7 +373,7 @@ namespace html
             && parse_border_width(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_top")], fTop))
          pstyleTop = this;
       else
-         pstyleTop = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_top"), fTop);
+         pstyleTop = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_top"), fTop);
 
       if(pstyleTop != nullptr)
          iTop = pstyleTop->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_top"));
@@ -382,7 +382,7 @@ namespace html
             && parse_border_width(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_top_width")], fTopW))
          pstyleTopW = this;
       else
-         pstyleTopW = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_top_width"), fTopW);
+         pstyleTopW = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_top_width"), fTopW);
 
       if(pstyleTopW != nullptr)
          iTopW = pstyleTopW->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_top_width"));
@@ -391,7 +391,7 @@ namespace html
             && parse_border_width(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_right")], fRight))
          pstyleRight = this;
       else
-         pstyleRight = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_right"), fRight);
+         pstyleRight = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_right"), fRight);
 
       if(pstyleRight != nullptr)
          iRight = pstyleRight->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_right"));
@@ -400,7 +400,7 @@ namespace html
             && parse_border_width(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_right_width")], fRightW))
          pstyleRightW = this;
       else
-         pstyleRightW = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_right_width"), fRightW);
+         pstyleRightW = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_right_width"), fRightW);
 
       if(pstyleRightW != nullptr)
          iRightW = pstyleRightW->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_right_width"));
@@ -409,7 +409,7 @@ namespace html
             && parse_border_width(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_bottom")], fBottom))
          pstyleBottom = this;
       else
-         pstyleBottom = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_bottom"), fBottom);
+         pstyleBottom = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_bottom"), fBottom);
 
       if(pstyleBottom != nullptr)
          iBottom = pstyleBottom->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_bottom"));
@@ -418,7 +418,7 @@ namespace html
             && parse_border_width(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_bottom_width")], fBottomW))
          pstyleBottomW = this;
       else
-         pstyleBottomW = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_bottom_width"), fBottomW);
+         pstyleBottomW = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_bottom_width"), fBottomW);
 
       if(pstyleBottomW != nullptr)
          iBottomW = pstyleBottomW->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_bottom_width"));
@@ -507,7 +507,7 @@ namespace html
       if(m_propertyset.has_property(rangeName) && parse_border_color(m_propertyset[rangeName], color))
          pstyle = this;
       else
-         pstyle = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, rangeName, color);
+         pstyle = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, scopedstrSubClass, rangeName, color);
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.index_of(rangeName);
 
@@ -519,7 +519,7 @@ namespace html
             && parse_border_color(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_color")], crW))
          pstyleW = this;
       else
-         pstyleW = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_color"), crW);
+         pstyleW = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_color"), crW);
 
       if(pstyleW != nullptr)
          iW = pstyleW->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_color"));
@@ -528,7 +528,7 @@ namespace html
             && parse_border_color(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_left")], colorLeft))
          pstyleLeft = this;
       else
-         pstyleLeft = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_left"), colorLeft);
+         pstyleLeft = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_left"), colorLeft);
 
       if(pstyleLeft != nullptr)
          iLeft = pstyleLeft->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_left"));
@@ -537,7 +537,7 @@ namespace html
             && parse_border_color(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_left_color")], colorLeftW))
          pstyleLeftW = this;
       else
-         pstyleLeftW = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_left_color"), colorLeftW);
+         pstyleLeftW = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_left_color"), colorLeftW);
 
       if(pstyleLeftW != nullptr)
          iLeftW = pstyleLeftW->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_left_color"));
@@ -546,7 +546,7 @@ namespace html
             && parse_border_color(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_top")], colorTop))
          pstyleTop = this;
       else
-         pstyleTop = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_top"), colorTop);
+         pstyleTop = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_top"), colorTop);
 
       if(pstyleTop != nullptr)
          iTop = pstyleTop->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_top"));
@@ -555,7 +555,7 @@ namespace html
             && parse_border_color(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_top_color")], colorTopW))
          pstyleTopW = this;
       else
-         pstyleTopW = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_top_color"), colorTopW);
+         pstyleTopW = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_top_color"), colorTopW);
 
       if(pstyleTopW != nullptr)
          iTopW = pstyleTopW->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_top_color"));
@@ -564,7 +564,7 @@ namespace html
             && parse_border_color(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_right")], colorRight))
          pstyleRight = this;
       else
-         pstyleRight = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_right"), colorRight);
+         pstyleRight = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_right"), colorRight);
 
       if(pstyleRight != nullptr)
          iRight = pstyleRight->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_right"));
@@ -573,7 +573,7 @@ namespace html
             && parse_border_color(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_right_color")], colorRightW))
          pstyleRightW = this;
       else
-         pstyleRightW = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_right_color"), colorRightW);
+         pstyleRightW = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_right_color"), colorRightW);
 
       if(pstyleRightW != nullptr)
          iRightW = pstyleRightW->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_right_color"));
@@ -582,7 +582,7 @@ namespace html
             && parse_border_color(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_bottom")], colorBottom))
          pstyleBottom = this;
       else
-         pstyleBottom = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_bottom"), colorBottom);
+         pstyleBottom = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_bottom"), colorBottom);
 
       if(pstyleBottom != nullptr)
          iBottom = pstyleBottom->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_bottom"));
@@ -591,7 +591,7 @@ namespace html
             && parse_border_color(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_bottom_color")], colorBottomW))
          pstyleBottomW = this;
       else
-         pstyleBottomW = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_bottom_color"), colorBottomW);
+         pstyleBottomW = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, scopedstrSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_bottom_color"), colorBottomW);
 
       if(pstyleBottomW != nullptr)
          iBottomW = pstyleBottomW->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_bottom_color"));
@@ -649,7 +649,7 @@ namespace html
       if(m_propertyset.is_new_or_null(rangeName))
       {
 
-         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, rangeName);
+         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, scopedstrSubClass, rangeName);
 
          if(pstyle == nullptr)
          {
@@ -657,14 +657,14 @@ namespace html
             if(pelement->m_pparent != nullptr && case_insensitive_ansi_compare(rangeName, "background-color"))
             {
 
-               if(pelement->m_pparent->m_pstyle->get_color(rangeName, strSubClass, pdata, pelement->m_pparent, color32))
+               if(pelement->m_pparent->m_pstyle->get_color(rangeName, scopedstrSubClass, pdata, pelement->m_pparent, color32))
                {
                   return true;
                }
             }
             return false;
          }
-         return pstyle->get_color(rangeName, strSubClass, pdata, pelement, color32);
+         return pstyle->get_color(rangeName, scopedstrSubClass, pdata, pelement, color32);
       }
       color32 = parse_color(m_propertyset[rangeName]);
       return true;
@@ -681,7 +681,7 @@ namespace html
       if(m_propertyset.is_new_or_null(rangeName))
       {
 
-         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, rangeName);
+         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, scopedstrSubClass, rangeName);
          if(pstyle == nullptr)
          {
             if(::is_set(pelement->m_pparent)
@@ -690,7 +690,7 @@ namespace html
                   && case_insensitive_ansi_compare(rangeName, "margin") != 0
                   && case_insensitive_ansi_compare(rangeName, "border") != 0)
             {
-               if(pelement->m_pparent->m_pstyle->get_text(rangeName, strSubClass, pdata, pelement->m_pparent, str))
+               if(pelement->m_pparent->m_pstyle->get_text(rangeName, scopedstrSubClass, pdata, pelement->m_pparent, str))
                {
                   return true;
                }
@@ -814,7 +814,7 @@ namespace html
                return false;
             }
          }
-         return pstyle->get_text(rangeName, strSubClass, pdata, pelement, str);
+         return pstyle->get_text(rangeName, scopedstrSubClass, pdata, pelement, str);
       }
       str = m_propertyset[rangeName];
       string strEm = str;
@@ -825,7 +825,7 @@ namespace html
             if(pelement->m_pparent != nullptr)
             {
                string strParent;
-               if(pelement->m_pparent->m_pstyle->get_text(rangeName, strSubClass, pdata, pelement->m_pparent, strParent))
+               if(pelement->m_pparent->m_pstyle->get_text(rangeName, scopedstrSubClass, pdata, pelement->m_pparent, strParent))
                {
                   str = ::as_string((int)((double) atof(str) * atoi(strParent)));
                }
@@ -856,12 +856,12 @@ namespace html
       if(m_propertyset.is_new_or_null(rangeName))
       {
 
-         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, strSubClass, rangeName);
+         style * pstyle = pdata->m_pcoredata->m_stylesheeta.rear_find(etag, strClass, scopedstrSubClass, rangeName);
 
          if(pstyle == nullptr)
             return false;
 
-         return pstyle->get_alpha(strSubClass, pdata, pelement, d);
+         return pstyle->get_alpha(scopedstrSubClass, pdata, pelement, d);
 
       }
 
@@ -875,7 +875,7 @@ namespace html
    const char * style::parse(html_data * pdata, const ::scoped_string & scopedstrParam)
    {
 
-      const char * psz = strParam;
+      const char * psz = scopedstrParam;
       __UNREFERENCED_PARAMETER(pdata);
       while(*psz != '\0' && *psz != '}')
       {
@@ -895,7 +895,7 @@ namespace html
          while((chQuote != '\0' || *psz != ';') && *psz != '\0' && *psz != '}')
          {
             psz++;
-            if(chQuote != '\0' && chQuote == *psz && *(scopedstr - 1) != '\\')
+            if(chQuote != '\0' && chQuote == *psz && *(psz - 1) != '\\')
             {
                chQuote = '\0';
             }
@@ -924,10 +924,10 @@ namespace html
          if(m_etag != etag)
             return false;
       if(m_strName.has_character())
-         if(m_strName != strClass)
+         if(m_strName != scopedstrClass)
             return false;
       if(m_strSubClass.has_character())
-         if(m_strSubClass != strSubClass)
+         if(m_strSubClass != scopedstrSubClass)
             return false;
       if(!rangeName.is_empty())
          if(!m_propertyset.has_property(rangeName))
@@ -942,10 +942,10 @@ namespace html
          if(m_etag != etag)
             return false;
       if(m_strName.has_character())
-         if(m_strName != strClass)
+         if(m_strName != scopedstrClass)
             return false;
       if(m_strSubClass.has_character())
-         if(m_strSubClass != strSubClass)
+         if(m_strSubClass != scopedstrSubClass)
             return false;
       if(rangeName.is_empty())
          return false;
@@ -976,7 +976,7 @@ namespace html
       if (m_strName.has_character())
       {
 
-         if (m_strName != strClass)
+         if (m_strName != scopedstrClass)
          {
 
             return false;
@@ -988,7 +988,7 @@ namespace html
       if (m_strSubClass.has_character())
       {
 
-         if (m_strSubClass != strSubClass)
+         if (m_strSubClass != scopedstrSubClass)
          {
 
             return false;
@@ -1204,10 +1204,10 @@ namespace html
    bool style::_parse_border_color(const ::scoped_string & scopedstrParam, ::color::color & color32)
    {
 
-      if(strParam.is_empty())
+      if(scopedstrParam.is_empty())
          return false;
 
-      string str(strParam);
+      string str(scopedstrParam);
 
       str.trim();
 
@@ -1245,7 +1245,7 @@ namespace html
       if(iFindColor < 0)
          return false;
 
-      auto range = strParam(iFindColor);
+      auto range = scopedstrParam(iFindColor);
       const char * pszStart = range.m_begin;
       if(iFindRgb >= 0)
       {

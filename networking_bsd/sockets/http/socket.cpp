@@ -230,7 +230,7 @@ namespace sockets
    }
 
 
-   void http_socket::OnLine(const string & line)
+   void http_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
 
       if (m_bFirst)

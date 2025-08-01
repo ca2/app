@@ -58,7 +58,7 @@ namespace sockets
       virtual void OnEndChunk();
 
       virtual void OnRawData(char *buf,memsize len) override;
-      virtual void OnLine(const string & line) override;
+      virtual void OnLine(const ::scoped_string & scopedstrLine) override;
 
       /** Callback executes when first line has been received.
       GetMethod, GetUrl/GetUri, and GetHttpVersion are valid when this callback is executed. */

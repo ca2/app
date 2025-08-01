@@ -49,7 +49,7 @@ namespace calculator
       
       //m_range.m_begin          = psz;
       
-      m_range        = str;
+      m_range        = scopedstr;
       
       next_input     = m_range.m_begin;
       

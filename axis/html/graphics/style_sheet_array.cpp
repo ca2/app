@@ -26,7 +26,7 @@ namespace html
 
          style_sheet & sheet = *this->element_at(i);
 
-         pstyle = sheet.rear_find(etag, strClass, strSubClass, idName);
+         pstyle = sheet.rear_find(etag, scopedstrClass, scopedstrSubClass, idName);
 
          if(pstyle != nullptr)
             break;
@@ -50,7 +50,7 @@ namespace html
 
          style_sheet & sheet = *this->element_at(i);
 
-         pstyle = sheet.rfind_border_width(etag, strClass, strSubClass, idName, f);
+         pstyle = sheet.rfind_border_width(etag, scopedstrClass, scopedstrSubClass, idName, f);
 
          if(pstyle != nullptr)
             break;
@@ -74,7 +74,7 @@ namespace html
 
          style_sheet & sheet = *this->element_at(i);
 
-         pstyle = sheet.rfind_border_color(etag, strClass, strSubClass, idName, color32);
+         pstyle = sheet.rfind_border_color(etag, scopedstrClass, scopedstrSubClass, idName, color32);
 
          if(pstyle != nullptr)
             break;

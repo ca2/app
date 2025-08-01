@@ -620,7 +620,7 @@ namespace simpledb
    }
 
 
-   bool dataset::query(const ::string &query)
+   bool dataset::query(const ::scoped_string & scopedstrQuery)
    {
       __UNREFERENCED_PARAMETER(query);
       if(db == nullptr)
@@ -671,7 +671,7 @@ namespace simpledb
       return false;
    }
 
-   void dataset::open(const ::string & sql)
+   void dataset::open(const ::scoped_string & scopedstrSql)
    {
       set_select_sql(sql);
       open();

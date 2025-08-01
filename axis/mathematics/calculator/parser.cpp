@@ -366,7 +366,7 @@ namespace calculator
    void parser::syntax_error(const ::scoped_string & scopedstr)
    {
 
-      error(string("syntax") + psz);
+      error(string("syntax") + scopedstr);
 
    }
 
@@ -378,7 +378,7 @@ namespace calculator
 
       str = "error: ";
 
-      str += psz;
+      str += scopedstr;
 
       throw_numeric_parsing_exception(str);
 

@@ -40,7 +40,7 @@ namespace sockets
       virtual void destroy() override;
 
       void OnAccept() override { m_bServer = true; }
-      void OnLine(const string & line) override;
+      void OnLine(const ::scoped_string & scopedstrLine) override;
       void OnDetached() override;
       void OnDelete() override;
 

@@ -1349,7 +1349,7 @@ namespace user
    bool form_control::open_html(const ::scoped_string & scopedstr)
    {
 
-      auto bOk = ::user::form::open_html(str);
+      auto bOk = ::user::form::open_html(scopedstr);
 
       if (!bOk)
       {

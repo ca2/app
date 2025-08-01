@@ -157,6 +157,9 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
    ASSERT(m_CharEntityRefs.get_count());
    ASSERT(is_string_ok(scopedstrEntity));
 
+   ::string strEntity(scopedstrEntity);
+
+   const ::ansi_character * pszEntity = strEntity;
 
    const ::ansi_character * pszBegin = pszEntity;
 
@@ -205,7 +208,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
             pszBegin++;
 
 
-         unsigned int  ulNum = (unsigned int) ::strtoul(scopedstrBegin, nullptr, aura);
+         unsigned int  ulNum = (unsigned int) ::strtoul(pszBegin, nullptr, aura);
 
          strChar = unicode_to_utf8(ulNum);
          return (int) (pszEnd - pszEntity + 1);
@@ -216,7 +219,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
    // character entity object?
    else
    {
-      string   strKey(scopedstrBegin, (int)(pszEnd - pszBegin));
+      string   strKey(pszBegin, (int)(pszEnd - pszBegin));
 
 
       // because some character entity references are

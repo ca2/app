@@ -327,7 +327,7 @@ namespace geo
 
                   ::payload v;
 
-                  v.parse_network_payload(scopedstrJson);
+                  v.parse_network_payload(pszJson);
 
                   DEBUGF_OUT(" A");
 
@@ -736,7 +736,7 @@ namespace geo
 
       ::property_set set;
 
-      string strUrl = "http://api.openweathermap.org/data/2.5/weather?atom=" + ::as_string(pcity->m_iId) + "&APPID=" + string(scopedstrId);
+      string strUrl = "http://api.openweathermap.org/data/2.5/weather?atom=" + ::as_string(pcity->m_iId) + "&APPID=" + string(pszId);
 
       auto psystem = system();
 
@@ -752,7 +752,7 @@ namespace geo
 
       ::payload v;
 
-      v.parse_network_payload(scopedstrJson);
+      v.parse_network_payload(pszJson);
 
       ::earth::zone_time timeSunrise({ posix_time_t{}, v["sys"]["sunrise"].as_long_long() }, iTimeZone);
 

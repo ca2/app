@@ -238,7 +238,7 @@ bool html_data::open_document(const ::payload & payloadFile)
 bool html_data::open_html(const ::scoped_string & scopedstr)
 {
 
-   return m_pcoredata->open_html(str);
+   return m_pcoredata->open_html(scopedstr);
 
 }
 

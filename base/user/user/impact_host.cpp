@@ -253,7 +253,7 @@ namespace user
    bool impact_host::set_impact(const ::scoped_string & scopedstrName, const ::atom & atomImpact, bool bVisible, ::user::place_holder * pplaceholder)
    {
 
-      return add_impact(strName, atomImpact, bVisible, true, pplaceholder);
+      return add_impact(scopedstrName, atomImpact, bVisible, true, pplaceholder);
 
    }
 
@@ -261,7 +261,7 @@ namespace user
    bool impact_host::set_impact_with_icon(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrIcon, const ::atom & atomImpact, bool bVisible, ::user::place_holder * pplaceholder)
    {
 
-      return add_impact_with_icon(strName, strIcon, atomImpact, bVisible, true, pplaceholder);
+      return add_impact_with_icon(scopedstrName, scopedstrIcon, atomImpact, bVisible, true, pplaceholder);
 
    }
 

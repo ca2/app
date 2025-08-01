@@ -73,7 +73,8 @@ unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::s
    string            strTagName;
    unsigned int            nRetVal = 0U,
                    nTemp = 0U;
-   const char *            pszBegin = &strString[iPos];
+
+   const char *            pszBegin = &scopedstrString[iPos];
 
    const char *            pszEnd = nullptr;
 
@@ -100,7 +101,7 @@ unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::s
       ASSERT(strTagName.is_empty());
       ASSERT(pcollAttr == nullptr);
       ASSERT(!bClosingTag);
-      nRetVal = (unsigned int) (scopedstrBegin - &strString[iPos]);
+      nRetVal = (unsigned int) (pszBegin - &scopedstrString[iPos]);
 
       goto LUpdateAndExit;
    }
@@ -159,7 +160,7 @@ unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::s
    while(true);
 
    // store tag name for later use
-   strTagName = string(scopedstrBegin, pszEnd - pszBegin);
+   strTagName = string(pszBegin, pszEnd - pszBegin);
 
 
    // is this a closing tag?
@@ -178,7 +179,7 @@ unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::s
 
       ASSERT(strTagName.length());
       ASSERT(pcollAttr == nullptr);
-      nRetVal = (unsigned int) (pszEnd - &strString[iPos]);
+      nRetVal = (unsigned int) (pszEnd - &scopedstrString[iPos]);
 
       goto LUpdateAndExit;
    }
@@ -212,7 +213,7 @@ unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::s
          }
 
          // ... and delegate parsing process
-         nTemp = (unsigned int) pcollAttr->parseFromStr(preader, pszBegin, strString.length() - (scopedstrBegin - (const ::string &) strString));
+         nTemp = (unsigned int) pcollAttr->parseFromStr(preader, pszBegin, scopedstrString.length() - (pszBegin - (const ::string &) scopedstrString));
 
       }
 
@@ -221,10 +222,10 @@ unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::s
          // attribute/value pairs could not be parsed?
       {
          SAFE_DELETE_POINTER(pcollAttr);
-         if ((pszEnd = ::ansi_str(scopedstrBegin, "/>")) == nullptr)
+         if ((pszEnd = ::ansi_str(pszBegin, "/>")) == nullptr)
 
          {
-            if ((pszEnd = ::ansi_chr(scopedstrBegin, '>')) == nullptr)
+            if ((pszEnd = ::ansi_chr(pszBegin, '>')) == nullptr)
 
                return (0U);
          }
@@ -271,7 +272,7 @@ unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::s
       pszEnd++;
 
 
-   nRetVal = (unsigned int) (pszEnd - &strString[iPos]);
+   nRetVal = (unsigned int) (pszEnd - &scopedstrString[iPos]);
 
    goto LUpdateAndExit;   // just to show the flow-of-control
 

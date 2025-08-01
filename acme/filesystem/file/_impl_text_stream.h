@@ -34,7 +34,7 @@ inline unsigned long long consume_natural(const char*& psz, const ::ansi_charact
    if (!endptr)
    {
 
-      if (::is_null(scopedstrBegin))
+      if (::is_null(pszBegin))
       {
 
          pszBegin = psz;
@@ -63,7 +63,7 @@ inline long long consume_integer(const char * & psz, const ::ansi_character * ps
    if (!endptr)
    {
 
-      if (::is_null(scopedstrBegin))
+      if (::is_null(pszBegin))
       {
 
          pszBegin = psz;
@@ -91,7 +91,7 @@ inline double consume_floating(const char*& psz, const ::ansi_character * pszBeg
    if (!endptr)
    {
 
-      if (::is_null(scopedstrBegin))
+      if (::is_null(pszBegin))
       {
 
          pszBegin = psz;

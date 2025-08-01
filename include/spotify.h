@@ -2504,7 +2504,7 @@ typedef void SP_CALLCONV search_complete_cb(sp_search *result, void *userdata);
  *
  * @return                Pointer to a search object. To free the object, use sp_search_release()
  */
-SP_LIBEXPORT(sp_search *) sp_search_create(sp_session *session, const ::string &query, int track_offset, int track_count, int album_offset, int album_count, int artist_offset, int artist_count, int playlist_offset, int playlist_count, sp_search_type search_type, search_complete_cb *callback, void *userdata);
+SP_LIBEXPORT(sp_search *) sp_search_create(sp_session *session, const ::scoped_string & scopedstrQuery, int track_offset, int track_count, int album_offset, int album_count, int artist_offset, int artist_count, int playlist_offset, int playlist_count, sp_search_type search_type, search_complete_cb *callback, void *userdata);
 
 /**
  * Get load status for the specified search. Before it is loaded, it will behave as an empty search result.

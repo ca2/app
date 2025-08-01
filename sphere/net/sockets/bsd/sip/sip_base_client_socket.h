@@ -62,7 +62,7 @@ namespace sockets
       ~sip_base_client_socket();
 
       void OnRawData(char *buf,size_t len);
-      void OnLine(const string & line);
+      void OnLine(const ::scoped_string & scopedstrLine);
 
       /** Callback executes when first line has been received.
          GetMethod, GetUrl/GetUri, and GetHttpVersion are valid when this callback is executed. */

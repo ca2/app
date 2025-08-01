@@ -123,7 +123,7 @@ namespace database
    string composite::escape(const ::scoped_string & scopedstr)
    {
 
-      return psz;
+      return scopedstr;
 
    }
 
@@ -196,18 +196,15 @@ namespace database
    bool composite::query_table_item(::payload& payload, const ::string & table, const ::scoped_string & scopedstrItem, const ::string & where)
    {
 
-      return m_pdatabase->query_table_item(payload, table, item, where);
+      return m_pdatabase->query_table_item(payload, table, scopedstrItem, where);
 
    }
 
    
-
-
-
    bool composite::query_rows(::pointer<row_array>& prowaray, const ::scoped_string & scopedstrQuery)
    {
 
-      return m_pdatabase->query_rows(prowaray, pszQuery);
+      return m_pdatabase->query_rows(prowaray, scopedstrQuery);
 
    }
 
@@ -215,7 +212,7 @@ namespace database
    bool composite::query_row(::pointer<row>& prow, const ::scoped_string & scopedstrQuery)
    {
 
-      return m_pdatabase->query_row(prow, pszQuery);
+      return m_pdatabase->query_row(prow, scopedstrQuery);
 
    }
 
@@ -223,7 +220,7 @@ namespace database
    bool composite::query_items(::pointer<payload_array>& pvara, const ::scoped_string & scopedstrQuery)
    {
 
-      return m_pdatabase->query_items(pvara, pszQuery);
+      return m_pdatabase->query_items(pvara, scopedstrQuery);
 
    }
 
@@ -231,7 +228,7 @@ namespace database
    bool composite::query_item(::payload & payload, const ::scoped_string & scopedstrQuery)
    {
 
-      return m_pdatabase->query_item(payload, pszQuery);
+      return m_pdatabase->query_item(payload, scopedstrQuery);
 
    }
 
@@ -239,7 +236,7 @@ namespace database
    bool composite::query_blob(get_memory getmemory, const ::scoped_string & scopedstrQuery)
    {
 
-      return m_pdatabase->query_blob(getmemory, pszQuery);
+      return m_pdatabase->query_blob(getmemory, scopedstrQuery);
 
    }
 

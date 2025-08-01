@@ -52,7 +52,7 @@ namespace user
       if (*psz == '\r')
       {
 
-         if (*(scopedstr + 1) == '\n')
+         if (*(psz + 1) == '\n')
          {
 
             return e_line_end_r_n;

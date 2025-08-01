@@ -186,7 +186,7 @@ namespace user
 
       }
 
-      get_data()->m_tabpanea[iIndex]->set_title(pcsz);
+      get_data()->m_tabpanea[iIndex]->set_title(scopedstr);
 
 
       return true;
@@ -206,7 +206,7 @@ namespace user
 
       }
 
-      get_data()->m_tabpanea[iIndex]->set_title(pcsz);
+      get_data()->m_tabpanea[iIndex]->set_title(scopedstr);
 
       return true;
 
@@ -236,7 +236,7 @@ namespace user
       // if the text is a ID, the ID will be result when no translation
       // if the text is a text (in English), the text (in English) will be the result when there is no translation.
       //set_tille("text://hello_multiverse/AKDFJG./:Main Tab"));
-      ppane->set_title(strTitle);
+      ppane->set_title(scopedstrTitle);
 
       ppane->m_bTabPaneVisible = bVisible;
       ppane->m_bPermanent = bPermanent;
@@ -263,7 +263,7 @@ namespace user
    bool tab::set_tab(const ::scoped_string & scopedstrName, const ::atom & atomImpact, bool bVisible)
    {
 
-      return add_tab(strName, atomImpact, bVisible, true);
+      return add_tab(scopedstrName, atomImpact, bVisible, true);
 
    }
 
@@ -281,7 +281,7 @@ namespace user
 
       ppane->m_bTabPaneVisible = bVisible;
       ppane->m_bPermanent = bPermanent;
-      ppane->set_title(strName);
+      ppane->set_title(scopedstrName);
 
       _synchronous_lock synchronouslock(this->synchronization());
 
@@ -295,7 +295,7 @@ namespace user
       ppane->id() = atom;
       ppane->m_pplaceholder = pplaceholder;
 
-      ppane->m_pimage = image()->load_image(strIcon, { .sync = false, .cache = false, });
+      ppane->m_pimage = image()->load_image(scopedstrIcon, { .sync = false, .cache = false, });
 
       on_change_tab_count({ ppane });
 
@@ -307,7 +307,7 @@ namespace user
    bool tab::set_tab_with_icon(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrIcon, const ::atom & atomImpact, bool bVisible)
    {
 
-      return add_tab_with_icon(strName, strIcon, atomImpact, bVisible, true);
+      return add_tab_with_icon(scopedstrName, scopedstrIcon, atomImpact, bVisible, true);
 
    }
 
@@ -3087,7 +3087,7 @@ namespace user
    void tab::get_prefixed_ci_id(string_array & stra, const ::scoped_string & scopedstrPrefix)
    {
 
-      get_presuffixed_ci_id(stra, pszPrefix, nullptr);
+      get_presuffixed_ci_id(stra, scopedstrPrefix, nullptr);
 
    }
 
@@ -3095,7 +3095,7 @@ namespace user
    void tab::get_suffixed_ci_id(string_array & stra, const ::scoped_string & scopedstrSuffix)
    {
 
-      get_presuffixed_ci_id(stra, nullptr, pszSuffix);
+      get_presuffixed_ci_id(stra, nullptr, scopedstrSuffix);
 
    }
 
@@ -3138,7 +3138,7 @@ namespace user
    void tab::get_begins_ci_eat_id(string_array & stra, const ::scoped_string & scopedstrPrefix)
    {
 
-      get_begins_ends_ci_eat_id(stra, pszPrefix, nullptr);
+      get_begins_ends_ci_eat_id(stra, scopedstrPrefix, nullptr);
 
    }
 
@@ -3146,7 +3146,7 @@ namespace user
    void tab::get_ends_ci_eat_id(string_array & stra, const ::scoped_string & scopedstrSuffix)
    {
 
-      get_begins_ends_ci_eat_id(stra, nullptr, pszSuffix);
+      get_begins_ends_ci_eat_id(stra, nullptr, scopedstrSuffix);
 
    }
 

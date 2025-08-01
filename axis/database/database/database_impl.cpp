@@ -88,7 +88,7 @@ namespace database
    string database_impl::escape(const ::scoped_string & scopedstr)
    {
 
-      return psz;
+      return scopedstr;
 
    }
 

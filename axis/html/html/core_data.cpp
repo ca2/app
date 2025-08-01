@@ -554,7 +554,7 @@ namespace html
    }
 
 
-   string core_data::process_url(const ::string & scopedstrUrl)
+   string core_data::process_url(const ::scoped_string & scopedstrUrl)
    {
    
       string strHref(scopedstrUrl);
@@ -845,7 +845,7 @@ namespace html
    bool core_data::open_html(const ::scoped_string & scopedstrParam)
    {
       
-      string str(strParam);
+      string str(scopedstrParam);
       
       delete_contents();
       

@@ -238,12 +238,14 @@ namespace html
 
 
 
-   string html::entities(const ::scoped_string & scopedstrParam)
+   string html::entities(const ::scoped_string & scopedstrParameter)
    {
-      
-      const char * psz = strParam;
 
-      if (scopedstr == nullptr || *psz == '\0')
+      ::string strParameter(scopedstrParameter);
+      
+      const char * psz = strParameter;
+
+      if (psz == nullptr || *psz == '\0')
       {
 
          return "";
@@ -254,7 +256,7 @@ namespace html
       string strChar;
       while (*psz != '\0')
       {
-         int iChar = (int) unicode_index(scopedstr);
+         int iChar = (int) unicode_index(psz);
          if (iChar == '&')
          {
             str += "&amp;";
@@ -284,18 +286,20 @@ namespace html
             strChar.formatf("&#%d;", iChar);
             str += strChar;
          }
-         unicode_increment(scopedstr);
+         unicode_increment(psz);
       }
       return str;
    }
 
 
-   string html::htmlpre(const ::scoped_string & scopedstrParam)
+   string html::htmlpre(const ::scoped_string & scopedstrParameter)
    {
 
-      const char * psz = strParam;
+      ::string strParameter(scopedstrParameter);
 
-      if (scopedstr == nullptr || *psz == '\0')
+      const char * psz = strParameter;
+
+      if (psz == nullptr || *psz == '\0')
       {
 
          return "";
@@ -306,7 +310,7 @@ namespace html
       string strChar;
       while (*psz != '\0')
       {
-         int iChar = (int) unicode_index(scopedstr);
+         int iChar = (int) unicode_index(psz);
          if (iChar == '&')
          {
             str += "&amp;";
@@ -337,7 +341,7 @@ namespace html
             str += strChar;
          }
          
-         unicode_increment(scopedstr);
+         unicode_increment(psz);
 
       }
       return str;
@@ -352,10 +356,11 @@ namespace html
 
    }
 
-   string html::resolve_entities(const ::scoped_string & scopedstrParam)
+
+   string html::resolve_entities(const ::scoped_string & scopedstrParameter)
    {
 
-      string str(strParam);
+      string str(scopedstrParameter);
 
       string strChar;
 
@@ -406,6 +411,8 @@ namespace html
          && etag != tag_script;
 
    }
+
+
    e_tag html::tag_name_to_id(atom idTag)
    {
 

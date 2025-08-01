@@ -327,7 +327,7 @@ namespace database
 
       ::payload payload;
 
-      if (!query_table_item(payload, table, item, where))
+      if (!query_table_item(payload, table, scopedstrItem, where))
       {
 
          return payloadDefault;
@@ -345,7 +345,7 @@ namespace database
 
       ::pointer<row_array>prowarray;
 
-      if (!query_rows(prowarray, pszQuery))
+      if (!query_rows(prowarray, scopedstrQuery))
       {
 
          return nullptr;
@@ -361,7 +361,7 @@ namespace database
 
       ::pointer<row>prow;
 
-      if (!query_row(prow, pszQuery))
+      if (!query_row(prow, scopedstrQuery))
       {
 
          return nullptr;
@@ -378,7 +378,7 @@ namespace database
       ::pointer<payload_array>pvara;
 
 
-      if (!query_items(pvara, pszQuery))
+      if (!query_items(pvara, scopedstrQuery))
       {
 
          return nullptr;
@@ -395,7 +395,7 @@ namespace database
 
       ::payload payload;
 
-      if (!query_item(payload, pszQuery))
+      if (!query_item(payload,scopedstrQuery))
       {
 
          return payloadDefault;
@@ -412,7 +412,7 @@ namespace database
 
       string strSql;
 
-      strSql.formatf("SELECT `%s` FROM `%s` WHERE %s", item.c_str(), table.c_str(), where.c_str());
+      strSql.formatf("SELECT `%s` FROM `%s` WHERE %s",scopedstrItem.c_str(), table.c_str(), where.c_str());
 
       return database::query_item(payload, strSql);
 
@@ -484,7 +484,7 @@ namespace database
    string database::query_error(const ::scoped_string & scopedstrPrefix)
    {
 
-      return strPrefix + " (error)";
+      return scopedstrPrefix + " (error)";
 
    }
 

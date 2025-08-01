@@ -846,7 +846,7 @@ pstate->m_ppen->m_color = color;
 
       int iChar = 0;
 
-      while (scopedstr < scopedstr.end() && iChar < maxPositions)
+      while (psz < scopedstr.end() && iChar < maxPositions)
       {
 
          int iLen = get_utf8_char_length(scopedstr);
@@ -1195,7 +1195,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   ::collection::count draw2d_context::character_metric(::double_array& daLeft, ::double_array& daRight, const ::string& scopedstr, character_count iStart, character_count iEnd)
+   ::collection::count draw2d_context::character_metric(::double_array& daLeft, ::double_array& daRight, const ::scoped_string & scopedstr, character_count iStart, character_count iEnd)
    {
 
       __set_current_font();

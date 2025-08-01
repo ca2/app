@@ -322,7 +322,7 @@ LEndParse:
 character_count lite_html_reader::read_form_document(const ::scoped_string & scopedstr)
 {
 
-   m_strBuffer    = str;
+   m_strBuffer    = scopedstr;
 
    return parseDocument();
 
@@ -467,7 +467,7 @@ bool lite_html_reader::parseComment(string &rComment)
    const char *   pszBegin = &m_strBuffer[m_dwBufPos + 4];
 
    // HTML comments end with two hyphen symbols '--'
-   const char *   pszEnd = ::ansi_str(scopedstrBegin, "--");
+   const char *   pszEnd = ::ansi_str(pszBegin, "--");
 
 
    // comment ending delimeter could not be found?
@@ -481,7 +481,7 @@ bool lite_html_reader::parseComment(string &rComment)
       return (true);
    }
 
-   string   strComment(scopedstrBegin, int(pszEnd - pszBegin));
+   string   strComment(pszBegin, int(pszEnd - pszBegin));
 
 
    // end of buffer?

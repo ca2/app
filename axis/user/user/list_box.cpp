@@ -246,13 +246,13 @@ namespace user
       if (m_bCaseSensitiveMatch)
       {
 
-         return m_straList.find_first(str);
+         return m_straList.find_first(scopedstr);
 
       }
       else
       {
 
-         return m_straList.case_insensitive_find_first(str);
+         return m_straList.case_insensitive_find_first(scopedstr);
 
       }
 

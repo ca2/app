@@ -52,6 +52,9 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
 {
    ASSERT(is_string_ok(scopedstrString));
 
+   ::string str(scopedstrString);
+
+   const char * pszString = str;
 
    const char *   pszBegin = pszString;
 
@@ -109,7 +112,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
    while (true);
 
    // extract attribute name
-   string   strAttrName(scopedstrBegin, int(pszEnd - pszBegin));
+   string   strAttrName(pszBegin, int(pszEnd - pszBegin));
 
 
    // skip leading white-space characters
@@ -198,7 +201,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
          // this will automatically normalize data before
          // assigning according to the specs and will
          // also resolve entity references!!!
-         putValue(preader, string(scopedstrBegin,int(pszEnd - pszBegin)));
+         putValue(preader, string(pszBegin,int(pszEnd - pszBegin)));
 
 
       // calculate and return the ::collection::count of characters successfully parsed
@@ -241,6 +244,10 @@ character_count LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, c
    const character_count         nStrLen = iLen;
    character_count            nRetVal = 0U,
                        nTemp = 0U;
+
+   ::string str(scopedstrString);
+
+   const char * pszString = str;
 
    do
    {
@@ -303,12 +310,12 @@ LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const ::scoped_string & scope
 
 {
 
-   ASSERT(is_string_ok(lpszName));
+   ASSERT(is_string_ok(scopedstrName));
 
    ASSERT(is_string_ok(scopedstrValue));
 
 
-   LiteHTMLElemAttr   *pItem = __raw_new LiteHTMLElemAttr(lpszName, pszValue);
+   LiteHTMLElemAttr   *pItem = __raw_new LiteHTMLElemAttr(scopedstrName, scopedstrValue);
 
    if (pItem != nullptr)
    {
@@ -338,7 +345,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::scoped_str
    ASSERT(is_string_ok(scopedstrValue));
 
 
-   m_strValue = pszValue;
+   m_strValue = scopedstrValue;
 
 
    // ignore leading white-spaces

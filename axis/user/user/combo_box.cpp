@@ -1349,7 +1349,7 @@ namespace user
 
       //return (int)send_message( CB_INSERTSTRING, nIndex, (LPARAM)pszString);
 
-      auto iIndex= m_plistbox->insert_item_at(nIndex, pszString);
+      auto iIndex= m_plistbox->insert_item_at(nIndex, scopedstrString);
       return iIndex;
       //return -1;
 
@@ -1623,7 +1623,7 @@ namespace user
    ::collection::index combo_box::_001FindListText(const ::scoped_string & scopedstr) const
    {
 
-      return m_plistbox->_001FindListText(str);
+      return m_plistbox->_001FindListText(scopedstr);
 
    }
 

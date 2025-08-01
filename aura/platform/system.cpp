@@ -5132,7 +5132,7 @@ namespace aura
    string system::crypto_md5_text(const ::scoped_string & scopedstr)
    {
 
-      return crypto()->md5(str);
+      return crypto()->md5(scopedstr);
 
    }
 
@@ -6284,7 +6284,7 @@ if(!m_pimaging)
 
       string strMessage;
 
-      strMessage.formatf("system::on_allocation_error Implement \"%s\" allocation\n", str.c_str());
+      strMessage.formatf("system::on_allocation_error Implement \"%s\" allocation\n", scopedstr.c_str());
 
       dev_log(strMessage);
 

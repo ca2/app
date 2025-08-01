@@ -26,9 +26,9 @@ namespace html
 
          m_iFont = -1;
          
-         m_strType = strType;
-         
-         m_strUnit = strUnit;
+         m_strType = scopedstrType;
+
+         m_strUnit = scopedstrUnit;
 
       }
 

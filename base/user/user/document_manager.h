@@ -74,7 +74,7 @@ namespace user
 
       virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
-      virtual bool OnDDECommand(char * pszCommand);
+      virtual bool OnDDECommand(const ::scoped_string & scopedstrDDECommand);
 
       virtual void _001OnFileNew();
       virtual void on_file_open();

@@ -376,7 +376,7 @@ namespace experience
 
       auto puser = user();
 
-      return puser->experience()->create_experience(this, strExperience);
+      return puser->experience()->create_experience(this, scopedstrExperience);
 
    }
 
@@ -386,7 +386,7 @@ namespace experience
 
       auto puser = user();
 
-      return puser->experience()->experience(this, strExperience);
+      return puser->experience()->experience(this, scopedstrExperience);
 
    }
 
@@ -398,7 +398,7 @@ namespace experience
 
       auto pexperience = puser->experience();
 
-      ::string strExperienceRequest(strExperience);
+      ::string strExperienceRequest(scopedstrExperience);
 
       if (strExperienceRequest.is_empty())
       {
@@ -407,7 +407,7 @@ namespace experience
 
       }
 
-      auto pframe = pexperience->frame_experience(this, strExperience, strFrame);
+      auto pframe = pexperience->frame_experience(this, scopedstrExperience, scopedstrFrame);
 
       pframe->m_pframewindow = this;
 
@@ -415,7 +415,7 @@ namespace experience
 
       psignal->add_handler(pframe);
 
-      set_user_style(strStyle);
+      set_user_style(scopedstrStyle);
 
       auto pframewindow = this;
 

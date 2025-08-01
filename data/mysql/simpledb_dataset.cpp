@@ -602,7 +602,7 @@ namespace simpledb
    }
 
 
-   bool set::query(const ::string &query)
+   bool set::query(const ::scoped_string & scopedstrQuery)
    {
       __UNREFERENCED_PARAMETER(query);
       if(db == nullptr)
@@ -653,7 +653,7 @@ namespace simpledb
       return false;
    }
 
-   void set::open(const ::string & sql)
+   void set::open(const ::scoped_string & scopedstrSql)
    {
       set_select_sql(sql);
       open();

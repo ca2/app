@@ -299,10 +299,10 @@ namespace user
 
       // auto pcontext = get_context();
 
-      string str = file()->as_string(scopedstrPath);
+      string str = file()->as_string(path);
 
 
-      informationf(scopedstrPath);
+      informationf(path);
 
       informationf(str);
 

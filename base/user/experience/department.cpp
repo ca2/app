@@ -32,7 +32,7 @@ namespace experience
    ::pointer<::experience::experience>department::create_experience(::particle * pparticle, const ::scoped_string & scopedstrExperienceRequest)
    {
 
-      string strExperience = experience_name(strExperienceRequest);
+      string strExperience = experience_name(scopedstrExperienceRequest);
 
       auto & pfactory = system()->factory("experience", strExperience);
 
@@ -66,7 +66,7 @@ namespace experience
    ::pointer<::experience::experience>department::experience(::particle * pparticle, const ::scoped_string & scopedstrExperienceRequest)
    {
 
-      auto & pexperience = m_mapExperience[experience_name(strExperienceRequest)];
+      auto & pexperience = m_mapExperience[experience_name(scopedstrExperienceRequest)];
 
       if(pexperience == nullptr)
       {
@@ -75,7 +75,7 @@ namespace experience
 
          {
 
-            straExperience.add(strExperienceRequest);
+            straExperience.add(scopedstrExperienceRequest);
 
          }
 
@@ -208,7 +208,7 @@ namespace experience
    ::pointer<::experience::frame>department::frame_experience(::particle * pparticle, const ::scoped_string & scopedstrExperienceRequest, const ::scoped_string & scopedstrFrameSchema)
    {
 
-      auto strExperience = experience_name(strExperienceRequest);
+      auto strExperience = experience_name(scopedstrExperienceRequest);
 
       auto pexperience = experience(pparticle, strExperience);
 
@@ -219,7 +219,7 @@ namespace experience
 
       }
 
-      auto pframe = pexperience->frame_experience(strFrameSchema);
+      auto pframe = pexperience->frame_experience(scopedstrFrameSchema);
 
       if(!pframe)
       {
@@ -236,7 +236,7 @@ namespace experience
 
       pframe->m_strExperience = strExperience;
 
-      pframe->m_strFrameSchema = strFrameSchema;
+      pframe->m_strFrameSchema = scopedstrFrameSchema;
 
       return pframe;
 
@@ -248,7 +248,7 @@ namespace experience
 
       string strExperience;
 
-      strExperience = str;
+      strExperience = scopedstr;
 
       strExperience.trim();
 

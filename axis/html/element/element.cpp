@@ -1110,7 +1110,7 @@ namespace html
 
       }
 
-      string strTag(scopedstrTag, range.m_begin - pszTag);
+      string strTag(pszTag, range.m_begin - pszTag);
 
       if (strTag[0] == '/')
       {
@@ -1199,7 +1199,7 @@ namespace html
 
       }
 
-      string strBody(scopedstrBody, range.m_begin - pszBody);
+      string strBody(pszBody, range.m_begin - pszBody);
 
       m_strBody = strBody;
 
@@ -1235,7 +1235,7 @@ namespace html
 
       }
 
-      if (scopedstrCloseTag[0] == '/' && case_insensitive_ansi_count_compare(m_atomTagName.m_str, pszCloseTag + 1, range.m_begin - pszCloseTag - 1) == 0)
+      if (pszCloseTag[0] == '/' && case_insensitive_ansi_count_compare(m_atomTagName.m_str, pszCloseTag + 1, range.m_begin - pszCloseTag - 1) == 0)
       {
 
          range.m_begin++;
@@ -1286,7 +1286,7 @@ namespace html
 
          }
 
-         string strKey(scopedstrKey, range.m_begin - pszKey);
+         string strKey(pszKey, range.m_begin - pszKey);
 
          if (*range.m_begin == '/' || *range.m_begin == '>')
          {
@@ -1350,7 +1350,7 @@ namespace html
 
          }
 
-         string strValue(scopedstrValue, range.m_begin - pszValue);
+         string strValue(pszValue, range.m_begin - pszValue);
 
          m_propertyset[strKey] = strValue;
 
@@ -1615,13 +1615,13 @@ namespace html
          if (m_elementalptra.get_size() == 1)
          {
 
-            m_elementalptra[0]->m_strBody = str;
+            m_elementalptra[0]->m_strBody = scopedstr;
 
          }
          else
          {
 
-            m_strBody = str;
+            m_strBody = scopedstr;
 
          }
 
@@ -1629,7 +1629,7 @@ namespace html
       else
       {
 
-         m_strBody = str;
+         m_strBody = scopedstr;
 
       }
 

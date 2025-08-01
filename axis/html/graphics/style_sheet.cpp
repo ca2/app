@@ -114,7 +114,7 @@ namespace html
             pstyle->m_strSubClass = str;
          }
 
-         pstyle->parse(pdata, range(scopedstrRestart));
+         pstyle->parse(pdata, range(pszRestart));
 
          if(*range.m_begin == '}')
             range.m_begin++;
@@ -134,7 +134,7 @@ namespace html
 
          class style & style = *m_stylea.element_at(i);
 
-         if (style.matches(etag, strClass, strSubClass, scopedstrName))
+         if (style.matches(etag, scopedstrClass, scopedstrSubClass, scopedstrName))
          {
 
             return &style;
@@ -151,7 +151,7 @@ namespace html
    const style * style_sheet::rear_find(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const ::scoped_string & scopedstrName) const
    {
 
-      return ((style_sheet *) this)->rear_find(etag, strClass, strSubClass, scopedstrName);
+      return ((style_sheet *) this)->rear_find(etag, scopedstrClass, scopedstrSubClass, scopedstrName);
 
    }
 
@@ -164,7 +164,7 @@ namespace html
 
          class style & style = *m_stylea.element_at(i);
 
-         if(style.matches_border_width(etag, strClass, strSubClass, scopedstrName, f)) {
+         if(style.matches_border_width(etag, scopedstrClass, scopedstrSubClass, scopedstrName, f)) {
 
             return &style;
 
@@ -180,7 +180,7 @@ namespace html
    const style * style_sheet::rfind_border_width(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const ::scoped_string & scopedstrName, float & f) const
    {
 
-      return ((style_sheet *) this)->rfind_border_width(etag, strClass, strSubClass, scopedstrName, f);
+      return ((style_sheet *) this)->rfind_border_width(etag, scopedstrClass, scopedstrSubClass, scopedstrName, f);
 
    }
 
@@ -193,7 +193,7 @@ namespace html
 
          class style & style = *m_stylea.element_at(i);
 
-         if(style.matches_border_color(etag, strClass, strSubClass, scopedstrName, color32)) {
+         if(style.matches_border_color(etag, scopedstrClass, scopedstrSubClass, scopedstrName, color32)) {
 
             return &style;
 
@@ -209,7 +209,7 @@ namespace html
    const style * style_sheet::rfind_border_color(e_tag etag, const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrSubClass, const ::scoped_string & scopestrName, ::color::color & color32) const
    {
 
-      return ((style_sheet *) this)->rfind_border_color(etag, strClass, strSubClass, scopestrName, color32);
+      return ((style_sheet *) this)->rfind_border_color(etag, scopedstrClass, scopedstrSubClass, scopestrName, color32);
 
    }
 

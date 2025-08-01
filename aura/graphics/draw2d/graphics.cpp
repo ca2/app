@@ -4078,7 +4078,7 @@ namespace draw2d
 
       }
 
-      if (iStart > str.length())
+      if (iStart > scopedstr.length())
       {
 
          return 0;
@@ -4088,14 +4088,14 @@ namespace draw2d
       if (iCount < 0)
       {
 
-         iCount = str.length() - iStart;
+         iCount = scopedstr.length() - iStart;
 
       }
 
-      if (iStart + iCount > str.length())
+      if (iStart + iCount > scopedstr.length())
       {
 
-         iCount = str.length() - iStart;
+         iCount = scopedstr.length() - iStart;
 
          if (iCount <= 0)
          {
@@ -4114,6 +4114,8 @@ namespace draw2d
 
       character_count iLen;
 
+      ::string str(scopedstr);
+
       const char * pszStart = str;
 
       const char * psz = pszStart;
@@ -4125,7 +4127,7 @@ namespace draw2d
 
          const char * pszNext = unicode_next(scopedstr);
 
-         if (scopedstrNext == nullptr)
+         if (pszNext == nullptr)
          {
 
             break;
@@ -4288,7 +4290,7 @@ namespace draw2d
 
       ::double_rectangle rectangle(rectangleParam);
 
-      _001DrawText(str, rectangle, ealign, edrawtext, false);
+      _001DrawText(scopedstr, rectangle, ealign, edrawtext, false);
 
    }
 
@@ -4306,7 +4308,7 @@ namespace draw2d
    void graphics::_001DrawText(const ::scoped_string & scopedstrParam, ::double_rectangle & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, bool bMeasure)
    {
 
-      string str(strParam);
+      string str(scopedstrParam);
 
       double_size size = get_text_extent(str);
 
@@ -4410,7 +4412,7 @@ namespace draw2d
    void graphics::draw_text_ex(const ::scoped_string & scopedstr, const double_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
-      __UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(scopedstr);
       __UNREFERENCED_PARAMETER(rectangle);
       __UNREFERENCED_PARAMETER(ealign);
       __UNREFERENCED_PARAMETER(edrawtext);
@@ -4886,7 +4888,7 @@ namespace draw2d
    int graphics::_DrawText(const ::scoped_string & scopedstrArg, const double_rectangle & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font * pfontUnderlineParam)
    {
 
-      string strParam(strArg);
+      string strParam(scopedstrArg);
 
       strParam = ::str::q_valid(strParam);
 
@@ -4999,7 +5001,7 @@ namespace draw2d
             while (true)
             {
 
-               unicode_increment(scopedstr);
+               unicode_increment(psz);
 
                strSample = string(pszStart, psz - pszStart) + "...";
 
@@ -5258,6 +5260,8 @@ namespace draw2d
 
       ::double_rectangle rectangleClip(rectangle);
 
+      ::string strSource(scopedstrSource);
+
       const ::ansi_character * pszSource = strSource;
 
       character_count len = strSource.length();
@@ -5286,7 +5290,7 @@ namespace draw2d
 
       auto y = rectangle.top();
 
-      while (scopedstr <= pszEnd)
+      while (psz <= pszEnd)
       {
 
          sz = pgraphics->get_text_extent({ pszSource, psz - pszSource });
@@ -5340,7 +5344,7 @@ namespace draw2d
 
          }
 
-         if (unicode_is_space_char(scopedstrPrevious))
+         if (unicode_is_space_char(pszPrevious))
          {
 
             pszSpaceStart = pszPrevious;
@@ -5350,7 +5354,7 @@ namespace draw2d
 
                pszSpaceEnd = psz;
 
-               if (!unicode_is_space_char(scopedstr))
+               if (!unicode_is_space_char(psz))
                {
 
                   break;
@@ -5359,24 +5363,25 @@ namespace draw2d
 
                pszPrevious = psz;
 
-               unicode_increment(scopedstr);
+               unicode_increment(psz);
 
-            } while (scopedstr != nullptr);
+            } while (psz != nullptr);
 
          }
 
          if (sz.cx() > rectangleClip.width())
          {
 
-            if (scopedstr == pszStart)
-
+            if (psz == pszStart)
             {
+
                pszEnd = pszStart;
 
                break;
+
             }
 
-            if (scopedstrSpaceStart != nullptr)
+            if (pszSpaceStart != nullptr)
             {
 
                // "legit" word break, i.meaning., found mid space in text and split there, instead of slicing a full word in a single-character (above) or the maximum-unclipped (below).
@@ -5387,7 +5392,7 @@ namespace draw2d
                break;
             }
 
-            unicode_decrement(scopedstr, pszSource);
+            unicode_decrement(psz, pszSource);
 
             pszEnd = psz;
 
@@ -5397,7 +5402,7 @@ namespace draw2d
 
          pszPrevious = psz;
 
-         unicode_increment(scopedstr);
+         unicode_increment(psz);
 
          if (bEnd)
          {
@@ -5414,11 +5419,9 @@ namespace draw2d
 
       }
 
-      str1 = string(scopedstrSource, psz - pszSource);
-
+      str1 = string(pszSource, psz - pszSource);
 
       str2 = string(pszEnd);
-
 
       rectangle.top() = y;
 
@@ -5920,7 +5923,7 @@ namespace draw2d
 
       critical_section_lock synchronouslock(&system()->draw2d()->write_text()->m_csFont);
 
-      string strFontName(strName);
+      string strFontName(scopedstrName);
 
       strFontName.make_lower();
 

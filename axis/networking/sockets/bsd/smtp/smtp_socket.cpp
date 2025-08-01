@@ -30,11 +30,11 @@ namespace sockets
    }
 
 
-   void smtp_socket::OnLine(const string & line)
+   void smtp_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
 
       SetNonblocking(false);
-      ::parse pa(line);
+      ::parse pa(scopedstrLine);
       string code = pa.getword();
 
       code.make_upper();

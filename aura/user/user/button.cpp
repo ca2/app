@@ -36,7 +36,7 @@ namespace user
 
       user_button_construct();
 
-      m_strWindowText2 = pszName;
+      m_strWindowText2 = scopedstrName;
 
       id() = atom;
 

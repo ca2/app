@@ -252,7 +252,7 @@ namespace user
       ::image::image_list * GetImageListHover(int iSize);
 
 
-      virtual enum_folder get_folder_type(::particle * pparticle, const ::wstring & wstrPath);
+      //virtual enum_folder get_folder_type(::particle * pparticle, const ::wstring & wstrPath);
       virtual enum_folder get_folder_type(::particle * pparticle, const ::scoped_string & scopedstrPath);
 
 

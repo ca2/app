@@ -83,7 +83,7 @@ namespace user
 
       string_array stra;
 
-      stra.add_lines(str);
+      stra.add_lines(scopedstr);
 
       // auto pcontext = get_context();
 
@@ -202,14 +202,14 @@ namespace user
    bool copydesk::set_plain_text(const ::scoped_string & scopedstr, bool bForceSetIfEmpty)
    {
 
-      if(str.is_empty() && !bForceSetIfEmpty)
+      if(scopedstr.is_empty() && !bForceSetIfEmpty)
       {
 
          return false;
 
       }
 
-      return _set_plain_text(str);
+      return _set_plain_text(scopedstr);
 
    }
 
@@ -561,7 +561,7 @@ namespace user
    bool copydesk::_set_plain_text(const ::scoped_string & scopedstr)
    {
 
-      __UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(scopedstr);
 
       throw ::interface_only();
 

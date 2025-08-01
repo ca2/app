@@ -75,7 +75,7 @@ namespace database
 
       virtual void fill_fields()=0;
 
-      void parse_sql(const ::string & sql);
+      void parse_sql(const ::scoped_string & scopedstrSql);
 
       dataset(database * pdatabase);
 
@@ -88,11 +88,11 @@ namespace database
 
       virtual ::collection::count num_rows()= 0;
 
-      virtual void open(const ::string & sql) = 0;
+      virtual void open(const ::scoped_string & scopedstrSql) = 0;
       virtual void open() = 0;
-      virtual bool exec(const ::string & sql) = 0;
+      virtual bool exec(const ::scoped_string & scopedstrSql) = 0;
       virtual bool exec() = 0;
-      virtual bool query(const ::string &sql) = 0;
+      virtual bool query(const ::scoped_string & scopedstrSql) = 0;
 
       virtual void close();
 
@@ -137,19 +137,19 @@ namespace database
 
       enum_dataset get_dataset_state() {return m_edataset; }
 
-      virtual void set_sql(enum_sql esql, const ::string & sql);
+      virtual void set_sql(enum_sql esql, const ::scoped_string & scopedstrSql);
 
       virtual void clear_sql(enum_sql esql);
 
       virtual string get_sql(enum_sql esql);
 
-      virtual ::pointer<row_array>query_rows(const ::string &query);
-      virtual ::pointer<payload_array>query_items(const ::string &query);
-      virtual ::payload query_item(const ::string &query);
+      virtual ::pointer<row_array>query_rows(const ::scoped_string & scopedstrQuery);
+      virtual ::pointer<payload_array>query_items(const ::scoped_string & scopedstrQuery);
+      virtual ::payload query_item(const ::scoped_string & scopedstrQuery);
 
-      virtual bool query_rows(::pointer<row_array>& rows, const ::string &query);
-      virtual bool query_items(::pointer<payload_array>& items, const ::string &query);
-      virtual bool query_item(::payload & item, const ::string &query);
+      virtual bool query_rows(::pointer<row_array>& rows, const ::scoped_string & scopedstrQuery);
+      virtual bool query_items(::pointer<payload_array>& items, const ::scoped_string & scopedstrQuery);
+      virtual bool query_item(::payload & item, const ::scoped_string & scopedstrQuery);
 
    };
 

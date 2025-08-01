@@ -535,10 +535,11 @@ namespace user
       return c;
    }
 
-   bool document_manager::OnDDECommand(char * pszCommand)
 
+   bool document_manager::OnDDECommand(const ::scoped_string & scopedstrDDECommand)
    {
-      __UNREFERENCED_PARAMETER(scopedstrCommand);
+
+      __UNREFERENCED_PARAMETER(scopedstrDDECommand);
 
       /*string strCommand = pszCommand;
 

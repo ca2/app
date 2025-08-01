@@ -10312,7 +10312,7 @@ namespace apex
       
       ::property_set setPost;
 
-      auto estatus = on_html_response(nullptr, strHtml, strUri, setPost);
+      auto estatus = on_html_response(nullptr, strHtml, scopedstrUri, setPost);
 
       if(estatus != success_none && estatus.succeeded())
       {
@@ -10324,7 +10324,7 @@ namespace apex
       if (m_pinterprocesscommunication)
       {
 
-         m_pinterprocesscommunication->m_ptarget->_handle_uri(strUri);
+         m_pinterprocesscommunication->m_ptarget->_handle_uri(scopedstrUri);
 
       }
       else
@@ -10332,9 +10332,9 @@ namespace apex
 
          //preempt(25_s);
 
-         payload("activation.note1") = "m_pinterprocesscommunication was null for uri=\"" + strUri + "\"";
+         payload("activation.note1") = "m_pinterprocesscommunication was null for uri=\"" + scopedstrUri + "\"";
 
-         add_activation_message(strUri);
+         add_activation_message(scopedstrUri);
 
       }
 
@@ -10363,7 +10363,7 @@ namespace apex
    bool application::exclusive_fails(const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
    {
 
-      return node()->exclusive_fails(this, strName, psecurityattributes);
+      return node()->exclusive_fails(this, scopedstrName, psecurityattributes);
 
    }
 
@@ -10371,7 +10371,7 @@ namespace apex
    bool application::exclusive_erase(const ::scoped_string & scopedstrName)
    {
 
-      return node()->erase_exclusive(strName);
+      return node()->erase_exclusive(scopedstrName);
 
    }
 

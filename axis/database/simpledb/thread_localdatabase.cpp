@@ -245,7 +245,7 @@ namespace simpledb
 
       auto pitem(__allocate queue_item());
 
-      pitem->m_strKey = pszKey;
+      pitem->m_strKey = scopedstrKey;
       pitem->m_memory = block;
 
       m_itema.add(pitem);

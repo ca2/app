@@ -31,7 +31,7 @@ namespace mail
    }
 
 
-   void pop3_socket::OnLine(const string & line)
+   void pop3_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
       string strLine(line);
       string_array stra;

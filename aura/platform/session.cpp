@@ -2451,7 +2451,7 @@ namespace aura
 
       ::pointer<::platform::application>papplication;
 
-      if (m_applicationa.lookup(strAppId, papplication) && papplication)
+      if (m_applicationa.lookup(scopedstrAppId, papplication) && papplication)
       {
 
          //::pointer<::bergedge::pane_impact>ppaneimpact = get_document()->get_typed_impact < ::bergedge::pane_impact >();

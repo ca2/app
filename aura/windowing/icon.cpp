@@ -35,7 +35,7 @@ namespace windowing
    void icon::set_tray_icon_name(const ::scoped_string & scopedstrTrayIconName)
    {
 
-      m_strTrayIconName = strTrayIconName;
+      m_strTrayIconName = scopedstrTrayIconName;
 
       //return ::success;
 
@@ -63,7 +63,7 @@ namespace windowing
    void icon::load_matter(const ::scoped_string & scopedstrMatter)
    {
 
-      string strPath = directory()->matter(strMatter);
+      string strPath = directory()->matter(scopedstrMatter);
 
       load_file(strPath);
 
@@ -82,7 +82,7 @@ namespace windowing
    void icon::load_app_tray_icon(const ::scoped_string & scopedstrTrayIconName)
    {
 
-        m_strTrayIconName = strTrayIconName;
+        m_strTrayIconName = scopedstrTrayIconName;
 
         //return ::success;
 

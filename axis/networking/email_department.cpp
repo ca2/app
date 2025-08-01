@@ -76,7 +76,7 @@ namespace networking
    bool email_department::syntax_is_valid(const ::scoped_string & scopedstrEmailAddress)
    {
 
-      auto iAt = strEmailAddress.find_index('@');
+      auto iAt = scopedstrEmailAddress.find_index('@');
 
       if (iAt < 0)
       {
@@ -85,14 +85,14 @@ namespace networking
 
       }
 
-      if (iAt >= strEmailAddress.length() - 1)
+      if (iAt >= scopedstrEmailAddress.length() - 1)
       {
 
          return false;
 
       }
 
-      string strDomain = strEmailAddress.substr(iAt + 1);
+      string strDomain = scopedstrEmailAddress.substr(iAt + 1);
 
       if (strDomain.is_empty())
       {
@@ -118,7 +118,7 @@ namespace networking
    bool email_department::is_valid_public_address(const ::scoped_string & scopedstrEmailAddress)
    {
 
-      auto iAt = strEmailAddress.find_index('@');
+      auto iAt = scopedstrEmailAddress.find_index('@');
 
       if (iAt < 0)
       {
@@ -127,14 +127,14 @@ namespace networking
 
       }
 
-      if (iAt >= strEmailAddress.length() - 1)
+      if (iAt >= scopedstrEmailAddress.length() - 1)
       {
 
          return false;
 
       }
 
-      string strDomain = strEmailAddress.substr(iAt + 1);
+      string strDomain = scopedstrEmailAddress.substr(iAt + 1);
 
       if (strDomain.is_empty())
       {
@@ -164,9 +164,7 @@ namespace networking
    }
 
 
-
-} // namespace axis
-
+} // namespace networking
 
 
 

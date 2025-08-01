@@ -161,7 +161,7 @@ bool html_impact::browse(const ::scoped_string & scopedstrUrl)
 
    }
 
-   m_strLocationURL = pszUrl;
+   m_strLocationURL = scopedstrUrl;
 
    return true;
 
@@ -171,7 +171,7 @@ bool html_impact::browse(const ::scoped_string & scopedstrUrl)
 void html_impact::on_document_complete(const ::scoped_string & scopedstrUrl)
 {
 
-   __UNREFERENCED_PARAMETER(strUrl);
+   __UNREFERENCED_PARAMETER(scopedstrUrl);
 
 }
 
@@ -276,7 +276,7 @@ bool html_impact::open_document(const ::payload & payloadFile)
 bool html_impact::open_html(const ::scoped_string & scopedstrHtml)
 {
 
-   return html_form::open_html(strHtml);
+   return html_form::open_html(scopedstrHtml);
 
 }
 

@@ -4,7 +4,7 @@
 
 
 numeric_parsing_exception::numeric_parsing_exception(const ::scoped_string & scopedstrMessage):
-   parsing_exception(strMessage)
+   parsing_exception(scopedstrMessage)
 {
 
    informationf("numeric_parsing_exception");
@@ -36,7 +36,7 @@ CLASS_DECL_AXIS bool throw_numeric_parsing_exception(const ::scoped_string & sco
 
    }
 
-   throw numeric_parsing_exception(strMessage);
+   throw numeric_parsing_exception(scopedstrMessage);
 
    return true;
 

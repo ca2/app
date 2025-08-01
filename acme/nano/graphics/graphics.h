@@ -25,7 +25,7 @@ public:
    ~graphics() override;
    
    
-   inline static const char * represented_component_name(){return "nano_graphics";}
+   inline static const_char_pointer  represented_component_name(){return "nano_graphics";}
 
    
    //::pointer < ::subparticle > nano()->message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr);

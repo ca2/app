@@ -508,7 +508,7 @@ namespace hi5
 
       ::payload v;
 
-      const char * p = m_strResponse;
+      const_char_pointer  p = m_strResponse;
 
       m_strError = m_strResponse;
 
@@ -628,7 +628,7 @@ namespace hi5
 
       ::payload v;
 
-      const char * p = m_strResponse;
+      const_char_pointer  p = m_strResponse;
 
       m_strError = m_strResponse;
 
@@ -692,7 +692,7 @@ namespace hi5
 
       ::payload v;
 
-      const char * p = m_strResponse;
+      const_char_pointer  p = m_strResponse;
 
       m_strError = m_strResponse;
 
@@ -2098,7 +2098,7 @@ namespace hi5
    * @remarks: internal method
    *
    *--*/
-   string twit::build_url( const char * baseUrl, const ::string & userInfo, bool isUserId )
+   string twit::build_url( const_char_pointer  baseUrl, const ::scoped_string & scopedstrUserInfo, bool isUserId )
    {
       /* Copy base URL */
       string outUrl = baseUrl;

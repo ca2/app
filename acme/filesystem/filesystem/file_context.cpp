@@ -701,7 +701,7 @@ bool file_context::try_create_file(const ::file::path & path, bool bTryDelete)
 
    }
 
-   const char * pszJson = str;
+   const_char_pointer  pszJson = str;
 
    ::payload v;
 
@@ -726,7 +726,7 @@ bool file_context::try_create_file(const ::file::path & path, bool bTryDelete)
 
    }
 
-   const char * pszJson = str;
+   const_char_pointer  pszJson = str;
 
    ::payload v;
 
@@ -2802,12 +2802,12 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //
 //   str.Format("%I64dn", iNumber);
 //
-//   pfile->write((const char *)str);
+//   pfile->write((const_char_pointer )str);
 //
 //   if (pctx != nullptr)
 //   {
 //
-//      MD5_Update((MD5_CTX *)pctx, (const char *)str, (int)str.length());
+//      MD5_Update((MD5_CTX *)pctx, (const_char_pointer )str, (int)str.length());
 //
 //   }
 //
@@ -2854,10 +2854,10 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //{
 //   ::collection::count iLen = str.length();
 //   write_n_number(pfile, pctx, iLen);
-//   pfile->write((const char *)str);
+//   pfile->write((const_char_pointer )str);
 //   if (pctx != nullptr)
 //   {
-//      MD5_Update((MD5_CTX *)pctx, (const char *)str, (int)str.length());
+//      MD5_Update((MD5_CTX *)pctx, (const_char_pointer )str, (int)str.length());
 //   }
 //}
 
@@ -3456,7 +3456,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    pget->call();
 
-   const char * pszData = (const char *)pmemoryfile->get_memory()->data();
+   const_char_pointer  pszData = (const_char_pointer )pmemoryfile->get_memory()->data();
 
    auto size = static_cast<size_t>(pmemoryfile->get_memory()->size());
 
@@ -4246,7 +4246,7 @@ bool file_context::is_link(const ::file::path & path)
    //}
 
    //
-   //string file_context::sys_temp(const char * lpszName, const ::scoped_string & scopedstrExtension)
+   //string file_context::sys_temp(const_char_pointer  lpszName, const ::scoped_string & scopedstrExtension)
    //{
    //   return psystem->m_spfile->sys_temp(lpszName, pszExtension, get_app());
    //}
@@ -4616,7 +4616,7 @@ void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file
 }
 
 
-CLASS_DECL_ACME void * file_as_memory_dup(long & size, const char * psz)
+CLASS_DECL_ACME void * file_as_memory_dup(long & size, const_char_pointer  psz)
 {
 
    try

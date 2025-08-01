@@ -33,8 +33,8 @@ namespace XMPP {
 	virtual void *realloc(void *p, const size_t size);
 	virtual void free(void *p);
 	virtual void log(const xmpp_log_level_t level,
-			 const char * const area,
-			 const char * const msg);
+			 const_char_pointer  const area,
+			 const_char_pointer  const msg);
 
 	xmpp_ctx_t *getContext();
 
@@ -45,8 +45,8 @@ namespace XMPP {
 	static void callFree(void *p, void * const userdata);
 	static void callLog(void * const userdata, 
 			    const xmpp_log_level_t level,
-			    const char * const area,
-			    const char * const msg);
+			    const_char_pointer  const area,
+			    const_char_pointer  const msg);
     };
 
     class Stanza {
@@ -103,9 +103,9 @@ namespace XMPP {
 	Connection *clone();
 	void operator delete(void *p);
 
-	const char *getJID();
+	const_char_pointer  getJID();
 	void setJID(const ::string & const jid);
-	const char *getPass();
+	const_char_pointer  getPass();
 	void setPass(const ::string & const pass);
 	bool connectClient(const ::string & const domain,
 			   xmpp_conn_handler callback,
@@ -118,13 +118,13 @@ namespace XMPP {
 			     void * const userdata);
 	void deleteTimedHandler(xmpp_timed_handler handler);
 	void addHandler(xmpp_handler handler,
-			const char * const ns,
-			const char * const name,
-			const char * const type,
+			const_char_pointer  const ns,
+			const_char_pointer  const name,
+			const_char_pointer  const type,
 			void * const userdata);
 	void deleteHandler(xmpp_handler handler);
 	void addIdHandler(xmpp_handler handler,
-			  const char * const atom,
+			  const_char_pointer  const atom,
 			  void * const userdata);
 	void deleteIdHandler(xmpp_handler handler);
     };

@@ -108,7 +108,7 @@ public:
    virtual void initialize(::particle * pparticle) override;
    virtual void destroy() override;
 
-   inline const char* topic_text();
+   inline const_char_pointer  topic_text();
 
    context& __context(const ::payload& payload);
 

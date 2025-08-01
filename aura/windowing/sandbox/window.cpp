@@ -103,9 +103,9 @@ namespace sandbox_windowing
          //
          //         string strApplicationServerName = psystem->get_application_server_name();
          //
-         //         pupdate->res_class = (char *) (const char *) strApplicationServerName;
+         //         pupdate->res_class = (char *) (const_char_pointer ) strApplicationServerName;
          //
-         //         pupdate->res_name = (char *) (const char *) strApplicationServerName;
+         //         pupdate->res_name = (char *) (const_char_pointer ) strApplicationServerName;
          //
          //         XSetClassHint(display, window, pupdate);
          //
@@ -769,7 +769,7 @@ namespace sandbox_windowing
    //      ixa,
    //      8,
    //      PropModeReplace,
-   //      (const unsigned char *)(const char *)path,
+   //      (const unsigned char *)(const_char_pointer )path,
    //      path.get_length());
 
    //   informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
@@ -797,7 +797,7 @@ namespace sandbox_windowing
    //}
 
 
-   //   Atom window::x11_display()->intern_atom(const char *pszAtomName, bool bCreate)
+   //   Atom window::x11_display()->intern_atom(const_char_pointer pszAtomName, bool bCreate)
    //   {
    //
    //      return m_osdisplay->x11_display()->intern_atom(scopedstrAtomName, bCreate);
@@ -1845,7 +1845,7 @@ namespace sandbox_windowing
       //   ixa,
       //   8,
       //   PropModeReplace,
-      //   (const unsigned char *)(const char *)path,
+      //   (const unsigned char *)(const_char_pointer )path,
       //   path.get_length());
 
       //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
@@ -2422,7 +2422,7 @@ namespace sandbox_windowing
       //   ixa,
       //   8,
       //   PropModeReplace,
-      //   (const unsigned char *)(const char *)path,
+      //   (const unsigned char *)(const_char_pointer )path,
       //   path.get_length());
 
       //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");

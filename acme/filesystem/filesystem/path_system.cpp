@@ -101,7 +101,7 @@ path_system::~path_system()
 
 
 
-::string path_system::icloud_container_identifier(const char * psz_iCloudContainerIdentifier)
+::string path_system::icloud_container_identifier(const_char_pointer  psz_iCloudContainerIdentifier)
 {
    
    ::string str_iCloudContainerIdentifier(psz_iCloudContainerIdentifier);
@@ -118,7 +118,7 @@ path_system::~path_system()
 }
 
 
-//::string path_system::icloud_container_id_from_app_id(const char * pszAppId)
+//::string path_system::icloud_container_id_from_app_id(const_char_pointer  pszAppId)
 //{
 //   
 //   ::string strAppId(scopedstrAppId);
@@ -142,7 +142,7 @@ path_system::~path_system()
 //}
 
 
-::file::path path_system::defer_get_icloud_container_path(const ::file::path & path, const char * pszAppId)
+::file::path path_system::defer_get_icloud_container_path(const ::file::path & path, const_char_pointer  pszAppId)
 {
    
    if(directory_system()->is_icloud_container(path, pszAppId))

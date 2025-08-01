@@ -36,7 +36,7 @@ namespace heap
 
    }
 
-   void * malloc_allocator::allocate(memsize s, memsize * psizeAllocated, const char * pszAnnotation)
+   void * malloc_allocator::allocate(memsize s, memsize * psizeAllocated, const_char_pointer  pszAnnotation)
    {
 
 #ifdef WINDOWS
@@ -75,7 +75,7 @@ namespace heap
    }
 
 
-   void * malloc_allocator::reallocate(void * p, memsize s, const char * pszAnnotation)
+   void * malloc_allocator::reallocate(void * p, memsize s, const_char_pointer  pszAnnotation)
    {
 #ifdef WINDOWS
 

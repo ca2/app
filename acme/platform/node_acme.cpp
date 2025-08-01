@@ -65,7 +65,7 @@ namespace platform
    }
 
 
-   void acme_node_layer::node_application_on_status(const char* pszStatus, void* p, long long hi)
+   void acme_node_layer::node_application_on_status(const_char_pointer  pszStatus, void* p, long long hi)
    {
    }
 
@@ -563,7 +563,7 @@ namespace platform
 
    //::string acme_node_layer::get_user_toolkit_id(){}
 
-   void acme_node_layer::launch_app(const ::scoped_string & scopedstr, const char** argv, int iFlags)
+   void acme_node_layer::launch_app(const ::scoped_string & scopedstr, const_char_pointer * argv, int iFlags)
    {
    }
 
@@ -1761,7 +1761,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
 #endif
 
    bool acme_node_layer::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath,
-                                                                        const char* pszPath)
+                                                                        const_char_pointer  pszPath)
    {
       return false;
    }
@@ -1869,7 +1869,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    //#endif
 #if defined(__BSD__) || defined(__APPLE__)
 
-      void acme_node_layer::arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const char * status)){}
+      void acme_node_layer::arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const_char_pointer  status)){}
 
 #endif
 

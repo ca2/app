@@ -37,7 +37,7 @@ namespace http
       void EnableRaw(bool bRaw = true);
 
       /** Encode characters '<' '>' '&' as &lt; &gt; &amp; */
-      void strcpyval(string &,const char *) const;
+      void strcpyval(string &,const_char_pointer ) const;
 
       /* get value */
       ::property_set & get();

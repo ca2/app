@@ -124,7 +124,7 @@ CLASS_DECL_ACME void trace_category_static_term();
 //static ::platform::system * g_psystem = nullptr;
 
 
-//extern const char * g_pszTopLevelDomainList[];
+//extern const_char_pointer  g_pszTopLevelDomainList[];
 
 
 enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrTitle,
@@ -3690,7 +3690,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          if (::is_set(application()))
          {
 
-            auto pszUrl = (const char*)ptopic->payload("wparam").as_iptr();
+            auto pszUrl = (const_char_pointer )ptopic->payload("wparam").as_iptr();
 
             application()->did_pick_document_at_url(scopedstrUrl);
 
@@ -5111,7 +5111,7 @@ void node_did_finish_launching(::platform::system* psystem);
 void system_on_open_untitled_file(::platform::system* psystem);
 
 
-void system_on_open_file(::platform::system* psystem, const char* pszFile);
+void system_on_open_file(::platform::system* psystem, const_char_pointer  pszFile);
 
 
 void node_will_finish_launching(::platform::system* psystem)
@@ -5138,7 +5138,7 @@ void system_on_open_untitled_file(::platform::system* psystem)
 }
 
 
-void system_on_open_file(::platform::system* psystem, const char* pszFile)
+void system_on_open_file(::platform::system* psystem, const_char_pointer  pszFile)
 {
 
    psystem->on_open_file(scopedstrFile);

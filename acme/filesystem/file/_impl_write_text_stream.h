@@ -15,9 +15,9 @@
 //    FILE *         m_pfile;
 //    char           m_chSeparator = ' ';
 //#ifdef WINDOWS
-//    const char* m_pszEolSeparator = "\r\n";
+//    const_char_pointer  m_pszEolSeparator = "\r\n";
 //#else
-//    const char* m_pszEolSeparator = "\n";
+//    const_char_pointer  m_pszEolSeparator = "\n";
 //#endif
 
 //// template < typename FILE >

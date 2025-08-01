@@ -40,7 +40,7 @@ bool CLASS_DECL_ACME __is_combo_box_control(oswindow hWnd, unsigned int nStyle)
    return ::__invariant_stricmp(szCompare, "combobox") == 0;
 }
 
-bool CLASS_DECL_ACME __compare_class_name(oswindow hWnd, const char * lpszClassName)
+bool CLASS_DECL_ACME __compare_class_name(oswindow hWnd, const_char_pointer  lpszClassName)
 {
    ASSERT(::IsWindow(hWnd));
    char szTemp[32];
@@ -72,7 +72,7 @@ oswindow CLASS_DECL_ACME __child_window_from_point(oswindow hWnd, ::int_point in
    return nullptr;    // not found
 }
 
-void CLASS_DECL_ACME __set_window_text(::user::interaction * hWndCtrl, const char * lpszNew)
+void CLASS_DECL_ACME __set_window_text(::user::interaction * hWndCtrl, const_char_pointer  lpszNew)
 {
    hWndCtrl->set_window_text(lpszNew);
    /*ENSURE(hWndCtrl);

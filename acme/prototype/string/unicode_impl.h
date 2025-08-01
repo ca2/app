@@ -47,7 +47,7 @@ inline int get_utf8_char_length(const ::ansi_character * psz)
 
 
 
-//inline int unicode_index(const char *& input, character_count * psrclen)
+//inline int unicode_index(const_char_pointer & input, character_count * psrclen)
 //{
 //
 //   if (*input == 0)
@@ -738,7 +738,7 @@ inline const ::wd32_character * unicode_next(const ::wd32_character * psz)
 }
 
 
-inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_character * pszBeg)
+inline const_char_pointer  unicode_prior(const ::ansi_character * psz, const ::ansi_character * pszBeg)
 {
 
    if (psz <= pszBeg)

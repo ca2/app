@@ -121,10 +121,10 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
 CLASS_DECL_ACME int DECL_C debug_report(
 int _ReportType,
-const char * _Filename,
+const_char_pointer  _Filename,
 int _LineNumber,
-const char * _ModuleName,
-const char * _Format,
+const_char_pointer  _ModuleName,
+const_char_pointer  _Format,
 ...);
 
 
@@ -441,7 +441,7 @@ CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const ::scoped_string & s
 //}
 
 //
-//extern const char * g_pszTraceLevelName[];
+//extern const_char_pointer  g_pszTraceLevelName[];
 //
 //
 
@@ -452,7 +452,7 @@ CLASS_DECL_ACME enum_trace_level trace_level_constraint(enum_trace_level elevel)
 //
 //// }
 
-CLASS_DECL_ACME const char * trace_level_name(enum_trace_level elevel);
+CLASS_DECL_ACME const_char_pointer  trace_level_name(enum_trace_level elevel);
 
 
 //extern char g_chaTraceLevel[];;;

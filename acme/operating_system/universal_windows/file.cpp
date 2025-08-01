@@ -24,7 +24,7 @@
 
 
 
-//int_bool file_system()->put_contents(const ::file::path & path, const char* contents, memsize len)
+//int_bool file_system()->put_contents(const ::file::path & path, const_char_pointer  contents, memsize len)
 //{
 //
 //            auto psystem = system();
@@ -908,7 +908,7 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //
 //
 //
-//int_bool file_move(const char * lpszNewName,const char * lpszOldName)
+//int_bool file_move(const_char_pointer  lpszNewName,const_char_pointer  lpszOldName)
 //{
 //
 //   if(!::MoveFile((char *)lpszOldName,(char *)lpszNewName))
@@ -918,7 +918,7 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //
 //}
 
-//int_bool file_delete(const char* lpszFileName)
+//int_bool file_delete(const_char_pointer  lpszFileName)
 //{
 //
 //   wstring wstr(lpszFileName);
@@ -989,7 +989,7 @@ HANDLE _get_osfhandle(int i)
 return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 }*/
 
-//FILE *FILE_open(const char *path,const char *attrs)
+//FILE *FILE_open(const_char_pointer path,const_char_pointer attrs)
 //{
 //
 //
@@ -1064,7 +1064,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //}
 //
 //
-//int fprintf_dup(FILE *fp,const char *s,...)
+//int fprintf_dup(FILE *fp,const_char_pointer s,...)
 //{
 //   va_list args;
 //   va_start(args,s);
@@ -1221,7 +1221,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   // Text-mode translation is always ANSI!
 //   if(textMode)			// text mode -> translate LF -> CRLF
 //   {
-//      const char *src = (const char*)buffer;
+//      const_char_pointer src = (const_char_pointer )buffer;
 //      size_t startpos = 0,i = 0;
 //      for(i = 0; i < int_size*count; i++)
 //      {
@@ -1242,7 +1242,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //            }
 //         }
 //
-//         const char *crlf = "\r\n";
+//         const_char_pointer crlf = "\r\n";
 //         WriteFile(hFile,crlf,2,&bw2,0);
 //         bw++;		// one '\n' written
 //
@@ -1260,7 +1260,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   else
 //   {
 //      size_t s = int_size * count;
-//      const char *src = (const char*)buffer;
+//      const_char_pointer src = (const_char_pointer )buffer;
 //      size_t dwWritten = 0;
 //      while(s - dwWritten > 0)
 //      {
@@ -1531,7 +1531,7 @@ HANDLE WinFindFirstFileW(const unichar* pwsz, WIN32_FIND_DATAW* pdata)
 
 }
 
-HANDLE WinFindFirstFileA(const char* pwsz, WIN32_FIND_DATAA* pdata)
+HANDLE WinFindFirstFileA(const_char_pointer  pwsz, WIN32_FIND_DATAA* pdata)
 {
 
    return FindFirstFileExA(pwsz, FindExInfoStandard, pdata, FindExSearchNameMatch, nullptr, 0);
@@ -1571,7 +1571,7 @@ return true;
 */
 
 
-HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile)
+HANDLE hfile_create(const_char_pointer  lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile)
 {
 
    CREATEFILE2_EXTENDED_PARAMETERS ps;
@@ -1598,7 +1598,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //}
 //
 
-//::winrt::Windows::Storage::StorageFolder^ get_os_folder(const char* lpcszDirName)
+//::winrt::Windows::Storage::StorageFolder^ get_os_folder(const_char_pointer  lpcszDirName)
 //{
 //
 //   return wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(lpcszDirName)));
@@ -1606,7 +1606,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 //}
 //
 //
-//::winrt::Windows::Storage::StorageFile^ get_os_file(const char* lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile)
+//::winrt::Windows::Storage::StorageFile^ get_os_file(const_char_pointer  lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile)
 //{
 //
 //   /*
@@ -1764,7 +1764,7 @@ HANDLE hfile_create(const char* lpcszFileName, unsigned int dwDesiredAcces, unsi
 ////
 //
 //
-////int_bool file_system()->put_contents(const ::file::path & path,const char * contents,::collection::count len)
+////int_bool file_system()->put_contents(const ::file::path & path,const_char_pointer  contents,::collection::count len)
 ////{
 ////
 ////            auto psystem = system();

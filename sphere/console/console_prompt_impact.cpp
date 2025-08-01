@@ -149,9 +149,9 @@ namespace console
          if(m_iCursor <= 0)
             return;
 
-         const char * lpsz = &m_strCommand[m_iCursor];
+         const_char_pointer  lpsz = &m_strCommand[m_iCursor];
 
-         const char * lpszDec = ::str::utf8_dec(m_strCommand, lpsz);
+         const_char_pointer  lpszDec = ::str::utf8_dec(m_strCommand, lpsz);
 
          if(lpsz - lpszDec > 0)
          {
@@ -171,9 +171,9 @@ namespace console
          if(m_iCursor >= m_strCommand.utf8.length())
             return;
 
-         const char * lpsz = &m_strCommand[m_iCursor];
+         const_char_pointer  lpsz = &m_strCommand[m_iCursor];
 
-         const char * lpszInc = unicode_next(lpsz);
+         const_char_pointer  lpszInc = unicode_next(lpsz);
 
          if(lpszInc - lpsz > 0)
          {

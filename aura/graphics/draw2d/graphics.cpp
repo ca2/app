@@ -1769,7 +1769,7 @@ namespace draw2d
    //
    //      ::double_rectangle rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
    //
-   //      const ::int_size & size = ::int_size(get_text_extent((const char *) block.get_data(), block.get_size()));
+   //      const ::int_size & size = ::int_size(get_text_extent((const_char_pointer ) block.get_data(), block.get_size()));
    //
    //      ::double_rectangle rectangleText(int_point((int)x, (int)y), size);
    //
@@ -4116,16 +4116,16 @@ namespace draw2d
 
       ::string str(scopedstr);
 
-      const char * pszStart = str;
+      const_char_pointer  pszStart = str;
 
-      const char * psz = pszStart;
+      const_char_pointer  psz = pszStart;
 
       double dLeft = 0.0;
 
       while (*psz && iRange < iStart + iCount)
       {
 
-         const char * pszNext = unicode_next(scopedstr);
+         const_char_pointer  pszNext = unicode_next(scopedstr);
 
          if (pszNext == nullptr)
          {
@@ -6499,7 +6499,7 @@ namespace draw2d
 
       struct NSVGimage* pnsvgimage;
 
-      pnsvgimage = nsvgParse((char*)(const char*)str, "px", 96);
+      pnsvgimage = nsvgParse((char*)(const_char_pointer )str, "px", 96);
 
       nanosvg_drawframe(pnsvgimage, x, y, w, h);
 

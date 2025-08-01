@@ -57,7 +57,7 @@ library_t *__dl_______touch(const      char  ** image_name)
 
       ::string strMessage;
       
-      const char *image_name = _dyld_get_image_name(i);
+      const_char_pointer image_name = _dyld_get_image_name(i);
       
       auto p = open(image_name, strMessage);
       

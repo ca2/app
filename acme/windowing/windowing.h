@@ -54,7 +54,7 @@ namespace acme
          inline ::windowing::enum_bias windowing_bias() { return m_ewindowingbias; }
 
 
-         //inline static const char * represented_component_name() { return "nano_windowing"; }
+         //inline static const_char_pointer  represented_component_name() { return "nano_windowing"; }
 
          //::acme::windowing::window * windowing_window() override;
          //::micro::theme * nano_user_theme();
@@ -80,7 +80,7 @@ namespace acme
          
          virtual void _did_finish_launching();
          
-         virtual void set_clipboard_text(const char * psz);
+         virtual void set_clipboard_text(const_char_pointer  psz);
          
          virtual ::acme::windowing::window* get_application_host_window();
 

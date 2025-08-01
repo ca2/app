@@ -50,7 +50,7 @@ namespace draw2d
 }
 
 #ifdef LINUX
-const char * get_main_app_id();
+const_char_pointer  get_main_app_id();
 #endif
 
 //void ([a-z0-9_]+)_factory(::factory::factory * pfactory);

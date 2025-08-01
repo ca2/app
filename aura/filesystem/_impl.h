@@ -554,7 +554,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 
 
 // template < class ARRAY >
-// bool file_put_array(const ::string & path, ARRAY & a, ::aura::application * papp)
+// bool file_put_array(const ::scoped_string & scopedstrPath, ARRAY & a, ::aura::application * papp)
 // {
 
 
@@ -611,7 +611,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 
 
 // template < class ARRAY >
-// bool file_as_array(ARRAY & a, const ::string & path, ::aura::application * papp)
+// bool file_as_array(ARRAY & a, const ::scoped_string & scopedstrPath, ::aura::application * papp)
 // {
 
 //   try
@@ -723,7 +723,7 @@ inline stream & operator >>(stream & s, ::file::path_object & path)
 
 
 
-inline const char * FormatArgument(const ::file::path & value) noexcept
+inline const_char_pointer  FormatArgument(const ::file::path & value) noexcept
 {
    return value.c_str();
 }

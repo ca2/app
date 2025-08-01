@@ -117,7 +117,7 @@ namespace acme
 //::platform::system * system();
 
 
-CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int iLineNumber)
+CLASS_DECL_ACME bool __assert_failed_line(const_char_pointer  pszFileName, int iLineNumber)
 {
 
 #ifdef LINUX
@@ -155,7 +155,7 @@ CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int iLineNum
 }
 
 
-CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const char * pszFileName, int iLineNumber)
+CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const_char_pointer  pszFileName, int iLineNumber)
 {
 
    char szMessage[1024*4];

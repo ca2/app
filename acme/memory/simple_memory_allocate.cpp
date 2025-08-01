@@ -10,7 +10,7 @@
 #include "align_byte_count.h"
 
 
-void * simple_memory_allocate(size_t s, const char * pszAllocation)
+void * simple_memory_allocate(size_t s, const_char_pointer  pszAllocation)
 {
    
    auto s2 = heap_memory_aligned_provision_get_size(s, ALIGN_BYTE_COUNT);
@@ -24,7 +24,7 @@ void * simple_memory_allocate(size_t s, const char * pszAllocation)
 }
 
 
-void * simple_memory_reallocate(void * p2, size_t s, const char * pszAllocation)
+void * simple_memory_reallocate(void * p2, size_t s, const_char_pointer  pszAllocation)
 {
    
    auto pheapmemory = heap_memory_get(p2);

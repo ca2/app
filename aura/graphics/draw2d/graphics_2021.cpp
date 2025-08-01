@@ -1565,7 +1565,7 @@ namespace draw2d
 
       ::double_rectangle rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
 
-      const ::int_size & size = ::int_size(get_text_extent((const char *) block.get_data(), block.get_size()));
+      const ::int_size & size = ::int_size(get_text_extent((const_char_pointer ) block.get_data(), block.get_size()));
 
       ::double_rectangle rectangleText(int_point((int)x, (int)y), size);
 
@@ -3438,7 +3438,7 @@ namespace draw2d
 
       character_count iLen;
 
-      const char * pszStart = str;
+      const_char_pointer  pszStart = str;
 
       const ::scoped_string & scopedstr = pszStart;
 
@@ -3513,7 +3513,7 @@ namespace draw2d
       
       ::double_size size;
 
-      get_text_extent(size, (const char*)block.get_data(), block.get_size());
+      get_text_extent(size, (const_char_pointer )block.get_data(), block.get_size());
 
       return size;
 
@@ -4259,7 +4259,7 @@ namespace draw2d
          if (sz.cx() > rectangleClip.width())
          {
 
-            const char * pszStart = str;
+            const_char_pointer  pszStart = str;
 
             const ::scoped_string & scopedstr = pszStart;
 
@@ -4503,7 +4503,7 @@ namespace draw2d
 
       const ::ansi_character * pszEnd = pszSource + len;
 
-      const char * pszStart = unicode_next(scopedstrSource);
+      const_char_pointer  pszStart = unicode_next(scopedstrSource);
 
       int_size sz;
 
@@ -5597,7 +5597,7 @@ namespace draw2d
 
       struct NSVGimage* pnsvgimage;
 
-      pnsvgimage = nsvgParse((char *) (const char *) str, "px", 96);
+      pnsvgimage = nsvgParse((char *) (const_char_pointer ) str, "px", 96);
 
       nanosvg_drawframe(pnsvgimage, x, y, w, h);
 

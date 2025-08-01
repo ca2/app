@@ -3,15 +3,15 @@
 
 
 // returns true if it should continue...
-CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int iLineNumber);
+CLASS_DECL_ACME bool __assert_failed_line(const_char_pointer  pszFileName, int iLineNumber);
 
 CLASS_DECL_ACME int is_debugger_attached(void);
 
-CLASS_DECL_ACME void debug_print(const char * pszFormat, ...);
+CLASS_DECL_ACME void debug_print(const_char_pointer  pszFormat, ...);
 
 CLASS_DECL_ACME void throw_todo();
 
-CLASS_DECL_ACME int throw_assert_exception(const char * pszFileName, int iLineNumber);
+CLASS_DECL_ACME int throw_assert_exception(const_char_pointer  pszFileName, int iLineNumber);
 
 //CLASS_DECL_ACME void throw_what_exclamation_exclamation(const ::scoped_string & scopedstr);
 

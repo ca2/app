@@ -262,7 +262,7 @@ public:
 
 
    ::task * get_task() override;
-   const char * get_task_tag() override;
+   const_char_pointer  get_task_tag() override;
    
    
    virtual ::acme::user::interaction * get_active_user_interaction();

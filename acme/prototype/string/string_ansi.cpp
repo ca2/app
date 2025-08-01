@@ -38,7 +38,7 @@ CLASS_DECL_ACME base_data < string_heap_data < ::ansi_character > > * __nil < ba
 //      if(ncharCharLen == 1)
 //      {
 //         //Optimization for a common case - wide char translates to 1 ansi/wide char.
-//         ::str::flood_characters(((const char *)buffcharChar)[0],nLength,pszBuffer);
+//         ::str::flood_characters(((const_char_pointer )buffcharChar)[0],nLength,pszBuffer);
 //
 //      }
 //      else
@@ -145,12 +145,12 @@ informationf("fixed_string_log::OnReallocateSpill");
 */
 
 //
-//int __cdecl char_traits::is_digit(const char * pch) noexcept
+//int __cdecl char_traits::is_digit(const_char_pointer  pch) noexcept
 //{
 //   return unicode_is_digit(pch) ? 1 : 0;
 //}
 //
-//int __cdecl char_traits::is_space(const char * pch) noexcept
+//int __cdecl char_traits::is_space(const_char_pointer  pch) noexcept
 //{
 //   return unicode_is_whitespace(pch) ? 1 : 0;
 //}
@@ -167,20 +167,20 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   return case_insensitive_ansi_compare(reinterpret_cast<const  char*>(scopedstrA),reinterpret_cast<const  char*>(scopedstrB));
 //}
 //
-//const char * __cdecl char_traits::string_find_string(const ::scoped_string & scopedstrBlock,const ::scoped_string & scopedstrMatch) noexcept
+//const_char_pointer  __cdecl char_traits::string_find_string(const ::scoped_string & scopedstrBlock,const ::scoped_string & scopedstrMatch) noexcept
 //{
-//   return reinterpret_cast<const char *>(strstr(reinterpret_cast<const  char*>(scopedstrBlock),
+//   return reinterpret_cast<const_char_pointer >(strstr(reinterpret_cast<const  char*>(scopedstrBlock),
 //                                         reinterpret_cast<const  char*>(scopedstrMatch)));
 //}
 //
 //char * __cdecl char_traits::string_find_string(char * pszBlock,const ::scoped_string & scopedstrMatch) noexcept
 //{
-//   return(const_cast<char *>(string_find_string(const_cast<const char *>(scopedstrBlock),pszMatch)));
+//   return(const_cast<char *>(string_find_string(const_cast<const_char_pointer >(scopedstrBlock),pszMatch)));
 //}
 //
-//const char * __cdecl char_traits::string_find_char(const ::scoped_string & scopedstrBlock,char chMatch) noexcept
+//const_char_pointer  __cdecl char_traits::string_find_char(const ::scoped_string & scopedstrBlock,char chMatch) noexcept
 //{
-//   return reinterpret_cast<const char *>(strchr(reinterpret_cast<const  char*>(scopedstrBlock),(char)chMatch));
+//   return reinterpret_cast<const_char_pointer >(strchr(reinterpret_cast<const  char*>(scopedstrBlock),(char)chMatch));
 //}
 //
 ///*
@@ -204,20 +204,20 @@ informationf("fixed_string_log::OnReallocateSpill");
 //return _mbsicoll( reinterpret_cast< const uchar* >( pszA ), reinterpret_cast< const uchar* >( pszB ) );
 //}
 //
-//const char * __cdecl char_traits::string_find_string(const ::scoped_string & scopedstrBlock,const ::scoped_string & scopedstrMatch ) noexcept
+//const_char_pointer  __cdecl char_traits::string_find_string(const ::scoped_string & scopedstrBlock,const ::scoped_string & scopedstrMatch ) noexcept
 //{
-//return reinterpret_cast< const char * >( _mbsstr( reinterpret_cast< const uchar* >( pszBlock ),
+//return reinterpret_cast< const_char_pointer  >( _mbsstr( reinterpret_cast< const uchar* >( pszBlock ),
 //reinterpret_cast< const uchar* >( pszMatch ) ) );
 //}
 //
 //char * __cdecl char_traits::string_find_string(char * pszBlock,const ::scoped_string & scopedstrMatch ) noexcept
 //{
-//return( const_cast< char * >( string_find_string( const_cast< const char * >( pszBlock ), pszMatch ) ) );
+//return( const_cast< char * >( string_find_string( const_cast< const_char_pointer  >( pszBlock ), pszMatch ) ) );
 //}
 //
-//const char * __cdecl char_traits::string_find_char(const ::scoped_string & scopedstrBlock,char chMatch ) noexcept
+//const_char_pointer  __cdecl char_traits::string_find_char(const ::scoped_string & scopedstrBlock,char chMatch ) noexcept
 //{
-//return reinterpret_cast< const char * >( _mbschr( reinterpret_cast< const uchar* >( pszBlock ), (uchar)chMatch ) );
+//return reinterpret_cast< const_char_pointer  >( _mbschr( reinterpret_cast< const uchar* >( pszBlock ), (uchar)chMatch ) );
 //}
 //*/
 
@@ -226,7 +226,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 
 //
 //
-//const char * __cdecl char_traits::string_find_string_reverse(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrFind,character_count iStart) noexcept
+//const_char_pointer  __cdecl char_traits::string_find_string_reverse(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrFind,character_count iStart) noexcept
 //{
 //   character_count iLen = character_count(strlen(scopedstr));
 //   character_count iLenFind = character_count(strlen(scopedstrFind));
@@ -245,14 +245,14 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //
-//const char * __cdecl char_traits::string_scan_set(const ::scoped_string & scopedstrBlock,const ::scoped_string & scopedstrMatch) noexcept
+//const_char_pointer  __cdecl char_traits::string_scan_set(const ::scoped_string & scopedstrBlock,const ::scoped_string & scopedstrMatch) noexcept
 //{
 //   if(scopedstrMatch == nullptr || pszBlock == nullptr || *pszBlock == '\0')
 //      return nullptr;
 //#ifdef WINDOWS_DESKTOP
-//   return reinterpret_cast<const char *>(_mbspbrk(reinterpret_cast<const uchar*>(scopedstrBlock),reinterpret_cast<const uchar*>(scopedstrMatch)));
+//   return reinterpret_cast<const_char_pointer >(_mbspbrk(reinterpret_cast<const uchar*>(scopedstrBlock),reinterpret_cast<const uchar*>(scopedstrMatch)));
 //#else
-//   return reinterpret_cast<const char *>(ansi_scan(reinterpret_cast<const char*>(scopedstrBlock),reinterpret_cast<const char*>(scopedstrMatch)));
+//   return reinterpret_cast<const_char_pointer >(ansi_scan(reinterpret_cast<const_char_pointer >(scopedstrBlock),reinterpret_cast<const_char_pointer >(scopedstrMatch)));
 //#endif
 //   /*while(*pszMatch != '\0')
 //   {
@@ -263,7 +263,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //      unicode_increment(scopedstrMatch);
 //   }
 //   return nullptr;*/
-//   //return reinterpret_cast< const char * >( _mbspbrk( reinterpret_cast< const uchar* >( pszBlock ),
+//   //return reinterpret_cast< const_char_pointer  >( _mbspbrk( reinterpret_cast< const uchar* >( pszBlock ),
 //   // reinterpret_cast< const uchar* >( pszMatch ) ) );
 //}
 //
@@ -503,7 +503,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //#ifdef WINDOWS
 //
-//BSTR __cdecl char_traits::AllocSysString(const char* pchData,character_count nDataLength) noexcept
+//BSTR __cdecl char_traits::AllocSysString(const_char_pointer  pchData,character_count nDataLength) noexcept
 //{
 //
 //   character_count nLen = ::MultiByteToWideChar2(_gen_GetConversionACP(),0,pchData,(int)nDataLength,nullptr,0);
@@ -519,7 +519,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //}
 //
-//bool __cdecl char_traits::ReAllocSysString(const char* pchData,BSTR* pbstr,character_count nDataLength) noexcept
+//bool __cdecl char_traits::ReAllocSysString(const_char_pointer  pchData,BSTR* pbstr,character_count nDataLength) noexcept
 //{
 //
 //   character_count nLen = ::MultiByteToWideChar2(_gen_GetConversionACP(),0,pchData,(int)nDataLength,nullptr,0);
@@ -592,7 +592,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   return 1;
 //}
 //
-//character_count __cdecl char_traits::GetCharLen(const char* pch) noexcept
+//character_count __cdecl char_traits::GetCharLen(const_char_pointer  pch) noexcept
 //{
 //   // returns char length
 //   return  ::str::get_utf8_char(pch).get_length();
@@ -830,13 +830,13 @@ informationf("fixed_string_log::OnReallocateSpill");
 //string::string(const uchar* pszSrc):
 //   string(::str::GetDefaultManager())
 //{
-//   *this = reinterpret_cast<const char*>(scopedstrSrc);
+//   *this = reinterpret_cast<const_char_pointer >(scopedstrSrc);
 //}
 //
 ///*CSTRING_EXPLICIT string::string(char* pszSrc ) :
 //string( ::str::GetDefaultManager() )
 //{
-//const char *psz = reinterpret_cast< const char* >( pszSrc );
+//const_char_pointer psz = reinterpret_cast< const_char_pointer  >( pszSrc );
 ////      if (!CheckImplicitLoad( psz ))
 ////    {
 //*this = psz;
@@ -846,7 +846,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 ////string::string(uchar* pszSrc):
 ////string(::str::GetDefaultManager())
 ////{
-////   const char *psz = reinterpret_cast<const char*>(scopedstrSrc);
+////   const_char_pointer psz = reinterpret_cast<const_char_pointer >(scopedstrSrc);
 ////   //      if (!CheckImplicitLoad( psz ))
 ////   //    {
 ////   *this = psz;
@@ -866,13 +866,13 @@ informationf("fixed_string_log::OnReallocateSpill");
 ////string::string(const istring & istr):
 ////string(::str::GetDefaultManager())
 ////{
-////   *this = (const char *)istr;
+////   *this = (const_char_pointer )istr;
 ////}
 //
 //string::string(const uchar* pszSrc,string_manager * pstringmanager):
 //   string(pstringmanager)
 //{
-//   *this = reinterpret_cast<const char*>(scopedstrSrc);
+//   *this = reinterpret_cast<const_char_pointer >(scopedstrSrc);
 //}
 //
 //string::string(char ch,character_count nLength):
@@ -901,7 +901,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //
-//string::string(const char* pch,character_count nLength):
+//string::string(const_char_pointer  pch,character_count nLength):
 //   string(pch,nLength,::str::GetDefaultManager())
 //{
 //}
@@ -987,7 +987,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //string& string::operator=(const uchar* pszSrc)
 //{
-//   return(operator=(reinterpret_cast<const char*>(scopedstrSrc)));
+//   return(operator=(reinterpret_cast<const_char_pointer >(scopedstrSrc)));
 //}
 //
 //string& string::operator=(char ch)
@@ -1088,12 +1088,12 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   return operator = (str.substr(pos,n));
 //}
 //
-//string & string::assign(const char* s,character_count n)
+//string & string::assign(const_char_pointer  s,character_count n)
 //{
 //   return operator = (string(s,n));
 //}
 //
-//string & string::assign(const char * s)
+//string & string::assign(const_char_pointer  s)
 //{
 //   return operator = (s);
 //}
@@ -1654,7 +1654,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   // loop once to figure out the int_size of the result string
 //   character_count nCount = 0;
 //   {
-//      const char * pszStart = m_psz + iStart;
+//      const_char_pointer  pszStart = m_psz + iStart;
 //      //      const ::ansi_character * pszEnd = pszStart+get_length();
 //      const ::scoped_string & scopedstrTarget;
 //      while((scopedstrTarget = ::str::string_find_string(pszStart,pszOld)) != nullptr)
@@ -1719,7 +1719,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   // loop once to figure out the int_size of the result string
 //   character_count nCount = 0;
 //   {
-//      const char * pszStart = m_psz + iStart;
+//      const_char_pointer  pszStart = m_psz + iStart;
 //      //      const ::ansi_character * pszEnd = pszStart+get_length();
 //      const ::scoped_string & scopedstrTarget;
 //      while ((scopedstrTarget = ::str::string_find_string(pszStart, pszOld)) != nullptr)
@@ -1971,7 +1971,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //// look for a specific sub-string
 //
 //// find the first occurrence of string 'pszSub', starting at character_count 'iStart'
-//character_count string::find(const ::scoped_string & scopedstrSub,character_count iStart,character_count nCount,const char ** pszTail) const RELEASENOTHROW
+//character_count string::find(const ::scoped_string & scopedstrSub,character_count iStart,character_count nCount,const_char_pointer * pszTail) const RELEASENOTHROW
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
@@ -2024,7 +2024,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //// find the first occurrence of string 'pszSub', starting at character_count 'iStart'
-//character_count string::case_insensitive_find(const ::scoped_string & scopedstrSub,character_count iStart,character_count nCount,const char ** pszTail) const RELEASENOTHROW
+//character_count string::case_insensitive_find(const ::scoped_string & scopedstrSub,character_count iStart,character_count nCount,const_char_pointer * pszTail) const RELEASENOTHROW
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
@@ -2078,7 +2078,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //// find the first occurrence of string 'pszSub', starting at character_count 'iStart'
-//character_count string::find_w(const ::scoped_string & scopedstrSub,character_count iStart,character_count nCount,const char ** pszTail) const RELEASENOTHROW
+//character_count string::find_w(const ::scoped_string & scopedstrSub,character_count iStart,character_count nCount,const_char_pointer * pszTail) const RELEASENOTHROW
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
@@ -2130,7 +2130,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //// find the first occurrence of string 'pszSub', starting at character_count 'iStart'
-//character_count string::unicode_case_insensitive_find(const ::scoped_string & scopedstrSub,character_count iStart,character_count nCount,const char ** pszTail) const RELEASENOTHROW
+//character_count string::unicode_case_insensitive_find(const ::scoped_string & scopedstrSub,character_count iStart,character_count nCount,const_char_pointer * pszTail) const RELEASENOTHROW
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
@@ -2272,7 +2272,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   return find_first_not_of(str,pos,str.length());
 //}
 //
-//character_count string::find_first_not_of(const char* s,character_count pos) const
+//character_count string::find_first_not_of(const_char_pointer  s,character_count pos) const
 //RELEASENOTHROW
 //{
 //   return find_first_not_of(s,pos,strlen(s));
@@ -2296,7 +2296,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //      return psz - m_psz;
 //}
 //
-//character_count string::find_first_not_of(const char* s,character_count pos,character_count n) const
+//character_count string::find_first_not_of(const_char_pointer  s,character_count pos,character_count n) const
 //RELEASENOTHROW
 //{
 //   string strChars(s,n);
@@ -2426,7 +2426,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //// find the last occurrence of character 'ch'
-//character_count string::rear_find(const char * ch,character_count iStart) const RELEASENOTHROW
+//character_count string::rear_find(const_char_pointer  ch,character_count iStart) const RELEASENOTHROW
 //{
 //   // find last single character
 //   const ::scoped_string & scopedstr = ::str::string_find_string_reverse(m_psz,ch,iStart);
@@ -2631,7 +2631,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   // by starting at beginning (DBCS aware)
 //
 //   const ::scoped_string & scopedstr = m_psz;
-//   const char * pszStart = psz;
+//   const_char_pointer  pszStart = psz;
 //   const ::scoped_string & scopedstrLast = nullptr;
 //
 //   while(!is_ptr_null(scopedstr, 1024) && *psz != 0)
@@ -3267,7 +3267,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //string string::unichar_substr(character_count iFirst,character_count nCount) const
 //{
 //
-//   const char * pchStart = *this;
+//   const_char_pointer  pchStart = *this;
 //
 //   if(pchStart == nullptr)
 //      return "";
@@ -3300,7 +3300,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   if(*pchStart == '\0')
 //      return "";
 //
-//   const char * pchEnd = pchStart;
+//   const_char_pointer  pchEnd = pchStart;
 //
 //   ca = 0;
 //
@@ -3321,7 +3321,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //::collection::count string::utf8_get_length() const
 //{
 //
-//   const char * pch = *this;
+//   const_char_pointer  pch = *this;
 //
 //   if(pch == nullptr)
 //      return 0;
@@ -3347,7 +3347,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //   character_count iFinalLen = 0;
 //
-//   auto psz = operator const char*();
+//   auto psz = operator const_char_pointer ();
 //
 //   character_count cMaxLen = get_length();
 //

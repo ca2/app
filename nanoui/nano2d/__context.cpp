@@ -133,7 +133,7 @@ namespace nano2d
 
 
 
-   void context::font_face(const char * face)
+   void context::font_face(const_char_pointer  face)
    {
 
 
@@ -156,7 +156,7 @@ namespace nano2d
    }
 
 
-//   ::write_text::font_pointer context::create_font(const char * face, float size)
+//   ::write_text::font_pointer context::create_font(const_char_pointer  face, float size)
 //   {
 //      
 //      return nullptr;
@@ -232,7 +232,7 @@ namespace nano2d
    }
 
 
-   float context::text(float x, float y, const char * string, const char * end)
+   float context::text(float x, float y, const_char_pointer  string, const_char_pointer  end)
    {
 
       return 0.f;
@@ -240,7 +240,7 @@ namespace nano2d
    }
 
 
-   int context::text_glyph_positions(float x, float y, const char * string, const char * end, ::nano2d::glyphPosition * positions, int maxPositions)
+   int context::text_glyph_positions(float x, float y, const_char_pointer  string, const_char_pointer  end, ::nano2d::glyphPosition * positions, int maxPositions)
    {
 
       return 0;
@@ -248,7 +248,7 @@ namespace nano2d
    }
 
 
-   float context::text_bounds(float x, float y, const char * string, const char * end, float * bounds)
+   float context::text_bounds(float x, float y, const_char_pointer  string, const_char_pointer  end, float * bounds)
    {
 
       bounds[0] = 0.f;
@@ -311,7 +311,7 @@ namespace nano2d
    }
 
 
-   int context::create_image(const char * filename, int imageFlags)
+   int context::create_image(const_char_pointer  filename, int imageFlags)
    {
 
       return -1;

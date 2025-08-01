@@ -655,7 +655,7 @@ namespace universal_windows
 
    }
 
-   bool os_context::native_modern_web_browser(const char* pcsz)
+   bool os_context::native_modern_web_browser(const_char_pointer  pcsz)
    {
 
 #ifdef WINDOWS_DESKTOP

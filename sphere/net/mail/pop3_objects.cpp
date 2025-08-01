@@ -28,7 +28,7 @@
  * high-level methods for a SIMPLE MUA *
  ***************************************************/
 
-char* popbegin(const ::string & servername, const ::string & user, const ::string & pass, popsession** sp){
+char* popbegin(const ::string & servername, const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, popsession** sp){
 /* prepares, connect and get lists of messages stored on pop server */
 /* you must give a valid servername, user and pass */
 /* returns an error message if a problem occurs, else nullptr */

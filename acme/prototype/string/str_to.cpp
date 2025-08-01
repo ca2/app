@@ -62,7 +62,7 @@ bool str::to(long long & i, int iBase, const ::scoped_string & scopedstr)
 
 #else
 
-   long long iConversion = ::ansi_to_long_long(str, (const char **) & pszEnd, iBase);
+   long long iConversion = ::ansi_to_long_long(str, (const_char_pointer *) & pszEnd, iBase);
 
 #endif
 
@@ -93,7 +93,7 @@ bool str::to(int & i, int iBase, const ::scoped_string & scopedstr)
 
 #else
 
-   long long iConversion = ::ansi_to_long_long(str, (const char **) & pszEnd, iBase);
+   long long iConversion = ::ansi_to_long_long(str, (const_char_pointer *) & pszEnd, iBase);
 
 #endif
 

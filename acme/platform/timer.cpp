@@ -58,7 +58,7 @@ void timer::destroy()
 
 
 
-const char* timer::debug_note() const
+const_char_pointer  timer::debug_note() const
 {
 
    return m_strDebugNote.c_str();

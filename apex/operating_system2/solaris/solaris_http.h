@@ -5,7 +5,7 @@ struct simple_http_status
 public:
 
    unsigned int             m_dwStatusCode;
-   const char *      m_pszStatus;
+   const_char_pointer     m_pszStatus;
 
 };
 

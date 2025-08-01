@@ -44,7 +44,7 @@ public:
    virtual void extract(memory& m, const ::file::path & pathFile = nullptr);
    virtual bool is_compressed(const ::file::path & pathItem = nullptr);
 
-   virtual bool locate(const ::function < bool(const char *) > & function);
+   virtual bool locate(const ::function < bool(const_char_pointer ) > & function);
 
    virtual void e_extract_all(const ::file::path & pathTargetDir, ::file::path_array * ppatha = nullptr, string_array* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr, ::function<bool(const::scoped_string& scopedstr) > functionCallback = {});
    virtual ::file::path e_extract_first_ends(const ::file::path& pathTargetDir, const ::scoped_string & scopedstr);

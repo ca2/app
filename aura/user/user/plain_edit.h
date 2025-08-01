@@ -46,7 +46,7 @@ namespace user
 
    };
 
-   inline enum_line as_enum_line(const char * psz)
+   inline enum_line as_enum_line(const_char_pointer  psz)
    {
 
       if (*psz == '\r')
@@ -86,7 +86,7 @@ namespace user
       }
 
    }
-   inline const char * as_string(enum_line eline)
+   inline const_char_pointer  as_string(enum_line eline)
    {
 
       if (eline == e_line_end_r_n)

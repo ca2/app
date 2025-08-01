@@ -55,7 +55,7 @@ namespace dynamic_source
 
       //}
       
-      m_strSessid = strSessid;
+      m_strSessid = scopedstrSessid;
 
       //estatus = 
       

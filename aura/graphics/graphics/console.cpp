@@ -18,7 +18,7 @@ namespace graphics
 {
 
 
-   int next_char(char & ch, const char *& psz, int & x, int & y, int cx, int cy)
+   int next_char(char & ch, const_char_pointer & psz, int & x, int & y, int cx, int cy)
    {
 
       if (!*psz)
@@ -272,7 +272,7 @@ namespace graphics
 
       auto data = (unsigned char *)p;
 
-      string str((const char *)data, minimum(ansi_nlen((const char *)data, (size_t)s), s));
+      string str((const_char_pointer )data, minimum(ansi_nlen((const_char_pointer )data, (size_t)s), s));
 
       write(str);
 

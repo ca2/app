@@ -119,12 +119,12 @@ namespace database
 
       //virtual bool set_field_value(const ::string &f, const ::payload &v);
 
-      virtual class field * field(const ::string & name);
-      virtual ::payload field_value(const ::string & name);
+      virtual class field * field(const ::scoped_string & scopedstrName);
+      virtual ::payload field_value(const ::scoped_string & scopedstrName);
       virtual ::payload select_field_value(::collection::index iField);
       virtual ::payload field_value_at(::collection::index i);
 
-      virtual ::collection::index field_index(const ::string & name);
+      virtual ::collection::index field_index(const ::scoped_string & scopedstrName);
 
       virtual void set_autocommit(bool bAutoCommit) { m_bAutoCommit = bAutoCommit; }
       virtual bool get_autocommit() { return m_bAutoCommit; }

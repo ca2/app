@@ -291,8 +291,8 @@ namespace http
                            if (tc)
                            {
 
-                              if (!ansi_count_compare((const char *)tempcmp.data() + tc + extra, m_strBoundary, iBoundaryLength - tc) &&
-                                    !ansi_count_compare((const char *)tempcmp.data(), m_strBoundary.substr(iBoundaryLength - tc), tc))
+                              if (!ansi_count_compare((const_char_pointer )tempcmp.data() + tc + extra, m_strBoundary, iBoundaryLength - tc) &&
+                                    !ansi_count_compare((const_char_pointer )tempcmp.data(), m_strBoundary.substr(iBoundaryLength - tc), tc))
                               {
 
                                  break;
@@ -303,7 +303,7 @@ namespace http
                            else
                            {
 
-                              if (!ansi_count_compare((const char *)tempcmp.data() + extra, m_strBoundary, iBoundaryLength))
+                              if (!ansi_count_compare((const_char_pointer )tempcmp.data() + extra, m_strBoundary, iBoundaryLength))
                               {
 
                                  break;
@@ -388,7 +388,7 @@ namespace http
    }
 
 
-   void form::strcpyval(string & v,const char *value) const
+   void form::strcpyval(string & v,const_char_pointer value) const
    {
       v = "";
       for (character_count i = 0; i < ansi_length(value); i++)

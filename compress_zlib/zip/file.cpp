@@ -34,7 +34,7 @@ namespace zip
 
    }
 
-//   bool file::unzip_open(const char * pcwsz)
+//   bool file::unzip_open(const_char_pointer  pcwsz)
 //
 //   {
 //
@@ -115,7 +115,7 @@ namespace zip
    }
 
 
-   bool file::zip_open(const char * pcwsz)
+   bool file::zip_open(const_char_pointer  pcwsz)
 
    {
 
@@ -204,7 +204,7 @@ namespace zip
 //
 //
 //
-//voidpf fileopen_file_func (voidpf opaque, const char* filename, int mode)
+//voidpf fileopen_file_func (voidpf opaque, const_char_pointer  filename, int mode)
 //{
 //   __UNREFERENCED_PARAMETER(mode);
 //   __UNREFERENCED_PARAMETER(filename);
@@ -273,7 +273,7 @@ namespace zip
 
 
 
-voidpf c_zip_file_open_file_func (voidpf opaque, const char* filename, int mode)
+voidpf c_zip_file_open_file_func (voidpf opaque, const_char_pointer  filename, int mode)
 {
    __UNREFERENCED_PARAMETER(mode);
    __UNREFERENCED_PARAMETER(filename);

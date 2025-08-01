@@ -210,7 +210,7 @@ CLASS_DECL_AXIS string bsd_socket_error(int x);
 
 #elif defined(UNIVERSAL_WINDOWS)
 
-CLASS_DECL_AXIS const char *bsd_socket_error(int x);
+CLASS_DECL_AXIS const_char_pointer bsd_socket_error(int x);
 #define Errno get_last_error()
 
 

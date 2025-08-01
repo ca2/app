@@ -3790,7 +3790,7 @@ namespace draw2d_cairo
          PFN_CAIRO_TEXT ftext)
    {
 
-      string str((const char *)block.data(), block.size());
+      string str((const_char_pointer  )block.data(), block.size());
 
       str = ::str::q_valid(str);
 
@@ -4041,7 +4041,7 @@ namespace draw2d_cairo
 
       PangoFontDescription * pdesc = pfont->m_pdesc;
 
-      string strText((const char *) block.data(), block.size());
+      string strText((const_char_pointer  ) block.data(), block.size());
 
       draw2d_cairo::font::pango_layout * ppangolayout = nullptr;
 
@@ -4177,7 +4177,7 @@ namespace draw2d_cairo
    //void graphics::internal_draw_text_cairo(const ::block & block, const ::double_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_CAIRO_TEXT pfnCairo)
    //{
 
-   //    string str((const char *) block.get_data(), block.get_size());
+   //    string str((const_char_pointer  ) block.get_data(), block.get_size());
 
    //    str = ::str::q_valid(str);
 
@@ -4361,7 +4361,7 @@ namespace draw2d_cairo
 //   }
 
 
-//   double_size graphics::get_text_extent(const char * lpszString, character_count nCount)
+//   double_size graphics::get_text_extent(const_char_pointer  lpszString, character_count nCount)
 //   {
 //
 //      return get_text_extent(lpszString, nCount, -1);
@@ -4372,7 +4372,7 @@ namespace draw2d_cairo
 //   double_size graphics::get_text_extent(const block & block)
 //   {
 //
-//      return get_text_extent((const char *) block.get_data(), block.get_size());
+//      return get_text_extent((const_char_pointer  ) block.get_data(), block.get_size());
 //
 //   }
 
@@ -4517,7 +4517,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_GetTextExtent(double_size & size, const char * lpszString, character_count nCount, character_count iIndex)
+   bool graphics::_GetTextExtent(double_size & size, const_char_pointer  lpszString, character_count nCount, character_count iIndex)
    {
 
       if (iIndex < 0)
@@ -7074,7 +7074,7 @@ namespace draw2d_cairo
 
          auto ftlibrary = __ftlibrary();
 
-         const char * psz = path;
+         const_char_pointer  psz = path;
 
          FT_Error error = FT_New_Face(ftlibrary, psz, 0, &ftface);
 

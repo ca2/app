@@ -2347,7 +2347,7 @@ namespace sockets
    {
       return base_socket_impl()->SetSoBindtodevice(intf);
    
-      //if (setsockopt(get_socket_id(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const char *)intf, intf.get_length()) == -1)
+      //if (setsockopt(get_socket_id(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const_char_pointer )intf, intf.get_length()) == -1)
       //{
 
       //   fatal() <<"setsockopt(SOL_SOCKET, SO_BINDTODEVICE)" << Errno << ", " << bsd_socket_error(Errno);

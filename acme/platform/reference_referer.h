@@ -39,7 +39,7 @@ public:
    //::reference_referer *   m_preferencerefererNext = nullptr;
 
    static long long new_serial() { return new_reference_referer_serial(); }
-   reference_referer(const char * pszType = nullptr, const char * pszFunctionName = nullptr, const char * pszDebug = nullptr) :
+   reference_referer(const_char_pointer  pszType = nullptr, const_char_pointer  pszFunctionName = nullptr, const_char_pointer  pszDebug = nullptr) :
       //m_bConstructor(true),
       //m_psubparticleExisting(nullptr),
       m_psubparticle(nullptr),
@@ -81,8 +81,8 @@ public:
       common_construct();
    }
    template < primitive_subparticle A_SUBPARTICLE >
-   //reference_referer(::subparticle * psubparticleExisting, A_SUBPARTICLE * pparticle, const char * pszFunctionName = nullptr, const char * pszDebug = nullptr) :
-   reference_referer(A_SUBPARTICLE * pparticle, const char * pszFunctionName = nullptr, const char * pszDebug = nullptr) :
+   //reference_referer(::subparticle * psubparticleExisting, A_SUBPARTICLE * pparticle, const_char_pointer  pszFunctionName = nullptr, const_char_pointer  pszDebug = nullptr) :
+   reference_referer(A_SUBPARTICLE * pparticle, const_char_pointer  pszFunctionName = nullptr, const_char_pointer  pszDebug = nullptr) :
       //m_bConstructor(!psubparticleExisting),
       //m_psubparticleExisting(psubparticleExisting),
       m_psubparticle(pparticle),
@@ -95,8 +95,8 @@ public:
       common_construct();
    }
    template < non_primitive_subparticle NON_SUBPARTICLE >
-   //reference_referer(::subparticle * psubparticleExisting, NON_SUBPARTICLE * p, const char * pszFunctionName, const char * pszDebug = nullptr) :
-   reference_referer(NON_SUBPARTICLE * p, const char * pszFunctionName, const char * pszDebug = nullptr) :
+   //reference_referer(::subparticle * psubparticleExisting, NON_SUBPARTICLE * p, const_char_pointer  pszFunctionName, const_char_pointer  pszDebug = nullptr) :
+   reference_referer(NON_SUBPARTICLE * p, const_char_pointer  pszFunctionName, const_char_pointer  pszDebug = nullptr) :
       //m_bConstructor(!psubparticleExisting),
       //m_psubparticleExisting(psubparticleExisting),
       m_psubparticle(nullptr),
@@ -126,7 +126,7 @@ public:
    {
       return m_iSerial == referer.m_iSerial;
    }
-   void reset(const char * pszType = nullptr, const char * pszFunctionName = nullptr, const char * pszDebug = nullptr)
+   void reset(const_char_pointer  pszType = nullptr, const_char_pointer  pszFunctionName = nullptr, const_char_pointer  pszDebug = nullptr)
    {
       destroy();
       m_cstringType = pszType;

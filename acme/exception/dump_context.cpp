@@ -593,7 +593,7 @@
 ////void dump_context::write(const ::scoped_string & scopedstr)
 ////{
 ////
-////   return write((const char *) str.c_str());
+////   return write((const_char_pointer ) str.c_str());
 ////
 ////}
 ////

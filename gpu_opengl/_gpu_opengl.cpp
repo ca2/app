@@ -6,7 +6,7 @@ namespace opengl
 {
 
 
-   exception::exception(const ::scoped_string& scopedstrMessage, int iGLError, const char * pszGlError, const ::scoped_string& nameFile, int iLine):
+   exception::exception(const ::scoped_string& scopedstrMessage, int iGLError, const_char_pointer  pszGlError, const ::scoped_string& nameFile, int iLine):
       ::exception(error_open_failed, scopedstrMessage),
       m_iGlError(iGLError)
    {

@@ -30,8 +30,8 @@
 
 //#include "host_interaction.h"
 
-//CLASS_DECL_APEX void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
-//CLASS_DECL_APEX void __trace_message(const char * lpszPrefix, MESSAGE * lpmsg);
+//CLASS_DECL_APEX void __trace_message(const_char_pointer  lpszPrefix, ::message::message * pmessage);
+//CLASS_DECL_APEX void __trace_message(const_char_pointer  lpszPrefix, MESSAGE * lpmsg);
 
 CLASS_DECL_APEX void __cdecl __pre_translate_message(::message::message* pmessage);
 
@@ -58,7 +58,7 @@ int_bool GetMessage(
 int CLASS_DECL_APEX __android_main(int argc, char* argv[]);
 
 
-CLASS_DECL_APEX void vfxThrowFileException(::object* pparticle, const ::e_status & estatus, int lOsError, const char* lpszFileName = nullptr);
+CLASS_DECL_APEX void vfxThrowFileException(::object* pparticle, const ::e_status & estatus, int lOsError, const_char_pointer  lpszFileName = nullptr);
 
 
 #include "internal.h"

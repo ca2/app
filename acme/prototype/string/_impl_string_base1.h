@@ -6843,7 +6843,7 @@ inline string_base < ITERATOR_TYPE > operator +(const scoped_string_base < ITERA
 }
 
 template < character_count n >
-inline const_string_range_static_array < const char * , 2 > operator +(const char (&s)[n], const inline_number_string& inlinenumberstring)
+inline const_string_range_static_array < const_char_pointer  , 2 > operator +(const char (&s)[n], const inline_number_string& inlinenumberstring)
 {
 
    return { ::as_string_literal<char, n>(s), inlinenumberstring };

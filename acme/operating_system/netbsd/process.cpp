@@ -12,7 +12,7 @@
 //#include <unistd.h>
 //#include "node.h"
 //
-//int create_process6(const char * _cmd_line, int * pprocessId);
+//int create_process6(const_char_pointer  _cmd_line, int * pprocessId);
 //
 //CLASS_DECL_ACME void dll_processes(unsigned_int_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrDll)
 //{
@@ -87,7 +87,7 @@
 //}
 //
 //
-//int create_process3(const char * _cmd_line, int * pprocessId)
+//int create_process3(const_char_pointer  _cmd_line, int * pprocessId)
 //{
 //
 //   char *   exec_path_name;
@@ -472,7 +472,7 @@
 //
 //   mem.get_data()[s] = '\0';
 //
-//   return (const char *) mem.get_data();
+//   return (const_char_pointer ) mem.get_data();
 //
 //}
 //

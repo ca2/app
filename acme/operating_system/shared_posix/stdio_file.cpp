@@ -604,7 +604,7 @@ memory file_system::__safe_get_memory(const ::file::path& pathParam, character_c
 
 #define BUFFER_SIZE 4096
 
-memsize file_system::__safe_find_string(const ::file::path& path, const char* psz)
+memsize file_system::__safe_find_string(const ::file::path& path, const_char_pointer  psz)
 {
    int targetLength = strlen(scopedstr);
 

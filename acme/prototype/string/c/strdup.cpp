@@ -13,7 +13,7 @@ namespace c
 {
 
 
-   char * strdup(const char * psz)
+   char * strdup(const_char_pointer  psz)
    {
       
       return ::strdup(psz);

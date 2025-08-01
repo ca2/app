@@ -10,8 +10,8 @@
 //public:
 //
 //
-//    const char * m_psz;
-//    const char* m_pszBegin;
+//    const_char_pointer  m_psz;
+//    const_char_pointer  m_pszBegin;
 
 
 inline read_sz_stream::read_sz_stream(const ::ansi_character * psz, const ::ansi_character * pszBegin = nullptr);

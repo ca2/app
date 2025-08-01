@@ -333,7 +333,7 @@ br_init (BrInitError *error)
    return exe != nullptr;
 }
 
-const char * g_psz_br_init_symbol = (const char *) nullptr;
+const_char_pointer  g_psz_br_init_symbol = (const_char_pointer ) nullptr;
 
 void br_init_set_symbol(const ::scoped_string & scopedstr)
 {
@@ -372,12 +372,12 @@ br_init_lib (BrInitError *error)
  *          nullptr will be returned.
  */
 char *
-br_find_exe (const char *default_exe)
+br_find_exe (const_char_pointer default_exe)
 {
    if (exe == (char *) nullptr)
    {
       /* BinReloc is not initialized. */
-      if (default_exe != (const char *) nullptr)
+      if (default_exe != (const_char_pointer ) nullptr)
          return ::c::strdup (default_exe);
       else
          return (char *) nullptr;
@@ -401,7 +401,7 @@ br_find_exe (const char *default_exe)
  *         returned.
  */
 char *
-br_find_exe_dir (const char *default_dir)
+br_find_exe_dir (const_char_pointer default_dir)
 {
    if (exe == nullptr)
    {
@@ -430,14 +430,14 @@ br_find_exe_dir (const char *default_dir)
  *         will be returned. If default_prefix is nullptr, then nullptr will be returned.
  */
 char *
-br_find_prefix (const char *default_prefix)
+br_find_prefix (const_char_pointer default_prefix)
 {
    char *dir1, *dir2;
 
    if (exe == (char *) nullptr)
    {
       /* BinReloc not initialized. */
-      if (default_prefix != (const char *) nullptr)
+      if (default_prefix != (const_char_pointer ) nullptr)
          return ::c::strdup (default_prefix);
       else
          return (char *) nullptr;
@@ -464,15 +464,15 @@ br_find_prefix (const char *default_prefix)
  *         be returned. If default_bin_dir is nullptr, then nullptr will be returned.
  */
 char *
-br_find_bin_dir (const char *default_bin_dir)
+br_find_bin_dir (const_char_pointer default_bin_dir)
 {
    char *prefix, *dir;
 
-   prefix = br_find_prefix ((const char *) nullptr);
+   prefix = br_find_prefix ((const_char_pointer ) nullptr);
    if (prefix == (char *) nullptr)
    {
       /* BinReloc not initialized. */
-      if (default_bin_dir != (const char *) nullptr)
+      if (default_bin_dir != (const_char_pointer ) nullptr)
          return ::c::strdup (default_bin_dir);
       else
          return (char *) nullptr;
@@ -498,15 +498,15 @@ br_find_bin_dir (const char *default_bin_dir)
  *         be returned. If default_bin_dir is nullptr, then nullptr will be returned.
  */
 char *
-br_find_sbin_dir (const char *default_sbin_dir)
+br_find_sbin_dir (const_char_pointer default_sbin_dir)
 {
    char *prefix, *dir;
 
-   prefix = br_find_prefix ((const char *) nullptr);
+   prefix = br_find_prefix ((const_char_pointer ) nullptr);
    if (prefix == (char *) nullptr)
    {
       /* BinReloc not initialized. */
-      if (default_sbin_dir != (const char *) nullptr)
+      if (default_sbin_dir != (const_char_pointer ) nullptr)
          return ::c::strdup (default_sbin_dir);
       else
          return (char *) nullptr;
@@ -533,15 +533,15 @@ br_find_sbin_dir (const char *default_sbin_dir)
  *         returned.
  */
 char *
-br_find_data_dir (const char *default_data_dir)
+br_find_data_dir (const_char_pointer default_data_dir)
 {
    char *prefix, *dir;
 
-   prefix = br_find_prefix ((const char *) nullptr);
+   prefix = br_find_prefix ((const_char_pointer ) nullptr);
    if (prefix == (char *) nullptr)
    {
       /* BinReloc not initialized. */
-      if (default_data_dir != (const char *) nullptr)
+      if (default_data_dir != (const_char_pointer ) nullptr)
          return ::c::strdup (default_data_dir);
       else
          return (char *) nullptr;
@@ -567,15 +567,15 @@ br_find_data_dir (const char *default_data_dir)
  *         If default_locale_dir is nullptr, then nullptr will be returned.
  */
 char *
-br_find_locale_dir (const char *default_locale_dir)
+br_find_locale_dir (const_char_pointer default_locale_dir)
 {
    char *data_dir, *dir;
 
-   data_dir = br_find_data_dir ((const char *) nullptr);
+   data_dir = br_find_data_dir ((const_char_pointer ) nullptr);
    if (data_dir == (char *) nullptr)
    {
       /* BinReloc not initialized. */
-      if (default_locale_dir != (const char *) nullptr)
+      if (default_locale_dir != (const_char_pointer ) nullptr)
          return ::c::strdup (default_locale_dir);
       else
          return (char *) nullptr;
@@ -601,15 +601,15 @@ br_find_locale_dir (const char *default_locale_dir)
  *         If default_lib_dir is nullptr, then nullptr will be returned.
  */
 char *
-br_find_lib_dir (const char *default_lib_dir)
+br_find_lib_dir (const_char_pointer default_lib_dir)
 {
    char *prefix, *dir;
 
-   prefix = br_find_prefix ((const char *) nullptr);
+   prefix = br_find_prefix ((const_char_pointer ) nullptr);
    if (prefix == (char *) nullptr)
    {
       /* BinReloc not initialized. */
-      if (default_lib_dir != (const char *) nullptr)
+      if (default_lib_dir != (const_char_pointer ) nullptr)
          return ::c::strdup (default_lib_dir);
       else
          return (char *) nullptr;
@@ -635,15 +635,15 @@ br_find_lib_dir (const char *default_lib_dir)
  *         If default_libexec_dir is nullptr, then nullptr will be returned.
  */
 char *
-br_find_libexec_dir (const char *default_libexec_dir)
+br_find_libexec_dir (const_char_pointer default_libexec_dir)
 {
    char *prefix, *dir;
 
-   prefix = br_find_prefix ((const char *) nullptr);
+   prefix = br_find_prefix ((const_char_pointer ) nullptr);
    if (prefix == (char *) nullptr)
    {
       /* BinReloc not initialized. */
-      if (default_libexec_dir != (const char *) nullptr)
+      if (default_libexec_dir != (const_char_pointer ) nullptr)
          return ::c::strdup (default_libexec_dir);
       else
          return (char *) nullptr;
@@ -669,15 +669,15 @@ br_find_libexec_dir (const char *default_libexec_dir)
  *         If default_etc_dir is nullptr, then nullptr will be returned.
  */
 char *
-br_find_etc_dir (const char *default_etc_dir)
+br_find_etc_dir (const_char_pointer default_etc_dir)
 {
    char *prefix, *dir;
 
-   prefix = br_find_prefix ((const char *) nullptr);
+   prefix = br_find_prefix ((const_char_pointer ) nullptr);
    if (prefix == (char *) nullptr)
    {
       /* BinReloc not initialized. */
-      if (default_etc_dir != (const char *) nullptr)
+      if (default_etc_dir != (const_char_pointer ) nullptr)
          return ::c::strdup (default_etc_dir);
       else
          return (char *) nullptr;
@@ -700,7 +700,7 @@ br_find_etc_dir (const char *default_etc_dir)
  * @returns A newly-allocated string. This string should be freed when no longer needed.
  */
 char *
-br_strcat (const char *str1, const char *str2)
+br_strcat (const_char_pointer str1, const_char_pointer str2)
 {
    char *result;
    size_t len1, len2;
@@ -723,7 +723,7 @@ br_strcat (const char *str1, const char *str2)
 
 
 char *
-br_build_path (const char *dir, const char *file)
+br_build_path (const_char_pointer dir, const_char_pointer file)
 {
    char *dir2, *result;
    size_t len;
@@ -747,12 +747,12 @@ br_build_path (const char *dir, const char *file)
 
 /* Emulates glibc's strndup() */
 static char *
-br_strndup (const char *str, size_t size)
+br_strndup (const_char_pointer str, size_t size)
 {
    char *result = (char *) nullptr;
    size_t len;
 
-   if (str == (const char *) nullptr)
+   if (str == (const_char_pointer ) nullptr)
       return (char *) nullptr;
 
    len = string_get_length (str);
@@ -781,15 +781,15 @@ br_strndup (const char *str, size_t size)
  * @returns     A directory name. This string should be freed when no longer needed.
  */
 char *
-br_dirname (const char *path)
+br_dirname (const_char_pointer path)
 {
    char *end, *result;
 
-   if (path == (const char *) nullptr)
+   if (path == (const_char_pointer ) nullptr)
       return (char *) nullptr;
 
    end = (char *) string_find_character((char *) path, '/');
-   if (end == (const char *) nullptr)
+   if (end == (const_char_pointer ) nullptr)
       return ::c::strdup (".");
 
    while (end > path && *end == '/')

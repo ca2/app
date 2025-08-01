@@ -74,10 +74,10 @@ namespace sockets
       void OnFirst() override;
       void OnHeader(atom,const string &) override;
       void OnHeaderComplete() override;
-      void OnData(const char *,memsize) override;
+      void OnData(const_char_pointer  ,memsize) override;
       void OnDelete() override;
 
-      virtual void OnDataArrived(const char *,memsize);
+      virtual void OnDataArrived(const_char_pointer  ,memsize);
 
       /** New callback method fires when all data is received. */
       virtual void OnContent();

@@ -29,7 +29,7 @@ public:
 
    virtual void ensure_exists(const ::file::path & path);
    virtual void touch(const ::file::path & path);
-   virtual void touch_app_cloud(const ::file::path & path, const char * pszContentIdentifier = nullptr);
+   virtual void touch_app_cloud(const ::file::path & path, const_char_pointer  pszContentIdentifier = nullptr);
    virtual void clear_read_only(const ::file::path & path);
 
 
@@ -76,9 +76,9 @@ public:
    virtual void find_replace(const ::file::path & path, const ::property_set & set);
 
    
-   virtual void put_app_cloud_data(const ::file::path & path, const char * pszContentIdentifier, const ::block & block);
+   virtual void put_app_cloud_data(const ::file::path & path, const_char_pointer  pszContentIdentifier, const ::block & block);
    
-   virtual ::memory get_app_cloud_data(const ::file::path & path, const char * pszContentIdentifier);
+   virtual ::memory get_app_cloud_data(const ::file::path & path, const_char_pointer  pszContentIdentifier);
    
    virtual void put_documents_cloud_data(const ::file::path & path, const ::block & block);
    
@@ -182,7 +182,7 @@ public:
    virtual memsize as_memory(const ::file::path & path, void * p, memsize s);
    virtual memory safe_get_memory(const file::path & path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
    virtual memory __safe_get_memory(const file::path& path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
-   virtual memsize __safe_find_string(const ::file::path& path, const char* psz);
+   virtual memsize __safe_find_string(const ::file::path& path, const_char_pointer  psz);
    virtual string as_string(const ::file::path & path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
    virtual string safe_get_string(const ::file::path & path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
    virtual string __safe_get_string(const ::file::path& path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);

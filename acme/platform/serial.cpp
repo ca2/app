@@ -165,7 +165,7 @@ namespace serial
 
       mem.set_size(bytes_read);
       
-      buffer.append((const char *) mem.data(), bytes_read);
+      buffer.append((const_char_pointer ) mem.data(), bytes_read);
 
       return bytes_read;
 
@@ -236,7 +236,7 @@ namespace serial
             if (start_of_line != read_so_far)
             {
 
-               lines.add(string(reinterpret_cast<const char*> (buffer_ + start_of_line), read_so_far - start_of_line));
+               lines.add(string(reinterpret_cast<const_char_pointer > (buffer_ + start_of_line), read_so_far - start_of_line));
 
             }
 
@@ -244,11 +244,11 @@ namespace serial
 
          }
 
-         if (string(reinterpret_cast<const char*>(buffer_ + read_so_far - eol_len), eol_len) == eol)
+         if (string(reinterpret_cast<const_char_pointer >(buffer_ + read_so_far - eol_len), eol_len) == eol)
          {
 
             // EOL found
-            lines.add(string(reinterpret_cast<const char*> (buffer_ + start_of_line), read_so_far - start_of_line));
+            lines.add(string(reinterpret_cast<const_char_pointer > (buffer_ + start_of_line), read_so_far - start_of_line));
 
             start_of_line = read_so_far;
 
@@ -260,7 +260,7 @@ namespace serial
             if (start_of_line != read_so_far)
             {
 
-               lines.add(string(reinterpret_cast<const char*> (buffer_ + start_of_line), read_so_far - start_of_line));
+               lines.add(string(reinterpret_cast<const_char_pointer > (buffer_ + start_of_line), read_so_far - start_of_line));
 
             }
 
@@ -789,7 +789,7 @@ namespace serial
 //   unsigned char * buffer_ = ___new unsigned char[size];
 //   size_t bytes_read = this->read(buffer_, size);
 //   buffer.append(reinterpret_cast
-//   <const char *>(buffer_), bytes_read
+//   <const_char_pointer >(buffer_), bytes_read
 //   );
 //   delete[]
 //   buffer_;
@@ -837,7 +837,7 @@ namespace serial
 //break; // Timeout occured on reading 1 unsigned char
 //}
 //if (string(reinterpret_cast
-// <const char *>
+// <const_char_pointer >
 //(buffer_
 //+ read_so_far - eol_len), eol_len) == eol)
 //{
@@ -849,7 +849,7 @@ namespace serial
 //}
 //}
 //buffer.append(reinterpret_cast
-// <const char *> (buffer_), read_so_far
+// <const_char_pointer > (buffer_), read_so_far
 //);
 //return
 //read_so_far;
@@ -890,17 +890,17 @@ namespace serial
 //         if (start_of_line != read_so_far)
 //         {
 //            lines.add(
-//               string(reinterpret_cast<const char *> (buffer_ + start_of_line),
+//               string(reinterpret_cast<const_char_pointer > (buffer_ + start_of_line),
 //                      read_so_far - start_of_line));
 //         }
 //         break; // Timeout occured on reading 1 unsigned char
 //      }
-//      if (string(reinterpret_cast<const char *>
+//      if (string(reinterpret_cast<const_char_pointer >
 //                 (buffer_ + read_so_far - eol_len), eol_len) == eol)
 //      {
 //         // EOL found
 //         lines.add(
-//            string(reinterpret_cast<const char *> (buffer_ + start_of_line),
+//            string(reinterpret_cast<const_char_pointer > (buffer_ + start_of_line),
 //                   read_so_far - start_of_line));
 //         start_of_line = read_so_far;
 //      }
@@ -909,7 +909,7 @@ namespace serial
 //         if (start_of_line != read_so_far)
 //         {
 //            lines.add(
-//               string(reinterpret_cast<const char *> (buffer_ + start_of_line),
+//               string(reinterpret_cast<const_char_pointer > (buffer_ + start_of_line),
 //                      read_so_far - start_of_line));
 //         }
 //         break; // Reached the maximum read length

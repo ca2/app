@@ -55,7 +55,7 @@
 //#pragma warning( disable: 4121 )
 //struct CLASS_DECL_APEX __DISPMAP_ENTRY
 //{
-//   const char * lpszName;       // member/property name
+//   const_char_pointer  lpszName;       // member/property name
 
 //   long lDispID;           // DISPID (may be DISPID_UNKNOWN)
 //   const ::scoped_string & scopedstrParams;      // member parameter description

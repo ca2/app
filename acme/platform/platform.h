@@ -293,7 +293,7 @@ namespace platform
 
 
 
-      virtual void set_resource_block(const char * pstart, const char * pend);
+      virtual void set_resource_block(const_char_pointer  pstart, const_char_pointer  pend);
 
       void defer_initialize_platform();
 
@@ -437,7 +437,7 @@ namespace platform
 
 
       //platform * __call__add_referer2(const ::reference_referer & referer) const;
-      release_time_for_project as_release_time_for_project(const char* pszStatic);
+      release_time_for_project as_release_time_for_project(const_char_pointer  pszStatic);
 
       //::platform::system* system() { return m_psystem; }
       ::operating_system::dynamic_library* dynamic_library() { return m_pdynamiclibrary; }

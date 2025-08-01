@@ -18,7 +18,7 @@
 #ifdef LINUX
 
 
-const char * br_init_get_symbol();
+const_char_pointer  br_init_get_symbol();
 
 void apex_application_run(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrProgName);
 
@@ -30,7 +30,7 @@ void apex_application_run(const ::scoped_string & scopedstrAppName, const ::scop
 
 #include <fcntl.h>
 
-extern const char * g_psz_br_init_symbol_app;
+extern const_char_pointer  g_psz_br_init_symbol_app;
 
 #ifndef LINUX_COMMAND_LINE
 

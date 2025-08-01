@@ -1542,7 +1542,7 @@ namespace user
    void tree::_001SetExpandImage(const ::scoped_string & scopedstrMatter)
    {
 
-      m_iImageExpand = m_pimagelist->add(::image::image_payload(this, pszMatter));
+      m_iImageExpand = m_pimagelist->add(::image::image_payload(this, scopedstrMatter));
 
    }
 
@@ -1550,7 +1550,7 @@ namespace user
    void tree::_001SetCollapseImage(const ::scoped_string & scopedstrMatter)
    {
 
-      m_iImageCollapse = m_pimagelist->add(::image::image_payload(this, pszMatter));
+      m_iImageCollapse = m_pimagelist->add(::image::image_payload(this, scopedstrMatter));
 
    }
 
@@ -1558,7 +1558,7 @@ namespace user
    void tree::_001SetExpandImageDark(const ::scoped_string & scopedstrMatter)
    {
 
-      m_iImageExpandDark = m_pimagelist->add(::image::image_payload(this, pszMatter));
+      m_iImageExpandDark = m_pimagelist->add(::image::image_payload(this, scopedstrMatter));
 
    }
 
@@ -1566,7 +1566,7 @@ namespace user
    void tree::_001SetCollapseImageDark(const ::scoped_string & scopedstrMatter)
    {
 
-      m_iImageCollapseDark = m_pimagelist->add(::image::image_payload(this, pszMatter));
+      m_iImageCollapseDark = m_pimagelist->add(::image::image_payload(this, scopedstrMatter));
 
    }
 

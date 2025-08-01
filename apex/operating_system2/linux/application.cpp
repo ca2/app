@@ -146,7 +146,7 @@
 //                     // Retrieve file description for language and code page "i".
 //                     VerQueryValue(pdata,
 //
-//                        (char *) (const char *) strKey,
+//                        (char *) (const_char_pointer ) strKey,
 //                        (LPVOID *)&psz,
 //
 //                        &uiSize);
@@ -413,7 +413,7 @@
 //#elif defined _WIN32
 //      {
 //         string slask = payload + "=" + value;
-//         _putenv( (const char *)slask);
+//         _putenv( (const_char_pointer )slask);
 //      }
 //#else
 //      setenv(payload, value, 1);

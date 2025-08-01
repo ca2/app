@@ -108,9 +108,9 @@ void window::create_window()
 //      //
 //      //         string strApplicationServerName = psystem->get_application_server_name();
 //      //
-//      //         pupdate->res_class = (char *) (const char *) strApplicationServerName;
+//      //         pupdate->res_class = (char *) (const_char_pointer ) strApplicationServerName;
 //      //
-//      //         pupdate->res_name = (char *) (const char *) strApplicationServerName;
+//      //         pupdate->res_name = (char *) (const_char_pointer ) strApplicationServerName;
 //      //
 //      //         XSetClassHint(display, window, pupdate);
 //      //
@@ -775,7 +775,7 @@ void windowing::finalize_windowing()
 //      ixa,
 //      8,
 //      PropModeReplace,
-//      (const unsigned char *)(const char *)path,
+//      (const unsigned char *)(const_char_pointer )path,
 //      path.get_length());
 
 //   informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
@@ -803,7 +803,7 @@ void windowing::finalize_windowing()
 //}
 
 
-//   Atom window::x11_display()->intern_atom(const char *pszAtomName, bool bCreate)
+//   Atom window::x11_display()->intern_atom(const_char_pointer pszAtomName, bool bCreate)
 //   {
 //
 //      return m_osdisplay->x11_display()->intern_atom(scopedstrAtomName, bCreate);
@@ -1855,7 +1855,7 @@ bool window::is_destroying()
    //   ixa,
    //   8,
    //   PropModeReplace,
-   //   (const unsigned char *)(const char *)path,
+   //   (const unsigned char *)(const_char_pointer )path,
    //   path.get_length());
    
    //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");
@@ -2432,7 +2432,7 @@ void window::set_mouse_cursor2(::windowing::cursor* pcursor)
    //   ixa,
    //   8,
    //   PropModeReplace,
-   //   (const unsigned char *)(const char *)path,
+   //   (const unsigned char *)(const_char_pointer )path,
    //   path.get_length());
    
    //informationf("\nfreebsd::interaction_impl::bamf_set_icon END");

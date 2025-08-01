@@ -10,7 +10,7 @@ namespace xml
    {
    }
 
-   entity::entity(char chEntity, const char * pszReference)
+   entity::entity(char chEntity, const_char_pointer  pszReference)
    {
       m_chEntity  = chEntity;
       if(*pszReference == '&')
@@ -36,7 +36,7 @@ namespace xml
    }
 
 
-   void entities::add_entity(char chEntity, const char * pszReference)
+   void entities::add_entity(char chEntity, const_char_pointer  pszReference)
    {
       add(entity(chEntity, pszReference));
    }
@@ -51,7 +51,7 @@ namespace xml
       return nullptr;
    }
 
-   entity * entities::get_entity(const char * pszEntity)
+   entity * entities::get_entity(const_char_pointer  pszEntity)
    {
       for( int i = 0 ; i < this->get_size(); i ++ )
       {
@@ -66,7 +66,7 @@ namespace xml
       return nullptr;
    }
 
-   int entities::get_entity_count( const char * str )
+   int entities::get_entity_count( const_char_pointer  str )
    {
       int nCount = 0;
       char * ps = (char *)str;
@@ -76,7 +76,7 @@ namespace xml
    }
 
 
-   int entities::ref_to_entity(const char * estr, char * str, int strlen)
+   int entities::ref_to_entity(const_char_pointer  estr, char * str, int strlen)
    {
 
       char * pes = (char *)estr;
@@ -175,7 +175,7 @@ namespace xml
    }
 
 
-   int entities::entity_to_ref( const char * str, char * estr, int estrlen )
+   int entities::entity_to_ref( const_char_pointer  str, char * estr, int estrlen )
    {
       char * ps = (char *)str;
       char * pes = (char *)estr;
@@ -216,7 +216,7 @@ namespace xml
       return strRet;
    }
 
-   string entities::entity_to_ref( const char * str )
+   string entities::entity_to_ref( const_char_pointer  str )
    {
       string s;
       if( str )
@@ -246,7 +246,7 @@ namespace xml
 
    }
 
-   void entities::entity_to_ref(string & s, const char * str)
+   void entities::entity_to_ref(string & s, const_char_pointer  str)
    {
       if(str)
       {
@@ -267,12 +267,12 @@ namespace xml
 
    }
 
-/*   string XRef2Entity( const char * estr )
+/*   string XRef2Entity( const_char_pointer  estr )
    {
       return system()->m_entities.ref_to_entity( estr );
    }
 
-   string XEntity2Ref( const char * str )
+   string XEntity2Ref( const_char_pointer  str )
    {
       return system()->m_entities.entity_to_ref( str );
    }*/

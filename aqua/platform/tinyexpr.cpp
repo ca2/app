@@ -64,8 +64,8 @@ namespace tinyexpr
    
    
    typedef struct state {
-      const char *start;
-      const char *next;
+      const_char_pointer start;
+      const_char_pointer next;
       int type;
       union {double value; const double * bound; te_function function;};
       te_expr *context;
@@ -189,7 +189,7 @@ namespace tinyexpr
       {0, nullptr, 0, 0}
    };
    
-   static const te_variable *find_builtin(const char *name, int len) {
+   static const te_variable *find_builtin(const_char_pointer name, int len) {
       int imin = 0;
       int imax = sizeof(functions) / sizeof(te_variable) - 2;
       
@@ -210,7 +210,7 @@ namespace tinyexpr
       return 0;
    }
    
-   static const te_variable *find_lookup(const state *s, const char *name, int len) {
+   static const te_variable *find_lookup(const state *s, const_char_pointer name, int len) {
       int iters;
       const te_variable *var;
       if (!s->lookup) return 0;
@@ -250,7 +250,7 @@ namespace tinyexpr
          } else {
             /* Look for a variable or builtin function call. */
             if (s->next[0] >= 'a' && s->next[0] <= 'z') {
-               const char *start;
+               const_char_pointer start;
                start = s->next;
                while ((s->next[0] >= 'a' && s->next[0] <= 'z') || (s->next[0] >= '0' && s->next[0] <= '9') || (s->next[0] == '_')) s->next++;
                
@@ -593,7 +593,7 @@ namespace tinyexpr
    }
    
    
-   te_expr *te_compile(const char *expression, const te_variable *variables, int var_count, int *error) {
+   te_expr *te_compile(const_char_pointer expression, const te_variable *variables, int var_count, int *error) {
       state s;
       s.start = s.next = expression;
       s.lookup = variables;
@@ -617,7 +617,7 @@ namespace tinyexpr
    }
    
    
-   double te_interp(const char *expression, int *error) {
+   double te_interp(const_char_pointer expression, int *error) {
       te_expr *n = te_compile(expression, 0, 0, error);
       double ret;
       if (n) {

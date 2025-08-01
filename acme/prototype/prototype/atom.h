@@ -84,7 +84,7 @@ int __atom_sgn(T x)
 
 
 
-//inline int __atom_safe_strcmp(const char * a, const char * b)
+//inline int __atom_safe_strcmp(const_char_pointer  a, const_char_pointer  b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -120,7 +120,7 @@ int __atom_sgn(T x)
 //}
 //
 //
-//inline int __atom_safe_stricmp(const char * a, const char * b)
+//inline int __atom_safe_stricmp(const_char_pointer  a, const_char_pointer  b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -155,7 +155,7 @@ int __atom_sgn(T x)
 //
 //}
 //
-//inline bool __atom_str_begins(const char * a, const char * b)
+//inline bool __atom_str_begins(const_char_pointer  a, const_char_pointer  b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -191,7 +191,7 @@ int __atom_sgn(T x)
 //}
 //
 //
-//inline bool case_insensitive___atom_str_begins(const char * a, const char * b)
+//inline bool case_insensitive___atom_str_begins(const_char_pointer  a, const_char_pointer  b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -701,7 +701,7 @@ public:
 #undef IMPLEMENT_ATOM_ENUMERATION
 
 
-   //inline operator const char* () const;
+   //inline operator const_char_pointer  () const;
    //inline operator enum_dialog_result () const;
 
    //inline ::e_check & echeck_reference() { if(m_etype != e_type_check) set_compounded_type(e_type_check); return m_echeck; }

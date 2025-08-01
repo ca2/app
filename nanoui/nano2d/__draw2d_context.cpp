@@ -440,7 +440,7 @@ namespace nano2d
    }
 
 
-   void draw2d_context::font_face(const char * face)
+   void draw2d_context::font_face(const_char_pointer  face)
    {
 
       m_pstate->m_strFontFace = face;
@@ -456,7 +456,7 @@ namespace nano2d
    }
 
 
-   void __font_face(::write_text::font * pfont, const char * font)
+   void __font_face(::write_text::font * pfont, const_char_pointer  font)
    {
 
       string strFont(font);
@@ -690,7 +690,7 @@ namespace nano2d
    }
 
 
-   float draw2d_context::text(float x, float y, const char * string, const char * end)
+   float draw2d_context::text(float x, float y, const_char_pointer  string, const_char_pointer  end)
    {
       
       ::string strText(string, end ? end - string : string_safe_length(string));
@@ -738,7 +738,7 @@ namespace nano2d
    }
 
 
-   int draw2d_context::text_glyph_positions(float x, float y, const char * stringParam, const char * end, ::nano2d::glyphPosition * positions, int maxPositions)
+   int draw2d_context::text_glyph_positions(float x, float y, const_char_pointer  stringParam, const_char_pointer  end, ::nano2d::glyphPosition * positions, int maxPositions)
    {
 
       double_array daLeft;
@@ -813,7 +813,7 @@ namespace nano2d
 
 
 
-   float draw2d_context::text_bounds(float x, float y, const char * string, const char * end, float * bounds)
+   float draw2d_context::text_bounds(float x, float y, const_char_pointer  string, const_char_pointer  end, float * bounds)
    {
 
       ::string strText(string, end ? end - string : string_safe_length(string));
@@ -963,7 +963,7 @@ namespace nano2d
    }
 
 
-   int draw2d_context::create_image(const char * filename, int imageFlags)
+   int draw2d_context::create_image(const_char_pointer  filename, int imageFlags)
    {
 
       return m_pgraphics->image()->image_integer(filename);

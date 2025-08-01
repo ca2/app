@@ -25,7 +25,7 @@ CLASS_DECL_APEX bool thread_has_sockets();
 //#ifdef BSD_STYLE_SOCKETS
 //
 //
-//CLASS_DECL_APEX const char * bsd_socket_error(int x);
+//CLASS_DECL_APEX const_char_pointer  bsd_socket_error(int x);
 //
 //
 //#endif

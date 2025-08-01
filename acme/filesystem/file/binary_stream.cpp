@@ -371,7 +371,7 @@ binary_stream & binary_stream::operator <<(const ::ansi_character * psz)
 
 
 
-binary_stream & binary_stream::operator <<(const ::range < const char * > & range)
+binary_stream & binary_stream::operator <<(const ::range < const_char_pointer  > & range)
 {
 
    write_buffer_length(range.size());

@@ -74,7 +74,7 @@ extern void disable_saved_application_state_osx();
 //#endif
 //
 ////   glfwSetErrorCallback(
-////      [](int error, const char * descr) {
+////      [](int error, const_char_pointer  descr) {
 ////         if (error == GLFW_NOT_INITIALIZED)
 ////            return; /* Ignore */
 ////         std::cerr << "GLFW error " << error << ": " << descr << std::endl;
@@ -300,7 +300,7 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::arr
 //      throw std::runtime_error("Could not open image directory!");
 //   struct dirent * ep;
 //   while ((ep = readdir(dp))) {
-//      const char * fname = ep->d_name;
+//      const_char_pointer  fname = ep->d_name;
 //#else
 
    auto pparticle = get_nano2d_object(pcontext);
@@ -336,7 +336,7 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::arr
 //   if (handle == INVALID_HANDLE_VALUE)
 //      throw std::runtime_error("Could not open image directory!");
 //   do {
-//      const char * fname = ffd.cFileName;
+//      const_char_pointer  fname = ffd.cFileName;
 //#endif
 //      if (strstr(fname, "png") == nullptr)
 //         continue;

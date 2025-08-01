@@ -35,7 +35,7 @@ namespace acme
 
 
 
-//CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate, const char** ppszRequest = nullptr);
+//CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate, const_char_pointer * ppszRequest = nullptr);
 
 //CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr);
 

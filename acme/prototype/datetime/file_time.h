@@ -72,8 +72,8 @@ public:
 
 
 // Used only if these strings could not be found in resources.
-extern CLASS_DECL_ACME const char * const szInvalidDateTime;
-extern CLASS_DECL_ACME const char * const szInvalidDateTimeSpan;
+extern CLASS_DECL_ACME const_char_pointer  const szInvalidDateTime;
+extern CLASS_DECL_ACME const_char_pointer  const szInvalidDateTimeSpan;
 
 const int maxTimeBufferSize = 128;
 const long maxDaysInSpan  =   3615897L;

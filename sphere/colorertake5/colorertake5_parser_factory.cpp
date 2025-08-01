@@ -147,7 +147,7 @@ namespace colorertake5
    {
    }
 
-   const char *ParserFactory::getVersion()
+   const_char_pointer  ParserFactory::getVersion()
    {
 
       return "Colorer-take5 Library be5 " __TIMESTAMP__;

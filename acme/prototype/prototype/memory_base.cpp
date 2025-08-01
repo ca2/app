@@ -654,7 +654,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
       utf_to_utf((char *) mem.data(),(const ::wide_character *)&data()[2],(int)(size() - 2));
 
-      return { (const char *)mem.data(), mem.size() };
+      return { (const_char_pointer )mem.data(), mem.size() };
 
    }
    else if(size() >= 3 && data()[0] == 255 && data()[1] == 254 && data()[2] == 0x73)
@@ -666,19 +666,19 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
       utf_to_utf((char *)mem.data(),(const ::wd16_character *)&data()[3],(int)(size() - 3));
 
-      return { (const char *)mem.data(), mem.size() };
+      return { (const_char_pointer )mem.data(), mem.size() };
 
    }
    else if(size() >= 3 && data()[0] == 0xef && data()[1] == 0xbb && data()[2] == 0xbf)
    {
 
-      return { (const char *)data() + 3, size() - 3 };
+      return { (const_char_pointer )data() + 3, size() - 3 };
 
    }
    else
    {
 
-      return { (const char *)data(), size() };
+      return { (const_char_pointer )data(), size() };
 
    }
 
@@ -767,13 +767,13 @@ string memory_base::as_utf8() const
             && data()[2] == 0xbf)
    {
 
-      strResult = string((const char *)&data()[3], (int)(size() - 3));
+      strResult = string((const_char_pointer )&data()[3], (int)(size() - 3));
 
    }
    else
    {
 
-      strResult = string((const char *)data(), (int)size());
+      strResult = string((const_char_pointer )data(), (int)size());
 
    }
 
@@ -824,7 +824,7 @@ string memory_base::as_utf8() const
 //
 //   }
 //
-//   const ::scoped_string & scopedstrThis = (const char *)data();
+//   const ::scoped_string & scopedstrThis = (const_char_pointer )data();
 //
 //   if (::is_null(scopedstrThis))
 //   {
@@ -891,7 +891,7 @@ string memory_base::as_utf8() const
 //
 //   }
 //
-//   return case_insensitive_ansi_count_compare((const char*) data(), str.c_str(), iCount) == 0;
+//   return case_insensitive_ansi_count_compare((const_char_pointer ) data(), str.c_str(), iCount) == 0;
 //
 //}
 //
@@ -928,7 +928,7 @@ string memory_base::as_utf8() const
 //
 //   }
 //
-//   const ::scoped_string & scopedstrThis = (const char *)data();
+//   const ::scoped_string & scopedstrThis = (const_char_pointer )data();
 //
 //   if (::is_null(scopedstrThis))
 //   {
@@ -995,7 +995,7 @@ string memory_base::as_utf8() const
 //
 //   }
 //
-//   return case_insensitive_ansi_count_compare((const char*) data() + size() - iCount, str.c_str(), iCount) == 0;
+//   return case_insensitive_ansi_count_compare((const_char_pointer ) data() + size() - iCount, str.c_str(), iCount) == 0;
 //
 //}
 
@@ -2097,7 +2097,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
       auto ptarget = pdata + iStart;
 
-      auto psource = (const char *) blockSuffix.data();
+      auto psource = (const_char_pointer ) blockSuffix.data();
 
       auto c = blockSuffix.size();
 
@@ -2392,7 +2392,7 @@ namespace acme
 
 
 
-//const char * matter::type(this).name() const
+//const_char_pointer  matter::type(this).name() const
 //{
 //
 //   return ::type(this).name();

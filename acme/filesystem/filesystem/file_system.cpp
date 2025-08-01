@@ -57,7 +57,7 @@ void file_system::touch(const ::file::path& path)
 }
 
 
-void file_system::touch_app_cloud(const ::file::path& path, const char* pszContentIdentifier)
+void file_system::touch_app_cloud(const ::file::path& path, const_char_pointer  pszContentIdentifier)
 {
 
    touch(path);
@@ -218,13 +218,13 @@ string file_system::as_string(const ::file::path& pathParam, character_count iRe
    else if (data[0] == '\xEF' && data[1] == '\xBB' && data[2] == '\xBF') // BOM
    {
 
-      return {(const char *)data + 3, size - 3};
+      return {(const_char_pointer )data + 3, size - 3};
 
    }
    else
    {
 
-      return {(const char *)data, size};
+      return {(const_char_pointer )data, size};
 
    }
 
@@ -320,13 +320,13 @@ string file_system::safe_get_string(const ::file::path& pathParam, character_cou
    else if (data[0] == '\xEF' && data[1] == '\xBB' && data[2] == '\xBF') // BOM
    {
 
-      return {(const char *)data + 3, size - 3};
+      return {(const_char_pointer )data + 3, size - 3};
 
    }
    else
    {
 
-      return {(const char *)data, size};
+      return {(const_char_pointer )data, size};
 
    }
 
@@ -356,13 +356,13 @@ string file_system::__safe_get_string(const ::file::path& pathParam, character_c
    else if (data[0] == '\xEF' && data[1] == '\xBB' && data[2] == '\xBF') // BOM
    {
 
-      return { (const char*)data + 3, size - 3 };
+      return { (const_char_pointer )data + 3, size - 3 };
 
    }
    else
    {
 
-      return { (const char*)data, size };
+      return { (const_char_pointer )data, size };
 
    }
 
@@ -642,7 +642,7 @@ void file_system::find_replace(const ::file::path& path, const ::property_set & 
 }
 
 
-void file_system::put_app_cloud_data(const ::file::path& path, const char* pszContentIdentifier, const ::block& block)
+void file_system::put_app_cloud_data(const ::file::path& path, const_char_pointer  pszContentIdentifier, const ::block& block)
 {
 
    auto pathAppCloud = path_system()->defer_get_icloud_container_path(path, pszContentIdentifier);
@@ -652,7 +652,7 @@ void file_system::put_app_cloud_data(const ::file::path& path, const char* pszCo
 }
 
 
-::memory file_system::get_app_cloud_data(const ::file::path& path, const char* pszContentIdentifier)
+::memory file_system::get_app_cloud_data(const ::file::path& path, const_char_pointer  pszContentIdentifier)
 {
 
    auto pathAppCloud = path_system()->defer_get_icloud_container_path(path, pszContentIdentifier);
@@ -1196,7 +1196,7 @@ void file_system::put_block(const ::file::path& path, const block& block)
 
    throw interface_only();
 
-   //put_contents(path, (const char *) block.data(), block.size());
+   //put_contents(path, (const_char_pointer ) block.data(), block.size());
 
 }
 

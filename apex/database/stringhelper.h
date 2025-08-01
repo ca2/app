@@ -40,11 +40,11 @@ public:
   
   
    str_helper();
-   str_helper (const char *s);
+   str_helper (const_char_pointer  s);
    virtual ~str_helper () { }
 
    string get_str(); 
-   void set_str(const char *s);
+   void set_str(const_char_pointer  s);
 
    string before(string s, bool &is_found);
 

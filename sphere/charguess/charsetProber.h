@@ -34,7 +34,7 @@ typedef enum {
 class nsCharSetProber {
 public:
   virtual ~nsCharSetProber() {};
-  virtual const char* GetCharSetName() = 0;
+  virtual const_char_pointer  GetCharSetName() = 0;
   virtual nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen) = 0;
   virtual nsProbingState GetState(void) = 0;
   virtual void      Reset(void)  = 0;

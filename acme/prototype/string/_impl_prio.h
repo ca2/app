@@ -81,7 +81,7 @@ class fixed_alloc_array;
 ////}
 
 
-inline const char * FormatArgument(const string & value) noexcept { return value.c_str(); }
+inline const_char_pointer  FormatArgument(const string & value) noexcept { return value.c_str(); }
 
 
 //template < typename TYPE_CHAR >

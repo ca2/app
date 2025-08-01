@@ -202,7 +202,7 @@ namespace windowing
       bool                                      m_bIgnoreMoveEvent;
       ::auto_pointer < critical_section >       m_pcsDisplay;
 
-      const char * m_pszInteractionImplBaseDebug;
+      const_char_pointer  m_pszInteractionImplBaseDebug;
 
       //bool                                      m_bPendingRedraw;
       unsigned int                                       m_uiLastRedraw;
@@ -638,7 +638,7 @@ namespace windowing
       void defer_show_system_menu(::user::mouse * pmouse) override;
 
       virtual void pick_browse(const ::function < void(const ::file::path & path) > & callback);
-      virtual void pick_media(const char * pszMediaType);
+      virtual void pick_media(const_char_pointer  pszMediaType);
       virtual void on_prompt_write_file(::user::controller * pusercontroller);
 
 

@@ -372,7 +372,7 @@ namespace file
 
       //}
 
-      //inline const char* separator_sz() const
+      //inline const_char_pointer  separator_sz() const
       //{
 
       //   return "/";
@@ -668,7 +668,7 @@ namespace file
 
 
 
-inline const char * FormatArgument(const ::file::path & value) noexcept;
+inline const_char_pointer  FormatArgument(const ::file::path & value) noexcept;
 
 
 template < >

@@ -13,7 +13,7 @@ inline ::write_text_stream & operator <<(::write_text_stream & textstream, const
 
    ::QByteArray utf8ByteArray = qstr.toUtf8();
 
-   const char *utf8Buffer = utf8ByteArray.constData();
+   const_char_pointer utf8Buffer = utf8ByteArray.constData();
 
    textstream << utf8Buffer;
 

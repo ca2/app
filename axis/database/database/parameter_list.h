@@ -19,7 +19,7 @@ namespace database
 
 
       ::payload & get_value(::collection::index i);
-      const char * get_key(::collection::index i);
+      const_char_pointer  get_key(::collection::index i);
       ::collection::count get_size();
       bool is_empty();
 

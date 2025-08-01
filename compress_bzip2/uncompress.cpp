@@ -145,7 +145,7 @@ namespace compress_bzip2
    //
    //
    //
-   //int bzuncompress(const ::scoped_string & scopedstrUncompressed, const ::string & lpcszGzFileCompressed)
+   //int bzuncompress(const ::scoped_string & scopedstrUncompressed, const ::scoped_string & scopedstrGzFileCompressed)
 
    //{
    //   if (g_pchGzUncompressBuffer == nullptr)

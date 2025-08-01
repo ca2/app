@@ -139,7 +139,7 @@ void particle::defer_create_synchronization()
 
 
 
-const char * __sz_defer_skip(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSkip)
+const_char_pointer  __sz_defer_skip(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSkip)
 {
 
    auto len = scopedstrSkip.size();
@@ -158,7 +158,7 @@ const char * __sz_defer_skip(const ::scoped_string & scopedstr, const ::scoped_s
 }
 
 
-const char * particle::topic_text() const
+const_char_pointer  particle::topic_text() const
 {
 
    return __sz_defer_skip(typeid(*this).name(), "class ");
@@ -185,7 +185,7 @@ const char * particle::topic_text() const
 //}
 
 
-//const char * particle::raw_class_title() const
+//const_char_pointer  particle::raw_class_title() const
 //{
 //
 //   auto pszName =  typeid(*this).name();
@@ -1485,7 +1485,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 
 
 
-//particle::particle(const char * lpszName)
+//particle::particle(const_char_pointer  lpszName)
 //{
 //
 //   m_bOwner = true;
@@ -1515,7 +1515,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //#ifdef WINDOWS
 //
 //
-//particle::particle(hsynchronization hsyncobject, const char * lpszName) :
+//particle::particle(hsynchronization hsyncobject, const_char_pointer  lpszName) :
 //   m_hsync(hsyncobject)
 //{
 //
@@ -2169,7 +2169,7 @@ bool particle::should_run_async() const
 
 
 
-void * particle::new_object(const char * psz)
+void * particle::new_object(const_char_pointer  psz)
 {
    
    throw interface_only();
@@ -2192,7 +2192,7 @@ CLASS_DECL_ACME ::particle_pointer detach_pointer(::lparam& lparam)
 }
 
 
-const char* particle::debug_note() const
+const_char_pointer  particle::debug_note() const
 {
 
    return nullptr;

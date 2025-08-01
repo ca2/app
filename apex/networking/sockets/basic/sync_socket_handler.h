@@ -40,7 +40,7 @@ namespace sockets
 
 
          virtual void read_payload_v1(string & strPayload, int timeout = -1);
-         virtual void write_payload_v1(const char * szPayload, int timeout = -1);
+         virtual void write_payload_v1(const_char_pointer  szPayload, int timeout = -1);
 
    };
 

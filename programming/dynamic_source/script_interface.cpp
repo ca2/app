@@ -33,7 +33,7 @@ namespace dynamic_source
    }
 
 
-   const char* script_interface::debug_note() const
+   const_char_pointer  script_interface::debug_note() const
    {
 
       return m_strNote;
@@ -298,7 +298,7 @@ namespace dynamic_source
    void script_interface::set_auth_email(const ::scoped_string & scopedstrEmail)
    {
 
-      set_session_payload("auth_email", strEmail);
+      set_session_payload("auth_email", scopedstrEmail);
 
    }
 
@@ -749,7 +749,7 @@ namespace dynamic_source
 
       ::url::parts parts(scopedstrUrl);
 
-      parts.arguments()[pszKey] = payload;
+      parts.arguments()[scopedstrKey] = payload;
 
       strUrl = parts.as_string();
 
@@ -761,7 +761,7 @@ namespace dynamic_source
 
       ::url::parts parts(scopedstrUrl);
 
-      parts.arguments()[pszKey] = strParam;
+      parts.arguments()[scopedstrKey] = scopedstrParam;
 
       strUrl = parts.as_string();
 
@@ -773,7 +773,7 @@ namespace dynamic_source
 
       ::url::parts parts(scopedstrUrl);
 
-      auto str = parts.arguments()[pszKey].as_string();
+      auto str = parts.arguments()[scopedstrKey].as_string();
 
       return str;
 
@@ -785,7 +785,7 @@ namespace dynamic_source
 
       ::url::parts parts(scopedstrUrl);
 
-      auto payload = parts.arguments()[pszKey];
+      auto payload = parts.arguments()[scopedstrKey];
 
       return payload;
 

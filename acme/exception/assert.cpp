@@ -21,7 +21,7 @@ assert_exception::~assert_exception()
 }
 
 
-CLASS_DECL_ACME int throw_assert_exception(const char * pszFileName,int iLineNumber)
+CLASS_DECL_ACME int throw_assert_exception(const_char_pointer  pszFileName,int iLineNumber)
 {
 
    throw assert_exception(pszFileName,iLineNumber);

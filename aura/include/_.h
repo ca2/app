@@ -220,7 +220,7 @@ namespace aura
 ////{
 ////
 ////   int            m_i;
-////   const char* m_psz;
+////   const_char_pointer  m_psz;
 ////
 ////};
 ////
@@ -503,7 +503,7 @@ namespace aura
 ////typedef char ::ansi_character;
 ////
 ////int CLASS_DECL_AURA MultiByteToWideChar2(unsigned int CodePage, unsigned int dwFlags, const ::ansi_character * pMultByteStr, int cbMultiByte, ::wide_character * pWideCharStr, int cchWideChar);
-////int CLASS_DECL_AURA WideCharToMultiByte2(unsigned int CodePage, unsigned int dwFlags, const ::wide_character * pWideCharStr, int cchWideChar, ::ansi_character * pMultByteStr, int cbMultiByte, const ::string & pDefaultChar, int_bool * pUsedDefaultChar);
+////int CLASS_DECL_AURA WideCharToMultiByte2(unsigned int CodePage, unsigned int dwFlags, const ::wide_character * pWideCharStr, int cchWideChar, ::ansi_character * pMultByteStr, int cbMultiByte, const ::scoped_string & scopedstrDefaultChar, int_bool * pUsedDefaultChar);
 ////
 ////
 ////enum e_image_type
@@ -590,12 +590,12 @@ namespace aura
 ////CLASS_DECL_AURA void __tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr);
 ////CLASS_DECL_AURA void __tracef(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr, ...);
 ////CLASS_DECL_AURA void __tracev(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr, va_list vargs);
-////CLASS_DECL_AURA const char * trace_category_name(e_trace_category ecategory);
+////CLASS_DECL_AURA const_char_pointer  trace_category_name(e_trace_category ecategory);
 ////
 ////
 ////CLASS_DECL_AURA ::matter * trace_object(e_trace_category ecategory);
 ////
-////const char * topic_text(::particle * pparticle);
+////const_char_pointer  topic_text(::particle * pparticle);
 ////
 ////e_trace_category object_trace_category(::particle * pparticle);
 ////
@@ -1248,7 +1248,7 @@ namespace aura
 //////typedef CREATE_SYSTEM * LPFN_CREATE_SYSTEM;
 ////
 //////CLASS_DECL_AURA extern LPFN_CREATE_SYSTEM g_pfn_create_system;
-//////CLASS_DECL_AURA extern const char * g_pszCooperativeLevel;
+//////CLASS_DECL_AURA extern const_char_pointer  g_pszCooperativeLevel;
 //////CLASS_DECL_AURA extern int g_iDerivedApplication; // one-based-index of derived application, zero if Main application
 ////
 ////

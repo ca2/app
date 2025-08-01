@@ -47,7 +47,7 @@ namespace hotplugin
       itask                      m_nCa2StarterStartThreadID;
       bool                          m_bReload;
       bool                          m_bInstalling;
-      const char *                  m_pszReloadCommandLine;
+      const_char_pointer                  m_pszReloadCommandLine;
 
       ::pointer< ::mutex >                       m_pmutexBitmap;
       ::int_size                          m_sizeBitmapData;

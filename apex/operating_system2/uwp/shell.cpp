@@ -633,10 +633,10 @@ namespace universal_windows
 //      WNDCLASS wndclass;
 //
 //      string strClassName;
-//      const char * lpszClassName;
+//      const_char_pointer  lpszClassName;
 //      if(((unsigned int) lpClassName) >> 16 == 0)
 //      {
-//         lpszClassName = (const char *) lpClassName;
+//         lpszClassName = (const_char_pointer ) lpClassName;
 //      }
 //      else
 //      {
@@ -658,7 +658,7 @@ namespace universal_windows
 //
 //      /*   if(((unsigned int) wndclass) >> 16 == 0)
 //      {
-//      lpszClassName = (const char *) lpClassName;
+//      lpszClassName = (const_char_pointer ) lpClassName;
 //      }
 //      else
 //      {
@@ -716,10 +716,10 @@ namespace universal_windows
 //      LPVOID lpParam)
 //   {
 //      string strClassName;
-//      const char * lpszClassName;
+//      const_char_pointer  lpszClassName;
 //      if(((unsigned int) lpClassName) >> 16 == 0)
 //      {
-//         lpszClassName = (const char *) lpClassName;
+//         lpszClassName = (const_char_pointer ) lpClassName;
 //      }
 //      else
 //      {

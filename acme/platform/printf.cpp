@@ -13,7 +13,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 
 
-int printf_dup(const char *format, ...)
+int printf_dup(const_char_pointer format, ...)
 {
    va_list args;
    va_start(args, format);
@@ -36,7 +36,7 @@ int wprintf_dup(const ::wide_character *format, ...)
 
 
 
-int vprintf_dup(const char *format, va_list args)
+int vprintf_dup(const_char_pointer format, va_list args)
 {
 
    return vprintf(format, args);

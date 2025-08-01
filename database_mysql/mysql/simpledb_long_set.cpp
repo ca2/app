@@ -575,7 +575,7 @@ bool db_long_set::SaveWindowRectangle(const ::string & lpKey, ::windowing::windo
 
 }
 
-/*HRESULT db_long_set::OpenQuery(CDataSource *pdb, const ::string & lpcszSql)
+/*HRESULT db_long_set::OpenQuery(CDataSource *pdb, const ::scoped_string & scopedstrSql)
 {
 CSession   session;
 //      HRESULT      hr;

@@ -33,14 +33,14 @@ private:
 
 
    void * operator new(size_t);
-   void * operator new(size_t,const char *,int);
+   void * operator new(size_t,const_char_pointer ,int);
 
    void operator delete(void * p)
    {
 
    }
 
-   void operator delete(void * p,const char *,int)
+   void operator delete(void * p,const_char_pointer ,int)
    {
 
    }

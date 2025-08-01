@@ -463,7 +463,7 @@ write_text_stream & write_text_stream::operator <<(const ::ansi_character * psz)
 
 
 // // template < typename FILE >
-write_text_stream & write_text_stream::operator <<(const ::range < const char * > & range)
+write_text_stream & write_text_stream::operator <<(const ::range < const_char_pointer  > & range)
 {
 
    this->write(range.data(), range.size());
@@ -542,7 +542,7 @@ void write_text_stream::write(const void * psz, character_count s)
 }
 
 
-void write_text_stream::print(const ::range < const char * > & range)
+void write_text_stream::print(const ::range < const_char_pointer  > & range)
 {
 
    m_pfile->write(range.data(), range.size());

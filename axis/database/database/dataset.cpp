@@ -314,7 +314,7 @@ namespace database
    }
 
 
-   ::collection::index dataset::field_index(const ::string & name)
+   ::collection::index dataset::field_index(const ::scoped_string & scopedstrName)
    {
 
       for (::collection::index i = 0; i < m_result.m_pfielda->get_count(); i++)
@@ -322,7 +322,7 @@ namespace database
 
          auto & pfield = m_result.m_pfielda->element_at(i);
 
-         if (pfield->m_strName.case_insensitive_order(name) == 0)
+         if (pfield->m_strName.case_insensitive_order(scopedstrName) == 0)
          {
 
             return i;
@@ -336,13 +336,13 @@ namespace database
    }
 
 
-   field * dataset::field(const ::string & name)
+   field * dataset::field(const ::scoped_string & scopedstrName)
    {
 
       for (auto & pfield : *m_result.m_pfielda)
       {
 
-         if (pfield->m_strName.case_insensitive_order(name) == 0)
+         if (pfield->m_strName.case_insensitive_order(scopedstrName) == 0)
          {
 
             return pfield;
@@ -356,10 +356,10 @@ namespace database
    }
 
 
-   ::payload dataset::field_value(const ::string & name)
+   ::payload dataset::field_value(const ::scoped_string & scopedstrName)
    {
 
-      auto pfield = field(name);
+      auto pfield = field(scopedstrName);
 
       if (::is_null(pfield))
       {

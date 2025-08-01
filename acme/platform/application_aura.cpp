@@ -994,7 +994,7 @@ namespace platform
 
    // void pick_browse(const ::function < void(const ::file::path & path) > & callback) override{}
    //
-   // void pick_media(const char * pszMediaType) override{}
+   // void pick_media(const_char_pointer  pszMediaType) override{}
    //
    // void on_prompt_write_file(::user::controller * pusercontroller) override{}
 

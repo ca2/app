@@ -57,7 +57,7 @@ namespace windows_common
    }
 
 
-   void * heap_allocator::allocate(memsize s, ::memsize * psizeAllocated, const char * pszAnnotation)
+   void * heap_allocator::allocate(memsize s, ::memsize * psizeAllocated, const_char_pointer  pszAnnotation)
    {
 
       raw_critical_section_lock criticalsectionlock(&m_criticalsection);
@@ -76,7 +76,7 @@ namespace windows_common
    }
 
 
-   void * heap_allocator::reallocate(void * p, memsize s, const char * pszAnnotation)
+   void * heap_allocator::reallocate(void * p, memsize s, const_char_pointer  pszAnnotation)
    {
 
       raw_critical_section_lock criticalsectionlock(&m_criticalsection);

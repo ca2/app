@@ -32,10 +32,10 @@
 #	define aaa_memory_new DEBUG_NEW
 #endif //__DEBUG
 
-//const char *code = "::payload a = 5; if (a==5) a=4; else a=3;";
-//const char *code = "{ ::payload a = 4; ::payload b = 1; while (a>0) { b = b * 2; a = a - 1; } ::payload c = 5; }";
-//const char *code = "{ ::payload b = 1; for (::payload i=0;i<4;i=i+1) b = b * 2; }";
-const char *code = "function myfunc(x, y) { return x + y; } ::payload a = myfunc(1,2); print(a);";
+//const_char_pointer  code = "::payload a = 5; if (a==5) a=4; else a=3;";
+//const_char_pointer  code = "{ ::payload a = 4; ::payload b = 1; while (a>0) { b = b * 2; a = a - 1; } ::payload c = 5; }";
+//const_char_pointer  code = "{ ::payload b = 1; for (::payload i=0;i<4;i=i+1) b = b * 2; }";
+const_char_pointer  code = "function myfunc(x, y) { return x + y; } ::payload a = myfunc(1,2); print(a);";
 
 void js_print(CScriptVar *v, void *UNUSED(userdata)) {
     printf("> %s\n", v->getParameter("text")->getString().c_str());

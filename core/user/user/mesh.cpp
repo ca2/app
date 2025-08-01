@@ -5083,7 +5083,7 @@ namespace user
 
       string_array stra;
 
-      stra.add_tokens(strFilter," ",false);
+      stra.add_tokens(scopedstrFilter," ",false);
 
       //m_pregexFilter1->setPositionMoves(1);
 

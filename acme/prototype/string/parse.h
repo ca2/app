@@ -41,7 +41,7 @@ class CLASS_DECL_ACME parse
 public:
 
    // publicy made(camilo already xpced a good public, so i said first :-)
-   const char * m_psz;
+   const_char_pointer  m_psz;
    string   pa_splits;
    string   m_strWord;
    character_count  m_iPos;

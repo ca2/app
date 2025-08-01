@@ -1371,7 +1371,7 @@ namespace user
 
             //itemFirst.m_iDisplayItem = 0;
 
-            const char * pszType = typeid(*this).name();
+            const_char_pointer  pszType = typeid(*this).name();
 
             index_item_rectangle(*pitem);
 
@@ -6634,7 +6634,7 @@ namespace user
 
       string_array stra;
 
-      stra.add_tokens(strFilter, " ", false);
+      stra.add_tokens(scopedstrFilter, " ", false);
 
       //m_pregexFilter1->setPositionMoves(1);
 

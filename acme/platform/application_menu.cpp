@@ -213,7 +213,7 @@ application_menu * application_menu::separator()
 
 }
 
-   ::collection::index application_menu::find_child_with_name(const char * pszName) const
+   ::collection::index application_menu::find_child_with_name(const_char_pointer  pszName) const
    {
       
       return predicate_find_first([pszName](auto & pitem)

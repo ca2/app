@@ -36,7 +36,7 @@ void * gen_ch_class_reference_tables()
      Extensions (comparing to Perl):
      inner class substraction [{L}-[{Lu}]], addition [{L}[1234]], intersection [{L}&[{Lu}]]
    */
-   ch_class *ch_class::createCharClass(const char * ccs, character_count pos, character_count *retPos)
+   ch_class *ch_class::createCharClass(const_char_pointer  ccs, character_count pos, character_count *retPos)
    {
       string str = ccs;
       if(str == "(%back;?#1[\\.\\:]|\\^)\\M[^%nname;]+")
@@ -250,7 +250,7 @@ void * gen_ch_class_reference_tables()
       tablePos->clear_bit(iChar & 0xFF);
    }
 
-   void ch_class::add_range(const char * s, const char * e)
+   void ch_class::add_range(const_char_pointer  s, const_char_pointer  e)
    {
       long long iCharStart = unicode_index(s);
       long long iCharEnd = unicode_index(e);
@@ -264,7 +264,7 @@ void * gen_ch_class_reference_tables()
       }
    }
 
-   void ch_class::clear_range(const char * s, const char * e)
+   void ch_class::clear_range(const_char_pointer  s, const_char_pointer  e)
    {
       long long iCharStart = unicode_index(s);
       long long iCharEnd = unicode_index(e);

@@ -58,33 +58,33 @@ char *xmpp_strdup(const xmpp_ctx_t * const ctx, const ::string & const s);
 
 void xmpp_log(const xmpp_ctx_t * const ctx, 
 	      const xmpp_log_level_t level,
-	      const char * const area,
-	      const char * const fmt, 
+	      const_char_pointer  const area,
+	      const_char_pointer  const fmt, 
 	      va_list ap);
 
 /* wrappers for xmpp_log at specific levels */
 void xmpp_error(const xmpp_ctx_t * const ctx,
-		const char * const area,
-		const char * const fmt,
+		const_char_pointer  const area,
+		const_char_pointer  const fmt,
 		...);
 void xmpp_warn(const xmpp_ctx_t * const ctx,
-		const char * const area,
-		const char * const fmt,
+		const_char_pointer  const area,
+		const_char_pointer  const fmt,
 		...);
 void xmpp_info(const xmpp_ctx_t * const ctx,
-		const char * const area,
-		const char * const fmt,
+		const_char_pointer  const area,
+		const_char_pointer  const fmt,
 		...);
 void xmpp_debug(const xmpp_ctx_t * const ctx,
-		const char * const area,
-		const char * const fmt,
+		const_char_pointer  const area,
+		const_char_pointer  const fmt,
 		...);
 
 /** jid */
 /* these return __allocate< strings that must be xmpp_free >()'d */
 char *xmpp_jid_new(xmpp_ctx_t *ctx, const ::string &node,
-                                    const char *domain,
-                                    const char *resource);
+                                    const_char_pointer  domain,
+                                    const_char_pointer  resource);
 char *xmpp_jid_bare(xmpp_ctx_t *ctx, const ::string &jid);
 char *xmpp_jid_node(xmpp_ctx_t *ctx, const ::string &jid);
 char *xmpp_jid_domain(xmpp_ctx_t *ctx, const ::string &jid);
@@ -250,13 +250,13 @@ void handler_add_timed(xmpp_conn_t * const conn,
 		       void * const userdata);
 void handler_add_id(xmpp_conn_t * const conn,
 		    xmpp_handler handler,
-		    const char * const atom,
+		    const_char_pointer  const atom,
 		    void * const userdata);
 void handler_add(xmpp_conn_t * const conn,
 		 xmpp_handler handler,
-		 const char * const ns,
-		 const char * const name,
-		 const char * const type,
+		 const_char_pointer  const ns,
+		 const_char_pointer  const name,
+		 const_char_pointer  const type,
 		 void * const userdata);
 
 /* utility functions */

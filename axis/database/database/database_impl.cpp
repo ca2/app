@@ -23,15 +23,15 @@ namespace database
    }
 
 
-   void database_impl::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, unsigned long long uConnectionFlags)
+   void database_impl::connect(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrPort, const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, const ::scoped_string & scopedstrSocket, unsigned long long uConnectionFlags)
    {
 
-      m_strHost = host;
-      m_strPort = port;
-      m_strName = name;
-      m_strUser = user;
-      m_strPass = pass;
-      m_strSckt = sckt;
+      m_strHost = scopedstrHost;
+      m_strPort = scopedstrPort;
+      m_strName = scopedstrName;
+      m_strUser = scopedstrUser;
+      m_strPass = scopedstrPass;
+      m_strSckt = scopedstrSocket;
       m_uConnectionFlags = uConnectionFlags;
 
       _connect();

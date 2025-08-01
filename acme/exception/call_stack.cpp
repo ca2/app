@@ -23,7 +23,7 @@ CLASS_DECL_ACME ::string call_stack_default_format()
 //}
 //
 //
-//CLASS_DECL_ACME ::string get_call_stack_trace(void ** stack, int c, const char* pszFormat)
+//CLASS_DECL_ACME ::string get_call_stack_trace(void ** stack, int c, const_char_pointer  pszFormat)
 //{
 //
 //   return this->::system()->node()->get_call_stack_trace(stack, c, pszFormat);

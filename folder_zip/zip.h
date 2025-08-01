@@ -104,14 +104,14 @@ typedef struct
    uptr       external_fa;    /* external file attributes        4 bytes */
 } zip_fileinfo;
 
-typedef const char* zipcharpc;
+typedef const_char_pointer  zipcharpc;
 
 
 #define APPEND_STATUS_CREATE        (0)
 #define APPEND_STATUS_CREATEAFTER   (1)
 #define APPEND_STATUS_ADDINZIP      (2)
 
-extern zipFile CLASS_DECL_FOLDER_ZIP zipOpen OF((const char *pathname, int append));
+extern zipFile CLASS_DECL_FOLDER_ZIP zipOpen OF((const_char_pointer  pathname, int append));
 /*
   create a zipfile.
      pathname contain on Windows XP a filename like "ca:\\zlib\\zlib113.zip" or on
@@ -131,19 +131,19 @@ extern zipFile CLASS_DECL_FOLDER_ZIP zipOpen OF((const char *pathname, int appen
    Of couse, you can use RAW reading and writing to copy the file you did not want delte
 */
 
-extern zipFile CLASS_DECL_FOLDER_ZIP zipOpen2 OF((const char *pathname,
+extern zipFile CLASS_DECL_FOLDER_ZIP zipOpen2 OF((const_char_pointer  pathname,
       int append,
       zipcharpc* globalcomment,
       zlib_filefunc_def* pzlib_filefunc_def, void * fstream));
 
 extern int CLASS_DECL_FOLDER_ZIP zipOpenNewFileInZip OF((zipFile file,
-      const char* filename,
+      const_char_pointer  filename,
       const zip_fileinfo* zipfi,
       const void * extrafield_local,
       unsigned int size_extrafield_local,
       const void * extrafield_global,
       unsigned int size_extrafield_global,
-      const char* comment,
+      const_char_pointer  comment,
       int method,
       int level));
 /*
@@ -161,13 +161,13 @@ extern int CLASS_DECL_FOLDER_ZIP zipOpenNewFileInZip OF((zipFile file,
 
 
 extern int CLASS_DECL_FOLDER_ZIP zipOpenNewFileInZip2 OF((zipFile file,
-      const char* filename,
+      const_char_pointer  filename,
       const zip_fileinfo* zipfi,
       const void * extrafield_local,
       unsigned int size_extrafield_local,
       const void * extrafield_global,
       unsigned int size_extrafield_global,
-      const char* comment,
+      const_char_pointer  comment,
       int method,
       int level,
       int raw));
@@ -177,20 +177,20 @@ extern int CLASS_DECL_FOLDER_ZIP zipOpenNewFileInZip2 OF((zipFile file,
  */
 
 extern int CLASS_DECL_FOLDER_ZIP zipOpenNewFileInZip3 OF((zipFile file,
-      const char* filename,
+      const_char_pointer  filename,
       const zip_fileinfo* zipfi,
       const void * extrafield_local,
       unsigned int size_extrafield_local,
       const void * extrafield_global,
       unsigned int size_extrafield_global,
-      const char* comment,
+      const_char_pointer  comment,
       int method,
       int level,
       int raw,
       int windowBits,
       int memLevel,
       int strategy,
-      const char* password,
+      const_char_pointer  password,
       unsigned int  crcForCtypting));
 
 /*
@@ -224,7 +224,7 @@ extern int CLASS_DECL_FOLDER_ZIP zipCloseFileInZipRaw OF((zipFile file,
 */
 
 extern int CLASS_DECL_FOLDER_ZIP zipClose OF((zipFile file,
-      const char* global_comment));
+      const_char_pointer  global_comment));
 /*
   close the zipfile
 */

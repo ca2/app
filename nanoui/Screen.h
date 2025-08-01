@@ -342,7 +342,7 @@ namespace nanoui
       bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
       //   void key_callback_event(int key, int scancode, int action, int mods);
       //   void char_callback_event(unsigned int codepoint);
-      //   void drop_callback_event(int count, const char ** filenames);
+      //   void drop_callback_event(int count, const_char_pointer  * filenames);
       //   void scroll_callback_event(double x, double y);
       //   void resize_callback_event(int width, int height);
       //

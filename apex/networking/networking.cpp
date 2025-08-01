@@ -457,7 +457,7 @@ namespace networking
 //#ifdef NO_GETADDRINFO
 //      if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
 //      {
-//         ::parse pa((const char*)host, ".");
+//         ::parse pa((const_char_pointer )host, ".");
 //         union
 //         {
 //            struct
@@ -830,7 +830,7 @@ namespace networking
    #ifdef NO_GETADDRINFO
          if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
          {
-            ::parse pa((const char *)host, ".");
+            ::parse pa((const_char_pointer )host, ".");
             union {
                struct {
                   uchar b1;
@@ -1212,7 +1212,7 @@ namespace networking
 //         else
 //         {
 //            struct sockaddr_in* sa_in = (struct sockaddr_in*)sa;
-//            struct hostent* h = gethostbyaddr((const char*)&sa_in->sin_addr, sizeof(sa_in->sin_addr), AF_INET);
+//            struct hostent* h = gethostbyaddr((const_char_pointer )&sa_in->sin_addr, sizeof(sa_in->sin_addr), AF_INET);
 //            if (h)
 //            {
 //               hostname = h->h_name;
@@ -1260,7 +1260,7 @@ namespace networking
 //         {
 //            // %! TODO: ipv6 reverse lookup
 //            struct sockaddr_in6* sa_in = (struct sockaddr_in6*)sa;
-//            struct hostent* h = gethostbyaddr((const char*)&sa_in->sin6_addr, sizeof(sa_in->sin6_addr), AF_INET6);
+//            struct hostent* h = gethostbyaddr((const_char_pointer )&sa_in->sin6_addr, sizeof(sa_in->sin6_addr), AF_INET6);
 //            if (h)
 //            {
 //               hostname = h->h_name;

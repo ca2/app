@@ -927,7 +927,7 @@ namespace crypto
       //
       //      auto iInSize = (int)in.get_size();
       //
-      //      auto pInData = (const uchar*)(const char*)in.get_data();
+      //      auto pInData = (const uchar*)(const_char_pointer )in.get_data();
       //
       //      auto pOutData = out.get_data();
       //

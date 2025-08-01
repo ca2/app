@@ -137,7 +137,7 @@ namespace universal_windows
       // Speaks some text.
       // (The input text must not be empty.)
       //--------------------------------------------------------------------
-      bool speaker::speak(const string & text)
+      bool speaker::speak(const ::scoped_string & scopedstrText)
       {
 
          return speak("",text);
@@ -149,7 +149,7 @@ namespace universal_windows
       // Speaks some text.
       // (The input text must not be empty.)
       //--------------------------------------------------------------------
-      bool speaker::speak(const ::scoped_string & scopedstrLang, const string & text, bool bSync)
+      bool speaker::speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSync)
       {
 
          //

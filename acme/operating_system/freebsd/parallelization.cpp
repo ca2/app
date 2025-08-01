@@ -23,7 +23,7 @@
 #include <errno.h>
 #include <stdio.h>
 
-//void task_set_name(htask htask, const char * psz)
+//void task_set_name(htask htask, const_char_pointer  psz)
 //{
 
 //   string strName(scopedstr);
@@ -40,7 +40,7 @@
 //}
 
 
-//void task_set_name(const char * psz)
+//void task_set_name(const_char_pointer  psz)
 //{
 
   // return task_set_name((htask) pthread_self(), psz);

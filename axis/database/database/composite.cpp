@@ -54,11 +54,11 @@ namespace database
    }
 
 
-   void composite::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, unsigned long long uConnectionFlags)
+   void composite::connect(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrPort, const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, const ::scoped_string & scopedstrSocket, unsigned long long uConnectionFlags)
    {
 
 
-      return m_pdatabase->connect(name, host, port, user, pass, sckt, uConnectionFlags);
+      return m_pdatabase->connect(scopedstrName, scopedstrHost, scopedstrPort, scopedstrUser, scopedstrPass, scopedstrSocket, uConnectionFlags);
 
    }
 

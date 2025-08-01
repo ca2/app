@@ -638,7 +638,7 @@ namespace dynamic_source
    ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, const ::scoped_string & scopedstrNameParam)
    {
 
-      string strName = ::str::get_word(strNameParam, "?");
+      string strName = ::str::get_word(scopedstrNameParam, "?");
 
       if (strName.is_empty())
       {
@@ -1441,13 +1441,13 @@ namespace dynamic_source
 
       plugin_map_item item;
 
-      item.m_strHost = strHost;
-      item.m_strScript = strScript;
-      item.m_strPlugin = strName;
+      item.m_strHost = scopedstrHost;
+      item.m_strScript = scopedstrScript;
+      item.m_strPlugin = scopedstrName;
 
       m_pluginmapitema.add(___new plugin_map_item(item));
 
-      m_pcache->register_script(strName, pscript);
+      m_pcache->register_script(scopedstrName, pscript);
 
 
    }
@@ -1536,7 +1536,7 @@ namespace dynamic_source
 
          tunnel_map_item item;
 
-         item.m_strServer = pszServer;
+         item.m_strServer = scopedstrServer;
          item.m_time.Now();
 
          m_mapTunnel.set_at(scopedstrServer, item);
@@ -1596,7 +1596,7 @@ namespace dynamic_source
 
          tunnel_map_item item;
 
-         item.m_strServer = pszServer;
+         item.m_strServer = scopedstrServer;
          item.m_time.Now();
 
          m_mapTunnel.set_at(scopedstrServer, item);
@@ -1815,7 +1815,7 @@ namespace dynamic_source
 
 #ifdef WINDOWS
 
-      return m_pcompiler->m_pintegrationcontext->m_pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strPlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".dll";
+      return m_pcompiler->m_pintegrationcontext->m_pathBuildFolder / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strPlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + scopedstrModifier + ".dll";
 
 #else
 

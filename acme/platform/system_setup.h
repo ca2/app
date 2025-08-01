@@ -47,7 +47,7 @@ public:
    };
 
 
-   const char *                  m_pszName;
+   const_char_pointer                 m_pszName;
    enum_flag                     m_eflag;
    system_setup*                 m_ppropertysetupNext;
    PFN_factory                   m_pfnFactory;
@@ -56,8 +56,8 @@ public:
    static system_setup *         s_psetupList;
 
 
-   system_setup(::system_setup::enum_flag eflag, const char * pszName);
-   system_setup(PFN_factory pfnFactory, const char * pszName);
+   system_setup(::system_setup::enum_flag eflag, const_char_pointer  pszName);
+   system_setup(PFN_factory pfnFactory, const_char_pointer  pszName);
 
 
    void construct();
@@ -67,9 +67,9 @@ public:
    [[nodiscard]] bool has_flag(::system_setup::enum_flag eflag) { return ((int)m_eflag & (int)eflag) == (int)eflag; }
 
 
-   static system_setup* get_last(::system_setup::enum_flag eflag, const char * pszName = nullptr);
-   static system_setup* get_first(::system_setup::enum_flag eflag, const char * pszName = nullptr);
-   static PFN_factory get_factory_function(const char * pszName = nullptr);
+   static system_setup* get_last(::system_setup::enum_flag eflag, const_char_pointer  pszName = nullptr);
+   static system_setup* get_first(::system_setup::enum_flag eflag, const_char_pointer  pszName = nullptr);
+   static PFN_factory get_factory_function(const_char_pointer  pszName = nullptr);
 
 
    virtual ::pointer<::acme::library>create_library();
@@ -116,7 +116,7 @@ public:
    ::particle_pointer _create_particle() override { return __allocate OBJECT(); }
 
 
-   explicit static_object_factory(::system_setup::enum_flag eflag, const char * pszName = nullptr) :
+   explicit static_object_factory(::system_setup::enum_flag eflag, const_char_pointer  pszName = nullptr) :
       system_setup(eflag, pszName)
    {
 

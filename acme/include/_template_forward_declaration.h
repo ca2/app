@@ -427,7 +427,7 @@ using regular_expression_pointer = ::pointer<::regular_expression::regular_expre
 
 
 
-typedef address_array < const char * > const_char_ptra;
+typedef address_array < const_char_pointer  > const_char_ptra;
 
 typedef address_array < void * > void_ptra;
 

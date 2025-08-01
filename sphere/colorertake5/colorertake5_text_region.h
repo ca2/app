@@ -20,7 +20,7 @@ public:
    * Initial constructor
    */
   TextRegion(const ::string &_stext, const ::string &_etext,
-             const char *_sback, const ::string &_eback){
+             const_char_pointer  _sback, const ::string &_eback){
     stext = _stext;
     etext = _etext;
     sback = _sback;

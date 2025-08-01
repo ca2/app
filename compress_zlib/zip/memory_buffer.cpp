@@ -50,7 +50,7 @@ namespace zip
 
 //
 //
-//voidpf c_zip_memory_buffer_open_file_func (voidpf opaque, const char* filename, int mode)
+//voidpf c_zip_memory_buffer_open_file_func (voidpf opaque, const_char_pointer  filename, int mode)
 //{
 //   __UNREFERENCED_PARAMETER(mode);
 //   __UNREFERENCED_PARAMETER(filename);

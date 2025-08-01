@@ -17,7 +17,7 @@ extern char _binary__matter_zip_end[];
 #endif
 
 
-const char * g_psz_br_init_symbol_app = __APP_ID;
+const_char_pointer  g_psz_br_init_symbol_app = __APP_ID;
 
 
 int main(int argc, char * argv[], char * envp[])

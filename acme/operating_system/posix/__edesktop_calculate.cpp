@@ -35,7 +35,7 @@ namespace windowing
       
 #else
 
-      const char *pszDesktop = getenv("XDG_CURRENT_DESKTOP");
+      const_char_pointer pszDesktop = getenv("XDG_CURRENT_DESKTOP");
 
       printf_line("XDG_CURRENT_DESKTOP %s", pszDesktop);
 

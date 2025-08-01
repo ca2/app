@@ -66,8 +66,8 @@ namespace file
       virtual bool file_watch_step();
 
       void _addAll();
-      void _addFile(const char * name, bool imitEvents = true);
-      void _removeFile(const char * name, bool imitEvents = true);
+      void _addFile(const_char_pointer  name, bool imitEvents = true);
+      void _removeFile(const_char_pointer  name, bool imitEvents = true);
       void _rescan();
 
 

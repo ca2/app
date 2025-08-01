@@ -239,7 +239,7 @@ namespace sockets
    }
 
 
-   void http_tunnel::OnData(const char * psz, memsize size)
+   void http_tunnel::OnData(const_char_pointer  psz, memsize size)
    {
 
       m_pfileBody->write({ psz, size });

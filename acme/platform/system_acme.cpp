@@ -130,7 +130,7 @@
 // //static ::platform::system * g_psystem = nullptr;
 //
 //
-// //extern const char * g_pszTopLevelDomainList[];
+// //extern const_char_pointer  g_pszTopLevelDomainList[];
 //
 //
 // enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrTitle,
@@ -2622,7 +2622,7 @@ namespace platform
    //          if (::is_set(application()))
    //          {
    //
-   //             auto pszUrl = (const char *) ptopic->payload("wparam").as_iptr();
+   //             auto pszUrl = (const_char_pointer ) ptopic->payload("wparam").as_iptr();
    //
    //             application()->did_pick_document_at_url(scopedstrUrl);
    //
@@ -5063,7 +5063,7 @@ void acme_system_layer::on_open_untitled_file()
 // void acme_system_layer::system_on_open_untitled_file(void* pSystem);
 //
 //
-// void acme_system_layer::system_on_open_file(void* pSystem, const char* pszFile);
+// void acme_system_layer::system_on_open_file(void* pSystem, const_char_pointer  pszFile);
 //
 //
 // void acme_system_layer::node_will_finish_launching(void* pSystem)
@@ -5086,7 +5086,7 @@ void acme_system_layer::on_open_untitled_file()
 // }
 //
 //
-// void acme_system_layer::system_on_open_file(void* pSystem, const char* pszFile)
+// void acme_system_layer::system_on_open_file(void* pSystem, const_char_pointer  pszFile)
 // {
 //
 //    auto psystem = (::platform::system *)pSystem;

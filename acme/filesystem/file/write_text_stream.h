@@ -15,9 +15,9 @@ struct CLASS_DECL_ACME write_text_stream_struct
 
    char                               m_chSeparator = ' ';
 #ifdef WINDOWS
-   const char * m_pszEolSeparator = "\r\n";
+   const_char_pointer  m_pszEolSeparator = "\r\n";
 #else
-   const char * m_pszEolSeparator = "\n";
+   const_char_pointer  m_pszEolSeparator = "\n";
 #endif
    print_formatting * m_pprintingformat;
 
@@ -104,8 +104,8 @@ public:
 
    void print(const ::range < const ansi_character * > & str);
    void print(::ansi_character ansicharacter) { write(&ansicharacter, 1); }
-   void print(::wd16_character wd16character) { char sz[8]; write((const char *) &sz, wd16_to_ansi(sz, &wd16character, 1)); }
-   void print(::wd32_character wd32character) { char sz[8]; write((const char *) & sz, wd32_to_ansi(sz, &wd32character, 1)); }
+   void print(::wd16_character wd16character) { char sz[8]; write((const_char_pointer ) &sz, wd16_to_ansi(sz, &wd16character, 1)); }
+   void print(::wd32_character wd32character) { char sz[8]; write((const_char_pointer ) & sz, wd32_to_ansi(sz, &wd32character, 1)); }
 
 
    template < primitive_number NUMBER >
@@ -500,7 +500,7 @@ public:
    //
    //    }
 
-   write_text_stream & operator <<(const ::range < const char * > & range);
+   write_text_stream & operator <<(const ::range < const_char_pointer  > & range);
    //    {
    //
    //       return this->operator <<((const ::scoped_string &)str);

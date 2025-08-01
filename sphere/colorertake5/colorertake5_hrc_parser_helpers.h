@@ -77,7 +77,7 @@ namespace colorertake5
    };
 
    enum SchemeNodeType { SNT_EMPTY, SNT_RE, SNT_SCHEME, SNT_KEYWORDS, SNT_INHERIT };
-   extern const char * schemeNodeTypeNames[];
+   extern const_char_pointer  schemeNodeTypeNames[];
 
    typedef address_array < VirtualEntry * > VirtualEntryVector;
 

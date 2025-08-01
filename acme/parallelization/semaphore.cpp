@@ -27,7 +27,7 @@
 #endif
 
 
-semaphore::semaphore(int lInitialCount, int lMaxCount, const char * pstrName, security_attributes * psecurityattributes)
+semaphore::semaphore(int lInitialCount, int lMaxCount, const_char_pointer  pstrName, security_attributes * psecurityattributes)
 {
 
    ASSERT(lMaxCount > 0);

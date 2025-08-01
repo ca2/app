@@ -33,7 +33,7 @@ public:
                       Reset();};
   virtual ~nsGB18030Prober(void){delete mCodingSM;};
   nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
-  const char* GetCharSetName() {return "gb18030";};
+  const_char_pointer  GetCharSetName() {return "gb18030";};
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
   float     GetConfidence(void);

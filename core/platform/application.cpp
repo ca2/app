@@ -113,7 +113,7 @@ namespace core
 
       auto pprogresscontrol = __create_new <  ::userex::progress_control >();
 
-      pprogresscontrol->defer_show(puiParent, pszTitle, iProgressCount);
+      pprogresscontrol->defer_show(puiParent, scopedstrTitle, iProgressCount);
 
       return ::transfer(pprogresscontrol);
 
@@ -278,10 +278,10 @@ namespace core
    bool application::handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
    {
 
-      if (strObject == "pane_tab_impact")
+      if (scopedstrObject == "pane_tab_impact")
       {
 
-         if (strMember == "add_pane_tab_impact_handler_library")
+         if (scopedstrMember == "add_pane_tab_impact_handler_library")
          {
 
             string strLibrary = propertyset["handler_library"];
@@ -294,7 +294,7 @@ namespace core
 
       }
 
-      return ::bred::application::handle_call(payload, strObject, strMember, propertyset);
+      return ::bred::application::handle_call(payload, scopedstrObject, scopedstrMember, propertyset);
 
    }
 

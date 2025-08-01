@@ -148,7 +148,7 @@ inline character_count wd16_to_wd32_char(::wd32_character * output, const ::wd16
 }
 
 
-inline character_count ansi_to_wd32_char(::wd32_character * output, const char * input, character_count srclen)
+inline character_count ansi_to_wd32_char(::wd32_character * output, const_char_pointer  input, character_count srclen)
 {
 
    ::wd32_character wd32ch = 0;
@@ -205,7 +205,7 @@ inline character_count ansi_to_wd32_char(::wd32_character * output, const char *
 }
 
 
-inline long long _ansi_to_wd32_char(const char ** ppsz, character_count * psrclen)
+inline long long _ansi_to_wd32_char(const_char_pointer * ppsz, character_count * psrclen)
 {
 
    ::wd32_character wd32ch = 0;

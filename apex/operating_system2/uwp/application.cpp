@@ -117,7 +117,7 @@ namespace apex
 
                // Retrieve file description for language and code page "i".
                VerQueryValue(lpdata,
-                             (char *) (const char *) strKey,
+                             (char *) (const_char_pointer ) strKey,
                              (LPVOID *)&lpsz,
                              &uiSize);
 
@@ -294,7 +294,7 @@ namespace apex
 //#elif defined WINDOWS_DESKTOP
 //      {
 //         string slask = payload + "=" + value;
-//         _putenv( (const char *)slask);
+//         _putenv( (const_char_pointer )slask);
 //      }
 //#elif defined UNIVERSAL_WINDOWS
 //

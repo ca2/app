@@ -29,7 +29,7 @@ void string_array_array::add_csv(string str)
 }
 
 
-CLASS_DECL_ACME bool next_csv(string & str, const char * & psz)
+CLASS_DECL_ACME bool next_csv(string & str, const_char_pointer  & psz)
 {
 
    if (psz == nullptr || *psz == '\0')
@@ -137,7 +137,7 @@ CLASS_DECL_ACME bool next_csv(string & str, const char * & psz)
 void add_csv(string_array & stra, const ::scoped_string & scopedstr)
 {
 
-   const char * psz = scopedstr.c_str();
+   const_char_pointer  psz = scopedstr.c_str();
 
    string strValue;
 
@@ -216,7 +216,7 @@ CLASS_DECL_ACME void free_c_string_array(char * const * ppszList, int iCount)
 
 
 
-CLASS_DECL_ACME string_array string_array_from_strdup_count(const char ** pszaUrl, long lCount)
+CLASS_DECL_ACME string_array string_array_from_strdup_count(const_char_pointer * pszaUrl, long lCount)
 {
    
    if(::is_null(pszaUrl))

@@ -62,7 +62,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA void _tcsecpy(char * psz, int escape, const char * srt, const char * end = nullptr);
+   CLASS_DECL_AQUA void _tcsecpy(char * psz, int escape, const_char_pointer  srt, const_char_pointer  end = nullptr);
    //CLASS_DECL_AQUA void _tcsecpy2(::ansi_range & rangeOut, char escape, const ::const_ansi_range & range);
 
    
@@ -75,7 +75,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //CLASS_DECL_AQUA int _tcsenicmp( const ::ansi_character * psz, const char * str, character_count len, int escape );
+   //CLASS_DECL_AQUA int _tcsenicmp( const ::ansi_character * psz, const_char_pointer  str, character_count len, int escape );
 
    ////========================================================
    //// Name   : _tcsenistr
@@ -86,7 +86,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //CLASS_DECL_AQUA char * _tcsenistr( const ::ansi_character * psz, const char * str, character_count len, int escape );
+   //CLASS_DECL_AQUA char * _tcsenistr( const ::ansi_character * psz, const_char_pointer  str, character_count len, int escape );
 
    //========================================================
    // Name   : _tcseistr
@@ -97,7 +97,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA char * _tcseistr( const ::ansi_character * psz, const char * str, int escape );
+   CLASS_DECL_AQUA char * _tcseistr( const ::ansi_character * psz, const_char_pointer  str, int escape );
 
    //========================================================
    // Name   : _SetString
@@ -288,7 +288,7 @@ namespace xml
    //   return ch == ' ' || ch == '/' || ch == '>' || ch == '\t' || ch == '\r' || ch == '\n' || ch == '\0';
    //}
 
-   //inline const char * end_open_tag_name(const ::ansi_character * psz)
+   //inline const_char_pointer  end_open_tag_name(const ::ansi_character * psz)
    //{
    //   while(!is_end_open_tag_name_char(*psz))
    //   {

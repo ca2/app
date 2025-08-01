@@ -25,7 +25,7 @@ namespace aqua
       virtual void set_callback(::aqua::media_item_picker_callback * ppickercallback);
 
 
-      virtual void pick_media(const char * pszUTType);
+      virtual void pick_media(const_char_pointer  pszUTType);
 
 
       virtual ::pointer < ::aqua::media_item > create_media_item();

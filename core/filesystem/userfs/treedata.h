@@ -83,7 +83,7 @@ namespace userfs
 
       ::data::tree_item * find_absolute(const ::file::path & path, bool bPointerFromPathFromItemFromOwnTree = false, ::data::tree_item * pitemStart = nullptr);
       ::data::tree_item * find_user_path(const ::file::path & pathUser, bool bPointerFromPathFromItemFromOwnTree = false, ::data::tree_item * pitemStart = nullptr);
-      void clear(const ::scoped_string & scopedstrPreserve1, const ::string & lpcszPreserve2);
+      void clear(const ::scoped_string & scopedstrPreserve1, const ::scoped_string & scopedstrPreserve2);
 
       void arrange(::fs::e_arrange earrange);
 

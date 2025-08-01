@@ -5551,7 +5551,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
 
 
 //
-//property * payload::find_property(const char * psz) const
+//property * payload::find_property(const_char_pointer  psz) const
 //{
 //
 //   if (!casts_to(e_type_property_set))
@@ -7367,7 +7367,7 @@ void payload::consume_identifier(::ansi_range & range)
 }
 
 //
-//void payload::consume_number(const char * & psz)
+//void payload::consume_number(const_char_pointer  & psz)
 //{
 //
 //   consume_number(scopedstr, psz + strlen(scopedstr) - 1);
@@ -7500,7 +7500,7 @@ end:
 
 
 //
-//void payload::parse_network_payload(const char * & pszJson)
+//void payload::parse_network_payload(const_char_pointer  & pszJson)
 //{
 //
 //   parse_network_payload(scopedstrJson, pszJson + strlen(scopedstrJson) - 1);
@@ -7511,7 +7511,7 @@ end:
 
 
 
-//void var_skip_identifier(const char *& psz)
+//void var_skip_identifier(const_char_pointer & psz)
 //{
 //   var_skip_number(scopedstr, psz + strlen(scopedstr) - 1);
 //}
@@ -7551,7 +7551,7 @@ void payload_skip_identifier(::ansi_range & range)
 
 
 
-//void var_skip_number(const char *& psz)
+//void var_skip_number(const_char_pointer & psz)
 //{
 //   var_skip_number(scopedstr, psz + strlen(scopedstr) - 1);
 //}
@@ -7682,7 +7682,7 @@ void payload_skip_network_payload(::ansi_range & range)
 }
 
 
-//void var_skip_network_payload(const char *& pszJson)
+//void var_skip_network_payload(const_char_pointer & pszJson)
 //{
 //   var_skip_network_payload(scopedstrJson, pszJson + strlen(scopedstrJson) - 1);
 //}
@@ -7690,7 +7690,7 @@ void payload_skip_network_payload(::ansi_range & range)
 
 
 
-const char * payload::parse_network_payload(const ::scoped_string & scopedstrNetworkPayload)
+const_char_pointer  payload::parse_network_payload(const ::scoped_string & scopedstrNetworkPayload)
 {
 
    auto range = scopedstrNetworkPayload();
@@ -12217,7 +12217,7 @@ void test_payload()
 }
 
 //
-//property & payload::get_property(const char * psz)
+//property & payload::get_property(const_char_pointer  psz)
 //{
 //
 //   return propset().get(scopedstr);

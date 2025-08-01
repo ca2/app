@@ -2,8 +2,8 @@
 #pragma once
 
 
-#define ENDIAN_SERIAL_ARRAY   ((const char*)&((const int)(0x00010203)))
-#define ENDIAN_CPU_ARRAY      ((const char*)&((const int)(0x03020100)))
+#define ENDIAN_SERIAL_ARRAY   ((const_char_pointer )&((const int)(0x00010203)))
+#define ENDIAN_CPU_ARRAY      ((const_char_pointer )&((const int)(0x03020100)))
 #define SERIAL_ENDIANESS             (*ENDIAN_SERIAL_ARRAY)
 #define SERIAL_LITTLE_ENDIAN         0x03
 #define SERIAL_BIG_ENDIAN            0x00

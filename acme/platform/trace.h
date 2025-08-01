@@ -13,7 +13,7 @@ public:
 
 
    enum_trace_category        m_etracecategory;
-   const char *               m_pszName;
+   const_char_pointer              m_pszName;
    enum_trace_level           m_etracelevelMinimum;
    bool                       m_bEnabled;
 
@@ -92,7 +92,7 @@ public:
 
 
 
-CLASS_DECL_ACME const char * get_windows_message_name(unsigned int nMsg);
+CLASS_DECL_ACME const_char_pointer  get_windows_message_name(unsigned int nMsg);
 
 
 

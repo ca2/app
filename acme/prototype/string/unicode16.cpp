@@ -170,7 +170,7 @@ character_count ansi_to_wd16_len_len(const ::ansi_character * psz, character_cou
 
 
 
-//::wd16_character* ansi_to_wd16_dup(const char* input, character_count input_size)
+//::wd16_character* ansi_to_wd16_dup(const_char_pointer  input, character_count input_size)
 //{
 //
 //   character_count s = ansi_to_wd16_len_len(input, input_size);
@@ -304,7 +304,7 @@ extern "C"
       return strdup(unicode_to_utf8(str));
    }
 
-   wchar_t* c_wide_str(const char* str)
+   wchar_t* c_wide_str(const_char_pointer  str)
    {
 #if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__)
       wchar_t* p = ansi_to_wd32_dup(str);
@@ -325,7 +325,7 @@ extern "C"
 
 
 
-// CLASS_DECL_ACME const char* yoshi_strcat(const ::ansi_character * psz1, const ::ansi_character * psz2, bool bFree2)
+// CLASS_DECL_ACME const_char_pointer  yoshi_strcat(const ::ansi_character * psz1, const ::ansi_character * psz2, bool bFree2)
 // {
 
 //    character_count iLen1 = psz1 == nullptr ? 0 : strlen(scopedstr1);
@@ -786,7 +786,7 @@ character_count ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * ps
 
 
 
-::wd16_character* ansi_to_wd16_dup(const char* input, character_count input_size)
+::wd16_character* ansi_to_wd16_dup(const_char_pointer  input, character_count input_size)
 {
 
    character_count s = ansi_to_wd16_len(input, input_size);

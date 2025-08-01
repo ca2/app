@@ -246,11 +246,11 @@ namespace crypto_openssl
 
       size_t out_len = 0;
 
-      int i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
+      int i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const uchar*)(const_char_pointer  )in.data(), (int)in.size());
 
       out.set_size(out_len);
 
-      i = EVP_PKEY_encrypt(pctx, out.data(), &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
+      i = EVP_PKEY_encrypt(pctx, out.data(), &out_len, (const uchar*)(const_char_pointer  )in.data(), (int)in.size());
 
       if (i < 0)
       {
@@ -272,7 +272,7 @@ namespace crypto_openssl
 #else
 
 
-      int i = RSA_public_encrypt((int)in.size(), (const uchar*)(const char*)in.data(), out.data(), m_prsa, RSA_PKCS1_PADDING);
+      int i = RSA_public_encrypt((int)in.size(), (const uchar*)(const_char_pointer  )in.data(), out.data(), m_prsa, RSA_PKCS1_PADDING);
 
       strError = ERR_error_string(ERR_get_error(), nullptr);
 
@@ -318,11 +318,11 @@ namespace crypto_openssl
 
       size_t out_len = 0;
 
-      int i = EVP_PKEY_decrypt(pctx, nullptr, &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
+      int i = EVP_PKEY_decrypt(pctx, nullptr, &out_len, (const uchar*)(const_char_pointer  )in.data(), (int)in.size());
 
       out.set_size(out_len);
 
-      i = EVP_PKEY_decrypt(pctx, out.data(), &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
+      i = EVP_PKEY_decrypt(pctx, out.data(), &out_len, (const uchar*)(const_char_pointer  )in.data(), (int)in.size());
 
       if (i < 0)
       {
@@ -465,7 +465,7 @@ namespace crypto_openssl
 
       //auto iInSize = (int)in.size();
 
-      //auto pInData = (const uchar*)(const char*)in.data();
+      //auto pInData = (const uchar*)(const_char_pointer  )in.data();
 
       //auto pOutData = out.data();
 
@@ -487,11 +487,11 @@ namespace crypto_openssl
 
       size_t out_len = 0;
 
-      int i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
+      int i = EVP_PKEY_encrypt(pctx, nullptr, &out_len, (const uchar*)(const_char_pointer  )in.data(), (int)in.size());
 
       out.set_size(out_len);
 
-      i = EVP_PKEY_encrypt(pctx, out.data(), &out_len, (const uchar*)(const char*)in.data(), (int)in.size());
+      i = EVP_PKEY_encrypt(pctx, out.data(), &out_len, (const uchar*)(const_char_pointer  )in.data(), (int)in.size());
 
       if (i < 0)
       {
@@ -514,7 +514,7 @@ namespace crypto_openssl
 
       auto iInSize = (int)in.size();
 
-      auto pInData = (const uchar*)(const char*)in.data();
+      auto pInData = (const uchar*)(const_char_pointer  )in.data();
 
       auto pOutData = out.data();
 

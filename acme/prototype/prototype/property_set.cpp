@@ -810,7 +810,7 @@ void property_set::_008ParseArguments(bool bApp, ::string_array & straArguments,
 }
 
 
-//void property_set_skip_network_payload(const char *& pszJson)
+//void property_set_skip_network_payload(const_char_pointer & pszJson)
 //{
 //
 //   property_set_skip_network_payload(scopedstrJson, pszJson + strlen(scopedstrJson) - 1);

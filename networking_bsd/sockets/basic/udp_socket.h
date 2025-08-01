@@ -131,13 +131,13 @@ namespace sockets_bsd
       bool open(::networking::address * address);
 
       /** Send to specified host */
-      void SendToBuf(const string &, ::networking::port_t, const char * data, int len, int flags = 0);
+      void SendToBuf(const string &, ::networking::port_t, const_char_pointer  data, int len, int flags = 0);
       /** Send to specified address */
-      void SendToBuf(const in_addr & a, ::networking::port_t, const char * data, int len, int flags = 0);
+      void SendToBuf(const in_addr & a, ::networking::port_t, const_char_pointer  data, int len, int flags = 0);
       /** Send to specified ipv6 address */
-      void SendToBuf(const in6_addr & a, ::networking::port_t, const char * data, int len, int flags = 0);
+      void SendToBuf(const in6_addr & a, ::networking::port_t, const_char_pointer  data, int len, int flags = 0);
       /** Send to specified socket address */
-      void SendToBuf(::networking::address * address, const char * data, int len, int flags = 0);
+      void SendToBuf(::networking::address * address, const_char_pointer  data, int len, int flags = 0);
 
       /** Send string to specified host */
       void SendTo(const string &, ::networking::port_t, const string &, int flags = 0);

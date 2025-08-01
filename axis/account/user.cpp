@@ -29,7 +29,7 @@ string chunk_split(const string & body,int chunklen,const string & end)
 }
 
 
-//typedef string(*SALT)(::pointer<::aura::application> const ::string &, string_array &);
+//typedef string(*SALT)(::pointer<::aura::application> const ::scoped_string & scopedstr, string_array &);
 
 
 namespace account

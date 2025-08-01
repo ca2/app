@@ -17,8 +17,8 @@
 //   char & last() { return (char &)m_pdata[m_iSize - 1]; }
 //
 //
-//   int compare(const ::scoped_string & scopedstr)const { return strncmp((const char*)m_pdata, psz, m_iSize); }
-//   int case_insensitive_order(const ::scoped_string & scopedstr)const { return strnicmp((const char *)m_pdata, psz, m_iSize); }
+//   int compare(const ::scoped_string & scopedstr)const { return strncmp((const_char_pointer )m_pdata, psz, m_iSize); }
+//   int case_insensitive_order(const ::scoped_string & scopedstr)const { return strnicmp((const_char_pointer )m_pdata, psz, m_iSize); }
 //   bool operator == (const ::scoped_string & scopedstr)const { return compare(scopedstr) == 0; }
 //   bool operator != (const ::scoped_string & scopedstr) const { return!operator==(scopedstr); }
 //

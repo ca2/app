@@ -60,7 +60,7 @@
 ////   }
 ////
 ////
-////   key::key(const char * pszDataKey, bool bLocalData)
+////   key::key(const_char_pointer  pszDataKey, bool bLocalData)
 ////   {
 ////
 ////      m_strDataKey = pszDataKey;

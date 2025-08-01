@@ -135,9 +135,9 @@ namespace crypto_openssl
 } //   namespace crypto_openssl
 
 
-CLASS_DECL_APEX void stunCalculateIntegrity_longterm(char* hmac, const char* input, int length, const char *username, const char *realm, const char *password);
+CLASS_DECL_APEX void stunCalculateIntegrity_longterm(char* hmac, const_char_pointer  input, int length, const_char_pointer  username, const_char_pointer  realm, const_char_pointer  password);
 
-CLASS_DECL_APEX void stunCalculateIntegrity_shortterm(char* hmac, const char* input, int length, const char* key);
+CLASS_DECL_APEX void stunCalculateIntegrity_shortterm(char* hmac, const_char_pointer  input, int length, const_char_pointer  key);
 
 
 CLASS_DECL_APEX void hmac_evp_sha1_1234(unsigned char * hmac, unsigned int * hmacSize, const unsigned char * buf, size_t bufLen);

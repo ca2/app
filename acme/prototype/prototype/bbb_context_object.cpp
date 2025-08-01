@@ -263,7 +263,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
 
 
-   //inline const char* object::topic_text();
+   //inline const_char_pointer  object::topic_text();
 
     //context& object::__context(const ::payload& payload)
     //{

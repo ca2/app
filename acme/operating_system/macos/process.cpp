@@ -33,7 +33,7 @@ string_array get_c_args_for_c(const ::scoped_string & scopedstr);
 
 string transform_to_c_arg(const ::scoped_string & scopedstr);
 
-int create_process2(const char * _cmd_line, int * pprocessId);
+int create_process2(const_char_pointer  _cmd_line, int * pprocessId);
 
 
 

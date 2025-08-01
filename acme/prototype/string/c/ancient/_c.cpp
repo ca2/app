@@ -10,7 +10,7 @@
 #include <string.h>
 
 
-char * libc_strdup(const char * psz)
+char * libc_strdup(const_char_pointer  psz)
 {
    
    return strdup(psz);

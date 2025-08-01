@@ -379,7 +379,7 @@ string exception::get_consolidated_details(::particle * pparticle) const
 //}
 
 
-CLASS_DECL_ACME const char* status_short_description(const ::e_status & estatus)
+CLASS_DECL_ACME const_char_pointer  status_short_description(const ::e_status & estatus)
 {
 
    auto psz = ::file::status_short_description(estatus);

@@ -3,7 +3,7 @@
 #include "acme/prototype/string/string.h"
 
 
-BSTR bstring::string_byte_len(const char * psz, character_count len)
+BSTR bstring::string_byte_len(const_char_pointer  psz, character_count len)
 {
 
    auto srclen = len < 0 ? strlen(scopedstr) : len;
@@ -36,7 +36,7 @@ BSTR bstring::allocate_string(const OLECHAR * sz)
 }
 
 
-BSTR bstring::allocate_string(const char * psz)
+BSTR bstring::allocate_string(const_char_pointer  psz)
 {
 
    wstring wstr(scopedstr);

@@ -198,7 +198,7 @@
 //   bstring & operator += (const bstring & bstr);
 //
 //
-//   const char * c_str() const;
+//   const_char_pointer  c_str() const;
 //
 //
 //   char & operator [](character_count i);

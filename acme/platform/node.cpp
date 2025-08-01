@@ -337,7 +337,7 @@ namespace platform
    }
 
 
-   void node::node_application_on_status(const char * pszStatus, void * p, long long hi)
+   void node::node_application_on_status(const_char_pointer  pszStatus, void * p, long long hi)
    {
       
       
@@ -1822,7 +1822,7 @@ namespace platform
 #endif
 
 
-   void node::launch_app(const ::scoped_string & scopedstr, const char ** argv, int iFlags)
+   void node::launch_app(const ::scoped_string & scopedstr, const_char_pointer * argv, int iFlags)
    {
       
       throw ::interface_only();
@@ -3267,7 +3267,7 @@ bool node::defer_component_factory(const ::scoped_string & scopedstrComponent)
 
 #endif
 
-   bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath, const char * pszPath)
+   bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath, const_char_pointer  pszPath)
    {
 
       throw interface_only();
@@ -3620,7 +3620,7 @@ bool node::_is_smart_git_installed()
 
 #if defined(__BSD__) || defined(__APPLE__)
 
-   void node::arp_a(void *p, void(*callback)(void * addr, unsigned int uIp, const char * status))
+   void node::arp_a(void *p, void(*callback)(void * addr, unsigned int uIp, const_char_pointer  status))
    {
       
       
@@ -4976,7 +4976,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
 } // namespace platform
 
 
-void node_application_send_status(const char * pszStatus, void * p, long long hi)
+void node_application_send_status(const_char_pointer  pszStatus, void * p, long long hi)
 {
    
    system()->node()->node_application_on_status(scopedstrStatus, p, hi);

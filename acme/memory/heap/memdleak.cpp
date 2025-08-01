@@ -5,7 +5,7 @@
 
 //
 //
-//::collection::count get_mem_info(int** ppiUse, const char*** ppszFile, const char*** ppszCallStack, unsigned int** ppuiLine, memsize** ppsize);
+//::collection::count get_mem_info(int** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** ppszCallStack, unsigned int** ppuiLine, memsize** ppsize);
 //
 //#if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG) && MEMDLEAK
 //
@@ -114,7 +114,7 @@
 //}
 //
 //
-//void * aligned_memory_allocate_debug(memsize size, int nBlockUse, const char * szFileName, int nLine, memsize align)
+//void * aligned_memory_allocate_debug(memsize size, int nBlockUse, const_char_pointer  szFileName, int nLine, memsize align)
 //{
 //
 //   void * p;
@@ -131,7 +131,7 @@
 //}
 //
 //
-//void * unaligned_memory_allocate_debug(memsize size, int nBlockUse, const char * szFileName, int nLine)
+//void * unaligned_memory_allocate_debug(memsize size, int nBlockUse, const_char_pointer  szFileName, int nLine)
 //{
 //
 //   void * p;
@@ -199,7 +199,7 @@
 //}
 //
 //
-//void * memory_allocate_debug(memsize nSize, int nBlockUse, const char * szFileName, int nLine)
+//void * memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer  szFileName, int nLine)
 //{
 //
 //   return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
@@ -218,7 +218,7 @@
 //
 //
 //
-//void * memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const char * szFileName, int nLine)
+//void * memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const_char_pointer  szFileName, int nLine)
 //{
 //
 //   memsize nAllocSize = size + sizeof(memdleak_block);
@@ -472,7 +472,7 @@
 //}
 //
 //
-//void* _memory_allocate_debug(memsize nSize, int nBlockUse, const char* szFileName, int nLine)
+//void* _memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer  szFileName, int nLine)
 //{
 //
 //   // return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
@@ -490,7 +490,7 @@
 //}
 //
 //
-//void* _memory_reallocate_debug(void* pmemory, memsize size, int nBlockUse, const char* szFileName, int nLine)
+//void* _memory_reallocate_debug(void* pmemory, memsize size, int nBlockUse, const_char_pointer  szFileName, int nLine)
 //{
 //
 //   if (pmemory == nullptr)
@@ -748,8 +748,8 @@
 //   string str;
 //
 //   int * piUse = nullptr;
-//   const char ** pszFile = nullptr;
-//   const char ** pszCallStack = nullptr;
+//   const_char_pointer * pszFile = nullptr;
+//   const_char_pointer * pszCallStack = nullptr;
 //   unsigned int * puiLine = nullptr;
 //   memsize * psize = nullptr;
 //
@@ -958,7 +958,7 @@
 //#if MEMDLEAK
 //
 //
-//::collection::count get_mem_info(int** ppiUse, const char*** ppszFile, const char*** ppszCallStack, unsigned int** ppuiLine, memsize** ppsize)
+//::collection::count get_mem_info(int** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** ppszCallStack, unsigned int** ppuiLine, memsize** ppsize)
 //{
 //
 //   //throw ::exception(error_failed, "plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
@@ -981,8 +981,8 @@
 //
 //
 //   int* piUse = (int*)malloc(sizeof(int) * ca);
-//   const char** pszFile = (const char**)malloc(sizeof(const char*) * ca);
-//   const char** pszCallStack = (const char**)malloc(sizeof(const char*) * ca);
+//   const_char_pointer * pszFile = (const_char_pointer *)malloc(sizeof(const_char_pointer ) * ca);
+//   const_char_pointer * pszCallStack = (const_char_pointer *)malloc(sizeof(const_char_pointer ) * ca);
 //   unsigned int* puiLine = (unsigned int*)malloc(sizeof(unsigned int) * ca);
 //   memsize* psize = (memsize*)malloc(sizeof(memsize) * ca);
 //

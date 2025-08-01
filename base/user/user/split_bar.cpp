@@ -37,7 +37,7 @@ namespace user
 //
 //      m_pparent = pparent;
 ////      int nClassStyle = 0;
-////      const char * pClassName = psystem->RegisterWndClass(
+////      const_char_pointer  pClassName = psystem->RegisterWndClass(
 //
 //      //nClassStyle,
 //      //0,

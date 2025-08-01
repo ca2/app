@@ -245,7 +245,7 @@ void db_server::close()
 // }
 
 
-// bool db_server::load(const ::string & lpcszKey, string & str)
+// bool db_server::load(const ::scoped_string & scopedstrKey, string & str)
 // {
 
 //    if(get_db_str_set() == nullptr)
@@ -278,7 +278,7 @@ void db_server::close()
 // }
 
 
-// bool db_server::save(const ::string & lpcszKey, const ::string & lpcsz)
+// bool db_server::save(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstr)
 // {
 
 //    if(get_db_str_set() == nullptr)

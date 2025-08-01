@@ -733,7 +733,7 @@ namespace file
 
 
 
-inline const char * FormatArgument(const ::file::path & value) noexcept
+inline const_char_pointer  FormatArgument(const ::file::path & value) noexcept
 {
    return value.c_str();
 }

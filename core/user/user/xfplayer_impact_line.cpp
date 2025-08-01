@@ -1399,7 +1399,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
    embossed_text_out(
    pgraphics,
    m_pimageMain,
-   pcsz,
+   scopedstr,
 
    iLeft,
    iTop,

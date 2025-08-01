@@ -54,15 +54,15 @@ public:
 
 
 //#ifdef WINDOWS
-   //mutex(enum_create_new ecreatenew, const char * pstrName, void * posdata, bool bOwner = true);
+   //mutex(enum_create_new ecreatenew, const_char_pointer  pstrName, void * posdata, bool bOwner = true);
 //#elif defined(MUTEX_NAMED_POSIX)
-//   mutex(enum_create_new ecreatenew = create_new, const ::scoped_string & scopedstr = nullptr, const char * pstrName,sem_t * psem,bool bOwner = true);
+//   mutex(enum_create_new ecreatenew = create_new, const ::scoped_string & scopedstr = nullptr, const_char_pointer  pstrName,sem_t * psem,bool bOwner = true);
 //#elif defined(MUTEX_NAMED_FD)
-//   mutex(enum_create_new ecreatenew, const char * pstrName, int iFd, bool bOwner = true);
+//   mutex(enum_create_new ecreatenew, const_char_pointer  pstrName, int iFd, bool bOwner = true);
 //#elif defined(MUTEX_NAMED_VSEM)
-//   mutex(enum_create_new ecreatenew, const char * pstrName,key_t key, int semid, bool bOwner = true);
+//   mutex(enum_create_new ecreatenew, const_char_pointer  pstrName,key_t key, int semid, bool bOwner = true);
 //#endif
-   //mutex(::particle * pparticle, bool bInitiallyOwn, const char * lpszName ARG_SEC_ATTRS_DEF);
+   //mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer  lpszName ARG_SEC_ATTRS_DEF);
    //mutex(enum_create_new ecreatenew = e_create_new, bool bInitiallyOwn = false);
    mutex();
    ~mutex() override;
@@ -86,13 +86,13 @@ public:
    //virtual bool already_exists();
 
 
-   ///static ::pointer < ::mutex >open_mutex(::matter * pmatter, const char * lpszName) {return ::open_mutex(pmatter, lpszName);}
+   ///static ::pointer < ::mutex >open_mutex(::matter * pmatter, const_char_pointer  lpszName) {return ::open_mutex(pmatter, lpszName);}
 
 
 };
 
 
-CLASS_DECL_ACME void wait_until_mutex_does_not_exist(const char * lpszName);
+CLASS_DECL_ACME void wait_until_mutex_does_not_exist(const_char_pointer  lpszName);
 
 
 

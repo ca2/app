@@ -78,7 +78,7 @@ namespace sockets
       int PeelOff(sctp_assoc_t atom);
 
       /** recvmsg callback */
-      virtual void OnReceiveMessage(const char *buf,memsize sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,int msg_flags) = 0;
+      virtual void OnReceiveMessage(const_char_pointer buf,memsize sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,int msg_flags) = 0;
 
       void OnOptions(int,int,int,socket_id) {}
 

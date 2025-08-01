@@ -2379,7 +2379,7 @@ void application::start_application()
    }
 
 
-   void application::pick_media(const char* pszMediaType)
+   void application::pick_media(const_char_pointer  pszMediaType)
    {
 
       __UNREFERENCED_PARAMETER(scopedstrMediaType);
@@ -2387,7 +2387,7 @@ void application::start_application()
    }
 
 
-   void application::did_pick_document_at_url(const char* pszUrl)
+   void application::did_pick_document_at_url(const_char_pointer  pszUrl)
    {
 
       auto prequest = __create_new <::request>();
@@ -2489,7 +2489,7 @@ void application::start_application()
 }
 
 
-bool application_get_bool(::platform::application * papplication, const char* pszItem)
+bool application_get_bool(::platform::application * papplication, const_char_pointer  pszItem)
 {
 
    return papplication->payload(scopedstrItem).as_bool();
@@ -2505,7 +2505,7 @@ CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle* 
 }
 
 
-void application_handle_command(::platform::application * papplication, const char * pszCommand, ::user::activation_token * puseractivationtoken)
+void application_handle_command(::platform::application * papplication, const_char_pointer  pszCommand, ::user::activation_token * puseractivationtoken)
 {
    
    papplication->on_command_final(scopedstrCommand, puseractivationtoken);

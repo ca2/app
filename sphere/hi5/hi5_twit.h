@@ -202,7 +202,7 @@ namespace hi5
       bool performMultiPartPost(const string & postUrl, ::property_set & post, bool bMultiPartPost);
       //bool performPost( const string & postUrl, ::property_set & headers, ::property_set & post );
 
-      string build_url(const ::string & baseUrl, const ::string & userInfo, bool isUserId);
+      string build_url(const ::string & baseUrl, const ::scoped_string & scopedstrUserInfo, bool isUserId);
 
       string prepare_basic_authentication(const ::scoped_string & scopedstrInputParameter1, const ::scoped_string & scopedstrInputParameter2);
 

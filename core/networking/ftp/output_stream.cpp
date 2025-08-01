@@ -9,9 +9,9 @@ namespace ftp
 
 
    output_stream::implementation::implementation(const ::scoped_string & scopedstrEolCharacterSequence, const ::scoped_string & scopedstrStreamName) :
-      mc_strEolCharacterSequence(strEolCharacterSequence),
+      mc_strEolCharacterSequence(scopedstrEolCharacterSequence),
       m_iCurrentPos(0),
-      m_strStreamName(strStreamName)
+      m_strStreamName(scopedstrStreamName)
    {
    }
 
@@ -50,7 +50,7 @@ namespace ftp
 
 
    output_stream::output_stream(const ::scoped_string & scopedstrEolCharacterSequence, const ::scoped_string & scopedstrStreamName) :
-      m_pimpl(___new implementation(strEolCharacterSequence, strStreamName))
+      m_pimpl(___new implementation(scopedstrEolCharacterSequence, scopedstrStreamName))
    {
    }
 
@@ -58,7 +58,7 @@ namespace ftp
 
    void output_stream::SetBuffer(const ::scoped_string & scopedstrBuffer)
    {
-      m_pimpl->m_vBuffer = strBuffer;
+      m_pimpl->m_vBuffer = scopedstrBuffer;
    }
 
    const string& output_stream::GetBuffer()
@@ -108,7 +108,7 @@ namespace ftp
 
    void output_stream::OnPreBytesSend(unsigned char * pszBuffer, memsize bufferSize, memsize& bytesToSend)
    {
-      m_pimpl->OnPreBytesSend(scopedstrBuffer, bufferSize, bytesToSend);
+      m_pimpl->OnPreBytesSend(pszBuffer, bufferSize, bytesToSend);
    }
 
 

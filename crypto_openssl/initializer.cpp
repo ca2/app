@@ -25,7 +25,7 @@
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
 
 RAND_METHOD rand_meth;
-extern "C" void crypto_initializer_locking_function(int mode, int n, const char* file, int line);
+extern "C" void crypto_initializer_locking_function(int mode, int n, const_char_pointer  file, int line);
 extern "C" unsigned long crypto_initializer_id_function();
 
 extern "C" int crypto_initializer_rand_seed(const void* buf, int num);
@@ -155,7 +155,7 @@ namespace crypto_openssl
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
 
 
-extern "C" void crypto_initializer_SSL_locking_function(int mode, int n, const char* file, int line)
+extern "C" void crypto_initializer_SSL_locking_function(int mode, int n, const_char_pointer  file, int line)
 {
 
    __UNREFERENCED_PARAMETER(file);

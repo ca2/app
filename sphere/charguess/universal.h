@@ -44,7 +44,7 @@ public:
    virtual void HandleData(const ::string & aBuf, PRunsigned int aLen);
    virtual void DataEnd(void);
    virtual void Reset();
-   virtual const char* GetCharset(void);
+   virtual const_char_pointer  GetCharset(void);
 
 protected:
    virtual void Report(const ::string & aCharset);
@@ -54,7 +54,7 @@ protected:
    PRBool  mStart;
    PRBool  mGotData;
    char    mLastChar;
-   const char *  mDetectedCharset;
+   const_char_pointer  mDetectedCharset;
    PRInt32 mBestGuess;
 
    nsCharSetProber  *mCharSetProbers[NUM_OF_CHARSET_PROBERS];

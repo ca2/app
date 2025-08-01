@@ -3,7 +3,7 @@
 class android_acme
 {
 public:
-	const char * getPlatformABI();
+	const_char_pointer  getPlatformABI();
 	android_acme();
 	~android_acme();
 };

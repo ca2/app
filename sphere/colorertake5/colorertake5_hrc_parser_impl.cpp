@@ -965,7 +965,7 @@ namespace colorertake5
 
 
 
-   string HRCParserImpl::qualifyOwnName(const ::string & name)
+   string HRCParserImpl::qualifyOwnName(const ::scoped_string & scopedstrName)
    {
       if (name == nullptr) return "";
       character_count colon = string(name).find(':');
@@ -989,7 +989,7 @@ namespace colorertake5
    }
 
 
-   bool HRCParserImpl::checkNameExist(const ::string & name, file_type_impl *parseType, QualifyNameType qntype, bool logErrors)
+   bool HRCParserImpl::checkNameExist(const ::scoped_string & scopedstrName, file_type_impl *parseType, QualifyNameType qntype, bool logErrors)
    {
       if (qntype == QNT_DEFINE && regionNamesHash[name] == nullptr)
       {
@@ -1031,7 +1031,7 @@ namespace colorertake5
    }
 
 
-   string HRCParserImpl::qualifyForeignName(const ::string & name, QualifyNameType qntype, bool logErrors)
+   string HRCParserImpl::qualifyForeignName(const ::scoped_string & scopedstrName, QualifyNameType qntype, bool logErrors)
    {
       if (name == nullptr) return "";
       character_count colon = string(name).find(':');
@@ -1071,7 +1071,7 @@ namespace colorertake5
    };
 
 
-   string HRCParserImpl::useEntities(const ::string & name)
+   string HRCParserImpl::useEntities(const ::scoped_string & scopedstrName)
    {
       character_count copypos = 0;
       character_count epos = 0;
@@ -1121,7 +1121,7 @@ namespace colorertake5
       return newname;
    };
 
-   class region* HRCParserImpl::getNCRegion(const ::string & name, bool logErrors)
+   class region* HRCParserImpl::getNCRegion(const ::scoped_string & scopedstrName, bool logErrors)
    {
       if (name == nullptr) return nullptr;
       class region *reg = nullptr;

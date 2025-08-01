@@ -66,7 +66,7 @@ namespace introjection
       virtual void initialize_introjection_compiler(::particle * pparticle, const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrProjectName, const ::file::path & pathProjectDir);
 
       //void initialize_compiler();
-      //void prepare1(const ::string & lpcszSource, const ::string & lpcszDest);
+      //void prepare1(const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrDest);
       //void prepare_compile_and_link_environment();
 
       ::acme::library * compile(const ::file::path & path, bool bNew);

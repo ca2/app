@@ -74,7 +74,7 @@ namespace mysql
 
       virtual ::payload get_agent(const ::scoped_string & scopedstrTable, const ::scoped_string & scopedstrEmail, const ::scoped_string & scopedstrUser);
 
-      string escape(const char * psz, character_count size);
+      string escape(const_char_pointer  psz, character_count size);
       string escape(const ::scoped_string & scopedstr);
 
       ::payload get_insert_id();

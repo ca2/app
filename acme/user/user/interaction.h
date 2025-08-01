@@ -448,7 +448,7 @@ namespace acme
                // void release_mouse_capture() override;
 
 
-               void _on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken) override;
+               void _on_window_simple_action(const_char_pointer  pszActionName, ::user::activation_token * puseractivationtoken) override;
 
 
                //

@@ -5,7 +5,7 @@
 struct release_time_for_project
 {
 
-   const char* m_pszStatic;
+   const_char_pointer  m_pszStatic;
    int m_iYear;
    int m_iMonth;
    int m_iDay;
@@ -17,7 +17,7 @@ struct release_time_for_project
 };
 
 
-//CLASS_DECL_ACME release_time_for_project as_release_time_for_project(const char* pszStatic);
+//CLASS_DECL_ACME release_time_for_project as_release_time_for_project(const_char_pointer  pszStatic);
 
 
 

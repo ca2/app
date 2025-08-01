@@ -103,7 +103,7 @@ namespace http
 
 
 
-   ::collection::index cookies::find_cookie(const char * name)
+   ::collection::index cookies::find_cookie(const_char_pointer  name)
    {
 
       string strNameLow(name);
@@ -126,7 +126,7 @@ namespace http
 
    }
 
-   ::collection::index cookies::lowfind_cookie(const char * name)
+   ::collection::index cookies::lowfind_cookie(const_char_pointer  name)
    {
       for(int i = 0; i < this->get_size(); i++)
       {
@@ -138,7 +138,7 @@ namespace http
       return -1;
    }
 
-   http::cookie & cookies::cookie(const char * name)
+   http::cookie & cookies::cookie(const_char_pointer  name)
    {
 
       auto iFind = find_cookie(name);
@@ -161,7 +161,7 @@ namespace http
    }
 
 
-   http::cookie & cookies::lowcookie(const char * name)
+   http::cookie & cookies::lowcookie(const_char_pointer  name)
    {
 
       auto iFind = lowfind_cookie(name);
@@ -278,7 +278,7 @@ namespace http
    }
 
 
-   character_count cookies::get_length( const char * name)
+   character_count cookies::get_length( const_char_pointer  name)
    {
 
       return cookie(name).m_payload.as_string().length();
@@ -332,10 +332,10 @@ namespace http
 
 #endif
 
-      const char *days[7] = {"Sunday", "Monday",
+      const_char_pointer days[7] = {"Sunday", "Monday",
                              "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
                             };
-      const char *months[12] = {"Jan", "Feb", "Mar", "Apr", "May",
+      const_char_pointer months[12] = {"Jan", "Feb", "Mar", "Apr", "May",
                                 "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
                                };
       string strDateTime;
@@ -362,9 +362,9 @@ namespace http
          return;
 
       string_array stra;
-      const char * pszParam = scopedstr.begin();
-      const char * pszParamEnd;
-      const char * pszKeyEnd;
+      const_char_pointer  pszParam = scopedstr.begin();
+      const_char_pointer  pszParamEnd;
+      const_char_pointer  pszKeyEnd;
       class cookie ca;
       while(true)
       {
@@ -427,7 +427,7 @@ namespace http
 
    }
 
-   http::cookie & cookies::operator [](const char * name)
+   http::cookie & cookies::operator [](const_char_pointer  name)
    {
       return cookie(name);
    }

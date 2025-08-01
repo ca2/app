@@ -124,7 +124,7 @@ int defer_run_system()
 //int defer_run_system(char ** pszaFileName, int iFileCount)
 //{
 //
-//   return __start_system_with_file((const char **) pszaFileName, iFileCount);
+//   return __start_system_with_file((const_char_pointer *) pszaFileName, iFileCount);
 //
 //}
 //
@@ -164,7 +164,7 @@ string apple_get_executable_path()
 //}
 
 //// iMillisDelay default 500ms good
-//void apple_accumulate_on_open_file(const char ** psza, int iCount, const ::scoped_string & scopedstrExtra)
+//void apple_accumulate_on_open_file(const_char_pointer * psza, int iCount, const ::scoped_string & scopedstrExtra)
 //{
 //
 //   string_array stra;
@@ -196,7 +196,7 @@ string apple_get_executable_path()
 
 
 
-//void apple_on_open_file(const char ** psza, int iCount, const ::scoped_string & scopedstrExtra)
+//void apple_on_open_file(const_char_pointer * psza, int iCount, const ::scoped_string & scopedstrExtra)
 //{
 //
 //   if(iCount <= 0)

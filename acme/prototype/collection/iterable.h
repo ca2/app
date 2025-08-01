@@ -3464,7 +3464,7 @@ end:
       for (int u = 0; u < iterable.get_count(); u++)
       {
          ITYPE & str = iterable.element_at(u);
-         strEncode += hex::lower_from((const char*)str);
+         strEncode += hex::lower_from((const_char_pointer )str);
          strEncode += "00";
          /*      for(int uj = 0; uj < str.length(); uj++)
          {

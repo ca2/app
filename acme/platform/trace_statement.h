@@ -20,8 +20,8 @@ struct trace_statement_struct
    ::particle *            m_pparticleLogging = nullptr;
    enum_trace_level        m_etracelevel = e_trace_level_information;
    enum_trace_category     m_etracecategory = e_trace_category_general;
-   const char *            m_pszFunction = nullptr;
-   const char *            m_pszFile = nullptr;
+   const_char_pointer           m_pszFunction = nullptr;
+   const_char_pointer           m_pszFile = nullptr;
    int                     m_iLine = -1;
 
    trace_statement_struct(class tracer * ptracer) : m_ptracer(ptracer) {}

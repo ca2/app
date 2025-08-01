@@ -389,7 +389,7 @@ string directory_system::system_short_name()
 }
 
 
-::file::path directory_system::icloud_container2(const char * psz_iCloudContainerIdentifier)
+::file::path directory_system::icloud_container2(const_char_pointer  psz_iCloudContainerIdentifier)
 {
    
    ::string str_iCloudContainerIdentifier;
@@ -405,7 +405,7 @@ string directory_system::system_short_name()
 }
 
 
-::file::path directory_system::icloud_container2_final(const char * psz_iCloudContainerIdentifier)
+::file::path directory_system::icloud_container2_final(const_char_pointer  psz_iCloudContainerIdentifier)
 {
    
    throw ::interface_only();
@@ -415,7 +415,7 @@ string directory_system::system_short_name()
 }
 
 
-::file::path directory_system::icloud_container_documents(const char * psz_iCloudContainerIdentifier)
+::file::path directory_system::icloud_container_documents(const_char_pointer  psz_iCloudContainerIdentifier)
 {
 
    return icloud_container2(psz_iCloudContainerIdentifier) / "Documents";
@@ -423,7 +423,7 @@ string directory_system::system_short_name()
 }
 
 
-bool directory_system::is_icloud_container(const ::file::path & path, const char * pszContentIdentifier)
+bool directory_system::is_icloud_container(const ::file::path & path, const_char_pointer  pszContentIdentifier)
 {
    
    ::file::path pathFolder;
@@ -443,7 +443,7 @@ bool directory_system::is_icloud_container(const ::file::path & path, const char
 }
 
 
-bool directory_system::has_icloud_container(const char * pszContentIdentifier)
+bool directory_system::has_icloud_container(const_char_pointer  pszContentIdentifier)
 {
    
    return false;

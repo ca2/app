@@ -195,26 +195,26 @@ namespace sockets
 
 
    ///** send to specified address */
-   //void udp_socket::SendToBuf(const string & h, ::networking::port_t p, const char *data, int len, int flags)
+   //void udp_socket::SendToBuf(const string & h, ::networking::port_t p, const_char_pointer data, int len, int flags)
    //{
    //   SendToBuf(::networking::address(h, p), data, len, flags);
    //}
 
 
    ///** send to specified address */
-   //void udp_socket::SendToBuf(const in_addr & a, ::networking::port_t p, const char *data, int len, int flags)
+   //void udp_socket::SendToBuf(const in_addr & a, ::networking::port_t p, const_char_pointer data, int len, int flags)
    //{
    //   SendToBuf(::networking::address(a, p), data, len, flags);
    //}
 
 
-   //void udp_socket::SendToBuf(const in6_addr & a, ::networking::port_t p, const char *data, int len, int flags)
+   //void udp_socket::SendToBuf(const in6_addr & a, ::networking::port_t p, const_char_pointer data, int len, int flags)
    //{
    //   SendToBuf(::networking::address(a, p), data, len, flags);
    //}
 
 
-   void udp_socket::SendToBuf(::networking::address * ad, const char *data, int len, int flags)
+   void udp_socket::SendToBuf(::networking::address * ad, const_char_pointer data, int len, int flags)
    {
       //if (get_socket_id() == INVALID_SOCKET)
       //{
@@ -288,7 +288,7 @@ namespace sockets
 
       }
 
-      //if ((m_last_size_written = ::send(get_socket_id(), (const char *) data, (int)len, m_iWriteFlags)) == -1)
+      //if ((m_last_size_written = ::send(get_socket_id(), (const_char_pointer ) data, (int)len, m_iWriteFlags)) == -1)
       //{
 
 

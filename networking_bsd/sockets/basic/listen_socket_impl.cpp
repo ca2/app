@@ -21,7 +21,7 @@
 #include <cstring>
 
 // Demangle C++ symbols using __cxa_demangle
-void demangle_and_print(const char *mangled_name) {
+void demangle_and_print(const_char_pointer  mangled_name) {
     int status = 0;
     char *demangled_name = abi::__cxa_demangle(mangled_name, nullptr, nullptr, &status);
     

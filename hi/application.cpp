@@ -270,8 +270,8 @@ void test_002()
    auto pstart = __FILE__;
    auto pend = pstart + ansi_len(pstart);
 
-   //const char * pSearch = __FILE__;
-   //const char * pSearchEnd = pstart + strlen(pstart);
+   //const_char_pointer  pSearch = __FILE__;
+   //const_char_pointer  pSearchEnd = pstart + strlen(pstart);
 
    string str(pstart, pend);
 
@@ -1066,10 +1066,10 @@ namespace console_hello
 
          string str("HiHelloYou!!");
 
-         auto psz1 = (const char *)str;
+         auto psz1 = (const_char_pointer  )str;
 
-         output_debug_string_formatf("(\"%%s\", str) : %s\n", (const char*)str);
-         output_debug_string_formatf("(\"%%s\", psz = (const char *)str; ) : %s\n", psz1);
+         output_debug_string_formatf("(\"%%s\", str) : %s\n", (const_char_pointer  )str);
+         output_debug_string_formatf("(\"%%s\", psz = (const_char_pointer  )str; ) : %s\n", psz1);
 
       }
 
@@ -1090,7 +1090,7 @@ namespace console_hello
       while (true)
       {
 
-         auto pmessagebox = message_box((const char *) unsigned char"Hello!!\nNo: for exception test(\u2717)!!", "Hello App!", e_message_box_yes_no_cancel | e_message_box_default_button_3, "Hello Multiverse!!");
+         auto pmessagebox = message_box((const_char_pointer  ) unsigned char"Hello!!\nNo: for exception test(\u2717)!!", "Hello App!", e_message_box_yes_no_cancel | e_message_box_default_button_3, "Hello Multiverse!!");
 
          auto result = pmessagebox->sync();
 

@@ -12,7 +12,7 @@ namespace nano2d
 {
 
 
-   void __font_face(::write_text::font * pfont, const char * font);
+   void __font_face(::write_text::font * pfont, const_char_pointer  font);
    void __font_size(::write_text::font * pfont, float size);
 
 

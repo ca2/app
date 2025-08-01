@@ -10,8 +10,8 @@ CLASS_DECL_ACME void *     memory_allocate_no_track(memsize size);
 
 
 
-CLASS_DECL_ACME void *     memory_allocate_debug(memsize nSize, int nBlockUse, const char * szFileName, int nLine);
-CLASS_DECL_ACME void *     memory_reallocate_debug(void * p, memsize nSize, int nBlockUse, const char * szFileName, int nLine);
+CLASS_DECL_ACME void *     memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer  szFileName, int nLine);
+CLASS_DECL_ACME void *     memory_reallocate_debug(void * p, memsize nSize, int nBlockUse, const_char_pointer  szFileName, int nLine);
 CLASS_DECL_ACME void       memory_free_debug(void * p, int iBlockType);
 CLASS_DECL_ACME memsize    memory_size_debug(void* p, int iBlockType);
 
@@ -50,8 +50,8 @@ class CLASS_DECL_ACME system_heap :
 #if MEMDLEAK || defined(__MCRTDBG)
 
 
-   void * system_heap_alloc_debug(memsize size, int nBlockUse, const char * pszFile, int iLine);
-   void * system_heap_realloc_debug(void * p, memsize size, int nBlockUse, const char * pszFile, int iLine);
+   void * system_heap_alloc_debug(memsize size, int nBlockUse, const_char_pointer  pszFile, int iLine);
+   void * system_heap_realloc_debug(void * p, memsize size, int nBlockUse, const_char_pointer  pszFile, int iLine);
 
 
 #endif
@@ -91,7 +91,7 @@ struct memdleak_block
 
    int                           m_iBlockUse;
    int                           m_iEnabled;
-   const char *                  m_pszFileName;
+   const_char_pointer                 m_pszFileName;
    void *                        m_stacka[64];
    int                           m_iStack;
    unsigned int                           m_uiLine;

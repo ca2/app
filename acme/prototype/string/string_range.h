@@ -1925,7 +1925,7 @@ public:
    /// Coder    Date                      Desc
    /// bro      2002-10-29
    ///========================================================
-   void escape_skip_to_first_character_in(const char * chset, int escape);
+   void escape_skip_to_first_character_in(const_char_pointer  chset, int escape);
 
 
    ///========================================================

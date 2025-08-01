@@ -919,7 +919,7 @@ namespace application_build_helper
 
 
 
-   //void command_system(const char* psz)
+   //void command_system(const_char_pointer  psz)
    //{
    //
    //

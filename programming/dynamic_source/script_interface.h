@@ -36,7 +36,7 @@ namespace dynamic_source
       script_interface();
       ~script_interface() override;
 
-      virtual const char* debug_note() const override;
+      virtual const_char_pointer  debug_note() const override;
 
       virtual void initialize(::particle * pparticle) override;
       virtual void init1();
@@ -48,7 +48,7 @@ namespace dynamic_source
 
 
       virtual void dinit();
-      virtual void dprint(const ::string &);
+      virtual void dprint(const ::scoped_string & scopedstr);
       virtual void dprint_recursive(const ::payload & payload);
 
 

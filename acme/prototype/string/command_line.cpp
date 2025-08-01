@@ -195,18 +195,18 @@ void ansi_parse_command_line(char * cmdstart, char ** argv, char * args, int * n
 }
 
 
-string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const char ** pszEndPtr)
+string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const_char_pointer * pszEndPtr)
 {
 
    if(scopedstrCommandLine.is_empty())
       return "";
 
-   const char * psz = scopedstrCommandLine.begin();
+   const_char_pointer  psz = scopedstrCommandLine.begin();
 
    while(*psz && ansi_char_isspace(*psz))
       psz++;
 
-   const char * pszStart;
+   const_char_pointer  pszStart;
 
    bool bQuoted = *psz == '\"';
 
@@ -224,7 +224,7 @@ string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLi
          psz++;
    }
 
-   const char * pszEnd = psz;
+   const_char_pointer  pszEnd = psz;
 
    if(pszEndPtr != nullptr)
    {
@@ -674,7 +674,7 @@ string_array get_c_args_from_c(const ::scoped_string & scopedstr)
       else
       {
 
-         const char * pszValueStart = range.m_begin;
+         const_char_pointer  pszValueStart = range.m_begin;
 
          while (!unicode_is_whitespace(range.m_begin))
          {
@@ -782,7 +782,7 @@ string_array get_c_args_for_c(const ::scoped_string & scopedstr)
       else
       {
 
-         const char * pszValueStart = range.m_begin;
+         const_char_pointer  pszValueStart = range.m_begin;
 
          while (!unicode_is_whitespace(range.m_begin))
          {
@@ -903,9 +903,9 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
 
    bool bNeedQuote = false;
 
-   const char * psz = scopedstr.begin();
+   const_char_pointer  psz = scopedstr.begin();
 
-   const char * pszParse = psz;
+   const_char_pointer  pszParse = psz;
 
    char chQuote = '\0';
 

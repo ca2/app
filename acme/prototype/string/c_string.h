@@ -17,7 +17,7 @@ namespace c
       {
          m_psz = nullptr;
       }
-      string(const char * psz)
+      string(const_char_pointer  psz)
       {
          if (psz)
          {
@@ -70,7 +70,7 @@ namespace c
          }
          return *this;
       }
-      string & operator = (const char * psz) {
+      string & operator = (const_char_pointer  psz) {
          if (psz != m_psz)
          {
             destroy();
@@ -92,9 +92,9 @@ namespace c
 
       }
 
-      operator const char * () const { return m_psz; }
+      operator const_char_pointer  () const { return m_psz; }
 
-      bool operator == (const char* psz)
+      bool operator == (const_char_pointer  psz)
       {
 
          return !strcmp(m_psz, psz);

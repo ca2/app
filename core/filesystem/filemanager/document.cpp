@@ -339,7 +339,7 @@ namespace filemanager
       if (pfilemanagerdata->m_pfilemanagercallback != nullptr)
       {
 
-         pfilemanagerdata->m_pfilemanagercallback->on_file_manager_item_command(pfilemanagerdata, pszId, itema);
+         pfilemanagerdata->m_pfilemanagercallback->on_file_manager_item_command(pfilemanagerdata, scopedstrId, itema);
 
       }
 

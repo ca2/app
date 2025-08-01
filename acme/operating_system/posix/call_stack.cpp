@@ -59,7 +59,7 @@
 //      if (status == 0)
 //      {
 //
-//         strSymbolName = (const char *) (char *) pszRealName;
+//         strSymbolName = (const_char_pointer ) (char *) pszRealName;
 //
 //      }
 //      else
@@ -131,7 +131,7 @@ void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * 
         if (status == 0)
         {
 
-            strSymbolName = (const char *) (char *) pszRealName;
+            strSymbolName = (const_char_pointer ) (char *) pszRealName;
 
         }
         else

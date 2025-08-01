@@ -763,7 +763,7 @@ inline bool atom::operator == (const RANGE & range) const
 //#endif
 
 
-//inline atom::operator const char *() const
+//inline atom::operator const_char_pointer () const
 //{
 //
 //   return is_text() ? m_str.c_str() : nullptr;

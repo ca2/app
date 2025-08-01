@@ -6,10 +6,10 @@
 #include <string.h>
 
 
-CLASS_DECL_ACME int compare_ignore_case(const char * left, const char * right, size_t len);
+CLASS_DECL_ACME int compare_ignore_case(const_char_pointer  left, const_char_pointer  right, size_t len);
 
 
-CLASS_DECL_ACME bool equal_ignore_case(const char * left, const char * right, size_t len)
+CLASS_DECL_ACME bool equal_ignore_case(const_char_pointer  left, const_char_pointer  right, size_t len)
 {
 
    return compare_ignore_case(left, right, len) == 0;
@@ -20,7 +20,7 @@ CLASS_DECL_ACME bool equal_ignore_case(const char * left, const char * right, si
 CLASS_DECL_ACME bool str::trimmed_is_empty(const ::scoped_string & scopedstr)
 {
 
-   const char * psz = scopedstr.c_str();
+   const_char_pointer  psz = scopedstr.c_str();
 
    while (true)
    {
@@ -60,10 +60,10 @@ CLASS_DECL_ACME bool equal_ignore_case(const string & left, const string & right
 }
 
 
-CLASS_DECL_ACME int compare_ignore_case(const char * left, const string & right, size_t len);
+CLASS_DECL_ACME int compare_ignore_case(const_char_pointer  left, const string & right, size_t len);
 
 
-CLASS_DECL_ACME bool equal_ignore_case(const char * left, const string & right, size_t len)
+CLASS_DECL_ACME bool equal_ignore_case(const_char_pointer  left, const string & right, size_t len)
 {
 
    return compare_ignore_case(left, right, len) == 0;
@@ -71,10 +71,10 @@ CLASS_DECL_ACME bool equal_ignore_case(const char * left, const string & right, 
 }
 
 
-CLASS_DECL_ACME int compare_ignore_case(const string & left, const char * right, size_t len);
+CLASS_DECL_ACME int compare_ignore_case(const string & left, const_char_pointer  right, size_t len);
 
 
-CLASS_DECL_ACME bool equal_ignore_case(const string & left, const char * right, size_t len)
+CLASS_DECL_ACME bool equal_ignore_case(const string & left, const_char_pointer  right, size_t len)
 {
 
    return compare_ignore_case(left, right, len) == 0;
@@ -455,7 +455,7 @@ CLASS_DECL_ACME bool str::namespaced(const ::ansi_character * psz, const ::ansi_
 }
 
 
-//CLASS_DECL_ACME bool str::begins_ci_skip(const char *& psz, const ::scoped_string & scopedstrPrefix)
+//CLASS_DECL_ACME bool str::begins_ci_skip(const_char_pointer & psz, const ::scoped_string & scopedstrPrefix)
 //{
 //
 //   auto length = scopedstrPrefix.size();

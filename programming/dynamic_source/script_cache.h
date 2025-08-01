@@ -27,7 +27,7 @@ namespace dynamic_source
 
       void destroy() override;
 
-      ::pointer<script_instance>create_instance(const ::string & lpcszName, ::pointer<script> & pscript);
+      ::pointer<script_instance>create_instance(const ::scoped_string & scopedstrName, ::pointer<script> & pscript);
 
       void set_all_out_of_date();
 
@@ -37,8 +37,8 @@ namespace dynamic_source
       ::pointer<ds_script>create_new_ds_script(const ::scoped_string & scopedstrName);
       void uncache(script * pscript);
 
-      script * get(const ::string & lpcszName);
-      script * register_script(const ::string & lpcszName, script * pscript);
+      script * get(const ::scoped_string & scopedstrName);
+      script * register_script(const ::scoped_string & scopedstrName, script * pscript);
 
 
    };

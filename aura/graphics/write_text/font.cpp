@@ -655,7 +655,7 @@ namespace write_text
 //      UnselectFont();
 //   }
 //
-//   void font::AddGlyphs(const ::string & pStr)
+//   void font::AddGlyphs(const ::scoped_string & scopedstrStr)
 
 //   {
 //      string str(pStr);
@@ -887,7 +887,7 @@ namespace write_text
 } // namespace write_text
 
 
-//bool CLASS_DECL_AURA TextOutU(HDC hdc, int x, int y, const ::string & pString, int ca)
+//bool CLASS_DECL_AURA TextOutU(HDC hdc, int x, int y, const ::scoped_string & scopedstrString, int ca)
 //
 //{
 //
@@ -927,7 +927,7 @@ namespace write_text
 //}
 //
 //
-//CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const ::string & pString, int ca, LPSIZE32 psizl)
+//CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const ::scoped_string & scopedstrString, int ca, LPSIZE32 psizl)
 //
 //{
 //
@@ -957,7 +957,7 @@ namespace write_text
 //}
 //
 //
-//CLASS_DECL_AURA int  DrawTextU(HDC hdc, const ::string & pchText, int cchText, RECT32 * prect, unsigned int format)
+//CLASS_DECL_AURA int  DrawTextU(HDC hdc, const ::scoped_string & scopedstrchText, int cchText, RECT32 * prect, unsigned int format)
 //
 //{
 //

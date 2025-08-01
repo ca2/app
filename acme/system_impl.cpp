@@ -111,7 +111,7 @@ CLASS_DECL_ACME void trace_category_static_term();
 //static ::platform::system * g_psystem = nullptr;
 
 
-//extern const char * g_pszTopLevelDomainList[];
+//extern const_char_pointer  g_pszTopLevelDomainList[];
 
 
 enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::enum_message_box & emessagebox);
@@ -2935,7 +2935,7 @@ namespace platform
          if (::is_set(application()))
          {
 
-            auto pszUrl = (const char *)ptopic->payload("wparam").as_iptr();
+            auto pszUrl = (const_char_pointer )ptopic->payload("wparam").as_iptr();
 
             application()->did_pick_document_at_url(scopedstrUrl);
 
@@ -4244,7 +4244,7 @@ void system_id_update(void * pSystem, long long iUpdate, long long iParam)
 
 void node_will_finish_launching(void * pSystem);
 void system_on_open_untitled_file(void * pSystem);
-void system_on_open_file(void * pSystem, const char * pszFile);
+void system_on_open_file(void * pSystem, const_char_pointer  pszFile);
 
 
 void node_will_finish_launching(void * pSystem)
@@ -4267,7 +4267,7 @@ void system_on_open_untitled_file(void * pSystem)
 }
 
 
-void system_on_open_file(void * pSystem, const char * pszFile)
+void system_on_open_file(void * pSystem, const_char_pointer  pszFile)
 {
 
    auto psystem = (::platform::system *)pSystem;

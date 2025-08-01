@@ -230,7 +230,7 @@ namespace user
       
       pgraphics->set(m_pfont);
       
-      auto size = pgraphics->get_text_extent(pcsz);
+      auto size = pgraphics->get_text_extent(scopedstr);
 
       if(((m_ealign & AlignLeft) == AlignLeft) &&
             ((m_ealign & AlignTop) == AlignTop))

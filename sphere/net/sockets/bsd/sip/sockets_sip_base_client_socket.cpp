@@ -521,7 +521,7 @@ namespace sockets
          }*/
    }
 
-   void sip_base_client_socket::OnData(const ::string &, size_t)
+   void sip_base_client_socket::OnData(const ::scoped_string & scopedstr, size_t)
    {
    }
 

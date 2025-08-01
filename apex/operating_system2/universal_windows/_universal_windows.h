@@ -27,7 +27,7 @@
 //CLASS_DECL_APEX oswindow WINAPI WinSetFocus(oswindow oswindow);
 
 
-//CLASS_DECL_APEX string normalize_path(const char* lpcszPath);
+//CLASS_DECL_APEX string normalize_path(const_char_pointer  lpcszPath);
 
 
 //CLASS_DECL_APEX oswindow get_capture();
@@ -68,8 +68,8 @@ namespace user
 
 
 
-//CLASS_DECL_APEX ::winrt::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName);
-//CLASS_DECL_APEX::winrt::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
+//CLASS_DECL_APEX ::winrt::Windows::Storage::StorageFolder ^ get_os_folder(const_char_pointer  lpcszDirName);
+//CLASS_DECL_APEX::winrt::Windows::Storage::StorageFile ^ get_os_file(const_char_pointer  lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
 //CLASS_DECL_APEX bool get_file_time(::winrt::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime);
 
 

@@ -70,7 +70,7 @@ CLASS_DECL_ACME inline character_count safe_strlen(void * p, character_count n)
 
    }
 
-   auto psz = (const char *)p;
+   auto psz = (const_char_pointer )p;
 
    character_count i = 0;
 
@@ -176,7 +176,7 @@ CLASS_DECL_ACME void log_const_ansi_range_literal(int n)
 CLASS_DECL_ACME void string_short_test()
 {
 
-   const char* pszStdSchema = strdup("_std");
+   const_char_pointer  pszStdSchema = strdup("_std");
 
    ::atom idSchema;
 

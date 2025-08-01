@@ -87,10 +87,10 @@ namespace sockets
       virtual bool client_ping_pong_ok();
 
       virtual memory get_client_send(int fin, memory & memory, bool useMask);
-      virtual memory get_client_send(int fin, const char * src);
+      virtual memory get_client_send(int fin, const_char_pointer  src);
 
-      virtual memory get_client_send_text(const char * src);
-      virtual memory get_client_send_text(const char * src, bool bMasked);
+      virtual memory get_client_send_text(const_char_pointer  src);
+      virtual memory get_client_send_text(const_char_pointer  src, bool bMasked);
       virtual memory get_client_send_binary(memory & memory);
 
 

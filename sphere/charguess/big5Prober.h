@@ -31,7 +31,7 @@ public:
                       Reset();};
   virtual ~nsBig5Prober(void) {delete mCodingSM;};
   nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
-  const char* GetCharSetName() {return "Big5";};
+  const_char_pointer  GetCharSetName() {return "Big5";};
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
   float     GetConfidence(void);

@@ -27,9 +27,9 @@ public:
    virtual ::string tool_folder_operating_system_name();
    virtual ::file::path tool_folder_path();
 
-   virtual ::string icloud_container_identifier(const char * psz_iCloudContainerIdentifier);
+   virtual ::string icloud_container_identifier(const_char_pointer  psz_iCloudContainerIdentifier);
    
-   virtual ::file::path defer_get_icloud_container_path(const ::file::path & path, const char * psz_iCloudContainerIdentifier);
+   virtual ::file::path defer_get_icloud_container_path(const ::file::path & path, const_char_pointer  psz_iCloudContainerIdentifier);
 
    virtual void defer_get_icloud_container_path_name(::string & strName, ::string & str_iCloudContainerIdentifier, const ::file::path & path);
 

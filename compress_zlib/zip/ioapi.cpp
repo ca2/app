@@ -26,7 +26,7 @@
 
 extern "C" voidpf ZCALLBACK fopen_file_func OF((
       voidpf opaque,
-      const char* filename,
+      const_char_pointer  filename,
       int mode));
 
 extern "C" uptr ZCALLBACK fread_file_func OF((
@@ -60,10 +60,10 @@ extern "C" int ZCALLBACK ferror_file_func OF((
       voidpf stream));
 
 
-extern "C" voidpf ZCALLBACK fopen_file_func (voidpf opaque, const char * filename, int mode)
+extern "C" voidpf ZCALLBACK fopen_file_func (voidpf opaque, const_char_pointer  filename, int mode)
 {
    FILE* file = nullptr;
-   const char* mode_fopen = nullptr;
+   const_char_pointer  mode_fopen = nullptr;
    errno_t err = 0;
    if ((mode & ZLIB_FILEFUNC_MODE_READWRITEFILTER)==ZLIB_FILEFUNC_MODE_READ)
       mode_fopen = "rb";

@@ -78,7 +78,7 @@ void imaging::embossed_text_out(
 ::draw2d::graphics *        pgraphics,
 int                 x,
 int                 y,
-const char *            pcsz,
+const_char_pointer           pcsz,
 
 size_t                  cb,
 ::color::color                crText,
@@ -7097,7 +7097,7 @@ void imaging::free_work_image(::image::image *pimage)
 void image_context::load_svg(::image::image *pimage, memory & memory)
 {
 
-   const char * psz = (const char *)memory.data();
+   const_char_pointer  psz = (const_char_pointer )memory.data();
 
    auto size = memory.size();
 

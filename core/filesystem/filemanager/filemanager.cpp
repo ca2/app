@@ -90,7 +90,9 @@ namespace filemanager
    bool is_valid_manager_id(const ::scoped_string & scopedstrParam)
    {
 
-      const ::ansi_character * psz = strParam;
+      ::string strParameter(scopedstrParam);
+
+      const ::ansi_character * psz = strParameter;
 
       ::collection::count c = 0;
 
@@ -133,7 +135,9 @@ namespace filemanager
    bool is_valid_filemanager_project_entry(const ::scoped_string & scopedstrParam)
    {
 
-      const ::ansi_character * psz = strParam;
+      ::string strParameter(scopedstrParam);
+
+      const ::ansi_character * psz = strParameter;
 
       ::collection::count c = 0;
 
@@ -186,12 +190,12 @@ namespace filemanager
    ::file::path filemanager_project_entry(string & strManagerId, const ::scoped_string & scopedstr, ::aura::context * pcontext)
    {
 
-      if (is_valid_filemanager_project_entry(str))
+      if (is_valid_filemanager_project_entry(scopedstr))
       {
 
-         strManagerId = str(0, get_manager_id_len());
+         strManagerId = scopedstr(0, get_manager_id_len());
 
-         return str(get_manager_id_len() + 1);
+         return scopedstr(get_manager_id_len() + 1);
 
       }
       else
@@ -199,7 +203,7 @@ namespace filemanager
 
          strManagerId = create_manager_id(pcontext);
 
-         return str;
+         return scopedstr;
 
       }
 

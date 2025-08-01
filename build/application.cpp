@@ -254,7 +254,7 @@ IMPLEMENT_APPLICATION_FACTORY();
 void hellomultiverse_debugging()
 {
 
-   const char * pszFree;
+   const_char_pointer  pszFree;
 
    {
 

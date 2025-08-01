@@ -331,7 +331,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, uns
  *  the date is invalid in that format, in which the most compatible format
  *  that produces a valid date will be used.
  */
-CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, unsigned int dwFlags, DATE* pdateOut)
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer  strIn, LCID lcid, unsigned int dwFlags, DATE* pdateOut)
 {
   static const unsigned short ParseDateTokens[] =
   {

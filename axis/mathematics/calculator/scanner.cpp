@@ -58,7 +58,7 @@ namespace calculator
 
    void scanner::peek()
    {
-      const char *beginning;
+      const_char_pointer beginning;
       if(m_range.m_begin != next_input && next_input != nullptr)
          return;
       beginning = m_range.m_begin;
@@ -100,7 +100,7 @@ namespace calculator
 
       }
 
-      const char * nextinput = unicode_next(m_range.m_begin);
+      const_char_pointer  nextinput = unicode_next(m_range.m_begin);
 
       if((*m_range.m_begin == 'j' || *m_range.m_begin == 'i') && unicode_is_digit(nextinput))
       {

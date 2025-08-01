@@ -57,7 +57,7 @@ namespace http
 
 
    // --------------------------------------------------------------------------------------
-   void request::write( const char *buf, memsize sz )
+   void request::write( const_char_pointer buf, memsize sz )
    {
       m_pmemfileBody->write({ buf, sz });
    }

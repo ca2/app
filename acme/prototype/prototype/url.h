@@ -188,10 +188,10 @@ namespace url
    //   };
 
    //   enum_type      m_type;
-   //   const char *   m_pszLastQuestionMarkAfterLastSlash;
-   //   const char *   m_pszLastSlash;
+   //   const_char_pointer  m_pszLastQuestionMarkAfterLastSlash;
+   //   const_char_pointer  m_pszLastSlash;
 
-   //   part(const char* psz);
+   //   part(const_char_pointer  psz);
 
    //};
 
@@ -438,7 +438,7 @@ namespace url
       ::string                m_str;
 
 
-      //const char*             m_pszRequest;
+      //const_char_pointer            m_pszRequest;
 
       
       //bool                    m_bScoped = false;

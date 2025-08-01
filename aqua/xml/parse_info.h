@@ -25,7 +25,7 @@ namespace xml
 
       string               m_strXml;            // [get] xml source
       bool                 m_bErrorOccur;       // [get] is occurance of error?
-      const char *         m_pszErrorPointer;   // [get] error position of xml source
+      const_char_pointer        m_pszErrorPointer;   // [get] error position of xml source
       enum_parse_error     m_eparseerror;       // [get] error code
       string               m_strError;          // [get] error string
 

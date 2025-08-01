@@ -23,7 +23,7 @@ namespace http
       virtual void initialize_get_socket(const ::url::url & url);
       virtual void initialize_get_socket(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrHost, ::networking::port_t port, const ::url::request & request);
 
-      void OnDataArrived(const char *, memsize len) override;
+      void OnDataArrived(const_char_pointer , memsize len) override;
       void OnHeader(const ::atom & atom, const ::scoped_string & scopedstr) override;
 
 

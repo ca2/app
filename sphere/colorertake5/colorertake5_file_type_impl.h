@@ -52,19 +52,19 @@ namespace colorertake5
          return paramDescriptionHash[name];
       }
 
-      string getParamValue(const ::string & name)
+      string getParamValue(const ::scoped_string & scopedstrName)
       {
          string val = paramHash[name];
          if(val.is_empty())
             return getParamDefaultValue(name);
          return val;
       }
-      string getParamDefaultValue(const ::string & name)
+      string getParamDefaultValue(const ::scoped_string & scopedstrName)
       {
          return paramDefaultHash[name];
       }
 
-      void setParamValue(const ::string & name, const ::string & value)
+      void setParamValue(const ::scoped_string & scopedstrName, const ::string & value)
       {
          paramHash.set_at(name, value);
       }

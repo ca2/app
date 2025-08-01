@@ -938,7 +938,7 @@ namespace xcb
                            false,
                            m_windowHelper,
                            XCB_EVENT_MASK_NO_EVENT,
-                           reinterpret_cast<const char *>(&happening));
+                           reinterpret_cast<const_char_pointer >(&happening));
 
             auto estatus = _request_check(cookie);
 
@@ -1089,7 +1089,7 @@ namespace xcb
                window1,
                false,
                XCB_EVENT_MASK_SUBSTRUCTURE_REDIRECT | XCB_EVENT_MASK_STRUCTURE_NOTIFY,
-               (const char *) &happening);
+               (const_char_pointer ) &happening);
 
             auto estatus = _request_check(cookie);
 

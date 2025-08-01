@@ -181,9 +181,9 @@ namespace filemanager
 
    CLASS_DECL_CORE string create_manager_id(::particle * pparticle);
 
-   CLASS_DECL_CORE bool is_valid_manager_id(const ::string &);
+   CLASS_DECL_CORE bool is_valid_manager_id(const ::scoped_string & scopedstr);
 
-   CLASS_DECL_CORE bool is_valid_filemanager_project_entry(const ::string &);
+   CLASS_DECL_CORE bool is_valid_filemanager_project_entry(const ::scoped_string & scopedstr);
 
    CLASS_DECL_CORE ::file::path filemanager_project_entry(string & strManagerId, const ::scoped_string & scopedstr, ::aura::context * pcontext);
 

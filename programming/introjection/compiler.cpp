@@ -166,11 +166,11 @@ namespace introjection
 //      m_strDynamicSourceStageFolder = m_pintegrationcontext->m_pathBuildFolder / m_strDynamicSourceStage;
 //
 
-      m_strRepos = pszRepos;
+      m_strRepos = scopedstrRepos;
 
-      m_strApp = pszApp;
+      m_strApp = scopedstrApp;
 
-      m_strProjectName = pszProjectName;
+      m_strProjectName = scopedstrProjectName;
 
       prepare_compile_and_link_environment();
 
@@ -439,7 +439,7 @@ namespace introjection
 //   }
 
 
-//   void compiler::prepare1(const ::string & lpcszSource, const ::string & lpcszDest)
+//   void compiler::prepare1(const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrDest)
 //   {
 //
 //      //auto papp = get_app();

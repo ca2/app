@@ -110,14 +110,14 @@ namespace account
    void impact::defer_translate(const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, const ::scoped_string & scopedstrOpen)
    {
 
-      if (strUser.has_character())
-         m_pstillUser->set_window_text(strUser);
+      if (scopedstrUser.has_character())
+         m_pstillUser->set_window_text(scopedstrUser);
 
-      if (strPass.has_character())
-         m_pstillPassword->set_window_text(strPass);
+      if (scopedstrPass.has_character())
+         m_pstillPassword->set_window_text(scopedstrPass);
 
-      if (strOpen.has_character())
-         m_pbutton->set_window_text(strOpen);
+      if (scopedstrOpen.has_character())
+         m_pbutton->set_window_text(scopedstrOpen);
 
    }
 

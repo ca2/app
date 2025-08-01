@@ -20,8 +20,8 @@ static bool g_bPrintfIfDebuggerIsNotAttached = false;
 string get_status_message(const ::e_status & estatus);
 
 
-CLASS_DECL_ACME void __simple_tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const ::scoped_string & scopedstr);
-CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const ::scoped_string & scopedstrFormat, va_list args);
+CLASS_DECL_ACME void __simple_tracea(enum_trace_level elevel, const_char_pointer  pszFunction, const_char_pointer  pszFile, int iLine, const ::scoped_string & scopedstr);
+CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const_char_pointer  pszFunction, const_char_pointer  pszFile, int iLine, const ::scoped_string & scopedstrFormat, va_list args);
 
 
 //CLASS_DECL_ACME void FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
@@ -436,14 +436,14 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 
 
 
-CLASS_DECL_ACME const char * e_trace_level_name(enum_trace_level elevel);
+CLASS_DECL_ACME const_char_pointer  e_trace_level_name(enum_trace_level elevel);
 
 #undef DEFINE_MESSAGE
 
 #define SIMPLE_TRACE_FUNCTION_NAME 0
 #define SIMPLE_TRACE_FILE_NAME 0
 
-CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, int iLine, const ::scoped_string & scopedstr)
+CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const_char_pointer  pszFunction, const_char_pointer  pszFileName, int iLine, const ::scoped_string & scopedstr)
 {
 
 #ifndef _DEBUG
@@ -520,7 +520,7 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 }
 
 
-CLASS_DECL_ACME void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, int iLine, const ::ansi_character * pszFormat, va_list args)
+CLASS_DECL_ACME void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const_char_pointer  pszFunction, const_char_pointer  pszFileName, int iLine, const ::ansi_character * pszFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)

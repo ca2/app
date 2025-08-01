@@ -7,7 +7,7 @@
 #include "acme/filesystem/file/file.h"
 
 
-voidpf c_zip_file_open_file_func(voidpf opaque, const char* filename, int mode);
+voidpf c_zip_file_open_file_func(voidpf opaque, const_char_pointer  filename, int mode);
 uptr  c_zip_file_read_file_func(voidpf opaque, voidpf stream, void* buf, uptr size);
 uptr  c_zip_file_write_file_func(voidpf opaque, voidpf stream, const void* buf, uptr size);
 long   c_zip_file_tell_file_func(voidpf opaque, voidpf stream);
@@ -20,7 +20,7 @@ zlib_filefunc_def* zip_filefuncdef_malloc();
 void zip_filefuncdef_set_file(zlib_filefunc_def* pParam, ::file::file* pfile);
 
 
-voidpf c_zip_file_open_file_func(voidpf opaque, const char* filename, int mode)
+voidpf c_zip_file_open_file_func(voidpf opaque, const_char_pointer  filename, int mode)
 {
    
    __UNREFERENCED_PARAMETER(mode);

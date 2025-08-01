@@ -193,7 +193,7 @@ void nano_http_get_transfer_progress(void * userdata, long done, long total)
 }
 
 
-void nano_http_get_set_out_header(void * userdata, const char * pszKey, const char * pszPayload)
+void nano_http_get_set_out_header(void * userdata, const_char_pointer  pszKey, const_char_pointer  pszPayload)
 {
    
    auto pget = dynamic_cast <::nano::http::get *>((::subparticle*)userdata);

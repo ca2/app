@@ -17,7 +17,7 @@ namespace sockets
       Ajp13Socket();
 
       void OnHeader( short atom, short len );
-      void OnPacket( const char *buf, memsize sz );
+      void OnPacket( const_char_pointer buf, memsize sz );
 
       virtual void Respond();
 
@@ -26,11 +26,11 @@ namespace sockets
       virtual void OnExecute() = 0;
       virtual void OnResponseComplete();
 
-      void ReceiveBody( const char *buf, memsize sz );
-      void ReceiveForwardRequest( const char *buf, memsize sz );
-      void ReceiveShutdown( const char *buf, memsize sz );
-      void ReceivePing( const char *buf, memsize sz );
-      void ReceiveCPing( const char *buf, memsize sz );
+      void ReceiveBody( const_char_pointer buf, memsize sz );
+      void ReceiveForwardRequest( const_char_pointer buf, memsize sz );
+      void ReceiveShutdown( const_char_pointer buf, memsize sz );
+      void ReceivePing( const_char_pointer buf, memsize sz );
+      void ReceiveCPing( const_char_pointer buf, memsize sz );
       void Execute();
 
    };

@@ -26,7 +26,7 @@ dialog::dialog(const ::scoped_string & scopedstrMatter, ::pointer<::user::intera
 
    initialize(puiParent);
 
-   m_strMatter = pszMatter;
+   m_strMatter = scopedstrMatter;
    m_pformdocument    = nullptr;
    m_pframe       = nullptr;
 
@@ -103,7 +103,7 @@ bool dialog::show(const ::scoped_string & scopedstrMatter)
 
       string str;
 
-      str.formatf("Could not show dialog %s", pszMatter.c_str());
+      str.formatf("Could not show dialog %s", scopedstrMatter.c_str());
 
       informationf(str);
 

@@ -672,7 +672,7 @@ namespace user
 
       }
 
-      if (!m_pfontlist->set_sel_by_name(strName))
+      if (!m_pfontlist->set_sel_by_name(scopedstrName))
       {
 
          return false;

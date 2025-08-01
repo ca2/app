@@ -32,7 +32,7 @@ CLASS_DECL_CA2_TIME int_bool   FileTimeToSystemTime(const FILETIME * ft, LPSYSTE
 
 CLASS_DECL_CA2_TIME int32_t SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut);
 CLASS_DECL_CA2_TIME int32_t FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt);
-CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * pstr, LCID lcid, unsigned int dwFlags, FLOAT_DATE * pdateOut);
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer  pstr, LCID lcid, unsigned int dwFlags, FLOAT_DATE * pdateOut);
 CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdate(UDATE *pUdateIn, unsigned int dwFlags, FLOAT_DATE *pDateOut);
 CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, unsigned int dwFlags, FLOAT_DATE *pDateOut);
 
@@ -1036,7 +1036,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    inline bool float_time::ParseDateTime(const ::scoped_string & scopedstrDate, unsigned int dwFlags, LCID lcid) RELEASENOTHROW
    {
 
-      const char * pszDate = strDate;
+      const_char_pointer  pszDate = strDate;
 
       const ::scoped_string & scopedstrDate = (::is_null(scopedstrDate)) ? "" : pszDate;
 

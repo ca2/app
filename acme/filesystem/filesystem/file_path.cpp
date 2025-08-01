@@ -7,7 +7,7 @@
 //#include "acme/prototype/collection/numeric_array.h"
 
 
-void copy_character_per_character(char * pszTarget, const char * pszSource)
+void copy_character_per_character(char * pszTarget, const_char_pointer  pszSource)
 {
 
    while(*pszSource)
@@ -527,7 +527,7 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 
 //CLASS_DECL_ACME bool read_resource_as_file(const ::scoped_string & scopedstrFile,HINSTANCE hinst,unsigned int nID,LPCTSTR pcszType);
 
-//const char * string_reverse_find_first_character_in(const ::scoped_string & scopedstr, const ::scoped_string & pszBegin, const ::scoped_string & scopedstrExcluding)
+//const_char_pointer  string_reverse_find_first_character_in(const ::scoped_string & scopedstr, const ::scoped_string & pszBegin, const ::scoped_string & scopedstrExcluding)
 //{
 //
 //   while (scopedstr >= pszBegin)
@@ -558,7 +558,7 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 //}
 
 
-//const char * string_reverse_skip_any_character_in(const ::scoped_string & scopedstr, const ::scoped_string & pszBegin, const ::scoped_string & scopedstrIncluding)
+//const_char_pointer  string_reverse_skip_any_character_in(const ::scoped_string & scopedstr, const ::scoped_string & pszBegin, const ::scoped_string & scopedstrIncluding)
 //{
 //
 //   while (scopedstr >= pszBegin)
@@ -662,7 +662,7 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 
 //// 1. /folder/name
 //// 2. /name
-//const char * find_last_slash(const ::file::path & path1)
+//const_char_pointer  find_last_slash(const ::file::path & path1)
 //{
 //
 //    const ::scoped_string & scopedstr = path1 + string_safe_length(path1) - 1;

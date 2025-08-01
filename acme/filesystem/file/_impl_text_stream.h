@@ -23,8 +23,8 @@ inline ::string ellipsis(const ::ansi_character * psz, character_count len)
 }
 
 
-//inline unsigned long long consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10)
-inline unsigned long long consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix)
+//inline unsigned long long consume_natural(const_char_pointer & psz, const ::ansi_character * pszBegin, int iRadix = 10)
+inline unsigned long long consume_natural(const_char_pointer & psz, const ::ansi_character * pszBegin, int iRadix)
 {
 
    char* endptr = nullptr;
@@ -52,8 +52,8 @@ inline unsigned long long consume_natural(const char*& psz, const ::ansi_charact
 }
 
 
-inline long long consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix)
-//inline long long consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix = 10)
+inline long long consume_integer(const_char_pointer  & psz, const ::ansi_character * pszBegin, int iRadix)
+//inline long long consume_integer(const_char_pointer  & psz, const ::ansi_character * pszBegin, int iRadix = 10)
 {
 
    char* endptr = nullptr;
@@ -81,7 +81,7 @@ inline long long consume_integer(const char * & psz, const ::ansi_character * ps
 }
 
 
-inline double consume_floating(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10)
+inline double consume_floating(const_char_pointer & psz, const ::ansi_character * pszBegin, int iRadix = 10)
 {
 
    char* endptr = nullptr;

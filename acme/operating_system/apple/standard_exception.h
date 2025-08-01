@@ -108,8 +108,8 @@ void *            m_psiginfo;
 unsigned int         code() const;
 void *               address() const;
 const void *    info() const;    // siginfo_t *
-const char *         name() const;
-const char *         description() const;
+const_char_pointer        name() const;
+const_char_pointer        description() const;
 #ifndef __ANDROID__
 const ::ucontext_t *   ucontext() const;
 #endif

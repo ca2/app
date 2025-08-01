@@ -728,11 +728,11 @@ namespace text
 //
 //      //bool bEof = false;
 //
-//      const char * s;
+//      const_char_pointer  s;
 //
 //      char * wr;
 //
-//      const char * rd;
+//      const_char_pointer  rd;
 //
 //      character_count l;
 //

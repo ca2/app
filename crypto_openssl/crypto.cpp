@@ -1011,7 +1011,7 @@ namespace crypto_openssl
 
       unsigned int md_len = 0;
 
-      HMAC(EVP_sha1(), strKey.c_str(), int(strKey.length()), (const unsigned char*)(const char*)strMessage, (size_t)strMessage.length(), (unsigned char*)result, &md_len);
+      HMAC(EVP_sha1(), strKey.c_str(), int(strKey.length()), (const unsigned char*)(const_char_pointer  )strMessage, (size_t)strMessage.length(), (unsigned char*)result, &md_len);
 
 #endif
 
@@ -1153,7 +1153,7 @@ namespace crypto_openssl
       X509* signer = nullptr;
       {
          string strSigner = file()->as_string(strSignerPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(const char*)strSigner, (int)strSigner.length());
+         BIO* pbio = BIO_new_mem_buf((void*)(const_char_pointer  )strSigner, (int)strSigner.length());
          //signer = PEM_read_bio_X509_AUX(pbio, nullptr, 0, nullptr);
          signer = PEM_read_bio_X509(pbio, nullptr, 0, nullptr);
          BIO_free(pbio);
@@ -1162,7 +1162,7 @@ namespace crypto_openssl
       EVP_PKEY* pkey;
       {
          string strKey = file()->as_string(strKeyPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(const char*)strKey, (int)strKey.length());
+         BIO* pbio = BIO_new_mem_buf((void*)(const_char_pointer  )strKey, (int)strKey.length());
          pkey = PEM_read_bio_PrivateKey(pbio, nullptr, nullptr, nullptr);
          BIO_free(pbio);
       }
@@ -1206,7 +1206,7 @@ namespace crypto_openssl
          }
       }
 
-      BIO* input = BIO_new_mem_buf((void*)(const char*)strSignature, (int)strSignature.length());
+      BIO* input = BIO_new_mem_buf((void*)(const_char_pointer  )strSignature, (int)strSignature.length());
 
       PKCS7* pkcs7 = PKCS7_sign(signer, pkey, pstack509, input, PKCS7_BINARY | PKCS7_DETACHED);
 

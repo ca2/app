@@ -48,7 +48,7 @@ namespace acme
 
       }
 
-      const char* pchEnd = ansi_chr(scopedstrFullString, chSep);
+      const_char_pointer  pchEnd = ansi_chr(scopedstrFullString, chSep);
 
 
       character_count nLen = (pchEnd == nullptr) ? ansi_len(scopedstrFullString) : (int)(pchEnd - pszFullString);

@@ -491,7 +491,7 @@ namespace nano2d
    }
 
 
-   void __font_face(::write_text::font * pfont, const char * font)
+   void __font_face(::write_text::font * pfont, const_char_pointer  font)
    {
 
       string strFont(font);

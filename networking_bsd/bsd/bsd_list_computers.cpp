@@ -7,7 +7,7 @@
 
 #if defined(__BSD__) || defined(MACOS)
 //
-//void arp_a(void *p, void(*callback)(void *p, void * addr, const char * ip_address, const char * host, const char * status));
+//void arp_a(void *p, void(*callback)(void *p, void * addr, const_char_pointer  ip_address, const_char_pointer  host, const_char_pointer  status));
 
 
 namespace networking_bsd
@@ -30,7 +30,7 @@ namespace networking_bsd
          
       }
 
-      static void callback(void *p, unsigned int uIp, const char * status)
+      static void callback(void *p, unsigned int uIp, const_char_pointer  status)
       {
       
          auto parpa = (arp_a *) p;
@@ -40,7 +40,7 @@ namespace networking_bsd
       }
    
       
-      void step(unsigned int uIp, const char * status)
+      void step(unsigned int uIp, const_char_pointer  status)
       {
          
          in_addr inaddr;
@@ -67,7 +67,7 @@ namespace networking_bsd
       
       //__defer_construct_new(callback.m_pitema);
 
-//      auto callback = [this, pitema](void * addr, const char * ip_address, const char * host, const char * status)
+//      auto callback = [this, pitema](void * addr, const_char_pointer  ip_address, const_char_pointer  host, const_char_pointer  status)
 //      {
 //         
 //         

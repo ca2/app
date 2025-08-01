@@ -39,14 +39,14 @@ CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < ba
 //wstring::wstring(const unsigned char* psz)
 //{
 //
-//   operator = ((const char*)psz);
+//   operator = ((const_char_pointer )psz);
 //
 //}
 //
 //wstring::wstring(const unsigned char* psz, character_count iSize)
 //{
 //
-//   operator = ((const char*)string(scopedstr, iSize));
+//   operator = ((const_char_pointer )string(scopedstr, iSize));
 //
 //}
 //

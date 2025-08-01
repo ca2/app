@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 
-FILE * FILE_open(const char *path, const char *attr, int iShare)
+FILE * FILE_open(const_char_pointer path, const_char_pointer attr, int iShare)
 {
 
 #if defined(WINDOWS)

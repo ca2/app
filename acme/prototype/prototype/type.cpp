@@ -4,14 +4,14 @@
 
 
 
-string cxxabi_demangle (const char* name);
+string cxxabi_demangle (const_char_pointer  name);
 
 
 #if defined(WINDOWS)
 
 
 
-string demangle(const char * psz)
+string demangle(const_char_pointer  psz)
 {
 
    if (psz[0] == 'c' &&
@@ -61,7 +61,7 @@ critical_section * g_pcsDemangle = nullptr;
 #include <cxxabi.h>
 
 
-string demangle(const char* name)
+string demangle(const_char_pointer  name)
 {
 
    int status = -4;
@@ -278,14 +278,14 @@ string demangle(const char* name)
 //}
 //
 //
-//const char * type_atom::name() const
+//const_char_pointer  type_atom::name() const
 //{
 //
 //   return id();
 //
 //}
 //
-//const char * type_atom::friendly_name() const
+//const_char_pointer  type_atom::friendly_name() const
 //{
 //
 //   return m_atomFriendly;

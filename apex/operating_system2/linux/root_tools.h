@@ -104,9 +104,9 @@ namespace VistaTools
    int_bool CLASS_DECL_APEX
    RunElevated(
    __in      oswindow   hwnd,
-   __in      const char * pszPath,
-   __in_opt   const char * pszParameters   = nullptr,
-   __in_opt   const char * pszDirectory   = nullptr,
+   __in      const_char_pointer  pszPath,
+   __in_opt   const_char_pointer  pszParameters   = nullptr,
+   __in_opt   const_char_pointer  pszDirectory   = nullptr,
    __out_opt   HANDLE *phProcess      = nullptr );
 
    /*

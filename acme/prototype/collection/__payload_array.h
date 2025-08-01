@@ -98,7 +98,7 @@ public:
    payload_array & operator = (const payload_array & payloada);
 
 
-   //void parse_network_payload(const char * & pszJson);
+   //void parse_network_payload(const_char_pointer  & pszJson);
    void parse_network_payload(::ansi_range & range);
    void find_network_payload_child(::ansi_range & range, const ::payload & payload);
 
@@ -148,7 +148,7 @@ public:
 
 
 
-//CLASS_DECL_ACME void var_array_skip_network_payload(const char *& pszJson);
+//CLASS_DECL_ACME void var_array_skip_network_payload(const_char_pointer & pszJson);
 CLASS_DECL_ACME void payload_array_skip_network_payload(::ansi_range & range);
 
 

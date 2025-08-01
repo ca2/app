@@ -445,7 +445,7 @@ namespace ftp
          {
             zero(m_szCode);
          }
-         const char * Value() const { return m_szCode; }
+         const_char_pointer  Value() const { return m_szCode; }
          bool Set(const ::scoped_string & scopedstrCode)
          {
             if( scopedstrCode.length()!=3 ||

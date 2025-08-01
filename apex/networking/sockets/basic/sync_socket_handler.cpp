@@ -168,7 +168,7 @@ namespace sockets
    }
 
 
-   void sync_socket_handler::write_payload_v1(const char * xml_payload, int iTimeout)
+   void sync_socket_handler::write_payload_v1(const_char_pointer  xml_payload, int iTimeout)
    {
       //if(iTimeout < 0)
       //   iTimeout = m_iDefaultTimeout;

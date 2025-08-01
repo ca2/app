@@ -33,7 +33,7 @@ int            get_utf8_char_length(const ::ansi_character * psz);
 string         get_utf8_char(const ::ansi_character * psz, const ::ansi_character * pszEnd);
 ::const_ansi_range get_utf8_char(::const_ansi_range & range);
 
-bool           get_utf8_char(string & strChar, const char *& psz, const ::ansi_character * pszEnd);
+bool           get_utf8_char(string & strChar, const_char_pointer & psz, const ::ansi_character * pszEnd);
 string         get_utf8_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, character_count i);
 string         utf8_next_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, character_count i = 0);
 string         utf8_previous_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, character_count i = 0);
@@ -411,7 +411,7 @@ void * unicode_char_bidi_names_non_usage_warning();
 
 
 int unicode_ref_tables();
-const char * unicode_get_category_name(int i);
+const_char_pointer  unicode_get_category_name(int i);
 
 
 //template < typename POINTER >
@@ -427,7 +427,7 @@ const char * unicode_get_category_name(int i);
 //}
 
 
-CLASS_DECL_ACME string demangle(const char * pszMangledName);
+CLASS_DECL_ACME string demangle(const_char_pointer  pszMangledName);
 
 
 CLASS_DECL_ACME void copy(::string & str, const subparticle & subparticle);

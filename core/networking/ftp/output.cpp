@@ -65,16 +65,16 @@ namespace ftp
 
       string strMessage;
 
-      strMessage.formatf(("%s ==> File \"%s\" (%d)"), strErrorMsg.c_str(), strFileName.c_str(), dwLineNr);
+      strMessage.formatf(("%s ==> File \"%s\" (%d)"),scopedstrErrorMsg.c_str(), scopedstrFileName.c_str(), dwLineNr);
 
       WriteLine(strMessage, "E");
 
    }
 
-   void output::WriteLine(const ::scoped_string & scopedstrLine, const string &  strStatus)
+   void output::WriteLine(const ::scoped_string & scopedstrLine, const ::scoped_string & scopedstrStatus)
    {
 
-      informationf("%s: %s", strStatus.c_str(), strLine.c_str());
+      informationf("%s: %s", scopedstrStatus.c_str(), scopedstrLine.c_str());
 
    }
 

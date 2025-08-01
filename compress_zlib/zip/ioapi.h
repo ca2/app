@@ -39,7 +39,7 @@
 extern "C" {
 #endif
 
-typedef voidpf (ZCALLBACK *open_file_func) OF((voidpf opaque, const char* filename, int mode));
+typedef voidpf (ZCALLBACK *open_file_func) OF((voidpf opaque, const_char_pointer  filename, int mode));
 typedef uptr  (ZCALLBACK *read_file_func) OF((voidpf opaque, voidpf stream, void * buf, uptr size));
 typedef uptr  (ZCALLBACK *write_file_func) OF((voidpf opaque, voidpf stream, const void * buf, uptr size));
 typedef long   (ZCALLBACK *tell_file_func) OF((voidpf opaque, voidpf stream));

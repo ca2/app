@@ -9,8 +9,8 @@
 //struct end_of_line_and_next_line
 //{
 //
-//   const char * end_of_line;
-//   const char * next_line;
+//   const_char_pointer  end_of_line;
+//   const_char_pointer  next_line;
 //
 //};
 
@@ -161,7 +161,7 @@ public:
 
 
 
-   //static inline  bool begins_ci_skip(const char *& psz, const ::scoped_string & scopedstrPrefix);
+   //static inline  bool begins_ci_skip(const_char_pointer & psz, const ::scoped_string & scopedstrPrefix);
    //static inline  struct ::end_of_line_and_next_line end_of_line_and_next_line(const ::scoped_string & scopedstr);
 
 //   bool replace_prefix(::string & str, const ::scoped_string & scopedstrPrefixReplacement, const ::scoped_string & scopedstrPrefix);

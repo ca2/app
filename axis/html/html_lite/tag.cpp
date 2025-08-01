@@ -74,9 +74,9 @@ unsigned int lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::s
    unsigned int            nRetVal = 0U,
                    nTemp = 0U;
 
-   const char *            pszBegin = &scopedstrString[iPos];
+   const_char_pointer           pszBegin = &scopedstrString[iPos];
 
-   const char *            pszEnd = nullptr;
+   const_char_pointer           pszEnd = nullptr;
 
 
    // skip leading white-space characters

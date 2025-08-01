@@ -2925,7 +2925,7 @@ namespace user
 
       //   }
 
-      //   string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
+      //   string strLine = string((const_char_pointer )&mem.get_data()[iPos], iStrLen);
 
       //   //if (strLine != m_plinea->lines[i])
       //   if (strLine != m_straLines[i])
@@ -3383,7 +3383,7 @@ namespace user
       //
       //         }
       //
-      //         string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
+      //         string strLine = string((const_char_pointer )&mem.get_data()[iPos], iStrLen);
       //
       //         string_array & straLines = m_straLines;
       //
@@ -3833,7 +3833,7 @@ namespace user
 
          auto p = pszData + iPos;
 
-         string strLine = string((const char *)p, iStrLen);
+         string strLine = string((const_char_pointer )p, iStrLen);
 
          //string_array & straLines = m_straLines;
 
@@ -4204,7 +4204,7 @@ namespace user
    //
    //         }
    //
-   //         string strLine = string((const char *)&mem.data()[iPos], iStrLen);
+   //         string strLine = string((const_char_pointer )&mem.data()[iPos], iStrLen);
    //
    //         //if (strLine != m_plinea->lines[i])
    //         if (strLine != m_straLines[i])
@@ -4570,7 +4570,7 @@ namespace user
    //
    ////   }
    //
-   ////   string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
+   ////   string strLine = string((const_char_pointer )&mem.get_data()[iPos], iStrLen);
    //
    ////   //if (strLine != m_plinea->lines[i])
    ////   if (strLine != m_straLines[i])
@@ -6026,7 +6026,7 @@ namespace user
 
             get_text(str, iSelEnd, -1);
 
-            const char * pdata = str.c_str();
+            const_char_pointer  pdata = str.c_str();
 
             const ::ansi_character * psz = pdata;
 
@@ -6092,7 +6092,7 @@ namespace user
 
             const ::ansi_character * psz = str.c_str() + iSelBeg;
 
-            const char * pdata = psz;
+            const_char_pointer  pdata = psz;
 
             for (character_count i = 0; i < beforeLength; i++)
             {
@@ -6158,7 +6158,7 @@ namespace user
    }
 
 
-   inline const char * _001DeferEOLPrior(const ::ansi_character * psz, const ::ansi_character * pszBeg)
+   inline const_char_pointer  _001DeferEOLPrior(const ::ansi_character * psz, const ::ansi_character * pszBeg)
    {
 
       psz--;
@@ -6204,7 +6204,7 @@ namespace user
    }
 
 
-   inline const char * _001UnicodePrior(const ::ansi_character * psz, const ::ansi_character * pszBeg)
+   inline const_char_pointer  _001UnicodePrior(const ::ansi_character * psz, const ::ansi_character * pszBeg)
    {
 
       auto pszTry = _001DeferEOLPrior(psz, pszBeg);
@@ -6221,7 +6221,7 @@ namespace user
    }
 
 
-   inline const char * _001DeferEOLNext(const ::ansi_character * psz)
+   inline const_char_pointer  _001DeferEOLNext(const ::ansi_character * psz)
    {
 
       if (!*psz)
@@ -6262,7 +6262,7 @@ namespace user
    }
 
 
-   inline const char * _001UnicodeNext(const ::ansi_character * psz, int * piError)
+   inline const_char_pointer  _001UnicodeNext(const ::ansi_character * psz, int * piError)
    {
 
       if (!*psz)
@@ -10863,7 +10863,7 @@ namespace user
 
          m_ptree->m_peditfile->seek(m_iaLineIndex[iLine], ::e_seek_set);
 
-         m_ptree->m_peditfile->read(scopedstr, iLineLen);
+         m_ptree->m_peditfile->read(psz, iLineLen);
 
          strLine.release_buffer(iLineLen);
 
@@ -10957,9 +10957,9 @@ namespace user
 
             auto eolOldLen = as_length(eolOld);
 
-            const char * pszLine;
+            const_char_pointer  pszLine;
 
-            const char * pszEOLInsert;
+            const_char_pointer  pszEOLInsert;
 
             enum_line eolInsert;
 
@@ -10976,7 +10976,7 @@ namespace user
 
                   pszEOLInsert = straLinesHere[iLine].find_first_character_in("\r\n");
 
-                  eolInsert = as_enum_line(scopedstrEOLInsert);
+                  eolInsert = as_enum_line(pszEOLInsert);
 
                   //auto eolNew = maximum(m_eline, eolInsert);
 
@@ -10984,7 +10984,7 @@ namespace user
 
                   eolNewLen = as_length(eolNew);
 
-                  lenWithEOL = (scopedstrEOLInsert - pszLine) + eolNewLen;
+                  lenWithEOL = (pszEOLInsert - pszLine) + eolNewLen;
 
                };
 

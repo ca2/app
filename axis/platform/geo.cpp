@@ -724,7 +724,7 @@ namespace geo
 
       }
 
-      const char * pszId =
+      const_char_pointer  pszId =
 #include "sensitive/openweather.txt"
          ;
 

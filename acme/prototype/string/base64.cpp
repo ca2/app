@@ -160,7 +160,7 @@ static int _base64_decode_char(char c)
    return -1;
 }
 
-static void* _base64_decode(const char* s, int length, int* data_len)
+static void* _base64_decode(const_char_pointer  s, int length, int* data_len)
 {
    int n[4];
    unsigned char* q;
@@ -238,7 +238,7 @@ out_free:
    return nullptr;
 }
 
-CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, unsigned char** dec_data, int* res_length)
+CLASS_DECL_ACME void _crypto_base64_decode(const_char_pointer  enc_data, int length, unsigned char** dec_data, int* res_length)
 {
    *dec_data = (unsigned char *) _base64_decode(enc_data, length, res_length);
 }

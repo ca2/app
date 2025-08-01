@@ -49,7 +49,7 @@ namespace nano2d
 			int image, float alpha);
 
 
-		virtual void font_face(const char * font);
+		virtual void font_face(const_char_pointer  font);
 		virtual void font_size(float size);
       virtual void font_blur(float blur);
 		virtual void fill_color(::nano2d::color color);
@@ -68,9 +68,9 @@ namespace nano2d
 
 
 
-		virtual float text(float x, float y, const char * string, const char * end);
-		virtual int text_glyph_positions(float x, float y, const char * string, const char * end, ::nano2d::glyphPosition * positions, int maxPositions);
-		virtual float text_bounds(float x, float y, const char * string, const char * end, float * bounds);
+		virtual float text(float x, float y, const_char_pointer  string, const_char_pointer  end);
+		virtual int text_glyph_positions(float x, float y, const_char_pointer  string, const_char_pointer  end, ::nano2d::glyphPosition * positions, int maxPositions);
+		virtual float text_bounds(float x, float y, const_char_pointer  string, const_char_pointer  end, float * bounds);
       virtual void text_line_height(float lineHeight);
 
 
@@ -84,7 +84,7 @@ namespace nano2d
 		virtual void arc(float cx, float cy, float r, float a0, float a1, int dir);
 
 
-		virtual int create_image(const char * filename, int imageFlags);
+		virtual int create_image(const_char_pointer  filename, int imageFlags);
 		virtual int create_image_rgba(int w, int h, int imageFlags, const void * data, int iScan);
 		virtual void image_size(int image, int * w, int * h);
 

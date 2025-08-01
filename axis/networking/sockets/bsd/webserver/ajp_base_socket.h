@@ -55,7 +55,7 @@ namespace sockets
       virtual void OnRawData(char *buf, memsize sz) override;
 
       virtual void OnHeader( short atom, short len ) = 0;
-      virtual void OnPacket( const char *buf, memsize sz ) = 0;
+      virtual void OnPacket( const_char_pointer buf, memsize sz ) = 0;
 
    protected:
       uchar get_byte(const ::string &buf, int& ptr);

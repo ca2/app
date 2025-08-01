@@ -99,10 +99,10 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 
 
 
-//const char * br_init_get_symbol();
+//const_char_pointer  br_init_get_symbol();
 //
 //
-//const char * g_pszAppId = nullptr;
+//const_char_pointer  g_pszAppId = nullptr;
 //
 //
 //void executable_set_app_id(const ::scoped_string & scopedstrAppId)
@@ -113,7 +113,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //}
 //
 //
-//const char * executable_get_app_id()
+//const_char_pointer  executable_get_app_id()
 //{
 //
 //
@@ -1872,10 +1872,10 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 ////
 ////
-////static const char * g_pszCubeAppId = nullptr;
+////static const_char_pointer  g_pszCubeAppId = nullptr;
 ////
 ////
-////const char * get_cube_app_id()
+////const_char_pointer  get_cube_app_id()
 ////{
 ////
 ////   return g_pszCubeAppId;
@@ -1918,7 +1918,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //#if !defined(WINDOWS)
 //
 //
-//::string quote_if_has_space(const char *psz)
+//::string quote_if_has_space(const_char_pointer psz)
 //{
 //
 //   if(strchr(scopedstr, ' ') != nullptr)

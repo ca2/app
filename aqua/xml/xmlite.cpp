@@ -45,11 +45,11 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   void _tcsecpy(char * psz,int escape, const char * srt, const char * end)
+   void _tcsecpy(char * psz,int escape, const_char_pointer  srt, const_char_pointer  end)
    {
-      const char * pch = srt;
+      const_char_pointer  pch = srt;
       if(end == nullptr) end = (char *)sizeof(long);
-      const char * prev_escape = nullptr;
+      const_char_pointer  prev_escape = nullptr;
       while(pch && *pch && pch < end)
       {
          if(escape != 0 && *pch == escape && prev_escape == nullptr)
@@ -122,7 +122,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //int _tcsenicmp(const ::ansi_character * psz,const char * str,character_count len,int escape)
+   //int _tcsenicmp(const ::ansi_character * psz,const_char_pointer  str,character_count len,int escape)
    //{
    //   char * pch = (char *)psz;
    //   char * prev_escape = nullptr;
@@ -160,7 +160,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //char * _tcsenistr(const ::ansi_character * psz,const char * str,character_count len,int escape)
+   //char * _tcsenistr(const ::ansi_character * psz,const_char_pointer  str,character_count len,int escape)
    //{
    //   char * pch = (char *)psz;
    //   char * prev_escape = nullptr;
@@ -191,7 +191,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   //char * _tcseistr(const ::ansi_character * psz,const char * str,int escape)
+   //char * _tcseistr(const ::ansi_character * psz,const_char_pointer  str,int escape)
    //{
    //   character_count len = strlen(str);
    //   return _tcsenistr(scopedstr,str,len,escape);

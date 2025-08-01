@@ -73,7 +73,7 @@ namespace platform
       ::int_sz *                                      m_pintstringLanguageResourceMap;
       int                                             m_iMatterFromHttpCache;
 
-      const char* m_pszMain;
+      const_char_pointer  m_pszMain;
 
       bool                                                  m_bAcmeSystemDarkMode;
       class ::time                                          m_timeDarkMode;

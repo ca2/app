@@ -1477,7 +1477,7 @@ namespace datetime
       ::property_set set;
       bool bAdd = false;
       bool bMinus = false;
-      const char * psz = str.c_str();
+      const_char_pointer  psz = str.c_str();
       string strNumber;
       string strText1;
       string strChar;

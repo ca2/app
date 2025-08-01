@@ -57,21 +57,21 @@
 //      virtual void _001OnFileNew();
 //
 //      // Loads a cursor resource.
-//      HCURSOR LoadCursor(const char * lpszResourceName) const;
+//      HCURSOR LoadCursor(const_char_pointer  lpszResourceName) const;
 //      HCURSOR LoadCursor(unsigned int nIDResource) const;
 //
 //      // Loads a stock cursor resource; for for IDC_* values.
-//      HCURSOR LoadStandardCursor(const char * lpszCursorName) const;
+//      HCURSOR LoadStandardCursor(const_char_pointer  lpszCursorName) const;
 //
 //      // Loads an OEM cursor; for all OCR_* values.
 //      HCURSOR LoadOEMCursor(unsigned int nIDCursor) const;
 //
 //      // Loads an icon resource.
-//      HICON LoadIcon(const char * lpszResourceName) const;
+//      HICON LoadIcon(const_char_pointer  lpszResourceName) const;
 //      HICON LoadIcon(unsigned int nIDResource) const;
 //
 //      // Loads an icon resource; for stock IDI_ values.
-//      HICON LoadStandardIcon(const char * lpszIconName) const;
+//      HICON LoadStandardIcon(const_char_pointer  lpszIconName) const;
 //
 //      // Loads an OEM icon resource; for all OIC_* values.
 //      HICON LoadOEMIcon(unsigned int nIDIcon) const;
@@ -194,8 +194,8 @@
 //      //::pointer<::user::interaction>window_from_os_data_permanent(void * pdata);
 //
 //
-//      //virtual ::pointer<::user::interaction>FindWindow(const char * lpszClassName, const char * lpszWindowName);
-//      //virtual ::pointer<::user::interaction>FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+//      //virtual ::pointer<::user::interaction>FindWindow(const_char_pointer  lpszClassName, const_char_pointer  lpszWindowName);
+//      //virtual ::pointer<::user::interaction>FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const_char_pointer  lpszClass, const_char_pointer  lpszWindow);
 //
 //      virtual void get_time(struct timeval *p);
 //      virtual void set_env_var(const string & payload,const string & value);

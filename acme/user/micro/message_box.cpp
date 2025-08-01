@@ -558,7 +558,7 @@ namespace micro
 
 #ifdef MACOS
 
-   enum_dialog_result ns_alert_box(const char* pszMessage, const char* pszTitle, enum_message_box emessagebox);
+   enum_dialog_result ns_alert_box(const_char_pointer  pszMessage, const_char_pointer  pszTitle, enum_message_box emessagebox);
 
 #endif
 

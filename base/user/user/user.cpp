@@ -586,15 +586,15 @@ namespace base
 #ifdef WINDOWS_DESKTOP
 
 
-   CLASS_DECL_BASE::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::string & pClassName, const ::string & lpWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
+   CLASS_DECL_BASE::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::scoped_string & scopedstrClassName, const ::string & lpWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
 
 
-   CLASS_DECL_BASE::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::string & pClassName, const ::string & pWindowName, unsigned int uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
+   CLASS_DECL_BASE::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
    {
 
       __UNREFERENCED_PARAMETER(dwExStyle);
-      __UNREFERENCED_PARAMETER(pClassName);
-      __UNREFERENCED_PARAMETER(pWindowName);
+      __UNREFERENCED_PARAMETER(scopedstrClassName);
+      __UNREFERENCED_PARAMETER(scopedstrWindowName);
       __UNREFERENCED_PARAMETER(uStyle);
       __UNREFERENCED_PARAMETER(hInstance);
       __UNREFERENCED_PARAMETER(pParam);

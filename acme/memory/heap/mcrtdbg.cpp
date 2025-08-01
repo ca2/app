@@ -321,7 +321,7 @@
 //}
 //
 //
-//void * aligned_memory_allocate_debug(memsize size, int nBlockUse, const char * szFileName, int nLine, memsize align)
+//void * aligned_memory_allocate_debug(memsize size, int nBlockUse, const_char_pointer  szFileName, int nLine, memsize align)
 //{
 //
 //   void * p;
@@ -386,7 +386,7 @@
 //}
 //
 //
-//void * unaligned_memory_allocate_debug(memsize size, int nBlockUse, const char * szFileName, int nLine)
+//void * unaligned_memory_allocate_debug(memsize size, int nBlockUse, const_char_pointer  szFileName, int nLine)
 //{
 //
 //   void * p;
@@ -499,7 +499,7 @@
 //}
 //
 //
-//void * _memory_allocate_debug(memsize nSize, int nBlockUse, const char * szFileName, int nLine)
+//void * _memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer  szFileName, int nLine)
 //{
 //#ifdef MCHECK
 //   return ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
@@ -520,7 +520,7 @@
 //#endif
 //
 //
-//void * memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const char * szFileName, int nLine)
+//void * memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const_char_pointer  szFileName, int nLine)
 //{
 //
 //#if defined(__VLD)
@@ -901,7 +901,7 @@
 //}
 //
 //
-//void * aligned_memory_allocate_debug(memsize size, int nBlockUse, const char * szFileName, int nLine)
+//void * aligned_memory_allocate_debug(memsize size, int nBlockUse, const_char_pointer  szFileName, int nLine)
 //{
 //
 //   return system_heap_alloc(size);
@@ -909,7 +909,7 @@
 //}
 //
 //
-//void * unaligned_memory_allocate_debug(memsize size, int nBlockUse, const char * szFileName, int nLine)
+//void * unaligned_memory_allocate_debug(memsize size, int nBlockUse, const_char_pointer  szFileName, int nLine)
 //{
 //
 //   return system_heap_alloc(size);
@@ -933,7 +933,7 @@
 //}
 //
 //
-//void * _memory_allocate_debug(memsize nSize, int nBlockUse, const char * szFileName, int nLine)
+//void * _memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer  szFileName, int nLine)
 //{
 //
 //   return system_heap_alloc(nSize);
@@ -949,7 +949,7 @@
 //}
 //
 //
-//void * _memory_reallocate_debug(void * p, memsize size, int nBlockUse, const char * szFileName, int nLine)
+//void * _memory_reallocate_debug(void * p, memsize size, int nBlockUse, const_char_pointer  szFileName, int nLine)
 //{
 //
 //   return system_heap_realloc(pvoid, size);

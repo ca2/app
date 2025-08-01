@@ -38,7 +38,7 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 
 inline char file_path_separator(enum_path epath);
 
-inline const char * file_path_separator_sz(enum_path epath);
+inline const_char_pointer  file_path_separator_sz(enum_path epath);
 
 inline char file_path_other_separator(enum_path epath);
 
@@ -72,7 +72,7 @@ inline char file_path_separator(enum_path epath)
 }
 
 
-inline const char * file_path_separator_sz(enum_path epath)
+inline const_char_pointer  file_path_separator_sz(enum_path epath)
 {
 
 #ifdef WINDOWS

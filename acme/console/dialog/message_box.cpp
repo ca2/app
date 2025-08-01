@@ -114,7 +114,7 @@ namespace console
 
       }
 
-      const char * pszAcceptedAnswer = "";
+      const_char_pointer  pszAcceptedAnswer = "";
 
       if (etype == e_message_box_yes_no_cancel)
       {

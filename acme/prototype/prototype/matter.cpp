@@ -322,7 +322,7 @@ bool matter::thread_is_running() const
 }
 
 
-const char * matter::get_task_tag()
+const_char_pointer  matter::get_task_tag()
 {
 
    return nullptr;

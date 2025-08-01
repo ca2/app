@@ -24,7 +24,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
       }
       ASSERT(hCommands != nullptr);
 
-      const ::scoped_string & scopedstrCommands = (const char *)::GlobalLock(hCommands);
+      const ::scoped_string & scopedstrCommands = (const_char_pointer )::GlobalLock(hCommands);
 
       ENSURE_THROW(scopedstrCommands != nullptr, ::windows_definition::ThrowMemoryException() );
 

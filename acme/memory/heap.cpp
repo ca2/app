@@ -81,7 +81,7 @@ namespace heap
    }
 
 
-   void * heap::allocate_debug(memsize size, int nBlockUse, const char * pszFile, int iLine, const char * pszAnnotation)
+   void * heap::allocate_debug(memsize size, int nBlockUse, const_char_pointer  pszFile, int iLine, const_char_pointer  pszAnnotation)
    {
 
       throw ::interface_only();
@@ -94,7 +94,7 @@ namespace heap
 
    //Created by camilo on 2021-07-24 01:06 BRT <3ThomasBorregaardSorensen!!
 //#include "__aligned_memory_allocate.h"
-   void * heap::aligned_allocate(memsize size, memsize * psizeAllocated, memsize align, const char * pszAnnotation)
+   void * heap::aligned_allocate(memsize size, memsize * psizeAllocated, memsize align, const_char_pointer  pszAnnotation)
    {
 
       throw ::interface_only();
@@ -104,7 +104,7 @@ namespace heap
     }
 
 
-   void * heap::aligned_allocate_debug(memsize nSize, memsize * psizeAllocated, int nBlockUse, const char * szFileName, int nLine, memsize align, const char * pszAnnotation)
+   void * heap::aligned_allocate_debug(memsize nSize, memsize * psizeAllocated, int nBlockUse, const_char_pointer  szFileName, int nLine, memsize align, const_char_pointer  pszAnnotation)
    {
 
       throw ::interface_only();
@@ -117,7 +117,7 @@ namespace heap
 
    //Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSorensen!!
 //#include "__unaligned_memory_allocate.h"
-    void * heap::unaligned_allocate(memsize size, memsize * psizeAllocated, const char * pszAnnotation)
+    void * heap::unaligned_allocate(memsize size, memsize * psizeAllocated, const_char_pointer  pszAnnotation)
     {
 
        throw ::interface_only();
@@ -129,7 +129,7 @@ namespace heap
 
   
 
-    void * heap::unaligned_allocate_debug(memsize nSize, memsize * psizeAllocated, int nBlockUse, const char * szFileName, int nLine, const char * pszAnnotation)
+    void * heap::unaligned_allocate_debug(memsize nSize, memsize * psizeAllocated, int nBlockUse, const_char_pointer  szFileName, int nLine, const_char_pointer  pszAnnotation)
     {
 
        throw ::interface_only();
@@ -139,7 +139,7 @@ namespace heap
 
     }
 
-    void * heap::count_allocate(::collection::count count, memsize size, const char * pszAnnotation)
+    void * heap::count_allocate(::collection::count count, memsize size, const_char_pointer  pszAnnotation)
     {
 
        throw ::interface_only();
@@ -155,7 +155,7 @@ namespace heap
 #if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)
 
 
-    void * heap::allocate(memsize size, memsize * psizeAllocated, const char * pszAnnotation)
+    void * heap::allocate(memsize size, memsize * psizeAllocated, const_char_pointer  pszAnnotation)
     {
 
        throw ::interface_only();
@@ -166,7 +166,7 @@ namespace heap
 
 
 
-    void * heap::reallocate(void * p, memsize nSize, const char * pszAnnotation)
+    void * heap::reallocate(void * p, memsize nSize, const_char_pointer  pszAnnotation)
     {
 
        throw ::interface_only();
@@ -199,7 +199,7 @@ namespace heap
 #endif
 
 
-    //void * heap::allocate_debug(memsize nSize, int nBlockUse, const char * szFileName, int nLine)
+    //void * heap::allocate_debug(memsize nSize, int nBlockUse, const_char_pointer  szFileName, int nLine)
     //{
 
 
@@ -210,7 +210,7 @@ namespace heap
     //}
 
 
-    void * heap::reallocate_debug(void * p, memsize nSize, int nBlockUse, const char * szFileName, int nLine, const char * pszAnnotation)
+    void * heap::reallocate_debug(void * p, memsize nSize, int nBlockUse, const_char_pointer  szFileName, int nLine, const_char_pointer  pszAnnotation)
     {
 
        throw ::interface_only();
@@ -244,7 +244,7 @@ namespace heap
 
 
 //typedef DWORD64[64]
-//::collection::count get_mem_info2(int ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], long long ** ppiStack, int ** ppiLine, long long ** ppiSize)
+//::collection::count get_mem_info2(int ** ppiUse, const_char_pointer ** ppszFile, DWORD64 ** ppuiStack[64], long long ** ppiStack, int ** ppiLine, long long ** ppiSize)
 //{
 //
 //#ifndef MEMDLEAK
@@ -270,7 +270,7 @@ namespace heap
 //
 //
 //   int * piUse = (int *)malloc(sizeof(int) * ca);
-//   const char ** pszFile = (const char **)malloc(sizeof(const char *) * ca);
+//   const_char_pointer * pszFile = (const_char_pointer *)malloc(sizeof(const_char_pointer ) * ca);
 //   DWORD64 ** puiStack[64] = (DWORD64 **[64])malloc(sizeof(DWORD64[64]) * ca);
 //   long long * piStack = (long long *)malloc(sizeof(long long) * ca);
 //   int * piLine = (int *)malloc(sizeof(int) * ca);

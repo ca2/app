@@ -27,7 +27,7 @@ struct int_sz
 {
 
    int                m_i;
-   const char *         m_psz;
+   const_char_pointer        m_psz;
 
 };
 

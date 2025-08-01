@@ -1920,11 +1920,11 @@ namespace user
 
                      _001GetLayoutText(strText);
 
-                     const char * psz = strText.c_str();
+                     const_char_pointer  psz = strText.c_str();
 
-                     const char * end = &psz[m_iSelEnd];
+                     const_char_pointer  end = &psz[m_iSelEnd];
 
-                     const char * inc = unicode_next(end);
+                     const_char_pointer  inc = unicode_next(end);
 
                      m_iSelEnd += inc - end;
 
@@ -1984,9 +1984,9 @@ namespace user
 
                   const ::ansi_character * psz = strText.c_str();
 
-                  const char * end = &psz[m_iSelEnd];
+                  const_char_pointer  end = &psz[m_iSelEnd];
 
-                  const char * dec = unicode_prior(end, psz);
+                  const_char_pointer  dec = unicode_prior(end, psz);
 
                   m_iSelEnd -= end - dec;
 

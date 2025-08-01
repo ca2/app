@@ -114,7 +114,7 @@
 //void ns_app_terminate();
 // 0x00010000 NSWorkspaceLaunchAsync
 // 0x00080000 NSWorkspaceLaunchNewInstance
-void ns_launch_app(const ::scoped_string & scopedstr, const char ** argv, int iFlags);
+void ns_launch_app(const ::scoped_string & scopedstr, const_char_pointer * argv, int iFlags);
 #endif
 
 #if defined(LINUX)

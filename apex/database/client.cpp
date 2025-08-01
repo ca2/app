@@ -201,7 +201,7 @@ namespace database
 
       strKey = dataproperty.atom().as_string();
 
-      const char * pszKey = strKey.c_str();
+      const_char_pointer  pszKey = strKey.c_str();
 
       return strKey;
 

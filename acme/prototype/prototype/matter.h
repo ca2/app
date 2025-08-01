@@ -121,7 +121,7 @@ public:
 
 
    virtual ::task * get_task();
-   virtual const char * get_task_tag();
+   virtual const_char_pointer  get_task_tag();
    //virtual ::collection::index task_add(::task* pthread);
    virtual void task_erase(::task* pthread);
 

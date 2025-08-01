@@ -8,7 +8,7 @@
 ::system_setup * system_setup::s_psetupList = nullptr;
 
 
-system_setup::system_setup(::system_setup::enum_flag eflag, const char * pszName) :
+system_setup::system_setup(::system_setup::enum_flag eflag, const_char_pointer  pszName) :
    m_pfnFactory(nullptr),
    m_pszName(pszName),
    m_eflag(eflag)
@@ -18,7 +18,7 @@ system_setup::system_setup(::system_setup::enum_flag eflag, const char * pszName
 
 }
 
-system_setup::system_setup(PFN_factory pfnFactory, const char * pszName) :
+system_setup::system_setup(PFN_factory pfnFactory, const_char_pointer  pszName) :
    m_pfnFactory(pfnFactory),
    m_pszName(pszName),
    m_eflag(flag_factory)
@@ -28,7 +28,7 @@ system_setup::system_setup(PFN_factory pfnFactory, const char * pszName) :
 
 }
 
-//system_setup::system_setup(const char * lpszName, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication) :
+//system_setup::system_setup(const_char_pointer  lpszName, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication) :
 //   m_pszName(lpszName),
 //   m_pfnNewAuraApplication(pfnNewAuraApplication),
 //   m_pfnNewAuraLibrary(nullptr),
@@ -40,7 +40,7 @@ system_setup::system_setup(PFN_factory pfnFactory, const char * pszName) :
 //}
 //
 //
-//system_setup::system_setup(const char * lpszName, PFN_NEW_APEX_LIBRARY pfnNewLibrary):
+//system_setup::system_setup(const_char_pointer  lpszName, PFN_NEW_APEX_LIBRARY pfnNewLibrary):
 //   m_pszName(lpszName),
 //   m_pfnNewAuraApplication(nullptr),
 //   m_pfnNewAuraLibrary(pfnNewLibrary),
@@ -62,7 +62,7 @@ void system_setup::construct()
 }
 
 
-system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const char * pszName)
+system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const_char_pointer  pszName)
 {
 
    auto psetup = s_psetupList;
@@ -134,7 +134,7 @@ CLASS_DECL_ACME ::string get_library_component(const ::scoped_string & scopedstr
 }
 
 
-PFN_factory system_setup::get_factory_function(const char * pszName)
+PFN_factory system_setup::get_factory_function(const_char_pointer  pszName)
 {
 
    if (::is_empty(pszName))
@@ -198,7 +198,7 @@ PFN_factory system_setup::get_factory_function(const char * pszName)
 
 }
 
-system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const char * pszName)
+system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const_char_pointer  pszName)
 {
 
    auto psetup = s_psetupList;
@@ -223,7 +223,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const char
 
 }
 
-//::system_setup * system_setup::get(const char * lpszName)
+//::system_setup * system_setup::get(const_char_pointer  lpszName)
 //{
 //
 //   if(s_papp == nullptr)

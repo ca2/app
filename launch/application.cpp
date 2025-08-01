@@ -201,7 +201,7 @@ namespace app_launch
    }
 
 
-   // void application::log_system(const char * pszCommand)
+   // void application::log_system(const_char_pointer  pszCommand)
    // {
    //
    // printf("%s\n", pszCommand);
@@ -295,7 +295,7 @@ namespace app_launch
    }
 
 
-   // bool application::check_http_ok(const char * pszUrl)
+   // bool application::check_http_ok(const_char_pointer  pszUrl)
    // {
    //
    // bool bOk = false;
@@ -637,7 +637,7 @@ namespace app_launch
 } // namespace app_launch
 
 
-//    // void application::log_system(const char * pszCommand)
+//    // void application::log_system(const_char_pointer  pszCommand)
 //    // {
 //    //
 //    // printf("%s\n", pszCommand);
@@ -713,7 +713,7 @@ namespace app_launch
 // }
 
 
-// bool application::check_http_ok(const char * pszUrl)
+// bool application::check_http_ok(const_char_pointer  pszUrl)
 // {
 //
 // bool bOk = false;
@@ -762,7 +762,7 @@ namespace app_launch
 //    {
 //       application.run();
 //    }
-//    catch(const char * psz)
+//    catch(const_char_pointer  psz)
 //    {
 //
 //    fprintf(stderr, psz, 1, strlen(scopedstr));
@@ -787,7 +787,7 @@ namespace app_launch
 //#include <memory.h>
 //
 //
-//         bool wget_check_http_ok(const char * pszUrl)
+//         bool wget_check_http_ok(const_char_pointer  pszUrl)
 //         {
 //
 //
@@ -821,7 +821,7 @@ namespace app_launch
 //#include <memory.h>
 //
 //
-//         bool wget_check_http_ok(const char * pszUrl)
+//         bool wget_check_http_ok(const_char_pointer  pszUrl)
 //         {
 //
 //
@@ -995,7 +995,7 @@ namespace app_launch
 // }
 
 
-// char * get_command_output(const char * pszCommand)
+// char * get_command_output(const_char_pointer  pszCommand)
 // {
 //
 //    auto ptmpname = start_temporary_file_name();

@@ -22,7 +22,7 @@
 //   inline path path::sibling(const ::scoped_string & scopedstr) const { return { ::file_path_folder(*this) + sep() + ::sz::trim_left_path_sep(str), m_epath }; }
 //   inline path path::sibling(const ::scoped_string & scopedstr) const { return { ::file_path_folder(*this) + sep() + ::sz::trim_left_path_sep(scopedstr), m_epath }; }
 //   inline string path::extension() const { return &m_pdata[find_skip_or_length('.', rear_find(sep()) + 1)]; }
-//   inline string path::final_extension() const { return file_path_final_extension(operator const char * ()); }
+//   inline string path::final_extension() const { return file_path_final_extension(operator const_char_pointer  ()); }
 //   inline patha path::ascendants_path() const { patha patha; return ascendants_path(patha); }
 //   inline string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
 //   //   inline path path::folder() const { return ::file_path_folder(*this); }
@@ -583,7 +583,7 @@
 
 
 // template < class ARRAY >
-// bool file_put_array(const ::string & path, ARRAY & a, ::aura::application * papp)
+// bool file_put_array(const ::scoped_string & scopedstrPath, ARRAY & a, ::aura::application * papp)
 // {
 
 
@@ -640,7 +640,7 @@
 
 
 // template < class ARRAY >
-// bool file_as_array(ARRAY & a, const ::string & path, ::aura::application * papp)
+// bool file_as_array(ARRAY & a, const ::scoped_string & scopedstrPath, ::aura::application * papp)
 // {
 
 //   try
@@ -752,7 +752,7 @@
 //
 //
 //
-//inline const char * FormatArgument(const ::file::path & value) noexcept
+//inline const_char_pointer  FormatArgument(const ::file::path & value) noexcept
 //{
 //   return value.c_str();
 //}

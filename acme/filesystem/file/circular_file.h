@@ -51,7 +51,7 @@ namespace file
       /** total buffer length */
       filesize get_length() const;
       /** pointer to circular buffer beginning */
-      const char *GetStart();
+      const_char_pointer GetStart();
       /** return number of bytes from circular buffer beginning to buffer physical end */
       memsize GetL();
       /** return free space in buffer, number of bytes until buffer overrun */

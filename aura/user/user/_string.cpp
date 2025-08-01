@@ -10,7 +10,7 @@
 #define DO(e) case e: return MAKE_STRING(e)
 
 
-const char * as_psz(::experience::enum_frame eframe)
+const_char_pointer  as_psz(::experience::enum_frame eframe)
 {
 
    switch (eframe)

@@ -225,7 +225,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 
 
 
-//string normalize_path(const char * lpcszPath)
+//string normalize_path(const_char_pointer  lpcszPath)
 //{
 //
 //   if(lpcszPath == nullptr)
@@ -343,13 +343,13 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //CreateMutex(
 //    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,
 //    _In_ BOOL bInitialOwner,
-//    _In_opt_ const char * lpName
+//    _In_opt_ const_char_pointer  lpName
 //    )
 //{
 //   return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
 //}
 
-//CLASS_DECL_APEX char* getenv (const char* name)
+//CLASS_DECL_APEX char* getenv (const_char_pointer  name)
 //{
 //   return "";
 //}

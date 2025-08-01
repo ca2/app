@@ -38,7 +38,7 @@ namespace folder_zip
 
       bool locate_folder(const ::file::path & path) override;
 
-      bool locate(const ::function < bool(const char*) >& function) override;
+      bool locate(const ::function < bool(const_char_pointer  ) >& function) override;
 
       bool has_sub_folder(const ::file::path & pathFolder = nullptr) override;
 

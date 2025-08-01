@@ -146,7 +146,7 @@ class function_common_base
 {
 public:
 #if FUNCTION_DEBUGGING
-   const char * m_pszDebug;
+   const_char_pointer  m_pszDebug;
    long long m_iDebug;
 #endif
 };

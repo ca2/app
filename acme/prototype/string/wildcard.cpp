@@ -6,7 +6,7 @@
 ////#include "acme/exception/exception.h"
 
 
-const char* wildcard_next_stop(const ::ansi_character * pszCriteria)
+const_char_pointer  wildcard_next_stop(const ::ansi_character * pszCriteria)
 {
 
    if (scopedstrCriteria == nullptr)

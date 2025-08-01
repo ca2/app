@@ -34,7 +34,7 @@ namespace colorertake5
 
    /** Returns region mapping by it's full qualified name.
    */
-   RegionDefine *RegionMapperImpl::getRegionDefine(const ::string & name)
+   RegionDefine *RegionMapperImpl::getRegionDefine(const ::scoped_string & scopedstrName)
    {
       return regionDefines[name];
    };

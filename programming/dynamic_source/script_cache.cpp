@@ -73,17 +73,17 @@ namespace dynamic_source
 
       pscript->m_pmanager = m_pmanager;
 
-      pscript->m_strName = strName;
+      pscript->m_strName = scopedstrName;
 
       return ::transfer(pscript);
 
    }
 
 
-   script * script_cache::get(const ::string & lpcszName)
+   script * script_cache::get(const ::scoped_string & scopedstrName)
    {
 
-      string strName(lpcszName);
+      string strName(scopedstrName);
 
 #ifdef WINDOWS
 
@@ -109,10 +109,10 @@ namespace dynamic_source
    }
 
 
-   script * script_cache::register_script(const ::string & lpcszName, script * pscript)
+   script * script_cache::register_script(const ::scoped_string & scopedstrName, script * pscript)
    {
 
-      string strName(lpcszName);
+      string strName(scopedstrName);
 
 #ifdef WINDOWS
 
@@ -142,17 +142,17 @@ namespace dynamic_source
    }
 
 
-   ::pointer<script_instance>script_cache::create_instance(const ::string & lpcszName, ::pointer<script> & pscript)
+   ::pointer<script_instance>script_cache::create_instance(const ::scoped_string & scopedstrName, ::pointer<script> & pscript)
    {
 
       pscript = nullptr;
 
-      if(string_begins(lpcszName, "netnode://"))
+      if(string_begins(scopedstrName, "netnode://"))
       {
          
          single_lock synchronouslock(synchronization(), true);
 
-         pscript  = get(lpcszName);
+         pscript  = get(scopedstrName);
 
          synchronouslock.unlock();
 
@@ -160,14 +160,14 @@ namespace dynamic_source
 
       }
 
-      string strName(lpcszName);
+      string strName(scopedstrName);
       
-      strName = m_pmanager->real_path(lpcszName);
+      strName = m_pmanager->real_path(scopedstrName);
       
       if (strName.is_empty())
       {
 
-         strName = m_pmanager->real_path(string(lpcszName) + ".ds");
+         strName = m_pmanager->real_path(string(scopedstrName) + ".ds");
 
       }
       
@@ -189,7 +189,7 @@ namespace dynamic_source
       if (!slScript._wait(5_s))
       {
          
-         throw ::heating_up_exception("Compiling script " + lpcszName);
+         throw ::heating_up_exception("Compiling script " + scopedstrName);
 
       }
 

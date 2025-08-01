@@ -11,7 +11,7 @@
 
 //CLASS_DECL_APEX HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
 
-const char * get_cube_app_id();
+const_char_pointer  get_cube_app_id();
 
 
 

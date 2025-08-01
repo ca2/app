@@ -147,8 +147,8 @@ namespace httpd
    //{
    //   struct tm tp;
    //   posix_time t;
-   //   const char * days[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
-   //   const char * months[] = { "Jan","Feb","Mar","Apr","May","Jun",
+   //   const_char_pointer  days[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
+   //   const_char_pointer  months[] = { "Jan","Feb","Mar","Apr","May","Jun",
    //                            "Jul","Aug","Sep","Oct","Nov","Dec"
    //   };
    //   int i;

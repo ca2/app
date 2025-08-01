@@ -212,7 +212,7 @@ public:
 //   inline const unsigned char * end() const { return m_memory.end(); }
 //   inline unsigned char * end() { return m_memory.end(); }
 
-   //inline const char * c_str() const { return (const char*)data(); }
+   //inline const_char_pointer  c_str() const { return (const_char_pointer )data(); }
    //inline char * sz() { return (char*)data(); }
 
    ::block & block() { return *this; }
@@ -313,7 +313,7 @@ public:
    string to_base64(memsize iStart = 0, memsize size = -1);
    void from_base64(const ::scoped_string & scopedstr);
 
-   inline void to_asc(string & str) const { str.assign((const char *) data(), size()); }
+   inline void to_asc(string & str) const { str.assign((const_char_pointer ) data(), size()); }
    inline string to_asc() const { string str; to_asc(str); return str; }
    inline void from_asc(const ::scoped_string & scopedstr) { assign(scopedstr.c_str(), scopedstr.size()); }
 

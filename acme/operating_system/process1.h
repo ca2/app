@@ -19,7 +19,7 @@
 
 
 
-//CLASS_DECL_ACME bool launch_command(::platform::system * psystem, const char * const pszCommand);
+//CLASS_DECL_ACME bool launch_command(::platform::system * psystem, const_char_pointer  const pszCommand);
 
 
 

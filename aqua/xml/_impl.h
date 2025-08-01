@@ -8,7 +8,7 @@
 //
 //
 //   template < class T >
-//   bool system::output(::particle * pparticle,const ::scoped_string & scopedstrOutput,T * p,bool (T::*lpfnOuput)(stream &,const char *),const char * lpszSource)
+//   bool system::output(::particle * pparticle,const ::scoped_string & scopedstrOutput,T * p,bool (T::*lpfnOuput)(stream &,const_char_pointer ),const_char_pointer  lpszSource)
 //   {
 //
 //      directory()->create(directory()->name(scopedstrOutput),papp);
@@ -26,7 +26,7 @@
 //
 //
 //   template < class T >
-//   bool system::output(::particle * pparticle,const ::scoped_string & scopedstrOutput,T * p,bool (T::*lpfnOuput)(stream &,stream &),const char * lpszInput)
+//   bool system::output(::particle * pparticle,const ::scoped_string & scopedstrOutput,T * p,bool (T::*lpfnOuput)(stream &,stream &),const_char_pointer  lpszInput)
 //   {
 //
 //      directory()->create(directory()->name(scopedstrOutput),papp);

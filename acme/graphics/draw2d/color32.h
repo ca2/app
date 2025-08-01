@@ -4,7 +4,7 @@
 #pragma once
 
 
-//COLOR32_T_ENDIANESS             (*(const char*)&(const int){0xAABBGGRR})
+//COLOR32_T_ENDIANESS             (*(const_char_pointer )&(const int){0xAABBGGRR})
 
 
 

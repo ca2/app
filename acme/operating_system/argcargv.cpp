@@ -67,7 +67,7 @@ string_array get_c_args_from_string(const ::scoped_string & scopedstr)
       else
       {
 
-         const char * pszValueStart = range.begin();
+         const_char_pointer  pszValueStart = range.begin();
 
          while (!unicode_is_whitespace(range.m_begin))
          {
@@ -161,7 +161,7 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
       else
       {
 
-         const char * pszValueStart = range.m_begin;
+         const_char_pointer  pszValueStart = range.m_begin;
 
          char chQuote = '\0';
 
@@ -292,7 +292,7 @@ string_array command_arguments_from_command_line(const ::scoped_string & scopeds
 
    ::string strCommandLine(scopedstrCommandLine);
 
-   const char * psz = strCommandLine.begin();
+   const_char_pointer  psz = strCommandLine.begin();
 
    string strChar;
 

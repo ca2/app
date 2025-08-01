@@ -279,7 +279,7 @@ namespace gpu_opengl
 
          pgpuapproach->defer_init_gpu_library();
 
-         auto pszVersion = (const char *)glGetString(GL_VERSION);
+         auto pszVersion = (const_char_pointer  )glGetString(GL_VERSION);
          //::e_status estatus = 
 
          ::string strVersion(scopedstrVersion);
@@ -467,7 +467,7 @@ namespace gpu_opengl
 
             m_pgpudevice->m_pgpuapproach->defer_init_gpu_library();
 
-            auto pszVersion = (const char *)glGetString(GL_VERSION);
+            auto pszVersion = (const_char_pointer  )glGetString(GL_VERSION);
             //::e_status estatus = 
 
             ::string strVersion(scopedstrVersion);

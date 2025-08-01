@@ -85,7 +85,7 @@ namespace user
 
    }
 
-   void tool_command::SetText(const ::string &)
+   void tool_command::SetText(const ::scoped_string & scopedstr)
    {
       // ignore it
    }

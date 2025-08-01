@@ -9676,7 +9676,7 @@ if(get_parent())
       while (pinteraction != nullptr)
       {
 
-         if (pinteraction->m_strName == strName)
+         if (pinteraction->m_strName == scopedstrName)
          {
 
             if (iItem < 0 || iItem == pinteraction->m_item.m_iItem)
@@ -18036,9 +18036,9 @@ if(get_parent())
 
       auto phyperlink = __create_new<::hyperlink>();
 
-      phyperlink->m_strLink = psz;
+      phyperlink->m_strLink = scopedstr;
 
-      phyperlink->m_strTarget = pszTarget;
+      phyperlink->m_strTarget = scopedstrTarget;
 
       phyperlink->run();
 

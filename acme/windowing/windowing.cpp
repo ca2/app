@@ -167,7 +167,7 @@ namespace acme
       }
 
 
-      void windowing::set_clipboard_text(const char* psz)
+      void windowing::set_clipboard_text(const_char_pointer  psz)
       {
 
 

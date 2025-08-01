@@ -40,7 +40,7 @@
 //{
 //
 //
-//   void * default_heap::allocate_debug(memsize size, int nBlockUse, const char * pszFile, int iLine)
+//   void * default_heap::allocate_debug(memsize size, int nBlockUse, const_char_pointer  pszFile, int iLine)
 //   {
 //
 //#if MEMDLEAK
@@ -104,7 +104,7 @@
 //#ifdef MEMDLEAK
 //
 //
-//   void * default_heap::reallocate_debug(void * p, memsize size, int nBlockUse, const char * pszFile, int iLine)
+//   void * default_heap::reallocate_debug(void * p, memsize size, int nBlockUse, const_char_pointer  pszFile, int iLine)
 //   {
 //
 //#if MEMDLEAK
@@ -276,7 +276,7 @@
 //
 //
 ////typedef DWORD64[64]
-////::collection::count get_mem_info2(int ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], long long ** ppiStack, int ** ppiLine, long long ** ppiSize)
+////::collection::count get_mem_info2(int ** ppiUse, const_char_pointer ** ppszFile, DWORD64 ** ppuiStack[64], long long ** ppiStack, int ** ppiLine, long long ** ppiSize)
 ////{
 ////
 ////#ifndef MEMDLEAK
@@ -302,7 +302,7 @@
 ////
 ////
 ////   int * piUse = (int *)malloc(sizeof(int) * ca);
-////   const char ** pszFile = (const char **)malloc(sizeof(const char *) * ca);
+////   const_char_pointer * pszFile = (const_char_pointer *)malloc(sizeof(const_char_pointer ) * ca);
 ////   DWORD64 ** puiStack[64] = (DWORD64 **[64])malloc(sizeof(DWORD64[64]) * ca);
 ////   long long * piStack = (long long *)malloc(sizeof(long long) * ca);
 ////   int * piLine = (int *)malloc(sizeof(int) * ca);

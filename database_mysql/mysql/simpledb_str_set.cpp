@@ -378,7 +378,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
    return true;
 }
 
-bool db_str_set::save(const ::string & lpKey, const ::string & lpcsz)
+bool db_str_set::save(const ::string & lpKey, const ::scoped_string & scopedstr)
 {
 
    if(m_pcore->m_pdataserver == nullptr)

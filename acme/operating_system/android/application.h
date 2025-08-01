@@ -21,7 +21,7 @@
 
 //
 //      virtual HINSTANCE GetHinstance();
-//      bool _001OnDDECommand(const char * lpcsz);
+//      bool _001OnDDECommand(const_char_pointer  lpcsz);
 //      virtual void _001EnableShellOpen();
 //      ///virtual ::acme::document *  _001OpenDocumentFile(::payload payloadFile);
 //      virtual void _001OnFileNew();

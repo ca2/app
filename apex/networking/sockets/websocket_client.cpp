@@ -225,7 +225,7 @@
 //
 //}
 //
-//int client_send(memory & m, int fin, const char* src)
+//int client_send(memory & m, int fin, const_char_pointer  src)
 //{
 //
 //   memsize len = 0;
@@ -313,7 +313,7 @@
 //}
 //
 //
-//int client_send_text(memory & m, const char* src)
+//int client_send_text(memory & m, const_char_pointer  src)
 //{
 //
 //   return client_send(m, 0x81, src);
@@ -321,7 +321,7 @@
 //}
 //
 //
-//int client_send_text(memory & m, const char* src, bool bMasked)
+//int client_send_text(memory & m, const_char_pointer  src, bool bMasked)
 //{
 //
 //   memory m2(src, strlen(src));
@@ -879,7 +879,7 @@ namespace sockets
                }
                else
                {
-                  strChar += string((const char *)&data[i], 1);
+                  strChar += string((const_char_pointer )&data[i], 1);
                   strChar += "  ";
                }
 
@@ -1102,7 +1102,7 @@ namespace sockets
 
       m_timeLastPong.Now();
 
-      string str((const char *)pdata, len);
+      string str((const_char_pointer )pdata, len);
 
       //::fork(get_app(), [=]()
       //{
@@ -1133,7 +1133,7 @@ namespace sockets
    }
 
 
-   ::memory websocket_client::get_client_send(int fin, const char * src)
+   ::memory websocket_client::get_client_send(int fin, const_char_pointer  src)
    {
       
       throw interface_only();
@@ -1143,7 +1143,7 @@ namespace sockets
    }
 
 
-   ::memory websocket_client::get_client_send_text(const char * src)
+   ::memory websocket_client::get_client_send_text(const_char_pointer  src)
    {
 
       return get_client_send(0x81, src);
@@ -1159,7 +1159,7 @@ namespace sockets
    }
    
 
-   ::memory websocket_client::get_client_send_text(const char * src, bool bMasked)
+   ::memory websocket_client::get_client_send_text(const_char_pointer  src, bool bMasked)
    {
 
       memory m2(src, ansi_len(src));

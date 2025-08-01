@@ -133,12 +133,12 @@ namespace userex
    void progress_control::defer_show(::user::interaction * puiParent, const ::scoped_string & scopedstrTitle, ::collection::count iStepCount)
    {
 
-      m_strTitle = pszTitle;
+      m_strTitle = scopedstrTitle;
       m_iStep = 0;
       m_iStepCount = iStepCount;
 
 
-      m_strTitle = pszTitle;
+      m_strTitle = scopedstrTitle;
       m_iStep = 0;
 
       ::pointer<progress_control>pprogressCopy = this;

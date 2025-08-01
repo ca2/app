@@ -1676,7 +1676,7 @@ namespace http
 //         if (set.has_property("get_response"))
 //         {
 //
-//            set["get_response"] = string((const char *)psession->GetDataPtr(), psession->GetContentLength());
+//            set["get_response"] = string((const_char_pointer )psession->GetDataPtr(), psession->GetContentLength());
 //
 //         }
 //
@@ -1715,7 +1715,7 @@ namespace http
       if (bOk)
       {
 
-         const char * pszData = (const char *)session.m_psocket->GetDataPtr();
+         const_char_pointer  pszData = (const_char_pointer )session.m_psocket->GetDataPtr();
 
          character_count iSize = session.m_psocket->GetContentLength();
 
@@ -2598,7 +2598,7 @@ namespace http
       if (set.has_property("get_response"))
       {
 
-         const char *pszData = (const char *)psocket->GetDataPtr();
+         const_char_pointer pszData = (const_char_pointer )psocket->GetDataPtr();
 
          character_count iSize = psocket->GetContentLength();
 
@@ -2616,7 +2616,7 @@ namespace http
          if (pmemory != nullptr)
          {
 
-            const char * pszData = (const char *) psocket->GetDataPtr();
+            const_char_pointer  pszData = (const_char_pointer ) psocket->GetDataPtr();
 
             auto size = psocket->GetContentLength();
 
@@ -2974,11 +2974,11 @@ namespace http
 
       t.m_iSecond = time;
 
-      const char * days[7] = { "Sunday", "Monday",
+      const_char_pointer  days[7] = { "Sunday", "Monday",
                              "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
       };
 
-      const char * months[12] = { "Jan", "Feb", "Mar", "Apr", "May",
+      const_char_pointer  months[12] = { "Jan", "Feb", "Mar", "Apr", "May",
                                 "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
       };
 

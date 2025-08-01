@@ -85,7 +85,7 @@ namespace sockets
             _buf = (char*) m_memory.data();
          }
 
-         output(int iTcpOutputCapacity, const char *buf, int len) :
+         output(int iTcpOutputCapacity, const_char_pointer buf, int len) :
             m_iTcpOuputCapacity(iTcpOutputCapacity), 
             _b(0), _t(len), _q(len)
          {
@@ -102,7 +102,7 @@ namespace sockets
          {
             return m_iTcpOuputCapacity - _t;
          }
-         void add(const char *buf, int len)
+         void add(const_char_pointer buf, int len)
          {
             ::memory_copy(_buf + _t, buf, len);
             _t += len;
@@ -114,7 +114,7 @@ namespace sockets
             _q -= len;
             return _q;
          }
-         const char *Buf()
+         const_char_pointer Buf()
          {
             return _buf + _b;
          }

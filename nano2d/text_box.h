@@ -11,9 +11,9 @@ namespace nano2d
 		virtual public ::particle
 	{
 		::string m_str;
-		//const char* start;	// Pointer to the input text where the row starts.
-		//const char* end;	// Pointer to the input text where the row ends (one past the last character).
-		//const char* next;	// Pointer to the beginning of the next row.
+		//const_char_pointer  start;	// Pointer to the input text where the row starts.
+		//const_char_pointer  end;	// Pointer to the input text where the row ends (one past the last character).
+		//const_char_pointer  next;	// Pointer to the beginning of the next row.
 		float width;		// Logical width of the row.
 		float minx, maxx;	// Actual bounds of the row. Logical with and bounds can differ because of kerning and some parts over extending.
 	};

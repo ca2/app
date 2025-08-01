@@ -659,7 +659,7 @@ void payload_array::parse_network_payload(::ansi_range & range)
 }
 
 
-//void var_array_skip_network_payload(const char *& pszJson)
+//void var_array_skip_network_payload(const_char_pointer & pszJson)
 //{
 //
 //   var_array_skip_network_payload(scopedstrJson, pszJson + strlen(scopedstrJson) - 1);

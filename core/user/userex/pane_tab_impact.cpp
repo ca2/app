@@ -225,7 +225,7 @@ namespace userex
    void pane_tab_impact::add_pane_tab_impact_handler_library(const ::scoped_string & scopedstrLibrary)
    {
 
-      auto & pfactory = system()->factory(strLibrary);
+      auto & pfactory = system()->factory(scopedstrLibrary);
 
       auto phandler = __øcreate <handler>(pfactory);
 

@@ -54,11 +54,11 @@ namespace user
 
 
       //virtual int _get_notification_area_action_count() override;
-      //virtual const char * _get_notification_area_action_name(int iIndex) override;
-      //virtual const char * _get_notification_area_action_id(int iIndex) override;
-      //virtual const char * _get_notification_area_action_label(int iIndex) override;
-      //virtual const char * _get_notification_area_action_accelerator(int iIndex) override;
-      //virtual const char * _get_notification_area_action_description(int iIndex) override;
+      //virtual const_char_pointer  _get_notification_area_action_name(int iIndex) override;
+      //virtual const_char_pointer  _get_notification_area_action_id(int iIndex) override;
+      //virtual const_char_pointer  _get_notification_area_action_label(int iIndex) override;
+      //virtual const_char_pointer  _get_notification_area_action_accelerator(int iIndex) override;
+      //virtual const_char_pointer  _get_notification_area_action_description(int iIndex) override;
       bool handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 
 

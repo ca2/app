@@ -56,7 +56,7 @@ namespace ftp
 
       ::earth::time        m_tmBase;       // time() value on this OS at the beginning of 1970 TAI
       long          m_lCurrentYear; // approximation to current year
-      static const char* m_Months[12];
+      static const_char_pointer  m_Months[12];
 
       file_list_parser();
       virtual ~file_list_parser();

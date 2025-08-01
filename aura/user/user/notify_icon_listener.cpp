@@ -79,7 +79,7 @@ namespace user
    //}
 
 
-   //const char * notify_icon_listener::_get_notification_area_action_name(int iItem)
+   //const_char_pointer  notify_icon_listener::_get_notification_area_action_name(int iItem)
    //{
 
    //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
@@ -96,7 +96,7 @@ namespace user
    //}
 
 
-   //const char * notify_icon_listener::_get_notification_area_action_id(int iItem)
+   //const_char_pointer  notify_icon_listener::_get_notification_area_action_id(int iItem)
    //{
 
    //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
@@ -113,7 +113,7 @@ namespace user
    //}
 
 
-   //const char * notify_icon_listener::_get_notification_area_action_label(int iItem)
+   //const_char_pointer  notify_icon_listener::_get_notification_area_action_label(int iItem)
    //{
 
    //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
@@ -130,7 +130,7 @@ namespace user
    //}
 
 
-   //const char * notify_icon_listener::_get_notification_area_action_accelerator(int iItem)
+   //const_char_pointer  notify_icon_listener::_get_notification_area_action_accelerator(int iItem)
    //{
 
    //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
@@ -147,7 +147,7 @@ namespace user
    //}
 
 
-   //const char * notify_icon_listener::_get_notification_area_action_description(int iItem)
+   //const_char_pointer  notify_icon_listener::_get_notification_area_action_description(int iItem)
    //{
 
    //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())

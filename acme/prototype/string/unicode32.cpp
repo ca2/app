@@ -212,7 +212,7 @@ character_count ansi_to_wd32(::wd32_character* pwsz, const ::ansi_character * ps
 
 
 
-::wd32_character* ansi_to_wd32_dup(const char* input, character_count input_size)
+::wd32_character* ansi_to_wd32_dup(const_char_pointer  input, character_count input_size)
 {
 
    character_count s = ansi_to_wd32_len(input, input_size);

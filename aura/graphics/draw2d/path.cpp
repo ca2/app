@@ -2190,7 +2190,7 @@ namespace draw2d
 
       struct NSVGimage* pnsvgimage;
 
-      pnsvgimage = nsvgParse((char*)(const char*)str, "px", 96);
+      pnsvgimage = nsvgParse((char*)(const_char_pointer )str, "px", 96);
 
       nanosvg_drawframe(pnsvgimage, x, y, w, h);
 

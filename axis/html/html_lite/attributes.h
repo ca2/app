@@ -223,7 +223,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   operator const char *() const
+   operator const_char_pointer () const
    { return (m_strValue); }
 
 // Private Operations

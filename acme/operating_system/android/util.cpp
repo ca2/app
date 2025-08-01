@@ -39,7 +39,7 @@ int_bool CLASS_DECL_lnx _::windows_definition::IsComboBoxControl(oswindow hWnd, 
    return ::windows_definition::InvariantStrICmp(szCompare, "combobox") == 0;
 }
 
-int_bool CLASS_DECL_lnx _::windows_definition::CompareClassName(oswindow hWnd, const char * lpszClassName)
+int_bool CLASS_DECL_lnx _::windows_definition::CompareClassName(oswindow hWnd, const_char_pointer  lpszClassName)
 {
    ASSERT(::IsWindow(hWnd));
    char szTemp[32];

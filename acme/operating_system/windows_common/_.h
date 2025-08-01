@@ -28,9 +28,9 @@ using dword_array = ::numeric_array < DWORD >;
 
 
 //CLASS_DECL_ACME string get_mem_info_report1();
-//CLASS_DECL_ACME::collection::count get_mem_info(int ** ppiUse, const char *** ppszFile, const char *** pszCallStack, unsigned int ** ppuiLine, size_t ** ppsize);
+//CLASS_DECL_ACME::collection::count get_mem_info(int ** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** pszCallStack, unsigned int ** ppuiLine, size_t ** ppsize);
 #ifdef WINDOWS
-CLASS_DECL_ACME::collection::count get_mem_info2(int ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], long long ** ppiStack, int ** ppiLine, long long ** ppiSize);
+CLASS_DECL_ACME::collection::count get_mem_info2(int ** ppiUse, const_char_pointer ** ppszFile, DWORD64 ** ppuiStack[64], long long ** ppiStack, int ** ppiLine, long long ** ppiSize);
 #endif
 
 
@@ -95,7 +95,7 @@ namespace windows
    public:
 
 
-      inline static PFN get_address(const ::scoped_string & scopedstrModule, const char * lpszName)
+      inline static PFN get_address(const ::scoped_string & scopedstrModule, const_char_pointer  lpszName)
       {
 
          return (PFN) get_library_symbol_address(scopedstrModule, lpszName);

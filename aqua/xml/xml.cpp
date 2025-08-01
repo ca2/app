@@ -140,10 +140,10 @@ namespace xml
    string xml::from(const ::property& prop, ::xml::disp_option* opt /*= &optDefault*/)
    {
       //   ::text_stream ostring;
-      //   //ostring << (const char *)m_strName << "='" << (const char *)m_strValue << "' ";
+      //   //ostring << (const_char_pointer )m_strName << "='" << (const_char_pointer )m_strValue << "' ";
 
-      //   ostring << (const char *)m_strName << L"=" << (char)opt->m_chQuote
-      //      << (const char *)(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue)
+      //   ostring << (const_char_pointer )m_strName << L"=" << (char)opt->m_chQuote
+      //      << (const_char_pointer )(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue)
       //      << (char)opt->m_chQuote << L" ";
       //   return ostring.str();
 

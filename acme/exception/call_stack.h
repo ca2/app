@@ -35,8 +35,8 @@ class CLASS_DECL_ACME call_stack :
 public:
 
 
-   const char *      m_pszFormat;
-   const char *      m_pszCallStack;
+   const_char_pointer     m_pszFormat;
+   const_char_pointer     m_pszCallStack;
    int               m_iCount;
 
    void *            m_caller_address;
@@ -47,11 +47,11 @@ public:
 
 
    //static void global_enable_stack_trace(bool bEnable = true);
-   static const char* default_format() { return "%f(%l) %s\n"; }
+   static const_char_pointer  default_format() { return "%f(%l) %s\n"; }
 
-   const char * get_dup(const ::scoped_string & scopedstrFormat = default_format(), int uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+   const_char_pointer  get_dup(const ::scoped_string & scopedstrFormat = default_format(), int uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
 
-   const char * xxxstack_trace() const;
+   const_char_pointer  xxxstack_trace() const;
 
 };
 

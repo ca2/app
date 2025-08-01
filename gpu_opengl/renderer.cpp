@@ -24,7 +24,7 @@
 
 
 
-const char* blend_vert = R"(
+const_char_pointer  blend_vert = R"(
 #version 330 core
 layout(location = 0) in vec2 inPos;
 layout(location = 1) in vec2 inUV;
@@ -35,7 +35,7 @@ void main() {
 }
 )";
 
-const char* blend_frag = R"(
+const_char_pointer  blend_frag = R"(
 #version 330 core
 in vec2 texCoord;
 out vec4 fragColor;
@@ -1331,7 +1331,7 @@ namespace gpu_opengl
 
          __øconstruct(m_pshaderBlend);
 
-         const char* quad_vertex_shader = "#version 330 core\n"
+         const_char_pointer  quad_vertex_shader = "#version 330 core\n"
             "layout(location = 0) in vec2 pos;\n"
             "layout(location = 1) in vec2 texCoord;\n"
             "out vec2 uv;\n"
@@ -1340,7 +1340,7 @@ namespace gpu_opengl
             "    gl_Position = vec4(pos, 0.0, 1.0);\n"
             "}";
 
-         const char* blend_fragment_shader = "#version 330 core\n"
+         const_char_pointer  blend_fragment_shader = "#version 330 core\n"
             "in vec2 uv;\n"
             "uniform sampler2D tex;\n"
             "out vec4 FragColor;\n"

@@ -210,7 +210,7 @@ namespace simpledb
      return 0;  */
 
 
-   bool set::sql_do_select(const char * & pszSql)
+   bool set::sql_do_select(const_char_pointer  & pszSql)
    {
       string_array straField;
 
@@ -345,7 +345,7 @@ namespace simpledb
 
    }
 
-   bool set::sql_do_insert(const char * & pszSql)
+   bool set::sql_do_insert(const_char_pointer  & pszSql)
    {
 
       try
@@ -423,7 +423,7 @@ namespace simpledb
 
    }
 
-   string set::consume_quoted_value(const char * & pszXml)
+   string set::consume_quoted_value(const_char_pointer  & pszXml)
    {
       const ::scoped_string & scopedstr = pszXml;
       string qc = ::str::get_utf8_char(scopedstr);
@@ -450,7 +450,7 @@ namespace simpledb
       return str;
    }
 
-   string set::sql_consume_value(const char * & pszSql)
+   string set::sql_consume_value(const_char_pointer  & pszSql)
    {
       ::str::consume_spaces(scopedstrSql, 0);
       string str = consume_quoted_value(scopedstrSql);
@@ -458,7 +458,7 @@ namespace simpledb
       return str;
    }
 
-   string set::sql_consume_keyword(const char * & pszSql)
+   string set::sql_consume_keyword(const_char_pointer  & pszSql)
    {
       ::str::consume_spaces(scopedstrSql, 0);
       string str = ::str::consume_nc_name(scopedstrSql);
@@ -466,19 +466,19 @@ namespace simpledb
       return str;
    }
 
-   string set::sql_consume_field(const char * & pszSql)
+   string set::sql_consume_field(const_char_pointer  & pszSql)
    {
       ::str::consume_spaces(scopedstrSql, 0);
       return ::str::consume_nc_name(scopedstrSql);
    }
 
-   string set::sql_consume_table(const char * & pszSql)
+   string set::sql_consume_table(const_char_pointer  & pszSql)
    {
       ::str::consume_spaces(scopedstrSql, 0);
       return ::str::consume_nc_name(scopedstrSql);
    }
 
-   string set::sql_consume_join_on(const char * & pszSql)
+   string set::sql_consume_join_on(const_char_pointer  & pszSql)
    {
       __UNREFERENCED_PARAMETER(scopedstrSql);
       return "";

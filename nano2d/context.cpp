@@ -2353,7 +2353,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 	// Add fonts
-	//int context::CreateFont(const char * name, const char * filename)
+	//int context::CreateFont(const_char_pointer  name, const_char_pointer  filename)
 	//{
 	//	//return fonsAddFont(fs, name, filename, 0);
 	//	return -1;
@@ -2444,7 +2444,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	//::write_text::font_pointer context::CreateFont(const char * face, float size)
+	//::write_text::font_pointer context::CreateFont(const_char_pointer  face, float size)
 	//{
 	//   
 	//   return create_font(face, size);
@@ -2697,9 +2697,9 @@ void TransformSkewX(float* t, float a)
 
 		m_pstate->m_ealignText = ::e_align_left | valign;
       
-      //const char * string = scopedstr.m_begin;
+      //const_char_pointer  string = scopedstr.m_begin;
       
-      //const char * end = scopedstr.m_end;
+      //const_char_pointer  end = scopedstr.m_end;
 
       //auto rowa = text_break_lines(scopedstr, breakRowWidth);
 		//while ((nrows = ))
@@ -2791,14 +2791,14 @@ void TransformSkewX(float* t, float a)
       float rowWidth = 0;
       float rowMinX = 0;
       float rowMaxX = 0;
-      const char * string = scopedstr.m_begin;
-      const char * end = scopedstr.m_end;
-      const char * rowStart = NULL;
-      const char * rowEnd = NULL;
-      const char * wordStart = NULL;
+      const_char_pointer  string = scopedstr.m_begin;
+      const_char_pointer  end = scopedstr.m_end;
+      const_char_pointer  rowStart = NULL;
+      const_char_pointer  rowEnd = NULL;
+      const_char_pointer  wordStart = NULL;
       float wordStartX = 0;
       float wordMinX = 0;
-      const char * breakEnd = NULL;
+      const_char_pointer  breakEnd = NULL;
       float breakWidth = 0;
       float breakMaxX = 0;
       int type = NANO2D_SPACE, typePrevious = NANO2D_SPACE;
@@ -3101,12 +3101,12 @@ void TransformSkewX(float* t, float a)
 		//float rowWidth = 0;
 		//float rowMinX = 0;
 		//float rowMaxX = 0;
-		//const char * rowStart = NULL;
-		//const char * rowEnd = NULL;
-		//const char * wordStart = NULL;
+		//const_char_pointer  rowStart = NULL;
+		//const_char_pointer  rowEnd = NULL;
+		//const_char_pointer  wordStart = NULL;
 		//float wordStartX = 0;
 		//float wordMinX = 0;
-		//const char * breakEnd = NULL;
+		//const_char_pointer  breakEnd = NULL;
 		//float breakWidth = 0;
 		//float breakMaxX = 0;
 		//int type = NVG_SPACE, typePrevious = NVG_SPACE;

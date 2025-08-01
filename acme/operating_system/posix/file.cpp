@@ -134,7 +134,7 @@ close();
       int    file::create_anonymous_file(memsize size)
       {
          static const char pszTemplate[] = "/weston-shared-XXXXXX";
-         const char * path;
+         const_char_pointer  path;
          char * name;
 
          path = getenv("XDG_RUNTIME_DIR");
@@ -264,7 +264,7 @@ char * malloc_get_current_dir_name()
 //
 //
 //
-//int_bool set_file_size(const char * lpszName, size_t iSize)
+//int_bool set_file_size(const_char_pointer  lpszName, size_t iSize)
 //{
 //
 //   int fd = ::open(lpszName, O_RDONLY);
@@ -346,7 +346,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int_bool file_system()->put_contents(const ::file::path & path, const char * contents, ::collection::count len)
+//int_bool file_system()->put_contents(const ::file::path & path, const_char_pointer  contents, ::collection::count len)
 //{
 //
 //   bool bOk = false;

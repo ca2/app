@@ -200,7 +200,7 @@ CLASS_DECL_ACME ::ansi_character * __ansitok_r(::ansi_character * psz, const ::a
 
 
 
-CLASS_DECL_ACME int compare_ignore_case(const char * left, const char * right, size_t len)
+CLASS_DECL_ACME int compare_ignore_case(const_char_pointer  left, const_char_pointer  right, size_t len)
 {
 
 if (len)
@@ -287,7 +287,7 @@ CLASS_DECL_ACME int compare_ignore_case(const string & left, const string & righ
 
 
 
-CLASS_DECL_ACME int compare_ignore_case(const char * left, const string & right, size_t len)
+CLASS_DECL_ACME int compare_ignore_case(const_char_pointer  left, const string & right, size_t len)
 {
 
    if (len)
@@ -330,7 +330,7 @@ CLASS_DECL_ACME int compare_ignore_case(const char * left, const string & right,
 }
 
 
-CLASS_DECL_ACME int compare_ignore_case(const string & left, const char * right, size_t len)
+CLASS_DECL_ACME int compare_ignore_case(const string & left, const_char_pointer  right, size_t len)
 {
 
    if (len)

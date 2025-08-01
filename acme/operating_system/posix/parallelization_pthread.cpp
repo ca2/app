@@ -647,7 +647,7 @@ string task_get_name()
 //using htask = void *;
 
 //extern "C"
-//int   imp_stubs_pthread_setname_np(pthread_t,const char*);
+//int   imp_stubs_pthread_setname_np(pthread_t,const_char_pointer );
 
 //
 //void task_set_name(htask htask, const ::scoped_string & scopedstrTaskName)

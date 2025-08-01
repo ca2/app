@@ -33,11 +33,11 @@ namespace universal_windows
       //virtual class ::file::path & path();
       //virtual string path(const ::scoped_string & scopedstrFolder,character_count iLenFolder,const ::scoped_string & scopedstrRelative,character_count iLenRelative,const ::scoped_string & scopedstr2,character_count iLen2,bool bUrl);
 
-      //virtual string relpath(const char * lpcszSource,const char * lpcszRelative,const char * lpcsz2 = nullptr);
-      //virtual bool  ls_pattern(const ::scoped_string & scopedstr,const char * lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,bool_array * pbaIsDir = nullptr,long_long_array * piaSize = nullptr);
+      //virtual string relpath(const_char_pointer  lpcszSource,const_char_pointer  lpcszRelative,const_char_pointer  lpcsz2 = nullptr);
+      //virtual bool  ls_pattern(const ::scoped_string & scopedstr,const_char_pointer  lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,bool_array * pbaIsDir = nullptr,long_long_array * piaSize = nullptr);
       using ::directory_context::ls;
       virtual ::file::listing & ls(::file::listing & listing) override;
-      //virtual bool  rls_pattern(const ::scoped_string & scopedstr,const char * lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,bool_array * pbaIsDir = nullptr,long_long_array * piaSize = nullptr,enum_extract eextract = e_extract_first);
+      //virtual bool  rls_pattern(const ::scoped_string & scopedstr,const_char_pointer  lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,bool_array * pbaIsDir = nullptr,long_long_array * piaSize = nullptr,enum_extract eextract = e_extract_first);
       //virtual bool  rls(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,enum_extract eextract = e_extract_first);
       //virtual bool  rls_dir(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr);
       //virtual bool  ls_dir(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);

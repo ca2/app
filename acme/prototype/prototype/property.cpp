@@ -193,12 +193,12 @@ void prop_id_debug(::particle * pparticle);
 //   parse_network_payload(scopedstrJson, str.length());
 //}
 //
-//void property::parse_network_payload(const char * & pszJson, character_count length)
+//void property::parse_network_payload(const_char_pointer  & pszJson, character_count length)
 //{
 //   parse_network_payload(scopedstrJson, pszJson + length - 1);
 //}
 //
-//void property::parse_network_payload(const char * & pszJson,const ::ansi_character * pszEnd)
+//void property::parse_network_payload(const_char_pointer  & pszJson,const ::ansi_character * pszEnd)
 //{
 //   ::property_parse_network_payload_id(m_atom, pszJson, pszEnd);
 //   ::property_parse_network_payload_value(m_var,pszJson,pszEnd);
@@ -1420,10 +1420,10 @@ string & property::get_network_arguments(::string & str) const
 //string property::get_xml(::xml::disp_option * opt /*= &optDefault*/ )
 //{
 //  //   ::text_stream ostring;
-//  //   //ostring << (const char *)m_strName << "='" << (const char *)m_strValue << "' ";
+//  //   //ostring << (const_char_pointer )m_strName << "='" << (const_char_pointer )m_strValue << "' ";
 //
-//  //   ostring << (const char *)m_strName << L"=" << (char)opt->value_quotation_mark
-//  //      << (const char *)(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue)
+//  //   ostring << (const_char_pointer )m_strName << L"=" << (char)opt->value_quotation_mark
+//  //      << (const_char_pointer )(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue)
 //  //      << (char)opt->value_quotation_mark << L" ";
 //  //   return ostring.str();
 //

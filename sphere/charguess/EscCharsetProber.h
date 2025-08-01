@@ -31,7 +31,7 @@ public:
   nsEscCharSetProber(void);
   virtual ~nsEscCharSetProber(void);
   nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
-  const char* GetCharSetName() {return mDetectedCharset;};
+  const_char_pointer  GetCharSetName() {return mDetectedCharset;};
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
   float     GetConfidence(void){return (float)0.99;};
@@ -43,7 +43,7 @@ protected:
   nsCodingStateMachine* mCodingSM[NUM_OF_ESC_CHARSETS] ;
   PRunsigned int    mActiveSM;
   nsProbingState mState;
-  const char *  mDetectedCharset;
+  const_char_pointer  mDetectedCharset;
 };
 
 #endif /* nsEscCharSetProber_h__ */

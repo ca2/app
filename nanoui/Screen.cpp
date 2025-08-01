@@ -351,7 +351,7 @@ namespace nanoui
    //   );
    //
    //   glfwSetDropCallback(m_glfw_window,
-   //      [](GLFWwindow * pwidgetChild, int count, const char ** filenames) {
+   //      [](GLFWwindow * pwidgetChild, int count, const_char_pointer  * filenames) {
    //         auto it = __nanoui_screens.find(pwidgetChild);
    //         if (it == __nanoui_screens.end())
    //            return;
@@ -1274,7 +1274,7 @@ namespace nanoui
    //   }
    //}
    //
-   //void Screen::drop_callback_event(int count, const char ** filenames) {
+   //void Screen::drop_callback_event(int count, const_char_pointer  * filenames) {
    //   ::string_array arg(count);
    //   for (int i = 0; i < count; ++i)
    //      arg[i] = filenames[i];

@@ -60,7 +60,7 @@ namespace draw2d
       const double_rectangle &                 pcrect,
       double                        dRateX,
       double                        dHeight,
-      const char *                  psz,
+      const_char_pointer                 psz,
       int *                         piCharsPositions,
       int                           iCharsPositions,
       int                           iOffset);
@@ -68,7 +68,7 @@ namespace draw2d
 
       void embossed_text_out(
       ::draw2d::graphics_pointer &  pgraphics,
-      const char *                  pcsz,
+      const_char_pointer                 pcsz,
       int                           iLeft,
       int                           iTop,
       int                           iWidth,
@@ -82,7 +82,7 @@ namespace draw2d
       const double_rectangle &                 pcrect,
       double                        dRateX,
       double                        dHeight,
-      const char *                  psz,
+      const_char_pointer                 psz,
       int *                         piCharsPositions,
       int                           iCharsPositions,
       int                           iOffset);

@@ -39,7 +39,7 @@ namespace http
    }
 
 
-   void get_socket::OnDataArrived(const char *, memsize len)
+   void get_socket::OnDataArrived(const_char_pointer , memsize len)
    {
       __UNREFERENCED_PARAMETER(len);
    }

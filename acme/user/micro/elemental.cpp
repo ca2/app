@@ -442,7 +442,7 @@ namespace micro
          //}
 
 
-         //void elemental::_on_window_simple_action(const char * pszActionName)
+         //void elemental::_on_window_simple_action(const_char_pointer  pszActionName)
          //{
 
          //   ::string strActionName(scopedstrActionName);

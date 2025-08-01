@@ -696,8 +696,8 @@ namespace serial
 
    //::exception exception(const string& description);
    //::exception io_exception(string file, int line, int errnum);
-   //::exception io_exception_descripton(string file, int line, const char* description);
-   //::exception port_opened_exception_descripton(string file, int line, const char* description);
+   //::exception io_exception_descripton(string file, int line, const_char_pointer  description);
+   //::exception port_opened_exception_descripton(string file, int line, const_char_pointer  description);
 
    class serial_exception : public ::exception
    {
@@ -718,7 +718,7 @@ namespace serial
       }
    //   serial_exception (const serial_exception& other) : e_what_(other.e_what_) {}
    //   virtual ~serial_exception() noexcept {}
-   //   virtual const char* what () const noexcept
+   //   virtual const_char_pointer  what () const noexcept
    //   {
    //      return e_what_.c_str();
    //   }
@@ -750,7 +750,7 @@ namespace serial
 //         e_what_ = str;
       }
 
-      explicit io_exception(string file, int line, const char * description) :
+      explicit io_exception(string file, int line, const_char_pointer  description) :
          ::exception(error_serial_io)
       {
 //         ::string_stream str;
@@ -767,7 +767,7 @@ namespace serial
 //         return errno_;
 //      }
 //
-//      virtual const char* what () const noexcept
+//      virtual const_char_pointer  what () const noexcept
 //      {
 //         return e_what_.c_str();
 //      }
@@ -779,7 +779,7 @@ namespace serial
    //   const port_not_opened_exception& operator=(port_not_opened_exception);
    //   string e_what_;
    public:
-      port_not_opened_exception (const char * description)
+      port_not_opened_exception (const_char_pointer  description)
       {
          //::string_stream str;
          //str << "port_not_opened_exception " << description << " failed.";
@@ -787,7 +787,7 @@ namespace serial
       }
    //   port_not_opened_exception (const port_not_opened_exception& other) : e_what_(other.e_what_) {}
    //   virtual ~port_not_opened_exception() noexcept {}
-   //   virtual const char* what () const noexcept
+   //   virtual const_char_pointer  what () const noexcept
    //   {
    //      return e_what_.c_str();
    //   }

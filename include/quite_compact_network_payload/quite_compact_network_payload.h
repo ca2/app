@@ -172,8 +172,8 @@ public:
   explicit value(array &&a);
   explicit value(object &&o);
 #endif
-  explicit value(const char *s);
-  value(const char *s, size_t len);
+  explicit value(const_char_pointer  s);
+  value(const_char_pointer  s, size_t len);
   ~value();
   value(const value &x);
   value &operator=(const value &x);
@@ -286,11 +286,11 @@ inline value::value(object &&o) : type_(object_type), u_() {
 }
 #endif
 
-inline value::value(const char *s) : type_(string_type), u_() {
+inline value::value(const_char_pointer  s) : type_(string_type), u_() {
   u_.string_ = ___new std::string (s);
 }
 
-inline value::value(const char *s, size_t len) : type_(string_type), u_() {
+inline value::value(const_char_pointer  s, size_t len) : type_(string_type), u_() {
   u_.string_ = ___new std::string (s, len);
 }
 

@@ -133,7 +133,7 @@ namespace universal_windows
    }
 
 
-   shell::e_folder shell::get_folder_type(::particle * pparticle, const char * lpcsz)
+   shell::e_folder shell::get_folder_type(::particle * pparticle, const_char_pointer  lpcsz)
    {
 
       return get_folder_type(pparticle, utf8_to_unicode(lpcsz));

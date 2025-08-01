@@ -10,7 +10,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //   namespace android
 //   {
 //
-//void node::create_process(const char * _cmd_line, int * pprocessId, int * piErrorCode)
+//void node::create_process(const_char_pointer  _cmd_line, int * pprocessId, int * piErrorCode)
 //{
 //
 //   char *   exec_path_name = nullptr;

@@ -106,7 +106,7 @@ namespace hex
       
       string strUni;
       
-      const char * pszNext = range.m_begin;
+      const_char_pointer  pszNext = range.m_begin;
 
       for (::collection::index i = 0; i < 4; i++)
       {

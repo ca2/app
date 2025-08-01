@@ -685,10 +685,10 @@ namespace acme
 
 
       template < typename A >
-      ::array < const char* > psza(const A& a)
+      ::array < const_char_pointer  > psza(const A& a)
       {
 
-         ::array < const char* > pa;
+         ::array < const_char_pointer  > pa;
 
          ptra(pa, a);
 

@@ -736,7 +736,7 @@ namespace platform
    }
 
 
-   void platform::set_resource_block(const char * pstart, const char * pend)
+   void platform::set_resource_block(const_char_pointer  pstart, const_char_pointer  pend)
    {
 
       m_blockMatter = ::block(pstart, pend);
@@ -1468,7 +1468,7 @@ g_bWindowingOutputDebugString = true;
    //}
 
 
-   release_time_for_project platform::as_release_time_for_project(const char* pszStaticText)
+   release_time_for_project platform::as_release_time_for_project(const_char_pointer  pszStaticText)
    {
 
       release_time_for_project releasetimeforproject;

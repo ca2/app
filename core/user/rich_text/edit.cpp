@@ -1976,7 +1976,7 @@ namespace user
 
          auto i2 = m_iSelEnd;
 
-         auto iSelChar = prichtextdata->_001InsertText(i1, i2, str, pformat);
+         auto iSelChar = prichtextdata->_001InsertText(i1, i2, scopedstr, pformat);
 
          m_iSelBeg = m_iSelEnd = iSelChar;
 

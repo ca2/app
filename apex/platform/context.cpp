@@ -1231,7 +1231,7 @@ namespace apex
    }
 
 
-   //bool context::os_is_alias(const char *psz)
+   //bool context::os_is_alias(const_char_pointer psz)
    //{
 
    //   return false;

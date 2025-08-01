@@ -36,7 +36,7 @@ CLASS_DECL_APEX MESSAGE * __get_current_message();
 CLASS_DECL_APEX ::pointer<::apex::application> __get_app();
 CLASS_DECL_APEX ::pointer<::user::interaction_base>__get_main_window();
 //CLASS_DECL_APEX HINSTANCE CLASS_DECL_APEX ::apexacmesystem()->m_hInstance;
-CLASS_DECL_APEX const char * __get_app_name();
+CLASS_DECL_APEX const_char_pointer  __get_app_name();
 
 
 
@@ -72,7 +72,7 @@ CLASS_DECL_APEX const char * __get_app_name();
 //
 //CLASS_DECL_APEX ::pointer<::user::interaction_base>__get_main_window();
 //
-//CLASS_DECL_APEX const char * __get_app_name();
+//CLASS_DECL_APEX const_char_pointer  __get_app_name();
 
 
 //#include "directory_system.h"

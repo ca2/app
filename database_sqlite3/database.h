@@ -63,12 +63,12 @@ namespace sqlite
       string add_error_message(const ::scoped_string & scopedstrErrorMessage) override;
 
       void connect(
-         const ::string & name,
-         const ::string & host = nullptr,
-         const ::string & port = nullptr,
-         const ::string & user = nullptr,
-         const ::string & pass = nullptr,
-         const ::string & sckt = nullptr,
+         const ::scoped_string & scopedstrName,
+         const ::scoped_string & scopedstrHost = nullptr,
+         const ::scoped_string & scopedstrPort = nullptr,
+         const ::scoped_string & scopedstrUser = nullptr,
+         const ::scoped_string & scopedstrPass = nullptr,
+         const ::scoped_string & scopedstrSocket = nullptr,
          unsigned long long uConnectionFlags = 0) override;
 
 

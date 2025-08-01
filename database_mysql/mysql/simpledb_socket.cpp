@@ -193,7 +193,7 @@ namespace simpledb
    }
 
 
-   bool socket::read_file(const ::string & lpcsz, pointer_array < ::int_array > * prangea, const ::scoped_string & scopedstrContentType)
+   bool socket::read_file(const ::scoped_string & scopedstr, pointer_array < ::int_array > * prangea, const ::scoped_string & scopedstrContentType)
    {
       string strExtension = file()->extension(lpcsz);
       string str = strExtension;

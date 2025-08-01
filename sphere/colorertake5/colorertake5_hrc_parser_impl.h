@@ -76,7 +76,7 @@ namespace colorertake5
       string qualifyForeignName(const ::string &name, QualifyNameType qntype, bool logErrors);
 
       void updateLinks();
-      string useEntities(const ::string & name);
+      string useEntities(const ::scoped_string & scopedstrName);
       class region *getNCRegion(::pointer<::xml::node>l, const ::string & tag);
       class region *getNCRegion(const ::string &name, bool logErrors);
 

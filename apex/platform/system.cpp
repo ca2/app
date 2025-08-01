@@ -65,7 +65,7 @@
 #include "acme/prototype/string/base64.h"
 
 
-int file_put_contents(const ::file::path & path, const char * contents);;
+int file_put_contents(const ::file::path & path, const_char_pointer  contents);;
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::scoped_string & scopedstrMoreDetails);
 
 
@@ -2066,7 +2066,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   int system::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFileName, int iLineNumber, const ::scoped_string & scopedstrModuleName, const char * pszFormat, va_list list)
+   int system::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFileName, int iLineNumber, const ::scoped_string & scopedstrModuleName, const_char_pointer  pszFormat, va_list list)
    {
 
       //if(!m_ptracelog || !m_ptracelog->m_bExtendedLog)

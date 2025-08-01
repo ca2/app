@@ -2355,7 +2355,7 @@ public:
 
 // For MSVC, but not for GCC?
 //template < typename ITERATOR_TYPE >
-//inline ::string_base < ITERATOR_TYPE > operator + (const char * psz, const string_base < ITERATOR_TYPE > & str)
+//inline ::string_base < ITERATOR_TYPE > operator + (const_char_pointer  psz, const string_base < ITERATOR_TYPE > & str)
 //{
 //
 //   return ::transfer(::string_base < ITERATOR_TYPE >(scopedstr) + str);
@@ -2391,13 +2391,13 @@ inline ::string as_string(const ::block & block)
    if (::is_set(p) && offset < block.size())
    {
 
-      return { (const char *) block.data(), offset };
+      return { (const_char_pointer ) block.data(), offset };
 
    }
    else
    {
 
-      return { (const char *) block.data(), block.size() };
+      return { (const_char_pointer ) block.data(), block.size() };
 
    }
 
@@ -2576,7 +2576,7 @@ format(const std::format_string<Args...> fmt, Args&&... args) noexcept
 #endif
 
 
-[[nodiscard]] inline ::string formatf(const char * pszFormat, ...) noexcept
+[[nodiscard]] inline ::string formatf(const_char_pointer  pszFormat, ...) noexcept
 {
    
    ::string str;

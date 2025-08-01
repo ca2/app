@@ -97,7 +97,7 @@ union bound_or_function{
 };
 
 typedef struct te_variable {
-   const char *name;
+   const_char_pointer name;
    bound_or_function address;
    int type;
    te_expr *context;
@@ -107,11 +107,11 @@ typedef struct te_variable {
 
 /* Parses the input expression, evaluates it, and frees it. */
 /* Returns NaN on error. */
-double CLASS_DECL_AQUA  te_interp(const char *expression, int *error);
+double CLASS_DECL_AQUA  te_interp(const_char_pointer expression, int *error);
 
 /* Parses the input expression and binds variables. */
 /* Returns NULL on error. */
-CLASS_DECL_AQUA te_expr * te_compile(const char *expression, const te_variable *variables, int var_count, int *error);
+CLASS_DECL_AQUA te_expr * te_compile(const_char_pointer expression, const te_variable *variables, int var_count, int *error);
 
 /* Evaluates the expression. */
 double CLASS_DECL_AQUA te_eval(const te_expr *n);

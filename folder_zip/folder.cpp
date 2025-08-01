@@ -391,7 +391,7 @@ namespace folder_zip
    }
 
 
-   void didnt_locate_file(const char * pszFile)
+   void didnt_locate_file(const_char_pointer  pszFile)
    {
 
       information("The file \"" + ::string(scopedstrFile) + "\" wasn't find in the zip folder.");
@@ -592,12 +592,12 @@ namespace folder_zip
 
       strFile.replace_with("/", "\\");
 
-      if (!locate([strFile](const char* psz) {return strFile.case_insensitive_equals(scopedstr); }))
+      if (!locate([strFile](const_char_pointer  psz) {return strFile.case_insensitive_equals(scopedstr); }))
       {
 
          strFile.replace_with("\\", "/");
 
-         if (!locate([strFile](const char* psz) {return strFile.case_insensitive_equals(scopedstr); }))
+         if (!locate([strFile](const_char_pointer  psz) {return strFile.case_insensitive_equals(scopedstr); }))
          {
 
             didnt_locate_file(strFile);
@@ -638,7 +638,7 @@ namespace folder_zip
    }
 
 
-   bool folder::locate(const ::function < bool(const char*) >& function)
+   bool folder::locate(const ::function < bool(const_char_pointer  ) >& function)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -766,7 +766,7 @@ namespace folder_zip
 
       strPrefix.replace_with("/", "\\");
 
-      bool bLocated = locate([strPrefix](const char* pszItem)
+      bool bLocated = locate([strPrefix](const_char_pointer  pszItem)
          {
 
             string strItem(scopedstrItem);
@@ -817,7 +817,7 @@ namespace folder_zip
 
       strPrefix.replace_with("/", "\\");
 
-      bool bLocated = locate([strPrefix](const char* pszItem)
+      bool bLocated = locate([strPrefix](const_char_pointer  pszItem)
          {
 
             string strItem(scopedstrItem);

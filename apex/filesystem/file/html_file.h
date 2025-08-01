@@ -40,7 +40,7 @@ public:
    void trace(void *,const ::scoped_string & scopedstr);
 
 
-   inline void printf(const char *pszFmt) const
+   inline void printf(const_char_pointer pszFmt) const
    {
 
       string_format format(this,&::html_file::trace,nullptr);

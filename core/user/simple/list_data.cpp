@@ -77,7 +77,7 @@ void simple_list_data::set_item_text(::collection::index iItem, ::collection::in
       m_array.add(___new string_array());
    }
 
-   m_array[iSubItem]->set_at_grow(iItem,pcsz);
+   m_array[iSubItem]->set_at_grow(iItem,scopedstr);
 
 
 }
@@ -85,7 +85,7 @@ void simple_list_data::set_item_text(::collection::index iItem, ::collection::in
 void simple_list_data::set_item_text(::user::mesh * pmesh, ::collection::index iItem, ::collection::index iSubItem, const ::scoped_string & scopedstr)
 {
 
-   set_item_text(iItem,iSubItem,pcsz);
+   set_item_text(iItem,iSubItem,scopedstr);
 
    pmesh->update_impact();
 

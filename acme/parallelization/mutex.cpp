@@ -117,7 +117,7 @@
 //}
 //
 //
-//mutex::mutex(::particle * pparticle, bool bInitiallyOwn, const char * pstrName ARG_SEC_ATTRS)
+//mutex::mutex(::particle * pparticle, bool bInitiallyOwn, const_char_pointer  pstrName ARG_SEC_ATTRS)
 //{
 //
 //#ifdef _DEBUG
@@ -473,7 +473,7 @@
 //
 //#ifdef WINDOWS
 //
-//mutex::mutex(enum_create_new, const char * pstrName, void * h, bool bOwner)
+//mutex::mutex(enum_create_new, const_char_pointer  pstrName, void * h, bool bOwner)
 //{
 //
 //#ifdef _DEBUG
@@ -497,7 +497,7 @@
 //
 //#if defined(MUTEX_NAMED_POSIX)
 //
-//mutexmutex(const char * pstrName, sem_t * psem, bool bOwner) :
+//mutexmutex(const_char_pointer  pstrName, sem_t * psem, bool bOwner) :
 //   ::matter(pparticle),
 //   synchronization(pstrName)
 //{
@@ -535,7 +535,7 @@
 //#elif defined(MUTEX_NAMED_FD)
 //
 //
-//mutex::mutex(enum_create_new, const char * lpszName, int iFd, bool bOwner)
+//mutex::mutex(enum_create_new, const_char_pointer  lpszName, int iFd, bool bOwner)
 //{
 //#ifdef _DEBUG
 ////   m_itask = -1;
@@ -562,7 +562,7 @@
 ////
 ////#elif defined(MUTEX_NAMED_VSEM)
 ////
-////mutexmutex(e_create_new enew, const char * pstrName, key_t key, int semid, bool bOwner):
+////mutexmutex(e_create_new enew, const_char_pointer  pstrName, key_t key, int semid, bool bOwner):
 ////   ::matter(pparticle),
 ////   synchronization(pstrName)
 ////{
@@ -1572,7 +1572,7 @@ mutex::~mutex()
 
 //
 //
-//::pointer<mutex>open_mutex(::matter * pmatter, const char * lpszName)
+//::pointer<mutex>open_mutex(::matter * pmatter, const_char_pointer  lpszName)
 //{
 //
 //#ifdef WINDOWS
@@ -1721,7 +1721,7 @@ mutex::~mutex()
 //}
 //
 //
-//void wait_until_mutex_does_not_exist(::particle * pparticle,  const char * lpszName)
+//void wait_until_mutex_does_not_exist(::particle * pparticle,  const_char_pointer  lpszName)
 //{
 //
 //   ::pointer<mutex>pmutex = __allocate mutex(pparticle, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");

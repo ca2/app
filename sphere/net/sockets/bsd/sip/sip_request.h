@@ -26,7 +26,7 @@ namespace sip
       void InitBody( size_t sz );
 
       /** write body data */
-      void write( const char *buf, size_t sz );
+      void write( const_char_pointer  buf, size_t sz );
 
       /** No more writing */
       void CloseBody();

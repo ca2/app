@@ -225,7 +225,7 @@ namespace file
 
       virtual void print(const ::scoped_string & scopedstr);
       virtual void println(const ::scoped_string & scopedstr);
-      virtual void printf(const char * format, ...);
+      virtual void printf(const_char_pointer  format, ...);
 
       ///virtual void write(const string &);
       virtual bool full_read(const ::block & block);

@@ -8,7 +8,7 @@
 #include "acme/platform/node.h"
 
 
-void get_root_and_item(string& strRoot, string& strItem, const char* pszFolder);
+void get_root_and_item(string& strRoot, string& strItem, const_char_pointer  pszFolder);
 
 
 namespace application_build_helper

@@ -297,12 +297,12 @@ namespace sqlite
    }
 
    void database::connect(
-      const ::string & name,
-      const ::string & host,
-      const ::string & port,
-      const ::string & user,
-      const ::string & pass,
-      const ::string & sckt,
+      const ::scoped_string & scopedstrName,
+      const ::scoped_string & scopedstrHost,
+      const ::scoped_string & scopedstrPort,
+      const ::scoped_string & scopedstrUser,
+      const ::scoped_string & scopedstrPass,
+      const ::scoped_string & scopedstrSocket,
       unsigned long long uConnectionFlags)
    {
 
@@ -892,7 +892,7 @@ namespace sqlite
 
       }
 
-      const char * psz = (const char *) sqlite3_column_blob(m_pstmtSelect, 0);
+      const_char_pointer  psz = (const_char_pointer  ) sqlite3_column_blob(m_pstmtSelect, 0);
 
       character_count iLen = sqlite3_column_bytes(m_pstmtSelect, 0);
 

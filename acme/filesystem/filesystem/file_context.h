@@ -385,7 +385,7 @@ public:
    //virtual bool add_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents);
 
 
-   string sys_temp(const char * lpszName, const ::scoped_string & scopedstrExtension);
+   string sys_temp(const_char_pointer  lpszName, const ::scoped_string & scopedstrExtension);
 
 
    //virtual ::file_pointer get_file(const ::payload & payloadFile, unsigned int nOpenFlags);

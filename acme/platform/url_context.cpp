@@ -2528,7 +2528,7 @@ namespace url
 
 //
 //
-//bool is_url(const ::scoped_string & scopedstrCandidate, const char** ppszRequest)
+//bool is_url(const ::scoped_string & scopedstrCandidate, const_char_pointer * ppszRequest)
 //{
 //
 //   const ::ansi_character * psz = scopedstrCandidate;
@@ -2908,7 +2908,7 @@ namespace url
    //   }
    //
    //
-   //   part::part(const char* psz)
+   //   part::part(const_char_pointer  psz)
    //   {
    //
    //      m_pszLastSlash = strrchr(scopedstr, '/');

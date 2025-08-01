@@ -267,8 +267,8 @@ public:
 
 
 
-   virtual const char * topic_text() const;
-   //virtual const char * raw_class_title() const;
+   virtual const_char_pointer  topic_text() const;
+   //virtual const_char_pointer  raw_class_title() const;
 
 
 
@@ -499,7 +499,7 @@ public:
 
 
 
-   virtual const char* debug_note() const;
+   virtual const_char_pointer  debug_note() const;
 
 
 
@@ -752,7 +752,7 @@ public:
 #endif
    
    
-   virtual void * new_object(const char * psz);
+   virtual void * new_object(const_char_pointer  psz);
 
 
    virtual string as_string() const;

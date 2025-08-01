@@ -24,7 +24,7 @@ namespace filemanager
 
       virtual void on_create_impact(::user::impact_data * pimpactdata) override;
       void install_message_routing(::channel * pchannel) override;
-      void FileManagerBrowse(const ::string & pcwstr, const ::action_context & action_context);
+      void FileManagerBrowse(const ::scoped_string & scopedstrcwstr, const ::action_context & action_context);
 
 
 

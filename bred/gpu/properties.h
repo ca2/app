@@ -24,7 +24,7 @@ namespace gpu
 	{
 	public:
 
-		const_char_pointer m_pszName = nullptr;
+		const_char_pointer  m_pszName = nullptr;
 		::gpu::enum_type		m_etype =::gpu::e_type_none;
 		const property* m_pproperties = nullptr;
 		int m_iArraySize = 0;
@@ -33,14 +33,14 @@ namespace gpu
 
 		property() {}
         property(nullptr_t) {}
-		property(const_char_pointer pszName, ::gpu::enum_type etype) :
+		property(const_char_pointer  pszName, ::gpu::enum_type etype) :
 			m_pszName(pszName), m_etype(etype)
 		{
 
 
 		}
 
-		property(const_char_pointer pszName, const property * pproperty, int iSize = 1);
+		property(const_char_pointer  pszName, const property * pproperty, int iSize = 1);
 		property(const property& property):
 			m_pszName(property.m_pszName),
 			m_etype(property.m_etype),
@@ -52,13 +52,13 @@ namespace gpu
 		}
 
 
-		inline const property* find(const_char_pointer pszName) const;
+		inline const property* find(const_char_pointer  pszName) const;
 
 		inline int get_size() const;
 
 		inline ::collection::count count() const;
 
-		inline int get_offset(const_char_pointer pszName) const;
+		inline int get_offset(const_char_pointer  pszName) const;
 
 		inline int get_item_size() const
 		{
@@ -76,7 +76,7 @@ namespace gpu
 	};
 
 
-	inline const property* property::find(const_char_pointer pszName) const
+	inline const property* property::find(const_char_pointer  pszName) const
 	{
 
 		auto p = this;
@@ -177,7 +177,7 @@ namespace gpu
 	}
 
 
-	inline int property::get_offset(const_char_pointer pszName) const
+	inline int property::get_offset(const_char_pointer  pszName) const
 	{
 		auto p = this;
 		int iLen = 0;
@@ -251,27 +251,27 @@ namespace gpu
 		memsize size() const { return m_block.size(); }
 		::collection::count count() const { return ::is_null(m_pproperties) ? 0:m_pproperties->count(); }
 		unsigned char* data() const { return m_block.data(); }
-		void* plookup(const_char_pointer pszName) {
+		void* plookup(const_char_pointer  pszName) {
 			auto iOffset = m_pproperties->get_offset(pszName);
 			return m_block.data() + iOffset;
 		}
 		template < typename T>
-		T& as(const_char_pointer pszName) { return *(T*)plookup(pszName); }
-		float& as_float(const_char_pointer pszName) { return as<float>(pszName); }
-		int& as_int(const_char_pointer pszName) { return as<int>(pszName); }
-		glm::vec2& seq2(const_char_pointer pszName) { return as<glm::vec2>(pszName); }
-		glm::vec3& seq3(const_char_pointer pszName) { return as<glm::vec3>(pszName); }
-		glm::vec4& seq4(const_char_pointer pszName) { return as<glm::vec4>(pszName); }
-		glm::mat2& mat2(const_char_pointer pszName) { return as<glm::mat2>(pszName); }
-		glm::mat3& mat3(const_char_pointer pszName) { return as<glm::mat3>(pszName); }
-		glm::mat4& mat4(const_char_pointer pszName) { return as<glm::mat4>(pszName); }
+		T& as(const_char_pointer  pszName) { return *(T*)plookup(pszName); }
+		float& as_float(const_char_pointer  pszName) { return as<float>(pszName); }
+		int& as_int(const_char_pointer  pszName) { return as<int>(pszName); }
+		glm::vec2& seq2(const_char_pointer  pszName) { return as<glm::vec2>(pszName); }
+		glm::vec3& seq3(const_char_pointer  pszName) { return as<glm::vec3>(pszName); }
+		glm::vec4& seq4(const_char_pointer  pszName) { return as<glm::vec4>(pszName); }
+		glm::mat2& mat2(const_char_pointer  pszName) { return as<glm::mat2>(pszName); }
+		glm::mat3& mat3(const_char_pointer  pszName) { return as<glm::mat3>(pszName); }
+		glm::mat4& mat4(const_char_pointer  pszName) { return as<glm::mat4>(pszName); }
 		operator const ::gpu::property* ()
 		{
 			return m_pproperties;
 
 		}
 
-		properties_interface array_item(const_char_pointer pszArrayName, int iItem)
+		properties_interface array_item(const_char_pointer  pszArrayName, int iItem)
 		{
 
 			auto pproperty = m_pproperties->find(pszArrayName);
@@ -289,7 +289,7 @@ namespace gpu
 
 		}
 
-		properties_reference operator[](const_char_pointer pszName);
+		properties_reference operator[](const_char_pointer  pszName);
 		properties_reference operator[](::collection::index i);
 
 	};
@@ -408,7 +408,7 @@ namespace gpu
 	};
 
 
-	inline property::property(const_char_pointer pszName,  const property * pproperty, int iSize):
+	inline property::property(const_char_pointer  pszName,  const property * pproperty, int iSize):
 		m_pszName(pszName), 
 		m_etype(::gpu::e_type_properties_array),
 		m_pproperties(pproperty),
@@ -417,7 +417,7 @@ namespace gpu
 
 
 	}
-	inline properties_reference properties_interface::operator[](const_char_pointer pszName)
+	inline properties_reference properties_interface::operator[](const_char_pointer  pszName)
 	{
 
 

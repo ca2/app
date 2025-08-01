@@ -72,7 +72,7 @@ extern "C"
 //void ns_app_terminate();
 // 0x00010000 NSWorkspaceLaunchAsync
 // 0x00080000 NSWorkspaceLaunchNewInstance
-void ns_launch_app(const ::scoped_string & scopedstr, const char ** argv, int iFlags);
+void ns_launch_app(const ::scoped_string & scopedstr, const_char_pointer * argv, int iFlags);
 #endif
 
 #if defined(LINUX)
@@ -6118,7 +6118,7 @@ namespace aura
 
       // handle all the rest
       //linux unsigned int nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
-      const char* nIDP = "Internal Failure";
+      const_char_pointer  nIDP = "Internal Failure";
       pusermessage->m_lresult = 0;        // sensible default
       if (pusermessage->m_emessage == e_message_command)
       {
@@ -6877,7 +6877,7 @@ namespace aura
    const ::scoped_string & scopedstr2)
 
    {
-   const char * rgpsz[2];
+   const_char_pointer  rgpsz[2];
    rgpsz[0] = psz1;
 
    rgpsz[1] = psz2;

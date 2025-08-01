@@ -1120,7 +1120,7 @@ namespace image
 
       information("file_as_memory time " + ::as_string(dt.floating_millisecond()) + "ms");
 
-      const ::ansi_character* psz = (const char*)memory.data();
+      const ::ansi_character* psz = (const_char_pointer )memory.data();
 
       auto size = memory.size();
 

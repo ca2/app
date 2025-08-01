@@ -507,7 +507,7 @@ namespace tts_sapi
       // Speaks some text.
       // (The input text must not be empty.)
       //--------------------------------------------------------------------
-      bool speaker::speak(const string & text)
+      bool speaker::speak(const ::scoped_string & scopedstrText)
       {
 
          return speak(m_strDefaultLang, text);

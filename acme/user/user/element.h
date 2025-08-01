@@ -207,7 +207,7 @@ namespace user
       virtual ::e_display defer_window_get_best_display_deduction();
 
 
-      virtual void _on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken);
+      virtual void _on_window_simple_action(const_char_pointer  pszActionName, ::user::activation_token * puseractivationtoken);
 
       
       virtual void on_window_close();

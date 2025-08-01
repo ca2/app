@@ -42,7 +42,7 @@ namespace windows
       if (dw > wcslen(pwsz))
       {
          ::string str;
-         auto psz = (const char *)pwsz;
+         auto psz = (const_char_pointer )pwsz;
          str = psz;
          wstr.release_buffer();
          wstr = str;

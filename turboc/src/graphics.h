@@ -473,7 +473,7 @@ CLASS_DECL_TURBOC void getaspectratio (int *xasp, int *yasp);
 CLASS_DECL_TURBOC int getbkcolor (void);
 CLASS_DECL_TURBOC int getcolor (void);
 CLASS_DECL_TURBOC const struct palettetype *getdefaultpalette (void);
-CLASS_DECL_TURBOC const char *getdrivername (void);
+CLASS_DECL_TURBOC const_char_pointer  getdrivername (void);
 CLASS_DECL_TURBOC void getfillpattern (char *pattern);
 CLASS_DECL_TURBOC void getfillsettings (struct fillsettingstype *fillinfo);
 CLASS_DECL_TURBOC int getgraphmode (void);

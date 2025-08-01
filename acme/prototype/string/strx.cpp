@@ -36,7 +36,7 @@ static const unsigned int offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x0
                                            };
 
 
-//const char * unicode_next(const ::scoped_string & scopedstr)
+//const_char_pointer  unicode_next(const ::scoped_string & scopedstr)
 //{
 //
 //   char len =  1 + trailingBytesForUTF8(*psz);

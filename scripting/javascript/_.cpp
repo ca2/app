@@ -282,7 +282,7 @@ string getJSString(const ::scoped_string & scopedstr)
    string nStr = str;
    for (character_count i=0; i<nStr.size(); i++)
    {
-      const char *replaceWith = "";
+      const_char_pointer  replaceWith = "";
       bool replace = true;
 
       switch (nStr[i])

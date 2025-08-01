@@ -2,7 +2,6 @@
 #pragma once
 
 
-using const_char_pointer = const char *;
 
 
 #include "ansi.h"

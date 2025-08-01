@@ -679,7 +679,7 @@ namespace nano2d
 	//		// While this may sound a little odd, the setup allows you to always render the
 	//		// same way regardless of scaling. I.e. following works regardless of scaling:
 	//		//
-	//		//		const char* txt = "Text me up.";
+	//		//		const_char_pointer  txt = "Text me up.";
 	//		//		TextBounds(vg, x,y, txt, NULL, bounds);
 	//		//		BeginPath(vg);
 	//		//		RoundedRect(vg, bounds[0],bounds[1], bounds[2]-bounds[0], bounds[3]-bounds[1]);

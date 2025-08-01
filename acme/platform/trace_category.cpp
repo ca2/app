@@ -132,7 +132,7 @@ void trace_category_static_term()
 
 
 
-CLASS_DECL_ACME const char* trace_category_name(enum_trace_category etracecategory)
+CLASS_DECL_ACME const_char_pointer  trace_category_name(enum_trace_category etracecategory)
 {
 
    if (etracecategory < e_trace_category_first && etracecategory < e_trace_category_count)
@@ -188,7 +188,7 @@ CLASS_DECL_ACME const ::particle * trace_object(enum_trace_category etracecatego
 }
 
 
-const char* g_pszTraceLevelName[] =
+const_char_pointer  g_pszTraceLevelName[] =
 {
 
    "none",
@@ -222,7 +222,7 @@ enum_trace_category object_trace_category(::particle * pparticle)
 }
 
 
-const char* topic_text(::particle * pparticle)
+const_char_pointer  topic_text(::particle * pparticle)
 {
 
    if (::is_null(pparticle))

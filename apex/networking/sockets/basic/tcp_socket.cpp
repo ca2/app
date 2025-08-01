@@ -1115,7 +1115,7 @@ return true;
 ////               SetCloseAndDelete(true);
 ////               SetFlushBeforeClose(false);
 ////               SetLost();
-////               const char *errbuf = ERR_error_string(errnr,nullptr);
+////               const_char_pointer errbuf = ERR_error_string(errnr,nullptr);
 ////
 ////               fatal() <<"OnWrite / SSL_write " << errnr << errbuf;
 ////
@@ -1130,7 +1130,7 @@ return true;
 ////            SetFlushBeforeClose(false);
 ////            SetLost();
 ////            int errnr = SSL_get_error(m_psslcontext->m_ssl,(int)n);
-////            const char *errbuf = ERR_error_string(errnr,nullptr);
+////            const_char_pointer errbuf = ERR_error_string(errnr,nullptr);
 ////            information() << "SSL_write() returns 0: " << errnr << ", " << errbuf;
 ////            //throw ::exception(io_exception(errbuf));
 ////         }
@@ -1144,9 +1144,9 @@ return true;
 ////         int iSocket = get_socket_id();
 ////         n = (int) (::send(iSocket,buf,len,SO_NOSIGPIPE));
 ////#elif defined(SOLARIS)
-////         n = ::send(get_socket_id(),(const char *)buf,(int)len,0);
+////         n = ::send(get_socket_id(),(const_char_pointer )buf,(int)len,0);
 ////#else
-////         n = ::send(get_socket_id(),(const char *)buf,(int)len,MSG_NOSIGNAL);
+////         n = ::send(get_socket_id(),(const_char_pointer )buf,(int)len,MSG_NOSIGNAL);
 ////#endif
 ////         if(n == -1)
 ////         {
@@ -1205,7 +1205,7 @@ return true;
 
       m_ptcpsocketImpl->buffer(pdata, len);
 
-      //const char * buf = (const char *)pdata;
+      //const_char_pointer  buf = (const_char_pointer )pdata;
 
       //memsize ptr = 0;
 
@@ -1218,7 +1218,7 @@ return true;
       //   
       //   if(m_obuf_top && (space = m_obuf_top -> Space()) > 0)
       //   {
-      //      const char *pbuf = buf + ptr;
+      //      const_char_pointer pbuf = buf + ptr;
       //      int sz = (int)(len - ptr);
       //      if(space >= sz)
       //      {
@@ -1540,7 +1540,7 @@ return true;
 //      //      if (m_strTlsHostName.has_character())
 //      //      {
 //
-//      //         SSL_set_tlsext_host_name(m_psslcontext->m_ssl, (char *)(const char *)m_strTlsHostName);
+//      //         SSL_set_tlsext_host_name(m_psslcontext->m_ssl, (char *)(const_char_pointer )m_strTlsHostName);
 //
 //      //      }
 //
@@ -1737,7 +1737,7 @@ return true;
       //   {
 
       //      long error = ERR_get_error();
-      //      const char* error_str = ERR_error_string(error, nullptr);
+      //      const_char_pointer  error_str = ERR_error_string(error, nullptr);
       //      warning() <<"could not SSL_connect: " << error_str;
 
       //      int iErrorSsl = SSL_get_error(m_psslcontext->m_ssl,r);
@@ -2788,11 +2788,11 @@ return true;
 //
 //#if (defined(LINUX)) && (OPENSSL_API_COMPAT < 0x10100000L)
 //
-//                     string strDnsName((const char *)ASN1_STRING_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
+//                     string strDnsName((const_char_pointer )ASN1_STRING_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
 //
 //#else
 //
-//                     string strDnsName((const char *)ASN1_STRING_get0_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
+//                     string strDnsName((const_char_pointer )ASN1_STRING_get0_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
 //
 //#endif
 //

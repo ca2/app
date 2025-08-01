@@ -150,7 +150,7 @@ namespace platform
       virtual void initialize(::particle* pparticle);
 
 
-      virtual void node_application_on_status(const char* pszStatus, void* p = nullptr, long long hi = 0);
+      virtual void node_application_on_status(const_char_pointer  pszStatus, void* p = nullptr, long long hi = 0);
 
 
       //virtual ::particle_pointer create_quit_particle(::pointer<::platform::node>& pnode);
@@ -454,7 +454,7 @@ namespace platform
 
       //virtual ::string get_user_toolkit_id();
 
-      virtual void launch_app(const ::scoped_string & scopedstr, const char** argv, int iFlags);
+      virtual void launch_app(const ::scoped_string & scopedstr, const_char_pointer * argv, int iFlags);
 
 
       virtual ::file::path get_executable_path_by_app_id(const ::scoped_string& scopedstrAppId,
@@ -1206,7 +1206,7 @@ namespace platform
 #endif
 
       virtual bool _is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath = nullptr,
-                                                                  const char* pszPath = nullptr);
+                                                                  const_char_pointer  pszPath = nullptr);
 
 #if defined(WINDOWS_DESKTOP) || defined(MACOS) || defined(LINUX)
 
@@ -1274,7 +1274,7 @@ namespace platform
       //#endif
 #if defined(__BSD__) || defined(__APPLE__)
 
-      virtual void arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const char * status));
+      virtual void arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const_char_pointer  status));
 
 #endif
 

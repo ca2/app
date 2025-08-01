@@ -318,7 +318,7 @@ public:
    ::draw2d::graphics *        pdc,
    int                 x,
    int                 y,
-   const char *            pcsz,
+   const_char_pointer           pcsz,
 
    size_t                  cb,
    ::color::color                crText,

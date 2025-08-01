@@ -15,8 +15,8 @@ typedef int HRes;
 struct end_of_line_and_next_line
 {
 
-   const char * end_of_line;
-   const char * next_line;
+   const_char_pointer  end_of_line;
+   const_char_pointer  next_line;
 
 };
 

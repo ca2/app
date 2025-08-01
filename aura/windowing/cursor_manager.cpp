@@ -14,7 +14,7 @@ namespace windowing
    struct cursor_pair
    {
       enum_cursor m_ecursor;
-      const char * m_pszName;
+      const_char_pointer  m_pszName;
 
    };
 

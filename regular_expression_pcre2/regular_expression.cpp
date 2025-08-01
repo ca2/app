@@ -46,7 +46,7 @@ namespace regular_expression_pcre2
 
       auto pcontext = (::regular_expression_pcre2::context *) m_papplication->m_pContext;
 
-      m_pcode = pcre2_compile((PCRE2_SPTR)(const char *)m_str, m_str.length(), 0, &e, &eo, pcontext->m_pcompilecontext);
+      m_pcode = pcre2_compile((PCRE2_SPTR)(const_char_pointer  )m_str, m_str.length(), 0, &e, &eo, pcontext->m_pcompilecontext);
 
       if (m_pcode == nullptr)
       {

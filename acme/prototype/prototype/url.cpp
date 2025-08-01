@@ -593,7 +593,7 @@ namespace url
 
    //   auto pszSecondSlash = pszSlash + 1;
 
-   //   const char* pszHost;
+   //   const_char_pointer  pszHost;
 
    //   if (*pszSecondSlash != '/')
    //   {
@@ -868,9 +868,9 @@ namespace url
 
    ////   auto pszLastSlashOnScript = strrchr(scopedstrScript, '/');
 
-   ////   const char * pszQuestion = strchr(scopedstrScript, '?');
+   ////   const_char_pointer  pszQuestion = strchr(scopedstrScript, '?');
 
-   ////   const char* pszFragment;
+   ////   const_char_pointer  pszFragment;
 
    ////   if (scopedstrQuestion)
    ////   {
@@ -968,10 +968,10 @@ namespace url
    //url::url(const ::scoped_string& scopedstr) /*:
    //   m_connect(scopedstr),
    //   m_request(m_connect.is_url() ?
-   //      ::range < const char*>(
+   //      ::range < const_char_pointer >(
    //         scopedstr.begin() + m_connect.url.m_str.size(),
    //         scopedstr.size() - m_connect.url.m_str.size()) :
-   //      ::range<const char*>{}) */
+   //      ::range<const_char_pointer >{}) */
    //{
 
    //}
@@ -1090,7 +1090,7 @@ namespace url
 
       auto pszSecondSlash = pszSlash + 1;
 
-      const char* pszHost;
+      const_char_pointer  pszHost;
 
       if (*pszSecondSlash != '/')
       {
@@ -1242,9 +1242,9 @@ namespace url
 
       auto pszLastSlashOnScript = strrchr(pszScript, '/');
 
-      const char* pszQuestion = strchr(pszScript, '?');
+      const_char_pointer  pszQuestion = strchr(pszScript, '?');
 
-      const char* pszFragment;
+      const_char_pointer  pszFragment;
 
       if (pszQuestion)
       {
@@ -1400,7 +1400,7 @@ namespace url
 
       character_count i = 0;
 
-      const ::ansi_character* pszEncoded = (const char*)block.begin();
+      const ::ansi_character* pszEncoded = (const_char_pointer )block.begin();
 
       while (*pszEncoded != '\0' && i < sizeLen)
       {
@@ -1499,7 +1499,7 @@ namespace url
 
       auto pszEncoded = pszEncodedStart;
 
-      auto pszInput = (const char*)block.begin();
+      auto pszInput = (const_char_pointer )block.begin();
 
       memory_set(pszEncoded, 0, block.size() * 5);
 

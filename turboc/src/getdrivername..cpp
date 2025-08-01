@@ -25,14 +25,14 @@
 
 //#include "graphics.h"
 
-static const char *DriverNames[11] = {
+static const_char_pointer  DriverNames[11] = {
   NULL, "CGA", "CGA", "EGAVGA", "EGAVGA", "EGAVGA",
   "IBM8514", "HERC", "ATT", "EGAVGA", "PC3270"
 };
 
 //-------------------------------------------------------------------------
 
-const char *
+const_char_pointer  
 getdrivername (void)
 {
   if (TcDriver < 1 || TcDriver > 10)

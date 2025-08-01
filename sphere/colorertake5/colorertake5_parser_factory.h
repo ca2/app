@@ -53,7 +53,7 @@ namespace colorertake5
          ParserFactory(::particle * pparticle, string catalogPath);
          virtual ~ParserFactory();
 
-         static const char *getVersion();
+         static const_char_pointer  getVersion();
 
          /**
           * Enumerates all declared hrd classes

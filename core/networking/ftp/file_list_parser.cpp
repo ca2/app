@@ -44,7 +44,7 @@ namespace ftp
 //#define system()->InsertTime(ftpFileStatus) InsertTime(ftpFileStatus);
 //#endif
 
-   const char* file_list_parser::m_Months[12] = {
+   const_char_pointer  file_list_parser::m_Months[12] = {
       ("jan"),("feb"),("mar"),("apr"),("may"),("jun"),
       ("jul"),("aug"),("sep"),("oct"),("nov"),("dec")
    };
@@ -73,13 +73,15 @@ namespace ftp
 
    file_list_parser::~file_list_parser()
    {
+
    }
+
 
    bool file_list_parser::CheckMonth(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrMonthName) const
    {
-      if (character_tolower(scopedstr.begin()[0]) != pszMonthName[0] ||
-         character_tolower(scopedstr.begin()[1]) != pszMonthName[1] ||
-         character_tolower(scopedstr.begin()[2]) != pszMonthName[2])
+      if (character_tolower(scopedstr.begin()[0]) != scopedstrMonthName[0] ||
+         character_tolower(scopedstr.begin()[1]) != scopedstrMonthName[1] ||
+         character_tolower(scopedstr.begin()[2]) != scopedstrMonthName[2])
          return false;
 
       return true;
@@ -643,7 +645,7 @@ namespace ftp
    bool file_list_parser::Parse(file_status& ftpFileStatus, const ::scoped_string & scopedstrLineToParse)
    {
       ftpFileStatus.reset();
-      auto scopedstrLine = strLineToParse();
+      auto scopedstrLine = scopedstrLineToParse();
       auto iLineSize = scopedstrLine.size();
 
       if (iLineSize < 2) // an empty name in EPLF, with no info, could be 2 chars

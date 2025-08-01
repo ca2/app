@@ -2654,7 +2654,7 @@ namespace dynamic_source
    }
 
 
-   const char* script_compiler::next_nonspace(const ::scoped_string & scopedstrParam)
+   const_char_pointer  script_compiler::next_nonspace(const ::scoped_string & scopedstrParam)
    {
 
       const ::ansi_character* psz = strParam;

@@ -64,7 +64,7 @@ namespace file
 
    CLASS_DECL_ACME int dos_to_os_error(int lDosErr);
 
-   const char* status_short_description(const ::e_status& estatus);
+   const_char_pointer  status_short_description(const ::e_status& estatus);
 
 
 } // namespace file

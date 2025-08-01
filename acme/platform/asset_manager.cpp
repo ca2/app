@@ -21,7 +21,7 @@ namespace acme
    }
 
 
-   ::pointer<asset> asset_manager::get_asset(const char *path)
+   ::pointer<asset> asset_manager::get_asset(const_char_pointer path)
    {
 
       return {};

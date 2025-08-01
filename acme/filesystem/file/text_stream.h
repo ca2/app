@@ -9,9 +9,9 @@
 
 
 inline ::string ellipsis(const ::ansi_character * psz, character_count len);
-inline unsigned long long consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10);
-inline long long consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix = 10);
-inline double consume_floating(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10);
+inline unsigned long long consume_natural(const_char_pointer & psz, const ::ansi_character * pszBegin, int iRadix = 10);
+inline long long consume_integer(const_char_pointer  & psz, const ::ansi_character * pszBegin, int iRadix = 10);
+inline double consume_floating(const_char_pointer & psz, const ::ansi_character * pszBegin, int iRadix = 10);
 
 
 #include "write_text_stream.h"

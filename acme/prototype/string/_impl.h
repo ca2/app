@@ -81,7 +81,7 @@ inline ::hash32 as_hash32 < const wide_string & >(const wide_string & widestr)
 }
 
 
-//inline const char * FormatArgument(const string & value) noexcept { return value.c_str(); }
+//inline const_char_pointer  FormatArgument(const string & value) noexcept { return value.c_str(); }
 
 
 //template < typename TYPE_CHAR >
@@ -675,7 +675,7 @@ inline ::hash32 as_hash32 < wide_string >(const wide_string & widestr)
 
 
 template < typename ITERATOR_TYPE >
-void string_range < ITERATOR_TYPE >::consume(const char * pszToConsume)
+void string_range < ITERATOR_TYPE >::consume(const_char_pointer  pszToConsume)
 {
 
    while(*pszToConsume)
@@ -1103,7 +1103,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_nc_name()
 }
 
 
-//string consume_quoted_value(const char * & pszParse)
+//string consume_quoted_value(const_char_pointer  & pszParse)
 //{
 
 //   ::str::utf8_char utf8char;
@@ -1309,7 +1309,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_spaced_va
 
 
 //template < typename ITERATOR_TYPE >
-//::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_spaced_value(const char *& psz)
+//::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_spaced_value(const_char_pointer & psz)
 //{
 //
 //   string str(scopedstr);
@@ -1325,7 +1325,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_spaced_va
 //}
 
 //template < typename ITERATOR_TYPE >
-//::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_spaced_value(const char *& psz, const ::ansi_character * pszEnd)
+//::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_spaced_value(const_char_pointer & psz, const ::ansi_character * pszEnd)
 //{
 //
 //   string str(scopedstr, pszEnd - psz);
@@ -1380,7 +1380,7 @@ void string_range < ITERATOR_TYPE >::consume_until_any_character_in(const ::scop
 
 
 //template < typename ITERATOR_TYPE >
-//::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_command_line_argument(const char *& psz)
+//::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_command_line_argument(const_char_pointer & psz)
 //{
 //
 //   string str(scopedstr);
@@ -1396,7 +1396,7 @@ void string_range < ITERATOR_TYPE >::consume_until_any_character_in(const ::scop
 //}
 //
 //template < typename ITERATOR_TYPE >
-//::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_command_line_argument(const char *& psz, const ::ansi_character * pszEnd)
+//::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_command_line_argument(const_char_pointer & psz, const ::ansi_character * pszEnd)
 //{
 //
 //   string str(scopedstr, pszEnd - psz);
@@ -1801,10 +1801,10 @@ void string_range < ITERATOR_TYPE >::escape_skip_to_character(int ch, int escape
   // bro      2002-10-29
   //========================================================
 template < typename ITERATOR_TYPE >
-void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const char * chset, int escape)
+void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const_char_pointer  chset, int escape)
 {
   
-  const char * prev_escape = nullptr;
+  const_char_pointer  prev_escape = nullptr;
 
   while (this->has_character() && *this->m_begin)
   {
@@ -1847,7 +1847,7 @@ template < typename ITERATOR_TYPE >
 void string_range < ITERATOR_TYPE >::escape_case_insensitive_skip_to(const ::scoped_string & scopedstr, int escape)
 {
   
-  const char * prev_escape = nullptr;
+  const_char_pointer  prev_escape = nullptr;
    
   while (this->has_character() && *this->m_begin)
   {

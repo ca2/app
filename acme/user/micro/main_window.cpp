@@ -406,7 +406,7 @@ namespace micro
    //         //}
 
 
-   //void main_window::_on_window_simple_action(const char * pszActionName)
+   //void main_window::_on_window_simple_action(const_char_pointer  pszActionName)
    //{
 
    //   ::string strActionName(scopedstrActionName);
@@ -1610,7 +1610,7 @@ namespace micro
    }
 
 
-   void main_window::_on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken)
+   void main_window::_on_window_simple_action(const_char_pointer  pszActionName, ::user::activation_token * puseractivationtoken)
    {
 
       ::string strActionName(scopedstrActionName);

@@ -8,7 +8,7 @@ namespace earth
 {
 
 
-   const char * const szInvalidDateTimeSpan = "Invalid DateTimeSpan";
+   const_char_pointer  const szInvalidDateTimeSpan = "Invalid DateTimeSpan";
 
 
 } // namespace datetime
@@ -57,7 +57,7 @@ namespace earth
 {
 
 
-   string format(const char* pFormat, const time_span& span, const class ::time& timeshift)
+   string format(const_char_pointer  pFormat, const time_span& span, const class ::time& timeshift)
    {
       // formatting timespans is a little trickier than formatting CTimes
       //  * we are only interested in relative time formats, ie. it is illegal

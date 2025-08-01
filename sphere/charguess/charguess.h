@@ -4,7 +4,7 @@
 #include "charguess_c.h"
 
 
-CLASS_DECL_SPHERE const char * GuessChardet(charguess_det p, const ::scoped_string & scopedstr);
+CLASS_DECL_SPHERE const_char_pointer  GuessChardet(charguess_det p, const ::scoped_string & scopedstr);
 
 
 class CLASS_DECL_SPHERE charguess

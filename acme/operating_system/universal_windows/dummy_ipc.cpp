@@ -413,7 +413,7 @@
 //      //   //   else if(pcds->dwData == I32_MINIMUM)
 //      //   //   {
 //
-//      //   //      string strMessage((const char *)pcds->lpData,pcds->cbData);
+//      //   //      string strMessage((const_char_pointer )pcds->lpData,pcds->cbData);
 //
 //      //   //      on_receive(this,strMessage.c_str());
 //

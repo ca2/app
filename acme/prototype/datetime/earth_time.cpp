@@ -25,7 +25,7 @@ namespace earth
 {
 
 
-   const char * const szInvalidDateTime = "Invalid DateTime";
+   const_char_pointer  const szInvalidDateTime = "Invalid DateTime";
 
 
    ::earth::time time::now() noexcept

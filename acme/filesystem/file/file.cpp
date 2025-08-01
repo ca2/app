@@ -720,7 +720,7 @@ namespace file
    }
 
 
-   void file::printf(const char *format, ...)
+   void file::printf(const_char_pointer format, ...)
    {
 
       string strFormat;

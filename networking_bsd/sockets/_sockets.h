@@ -25,7 +25,7 @@ inline bool thread_has_sockets() { return task_flag().is_set(e_task_flag_using_s
 #ifdef BSD_STYLE_SOCKETS
 
 
-CLASS_DECL_NETWORKING_BSD const char * bsd_socket_error(int x);
+CLASS_DECL_NETWORKING_BSD const_char_pointer  bsd_socket_error(int x);
 
 
 #endif

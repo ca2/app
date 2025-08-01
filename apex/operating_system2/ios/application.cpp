@@ -299,7 +299,7 @@ namespace apex
 ////#elif defined _WIN32
 ////      {
 ////         string slask = payload + "=" + value;
-////         _putenv( (const char *)slask);
+////         _putenv( (const_char_pointer )slask);
 ////      }
 ////#else
 //      setenv(payload, value, 1);

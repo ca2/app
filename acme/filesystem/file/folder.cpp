@@ -68,7 +68,7 @@ bool folder::locate_folder(const ::file::path & pathFolderName)
 }
 
 
-bool folder::locate(const ::function < bool(const char*) >& function)
+bool folder::locate(const ::function < bool(const_char_pointer ) >& function)
 {
 
    throw ::interface_only();

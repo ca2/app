@@ -506,7 +506,7 @@ retry:
 bool ftpfs::file_exists(const ::file::path & path)
 {
 
-   return ::fs::data::file_exists(scopedstrPath);
+   return ::fs::data::file_exists(path);
 
 }
 
@@ -514,7 +514,7 @@ bool ftpfs::file_exists(const ::file::path & path)
 ::payload ftpfs::file_length(const ::file::path & path)
 {
 
-   return ::fs::data::file_length(scopedstrPath);
+   return ::fs::data::file_length(path);
 
 }
 

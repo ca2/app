@@ -20,7 +20,7 @@
 ////#define WGL_CONTEXT_PROFILE_MASK_ARB 0x9126
 ////typedef HGLRC(WINAPI * PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareContext, const int * attribList);
 //
-////typedef const char * (WINAPI * PFNWGLGETEXTENSIONSSTRINGEXTPROC)(void);
+////typedef const_char_pointer  (WINAPI * PFNWGLGETEXTENSIONSSTRINGEXTPROC)(void);
 ////typedef BOOL(WINAPI * PFNWGLSWAPINTERVALEXTPROC)(int);
 ////typedef int (WINAPI * PFNWGLGETSWAPINTERVALEXTPROC) (void);
 //

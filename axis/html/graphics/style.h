@@ -45,7 +45,7 @@ namespace html
 
       style & operator = (const style & style);
       
-      const char * parse(html_data * pdata, const ::scoped_string & scopedstr);
+      const_char_pointer  parse(html_data * pdata, const ::scoped_string & scopedstr);
 
       static ::color::color parse_color(const ::scoped_string & scopedstr);
       static float parse_dimension(const ::scoped_string & scopedstr);

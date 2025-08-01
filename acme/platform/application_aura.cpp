@@ -448,7 +448,7 @@ namespace platform
    //virtual itask get_thread_id(){}
 
 
-   //bool aura_application_layer::_001OnDDECommand(const ::string & pcsz) override{}
+   //bool aura_application_layer::_001OnDDECommand(const ::scoped_string & scopedstr) override{}
 
    // void aura_application_layer::_001InitializeShellOpen() override{}
    // void aura_application_layer::_001OnFileNew(::message::message * pmessage) override{}
@@ -786,7 +786,7 @@ namespace platform
    //      bool aura_application_layer::OnX11WindowMessage(void* pev){}
    //#endif
 
-   bool  aura_application_layer::CreateFileFromRawResource(unsigned int nID, const ::string& lcszType, const ::string& pcszFilePath)
+   bool  aura_application_layer::CreateFileFromRawResource(unsigned int nID, const ::string& lcszType, const ::scoped_string & scopedstrFilePath)
    {
       return false;
    }

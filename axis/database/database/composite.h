@@ -93,7 +93,7 @@ namespace database
       using database::query_rows;
 
       //virtual ::payload query(const ::scoped_string & scopedstrQuery, ::collection::count iMaxRowCount = -1, ::collection::count iMaxColumnCount = -1);
-      bool query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where) override;
+      bool query_table_item(::payload& payload, const ::string & table, const ::scoped_string & scopedstrItem, const ::string & where) override;
       bool query_rows(::pointer<row_array>& prowarray, const ::scoped_string & scopedstrQuery) override;
       bool query_row(::pointer<row>& prow, const ::scoped_string & scopedstrQuery) override;
       bool query_items(::pointer<payload_array>& pvara, const ::scoped_string & scopedstrQuery) override;

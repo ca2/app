@@ -4070,7 +4070,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
 
    /// Windows (IE), macOS (Safari), Linux (Firefox, oder...)
    /// Remark: it is not default browser (necessarily)
-   void node::native_full_web_browser(const ::string & pcsz)
+   void node::native_full_web_browser(const ::scoped_string & scopedstr)
 
    {
 
@@ -4082,7 +4082,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
 
    /// Windows (Edge), fallback to native_full_web_browser
    /// Remark: it is not default browser (necessarily)
-   void node::native_modern_web_browser(const ::string & pcsz)
+   void node::native_modern_web_browser(const ::scoped_string & scopedstr)
 
    {
 

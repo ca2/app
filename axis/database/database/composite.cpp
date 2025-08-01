@@ -193,7 +193,7 @@ namespace database
 
 
    
-   bool composite::query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where)
+   bool composite::query_table_item(::payload& payload, const ::string & table, const ::scoped_string & scopedstrItem, const ::string & where)
    {
 
       return m_pdatabase->query_table_item(payload, table, item, where);

@@ -65,7 +65,7 @@ namespace mysql
       using database_impl::query_row;
       using database_impl::query_rows;
 
-      //virtual bool query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where) override;
+      //virtual bool query_table_item(::payload& payload, const ::string & table, const ::scoped_string & scopedstrItem, const ::string & where) override;
       virtual bool query_item(::payload & payload, const ::scoped_string & scopedstrSql) override;
       virtual bool query_blob(memory_base& memory, const ::scoped_string & scopedstrSql);
       virtual bool query_items(::pointer<payload_array>& pvara, const ::scoped_string & scopedstrSql) override;

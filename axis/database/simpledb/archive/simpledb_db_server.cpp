@@ -355,7 +355,7 @@ bool db_server::load(const ::scoped_string & strDataKey, memory & mem)
 }
 
 
-bool db_server::save(const ::scoped_string & strDataKey, const ::string & pcsz)
+bool db_server::save(const ::scoped_string & strDataKey, const ::scoped_string & scopedstr)
 
 {
 

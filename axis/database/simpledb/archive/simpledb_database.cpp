@@ -112,7 +112,7 @@ namespace simpledb
    }
 
 
-   ::payload database::query_table_item(const ::string & table, const ::string & item, const ::string &where,::payload notfound)
+   ::payload database::query_table_item(const ::string & table, const ::scoped_string & scopedstrItem, const ::string &where,::payload notfound)
    {
 
       return ::payload(::e_type_null);

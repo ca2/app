@@ -12,7 +12,7 @@
 namespace datetime
 {
 
-   bool check_end_expression(const ::string & input, const char * & scanner)
+   bool check_end_expression(const ::scoped_string & scopedstrInput, const char * & scanner)
    {
       scanner = input;
       while(unicode_is_space_char(scanner) && *scanner != '\0')
@@ -25,7 +25,7 @@ namespace datetime
       return false;
    }
 
-   bool check_expression_separator(const ::string & input, const char * & scanner)
+   bool check_expression_separator(const ::scoped_string & scopedstrInput, const char * & scanner)
    {
       scanner = input;
       while(unicode_is_space_char(scanner) && *scanner != '\0')
@@ -43,7 +43,7 @@ namespace datetime
          return true;
    }
 
-   string check_unit(const ::text::context * pcontext, const ::string & input, const char * & scanner)
+   string check_unit(const ::text::context * pcontext, const ::scoped_string & scopedstrInput, const char * & scanner)
    {
       static auto idCalendarDays("calendar:days");
       scanner = input;
@@ -155,7 +155,7 @@ namespace datetime
       return "";
    }
 
-   string check_month(const ::string & input, const char * & scanner)
+   string check_month(const ::scoped_string & scopedstrInput, const char * & scanner)
    {
       scanner = input;
       while(ansi_char_isspace(*scanner) && *scanner != '\0')
@@ -266,7 +266,7 @@ namespace datetime
       return "";
    }
 
-   string check_lang_date(const ::string & input, const char * & scanner)
+   string check_lang_date(const ::scoped_string & scopedstrInput, const char * & scanner)
    {
       scanner = input;
       while(unicode_is_whitespace(scanner) && *scanner != '\0')
@@ -305,7 +305,7 @@ namespace datetime
       return "";
    }
 
-   string check_natural(const ::string & input, const char * & scanner)
+   string check_natural(const ::scoped_string & scopedstrInput, const char * & scanner)
    {
       scanner = input;
       if(*scanner == '\0')
@@ -322,7 +322,7 @@ namespace datetime
    }
 
 
-   string check_lang_offset(const ::string & input, const char * & scanner)
+   string check_lang_offset(const ::scoped_string & scopedstrInput, const char * & scanner)
    {
       if(check_end_expression(input, scanner))
          return "";
@@ -342,7 +342,7 @@ namespace datetime
       return "";
    }
 
-   string check_natural_separator(const ::string & input, const char * & scanner)
+   string check_natural_separator(const ::scoped_string & scopedstrInput, const char * & scanner)
    {
       scanner = input;
       if(*scanner == '\0')

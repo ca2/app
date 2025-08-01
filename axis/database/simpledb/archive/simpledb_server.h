@@ -54,7 +54,7 @@ namespace simpledb
       virtual ::payload query_rows(const ::scoped_string & scopedstrSql);
 
 
-      virtual ::payload query_table_item(const ::string & table, const ::string & item, const ::string &where,::payload notfound = false);
+      virtual ::payload query_table_item(const ::string & table, const ::scoped_string & scopedstrItem, const ::string &where,::payload notfound = false);
 
       virtual ::payload get_agent(const ::scoped_string & scopedstrTable, const ::scoped_string & scopedstrEmail, const ::scoped_string & scopedstrUser);
 

@@ -139,11 +139,11 @@ namespace filemanager
       void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
       void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
       virtual ::collection::count _001GetItemCount() override;
-      void _017Browse(const ::string & pcsz, const ::action_context & action_context);
+      void _017Browse(const ::scoped_string & scopedstr, const ::action_context & action_context);
 
-      void _017UpdateList(const ::string & pcsz, const ::action_context & action_context);
+      void _017UpdateList(const ::scoped_string & scopedstr, const ::action_context & action_context);
 
-      void _017UpdateZipList(const ::string & pcsz, const ::action_context & action_context);
+      void _017UpdateZipList(const ::scoped_string & scopedstr, const ::action_context & action_context);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_scroll_x);

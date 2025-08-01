@@ -322,7 +322,7 @@ namespace database
    //}
 
 
-   ::payload database::query_table_item(const ::string & table, const ::string & item, const ::string & where, const ::payload& payloadDefault)
+   ::payload database::query_table_item(const ::string & table, const ::scoped_string & scopedstrItem, const ::string & where, const ::payload& payloadDefault)
    {
 
       ::payload payload;
@@ -407,7 +407,7 @@ namespace database
    }
 
 
-   bool database::query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where)
+   bool database::query_table_item(::payload& payload, const ::string & table, const ::scoped_string & scopedstrItem, const ::string & where)
    {
 
       string strSql;
@@ -505,7 +505,7 @@ namespace database
    }
 
 
-   //::payload database::query_table_item(const ::string & table, const ::string & item, const ::string & where, ::payload notfound)
+   //::payload database::query_table_item(const ::string & table, const ::scoped_string & scopedstrItem, const ::string & where, ::payload notfound)
    //{
 
    //   return ::payload();

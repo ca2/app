@@ -9515,7 +9515,7 @@ namespace user
 
    }
 
-   void plain_edit::IndexRegisterInsert(character_count iSel, const ::string & pcszWhat)
+   void plain_edit::IndexRegisterInsert(character_count iSel, const ::scoped_string & scopedstrWhat)
 
    {
       __UNREFERENCED_PARAMETER(iSel);

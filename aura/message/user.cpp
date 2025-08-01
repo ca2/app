@@ -81,7 +81,7 @@ namespace message
 
       m_lresult = -1;
 
-      error() <<strErrorMessage;
+      error() <<scopedstrErrorMessage;
 
    }
 

@@ -1340,7 +1340,7 @@ namespace aura
 //#endif
 
 
-   //bool application::_001OnDDECommand(const ::string & pcsz)
+   //bool application::_001OnDDECommand(const ::scoped_string & scopedstr)
 
    //{
 
@@ -5984,7 +5984,7 @@ namespace aura
    //}
 
 
-   bool application::CreateFileFromRawResource(unsigned int nID, const ::string & pcszType, const ::string & pcszFilePath)
+   bool application::CreateFileFromRawResource(unsigned int nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath)
    {
 
       __UNREFERENCED_PARAMETER(nID);
@@ -6030,7 +6030,7 @@ namespace aura
    }
 
 
-   //bool application::GetResourceData(unsigned int nID, const ::string & pcszType, memory& storage)
+   //bool application::GetResourceData(unsigned int nID, const ::scoped_string & scopedstrType, memory& storage)
 
    //{
 
@@ -7743,7 +7743,7 @@ namespace aura
    //}
 
 
-   //bool application::_001OnDDECommand(const ::string & pcsz)
+   //bool application::_001OnDDECommand(const ::scoped_string & scopedstr)
 
    //{
    //   throw ::interface_only();

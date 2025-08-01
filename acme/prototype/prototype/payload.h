@@ -566,7 +566,7 @@ public:
    //::comparison::var_strict strictly_compare() const;
 
    //void set_string(const ::const_ansi_range & ansirange);
-   void set_string(const ::string & str);
+   void set_string(const ::scoped_string & scopedstr);
    void set_string(::string && str);
    void set_id(const ::atom & atom);
    void unset();

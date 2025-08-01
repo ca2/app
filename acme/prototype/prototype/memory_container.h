@@ -167,11 +167,16 @@ inline void memory_container ::from_string(const ::scoped_string & scopedstr)
 
 }
 
+
 inline void memory_container ::from_string(const ::string & str)
 {
 
    if(m_pmemory.is_null())
+   {
+
       m_pmemory = create_memory();
+
+   }
 
    m_pmemory->from_string(str);
 

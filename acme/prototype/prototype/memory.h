@@ -51,7 +51,6 @@ public:
    memory(enum_copy_clone, const memory_base & memorybase);
    memory(const memory_base & memorybase);
    memory(const memory & memory);
-   memory(const ::scoped_string & scopedstr);
    memory(const ::block & block);
    memory(memory_container * pcontainer, memsize size = 0, unsigned int uAllocFlags = 0);
    memory(memory_container * pcontainer, const void * pdata, memsize size);
@@ -60,6 +59,7 @@ public:
    memory(const memory * pmemory, manager * pmanager);
    memory(const unsigned char * pchSrc, character_count nLength, manager * pmanager);
    memory(memory && memory);
+   memory(const ::scoped_string & scopedstr);
    memory(const ::string & str);
    ~memory() override;
 

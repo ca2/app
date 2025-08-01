@@ -95,7 +95,7 @@ public:
 
    static void   increment_digit_letter(string & str);
 
-   static void   copy(string & str, const ::string & pcsz, int iCount);
+   static void   copy(string & str, const ::scoped_string & scopedstr, int iCount);
 
    static string   replace_with(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstr, character_count iStart = 0);
    static string   case_insensitive_replace_with(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstr, character_count iStart = 0);

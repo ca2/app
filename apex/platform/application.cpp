@@ -1521,9 +1521,6 @@ namespace apex
    }
 
 
-
-
-
    bool application::_001OnDDECommand(const ::scoped_string & scopedstr)
    {
 
@@ -1532,7 +1529,6 @@ namespace apex
       return false;
 
    }
-
 
 
    void application::_001CloseApplication()
@@ -1559,7 +1555,7 @@ namespace apex
    void application::get_temp_file_name(string & strRet, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension)
    {
 
-      return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
+      return get_temp_file_name_template(strRet, scopedstrName, scopedstrExtension, nullptr);
 
    }
 
@@ -3992,7 +3988,7 @@ namespace apex
 
       auto psecurityattributes = node()->get_application_exclusivity_security_attributes();
 
-      bool bErased = exclusive_erase(strId);
+      bool bErased = exclusive_erase(scopedstrId);
 
       return true;
 
@@ -4742,7 +4738,7 @@ namespace apex
 
       strMessage = pdatetime->date_time_text();
       strMessage += " ";
-      strMessage += pszMessage;
+      strMessage += scopedstrMessage;
       strMessage += "\n";
 
       {
@@ -6599,7 +6595,7 @@ namespace apex
 
          _synchronous_lock synchronouslock(this->synchronization());
 
-         m_straActivationMessage.add(strMessage);
+         m_straActivationMessage.add(scopedstrMessage);
 
       }
 
@@ -6693,7 +6689,7 @@ namespace apex
 
       //psession->fill_locale_schema(localeschema);
 
-      bool bIgnoreStdStd = string(scopedstrRoot) == "app" && (string(scopedstrRelative) == "main" || string(scopedstrRelative) == "bergedge");
+      bool bIgnoreStdStd = string(pathRoot) == "app" && (string(scopedstrRelative) == "main" || string(scopedstrRelative) == "bergedge");
 
       //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
 
@@ -6713,7 +6709,7 @@ namespace apex
 
          strSchema = plocaleschema->m_straSchema[i];
 
-         update_appmatter(psession, pszRoot, pszRelative, strLocale, strSchema);
+         update_appmatter(psession, pathRoot, scopedstrRelative, strLocale, strSchema);
 
          psystem->install_progress_add_up();
 
@@ -6730,8 +6726,8 @@ namespace apex
 
       string strLocale;
       string strSchema;
-      information() << "update_appmatter(root=" << pszRoot << ", relative=" << pszRelative << ", locale=" << pszLocale << ", style=" << pszStyle << ")";
-      ::file::path strRelative = ::file::path(scopedstrRoot) / "_matter" / pszRelative / get_locale_schema_dir(scopedstrLocale, pszStyle) + ".zip";
+      information() << "update_appmatter(root=" << pathRoot << ", relative=" << scopedstrRelative << ", locale=" << scopedstrLocale << ", style=" << scopedstrStyle << ")";
+      ::file::path strRelative = ::file::path(pathRoot) / "_matter" / scopedstrRelative / get_locale_schema_dir(scopedstrLocale, scopedstrStyle) + ".zip";
       ::file::path strFile = directory()->install() / strRelative;
       ::file::path strUrl(::e_path_url);
 
@@ -6875,7 +6871,7 @@ namespace apex
 
       payloadFile["disable_ca2_sessid"] = true;
 
-      string strMatter = directory()->matter(::file::path(scopedstrMatter) / pszMatter2);
+      string strMatter = directory()->matter(::file::path(scopedstrMatter) / scopedstrMatter2);
 
       payloadFile["url"] = strMatter;
 
@@ -7196,7 +7192,7 @@ namespace apex
 
       string strValue;
 
-      if (get_command_line_parameter(strValue, pszCommandLine, "enable_desktop_launch"))
+      if (get_command_line_parameter(strValue, scopedstrCommandLine, "enable_desktop_launch"))
       {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -7231,7 +7227,7 @@ namespace apex
 
          int iExitCode = 0;
 
-         return pnode->call_sync(pathApp, pszCommandLine, pathFolder, e_display_normal, 2_minute, set, &iExitCode);
+         return pnode->call_sync(pathApp, scopedstrCommandLine, pathFolder, e_display_normal, 2_minute, set, &iExitCode);
 
 #endif
 
@@ -7562,7 +7558,7 @@ namespace apex
    //}
 
 
-   //bool application::CreateFileFromRawResource(unsigned int nID, const ::string & pcszType, const ::string & pcszFilePath)
+   //bool application::CreateFileFromRawResource(unsigned int nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath)
    //{
    //
    //__UNREFERENCED_PARAMETER(nID);
@@ -7608,7 +7604,7 @@ namespace apex
    //}
    //
    //
-   //bool application::GetResourceData(unsigned int nID, const ::string & pcszType, memory& storage)
+   //bool application::GetResourceData(unsigned int nID, const ::scoped_string & scopedstrType, memory& storage)
    //
    //{
    //
@@ -9313,7 +9309,7 @@ namespace apex
    //}
 
 
-   //bool application::_001OnDDECommand(const ::string & pcsz)
+   //bool application::_001OnDDECommand(const ::scoped_string & scopedstr)
 
    //{
    //   throw ::interface_only();
@@ -9682,7 +9678,7 @@ namespace apex
 
       long long i64Size;
 
-      if (!get_fs_size(i64Size, pszPath, bPending))
+      if (!get_fs_size(i64Size, scopedstrPath, bPending))
       {
 
          strSize.empty();
@@ -9762,7 +9758,7 @@ namespace apex
 
       auto psession = session();
 
-      psession->set_app_title(m_strAppName, pszTitle);
+      psession->set_app_title(m_strAppName, scopedstrTitle);
 
    }
 
@@ -10001,7 +9997,7 @@ namespace apex
 
       string strMessage;
 
-      strMessage += pszTopic;
+      strMessage += scopedstrTopic;
 
       strMessage += " : ";
 
@@ -10300,7 +10296,7 @@ namespace apex
       if (m_pnetworkingapplication)
       {
 
-         estatus = networking_application()->on_html_response(psocket, strHtml, strUrl, setPost);
+         estatus = networking_application()->on_html_response(psocket, strHtml, scopedstrUrl, setPost);
 
       }
 

@@ -1937,7 +1937,7 @@ return true;
 
 }*/
 
-//   void imaging::SaveJpeg(const ::string & pcszFile,::draw2d::bitmap_pointer pitmap)
+//   void imaging::SaveJpeg(const ::scoped_string & scopedstrFile,::draw2d::bitmap_pointer pitmap)
 
 
 //   {
@@ -1960,7 +1960,7 @@ return true;
 //#endif
 //   }
 //
-//   void imaging::SavePng(const ::string & pcszFile,::draw2d::bitmap_pointer pitmap)
+//   void imaging::SavePng(const ::scoped_string & scopedstrFile,::draw2d::bitmap_pointer pitmap)
 
 
 //   {
@@ -1985,7 +1985,7 @@ return true;
 
 
 
-//   ::draw2d::bitmap_pointer imaging::LoadImageSync(const ::string & pcszImageFilePath,::aura::application * papp)
+//   ::draw2d::bitmap_pointer imaging::LoadImageSync(const ::scoped_string & scopedstrImageFilePath,::aura::application * papp)
 
 //   {
 //#ifdef AXIS_FREEIMAGE

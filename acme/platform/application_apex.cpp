@@ -683,7 +683,7 @@ namespace platform
    //virtual itask get_thread_id(){}
 
 
-   bool apex_application_layer::_001OnDDECommand(const ::string& pcsz)
+   bool apex_application_layer::_001OnDDECommand(const ::scoped_string & scopedstr)
    {
       return false;
    }

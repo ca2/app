@@ -4057,7 +4057,7 @@ namespace draw2d
 
       daRight.erase_all();
 
-      if (str.length() <= 0)
+      if (scopedstr.length() <= 0)
       {
 
          return 0;

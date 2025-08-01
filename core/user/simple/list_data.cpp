@@ -69,7 +69,7 @@ void simple_list_data::_001GetSubItemText(::user::mesh_subitem * pmeshsubitem)
 }
 
 
-void simple_list_data::set_item_text(::collection::index iItem, ::collection::index iSubItem, const ::string & pcsz)
+void simple_list_data::set_item_text(::collection::index iItem, ::collection::index iSubItem, const ::scoped_string & scopedstr)
 {
 
    while(iSubItem >= m_array.get_size())
@@ -82,7 +82,7 @@ void simple_list_data::set_item_text(::collection::index iItem, ::collection::in
 
 }
 
-void simple_list_data::set_item_text(::user::mesh * pmesh, ::collection::index iItem, ::collection::index iSubItem, const ::string & pcsz)
+void simple_list_data::set_item_text(::user::mesh * pmesh, ::collection::index iItem, ::collection::index iSubItem, const ::scoped_string & scopedstr)
 {
 
    set_item_text(iItem,iSubItem,pcsz);

@@ -86,7 +86,7 @@ namespace graphics
    void bitmap_source_buffer::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
-      if (m_strBitmapSource == strBitmapSource)
+      if (m_strBitmapSource == scopedstrBitmapSource)
       {
 
          return;
@@ -95,13 +95,13 @@ namespace graphics
 
       clear_bitmap_source();
 
-      m_strBitmapSource = strBitmapSource;
+      m_strBitmapSource = scopedstrBitmapSource;
 
       char szName[] = "Local\\bitmap-source:%s";
 
       string strMutexName;
 
-      strMutexName.formatf(szName, strBitmapSource.c_str());
+      strMutexName.formatf(szName, scopedstrBitmapSource.c_str());
 
       m_pmutexBitmapSource = node()->create_local_named_mutex(this, false, strMutexName, nullptr);
 
@@ -113,7 +113,7 @@ namespace graphics
 
       ::file::path path;
 
-      path = pathFolder / "bitmap-source" / strBitmapSource;
+      path = pathFolder / "bitmap-source" / scopedstrBitmapSource;
 
       //auto estatus = 
       

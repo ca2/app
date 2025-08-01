@@ -31,9 +31,9 @@ namespace message
 
       //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
 
-      //virtual void error(const ::string & pcszErrorMessage);
+      //virtual void error(const ::scoped_string & scopedstrErrorMessage);
 
-      virtual void failed(const ::string & pcszErrorMessage);
+      virtual void failed(const ::scoped_string & scopedstrErrorMessage);
 
 //      ::request * get_request();
 //

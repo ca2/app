@@ -625,7 +625,7 @@ namespace aura
       //virtual itask get_thread_id();
 
 
-      //virtual bool _001OnDDECommand(const ::string & pcsz) override;
+      //virtual bool _001OnDDECommand(const ::scoped_string & scopedstr) override;
 
       virtual void _001InitializeShellOpen() override;
       virtual void _001OnFileNew(::message::message * pmessage) override;
@@ -949,7 +949,7 @@ void initialize_context() override;
 //      virtual bool OnX11WindowMessage(void* pev);
 //#endif
 
-      bool CreateFileFromRawResource(unsigned int nID, const ::string & lcszType, const ::string & pcszFilePath);
+      bool CreateFileFromRawResource(unsigned int nID, const ::string & lcszType, const ::scoped_string & scopedstrFilePath);
 
       void OnUpdateRecentFileMenu(::message::command* pcommand);
 

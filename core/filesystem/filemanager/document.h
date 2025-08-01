@@ -107,7 +107,7 @@ namespace filemanager
       //critical_section * GetItemIdListCriticalSection();
 
       //virtual bool FileManagerBrowse(::file::item * pitem, const ::action_context & action_context);
-      //virtual bool FileManagerBrowse(const ::string & pcsz, const ::action_context & action_context);
+      //virtual bool FileManagerBrowse(const ::scoped_string & scopedstr, const ::action_context & action_context);
 
 
       virtual void FileManagerOneLevelUp(const ::action_context & action_context);

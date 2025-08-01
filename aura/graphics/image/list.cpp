@@ -577,7 +577,7 @@ namespace image
    //}
 
 
-   //int image_list::add_matter(const ::string & pcsz, ::particle * pparticle, int iItem)
+   //int image_list::add_matter(const ::scoped_string & scopedstr, ::particle * pparticle, int iItem)
    //{
    //
    //   ::file::path path;
@@ -632,7 +632,7 @@ namespace image
    }
 
 
-   //int image_list::add_std_matter(const ::string & pcsz, int iItem)
+   //int image_list::add_std_matter(const ::scoped_string & scopedstr, int iItem)
    //{
    //
    //   // auto pcontext = get_context();

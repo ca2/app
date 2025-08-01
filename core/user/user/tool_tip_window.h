@@ -91,7 +91,7 @@ namespace user
       void EnableTip(bool bEnable = true);
       bool HideTip();
       //virtual bool create(::user::interaction * puserinteraction, const atom & atom);
-      bool CalcRect(::draw2d::graphics_pointer & pgraphics, ::int_rectangle * prectangle, const ::int_rectangle & lprectToolScreen, const ::string & pcsz);
+      bool CalcRect(::draw2d::graphics_pointer & pgraphics, ::int_rectangle * prectangle, const ::int_rectangle & lprectToolScreen, const ::scoped_string & scopedstr);
 
       void ShowTip(int iTool, bool bForce = false);
       void SetPositionHint(::user::interaction * puserinteraction, enum_position eposition);

@@ -2061,7 +2061,7 @@ pdirectorysystem->create("/ca2core");
    int system::_001OnDebugReport(int i1, const ::scoped_string & scopedstr1, int i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3, va_list args)
    {
 
-      return _debug_logging_report(i1, psz1, i2, psz2, psz3, args);
+      return _debug_logging_report(i1, scopedstr1, i2, scopedstr2, scopedstr3, args);
 
    }
 
@@ -2078,22 +2078,22 @@ pdirectorysystem->create("/ca2core");
 
       string str;
 
-      if (strFileName.has_character() || strModuleName.has_character())
+      if (scopedstrFileName.has_character() || scopedstrModuleName.has_character())
       {
 
          string_array stra;
 
-         if (strFileName.has_character())
+         if (scopedstrFileName.has_character())
          {
 
-            stra.add(strFileName);
+            stra.add(scopedstrFileName);
 
          }
 
-         if (strModuleName.has_character())
+         if (scopedstrModuleName.has_character())
          {
 
-            stra.add(strModuleName);
+            stra.add(scopedstrModuleName);
 
          }
 
@@ -2105,13 +2105,13 @@ pdirectorysystem->create("/ca2core");
 
       string str2;
 
-      if (scopedstrFormat != nullptr)
+      if (pszFormat != nullptr)
       {
 
          //         if(list != nullptr)
          {
 
-            str2.formatf(scopedstrFormat, list);
+            str2.formatf(pszFormat, list);
 
          }
          //     else
@@ -2397,12 +2397,12 @@ pdirectorysystem->create("/ca2core");
       {
 
          //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_id_mutex_name(scopedstrAppName, pszId));
-         auto pmutex = node()->open_global_named_mutex(this, m_pnode->get_global_id_mutex_name(scopedstrAppName, pszId));
+         auto pmutex = node()->open_global_named_mutex(this, m_pnode->get_global_id_mutex_name(scopedstrAppName, scopedstrId));
 
          if (pmutex == nullptr)
          {
 
-            string strApp = pszAppName;
+            string strApp = scopedstrAppName;
             strApp += "app.exe";
 
             string strParameters;
@@ -2436,7 +2436,7 @@ pdirectorysystem->create("/ca2core");
          auto pmutex = node()->open_global_named_mutex(this, m_pnode->get_global_mutex_name(scopedstrAppName));
          if (pmutex == nullptr)
          {
-            string strApp = pszAppName;
+            string strApp = scopedstrAppName;
             strApp += "app.exe";
 
 #if defined(UNIVERSAL_WINDOWS)
@@ -2463,6 +2463,7 @@ pdirectorysystem->create("/ca2core");
          return true;
       }
    }
+
 
    bool system::assert_running_local(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId)
    {
@@ -3109,7 +3110,7 @@ pdirectorysystem->create("/ca2core");
 
       ::pointer<::request>prequest(e_create_new, this);
 
-      prequest->m_payloadFile = pszFile;
+      prequest->m_payloadFile = scopedstrFile;
       
       prequest->m_ecommand = e_command_file_open;
       
@@ -4232,7 +4233,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       auto pcrypto = crypto();
 
-      return pcrypto->md5(str);
+      return pcrypto->md5(scopedstr);
 
    }
 
@@ -4495,6 +4496,8 @@ namespace apex
    {
 
       string strMessage;
+
+      ::string str(scopedstr);
 
       strMessage.formatf("system::on_allocation_error Implement \"%s\" allocation\n", str.c_str());
 
@@ -4916,7 +4919,7 @@ namespace apex
    bool system::_handle_uri(const ::scoped_string & scopedstrUri)
    {
 
-      if (application() && application()->_handle_uri(strUri))
+      if (application() && application()->_handle_uri(scopedstrUri))
       {
 
          return true;
@@ -4926,7 +4929,7 @@ namespace apex
       if (!application() || application() != application())
       {
 
-         if (application() && application()->_handle_uri(strUri))
+         if (application() && application()->_handle_uri(scopedstrUri))
          {
 
             return true;

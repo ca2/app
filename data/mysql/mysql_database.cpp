@@ -794,7 +794,7 @@ namespace mysql
    }
 
 
-   //::payload database::query_table_item(const ::string & table, const ::string & item, const ::string & where, ::payload notfound)
+   //::payload database::query_table_item(const ::string & table, const ::scoped_string & scopedstrItem, const ::string & where, ::payload notfound)
    //{
    //   string strSql;
    //   strSql.formatf("SELECT `%s` FROM `%s` WHERE %s", item, table, where);

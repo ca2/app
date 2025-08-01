@@ -166,7 +166,7 @@ namespace user
    }
 
 
-   bool tab::set_title(::collection::index iIndex, const ::string & pcsz)
+   bool tab::set_title(::collection::index iIndex, const ::scoped_string & scopedstr)
 
    {
 
@@ -194,7 +194,7 @@ namespace user
    }
 
 
-   bool tab::set_title_by_id(const ::atom & atom, const ::string & pcsz)
+   bool tab::set_title_by_id(const ::atom & atom, const ::scoped_string & scopedstr)
    {
 
       auto iIndex = id_index(atom);
@@ -213,7 +213,7 @@ namespace user
    }
 
 
-   //bool tab::set_tab(const ::string & pcsz, const ::atom & atom, bool bVisible)
+   //bool tab::set_tab(const ::scoped_string & scopedstr, const ::atom & atom, bool bVisible)
    //{
 
    //   return add_tab(pcsz, atom, bVisible, true);
@@ -371,7 +371,7 @@ namespace user
    }
 
 
-   //bool tab::set_image_tab(const ::string & pcszTitle, const ::scoped_string & scopedstrImage, const ::atom & atom, bool bVisible)
+   //bool tab::set_image_tab(const ::scoped_string & scopedstrTitle, const ::scoped_string & scopedstrImage, const ::atom & atom, bool bVisible)
    //{
 
    //   return add_image_tab(pcszTitle, pszImage, atom, bVisible, true);

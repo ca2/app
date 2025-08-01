@@ -78,7 +78,7 @@ namespace database
 
 
       //virtual ::payload query(const ::scoped_string & scopedstrQuery, ::collection::count iMaxRowCount = -1, ::collection::count iMaxColumnCount = -1);
-      virtual ::payload query_table_item(const ::string & table, const ::string & item, const ::string & where, const ::payload & payload = ::payload());
+      virtual ::payload query_table_item(const ::string & table, const ::scoped_string & scopedstrItem, const ::string & where, const ::payload & payload = ::payload());
       virtual ::pointer<row_array>query_rows(const ::scoped_string & scopedstrQuery);
       virtual ::pointer<row>query_row(const ::scoped_string & scopedstrQuery);
       virtual ::pointer<payload_array>query_items(const ::scoped_string & scopedstrQuery);
@@ -86,7 +86,7 @@ namespace database
       //virtual bool query_blob(get_memory getmemory, const ::scoped_string & scopedstrQuery);
 
 
-      virtual bool query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where);
+      virtual bool query_table_item(::payload& payload, const ::string & table, const ::scoped_string & scopedstrItem, const ::string & where);
 
 
       virtual bool query_rows(::pointer<row_array> & rows, const ::scoped_string & scopedstrQuery);

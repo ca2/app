@@ -48,7 +48,7 @@
 namespace dynamic_source
 {
 
-   string escape(const ::string& pcsz);
+   string escape(const ::scoped_string & scopedstr);
 
    void add_var_id(string& strResult, character_count& iArroba, string_array& straId, bool bMakeKeyLower = true);
 
@@ -1167,7 +1167,7 @@ namespace dynamic_source
 
    }
 
-   string escape(const ::string& pcsz)
+   string escape(const ::scoped_string & scopedstr)
    {
       string str(pcsz);
       str.find_replace("\\", "\\\\");

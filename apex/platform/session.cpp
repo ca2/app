@@ -602,7 +602,7 @@ class ::fs::data * session::fs()
 
       auto prequestNew = __create_new < ::request >();
 
-      prequestNew->m_payloadFile = pszPathName;
+      prequestNew->m_payloadFile = scopedstrPathName;
 
       prequestNew->m_puserelementParent = prequest->m_puserelementParent;
 

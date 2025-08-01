@@ -182,11 +182,11 @@ namespace user
 
       virtual bool add_tab(const ::scoped_string & scopedstrName, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
 
-      virtual bool set_tab(const ::string & pcsz, const ::atom & idTab = nullptr, bool bVisible = true);
+      virtual bool set_tab(const ::scoped_string & scopedstr, const ::atom & idTab = nullptr, bool bVisible = true);
 
       virtual bool add_tab_with_icon(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrImage, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
 
-      virtual bool set_tab_with_icon(const ::string & pcsz, const ::scoped_string & scopedstrImage, const ::atom & idTab = nullptr, bool bVisible = true);
+      virtual bool set_tab_with_icon(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrImage, const ::atom & idTab = nullptr, bool bVisible = true);
 
       virtual bool erase_tab_by_id(const ::atom & idTab);
       virtual void erase_tab(::collection::index iTab, bool bVisible = true);

@@ -204,7 +204,7 @@ namespace hi5
 
       string build_url(const ::string & baseUrl, const ::string & userInfo, bool isUserId);
 
-      string prepare_basic_authentication(const ::string & inParam1, const ::string & inParam2);
+      string prepare_basic_authentication(const ::scoped_string & scopedstrInputParameter1, const ::scoped_string & scopedstrInputParameter2);
 
 
    };

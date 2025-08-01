@@ -606,7 +606,7 @@ namespace user
       void plain_edit_one_line_up(::draw2d::graphics_pointer& pgraphics);
 
       void IndexRegisterDelete(character_count iSel, character_count iCount);
-      void IndexRegisterInsert(character_count iSel, const ::string & pcszWhat);
+      void IndexRegisterInsert(character_count iSel, const ::scoped_string & scopedstrWhat);
 
 
       virtual void MacroBegin();

@@ -1391,7 +1391,7 @@ bool xfplayer_impact_line::IsVisible()
 }
 
 
-void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::string & pcsz, int iLeft, int iTop, int iWidth, ::color32_t color32, ::color::color crOutline, character_count iLen, double dBlend)
+void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, int iLeft, int iTop, int iWidth, ::color32_t color32, ::color::color crOutline, character_count iLen, double dBlend)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization());

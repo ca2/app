@@ -225,7 +225,7 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   bool tool_tip_window::CalcRect(::draw2d::graphics_pointer & pgraphics, ::int_rectangle * prectangle, const ::int_rectangle & rectangleTool, const ::string & pcsz)
+   bool tool_tip_window::CalcRect(::draw2d::graphics_pointer & pgraphics, ::int_rectangle * prectangle, const ::int_rectangle & rectangleTool, const ::scoped_string & scopedstr)
    {
       
       pgraphics->set(m_pfont);

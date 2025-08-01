@@ -75,7 +75,7 @@ namespace folder_zip
 
       //virtual bool locate(const ::file::path & path);
 
-      //virtual void add_file(const ::file::path & pszDir,const ::file::path & pszRelative);
+      //virtual void add_file(const ::file::path & pathDir,const ::file::path & pathRelative);
 
       //bool dump(file_pointer pfile);
 

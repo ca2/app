@@ -293,16 +293,16 @@ namespace user
       if (::is_null(m_pstringmap))
       {
 
-         return strId;
+         return scopedstrId;
 
       }
 
-      string strText = m_pstringmap->operator[](strId);
+      string strText = m_pstringmap->operator[](scopedstrId);
 
       if (strText.is_empty())
       {
 
-         strText = strId;
+         strText = scopedstrId;
 
       }
 

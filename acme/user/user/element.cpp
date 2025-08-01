@@ -2650,7 +2650,7 @@ namespace user
    //}
 
 
-   void element::create_message_queue(const ::string & lpszName)
+   void element::create_message_queue(const ::scoped_string & scopedstrName)
    {
 
       throw ::interface_only();

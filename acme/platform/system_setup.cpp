@@ -10,7 +10,7 @@
 
 system_setup::system_setup(::system_setup::enum_flag eflag, const char * pszName) :
    m_pfnFactory(nullptr),
-   m_pszName(scopedstrName),
+   m_pszName(pszName),
    m_eflag(eflag)
 {
 
@@ -20,7 +20,7 @@ system_setup::system_setup(::system_setup::enum_flag eflag, const char * pszName
 
 system_setup::system_setup(PFN_factory pfnFactory, const char * pszName) :
    m_pfnFactory(pfnFactory),
-   m_pszName(scopedstrName),
+   m_pszName(pszName),
    m_eflag(flag_factory)
 {
 
@@ -71,7 +71,7 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const cha
    {
 
       if ((int)(psetup->m_eflag & eflag) == (int)eflag
-      && (::is_empty(scopedstrName) || string_equals(scopedstrName, psetup->m_pszName)))
+      && (::is_empty(pszName) || string_equals(pszName, psetup->m_pszName)))
       {
 
          return psetup;
@@ -91,25 +91,25 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const cha
 CLASS_DECL_ACME ::string get_library_component(const ::scoped_string & scopedstrName)
 {
    
-   if (strName.begins("audio_resample_"))
+   if (scopedstrName.begins("audio_resample_"))
    {
 
       return "audio_resample";
 
    }
-   else if (strName.begins("audio_decode_"))
+   else if (scopedstrName.begins("audio_decode_"))
    {
 
       return "audio_resample";
 
    }
-   else if (strName.begins("video_decode_"))
+   else if (scopedstrName.begins("video_decode_"))
    {
 
       return "video_decode";
 
    }
-   else if (strName.begins("video_input_"))
+   else if (scopedstrName.begins("video_input_"))
    {
 
       return "video_input";
@@ -118,16 +118,16 @@ CLASS_DECL_ACME ::string get_library_component(const ::scoped_string & scopedstr
    else
    {
 
-      auto pUnderscore = strName.find('_');
+      auto pUnderscore = scopedstrName.find('_');
 
       if (::is_null(pUnderscore))
       {
 
-         return strName;
+         return scopedstrName;
 
       }
 
-      return strName(0, pUnderscore);
+      return scopedstrName(0, pUnderscore);
 
    }
 
@@ -137,7 +137,7 @@ CLASS_DECL_ACME ::string get_library_component(const ::scoped_string & scopedstr
 PFN_factory system_setup::get_factory_function(const char * pszName)
 {
 
-   if (::is_empty(scopedstrName))
+   if (::is_empty(pszName))
    {
 
       return nullptr;
@@ -151,7 +151,7 @@ PFN_factory system_setup::get_factory_function(const char * pszName)
       while (psetup != nullptr)
       {
 
-         if (psetup->m_eflag == flag_factory && string_equals(scopedstrName, psetup->m_pszName))
+         if (psetup->m_eflag == flag_factory && string_equals(pszName, psetup->m_pszName))
          {
 
             return psetup->m_pfnFactory;
@@ -168,7 +168,7 @@ PFN_factory system_setup::get_factory_function(const char * pszName)
 
       auto psetup = s_psetupList;
 
-      string strComponentSearch = get_library_component(scopedstrName);
+      string strComponentSearch = get_library_component(pszName);
 
       while (psetup != nullptr)
       {
@@ -207,7 +207,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const char
    {
 
       if ((int)(psetup->m_eflag & eflag) == (int)eflag
-         && (::is_empty(scopedstrName) || ::string_equals(scopedstrName, psetup->m_pszName)))
+         && (::is_empty(pszName) || ::string_equals(pszName, psetup->m_pszName)))
       {
 
          return psetup;

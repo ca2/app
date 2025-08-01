@@ -92,7 +92,7 @@ namespace console
    void console_client::write(const ::scoped_string & scopedstr)
    {
 
-      get_console()->write(str);
+      get_console()->write(scopedstr);
 
    }
 

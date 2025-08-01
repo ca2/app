@@ -61,7 +61,7 @@ namespace sockets
       virtual bool http_request_step();
 
       virtual void OnFirst() override;
-      virtual void OnHeader(atom idKey, const string &) override;
+      virtual void OnHeader(const ::atom & atom, const ::scoped_string & scopedstr) override;
       virtual void OnHeaderComplete() override;
       virtual void OnData(const char * psz, memsize size) override;
 

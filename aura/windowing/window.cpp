@@ -3808,7 +3808,7 @@ namespace windowing
    }
 
 
-   void window::create_message_queue(::user::interaction* pinteraction, const ::string& lpszName)
+   void window::create_message_queue(::user::interaction* pinteraction, const ::scoped_string & scopedstrName)
    {
 
       if (_is_window())
@@ -7697,7 +7697,7 @@ namespace windowing
    }
 
 
-   //   void window::set_window_text(const ::string& pszString)
+   //   void window::set_window_text(const ::scoped_string & scopedstrString)
    //
    //   {
    //
@@ -13761,7 +13761,7 @@ namespace windowing
    //}
 
 
-   //void window::create_message_queue(::user::interaction * pinteraction, const ::string & lpszName)
+   //void window::create_message_queue(::user::interaction * pinteraction, const ::scoped_string & scopedstrName)
    //{
 
    //   throw ::interface_only();
@@ -14834,7 +14834,7 @@ namespace windowing
       //}
 
 
-      //   void window::set_window_text(const ::string& pszString)
+      //   void window::set_window_text(const ::scoped_string & scopedstrString)
       //   {
       //
       //

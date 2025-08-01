@@ -70,7 +70,7 @@ namespace fs_raw_folder_protocol_dropbox
       //bool is_link(const ::file::path& path) override;
 
       // optional if ls_dir is implemented
-      //bool has_subdir(const ::file::path& pszPath) override;
+      //bool has_subdir(const ::file::path & path) override;
 
 
       // bool fast_has_subdir(const ::file::p/*ath& pszPath) override;
@@ -78,9 +78,9 @@ namespace fs_raw_folder_protocol_dropbox
 //      int is_dir(const ::file::path& path) override;
 //      ::file::listing& root_ones(::file::listing& listing) override;
 //
-//      bool file_exists(const ::file::path& pszPath) override;
+//      bool file_exists(const ::file::path & path) override;
 //
-//      bool file_move(const ::file::path& pszDst, const ::file::path& pszSrc) override;
+//      bool file_move(const ::file::path & pathTarget, const ::file::path & pathSource) override;
 //
 //      ::file_pointer get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception = nullptr) override;
 //

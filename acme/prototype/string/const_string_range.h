@@ -243,6 +243,9 @@ public:
    }
 
 
+   ::collection::count length() const {return this->size();}
+
+
    const_string_range & assign_bounded(ITERATOR_TYPE psz, character_count start, character_count count)
    {
 

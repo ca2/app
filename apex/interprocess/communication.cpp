@@ -60,7 +60,7 @@ namespace interprocess
 
       //}
 
-      m_strApp = strApp;
+      m_strApp = scopedstrApp;
 
 #ifdef UNIVERSAL_WINDOWS
 
@@ -136,7 +136,7 @@ namespace interprocess
    bool communication::_handle_uri(const ::scoped_string & scopedstrUri)
    {
 
-      information() << "::interprocess::communication::on_interprocess_handle " << strUri;
+      information() << "::interprocess::communication::on_interprocess_handle " << scopedstrUri;
 
 
       //   if(!strMessage.begins_eat("call "))
@@ -256,7 +256,7 @@ namespace interprocess
       //
       //   }
 
-      ::url::url url(strUri);
+      ::url::url url(scopedstrUri);
 
       string strObject = url.connect().host();
 
@@ -321,7 +321,7 @@ namespace interprocess
 
       synchronous_lock sl1(synchronization());
 
-      auto & pmutex = m_mapAppMutex[strApp];
+      auto & pmutex = m_mapAppMutex[scopedstrApp];
 
       if (pmutex.is_null())
       {
@@ -334,7 +334,7 @@ namespace interprocess
 
       synchronous_lock synchronouslock(pmutex);
 
-      auto idaPid = get_pid(strApp);
+      auto idaPid = get_pid(scopedstrApp);
 
       if (idaPid.get_count() > 0)
       {
@@ -343,7 +343,7 @@ namespace interprocess
 
       }
 
-      if (strApp == "app-core/clockverse")
+      if (scopedstrApp == "app-core/clockverse")
       {
 
          informationf("app-core/clockverse");
@@ -352,13 +352,13 @@ namespace interprocess
 
       auto plauncher = __øcreate < ::apex::app_launcher>();
 
-      plauncher->initialize_app_launcher(this, node()->process_platform_name(), strApp);
+      plauncher->initialize_app_launcher(this, node()->process_platform_name(), scopedstrApp);
 
       atom idPid = -1;
 
       {
 
-         auto ida = get_pid(strApp);
+         auto ida = get_pid(scopedstrApp);
 
          if (ida.is_empty())
          {
@@ -381,7 +381,7 @@ namespace interprocess
 
                iStep++;
 
-               ida = get_pid(strApp);
+               ida = get_pid(scopedstrApp);
 
                if (ida.has_element())
                {
@@ -403,7 +403,7 @@ namespace interprocess
 
       }
 
-      string strKey = strApp + ":" + idPid;
+      string strKey = scopedstrApp + ":" + idPid;
 
       if (m_callermap[strKey].is_null())
       {
@@ -412,7 +412,7 @@ namespace interprocess
 
       }
 
-      m_callermap[strKey]->open(key(strApp, idPid));
+      m_callermap[strKey]->open(key(scopedstrApp, idPid));
 
    }
 
@@ -420,7 +420,7 @@ namespace interprocess
    void communication::connect(const ::scoped_string & scopedstrApp, const ::atom & idPid)
    {
 
-      string strKey = strApp + ":" + idPid;
+      string strKey = scopedstrApp + ":" + idPid;
 
       if (m_callermap[strKey].is_null())
       {
@@ -436,7 +436,7 @@ namespace interprocess
 
       }
 
-      m_callermap[strKey]->open(key(strApp, idPid));
+      m_callermap[strKey]->open(key(scopedstrApp, idPid));
 
    }
 
@@ -444,7 +444,7 @@ namespace interprocess
    ::interprocess::caller & communication::caller(const ::scoped_string & scopedstrApp, const ::atom & iPid)
    {
 
-      string strKey = strApp + ":" + iPid;
+      string strKey = scopedstrApp + ":" + iPid;
 
       if (m_callermap[strKey].is_null())
       {
@@ -456,7 +456,7 @@ namespace interprocess
       if (!m_callermap[strKey]->is_caller_ok())
       {
 
-         connect(strApp, iPid);
+         connect(scopedstrApp, iPid);
 
       }
 
@@ -486,7 +486,7 @@ namespace interprocess
 
 #else
 
-      strKey = "::ca2::account::ccwarehouse::" + strApp + ":" + idPid;
+      strKey = "::ca2::account::ccwarehouse::" + scopedstrApp + ":" + idPid;
 
 #endif
 
@@ -753,7 +753,7 @@ namespace interprocess
    ::pointer<::interprocess::call>communication::create_call(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
    {
 
-      return __allocate ::interprocess::call(this, strApp, strObject, strMember);
+      return __allocate ::interprocess::call(this, scopedstrApp, scopedstrObject, scopedstrMember);
 
    }
 
@@ -761,7 +761,7 @@ namespace interprocess
    ::pointer<::interprocess::call>communication::create_call(const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
    {
 
-      return create_call(m_strApp, strObject, strMember);
+      return create_call(m_strApp, scopedstrObject, scopedstrMember);
 
    }
 
@@ -775,8 +775,8 @@ namespace interprocess
          if (m_phandler->_handle_interprocess(
             m_ptarget,
             payload,
-            strObject,
-            strMember,
+            scopedstrObject,
+            scopedstrMember,
             propertyset))
          {
 
@@ -786,10 +786,10 @@ namespace interprocess
 
       }
 
-      if (strObject == "application")
+      if (scopedstrObject == "application")
       {
 
-         if (strMember.case_insensitive_begins("reply."))
+         if (scopedstrMember.case_insensitive_begins("reply."))
          {
 
             long long iTask = propertyset["protocol:call_id"].as_long_long();
@@ -803,7 +803,7 @@ namespace interprocess
             return true;
 
          }
-         else if (strMember == "on_additional_local_instance")
+         else if (scopedstrMember == "on_additional_local_instance")
          {
 
             string strModule;
@@ -827,7 +827,7 @@ namespace interprocess
             return false;
 
          }
-         else if (strMember == "on_new_instance")
+         else if (scopedstrMember == "on_new_instance")
          {
 
             on_new_instance(propertyset["module"].as_string(), propertyset["pid"].as_long_long());
@@ -838,7 +838,7 @@ namespace interprocess
 
             auto papp = get_app();
 
-            papp->_handle_call(payload, strObject, strMember, propertyset);
+            papp->_handle_call(payload, scopedstrObject, scopedstrMember, propertyset);
 
          }
 
@@ -852,9 +852,9 @@ namespace interprocess
    void communication::on_new_instance(const ::scoped_string & scopedstrModule, const ::atom & idPid)
    {
 
-      defer_add_module(strModule, idPid);
+      defer_add_module(scopedstrModule, idPid);
 
-      get_app()->on_new_instance(strModule, idPid);
+      get_app()->on_new_instance(scopedstrModule, idPid);
 
    }
 
@@ -885,7 +885,7 @@ namespace interprocess
 
 //#if 0
 
-      auto pids = pnode->module_list_file_processes_identifiers(strApp);
+      auto pids = pnode->module_list_file_processes_identifiers(scopedstrApp);
 
       for (auto & pid : pids)
       {
@@ -1013,7 +1013,7 @@ namespace interprocess
       else
       {
 
-         strItem = strModule + "|" + idPid;
+         strItem = scopedstrModule + "|" + idPid;
       }
 
 

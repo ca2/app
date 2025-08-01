@@ -126,11 +126,11 @@ namespace platform
       virtual ::string get_file_type_identifier(const ::file::path& path);
 
 
-      virtual void call_async(const ::string& pszPath, const ::string& pszParam, const ::string& pszDir,
+      virtual void call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir,
                               ::e_display edisplay, bool bPrivileged, unsigned int* puiPid = nullptr);
 
 
-      virtual void call_sync(const ::string& pszPath, const ::string& pszParam, const ::string& pszDir,
+      virtual void call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir,
                              ::e_display edisplay, const class time& timeTimeout, ::property_set & set, int* piExitCode);
 
 
@@ -199,10 +199,10 @@ namespace platform
       virtual string veriwell_multimedia_music_midi_get_default_implementation_name();
 
 
-      virtual void _launch_macos_app(const ::string& pszAppFolder);
+      virtual void _launch_macos_app(const ::scoped_string & scopedstrAppFolder);
 
 
-      virtual void _launch_macos_app_args(const ::string& pszAppFolder, const ::string& pszArgs);
+      virtual void _launch_macos_app_args(const ::scoped_string & scopedstrAppFolder, const ::scoped_string & scopedstrArgs);
 
 
       //void on_initialize_particle() override;
@@ -275,22 +275,22 @@ namespace platform
 
 
       virtual bool is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild,
-                                            const ::string& pszPlatform, const ::string& pszConfiguration,
-                                            const ::string& pszLocale, const ::string& pszSchema);
+                                            const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
+                                            const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
 
-      virtual void set_application_installed(const ::file::path& pathExe, string strAppId, const ::string& pszBuild,
-                                             const ::string& pszPlatform, const ::string& pszConfiguration,
-                                             const ::string& pszLocale, const ::string& pszSchema);
+      virtual void set_application_installed(const ::file::path& pathExe, string strAppId, const ::scoped_string & scopedstrBuild,
+                                             const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
+                                             const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
 
       virtual ::file::path application_installer_folder(const ::file::path& pathExe, string strAppId,
-                                                        const ::string& pszPlatform, const ::string& pszConfiguration,
-                                                        const ::string& pszLocale, const ::string& pszSchema);
+                                                        const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
+                                                        const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
 
-      virtual ::file::path get_application_path(string strAppId, const ::string& pszPlatform,
-                                                const ::string& pszConfiguration);
+      virtual ::file::path get_application_path(string strAppId, const ::scoped_string & scopedstrPlatform,
+                                                const ::scoped_string & scopedstrConfiguration);
 
 
       virtual ::file::path get_last_run_application_path_file(const ::scoped_string & scopedstrAppId);
@@ -371,13 +371,13 @@ namespace platform
 //      virtual string get_wallpaper(::collection::index iScreen, ::acme::windowing::display* pwindowingdisplay);
 
 
-      virtual string get_file_icon_path(const ::string& pszPath, int iSize);
+      virtual string get_file_icon_path(const ::scoped_string & scopedstrPath, int iSize);
 
 
-      virtual string get_file_content_type(const ::string& pszPath);
+      virtual string get_file_content_type(const ::scoped_string & scopedstrPath);
 
 
-      virtual int os_launch_uri(const ::string& pszUri, char* pszError = NULL, int iBufferSize = 0);
+      virtual int os_launch_uri(const ::scoped_string & scopedstrUri, char* pszError = NULL, int iBufferSize = 0);
 
 
 //      virtual void enable_wallpaper_change_notification();
@@ -454,7 +454,7 @@ namespace platform
 
       //virtual ::string get_user_toolkit_id();
 
-      virtual void launch_app(const ::string& psz, const char** argv, int iFlags);
+      virtual void launch_app(const ::scoped_string & scopedstr, const char** argv, int iFlags);
 
 
       virtual ::file::path get_executable_path_by_app_id(const ::scoped_string& scopedstrAppId,
@@ -469,7 +469,7 @@ namespace platform
       virtual void launch_app_by_app_id(const ::scoped_string& scopedstrAppId, bool bSingleExecutableVersion);
 
 
-      virtual ::process_identifier create_process(const ::string& pszCommandLine);
+      virtual ::process_identifier create_process(const ::scoped_string & scopedstrCommandLine);
 
 
       virtual void run_silent(const ::scoped_string & scopedstrFunct, const ::scoped_string & scopedstrstrParams);
@@ -481,14 +481,14 @@ namespace platform
       virtual ::file::path_array modules_paths();
 
 
-      virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const ::string& pszExceptDir);
+      virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const ::scoped_string & scopedstrExceptDir);
 
 
       virtual ::process_identifier_array processes_identifiers();
 
 
       virtual ::process_identifier_array module_path_processes_identifiers(
-         const ::string& pszModulePath, bool bModuleNameIsPropertyFormatted);
+         const ::scoped_string & scopedstrModulePath, bool bModuleNameIsPropertyFormatted);
 
 
       virtual ::file::path process_identifier_module_path(::process_identifier processidentifier);
@@ -502,11 +502,11 @@ namespace platform
       //virtual bool is_shared_library_busy(const string_array& stra);
 
       virtual bool process_contains_module(string& strImage, ::process_identifier processidentifier,
-                                           const ::string& pszLibrary);
+                                           const ::scoped_string & scopedstrLibrary);
 
 
       virtual ::process_identifier_array
-      shared_library_process(string_array& straProcesses, const ::string& pszLibrary);
+      shared_library_process(string_array& straProcesses, const ::scoped_string & scopedstrLibrary);
 
 
       virtual bool is_process_running(::process_identifier processidentifier);
@@ -548,7 +548,7 @@ namespace platform
 
       //virtual ::string expand_environment_variables(const ::scoped_string & scopedstr);
 
-      virtual ::file::path command_find_path(const ::string& pszCommand);
+      virtual ::file::path command_find_path(const ::scoped_string & scopedstrCommand);
 
 
       virtual void launch_application(::particle* pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams,

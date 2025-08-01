@@ -471,7 +471,7 @@ bool lite_html_reader::parseComment(string &rComment)
 
 
    // comment ending delimeter could not be found?
-   if (scopedstrEnd == nullptr)
+   if (pszEnd == nullptr)
 
       // consider everything after current buffer position a comment
    {
@@ -481,11 +481,11 @@ bool lite_html_reader::parseComment(string &rComment)
       return (true);
    }
 
-   string   strComment(scopedstrBegin, int(scopedstrEnd - pszBegin));
+   string   strComment(scopedstrBegin, int(pszEnd - pszBegin));
 
 
    // end of buffer?
-   if (scopedstrEnd + (sizeof(char) * 2) >= &m_strBuffer[0] + m_strBuffer.size())
+   if (pszEnd + (sizeof(char) * 2) >= &m_strBuffer[0] + m_strBuffer.size())
 
       return (false);
 
@@ -504,7 +504,7 @@ bool lite_html_reader::parseComment(string &rComment)
 
    pszEnd++;
 
-   m_dwBufPos += (scopedstrEnd - &m_strBuffer[m_dwBufPos]);
+   m_dwBufPos += (pszEnd - &m_strBuffer[m_dwBufPos]);
 
    rComment = strComment;
    return (true);

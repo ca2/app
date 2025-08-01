@@ -562,7 +562,7 @@ try1:;
    }
 
 
-   bool directory_context::rm(const ::file::path & psz,bool bRecursive)
+   bool directory_context::rm(const ::file::path & path,bool bRecursive)
    {
 
       if(bRecursive)
@@ -600,7 +600,7 @@ try1:;
 
 
 
-   ::file::path directory_context::trash_that_is_not_trash(const ::file::path & psz)
+   ::file::path directory_context::trash_that_is_not_trash(const ::file::path & path)
    {
 
       if(scopedstr == nullptr)
@@ -735,7 +735,7 @@ try1:;
    }
 
 
-   bool directory_context::is_inside_time(const ::file::path & pszPath)
+   bool directory_context::is_inside_time(const ::file::path & path)
    {
 
       return is_inside(time(),pszPath);
@@ -743,7 +743,7 @@ try1:;
    }
 
 
-   bool directory_context::is_inside(const ::file::path & pszDir,const ::file::path & strPath)
+   bool directory_context::is_inside(const ::file::path & pathDir,const ::file::path & strPath)
    {
 
       return case_insensitive_string_begins(scopedstrDir,strPath);
@@ -751,7 +751,7 @@ try1:;
    }
 
 
-   bool directory_context::has_subdir(const ::file::path & pszDir)
+   bool directory_context::has_subdir(const ::file::path & pathDir)
    {
 
       return ::directory_context::has_subdir(scopedstrDir);

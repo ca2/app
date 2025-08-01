@@ -341,10 +341,10 @@
 bool str::begins_ci_iws(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPrefix)
 {
 
-   if (str.is_empty())
+   if (scopedstr.is_empty())
    {
 
-      if (strPrefix.is_empty())
+      if (scopedstrPrefix.is_empty())
       {
 
          return true;
@@ -359,6 +359,8 @@ bool str::begins_ci_iws(const ::scoped_string & scopedstr, const ::scoped_string
 
    }
 
+   ::string str(scopedstr);
+
    auto pcsz = str.c_str();
 
    while (*pcsz && ansi_char_isspace(*pcsz))
@@ -372,7 +374,7 @@ bool str::begins_ci_iws(const ::scoped_string & scopedstr, const ::scoped_string
 
    }
 
-   auto pcszPrefix = strPrefix.c_str();
+   auto pcszPrefix = scopedstrPrefix.c_str();
 
    while (ansi_char_tolower(*pcsz) == ansi_char_tolower(*pcszPrefix))
    {
@@ -755,9 +757,9 @@ bool str::begins_ci_iws(const ::scoped_string & scopedstr, const ::scoped_string
 string str::replace_with(const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrParam, character_count iStart)
 {
 
-   string str(strParam);
+   string str(scopedstrParam);
 
-   str.replace_with(strOld, strNew, iStart);
+   str.replace_with(scopedstrOld, scopedstrNew, iStart);
 
    return str;
 
@@ -777,7 +779,7 @@ string str::replace_with(const ::scoped_string & scopedstrOld, const ::scoped_st
       if (straSearch[i].has_character())
       {
 
-         ::collection::index iSearch = str.find_index(straSearch[i], iStart);
+         ::collection::index iSearch = scopedstr.find_index(straSearch[i], iStart);
 
          if (iSearch >= 0 && iSearch >= iStart && (iSearch < iFind || ::not_found(iFind)))
          {
@@ -799,7 +801,7 @@ string str::replace_with(const ::scoped_string & scopedstrOld, const ::scoped_st
 string str::random_replace(::particle * pparticle, const string_array & straNew, const string_array & straOld, const ::scoped_string & scopedstrParam)
 {
 
-   string str(strParam);
+   string str(scopedstrParam);
 
    ::collection::index iFind;
 
@@ -847,7 +849,7 @@ string str::random_replace(::particle * pparticle, const string_array & straNew,
    while (true)
    {
 
-      iPos = utf8_find(strOld, str, iPos);
+      iPos = utf8_find(scopedstrOld, str, iPos);
 
       if (iPos < 0)
       {
@@ -859,18 +861,18 @@ string str::random_replace(::particle * pparticle, const string_array & straNew,
       if (iReplaceLen < 0)
       {
 
-         iReplaceLen = strNew.length();
+         iReplaceLen = scopedstrNew.length();
 
       }
 
       if (iFindLen < 0)
       {
 
-         iFindLen = strOld.length();
+         iFindLen = scopedstrOld.length();
 
       }
 
-      str = str.left(iPos) + strNew + str.substr(iPos + iFindLen);
+      str = str.left(iPos) + scopedstrNew + str.substr(iPos + iFindLen);
 
       iPos += iReplaceLen;
 
@@ -888,7 +890,7 @@ string str::utf8_replace_with(const ::scoped_string & scopedstrNew, const ::scop
 
    ::collection::index iPos = iStart;
 
-   string str(strParam);
+   string str(scopedstrParam);
 
    ::collection::count iReplaceLen = -1;
 
@@ -897,7 +899,7 @@ string str::utf8_replace_with(const ::scoped_string & scopedstrNew, const ::scop
    while (true)
    {
 
-      iPos = utf8_find(strOld, str, iPos);
+      iPos = utf8_find(scopedstrOld, str, iPos);
 
       if (iPos < 0)
       {
@@ -909,18 +911,18 @@ string str::utf8_replace_with(const ::scoped_string & scopedstrNew, const ::scop
       if (iReplaceLen < 0)
       {
 
-         iReplaceLen = strNew.length();
+         iReplaceLen = scopedstrNew.length();
 
       }
 
       if (iFindLen < 0)
       {
 
-         iFindLen = strOld.length();
+         iFindLen = scopedstrOld.length();
 
       }
 
-      str = str.left(iPos) + strNew + str.substr(iPos + iFindLen);
+      str = str.left(iPos) + scopedstrNew + str.substr(iPos + iFindLen);
 
       iPos += iReplaceLen;
 
@@ -935,7 +937,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 
    ::collection::index iPos = iStart;
 
-   string str(strParam);
+   string str(scopedstrParam);
 
    ::collection::count iReplaceLen = -1;
 
@@ -944,7 +946,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
    while (true)
    {
 
-      iPos = case_insensitive_find(strOld, str, iPos);
+      iPos = case_insensitive_find(scopedstrOld, str, iPos);
 
       if (iPos < 0)
       {
@@ -956,18 +958,18 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
       if (iReplaceLen < 0)
       {
 
-         iReplaceLen = strNew.length();
+         iReplaceLen = scopedstrNew.length();
 
       }
 
       if (iFindLen < 0)
       {
 
-         iFindLen = strOld.length();
+         iFindLen = scopedstrOld.length();
 
       }
 
-      str = str.left(iPos) + strNew + str.substr(iPos + iFindLen);
+      str = str.left(iPos) + scopedstrNew + str.substr(iPos + iFindLen);
 
       iPos += iReplaceLen;
 
@@ -982,7 +984,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 
    ::collection::index iPos = iStart;
 
-   string str(strParam);
+   string str(scopedstrParam);
 
    ::collection::count iReplaceLen = -1;
 
@@ -993,7 +995,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
    while (true)
    {
 
-      iPos = case_insensitive_find(strOld, str, iPos);
+      iPos = case_insensitive_find(scopedstrOld, str, iPos);
 
       if (iPos < 0)
       {
@@ -1005,18 +1007,18 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
       if (iReplaceLen < 0)
       {
 
-         iReplaceLen = strNew.length();
+         iReplaceLen = scopedstrNew.length();
 
       }
 
       if (iFindLen < 0)
       {
 
-         iFindLen = strOld.length();
+         iFindLen = scopedstrOld.length();
 
       }
 
-      str = str.left(iPos) + strNew + str.substr(iPos + iFindLen);
+      str = str.left(iPos) + scopedstrNew + str.substr(iPos + iFindLen);
 
       iPos += iReplaceLen;
 
@@ -1032,18 +1034,18 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 ::collection::index str::case_insensitive_find(const ::scoped_string & scopedstrFind, const ::scoped_string & scopedstr, ::collection::index iStart)
 {
 
-   if (strFind.length() > (str.length() - iStart))
+   if (scopedstrFind.length() > (scopedstr.length() - iStart))
    {
 
       return -1;
 
    }
 
-   string strFindLow(&((const char *)strFind)[0], strFind.length()); // avoid optimized read only string copy
+   string strFindLow(&((const char *)scopedstrFind)[0], scopedstrFind.length()); // avoid optimized read only string copy
 
    strFindLow.make_lower();
 
-   string strLow(&((const char *)str)[iStart], str.length() - iStart); // avoid optimized read only string copy
+   string strLow(&((const char *)scopedstr)[iStart], scopedstr.length() - iStart); // avoid optimized read only string copy
 
    strLow.make_lower();
 
@@ -1064,7 +1066,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 //index str::case_insensitive_find(const ::scoped_string & scopedstrFind, const ::scoped_string & scopedstrParam, ::collection::index iStart)
 //{
 
-//   ::collection::count iFindLen = strFind.length();
+//   ::collection::count iFindLen = scopedstrFind.length();
 
 //   ::collection::count iLen = strlen(&psz[iStart]);
 
@@ -1080,7 +1082,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 
 //      char szFind[256];
 
-//      ::memory_copy(szFind, strFind, iFindLen + 1);
+//      ::memory_copy(szFind, scopedstrFind, iFindLen + 1);
 
 //      make_lower(szFind);
 
@@ -1131,7 +1133,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 //   else
 //   {
 
-//      string strFindLow(&((const char *)strFind)[0], iFindLen); // avoid optimized read only string copy
+//      string strFindLow(&((const char *)scopedstrFind)[0], iFindLen); // avoid optimized read only string copy
 
 //      strFindLow.make_lower();
 
@@ -1158,7 +1160,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 //index str::case_insensitive_find(const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstr, ::collection::index iStart)
 //{
 
-//   ::collection::count iFindLen = strOld.length();
+//   ::collection::count iFindLen = scopedstrOld.length();
 
 //   index iLen = str.length() - iStart;
 
@@ -1176,7 +1178,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 
 //   psz1 += iStart;
 
-//   const ::scoped_string & scopedstr2 = strOld;
+//   const ::scoped_string & scopedstr2 = scopedstrOld;
 
 //   while(true)
 //   {
@@ -1300,7 +1302,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 ::collection::index str::find_file_extension(const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstr, ::collection::index iStart, ::collection::index iLast)
 {
 
-   if (strOld.is_empty()) // do not search for empty Extensions
+   if (scopedstrOld.is_empty()) // do not search for empty Extensions
    {
 
       return -1;
@@ -1310,7 +1312,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
    // for dir::name_is (check if base name of a file is a directory, checking if there is a simple ansi '.', may be very good start int_point definitive false).
    // if there is a dot, it may still does not have a Latin dot, if the dot is inside a Multibyte UTF8 char, anyway, algo following should check it properly.
 
-   ::collection::index iLen = str.length() - iStart;
+   ::collection::index iLen = scopedstr.length() - iStart;
 
    if (iLast < 0)
    {
@@ -1321,9 +1323,9 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 
    {
 
-      const ::ansi_character * pszOkToContinue = strchr(str, '.');
+      const ::ansi_character * pszOkToContinue = strchr(scopedstr, '.');
 
-      if (scopedstrOkToContinue == nullptr || pszOkToContinue - (const char *)str >= iLast)
+      if (pszOkToContinue == nullptr || pszOkToContinue - (const char *)scopedstr >= iLast)
       {
 
          return -1;
@@ -1332,15 +1334,15 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 
    }
 
-   ::collection::count iFindLen = strOld.length();
+   ::collection::count iFindLen = scopedstrOld.length();
 
    int len1;
 
    int len2;
 
-   const ::ansi_character * psz1 = str;
+   const ::ansi_character * psz1 = scopedstr;
 
-   const ::ansi_character * psz2 = strOld;
+   const ::ansi_character * psz2 = scopedstrOld;
 
    character_count iPos = 0;
 
@@ -1396,7 +1398,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
          while (true)
          {
 
-            if (unicode_to_lower_case(unicode_index_length(scopedstrC1, len1)) == unicode_to_lower_case(unicode_index_length(scopedstrC2, len2)))
+            if (unicode_to_lower_case(unicode_index_length(pszC1, len1)) == unicode_to_lower_case(unicode_index_length(pszC2, len2)))
             {
 
                pszC1 += len1;
@@ -1408,7 +1410,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
                if (*pszC2 == '\0')
                {
 
-                  return (scopedstr1 - (const char *)str) - 1; // "-1" because find file extension returns the index of the dot
+                  return (psz1 - (const char *)scopedstr) - 1; // "-1" because find file extension returns the index of the dot
 
                }
 
@@ -1423,7 +1425,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
             else
             {
 
-               unicode_index_length(scopedstr1, len1);
+               unicode_index_length(psz1, len1);
 
                psz1 += len1;
 
@@ -1447,25 +1449,25 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 ::collection::index str::utf8_find(const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstr, ::collection::index iStart)
 {
 
- if (strOld.is_empty())
+ if (scopedstrOld.is_empty())
  {
 
     return 0;
 
  }
 
- if (str.is_empty())
+ if (scopedstr.is_empty())
  {
 
     return -1;
 
  }
 
- auto psz = &str[iStart];
+ auto psz = &scopedstr[iStart];
 
  const char * pSrc;
 
- const char * pFin = strOld;
+ const char * pFin = scopedstrOld;
 
  int lenSrc;
 
@@ -1521,7 +1523,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 //index str::case_insensitive_find(const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstr, ::collection::index iStart)
 //{
 //
-//  index iFindLen = strOld.length();
+//  index iFindLen = scopedstrOld.length();
 //
 //  index iLen = strlen(&str[iStart]);
 //
@@ -1537,7 +1539,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 //
 //     char szFind[256];
 //
-//     ::memory_copy(szFind, strOld, iFindLen + 1);
+//     ::memory_copy(szFind, scopedstrOld, iFindLen + 1);
 //
 //     make_lower(szFind);
 //
@@ -1588,7 +1590,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 //  else
 //  {
 //
-//     string strFindLow(strOld, iFindLen); // avoid optimized read only string copy
+//     string strFindLow(scopedstrOld, iFindLen); // avoid optimized read only string copy
 //
 //     strFindLow.make_lower();
 //
@@ -1615,11 +1617,11 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 ::collection::index str::find_wwci(const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstrParam, ::collection::index iStart)
 {
 
-   string strFind(strOld);
+   string strFind(scopedstrOld);
 
    strFind.make_lower();
 
-   string str(strParam);
+   string str(scopedstrParam);
 
    str.make_lower();
 
@@ -1631,11 +1633,11 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 ::collection::index str::find_awwci(const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstrParam, ::collection::index iStart)
 {
 
-   string strFind(strOld);
+   string strFind(scopedstrOld);
 
    strFind.make_lower();
 
-   string str(strParam);
+   string str(scopedstrParam);
 
    str.make_lower();
 
@@ -1647,31 +1649,31 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 character_count str::find_ww(const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstrParam, ::collection::index iStart)
 {
 
-   if (strParam.is_empty())
+   if (scopedstrParam.is_empty())
    {
 
       return -1;
 
    }
 
-   auto psz = strParam.c_str();
+   auto psz = scopedstrParam.c_str();
 
-   const ::ansi_character * pszIter = &strParam[iStart];
+   const ::ansi_character * pszIter = &scopedstrParam[iStart];
 
-   if (scopedstrIter == nullptr)
+   if (pszIter == nullptr)
    {
 
       return -1;
 
    }
 
-   string strFind(strOld);
+   string strFind(scopedstrOld);
 
    while (*pszIter != '\0')
    {
 
-      if (strFind == string(scopedstrIter, strFind.length())
-         && (strlen(scopedstrIter) == (size_t)strFind.length() || !unicode_is_letter_or_digit(scopedstrIter + strFind.length())))
+      if (strFind == string(pszIter, strFind.length())
+         && (strlen(pszIter) == (size_t)strFind.length() || !unicode_is_letter_or_digit(pszIter + strFind.length())))
       {
 
          return pszIter - psz;
@@ -1681,9 +1683,9 @@ character_count str::find_ww(const ::scoped_string & scopedstrOld, const ::scope
       do
       {
 
-         unicode_increment(scopedstrIter);
+         unicode_increment(pszIter);
 
-      } while (*pszIter != '\0' && unicode_is_letter_or_digit(scopedstrIter));
+      } while (*pszIter != '\0' && unicode_is_letter_or_digit(pszIter));
 
    }
 
@@ -1695,31 +1697,31 @@ character_count str::find_ww(const ::scoped_string & scopedstrOld, const ::scope
 character_count str::find_aww(const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstrParam, ::collection::index iStart)
 {
 
-   if (strParam.is_empty())
+   if (scopedstrParam.is_empty())
    {
 
       return -1;
 
    }
 
-   auto psz = strParam.c_str();
+   auto psz = scopedstrParam.c_str();
 
    const ::ansi_character * pszIter = &psz[iStart];
 
-   if (scopedstrIter == nullptr)
+   if (pszIter == nullptr)
    {
 
       return -1;
 
    }
 
-   string strFind(strOld);
+   string strFind(scopedstrOld);
 
    while (*pszIter != '\0')
    {
 
-      if (strFind == string(scopedstrIter, strFind.length())
-         && (strlen(scopedstrIter) == (size_t)strFind.length() || !unicode_is_letter(scopedstrIter + strFind.length())))
+      if (strFind == string(pszIter, strFind.length())
+         && (strlen(pszIter) == (size_t)strFind.length() || !unicode_is_letter(pszIter + strFind.length())))
       {
 
          return pszIter - psz;
@@ -1729,9 +1731,9 @@ character_count str::find_aww(const ::scoped_string & scopedstrOld, const ::scop
       do
       {
 
-         unicode_increment(scopedstrIter);
+         unicode_increment(pszIter);
 
-      } while (*pszIter != '\0' && unicode_is_letter(scopedstrIter));
+      } while (*pszIter != '\0' && unicode_is_letter(pszIter));
 
    }
 
@@ -1836,7 +1838,7 @@ bool str::has_digit(const ::scoped_string & scopedstr)
 void str::calc_v1(const ::scoped_string & scopedstrParam, bool & bHasUpper, bool & bHasLower, bool & bHasDigit)
 {
 
-   auto psz = strParam.c_str();
+   auto psz = scopedstrParam.c_str();
 
    bHasUpper = false;
    bHasLower = false;
@@ -1916,7 +1918,7 @@ bool str::has_all_v1(const ::scoped_string & scopedstr)
 }
 
 
-string str::if_null(const ::scoped_string & scopedstr, const ::string &strIfNull)
+string str::if_null(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrIfNull)
 {
 
    if (str.is_empty())
@@ -2685,7 +2687,7 @@ bool str::is_simple_natural(const ::ansi_character * pszCandidate, character_cou
 bool str::is_natural(const ::scoped_string & scopedstrParam)
 {
 
-   string str(strParam);
+   string str(scopedstrParam);
 
    str.trim();
 
@@ -2709,7 +2711,7 @@ bool str::is_natural(const ::scoped_string & scopedstrParam)
 bool str::is_integer(const ::scoped_string & scopedstrParam)
 {
 
-   string str(strParam);
+   string str(scopedstrParam);
 
    str.trim();
 
@@ -2969,9 +2971,9 @@ string str::line(string & str, bool bNewLine)
 string str::pad(const ::scoped_string & scopedstrParam, ::collection::count iLen, const ::scoped_string & scopedstrPattern, enum_pad epad)
 {
 
-   string str(strParam);
+   string str(scopedstrParam);
 
-   if (strPattern.is_empty())
+   if (scopedstrPattern.is_empty())
    {
 
       return str;
@@ -2986,14 +2988,14 @@ string str::pad(const ::scoped_string & scopedstrParam, ::collection::count iLen
       while (str.length() < iLen)
       {
 
-         if (strPattern[i] == '\0')
+         if (scopedstrPattern[i] == '\0')
          {
 
             i = 0;
 
          }
 
-         str = strPattern[i] + str;
+         str = scopedstrPattern[i] + str;
 
          i++;
 
@@ -3006,14 +3008,14 @@ string str::pad(const ::scoped_string & scopedstrParam, ::collection::count iLen
       while (str.length() < iLen)
       {
 
-         if (strPattern[i] == '\0')
+         if (scopedstrPattern[i] == '\0')
          {
 
             i = 0;
 
          }
 
-         str = str + strPattern[i];
+         str = str + scopedstrPattern[i];
 
          i++;
 

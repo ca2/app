@@ -5,6 +5,7 @@
 
 
 #include "acme/filesystem/filesystem/windows_path.h"
+#include "acme/prototype/string/scoped_string_base.h"
 
 
 namespace file
@@ -27,7 +28,7 @@ namespace file
    //    }
 
 
-   //    inline path path::operator/(const ::string &str) const
+   //    inline path path::operator/(const ::scoped_string & scopedstr) const
    //    {
    //
    //       return ::transfer(*this / ::scoped_string(str));

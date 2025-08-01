@@ -59,7 +59,7 @@ public:
    virtual void open_for_writing(file_pointer pfile);
 
 
-   virtual void add_file(const ::file::path& pszRelative, ::file::file* pfile);
+   virtual void add_file(const ::file::path & pathRelative, ::file::file* pfile);
 
 
 };

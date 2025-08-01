@@ -16,12 +16,12 @@ void replace_tab(character_count iOffset, string & strParam, int iWidth, strsize
 
    auto pszStart = psz;
 
-   decltype(scopedstrStart) pszNext = nullptr;
+   decltype(pszStart) pszNext = nullptr;
 
    while (*psz)
    {
 
-      pszNext = unicode_next(scopedstr);
+      pszNext = unicode_next(psz);
 
       if (*psz == '\t')
       {
@@ -40,7 +40,7 @@ void replace_tab(character_count iOffset, string & strParam, int iWidth, strsize
 
          }
 
-         str.append(scopedstrStart, psz - pszStart);
+         str.append(pszStart, psz - pszStart);
 
          str.append(lenTab, ' ');
 
@@ -79,7 +79,7 @@ void replace_tab(character_count iOffset, string & strParam, int iWidth, strsize
    if (scopedstrNext > pszStart)
    {
 
-      str.append(scopedstrStart, pszNext - pszStart);
+      str.append(pszStart, pszNext - pszStart);
 
    }
 

@@ -226,7 +226,7 @@ namespace apex
       virtual bool load_cached_string_by_id(string& str, const ::atom& atom, bool bLoadStringTable) override;
 
 
-      virtual void load_string_table(const string& pszApp, const string& pszId) override;
+      virtual void load_string_table(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrId) override;
 
 
       virtual bool is_application() const override;
@@ -339,12 +339,12 @@ namespace apex
       virtual void disable_service() override;
 
 
-      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path& pszRoot,
-                                    const string& pszRelative) override;
+      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot,
+                                    const ::scoped_string & scopedstrRelative) override;
 
 
-      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path& pszRoot,
-                                    const string& pszRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle) override;
+      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot,
+                                    const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle) override;
 
       //virtual void SetCurrentHandles() override;
 
@@ -380,7 +380,7 @@ namespace apex
       virtual bool assert_user_logged_in() override;
 
 
-      virtual string matter_as_string(const ::string& pszMatter, const ::string& pszMatter2 = nullptr) override;
+      virtual string matter_as_string(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2 = nullptr) override;
 
 
       //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
@@ -420,11 +420,11 @@ namespace apex
       //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
-      virtual void hotplugin_host_starter_start_sync(const ::string& pszCommandLine, ::apex::application* papp,
+      virtual void hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::apex::application* papp,
                                                      hotplugin::host* phost, hotplugin::plugin* pplugin = nullptr) override;
 
 
-      virtual void hotplugin_host_host_starter_start_sync(const ::string& pszCommandLine, ::apex::application* papp,
+      virtual void hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::apex::application* papp,
                                                           hotplugin::host* phost, hotplugin::plugin* pplugin = nullptr) override;
 
 
@@ -452,7 +452,7 @@ namespace apex
       void install_message_routing(::channel* pchannel) override;
 
 
-      virtual string dialog_box(const ::string& pszMatter, ::property_set& propertyset) override;
+      virtual string dialog_box(const ::scoped_string & scopedstrMatter, ::property_set& propertyset) override;
 
 
       virtual void application_menu_update() override;
@@ -669,7 +669,7 @@ namespace apex
       //virtual bool on_install();
       //virtual bool on_uninstall();
 
-      virtual bool system_add_app_install(const ::string& pszId, const ::string& pszBuild) override;
+      virtual bool system_add_app_install(const ::scoped_string & scopedstrId, const ::scoped_string & scopedstrBuild) override;
 
 
       //virtual void TermThread(HINSTANCE hInstTerm);
@@ -689,11 +689,11 @@ namespace apex
       virtual void _001OnFileNew(::message::message* pmessage) override;
 
 
-      virtual void get_temp_file_name_template(string& str, const ::string& lpszName, const ::string& pszExtension,
-                                               const ::string& pszTemplate) override;
+      virtual void get_temp_file_name_template(string& str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension,
+                                               const ::scoped_string & scopedstrTemplate) override;
 
 
-      virtual void get_temp_file_name(string& str, const ::string& lpszName, const ::string& pszExtension) override;
+      virtual void get_temp_file_name(string& str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension) override;
 
 
       inline ::service_handler* service_handler() const { return m_pservicehandler; }
@@ -809,13 +809,13 @@ namespace apex
       virtual void message_handler(::message::message* pmessage) override;
 
 
-      virtual string http_get_locale_schema(const ::string& pszUrl, const ::string& pszLocale,
-                                            const ::string& pszSchema) override;
+      virtual string http_get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale,
+                                            const ::scoped_string & scopedstrSchema) override;
 
 
       //virtual void on_update_matter_locator() override;
 
-      virtual bool platform_open_by_file_extension(::collection::index iEdge, const ::string& pszPathName,
+      virtual bool platform_open_by_file_extension(::collection::index iEdge, const ::scoped_string & scopedstrPathName,
                                                    ::request* prequest = nullptr) override;
 
 
@@ -869,7 +869,7 @@ namespace apex
 
       //virtual void play_audio(::payload payloadFile, bool bSynch = false);
 
-      virtual void post_critical_error_message(const ::string& pszMessage, bool bShowLog = true) override;
+      virtual void post_critical_error_message(const ::scoped_string & scopedstrMessage, bool bShowLog = true) override;
 
 
       virtual void show_critical_error_log() override;
@@ -1187,13 +1187,13 @@ namespace apex
       virtual void initialize_contextualized_theme() override;
 
 
-      virtual bool get_fs_size(string& strSize, const ::string& pszPath, bool& bPending) override;
+      virtual bool get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending) override;
 
 
-      virtual bool get_fs_size(long long& i64Size, const ::string& pszPath, bool& bPending) override;
+      virtual bool get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending) override;
 
 
-      virtual void set_title(const ::string& pszTitle) override;
+      virtual void set_title(const ::scoped_string & scopedstrTitle) override;
 
 
       void update_app_interest();
@@ -1219,7 +1219,7 @@ namespace apex
                                 ::topic* ptopic) override;
 
 
-      virtual void report_error(const ::exception& e, int iMessageFlags, const ::string& pszTopic) override;
+      virtual void report_error(const ::exception& e, int iMessageFlags, const ::scoped_string & scopedstrTopic) override;
 
 
       virtual void create_impact_system() override;
@@ -1231,7 +1231,7 @@ namespace apex
       //string get_visual_studio_build();
 
 
-      virtual string sound_path(const ::string& psz) override;
+      virtual string sound_path(const ::scoped_string & scopedstr) override;
 
 
       virtual string get_default_playlist_path() override;

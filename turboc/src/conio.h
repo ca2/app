@@ -174,7 +174,7 @@ CLASS_DECL_TURBOC void clrscr (void);
 CLASS_DECL_TURBOC void textmode (int newmode);
 CLASS_DECL_TURBOC int putch (int c);
 CLASS_DECL_TURBOC int getche (void);
-CLASS_DECL_TURBOC int cputs (const ::string &str);
+CLASS_DECL_TURBOC int cputs (const ::scoped_string & scopedstr);
 CLASS_DECL_TURBOC int cprintf (const ::string &format, ...);
 CLASS_DECL_TURBOC void delline (void);
 CLASS_DECL_TURBOC void insline (void);

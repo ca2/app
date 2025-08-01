@@ -595,7 +595,7 @@ void property_object::write_configuration_to_ini(const ::payload & payloadFile)
 string property_object::property_set_evaluate(const ::scoped_string & scopedstr) const
 {
 
-   return m_ppropertyset ? m_ppropertyset->evaluate(str) : str;
+   return m_ppropertyset ? m_ppropertyset->evaluate(scopedstr) : ::string(scopedstr);
 
 }
 
@@ -603,7 +603,7 @@ string property_object::property_set_evaluate(const ::scoped_string & scopedstr)
 string property_object::property_set_get_evaluation(const ::scoped_string & scopedstr) const
 {
 
-   return property_set_get_string(str.c_str() + 1);
+   return property_set_get_string(scopedstr.c_str() + 1);
 
 }
 
@@ -611,7 +611,7 @@ string property_object::property_set_get_evaluation(const ::scoped_string & scop
 bool property_object::property_set_get_evaluation(string & strResult, const ::scoped_string & scopedstr) const
 {
 
-   return property_set_get_string(strResult, str.c_str() + 1);
+   return property_set_get_string(strResult, scopedstr.c_str() + 1);
 
 }
 

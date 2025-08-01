@@ -155,12 +155,12 @@
 
 bool isWhitespace(char ch);
 bool isNumeric(char ch);
-bool isNumber(const string &str);
+bool isNumber(const ::scoped_string & scopedstr);
 bool isHexadecimal(char ch);
 bool isAlpha(char ch);
 bool isIDString(const ::string &s);
 void replace(string &str, char textFrom, const ::string &textTo);
-bool isAlphaNum(const string &str);
+bool isAlphaNum(const ::scoped_string & scopedstr);
 
 
 
@@ -232,7 +232,7 @@ bool isNumeric(char ch)
 {
    return (ch>='0') && (ch<='9');
 }
-bool isNumber(const string &str)
+bool isNumber(const ::scoped_string & scopedstr)
 {
    for (character_count i=0; i<str.size(); i++)
       if (!isNumeric(str[i])) return false;
@@ -249,7 +249,7 @@ bool isAlpha(char ch)
    return ((ch>='a') && (ch<='z')) || ((ch>='A') && (ch<='Z')) || ch=='_';
 }
 
-bool isIDString(const ::string &strParam)
+bool isIDString(const ::scoped_string & scopedstrParam)
 {
 
    auto s = strParam.c_str();
@@ -277,7 +277,7 @@ void replace(string &str, char textFrom, const ::string &textTo)
 }
 
 /// convert the given string into a quoted string suitable for javascript
-string getJSString(const string &str)
+string getJSString(const ::scoped_string & scopedstr)
 {
    string nStr = str;
    for (character_count i=0; i<nStr.size(); i++)
@@ -315,7 +315,7 @@ string getJSString(const string &str)
 }
 
 /** Is the string alphanumeric */
-bool isAlphaNum(const string &str)
+bool isAlphaNum(const ::scoped_string & scopedstr)
 {
    if (str.size()==0) return true;
    if (!isAlpha(str[0])) return false;
@@ -845,7 +845,7 @@ CScriptVar::CScriptVar()
    flags = SCRIPTVAR_UNDEFINED;
 }
 
-CScriptVar::CScriptVar(const string &str)
+CScriptVar::CScriptVar(const ::scoped_string & scopedstr)
 {
    refs = 0;
 #if DEBUG_MEMORY
@@ -1250,7 +1250,7 @@ void CScriptVar::setDouble(double val)
    data = TINYJS_BLANK_DATA;
 }
 
-void CScriptVar::setString(const string &str)
+void CScriptVar::setString(const ::scoped_string & scopedstr)
 {
    // name sure it's not still a number or integer
    flags = (flags&~SCRIPTVAR_VARTYPEMASK) | SCRIPTVAR_STRING;

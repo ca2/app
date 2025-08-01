@@ -2008,7 +2008,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 }
 
 
-::file::path directory_context::time_log(const string& pszId)
+::file::path directory_context::time_log(const ::scoped_string & scopedstrId)
 {
 
    __UNREFERENCED_PARAMETER(scopedstrId);
@@ -2089,7 +2089,7 @@ void directory_context::get_matter_locator(string_array& straMatterLocator, bool
 ::file::path directory_context::locale_schema_matter(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema, const ::file::path& pathRoot, const ::file::path& pathDomain)
 {
 
-   string strHint = pathRoot / "_matter" / pathDomain / get_app()->get_locale_schema_dir(strLocale, strSchema);
+   string strHint = pathRoot / "_matter" / pathDomain / get_app()->get_locale_schema_dir(scopedstrLocale, scopedstrSchema);
 
    return strHint;
 
@@ -2902,10 +2902,10 @@ ret:
 //}
 
 
-::file::path directory_context::trash_that_is_not_trash(const ::file::path& psz)
+::file::path directory_context::trash_that_is_not_trash(const ::file::path & path)
 {
 
-   __UNREFERENCED_PARAMETER(scopedstr);
+   __UNREFERENCED_PARAMETER(path);
 
    throw ::interface_only("this is an interface");
 
@@ -2917,7 +2917,7 @@ ret:
 ::file::path directory_context::appdata(const ::scoped_string & scopedstrAppIdParameter)
 {
 
-   ::string strAppId(strAppIdParameter);
+   ::string strAppId(scopedstrAppIdParameter);
 
    if (strAppId.is_empty())
    {
@@ -2960,7 +2960,7 @@ ret:
 
    string strRelative;
 
-   strRelative = strElement;
+   strRelative = scopedstrElement;
 
    auto pFind = strRelative.find(':');
 
@@ -3094,10 +3094,10 @@ ret:
 }
 
 
-bool directory_context::is_inside_time(const ::file::path& pszPath)
+bool directory_context::is_inside_time(const ::file::path & path)
 {
 
-   __UNREFERENCED_PARAMETER(scopedstrPath);
+   __UNREFERENCED_PARAMETER(path);
 
    throw ::interface_only("this is an interface");
 
@@ -3106,11 +3106,11 @@ bool directory_context::is_inside_time(const ::file::path& pszPath)
 }
 
 
-bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path& pszPath)
+bool directory_context::is_inside(const ::file::path & pathDir, const ::file::path & path)
 {
 
-   __UNREFERENCED_PARAMETER(scopedstrDir);
-   __UNREFERENCED_PARAMETER(scopedstrPath);
+   __UNREFERENCED_PARAMETER(pathDir);
+   __UNREFERENCED_PARAMETER(path);
 
    throw ::interface_only("this is an interface");
 
@@ -3651,10 +3651,10 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 //}
 
 
-::file::path directory_context::pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode)
+::file::path directory_context::pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode)
 {
 
-   return directory_system()->pathfind(scopedstrEnv, pszTopic, pszMode);
+   return directory_system()->pathfind(scopedstrEnv, scopedstrTopic, scopedstrMode);
 
 }
 

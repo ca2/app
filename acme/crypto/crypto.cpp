@@ -1025,7 +1025,7 @@ namespace crypto
       string crypto::spa_login_decrypt(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrRsa)
       {
 
-         auto prsa = create_rsa_key(strRsa);
+         auto prsa = create_rsa_key(scopedstrRsa);
 
          memory memory;
 
@@ -1085,7 +1085,7 @@ namespace crypto
       string crypto::spa_auth_decrypt(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrRsa)
       {
 
-         auto prsa = create_rsa_key(strRsa);
+         auto prsa = create_rsa_key(scopedstrRsa);
 
          memory memory;
 

@@ -239,6 +239,7 @@ namespace graphics
    {
       synchronous_lock synchronouslock(this->synchronization());
 
+      ::string strParam(scopedstrParam);
       auto psz = strParam.c_str();
       string str;
       //int i2 = 2;

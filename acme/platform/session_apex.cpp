@@ -176,7 +176,7 @@ namespace platform
    // apex commented
    //::user::keyboard& keyboard(){}
 
-   bool apex_session_layer::open_by_file_extension(const ::string& pszPathName, ::request* prequest)
+   bool apex_session_layer::open_by_file_extension(const ::scoped_string & scopedstrPathName, ::request* prequest)
    {
 
       return false;
@@ -210,7 +210,7 @@ namespace platform
    }
 
 
-   bool apex_session_layer::is_licensed(const ::string& pszId, bool bInteractive)
+   bool apex_session_layer::is_licensed(const ::scoped_string & scopedstrId, bool bInteractive)
    {
 
       return false;
@@ -218,7 +218,7 @@ namespace platform
    }
 
 
-   bool apex_session_layer::get_auth(const string& pszForm, string& strUsername, string& strPassword)
+   bool apex_session_layer::get_auth(const ::scoped_string & scopedstrForm, string& strUsername, string& strPassword)
    {
 
       return false;
@@ -400,12 +400,12 @@ namespace platform
    //void apex_session_layer::check_topic_file_change(){}
 
 
-   void apex_session_layer::launch_app(const ::string& psz)
+   void apex_session_layer::launch_app(const ::scoped_string & scopedstr)
    {
    }
 
 
-   void apex_session_layer::install_app(const ::string& psz)
+   void apex_session_layer::install_app(const ::scoped_string & scopedstr)
    {
    }
 
@@ -442,7 +442,7 @@ namespace platform
    }
 
 
-   void apex_session_layer::set_app_title(const ::string& pszAppId, const ::string& pszTitle)
+   void apex_session_layer::set_app_title(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrTitle)
    {
    }
 

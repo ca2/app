@@ -1458,7 +1458,7 @@ namespace dynamic_source
    }
 
 
-   void script_manager::wait_link_out(const ::string& pszServer, ::sockets::link_in_socket* pinsocket)
+   void script_manager::wait_link_out(const ::scoped_string & scopedstrServer, ::sockets::link_in_socket* pinsocket)
    {
 
       while (true)
@@ -1474,7 +1474,7 @@ namespace dynamic_source
    }
 
 
-   bool script_manager::has_link_out_link(const ::string& pszServer, ::sockets::link_in_socket* pinsocket, ::httpd::socket* phttpdsocket)
+   bool script_manager::has_link_out_link(const ::scoped_string & scopedstrServer, ::sockets::link_in_socket* pinsocket, ::httpd::socket* phttpdsocket)
    {
 
       _synchronous_lock synchronouslock(m_pmutexOutLink);
@@ -1523,7 +1523,7 @@ namespace dynamic_source
 
    }
 
-   ::sockets::link_in_socket* script_manager::get_link_in(const ::string& pszServer, ::sockets::link_out_socket* poutsocket)
+   ::sockets::link_in_socket* script_manager::get_link_in(const ::scoped_string & scopedstrServer, ::sockets::link_out_socket* poutsocket)
    {
 
       single_lock sl2(m_pmutexInLink, true);
@@ -1555,7 +1555,7 @@ namespace dynamic_source
    }
 
 
-   bool script_manager::is_online(const ::string& pszServer)
+   bool script_manager::is_online(const ::scoped_string & scopedstrServer)
    {
 
       _synchronous_lock synchronouslock(m_pmutexTunnel);
@@ -1581,7 +1581,7 @@ namespace dynamic_source
    }
 
 
-   ::sockets::link_out_socket* script_manager::create_link_out(const ::string& pszServer, ::httpd::socket* phttpdsocket)
+   ::sockets::link_out_socket* script_manager::create_link_out(const ::scoped_string & scopedstrServer, ::httpd::socket* phttpdsocket)
    {
 
       ::sockets::link_out_socket* psocket = ___new sockets::link_out_socket ();

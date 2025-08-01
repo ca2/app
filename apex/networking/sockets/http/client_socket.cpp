@@ -58,7 +58,7 @@ string dump_hex(::file::file* pfile)
 
       }
 
-      ::hex::upper_case_pad_from(scopedstr, &iPos, 4);
+      ::hex::upper_case_pad_from(psz, &iPos, 4);
 
       psz += 8;
       *psz = ' ';
@@ -70,7 +70,7 @@ string dump_hex(::file::file* pfile)
          if (i < iRead)
          {
 
-            ::hex::upper_case_pad_from(scopedstr, buf + i, 1);
+            ::hex::upper_case_pad_from(psz, buf + i, 1);
 
             psz += 2;
 
@@ -289,26 +289,26 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnHeader(atom key, const string & value)
+   void http_client_socket::OnHeader(const ::atom & atom, const ::scoped_string & scopedstr)
    {
 
 #if HEAVY_HTTP_LOG
       informationf("OnHeader %s: %s", (const char*)key, (const char*)value);
 #endif
 
-      m_content += key + ": " + value + "\r\n";
-      m_response.m_propertysetHeader[key] = value;
-      if (key == "content-length")
+      m_content += atom.as_string() + ": " + scopedstr + "\r\n";
+      m_response.m_propertysetHeader[atom] = scopedstr;
+      if (atom == "content-length")
       {
-         m_content_length = atoi(value);
+         m_content_length = atoi(scopedstr);
       }
-      else if (key == "content-type")
+      else if (atom == "content-type")
       {
-         m_content_type = value;
+         m_content_type = scopedstr;
       }
-      else if (key == "set-cookie")
+      else if (atom == "set-cookie")
       {
-         m_response.m_cookies.add(value);
+         m_response.m_cookies.add(scopedstr);
       }
    }
 
@@ -754,7 +754,7 @@ namespace sockets
    CLASS_DECL_APEX e_http_method string_http_method(const ::scoped_string & scopedstr)
    {
 
-      string strMethod(str);
+      string strMethod(scopedstr);
 
       strMethod.make_lower();
 

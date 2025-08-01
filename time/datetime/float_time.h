@@ -242,7 +242,7 @@ namespace datetime
       int32_t SetDate(int32_t nYear, int32_t nMonth, int32_t nDay) RELEASENOTHROW;
       int32_t SetTime(int32_t nHour, int32_t nMin, int32_t nSec) RELEASENOTHROW;
 #ifndef APPLEOS
-      bool ParseDateTime(const ::string & lpszDate, unsigned int dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) RELEASENOTHROW;
+      bool ParseDateTime(const ::scoped_string & scopedstrDate, unsigned int dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) RELEASENOTHROW;
 #endif
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
       // formatting

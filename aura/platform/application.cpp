@@ -1441,7 +1441,7 @@ namespace aura
 
 
 
-   //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate)
+   //bool application::get_temp_file_name_template(string & strRet, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate)
    //{
 
    //   throw ::not_implemented();
@@ -1451,7 +1451,7 @@ namespace aura
    //}
 
 
-   //bool application::get_temp_file_name(string & strRet, const ::string & lpszName, const ::scoped_string & scopedstrExtension)
+   //bool application::get_temp_file_name(string & strRet, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension)
    //{
 
    //   return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
@@ -5107,7 +5107,7 @@ retry_license:
    //}
 
 
-   void application::update_appmatter( ::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const ::scoped_string & scopedstrRelative)
+   void application::update_appmatter( ::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative)
    {
 
       auto plocaleschema = __create_new < ::text::international::locale_schema >();
@@ -5148,7 +5148,7 @@ retry_license:
    }
 
 
-   void application::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle)
+   void application::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle)
    {
 
       string strLocale;
@@ -5509,7 +5509,7 @@ retry_license:
 
 
 
-   //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate)
+   //bool application::get_temp_file_name_template(string & strRet, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate)
    //{
 
    //   throw ::not_implemented();
@@ -5519,7 +5519,7 @@ retry_license:
    //}
 
 
-   //bool application::get_temp_file_name(string & strRet, const ::string & lpszName, const ::scoped_string & scopedstrExtension)
+   //bool application::get_temp_file_name(string & strRet, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension)
    //{
 
    //   return get_temp_file_name_template(strRet,lpszName,pszExtension,nullptr);

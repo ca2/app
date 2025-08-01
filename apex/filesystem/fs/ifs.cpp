@@ -337,10 +337,10 @@ int ifs::is_dir(const ::file::path & path)
 }
 
 
-bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
+bool ifs::file_move(const ::file::path & pathTarget,const ::file::path & pathSource)
 {
-   __UNREFERENCED_PARAMETER(scopedstrDst);
-   __UNREFERENCED_PARAMETER(scopedstrSrc);
+   __UNREFERENCED_PARAMETER(pathTarget);
+   __UNREFERENCED_PARAMETER(pathSource);
    return true;
 }
 
@@ -366,18 +366,18 @@ file_pointer ifs::get_file(const ::payload & payloadFile, ::file::e_open eopen, 
 }
 
 
-bool ifs::file_exists(const ::file::path & pszPath)
+bool ifs::file_exists(const ::file::path & path)
 {
 
-   return ::fs::data::file_exists(scopedstrPath);
+   return ::fs::data::file_exists(path);
 
 }
 
 
-::payload ifs::file_length(const ::file::path & pszPath)
+::payload ifs::file_length(const ::file::path & path)
 {
 
-   return ::fs::data::file_length(scopedstrPath);
+   return ::fs::data::file_length(path);
 
 }
 
@@ -395,7 +395,7 @@ void ifs::defer_initialize()
 
 }
 
-bool ifs::is_zero_latency(const ::file::path & psz)
+bool ifs::is_zero_latency(const ::file::path & path)
 {
 
    return false;

@@ -334,11 +334,11 @@ namespace networking
    {
       int dots = 0;
       // %! ignore :port?
-      for (int i = 0; i < str.length(); i++)
+      for (int i = 0; i < scopedstr.size(); i++)
       {
-         if (str[i] == '.')
+         if (scopedstr[i] == '.')
             dots++;
-         else if (!character_isdigit(str[i]))
+         else if (!character_isdigit(scopedstr[i]))
             return false;
       }
       if (dots != 3)
@@ -349,14 +349,14 @@ namespace networking
 
    bool networking::is_ip6(const ::scoped_string & scopedstr)
    {
-      if (str.is_empty())
+      if (scopedstr.is_empty())
          return false;
       ::collection::index qc = 0;
       ::collection::index qd = 0;
-      for (int i = 0; i < str.length(); i++)
+      for (int i = 0; i < scopedstr.size(); i++)
       {
-         qc += (str[i] == ':') ? 1 : 0;
-         qd += (str[i] == '.') ? 1 : 0;
+         qc += (scopedstr[i] == ':') ? 1 : 0;
+         qd += (scopedstr[i] == '.') ? 1 : 0;
       }
       if (qc < 2)
          return false;
@@ -369,7 +369,7 @@ namespace networking
          return false;
       }
       
-      ::parse pa(str, ":."_ansi);
+      ::parse pa(scopedstr, ":."_ansi);
 
       string tmp = pa.getword();
       while (tmp.length())
@@ -396,16 +396,16 @@ namespace networking
    address_pointer networking::create_address(const ::scoped_string & scopedstrAddress, enum_address_type eaddresstypePreferred, port_t port)
    {
 
-      if (is_ip6(strAddress))
+      if (is_ip6(scopedstrAddress))
       {
 
-         return create_ip6_address(strAddress, port);
+         return create_ip6_address(scopedstrAddress, port);
 
       }
-      else if (is_ip4(strAddress))
+      else if (is_ip4(scopedstrAddress))
       {
 
-         return create_ip4_address(strAddress, port);
+         return create_ip4_address(scopedstrAddress, port);
 
       }
       else
@@ -1383,14 +1383,14 @@ namespace networking
    int networking::service_port(const ::scoped_string & scopedstr, int flags)
    {
 
-      if (::str::is_simple_natural(str))
-         return ::str::to_int(str);
+      if (::str::is_simple_natural(scopedstr))
+         return ::str::to_int(scopedstr);
 
-      if (str.case_insensitive_equals("http"))
+      if (scopedstr.case_insensitive_equals("http"))
       {
          return 80;
       }
-      else if (str.case_insensitive_equals("https"))
+      else if (scopedstr.case_insensitive_equals("https"))
       {
          return 443;
       }
@@ -1399,7 +1399,7 @@ namespace networking
 
          int service = 0;
 
-         if (!u2service(str, service, 0))
+         if (!u2service(scopedstr, service, 0))
             return 0;
 
          return service;

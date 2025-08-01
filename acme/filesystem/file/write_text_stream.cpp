@@ -209,13 +209,13 @@ void write_text_stream::append_format(const ::ansi_character * pszFormat, ...)
 
    ::string strText;
 
-   ASSERT(is_string_ok(scopedstrFormat));
+   ASSERT(is_string_ok(pszFormat));
 
    va_list argList;
 
    va_start(argList, pszFormat);
 
-   strText.formatf_arguments(scopedstrFormat, argList);
+   strText.formatf_arguments(pszFormat, argList);
 
    va_end(argList);
 
@@ -441,7 +441,7 @@ write_text_stream & write_text_stream::operator <<(const ::ansi_character * psz)
 
    }
 
-   print(scopedstr);
+   print(psz);
 
    if (this->fmtflags() & ::file::network_payload)
    {

@@ -345,7 +345,7 @@ namespace platform
       virtual bool load_cached_string_by_id(string& str, const ::atom& atom, bool bLoadStringTable);
 
 
-      virtual void load_string_table(const string& pszApp, const string& pszId);
+      virtual void load_string_table(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrId);
 
 
       // virtual bool is_application() const override;
@@ -455,12 +455,12 @@ namespace platform
       virtual void disable_service();
 
 
-      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path& pszRoot,
-                                    const string& pszRelative);
+      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot,
+                                    const ::scoped_string & scopedstrRelative);
 
 
-      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path& pszRoot,
-                                    const string& pszRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle);
+      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot,
+                                    const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle);
 
 
       //virtual void SetCurrentHandles() override;
@@ -493,7 +493,7 @@ namespace platform
       virtual bool assert_user_logged_in();
 
 
-      virtual string matter_as_string(const ::string& pszMatter, const ::string& pszMatter2 = nullptr);
+      virtual string matter_as_string(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2 = nullptr);
 
 
       //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
@@ -533,11 +533,11 @@ namespace platform
       //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
-      virtual void hotplugin_host_starter_start_sync(const ::string& pszCommandLine, ::apex::application* papp,
+      virtual void hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::apex::application* papp,
                                                      hotplugin::host* phost, hotplugin::plugin* pplugin = nullptr);
 
 
-      virtual void hotplugin_host_host_starter_start_sync(const ::string& pszCommandLine, ::apex::application* papp,
+      virtual void hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine, ::apex::application* papp,
                                                           hotplugin::host* phost, hotplugin::plugin* pplugin = nullptr);
 
 
@@ -565,7 +565,7 @@ namespace platform
       //void install_message_routing(::channel* pchannel) override;
 
 
-      virtual string dialog_box(const ::string& pszMatter, ::property_set& propertyset);
+      virtual string dialog_box(const ::scoped_string & scopedstrMatter, ::property_set& propertyset);
 
 
       virtual void application_menu_update();
@@ -782,7 +782,7 @@ namespace platform
       //virtual bool on_install();
       //virtual bool on_uninstall();
 
-      virtual bool system_add_app_install(const ::string& pszId, const ::string& pszBuild);
+      virtual bool system_add_app_install(const ::scoped_string & scopedstrId, const ::scoped_string & scopedstrBuild);
 
 
       //virtual void TermThread(HINSTANCE hInstTerm);
@@ -802,11 +802,11 @@ namespace platform
       virtual void _001OnFileNew(::message::message* pmessage);
 
 
-      virtual void get_temp_file_name_template(string& str, const ::string& lpszName, const ::string& pszExtension,
-                                               const ::string& pszTemplate);
+      virtual void get_temp_file_name_template(string& str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension,
+                                               const ::scoped_string & scopedstrTemplate);
 
 
-      virtual void get_temp_file_name(string& str, const ::string& lpszName, const ::string& pszExtension);
+      virtual void get_temp_file_name(string& str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension);
 
 
       virtual ::service_handler* service_handler() ;
@@ -923,13 +923,13 @@ namespace platform
       //virtual void message_handler(::message::message* pmessage) override;
 
 
-      virtual string http_get_locale_schema(const ::string& pszUrl, const ::string& pszLocale,
-                                            const ::string& pszSchema);
+      virtual string http_get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale,
+                                            const ::scoped_string & scopedstrSchema);
 
 
       //virtual void on_update_matter_locator() override;
 
-      virtual bool platform_open_by_file_extension(::collection::index iEdge, const ::string& pszPathName,
+      virtual bool platform_open_by_file_extension(::collection::index iEdge, const ::scoped_string & scopedstrPathName,
                                                    ::request* prequest = nullptr);
 
 
@@ -981,7 +981,7 @@ namespace platform
 
       //virtual void play_audio(::payload payloadFile, bool bSynch = false);
 
-      virtual void post_critical_error_message(const ::string& pszMessage, bool bShowLog = true);
+      virtual void post_critical_error_message(const ::scoped_string & scopedstrMessage, bool bShowLog = true);
 
 
       virtual void show_critical_error_log();
@@ -1300,13 +1300,13 @@ namespace platform
       virtual void initialize_contextualized_theme();
 
 
-      virtual bool get_fs_size(string& strSize, const ::string& pszPath, bool& bPending);
+      virtual bool get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending);
 
 
-      virtual bool get_fs_size(long long& i64Size, const ::string& pszPath, bool& bPending);
+      virtual bool get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending);
 
 
-      virtual void set_title(const ::string& pszTitle);
+      virtual void set_title(const ::scoped_string & scopedstrTitle);
 
 
       void update_app_interest();
@@ -1332,7 +1332,7 @@ namespace platform
         //                        ::topic* ptopic) override;
 
 
-      virtual void report_error(const ::exception& e, int iMessageFlags, const ::string& pszTopic);
+      virtual void report_error(const ::exception& e, int iMessageFlags, const ::scoped_string & scopedstrTopic);
 
 
       virtual void create_impact_system();
@@ -1344,7 +1344,7 @@ namespace platform
       //string get_visual_studio_build();
 
 
-      virtual string sound_path(const ::string& psz);
+      virtual string sound_path(const ::scoped_string & scopedstr);
 
 
       virtual string get_default_playlist_path();

@@ -166,7 +166,7 @@ namespace draw2d_gpu
    //   //return ::GetBitmapBits((HBITMAP)get_handle(), dwCount, lpBits);
    //   return 0;
    //}
-   bool bitmap::LoadBitmap(const ::string & lpszResourceName)
+   bool bitmap::LoadBitmap(const ::scoped_string & scopedstrResourceName)
    {
       //   return attach(::LoadBitmap(::aura::FindResourceHandle(
       //lpszResourceName, RT_BITMAP), lpszResourceName));

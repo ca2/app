@@ -16,7 +16,7 @@ CLASS_DECL_ACME string demangle(const char * pszMangledName);
 inline const char * c_demangle(const ::ansi_character * psz)
 {
 
-   if (scopedstr[0] == 'c' &&
+   if (psz[0] == 'c' &&
       psz[1] == 'l' &&
       psz[2] == 'a' &&
       psz[3] == 's' &&
@@ -27,7 +27,7 @@ inline const char * c_demangle(const ::ansi_character * psz)
       return psz + 6;
 
    }
-   else if (scopedstr[0] == 's' &&
+   else if (psz[0] == 's' &&
       psz[1] == 't' &&
       psz[2] == 'r' &&
       psz[3] == 'u' &&
@@ -51,7 +51,7 @@ inline const char * c_demangle(const ::ansi_character * psz)
 //inline const char * c_demangle(const ::scoped_string & scopedstr)
 //{
 //
-//   return psz;
+//   return scopedstr;
 //
 //}
 

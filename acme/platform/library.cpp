@@ -1031,14 +1031,14 @@ namespace acme
 CLASS_DECL_ACME string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
 {
 
-   if (strImplementation.case_insensitive_begins(strComponent) && strImplementation[strComponent.length()] == '_')
+   if (scopedstrImplementation.case_insensitive_begins(scopedstrComponent) && scopedstrImplementation[scopedstrComponent.length()] == '_')
    {
 
-      return strImplementation.c_str() + strComponent.length() + 1;
+      return scopedstrImplementation.c_str() + scopedstrComponent.size() + 1;
 
    }
 
-   return strImplementation;
+   return scopedstrImplementation;
 
 }
 
@@ -1048,7 +1048,7 @@ CLASS_DECL_ACME string library_name(const ::scoped_string & scopedstrComponent, 
 
    string strLibrary;
 
-   strLibrary = strComponent + "_" + implementation_name(strComponent, strImplementation);
+   strLibrary = scopedstrComponent + "_" + implementation_name(scopedstrComponent, scopedstrImplementation);
 
    return strLibrary;
 
@@ -1060,7 +1060,7 @@ CLASS_DECL_ACME string factory_name(const ::scoped_string & scopedstrLibrary)
 
    string strFactory;
 
-   strFactory = strLibrary + "_factory";
+   strFactory = scopedstrLibrary + "_factory";
 
    return strFactory;
 
@@ -1072,7 +1072,7 @@ CLASS_DECL_ACME string library_filter(const ::scoped_string & scopedstr)
 
    string strLibrary;
 
-   strLibrary = str;
+   strLibrary = scopedstr;
 
    strLibrary.case_insensitive_ends_eat(".dll");
    strLibrary.case_insensitive_ends_eat(".so");

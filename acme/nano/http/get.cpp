@@ -198,7 +198,7 @@ void nano_http_get_set_out_header(void * userdata, const char * pszKey, const ch
    
    auto pget = dynamic_cast <::nano::http::get *>((::subparticle*)userdata);
    
-   pget->set_out_header(scopedstrKey, pszPayload);
+   pget->set_out_header(pszKey, pszPayload);
 
 }
 

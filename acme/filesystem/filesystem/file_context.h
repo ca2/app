@@ -74,7 +74,7 @@ public:
    virtual void set_status(const ::file::path & path, const ::file::file_status & status);
 
 
-   virtual void replace_with(const ::file::path & pszContext, const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrOld);
+   virtual void replace_with(const ::file::path & pathContext, const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrOld);
 
 
    virtual ::file::enum_type get_type(const ::file::path & path, ::payload * pvarQuery);
@@ -104,7 +104,7 @@ public:
 
 
    //template < class T >
-   //string time_square(T * p, bool (T:: * pfnOutput)(::stream &, const ::file::path &), const ::file::path & pszSource)
+   //string time_square(T * p, bool (T:: * pfnOutput)(::stream &, const ::file::path &), const ::file::path & pathSource)
    //{
 
    //   string strTime = time_square(p);
@@ -208,7 +208,7 @@ public:
    virtual void add_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents);
 
 
-   virtual bool is_read_only(const ::file::path & psz);
+   virtual bool is_read_only(const ::file::path & path);
 
    virtual file_pointer resource_get_file(const ::file::path & path);
 
@@ -216,7 +216,7 @@ public:
    virtual ::file::path sys_temp_unique(const ::file::path & lpszName);
 
 
-   virtual ::file::path replace_with_extension(const ::scoped_string & scopedstrExtension,  const ::file::path & pszFile);
+   virtual ::file::path replace_with_extension(const ::scoped_string & scopedstrExtension,  const ::file::path & pathFile);
    virtual void set_extension(::file::path & str, const ::scoped_string & scopedstrExtension);
 
 
@@ -224,7 +224,7 @@ public:
 
 
    virtual void normalize(string & str);
-   virtual ::std::strong_ordering cmp(const ::file::path & psz1, const ::file::path & psz2);
+   virtual ::std::strong_ordering cmp(const ::file::path & path1, const ::file::path & path2);
 
 
    virtual string get_hash(const ::payload & payloadFile, enum_hash ehash);
@@ -242,11 +242,11 @@ public:
 
    virtual void get_last_write_time(file_time_t * pfile_time, const ::scoped_string & scopedstrFilename);
 
-   //virtual void dtf(const ::file::path & pszFile, const ::file::path & pszDir);
+   //virtual void dtf(const ::file::path & pathFile, const ::file::path & pathDir);
 
-   //virtual void dtf(const ::file::path & pszFile, ::file::path_array & stra);
+   //virtual void dtf(const ::file::path & pathFile, ::file::path_array & stra);
 
-   //virtual void ftd(const ::file::path & pszDir, const ::file::path & pszFile);
+   //virtual void ftd(const ::file::path & pathDir, const ::file::path & pathFile);
 
    // 'n' (natural) terminated ascii number, example: 245765487n
    // pmd5ctx = openssl/md5.h's MD5_CTX
@@ -302,24 +302,24 @@ public:
 
 
 //   virtual ::extended::status copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, enum_extract eextract = e_extract_first);
-   //virtual ::extended::status transfer(const ::file::path & pszNew, const ::file::path & psz);
-   //virtual ::extended::status del(const ::file::path & psz);
-   //virtual ::extended::status rename(const ::file::path & pszNew, const ::file::path & psz);
+   //virtual ::extended::status transfer(const ::file::path & pathNew, const ::file::path & path);
+   //virtual ::extended::status del(const ::file::path & path);
+   //virtual ::extended::status rename(const ::file::path & pathNew, const ::file::path & path);
 
 
-   //virtual void trash_that_is_not_trash(const ::file::path & psz);
+   //virtual void trash_that_is_not_trash(const ::file::path & path);
    //virtual void trash_that_is_not_trash(::file::path_array & stra);
 
 
-   //virtual ::extended::status replace(const ::file::path & pszContext, const ::scoped_string & scopedstrFind, const ::scoped_string & scopedstrReplace);
+   //virtual ::extended::status replace(const ::file::path & pathContext, const ::scoped_string & scopedstrFind, const ::scoped_string & scopedstrReplace);
 
-  virtual bool exists(const ::file::path & pszPath);
-
-
-  // virtual ::payload length(const ::file::path & pszPath);
+  virtual bool exists(const ::file::path & path);
 
 
-   //::file::path time(const ::file::path & pszBasePath, int iDepth = 1, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
+  // virtual ::payload length(const ::file::path & path);
+
+
+   //::file::path time(const ::file::path & pathBasePath, int iDepth = 1, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
 
 
    //virtual file_pointer time_square_file(const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr);
@@ -391,7 +391,7 @@ public:
    //virtual ::file_pointer get_file(const ::payload & payloadFile, unsigned int nOpenFlags);
 
 
-   //virtual bool is_read_only(const ::file::path & psz);
+   //virtual bool is_read_only(const ::file::path & path);
 
    inline auto open_for_reading(const ::payload & payloadFile, ::file::e_open eopen = ::file::e_open_binary)
    {
@@ -412,9 +412,9 @@ public:
    virtual ::file_pointer friendly_get_file(const ::payload & payloadFile, ::file::e_open eopen);
 
 
-   //void dtf(const ::file::path & pszFile, const ::file::path & pszDir);
-   void dtf(const ::file::path & pszFile, ::file::path_array & stra, ::file::path_array & straRelative);
-   //void ftd(const ::file::path & pszDir, const ::file::path & pszFile);
+   //void dtf(const ::file::path & pathFile, const ::file::path & pathDir);
+   void dtf(const ::file::path & pathFile, ::file::path_array & stra, ::file::path_array & straRelative);
+   //void ftd(const ::file::path & pathDir, const ::file::path & pathFile);
 
 
    virtual void crypto_set(const ::payload & payloadFile, const ::scoped_string & scopedstrData, const ::scoped_string & scopedstrSalt);

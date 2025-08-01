@@ -886,7 +886,7 @@ namespace html
          }
          if(*psz == '\0' || *psz == '}')
             return psz;
-         string strKey(scopedstrStart, psz - pszStart);
+         string strKey(pszStart, psz - pszStart);
          strKey.trim();
 
          char chQuote = '\0';
@@ -904,7 +904,7 @@ namespace html
                chQuote = *psz;
             }
          }
-         string strValue(scopedstrStart, psz - pszStart);
+         string strValue(pszStart, psz - pszStart);
          m_propertyset[strKey] = strValue;
          if(*psz == ';')
          {
@@ -1278,7 +1278,7 @@ namespace html
          try
          {
             range.consume_hex();
-            color32 = parse_color(scopedstrStart - 1);
+            color32 = parse_color(pszStart - 1);
             return true;
          }
          catch(...)

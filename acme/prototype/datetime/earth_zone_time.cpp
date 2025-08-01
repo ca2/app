@@ -249,7 +249,7 @@ namespace earth
    string zone_time::FormatZone(string & str, const ::scoped_string & scopedstrFormat) const
    {
 
-      str = strFormat;
+      str = scopedstrFormat;
 
       str.replace_with(as_string(GetZoneYear()), "%Y");
       str.replace_with(::str::zero_padded(as_string(GetZoneMonth()), 2), "%m");
@@ -288,7 +288,7 @@ namespace earth
    
       string str;
    
-      FormatZone(str, strFormat);
+      FormatZone(str, scopedstrFormat);
    
       return str;
 

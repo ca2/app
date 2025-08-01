@@ -700,7 +700,7 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 bool matter::_handle_uri(const ::scoped_string & scopedstrUri)
 {
 
-   return handle_uri(strUri);
+   return handle_uri(scopedstrUri);
 
 }
 
@@ -708,7 +708,7 @@ bool matter::_handle_uri(const ::scoped_string & scopedstrUri)
 bool matter::_handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset)
 {
 
-   return handle_call(payload, strObject, strMember, propertyset);
+   return handle_call(payload, scopedstrObject, scopedstrMember, propertyset);
 
 }
 
@@ -724,7 +724,7 @@ bool matter::_handle_call(::payload & payload, const ::scoped_string & scopedstr
 bool matter::handle_uri(const ::scoped_string & scopedstringUri)
 {
 
-   return _handle_uri(stringUri);
+   return _handle_uri(scopedstringUri);
 
 }
 

@@ -590,7 +590,7 @@ namespace xml
          pnode->m_pdocument = m_pdocument;
          pnode->m_enode = ::data::e_node_xml_pi;
 
-         const char* pTagEnd = ::ansi_range(scopedstrStart, rangeXml.m_end).find_first_character_in(" ?>");
+         const char* pTagEnd = ::ansi_range(pszStart, rangeXml.m_end).find_first_character_in(" ?>");
 
          _SetString({ pszStart, pTagEnd }, &pnode->m_strName);
 
@@ -651,7 +651,7 @@ namespace xml
 //         // XML Attr Name
 //         auto pszEnd = rangeXml.find_first_character_in(" =");
 //
-//         if(::not_found(scopedstrEnd))
+//         if(::not_found(pszEnd))
 //         {
 //            //// error
 //            //if( pparseinfo->m_bErrorOccur == false )
@@ -1002,7 +1002,7 @@ namespace xml
    void node::load(const ::scoped_string & scopedstrXml, parse_info * pparseinfo)
    {
 
-      auto rangeXml = strXml();
+      auto rangeXml = scopedstrXml();
 
       const ::ansi_character * pszNext = nullptr;
 
@@ -1197,13 +1197,13 @@ namespace xml
                //rangeXml.m_begin = strchr(rangeXml.m_begin, '<');
                //while (*pszEnd != '<' && *pszEnd != '\0')
                //{
-               //   //   if(scopedstrEnd[0] == '&')
+               //   //   if(pszEnd[0] == '&')
                //   ////   {
                //   ////      pszEnd = m_pdocument->patch_entity_ref((const char * &) pszEnd, true, &xml, nullptr);
                //   ////   }
                //   ////   else
                //   ////   {
-               //   unicode_increment(scopedstrEnd);
+               //   unicode_increment(pszEnd);
                //   //   }
                //}
                _SetString({ pszStart, rangeXml.m_begin }, &pnode->m_strValue, trim, escape);
@@ -1264,7 +1264,7 @@ namespace xml
 
                      const char * pszEnd = rangeXml.find_first_character_in(" >");
 
-                     if (scopedstrEnd == nullptr)
+                     if (pszEnd == nullptr)
                      {
                         //if( pparseinfo->m_bErrorOccur == false )
                         //{
@@ -1361,16 +1361,16 @@ namespace xml
                      //pszEnd = xml;
                      //while(*pszEnd != '<' && *pszEnd != '\0' && pszEnd < pszEndXml)
                      //{
-                     //   if(scopedstrEnd[0] == '&')
+                     //   if(pszEnd[0] == '&')
                      //   {
                      //      pszEnd = m_pdocument->patch_entity_ref((const char * &) pszEnd, true, &xml, nullptr);
                      //   }
                      //   else
                      //   {
-                     //      pszEnd = (char *) ::str::__utf8_inc(scopedstrEnd);
+                     //      pszEnd = (char *) ::str::__utf8_inc(pszEnd);
                      //   }
                      //}
-                     //if (scopedstrEnd > pszEndXml)
+                     //if (pszEnd > pszEndXml)
                        // pszEnd = (char *)pszEndXml;
                      _SetString({pszStart, rangeXml.m_begin}, &pnode->m_strValue, trim, escape);
                      //xml = pszEnd;
@@ -2320,7 +2320,7 @@ namespace xml
 
       pnode->initialize(this);
       
-      pnode->m_strName = strName;
+      pnode->m_strName = scopedstrName;
 
       pnode->m_strValue = scopedstrValue;
 
@@ -2336,7 +2336,7 @@ namespace xml
 
       auto pnode = __allocate node((node *) this);
 
-      pnode->m_strName = strName;
+      pnode->m_strName = scopedstrName;
 
       pnode->m_set = set;
 
@@ -3080,7 +3080,7 @@ namespace xml
    void node::set_name(const ::scoped_string & scopedstrName)
    {
 
-      m_strName = strName;
+      m_strName = scopedstrName;
 
       if(m_pdocument != nullptr)
       {
@@ -3099,7 +3099,7 @@ namespace xml
    void node::set_value(const ::scoped_string & scopedstrValue)
    {
 
-      m_strValue = strValue;
+      m_strValue = scopedstrValue;
 
       if(m_pdocument != nullptr)
       {

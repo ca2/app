@@ -37,7 +37,7 @@ namespace platform
       //virtual ::pointer<::apex::application>create_platform(::apex::session * psession);
       
       
-      virtual ::pointer<::platform::application > instantiate_application(const::string& strAppIdd);
+      virtual ::pointer<::platform::application > instantiate_application(const ::scoped_string & scopedstrAppIdd);
       virtual ::pointer<::platform::application > create_application(const ::scoped_string & scopedstrAppId);
 
 

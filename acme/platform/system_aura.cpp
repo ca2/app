@@ -132,7 +132,7 @@ namespace platform
    //void windowing_post_quit() override{}
 
 
-   ::pointer<::data::node>  aura_system_layer::load_xml(const ::string& pszXml)
+   ::pointer<::data::node>  aura_system_layer::load_xml(const ::scoped_string & scopedstrXml)
    {
 
       return {};
@@ -357,7 +357,7 @@ namespace platform
    //void aura_system_layer::discard_to_factory(::object * pca){}
 
    
-   // bool aura_system_layer::on_command_final(const ::string& pszCommand, ::user::activation_token * puseractivationtoken)
+   // bool aura_system_layer::on_command_final(const ::scoped_string & scopedstrCommand, ::user::activation_token * puseractivationtoken)
    // {
    //
    //    return false;

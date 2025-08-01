@@ -844,7 +844,7 @@ namespace platform
    }
 
 
-   ::pointer < ::mutex > node::get_install_mutex(::particle *pparticleContext, const ::string &strPlatform, const ::scoped_string & scopedstrSuffix)
+   ::pointer < ::mutex > node::get_install_mutex(::particle *pparticleContext, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix)
    {
 
       string strName = "::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix;
@@ -3847,7 +3847,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
 //   }
 
 
-   void node::terminate_processes_by_title(const ::string & lpszName)
+   void node::terminate_processes_by_title(const ::scoped_string & scopedstrName)
    {
 
       __UNREFERENCED_PARAMETER(lpszName);
@@ -3956,7 +3956,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
 //   }
 
 
-   void node::local_machine_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+   void node::local_machine_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
    {
 
       __UNREFERENCED_PARAMETER(scopedstrKey);
@@ -3967,7 +3967,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    }
 
 
-   void node::local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+   void node::local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
    {
 
       __UNREFERENCED_PARAMETER(scopedstrKey);
@@ -3978,7 +3978,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    }
 
 
-   void node::current_user_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+   void node::current_user_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
    {
 
       __UNREFERENCED_PARAMETER(scopedstrKey);
@@ -3989,7 +3989,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    }
 
 
-   void node::current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+   void node::current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
    {
 
       __UNREFERENCED_PARAMETER(scopedstrKey);

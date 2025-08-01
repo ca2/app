@@ -321,7 +321,7 @@ namespace user
    }
 
 
-   ::collection::index list_box::insert_item_at(::collection::index iIndex, const ::string& pszString)
+   ::collection::index list_box::insert_item_at(::collection::index iIndex, const ::scoped_string & scopedstrString)
    {
 
       if (iIndex < 0)

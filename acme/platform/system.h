@@ -392,7 +392,7 @@ namespace platform
 
 
 
-      //virtual ::pointer<::acme::library> & library(const ::string &strComponent, const ::string &strImplementation);
+      //virtual ::pointer<::acme::library> & library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
 
       virtual void open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {}) override;
@@ -507,7 +507,7 @@ namespace platform
 
       static inline ::atom atom(const ::std::type_info & info);
       static inline ::atom atom(const ::scoped_string & scopedstr);
-      static inline ::atom atom(const ::scoped_string & scopedstr);
+      static inline ::atom atom(const ::string & str);
       static inline ::atom atom(long long i);
       //static inline ::atom_space & atom();
       inline ::atom atom(const ::payload & payload);

@@ -178,7 +178,7 @@ int                 cy)
 //   ::int_size size;
 //   for(nIndex = 0; nIndex < nSize; nIndex++)
 //   {
-//      const string &str = pArray->get_at(nIndex);
+//      const ::scoped_string & scopedstr = pArray->get_at(nIndex);
 //      wstring wstr(str);
 //      GetTextExtentPoint32W(hDC,wstr,(int)wstr.get_length(),&size);
 //      if(size.cx() > pSize->cx())
@@ -223,7 +223,7 @@ int                 cy)
 //   for(nIndex = 0; nIndex < nSize; nIndex++)
 //   {
 //
-//      const string &str = pArray->get_at(nIndex);
+//      const ::scoped_string & scopedstr = pArray->get_at(nIndex);
 //      wstring wstr(str);
 //      TextOutW(hDC,0,yPos,wstr,(int)wstr.get_length());
 //
@@ -7101,7 +7101,7 @@ void image_context::load_svg(::image::image *pimage, memory & memory)
 
    auto size = memory.size();
 
-   if (::is_null(scopedstr))
+   if (::is_null(psz))
    {
 
       //return pimage->m_estatus;
@@ -7110,12 +7110,12 @@ void image_context::load_svg(::image::image *pimage, memory & memory)
 
    }
 
-   if (memory_find(scopedstr, size, "<svg", 4) != nullptr)
+   if (memory_find(psz, size, "<svg", 4) != nullptr)
    {
 
       char * pszXml = (char *) memory.data();
 
-      pimage->create_nanosvg(scopedstrXml);
+      pimage->create_nanosvg(pszXml);
 
       pimage->mult_alpha_fast();
 

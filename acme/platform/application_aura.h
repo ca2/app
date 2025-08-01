@@ -251,8 +251,8 @@ namespace platform
       // virtual void on_uninstall() override;
       //
 
-      //virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const ::scoped_string & scopedstrRelative) override;
-      //virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle) override;
+      //virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative) override;
+      //virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle) override;
 
       //virtual void SetCurrentHandles() override;
 
@@ -607,9 +607,9 @@ namespace platform
       //virtual string multimedia_audio_mixer_get_default_implementation_name() override;
       //virtual string veriwell_multimedia_music_midi_get_default_implementation_name() override;
 
-      //virtual bool get_temp_file_name_template(string & str, const ::string & lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate) override;
+      //virtual bool get_temp_file_name_template(string & str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate) override;
 
-      //virtual bool get_temp_file_name(string & str, const ::string & lpszName, const ::scoped_string & scopedstrExtension) override;
+      //virtual bool get_temp_file_name(string & str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension) override;
 
       //service_base * get_service();
       //virtual service_base * allocate_new_service() override;

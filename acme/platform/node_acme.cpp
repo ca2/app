@@ -18,13 +18,13 @@ namespace platform
    }
 
 
-   void acme_node_layer::call_async(const ::string& pszPath, const ::string& pszParam, const ::string& pszDir,
+   void acme_node_layer::call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir,
                                     ::e_display edisplay, bool bPrivileged, unsigned int* puiPid)
    {
    }
 
 
-   void acme_node_layer::call_sync(const ::string& pszPath, const ::string& pszParam, const ::string& pszDir,
+   void acme_node_layer::call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir,
                                    ::e_display edisplay, const class time& timeTimeout, ::property_set & set,
                                    int* piExitCode)
    {
@@ -150,12 +150,12 @@ namespace platform
    }
 
 
-   void acme_node_layer::_launch_macos_app(const ::string& pszAppFolder)
+   void acme_node_layer::_launch_macos_app(const ::scoped_string & scopedstrAppFolder)
    {
    }
 
 
-   void acme_node_layer::_launch_macos_app_args(const ::string& pszAppFolder, const ::string& pszArgs)
+   void acme_node_layer::_launch_macos_app_args(const ::scoped_string & scopedstrAppFolder, const ::scoped_string & scopedstrArgs)
    {
    }
 
@@ -286,33 +286,33 @@ namespace platform
 
 
    bool acme_node_layer::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild,
-                                                  const ::string& pszPlatform, const ::string& pszConfiguration,
-                                                  const ::string& pszLocale, const ::string& pszSchema)
+                                                  const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
+                                                  const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
       return false;
    }
 
 
    void acme_node_layer::set_application_installed(const ::file::path& pathExe, string strAppId,
-                                                   const ::string& pszBuild,
-                                                   const ::string& pszPlatform, const ::string& pszConfiguration,
-                                                   const ::string& pszLocale, const ::string& pszSchema)
+                                                   const ::scoped_string & scopedstrBuild,
+                                                   const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
+                                                   const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
    }
 
 
    ::file::path acme_node_layer::application_installer_folder(const ::file::path& pathExe, string strAppId,
-                                                              const ::string& pszPlatform,
-                                                              const ::string& pszConfiguration,
-                                                              const ::string& pszLocale, const ::string& pszSchema)
+                                                              const ::scoped_string & scopedstrPlatform,
+                                                              const ::scoped_string & scopedstrConfiguration,
+                                                              const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
       return{};
 
    }
 
 
-   ::file::path acme_node_layer::get_application_path(string strAppId, const ::string& pszPlatform,
-                                                      const ::string& pszConfiguration)
+   ::file::path acme_node_layer::get_application_path(string strAppId, const ::scoped_string & scopedstrPlatform,
+                                                      const ::scoped_string & scopedstrConfiguration)
    {
       return{};
 
@@ -426,19 +426,19 @@ namespace platform
 //   }
 
 
-   ::string acme_node_layer::get_file_icon_path(const ::string& pszPath, int iSize)
+   ::string acme_node_layer::get_file_icon_path(const ::scoped_string & scopedstrPath, int iSize)
    {
       return{};
    }
 
 
-   ::string acme_node_layer::get_file_content_type(const ::string& pszPath)
+   ::string acme_node_layer::get_file_content_type(const ::scoped_string & scopedstrPath)
    {
       return{};
    }
 
 
-   int acme_node_layer::os_launch_uri(const ::string& pszUri, char* pszError, int iBufferSize)
+   int acme_node_layer::os_launch_uri(const ::scoped_string & scopedstrUri, char* pszError, int iBufferSize)
    {
       return 0;
    }
@@ -563,7 +563,7 @@ namespace platform
 
    //::string acme_node_layer::get_user_toolkit_id(){}
 
-   void acme_node_layer::launch_app(const ::string& psz, const char** argv, int iFlags)
+   void acme_node_layer::launch_app(const ::scoped_string & scopedstr, const char** argv, int iFlags)
    {
    }
 
@@ -589,7 +589,7 @@ namespace platform
    }
 
 
-   ::process_identifier acme_node_layer::create_process(const ::string& pszCommandLine)
+   ::process_identifier acme_node_layer::create_process(const ::scoped_string & scopedstrCommandLine)
    {
       return -1;
    }
@@ -612,7 +612,7 @@ namespace platform
    }
 
 
-   bool acme_node_layer::load_modules_diff(string_array& straOld, string_array& straNew, const ::string& pszExceptDir)
+   bool acme_node_layer::load_modules_diff(string_array& straOld, string_array& straNew, const ::scoped_string & scopedstrExceptDir)
    {
       return false;
    }
@@ -625,7 +625,7 @@ namespace platform
 
 
    ::process_identifier_array acme_node_layer::module_path_processes_identifiers(
-      const ::string& pszModulePath, bool bModuleNameIsPropertyFormatted)
+      const ::scoped_string & scopedstrModulePath, bool bModuleNameIsPropertyFormatted)
    {
       return {};
    }
@@ -650,14 +650,14 @@ namespace platform
    //bool acme_node_layer::is_shared_library_busy(const string_array& stra){}
 
    bool acme_node_layer::process_contains_module(string& strImage, ::process_identifier processidentifier,
-                                                 const ::string& pszLibrary)
+                                                 const ::scoped_string & scopedstrLibrary)
    {
    return false;
    }
 
 
    ::process_identifier_array acme_node_layer::
-   shared_library_process(string_array& straProcesses, const ::string& pszLibrary)
+   shared_library_process(string_array& straProcesses, const ::scoped_string & scopedstrLibrary)
    {
       return{};
    }
@@ -732,7 +732,7 @@ namespace platform
 
    //::string acme_node_layer::expand_environment_variables(const ::scoped_string & scopedstr){}
 
-   ::file::path acme_node_layer::command_find_path(const ::string& pszCommand)
+   ::file::path acme_node_layer::command_find_path(const ::scoped_string & scopedstrCommand)
    {
       return{};
    }

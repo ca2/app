@@ -111,13 +111,13 @@ namespace sockets
       if (m_bOk || m_bDirect)
       {
 
-         http_socket::OnLine(strParam);
+         http_socket::OnLine(scopedstrParam);
 
       }
       else
       {
 
-         string str(strParam);
+         string str(scopedstrParam);
 
          m_straProxy.add(str);
 
@@ -211,10 +211,15 @@ namespace sockets
 
    void http_tunnel::OnFirst()
    {
+
    }
-   void http_tunnel::OnHeader(atom key, const ::scoped_string & scopedstrValue)
+
+
+   void http_tunnel::OnHeader(const ::atom & atom, const ::scoped_string & scopedstr)
    {
-      inheader(key.as_string()) = strValue;
+
+      inheader(atom) = scopedstr;
+
    }
 
 

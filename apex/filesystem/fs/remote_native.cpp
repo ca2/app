@@ -29,7 +29,7 @@ namespace fs
    }
 
 
-   bool remote_native::fast_has_subdir(const ::file::path & pszPath)
+   bool remote_native::fast_has_subdir(const ::file::path & path)
    {
 
       return true;
@@ -37,7 +37,7 @@ namespace fs
    }
 
 
-   bool remote_native::has_subdir(const ::file::path & pszPath)
+   bool remote_native::has_subdir(const ::file::path & path)
    {
 
       defer_initialize();
@@ -306,7 +306,7 @@ namespace fs
 
    }
 
-   //string remote_native::file_name(const ::file::path & pszPath)
+   //string remote_native::file_name(const ::file::path & path)
    //{
 
    //   string strPath(scopedstrPath);
@@ -325,10 +325,10 @@ namespace fs
 
    //}
 
-   bool remote_native::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
+   bool remote_native::file_move(const ::file::path & pathTarget,const ::file::path & pathSource)
    {
-      __UNREFERENCED_PARAMETER(scopedstrDst);
-      __UNREFERENCED_PARAMETER(scopedstrSrc);
+      __UNREFERENCED_PARAMETER(pathTarget);
+      __UNREFERENCED_PARAMETER(pathSource);
       return true;
    }
 
@@ -353,10 +353,10 @@ namespace fs
    }
 
 
-   bool remote_native::file_exists(const ::file::path & pszPath)
+   bool remote_native::file_exists(const ::file::path & path)
    {
 
-      return ::fs::data::file_exists(scopedstrPath);
+      return ::fs::data::file_exists(path);
 
    }
 
@@ -372,7 +372,7 @@ namespace fs
 
    }
 
-   bool remote_native::is_zero_latency(const  ::file::path & psz)
+   bool remote_native::is_zero_latency(const ::file::path & path)
    {
 
       return false;

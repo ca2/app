@@ -316,9 +316,9 @@ namespace draw2d
       virtual unsigned int SetLayout(unsigned int dwLayout);
 
       // Constructors
-      virtual void create_device_context(const ::string& pszDriverName, const ::string& pszDeviceName, const ::string& pszOutput, const void* lpInitData);
+      virtual void create_device_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void* lpInitData);
 
-      virtual void create_information_context(const ::string& pszDriverName, const ::string& pszDeviceName, const ::string& pszOutput, const void* lpInitData);
+      virtual void create_information_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void* lpInitData);
 
       virtual void create_window_graphics(::windowing::window* pwindow);
       virtual void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size = {});

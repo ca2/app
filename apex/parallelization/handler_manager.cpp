@@ -27,7 +27,7 @@ void handler_manager::initialize_handler_manager(::particle * pparticle, const :
 
    defer_create_synchronization();
 
-   m_strThreadName = strThreadName;
+   m_strThreadName = scopedstrThreadName;
 
    m_iAliveCount = iAliveCount;
 

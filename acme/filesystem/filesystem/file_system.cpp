@@ -1679,7 +1679,7 @@ void file_system::set_line(const ::file::path& pathParam, ::collection::index iL
 void file_system::append(const ::scoped_string & scopedstrFile, const block& block)
 {
 
-   return append_wait(strFile, block, 0_s);
+   return append_wait(scopedstrFile, block, 0_s);
 
 }
 
@@ -1726,7 +1726,7 @@ void file_system::_erase(const ::file::path& path)
 
       strHexadecimal.formatf("%08x", i);
 
-      path = pathFolder / (strPrefix + "-" + strHexadecimal + "." + strExtension);
+      path = pathFolder / (scopedstrPrefix + "-" + strHexadecimal + "." + scopedstrExtension);
 
       if (exists(path))
       {
@@ -1737,7 +1737,7 @@ void file_system::_erase(const ::file::path& path)
 
       }
 
-      put_contents(path, str);
+      put_contents(path, scopedstr);
 
       break;
 

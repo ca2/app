@@ -377,7 +377,7 @@ namespace sockets
       //void OnAccept(::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status);
       /** Called when a complete line has been read and the base_socket is in
       * line protocol mode. */
-      virtual void OnLine(const string & );
+      virtual void OnLine(const ::scoped_string & scopedstrLine);
 
 
       virtual bool on_select_idle();
@@ -668,7 +668,7 @@ namespace sockets
       /** base_socket type from base_socket() call. */
       virtual int GetSocketType();
       /** Protocol type from base_socket() call. */
-      virtual void SetSocketProtocol(const string & x);
+      virtual void SetSocketProtocol(const ::scoped_string & scopedstrSocketProtocol);
       /** Protocol type from base_socket() call. */
       virtual string GetSocketProtocol();
 
@@ -782,7 +782,7 @@ virtual string GetSocks4Host();
       void write(const void * p, ::memsize s) override;
 
 
-      inline void print(const ::scoped_string & scopedstr) { write(str); }
+      inline void print(const ::scoped_string & scopedstr) { write(scopedstr); }
 
 
       /** write traffic to an IFile. base_socket will not delete this object. */

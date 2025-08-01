@@ -39,8 +39,8 @@ namespace filemanager
       operation();
       virtual ~operation();
 
-      virtual bool set_copy(::file::listing & stra,const ::file::path & pszDestBase,const ::file::path & pszSrcBase,bool bExpand);
-      virtual bool set_move(::file::listing & stra,const ::file::path & psz);
+      virtual bool set_copy(::file::listing & stra,const ::file::path & pathDestBase,const ::file::path & pathSourceBase,bool bExpand);
+      virtual bool set_move(::file::listing & stra,const ::file::path & path);
       virtual bool set_delete(::file::listing & stra);
 
       //   virtual double size();
@@ -57,11 +57,11 @@ namespace filemanager
       virtual void start();
       virtual bool file_operation_thread_step();
       virtual bool end();
-      virtual bool make_duplicate_name(::file::path & str,const ::file::path & psz);
+      virtual bool make_duplicate_name(::file::path & str,const ::file::path & path);
 
 
       void initialize(::particle * pparticle) override;
-      virtual bool open_src_dst(const ::file::path & pszSrc,::file::path & strDst,const ::file::path & pszDir);
+      virtual bool open_src_dst(const ::file::path & pathSource,::file::path & strDst,const ::file::path & pathDir);
 
       virtual void set_operation(enum_operation eoperation);
       virtual enum_operation get_operation();

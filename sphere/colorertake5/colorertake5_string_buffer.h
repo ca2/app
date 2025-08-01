@@ -13,7 +13,7 @@ public:
   /** Creates is_empty string buffer */
   str_buffer(int alloc);
   /** Creates string buffer with @ca string */
-  str_buffer(const ::string &string, int s = 0, int l = -1);
+  str_buffer(const ::scoped_string & scopedstring, int s = 0, int l = -1);
   /** Creates string buffer with @ca string */
   str_buffer(string cstring, int s = 0, int l = -1);
   /** Creates string buffer with @ca string */
@@ -25,7 +25,7 @@ public:
   void setLength(int newLength);
 
   /** Appends to this string buffer @ca string */
-  str_buffer &append(const string &string);
+  str_buffer &append(const ::scoped_string & scopedstring);
   /** Appends to this string buffer @ca string */
   str_buffer &append(string string);
 
@@ -36,15 +36,15 @@ public:
       C++ operator + form.
       You can write: yourcall(str_buffer("first")+"second"+third);
   */
-  str_buffer &operator +(const string &string);
+  str_buffer &operator +(const ::scoped_string & scopedstring);
   /** Appends to this string buffer @ca string. C++ operator + form. */
   str_buffer &operator +(string string);
   /** Appends to this string buffer @ca string. C++ operator + form. */
-  str_buffer &operator +(const ::string &string);
+  str_buffer &operator +(const ::scoped_string & scopedstring);
   /** Appends to this string buffer @ca string. C++ operator += form. */
-  str_buffer &operator +=(const string &string);
+  str_buffer &operator +=(const ::scoped_string & scopedstring);
   /** Appends to this string buffer @ca string. C++ operator += form. */
-  str_buffer &operator +=(const ::string &string);
+  str_buffer &operator +=(const ::scoped_string & scopedstring);
 private:
   int alloc;
 };

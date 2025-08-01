@@ -124,7 +124,7 @@ namespace user
       void on_timer(::timer * ptimer) override;
 
 
-      virtual void create_message_queue(const ::string & lpszName);
+      virtual void create_message_queue(const ::scoped_string & scopedstrName);
 
 
       virtual ::acme::user::interaction * acme_user_interaction();

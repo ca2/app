@@ -248,7 +248,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::CreateDC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData)
+//void graphics::CreateDC(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * lpInitData)
 //{
 //
 //    throw ::exception(error_not_supported);
@@ -256,7 +256,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::CreateIC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData)
+//void graphics::CreateIC(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * lpInitData)
 //{
 //
 //    throw ::exception(error_not_supported);
@@ -1168,7 +1168,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, const ::string & lpszText, unsigned int nFlags, bool bPrefixText, int nTextLen, HBRUSH hBrush)
+//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, const ::scoped_string & scopedstrText, unsigned int nFlags, bool bPrefixText, int nTextLen, HBRUSH hBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1178,7 +1178,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, const ::string & lpszText, unsigned int nFlags, bool bPrefixText, int nTextLen, ::draw2d::brush* pBrush)
+//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, const ::scoped_string & scopedstrText, unsigned int nFlags, bool bPrefixText, int nTextLen, ::draw2d::brush* pBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1880,7 +1880,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::string & lpszString, character_count nCount, int * lpDxWidths)
+//void graphics::ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::scoped_string & scopedstrString, character_count nCount, int * lpDxWidths)
 //{
 //
 //    throw ::interface_only();
@@ -1890,7 +1890,7 @@ namespace draw2d_cairo
 //}
 
 
-//double_size graphics::TabbedTextOut(double x, double y, const ::string & lpszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin)
+//double_size graphics::TabbedTextOut(double x, double y, const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin)
 //{
 //
 //    throw ::interface_only();
@@ -1910,7 +1910,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//double_size graphics::GetTabbedTextExtent(const ::string & lpszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions)
+//double_size graphics::GetTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions)
 //{
 //
 //    throw ::interface_only();
@@ -1930,7 +1930,7 @@ namespace draw2d_cairo
 //}
 
 
-//double_size graphics::GetOutputTabbedTextExtent(const ::string & lpszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions)
+//double_size graphics::GetOutputTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions)
 //{
 //
 //    throw ::interface_only();
@@ -2199,7 +2199,7 @@ namespace draw2d_cairo
 //
 //
 //// Printer Escape Functions
-//int graphics::Escape(int nEscape, int nCount, const ::string & lpszInData, LPVOID lpOutData)
+//int graphics::Escape(int nEscape, int nCount, const ::scoped_string & scopedstrInData, LPVOID lpOutData)
 //{
 //
 //    throw ::interface_only();
@@ -2667,7 +2667,7 @@ namespace draw2d_cairo
    }
 //
 //
-//int graphics::DrawEscape(int nEscape, int nInputSize, const ::string & lpszInputData)
+//int graphics::DrawEscape(int nEscape, int nInputSize, const ::scoped_string & scopedstrInputData)
 //{
 //
 //    throw ::interface_only();
@@ -2677,7 +2677,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//int graphics::Escape(int nEscape, int nInputSize, const ::string & lpszInputData, int nOutputSize, char * lpszOutputData)
+//int graphics::Escape(int nEscape, int nInputSize, const ::scoped_string & scopedstrInputData, int nOutputSize, char * lpszOutputData)
 //{
 //
 //    throw ::interface_only();
@@ -3198,7 +3198,7 @@ namespace draw2d_cairo
    }
 
 
-//int graphics::StartDoc(const ::string & lpszDocName)
+//int graphics::StartDoc(const ::scoped_string & scopedstrDocName)
 //{
 //
 //    throw ::interface_only();
@@ -3774,7 +3774,7 @@ namespace draw2d_cairo
    }
 
 
-//void graphics::draw_text(const ::string & lpszString, character_count nCount, const ::int_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+//void graphics::draw_text(const ::scoped_string & scopedstrString, character_count nCount, const ::int_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 //{
 //
 //    return draw_text(string(lpszString, nCount), rectangle, nFormat);
@@ -4724,7 +4724,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::text_out(double x, double y, const ::string & lpszString, character_count nCount)
+//void graphics::text_out(double x, double y, const ::scoped_string & scopedstrString, character_count nCount)
 //{
 //
 //    return text_out(x, y, string(lpszString, nCount));

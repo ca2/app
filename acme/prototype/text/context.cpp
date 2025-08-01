@@ -1000,7 +1000,7 @@ namespace text
    }
 
 
-   bool table::begins(const ::text::context * pcontext, const ::string &strTopic, const ::atom & atom) const
+   bool table::begins(const ::text::context * pcontext, const ::scoped_string & scopedstrTopic, const ::atom & atom) const
    {
 
       static ::atom idEn("en");

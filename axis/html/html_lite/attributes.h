@@ -478,7 +478,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   LiteHTMLElemAttr* addAttribute(const ::string & lpszName, const ::scoped_string & scopedstrValue);
+   LiteHTMLElemAttr* addAttribute(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue);
 
 
    /**

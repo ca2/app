@@ -751,7 +751,7 @@ namespace windowing
 
       virtual bool clear_pending_focus();
 
-      //void create_message_queue(::user::interaction * pinteraction, const ::string & lpszName) override;
+      //void create_message_queue(::user::interaction * pinteraction, const ::scoped_string & scopedstrName) override;
 
       //virtual bool create_native_window(::user::native_window_initialize * pinitialize) override;
       //virtual void set_destroying();
@@ -1434,7 +1434,7 @@ namespace windowing
       //virtual void _window_request_presentation_locked();
       //virtual void _window_request_presentation_unlocked();
 
-      virtual void create_message_queue(::user::interaction * pinteraction, const ::string & lpszName);
+      virtual void create_message_queue(::user::interaction * pinteraction, const ::scoped_string & scopedstrName);
 
       //virtual void graphics_thread_update_screen();
 
@@ -1521,7 +1521,7 @@ namespace windowing
 
       //virtual void post_message(::message::message * pusermessage);
 
-      //virtual void set_window_text(const ::string& pszString);
+      //virtual void set_window_text(const ::scoped_string & scopedstrString);
 
       virtual void on_set_window_text();
 

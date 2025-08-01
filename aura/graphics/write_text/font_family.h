@@ -114,14 +114,14 @@ namespace write_text
 
       template < primitive_character CHARACTER >
       font_family_pointer(const CHARACTER * pszFamilyName):
-         ::pointer < font_family >(__allocate font_family(scopedstrFamilyName))
+         ::pointer < font_family >(__allocate font_family(pszFamilyName))
       {
 
       }
 
       template < primitive_character CHARACTER, primitive_character CHARACTER2 >
       font_family_pointer(const CHARACTER * pszFamilyName, const CHARACTER2 * pszBranch) :
-         ::pointer < font_family >(__allocate font_family(scopedstrFamilyName, pszBranch))
+         ::pointer < font_family >(__allocate font_family(pszFamilyName, pszBranch))
       {
 
       }

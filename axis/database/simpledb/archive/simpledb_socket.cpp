@@ -149,7 +149,7 @@ namespace simpledb
       ::sockets::httpd_socket::OnSSLAccept();
    }
 
-   void socket::simple_file_server(const ::file::path & psz, const ::scoped_string & scopedstrRelative)
+   void socket::simple_file_server(const ::file::path & path, const ::scoped_string & scopedstrRelative)
    {
       pointer_array < ::int_array > rangea;
       if(strlen(inheader("range")) > 0)

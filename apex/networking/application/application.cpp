@@ -123,7 +123,7 @@ namespace networking
 
       }
 
-      auto& phandlerMapped = m_maphandler[strPrefix];
+      auto& phandlerMapped = m_maphandler[scopedstrPrefix];
 
       phandlerMapped = phandler;
 
@@ -135,7 +135,7 @@ namespace networking
    ::e_status application::on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::scoped_string & scopedstrUrl, const ::property_set& setPost)
    {
 
-      ::url::url url(strUrl);
+      ::url::url url(scopedstrUrl);
 
       string strPath = url.request().path();
 
@@ -158,7 +158,7 @@ namespace networking
                || strPath.case_insensitive_begins(strScript + "?"))
             {
 
-               auto estatus = phandler->on_html_response(psocket, strHtml, strUrl, setPost);
+               auto estatus = phandler->on_html_response(psocket, strHtml, scopedstrUrl, setPost);
 
                if (estatus.succeeded())
                {

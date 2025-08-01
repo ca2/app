@@ -102,7 +102,7 @@ namespace user
    }
 
 
-   bool form::open_html(const ::string &str)
+   bool form::open_html(const ::scoped_string & scopedstr)
    {
 
       throw ::interface_only();

@@ -541,7 +541,7 @@ namespace draw2d
 
       //ptextout->m_pholdee = this;
 
-      textout.m_strText     = strText;
+      textout.m_strText     = scopedstrText;
       textout.m_pfont       = pfont;
       textout.m_point       = point;
 
@@ -570,7 +570,7 @@ namespace draw2d
 
       //pdrawtext->m_pholdee = this;
 
-      drawtext.m_strText            = strText;
+      drawtext.m_strText            = scopedstrText;
       drawtext.m_pfont              = pfont;
 
 

@@ -5809,11 +5809,11 @@ void payload::consume_identifier(const char * & psz)
 void payload::consume_identifier(const char * & psz, const ::ansi_character * pszEnd)
 {
 
-   const ::scoped_string & scopedstrParse = psz;
+   const char *scopedstrParse = psz;
 
    ::str::consume_spaces(scopedstrParse, 0, pszEnd);
 
-   const ::scoped_string & scopedstrStart = pszParse;
+   const char *pszStart = pszParse;
 
    while (ansi_char_isalpha(*pszParse) && pszParse <= pszEnd)
    {
@@ -5822,7 +5822,7 @@ void payload::consume_identifier(const char * & psz, const ::ansi_character * ps
 
    }
 
-   ::string str(scopedstrStart, pszParse - pszStart);
+   ::string str(pszStart, pszParse - pszStart);
 
    if (str.case_insensitive_order("false") == 0)
    {
@@ -5853,11 +5853,11 @@ void payload::consume_number(const char * & psz)
 
 void payload::consume_number(const char * & psz, const ::ansi_character * pszEnd)
 {
-   const ::scoped_string & scopedstrParse = psz;
+   const char *scopedstrParse = psz;
    bool bSigned = false;
    bool bFloat = false;
    ::str::consume_spaces(scopedstrParse, 0, pszEnd);
-   const ::scoped_string & scopedstrStart = pszParse;
+   const char *pszStart = pszParse;
    if(*pszParse == '-')
    {
       bSigned = true;
@@ -5931,7 +5931,7 @@ end:
 
    }
 
-   ::string strNumber(scopedstrStart, pszParse - pszStart);
+   ::string strNumber(pszStart, pszParse - pszStart);
 
    if(bFloat)
    {
@@ -5983,21 +5983,21 @@ void var_skip_identifier(const char *& psz)
 
 void var_skip_identifier(const char *& psz, const ::ansi_character * pszEnd)
 {
-   const ::scoped_string & scopedstrParse = psz;
+   const char *scopedstrParse = psz;
    ::str::consume_spaces(scopedstrParse, 0, pszEnd);
-   const ::scoped_string & scopedstrStart = pszParse;
+   const char *pszStart = pszParse;
    while (ansi_char_isalpha(*pszParse) && pszParse <= pszEnd)
       pszParse++;
    character_count iLen = pszParse - pszStart;
-   if (iLen == 5 && case_insensitive_ansi_count_compare(scopedstrStart, "false", 5) == 0)
+   if (iLen == 5 && case_insensitive_ansi_count_compare(pszStart, "false", 5) == 0)
    {
    }
    else if (iLen == 4)
    {
-      if (case_insensitive_ansi_count_compare(scopedstrStart, "true", 4) == 0)
+      if (case_insensitive_ansi_count_compare(pszStart, "true", 4) == 0)
       {
       }
-      else if (case_insensitive_ansi_count_compare(scopedstrStart, "null", 4) == 0)
+      else if (case_insensitive_ansi_count_compare(pszStart, "null", 4) == 0)
       {
       }
       else
@@ -6021,9 +6021,9 @@ void var_skip_number(const char *& psz)
 
 void var_skip_number(const char *& psz, const ::ansi_character * pszEnd)
 {
-   const ::scoped_string & scopedstrParse = psz;
+   const char *scopedstrParse = psz;
    ::str::consume_spaces(scopedstrParse, 0, pszEnd);
-   const ::scoped_string & scopedstrStart = pszParse;
+   const char *pszStart = pszParse;
    if (*pszParse == '-')
    {
       pszParse++;

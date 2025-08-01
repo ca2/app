@@ -37,7 +37,7 @@ namespace datetime
 
       int iPathCount;
 
-      return ::earth::time(strtotime(pcontext, str, 0, iPathCount, timeshift));
+      return ::earth::time(strtotime(pcontext, scopedstr, 0, iPathCount, timeshift));
 
    }
 
@@ -218,7 +218,7 @@ namespace datetime
    posix_time datetime::strtotime(const ::text::context * pcontext, const ::scoped_string & scopedstr, int iPath, int & iPathCount, const class ::time & timeshift)
    {
 
-      if (str.trimmed().is_empty())
+      if (scopedstr.trimmed().is_empty())
       {
 
          return {};
@@ -227,7 +227,7 @@ namespace datetime
 
       ::earth::time time;
 
-      ::datetime::result val = parse_time(pcontext, str, iPath, iPathCount, timeshift);
+      ::datetime::result val = parse_time(pcontext, scopedstr, iPath, iPathCount, timeshift);
 
       if (val.m_bSpan)
       {
@@ -250,7 +250,7 @@ namespace datetime
    posix_time datetime::strtotime(const ::text::context * pcontext, const ::scoped_string & scopedstr, posix_time timeParam, int iPath, int & iPathCount, const class ::time& timeshift)
    {
 
-      if (str.trimmed().is_empty())
+      if (scopedstr.trimmed().is_empty())
       {
 
          return {};
@@ -263,7 +263,7 @@ namespace datetime
 
       iPathCount = 1;
 
-      ::datetime::result val = ::datetime::result(time) + span_parse_time(pcontext, str);
+      ::datetime::result val = ::datetime::result(time) + span_parse_time(pcontext, scopedstr);
 
       return val.get_time().get_time();
 
@@ -312,7 +312,7 @@ namespace datetime
    void datetime::parse_text(const ::scoped_string & scopedstrSrc, ::property_set & set)
    {
       
-      string src(strSrc);
+      string src(scopedstrSrc);
 
       src.trim();
 
@@ -428,7 +428,7 @@ namespace datetime
 
       ::property_set set;
 
-      parse_text(str, set);
+      parse_text(scopedstr, set);
 
       auto year = set["year"].as_int();
       auto month = set["month"].as_int();
@@ -461,37 +461,37 @@ namespace datetime
    ::posix_time datetime::parse(const ::scoped_string & scopedstrParam)
    {
 
-      ::string str(strParam);
+      ::string str(scopedstrParam);
 
       str.trim();
 
       ::earth::gregorian_time gregoriantime{};
 
-      if(character_isdigit(strParam[0])
-         && character_isdigit(strParam[1])
-         && character_isdigit(strParam[2])
-         && character_isdigit(strParam[3])
-         && character_isdigit(strParam[5])
-         && character_isdigit(strParam[6])
-         && character_isdigit(strParam[8])
-         && character_isdigit(strParam[9]))
+      if(character_isdigit(scopedstrParam[0])
+         && character_isdigit(scopedstrParam[1])
+         && character_isdigit(scopedstrParam[2])
+         && character_isdigit(scopedstrParam[3])
+         && character_isdigit(scopedstrParam[5])
+         && character_isdigit(scopedstrParam[6])
+         && character_isdigit(scopedstrParam[8])
+         && character_isdigit(scopedstrParam[9]))
       {
-         if (character_isdigit(strParam[11])
-            && character_isdigit(strParam[12])
-            && character_isdigit(strParam[14])
-            && character_isdigit(strParam[15])
-            && character_isdigit(strParam[17])
-            && character_isdigit(strParam[18]))
+         if (character_isdigit(scopedstrParam[11])
+            && character_isdigit(scopedstrParam[12])
+            && character_isdigit(scopedstrParam[14])
+            && character_isdigit(scopedstrParam[15])
+            && character_isdigit(scopedstrParam[17])
+            && character_isdigit(scopedstrParam[18]))
          {
-            gregoriantime.m_iSecond = atoi(strParam(17, 2));
-            gregoriantime.m_iMinute = atoi(strParam(14, 2));
-            gregoriantime.m_iHour = atoi(strParam(11, 2));
+            gregoriantime.m_iSecond = atoi(scopedstrParam(17, 2));
+            gregoriantime.m_iMinute = atoi(scopedstrParam(14, 2));
+            gregoriantime.m_iHour = atoi(scopedstrParam(11, 2));
 
          }
 
-         gregoriantime.m_iDay = atoi(strParam(8, 2));
-         gregoriantime.m_iMonth = atoi(strParam(5, 2));
-         gregoriantime.m_iYear = atoi(strParam(0, 4));
+         gregoriantime.m_iDay = atoi(scopedstrParam(8, 2));
+         gregoriantime.m_iMonth = atoi(scopedstrParam(5, 2));
+         gregoriantime.m_iYear = atoi(scopedstrParam(0, 4));
       }
       else
       {
@@ -1471,7 +1471,7 @@ namespace datetime
 
       result time;
       time.m_bSpan = true;
-      string str(strSpanExpression);
+      string str(scopedstrSpanExpression);
       str.trim();
       str += " ";
       ::property_set set;
@@ -1483,8 +1483,8 @@ namespace datetime
       string strChar;
       for (int i = 0; *psz; psz += strChar.length())
       {
-         strChar = get_utf8_char(scopedstr);
-         if (unicode_is_whitespace(scopedstr))
+         strChar = get_utf8_char(psz);
+         if (unicode_is_whitespace(psz))
          {
             i++;
             //if(strNumber.has_character() && strText.has_character())
@@ -1592,11 +1592,11 @@ namespace datetime
             bMinus = true;
             strNumber.empty();
          }
-         else if (unicode_is_digit(scopedstr))
+         else if (unicode_is_digit(psz))
          {
             strNumber += strChar;
          }
-         else if (unicode_is_letter(scopedstr))
+         else if (unicode_is_letter(psz))
          {
             strText1 += strChar;
          }
@@ -1674,7 +1674,7 @@ namespace datetime
    result datetime::parse_time(const ::text::context* pcontext, const ::scoped_string & scopedstrParam, int& iPath, int& iPathCount, const class ::time& timeshift)
    {
       ::earth::time time;
-      string str(strParam);
+      string str(scopedstrParam);
       str.trim();
       str += " ";
       ::property_set set;

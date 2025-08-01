@@ -1654,10 +1654,10 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   // loop once to figure out the int_size of the result string
 //   character_count nCount = 0;
 //   {
-//      const ::scoped_string & scopedstrStart = m_psz + iStart;
+//      const char * pszStart = m_psz + iStart;
 //      //      const ::ansi_character * pszEnd = pszStart+get_length();
 //      const ::scoped_string & scopedstrTarget;
-//      while((scopedstrTarget = ::str::string_find_string(scopedstrStart,pszOld)) != nullptr)
+//      while((scopedstrTarget = ::str::string_find_string(pszStart,pszOld)) != nullptr)
 //      {
 //         nCount++;
 //         pszStart = pszTarget + nSourceLen;
@@ -1678,10 +1678,10 @@ informationf("fixed_string_log::OnReallocateSpill");
 //      char * pszEnd = pszBuffer + nOldLength;
 //
 //      // loop again to actually do the work
-//      while(scopedstrStart < pszEnd)
+//      while(pszStart < pszEnd)
 //      {
 //         char * pszTarget;
-//         while((scopedstrTarget = ::str::string_find_string(scopedstrStart,pszOld)) != nullptr)
+//         while((scopedstrTarget = ::str::string_find_string(pszStart,pszOld)) != nullptr)
 //         {
 //            character_count nBalance = nOldLength - character_count(scopedstrTarget - pszBuffer + nSourceLen);
 //            ::safe_memory_transfer(scopedstrTarget + nReplacementLen,nBalance*sizeof(char),
@@ -1692,7 +1692,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //            pszTarget[nReplacementLen + nBalance] = 0;
 //            nOldLength += (nReplacementLen - nSourceLen);
 //         }
-//         pszStart += ::str::SafeStringLen(scopedstrStart) + 1;
+//         pszStart += ::str::SafeStringLen(pszStart) + 1;
 //      }
 //      ASSERT(scopedstrBuffer[nNewLength] == 0);
 //      release_buffer(nNewLength);
@@ -1719,10 +1719,10 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   // loop once to figure out the int_size of the result string
 //   character_count nCount = 0;
 //   {
-//      const ::scoped_string & scopedstrStart = m_psz + iStart;
+//      const char * pszStart = m_psz + iStart;
 //      //      const ::ansi_character * pszEnd = pszStart+get_length();
 //      const ::scoped_string & scopedstrTarget;
-//      while ((scopedstrTarget = ::str::string_find_string(scopedstrStart, pszOld)) != nullptr)
+//      while ((scopedstrTarget = ::str::string_find_string(pszStart, pszOld)) != nullptr)
 //      {
 //         nCount++;
 //         pszStart = pszTarget + nSourceLen;
@@ -1744,10 +1744,10 @@ informationf("fixed_string_log::OnReallocateSpill");
 //      char * pszEnd = pszBuffer + nOldLength;
 //
 //      // loop again to actually do the work
-//      while (scopedstrStart < pszEnd)
+//      while (pszStart < pszEnd)
 //      {
 //         char * pszTarget;
-//         while ((scopedstrTarget = ::str::string_find_string(scopedstrStart, pszOld)) != nullptr)
+//         while ((scopedstrTarget = ::str::string_find_string(pszStart, pszOld)) != nullptr)
 //         {
 //            character_count nBalance = nOldLength - character_count(scopedstrTarget - pszBuffer + nSourceLen);
 //            ::safe_memory_transfer(scopedstrTarget + nReplacementLen, nBalance * sizeof(char),
@@ -1758,7 +1758,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //            pszTarget[nReplacementLen + nBalance] = 0;
 //            nOldLength += (nReplacementLen - nSourceLen);
 //         }
-//         pszStart += ::str::SafeStringLen(scopedstrStart) + 1;
+//         pszStart += ::str::SafeStringLen(pszStart) + 1;
 //      }
 //      ASSERT(scopedstrBuffer[nNewLength] == 0);
 //      release_buffer(nNewLength);
@@ -2631,7 +2631,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   // by starting at beginning (DBCS aware)
 //
 //   const ::scoped_string & scopedstr = m_psz;
-//   const ::scoped_string & scopedstrStart = psz;
+//   const char * pszStart = psz;
 //   const ::scoped_string & scopedstrLast = nullptr;
 //
 //   while(!is_ptr_null(scopedstr, 1024) && *psz != 0)

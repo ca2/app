@@ -59,7 +59,7 @@ namespace sockets
    void http_session::request(const ::scoped_string & scopedstrMethod, const ::scoped_string & scopedstrRequest)
    {
 
-      request(string_http_method(strMethod), strRequest);
+      request(string_http_method(scopedstrMethod), scopedstrRequest);
 
    }
 
@@ -68,9 +68,9 @@ namespace sockets
    {
 
       m_emethod                  = emethod;
-      inattr("request_uri")      = strRequest;
+      inattr("request_uri")      = scopedstrRequest;
       inattr("http_protocol")    = m_urlparts.connect().protocol();
-      m_urlparts.request().parse(strRequest);
+      m_urlparts.request().parse(scopedstrRequest);
       set_url(m_urlparts.as_url());
       inattr("http_version")    = "HTTP/1.1";
       //m_b_keepalive                 = true;

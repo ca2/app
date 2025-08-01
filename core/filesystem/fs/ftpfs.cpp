@@ -400,7 +400,7 @@ retry:
 }
 
 
-bool ftpfs::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
+bool ftpfs::file_move(const ::file::path & pathTarget, const ::file::path & pathSource)
 {
    __UNREFERENCED_PARAMETER(scopedstrDst);
    __UNREFERENCED_PARAMETER(scopedstrSrc);
@@ -503,7 +503,7 @@ retry:
 }
 
 
-bool ftpfs::file_exists(const ::file::path & pszPath)
+bool ftpfs::file_exists(const ::file::path & path)
 {
 
    return ::fs::data::file_exists(scopedstrPath);
@@ -511,7 +511,7 @@ bool ftpfs::file_exists(const ::file::path & pszPath)
 }
 
 
-::payload ftpfs::file_length(const ::file::path & pszPath)
+::payload ftpfs::file_length(const ::file::path & path)
 {
 
    return ::fs::data::file_length(scopedstrPath);
@@ -614,7 +614,7 @@ retry_login:
 
 }
 
-bool ftpfs::is_zero_latency(const ::file::path & psz)
+bool ftpfs::is_zero_latency(const ::file::path & path)
 {
 
    return false;

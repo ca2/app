@@ -690,7 +690,7 @@ namespace sqlite
 
    //}
 
-   //string database::error1(const ::string& pszPrefix)
+   //string database::error1(const ::scoped_string & scopedstrPrefix)
    //{
 
    //   return "";
@@ -698,14 +698,14 @@ namespace sqlite
    //}
 
 
-   void database::trace_error1(const ::string& pszPrefix)
+   void database::trace_error1(const ::scoped_string & scopedstrPrefix)
    {
 
 
    }
 
 
-   string database::query_error(const ::string& pszPrefix)
+   string database::query_error(const ::scoped_string & scopedstrPrefix)
    {
 
       return "";

@@ -156,7 +156,7 @@ public:
    virtual ::file::path icloud_container2_final(const char * pszContentIdentifier = nullptr);
    virtual bool is_icloud_container(const ::file::path & path, const char * pszContentIdentifier = nullptr);
    virtual bool has_icloud_container(const char * pszContentIdentifier = nullptr);
-   virtual ::file::path pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode);
+   virtual ::file::path pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode);
    virtual ::file::path program_files_x86();
    virtual ::file::path program_files();
    //virtual ::file::path program_data();
@@ -182,7 +182,7 @@ public:
 
    virtual void set_path_install_folder(const ::scoped_string & scopedstrPath);
 
-   //virtual ::file::path pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode);
+   //virtual ::file::path pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode);
 
    virtual ::file::path machine_event_file_path();
 

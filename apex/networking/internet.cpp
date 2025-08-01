@@ -279,7 +279,7 @@ namespace internet
 
       }
 
-      bool bPublicDomainExtensionListSuffixesDomain = m_straPublicDomainExtension.case_insensitive_suffix_find_first(strDomain) >= 0;
+      bool bPublicDomainExtensionListSuffixesDomain = m_straPublicDomainExtension.case_insensitive_suffix_find_first(scopedstrDomain) >= 0;
 
       return bPublicDomainExtensionListSuffixesDomain;
 
@@ -360,7 +360,7 @@ namespace internet
    string internet::to_punycode(const ::scoped_string & scopedstr)
    {
 
-      return nano()->idn()->idn_to_punycode(str);
+      return nano()->idn()->idn_to_punycode(scopedstr);
 
    }
 
@@ -368,7 +368,7 @@ namespace internet
    string internet::from_punycode(const ::scoped_string & scopedstr)
    {
 
-      return nano()->idn()->idn_from_punycode(str);
+      return nano()->idn()->idn_from_punycode(scopedstr);
 
    }
 

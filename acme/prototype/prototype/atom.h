@@ -10,6 +10,7 @@
 #include "acme/prototype/prototype/transfer.h"
 #include "acme/prototype/string/string.h"
 #include "acme/prototype/string/string_base.h"
+#include "acme/prototype/string/scoped_string_base.h"
 
 enum enum_id : ::uptr;
 

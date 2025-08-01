@@ -135,7 +135,7 @@ CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int iLineNum
 
 #endif
 
-   auto edialogresult = __cpp_assert_failed_line(scopedstrFileName, iLineNumber);
+   auto edialogresult = __cpp_assert_failed_line(pszFileName, iLineNumber);
 
    if(edialogresult == e_dialog_result_cancel)
    {

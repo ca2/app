@@ -34,23 +34,23 @@ namespace fs
       bool enumerate(::file::listing & listing) override;
 
 
-      virtual bool has_subdir(const ::file::path & pszPath) override;
-      virtual bool fast_has_subdir(const ::file::path & pszPath) override;
+      virtual bool has_subdir(const ::file::path & path) override;
+      virtual bool fast_has_subdir(const ::file::path & path) override;
       virtual int is_dir(const ::file::path & path) override;
       virtual ::file::listing & root_ones(::file::listing & listing) override;
 
       //virtual string file_name(const ::file::path & path);
       //virtual string dir_path(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2);
 
-      virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc) override;
+      virtual bool file_move(const ::file::path & pathTarget,const ::file::path & pathSource) override;
 
       virtual file_pointer get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception = nullptr) override;
 
-      virtual bool file_exists(const ::file::path & pszPath) override;
+      virtual bool file_exists(const ::file::path & path) override;
 
       virtual void defer_initialize();
 
-      virtual bool is_zero_latency(const ::file::path & psz) override;
+      virtual bool is_zero_latency(const ::file::path & path) override;
 
 
    };

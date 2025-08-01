@@ -21,7 +21,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 CLASS_DECL_ACME ::ansi_character * ansi_last_char(::ansi_character * psz)
 {
 
-  return (::ansi_character *)ansi_const_last_char(scopedstr);
+  return (::ansi_character *)ansi_const_last_char(psz);
 
 }
 
@@ -29,11 +29,11 @@ CLASS_DECL_ACME ::ansi_character * ansi_last_char(::ansi_character * psz)
 CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, const ::ansi_character * cat)
 {
 
-   if (::is_null(scopedstr)) return nullptr;
+   if (::is_null(psz)) return nullptr;
 
    if (::is_null(cat)) return nullptr;
 
-   return ansi_cat(scopedstr, cat);
+   return ansi_cat(psz, cat);
 
 }
 
@@ -44,11 +44,11 @@ CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, cons
 //
 //   auto destination = psz;
 //
-//   if (::is_null(scopedstr)) return nullptr;
+//   if (::is_null(psz)) return nullptr;
 //
 //   if (::is_null(cat)) return nullptr;
 //
-//   psz += strlen(scopedstr);
+//   psz += strlen(psz);
 //
 //   while(n > 0)
 //   {
@@ -75,11 +75,11 @@ CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, cons
 
   auto destination = psz;
 
-  if (::is_null(scopedstr)) return nullptr;
+  if (::is_null(psz)) return nullptr;
 
   if (::is_null(cat)) return nullptr;
 
-  psz += strlen(scopedstr);
+  psz += strlen(psz);
 
   while(n > 0)
   {
@@ -104,11 +104,11 @@ CLASS_DECL_ACME ::ansi_character * ansi_concatenate(::ansi_character * psz, cons
 CLASS_DECL_ACME ::ansi_character * ansi_copy(::ansi_character * psz, const ::ansi_character * cpy)
 {
 
-  if (::is_null(scopedstr)) return nullptr;
+  if (::is_null(psz)) return nullptr;
 
   if (::is_null(cpy)) return nullptr;
 
-  return strcpy(scopedstr, cpy);
+  return strcpy(psz, cpy);
 
 }
 
@@ -116,13 +116,13 @@ CLASS_DECL_ACME ::ansi_character * ansi_copy(::ansi_character * psz, const ::ans
 CLASS_DECL_ACME ::ansi_character * ansi_count_copy(::ansi_character * psz, const ::ansi_character * cpy, character_count len)
 {
 
-  if (::is_null(scopedstr)) return nullptr;
+  if (::is_null(psz)) return nullptr;
 
   if (::is_null(cpy)) return nullptr;
 
   if (len < 0) return nullptr;
 
-  return strncpy(scopedstr, cpy, len);
+  return strncpy(psz, cpy, len);
 
 }
 
@@ -130,9 +130,9 @@ CLASS_DECL_ACME ::ansi_character * ansi_count_copy(::ansi_character * psz, const
 CLASS_DECL_ACME character_count ansi_length(const ::ansi_character * psz)
 {
 
-  if (::is_null(scopedstr)) return 0;
+  if (::is_null(psz)) return 0;
 
-  return strlen(scopedstr);
+  return strlen(psz);
 
 }
 
@@ -140,11 +140,11 @@ CLASS_DECL_ACME character_count ansi_length(const ::ansi_character * psz)
 CLASS_DECL_ACME ::ansi_character * ansi_duplicate(const ::ansi_character * psz)
 {
 
-  if (::is_null(scopedstr)) return nullptr;
+  if (::is_null(psz)) return nullptr;
 
-  auto pszDup = (::ansi_character *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(scopedstr) + 1, nullptr);
+  auto pszDup = (::ansi_character *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(psz) + 1, nullptr);
 
-  strcpy(scopedstrDup, psz);
+  strcpy(pszDup, psz);
 
   return pszDup;
 
@@ -154,13 +154,13 @@ CLASS_DECL_ACME ::ansi_character * ansi_duplicate(const ::ansi_character * psz)
 CLASS_DECL_ACME ::ansi_character * ansi_count_duplicate(const ::ansi_character * psz, character_count len)
 {
 
-  if (::is_null(scopedstr)) return nullptr;
+  if (::is_null(psz)) return nullptr;
 
   if (len < 0) return nullptr;
 
   auto pszDup = (::ansi_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len + 1, nullptr);
 
-  strncpy(scopedstrDup, psz, len);
+  strncpy(pszDup, psz, len);
 
   pszDup[len] = '\0';
 
@@ -172,11 +172,11 @@ CLASS_DECL_ACME ::ansi_character * ansi_count_duplicate(const ::ansi_character *
 CLASS_DECL_ACME const ::ansi_character * ansi_find_string(const ::ansi_character * psz, const ::ansi_character * find)
 {
 
-  if (::is_null(scopedstr)) return nullptr;
+  if (::is_null(psz)) return nullptr;
 
   if (::is_null(find)) return nullptr;
 
-  return strstr(scopedstr, find);
+  return strstr(psz, find);
 
 }
 
@@ -185,7 +185,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_find_string(const ::ansi_character
 CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_find_string(const ::ansi_character * psz, const ::ansi_character * find)
 {
 
-  if (::is_null(scopedstr)) return nullptr;
+  if (::is_null(psz)) return nullptr;
 
   auto len = strlen(find);
 
@@ -199,7 +199,7 @@ CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_find_string(const
   while (*psz != '\0')
   {
 
-     if (!ansi_nicmp(scopedstr, find, len))
+     if (!ansi_nicmp(psz, find, len))
      {
 
         return psz;
@@ -218,7 +218,7 @@ CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_find_string(const
 CLASS_DECL_ACME const ::ansi_character * ansi_count_find_string(const ::ansi_character * psz, const ::ansi_character * find, character_count len)
 {
 
-  if (::is_null(scopedstr)) return nullptr;
+  if (::is_null(psz)) return nullptr;
 
   if (len > (character_count) strlen(find)) return nullptr;
 
@@ -232,7 +232,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_count_find_string(const ::ansi_cha
   while (*psz != '\0')
   {
 
-     if (!strncmp(scopedstr, find, len))
+     if (!strncmp(psz, find, len))
      {
 
         return psz;
@@ -251,7 +251,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_count_find_string(const ::ansi_cha
 CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_count_find_string(const ::ansi_character * psz, const ::ansi_character * find, character_count len)
 {
 
-  if (::is_null(scopedstr)) return nullptr;
+  if (::is_null(psz)) return nullptr;
 
   if (len > (character_count)strlen(find)) return nullptr;
 
@@ -265,7 +265,7 @@ CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_count_find_string
   while (*psz != '\0')
   {
 
-     if (!ansi_nicmp(scopedstr, find, len))
+     if (!ansi_nicmp(psz, find, len))
      {
 
         return psz;
@@ -284,7 +284,7 @@ CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_count_find_string
 CLASS_DECL_ACME int ansi_compare(const ::ansi_character * psz, const ::ansi_character * sz2)
 {
 
-  if (::is_null(scopedstr))
+  if (::is_null(psz))
   {
 
      if (::is_null(sz2))
@@ -310,7 +310,7 @@ CLASS_DECL_ACME int ansi_compare(const ::ansi_character * psz, const ::ansi_char
   else
   {
 
-     return strcmp(scopedstr, sz2);
+     return strcmp(psz, sz2);
 
   }
 
@@ -320,7 +320,7 @@ CLASS_DECL_ACME int ansi_compare(const ::ansi_character * psz, const ::ansi_char
 CLASS_DECL_ACME int case_insensitive_ansi_compare(const ::ansi_character * psz, const ::ansi_character * sz2)
 {
 
-  if (::is_null(scopedstr))
+  if (::is_null(psz))
   {
 
      if (::is_null(sz2))
@@ -346,7 +346,7 @@ CLASS_DECL_ACME int case_insensitive_ansi_compare(const ::ansi_character * psz, 
   else
   {
 
-     return ansi_icmp(scopedstr, sz2);
+     return ansi_icmp(psz, sz2);
 
   }
 
@@ -363,7 +363,7 @@ CLASS_DECL_ACME int ansi_count_compare(const ::ansi_character * psz, const ::ans
 
   }
 
-  if (::is_null(scopedstr))
+  if (::is_null(psz))
   {
 
      if (::is_null(sz2))
@@ -389,7 +389,7 @@ CLASS_DECL_ACME int ansi_count_compare(const ::ansi_character * psz, const ::ans
   else
   {
 
-     return strncmp(scopedstr, sz2, len);
+     return strncmp(psz, sz2, len);
 
   }
 
@@ -406,7 +406,7 @@ CLASS_DECL_ACME int case_insensitive_ansi_count_compare(const ::ansi_character *
 
   }
 
-  if (::is_null(scopedstr))
+  if (::is_null(psz))
   {
 
      if (::is_null(sz2))
@@ -432,7 +432,7 @@ CLASS_DECL_ACME int case_insensitive_ansi_count_compare(const ::ansi_character *
   else
   {
 
-     return ansi_nicmp(scopedstr, sz2, len);
+     return ansi_nicmp(psz, sz2, len);
 
   }
 
@@ -443,7 +443,7 @@ CLASS_DECL_ACME int case_insensitive_ansi_count_compare(const ::ansi_character *
 CLASS_DECL_ACME int ansi_collate(const ::ansi_character * psz, const ::ansi_character * sz2)
 {
 
-  if (::is_null(scopedstr))
+  if (::is_null(psz))
   {
 
      if (::is_null(sz2))
@@ -469,7 +469,7 @@ CLASS_DECL_ACME int ansi_collate(const ::ansi_character * psz, const ::ansi_char
   else
   {
 
-     return strcoll(scopedstr, sz2);
+     return strcoll(psz, sz2);
 
   }
 
@@ -479,7 +479,7 @@ CLASS_DECL_ACME int ansi_collate(const ::ansi_character * psz, const ::ansi_char
 CLASS_DECL_ACME int case_insensitive_ansi_collate(const ::ansi_character * psz, const ::ansi_character * sz2)
 {
 
-  if (::is_null(scopedstr))
+  if (::is_null(psz))
   {
 
      if (::is_null(sz2))
@@ -505,7 +505,7 @@ CLASS_DECL_ACME int case_insensitive_ansi_collate(const ::ansi_character * psz, 
   else
   {
 
-     return ansi_icoll(scopedstr, sz2);
+     return ansi_icoll(psz, sz2);
 
   }
 
@@ -522,7 +522,7 @@ CLASS_DECL_ACME int ansi_count_collate(const ::ansi_character * psz, const ::ans
 
   }
 
-  if (::is_null(scopedstr))
+  if (::is_null(psz))
   {
 
      if (::is_null(sz2))
@@ -548,7 +548,7 @@ CLASS_DECL_ACME int ansi_count_collate(const ::ansi_character * psz, const ::ans
   else
   {
 
-     return ansi_ncoll(scopedstr, sz2, len);
+     return ansi_ncoll(psz, sz2, len);
 
   }
 
@@ -565,7 +565,7 @@ CLASS_DECL_ACME int case_insensitive_ansi_count_collate(const ::ansi_character *
 
   }
 
-  if (::is_null(scopedstr))
+  if (::is_null(psz))
   {
 
      if (::is_null(sz2))
@@ -591,7 +591,7 @@ CLASS_DECL_ACME int case_insensitive_ansi_count_collate(const ::ansi_character *
   else
   {
 
-     return ansi_nicoll(scopedstr, sz2, len);
+     return ansi_nicoll(psz, sz2, len);
 
   }
 
@@ -610,7 +610,7 @@ CLASS_DECL_ACME const ::ansi_character * _ansi_scan(const ::ansi_character * psz
 CLASS_DECL_ACME const ::ansi_character * ansi_scan(const ::ansi_character * psz, const ::ansi_character * find)
 {
 
-  if (::is_empty(scopedstr)) return psz;
+  if (::is_empty(psz)) return psz;
 
   if (::is_empty(find)) return psz;
   
@@ -636,7 +636,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_scan(const ::ansi_character * psz,
 //CLASS_DECL_ACME const ::ansi_character * ansi_token(const ::ansi_character * psz, const ::ansi_character * pszSeparators)
 //{
 //
-//   return string_find_first_in(scopedstr, pszSeparators);
+//   return string_find_first_in(psz, pszSeparators);
 //
 //}
 //
@@ -644,7 +644,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_scan(const ::ansi_character * psz,
 //CLASS_DECL_ACME const ::ansi_character * _ansi_find_first_in(const ::ansi_character * psz, const ::ansi_character * pszSeparators)
 //{
 //
-//   return _string_find_first_in(scopedstr, pszSeparators);
+//   return _string_find_first_in(psz, pszSeparators);
 //
 //}
 
@@ -652,7 +652,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_scan(const ::ansi_character * psz,
 CLASS_DECL_ACME ::ansi_character * ansi_first_token(::ansi_character * psz, const ::ansi_character * delimiters, ::ansi_character ** action_context)
 {
 
-  return ansi_tok_r(scopedstr, delimiters, action_context);
+  return ansi_tok_r(psz, delimiters, action_context);
 
 }
 
@@ -668,20 +668,20 @@ CLASS_DECL_ACME ::ansi_character * ansi_next_token(const ::ansi_character * deli
 CLASS_DECL_ACME int ansi_begins(const ::ansi_character * psz, const ::ansi_character * prefix)
 {
 
-  if (::is_null(scopedstr)) return false;
+  if (::is_null(psz)) return false;
 
   if (::is_null(prefix)) return false;
 
   character_count len = strlen(prefix);
 
-  if (len > (character_count)strlen(scopedstr))
+  if (len > (character_count)strlen(psz))
   {
 
      return false;
 
   }
 
-  return !strncmp(scopedstr, prefix, len);
+  return !strncmp(psz, prefix, len);
 
 }
 
@@ -689,11 +689,11 @@ CLASS_DECL_ACME int ansi_begins(const ::ansi_character * psz, const ::ansi_chara
 CLASS_DECL_ACME int case_insensitive_ansi_begins(const ::ansi_character * psz, const ::ansi_character * prefix)
 {
 
-  if (::is_null(scopedstr)) return false;
+  if (::is_null(psz)) return false;
 
   if (::is_null(prefix)) return false;
 
-  return !ansi_nicmp(scopedstr, prefix, strlen(prefix));
+  return !ansi_nicmp(psz, prefix, strlen(prefix));
 
 }
 
@@ -701,13 +701,13 @@ CLASS_DECL_ACME int case_insensitive_ansi_begins(const ::ansi_character * psz, c
 CLASS_DECL_ACME const ::ansi_character * ansi_begins_eat(const ::ansi_character * psz, const ::ansi_character * prefix)
 {
 
-  if (::is_null(scopedstr)) return nullptr;
+  if (::is_null(psz)) return nullptr;
 
   if (::is_null(prefix)) return nullptr;
 
   character_count len = strlen(prefix);
 
-  if (strncmp(scopedstr, prefix, len))
+  if (strncmp(psz, prefix, len))
   {
 
      return nullptr;
@@ -722,13 +722,13 @@ CLASS_DECL_ACME const ::ansi_character * ansi_begins_eat(const ::ansi_character 
 CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_begins_eat(const ::ansi_character * psz, const ::ansi_character * prefix)
 {
 
-  if (::is_null(scopedstr)) return nullptr;
+  if (::is_null(psz)) return nullptr;
 
   if (::is_null(prefix)) return nullptr;
 
   character_count len = strlen(prefix);
 
-  if (ansi_nicmp(scopedstr, prefix, len))
+  if (ansi_nicmp(psz, prefix, len))
   {
 
      return nullptr;
@@ -743,13 +743,13 @@ CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_begins_eat(const 
 CLASS_DECL_ACME int ansi_ends(const ::ansi_character * psz, const ::ansi_character * suffix)
 {
 
-  if (::is_null(scopedstr)) return false;
+  if (::is_null(psz)) return false;
 
   if (::is_null(suffix)) return false;
 
   character_count len = strlen(suffix);
 
-  character_count end = strlen(scopedstr) - len;
+  character_count end = strlen(psz) - len;
 
   if(end < 0)
   {
@@ -758,7 +758,7 @@ CLASS_DECL_ACME int ansi_ends(const ::ansi_character * psz, const ::ansi_charact
 
   }
 
-  return !strncmp(scopedstr + end, suffix, len);
+  return !strncmp(psz + end, suffix, len);
 
 }
 
@@ -766,13 +766,13 @@ CLASS_DECL_ACME int ansi_ends(const ::ansi_character * psz, const ::ansi_charact
 CLASS_DECL_ACME int case_insensitive_ansi_ends(const ::ansi_character * psz, const ::ansi_character * suffix)
 {
 
-  if (::is_null(scopedstr)) return false;
+  if (::is_null(psz)) return false;
 
   if (::is_null(suffix)) return false;
 
   character_count len = strlen(suffix);
 
-  character_count end = strlen(scopedstr) - len;
+  character_count end = strlen(psz) - len;
 
   if (end < 0)
   {
@@ -781,7 +781,7 @@ CLASS_DECL_ACME int case_insensitive_ansi_ends(const ::ansi_character * psz, con
 
   }
 
-  return !ansi_nicmp(scopedstr + end, suffix, len);
+  return !ansi_nicmp(psz + end, suffix, len);
 
 }
 
@@ -789,9 +789,9 @@ CLASS_DECL_ACME int case_insensitive_ansi_ends(const ::ansi_character * psz, con
 CLASS_DECL_ACME const ::ansi_character * ansi_find_char(const ::ansi_character * psz, ::ansi_character ch)
 {
 
-  if (::is_null(scopedstr)) return nullptr;
+  if (::is_null(psz)) return nullptr;
 
-  return strchr(scopedstr, ch);
+  return strchr(psz, ch);
 
 }
 
@@ -799,9 +799,9 @@ CLASS_DECL_ACME const ::ansi_character * ansi_find_char(const ::ansi_character *
 CLASS_DECL_ACME const ::ansi_character * ansi_find_char_reverse(const ::ansi_character * psz, ::ansi_character ch)
 {
 
-  if (::is_null(scopedstr)) return nullptr;
+  if (::is_null(psz)) return nullptr;
 
-  return strrchr(scopedstr, ch);
+  return strrchr(psz, ch);
 
 }
 
@@ -853,7 +853,7 @@ CLASS_DECL_ACME void ansi_from_i(::ansi_character * sz, int i, int iBase, enum_d
 CLASS_DECL_ACME long long ansi_count_to_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, character_count srclen)
 {
 
-  auto len = ansi_length(scopedstr);
+  auto len = ansi_length(psz);
 
   if (len <= 0)
   {
@@ -865,12 +865,12 @@ CLASS_DECL_ACME long long ansi_count_to_long_long(const ::ansi_character * psz, 
   if (srclen < len)
   {
 
-     if (!ansi_char_isdigit(*(scopedstr + len - 1)))
+     if (!ansi_char_isdigit(*(psz + len - 1)))
      {
 
-        auto pszDup = ansi_count_duplicate(scopedstr, srclen);
+        auto pszDup = ansi_count_duplicate(psz, srclen);
 
-        auto i = ansi_to_long_long(scopedstrDup, ppszEnd, iBase);
+        auto i = ansi_to_long_long(pszDup, ppszEnd, iBase);
 
         if (ppszEnd)
         {
@@ -879,7 +879,7 @@ CLASS_DECL_ACME long long ansi_count_to_long_long(const ::ansi_character * psz, 
 
         }
 
-        ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(scopedstrDup);
+        ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pszDup);
 
         return i;
 
@@ -887,7 +887,7 @@ CLASS_DECL_ACME long long ansi_count_to_long_long(const ::ansi_character * psz, 
 
   }
 
-  return ansi_to_long_long(scopedstr, ppszEnd, iBase);
+  return ansi_to_long_long(psz, ppszEnd, iBase);
 
 }
 
@@ -895,7 +895,7 @@ CLASS_DECL_ACME long long ansi_count_to_long_long(const ::ansi_character * psz, 
 CLASS_DECL_ACME int ansi_count_to_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, character_count srclen)
 {
 
-  auto len = ansi_length(scopedstr);
+  auto len = ansi_length(psz);
 
   if (len <= 0)
   {
@@ -907,12 +907,12 @@ CLASS_DECL_ACME int ansi_count_to_int(const ::ansi_character * psz, const ::ansi
   if (srclen < len)
   {
 
-     if (!ansi_char_isdigit(*(scopedstr + len - 1)))
+     if (!ansi_char_isdigit(*(psz + len - 1)))
      {
 
-        auto pszDup = ansi_count_duplicate(scopedstr, srclen);
+        auto pszDup = ansi_count_duplicate(psz, srclen);
 
-        auto i = ansi_to_int(scopedstrDup, ppszEnd, iBase);
+        auto i = ansi_to_int(pszDup, ppszEnd, iBase);
 
         if (ppszEnd)
         {
@@ -921,7 +921,7 @@ CLASS_DECL_ACME int ansi_count_to_int(const ::ansi_character * psz, const ::ansi
 
         }
 
-        ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(scopedstrDup);
+        ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(pszDup);
 
         return i;
 
@@ -929,7 +929,7 @@ CLASS_DECL_ACME int ansi_count_to_int(const ::ansi_character * psz, const ::ansi
 
   }
 
-  return ansi_to_int(scopedstr, ppszEnd, iBase);
+  return ansi_to_int(psz, ppszEnd, iBase);
 
 }
 
@@ -937,7 +937,7 @@ CLASS_DECL_ACME int ansi_count_to_int(const ::ansi_character * psz, const ::ansi
 CLASS_DECL_ACME void ansi_reverse(::ansi_character * psz)
 {
 
-  reverse_memory(scopedstr, string_safe_length(scopedstr));
+  reverse_memory(psz, string_safe_length(psz));
 
 }
 
@@ -945,7 +945,7 @@ CLASS_DECL_ACME void ansi_reverse(::ansi_character * psz)
 CLASS_DECL_ACME void ansi_reverse(::ansi_character * psz, character_count size)
 {
 
-  reverse_memory(scopedstr, size);
+  reverse_memory(psz, size);
 
 }
 
@@ -953,7 +953,7 @@ CLASS_DECL_ACME void ansi_reverse(::ansi_character * psz, character_count size)
 CLASS_DECL_ACME void ansi_zero_pad(::ansi_character * psz, character_count lenPad)
 {
 
-  character_count len = strlen(scopedstr);
+  character_count len = strlen(psz);
 
   character_count countZero = lenPad - len;
 
@@ -1022,9 +1022,9 @@ CLASS_DECL_ACME ::ansi_character * ansi_upper(::ansi_character * pch)
 CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::ansi_character * psz1, const ::ansi_character * psz2, int iFree1, int iFree2)
 {
 
-  character_count len1 = ansi_length(scopedstr1);
+  character_count len1 = ansi_length(psz1);
 
-  character_count len2 = ansi_length(scopedstr2);
+  character_count len2 = ansi_length(psz2);
 
   character_count len = len1 + len2 + 1;
 
@@ -1035,7 +1035,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
   if (len1 > 0)
   {
 
-     strcat(scopedstr, psz1);
+     strcat(psz, psz1);
 
      if (iFree1 > 0)
      {
@@ -1055,7 +1055,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
   if (len2)
   {
 
-     strcat(scopedstr, psz2);
+     strcat(psz, psz2);
 
      if (iFree2 > 0)
      {
@@ -1080,9 +1080,9 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 //CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_duplicate_and_free(const ::ansi_character * psz1, ::ansi_character * psz2)
 //{
 //
-//   character_count len1 = strlen(scopedstr1);
+//   character_count len1 = strlen(psz1);
 //
-//   character_count len2 = strlen(scopedstr2);
+//   character_count len2 = strlen(psz2);
 //
 //   character_count len = len1 + len2 + 1;
 //
@@ -1093,16 +1093,16 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 //   if (len1 > 0)
 //   {
 //
-//      strcat(scopedstr, psz1);
+//      strcat(psz, psz1);
 //
 //   }
 //
 //   if (len2)
 //   {
 //
-//      strcat(scopedstr, psz2);
+//      strcat(psz, psz2);
 //
-//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(scopedstr2);
+//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz2);
 //
 //   }
 //
@@ -1115,9 +1115,9 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 //CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_free_and_duplicate(::ansi_character * psz1, const ::ansi_character * psz2)
 //{
 //
-//   character_count len1 = strlen(scopedstr1);
+//   character_count len1 = strlen(psz1);
 //
-//   character_count len2 = strlen(scopedstr2);
+//   character_count len2 = strlen(psz2);
 //
 //   character_count len = len1 + len2 + 1;
 //
@@ -1128,16 +1128,16 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 //   if (len1 > 0)
 //   {
 //
-//      strcat(scopedstr, psz1);
+//      strcat(psz, psz1);
 //
-//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(scopedstr1);
+//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz1);
 //
 //   }
 //
 //   if (len2)
 //   {
 //
-//      strcat(scopedstr, psz2);
+//      strcat(psz, psz2);
 //
 //   }
 //
@@ -1150,9 +1150,9 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 //CLASS_DECL_ACME const ::ansi_character * ansi_concatenat_free_duplicate_and_free(::ansi_character * psz1, ::ansi_character * psz2)
 //{
 //
-//   character_count len1 = strlen(scopedstr1);
+//   character_count len1 = strlen(psz1);
 //
-//   character_count len2 = strlen(scopedstr2);
+//   character_count len2 = strlen(psz2);
 //
 //   character_count len = len1 + len2 + 1;
 //
@@ -1163,18 +1163,18 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 //   if (len1 > 0)
 //   {
 //
-//      strcat(scopedstr, psz1);
+//      strcat(psz, psz1);
 //
-//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(scopedstr1);
+//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz1);
 //
 //   }
 //
 //   if (len2)
 //   {
 //
-//      strcat(scopedstr, psz2);
+//      strcat(psz, psz2);
 //
-//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(scopedstr2);
+//      ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(psz2);
 //
 //   }
 //

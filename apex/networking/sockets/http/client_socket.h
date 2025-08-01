@@ -76,7 +76,7 @@ namespace sockets
       void set_url(const ::url::url& url);
 
       void OnFirst() override;
-      void OnHeader(atom,const string &) override;
+      void OnHeader(const ::atom & atom,const ::scoped_string & scopedstr) override;
       void OnHeaderComplete() override;
       void OnData(const char *,memsize) override;
       void OnDelete() override;

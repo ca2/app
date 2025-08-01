@@ -632,7 +632,7 @@ namespace zip
    }
 
 
-   void in_file::add_file(const ::file::path & pszRelative, ::file::file * pfile)
+   void in_file::add_file(const ::file::path & pathRelative, ::file::file * pfile)
    {
 
       //::file::path strPath(scopedstrDir / pszRelative);

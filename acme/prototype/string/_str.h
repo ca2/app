@@ -105,23 +105,23 @@ public:
 
    static inline  string find_replace(const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstr, character_count iStart = 0)
    {
-      return replace_with(scopedstrNew, pszOld, psz, iStart);
+      return replace_with(scopedstrNew, scopedstrOld, scopedstr, iStart);
    }
    static inline  string case_insensitive_find_replace(const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstr, character_count iStart = 0)
    {
-      return case_insensitive_replace_with(scopedstrNew, pszOld, psz, iStart);
+      return case_insensitive_replace_with(scopedstrNew, scopedstrOld, scopedstr, iStart);
    }
    static inline  ::collection::count case_insensitive_find_replace_count(const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstr, character_count iStart = 0)
    {
-      return replace_with_ci_count(scopedstrNew, pszOld, psz, iStart);
+      return replace_with_ci_count(scopedstrNew, scopedstrOld, scopedstr, iStart);
    }
    static inline  ::collection::count utf8_find_replace(string & str, const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstrNew, character_count iStart = 0)
    {
-      return utf8_replace_with(str, pszNew, pszOld, iStart);
+      return utf8_replace_with(str, scopedstrNew, scopedstrOld, iStart);
    }
    static inline  string utf8_find_replace(const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstr, character_count iStart = 0)
    {
-      return utf8_replace_with(scopedstrNew, pszOld, psz, iStart);
+      return utf8_replace_with(scopedstrNew, scopedstrOld, scopedstr, iStart);
    }
 
    static string   random_replace(::particle * pparticle, const string_array & straNew, const string_array & straOld, const ::scoped_string & scopedstr);
@@ -239,7 +239,7 @@ public:
       try
       {
 
-         return ansi_dup(scopedstr);
+         return ansi_dup(psz);
 
       }
       catch (...)
@@ -360,9 +360,9 @@ CLASS_DECL_ACME string string_from_strdup(const ::ansi_character * psz);
 inline character_count str::utf8_dec_len(const ::ansi_character * pszBeg, const ::ansi_character * psz)
 {
 
-   const ::ansi_character * pszDec = unicode_prior(scopedstr, pszBeg);
+   const ::ansi_character * pszDec = unicode_prior(psz, pszBeg);
 
-   if (scopedstrDec == nullptr)
+   if (psz == nullptr)
    {
 
       return -1;
@@ -377,7 +377,7 @@ inline character_count str::utf8_dec_len(const ::ansi_character * pszBeg, const 
 inline character_count str::utf8_inc_len(const ::ansi_character * psz)
 {
 
-   return get_utf8_char_length(scopedstr);
+   return get_utf8_char_length(psz);
 
 }
 

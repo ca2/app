@@ -59,7 +59,7 @@ namespace filemanager
    }
 
 
-   bool operation::set_copy(::file::listing & stra,const ::file::path & pszDestBase,const ::file::path & pszSrcBase,bool bExpand)
+   bool operation::set_copy(::file::listing & stra,const ::file::path & pathDestBase,const ::file::path & pathSourceBase,bool bExpand)
    {
 
       set_operation(e_operation_copy);
@@ -141,7 +141,7 @@ namespace filemanager
    }
 
 
-   bool operation::set_move(::file::listing & stra,const ::file::path & psz)
+   bool operation::set_move(::file::listing & stra,const ::file::path & path)
    {
 
       set_operation(e_operation_move);
@@ -201,7 +201,7 @@ namespace filemanager
    }
 
 
-   bool operation::open_src_dst(const ::file::path & pszSrc,::file::path & strDst,const ::file::path & pszDir)
+   bool operation::open_src_dst(const ::file::path & pathSource,::file::path & strDst,const ::file::path & pathDir)
    {
 
       // auto pcontext = get_context();
@@ -877,7 +877,7 @@ namespace filemanager
    }
 
 
-   bool operation::make_duplicate_name(::file::path & str,const ::file::path & psz)
+   bool operation::make_duplicate_name(::file::path & str,const ::file::path & path)
    {
 
       string strDir = psz;

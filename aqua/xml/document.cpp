@@ -92,7 +92,7 @@ namespace xml
 
       create_root();
 
-      root()->set_name(strName);
+      root()->set_name(scopedstrName);
 
    }
 
@@ -231,7 +231,7 @@ namespace xml
 
       ensure_root();
 
-      root()->set_name(strName);
+      root()->set_name(scopedstrName);
 
 
    }
@@ -380,7 +380,7 @@ namespace xml
 
       }
 
-      strName.assign(scopedstrStart, rangeXml.m_begin - pszStart);
+      strName.assign(pszStart, rangeXml.m_begin - pszStart);
 
       rangeXml.m_begin++;
 
@@ -488,7 +488,7 @@ namespace xml
 
       char * pszRight = (char *)m_memoryData.data() + iRight;
 
-      memory_transfer(scopedstrRight + iDiff, pszRight, m_memoryData.size() - iRight - iDiff);
+      memory_transfer(pszRight + iDiff, pszRight, m_memoryData.size() - iRight - iDiff);
 
       memory_copy(m_memoryData.data() + iPos, strValue, strValue.length_in_bytes());
 

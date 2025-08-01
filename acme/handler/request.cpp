@@ -404,7 +404,7 @@ void request::initialize_command_line2(const ::scoped_string & scopedstrCommandL
 
    common_construct();
 
-   _001ParseCommandFork(strCommandLine);
+   _001ParseCommandFork(scopedstrCommandLine);
 
    //return ::success;
 
@@ -429,13 +429,13 @@ void request::ParseParam(const ::scoped_string & scopedstrParam, bool bFlag, boo
    if (bFlag)
    {
 
-      ParseParamFlag(strParam);
+      ParseParamFlag(scopedstrParam);
 
    }
    else
    {
 
-      ParseParamNotFlag(strParam);
+      ParseParamNotFlag(scopedstrParam);
 
    }
 
@@ -449,31 +449,31 @@ void request::ParseParamFlag(const ::scoped_string & scopedstrParam)
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
 
-   if (strParam.case_insensitive_order("int_point") == 0)
+   if (scopedstrParam.case_insensitive_order("int_point") == 0)
    {
 
       m_ecommand = e_command_file_print_to;
 
    }
-   else if (strParam.case_insensitive_order("int_point") == 0)
+   else if (scopedstrParam.case_insensitive_order("int_point") == 0)
    {
 
       m_ecommand = e_command_file_print;
 
    }
-   else if (strParam.case_insensitive_order("Unregister") == 0 || strParam.case_insensitive_order("Unregserver") == 0)
+   else if (scopedstrParam.case_insensitive_order("Unregister") == 0 || scopedstrParam.case_insensitive_order("Unregserver") == 0)
    {
 
       m_ecommand = e_command_app_unregister;
 
    }
-   else if (strParam.case_insensitive_order("dde") == 0)
+   else if (scopedstrParam.case_insensitive_order("dde") == 0)
    {
 
       m_ecommand = e_command_file_dde;
 
    }
-   else if (strParam.case_insensitive_order("Embedding") == 0)
+   else if (scopedstrParam.case_insensitive_order("Embedding") == 0)
    {
 
       m_bRunEmbedded = true;
@@ -481,7 +481,7 @@ void request::ParseParamFlag(const ::scoped_string & scopedstrParam)
       m_bShowSplash = false;
 
    }
-   else if (strParam.case_insensitive_order("Automation") == 0)
+   else if (scopedstrParam.case_insensitive_order("Automation") == 0)
    {
 
       m_bRunAutomated = true;
@@ -499,25 +499,25 @@ void request::ParseParamNotFlag(const ::scoped_string & scopedstrParam)
    if (m_payloadFile.is_empty())
    {
 
-      m_payloadFile = strParam;
+      m_payloadFile = scopedstrParam;
 
    }
    else if (m_ecommand == e_command_file_print_to && m_strPrinterName.is_empty())
    {
 
-      m_payloadFile = strParam;
+      m_payloadFile = scopedstrParam;
 
    }
    else if (m_ecommand == e_command_file_print_to && m_strDriverName.is_empty())
    {
 
-      m_payloadFile = strParam;
+      m_payloadFile = scopedstrParam;
 
    }
    else if (m_ecommand == e_command_file_print_to && m_strPortName.is_empty())
    {
 
-      m_payloadFile = strParam;
+      m_payloadFile = scopedstrParam;
 
    }
 
@@ -560,9 +560,9 @@ void request::ParseLast(bool bLast)
 void request::_001ParseCommandLine(const ::scoped_string & scopedstrCommandLine)
 {
 
-   m_strCommandLine = strCommandLine;
+   m_strCommandLine = scopedstrCommandLine;
 
-   property_set()._008Parse(true, strCommandLine, m_payloadFile, m_strExe);
+   property_set()._008Parse(true, scopedstrCommandLine, m_payloadFile, m_strExe);
 
    if (!m_payloadFile.is_empty())
    {
@@ -646,7 +646,7 @@ void request::_001ParseCommandLine(const ::scoped_string & scopedstrCommandLine)
 void request::_001ParseCommandLineUri(const ::scoped_string & scopedstrCommandLine)
 {
 
-   m_strCommandLine = strCommandLine;
+   m_strCommandLine = scopedstrCommandLine;
 
    throw ::interface_only();
 
@@ -656,9 +656,9 @@ void request::_001ParseCommandLineUri(const ::scoped_string & scopedstrCommandLi
 void request::_001ParseCommandFork(const ::scoped_string & scopedstrCommandFork)
 {
 
-   m_strCommandLine = strCommandFork;
+   m_strCommandLine = scopedstrCommandFork;
 
-   property_set()._008ParseCommandFork(strCommandFork, m_payloadFile, m_strExe);
+   property_set()._008ParseCommandFork(scopedstrCommandFork, m_payloadFile, m_strExe);
 
    if (!m_payloadFile.is_empty())
    {
@@ -802,7 +802,7 @@ void request::_001ParseCommandArguments(::string_array& straArguments)
 void request::_001ParseCommandForkUri(const ::scoped_string & scopedstrCommandFork)
 {
 
-   string strQuery(strCommandFork);
+   string strQuery(scopedstrCommandFork);
 
    auto pFind = strQuery.find('?');
 
@@ -819,7 +819,7 @@ void request::_001ParseCommandForkUri(const ::scoped_string & scopedstrCommandFo
 
    }
 
-   string strScript(strCommandFork);
+   string strScript(scopedstrCommandFork);
 
    auto pPos = strScript.find("://");
 

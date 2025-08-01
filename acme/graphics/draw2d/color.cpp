@@ -1606,7 +1606,7 @@ namespace color
    CLASS_DECL_ACME::color::color hex_to_color(const char* psz)
    {
 
-      ::string str(scopedstr);
+      ::string str(psz);
 
       if (str.size() < 6)
       {

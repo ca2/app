@@ -200,7 +200,7 @@ namespace multimedia
    void decoder::multimedia_set_origin_path(const ::scoped_string & scopedstrOriginPath)
    {
 
-      m_pathOrigin = strOriginPath;
+      m_pathOrigin = scopedstrOriginPath;
 
    }
 

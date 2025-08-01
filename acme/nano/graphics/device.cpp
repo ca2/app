@@ -84,14 +84,14 @@ namespace nano
          if (ealign & e_align_bottom_right_bias)
          {
 
-            _draw_text(str, rectangleText, ealign, edrawtext, pnanobrushBack, pnanobrushText, pnanofont);
+            _draw_text(scopedstr, rectangleText, ealign, edrawtext, pnanobrushBack, pnanobrushText, pnanofont);
 
          } else
          {
 
             string_array straLines;
 
-            straLines.add_lines(str);
+            straLines.add_lines(scopedstr);
 
             auto r = rectangleText;
 

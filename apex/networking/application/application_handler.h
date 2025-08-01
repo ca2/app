@@ -24,7 +24,7 @@ namespace networking
       ~application_handler() override;
 
 
-      virtual ::e_status on_html_response(::networking::application_socket * psocket, ::string &strHtml, const ::string &strUrl, const ::property_set &setPost);
+      virtual ::e_status on_html_response(::networking::application_socket * psocket, ::string &strHtml, const ::scoped_string & scopedstrUrl, const ::property_set &setPost);
 
 
    };

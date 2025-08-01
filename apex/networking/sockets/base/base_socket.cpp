@@ -851,10 +851,10 @@ namespace sockets
    }
 
 
-   void base_socket::OnLine(const ::scoped_string & scopedstr)
+   void base_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
 
-      base_socket_impl()->OnLine(str);
+      base_socket_impl()->OnLine(scopedstrLine);
 
    }
 
@@ -1263,7 +1263,7 @@ namespace sockets
    void base_socket::SetSocketProtocol(const ::scoped_string & scopedstrProtocol)
    {
 
-      base_socket_impl()->SetSocketProtocol(strProtocol);
+      base_socket_impl()->SetSocketProtocol(scopedstrProtocol);
 
    }
 

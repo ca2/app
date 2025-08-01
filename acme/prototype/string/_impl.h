@@ -231,7 +231,7 @@ inline string as_string(NUMBER number, const ::ansi_character * pszFormat)
 
    ::string str;
 
-   str.formatf(scopedstrFormat, number);
+   str.formatf(pszFormat, number);
 
    return ::transfer(str);
 
@@ -279,7 +279,7 @@ inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat)
 
    ::string str;
 
-   str.formatf(scopedstrFormat, f);
+   str.formatf(pszFormat, f);
 
    return str;
 
@@ -433,11 +433,11 @@ inline string implode(const numeric_array < TYPE, t_etypeContainer > & a,const :
 
 
 template < typename TYPE, ::enum_type t_etypeContainer >
-string surround_and_implode(const numeric_array < TYPE, t_etypeContainer > & a, const ::scoped_string & scopedstrSeparator, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix, ::collection::index iStart, ::collection::count iCount)
+string surround_and_implode(const numeric_array < TYPE, t_etypeContainer > & a, const ::scoped_string & scopedstrSeparator, const ::scoped_string & pszPrefix, const ::scoped_string & scopedstrSuffix, ::collection::index iStart, ::collection::count iCount)
 {
    string str;
    string strSeparator(scopedstrSeparator);
-   string strPrefix(scopedstrPrefix);
+   string strPrefix(pszPrefix);
    string strSuffix(scopedstrSuffix);
    ::collection::index iEnd;
    if(iStart < 0)
@@ -615,7 +615,7 @@ bool string_range < ITERATOR_TYPE > ::defer_consume_quoted_value(string_base <IT
 
    }
 
-   str.assign(scopedstrValueStart, this->m_begin - pszValueStart);
+   str.assign(pszValueStart, this->m_begin - pszValueStart);
 
    this->m_begin++;
 
@@ -1517,7 +1517,7 @@ void string_range < ITERATOR_TYPE >::_consume_quoted_value_ex(string_base<ITERAT
 
       pszNext = unicode_next(this->m_begin);
 
-      if (scopedstrNext > this->m_end)
+      if (pszNext > this->m_end)
       {
 
          throw_parsing_exception("Quote character is required here, premature end");
@@ -1559,7 +1559,7 @@ void string_range < ITERATOR_TYPE >::_consume_quoted_value_ex(string_base<ITERAT
 
          pszNext = unicode_next(this->m_begin);
 
-         if (scopedstrNext > this->m_end)
+         if (pszNext > this->m_end)
          {
 
             throw_parsing_exception("Quote character is required here, premature end");
@@ -1943,7 +1943,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_utf8_char
 
    auto pszStart = this->m_begin;
 
-   this->m_begin = unicode_next(scopedstrStart);
+   this->m_begin = unicode_next(pszStart);
 
    return { pszStart, minimum(this->m_begin, this->m_end) };
 

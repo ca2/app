@@ -1402,7 +1402,7 @@ namespace gpu
    }
 
 
-   string context::load_fragment(const ::string& pszPath, enum_shader_source& eshadersource)
+   string context::load_fragment(const ::scoped_string & scopedstrPath, enum_shader_source& eshadersource)
    {
 
       ::file::path path(scopedstrPath);

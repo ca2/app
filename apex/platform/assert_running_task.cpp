@@ -12,13 +12,13 @@ namespace apex
 
    assert_running_task::assert_running_task(::platform::application_container * pcontainer,const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema):
       m_pcontainer(pcontainer),
-      m_strLocale(strLocale),
-      m_strSchema(strSchema)
+      m_strLocale(scopedstrLocale),
+      m_strSchema(scopedstrSchema)
    {
 
       initialize(pcontainer);
 
-      m_strAppId = strAppId;
+      m_strAppId = scopedstrAppId;
 
       m_timeCheckPeriod = 5_s;
 

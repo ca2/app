@@ -1004,7 +1004,7 @@
 //
 //
 //   /*
-//      void tcp_socket_impl::write(const string &str)
+//      void tcp_socket_impl::write(const ::scoped_string & scopedstr)
 //      {
 //         write(str,  (int) str.length());
 //      }

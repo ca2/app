@@ -2784,7 +2784,7 @@ namespace url
    //
    //      pszEnd = ansi_find_string(scopedstrBeg, "&");
    //
-   //      if (scopedstrEnd == nullptr)
+   //      if (pszEnd == nullptr)
    //      {
    //         strParam = pszBeg;
    //      }
@@ -3431,7 +3431,7 @@ namespace url
 ////
 ////   pszEnd = ansi_find_string(scopedstrBeg, "&");
 ////
-////   if (scopedstrEnd == nullptr)
+////   if (pszEnd == nullptr)
 ////   {
 ////      strParam = pszBeg;
 ////   }

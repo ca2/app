@@ -96,7 +96,7 @@ string_array get_c_args_from_string(const ::scoped_string & scopedstr)
 
          }
 
-         str = string(scopedstrValueStart, range.m_begin - pszValueStart);
+         str = string(pszValueStart, range.m_begin - pszValueStart);
 
       }
 
@@ -234,7 +234,7 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
 
          }
 
-         str = string(scopedstrValueStart, range.m_begin - pszValueStart);
+         str = string(pszValueStart, range.m_begin - pszValueStart);
 
       }
 
@@ -290,6 +290,8 @@ string_array command_arguments_from_command_line(const ::scoped_string & scopeds
 
    string strArg;
 
+   ::string strCommandLine(scopedstrCommandLine);
+
    const char * psz = strCommandLine.begin();
 
    string strChar;
@@ -297,7 +299,7 @@ string_array command_arguments_from_command_line(const ::scoped_string & scopeds
    while(*psz != '\0')
    {
 
-      strChar = get_utf8_char(scopedstr);
+      strChar = get_utf8_char(psz);
 
       if(strChar.is_empty())
       {
@@ -314,7 +316,7 @@ string_array command_arguments_from_command_line(const ::scoped_string & scopeds
          while(*psz != '\0')
          {
 
-            strChar = get_utf8_char(scopedstr);
+            strChar = get_utf8_char(psz);
 
             if(strChar.is_empty())
             {
@@ -334,7 +336,7 @@ string_array command_arguments_from_command_line(const ::scoped_string & scopeds
             else if(strChar == "\\")
             {
 
-               strChar = get_utf8_char(scopedstr);
+               strChar = get_utf8_char(psz);
 
                if(strChar.is_empty())
                {
@@ -391,7 +393,7 @@ string_array command_arguments_from_command_line(const ::scoped_string & scopeds
       else if(strChar == "\\")
       {
 
-         strChar = get_utf8_char(scopedstr);
+         strChar = get_utf8_char(psz);
 
          if(strChar.is_empty())
          {

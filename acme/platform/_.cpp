@@ -222,7 +222,7 @@ int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszM
    string strExtra;
    va_list argList;
    va_start(argList, pszFormat);
-   strExtra.formatf(scopedstrFormat, argList);
+   strExtra.formatf(pszFormat, argList);
    va_end(argList);
 
    string strModule;

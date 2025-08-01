@@ -91,7 +91,7 @@ namespace aqua
 
       pathImplementation = directory()->config() / "config/system/text_to_speech.txt";
 
-      file()->put_text(pathImplementation, strTtsImplementation);
+      file()->put_text(pathImplementation, scopedstrTtsImplementation);
 
       m_strTtsImplementation = file()->as_string(pathImplementation);
 
@@ -103,7 +103,7 @@ namespace aqua
    ::pointer<::text_to_speech::speaker>audio::create_text_to_speech_speaker(const ::scoped_string & scopedstrImplementation)
    {
 
-      __UNREFERENCED_PARAMETER(strImplementation);
+      __UNREFERENCED_PARAMETER(scopedstrImplementation);
 
       throw ::interface_only();
 

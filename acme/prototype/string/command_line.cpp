@@ -226,12 +226,12 @@ string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLi
 
    const char * pszEnd = psz;
 
-   if(scopedstrEndPtr != nullptr)
+   if(pszEndPtr != nullptr)
    {
       *pszEndPtr = pszEnd + 1;
    }
 
-   return string(scopedstrStart, pszEnd - pszStart);
+   return string(pszStart, pszEnd - pszStart);
 
 }
 

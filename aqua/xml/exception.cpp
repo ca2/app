@@ -8,7 +8,7 @@ namespace xml
 
 
    exception::exception(enum_parse_error eparseerror, const ::scoped_string & scopedstrMessage, const char * xml) :
-      ::exception(error_xml_parsing, strMessage)
+      ::exception(error_xml_parsing, scopedstrMessage)
    {
 
       m_eparseerror = eparseerror;

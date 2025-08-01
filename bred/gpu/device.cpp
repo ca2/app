@@ -1128,7 +1128,7 @@ namespace gpu
    }
 
 
-   string device::load_fragment(const ::string& pszPath, enum_shader_source& eshadersource)
+   string device::load_fragment(const ::scoped_string & scopedstrPath, enum_shader_source& eshadersource)
    {
 
       ::file::path path(scopedstrPath);

@@ -162,7 +162,7 @@ namespace folder_zip
    }
 
 
-   void folder::add_file(const ::file::path& pszRelative, ::file::file* pfile)
+   void folder::add_file(const ::file::path & pathRelative, ::file::file* pfile)
    {
 
       //::file::path strPath(scopedstrDir / pszRelative);

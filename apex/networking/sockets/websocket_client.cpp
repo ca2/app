@@ -444,7 +444,7 @@ namespace sockets
 
       m_bUseMask = false;
 
-      m_strWebSocketProtocol = strProtocol;
+      m_strWebSocketProtocol = scopedstrProtocol;
 
       m_bRequestSent = false;
 
@@ -643,13 +643,14 @@ namespace sockets
    }
 
 
-   void websocket_client::OnLine(const string & line)
+   void websocket_client::OnLine(const ::scoped_string & scopedstrLine)
    {
 
 
-      http_client_socket::OnLine(line);
+      http_client_socket::OnLine(scopedstrLine);
 
    }
+
 
    void websocket_client::OnHeaderComplete()
    {

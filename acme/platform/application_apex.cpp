@@ -78,7 +78,7 @@ namespace platform
    }
 
 
-   void apex_application_layer::load_string_table(const string& pszApp, const string& pszId)
+   void apex_application_layer::load_string_table(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrId)
    {
    }
 
@@ -218,15 +218,15 @@ namespace platform
 
 
    void apex_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession,
-                                                 const ::file::path& pszRoot,
-                                                 const string& pszRelative)
+                                                 const ::file::path & pathRoot,
+                                                 const ::scoped_string & scopedstrRelative)
    {
    }
 
 
    void apex_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession,
-                                                 const ::file::path& pszRoot,
-                                                 const string& pszRelative, const ::scoped_string & scopedstrLocale,
+                                                 const ::file::path & pathRoot,
+                                                 const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale,
                                                  const ::scoped_string & scopedstrStyle)
    {
    }
@@ -277,7 +277,7 @@ namespace platform
 
 
    ::string apex_application_layer::apex_application_layer::matter_as_string(
-      const ::string& pszMatter, const ::string& pszMatter2)
+      const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2)
    {
       return {};
    }
@@ -341,7 +341,7 @@ namespace platform
    //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow){}
 
 
-   void apex_application_layer::hotplugin_host_starter_start_sync(const ::string& pszCommandLine,
+   void apex_application_layer::hotplugin_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine,
                                                                   ::apex::application* papp,
                                                                   hotplugin::host* phost,
                                                                   hotplugin::plugin* pplugin)
@@ -349,7 +349,7 @@ namespace platform
    }
 
 
-   void apex_application_layer::hotplugin_host_host_starter_start_sync(const ::string& pszCommandLine,
+   void apex_application_layer::hotplugin_host_host_starter_start_sync(const ::scoped_string & scopedstrCommandLine,
                                                                        ::apex::application* papp,
                                                                        hotplugin::host* phost,
                                                                        hotplugin::plugin* pplugin)
@@ -393,7 +393,7 @@ namespace platform
    //void install_message_routing(::channel* pchannel) override{}
 
 
-   ::string apex_application_layer::apex_application_layer::dialog_box(const ::string& pszMatter,
+   ::string apex_application_layer::apex_application_layer::dialog_box(const ::scoped_string & scopedstrMatter,
                                                                        ::property_set& propertyset)
    {
       return {};
@@ -669,7 +669,7 @@ namespace platform
    //bool apex_application_layer::on_install(){}
    //bool apex_application_layer::on_uninstall(){}
 
-   bool apex_application_layer::system_add_app_install(const ::string& pszId, const ::string& pszBuild)
+   bool apex_application_layer::system_add_app_install(const ::scoped_string & scopedstrId, const ::scoped_string & scopedstrBuild)
    {
       return false;
    }
@@ -699,14 +699,14 @@ namespace platform
    }
 
 
-   void apex_application_layer::get_temp_file_name_template(string& str, const ::string& lpszName,
-                                                            const ::string& pszExtension,
-                                                            const ::string& pszTemplate)
+   void apex_application_layer::get_temp_file_name_template(string& str, const ::scoped_string & scopedstrName,
+                                                            const ::scoped_string & scopedstrExtension,
+                                                            const ::scoped_string & scopedstrTemplate)
    {
    }
 
 
-   void apex_application_layer::get_temp_file_name(string& str, const ::string& lpszName, const ::string& pszExtension)
+   void apex_application_layer::get_temp_file_name(string& str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension)
    {
    }
 
@@ -878,8 +878,8 @@ namespace platform
 
 
    ::string apex_application_layer::apex_application_layer::http_get_locale_schema(
-      const ::string& pszUrl, const ::string& pszLocale,
-      const ::string& pszSchema)
+      const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale,
+      const ::scoped_string & scopedstrSchema)
    {
       return {};
    }
@@ -887,7 +887,7 @@ namespace platform
 
    //void apex_application_layer::on_update_matter_locator() override{}
 
-   bool apex_application_layer::platform_open_by_file_extension(::collection::index iEdge, const ::string& pszPathName,
+   bool apex_application_layer::platform_open_by_file_extension(::collection::index iEdge, const ::scoped_string & scopedstrPathName,
                                                                 ::request* prequest)
    {
       return false;
@@ -948,7 +948,7 @@ namespace platform
 
    //void apex_application_layer::play_audio(::payload payloadFile, bool bSynch = false){}
 
-   void apex_application_layer::post_critical_error_message(const ::string& pszMessage, bool bShowLog)
+   void apex_application_layer::post_critical_error_message(const ::scoped_string & scopedstrMessage, bool bShowLog)
    {
    }
 
@@ -1347,19 +1347,19 @@ namespace platform
    }
 
 
-   bool apex_application_layer::get_fs_size(string& strSize, const ::string& pszPath, bool& bPending)
+   bool apex_application_layer::get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending)
    {
       return false;
    }
 
 
-   bool apex_application_layer::get_fs_size(long long& i64Size, const ::string& pszPath, bool& bPending)
+   bool apex_application_layer::get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending)
    {
       return false;
    }
 
 
-   void apex_application_layer::set_title(const ::string& pszTitle)
+   void apex_application_layer::set_title(const ::scoped_string & scopedstrTitle)
    {
    }
 
@@ -1399,7 +1399,7 @@ namespace platform
    //                        ::topic* ptopic) override{}
 
 
-   void apex_application_layer::report_error(const ::exception& e, int iMessageFlags, const ::string& pszTopic)
+   void apex_application_layer::report_error(const ::exception& e, int iMessageFlags, const ::scoped_string & scopedstrTopic)
    {
    }
 
@@ -1417,7 +1417,7 @@ namespace platform
    //string get_visual_studio_build(){}
 
 
-   ::string apex_application_layer::apex_application_layer::sound_path(const ::string& psz)
+   ::string apex_application_layer::apex_application_layer::sound_path(const ::scoped_string & scopedstr)
    {
       return {};
    }

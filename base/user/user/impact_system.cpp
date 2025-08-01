@@ -81,7 +81,7 @@ namespace user
    }
 
 
-   impact_system::Confidence impact_system::MatchDocType(const ::file::path & pszPathName,::user::document *& rpDocMatch)
+   impact_system::Confidence impact_system::MatchDocType(const ::file::path & pathName,::user::document *& rpDocMatch)
 
    {
 

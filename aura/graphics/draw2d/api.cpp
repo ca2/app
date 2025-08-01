@@ -189,7 +189,7 @@ namespace draw2d
       //      VERIFY(::SelectObject(pgraphics->m_hDC, pfont->m_hObject));
 
       string str;
-      str = utf8_to_unicode(scopedstr);
+      str = utf8_to_unicode(psz);
 
 //#ifdef WINDOWS_DESKTOP
 //      ::SetTextColor((HDC)pgraphics->get_os_data(), crOutline);
@@ -250,9 +250,9 @@ namespace draw2d
    void api::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::double_rectangle & rectangle, double dHeight, double dRateX, const ::scoped_string & scopedstr)
    {
 
-      pgraphics->text_out(rectangle.left(), rectangle.top(), psz);
+      pgraphics->text_out(rectangle.left(), rectangle.top(), scopedstr);
       pgraphics->begin_path();
-      pgraphics->text_out(rectangle.left(), rectangle.top(), psz);
+      pgraphics->text_out(rectangle.left(), rectangle.top(), scopedstr);
       pgraphics->end_path();
       pgraphics->stroke_path();
 

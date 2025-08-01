@@ -5357,9 +5357,9 @@ namespace user
 
          pszPrevious = pszEnd;
 
-         unicode_increment(scopedstrEnd);
+         unicode_increment(pszEnd);
 
-         if (scopedstrEnd == nullptr)
+         if (pszEnd == nullptr)
             break;
 
          lim1 = lim2;
@@ -5389,13 +5389,13 @@ namespace user
          else if (px >= lim1 + iMid && px <= lim2)
          {
 
-            iSel = m_iaLineIndex[iLine] + (scopedstrEnd - psz);
+            iSel = m_iaLineIndex[iLine] + (pszEnd - psz);
 
             goto end;
 
          }
 
-         if (scopedstrEnd[0] == '\0')
+         if (pszEnd[0] == '\0')
          {
 
             break;

@@ -67,7 +67,7 @@ public:
    virtual void initialize_ftpfs(::particle * pparticle, const ::scoped_string & scopedstrRoot);
 
 
-   virtual bool has_subdir(const ::file::path & pszPath) override;
+   virtual bool has_subdir(const ::file::path & path) override;
    virtual bool fast_has_subdir(const ::file::path  & pszPath) override;
    virtual bool enumerate(::file::listing & listing) override;
    ::file::e_type file_type(const ::file::path & path) override;
@@ -78,14 +78,14 @@ public:
    //virtual string file_name(const ::scoped_string & scopedstrPath);
    //virtual string dir_path(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2);
 
-   virtual bool file_move(const ::file::path & pszDst, const ::file::path & pszSrc) override;
+   virtual bool file_move(const ::file::path & pathTarget, const ::file::path & pathSource) override;
 
    virtual file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception = nullptr) override;
 
-   virtual bool file_exists(const ::file::path & pszPath) override;
-   virtual ::payload file_length(const ::file::path & pszPath) override;
+   virtual bool file_exists(const ::file::path & path) override;
+   virtual ::payload file_length(const ::file::path & path) override;
 
-   virtual bool is_zero_latency(const ::file::path & psz) override;
+   virtual bool is_zero_latency(const ::file::path & path) override;
 
 };
 

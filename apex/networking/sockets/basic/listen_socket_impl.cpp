@@ -527,7 +527,7 @@ namespace sockets
    void listen_socket_impl::set_ssl_catalog(const ::scoped_string & scopedstrCat)
    {
 
-      return m_plistensocketInterface->set_ssl_catalog(strCat);
+      return m_plistensocketInterface->set_ssl_catalog(scopedstrCat);
 
    }
 
@@ -535,7 +535,7 @@ namespace sockets
    void listen_socket_impl::set_ssl_cipher_list(const ::scoped_string & scopedstrCipherList)
    {
 
-      return m_plistensocketInterface->set_ssl_cipher_list(strCipherList);
+      return m_plistensocketInterface->set_ssl_cipher_list(scopedstrCipherList);
 
    }
 

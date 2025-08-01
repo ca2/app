@@ -63,7 +63,7 @@ int chars_to_int(const CHAR_TYPE * psz, const CHAR_TYPE ** pszEnd, int iBase)
 
       }
 
-      if (scopedstrEnd != nullptr)
+      if (pszEnd != nullptr)
       {
 
          *pszEnd = psz;
@@ -127,7 +127,7 @@ unsigned int chars_to_unsigned_int(const CHAR_TYPE *psz, const CHAR_TYPE ** pszE
 
       }
 
-     if (scopedstrEnd != nullptr)
+     if (pszEnd != nullptr)
      {
 
         *pszEnd = psz;
@@ -202,7 +202,7 @@ long long chars_to_long_long(const CHAR_TYPE *psz, const CHAR_TYPE ** pszEnd, in
 
       }
 
-      if (scopedstrEnd != nullptr)
+      if (pszEnd != nullptr)
       {
 
          *pszEnd = psz;
@@ -266,7 +266,7 @@ unsigned long long chars_to_unsigned_long_long(const CHAR_TYPE *psz, const CHAR_
 
       }
 
-     if (scopedstrEnd != nullptr)
+     if (pszEnd != nullptr)
      {
 
         *pszEnd = psz;

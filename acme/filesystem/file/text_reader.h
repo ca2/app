@@ -332,7 +332,7 @@ public:
       if (scopedstr == pszStart || l < 0)
       {
 
-         throw parsing_exception("cannot text_reader::read_natural from \"" + ellipsis(scopedstrStart, 20) + "\"");
+         throw parsing_exception("cannot text_reader::read_natural from \"" + ellipsis(pszStart, 20) + "\"");
 
       }
 
@@ -354,7 +354,7 @@ public:
       if (scopedstr == pszStart)
       {
 
-         throw parsing_exception("cannot text_reader::read_integer from \"" + ellipsis(scopedstrStart, 20) + "\"");
+         throw parsing_exception("cannot text_reader::read_integer from \"" + ellipsis(pszStart, 20) + "\"");
 
       }
 
@@ -374,7 +374,7 @@ public:
       if (scopedstr == pszStart)
       {
 
-         throw parsing_exception("cannot text_reader::read_float from \"" + ellipsis(scopedstrStart, 32) + "\"");
+         throw parsing_exception("cannot text_reader::read_float from \"" + ellipsis(pszStart, 32) + "\"");
 
       }
 

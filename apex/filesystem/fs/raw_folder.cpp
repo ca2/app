@@ -208,7 +208,7 @@ namespace fs
    }
 
 
-   //void raw_folder::get_ascendants_path(const ::file::path & pszPath,::file::path_array & stra)
+   //void raw_folder::get_ascendants_path(const ::file::path & path,::file::path_array & stra)
    //{
 
    //   return file()->get_ascendants_path(scopedstrPath, stra);
@@ -261,10 +261,10 @@ namespace fs
    //}
 
 
-   bool raw_folder::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
+   bool raw_folder::file_move(const ::file::path & pathTarget,const ::file::path & pathSource)
    {
 
-      file()->transfer(raw_path(scopedstrDst), raw_path(scopedstrSrc));
+      file()->transfer(raw_path(pathTarget), raw_path(pathSource));
 
       return true;
 

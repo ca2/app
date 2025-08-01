@@ -284,7 +284,7 @@ namespace user
    }
 
 
-   bool keyboard::load_os_layout(const ::file::path & pszPath)
+   bool keyboard::load_os_layout(const ::file::path & path)
    {
 
       synchronous_lock synchronouslock(this->synchronization());

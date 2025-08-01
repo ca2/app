@@ -34,7 +34,7 @@ namespace windowing
       //inline ::aura::system* system();
 
 
-      void load_hotspot(const ::file::path & pszDir);
+      void load_hotspot(const ::file::path & pathDir);
 
       string cursor_name(enum_cursor ecursor);
       enum_cursor cursor_enum(string strCursor);
@@ -44,8 +44,8 @@ namespace windowing
 
       ::pointer<cursor>get_cursor(enum_cursor ecursor);
       ::pointer<cursor>set_cursor_file(enum_cursor ecursor, const ::file::path & path, bool bFromCache);
-      void set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pszMatter);
-      void set_cursor_set_from_dir(::object * pobjectContext, const ::file::path & pszDir, bool bFromCache = true);
+      void set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathMatter);
+      void set_cursor_set_from_dir(::object * pobjectContext, const ::file::path & pathDir, bool bFromCache = true);
       void set_cursor_set_system_default();
 
 
@@ -84,7 +84,7 @@ namespace windowing
 //      cursor_set();
 //      virtual ~cursor_set();
 //
-//      void load_hotspot(const ::file::path & pszDir);
+//      void load_hotspot(const ::file::path & pathDir);
 //
 //      string cursor_name(enum_cursor ecursor);
 //      enum_cursor cursor_enum(string strCursor);
@@ -94,8 +94,8 @@ namespace windowing
 //
 //      ::pointer<cursor>get_cursor(enum_cursor ecursor);
 //      ::pointer<cursor>set_cursor_file(enum_cursor ecursor, const ::file::path & path, bool bFromCache);
-//      ::collection::count set_cursor_set_from_matter(const ::file::path & pszMatter);
-//      ::collection::count set_cursor_set_from_dir(const ::file::path & pszDir, bool bFromCache = true);
+//      ::collection::count set_cursor_set_from_matter(const ::file::path & pathMatter);
+//      ::collection::count set_cursor_set_from_dir(const ::file::path & pathDir, bool bFromCache = true);
 //      ::collection::count set_cursor_set_system_default();
 //
 //

@@ -63,7 +63,7 @@ namespace sockets
 
       bool http_request_step() override;
 
-      void OnLine(const string &) override;
+      void OnLine(const ::scoped_string & scopedstrLine) override;
 
       void OnHeaderComplete() override;
 

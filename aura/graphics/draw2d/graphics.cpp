@@ -5001,7 +5001,7 @@ namespace draw2d
 
                unicode_increment(scopedstr);
 
-               strSample = string(scopedstrStart, psz - pszStart) + "...";
+               strSample = string(pszStart, psz - pszStart) + "...";
 
                sz = get_text_extent(strSample);
 
@@ -5417,7 +5417,7 @@ namespace draw2d
       str1 = string(scopedstrSource, psz - pszSource);
 
 
-      str2 = string(scopedstrEnd);
+      str2 = string(pszEnd);
 
 
       rectangle.top() = y;

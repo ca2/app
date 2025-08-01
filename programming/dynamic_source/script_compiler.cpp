@@ -1447,7 +1447,7 @@ namespace dynamic_source
    }
 
 
-   library& script_compiler::lib(const ::string& pszLibrary)
+   library& script_compiler::lib(const ::scoped_string & scopedstrLibrary)
    {
 
       single_lock slLibrary(m_pmutexLibrary, true);
@@ -2004,7 +2004,7 @@ namespace dynamic_source
       iArroba = -1;
    }
 
-   string script_compiler::cppize2(const string& psz, bool bScript, string_array& straId)
+   string script_compiler::cppize2(const ::scoped_string & scopedstr, bool bScript, string_array& straId)
    {
       string str(scopedstr);
       str.trim();
@@ -2630,7 +2630,7 @@ namespace dynamic_source
    }
 
 
-   bool script_compiler::is_id(const ::string& psz, character_count iLen, const ::string& pszId, character_count iIdLen, character_count& iIdLenRet)
+   bool script_compiler::is_id(const ::scoped_string & scopedstr, character_count iLen, const ::scoped_string & scopedstrId, character_count iIdLen, character_count& iIdLenRet)
    {
       if (iLen < iIdLen)
          return false;
@@ -2775,7 +2775,7 @@ namespace dynamic_source
    }
 
 
-   bool script_compiler::defer_run_persistent(const ::string& psz)
+   bool script_compiler::defer_run_persistent(const ::scoped_string & scopedstr)
    {
       string str(scopedstr);
 
@@ -2935,7 +2935,7 @@ namespace dynamic_source
       m_plibraryLib->close();
    }
 
-   string script_compiler::get_ds_print(const ::string& psz)
+   string script_compiler::get_ds_print(const ::scoped_string & scopedstr)
    {
       string strSource(scopedstr);
       string strDest;
@@ -3045,7 +3045,7 @@ namespace dynamic_source
    }
 
 
-   void script_compiler::pstr_set(atom pszTopic, atom idLocale, atom idSchema, const ::string& psz)
+   void script_compiler::pstr_set(atom pszTopic, atom idLocale, atom idSchema, const ::scoped_string & scopedstr)
    {
 
       synchronous_lock synchronouslock(m_pmanager->synchronization());

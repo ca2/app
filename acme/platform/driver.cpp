@@ -88,24 +88,24 @@ namespace acme
     }
 
     
-    void driver::open_url(const ::string &strOpenUrl)
+    void driver::open_url(const ::scoped_string & scopedstrOpenUrl)
     {
 
        synchronous_lock lock(this->synchronization());
 
-       m_straOpenUrl.add(strOpenUrl);
+       m_straOpenUrl.add(scopedstrOpenUrl);
 
     }
 
 
 
-   void driver::list_file_enumerate(const ::string &strListFileEnumerate)
+   void driver::list_file_enumerate(const ::scoped_string & scopedstrListFileEnumerate)
    {
 
    //synchronous_lock lock(m_pparticleMutexListFileEnumerate);
    synchronous_lock lock(this->synchronization());
 
-   m_straListFileEnumerate.add(strListFileEnumerate);
+   m_straListFileEnumerate.add(scopedstrListFileEnumerate);
 
    }
 

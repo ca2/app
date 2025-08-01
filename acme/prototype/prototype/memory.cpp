@@ -203,8 +203,8 @@ memory::memory(const ::scoped_string & scopedstr)
 }
 
 
-memory::memory(const ::scoped_string & scopedstr):
-   memory(str.c_str(), str.length())
+memory::memory(const ::string & str):
+   memory(str.begin(), str.length_in_bytes())
 {
 
 }

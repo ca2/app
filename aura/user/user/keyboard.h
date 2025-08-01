@@ -33,7 +33,7 @@ namespace user
 
       virtual void translate_os_key_message(key * pkey);
 
-      virtual bool load_os_layout(const ::file::path & pszPath);
+      virtual bool load_os_layout(const ::file::path & path);
 
    };
 

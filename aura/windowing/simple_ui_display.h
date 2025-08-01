@@ -72,7 +72,7 @@ namespace windowing
       int m_iResult;
 
 
-      simple_ui_display(const string &strMessage, const string &strTitle, const ::e_message_box &emessagebox);
+      simple_ui_display(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box &emessagebox);
 
       ~simple_ui_display();
 

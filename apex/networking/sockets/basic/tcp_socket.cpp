@@ -535,7 +535,7 @@ return true;
    void tcp_socket::set_host(const ::scoped_string & scopedstrHost)
    {
 
-      m_ptcpsocketImpl->set_host(strHost);
+      m_ptcpsocketImpl->set_host(scopedstrHost);
 
    }
 
@@ -551,7 +551,7 @@ return true;
    void tcp_socket::set_tls_hostname(const ::scoped_string & scopedstrTlsHostname)
    {
 
-      m_ptcpsocketImpl->set_tls_hostname(strTlsHostname);
+      m_ptcpsocketImpl->set_tls_hostname(scopedstrTlsHostname);
 
    }
 
@@ -559,7 +559,7 @@ return true;
    void tcp_socket::set_connect_host(const ::scoped_string & scopedstrConnectHost)
    {
 
-      m_ptcpsocketImpl->set_connect_host(strConnectHost);
+      m_ptcpsocketImpl->set_connect_host(scopedstrConnectHost);
 
    }
 
@@ -591,7 +591,7 @@ return true;
    void tcp_socket::set_url(const ::scoped_string & scopedstrUrl)
    {
 
-      m_ptcpsocketImpl->set_url(strUrl);
+      m_ptcpsocketImpl->set_url(scopedstrUrl);
 
    }
 
@@ -1251,7 +1251,7 @@ return true;
 
 
    /*
-      void tcp_socket::write(const string &str)
+      void tcp_socket::write(const ::scoped_string & scopedstr)
       {
          write(str,  (int) str.length());
       }
@@ -1339,10 +1339,10 @@ return true;
    }
 
 
-   void tcp_socket::OnLine(const ::scoped_string & scopedstr)
+   void tcp_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
 
-      m_ptcpsocketImpl->OnLine(str);
+      m_ptcpsocketImpl->OnLine(scopedstrLine);
 
    }
 
@@ -1913,7 +1913,7 @@ return true;
    void tcp_socket::set_init_ssl_client_context(const ::scoped_string & scopedstrInitSSLClientContext)
    {
 
-      m_ptcpsocketImpl->set_init_ssl_client_context(strInitSSLClientContext);
+      m_ptcpsocketImpl->set_init_ssl_client_context(scopedstrInitSSLClientContext);
 
    }
 

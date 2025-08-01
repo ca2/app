@@ -1745,7 +1745,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 }
 
 
-::file::path directory_context::time_log(const string& pszId)
+::file::path directory_context::time_log(const ::scoped_string & scopedstrId)
 {
 
    __UNREFERENCED_PARAMETER(scopedstrId);
@@ -2615,7 +2615,7 @@ ret:
 }
 
 
-::file::path directory_context::trash_that_is_not_trash(const ::file::path& psz)
+::file::path directory_context::trash_that_is_not_trash(const ::file::path & path)
 {
 
    __UNREFERENCED_PARAMETER(scopedstr);
@@ -2806,7 +2806,7 @@ ret:
 }
 
 
-bool directory_context::is_inside_time(const ::file::path& pszPath)
+bool directory_context::is_inside_time(const ::file::path & path)
 {
 
    __UNREFERENCED_PARAMETER(scopedstrPath);
@@ -2818,7 +2818,7 @@ bool directory_context::is_inside_time(const ::file::path& pszPath)
 }
 
 
-bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path& pszPath)
+bool directory_context::is_inside(const ::file::path & pathDir, const ::file::path & path)
 {
 
    __UNREFERENCED_PARAMETER(scopedstrDir);
@@ -3238,7 +3238,7 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 //}
 
 
-::file::path directory_context::pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode)
+::file::path directory_context::pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode)
 {
 
    return directory_system()->pathfind(scopedstrEnv, pszTopic, pszMode);

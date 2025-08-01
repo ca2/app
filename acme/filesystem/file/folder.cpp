@@ -196,7 +196,7 @@ void folder::open_for_writing(file_pointer pfile)
 }
 
 
-void folder::add_file(const ::file::path& pszRelative, ::file::file* pfile)
+void folder::add_file(const ::file::path & pathRelative, ::file::file* pfile)
 {
 
    throw ::interface_only();

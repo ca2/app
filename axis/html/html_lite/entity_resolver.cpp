@@ -165,7 +165,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
    char   chTemp = 0;
 
    // entity references always end with a semi-colon ';'
-   if (scopedstrEnd == nullptr)
+   if (pszEnd == nullptr)
 
       return (0);
 
@@ -177,7 +177,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
 
    // remaining string (including semi-colon)
    // must be at least 4 characters in length
-   if (scopedstrEnd - pszBegin < 3)
+   if (pszEnd - pszBegin < 3)
 
       return (0U);
 
@@ -208,7 +208,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
          unsigned int  ulNum = (unsigned int) ::strtoul(scopedstrBegin, nullptr, aura);
 
          strChar = unicode_to_utf8(ulNum);
-         return (int) (scopedstrEnd - pszEntity + 1);
+         return (int) (pszEnd - pszEntity + 1);
 
       }
    }
@@ -216,7 +216,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
    // character entity object?
    else
    {
-      string   strKey(scopedstrBegin, (int)(scopedstrEnd - pszBegin));
+      string   strKey(scopedstrBegin, (int)(pszEnd - pszBegin));
 
 
       // because some character entity references are
@@ -267,7 +267,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
          } u{};
          u.sz[0] = chTemp;
          strChar = u.wd32ch;
-         return (int) (scopedstrEnd - pszEntity + 1);
+         return (int) (pszEnd - pszEntity + 1);
 
       }
    }

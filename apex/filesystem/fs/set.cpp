@@ -195,15 +195,19 @@ namespace fs
    }
 
 
-   ::pointer<data>set::node_path_data(const  ::file::path & psz)
+   ::pointer<data>set::node_path_data(const ::file::path & path)
    {
 
-      ::pointer<data>pdata = path_data(scopedstr);
+      ::pointer<data>pdata = path_data(path);
 
       if(pdata == nullptr)
+      {
+
          return this;
 
-      return pdata->node_path_data(scopedstr);
+      }
+
+      return pdata->node_path_data(path);
 
    }
 
@@ -308,7 +312,7 @@ namespace fs
    }
 
 
-   //string set::file_name(const ::file::path & psz)
+   //string set::file_name(const ::file::path & path)
    //{
 
    //   ::fs::data * pdata = path_data(scopedstr);
@@ -323,21 +327,21 @@ namespace fs
    //}
 
 
-   bool set::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
+   bool set::file_move(const ::file::path & pathTarget, const ::file::path & pathSource)
    {
 
-      ::fs::data * pdataDst = path_data(scopedstrDst);
-      ::fs::data * pdataSrc = path_data(scopedstrSrc);
+      ::fs::data * pdataDst = path_data(pathTarget);
+      ::fs::data * pdataSrc = path_data(pathSource);
 
       if(pdataDst != nullptr && pdataSrc == pdataDst)
       {
-         return pdataDst->file_move(scopedstrDst, pszSrc);
+         return pdataDst->file_move(pathTarget, pathSource);
       }
       else
       {
          try
          {
-            file()->copy(scopedstrDst, pszSrc);
+            file()->copy(pathTarget, pathSource);
          }
          catch(...)
          {
@@ -427,7 +431,7 @@ namespace fs
    }
 
 
-   //void set::get_ascendants_path(const ::file::path & psz,::file::path_array & stra)
+   //void set::get_ascendants_path(const ::file::path & path,::file::path_array & stra)
    //{
 
    //   ::fs::data * pdata = path_data(scopedstr);
@@ -470,17 +474,17 @@ namespace fs
    //}
 
 
-   bool set::is_zero_latency(const ::file::path & psz)
+   bool set::is_zero_latency(const ::file::path & path)
    {
 
-      ::fs::data * pdata = path_data(scopedstr);
+      ::fs::data * pdata = path_data(path);
 
       if(pdata != nullptr)
       {
-         return pdata->is_zero_latency(scopedstr);
+         return pdata->is_zero_latency(path);
       }
 
-      return ::fs::data::is_zero_latency(scopedstr);
+      return ::fs::data::is_zero_latency(path);
 
    }
 

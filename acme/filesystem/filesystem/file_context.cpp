@@ -304,10 +304,10 @@ bool file_context::exists(const ::file::path & pathParam)
 }
 
 
-::payload file_context::length(const ::file::path & pszPath)
+::payload file_context::length(const ::file::path & path)
 {
 
-   return length(scopedstrPath, nullptr);
+   return length(path, nullptr);
 
 }
 
@@ -414,7 +414,7 @@ bool file_context::exists(const ::file::path & pathParam)
 
 
 ::file::path
-file_context::time(const ::file::path & psz, int iMaxLevel, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix,
+file_context::time(const ::file::path & path, int iMaxLevel, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix,
                    bool bTryDelete)
 {
 
@@ -1968,7 +1968,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 //
 //}
 
-void file_context::transfer(const ::file::path & pszNew, const ::file::path & psz)
+void file_context::transfer(const ::file::path & pathNew, const ::file::path & path)
 {
 
    throw ::interface_only();
@@ -2148,7 +2148,7 @@ void file_context::erase(const ::file::path & path)
 }
 
 
-::file::path file_context::duplicate(const ::file::path & psz)
+::file::path file_context::duplicate(const ::file::path & path)
 {
    string strCopy("copy");
    string strNew;
@@ -2218,7 +2218,7 @@ void file_context::erase(const ::file::path & path)
 }
 
 
-void file_context::trash_that_is_not_trash(const ::file::path & psz)
+void file_context::trash_that_is_not_trash(const ::file::path & path)
 {
 
    ::file::path strDir = directory()->trash_that_is_not_trash(scopedstr);
@@ -2367,7 +2367,7 @@ void file_context::transfer(::file::file * pfileOut, ::file::file * pfileIn)
 }
 
 
-bool file_context::is_read_only(const ::file::path & psz)
+bool file_context::is_read_only(const ::file::path & path)
 {
 
    //throw ::interface_only();
@@ -2612,7 +2612,7 @@ void file_context::normalize(string & str)
 }
 
 
-::std::strong_ordering file_context::cmp(const ::file::path & psz1, const ::file::path & psz2)
+::std::strong_ordering file_context::cmp(const ::file::path & path1, const ::file::path & path2)
 {
    string str1(scopedstr1);
    normalize(str1);
@@ -2622,7 +2622,7 @@ void file_context::normalize(string & str)
 }
 
 
-void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
+void file_context::rename(const ::file::path & pathNew, const ::file::path & path)
 {
 
    ::file::path strDir = psz.folder();
@@ -2651,7 +2651,7 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 }
 
 
-//void file_context::dtf(const ::file::path & pszFile, const ::file::path & pszDir)
+//void file_context::dtf(const ::file::path & pathFile, const ::file::path & pathDir)
 //{
 //
 //   ::file::listing ls;
@@ -2663,7 +2663,7 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 //}
 //
 //
-//void file_context::dtf(const ::file::path & pszFile, ::file::path_array & stra)
+//void file_context::dtf(const ::file::path & pathFile, ::file::path_array & stra)
 //{
 //
 //   file_pointer pfile = get_file(scopedstrFile, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary);
@@ -2732,7 +2732,7 @@ void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 //}
 //
 //
-//void file_context::ftd(const ::file::path & pszDir, const ::file::path & pszFile)
+//void file_context::ftd(const ::file::path & pathDir, const ::file::path & pathFile)
 //{
 //
 //   string strVersion;
@@ -4011,7 +4011,7 @@ bool file_context::is_link(const ::file::path & path)
 //}
 
 //
-//::extended::status file_context::transfer(const ::file::path & pszNew, const ::file::path & pszOld)
+//::extended::status file_context::transfer(const ::file::path & pathNew, const ::file::path & pathOld)
 //{
 //
 //   return psystem->m_spfile->transfer(scopedstrNew, pszOld, get_app());
@@ -4019,17 +4019,17 @@ bool file_context::is_link(const ::file::path & path)
 //}
 
 //
-//::extended::status file_context::del(const ::file::path & psz)
+//::extended::status file_context::del(const ::file::path & path)
 //{
 //   return psystem->m_spfile->del(scopedstr, get_app());
 //}
 
-//::extended::status file_context::rename(const ::file::path & pszNew, const ::file::path & pszOld)
+//::extended::status file_context::rename(const ::file::path & pathNew, const ::file::path & pathOld)
 //{
 //   return psystem->m_spfile->rename(scopedstrNew, pszOld, get_app());
 //}
 
-//void file_context::trash_that_is_not_trash(const ::file::path & psz)
+//void file_context::trash_that_is_not_trash(const ::file::path & path)
 //{
 //   return psystem->m_spfile->trash_that_is_not_trash(scopedstr, get_app());
 //}
@@ -4039,13 +4039,13 @@ bool file_context::is_link(const ::file::path & path)
 //   return psystem->m_spfile->trash_that_is_not_trash(stra, get_app());
 //}
 
-//::extended::status file_context::replace(const ::file::path & pszContext, const ::scoped_string & scopedstrFind, const ::scoped_string & scopedstrReplace)
+//::extended::status file_context::replace(const ::file::path & pathContext, const ::scoped_string & scopedstrFind, const ::scoped_string & scopedstrReplace)
 //{
 //   return psystem->m_spfile->replace(scopedstrContext, pszFind, pszReplace, get_app());
 //}
 
 
-//bool file_context::exists(const ::file::path & pszPath)
+//bool file_context::exists(const ::file::path & path)
 //{
 //
 //   return psystem->m_spfile->exists(scopedstrPath, get_app());
@@ -4105,7 +4105,7 @@ bool file_context::is_link(const ::file::path & path)
    }*/
 
 
-   //::payload file_context::length(const ::file::path & pszPath)
+   //::payload file_context::length(const ::file::path & path)
    //{
    //
    //   return psystem->m_spfile->length(scopedstrPath, get_app());
@@ -4130,7 +4130,7 @@ bool file_context::is_link(const ::file::path & path)
    //}
 
    //
-   //::file::path file_context::time(const ::file::path & pszBasePath, int iDepth, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
+   //::file::path file_context::time(const ::file::path & pathBasePath, int iDepth, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
    //{
    //
    //   return psystem->m_spfile->time(get_app(), pszBasePath, iDepth, pszPrefix, pszSuffix);
@@ -4288,7 +4288,7 @@ bool file_context::is_link(const ::file::path & path)
 
 
 //
-//void file_context::dtf(const ::file::path & pszFile, const ::file::path & pszDir)
+//void file_context::dtf(const ::file::path & pathFile, const ::file::path & pathDir)
 //{
 //
 //   return psystem->m_spfile->dtf(scopedstrFile, pszDir, get_app());
@@ -4302,7 +4302,7 @@ bool file_context::is_link(const ::file::path & path)
 //}
 
 
-//void file_context::dtf(const ::file::path & pszFile, ::file::path_array & stra, ::file::path_array & straRelative)
+//void file_context::dtf(const ::file::path & pathFile, ::file::path_array & stra, ::file::path_array & straRelative)
 //{
 //
 //   return psystem->m_spfile->dtf(scopedstrFile, stra, get_app());
@@ -4310,7 +4310,7 @@ bool file_context::is_link(const ::file::path & path)
 //}
 //
 //
-//void file_context::ftd(const ::file::path & pszDir, const ::file::path & pszFile)
+//void file_context::ftd(const ::file::path & pathDir, const ::file::path & pathFile)
 //{
 //
 //   return psystem->m_spfile->ftd(scopedstrDir, pszFile, get_app());

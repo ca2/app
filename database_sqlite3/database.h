@@ -107,7 +107,7 @@ namespace sqlite
 
       //string query_error(const ::scoped_string & scopedstrPrefix = nullptr) override;
       void trace_error1(const ::scoped_string & scopedstrPrefix = nullptr) override;
-      string query_error(const ::string& pszPrefix = nullptr) override;
+      string query_error(const ::scoped_string & scopedstrPrefix = nullptr) override;
 
 
       virtual void set_id_blob(string strKey, ::block block) override;

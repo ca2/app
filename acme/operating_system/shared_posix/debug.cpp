@@ -44,7 +44,7 @@ void fprintf_line(FILE * pfile, const ::ansi_character * pszFormat, ...)
 
    ::string str;
 
-   str.formatf_arguments(scopedstrFormat, arguments);
+   str.formatf_arguments(pszFormat, arguments);
 
    fprint_line(pfile, str);
 
@@ -62,7 +62,7 @@ void fprintf_out(FILE * pfile, const ::ansi_character * pszFormat, ...)
 
    ::string str;
 
-   str.formatf_arguments(scopedstrFormat, arguments);
+   str.formatf_arguments(pszFormat, arguments);
 
    fprint_out(pfile, str);
 
@@ -76,7 +76,7 @@ void fprintf_line_arguments(FILE * pfile, const ::ansi_character * pszFormat, va
 
    ::string str;
 
-   str.formatf_arguments(scopedstrFormat, arguments);
+   str.formatf_arguments(pszFormat, arguments);
 
    fprintf_line(pfile, str);
 
@@ -88,7 +88,7 @@ void fprintf_out_arguments(FILE * pfile, const ::ansi_character * pszFormat, va_
 
    ::string str;
 
-   str.formatf_arguments(scopedstrFormat, arguments);
+   str.formatf_arguments(pszFormat, arguments);
 
    fprintf_out(pfile, str);
 

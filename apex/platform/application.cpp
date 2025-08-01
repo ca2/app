@@ -1546,7 +1546,7 @@ namespace apex
 
 
 
-   void application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate)
+   void application::get_temp_file_name_template(string & strRet, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate)
    {
 
       throw ::not_implemented();
@@ -1556,7 +1556,7 @@ namespace apex
    }
 
 
-   void application::get_temp_file_name(string & strRet, const ::string & lpszName, const ::scoped_string & scopedstrExtension)
+   void application::get_temp_file_name(string & strRet, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension)
    {
 
       return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
@@ -6684,7 +6684,7 @@ namespace apex
    //}
 
 
-   void application::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const ::scoped_string & scopedstrRelative)
+   void application::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative)
    {
 
       auto psystem = system();
@@ -6725,7 +6725,7 @@ namespace apex
    }
 
 
-   void application::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle)
+   void application::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle)
    {
 
       string strLocale;
@@ -7087,7 +7087,7 @@ namespace apex
 
 
 
-   //void application::get_temp_file_name_template(string & strRet,const ::string & lpszName,const ::scoped_string & scopedstrExtension,const ::scoped_string & scopedstrTemplate)
+   //void application::get_temp_file_name_template(string & strRet,const ::scoped_string & scopedstrName,const ::scoped_string & scopedstrExtension,const ::scoped_string & scopedstrTemplate)
    //{
 
    //   throw ::not_implemented();
@@ -7095,7 +7095,7 @@ namespace apex
    //}
 
 
-   //bool application::get_temp_file_name(string & strRet,const ::string & lpszName,const ::scoped_string & scopedstrExtension)
+   //bool application::get_temp_file_name(string & strRet,const ::scoped_string & scopedstrName,const ::scoped_string & scopedstrExtension)
    //{
 
    //   return get_temp_file_name_template(strRet,lpszName,pszExtension,nullptr);

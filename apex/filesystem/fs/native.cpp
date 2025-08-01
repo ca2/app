@@ -105,7 +105,7 @@ namespace fs
    }
 
 
-   //void native::get_ascendants_path(const ::file::path & pszPath,::file::path_array & stra)
+   //void native::get_ascendants_path(const ::file::path & path,::file::path_array & stra)
    //{
 
    //   return file()->get_ascendants_path(scopedstrPath, stra);
@@ -158,10 +158,10 @@ namespace fs
    //}
 
 
-   bool native::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
+   bool native::file_move(const ::file::path & pathTarget,const ::file::path & pathSource)
    {
 
-      file()->transfer(scopedstrDst, pszSrc);
+      file()->transfer(pathTarget, pathSource);
 
       return true;
 

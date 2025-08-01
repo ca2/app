@@ -695,13 +695,13 @@ bool tokenizer::get_next_word(string * pstrToken)
       if(unicode_is_whitespace(scopedstr))
       {
 
-         if(scopedstrStart != nullptr)
+         if(pszStart != nullptr)
          {
 
             if(::is_set(pstrToken))
             {
 
-               pstrToken->assign(scopedstrStart, psz);
+               pstrToken->assign(pszStart, psz);
                   
             }
 
@@ -715,7 +715,7 @@ bool tokenizer::get_next_word(string * pstrToken)
       else if(*psz == '\"' || *psz == '\'')
       {
 
-         if(scopedstrStart == nullptr)
+         if(pszStart == nullptr)
          {
 
             pszStart = psz;
@@ -727,7 +727,7 @@ bool tokenizer::get_next_word(string * pstrToken)
             if(::is_set(pstrToken))
             {
                   
-               pstrToken->assign(scopedstrStart + 1, psz - 1);
+               pstrToken->assign(pszStart + 1, psz - 1);
                   
             }
 
@@ -741,7 +741,7 @@ bool tokenizer::get_next_word(string * pstrToken)
       else
       {
 
-         if(scopedstrStart == NULL)
+         if(pszStart == NULL)
          {
              
             pszStart = psz;
@@ -754,7 +754,7 @@ bool tokenizer::get_next_word(string * pstrToken)
 
    }
 
-   if(scopedstrStart != nullptr)
+   if(pszStart != nullptr)
    {
 
       if(*pszStart == '\"' || *pszStart == '\'')
@@ -763,7 +763,7 @@ bool tokenizer::get_next_word(string * pstrToken)
          if(::is_set(pstrToken))
          {
             
-            pstrToken->assign(scopedstrStart + 1, psz);
+            pstrToken->assign(pszStart + 1, psz);
                
          }
 
@@ -776,7 +776,7 @@ bool tokenizer::get_next_word(string * pstrToken)
          if(::is_set(pstrToken))
          {
                
-            pstrToken->assign(scopedstrStart, psz);
+            pstrToken->assign(pszStart, psz);
                
          }
 

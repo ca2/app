@@ -3438,7 +3438,7 @@ namespace draw2d
 
       character_count iLen;
 
-      const ::scoped_string & scopedstrStart = str;
+      const char * pszStart = str;
 
       const ::scoped_string & scopedstr = pszStart;
 
@@ -4259,7 +4259,7 @@ namespace draw2d
          if (sz.cx() > rectangleClip.width())
          {
 
-            const ::scoped_string & scopedstrStart = str;
+            const char * pszStart = str;
 
             const ::scoped_string & scopedstr = pszStart;
 
@@ -4272,7 +4272,7 @@ namespace draw2d
 
                unicode_increment(scopedstr);
 
-               strSample = string(scopedstrStart, psz - pszStart) + "...";
+               strSample = string(pszStart, psz - pszStart) + "...";
 
                sz = pgraphics->get_text_extent(strSample);
 
@@ -4503,7 +4503,7 @@ namespace draw2d
 
       const ::ansi_character * pszEnd = pszSource + len;
 
-      const ::scoped_string & scopedstrStart = unicode_next(scopedstrSource);
+      const char * pszStart = unicode_next(scopedstrSource);
 
       int_size sz;
 
@@ -4657,7 +4657,7 @@ namespace draw2d
 
       str1 = string(scopedstrSource, psz - pszSource);
 
-      str2 = string(scopedstrEnd);
+      str2 = string(pszEnd);
 
 
       rectangle.top() = y;

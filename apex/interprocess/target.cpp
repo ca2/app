@@ -66,7 +66,7 @@ namespace interprocess
          try
          {
 
-            if (phandler->_handle_uri(strUri))
+            if (phandler->_handle_uri(scopedstrUri))
             {
 
                return true;

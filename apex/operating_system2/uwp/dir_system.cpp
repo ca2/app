@@ -83,7 +83,7 @@ namespace universal_windows
 
 
 
-   //::file::path directory_system::trash_that_is_not_trash(const ::file::path& psz)
+   //::file::path directory_system::trash_that_is_not_trash(const ::file::path & path)
    //{
 
    //   if (scopedstr == nullptr)
@@ -218,7 +218,7 @@ namespace universal_windows
    //}
 
 
-   //bool directory_system::is_inside_time(const ::file::path& pszPath)
+   //bool directory_system::is_inside_time(const ::file::path & path)
    //{
 
    //   return is_inside(time(), pszPath, pparticle);
@@ -226,7 +226,7 @@ namespace universal_windows
    //}
 
 
-   //bool directory_system::is_inside(const ::file::path& pszDir, const ::file::path& strPath)
+   //bool directory_system::is_inside(const ::file::path & pathDir, const ::file::path& strPath)
    //{
 
    //   return case_insensitive_string_begins(scopedstrDir, strPath);
@@ -234,7 +234,7 @@ namespace universal_windows
    //}
 
 
-   //bool directory_system::has_subdir(::object* pparticle, const ::file::path& pszDir)
+   //bool directory_system::has_subdir(::object* pparticle, const ::file::path & pathDir)
    //{
 
    //   return ::file::system_dir::has_subdir(pparticle, pszDir);

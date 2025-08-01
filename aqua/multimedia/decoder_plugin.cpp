@@ -73,7 +73,7 @@ namespace multimedia
 
       auto psystem = system();
 
-      m_pfactory = psystem->factory(strTitle);
+      m_pfactory = psystem->factory(scopedstrTitle);
 
       //if (!m_pfactory)
       //{
@@ -126,7 +126,7 @@ namespace multimedia
 //
 //#endif
 
-      m_strTitle = strTitle;
+      m_strTitle = scopedstrTitle;
 
       //return ::success;
 

@@ -46,7 +46,7 @@ namespace user
       void on_timer(::timer * ptimer) override;
 
 
-      void create_message_queue(const ::string & lpszName) override;
+      void create_message_queue(const ::scoped_string & scopedstrName) override;
 
 
       ::user::interaction * get_host_user_interaction() override;

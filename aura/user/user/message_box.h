@@ -181,7 +181,7 @@ namespace user
 //      ::e_message_box         m_emessagebox;
 //
 //
-//      message_box(const string &strText, const string &strTitle, const ::e_message_box &emessagebox);
+//      message_box(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box &emessagebox);
 //      virtual ~message_box();
 //
 //

@@ -337,7 +337,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //inline unsigned long long as_unsigned_long_long(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   const ::scoped_string & scopedstrEnd = nullptr;
+//   const char * pszEnd = nullptr;
 //
 //   return ansi_to_unsigned_long_long(scopedstr, &pszEnd, iBase);
 //

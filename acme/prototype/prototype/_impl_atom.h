@@ -476,7 +476,7 @@ inline atom::atom(const domain_id & domainid)  :
 }
 
 inline atom::atom(const ::ansi_character * psz) :
-   m_str(scopedstr)
+   m_str(psz)
 {
 
    m_etype = e_type_text;

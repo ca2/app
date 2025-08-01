@@ -469,7 +469,7 @@ string _001OnlyAlnumString(const ::scoped_string & scopedstr)
 
    auto end = scopedstr.end();
 
-   while (scopedstr < end)
+   while (psz < end)
    {
 
       if (character_isalnum(*psz))
@@ -529,14 +529,14 @@ string _001CompactString(const ::scoped_string & scopedstr, int iSkip, int iSkip
    for (; i < iSkipBegin; i++)
    {
 
-      strCompact += str[i];
+      strCompact += scopedstr[i];
 
    }
 
-   for (; i < str.length(); i += (iSkip + 1))
+   for (; i < scopedstr.size(); i += (iSkip + 1))
    {
 
-      strCompact += str[i];
+      strCompact += scopedstr[i];
 
    }
 

@@ -174,7 +174,7 @@ extern void clrscr (void);
 extern void textmode (int newmode);
 extern int putch (int c);
 extern int getche (void);
-extern int cputs (const ::string &str);
+extern int cputs (const ::scoped_string & scopedstr);
 extern int cprintf (const ::string &format, ...);
 extern void delline (void);
 extern void insline (void);

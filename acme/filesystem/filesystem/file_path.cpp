@@ -156,7 +156,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
    if (iLen >= 2)
    {
 
-      if (scopedstr[0] == '\\' && psz[1] == '\\')
+      if (psz[0] == '\\' && psz[1] == '\\')
       {
 
 #ifndef WINDOWS
@@ -356,7 +356,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
                auto pszPos = p;
 
-               copy_character_per_character(scopedstrNewPosition, pszPos);
+               copy_character_per_character(pszNewPosition, pszPos);
 
                iLen -= p - pszNewPosition;
 

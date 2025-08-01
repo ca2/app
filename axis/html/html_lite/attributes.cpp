@@ -83,7 +83,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
             (*pszEnd != '_') && (*pszEnd != '.') )
 
       {
-         ASSERT(scopedstrEnd != pszBegin);
+         ASSERT(pszEnd != pszBegin);
 
 
          // only white-space characters, a nullptr-character, an
@@ -109,7 +109,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
    while (true);
 
    // extract attribute name
-   string   strAttrName(scopedstrBegin, int(scopedstrEnd - pszBegin));
+   string   strAttrName(scopedstrBegin, int(pszEnd - pszBegin));
 
 
    // skip leading white-space characters
@@ -124,7 +124,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
    {
       m_strName = strAttrName;
       m_strValue.empty();
-      return (scopedstrEnd - pszString);
+      return (pszEnd - pszString);
 
    }
    else
@@ -146,7 +146,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
 
       if(strChar == "&")
       {
-         if(string(scopedstrEnd, 6) == "&#039;")
+         if(string(pszEnd, 6) == "&#039;")
 
          {
             strChar = "&#039;";
@@ -167,7 +167,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
          // was used at the starting of the attribute value.
          // Anything within these quotes is considered valid!
          // NOTE that the entity references are resolved later.
-         while (*pszEnd != '\0' && !case_insensitive_string_begins(scopedstrEnd, strChar));
+         while (*pszEnd != '\0' && !case_insensitive_string_begins(pszEnd, strChar));
 
       }
 
@@ -190,7 +190,7 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
       }
 
       m_strName = strAttrName;
-      if (scopedstrEnd == pszBegin)   // is_empty attribute value?
+      if (pszEnd == pszBegin)   // is_empty attribute value?
 
          m_strValue.empty();
       else
@@ -198,11 +198,11 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
          // this will automatically normalize data before
          // assigning according to the specs and will
          // also resolve entity references!!!
-         putValue(preader, string(scopedstrBegin,int(scopedstrEnd - pszBegin)));
+         putValue(preader, string(scopedstrBegin,int(pszEnd - pszBegin)));
 
 
       // calculate and return the ::collection::count of characters successfully parsed
-      return (scopedstrEnd - pszString) + strChar.length();
+      return (pszEnd - pszString) + strChar.length();
 
    }
 
@@ -299,7 +299,7 @@ LCleanExit:
    return (nRetVal);
 }
 
-LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const ::string & lpszName, const ::scoped_string & scopedstrValue)
+LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue)
 
 {
 

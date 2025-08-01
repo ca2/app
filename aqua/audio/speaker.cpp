@@ -30,7 +30,7 @@ namespace text_to_speech
 
       }
 
-      return m_pspeakerFallback->speak(strText);
+      return m_pspeakerFallback->speak(scopedstrText);
 
    }
 
@@ -47,7 +47,7 @@ namespace text_to_speech
 
       }
 
-      return m_pspeakerFallback->speak(strLang, strText, bSynch);
+      return m_pspeakerFallback->speak(scopedstrLang, scopedstrText, bSynch);
 
    }
 
@@ -63,7 +63,7 @@ namespace text_to_speech
 
       }
 
-      return m_pspeakerFallback->speak(strAttributes, strLang, strText, bSynch);
+      return m_pspeakerFallback->speak(scopedstrAttributes, scopedstrLang, scopedstrText, bSynch);
 
    }
 

@@ -50,7 +50,7 @@ namespace html
          if(range.is_empty())
             return;
          const ::ansi_character * pszRestart = range.m_begin + 1;
-         string str(scopedstrStart, pszRestart - pszStart);
+         string str(pszStart, pszRestart - pszStart);
          str.trim();
          if(str.length() <= 0)
             return;

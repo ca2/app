@@ -245,20 +245,20 @@ namespace file
       virtual void open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr);
       
       
-      inline void open_for_reading(const ::file::path& pszFileName, ::file::e_open eopen =
+      inline void open_for_reading(const ::file::path& path, ::file::e_open eopen =
          ::file::e_open_binary, ::pointer < ::file::exception > * pfileexception = nullptr)
       {
 
-         open(scopedstrFileName, eopen | ::file::e_open_read); 
+         open(path, eopen | ::file::e_open_read); 
 
       }
       
 
-      virtual void open_for_writing(const ::file::path& pszFileName, ::file::e_open eopen =
+      virtual void open_for_writing(const ::file::path& path, ::file::e_open eopen =
          ::file::e_open_binary | ::file::e_open_defer_create_directory, ::pointer < ::file::exception > * pfileexception = nullptr)
       {
 
-         open(scopedstrFileName, eopen | ::file::e_open_write);
+         open(path, eopen | ::file::e_open_write);
 
       }
 

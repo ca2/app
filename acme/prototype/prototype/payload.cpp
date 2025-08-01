@@ -7337,7 +7337,7 @@ void payload::consume_identifier(::ansi_range & range)
 
    }
 
-   ::string str(scopedstrStart, range.m_begin - pszStart);
+   ::string str(pszStart, range.m_begin - pszStart);
 
    if (str.case_insensitive_order("false") == 0)
    {
@@ -7453,7 +7453,7 @@ end:
 
    }
 
-   ::string strNumber(scopedstrStart, range.m_begin - pszStart);
+   ::string strNumber(pszStart, range.m_begin - pszStart);
 
    if(bFloat)
    {
@@ -7524,15 +7524,15 @@ void payload_skip_identifier(::ansi_range & range)
    while (ansi_char_isalpha(*range.m_begin) && range.has_character())
       range.m_begin++;
    character_count iLen = range.m_begin - pszStart;
-   if (iLen == 5 && case_insensitive_ansi_count_compare(scopedstrStart, "false", 5) == 0)
+   if (iLen == 5 && case_insensitive_ansi_count_compare(pszStart, "false", 5) == 0)
    {
    }
    else if (iLen == 4)
    {
-      if (case_insensitive_ansi_count_compare(scopedstrStart, "true", 4) == 0)
+      if (case_insensitive_ansi_count_compare(pszStart, "true", 4) == 0)
       {
       }
-      else if (case_insensitive_ansi_count_compare(scopedstrStart, "null", 4) == 0)
+      else if (case_insensitive_ansi_count_compare(pszStart, "null", 4) == 0)
       {
       }
       else

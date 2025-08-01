@@ -332,7 +332,7 @@ namespace image
       if (loadoptions.cache)
       {
 
-         pimage = matter_cache_image(strMatter);
+         pimage = matter_cache_image(scopedstrMatter);
 
          if (pimage.ok())
          {
@@ -345,7 +345,7 @@ namespace image
 
       __defer_construct(pimage);
 
-      _matter_image(pimage, strMatter, loadoptions);
+      _matter_image(pimage, scopedstrMatter, loadoptions);
 
       return pimage;
 
@@ -395,7 +395,7 @@ namespace image
       if (loadoptions.cache)
       {
 
-         pimage = matter_cache_image(strMatter);
+         pimage = matter_cache_image(scopedstrMatter);
 
          if (pimage.ok())
          {
@@ -419,7 +419,7 @@ namespace image
 
       //estatus = 
 
-      _load_matter_image(pimage, strMatter, loadoptions);
+      _load_matter_image(pimage, scopedstrMatter, loadoptions);
 
       //if (!estatus)
       //{
@@ -515,7 +515,7 @@ namespace image
 
       //estatus = 
 
-      _load_thumbnail(pimage, strPath);
+      _load_thumbnail(pimage, scopedstrPath);
 
       //if (!estatus)
       //{
@@ -604,16 +604,16 @@ namespace image
       if (loadoptions.sync)
       {
 
-         return _load_matter_image(pimage, strMatter);
+         return _load_matter_image(pimage, scopedstrMatter);
 
       }
 
       pimage->clear_flag(e_flag_success);
 
-      fork([this, pimage, strMatter]()
+      fork([this, pimage, scopedstrMatter]()
          {
 
-            _load_matter_image(pimage, strMatter);
+            _load_matter_image(pimage, scopedstrMatter);
 
          });
 
@@ -631,7 +631,7 @@ namespace image
 
       // auto pcontext = get_context();
 
-      ::file::path path = directory()->matter(strMatter);
+      ::file::path path = directory()->matter(scopedstrMatter);
 
       //auto estatus = 
       _load_image(pimage, path, loadoptions);
@@ -655,10 +655,10 @@ namespace image
 
       // auto pcontext = get_context();
 
-      for (auto& strMatter : straMatter)
+      for (auto& scopedstrMatter : straMatter)
       {
 
-         path = strMatter;
+         path = scopedstrMatter;
 
          path = directory()->matter(path / strIcon);
 
@@ -1124,7 +1124,7 @@ namespace image
 
       auto size = memory.size();
 
-      if (::is_null(scopedstr))
+      if (::is_null(psz))
       {
 
          pimage->set_nok();
@@ -1154,7 +1154,7 @@ namespace image
 
          }
 
-         if (memory.size() > 3 && ansi_nicmp(scopedstr, "gif", 3) == 0)
+         if (memory.size() > 3 && ansi_nicmp(psz, "gif", 3) == 0)
          {
 
             _load_multi_frame_image(pimage, memory);
@@ -1201,7 +1201,7 @@ namespace image
    ::image::image_pointer image_context::matter_cache_image(const ::scoped_string & scopedstrMatter)
    {
 
-      string str(strMatter);
+      string str(scopedstrMatter);
 
       if (!str.case_insensitive_begins("matter://"))
       {
@@ -1278,7 +1278,7 @@ namespace image
    //::image::image_pointer image_context::matter_image(::particle * pparticle, const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions)
    //{
    //
-   //   string str(strMatter);
+   //   string str(scopedstrMatter);
    //
    //   if (!str.case_insensitive_begins("matter://"))
    //   {

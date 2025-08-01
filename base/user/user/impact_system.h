@@ -106,7 +106,7 @@ namespace user
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      virtual Confidence MatchDocType(const ::file::path & pszPathName,::user::document *& rpDocMatch);
+      virtual Confidence MatchDocType(const ::file::path & pathName,::user::document *& rpDocMatch);
 
       virtual ::pointer<::user::document>create_new_document(::request * prequest);
       virtual ::pointer<::user::frame_window>create_new_frame(::user::document * pDoc, ::pointer<::user::frame_window>Other, ::request * prequest);

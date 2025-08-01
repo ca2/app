@@ -188,7 +188,7 @@ namespace fs_raw_folder_protocol_dropbox
 //   }
 //
 //
-//   //void folder_sync::get_ascendants_path(const ::file::path & pszPath,::file::path_array & stra)
+//   //void folder_sync::get_ascendants_path(const ::file::path & path,::file::path_array & stra)
 //   //{
 //
 //   //   return file()->get_ascendants_path(scopedstrPath, stra);
@@ -241,7 +241,7 @@ namespace fs_raw_folder_protocol_dropbox
 //   //}
 //
 //
-//   bool folder_sync::file_move(const ::file::path& pszDst, const ::file::path& pszSrc)
+//   bool folder_sync::file_move(const ::file::path & pathTarget, const ::file::path & pathSource)
 //   {
 //
 //      return ::fs::folder_sync::file_move(scopedstrDst, pszSrc);

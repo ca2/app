@@ -14,7 +14,7 @@ namespace user
    }
 
 
-   bool core_user_layer::get_fs_size(string& strSize, const ::string& pszPath, bool& bPending)
+   bool core_user_layer::get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending)
    {
 
       return false;
@@ -22,7 +22,7 @@ namespace user
    }
 
 
-   bool core_user_layer::get_fs_size(long long& i64Size, const ::string& pszPath, bool& bPending)
+   bool core_user_layer::get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending)
    {
 
       return false;
@@ -51,7 +51,7 @@ namespace user
    }
 
 
-   void core_user_layer::AddToRecentFileList(const ::string& pszPathName)
+   void core_user_layer::AddToRecentFileList(const ::scoped_string & scopedstrPathName)
    {
    }
 

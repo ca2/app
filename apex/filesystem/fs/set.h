@@ -30,22 +30,22 @@ namespace fs
 
 
       virtual ::pointer<data>path_data(const ::payload & payloadFile)override;
-      virtual ::pointer<data>node_path_data(const ::file::path & psz)override;
+      virtual ::pointer<data>node_path_data(const ::file::path & path)override;
       virtual ::file::listing & root_ones(::file::listing & listing)override;
       //virtual bool _enumerates(::file::listing & listing)override;
       virtual bool enumerate(::file::listing & listing)override;
       //virtual ::file::listing & ls_relative_name(::file::listing & listing)override;
-      virtual int is_dir(const ::file::path & psz)override;
+      virtual int is_dir(const ::file::path & path)override;
       virtual ::file::e_type file_type(const ::file::path& path)override;
-      virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc)override;
-      virtual bool has_subdir(const ::file::path & psz)override;
-      virtual bool tree_show_subdir(const ::file::path & psz)override;
-      virtual bool fast_has_subdir(const ::file::path & psz)override;
-      virtual bool is_link(const ::file::path & psz)override;
+      virtual bool file_move(const ::file::path & pathTarget,const ::file::path & pathSource)override;
+      virtual bool has_subdir(const ::file::path & path)override;
+      virtual bool tree_show_subdir(const ::file::path & path)override;
+      virtual bool fast_has_subdir(const ::file::path & path)override;
+      virtual bool is_link(const ::file::path & path)override;
 
       virtual file_pointer get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception = nullptr) override;
 
-      virtual bool is_zero_latency(const ::file::path & psz)override;
+      virtual bool is_zero_latency(const ::file::path & path)override;
 
       virtual void destroy() override;
 

@@ -144,7 +144,7 @@ namespace sockets
       ///** Send string to specified ipv6 address */
       //void SendTo(in6_addr, ::networking::port_t, const string &, int flags = 0);
       /** Send string to specified socket address */
-      void SendTo(::networking::address * address, const string &, int flags = 0);
+      void SendTo(::networking::address * address, const ::scoped_string & scopedstr, int flags = 0);
 
       /** Send to connected address */
       //using ::file::file::write;

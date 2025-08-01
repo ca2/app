@@ -116,8 +116,8 @@ namespace platform
    // void aura_application_layer::on_uninstall() override{}
    //
 
-   //void aura_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const ::scoped_string & scopedstrRelative) override{}
-   //void aura_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle) override{}
+   //void aura_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative) override{}
+   //void aura_application_layer::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrStyle) override{}
 
    //void aura_application_layer::SetCurrentHandles() override{}
 
@@ -164,7 +164,7 @@ namespace platform
    //void aura_application_layer::set_env_var(const string & payload, const string & value) override{}
 
 
-   ::draw2d::printer* aura_application_layer::get_printer(const ::string& pszDeviceName)
+   ::draw2d::printer* aura_application_layer::get_printer(const ::scoped_string & scopedstrDeviceName)
    {
       return nullptr;
    }
@@ -458,9 +458,9 @@ namespace platform
    //::string aura_application_layer::multimedia_audio_mixer_get_default_implementation_name() override{}
    //::string aura_application_layer::veriwell_multimedia_music_midi_get_default_implementation_name() override{}
 
-   //bool aura_application_layer::get_temp_file_name_template(string & str, const ::string & lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate) override{}
+   //bool aura_application_layer::get_temp_file_name_template(string & str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate) override{}
 
-   //bool aura_application_layer::get_temp_file_name(string & str, const ::string & lpszName, const ::scoped_string & scopedstrExtension) override{}
+   //bool aura_application_layer::get_temp_file_name(string & str, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension) override{}
 
    //service_base * get_service(){}
    //virtual service_base * allocate_new_service() override{}
@@ -803,7 +803,7 @@ namespace platform
 
    // set regsitry key name to be used by application's
    // profile member functions{} prevents writing to an INI spfile->
-   void aura_application_layer::SetRegistryKey(const ::string& pszRegistryKey)
+   void aura_application_layer::SetRegistryKey(const ::scoped_string & scopedstrRegistryKey)
    {
    }
 

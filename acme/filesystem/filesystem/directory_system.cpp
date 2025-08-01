@@ -394,7 +394,7 @@ string directory_system::system_short_name()
    
    ::string str_iCloudContainerIdentifier;
    
-   str_iCloudContainerIdentifier = path_system()->icloud_container_identifier(scopedstr_iCloudContainerIdentifier);
+   str_iCloudContainerIdentifier = path_system()->icloud_container_identifier(psz_iCloudContainerIdentifier);
    
    ::file::path pathContainer;
    
@@ -418,7 +418,7 @@ string directory_system::system_short_name()
 ::file::path directory_system::icloud_container_documents(const char * psz_iCloudContainerIdentifier)
 {
 
-   return icloud_container2(scopedstr_iCloudContainerIdentifier) / "Documents";
+   return icloud_container2(psz_iCloudContainerIdentifier) / "Documents";
    
 }
 
@@ -428,7 +428,7 @@ bool directory_system::is_icloud_container(const ::file::path & path, const char
    
    ::file::path pathFolder;
    
-   pathFolder = icloud_container2(scopedstrContentIdentifier);
+   pathFolder = icloud_container2(pszContentIdentifier);
    
    if(path.folder() == pathFolder ||
       path.folder().begins(::string(pathFolder) + "/"))
@@ -470,7 +470,7 @@ bool directory_system::has_icloud_container(const char * pszContentIdentifier)
 void directory_system::set_path_install_folder(const ::scoped_string & scopedstrPath)
 {
 
-   m_pathInstallFolder = strPath;
+   m_pathInstallFolder = scopedstrPath;
 
 }
 
@@ -671,7 +671,7 @@ void directory_system::set_path_install_folder(const ::scoped_string & scopedstr
 
 
 
-::file::path directory_system::pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode)
+::file::path directory_system::pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode)
 {
 
    ::file::path_array patha;
@@ -683,7 +683,7 @@ void directory_system::set_path_install_folder(const ::scoped_string & scopedstr
    for (int i = 0; i < patha.get_count(); i++)
    {
 
-      strCandidate = patha[i] / pszTopic;
+      strCandidate = patha[i] / scopedstrTopic;
 
       //if (file()->exists(strCandidate))
       if (m_pfilesystem->exists(strCandidate))

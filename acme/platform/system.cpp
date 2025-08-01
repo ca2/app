@@ -2474,7 +2474,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::acme::library* system::on_get_library(const ::string& pszLibrary)
+   ::acme::library* system::on_get_library(const ::scoped_string & scopedstrLibrary)
    {
 
       return nullptr;
@@ -2599,7 +2599,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::regular_expression_pointer system::create_regular_expression(const ::string& pszStyle, const ::scoped_string & scopedstr)
+   ::regular_expression_pointer system::create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr)
    {
 
       auto pcontext = get_regular_expression_context(scopedstrStyle);
@@ -2625,7 +2625,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::pointer<::regular_expression::context> system::get_regular_expression_context(const ::string& pszStyle)
+   ::pointer<::regular_expression::context> system::get_regular_expression_context(const ::scoped_string & scopedstrStyle)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -3799,7 +3799,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   void system::on_open_file(const ::string& pszFile)
+   void system::on_open_file(const ::scoped_string & scopedstrFile)
    {
 
       throw ::interface_only();

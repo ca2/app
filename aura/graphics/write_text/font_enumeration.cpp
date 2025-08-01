@@ -92,7 +92,7 @@ namespace write_text
       for (auto& m_pfontenumerationitema : *m_pfontenumerationitema)
       {
 
-         if (m_pfontenumerationitema->m_strName.case_insensitive_order(str) == 0)
+         if (m_pfontenumerationitema->m_strName.case_insensitive_order(scopedstr) == 0)
          {
 
             return true;
@@ -135,7 +135,7 @@ namespace write_text
 
          int iFound = -1;
 
-         double dSimilarity = pfonts->font_similarity(pitem->m_strName, psz);
+         double dSimilarity = pfonts->font_similarity(pitem->m_strName, scopedstr);
 
          if (dSimilarity > dMaxSimilarity)
          {

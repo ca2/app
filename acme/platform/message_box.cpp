@@ -68,13 +68,13 @@ message_box::message_box(const ::scoped_string & scopedstrMessage, const ::scope
 
    preempt(30_s);
 
-   m_strMessage = strMessage;
+   m_strMessage = scopedstrMessage;
 
-   m_strTitle = strTitle;
+   m_strTitle = scopedstrTitle;
 
    m_emessagebox = emessagebox;
 
-   m_strDetails = strDetails;
+   m_strDetails = scopedstrDetails;
 
    m_picon = picon;
 
@@ -138,13 +138,13 @@ message_box::message_box(const ::exception & exception, const ::scoped_string & 
 
    m_strMessage.concatenate_with_separator("\n", strMessage);
 
-   m_strTitle = strTitle;
+   m_strTitle = scopedstrTitle;
 
    m_emessagebox = emessagebox;
 
-   m_strDetails = strDetails;
+   m_strDetails = scopedstrDetails;
 
-   m_strDetails.concatenate_with_separator("\n", strDetails);
+   m_strDetails.concatenate_with_separator("\n", scopedstrDetails);
 
    m_strDetails.concatenate_with_separator("\n\nCallstack:\n", exception.m_strCallStackTrace);
 

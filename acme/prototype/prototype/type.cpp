@@ -14,7 +14,7 @@ string cxxabi_demangle (const char* name);
 string demangle(const char * psz)
 {
 
-   if (scopedstr[0] == 'c' &&
+   if (psz[0] == 'c' &&
       psz[1] == 'l' &&
       psz[2] == 'a' &&
       psz[3] == 's' &&
@@ -25,7 +25,7 @@ string demangle(const char * psz)
       return psz + 6;
 
    }
-   else if (scopedstr[0] == 's' &&
+   else if (psz[0] == 's' &&
       psz[1] == 't' &&
       psz[2] == 'r' &&
       psz[3] == 'u' &&

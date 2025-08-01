@@ -20,13 +20,13 @@ namespace aqua
 
       virtual void defer_start(::wave::enum_purpose epurpose);
 
-      virtual ::pointer<::object>sound_plugin(const ::string &, bool bForceCreate = false, bool bLoop = false);
+      virtual ::pointer<::object>sound_plugin(const ::scoped_string & scopedstr, bool bForceCreate = false, bool bLoop = false);
 
-      virtual file_pointer sound_file(const ::string &);
+      virtual file_pointer sound_file(const ::scoped_string & scopedstr);
 
-      virtual string sound_path(const ::string &);
+      virtual string sound_path(const ::scoped_string & scopedstr);
 
-      virtual void mix_sound_file(const ::string &);
+      virtual void mix_sound_file(const ::scoped_string & scopedstr);
 
       virtual void mix(::audio::plugin* pplugin);
 

@@ -71,7 +71,7 @@ namespace introjection
    }
 
 
-   void compiler::initialize_introjection_compiler(::particle * pparticle, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName, const ::file::path & pathProjectDir)
+   void compiler::initialize_introjection_compiler(::particle * pparticle, const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrProjectName, const ::file::path & pathProjectDir)
    {
 
       //auto estatus =

@@ -77,8 +77,8 @@ namespace draw2d_cairo
       double get_dpix() override;
 
       // Constructors
-      //bool CreateDC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData) override;
-      //bool CreateIC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData) override
+      //bool CreateDC(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * lpInitData) override;
+      //bool CreateIC(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * lpInitData) override
       void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size) override;
       void CreateCompatibleDC(::draw2d::graphics * pgraphics) override;
 
@@ -290,9 +290,9 @@ namespace draw2d_cairo
         //             HBRUSH hBrush = nullptr) override;
 //      bool DrawState(const ::double_point & double_point, const ::double_size & double_size, ::draw2d::bitmap* pBitmap, unsigned int nFlags,
 //                     ::draw2d::brush* pBrush = nullptr) override;
-//      bool DrawState(const ::double_point & double_point, const ::double_size & double_size, const ::string & lpszText, unsigned int nFlags,
+//      bool DrawState(const ::double_point & double_point, const ::double_size & double_size, const ::scoped_string & scopedstrText, unsigned int nFlags,
 //                     bool bPrefixText = true, int nTextLen = 0, HBRUSH hBrush = nullptr) override;
-//      bool DrawState(const ::double_point & double_point, const ::double_size & double_size, const ::string & lpszText, unsigned int nFlags,
+//      bool DrawState(const ::double_point & double_point, const ::double_size & double_size, const ::scoped_string & scopedstrText, unsigned int nFlags,
 //                     bool bPrefixText = true, int nTextLen = 0, ::draw2d::brush* pBrush = nullptr) override;
 
 
@@ -369,13 +369,13 @@ namespace draw2d_cairo
         BLENDFUNCTION blend);*/
 
       // Text Functions
-      //virtual bool text_out(double x, double y, const ::string & lpszString, character_count nCount) override;
+      //virtual bool text_out(double x, double y, const ::scoped_string & scopedstrString, character_count nCount) override;
       //virtual bool text_out(double x, double y, const ::scoped_string & scopedstr) override;
       void TextOutRaw(double x, double y, const ::scoped_string & scopedstr) override;
       ///virtual bool text_out(double x, double y, const ::scoped_string & scopedstr) override;
-      //virtual bool ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & double_rectangle, const ::string & lpszString, character_count nCount, int * lpDxWidths) override;
+      //virtual bool ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & double_rectangle, const ::scoped_string & scopedstrString, character_count nCount, int * lpDxWidths) override;
       //virtual bool ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & double_rectangle, const ::scoped_string & scopedstr, int * lpDxWidths) override;
-//      virtual double_size TabbedTextOut(double x, double y, const ::string & lpszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin) override;
+//      virtual double_size TabbedTextOut(double x, double y, const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin) override;
 //      virtual double_size TabbedTextOut(double x, double y, const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions, int nTabOrigin) override;
 
       virtual void internal_draw_text_cairo(const block & block, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnText = nullptr);
@@ -386,7 +386,7 @@ namespace draw2d_cairo
 //#else
 //      virtual void internal_draw_text(const block & block, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnTtext);
 #endif
-      //virtual bool draw_text(const ::string & lpszString, character_count nCount, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      //virtual bool draw_text(const ::scoped_string & scopedstrString, character_count nCount, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
       void draw_text(const ::scoped_string & scopedstr, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
       //virtual bool draw_text_ex(char * lpszString, character_count nCount, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
@@ -402,9 +402,9 @@ namespace draw2d_cairo
       ///double_size get_text_extent(const ::scoped_string & scopedstr) override;
       //double_size GetOutputTextExtent(const char * lpszString, character_count nCount) override;
       //double_size GetOutputTextExtent(const ::scoped_string & scopedstr) override;
-      //double_size GetTabbedTextExtent(const ::string & lpszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
+      //double_size GetTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
       //double_size GetTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
-      //double_size GetOutputTabbedTextExtent(const ::string & lpszString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
+      //double_size GetOutputTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
       //double_size GetOutputTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
       //virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount, double x, double y, double nWidth, double nHeight) override;
       unsigned int GetTextAlign() override;
@@ -463,12 +463,12 @@ namespace draw2d_cairo
 //#endif
 //
 //      // Printer/Device Escape Functions
-//      virtual int Escape(int nEscape, int nCount, const ::string & lpszInData, LPVOID lpOutData) override;
-//      int Escape(int nEscape, int nInputSize, const ::string & lpszInputData, int nOutputSize, char * lpszOutputData) override;
-//      int DrawEscape(int nEscape, int nInputSize, const ::string & lpszInputData) override;
+//      virtual int Escape(int nEscape, int nCount, const ::scoped_string & scopedstrInData, LPVOID lpOutData) override;
+//      int Escape(int nEscape, int nInputSize, const ::scoped_string & scopedstrInputData, int nOutputSize, char * lpszOutputData) override;
+//      int DrawEscape(int nEscape, int nInputSize, const ::scoped_string & scopedstrInputData) override;
 //
       // Escape helpers
-      //int StartDoc(const ::string & lpszDocName) override;  // old Win3.0 version
+      //int StartDoc(const ::scoped_string & scopedstrDocName) override;  // old Win3.0 version
 //xxx      int StartDoc(LPDOCINFO lpDocInfo) override;
       int StartPage() override;
       int EndPage() override;

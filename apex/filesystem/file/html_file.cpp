@@ -28,7 +28,7 @@ const ::text::context* html_file::textcontext()
 void html_file::print(const ::scoped_string & scopedstr)
 {
 
-   raw_print(str);
+   raw_print(scopedstr);
 
 }
 
@@ -36,7 +36,7 @@ void html_file::print(const ::scoped_string & scopedstr)
 void html_file::raw_print(const ::scoped_string & scopedstr)
 {
 
-   print(str);
+   print(scopedstr);
 
 }
 

@@ -134,7 +134,7 @@ namespace httpd
 
          memory mem;
 
-         pbase64->decode(mem, str64);
+         pbase64->decode(mem, scopedstr64);
 
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";
@@ -527,7 +527,7 @@ namespace httpd
 
 
 
-   void socket::simple_file_server(const ::string& pszPath, bool bMatter)
+   void socket::simple_file_server(const ::scoped_string & scopedstrPath, bool bMatter)
    {
 
       pointer_array < ::int_array > rangea;

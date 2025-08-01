@@ -290,7 +290,7 @@ namespace userstack
       //get_parent_frame()->hide();
    }*/
 
-   void pane_impact::check_menu_dir(const ::file::path & psz)
+   void pane_impact::check_menu_dir(const ::file::path & path)
    {
 
       ::file::listing straPath(get_app());
@@ -326,7 +326,7 @@ namespace userstack
    }
 
 
-   void pane_impact::check_3click_dir(const ::file::path & psz)
+   void pane_impact::check_3click_dir(const ::file::path & path)
    {
 
       if(directory()->is(scopedstr))
@@ -374,7 +374,7 @@ namespace userstack
    }
 
 
-   void pane_impact::check_desktop_dir(const ::file::path & psz)
+   void pane_impact::check_desktop_dir(const ::file::path & path)
    {
 
 #ifdef WINDOWS_DESKTOP

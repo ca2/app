@@ -207,12 +207,12 @@ namespace write_text
 
       bool bWhitespace = true;
 
-      while (scopedstrEnd)
+      while (pszEnd)
       {
 
          auto pszLast = pszEnd;
 
-         bool bWhitespaceNow = unicode_is_whitespace(scopedstrEnd);
+         bool bWhitespaceNow = unicode_is_whitespace(pszEnd);
 
          if (bWhitespaceNow && !bWhitespace)
          {
@@ -229,42 +229,42 @@ namespace write_text
 
          bWhitespace = bWhitespaceNow;
 
-         pszEnd = unicode_increment(scopedstrEnd);
+         pszEnd = unicode_increment(pszEnd);
 
-         if (::is_empty(scopedstrEnd))
+         if (::is_empty(pszEnd))
          {
 
             break;
 
          }
 
-         string strNow = string(scopedstrStart, pszEnd - pszStart);
+         string strNow = string(pszStart, pszEnd - pszStart);
 
          auto extent = get_text_extent(strNow).cx();
 
-         if (extent > w || is_empty(scopedstrEnd))
+         if (extent > w || is_empty(pszEnd))
          {
 
             if (extent <= w)
             {
 
-               strNow = string(scopedstrStart, ::is_null(scopedstrEnd) ? -1:pszEnd - pszStart);
+               strNow = string(pszStart, ::is_null(pszEnd) ? -1:pszEnd - pszStart);
 
                pszStart = pszEnd;
 
             }
-            else if (scopedstrLastWordboundaryStart > pszStart)
+            else if (pszLastWordboundaryStart > pszStart)
             {
 
-               strNow = string(scopedstrStart, pszLastWordboundaryStart - pszStart);
+               strNow = string(pszStart, pszLastWordboundaryStart - pszStart);
 
                pszStart = pszLastWordboundaryEnd;
 
             }
-            else if (scopedstrLast > pszStart)
+            else if (pszLast > pszStart)
             {
 
-               strNow = string(scopedstrStart, pszLast - pszStart);
+               strNow = string(pszStart, pszLast - pszStart);
 
                pszStart = pszLast;
 
@@ -293,10 +293,10 @@ namespace write_text
 
          }
 
-         if (is_empty(scopedstrEnd) && !is_empty(scopedstrStart))
+         if (is_empty(pszEnd) && !is_empty(pszStart))
          {
 
-            strNow = string(scopedstrStart, ::is_null(scopedstrEnd) ? -1 : pszEnd - pszStart);
+            strNow = string(pszStart, ::is_null(pszEnd) ? -1 : pszEnd - pszStart);
 
             if (strNow.has_character())
             {
@@ -329,14 +329,14 @@ namespace write_text
 
       string strNow;
 
-      while (scopedstrEnd)
+      while (pszEnd)
       {
 
          auto pszLast = pszEnd;
 
-         unicode_increment(scopedstrEnd);
+         unicode_increment(pszEnd);
 
-         string strNow = string(scopedstrStart, pszEnd - pszStart);
+         string strNow = string(pszStart, pszEnd - pszStart);
          
          auto extentx = get_text_extent(strNow).cx();
 
@@ -346,10 +346,10 @@ namespace write_text
             if(extentx > w)
             {
                
-               if (scopedstrLast > pszStart)
+               if (pszLast > pszStart)
                {
 
-                  strNow = string(scopedstrStart, pszLast - pszStart);
+                  strNow = string(pszStart, pszLast - pszStart);
 
                   pszStart = pszLast;
 
@@ -400,7 +400,7 @@ namespace write_text
 
       string_array stra;
 
-      stra.add_lines(str, true);
+      stra.add_lines(scopedstr, true);
 
       set(pfont);
 

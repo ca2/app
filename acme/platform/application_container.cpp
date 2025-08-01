@@ -345,8 +345,8 @@ namespace platform
 
          string strStartupApplicationAppId = psystem->m_papplication->m_strAppId;
 
-         if (strStartupApplicationAppId != strAppId ||
-            !strAppId.begins(strStartupApplicationAppId))
+         if (strStartupApplicationAppId != scopedstrAppId ||
+            !scopedstrAppId.begins(strStartupApplicationAppId))
          {
 
             information() << "Wrong papp Data Type";
@@ -412,7 +412,7 @@ namespace platform
    ::pointer<::platform::application>application_container::create_application(const ::scoped_string & scopedstrAppId)
    {
 
-      auto papplication = instantiate_application(strAppId);
+      auto papplication = instantiate_application(scopedstrAppId);
 
       if (!papplication)
       {
@@ -456,14 +456,14 @@ namespace platform
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         papplication = m_applicationa.find_running_defer_try_quit_damaged(strAppId);
+         papplication = m_applicationa.find_running_defer_try_quit_damaged(scopedstrAppId);
 
       }
 
       if (papplication.is_null())
       {
 
-         papplication = create_application(strAppId);
+         papplication = create_application(scopedstrAppId);
 
       }
 
@@ -582,7 +582,7 @@ namespace platform
 
       ::pointer<::platform::application>papplication;
 
-      if (m_applicationa.lookup(strAppId, papplication))
+      if (m_applicationa.lookup(scopedstrAppId, papplication))
       {
 
          return papplication;
@@ -601,7 +601,7 @@ namespace platform
       try
       {
 
-         papplication = create_application(strAppId);
+         papplication = create_application(scopedstrAppId);
 
       }
       catch (const ::exception& e)

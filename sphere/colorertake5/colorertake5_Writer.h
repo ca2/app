@@ -11,11 +11,11 @@ namespace colorertake5
    public:
      virtual ~writer(){};
      /** Writes string */
-     virtual void write(const string &string);
+     virtual void write(const ::scoped_string & scopedstring);
      /** Writes string */
      virtual void write(string string);
      /** Writes @ca num characters of string, starting at @ca from position */
-     virtual void write(const string &string, memsize from, memsize num);
+     virtual void write(const ::scoped_string & scopedstring, memsize from, memsize num);
      /** Writes @ca num characters of string, starting at @ca from position */
      virtual void write(string string, memsize from, memsize num);
      /** Writes single character */

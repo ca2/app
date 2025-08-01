@@ -118,7 +118,7 @@ namespace platform
    //void apex_system_layer::initialize_context(){}
 
 
-   ::pointer<::data::node> apex_system_layer::load_xml(const ::string& pszXml)
+   ::pointer<::data::node> apex_system_layer::load_xml(const ::scoped_string & scopedstrXml)
    {
       return {};
    }
@@ -153,7 +153,7 @@ namespace platform
    }
 
 
-   void apex_system_layer::hist_hist(const ::string& psz)
+   void apex_system_layer::hist_hist(const ::scoped_string & scopedstr)
    {
    }
 
@@ -280,34 +280,34 @@ namespace platform
    // }
 
 
-   int apex_system_layer::_001OnDebugReport(int i1, const ::string& psz1, int i2, const ::string& psz2,
-                                            const ::string& psz3,
+   int apex_system_layer::_001OnDebugReport(int i1, const ::scoped_string & scopedstr1, int i2, const ::scoped_string & scopedstr2,
+                                            const ::scoped_string & scopedstr3,
                                             va_list args)
    {
       return 0;
    }
 
 
-   int apex_system_layer::_debug_logging_report(int iReportType, const ::string& pszFilename, int iLinenumber,
+   int apex_system_layer::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber,
                                                 const ::string& iModuleName, const char* pszFormat, va_list list)
    {
       return 0;
    }
 
 
-   bool apex_system_layer::assert_failed_line(const ::string& pszFileName, int iLine)
+   bool apex_system_layer::assert_failed_line(const ::scoped_string & scopedstrFileName, int iLine)
    {
       return false;
    }
 
 
-   bool apex_system_layer::on_assert_failed_line(const ::string& pszFileName, int iLine)
+   bool apex_system_layer::on_assert_failed_line(const ::scoped_string & scopedstrFileName, int iLine)
    {
       return false;
    }
 
 
-   void apex_system_layer::initialize_log(const ::string& pszId)
+   void apex_system_layer::initialize_log(const ::scoped_string & scopedstrId)
    {
    }
 
@@ -317,23 +317,23 @@ namespace platform
    }
 
 
-   void apex_system_layer::appa_set_locale(const ::string& pszLocale, const ::action_context& action_context)
+   void apex_system_layer::appa_set_locale(const ::scoped_string & scopedstrLocale, const ::action_context& action_context)
    {
    }
 
 
-   void apex_system_layer::appa_set_schema(const ::string& pszStyle, const ::action_context& action_context)
+   void apex_system_layer::appa_set_schema(const ::scoped_string & scopedstrStyle, const ::action_context& action_context)
    {
    }
 
 
-   bool apex_system_layer::assert_running_global(const ::string& pszAppName, const ::string& pszId)
+   bool apex_system_layer::assert_running_global(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId)
    {
       return false;
    }
 
 
-   bool apex_system_layer::assert_running_local(const ::string& pszAppName, const ::string& pszId)
+   bool apex_system_layer::assert_running_local(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId)
    {
       return false;
    }
@@ -388,7 +388,7 @@ namespace platform
    }
 
 
-   void apex_system_layer::on_open_file(const ::string& pszFile)
+   void apex_system_layer::on_open_file(const ::scoped_string & scopedstrFile)
    {
    }
 
@@ -472,7 +472,7 @@ namespace platform
    }
 
 
-   bool apex_system_layer::sync_load_url(string& str, const ::string& pszUrl, ::http::cookies* pcookies)
+   bool apex_system_layer::sync_load_url(string& str, const ::scoped_string & scopedstrUrl, ::http::cookies* pcookies)
    {
       return false;
    }
@@ -566,7 +566,7 @@ namespace platform
    }
 
 
-   void apex_system_layer::application_main(int argc, char* argv[], const ::string& pszCommandLine)
+   void apex_system_layer::application_main(int argc, char* argv[], const ::scoped_string & scopedstrCommandLine)
    {
    }
 

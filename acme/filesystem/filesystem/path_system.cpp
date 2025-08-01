@@ -104,7 +104,7 @@ path_system::~path_system()
 ::string path_system::icloud_container_identifier(const char * psz_iCloudContainerIdentifier)
 {
    
-   ::string str_iCloudContainerIdentifier(scopedstr_iCloudContainerIdentifier);
+   ::string str_iCloudContainerIdentifier(psz_iCloudContainerIdentifier);
    
    if(str_iCloudContainerIdentifier.is_empty())
    {
@@ -152,8 +152,8 @@ path_system::~path_system()
       
    }
    
-   return directory_system()->icloud_container2(scopedstrAppId) / path;
-   
+   return directory_system()->icloud_container2(pszAppId) / path;
+
 }
 
 

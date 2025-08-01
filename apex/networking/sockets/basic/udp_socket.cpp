@@ -266,7 +266,7 @@ namespace sockets
    void udp_socket::SendTo(::networking::address * ad, const ::scoped_string & scopedstr, int flags)
    {
 
-      SendToBuf(ad, str, (int)str.length(), flags);
+      SendToBuf(ad, scopedstr, (int)scopedstr.size(), flags);
 
    }
 

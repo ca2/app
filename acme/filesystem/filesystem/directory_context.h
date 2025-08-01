@@ -99,7 +99,7 @@
       virtual ::file::listing & root_ones(::file::listing & listing);
       virtual void  create(const ::file::path & path);
 
-      virtual void  erase(const ::file::path & psz, bool bRecursive = true);
+      virtual void  erase(const ::file::path & path, bool bRecursive = true);
 
       virtual bool has_subdir(const ::file::path & path);
 
@@ -147,7 +147,7 @@
       //virtual ::file::path commonappdata(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild = nullptr, const ::scoped_string & scopedstrPlatform = nullptr, const ::scoped_string & scopedstrConfiguration = nullptr);
       //virtual ::file::path commonappdata_locale_schema(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild = nullptr, const ::scoped_string & scopedstrPlatform = nullptr, const ::scoped_string & scopedstrConfiguration = nullptr, const ::scoped_string & scopedstrLocale = nullptr, const ::scoped_string & scopedstrSchema = nullptr);
 
-      virtual ::file::path trash_that_is_not_trash(const ::file::path & psz);
+      virtual ::file::path trash_that_is_not_trash(const ::file::path & path);
 
       virtual ::file::path cache();
       virtual ::file::path appdata(const ::scoped_string & scopedstrAppId = "");
@@ -235,7 +235,7 @@
       //virtual ::file::listing & root_ones(::file::listing & listing);
       //virtual bool  mk(const ::file::path & path);
 
-      //virtual bool  rm(const ::file::path & psz, bool bRecursive = true);
+      //virtual bool  rm(const ::file::path & path, bool bRecursive = true);
 
       //virtual ::file::path pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode);
 

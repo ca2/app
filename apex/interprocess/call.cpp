@@ -14,9 +14,9 @@ namespace interprocess
    call::call(communication * pcommunication, const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember) :
       //::object(pipi),
       m_pinterprocesscommunication(pcommunication),
-      m_strApp(strApp),
-      m_strObject(strObject),
-      m_strMember(strMember),
+      m_strApp(scopedstrApp),
+      m_strObject(scopedstrObject),
+      m_strMember(scopedstrMember),
       m_bAutoLaunch(false)
    {
 

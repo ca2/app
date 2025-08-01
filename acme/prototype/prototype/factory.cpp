@@ -1035,7 +1035,7 @@ namespace factory
 
       //return pparticle;
 
-      auto pfactoryinterface = get_factory_item(strType);
+      auto pfactoryinterface = get_factory_item(scopedstrType);
 
       //if (!pfactoryinterface)
       //{

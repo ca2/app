@@ -23,8 +23,8 @@ namespace interprocess
          if (m_pinterprocesshandlerNext->_handle_interprocess(
             ptarget,
             payload,
-            strObject,
-            strMember,
+            scopedstrObject,
+            scopedstrMember,
             propertyset
          ))
          {
@@ -38,8 +38,8 @@ namespace interprocess
          return _on_interprocess_handle(
             ptarget,
             payload,
-            strObject,
-            strMember,
+            scopedstrObject,
+            scopedstrMember,
             propertyset
 
          );

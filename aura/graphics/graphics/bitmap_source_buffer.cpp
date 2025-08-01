@@ -83,7 +83,7 @@ namespace graphics
    }
 
 
-   void bitmap_source_buffer::set_bitmap_source(const ::string &strBitmapSource)
+   void bitmap_source_buffer::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
       if (m_strBitmapSource == strBitmapSource)

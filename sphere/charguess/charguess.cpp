@@ -48,7 +48,7 @@ const char* GuessChardet(charguess_det p, const ::scoped_string & scopedstr)
 
 }
 
-extern "C" const char* GuessChardet(charguess_det p, const ::string &str)
+extern "C" const char* GuessChardet(charguess_det p, const ::scoped_string & scopedstr)
 {
 
    return GuessChardet(p,(const string &)str);

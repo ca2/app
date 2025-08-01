@@ -13,7 +13,7 @@ namespace xml
 
       m_pdocument = __allocate ::xml::document();
 
-      m_pdocument->load(strXml);
+      m_pdocument->load(scopedstrXml);
 
    }
 
@@ -55,7 +55,7 @@ namespace xml
 
          strNodeName = m_pnode->get_name();
 
-         if(strNodeName != strName)
+         if(strNodeName != scopedstrName)
          {
             
             m_pnode = nullptr;
@@ -72,7 +72,7 @@ namespace xml
       else
       {
 
-         ::xml::node * pnode = m_pnode->get_child(strName);
+         ::xml::node * pnode = m_pnode->get_child(scopedstrName);
 
          m_pnode = pnode;
 
@@ -96,7 +96,7 @@ namespace xml
 
          m_pnode = m_pdocument->root();
 
-         if(m_pnode->get_name() != strName)
+         if(m_pnode->get_name() != scopedstrName)
          {
 
             ASSERT(false);
@@ -122,7 +122,7 @@ namespace xml
       else
       {
 
-         ::xml::node * pnode = m_pnode->child_at(m_pnode->find(strName, set));
+         ::xml::node * pnode = m_pnode->child_at(m_pnode->find(scopedstrName, set));
 
          m_pnode = pnode;
 
@@ -150,7 +150,7 @@ namespace xml
 
       m_varexchange.m_ppayload = &payload;
 
-      return import_node(strName, m_varexchange);
+      return import_node(scopedstrName, m_varexchange);
 
    }
 

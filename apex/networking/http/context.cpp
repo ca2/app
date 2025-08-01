@@ -1091,12 +1091,12 @@ namespace http
    //}
 
 
-   bool context::open(::pointer<::sockets::http_session>& psession, const ::url::connect_range & connectrange, ::property_set & set, const string &strVersionParam)
+   bool context::open(::pointer<::sockets::http_session>& psession, const ::url::connect_range & connectrange, ::property_set & set, const ::scoped_string & scopedstrVersionParam)
    {
 
       auto tickTimeProfile1 = ::time::now();
 
-      string strVersion(strVersionParam);
+      string strVersion(scopedstrVersionParam);
 
       //string strHost = connect.host();
 
@@ -1719,7 +1719,7 @@ namespace http
 
          character_count iSize = session.m_psocket->GetContentLength();
 
-         str = string(scopedstrData, iSize);
+         str = string(pszData, iSize);
 
       }
 
@@ -2602,7 +2602,7 @@ namespace http
 
          character_count iSize = psocket->GetContentLength();
 
-         string strResponse(scopedstrData, iSize);
+         string strResponse(pszData, iSize);
 
          set["get_response"] = strResponse;
 
@@ -2620,10 +2620,10 @@ namespace http
 
             auto size = psocket->GetContentLength();
 
-            if(::is_set(scopedstrData) && size > 0)
+            if(::is_set(pszData) && size > 0)
             {
 
-               pmemory->assign(scopedstrData, size);
+               pmemory->assign(pszData, size);
 
             }
             else

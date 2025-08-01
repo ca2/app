@@ -16,7 +16,7 @@ namespace c
    char * strdup(const char * psz)
    {
       
-      return ::strdup(scopedstr);
+      return ::strdup(psz);
       
    }
    

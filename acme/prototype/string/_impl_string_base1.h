@@ -3486,7 +3486,7 @@ template < typename ITERATOR_TYPE >
       //      const CHARACTER * pszEnd = pszStart+size();
       const CHARACTER * pszTarget;
 
-      while ((scopedstrTarget = string_find_string(scopedstrStart, scopedstrOld)) != nullptr)
+      while ((scopedstrTarget = string_find_string(pszStart, scopedstrOld)) != nullptr)
       {
 
          count++;
@@ -3513,12 +3513,12 @@ template < typename ITERATOR_TYPE >
       const CHARACTER * pszEnd = pszBuffer + nOldLength;
 
       // loop again to actually do the work
-      while (scopedstrStart < pszEnd)
+      while (pszStart < pszEnd)
       {
 
          CHARACTER * pszTarget;
 
-         while ((scopedstrTarget = (CHARACTER *)string_find_string(scopedstrStart, scopedstrOld)) != nullptr)
+         while ((scopedstrTarget = (CHARACTER *)string_find_string(pszStart, scopedstrOld)) != nullptr)
          {
 
             character_count nBalance = nOldLength - character_count(scopedstrTarget - pszBuffer + nSourceLen);
@@ -3535,7 +3535,7 @@ template < typename ITERATOR_TYPE >
 
          }
 
-         pszStart += string_safe_length(scopedstrStart) + 1;
+         pszStart += string_safe_length(pszStart) + 1;
 
       }
 
@@ -3572,7 +3572,7 @@ template < typename ITERATOR_TYPE >
       const CHARACTER * pszStart = this->begin() + start;
       //      const CHARACTER * pszEnd = pszStart+size();
       const CHARACTER * pszTarget;
-      while ((scopedstrTarget = case_insensitive_string_find_string(scopedstrStart, scopedstrOld)) != nullptr)
+      while ((scopedstrTarget = case_insensitive_string_find_string(pszStart, scopedstrOld)) != nullptr)
       {
          count++;
          pszStart = pszTarget + nSourceLen;
@@ -3594,12 +3594,12 @@ template < typename ITERATOR_TYPE >
       CHARACTER * pszEnd = pszBuffer + nOldLength;
 
       // loop again to actually do the work
-      while (scopedstrStart < pszEnd)
+      while (pszStart < pszEnd)
       {
 
          CHARACTER * pszTarget;
 
-         while ((scopedstrTarget = (CHARACTER *)case_insensitive_string_find_string(scopedstrStart, scopedstrOld)) != nullptr)
+         while ((scopedstrTarget = (CHARACTER *)case_insensitive_string_find_string(pszStart, scopedstrOld)) != nullptr)
          {
 
             character_count nBalance = nOldLength - character_count(scopedstrTarget - pszBuffer + nSourceLen);
@@ -3616,7 +3616,7 @@ template < typename ITERATOR_TYPE >
 
          }
 
-         pszStart += string_safe_length(scopedstrStart) + 1;
+         pszStart += string_safe_length(pszStart) + 1;
 
       }
 
@@ -4224,7 +4224,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
    auto pszEnd = (const CHARACTER *)this->end();
    
-   unicode_decrement(scopedstrEnd, psz);
+   unicode_decrement(pszEnd, psz);
 
    auto pszBlock = (const CHARACTER *)scopedstr.begin();
 
@@ -4239,7 +4239,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
    }
 
-   while(::is_set(scopedstrEnd))
+   while(::is_set(pszEnd))
    {
 
       //bool bFound = true;
@@ -4286,7 +4286,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
       }
 
-      pszEnd = (const CHARACTER *)unicode_decrement(scopedstrEnd, psz);
+      pszEnd = (const CHARACTER *)unicode_decrement(pszEnd, psz);
 
    }
 
@@ -4307,7 +4307,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
    auto pszEnd = (const CHARACTER *)this->end();
 
-   unicode_decrement(scopedstrEnd, psz);
+   unicode_decrement(pszEnd, psz);
 
    auto pszBlock = (const CHARACTER *)scopedstr.begin();
 
@@ -4322,7 +4322,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
    }
 
-   while (::is_set(scopedstrEnd))
+   while (::is_set(pszEnd))
    {
 
       //bool bFound = true;
@@ -4369,7 +4369,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
       }
 
-      pszEnd = (const CHARACTER *)unicode_decrement(scopedstrEnd, psz);
+      pszEnd = (const CHARACTER *)unicode_decrement(pszEnd, psz);
 
    }
 

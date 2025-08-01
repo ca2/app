@@ -150,7 +150,7 @@ namespace operating_system
 
       //initialize(pobjectParent);
 
-      m_strCmdLine = strCmdLine;
+      m_strCmdLine = scopedstrCmdLine;
       
       __øconstruct(m_pprocess);
 
@@ -375,7 +375,7 @@ namespace operating_system
 
       m_pthread = __create_new < process_thread > ();
 
-      m_pthread->construct_process_thread(strCmdLine, dur, &m_bPotentialTimeout, pstrRead, bElevated);
+      m_pthread->construct_process_thread(scopedstrCmdLine, dur, &m_bPotentialTimeout, pstrRead, bElevated);
 
       //m_pthread->m_bAutoDelete = true;
 

@@ -580,7 +580,7 @@ networking::networking* particle::networking() const
 ::factory::factory_pointer & particle::factory(const ::scoped_string & scopedstrLibrary) const
 {
 
-   return platform()->factory(strLibrary);
+   return platform()->factory(scopedstrLibrary);
 
 }
 
@@ -588,7 +588,7 @@ networking::networking* particle::networking() const
 ::factory::factory * particle::component_factory(const ::scoped_string & scopedstrComponent) const
 {
 
-   return platform()->component_factory(strComponent);
+   return platform()->component_factory(scopedstrComponent);
 
 }
 
@@ -598,7 +598,7 @@ networking::networking* particle::networking() const
 
    //informationf("particle::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
 
-   return platform()->factory(strComponent, strImplementation);
+   return platform()->factory(scopedstrComponent, scopedstrImplementation);
 
 }
 
@@ -839,7 +839,7 @@ void particle::printf_line(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
    
-   ::string strLine(scopedstrFormat);
+   ::string strLine(pszFormat);
    
    strLine += "\n";
 
@@ -859,7 +859,7 @@ void particle::printf_out(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
 
-   vprintf(scopedstrFormat, arguments);
+   vprintf(pszFormat, arguments);
 
    va_end(arguments);
    
@@ -901,7 +901,7 @@ void particle::errf_line(const ::ansi_character * pszFormat, ...) const
 
    va_start(arguments, pszFormat);
    
-   ::string strLine(scopedstrFormat);
+   ::string strLine(pszFormat);
    
    strLine += "\n";
 
@@ -1246,7 +1246,7 @@ void particle::formatf_trace(enum_trace_level etracelevel, const ::ansi_characte
 
    statement(etracelevel)(trace_category());
 
-   statement.formatf_output_arguments(scopedstrFormat, arguments);
+   statement.formatf_output_arguments(pszFormat, arguments);
 
 }
 
@@ -1264,7 +1264,7 @@ void particle::tracef(enum_trace_level etracelevel, const ::ansi_character * psz
 
        statement(etracelevel)(trace_category());
 
-       statement.formatf_output_arguments(scopedstrFormat, arguments);
+       statement.formatf_output_arguments(pszFormat, arguments);
 
     }
 
@@ -2119,7 +2119,7 @@ bool particle::should_run_async() const
 ::pointer < ::message_box > particle::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
-   return __initialize_new::message_box(strMessage, strTitle, emessagebox, strDetails, picon);
+   return __initialize_new::message_box(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
 
 }
 
@@ -2127,7 +2127,7 @@ bool particle::should_run_async() const
 ::pointer < ::message_box > particle::message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
-   return __initialize_new::message_box(exception, strMessage, strTitle, emessagebox, strDetails, picon);
+   return __initialize_new::message_box(exception, scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
 
 }
 

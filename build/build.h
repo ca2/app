@@ -34,7 +34,7 @@ namespace app_build
       void run() override;
 
 
-      void write_log(const ::string &str);
+      void write_log(const ::scoped_string & scopedstr);
 
 
 

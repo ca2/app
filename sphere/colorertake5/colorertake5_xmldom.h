@@ -164,7 +164,7 @@ namespace colorertak5
      EntityResolver *er;
      input_source *inputSource;
 
-     static bool getXMLNumber(const string &str, int *res);
+     static bool getXMLNumber(const ::scoped_string & scopedstr, int *res);
 
      void consumeDocument();
      void consumeXmlDecl();

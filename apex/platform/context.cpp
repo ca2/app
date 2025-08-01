@@ -445,13 +445,13 @@ namespace apex
    bool context::_001IsProtocol(::file::path & path, const ::scoped_string & scopedstrProtocol)
    {
 
-      if (path.case_insensitive_begins_eat(strProtocol))
+      if (path.case_insensitive_begins_eat(scopedstrProtocol))
       {
 
          return true;
 
       }
-      else if ((path.length() <= strProtocol.length()) && path.case_insensitive_begins(strProtocol(0, strProtocol.length() - 3)))
+      else if ((path.length() <= scopedstrProtocol.size()) && path.case_insensitive_begins(scopedstrProtocol(0, scopedstrProtocol.size() - 3)))
       {
 
          path.clear();

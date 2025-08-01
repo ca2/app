@@ -603,7 +603,7 @@ void property_set::_008AddArgumentPairs(::string_array & straArguments)
 void property_set::_008AddArgumentOrFile(::payload & payloadFile, const ::scoped_string & scopedstrArgument)
 {
 
-   auto range = strArgument();
+   auto range = scopedstrArgument();
 
    if (range.begins_eat("--") || range.begins_eat("-"))
    {
@@ -614,26 +614,26 @@ void property_set::_008AddArgumentOrFile(::payload & payloadFile, const ::scoped
    else
    {
 
-      auto quote = strArgument.find_first_character_in("\"'");
+      auto quote = scopedstrArgument.find_first_character_in("\"'");
       
-      auto equal = strArgument.find_first_character_in("=");
+      auto equal = scopedstrArgument.find_first_character_in("=");
 
       if (::found(equal) && (::not_found(quote) || quote > equal))
       {
 
-         _008AddArgument(strArgument);
+         _008AddArgument(scopedstrArgument);
 
       }
       else if (payloadFile.is_empty())
       {
 
-         payloadFile = strArgument;
+         payloadFile =scopedstrArgument;
 
       }
       else
       {
 
-         payloadFile.as_string_array().add(strArgument);
+         payloadFile.as_string_array().add(scopedstrArgument);
 
       }
 
@@ -645,7 +645,7 @@ void property_set::_008AddArgumentOrFile(::payload & payloadFile, const ::scoped
 void property_set::_008AddArgument(const ::scoped_string & scopedstrArg)
 {
 
-   auto range = strArg();
+   auto range = scopedstrArg();
 
    if(!range.begins_eat("--"))
    {
@@ -891,7 +891,7 @@ void property_set::parse_ini(const ::scoped_string & scopedstrIni)
 
    string_array stra;
 
-   stra.add_lines(strIni);
+   stra.add_lines(scopedstrIni);
 
    ::property_set * pset = this;
 
@@ -1003,7 +1003,7 @@ void property_set::parse_standard_configuration(const ::scoped_string & scopedst
 
    ::string_array straLines;
 
-   straLines.add_lines(strStandardConfiguration);
+   straLines.add_lines(scopedstrStandardConfiguration);
 
    for(auto & strLine : straLines)
    {
@@ -1040,7 +1040,7 @@ void property_set::parse_network_payload(const ::scoped_string & scopedstrNetwor
 
    __check_refdbg
 
-   auto range = strNetworkPayload();
+   auto range = scopedstrNetworkPayload();
 
    __check_refdbg
 
@@ -1206,7 +1206,7 @@ void property_set::parse_network_arguments(const ::scoped_string & scopedstrUriO
 
    auto pszNetworkArguments = scopedstrUriOrNetworkArguments.find('?');
 
-   if (::is_empty(scopedstrNetworkArguments))
+   if (::is_empty(pszNetworkArguments))
    {
 
       return _parse_network_arguments(scopedstrUriOrNetworkArguments);
@@ -1215,7 +1215,7 @@ void property_set::parse_network_arguments(const ::scoped_string & scopedstrUriO
    else
    {
 
-      return _parse_network_arguments(scopedstrNetworkArguments + 1);
+      return _parse_network_arguments(pszNetworkArguments + 1);
 
    }
 
@@ -1247,21 +1247,21 @@ void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNet
    while (true)
    {
 
-      pszArgumentEnd1 = ansi_chr(scopedstrArgument, '&');
+      pszArgumentEnd1 = ansi_chr(pszArgument, '&');
 
-      pszArgumentEnd2 = ansi_chr(scopedstrArgument, '?');
+      pszArgumentEnd2 = ansi_chr(pszArgument, '?');
 
-      pszArgumentEnd = ::minimum_non_null(scopedstrArgumentEnd1, pszArgumentEnd2);
+      pszArgumentEnd = ::minimum_non_null(pszArgumentEnd1, pszArgumentEnd2);
 
-      pszKeyEnd = ansi_chr(scopedstrArgument, '=');
+      pszKeyEnd = ansi_chr(pszArgument, '=');
 
-      if (scopedstrArgumentEnd == nullptr)
+      if (pszArgumentEnd == nullptr)
       {
 
-         if (scopedstrKeyEnd == nullptr)
+         if (pszKeyEnd == nullptr)
          {
 
-            strKey = ::url::decode({ pszArgument, scopedstrNetworkArguments.size() - (scopedstrArgument - scopedstrNetworkArguments.begin()) });
+            strKey = ::url::decode({ pszArgument, scopedstrNetworkArguments.size() - (pszArgument - scopedstrNetworkArguments.begin()) });
 
             _008Add(strKey, "");
 
@@ -1271,7 +1271,7 @@ void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNet
 
             string strKey = ::url::decode({ pszArgument, pszKeyEnd - pszArgument });
 
-            string strValue = ::url::decode({ pszKeyEnd + 1, scopedstrNetworkArguments.size() - (scopedstrKeyEnd + 1 - scopedstrNetworkArguments.begin()) });
+            string strValue = ::url::decode({ pszKeyEnd + 1, scopedstrNetworkArguments.size() - (pszKeyEnd + 1 - scopedstrNetworkArguments.begin()) });
 
             _008Add(strKey, strValue);
 
@@ -1281,7 +1281,7 @@ void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNet
 
       }
 
-      if (scopedstrKeyEnd == nullptr || pszKeyEnd > pszArgumentEnd)
+      if (pszKeyEnd == nullptr || pszKeyEnd > pszArgumentEnd)
       {
 
          strKey = ::url::decode({ pszArgument, pszArgumentEnd - pszArgument });
@@ -1294,7 +1294,7 @@ void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNet
 
          string strKey = ::url::decode({ pszArgument, pszKeyEnd - pszArgument });
 
-         string strValue = ::url::decode({ pszKeyEnd + 1, pszArgumentEnd - (scopedstrKeyEnd + 1) });
+         string strValue = ::url::decode({ pszKeyEnd + 1, pszArgumentEnd - (pszKeyEnd + 1) });
 
          _008Add(strKey, strValue);
 
@@ -1354,7 +1354,7 @@ void property_set::parse_network_headers(const ::scoped_string & scopedstrHeader
 string property_set::_001Replace(const ::scoped_string & scopedstr) const
 {
 
-   return evaluate(str);
+   return evaluate(scopedstr);
 
 }
 
@@ -2456,7 +2456,7 @@ unsigned int property_set::get_unsigned_int(const atom & atom, unsigned int uDef
    if (::is_null(pproperty))
    {
 
-      return strDefault;
+      return scopedstrDefault;
 
    }
 
@@ -2929,7 +2929,7 @@ bool property_set::is_true_or_empty(const atom & atom) const
 string property_set::evaluate(const ::scoped_string & scopedstrSource) const
 {
 
-   string str(strSource);
+   string str(scopedstrSource);
 
    char ch;
 
@@ -3057,7 +3057,7 @@ string property_set::evaluate(const ::scoped_string & scopedstrSource) const
 bool property_set::get_evaluation(::string & str, const ::scoped_string & scopedstrExpression) const
 {
 
-   return get_string(str, strExpression);
+   return get_string(str, scopedstrExpression);
 
 }
 

@@ -34,7 +34,7 @@ namespace userfs
       }
 
 
-      ::collection::index find_item_by_path(const ::file::path & pszPath);
+      ::collection::index find_item_by_path(const ::file::path & path);
 
       void arrange(::fs::e_arrange earrange);
 

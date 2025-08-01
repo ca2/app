@@ -159,14 +159,14 @@ namespace write_text
    double fonts::font_similarity(const ::scoped_string & scopedstrSystem, const ::scoped_string & scopedstrUser)
    {
 
-      if (strSystem.is_empty() || strUser.is_empty())
+      if (scopedstrSystem.is_empty() || scopedstrUser.is_empty())
       {
 
          return 0.0;
 
       }
 
-      if (strSystem.case_insensitive_order(strUser) == 0)
+      if (scopedstrSystem.case_insensitive_order(scopedstrUser) == 0)
       {
 
          return 1.0;

@@ -1606,7 +1606,7 @@ namespace platform
    //    }
    //
    //
-   //    ::acme::library* system::on_get_library(const ::string& pszLibrary)
+   //    ::acme::library* system::on_get_library(const ::scoped_string & scopedstrLibrary)
    //    {
    //
    //       return nullptr;
@@ -1731,7 +1731,7 @@ namespace platform
    //    }
    //
    //
-   //    ::regular_expression_pointer system::create_regular_expression(const ::string& pszStyle, const ::scoped_string & scopedstr)
+   //    ::regular_expression_pointer system::create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr)
    //    {
    //
    //       auto pcontext = get_regular_expression_context(scopedstrStyle);
@@ -1757,7 +1757,7 @@ namespace platform
    //    }
    //
    //
-   //    ::pointer<::regular_expression::context>system::get_regular_expression_context(const ::string& pszStyle)
+   //    ::pointer<::regular_expression::context>system::get_regular_expression_context(const ::scoped_string & scopedstrStyle)
    //    {
    //
    //       _synchronous_lock synchronouslock(this->synchronization());
@@ -2700,7 +2700,7 @@ namespace platform
    //    }
    //
    //
-   //    void acme_system_layer::system::on_open_file(const ::string& pszFile)
+   //    void acme_system_layer::system::on_open_file(const ::scoped_string & scopedstrFile)
    //    {
    //
    //       throw ::interface_only();
@@ -4455,13 +4455,13 @@ return nullptr;
    }
 
 
-    ::acme::library* acme_system_layer::on_get_library(const ::string& pszLibrary)
+    ::acme::library* acme_system_layer::on_get_library(const ::scoped_string & scopedstrLibrary)
    {
       return nullptr;
    }
 
 
-   //virtual ::pointer<::acme::library> & library(const ::string &strComponent, const ::string &strImplementation){}
+   //virtual ::pointer<::acme::library> & library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation){}
 
 
 void acme_system_layer::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
@@ -4628,14 +4628,14 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    }
 
 
-   ::regular_expression_pointer acme_system_layer::create_regular_expression(const ::string& pszStyle, const ::scoped_string & scopedstr)
+   ::regular_expression_pointer acme_system_layer::create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr)
    {
       return {};
    }
 
 
    //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::string &pszStyle, int iCount){}
-   ::pointer<::regular_expression::context> acme_system_layer::get_regular_expression_context(const ::string& pszStyle)
+   ::pointer<::regular_expression::context> acme_system_layer::get_regular_expression_context(const ::scoped_string & scopedstrStyle)
    {
       return {};
    }
@@ -4718,7 +4718,7 @@ void acme_system_layer::on_open_untitled_file()
    }
 
 
-   void acme_system_layer::on_open_file(const ::string& pszFile)
+   void acme_system_layer::on_open_file(const ::scoped_string & scopedstrFile)
    {
    }
 

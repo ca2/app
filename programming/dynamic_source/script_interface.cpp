@@ -578,21 +578,21 @@ namespace dynamic_source
 
 
 
-   void script_interface::uri_set_var(string& strUrl, const ::string& pszUrl, const ::string& pszKey, ::payload payload)
+   void script_interface::uri_set_var(string& strUrl, const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey, ::payload payload)
    {
 
 
    }
 
 
-   void script_interface::uri_set_param(string& strUrl, const ::string& pszUrl, const ::string& pszKey, const ::scoped_string & scopedstrParam)
+   void script_interface::uri_set_param(string& strUrl, const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrParam)
    {
 
 
    }
 
 
-   string script_interface::query_get_param(const ::string& pszUrl, const ::string& pszKey)
+   string script_interface::query_get_param(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey)
    {
 
       return "";
@@ -600,7 +600,7 @@ namespace dynamic_source
    }
 
 
-   ::payload script_interface::query_get_var(const ::string& pszUrl, const ::string& pszKey)
+   ::payload script_interface::query_get_var(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey)
    {
 
       return false;
@@ -744,7 +744,7 @@ namespace dynamic_source
    }
 
 
-   void script_interface::uri_set_var(string& strUrl, const ::string& pszUrl, const ::string& pszKey, ::payload payload)
+   void script_interface::uri_set_var(string& strUrl, const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey, ::payload payload)
    {
 
       ::url::parts parts(scopedstrUrl);
@@ -756,7 +756,7 @@ namespace dynamic_source
    }
 
 
-   void script_interface::uri_set_param(string& strUrl, const ::string& pszUrl, const ::string& pszKey, const ::scoped_string & scopedstrParam)
+   void script_interface::uri_set_param(string& strUrl, const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrParam)
    {
 
       ::url::parts parts(scopedstrUrl);
@@ -768,7 +768,7 @@ namespace dynamic_source
    }
 
 
-   string script_interface::query_get_param(const ::string& pszUrl, const ::string& pszKey)
+   string script_interface::query_get_param(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey)
    {
 
       ::url::parts parts(scopedstrUrl);
@@ -780,7 +780,7 @@ namespace dynamic_source
    }
 
 
-   ::payload script_interface::query_get_var(const ::string& pszUrl, const ::string& pszKey)
+   ::payload script_interface::query_get_var(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey)
    {
 
       ::url::parts parts(scopedstrUrl);
@@ -792,7 +792,7 @@ namespace dynamic_source
    }
 
 
-   void script_interface::dprint(const ::string& psz)
+   void script_interface::dprint(const ::scoped_string & scopedstr)
    {
 
       if (m_pmain && m_pmain->m_iDebug > 0)

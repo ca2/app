@@ -2755,7 +2755,7 @@ namespace user
    //}
 
 
-   void interaction_base::create_message_queue(const ::string & lpszName)
+   void interaction_base::create_message_queue(const ::scoped_string & scopedstrName)
    {
 
       throw ::interface_only();
@@ -3507,7 +3507,7 @@ namespace user
 
       //auto estatus = 
       
-      ::user::element::set_bitmap_source(strBitmapSource);
+      ::user::element::set_bitmap_source(scopedstrBitmapSource);
 
       //if (!estatus)
       //{

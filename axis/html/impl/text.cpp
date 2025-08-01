@@ -1225,7 +1225,7 @@ namespace html
 
                   }
 
-                  size = pgraphics->get_text_extent(string(scopedstrStart, pszEnd - pszStart));
+                  size = pgraphics->get_text_extent(string(pszStart, pszEnd - pszStart));
 
                   if(*pszEnd == '\0')
                   {
@@ -1234,7 +1234,7 @@ namespace html
 
                   }
 
-                  unicode_increment(scopedstrEnd);
+                  unicode_increment(pszEnd);
 
                   iChar++;
                }

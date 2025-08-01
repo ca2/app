@@ -92,10 +92,10 @@ namespace dynamic_source
       void compile(ds_script * pscript);
 
       void cppize(ds_script * pscript);
-      void cppize(const ::file::path & pszSource,const ::file::path & pszDest,ecpptype enum_type);
+      void cppize(const ::file::path & pathSource,const ::file::path & pathDest,ecpptype enum_type);
 
       void cppize1(ds_script * pscript);
-      void cppize1(const ::file::path & pszSource,const ::file::path & pszDest,ecpptype enum_type);
+      void cppize1(const ::file::path & pathSource,const ::file::path & pathDest,ecpptype enum_type);
 
       string cppize2(const ::scoped_string & scopedstrSource,bool bScript,string_array & straId);
 

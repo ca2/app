@@ -24,7 +24,7 @@ namespace draw2d_cairo
       ~bitmap() override;
 
 
-      bool LoadBitmap(const ::string & lpszResourceName);
+      bool LoadBitmap(const ::scoped_string & scopedstrResourceName);
       bool LoadBitmap(unsigned int nIDResource);
       bool LoadOEMBitmap(unsigned int nIDBitmap); // for OBM_/OCR_/OIC_
    

@@ -30,9 +30,9 @@ numbers:
    public:
 
 
-      //const_char_pointer  input;
+      //const_char_pointer input;
       ::ansi_range m_range;
-      const_char_pointer  next_input;
+      const_char_pointer next_input;
       ::pointer<class token> m_ptoken;
 
 

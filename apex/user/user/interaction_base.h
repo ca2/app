@@ -657,13 +657,13 @@ namespace user
       int get_total_page_count(::handler_context * pcontext) override;
 
 
-      void edit_on_text(string str) override;
+      void edit_on_text(const ::scoped_string & scopedstr) override;
       void edit_on_sel(character_count iBeg, character_count iEnd) override;
       void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) override;
 
 
-      void on_text_composition(string str) override;
-      void on_text_commit(string str) override;
+      void on_text_composition(const ::scoped_string & scopedstr) override;
+      void on_text_commit(const ::scoped_string & scopedstr) override;
       void on_text_composition_done() override;
       //virtual bool is_text_composition_active();
 

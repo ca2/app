@@ -699,7 +699,7 @@ namespace userfs
    }
 
 
-   //void list::add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName)
+   //void list::add_fs_item(::file::path pathUser, ::file::path pathFinal, const ::scoped_string & scopedstrName)
    //{
 
    //   list_item item;

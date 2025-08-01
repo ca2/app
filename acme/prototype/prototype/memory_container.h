@@ -213,7 +213,7 @@ inline void memory_container ::from_string(const PAYLOAD & payload)
 inline ::string memory_container::as_string() const
 {
 
-   return { (const ::ansi_character * ) data(), size() };
+   return { (const_char_pointer )data(), size() };
 
 }
 

@@ -18,7 +18,7 @@ void _debug_debug_string_string()
 }
 
 
-void __assert_particle_ok(const ::particle * pOb, const ::ansi_character * pszFileName, int nLine)
+void __assert_particle_ok(const ::particle * pOb, const_char_pointer pszFileName, int nLine)
 {
 
    if (pOb == nullptr)

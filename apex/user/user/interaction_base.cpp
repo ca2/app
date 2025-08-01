@@ -870,7 +870,7 @@ namespace user
    //}
 
 
-   //void interaction_base::message_box_timeout(string strMessage, ::time timeTimeout, unsigned int fuStyle)
+   //void interaction_base::message_box_timeout(const ::scoped_string & scopedstrMessage, ::time timeTimeout, unsigned int fuStyle)
    //{
 
    //   fork([=]()
@@ -4558,7 +4558,7 @@ namespace user
 
 
 
-   void interaction_base::edit_on_text(string str)
+   void interaction_base::edit_on_text(const ::scoped_string & scopedstr)
    {
 
    }
@@ -4576,13 +4576,13 @@ namespace user
    }
 
 
-   void interaction_base::on_text_composition(string str)
+   void interaction_base::on_text_composition(const ::scoped_string & scopedstr)
    {
 
    }
 
 
-   void interaction_base::on_text_commit(string str)
+   void interaction_base::on_text_commit(const ::scoped_string & scopedstr)
    {
 
    }

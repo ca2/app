@@ -18,7 +18,7 @@
 #include <mach-o/dyld.h>
 
 
-::file::path macos_app_path(::directory_system * pdirectorysystem, string strApp)
+::file::path macos_app_path(::directory_system * pdirectorysystem, const ::scoped_string & scopedstrApp)
 {
 
    ::file::path path = pdirectorysystem->home() / "Library/papp Support/ca2/mypath" / (strApp + ".txt");
@@ -33,7 +33,7 @@ string_array get_c_args_for_c(const ::scoped_string & scopedstr);
 
 string transform_to_c_arg(const ::scoped_string & scopedstr);
 
-int create_process2(const_char_pointer  _cmd_line, int * pprocessId);
+int create_process2(const_char_pointer _cmd_line, int * pprocessId);
 
 
 
@@ -106,7 +106,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
 //}
 //
 
-CLASS_DECL_ACME ::file::path core_app_path(::directory_system * pdirectorysystem, string strApp)
+CLASS_DECL_ACME ::file::path core_app_path(::directory_system * pdirectorysystem, const ::scoped_string & scopedstrApp)
 {
 
    ::file::path path = getenv("HOME");

@@ -69,7 +69,7 @@ namespace progress
    }
 
 
-   void real::format_status(const_char_pointer  pszFormat)
+   void real::format_status(const_char_pointer pszFormat)
    {
 
       string strStatus(pszFormat);

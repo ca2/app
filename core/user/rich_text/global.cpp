@@ -29,7 +29,7 @@ namespace user
 
 
       // return words with trailing spaces
-      void words_trailing_spaces(string_array & stra, string str)
+      void words_trailing_spaces(string_array & stra, const ::scoped_string & scopedstr)
       {
 
          character_count iFind = 0;
@@ -41,12 +41,12 @@ namespace user
          while (true)
          {
 
-            iFind2 = str.find_first_character_in_index(" \t\r\n", iFind);
+            iFind2 = scopedstr.find_first_character_in_index(" \t\r\n", iFind);
 
             if (iFind2 < 0)
             {
 
-               auto strRemainingWord = str(iFind);
+               auto strRemainingWord = scopedstr(iFind);
 
                if (strRemainingWord.has_character())
                {
@@ -59,18 +59,18 @@ namespace user
 
             }
 
-            iFind3 = str.index_of(str(iFind2).skip_any_character_in(" \t\r\n"));
+            iFind3 = scopedstr.index_of(scopedstr(iFind2).skip_any_character_in(" \t\r\n"));
 
             if (::not_found(iFind3))
             {
 
-               stra.add(str(iFind));
+               stra.add(scopedstr(iFind));
 
                return;
 
             }
 
-            string strWord = str(iFind, iFind3 - iFind);
+            string strWord = scopedstr(iFind, iFind3 - iFind);
 
             stra.add(strWord);
 

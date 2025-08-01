@@ -258,7 +258,7 @@ public:
 
    virtual ::file_pointer file_get_file(::file::path path, ::file::e_open eopen);
 
-   virtual ::file_pointer data_get_file(string strData, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_pointer data_get_file(const ::scoped_string & scopedstrData, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
 
    virtual ::folder_pointer get_folder(::file::file * pfile, const ::scoped_string & scopedstrImplementation, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
 
@@ -385,7 +385,7 @@ public:
    //virtual bool add_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents);
 
 
-   string sys_temp(const_char_pointer  lpszName, const ::scoped_string & scopedstrExtension);
+   string sys_temp(const_char_pointer lpszName, const ::scoped_string & scopedstrExtension);
 
 
    //virtual ::file_pointer get_file(const ::payload & payloadFile, unsigned int nOpenFlags);

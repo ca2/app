@@ -43,17 +43,17 @@ namespace sockets
       ~SctpSocket();
 
       /** bind() */
-      int Bind(const string &,::networking::port_t);
+      int Bind(const ::scoped_string & scopedstr,::networking::port_t);
       int Bind(::networking::address * address);
       /** sctp_bindx() */
-      int AddAddress(const string &,::networking::port_t);
+      int AddAddress(const ::scoped_string & scopedstr,::networking::port_t);
       int AddAddress(::networking::address * address);
       /** sctp_bindx() */
-      int RemoveAddress(const string &,::networking::port_t);
+      int RemoveAddress(const ::scoped_string & scopedstr,::networking::port_t);
       int RemoveAddress(::networking::address * address);
 
       /** connect() */
-      int open(const string &,::networking::port_t);
+      int open(const ::scoped_string & scopedstr,::networking::port_t);
       int open(::networking::address * address);
 
       /** Connect timeout callback. */
@@ -65,7 +65,7 @@ namespace sockets
 
    #ifndef SOLARIS
       /** sctp_connectx() */
-      int AddConnection(const string &,::networking::port_t);
+      int AddConnection(const ::scoped_string & scopedstr,::networking::port_t);
       int AddConnection(::networking::address * address);
    #endif
 

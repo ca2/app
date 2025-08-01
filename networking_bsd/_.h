@@ -21,7 +21,7 @@
 #include "_operating_system.h"
 
 
-//CLASS_DECL_NETWORKING_BSD const_char_pointer  bsd_socket_error(int x);
+//CLASS_DECL_NETWORKING_BSD const_char_pointer bsd_socket_error(int x);
 
 
 
@@ -73,19 +73,19 @@ CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr & addr);
 
 CLASS_DECL_NETWORKING_BSD [[nodiscard]] ::e_status from_string(in6_addr& addr, const ::ansi_character* psz);
 CLASS_DECL_NETWORKING_BSD ::string as_string(const in6_addr & addr);
-CLASS_DECL_NETWORKING_BSD [[nodiscard]] ::e_status from_string(in_addr & addr, const ::ansi_character * psz);
+CLASS_DECL_NETWORKING_BSD [[nodiscard]] ::e_status from_string(in_addr & addr, const_char_pointer psz);
 CLASS_DECL_NETWORKING_BSD ::string as_string(const in_addr & addr);
 CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr_in & addr);
 CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr_in6 & addr);
-//CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in & addr, const ::ansi_character * psz);
-//CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in6 & addr, const ::ansi_character * psz);
+//CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in & addr, const_char_pointer psz);
+//CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in6 & addr, const_char_pointer psz);
 #ifdef BSD_STYLE_SOCKETS
 CLASS_DECL_NETWORKING_BSD ::string as_string(const sockaddr & addr);
 //CLASS_DECL_NETWORKING_BSD void from_string(sockaddr & addr, ::ansi_character * psz);
 #endif
 
 
-CLASS_DECL_NETWORKING_BSD string c_gethostbyname(const_char_pointer  hostname);
+CLASS_DECL_NETWORKING_BSD string c_gethostbyname(const_char_pointer hostname);
 
 
 
@@ -124,14 +124,14 @@ CLASS_DECL_NETWORKING_BSD int networking_last_error();
 //inline void __exchange(::binary_stream & s, ::networking::address & address);
 
 
-//CLASS_DECL_NETWORKING_BSD unsigned int c_inet_addr(const_char_pointer  src);
-//CLASS_DECL_NETWORKING_BSD int c_inet_pton(int af, const_char_pointer  src, void * dst);
-//CLASS_DECL_NETWORKING_BSD const_char_pointer  c_inet_ntop(int af, const void * src, char * dst, int cnt);
+//CLASS_DECL_NETWORKING_BSD unsigned int c_inet_addr(const_char_pointer src);
+//CLASS_DECL_NETWORKING_BSD int c_inet_pton(int af, const_char_pointer src, void * dst);
+//CLASS_DECL_NETWORKING_BSD const_char_pointer c_inet_ntop(int af, const void * src, char * dst, int cnt);
 //CLASS_DECL_NETWORKING_BSD string c_inet_ntop(int af, const void * src);
 
 
 
-CLASS_DECL_NETWORKING_BSD string c_gethostbyname(const_char_pointer  hostname);
+CLASS_DECL_NETWORKING_BSD string c_gethostbyname(const_char_pointer hostname);
 
 
 #include "_byte_order.h"

@@ -442,7 +442,7 @@ namespace micro
          //}
 
 
-         //void elemental::_on_window_simple_action(const_char_pointer  pszActionName)
+         //void elemental::_on_window_simple_action(const_char_pointer pszActionName)
          //{
 
          //   ::string strActionName(scopedstrActionName);
@@ -1896,7 +1896,7 @@ namespace micro
 
       ::file::path pathFolder = directory_system()->home() / "application" / strAppId / "details";
 
-      auto pathDetails = file_system()->time_put_contents(pathFolder, "details", "txt", str);
+      auto pathDetails = file_system()->time_put_contents(pathFolder, "details", "txt", scopedstr);
 
       node()->shell_open(pathDetails, "");
 

@@ -46,66 +46,66 @@ void directory_system::initialize(::particle * pparticle)
 }
 
 
-::file::path directory_system::app(string strPlatform, string strConfiguration)
+::file::path directory_system::app(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
 #ifdef WINDOWS
 
-   return stage("ca2 Store", strPlatform, strConfiguration) / "app.exe";
+   return stage("ca2 Store", scopedstrPlatform, scopedstrConfiguration) / "app.exe";
 
 #else
 
-   return stage("ca2 Store", strPlatform, strConfiguration) / "app";
+   return stage("ca2 Store", scopedstrPlatform, scopedstrConfiguration) / "app";
 
 #endif
 
 }
 
 
-::file::path directory_system::app_app_admin(string strPlatform, string strConfiguration)
+::file::path directory_system::app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
-   return stage("ca2 Store", strPlatform, strConfiguration) / "app_app_admin.exe";
+   return stage("ca2 Store", scopedstrPlatform, scopedstrConfiguration) / "app_app_admin.exe";
 
 }
 
 
-::file::path directory_system::app_app_nest(string strPlatform, string strConfiguration)
+::file::path directory_system::app_app_nest(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
-   return stage("ca2 Store", strPlatform, strConfiguration) / "app_app_nest.exe";
+   return stage("ca2 Store", scopedstrPlatform, scopedstrConfiguration) / "app_app_nest.exe";
 
 }
 
 
-::file::path directory_system::app_app(string strPlatform, string strConfiguration)
+::file::path directory_system::app_app(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
 #ifdef WINDOWS
 
-   return stage("ca2 Store", strPlatform, strConfiguration) / "app_app.exe";
+   return stage("ca2 Store", scopedstrPlatform, scopedstrConfiguration) / "app_app.exe";
 
 #else
 
-   return stage("ca2 Store", strPlatform, strConfiguration) / "app_app";
+   return stage("ca2 Store", scopedstrPlatform, scopedstrConfiguration) / "app_app";
 
 #endif
 
 }
 
 
-::file::path directory_system::vcredist(string strPlatform, string strConfiguration)
+::file::path directory_system::vcredist(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
-   return stage("ca2 Store", strPlatform, strConfiguration) / "vcredist.exe";
+   return stage("ca2 Store", scopedstrPlatform, scopedstrConfiguration) / "vcredist.exe";
 
 }
 
 
-::file::path directory_system::install_log(string strPlatform, string strConfiguration)
+::file::path directory_system::install_log(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
-   return install() / ("install-" + strPlatform + ".log");
+   return install() / ("install-" +scopedstrPlatform + ".log");
 
 }
 
@@ -213,7 +213,7 @@ string directory_system::system_short_name()
 }
 
 
-::file::path directory_system::inplace_install(string strAppId, string strPlatform, string strConfiguration)
+::file::path directory_system::inplace_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -222,9 +222,9 @@ string directory_system::system_short_name()
 
    string strFolder;
 
-   auto pFind = strAppId.find('/');
+   auto pFind = scopedstrAppId.find('/');
 
-   if (strPlatform.case_insensitive_order("win32") == 0 || strPlatform.case_insensitive_order("x86") == 0)
+   if (scopedstrPlatform.case_insensitive_order("win32") == 0 || scopedstrPlatform.case_insensitive_order("x86") == 0)
    {
 
       path = program_files_x86();
@@ -242,15 +242,15 @@ string directory_system::system_short_name()
    if (::is_null(pFind))
    {
 
-      path /= strAppId;
+      path /= scopedstrAppId;
 
    }
    else
    {
 
-      path /= strAppId(0, pFind);
+      path /= scopedstrAppId(0, pFind);
 
-      path /= strAppId(pFind + 1);
+      path /= scopedstrAppId(pFind + 1);
 
    }
 
@@ -270,7 +270,7 @@ string directory_system::system_short_name()
 }
 
 
-::file::path directory_system::inplace_matter_install(string strAppId, string strPlatform, string strConfiguration)
+::file::path directory_system::inplace_matter_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -279,7 +279,7 @@ string directory_system::system_short_name()
 
    string strFolder;
 
-   auto pFind = strAppId.find('/');
+   auto pFind = scopedstrAppId.find('/');
 
    path = ca2roaming();
 
@@ -352,15 +352,15 @@ string directory_system::system_short_name()
 
 
 
-::file::path directory_system::stage(string strAppId, string strPlatform, string strConfiguration)
+::file::path directory_system::stage(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
    return 
       inplace_install(
-         strAppId,
-         strPlatform,
-         strConfiguration) 
-      / "time" / node()->time_binary_platform(strPlatform) / strConfiguration;
+         scopedstrAppId,
+         scopedstrPlatform,
+         scopedstrConfiguration)
+      / "time" / node()->time_binary_platform(scopedstrPlatform) / scopedstrConfiguration;
 
 }
 
@@ -389,7 +389,7 @@ string directory_system::system_short_name()
 }
 
 
-::file::path directory_system::icloud_container2(const_char_pointer  psz_iCloudContainerIdentifier)
+::file::path directory_system::icloud_container2(const_char_pointer psz_iCloudContainerIdentifier)
 {
    
    ::string str_iCloudContainerIdentifier;
@@ -405,7 +405,7 @@ string directory_system::system_short_name()
 }
 
 
-::file::path directory_system::icloud_container2_final(const_char_pointer  psz_iCloudContainerIdentifier)
+::file::path directory_system::icloud_container2_final(const_char_pointer psz_iCloudContainerIdentifier)
 {
    
    throw ::interface_only();
@@ -415,7 +415,7 @@ string directory_system::system_short_name()
 }
 
 
-::file::path directory_system::icloud_container_documents(const_char_pointer  psz_iCloudContainerIdentifier)
+::file::path directory_system::icloud_container_documents(const_char_pointer psz_iCloudContainerIdentifier)
 {
 
    return icloud_container2(psz_iCloudContainerIdentifier) / "Documents";
@@ -423,7 +423,7 @@ string directory_system::system_short_name()
 }
 
 
-bool directory_system::is_icloud_container(const ::file::path & path, const_char_pointer  pszContentIdentifier)
+bool directory_system::is_icloud_container(const ::file::path & path, const_char_pointer pszContentIdentifier)
 {
    
    ::file::path pathFolder;
@@ -443,7 +443,7 @@ bool directory_system::is_icloud_container(const ::file::path & path, const_char
 }
 
 
-bool directory_system::has_icloud_container(const_char_pointer  pszContentIdentifier)
+bool directory_system::has_icloud_container(const_char_pointer pszContentIdentifier)
 {
    
    return false;
@@ -907,7 +907,7 @@ void directory_system::_create2(const ::file::path & pathParam)
 
 }
 
-//string name(string path);
+//string name(const ::scoped_string & scopedstrPath);
 
 
 //void directory_system::enumrls(::file::path_array & stra, const ::scoped_string & scopedstr)
@@ -1761,7 +1761,7 @@ void directory_system::destroy()
 //}
 
 
-//::file::path directory_system::application_installer_folder(const ::file::path& pathExe, string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+//::file::path directory_system::application_installer_folder(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 //{
 //
 //   return "";
@@ -1769,7 +1769,7 @@ void directory_system::destroy()
 //}
 
 
-//::file::path directory_system::get_application_path(string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
+//::file::path directory_system::get_application_path(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 //{
 //
 //   return "";
@@ -1777,7 +1777,7 @@ void directory_system::destroy()
 //}
 
 
-// ::file::path directory_system::get_last_run_application_path_file(string strAppId)
+// ::file::path directory_system::get_last_run_application_path_file(const ::scoped_string & scopedstrAppId)
 // {
 
 //    return "";
@@ -1785,7 +1785,7 @@ void directory_system::destroy()
 // }
 
 
-// ::file::path directory_system::get_last_run_application_path(string strAppId)
+// ::file::path directory_system::get_last_run_application_path(const ::scoped_string & scopedstrAppId)
 // {
 
 //    return "";

@@ -519,7 +519,7 @@ bool ftpfs::file_exists(const ::file::path & path)
 }
 
 
-void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
+void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, const ::scoped_string & scopedstrPath)
 {
 
    auto plogon = __allocate ::ftp::logon();
@@ -528,7 +528,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    auto purl = psystem->url();
 
-   plogon->Hostname() = ::url::get_host(strPath);
+   plogon->Hostname() = ::url::get_host(scopedstrPath);
    //logon.Username() = purl->get_username(listing.m_path);
 
    string strUrl = "ftp://" + plogon->Hostname() + "/";

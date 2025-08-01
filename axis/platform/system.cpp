@@ -19,7 +19,7 @@
 //int get_main_screen_rectangle(::int_rectangle * lprect);
 
 //
-//const_char_pointer  g_pszMultimediaLibraryName = nullptr;
+//const_char_pointer g_pszMultimediaLibraryName = nullptr;
 //
 //
 //CLASS_DECL_AXIS void multimedia_set_library_name(const ::scoped_string & scopedstr)
@@ -466,7 +466,7 @@ namespace axis
 
 //#ifdef __ANDROID__
 //
-//   bool system::android_set_user_wallpaper(string strUrl)
+//   bool system::android_set_user_wallpaper(const ::scoped_string & scopedstrUrl)
 //   {
 //
 //      operating_system_driver::get().m_strSetUserWallpaper = strUrl;

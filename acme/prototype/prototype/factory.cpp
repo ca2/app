@@ -964,7 +964,7 @@ thread_local size_t t_sizeDemangle;
 //extern critical_section * g_pcsDemangle;
 
 
-bool demangle (string & str, const ::ansi_character * pszType)
+bool demangle (string & str, const_char_pointer pszType)
 {
 
    //critical_section_lock cs(g_pcsDemangle);

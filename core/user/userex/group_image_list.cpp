@@ -92,7 +92,7 @@ namespace userex
    }
 
 
-   ::userex::image_list_impact * group_image_list_impact::add_group(::atom idGroup, string strIcon, string strTitle, ::file::path pathFolder)
+   ::userex::image_list_impact * group_image_list_impact::add_group(::atom idGroup, const ::scoped_string & scopedstrIcon, const ::scoped_string & scopedstrTitle, ::file::path pathFolder)
    {
 
       ::pointer<group>pgroup = __allocate group();
@@ -101,9 +101,9 @@ namespace userex
 
       pgroup->m_atomGroup = idGroup;
 
-      pgroup->m_strIcon = strIcon;
+      pgroup->m_strIcon = scopedstrIcon;
 
-      pgroup->m_strTitle = strTitle;
+      pgroup->m_strTitle = scopedstrTitle;
 
       m_atomaHandledCommands.add("menu_item_" + idGroup);
 
@@ -194,7 +194,7 @@ namespace userex
    }
 
 
-   ::file::path group_image_list_impact::get_link_path(string strLink)
+   ::file::path group_image_list_impact::get_link_path(const ::scoped_string & scopedstrLink)
    {
 
       ::file::path path;
@@ -202,7 +202,7 @@ namespace userex
       for (auto & group : m_groupa)
       {
 
-         path = group->m_plist->get_link_path(strLink);
+         path = group->m_plist->get_link_path(scopedstrLink);
 
          if (path.has_character())
          {

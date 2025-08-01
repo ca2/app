@@ -463,7 +463,7 @@ public:
 };
 
 
-//CLASS_DECL_ACME void property_set_skip_network_payload(const_char_pointer & pszJson);
+//CLASS_DECL_ACME void property_set_skip_network_payload(const_char_pointer &pszJson);
 CLASS_DECL_ACME void property_set_skip_network_payload(::ansi_range & range);
 
 

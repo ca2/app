@@ -11,7 +11,7 @@
 //bool __node_apex_pre_init();
 //bool __node_apex_pos_init();
 
-CLASS_DECL_APEX string __apex_get_text(string str);
+CLASS_DECL_APEX string __apex_get_text(const ::scoped_string & scopedstr);
 
 
 

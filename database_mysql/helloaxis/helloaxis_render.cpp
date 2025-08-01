@@ -23,7 +23,7 @@ namespace helloaxis
 
    }
 
-   render::bilbo::bilbo(string strPath) :
+   render::bilbo::bilbo(const ::scoped_string & scopedstrPath) :
       bilbo()
    {
 
@@ -165,7 +165,7 @@ namespace helloaxis
 
    }
 
-   bool render::initialize_render(string strId)
+   bool render::initialize_render(const ::scoped_string & scopedstrId)
    {
 
       //      ::database::client::initialize_data_client(&papp->dataserver());
@@ -1288,7 +1288,7 @@ auto m_tick23 = ::time::now();
    }
 
 
-   ::image::image_pointer & render::image23(string strImage)
+   ::image::image_pointer & render::image23(const ::scoped_string & scopedstrImage)
    {
 
 /*      auto & pimage = m_mapDib23[strImage];

@@ -36,7 +36,7 @@ namespace file_lock
       bool close_file();
 
 
-      static string _get_file_name(const_char_pointer  lpszName);
+      static string _get_file_name(const_char_pointer lpszName);
 
 
    };

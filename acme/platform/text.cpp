@@ -4,10 +4,10 @@
 //CLASS_DECL_ACME string __get_text(const ::scoped_string & scopedstr);
 
 
-CLASS_DECL_ACME string null_get_text(string str)
+CLASS_DECL_ACME string null_get_text(const ::scoped_string & scopedstr)
 {
 
-   return str;
+   return scopedstr;
 
 }
 

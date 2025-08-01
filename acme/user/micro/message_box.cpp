@@ -175,7 +175,7 @@ namespace micro
 
       ::collection::count cLine = 1;
 
-      while ((iFind = str(iFind).find_index('\n')) >= 0)
+      while ((iFind = scopedstr(iFind).find_index('\n')) >= 0)
       {
 
          cLine++;
@@ -558,7 +558,7 @@ namespace micro
 
 #ifdef MACOS
 
-   enum_dialog_result ns_alert_box(const_char_pointer  pszMessage, const_char_pointer  pszTitle, enum_message_box emessagebox);
+   enum_dialog_result ns_alert_box(const_char_pointer pszMessage, const_char_pointer pszTitle, enum_message_box emessagebox);
 
 #endif
 

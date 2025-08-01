@@ -14,9 +14,9 @@ namespace launch
       int m_argc;
       char ** m_argv;
       int m_iExitCode;
-      const_char_pointer  m_pszDistro;
+      const_char_pointer m_pszDistro;
       char * m_pszVersion;
-      const_char_pointer  m_pszBranch;
+      const_char_pointer m_pszBranch;
       char * m_pszAppRoot;
       char * m_pszAppName;
 
@@ -28,12 +28,12 @@ namespace launch
       void run();
 
 
-      char * get_download_url(const_char_pointer  pszRoot, const_char_pointer  pszName);
+      char * get_download_url(const_char_pointer pszRoot, const_char_pointer pszName);
 
-      bool check_http_ok(const_char_pointer  pszUrl);
+      bool check_http_ok(const_char_pointer pszUrl);
 
 
-      void log_system(const_char_pointer  psz);
+      void log_system(const_char_pointer psz);
       void install_dependencies();
 
 

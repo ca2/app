@@ -1603,7 +1603,7 @@ CLASS_DECL_ACME::color::color as_color(const ::scoped_string & scopedstr)
 namespace color
 {
 
-   CLASS_DECL_ACME::color::color hex_to_color(const_char_pointer  psz)
+   CLASS_DECL_ACME::color::color hex_to_color(const_char_pointer psz)
    {
 
       ::string str(psz);

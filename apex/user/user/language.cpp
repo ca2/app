@@ -150,15 +150,15 @@ namespace user
    }
 
 
-   string language::get_text(string strText)
+   string language::get_text(const ::scoped_string & scopedstrText)
    {
 
-      string strTranslation = m_stringmap[strText];
+      string strTranslation = m_stringmap[scopedstrText];
 
       if (strTranslation.is_empty())
       {
 
-         return strText;
+         return scopedstrText;
 
       }
 
@@ -167,10 +167,10 @@ namespace user
    }
 
 
-   bool language::parse_podata(string strPoData, bool bOnlyHeader)
+   bool language::parse_podata(const ::scoped_string & scopedstrPoData, bool bOnlyHeader)
    {
 
-      string strPo = strPoData;
+      string strPo = scopedstrPoData;
 
       strPo.case_insensitive_begins_eat(STR_BOM);
 
@@ -192,9 +192,9 @@ namespace user
 
       bool bOk = false;
 
-      //const ::ansi_character * psz = nullptr;
+      //const_char_pointer psz = nullptr;
 
-      //const ::ansi_character * pszEnd = nullptr;
+      //const_char_pointer pszEnd = nullptr;
 
       string strName;
 

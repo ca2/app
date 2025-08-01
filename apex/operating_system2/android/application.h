@@ -21,7 +21,7 @@
 
 //
 //      virtual HINSTANCE GetHinstance();
-//      bool _001OnDDECommand(const_char_pointer  lpcsz);
+//      bool _001OnDDECommand(const_char_pointer lpcsz);
 //      virtual void _001EnableShellOpen();
 //      ///virtual ::apex::document *  _001OpenDocumentFile(::payload payloadFile);
 //      virtual void _001OnFileNew();

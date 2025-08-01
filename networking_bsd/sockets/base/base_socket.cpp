@@ -664,7 +664,7 @@ namespace sockets_bsd
    }
 
 
-   void base_socket::OnLine(const string & )
+   void base_socket::OnLine(const ::scoped_string & scopedstrLine)
    {
    }
 
@@ -990,7 +990,9 @@ namespace sockets_bsd
 
    void base_socket::SetSocketProtocol(const ::scoped_string & scopedstrProtocol)
    {
-      m_strSocketProtocol = strProtocol;
+
+      m_strSocketProtocol = scopedstrProtocol;
+
    }
 
 
@@ -1064,14 +1066,14 @@ namespace sockets_bsd
 #if defined(BSD_STYLE_SOCKETS)
 
 
-   void base_socket::SetSocks4Host(const string & host)
+   void base_socket::SetSocks4Host(const ::scoped_string & scopedstrHost)
    {
 
       //auto pnetworking = system()->networking();
 
       //paddressdepartment->convert(m_socks4_host, host);
 
-      m_socks4_host = host;
+      m_socks4_host = scopedstrHost;
 
    }
 
@@ -1093,7 +1095,7 @@ namespace sockets_bsd
    }
 
 
-   //void base_socket::SetSocks4Host(const ::string & a)
+   //void base_socket::SetSocks4Host(const ::scoped_string & scopedstrAddress)
    //{
    //   m_socks4_host = a;
    //}
@@ -1242,7 +1244,7 @@ namespace sockets_bsd
    //
 
 
-//   int base_socket::Resolve(const string & host,::networking::port_t port)
+//   int base_socket::Resolve(const ::scoped_string & scopedstrHost,::networking::port_t port)
 //   {
 //
 //      return socket_handler()->Resolve(this, host, port);
@@ -1250,7 +1252,7 @@ namespace sockets_bsd
 //   }
 
 
-//   int base_socket::Resolve6(const string & host,::networking::port_t port)
+//   int base_socket::Resolve6(const ::scoped_string & scopedstrHost,::networking::port_t port)
 //   {
 //
 //      return socket_handler()->Resolve6(this, host, port);
@@ -2021,10 +2023,10 @@ bool base_socket::SetSoKeepalive(bool x)
 
 #if defined(SO_BINDTODEVICE) && defined(BSD_STYLE_SOCKETS)
    
-   bool base_socket::SetSoBindtodevice(const string & intf)
+   bool base_socket::SetSoBindtodevice(const ::scoped_string & scopedstrInterface)
    {
    
-      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const_char_pointer  )intf, (unsigned int) intf.length()) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const_char_pointer )intf, (unsigned int) intf.length()) == -1)
       {
 
          fatal() <<"setsockopt(SOL_SOCKET, SO_BINDTODEVICE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());

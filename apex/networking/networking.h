@@ -165,7 +165,7 @@ namespace networking
 
       //virtual bool reverse_sync(reverse_cache_item* pitem);
 
-      virtual bool reverse(string& hostname, const string& number);
+      virtual bool reverse(string& hostname, const ::scoped_string & scopedstrNumber);
       
       virtual string ip_reverse(const string & number);
 

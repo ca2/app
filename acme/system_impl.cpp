@@ -111,7 +111,7 @@ CLASS_DECL_ACME void trace_category_static_term();
 //static ::platform::system * g_psystem = nullptr;
 
 
-//extern const_char_pointer  g_pszTopLevelDomainList[];
+//extern const_char_pointer g_pszTopLevelDomainList[];
 
 
 enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::enum_message_box & emessagebox);
@@ -1313,7 +1313,7 @@ namespace platform
    }
 
 
-   void system::open_profile_link(string strUrl, string strProfile, string strTarget)
+   void system::open_profile_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
 
       throw ::interface_only();
@@ -1321,7 +1321,7 @@ namespace platform
    }
 
 
-   void system::open_link(string strUrl, string strProfile, string strTarget)
+   void system::open_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
 
       open_profile_link(strUrl, strProfile, strTarget);
@@ -1329,7 +1329,7 @@ namespace platform
    }
 
 
-   void system::open_url(string strUrl, string strProfile, string strTarget)
+   void system::open_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
 
       throw ::exception(::error_interface_only);
@@ -3603,7 +3603,7 @@ namespace platform
    }
 
 
-   ::file::path system::local_get_matter_path(string strMatter)
+   ::file::path system::local_get_matter_path(const ::scoped_string & scopedstrMatter)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -3627,7 +3627,7 @@ namespace platform
    }
 
 
-   ::file::path system::local_get_matter_cache_path(string strMatter)
+   ::file::path system::local_get_matter_cache_path(const ::scoped_string & scopedstrMatter)
    {
 
       return local_get_matter_cache_path() / strMatter;
@@ -4244,7 +4244,7 @@ void system_id_update(void * pSystem, long long iUpdate, long long iParam)
 
 void node_will_finish_launching(void * pSystem);
 void system_on_open_untitled_file(void * pSystem);
-void system_on_open_file(void * pSystem, const_char_pointer  pszFile);
+void system_on_open_file(void * pSystem, const_char_pointer pszFile);
 
 
 void node_will_finish_launching(void * pSystem)
@@ -4267,7 +4267,7 @@ void system_on_open_untitled_file(void * pSystem)
 }
 
 
-void system_on_open_file(void * pSystem, const_char_pointer  pszFile)
+void system_on_open_file(void * pSystem, const_char_pointer pszFile)
 {
 
    auto psystem = (::platform::system *)pSystem;

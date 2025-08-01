@@ -351,7 +351,7 @@ namespace nanoui
    //   );
    //
    //   glfwSetDropCallback(m_glfw_window,
-   //      [](GLFWwindow * pwidgetChild, int count, const_char_pointer  * filenames) {
+   //      [](GLFWwindow * pwidgetChild, int count, const_char_pointer *filenames) {
    //         auto it = __nanoui_screens.find(pwidgetChild);
    //         if (it == __nanoui_screens.end())
    //            return;
@@ -860,7 +860,7 @@ namespace nanoui
 
             auto pwidget = m_focus_path[i];
 
-            if (pwidget->keyboard_event(ekey, scancode, action, ekeyModifiers, strText))
+            if (pwidget->keyboard_event(ekey, scancode, action, ekeyModifiers, scopedstrText))
             {
 
                return true;
@@ -1274,7 +1274,7 @@ namespace nanoui
    //   }
    //}
    //
-   //void Screen::drop_callback_event(int count, const_char_pointer  * filenames) {
+   //void Screen::drop_callback_event(int count, const_char_pointer *filenames) {
    //   ::string_array arg(count);
    //   for (int i = 0; i < count; ++i)
    //      arg[i] = filenames[i];
@@ -1830,7 +1830,7 @@ namespace nanoui
    bool Screen::on_key_down(::user::enum_key ekey, long long scancode, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText)
    {
 
-      return keyboard_event(ekey, (int)scancode, e_message_key_down, ekeyModifiers, strText);
+      return keyboard_event(ekey, (int)scancode, e_message_key_down, ekeyModifiers, scopedstrText);
 
    }
 

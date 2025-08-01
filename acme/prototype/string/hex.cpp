@@ -66,9 +66,9 @@ namespace hex
    unsigned int to_unsigned_int(const ::scoped_string & scopedstr)
    {
       unsigned int r = 0;
-      for (int i = 0; i < str.length(); i++)
+      for (int i = 0; i < scopedstr.length(); i++)
       {
-         r = r * 16 + str[i] - 48 - ((str[i] >= 'A') ? 7 : 0) - ((str[i] >= 'a') ? 32 : 0);
+         r = r * 16 + scopedstr[i] - 48 - ((scopedstr[i] >= 'A') ? 7 : 0) - ((scopedstr[i] >= 'a') ? 32 : 0);
       }
       return r;
    }
@@ -76,9 +76,9 @@ namespace hex
    unsigned long long to_unsigned_long_long(const ::scoped_string & scopedstr)
    {
       unsigned long long r = 0;
-      for(int i = 0; i < str.length(); i++)
+      for(int i = 0; i < scopedstr.length(); i++)
       {
-         r = r * 16 + str[i] - 48 - ((str[i] >= 'A') ? 7 : 0) - ((str[i] >= 'a') ? 32 : 0);
+         r = r * 16 + scopedstr[i] - 48 - ((scopedstr[i] >= 'A') ? 7 : 0) - ((scopedstr[i] >= 'a') ? 32 : 0);
       }
 
       return r;
@@ -106,7 +106,7 @@ namespace hex
       
       string strUni;
       
-      const_char_pointer  pszNext = range.m_begin;
+      const_char_pointer pszNext = range.m_begin;
 
       for (::collection::index i = 0; i < 4; i++)
       {
@@ -124,7 +124,7 @@ namespace hex
 
          }
 
-         if ((scopedstrNext - range.m_begin == 1) &&
+         if ((pszNext - range.m_begin == 1) &&
             ((*range.m_begin >= '0' && *range.m_begin <= '9') 
                || (*range.m_begin >= 'A' && *range.m_begin <= 'F')
                || (*range.m_begin >= 'a' && *range.m_begin <= 'f')))

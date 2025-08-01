@@ -243,7 +243,7 @@ namespace html
 
       ::string strParameter(scopedstrParameter);
       
-      const_char_pointer  psz = strParameter;
+      const_char_pointer psz = strParameter;
 
       if (psz == nullptr || *psz == '\0')
       {
@@ -297,7 +297,7 @@ namespace html
 
       ::string strParameter(scopedstrParameter);
 
-      const_char_pointer  psz = strParameter;
+      const_char_pointer psz = strParameter;
 
       if (psz == nullptr || *psz == '\0')
       {

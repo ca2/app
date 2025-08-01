@@ -82,15 +82,15 @@ namespace gpu_opengl
 
       //void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value) override;
 
-      void _set_bool(const_char_pointer  name, bool bSet) const;
-      void _set_int(const_char_pointer  name, int value) const;
-      void _set_float(const_char_pointer  name, float value) const;
-      void _set_vec2(const_char_pointer  name, const glm::vec2& value) const;
-      void _set_vec3(const_char_pointer  name, const glm::vec3& value) const;
-      void _set_vec4(const_char_pointer  name, const glm::vec4& value) const;
-      void _set_mat2(const_char_pointer  name, const glm::mat2& matrix) const;
-      void _set_mat3(const_char_pointer  name, const glm::mat3& matrix) const;
-      void _set_mat4(const_char_pointer  name, const glm::mat4& matrix) const;
+      void _set_bool(const_char_pointer name, bool bSet) const;
+      void _set_int(const_char_pointer name, int value) const;
+      void _set_float(const_char_pointer name, float value) const;
+      void _set_vec2(const_char_pointer name, const glm::vec2& value) const;
+      void _set_vec3(const_char_pointer name, const glm::vec3& value) const;
+      void _set_vec4(const_char_pointer name, const glm::vec4& value) const;
+      void _set_mat2(const_char_pointer name, const glm::mat2& matrix) const;
+      void _set_mat3(const_char_pointer name, const glm::mat3& matrix) const;
+      void _set_mat4(const_char_pointer name, const glm::mat4& matrix) const;
 
       void push_properties() override;
 

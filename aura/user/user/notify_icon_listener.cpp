@@ -79,7 +79,7 @@ namespace user
    //}
 
 
-   //const_char_pointer  notify_icon_listener::_get_notification_area_action_name(int iItem)
+   //const_char_pointer notify_icon_listener::_get_notification_area_action_name(int iItem)
    //{
 
    //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
@@ -96,7 +96,7 @@ namespace user
    //}
 
 
-   //const_char_pointer  notify_icon_listener::_get_notification_area_action_id(int iItem)
+   //const_char_pointer notify_icon_listener::_get_notification_area_action_id(int iItem)
    //{
 
    //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
@@ -113,7 +113,7 @@ namespace user
    //}
 
 
-   //const_char_pointer  notify_icon_listener::_get_notification_area_action_label(int iItem)
+   //const_char_pointer notify_icon_listener::_get_notification_area_action_label(int iItem)
    //{
 
    //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
@@ -130,7 +130,7 @@ namespace user
    //}
 
 
-   //const_char_pointer  notify_icon_listener::_get_notification_area_action_accelerator(int iItem)
+   //const_char_pointer notify_icon_listener::_get_notification_area_action_accelerator(int iItem)
    //{
 
    //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
@@ -147,7 +147,7 @@ namespace user
    //}
 
 
-   //const_char_pointer  notify_icon_listener::_get_notification_area_action_description(int iItem)
+   //const_char_pointer notify_icon_listener::_get_notification_area_action_description(int iItem)
    //{
 
    //   if (iItem < 0 || iItem >= m_notifyiconitema.get_count())
@@ -187,7 +187,7 @@ namespace user
 
    //}
 
-   //notify_icon_listener::item::item(string strName, string strId, string strLabel, string strAccelerator, string strDescription)
+   //notify_icon_listener::item::item(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrId, const ::scoped_string & scopedstrLabel, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
    //{
 
    //   m_strName = strName.if_empty(m_strId);
@@ -209,7 +209,7 @@ namespace user
    //}
 
 
-   //bool notify_icon_listener::notify_icon_insert_item(bool bStockItem, ::collection::index & iIndex, string strName, string strId, string strLabel, string strAccelerator, string strDescription)
+   //bool notify_icon_listener::notify_icon_insert_item(bool bStockItem, ::collection::index & iIndex, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrId, const ::scoped_string & scopedstrLabel, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
    //{
 
    //   if (iIndex < 0 || iIndex > m_notifyiconitema.get_count())

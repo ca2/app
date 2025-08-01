@@ -150,17 +150,17 @@ namespace fs
    }
 
 
-   void link::defer_fill_folder(string strTitle, ::file::path pathFolder)
+   void link::defer_fill_folder(const ::scoped_string & scopedstrTitle, ::file::path pathFolder)
    {
 
-      if (strTitle.is_empty() || pathFolder.is_empty())
+      if (scopedstrTitle.is_empty() || pathFolder.is_empty())
       {
 
          return;
 
       }
 
-      m_strTitle = strTitle;
+      m_strTitle = scopedstrTitle;
 
       m_plisting->m_pathUser = pathFolder;
 

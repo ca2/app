@@ -19,7 +19,7 @@ namespace gpu_opengl
 {
 
 
-   const_char_pointer  shader_type_c_str(GLenum etype)
+   const_char_pointer shader_type_c_str(GLenum etype)
    {
 
       switch (etype)
@@ -75,9 +75,9 @@ namespace gpu_opengl
 
       }
 
-      const_char_pointer  sza[1];
+      const_char_pointer sza[1];
 
-      sza[0] = (const_char_pointer  )blockSource.begin();
+      sza[0] = (const_char_pointer )blockSource.begin();
 
       GLint ia[1];
 
@@ -604,9 +604,9 @@ namespace gpu_opengl
 
          glGetShaderInfoLog(shader, sizeof(infoLog), NULL, infoLog);
 
-         const_char_pointer  psz = shader_type_c_str(type);
+         const_char_pointer psz = shader_type_c_str(type);
 
-         const_char_pointer  pszLog = infoLog;
+         const_char_pointer pszLog = infoLog;
 
          strSummary.formatf("error::SHADER_COMPILATION_ERROR of type: %s \n %s \n -- --------------------------------------------------- -- \n", psz, pszLog);
 
@@ -674,7 +674,7 @@ namespace gpu_opengl
    //}
 
 
-   void shader::_set_bool(const_char_pointer  name, bool b) const
+   void shader::_set_bool(const_char_pointer name, bool b) const
    {
 
       _set_int(name, b ? 0 : 1);
@@ -682,7 +682,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_int(const_char_pointer  name, int i) const
+   void shader::_set_int(const_char_pointer name, int i) const
    {
       //Bind();  // Ensure the shader program is bound
       GLint location = glGetUniformLocation(m_ProgramID, name);
@@ -701,7 +701,7 @@ namespace gpu_opengl
 
       }
    }
-   void shader::_set_float(const_char_pointer  name, float value) const
+   void shader::_set_float(const_char_pointer name, float value) const
    {
       //Bind();  // Ensure the shader program is bound
       GLint location = glGetUniformLocation(m_ProgramID, name);
@@ -714,7 +714,7 @@ namespace gpu_opengl
       glUniform1f(location, value);
       GLCheckError("");
    }
-   void shader::_set_vec2(const_char_pointer  name, const glm::vec2& value) const {
+   void shader::_set_vec2(const_char_pointer name, const glm::vec2& value) const {
       //Bind();  // Ensure the shader program is bound
       GLint location = glGetUniformLocation(m_ProgramID, name);
       GLCheckError("");
@@ -726,7 +726,7 @@ namespace gpu_opengl
       glUniform2f(location, value.x, value.y);
       GLCheckError("");
    }
-   void shader::_set_vec3(const_char_pointer  name, const glm::vec3& value) const {
+   void shader::_set_vec3(const_char_pointer name, const glm::vec3& value) const {
       //Bind();  // Ensure the shader program is bound
       GLint location = glGetUniformLocation(m_ProgramID, name);
       GLCheckError("");
@@ -738,7 +738,7 @@ namespace gpu_opengl
       glUniform3f(location, value.x, value.y, value.z);
       GLCheckError("");
    }
-   void shader::_set_vec4(const_char_pointer  name, const glm::vec4& value) const {
+   void shader::_set_vec4(const_char_pointer name, const glm::vec4& value) const {
       //Bind();  // Ensure the shader program is bound
       GLint location = glGetUniformLocation(m_ProgramID, name);
       //GLCheckError("");
@@ -752,7 +752,7 @@ namespace gpu_opengl
       GLCheckError("");
    }
 
-   void shader::_set_mat2(const_char_pointer  name, const glm::mat2& matrix) const
+   void shader::_set_mat2(const_char_pointer name, const glm::mat2& matrix) const
    {
       GLint location = glGetUniformLocation(m_ProgramID, name);
       GLCheckError("");
@@ -766,7 +766,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::_set_mat3(const_char_pointer  name, const glm::mat3& matrix) const
+   void shader::_set_mat3(const_char_pointer name, const glm::mat3& matrix) const
    {
       GLint location = glGetUniformLocation(m_ProgramID, name);
       GLCheckError("");
@@ -779,7 +779,7 @@ namespace gpu_opengl
       GLCheckError("");
    }
 
-   void shader::_set_mat4(const_char_pointer  name, const glm::mat4& matrix) const
+   void shader::_set_mat4(const_char_pointer name, const glm::mat4& matrix) const
    {
       GLint location = glGetUniformLocation(m_ProgramID, name);
       GLCheckError("");

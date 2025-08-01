@@ -293,7 +293,7 @@ namespace platform
 
 
 
-      virtual void set_resource_block(const_char_pointer  pstart, const_char_pointer  pend);
+      virtual void set_resource_block(const_char_pointer pstart, const_char_pointer pend);
 
       void defer_initialize_platform();
 
@@ -339,9 +339,9 @@ namespace platform
 
 
 
-      //virtual void set_factory_global(const ::string &pszComponent, const ::string &pszImplementation);
+      //virtual void set_factory_global(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
-      //virtual ::pointer<::acme::library> open_component_library(const ::string &pszComponent, const ::string &pszImplementation);
+      //virtual ::pointer<::acme::library> open_component_library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
       virtual ::pointer<::acme::library> create_library(const ::scoped_string & scopedstrLibrary);
       virtual ::pointer<::acme::library> create_library_dynamically(const ::scoped_string & scopedstrLibrary);
@@ -437,7 +437,7 @@ namespace platform
 
 
       //platform * __call__add_referer2(const ::reference_referer & referer) const;
-      release_time_for_project as_release_time_for_project(const_char_pointer  pszStatic);
+      release_time_for_project as_release_time_for_project(const_char_pointer pszStatic);
 
       //::platform::system* system() { return m_psystem; }
       ::operating_system::dynamic_library* dynamic_library() { return m_pdynamiclibrary; }

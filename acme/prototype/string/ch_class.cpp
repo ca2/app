@@ -36,7 +36,7 @@ void * gen_ch_class_reference_tables()
      Extensions (comparing to Perl):
      inner class substraction [{L}-[{Lu}]], addition [{L}[1234]], intersection [{L}&[{Lu}]]
    */
-   ch_class *ch_class::createCharClass(const_char_pointer  ccs, character_count pos, character_count *retPos)
+   ch_class *ch_class::createCharClass(const_char_pointer ccs, character_count pos, character_count *retPos)
    {
       string str = ccs;
       if(str == "(%back;?#1[\\.\\:]|\\^)\\M[^%nname;]+")
@@ -229,9 +229,9 @@ void * gen_ch_class_reference_tables()
       return nullptr;
    }
 
-   void ch_class::add_char(const ::ansi_character * pszUtf8Char)
+   void ch_class::add_char(const_char_pointer pszUtf8Char)
    {
-      long long iChar = unicode_index(scopedstrUtf8Char);
+      long long iChar = unicode_index(pszUtf8Char);
       bit_array * tablePos = infoIndex[iChar >> 8];
       if (!tablePos)
       {
@@ -241,16 +241,16 @@ void * gen_ch_class_reference_tables()
       tablePos->set_bit(iChar & 0xFF);
    }
 
-   void ch_class::clear_char(const ::ansi_character * pszUtf8Char)
+   void ch_class::clear_char(const_char_pointer pszUtf8Char)
    {
-      long long iChar = unicode_index(scopedstrUtf8Char);
+      long long iChar = unicode_index(pszUtf8Char);
       bit_array *tablePos = infoIndex[iChar >> 8];
       if(!tablePos)
          return;
       tablePos->clear_bit(iChar & 0xFF);
    }
 
-   void ch_class::add_range(const_char_pointer  s, const_char_pointer  e)
+   void ch_class::add_range(const_char_pointer s, const_char_pointer e)
    {
       long long iCharStart = unicode_index(s);
       long long iCharEnd = unicode_index(e);
@@ -264,7 +264,7 @@ void * gen_ch_class_reference_tables()
       }
    }
 
-   void ch_class::clear_range(const_char_pointer  s, const_char_pointer  e)
+   void ch_class::clear_range(const_char_pointer s, const_char_pointer e)
    {
       long long iCharStart = unicode_index(s);
       long long iCharEnd = unicode_index(e);
@@ -392,9 +392,9 @@ void * gen_ch_class_reference_tables()
    }
 
 
-   bool ch_class::in_class(const ::ansi_character * pszUtf8Char) const
+   bool ch_class::in_class(const_char_pointer pszUtf8Char) const
    {
-      auto ca = unicode_index(scopedstrUtf8Char);
+      auto ca = unicode_index(pszUtf8Char);
       if(!is_legal_unicode_index(ca))
          return false;
       bit_array * tablePos = infoIndex[ca>>8];

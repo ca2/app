@@ -1858,8 +1858,8 @@ namespace crypto
 
 
 void
-stunCalculateIntegrity_longterm(char* hmac, const_char_pointer  input, int length,
-   const_char_pointer  username, const_char_pointer  realm, const_char_pointer  password)
+stunCalculateIntegrity_longterm(char* hmac, const_char_pointer input, int length,
+   const_char_pointer username, const_char_pointer realm, const_char_pointer password)
 {
 
 #if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
@@ -1878,7 +1878,7 @@ stunCalculateIntegrity_longterm(char* hmac, const_char_pointer  input, int lengt
 }
 
 void
-stunCalculateIntegrity_shortterm(char* hmac, const_char_pointer  input, int length, const_char_pointer  key)
+stunCalculateIntegrity_shortterm(char* hmac, const_char_pointer input, int length, const_char_pointer key)
 {
 #if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
    unsigned int resultSize = 0;

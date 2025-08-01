@@ -320,7 +320,7 @@ public:
 //   inline void defer_set_storing() { if (!is_storing()) set_storing(); }
 //
 //   virtual string factory_id_to_text(const :: atom & atom);
-//   virtual ::atom text_to_factory_id(string strText);
+//   virtual ::atom text_to_factory_id(const ::scoped_string & scopedstrText);
 //
 //   template < typename TYPE >
 //   void default_exchange(TYPE & t);
@@ -598,7 +598,7 @@ public:
 //   //virtual void set_object_link(const ::matter * preference, const ::scoped_string & scopedstrLink, bool bReadOnly);
 //
 //
-//   //virtual ::file::path get_link_path(string strLink);
+//   //virtual ::file::path get_link_path(const ::scoped_string & scopedstrLink);
 //
 //   bool is_version(::collection::index i);
 //
@@ -649,7 +649,7 @@ public:
 //   template < typename BASE_TYPE >
 //   inline ::pointer<BASE_TYPE>load_object();
 //
-//   virtual ::pointer<::matter>create_object_from_text(string strText);
+//   virtual ::pointer<::matter>create_object_from_text(const ::scoped_string & scopedstrText);
 //
 //
 //

@@ -11,7 +11,7 @@ namespace motif
 
 
    ::atom message_box::do_modal(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
-   //void message_box::do_modal(const_char_pointer  pszMsg, bool bError)
+   //void message_box::do_modal(const_char_pointer pszMsg, bool bError)
    {
       XmString xmString = XmStringCreateLocalized(const_cast<char *>(scopedstrMessage.c_str()));
       Arg args[6];

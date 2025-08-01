@@ -24,7 +24,7 @@
 //}
 //
 //
-//void * bare_aligned_memory_allocate_debug(memsize size, int nBlockUse, const_char_pointer  szFileName, int nLine, memsize align)
+//void * bare_aligned_memory_allocate_debug(memsize size, int nBlockUse, const_char_pointer szFileName, int nLine, memsize align)
 //{
 //
 //   return system_heap_alloc(size);
@@ -32,7 +32,7 @@
 //}
 //
 //
-//void * bare_unaligned_memory_allocate_debug(memsize size, int nBlockUse, const_char_pointer  szFileName, int nLine)
+//void * bare_unaligned_memory_allocate_debug(memsize size, int nBlockUse, const_char_pointer szFileName, int nLine)
 //{
 //
 //   return system_heap_alloc(size);
@@ -64,7 +64,7 @@
 //}
 //
 //
-//void * bare_memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer  szFileName, int nLine)
+//void * bare_memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer szFileName, int nLine)
 //{
 //
 //   return system_heap_alloc(nSize);
@@ -80,7 +80,7 @@
 //}
 //
 //
-//void * bare_memory_reallocate_debug(void * p, memsize size, int nBlockUse, const_char_pointer  szFileName, int nLine)
+//void * bare_memory_reallocate_debug(void * p, memsize size, int nBlockUse, const_char_pointer szFileName, int nLine)
 //{
 //
 //   return system_heap_realloc(p, size);
@@ -176,7 +176,7 @@
 //}
 //
 //
-//void * _memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer  szFileName, int nLine)
+//void * _memory_allocate_debug(memsize nSize, int nBlockUse, const_char_pointer szFileName, int nLine)
 //{
 //
 //  // return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
@@ -194,7 +194,7 @@
 //}
 //
 //
-//void * _memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const_char_pointer  szFileName, int nLine)
+//void * _memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const_char_pointer szFileName, int nLine)
 //{
 //
 //   if (pmemory == nullptr)

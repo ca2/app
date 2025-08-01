@@ -188,17 +188,17 @@ namespace userex
    }
 
 
-   bool font_impact::set_sel_by_name(string str)
+   bool font_impact::set_sel_by_name(const ::scoped_string & scopedstr)
    {
 
       if (m_bSourceFontSel)
       {
 
-         m_ptopimpact->m_peditimpact->set_text(str, ::e_source_sync);
+         m_ptopimpact->m_peditimpact->set_text(scopedstr, ::e_source_sync);
 
          __defer_construct(m_ptopimpact->m_peditimpact->m_pfont);
 
-         m_ptopimpact->m_peditimpact->m_pfont->set_family_name(str);
+         m_ptopimpact->m_peditimpact->m_pfont->set_family_name(scopedstr);
 
       }
 
@@ -216,7 +216,7 @@ namespace userex
 
       }
 
-      if (!m_pimpact->set_sel_by_name(str))
+      if (!m_pimpact->set_sel_by_name(scopedstr))
       {
 
          return false;

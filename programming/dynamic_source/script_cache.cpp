@@ -261,17 +261,17 @@ namespace dynamic_source
    }
 
 
-   void script_cache::set_out_of_date(string str)
+   void script_cache::set_out_of_date(const ::scoped_string & scopedstr)
    {
 
-      if (str.is_empty())
+      if (scopedstr.is_empty())
       {
 
          return;
 
       }
 
-      ::file::path pathChanged = str;
+      ::file::path pathChanged = scopedstr;
 
       single_lock synchronouslock(synchronization(), true);
 

@@ -50,7 +50,7 @@ namespace draw2d
 }
 
 #ifdef LINUX
-const_char_pointer  get_main_app_id();
+const_char_pointer get_main_app_id();
 #endif
 
 //void ([a-z0-9_]+)_factory(::factory::factory * pfactory);
@@ -3123,7 +3123,7 @@ namespace aura
    //}
 
 
-//   ::file::path system::local_get_matter_path(string strMatter)
+//   ::file::path system::local_get_matter_path(const ::scoped_string & scopedstrMatter)
 //   {
 //
 //#ifdef UNIVERSAL_WINDOWS
@@ -3147,7 +3147,7 @@ namespace aura
    //}
 
 
-   //::file::path system::local_get_matter_cache_path(string strMatter)
+   //::file::path system::local_get_matter_cache_path(const ::scoped_string & scopedstrMatter)
    //{
 
    //   return local_get_matter_cache_path() / strMatter;
@@ -3410,7 +3410,7 @@ namespace aura
    //}
 
 
-   //bool system::defer_accumulate_on_open_file(string_array stra, string strExtra)
+   //bool system::defer_accumulate_on_open_file(string_array stra, const ::scoped_string & scopedstrExtra)
    //{
 
    //   synchronous_lock synchronouslock(this->synchronization());
@@ -3579,7 +3579,7 @@ namespace aura
    //}
 
 
-   //bool system::on_open_file(::payload payloadFile, string strExtra)
+   //bool system::on_open_file(::payload payloadFile, const ::scoped_string & scopedstrExtra)
    //{
 
    //   
@@ -3647,7 +3647,7 @@ namespace aura
 
 //#ifndef __ANDROID__
 //
-//   void system::on_os_text(e_os_text etext, string strText)
+//   void system::on_os_text(e_os_text etext, const ::scoped_string & scopedstrText)
 //   {
 //
 //
@@ -4114,7 +4114,7 @@ namespace aura
    }*/
 
 
-//   void system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
+//   void system::browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
 //   {
 //
 //       auto estatus = os().link_open(strUrl);
@@ -4394,7 +4394,7 @@ namespace aura
 //
 
 
-//   void system::chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam)
+//   void system::chromium(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrId, ::file::path path, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam)
 //   {
 //
 //#ifdef UNIVERSAL_WINDOWS
@@ -4566,7 +4566,7 @@ namespace aura
 //   }
 
 
-//   void system::defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile)
+//   void system::defer_create_firefox_profile(::file::path pathFirefox, const ::scoped_string & scopedstrProfileName, ::file::path pathProfile)
 //   {
 //
 //#ifdef UNIVERSAL_WINDOWS
@@ -4641,7 +4641,7 @@ namespace aura
 //   }
 //
 //
-//   void system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
+//   void system::firefox(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam)
 //   {
 //
 //#ifdef UNIVERSAL_WINDOWS
@@ -4981,7 +4981,7 @@ namespace aura
    //}
 
 
-   //void system::open_profile_link(string strUrl, string strProfile, string strTarget)
+   //void system::open_profile_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    //{
 
    //   fork([this, strUrl, strProfile, strTarget]()
@@ -4994,7 +4994,7 @@ namespace aura
    //}
 
 
-   //void system::open_url(string strUrl, string strProfile, string strTarget)
+   //void system::open_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    //{
 
    //   fork([this, strUrl, strProfile, strTarget]()
@@ -5008,7 +5008,7 @@ namespace aura
 
 
 
-   //void system::open_link(string strUrl, string strProfile, string strTarget)
+   //void system::open_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    //{
 
    //   fork([this, strUrl, strProfile, strTarget]()
@@ -5224,7 +5224,7 @@ namespace aura
 } // namespace aura
 
 
-//CLASS_DECL_AURA ::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+//CLASS_DECL_AURA ::file::path application_installer_folder(const ::file::path & pathExe, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 //{
 //
 //   string strFolder = pathExe.folder();
@@ -5236,7 +5236,7 @@ namespace aura
 //}
 //
 //
-//CLASS_DECL_AURA bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+//CLASS_DECL_AURA bool is_application_installed(const ::file::path & pathExe, const ::scoped_string & scopedstrAppId, string & strBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 //{
 //
 //   ::file::path path;
@@ -5250,7 +5250,7 @@ namespace aura
 //}
 //
 //
-//CLASS_DECL_AURA bool set_application_installed(const ::file::path & pathExe, string strAppId, const ::scoped_string & scopedstrBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+//CLASS_DECL_AURA bool set_application_installed(const ::file::path & pathExe, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 //{
 //
 //   ::file::path path;
@@ -5262,7 +5262,7 @@ namespace aura
 //}
 //
 //
-//CLASS_DECL_AURA::file::path get_application_path(string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
+//CLASS_DECL_AURA::file::path get_application_path(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 //{
 //
 //   ::file::path pathFolder;
@@ -5282,7 +5282,7 @@ namespace aura
 //}
 //
 //
-//CLASS_DECL_AURA ::file::path get_last_run_application_path_file(string strAppId)
+//CLASS_DECL_AURA ::file::path get_last_run_application_path_file(const ::scoped_string & scopedstrAppId)
 //{
 //
 //   ::file::path pathFile = directory_system()->local() / "appdata" / strAppId / "last_run_path.txt";
@@ -5292,7 +5292,7 @@ namespace aura
 //}
 //
 //
-//CLASS_DECL_AURA::file::path get_last_run_application_path(string strAppId)
+//CLASS_DECL_AURA::file::path get_last_run_application_path(const ::scoped_string & scopedstrAppId)
 //{
 //
 //   ::file::path pathFile = get_last_run_application_path_file(strAppId);
@@ -5304,7 +5304,7 @@ namespace aura
 //}
 //
 //
-//CLASS_DECL_AURA bool set_last_run_application_path(string strAppId)
+//CLASS_DECL_AURA bool set_last_run_application_path(const ::scoped_string & scopedstrAppId)
 //{
 //
 //   ::file::path path = path_system()->app_module();

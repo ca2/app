@@ -355,7 +355,7 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
 //
 //
 
-binary_stream & binary_stream::operator <<(const ::ansi_character * psz)
+binary_stream & binary_stream::operator <<(const_char_pointer psz)
 {
 
    auto len = string_safe_length(psz);
@@ -371,7 +371,7 @@ binary_stream & binary_stream::operator <<(const ::ansi_character * psz)
 
 
 
-binary_stream & binary_stream::operator <<(const ::range < const_char_pointer  > & range)
+binary_stream & binary_stream::operator <<(const ::range < const_char_pointer >& range)
 {
 
    write_buffer_length(range.size());
@@ -813,17 +813,17 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 
 
 
-::pointer<::matter>binary_stream::create_object_from_text(::particle * pparticle, string strText)
+::pointer<::matter>binary_stream::create_object_from_text(::particle * pparticle, const ::scoped_string & scopedstrText)
 {
 
-   if (strText.is_empty())
+   if (scopedstrText.is_empty())
    {
 
       return nullptr;
 
    }
 
-   auto atom = text_to_factory_id(strText);
+   auto atom = text_to_factory_id(scopedstrText);
 
    return __id_create(atom);
 

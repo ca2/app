@@ -55,7 +55,7 @@ nsMBCSGroupProber::~nsMBCSGroupProber()
   }
 }
 
-const_char_pointer  nsMBCSGroupProber::GetCharSetName()
+const_char_pointer nsMBCSGroupProber::GetCharSetName()
 {
   if (mBestGuess == -1)
   {

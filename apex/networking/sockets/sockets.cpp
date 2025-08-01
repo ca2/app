@@ -329,7 +329,7 @@ namespace sockets
 
 
 ///* Resolve DNS host entry. */
-//string ip_reverse(string str)
+//string ip_reverse(const ::scoped_string & scopedstr)
 //{
 //
 //#if defined(UNIVERSAL_WINDOWS) || defined(LINUX) || defined(__ANDROID__) || defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)

@@ -307,7 +307,7 @@ namespace platform
       //// void dump(dump_context & dumpcontext) const override;
 
 
-      virtual string __get_text(string str);
+      virtual string __get_text(const ::scoped_string & scopedstr);
 
 
       ::pointer<::fs::folder_sync> fs_folder_sync(const ::scoped_string& scopedstr);
@@ -328,7 +328,7 @@ namespace platform
       //virtual ::database::key calc_data_key() override;
 
 
-      //virtual string load_podata(string strLang, bool bOnlyHeader);
+      //virtual string load_podata(const ::scoped_string & scopedstrLang, bool bOnlyHeader);
 
       //virtual string load_string(const ::atom& atom);
 
@@ -670,10 +670,10 @@ namespace platform
       //virtual void on_thread_on_idle(::thread * pthread, int lCount) override;
 
 
-      virtual void app_set(string strPath, string strValue);
+      virtual void app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue);
 
 
-      virtual string app_get(string strPath, string strDefault = "");
+      virtual string app_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault = "");
 
 
       //virtual bool Ex2OnAppInstall();
@@ -824,7 +824,7 @@ namespace platform
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this ___new additional instance creation
       virtual void on_exclusive_instance_conflict(::request* prequest, bool& bHandled,
-                                                  enum_exclusive_instance eexclusive, string strId);
+                                                  enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId);
 
 
       /// return true if this instance might continue execution
@@ -834,7 +834,7 @@ namespace platform
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this ___new additional instance creation
-      virtual void on_exclusive_instance_local_conflict_id(::request* prequest, bool& bHandled, string strId);
+      virtual void on_exclusive_instance_local_conflict_id(::request* prequest, bool& bHandled, const ::scoped_string & scopedstrId);
 
 
       virtual void on_exclusive_instance_global_conflict(::request* prequest, bool& bHandled);
@@ -842,10 +842,10 @@ namespace platform
 
       /// return true if the external additional instance might continue execution
       /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
-      virtual void on_additional_local_instance(bool& bHandled, string strModule, int iPid, string strCommandLine);
+      virtual void on_additional_local_instance(bool& bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine);
 
 
-      virtual void on_new_instance(string strModule, const ::atom& idPid);
+      virtual void on_new_instance(const ::scoped_string & scopedstrModule, const ::atom& idPid);
 
 
       virtual string get_local_mutex_id();
@@ -965,7 +965,7 @@ namespace platform
       //virtual void _001FranceExit();
 
 
-      //virtual string lstr(const ::atom & atom, string strDefault = "") override;
+      //virtual string lstr(const ::atom & atom, const ::scoped_string & scopedstrDefault = "") override;
 
 
       //virtual bool do_install();
@@ -1026,9 +1026,9 @@ namespace platform
       virtual void register_application_as_spa_file_type_handler();
 
 
-      //virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration);
-      //virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration);
-      // virtual void start_program_files_app_app_admin(string strPlatform, string strConfiguration);
+      //virtual bool low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+      //virtual void defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+      // virtual void start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
 
 
       virtual bool keyboard_focus_is_focusable(const ::user::interaction_base* pue);
@@ -1098,7 +1098,7 @@ namespace platform
       virtual void close(::enum_exit eexit);
 
 
-      //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr);
+      //user virtual ::pointer<::user::document>defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr);
 
 
       virtual void HideApplication();
@@ -1216,7 +1216,7 @@ namespace platform
       //virtual int sync_message_box(::user::interaction_base * puiOwner,const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int fuStyle = e_message_box_ok) override;
 
 
-      //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override;
+      //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId) override;
 
       //virtual bool process_exception(const ::exception & e) override;
 

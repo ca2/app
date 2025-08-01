@@ -2140,10 +2140,10 @@ end_processing_adding:
    //}
 
 
-   void socket_handler::SetSocks4Host(const string & host)
+   void socket_handler::SetSocks4Host(const ::scoped_string & scopedstrHost)
    {
 
-      m_socks4_host = host;
+      m_socks4_host = scopedstrHost;
       //auto paddressdepartment = ::networking::address_department();
 
       //paddressdepartment->convert(m_socks4_host, host);
@@ -2157,13 +2157,15 @@ end_processing_adding:
    }
 
 
-   void socket_handler::SetSocks4Userid(const string & atom)
+   void socket_handler::SetSocks4Userid(const ::scoped_string & scopedstrUserId)
    {
-      m_socks4_userid = atom;
+
+      m_socks4_userid = scopedstrUserId;
+
    }
 
 
-//   int socket_handler::Resolve(base_socket * pbasesocket, const string & host, port_t port)
+//   int socket_handler::Resolve(base_socket * pbasesocket, const ::scoped_string & scopedstrHost, port_t port)
 //   {
 //
 //      // check cache
@@ -2200,7 +2202,7 @@ end_processing_adding:
 //   }
 
 
-//   int socket_handler::Resolve6(base_socket * pbasesocket, const string & host, port_t port)
+//   int socket_handler::Resolve6(base_socket * pbasesocket, const ::scoped_string & scopedstrHost, port_t port)
 //   {
 //
 //      // check cache

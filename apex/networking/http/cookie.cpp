@@ -103,7 +103,7 @@ namespace http
 
 
 
-   ::collection::index cookies::find_cookie(const_char_pointer  name)
+   ::collection::index cookies::find_cookie(const_char_pointer name)
    {
 
       string strNameLow(name);
@@ -126,7 +126,7 @@ namespace http
 
    }
 
-   ::collection::index cookies::lowfind_cookie(const_char_pointer  name)
+   ::collection::index cookies::lowfind_cookie(const_char_pointer name)
    {
       for(int i = 0; i < this->get_size(); i++)
       {
@@ -138,7 +138,7 @@ namespace http
       return -1;
    }
 
-   http::cookie & cookies::cookie(const_char_pointer  name)
+   http::cookie & cookies::cookie(const_char_pointer name)
    {
 
       auto iFind = find_cookie(name);
@@ -161,7 +161,7 @@ namespace http
    }
 
 
-   http::cookie & cookies::lowcookie(const_char_pointer  name)
+   http::cookie & cookies::lowcookie(const_char_pointer name)
    {
 
       auto iFind = lowfind_cookie(name);
@@ -199,12 +199,12 @@ namespace http
       int i = 0;
       while(bRun)
       {
-         const ::ansi_character * pszEnd = ansi_chr(scopedstr, ';');
+         const_char_pointer pszEnd = ansi_chr(scopedstr, ';');
          bRun = pszEnd != nullptr;
          if(!bRun)
             pszEnd = psz + ansi_len(scopedstr);
 
-         const ::ansi_character * pszEqual = ansi_chr(scopedstr, '=');
+         const_char_pointer pszEqual = ansi_chr(scopedstr, '=');
          if(pszEqual > pszEnd)
             pszEqual = nullptr;
          if(i == 0)
@@ -278,7 +278,7 @@ namespace http
    }
 
 
-   character_count cookies::get_length( const_char_pointer  name)
+   character_count cookies::get_length( const_char_pointer name)
    {
 
       return cookie(name).m_payload.as_string().length();
@@ -362,9 +362,9 @@ namespace http
          return;
 
       string_array stra;
-      const_char_pointer  pszParam = scopedstr.begin();
-      const_char_pointer  pszParamEnd;
-      const_char_pointer  pszKeyEnd;
+      const_char_pointer pszParam = scopedstr.begin();
+      const_char_pointer pszParamEnd;
+      const_char_pointer pszKeyEnd;
       class cookie ca;
       while(true)
       {
@@ -427,7 +427,7 @@ namespace http
 
    }
 
-   http::cookie & cookies::operator [](const_char_pointer  name)
+   http::cookie & cookies::operator [](const_char_pointer name)
    {
       return cookie(name);
    }

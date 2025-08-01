@@ -1593,7 +1593,7 @@ namespace acme
       //}
 
 
-      void window::_on_window_simple_action(const_char_pointer  pszActionName, ::user::activation_token * puseractivationtoken)
+      void window::_on_window_simple_action(const_char_pointer pszActionName, ::user::activation_token * puseractivationtoken)
       {
 
          if (!m_pacmeuserinteraction)
@@ -1603,7 +1603,7 @@ namespace acme
 
          }
 
-         m_pacmeuserinteraction->_on_window_simple_action(scopedstrActionName, puseractivationtoken);
+         m_pacmeuserinteraction->_on_window_simple_action(pszActionName, puseractivationtoken);
 
       }
 

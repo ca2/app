@@ -28,7 +28,7 @@ namespace user
       ::string as_text(const pointer_array < span > & spana);
       //::pointer<format>get_format(pointer_array < format > & formata, format * pformat);
       //::pointer<format>get_format(pointer_array < format > & formata, format * pformat, attribute_flags & eattributea);
-      void words_trailing_spaces(string_array & stra, string str);
+      void words_trailing_spaces(string_array & stra, const ::scoped_string & scopedstr);
 
 
    } // namespace rich_text

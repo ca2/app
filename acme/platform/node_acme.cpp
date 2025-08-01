@@ -65,7 +65,7 @@ namespace platform
    }
 
 
-   void acme_node_layer::node_application_on_status(const_char_pointer  pszStatus, void* p, long long hi)
+   void acme_node_layer::node_application_on_status(const_char_pointer pszStatus, void* p, long long hi)
    {
    }
 
@@ -285,7 +285,7 @@ namespace platform
    }
 
 
-   bool acme_node_layer::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild,
+   bool acme_node_layer::is_application_installed(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId, string& strBuild,
                                                   const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
                                                   const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
@@ -293,7 +293,7 @@ namespace platform
    }
 
 
-   void acme_node_layer::set_application_installed(const ::file::path& pathExe, string strAppId,
+   void acme_node_layer::set_application_installed(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId,
                                                    const ::scoped_string & scopedstrBuild,
                                                    const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
                                                    const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
@@ -301,7 +301,7 @@ namespace platform
    }
 
 
-   ::file::path acme_node_layer::application_installer_folder(const ::file::path& pathExe, string strAppId,
+   ::file::path acme_node_layer::application_installer_folder(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId,
                                                               const ::scoped_string & scopedstrPlatform,
                                                               const ::scoped_string & scopedstrConfiguration,
                                                               const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
@@ -311,7 +311,7 @@ namespace platform
    }
 
 
-   ::file::path acme_node_layer::get_application_path(string strAppId, const ::scoped_string & scopedstrPlatform,
+   ::file::path acme_node_layer::get_application_path(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform,
                                                       const ::scoped_string & scopedstrConfiguration)
    {
       return{};
@@ -409,11 +409,11 @@ namespace platform
 
    //void acme_node_layer::os_set_user_theme(const ::scoped_string & scopedstrUserTheme){}
 
-   //void acme_node_layer::os_process_user_theme(string strTheme){}
+   //void acme_node_layer::os_process_user_theme(const ::scoped_string & scopedstrTheme){}
 
-   //void acme_node_layer::os_process_user_icon_theme(string strIconTheme){}
+   //void acme_node_layer::os_process_user_icon_theme(const ::scoped_string & scopedstrIconTheme){}
 
-//   bool acme_node_layer::set_wallpaper(::collection::index iScreen, string strLocalImagePath,
+//   bool acme_node_layer::set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath,
 //                                       ::acme::windowing::display* pwindowingdisplay)
 //   {
 //      return false;
@@ -563,7 +563,7 @@ namespace platform
 
    //::string acme_node_layer::get_user_toolkit_id(){}
 
-   void acme_node_layer::launch_app(const ::scoped_string & scopedstr, const_char_pointer * argv, int iFlags)
+   void acme_node_layer::launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags)
    {
    }
 
@@ -709,18 +709,18 @@ namespace platform
    }
 
 
-   bool acme_node_layer::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
+   bool acme_node_layer::low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
       return false;
    }
 
 
-   void acme_node_layer::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+   void acme_node_layer::defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
    }
 
 
-   void acme_node_layer::start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+   void acme_node_layer::start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
    }
 
@@ -955,7 +955,7 @@ namespace platform
    }
 
 
-   //virtual ::pointer<::acme::exclusive> get_exclusive(string str, const security_attributes & securityattributes){}
+   //virtual ::pointer<::acme::exclusive> get_exclusive(const ::scoped_string & scopedstr, const security_attributes & securityattributes){}
 
 
    int  acme_node_layer::get_current_processor_index()
@@ -982,7 +982,7 @@ namespace platform
    }
 
 
-   //CLASS_DECL_ACME string expand_env(string str){}
+   //CLASS_DECL_ACME string expand_env(const ::scoped_string & scopedstr){}
    //CLASS_DECL_ACME string xxxget_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable){}
    //CLASS_DECL_ACME string ca2_command_line(){}
 
@@ -999,7 +999,7 @@ namespace platform
    }
 
 
-   //::string acme_node_layer::time_binary_platform(string strPlatform){}
+   //::string acme_node_layer::time_binary_platform(const ::scoped_string & scopedstrPlatform){}
 
 
    //
@@ -1029,7 +1029,7 @@ namespace platform
    //#endif
 
 
-   //::string acme_node_layer::expand_env(string str){}
+   //::string acme_node_layer::expand_env(const ::scoped_string & scopedstr){}
 
    //CLASS_DECL_ACME string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const ::string * & pszEndPtr){}
    //CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam, bool bDefault){}
@@ -1067,7 +1067,7 @@ namespace platform
    }
 
 
-   ::file::path acme_node_layer::core_app_path(string strApp)
+   ::file::path acme_node_layer::core_app_path(const ::scoped_string & scopedstrApp)
    {
       return{};
    }
@@ -1761,7 +1761,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
 #endif
 
    bool acme_node_layer::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath,
-                                                                        const_char_pointer  pszPath)
+                                                                        const_char_pointer pszPath)
    {
       return false;
    }
@@ -1869,7 +1869,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    //#endif
 #if defined(__BSD__) || defined(__APPLE__)
 
-      void acme_node_layer::arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const_char_pointer  status)){}
+      void acme_node_layer::arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const_char_pointer status)){}
 
 #endif
 

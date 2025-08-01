@@ -57,10 +57,10 @@ namespace sockets
    }
 
 
-   resolv_socket::resolv_socket(base_socket *parent, const string & host, ::networking::port_t port, bool ipv6) :
+   resolv_socket::resolv_socket(base_socket *parent, const ::scoped_string & scopedstrHost, ::networking::port_t port, bool ipv6) :
       m_bServer(false)
       ,m_parent(parent)
-      ,m_resolv_host(host)
+      ,m_resolv_host(scopedstrHost)
       ,m_resolv_port(port)
       ,m_resolve_ipv6(ipv6)
       ,m_cached(false)

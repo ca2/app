@@ -186,7 +186,7 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
 
       string strJson = papp->file()->as_string(papp->directory()->matter("speech/windows/lang.json"));
 
-      const ::ansi_character * pszJson = strJson;
+      const_char_pointer pszJson = strJson;
 
       try
       {
@@ -379,7 +379,7 @@ namespace tts_sapi
       //--------------------------------------------------------------------
       // Initializes the text speaker.
       //--------------------------------------------------------------------
-      bool speaker::initialize(string strLang)
+      bool speaker::initialize(const ::scoped_string & scopedstrLang)
       {
 
          //destroy(strLang);
@@ -459,7 +459,7 @@ namespace tts_sapi
       }
 
 
-      bool speaker::initialize_translator(string strLang)
+      bool speaker::initialize_translator(const ::scoped_string & scopedstrLang)
       {
 
          return false;
@@ -467,7 +467,7 @@ namespace tts_sapi
       }
 
 
-      bool speaker::destroy(string strLang)
+      bool speaker::destroy(const ::scoped_string & scopedstrLang)
       {
 
          //fork([&]()
@@ -495,7 +495,7 @@ namespace tts_sapi
       }
 
 
-      bool speaker::finalize_translator(string strLang)
+      bool speaker::finalize_translator(const ::scoped_string & scopedstrLang)
       {
 
          return false;
@@ -515,7 +515,7 @@ namespace tts_sapi
       }
 
 
-      bool speaker::is_lang_ok(string strLang)
+      bool speaker::is_lang_ok(const ::scoped_string & scopedstrLang)
       {
 
          bool bTts = false;
@@ -952,7 +952,7 @@ namespace tts_sapi
       }
 
 
-      bool speaker::is_speaking(string strLang)
+      bool speaker::is_speaking(const ::scoped_string & scopedstrLang)
       {
 
          if (!is_lang_ok(strLang))
@@ -987,7 +987,7 @@ namespace tts_sapi
       }
 
 
-      bool speaker::stop(string strLang)
+      bool speaker::stop(const ::scoped_string & scopedstrLang)
       {
 
          if (!is_lang_ok(strLang))

@@ -43,7 +43,7 @@ namespace userex
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
-      virtual bool set_sel_by_name(string str);
+      virtual bool set_sel_by_name(const ::scoped_string & scopedstr);
 
 
    };

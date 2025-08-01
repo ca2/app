@@ -433,11 +433,11 @@ namespace networking_bsd
    {
       int dots = 0;
       // %! ignore :port?
-      for (int i = 0; i < str.length(); i++)
+      for (int i = 0; i < scopedstr.length(); i++)
       {
-         if (str[i] == '.')
+         if (scopedstr[i] == '.')
             dots++;
-         else if (!character_isdigit(str[i]))
+         else if (!character_isdigit(scopedstr[i]))
             return false;
       }
       if (dots != 3)
@@ -448,14 +448,14 @@ namespace networking_bsd
 
    bool networking::is_ip6(const ::scoped_string & scopedstr)
    {
-      if (str.is_empty())
+      if (scopedstr.is_empty())
          return false;
       ::collection::index qc = 0;
       ::collection::index qd = 0;
-      for (int i = 0; i < str.length(); i++)
+      for (int i = 0; i < scopedstr.length(); i++)
       {
-         qc += (str[i] == ':') ? 1 : 0;
-         qd += (str[i] == '.') ? 1 : 0;
+         qc += (scopedstr[i] == ':') ? 1 : 0;
+         qd += (scopedstr[i] == '.') ? 1 : 0;
       }
       if (qc < 2)
          return false;
@@ -468,7 +468,7 @@ namespace networking_bsd
          return false;
       }
 
-      ::parse pa(str, ":."_ansi);
+      ::parse pa(scopedstr, ":."_ansi);
 
       string tmp = pa.getword();
 
@@ -506,12 +506,12 @@ namespace networking_bsd
    bool networking::convert(in_addr& l, const ::scoped_string & scopedstr, int ai_flags)
    {
 
-      if (str.is_empty())
+      if (scopedstr.is_empty())
          return false;
 
       single_lock synchronouslock(m_pmutexCache, true);
       dns_cache_item item;
-      if (m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_timeLastChecked.elapsed()) < (5_minute)))))
+      if (m_mapCache.lookup(scopedstr, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_timeLastChecked.elapsed()) < (5_minute)))))
       {
          if (item.m_bOk)
          {
@@ -532,7 +532,7 @@ namespace networking_bsd
 #ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
       {
-         ::parse pa((const_char_pointer  )host, ".");
+         ::parse pa((const_char_pointer )host, ".");
          union
          {
             struct
@@ -589,21 +589,21 @@ namespace networking_bsd
       hints.ai_socktype = 0;
       hints.ai_protocol = 0;
       struct addrinfo* res;
-      if (is_ip4(str))
+      if (is_ip4(scopedstr))
          hints.ai_flags |= AI_NUMERICHOST;
 
-      int n = getaddrinfo(str, nullptr, &hints, &res);
+      int n = getaddrinfo(scopedstr, nullptr, &hints, &res);
       if (n)
       {
          string strError = "getaddrinfo Error: ";
 #ifndef __CYGWIN__
          strError += gai_strerror(n);
 #endif
-         error() << strError + " for " + str;
+         error() << strError + " for " + scopedstr;
          item.m_bOk = false;
          item.m_bTimeout = true;
          item.m_timeLastChecked.Now();
-         m_mapCache.set_at(str, item);
+         m_mapCache.set_at(scopedstr, item);
 
          return false;
 #endif // NO_GETADDRINFO
@@ -626,7 +626,7 @@ namespace networking_bsd
       freeaddrinfo(res);
       item.m_ipaddr = sa.sin_addr;
       item.m_timeLastChecked.Now();
-      m_mapCache.set_at(str, item);
+      m_mapCache.set_at(scopedstr, item);
 
       //if(psystem->m_bGudoNetCache)
       {
@@ -842,7 +842,7 @@ namespace networking_bsd
    }
    */
 
-   /*   bool networking::convert(in_addr & sa, const string & host, int ai_flags)
+   /*   bool networking::convert(in_addr & sa, const ::scoped_string & scopedstrHost, int ai_flags)
       {
 
          memory_set(&sa, 0, sizeof(sa));
@@ -850,7 +850,7 @@ namespace networking_bsd
    #ifdef NO_GETADDRINFO
          if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
          {
-            ::parse pa((const_char_pointer  )host, ".");
+            ::parse pa((const_char_pointer )host, ".");
             union {
                struct {
                   uchar b1;
@@ -936,13 +936,13 @@ namespace networking_bsd
       }*/
 
 
-   bool networking::convert(struct in6_addr& sa, const string& host, int ai_flags)
+   bool networking::convert(struct in6_addr& sa, const ::scoped_string & scopedstrHost, int ai_flags)
    {
 
       try
       {
 
-         auto estatus = ::from_string(sa, host);
+         auto estatus = ::from_string(sa, scopedstrHost);
 
          if (estatus.succeeded())
          {
@@ -1056,9 +1056,9 @@ namespace networking_bsd
       hints.ai_socktype = SOCK_STREAM;
       hints.ai_protocol = IPPROTO_TCP;
       struct addrinfo* res;
-      if (is_ip6(host))
+      if (is_ip6(scopedstrHost))
          hints.ai_flags |= AI_NUMERICHOST;
-      int n = getaddrinfo(host, nullptr, &hints, &res);
+      int n = getaddrinfo(scopedstrHost, nullptr, &hints, &res);
       if (!n)
       {
 
@@ -1091,10 +1091,10 @@ namespace networking_bsd
    }
 
 
-   bool networking::reverse(string& number, const string& hostname)
+   bool networking::reverse(string& number, const ::scoped_string & scopedstrHostname)
    {
 
-      auto paddress = create_address(hostname);
+      auto paddress = create_address(scopedstrHostname);
 
       number = paddress->get_display_number();
 
@@ -1240,7 +1240,7 @@ namespace networking_bsd
          else
          {
             struct sockaddr_in* sa_in = (struct sockaddr_in*)sa;
-            struct hostent* h = gethostbyaddr((const_char_pointer  )&sa_in->sin_addr, sizeof(sa_in->sin_addr), AF_INET);
+            struct hostent* h = gethostbyaddr((const_char_pointer )&sa_in->sin_addr, sizeof(sa_in->sin_addr), AF_INET);
             if (h)
             {
                hostname = h->h_name;
@@ -1288,7 +1288,7 @@ namespace networking_bsd
          {
             // %! TODO: ipv6 reverse lookup
             struct sockaddr_in6* sa_in = (struct sockaddr_in6*)sa;
-            struct hostent* h = gethostbyaddr((const_char_pointer  )&sa_in->sin6_addr, sizeof(sa_in->sin6_addr), AF_INET6);
+            struct hostent* h = gethostbyaddr((const_char_pointer )&sa_in->sin6_addr, sizeof(sa_in->sin6_addr), AF_INET6);
             if (h)
             {
                hostname = h->h_name;
@@ -1416,14 +1416,14 @@ namespace networking_bsd
    int networking::service_port(const ::scoped_string & scopedstr, int flags)
    {
 
-      if (::str::is_simple_natural(str))
-         return ::str::to_int(str);
+      if (::str::is_simple_natural(scopedstr))
+         return ::str::to_int(scopedstr);
 
-      if (str.case_insensitive_equals("http"))
+      if (scopedstr.case_insensitive_equals("http"))
       {
          return 80;
       }
-      else if (str.case_insensitive_equals("https"))
+      else if (scopedstr.case_insensitive_equals("https"))
       {
          return 443;
       }
@@ -1432,7 +1432,7 @@ namespace networking_bsd
 
          int service = 0;
 
-         if (!u2service(str, service, 0))
+         if (!u2service(scopedstr, service, 0))
             return 0;
 
          return service;
@@ -1933,7 +1933,7 @@ namespace networking_bsd
    //#ifdef NO_GETADDRINFO
    //      if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
    //      {
-   //         ::parse pa((const_char_pointer  )host, ".");
+   //         ::parse pa((const_char_pointer )host, ".");
    //         union
    //         {
    //            struct
@@ -2218,7 +2218,7 @@ namespace networking_bsd
    }
    */
 
-   /*   bool networking::convert(in_addr & sa, const string & host, int ai_flags)
+   /*   bool networking::convert(in_addr & sa, const ::scoped_string & scopedstrHost, int ai_flags)
       {
 
          memory_set(&sa, 0, sizeof(sa));
@@ -2226,7 +2226,7 @@ namespace networking_bsd
    #ifdef NO_GETADDRINFO
          if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
          {
-            ::parse pa((const_char_pointer  )host, ".");
+            ::parse pa((const_char_pointer )host, ".");
             union {
                struct {
                   uchar b1;
@@ -2312,7 +2312,7 @@ namespace networking_bsd
       }*/
 
 
-      //bool networking::convert(struct in6_addr & sa, const string & host, int ai_flags)
+      //bool networking::convert(struct in6_addr & sa, const ::scoped_string & scopedstrHost, int ai_flags)
       //{
       //
       //   try
@@ -2460,7 +2460,7 @@ namespace networking_bsd
       //}
       //
       //
-      //bool networking::reverse(string & number, const string & hostname)
+      //bool networking::reverse(string & number, const ::scoped_string & scopedstrHostname)
       //{
       //
       //   ::networking::address address(hostname);
@@ -2600,7 +2600,7 @@ namespace networking_bsd
       //      else
       //      {
       //         struct sockaddr_in* sa_in = (struct sockaddr_in*)sa;
-      //         struct hostent* h = gethostbyaddr((const_char_pointer  )&sa_in->sin_addr, sizeof(sa_in->sin_addr), AF_INET);
+      //         struct hostent* h = gethostbyaddr((const_char_pointer )&sa_in->sin_addr, sizeof(sa_in->sin_addr), AF_INET);
       //         if (h)
       //         {
       //            hostname = h->h_name;
@@ -2648,7 +2648,7 @@ namespace networking_bsd
       //      {
       //         // %! TODO: ipv6 reverse lookup
       //         struct sockaddr_in6* sa_in = (struct sockaddr_in6*)sa;
-      //         struct hostent* h = gethostbyaddr((const_char_pointer  )&sa_in->sin6_addr, sizeof(sa_in->sin6_addr), AF_INET6);
+      //         struct hostent* h = gethostbyaddr((const_char_pointer )&sa_in->sin6_addr, sizeof(sa_in->sin6_addr), AF_INET6);
       //         if (h)
       //         {
       //            hostname = h->h_name;
@@ -3364,14 +3364,14 @@ namespace networking_bsd
       if (eaddresstypePreferred == ::networking::e_address_type_ipv4)
       {
 
-         if (lookup_ipv4(paddress, strAddress))
+         if (lookup_ipv4(paddress, scopedstrAddress))
          {
 
             return true;
 
          }
 
-         if (lookup_ipv6(paddress, strAddress))
+         if (lookup_ipv6(paddress, scopedstrAddress))
          {
 
             return true;
@@ -3382,14 +3382,14 @@ namespace networking_bsd
       else
       {
 
-         if (this->has_ip6_internet() && lookup_ipv6(paddress, strAddress))
+         if (this->has_ip6_internet() && lookup_ipv6(paddress, scopedstrAddress))
          {
 
             return true;
 
          }
 
-         if (lookup_ipv4(paddress, strAddress))
+         if (lookup_ipv4(paddress, scopedstrAddress))
          {
 
             return true;
@@ -3406,7 +3406,7 @@ namespace networking_bsd
    bool networking::lookup_ipv4(::networking_bsd::address* paddress, const ::scoped_string & scopedstrAddress)
    {
 
-      if (convert(paddress->u.m_addr.sin_addr, strAddress))
+      if (convert(paddress->u.m_addr.sin_addr, scopedstrAddress))
       {
 
          paddress->u.s.set_family(AF_INET);
@@ -3433,7 +3433,7 @@ namespace networking_bsd
    bool networking::lookup_ipv6(::networking_bsd::address* paddress, const ::scoped_string & scopedstrAddress)
    {
 
-      if (convert(paddress->u.m_addr6.sin6_addr, strAddress))
+      if (convert(paddress->u.m_addr6.sin6_addr, scopedstrAddress))
       {
 
          paddress->u.s.set_family(AF_INET6);
@@ -3462,7 +3462,7 @@ namespace networking_bsd
 
       auto paddress = __allocate address();
 
-      if (::from_string(paddress->u.m_addr6.sin6_addr, strAddress) == ::success)
+      if (::from_string(paddress->u.m_addr6.sin6_addr, scopedstrAddress) == ::success)
       {
 
          paddress->u.s.set_family(AF_INET6);
@@ -3482,7 +3482,7 @@ namespace networking_bsd
          return paddress;
 
       }
-      else if (::from_string(paddress->u.m_addr.sin_addr, strAddress) == ::success)
+      else if (::from_string(paddress->u.m_addr.sin_addr, scopedstrAddress) == ::success)
       {
 
          paddress->u.s.set_family(AF_INET);
@@ -3502,7 +3502,7 @@ namespace networking_bsd
          return paddress;
 
       }
-      else if (lookup(paddress, eaddresstypePreferred, strAddress))
+      else if (lookup(paddress, eaddresstypePreferred, scopedstrAddress))
       {
 
          paddress->set_service_number(port);
@@ -3521,7 +3521,7 @@ namespace networking_bsd
 
       auto paddress = __allocate address();
 
-      if (!convert(paddress->u.m_addr.sin_addr, strAddress))
+      if (!convert(paddress->u.m_addr.sin_addr, scopedstrAddress))
       {
 
          return nullptr;
@@ -3542,7 +3542,7 @@ namespace networking_bsd
 
       auto paddress2 = __allocate address();
 
-      if (!convert(paddress2->u.m_addr6.sin6_addr, strAddress))
+      if (!convert(paddress2->u.m_addr6.sin6_addr, scopedstrAddress))
       {
 
          return nullptr;

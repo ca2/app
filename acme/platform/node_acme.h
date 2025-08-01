@@ -150,7 +150,7 @@ namespace platform
       virtual void initialize(::particle* pparticle);
 
 
-      virtual void node_application_on_status(const_char_pointer  pszStatus, void* p = nullptr, long long hi = 0);
+      virtual void node_application_on_status(const_char_pointer pszStatus, void* p = nullptr, long long hi = 0);
 
 
       //virtual ::particle_pointer create_quit_particle(::pointer<::platform::node>& pnode);
@@ -274,22 +274,22 @@ namespace platform
       virtual string app_id_to_executable_name(const ::scoped_string & scopedstrAppId);
 
 
-      virtual bool is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild,
+      virtual bool is_application_installed(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId, string& strBuild,
                                             const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
                                             const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
 
-      virtual void set_application_installed(const ::file::path& pathExe, string strAppId, const ::scoped_string & scopedstrBuild,
+      virtual void set_application_installed(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild,
                                              const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
                                              const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
 
-      virtual ::file::path application_installer_folder(const ::file::path& pathExe, string strAppId,
+      virtual ::file::path application_installer_folder(const ::file::path& pathExe, const ::scoped_string & scopedstrAppId,
                                                         const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
                                                         const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
 
-      virtual ::file::path get_application_path(string strAppId, const ::scoped_string & scopedstrPlatform,
+      virtual ::file::path get_application_path(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform,
                                                 const ::scoped_string & scopedstrConfiguration);
 
 
@@ -360,11 +360,11 @@ namespace platform
 
       //virtual void os_set_user_theme(const ::scoped_string & scopedstrUserTheme);
 
-      //virtual void os_process_user_theme(string strTheme);
+      //virtual void os_process_user_theme(const ::scoped_string & scopedstrTheme);
 
-      //virtual void os_process_user_icon_theme(string strIconTheme);
+      //virtual void os_process_user_icon_theme(const ::scoped_string & scopedstrIconTheme);
 
-//      virtual bool set_wallpaper(::collection::index iScreen, string strLocalImagePath,
+//      virtual bool set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath,
 //                                 ::acme::windowing::display* pwindowingdisplay);
 //
 //
@@ -454,7 +454,7 @@ namespace platform
 
       //virtual ::string get_user_toolkit_id();
 
-      virtual void launch_app(const ::scoped_string & scopedstr, const_char_pointer * argv, int iFlags);
+      virtual void launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags);
 
 
       virtual ::file::path get_executable_path_by_app_id(const ::scoped_string& scopedstrAppId,
@@ -534,13 +534,13 @@ namespace platform
       virtual void register_spa_file_type(const ::scoped_string & scopedstrAppIdHandler);
 
 
-      virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration);
+      virtual bool low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
 
 
-      virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration);
+      virtual void defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
 
 
-      virtual void start_program_files_app_app_admin(string strPlatform, string strConfiguration);
+      virtual void start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
 
 
       virtual void get_folder_path_from_user(::file::path& pathFolder);
@@ -691,7 +691,7 @@ namespace platform
         virtual ::string get_command_line();
 
 
-      //virtual ::pointer<::acme::exclusive> get_exclusive(string str, const security_attributes & securityattributes = nullptr);
+      //virtual ::pointer<::acme::exclusive> get_exclusive(const ::scoped_string & scopedstr, const security_attributes & securityattributes = nullptr);
 
 
       virtual int get_current_processor_index();
@@ -706,7 +706,7 @@ namespace platform
       virtual unsigned long long translate_processor_affinity(int i);
 
 
-      //CLASS_DECL_ACME string expand_env(string str);
+      //CLASS_DECL_ACME string expand_env(const ::scoped_string & scopedstr);
       //CLASS_DECL_ACME string xxxget_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable);
       //CLASS_DECL_ACME string ca2_command_line();
 
@@ -720,7 +720,7 @@ namespace platform
       virtual bool set_process_priority(::enum_priority epriority);
 
 
-      //virtual string time_binary_platform(string strPlatform);
+      //virtual string time_binary_platform(const ::scoped_string & scopedstrPlatform);
 
 
       //
@@ -750,7 +750,7 @@ namespace platform
       //#endif
 
 
-      //virtual string expand_env(string str);
+      //virtual string expand_env(const ::scoped_string & scopedstr);
 
       //CLASS_DECL_ACME string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const ::string * & pszEndPtr);
       //CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam, bool bDefault = false);
@@ -775,7 +775,7 @@ namespace platform
       virtual string process_version_dir_name();
 
 
-      virtual ::file::path core_app_path(string strApp);
+      virtual ::file::path core_app_path(const ::scoped_string & scopedstrApp);
 
 
       //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array & stra);
@@ -1206,7 +1206,7 @@ namespace platform
 #endif
 
       virtual bool _is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath = nullptr,
-                                                                  const_char_pointer  pszPath = nullptr);
+                                                                  const_char_pointer pszPath = nullptr);
 
 #if defined(WINDOWS_DESKTOP) || defined(MACOS) || defined(LINUX)
 
@@ -1274,7 +1274,7 @@ namespace platform
       //#endif
 #if defined(__BSD__) || defined(__APPLE__)
 
-      virtual void arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const_char_pointer  status));
+      virtual void arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const_char_pointer status));
 
 #endif
 

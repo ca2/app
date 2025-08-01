@@ -1364,7 +1364,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      bool directory_context::is_dir_map::lookup_small(const ::file::path & path,bool &bIsDir,unsigned int &dwLastError, int iLastChar)
 //      {
 //
-//         const ::ansi_character * pszEnd = path.c_str() + iLastChar;
+//         const_char_pointer pszEnd = path.c_str() + iLastChar;
 //
 //         char sz[2048];
 //
@@ -2482,7 +2482,7 @@ ret:
 }
 
 
-::file::path directory_context::appmatter(string strApp, ::file::path pathRel)
+::file::path directory_context::appmatter(const ::scoped_string & scopedstrApp, ::file::path pathRel)
 {
 
    auto iFind = strApp.find_index('/');

@@ -131,7 +131,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 
 
 template < typename T >
-const_char_pointer  memory_counter_id(T * pthis)
+const_char_pointer memory_counter_id(T * pthis)
 {
 
    return typeid(*pthis).name();

@@ -225,7 +225,7 @@
 //
 //}
 //
-//int client_send(memory & m, int fin, const_char_pointer  src)
+//int client_send(memory & m, int fin, const_char_pointer src)
 //{
 //
 //   memsize len = 0;
@@ -313,7 +313,7 @@
 //}
 //
 //
-//int client_send_text(memory & m, const_char_pointer  src)
+//int client_send_text(memory & m, const_char_pointer src)
 //{
 //
 //   return client_send(m, 0x81, src);
@@ -321,7 +321,7 @@
 //}
 //
 //
-//int client_send_text(memory & m, const_char_pointer  src, bool bMasked)
+//int client_send_text(memory & m, const_char_pointer src, bool bMasked)
 //{
 //
 //   memory m2(src, strlen(src));
@@ -397,7 +397,7 @@ namespace sockets
    //}
 
 
-   //websocket_client::websocket_client(const string & host, ::networking::port_t port, const string & url_in) :
+   //websocket_client::websocket_client(const ::scoped_string & scopedstrHost, ::networking::port_t port, const string & url_in) :
    //   object(h.get_app()),
    //   base_socket(h),
    //   socket(h),
@@ -1117,7 +1117,7 @@ namespace sockets
 
    }
 
-   void websocket_client::on_websocket_data(string str)
+   void websocket_client::on_websocket_data(const ::scoped_string & scopedstr)
    {
 
    }
@@ -1133,7 +1133,7 @@ namespace sockets
    }
 
 
-   ::memory websocket_client::get_client_send(int fin, const_char_pointer  src)
+   ::memory websocket_client::get_client_send(int fin, const_char_pointer src)
    {
       
       throw interface_only();
@@ -1143,7 +1143,7 @@ namespace sockets
    }
 
 
-   ::memory websocket_client::get_client_send_text(const_char_pointer  src)
+   ::memory websocket_client::get_client_send_text(const_char_pointer src)
    {
 
       return get_client_send(0x81, src);
@@ -1159,7 +1159,7 @@ namespace sockets
    }
    
 
-   ::memory websocket_client::get_client_send_text(const_char_pointer  src, bool bMasked)
+   ::memory websocket_client::get_client_send_text(const_char_pointer src, bool bMasked)
    {
 
       memory m2(src, ansi_len(src));

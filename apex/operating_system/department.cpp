@@ -97,7 +97,7 @@ namespace operating_system
    bool department::launch(const ::scoped_string & scopedstrCmdLine,::e_display edisplay, const ::scoped_string & scopedstrDir)
    {
 
-      const ::ansi_character * pszEnd = nullptr;
+      const_char_pointer pszEnd = nullptr;
 
       string strBin = consume_command_line_parameter(scopedstrCmdLine,&pszEnd);
 

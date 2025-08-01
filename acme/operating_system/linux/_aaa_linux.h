@@ -19,7 +19,7 @@
 //
 ////CLASS_DECL_ACME MESSAGE * __get_current_message();
 //
-////CLASS_DECL_ACME const_char_pointer  __get_app_name();
+////CLASS_DECL_ACME const_char_pointer __get_app_name();
 //
 ////CLASS_DECL_ACME void __cdecl __pre_translate_message(::message::message * pmessage);
 //
@@ -33,7 +33,7 @@
 //
 ////CLASS_DECL_ACME MESSAGE * __get_current_message();
 //
-////CLASS_DECL_ACME const_char_pointer  __get_app_name();
+////CLASS_DECL_ACME const_char_pointer __get_app_name();
 //
 //
 //#include "factory_exchange.h"

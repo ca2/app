@@ -157,7 +157,7 @@ public:
 
    ::extended_topic_pointer create_extended_topic(const ::atom & atom) override;
 
-   virtual void dev_log(string str);
+   virtual void dev_log(const ::scoped_string & scopedstr);
 
 
    virtual void delete_this() override;

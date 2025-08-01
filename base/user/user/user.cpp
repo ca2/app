@@ -1636,10 +1636,10 @@ namespace base
    }
 
 
-   bool is_html_file(string strFilePath)
+   bool is_html_file(const ::scoped_string & scopedstrFilePath)
    {
 
-      return string(file_path_final_extension(strFilePath)).case_insensitive_order("htm") == 0;
+      return string(file_path_final_extension(scopedstrFilePath)).case_insensitive_order("htm") == 0;
 
    }
 
@@ -1907,7 +1907,7 @@ namespace base
 } // namespace base
 
 
-//string __get_text(string str)
+//string __get_text(const ::scoped_string & scopedstr)
 //{
 //
 //   ::aura::application* papp = ::get_app();

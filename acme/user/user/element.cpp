@@ -768,7 +768,7 @@ namespace user
    //}
 
 
-   //void element::message_box_timeout(string strMessage, ::time timeTimeout, unsigned int fuStyle)
+   //void element::message_box_timeout(const ::scoped_string & scopedstrMessage, ::time timeTimeout, unsigned int fuStyle)
    //{
 
    //   fork([=]()
@@ -3157,7 +3157,7 @@ namespace user
    }
 
 
-   void element::_on_window_simple_action(const_char_pointer  pszActionName, ::user::activation_token * puseractivationtoken)
+   void element::_on_window_simple_action(const_char_pointer pszActionName, ::user::activation_token * puseractivationtoken)
    {
 
 
@@ -4783,7 +4783,7 @@ namespace user
 
 
 
-   void element::edit_on_text(string str)
+   void element::edit_on_text(const ::scoped_string & scopedstr)
    {
 
    }
@@ -4801,13 +4801,13 @@ namespace user
    }
 
 
-   void element::on_text_composition(string str)
+   void element::on_text_composition(const ::scoped_string & scopedstr)
    {
 
    }
 
 
-   void element::on_text_commit(string str)
+   void element::on_text_commit(const ::scoped_string & scopedstr)
    {
 
    }

@@ -115,7 +115,7 @@ character_count wd32_to_ansi(char* psz, const ::wd32_character* pwsz, character_
    }
    while (srclen != 0 && *pwsz != L'\0')
    {
-      n = wd32_to_ansi_char(scopedstr, *pwsz);
+      n = wd32_to_ansi_char(psz, *pwsz);
       if (n <= 0)
          break;
       c += n;
@@ -129,14 +129,14 @@ character_count wd32_to_ansi(char* psz, const ::wd32_character* pwsz, character_
 }
 
 
-character_count ansi_to_wd32_len(const ::ansi_character * psz, character_count srclen)
+character_count ansi_to_wd32_len(const_char_pointer psz, character_count srclen)
 {
 
    character_count len;
 
    character_count utf32len = 0;
 
-   while (scopedstr != nullptr && *psz != '\0')
+   while (psz != nullptr && *psz != '\0')
    {
       
       if(srclen == 0)
@@ -146,7 +146,7 @@ character_count ansi_to_wd32_len(const ::ansi_character * psz, character_count s
          
       }
 
-      len = unicode_len(scopedstr);
+      len = unicode_len(psz);
 
       if (srclen > 0 && len > srclen)
       {
@@ -169,7 +169,7 @@ character_count ansi_to_wd32_len(const ::ansi_character * psz, character_count s
 
 }
 
-character_count ansi_to_wd32(::wd32_character* pwsz, const ::ansi_character * psz, character_count srclen)
+character_count ansi_to_wd32(::wd32_character* pwsz, const_char_pointer psz, character_count srclen)
 {
 
    int dstlen = 0;
@@ -179,7 +179,7 @@ character_count ansi_to_wd32(::wd32_character* pwsz, const ::ansi_character * ps
    while (srclen != 0 && psz != nullptr && *psz != '\0')
    {
 
-      auto iWd32 = unicode_index_length(scopedstr, len);
+      auto iWd32 = unicode_index_length(psz, len);
 
       if (iWd32 < 0)
       {
@@ -198,7 +198,7 @@ character_count ansi_to_wd32(::wd32_character* pwsz, const ::ansi_character * ps
 
    }
 
-   if (scopedstr != nullptr)
+   if (psz != nullptr)
    {
 
       *pwsz = L'\0';
@@ -212,7 +212,7 @@ character_count ansi_to_wd32(::wd32_character* pwsz, const ::ansi_character * ps
 
 
 
-::wd32_character* ansi_to_wd32_dup(const_char_pointer  input, character_count input_size)
+::wd32_character* ansi_to_wd32_dup(const_char_pointer input, character_count input_size)
 {
 
    character_count s = ansi_to_wd32_len(input, input_size);
@@ -243,7 +243,7 @@ string wd32_to_ansi_str(const ::wd32_character * pwszUni32, character_count iUni
 
    char * psz = str.get_buffer(iUtf8Len);
 
-   wd32_to_ansi(scopedstr, pwszUni32, iUni32Len);
+   wd32_to_ansi(psz, pwszUni32, iUni32Len);
 
    str.release_buffer(iUtf8Len);
 

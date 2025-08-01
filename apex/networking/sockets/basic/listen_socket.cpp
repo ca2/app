@@ -135,10 +135,10 @@ namespace sockets
    \lparam intf Interface hostname
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   int listen_socket::Bind(const string & intf,::networking::port_t port,int depth)
+   int listen_socket::Bind(const ::scoped_string & scopedstrInterface,::networking::port_t port,int depth)
    {
       
-      return m_plistensocketImpl->Bind(intf, port, depth);
+      return m_plistensocketImpl->Bind(scopedstrInterface, port, depth);
       //::networking::address address(intf, port);
 
       //if (address.is_valid())
@@ -160,7 +160,7 @@ namespace sockets
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   int listen_socket::Bind(const string & intf,::networking::port_t port,const string & protocol,int depth)
+   int listen_socket::Bind(const ::scoped_string & scopedstrInterface,::networking::port_t port,const string & protocol,int depth)
    {
       //::networking::address ad(intf, port);
       //if (ad.is_valid())

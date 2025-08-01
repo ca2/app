@@ -55,7 +55,7 @@ namespace universal_windows
 
       
       void close();
-      virtual bool FindFile(const_char_pointer  pstrName = nullptr, unsigned int dwUnused = 0);
+      virtual bool FindFile(const_char_pointer pstrName = nullptr, unsigned int dwUnused = 0);
       virtual bool FindNextFile();
 
       virtual void CloseContext();

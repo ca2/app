@@ -23,7 +23,7 @@ namespace sockets_bsd
       virtual ~ssl_client_context_map();
 
 
-      ::pointer<ssl_client_context> get_context(string strContext, const SSL_METHOD * pmethod);
+      ::pointer<ssl_client_context> get_context(const ::scoped_string & scopedstrContext, const SSL_METHOD * pmethod);
 
 
    };

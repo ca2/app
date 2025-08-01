@@ -31,7 +31,7 @@ public:
                 Reset(); };
   virtual ~nsUTF8Prober(){delete mCodingSM;};
   nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
-  const_char_pointer  GetCharSetName() {return "UTF-8";};
+  const_char_pointer GetCharSetName() {return "UTF-8";};
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
   float     GetConfidence(void);

@@ -27,7 +27,7 @@ public:
   /** Appends to this string buffer @ca string */
   str_buffer &append(const ::scoped_string & scopedstring);
   /** Appends to this string buffer @ca string */
-  str_buffer &append(string string);
+  str_buffer &append(const ::scoped_string & scopedstring);
 
   /** Appends to this string buffer @ca string */
   str_buffer &append(unichar ca);
@@ -38,7 +38,7 @@ public:
   */
   str_buffer &operator +(const ::scoped_string & scopedstring);
   /** Appends to this string buffer @ca string. C++ operator + form. */
-  str_buffer &operator +(string string);
+  str_buffer &operator +(const ::scoped_string & scopedstring);
   /** Appends to this string buffer @ca string. C++ operator + form. */
   str_buffer &operator +(const ::scoped_string & scopedstring);
   /** Appends to this string buffer @ca string. C++ operator += form. */

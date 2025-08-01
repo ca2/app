@@ -20,7 +20,7 @@ namespace acme
    }
 
 
-   void asset::get_pointers(const_char_pointer & pstart, const_char_pointer  & pend)
+   void asset::get_pointers(const_char_pointer &pstart, const_char_pointer &pend)
    {
 
 

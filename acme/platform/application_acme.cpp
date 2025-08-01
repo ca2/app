@@ -428,12 +428,12 @@ void acme_application_layer::start_application()
    }
 
 
-   void acme_application_layer::pick_media(const_char_pointer  pszMediaType)
+   void acme_application_layer::pick_media(const ::scoped_string & scopedstrMediaType)
    {
    }
 
 
-   void acme_application_layer::did_pick_document_at_url(const_char_pointer  pszUrl)
+   void acme_application_layer::did_pick_document_at_url(const ::scoped_string & scopedstrUrl)
    {
    }
 

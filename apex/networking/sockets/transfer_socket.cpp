@@ -196,7 +196,7 @@ namespace sockets
 
    //}
 
-   //int transfer_socket::send(const_char_pointer  pch, int nSize, int nSecs) // const
+   //int transfer_socket::send(const_char_pointer pch, int nSize, int nSecs) // const
    //{
    //   //ASSERT(pch != nullptr);
    //   //ASSERT(m_hSocket != INVALID_SOCKET);
@@ -435,7 +435,7 @@ namespace sockets
    //   return nBytesReceived;
    //}
 
-   //int transfer_socket::send_datagram(const_char_pointer  pch, int nSize, const SOCKADDR * psa, int nSecs) // const
+   //int transfer_socket::send_datagram(const_char_pointer pch, int nSize, const SOCKADDR * psa, int nSecs) // const
    //{
 
    //   if (!check_writability(nSecs))

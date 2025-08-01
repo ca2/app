@@ -54,7 +54,7 @@ namespace acme
          inline ::windowing::enum_bias windowing_bias() { return m_ewindowingbias; }
 
 
-         //inline static const_char_pointer  represented_component_name() { return "nano_windowing"; }
+         //inline static const_char_pointer represented_component_name() { return "nano_windowing"; }
 
          //::acme::windowing::window * windowing_window() override;
          //::micro::theme * nano_user_theme();
@@ -80,7 +80,7 @@ namespace acme
          
          virtual void _did_finish_launching();
          
-         virtual void set_clipboard_text(const_char_pointer  psz);
+         virtual void set_clipboard_text(const_char_pointer psz);
          
          virtual ::acme::windowing::window* get_application_host_window();
 
@@ -225,7 +225,7 @@ namespace acme
 
          //virtual void enable_wallpaper_change_notification();
 
-         //virtual bool set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::acme::windowing::display * pwindowingdisplay);
+         //virtual bool set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath, ::acme::windowing::display * pwindowingdisplay);
 
          //virtual string get_wallpaper(::collection::index iScreen, ::acme::windowing::display * pwindowingdisplay);
          virtual double get_default_screen_dpi();

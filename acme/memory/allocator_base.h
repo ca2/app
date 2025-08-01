@@ -17,8 +17,8 @@ namespace heap
    public:
 
 
-      virtual void * allocate(memsize size, memsize * psizeActuallyAllocated, const_char_pointer  pszAnnotation = nullptr) = 0;
-      virtual void * reallocate(void * p, memsize size, const_char_pointer  pszAnnotation = nullptr) = 0;
+      virtual void * allocate(memsize size, memsize * psizeActuallyAllocated, const_char_pointer pszAnnotation = nullptr) = 0;
+      virtual void * reallocate(void * p, memsize size, const_char_pointer pszAnnotation = nullptr) = 0;
       virtual void free(void * p) = 0;
       virtual memsize size(void * p) = 0;
       virtual bool has_size() const = 0;

@@ -114,7 +114,7 @@
 
 
 
-CLASS_DECL_GPU_OPENGL const_char_pointer  opengl_error_string(int iError);
+CLASS_DECL_GPU_OPENGL const_char_pointer opengl_error_string(int iError);
 
 
 
@@ -142,7 +142,7 @@ namespace opengl
       int m_iGlError;
 
 
-      exception(const ::scoped_string& scopestrMessage, int iGLError, const_char_pointer  pszGlErrorMessage, const ::scoped_string & nameFile, int iLine);
+      exception(const ::scoped_string& scopestrMessage, int iGLError, const_char_pointer pszGlErrorMessage, const ::scoped_string & nameFile, int iLine);
 
       ~exception() override;
       

@@ -723,7 +723,7 @@ inline stream & operator >>(stream & s, ::file::path_object & path)
 
 
 
-inline const_char_pointer  FormatArgument(const ::file::path & value) noexcept
+inline const_char_pointer FormatArgument(const ::file::path & value) noexcept
 {
    return value.c_str();
 }

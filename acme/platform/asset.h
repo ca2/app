@@ -18,7 +18,7 @@ namespace acme
       ~asset() override;
 
 
-      virtual void get_pointers(const_char_pointer & pstart, const_char_pointer  & pend);
+      virtual void get_pointers(const_char_pointer &pstart, const_char_pointer &pend);
 
 
    };

@@ -33,9 +33,9 @@ namespace user
    {
 
       ::collection::count longest_pline(string & strSlice, double & d, string_array & straWords, double * pdaPosition, double dPositionLeft, int cx);
-      int longest_word(string & strSlice, double & dPosition, string strWord, double * pdaPosition, double dPositionLeft, int cx);
+      int longest_word(string & strSlice, double & dPosition, const ::scoped_string & scopedstrWord, double * pdaPosition, double dPositionLeft, int cx);
       void align(line * pline, const ::double_rectangle & rectangle);
-      ::collection::count get_vars(strsize_array & ia1, strsize_array & ia2, string str);
+      ::collection::count get_vars(strsize_array & ia1, strsize_array & ia2, const ::scoped_string & scopedstr);
 
 
       edit::edit()
@@ -1837,7 +1837,7 @@ namespace user
       }
 
 
-      void edit::on_text_composition(string str)
+      void edit::on_text_composition(const ::scoped_string & scopedstr)
       {
 
       }

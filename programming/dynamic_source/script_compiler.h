@@ -84,10 +84,10 @@ namespace dynamic_source
 
       void destroy() override;
 
-      bool defer_run_persistent(const ::string &psz);
+      bool defer_run_persistent(const ::scoped_string & scopedstr);
 
       bool is_id(const ::scoped_string & scopedstr, character_count iLen, const ::scoped_string & scopedstrId, character_count iLenId, character_count & iIdLen);
-      const_char_pointer  next_nonspace(const ::scoped_string & scopedstr);
+      const_char_pointer next_nonspace(const ::scoped_string & scopedstr);
 
       void compile(ds_script * pscript);
 
@@ -99,7 +99,7 @@ namespace dynamic_source
 
       string cppize2(const ::scoped_string & scopedstrSource,bool bScript,string_array & straId);
 
-      string get_ds_print(const ::string &psz)   ;
+      string get_ds_print(const ::scoped_string & scopedstr)   ;
 
       void folder_watch();
 
@@ -117,7 +117,7 @@ namespace dynamic_source
 
       virtual void parse_pstr_set();
 
-      virtual void pstr_set(atom pszTopic,atom idLocale,atom idSchema, const ::scoped_string & scopedstr);
+      virtual void pstr_set(const ::atom & atomTopic,atom idLocale,atom idSchema, const ::scoped_string & scopedstr);
 
    };
 

@@ -55,7 +55,7 @@ namespace base
       // ::base::session* get_session();
 
 
-      ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction* puiParent = nullptr, e_window_flag ewindowflag = ::e_window_flag(), const ::atom& atom = ::atom()) override;
+      ::pointer<::user::document>defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction* puiParent = nullptr, e_window_flag ewindowflag = ::e_window_flag(), const ::atom& atom = ::atom()) override;
 
       ::user::document * place_hold(::user::interaction * pinteraction) override;
       void on_create_split_impact(::user::split_impact* pimpact) override;

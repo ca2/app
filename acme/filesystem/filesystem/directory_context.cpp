@@ -1592,7 +1592,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      bool directory_context::is_dir_map::lookup_small(const ::file::path & path,bool &bIsDir,unsigned int &dwLastError, int iLastChar)
 //      {
 //
-//         const ::ansi_character * pszEnd = path.c_str() + iLastChar;
+//         const_char_pointer pszEnd = path.c_str() + iLastChar;
 //
 //         char sz[2048];
 //
@@ -2769,23 +2769,27 @@ ret:
 }
 
 
-::file::path directory_context::appmatter(string strApp, ::file::path pathRel)
+::file::path directory_context::appmatter(const ::scoped_string & scopedstrApp, ::file::path pathRel)
 {
 
-   auto iFind = strApp.find_index('/');
+   auto iFind = scopedstrApp.find_index('/');
 
-   string strRepo;
+   ::string strRepo;
+
+   ::string strApp;
 
    if (iFind > 0)
    {
 
-      strRepo = strApp(0, iFind);
+      strRepo = scopedstrApp(0, iFind);
 
-      strApp = strApp(iFind + 1);
+      strApp = scopedstrApp(iFind + 1);
 
    }
    else
    {
+
+      strApp = scopedstrApp;
 
       strApp.replace_with("_", "-");
 

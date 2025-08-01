@@ -206,7 +206,7 @@ namespace networking
 //#endif
 //
 //
-//   address::address(const string & host, ::networking::port_t port)
+//   address::address(const ::scoped_string & scopedstrHost, ::networking::port_t port)
 //   {
 //
 //      ::zero(this, sizeof(address));
@@ -236,7 +236,7 @@ namespace networking
 //   }
 //
 //
-//   address::address(::particle * pparticle, const string & host, const ::scoped_string & scopedstrService)
+//   address::address(::particle * pparticle, const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrService)
 //   {
 //
 //#ifdef BSD_STYLE_SOCKETS

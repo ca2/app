@@ -919,7 +919,7 @@ namespace application_build_helper
 
 
 
-   //void command_system(const_char_pointer  psz)
+   //void command_system(const_char_pointer psz)
    //{
    //
    //
@@ -952,7 +952,7 @@ namespace application_build_helper
    //}
    //
 
-   string application_build_helper::defer_translate_application_name(string strDependency)
+   string application_build_helper::defer_translate_application_name(const ::scoped_string & scopedstrDependency)
    {
 
       ::file::path pathApplicationMatter = m_pathSource / strDependency / "application.txt";
@@ -991,7 +991,7 @@ namespace application_build_helper
    }
 
 
-   string application_build_helper::defer_translate_dependency(string strDependency)
+   string application_build_helper::defer_translate_dependency(const ::scoped_string & scopedstrDependency)
    {
 
       strDependency.trim();
@@ -1106,7 +1106,7 @@ namespace application_build_helper
    }
 
 
-   string application_build_helper::defer_binary_to_project(string strBinary)
+   string application_build_helper::defer_binary_to_project(const ::scoped_string & scopedstrBinary)
    {
 
       string_array stra;
@@ -1149,7 +1149,7 @@ namespace application_build_helper
    }
 
 
-   string application_build_helper::defer_project_to_binary(string strProject)
+   string application_build_helper::defer_project_to_binary(const ::scoped_string & scopedstrProject)
    {
 
       string_array stra;
@@ -1192,7 +1192,7 @@ namespace application_build_helper
    }
 
 
-   void application_build_helper::load_map(string_to_string & map, string strMap, string strRoot)
+   void application_build_helper::load_map(string_to_string & map, const ::scoped_string & scopedstrMap, const ::scoped_string & scopedstrRoot)
    {
 
       ::file::path pathMapBase;

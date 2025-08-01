@@ -234,8 +234,8 @@ bool isNumeric(char ch)
 }
 bool isNumber(const ::scoped_string & scopedstr)
 {
-   for (character_count i=0; i<str.size(); i++)
-      if (!isNumeric(str[i])) return false;
+   for (character_count i=0; i<scopedstr.size(); i++)
+      if (!isNumeric(scopedstr[i])) return false;
    return true;
 }
 bool isHexadecimal(char ch)
@@ -252,15 +252,17 @@ bool isAlpha(char ch)
 bool isIDString(const ::scoped_string & scopedstrParam)
 {
 
-   auto s = strParam.c_str();
+   ::string strParameter(scopedstrParam);
 
-   if (!isAlpha(*s))
+   auto psz = strParameter.c_str();
+
+   if (!isAlpha(*psz))
       return false;
-   while (*s)
+   while (*psz)
    {
-      if (!(isAlpha(*s) || isNumeric(*s)))
+      if (!(isAlpha(*psz) || isNumeric(*psz)))
          return false;
-      s++;
+      psz++;
    }
    return true;
 }
@@ -279,10 +281,10 @@ void replace(string &str, char textFrom, const ::string &textTo)
 /// convert the given string into a quoted string suitable for javascript
 string getJSString(const ::scoped_string & scopedstr)
 {
-   string nStr = str;
+   string nStr = scopedstr;
    for (character_count i=0; i<nStr.size(); i++)
    {
-      const_char_pointer  replaceWith = "";
+      const_char_pointer replaceWith = "";
       bool replace = true;
 
       switch (nStr[i])
@@ -317,10 +319,10 @@ string getJSString(const ::scoped_string & scopedstr)
 /** Is the string alphanumeric */
 bool isAlphaNum(const ::scoped_string & scopedstr)
 {
-   if (str.size()==0) return true;
-   if (!isAlpha(str[0])) return false;
-   for (character_count i=0; i<str.size(); i++)
-      if (!(isAlpha(str[i]) || isNumeric(str[i])))
+   if (scopedstr.size()==0) return true;
+   if (!isAlpha(scopedstr[0])) return false;
+   for (character_count i=0; i<scopedstr.size(); i++)
+      if (!(isAlpha(scopedstr[i]) || isNumeric(scopedstr[i])))
          return false;
    return true;
 }
@@ -853,7 +855,7 @@ CScriptVar::CScriptVar(const ::scoped_string & scopedstr)
 #endif
    init();
    flags = SCRIPTVAR_STRING;
-   data = str;
+   data = scopedstr;
 }
 
 
@@ -1254,7 +1256,7 @@ void CScriptVar::setString(const ::scoped_string & scopedstr)
 {
    // name sure it's not still a number or integer
    flags = (flags&~SCRIPTVAR_VARTYPEMASK) | SCRIPTVAR_STRING;
-   data = str;
+   data = scopedstr;
    intData = 0;
    doubleData = 0;
 }

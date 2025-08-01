@@ -197,8 +197,8 @@ namespace platform
 
 
 
-      //virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget);
-      //void open_internet_link(string strUrl, string strProfile, string strTarget) override;
+      //virtual void browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget);
+      //void open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
 
 
       //virtual void __set_thread_on();
@@ -249,7 +249,7 @@ namespace platform
 
 
       virtual int _001OnDebugReport(int i1,const ::scoped_string & scopedstr1,int i2,const ::scoped_string & scopedstr2,const ::scoped_string & scopedstr3,va_list args);
-      virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::scoped_string & scopedstrModuleName, const_char_pointer  pszFormat, va_list list);
+      virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list);
       virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine);
 
       virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine);
@@ -298,42 +298,42 @@ namespace platform
 
 #ifdef __ANDROID__
 //#pragma message("at macos??")
-      virtual bool android_set_user_wallpaper(string strUrl);
+      virtual bool android_set_user_wallpaper(const ::scoped_string & scopedstrUrl);
       virtual bool android_get_user_wallpaper(string & strUrl);
 
 #endif
 
-      virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra);
+      virtual bool defer_accumulate_on_open_file(string_array stra, const ::scoped_string & scopedstrExtra);
 
       //virtual bool merge_accumulated_on_open_file(::request * prequest);
 
-      virtual bool on_open_file(::payload payloadFile, string strExtra);
+      virtual bool on_open_file(::payload payloadFile, const ::scoped_string & scopedstrExtra);
 
       virtual void on_open_file(const ::scoped_string & scopedstrFile);
 
 
-      virtual void on_os_text(enum_os_text etext, string strText);
+      virtual void on_os_text(enum_os_text etext, const ::scoped_string & scopedstrText);
 
 
 
-      virtual void on_extra(string str);
+      virtual void on_extra(const ::scoped_string & scopedstr);
 
-      virtual string standalone_setting(string str);
-      virtual void set_standalone_setting(string str, string strSetting);
+      virtual string standalone_setting(const ::scoped_string & scopedstr);
+      virtual void set_standalone_setting(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSetting);
 
 
       virtual void process_machine_event_data(machine_event_data * pdata);
 
       virtual string get_user_language();
       virtual void set_user_language(::apex::application * papp, ::collection::index iSel);
-      virtual void set_user_language(::apex::application * papp, string strLang);
+      virtual void set_user_language(::apex::application * papp, const ::scoped_string & scopedstrLang);
 
-      virtual void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
+      virtual void chromium(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrId, ::file::path path, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam);
 
 
-      virtual void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile);
+      virtual void defer_create_firefox_profile(::file::path pathFirefox, const ::scoped_string & scopedstrProfileName, ::file::path pathProfile);
 
-      virtual void     firefox(string strUrl, string strBrowser, string strProfile, string strParam);
+      virtual void     firefox(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam);
 
 
 

@@ -195,7 +195,7 @@ namespace write_text
 
       string str = stra[i];
 
-      const ::ansi_character * pszStart = str;
+      const_char_pointer pszStart = str;
 
       auto pszEnd = pszStart;
 
@@ -323,7 +323,7 @@ namespace write_text
 
       string str = stra[i];
 
-      const ::ansi_character * pszStart = str;
+      const_char_pointer pszStart = str;
 
       auto pszEnd = pszStart;
 

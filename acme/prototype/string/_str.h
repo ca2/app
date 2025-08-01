@@ -9,8 +9,8 @@
 //struct end_of_line_and_next_line
 //{
 //
-//   const_char_pointer  end_of_line;
-//   const_char_pointer  next_line;
+//   const_char_pointer end_of_line;
+//   const_char_pointer next_line;
 //
 //};
 
@@ -149,11 +149,11 @@ public:
    static string   if_null(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrIfNull = nullptr);
 
 
-   //inline  const ::ansi_character * __utf8_inc(const ::ansi_character * psz) { return psz + 1 + trailingBytesForUTF8(*psz); }
+   //inline  const_char_pointer __utf8_inc(const_char_pointer psz) { return psz + 1 + trailingBytesForUTF8(*psz); }
 
-   //const ::ansi_character *    utf8_next_add_length(character_count * paddlength, const ::ansi_character * psz);
-   //const ::ansi_character *    utf8_inc_copy_slide_back(character_count * pslideback, ::ansi_character * pchDst, const ::ansi_character * pchSrc);
-   //const ::ansi_character *    utf8_inc_count(const ::ansi_character * psz, character_count * piCount);
+   //const_char_pointer     utf8_next_add_length(character_count * paddlength, const_char_pointer psz);
+   //const_char_pointer     utf8_inc_copy_slide_back(character_count * pslideback, ::ansi_character * pchDst, const_char_pointer pchSrc);
+   //const_char_pointer     utf8_inc_count(const_char_pointer psz, character_count * piCount);
 
    static string block(::ansi_character ch, int iSize);
    static void fill(string & str, ::ansi_character ch);
@@ -161,7 +161,7 @@ public:
 
 
 
-   //static inline  bool begins_ci_skip(const_char_pointer & psz, const ::scoped_string & scopedstrPrefix);
+   //static inline  bool begins_ci_skip(const_char_pointer &psz, const ::scoped_string & scopedstrPrefix);
    //static inline  struct ::end_of_line_and_next_line end_of_line_and_next_line(const ::scoped_string & scopedstr);
 
 //   bool replace_prefix(::string & str, const ::scoped_string & scopedstrPrefixReplacement, const ::scoped_string & scopedstrPrefix);
@@ -192,9 +192,9 @@ public:
 
    static string & zero_pad(string & str, character_count iPad);
    static string         zero_padded(const ::scoped_string & scopedstr, character_count iPad);
-   static int            get_escaped_char(const ::ansi_character * psz, character_count pos, character_count & retPos);
-   static bool           get_curly_content(const ::ansi_character * psz, string & str);
-   static bool           is_simple_natural(const ::ansi_character * psz, character_count iCount = -1);
+   static int            get_escaped_char(const_char_pointer psz, character_count pos, character_count & retPos);
+   static bool           get_curly_content(const_char_pointer psz, string & str);
+   static bool           is_simple_natural(const_char_pointer psz, character_count iCount = -1);
    static bool           is_natural(const ::scoped_string & scopedstr);
    static bool           is_integer(const ::scoped_string & scopedstr);
 
@@ -212,13 +212,13 @@ public:
 
    static string pad(const ::scoped_string & scopedstr, ::collection::count iLen, const ::scoped_string & scopedstrPattern, enum_pad epad);
 
-   static inline  character_count length(const ::ansi_character * pansichar) { return ansi_length(pansichar); }
+   static inline  character_count length(const_char_pointer pansichar) { return ansi_length(pansichar); }
    static inline  character_count length(const ::wd16_character * pwd16char) { return wd16_length(pwd16char); }
    static inline  character_count length(const ::wd32_character * pwd32char) { return wd32_length(pwd32char); }
 
 
    template < typename TYPE >
-   static inline  TYPE from_string(const ::ansi_character * psz);
+   static inline  TYPE from_string(const_char_pointer psz);
 
 
    static bool simple_escaped(const ::scoped_string & scopedstr, character_count pos);
@@ -230,10 +230,10 @@ public:
 
    static bool utf8_check_is_valid(const ::scoped_string & scopedstring);
 
-   static string q_valid(string str);
+   static string q_valid(const ::scoped_string & scopedstr);
 
 
-   static inline ::ansi_character * dup(const ::ansi_character * psz)
+   static inline ::ansi_character * dup(const_char_pointer psz)
    {
 
       try
@@ -257,14 +257,14 @@ public:
 
    static string signed_int(int i);
 
-   static bool is_true(string str);
+   static bool is_true(const ::scoped_string & scopedstr);
 
 
-   static inline  character_count utf8_dec_len(const ::ansi_character * pszBeg, const ::ansi_character * psz);
+   static inline  character_count utf8_dec_len(const_char_pointer pszBeg, const_char_pointer psz);
 
-   static inline  character_count utf8_inc_len(const ::ansi_character * psz);
+   static inline  character_count utf8_inc_len(const_char_pointer psz);
 
-   static inline  bool namespaced(const ::ansi_character * psz, const ::ansi_character * pszNamespace, const ::ansi_character * pszSeparator = "::");
+   static inline  bool namespaced(const_char_pointer psz, const_char_pointer pszNamespace, const_char_pointer pszSeparator = "::");
 
 
 
@@ -308,9 +308,9 @@ public:
    //bool  case_insensitive_while_begins_with_chars_eat(string & str, const ::scoped_string & scopedstrChars);
 
 
-   // static inline const ::ansi_character * windows_bbqbunc(const ansi_string &);
-   // static inline const ::ansi_character * windows_bbqb(const ansi_string &);
-   // static inline const ::ansi_character * windows_bb(const ansi_string &);
+   // static inline const_char_pointer windows_bbqbunc(const ansi_string &);
+   // static inline const_char_pointer windows_bbqb(const ansi_string &);
+   // static inline const_char_pointer windows_bb(const ansi_string &);
 
 
    // static inline const ::wide_character * windows_bbqbunc(const wide_string &);
@@ -318,7 +318,7 @@ public:
    // static inline const ::wide_character * windows_bb(const wide_string &);
 
 
-   static inline character_count unichar_count(const ::ansi_character * pstr);
+   static inline character_count unichar_count(const_char_pointer pstr);
    static inline character_count unichar_count(const ::wd16_character * pstr);
    static inline character_count unichar_count(const ::wd32_character * pstr);
 
@@ -344,7 +344,7 @@ CLASS_DECL_ACME  string normalize_wildcard_criteria(const ::scoped_string & scop
 CLASS_DECL_ACME string _001Concatenate(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstrMid, const ::scoped_string & scopedstr2);
 
 
-CLASS_DECL_ACME string string_from_strdup(const ::ansi_character * psz);
+CLASS_DECL_ACME string string_from_strdup(const_char_pointer psz);
 
 //
 //
@@ -357,10 +357,10 @@ CLASS_DECL_ACME string string_from_strdup(const ::ansi_character * psz);
 //}
 
 
-inline character_count str::utf8_dec_len(const ::ansi_character * pszBeg, const ::ansi_character * psz)
+inline character_count str::utf8_dec_len(const_char_pointer pszBeg, const_char_pointer psz)
 {
 
-   const ::ansi_character * pszDec = unicode_prior(psz, pszBeg);
+   const_char_pointer pszDec = unicode_prior(psz, pszBeg);
 
    if (psz == nullptr)
    {
@@ -374,7 +374,7 @@ inline character_count str::utf8_dec_len(const ::ansi_character * pszBeg, const 
 }
 
 
-inline character_count str::utf8_inc_len(const ::ansi_character * psz)
+inline character_count str::utf8_inc_len(const_char_pointer psz)
 {
 
    return get_utf8_char_length(psz);

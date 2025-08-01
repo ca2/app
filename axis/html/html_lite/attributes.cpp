@@ -54,11 +54,11 @@ character_count LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, con
 
    ::string str(scopedstrString);
 
-   const_char_pointer  pszString = str;
+   const_char_pointer pszString = str;
 
-   const_char_pointer  pszBegin = pszString;
+   const_char_pointer pszBegin = pszString;
 
-   const_char_pointer  pszEnd;
+   const_char_pointer pszEnd;
 
    //   char   ch = 0;
 
@@ -247,7 +247,7 @@ character_count LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, c
 
    ::string str(scopedstrString);
 
-   const_char_pointer  pszString = str;
+   const_char_pointer pszString = str;
 
    do
    {

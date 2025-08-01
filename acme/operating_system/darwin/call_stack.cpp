@@ -34,7 +34,7 @@ string get_callstack(::particle * pparticle, const ::scoped_string & scopedstrFo
 //   }
 
 
-//   const_char_pointer  callstack::get_dup(const ::scoped_string & scopedstrFormat, int iSkip, int iCount)
+//   const_char_pointer callstack::get_dup(const ::scoped_string & scopedstrFormat, int iSkip, int iCount)
 //   {
 //
 //      return nullptr;

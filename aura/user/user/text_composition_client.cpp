@@ -40,7 +40,7 @@ namespace user
 	}
 
 
-	void text_composition_client::on_text_composition(string strMessage)
+	void text_composition_client::on_text_composition(const ::scoped_string & scopedstrMessage)
 	{
 
 		//m_ptextcompositionclient->on_text_composition(strMessage);

@@ -20,7 +20,7 @@ namespace platform
    //// void dump(dump_context & dumpcontext) const override{}
 
 
-   ::string apex_application_layer::apex_application_layer::__get_text(string str)
+   ::string apex_application_layer::apex_application_layer::__get_text(const ::scoped_string & scopedstr)
    {
       return {};
    }
@@ -47,7 +47,7 @@ namespace platform
    //virtual ::database::key calc_data_key() override{}
 
 
-   //::string apex_application_layer::apex_application_layer::load_podata(string strLang, bool bOnlyHeader){}
+   //::string apex_application_layer::apex_application_layer::load_podata(const ::scoped_string & scopedstrLang, bool bOnlyHeader){}
 
    // ::string apex_application_layer::apex_application_layer::load_string(const ::atom& atom)
    // {
@@ -533,12 +533,12 @@ namespace platform
    //void apex_application_layer::on_thread_on_idle(::thread * pthread, int lCount) override{}
 
 
-   void apex_application_layer::app_set(string strPath, string strValue)
+   void apex_application_layer::app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue)
    {
    }
 
 
-   ::string apex_application_layer::apex_application_layer::app_get(string strPath, string strDefault)
+   ::string apex_application_layer::apex_application_layer::app_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault)
    {
       return {};
    }
@@ -732,7 +732,7 @@ namespace platform
    /// return true if this instance might continue execution
    /// bHandled true if some action was done in response to this ___new additional instance creation
    void apex_application_layer::on_exclusive_instance_conflict(::request* prequest, bool& bHandled,
-                                                               enum_exclusive_instance eexclusive, string strId)
+                                                               enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId)
    {
    }
 
@@ -747,7 +747,7 @@ namespace platform
    /// return true if this instance might continue execution
    /// bHandled true if some action was done in response to this ___new additional instance creation
    void apex_application_layer::on_exclusive_instance_local_conflict_id(::request* prequest, bool& bHandled,
-                                                                        string strId)
+                                                                        const ::scoped_string & scopedstrId)
    {
    }
 
@@ -759,13 +759,13 @@ namespace platform
 
    /// return true if the external additional instance might continue execution
    /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
-   void apex_application_layer::on_additional_local_instance(bool& bHandled, string strModule, int iPid,
-                                                             string strCommandLine)
+   void apex_application_layer::on_additional_local_instance(bool& bHandled, const ::scoped_string & scopedstrModule, int iPid,
+                                                             const ::scoped_string & scopedstrCommandLine)
    {
    }
 
 
-   void apex_application_layer::on_new_instance(string strModule, const ::atom& idPid)
+   void apex_application_layer::on_new_instance(const ::scoped_string & scopedstrModule, const ::atom& idPid)
    {
    }
 
@@ -932,7 +932,7 @@ namespace platform
    //void apex_application_layer::_001FranceExit(){}
 
 
-   //::string apex_application_layer::apex_application_layer::lstr(const ::atom & atom, string strDefault) override{}
+   //::string apex_application_layer::apex_application_layer::lstr(const ::atom & atom, const ::scoped_string & scopedstrDefault) override{}
 
 
    //bool apex_application_layer::do_install(){}
@@ -1024,9 +1024,9 @@ namespace platform
    }
 
 
-   //bool apex_application_layer::low_is_app_app_admin_running(string strPlatform, string strConfiguration){}
-   //void apex_application_layer::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration){}
-   // void apex_application_layer::start_program_files_app_app_admin(string strPlatform, string strConfiguration){}
+   //bool apex_application_layer::low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration){}
+   //void apex_application_layer::defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration){}
+   // void apex_application_layer::start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration){}
 
 
    bool apex_application_layer::keyboard_focus_is_focusable(const ::user::interaction_base* pue)
@@ -1119,7 +1119,7 @@ namespace platform
    }
 
 
-   //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom){}
+   //user virtual ::pointer<::user::document>defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom){}
 
 
    void apex_application_layer::HideApplication()
@@ -1248,7 +1248,7 @@ namespace platform
    //virtual int sync_message_box(::user::interaction_base * puiOwner,const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, unsigned int fuStyle = e_message_box_ok) override{}
 
 
-   //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override{}
+   //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId) override{}
 
    //bool apex_application_layer::process_exception(const ::exception & e) override{}
 

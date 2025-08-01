@@ -187,7 +187,7 @@ public:
 
 
 
-   bool PrepareLine(::draw2d::graphics_pointer & pgraphics, string str, int flags, const ::int_rectangle & rectangle);
+   bool PrepareLine(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, int flags, const ::int_rectangle & rectangle);
 
 
    void add_char(::wide_character wch, character_count &index);

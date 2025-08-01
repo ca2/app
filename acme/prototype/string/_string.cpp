@@ -59,7 +59,7 @@ void replace_tab(character_count iOffset, string & strParam, int iWidth, strsize
       else
       {
 
-         if (::is_empty(scopedstrNext))
+         if (::is_empty(pszNext))
          {
 
             break;
@@ -76,7 +76,7 @@ void replace_tab(character_count iOffset, string & strParam, int iWidth, strsize
 
    }
 
-   if (scopedstrNext > pszStart)
+   if (pszNext > pszStart)
    {
 
       str.append(pszStart, pszNext - pszStart);
@@ -96,8 +96,10 @@ void replace_tab(character_count iOffset, string & strParam, int iWidth, ::array
 }
 
 
-string _002Underscore(string str)
+string _002Underscore(const ::scoped_string & scopedstr)
 {
+
+   ::string str(scopedstr);
 
    str.replace_with("_", "-");
 
@@ -110,10 +112,10 @@ string _002Underscore(string str)
 }
 
 
-CLASS_DECL_ACME::string _(const ::scoped_string & scopedstr)
+CLASS_DECL_ACME::string _(const ::string & str)
 {
 
-   return scopedstr;
+   return str;
 
 }
 

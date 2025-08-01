@@ -12,7 +12,7 @@ char * pBuffer
 )
 {
 
-   const_char_pointer  ptmpdir = getenv("TMPDIR");
+   const_char_pointer ptmpdir = getenv("TMPDIR");
 
    if(ptmpdir != nullptr && *ptmpdir != '\0')
    {

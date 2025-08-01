@@ -99,10 +99,10 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 
 
 
-//const_char_pointer  br_init_get_symbol();
+//const_char_pointer br_init_get_symbol();
 //
 //
-//const_char_pointer  g_pszAppId = nullptr;
+//const_char_pointer g_pszAppId = nullptr;
 //
 //
 //void executable_set_app_id(const ::scoped_string & scopedstrAppId)
@@ -113,7 +113,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //}
 //
 //
-//const_char_pointer  executable_get_app_id()
+//const_char_pointer executable_get_app_id()
 //{
 //
 //
@@ -1072,7 +1072,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 
 
 
-//void app_core::defer_load_backbone_libraries(string strAppId)
+//void app_core::defer_load_backbone_libraries(const ::scoped_string & scopedstrAppId)
 //{
 //
 //   if (strAppId.has_character())
@@ -1872,10 +1872,10 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 ////
 ////
-////static const_char_pointer  g_pszCubeAppId = nullptr;
+////static const_char_pointer g_pszCubeAppId = nullptr;
 ////
 ////
-////const_char_pointer  get_cube_app_id()
+////const_char_pointer get_cube_app_id()
 ////{
 ////
 ////   return g_pszCubeAppId;

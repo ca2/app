@@ -409,7 +409,7 @@ namespace dynamic_source
 
       auto pszBufferMillis = strMillis.get_buffer(3);
 
-      ::ansi_zero_pad(scopedstrBufferMillis, 3);
+      ::ansi_zero_pad(pszBufferMillis, 3);
 
       strMillis.release_buffer();
 
@@ -1169,7 +1169,7 @@ namespace dynamic_source
 
    string escape(const ::scoped_string & scopedstr)
    {
-      string str(pcsz);
+      string str(scopedstr);
       str.find_replace("\\", "\\\\");
       str.find_replace("\"", "\\\"");
       str.find_replace("\r\n", "\\r\\n");
@@ -1459,9 +1459,9 @@ namespace dynamic_source
          return *p->element2();
       }
 
-      m_mapLib[pszLibrary] = __allocate library(this);
+      m_mapLib[scopedstrLibrary] = __allocate library(this);
 
-      library& l = *m_mapLib[pszLibrary];
+      library& l = *m_mapLib[scopedstrLibrary];
 
       auto pathCa2Root = m_pintegrationcontext->m_pathBuildFolder;
 
@@ -2636,16 +2636,16 @@ namespace dynamic_source
          return false;
       if (iIdLen == iLen)
       {
-         if (string_compare(scopedstr, pszId) == 0)
+         if (string_compare(scopedstr, scopedstrId) == 0)
          {
             iIdLenRet = iIdLen;
             return true;
          }
       }
-      if (string_begins(scopedstr, pszId)
+      if (string_begins(scopedstr, scopedstrId)
          && !::character_isdigit(scopedstr[iIdLen])
          && !::character_isalpha(scopedstr[iIdLen])
-         && psz[iIdLen] != '_')
+         && scopedstr[iIdLen] != '_')
       {
          iIdLenRet = iIdLen;
          return true;
@@ -2654,10 +2654,10 @@ namespace dynamic_source
    }
 
 
-   const_char_pointer  script_compiler::next_nonspace(const ::scoped_string & scopedstrParam)
+   const_char_pointer script_compiler::next_nonspace(const ::scoped_string & scopedstrParam)
    {
 
-      const ::ansi_character* psz = strParam;
+      const ::ansi_character* psz = scopedstrParam;
 
       while (*psz && character_isspace(*psz))
       {
@@ -2777,9 +2777,10 @@ namespace dynamic_source
 
    bool script_compiler::defer_run_persistent(const ::scoped_string & scopedstr)
    {
+
       string str(scopedstr);
 
-      if (::str::case_insensitive_find("pstr_set", psz) && case_insensitive_string_ends(scopedstr, ".txt"))
+      if (::str::case_insensitive_find("pstr_set", scopedstr) && case_insensitive_string_ends(scopedstr, ".txt"))
       {
 
          parse_pstr_set();
@@ -3045,14 +3046,14 @@ namespace dynamic_source
    }
 
 
-   void script_compiler::pstr_set(atom pszTopic, atom idLocale, atom idSchema, const ::scoped_string & scopedstr)
+   void script_compiler::pstr_set(const ::atom & atomTopic, atom idLocale, atom idSchema, const ::scoped_string & scopedstr)
    {
 
       synchronous_lock synchronouslock(m_pmanager->synchronization());
 
       auto psystem = system();
 
-      psystem->texttable()->set(scopedstrTopic, idLocale, idSchema, psz);
+      psystem->texttable()->set(atomTopic, idLocale, idSchema, scopedstr);
 
    }
 

@@ -363,7 +363,7 @@ public:
    //template < typename OTHER >
    //inline pointer & operator -=(::pointer<OTHER>& p) { m_p->release(p); return *this; }
 
-   //inline static const_char_pointer  ::type(this).name();
+   //inline static const_char_pointer ::type(this).name();
 
    inline T* operator ->() { return m_p; }
    inline T* operator ->() const { return m_p; }

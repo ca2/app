@@ -1274,7 +1274,7 @@ out_fail:
 
 }
 
-const_char_pointer  freerdp_client_rdp_file_get_string_option(rdpFile* file, const ::scoped_string & scopedstrName)
+const_char_pointer freerdp_client_rdp_file_get_string_option(rdpFile* file, const ::scoped_string & scopedstrName)
 {
 	rdpFileLine* line;
 

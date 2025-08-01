@@ -1128,16 +1128,16 @@ namespace user
 //#include "apex/parallelization/retry.h"
 
 
-//CLASS_DECL_APEX::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
-//CLASS_DECL_APEX bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
-//CLASS_DECL_APEX bool set_application_installed(const ::file::path & pathExe, string strAppId, const ::scoped_string & scopedstrBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
-//CLASS_DECL_APEX::file::path get_application_path(string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
-//CLASS_DECL_APEX::file::path get_last_run_application_path_file(string strAppId);
-//CLASS_DECL_APEX::file::path get_last_run_application_path(string strAppId);
-//CLASS_DECL_APEX bool set_last_run_application_path(string strAppId);
+//CLASS_DECL_APEX::file::path application_installer_folder(const ::file::path & pathExe, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+//CLASS_DECL_APEX bool is_application_installed(const ::file::path & pathExe, const ::scoped_string & scopedstrAppId, string & strBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+//CLASS_DECL_APEX bool set_application_installed(const ::file::path & pathExe, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+//CLASS_DECL_APEX::file::path get_application_path(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+//CLASS_DECL_APEX::file::path get_last_run_application_path_file(const ::scoped_string & scopedstrAppId);
+//CLASS_DECL_APEX::file::path get_last_run_application_path(const ::scoped_string & scopedstrAppId);
+//CLASS_DECL_APEX bool set_last_run_application_path(const ::scoped_string & scopedstrAppId);
 
 
-//CLASS_DECL_APEX void load_factory_library(string strLibrary);
+//CLASS_DECL_APEX void load_factory_library(const ::scoped_string & scopedstrLibrary);
 
 
 class node_data_exchange;

@@ -44,7 +44,7 @@ namespace ftp
 //#define system()->InsertTime(ftpFileStatus) InsertTime(ftpFileStatus);
 //#endif
 
-   const_char_pointer  file_list_parser::m_Months[12] = {
+   const_char_pointer file_list_parser::m_Months[12] = {
       ("jan"),("feb"),("mar"),("apr"),("may"),("jun"),
       ("jul"),("aug"),("sep"),("oct"),("nov"),("dec")
    };

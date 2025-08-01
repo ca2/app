@@ -47,7 +47,7 @@ namespace os
 
 
 
-      //virtual string interactive_auth(::int_rectangle * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
+      //virtual string interactive_auth(::int_rectangle * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, const ::scoped_string & scopedstrFontopusServer);
 
 
       virtual bool create_window(const ::int_rectangle * lpcrect);

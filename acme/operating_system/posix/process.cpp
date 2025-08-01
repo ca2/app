@@ -307,7 +307,7 @@ critical_section * get_pid_cs()
 
 string get_current_directory_name();
 
-::file::path deduct_module_path_from_current_directory(const_char_pointer  pszOptionalExecutableRelativePath)
+::file::path deduct_module_path_from_current_directory(const_char_pointer pszOptionalExecutableRelativePath)
 {
 	
    ::string strName(scopedstrOptionalExecutableRelativePath);

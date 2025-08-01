@@ -1123,7 +1123,7 @@ void user::destroy()
 //   //}
 //
 //
-//   //bool user::set_os_desktop_theme(string strTheme)
+//   //bool user::set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 //   //{
 //
 //   //   return impl_set_os_desktop_theme(strTheme);
@@ -1139,7 +1139,7 @@ void user::destroy()
 //   //}
 //
 //
-//   //bool user::set_wallpaper(::collection::index iScreen, string strWallpaper)
+//   //bool user::set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrWallpaper)
 //   //{
 //
 //   //   return impl_set_wallpaper(iScreen, strWallpaper);
@@ -1157,7 +1157,7 @@ void user::destroy()
 //   //}
 //
 //
-//   //bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+//   //bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 //   //{
 //
 //   //   return SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, wstring(strLocalImagePath), SPIF_UPDATEINIFILE | SPIF_SENDCHANGE) != false;
@@ -1193,7 +1193,7 @@ void user::destroy()
 //   //}
 //
 //
-//   //bool user::impl_set_os_desktop_theme(string strTheme)
+//   //bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 //   //{
 //
 //   //   __UNREFERENCED_PARAMETER(strTheme);
@@ -1206,7 +1206,7 @@ void user::destroy()
 //#elif defined(LINUX)
 //
 //
-////   bool user::impl_set_os_desktop_theme(string strTheme)
+////   bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 ////   {
 ////
 ////      auto pnode = Node;
@@ -1224,7 +1224,7 @@ void user::destroy()
 ////   }
 //
 //
-////   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+////   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 ////   {
 ////
 ////      // wall-changer sourceforge.net contribution
@@ -1268,14 +1268,14 @@ void user::destroy()
 //
 //#elif defined(APPLE_IOS)
 //
-////   bool user::impl_set_os_desktop_theme(string strTheme)
+////   bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 ////   {
 ////
 ////      return false;
 ////
 ////   }
 ////
-////   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+////   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 ////   {
 ////
 ////      return false;
@@ -1304,7 +1304,7 @@ void user::destroy()
 //
 //#elif defined(__ANDROID__)
 //
-////   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+////   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 ////   {
 ////
 ////      return psystem->android_set_user_wallpaper(strLocalImagePath);
@@ -1336,7 +1336,7 @@ void user::destroy()
 ////   }
 ////
 ////
-////   bool user::impl_set_os_desktop_theme(string strTheme)
+////   bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 ////   {
 ////
 ////      __UNREFERENCED_PARAMETER(strTheme);
@@ -1356,7 +1356,7 @@ void user::destroy()
 ////   }
 //
 //
-////   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+////   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 ////   {
 ////
 ////      // Someday we will be together...
@@ -1382,7 +1382,7 @@ void user::destroy()
 ////   }
 ////
 ////
-////   bool user::impl_set_os_desktop_theme(string strTheme)
+////   bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 ////   {
 ////
 ////      __UNREFERENCED_PARAMETER(strTheme);
@@ -1399,7 +1399,7 @@ void user::destroy()
 ////
 ////   }
 //
-////   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+////   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 ////   {
 ////
 ////      return macos_set_user_wallpaper((int)iScreen, strLocalImagePath);
@@ -1425,7 +1425,7 @@ void user::destroy()
 ////   }
 ////
 ////
-////   bool user::impl_set_os_desktop_theme(string strTheme)
+////   bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 ////   {
 ////
 ////      __UNREFERENCED_PARAMETER(strTheme);

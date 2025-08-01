@@ -52,7 +52,7 @@ CLASS_DECL_ACME int trailingBytesForUTF8(char ch)
       }
 
 
-      const_char_pointer  unicode_get_category_name(int i)
+      const_char_pointer unicode_get_category_name(int i)
       {
          if (!is_legal_unicode_index(i))
             return "";

@@ -1089,7 +1089,7 @@ namespace xcb
                window1,
                false,
                XCB_EVENT_MASK_SUBSTRUCTURE_REDIRECT | XCB_EVENT_MASK_STRUCTURE_NOTIFY,
-               (const_char_pointer ) &happening);
+               (const_char_pointer )&happening);
 
             auto estatus = _request_check(cookie);
 

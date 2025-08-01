@@ -58,7 +58,7 @@ namespace write_text
    }
 
 
-   void text_box::update(font_list* plist, int iBox, string strText)
+   void text_box::update(font_list* plist, int iBox, const ::scoped_string & scopedstrText)
    {
 
       if (!m_pimage)
@@ -113,7 +113,7 @@ namespace write_text
 
       m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      m_pimage->g()->text_out(plist->m_rectangleMargin.left(), plist->m_rectangleMargin.top(), strText);
+      m_pimage->g()->text_out(plist->m_rectangleMargin.left(), plist->m_rectangleMargin.top(), scopedstrText);
 
 #if 0
 

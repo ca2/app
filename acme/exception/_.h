@@ -98,9 +98,9 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
 
 
 
-CLASS_DECL_ACME bool __assert_failed_line(const ::ansi_character * pszFileName, int nLine);
+CLASS_DECL_ACME bool __assert_failed_line(const_char_pointer pszFileName, int nLine);
 
-CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const ::ansi_character * pszFileName, int nLine);
+CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const_char_pointer pszFileName, int nLine);
 
 //CLASS_DECL_ACME void __dump(const ::particle * pparticle);
 

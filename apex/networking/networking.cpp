@@ -822,7 +822,7 @@ namespace networking
    }
    */
 
-   /*   bool networking::convert(in_addr & sa, const string & host, int ai_flags)
+   /*   bool networking::convert(in_addr & sa, const ::scoped_string & scopedstrHost, int ai_flags)
       {
 
          memory_set(&sa, 0, sizeof(sa));
@@ -916,7 +916,7 @@ namespace networking
       }*/
 
 
-//   bool networking::convert(struct in6_addr& sa, const string& host, int ai_flags)
+//   bool networking::convert(struct in6_addr& sa, const ::scoped_string & scopedstrHost, int ai_flags)
 //   {
 //
 //      try
@@ -1064,7 +1064,7 @@ namespace networking
 //   }
 //
 
-   bool networking::reverse(string& number, const string& hostname)
+   bool networking::reverse(string& number, const ::scoped_string & scopedstrHostname)
    {
 
       //auto paddress = system()->sockets()->create_address(hostname);

@@ -29,7 +29,7 @@ namespace regular_expression
    void regular_expression::compile(const ::scoped_string & scopedstr)
    {
 
-      m_str = str;
+      m_str = scopedstr;
 
    }
 
@@ -37,7 +37,7 @@ namespace regular_expression
    ::pointer<result>regular_expression::run(const ::scoped_string & scopedstr)
    {
 
-      throw ::exception(error_interface_only, "missing \"" + str + "\" runned by regular expression \"" + m_str + "\"");
+      throw ::exception(error_interface_only, "missing \"" + scopedstr + "\" runned by regular expression \"" + m_str + "\"");
 
       return nullptr;
 

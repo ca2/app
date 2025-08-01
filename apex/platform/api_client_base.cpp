@@ -243,7 +243,7 @@ api_client_base::~api_client_base()
 //}
 //
 //
-//void api_client_base::api_download(string strGet, const ::file::path & path, ::property_set & set)
+//void api_client_base::api_download(const ::scoped_string & scopedstrGet, const ::file::path & path, ::property_set & set)
 //{
 //
 //   defer_api();

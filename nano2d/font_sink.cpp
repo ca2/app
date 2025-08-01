@@ -14,7 +14,7 @@ namespace nano2d
 {
 
 
-   ::write_text::font_pointer font_sink::get_shared_font(const_char_pointer  face, float size)
+   ::write_text::font_pointer font_sink::get_shared_font(const_char_pointer face, float size)
    {
                                                  
        auto fontdescriptor = system()->draw2d()->write_text()->calculate_font_descriptor(face, size);

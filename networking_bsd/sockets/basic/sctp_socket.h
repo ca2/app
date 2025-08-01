@@ -49,17 +49,17 @@ namespace sockets_bsd
       ~SctpSocket();
 
       /** bind() */
-      int Bind(const string &,::networking::port_t);
+      int Bind(const ::scoped_string & scopedstr,::networking::port_t);
       int Bind(::networking::address * address);
       /** sctp_bindx() */
-      int AddAddress(const string &,::networking::port_t);
+      int AddAddress(const ::scoped_string & scopedstr,::networking::port_t);
       int AddAddress(::networking::address * address);
       /** sctp_bindx() */
-      int RemoveAddress(const string &,::networking::port_t);
+      int RemoveAddress(const ::scoped_string & scopedstr,::networking::port_t);
       int RemoveAddress(::networking::address * address);
 
       /** connect() */
-      int open(const string &,::networking::port_t);
+      int open(const ::scoped_string & scopedstr,::networking::port_t);
       int open(::networking::address * address);
 
       /** Connect timeout callback. */
@@ -71,7 +71,7 @@ namespace sockets_bsd
 
    #ifndef SOLARIS
       /** sctp_connectx() */
-      int AddConnection(const string &,::networking::port_t);
+      int AddConnection(const ::scoped_string & scopedstr,::networking::port_t);
       int AddConnection(::networking::address * address);
    #endif
 
@@ -84,7 +84,7 @@ namespace sockets_bsd
       int PeelOff(sctp_assoc_t atom);
 
       /** recvmsg callback */
-      virtual void OnReceiveMessage(const_char_pointer  buf,memsize sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,int msg_flags) = 0;
+      virtual void OnReceiveMessage(const_char_pointer buf,memsize sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,int msg_flags) = 0;
 
       void OnOptions(int,int,int,SOCKET) {}
 

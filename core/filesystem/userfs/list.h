@@ -48,7 +48,7 @@ namespace userfs
 
       virtual list_data * fs_list();
 
-      //void add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName);
+      //void add_fs_item(::file::path pathUser, ::file::path pathFinal, const ::scoped_string & scopedstrName);
 
       void install_message_routing(::channel * pchannel) override;
 

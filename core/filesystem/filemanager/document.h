@@ -67,10 +67,10 @@ namespace filemanager
       DECLARE_MESSAGE_HANDLER(_001OnNewFolder);
       DECLARE_MESSAGE_HANDLER(_001OnUpdateNewFolder);
 
-      //virtual void defer_check_manager_id(string strNewManagerId = "");
+      //virtual void defer_check_manager_id(const ::scoped_string & scopedstrNewManagerId = "");
       virtual void on_request(::request * prequest) override;
 
-      virtual bool do_prompt_file_name(::payload & payloadFile, string strTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      virtual bool do_prompt_file_name(::payload & payloadFile, const ::scoped_string & scopedstrTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
       ::pointer<::filemanager::data>create_file_manager_data(::request * prequest = nullptr);
 

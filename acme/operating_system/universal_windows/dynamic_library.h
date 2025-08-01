@@ -18,7 +18,7 @@ namespace universal_windows
    public:
 
 
-      inline static const_char_pointer  represented_component_name()
+      inline static const_char_pointer represented_component_name()
       {
 
          return "nano_dynamic_library";

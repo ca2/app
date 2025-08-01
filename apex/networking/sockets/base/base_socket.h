@@ -574,7 +574,7 @@ namespace sockets
       virtual bool SetSoBsdcompat(bool x = true);
 //#endif
 //#ifdef SO_BINDTODEVICE
-      virtual bool SetSoBindtodevice(const string & intf);
+      virtual bool SetSoBindtodevice(const ::scoped_string & scopedstrInterface);
 //#endif
 //#ifdef SO_PASSCRED
       virtual bool SetSoPasscred(bool x = true);
@@ -706,7 +706,7 @@ namespace sockets
 ////      //void SetSocks4Host(in_addr a);
 ////#if defined(BSD_STYLE_SOCKETS)
 ////      /** Set socks4 server hostname to use. */
-virtual      void SetSocks4Host(const string & );
+virtual      void SetSocks4Host(const ::scoped_string & scopedstr);
 ////#endif
 ////      /** Socks4 server port to use. */
 virtual      void SetSocks4Port(::networking::port_t int_point);
@@ -728,8 +728,8 @@ virtual string GetSocks4Host();
 //      //\lparam host hostname to be resolved
 //      \lparam port port number passed along for the ride
 //      \return Resolve ID */
-//      //int Resolve(const string & host,::networking::port_t port = 0);
-//      //int Resolve6(const string & host, ::networking::port_t port = 0);
+//      //int Resolve(const ::scoped_string & scopedstrHost,::networking::port_t port = 0);
+//      //int Resolve6(const ::scoped_string & scopedstrHost, ::networking::port_t port = 0);
 //      /** Callback returning a resolved ::networking::address.
 //      \lparam atom Resolve ID from Resolve call
 //      \lparam a resolved ip address/port

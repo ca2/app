@@ -322,7 +322,7 @@ namespace account
    }
 
 
-   string main_window::get_cred(const ::int_rectangle & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle)
+   string main_window::get_cred(const ::int_rectangle & rectangle, string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrTitle)
    {
 
       if (strTitle == "ca2")

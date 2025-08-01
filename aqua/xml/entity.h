@@ -20,7 +20,7 @@ namespace xml
 
       
       entity();
-      entity(char chEntity, const_char_pointer  pszReference);
+      entity(char chEntity, const_char_pointer pszReference);
       entity(const entity & entity);
       entity & operator = (const entity & entity);
       
@@ -35,27 +35,27 @@ namespace xml
    
       
       entity * get_entity( int entity );
-      entity * get_entity(const_char_pointer  pszEntity);
+      entity * get_entity(const_char_pointer pszEntity);
 
-      int get_entity_count( const_char_pointer  str );
+      int get_entity_count( const_char_pointer str );
 
-      int ref_to_entity( const_char_pointer  estr, char * str, int strlen );
-      int entity_to_ref( const_char_pointer  str, char * estr, int estrlen );
+      int ref_to_entity( const_char_pointer estr, char * str, int strlen );
+      int entity_to_ref( const_char_pointer str, char * estr, int estrlen );
 
-      string ref_to_entity( const_char_pointer  estr );
-      string entity_to_ref( const_char_pointer  str );   
+      string ref_to_entity( const_char_pointer estr );
+      string entity_to_ref( const_char_pointer str );
 
-      void ref_to_entity(string & str, const_char_pointer  estr);
-      void entity_to_ref(string & s, const_char_pointer  str);
+      void ref_to_entity(string & str, const_char_pointer estr);
+      void entity_to_ref(string & s, const_char_pointer str);
 
-      void add_entity(char chEntity, const_char_pointer  pszReference);
+      void add_entity(char chEntity, const_char_pointer pszReference);
 
       
    };
 
    
-   string XRef2Entity( const_char_pointer  estr );
-   string XEntity2Ref( const_char_pointer  str );   
+   string XRef2Entity( const_char_pointer estr );
+   string XEntity2Ref( const_char_pointer str );
    
 
 } // namespace xml

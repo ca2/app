@@ -17,9 +17,9 @@
 //      string_map < ::pointer<::acme::exclusive >>   m_mapExclusive;
 //
 //
-//      virtual ::pointer<::acme::exclusive> get_exclusive(string str, const :: ARG_SEC_ATTRS_DEF);
+//      virtual ::pointer<::acme::exclusive> get_exclusive(const ::scoped_string & scopedstr, const :: ARG_SEC_ATTRS_DEF);
 //
-//      virtual bool erase_exclusive(string str ARG_SEC_ATTRS_DEF);
+//      virtual bool erase_exclusive(const ::scoped_string & scopedstr ARG_SEC_ATTRS_DEF);
 //
 //
 //   };

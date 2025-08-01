@@ -81,7 +81,7 @@ namespace sockets
       /** Callback fires when all http headers have been received. */
       virtual void OnHeaderComplete();
       /** Chunk of http body data recevied. */
-      virtual void OnData(const_char_pointer , memsize);
+      virtual void OnData(const_char_pointer ,memsize);
       /** The full request/response body has been received. */
       virtual void OnDataComplete();
 

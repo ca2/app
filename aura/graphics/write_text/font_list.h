@@ -90,9 +90,9 @@ namespace write_text
       virtual void _001OnDrawWide(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawSingleColumn(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction);
 
-      virtual ::collection::index find_name(string str);
+      virtual ::collection::index find_name(const ::scoped_string & scopedstr);
 
-      virtual bool set_sel_by_name(string str);
+      virtual bool set_sel_by_name(const ::scoped_string & scopedstr);
 
       //virtual void ensure_sel_visible();
 

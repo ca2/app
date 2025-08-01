@@ -689,11 +689,11 @@ namespace user
 
       virtual bool is_ok();
 
-      virtual string get_class_style(string strClass);
-      virtual void set_class_style(string strClass, string strStyle);
+      virtual string get_class_style(const ::scoped_string & scopedstrClass);
+      virtual void set_class_style(const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrStyle);
       virtual void sync_style();
       virtual string get_full_style();
-      virtual void load_style(string strStyle);
+      virtual void load_style(const ::scoped_string & scopedstrStyle);
 
 
       virtual::e_display window_stored_display();
@@ -1681,11 +1681,11 @@ namespace user
       virtual bool edit_undo();
 
 
-      virtual void edit_on_text(string str) override;
+      virtual void edit_on_text(const ::scoped_string & scopedstr) override;
       virtual void edit_on_sel(character_count iBeg, character_count iEnd) override;
 
       //void get_text_composition_area(::int_rectangle & r) override;
-      virtual void on_text_composition(string str) override;
+      virtual void on_text_composition(const ::scoped_string & scopedstr) override;
       virtual void on_text_composition_done() override;
 
       //void is_text_composition_active() override;
@@ -1693,7 +1693,7 @@ namespace user
       virtual int on_text_composition_message(int iMessage);
 
       void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext) override;
-      //void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
+      //void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) override;
       virtual void get_text_composition_area(::int_rectangle & rectangle);
 
 

@@ -103,17 +103,17 @@ namespace axis
 //   }
 
 
-   string application::__get_text(string str)
+   string application::__get_text(const ::scoped_string & scopedstr)
    {
 
       if (!m_puserlanguagemap)
       {
 
-         return str;
+         return scopedstr;
 
       }
 
-      return m_puserlanguagemap->__get_text(str);
+      return m_puserlanguagemap->__get_text(scopedstr);
 
    }
 
@@ -284,7 +284,7 @@ namespace axis
 //
 //
 
-//   string CLASS_DECL_AXIS application::get_cred(const ::scoped_string & scopedstrRequestUrl, const ::int_rectangle & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+//   string CLASS_DECL_AXIS application::get_cred(const ::scoped_string & scopedstrRequestUrl, const ::int_rectangle & rectangle, string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrTitle, bool bInteractive)
 // {
 
 //  throw ::not_implemented();
@@ -1812,7 +1812,7 @@ namespace axis
    bool application::assert_user_logged_in()
    {
 
-      //const_char_pointer  pszRequestUrl = nullptr;
+      //const_char_pointer pszRequestUrl = nullptr;
 
       string strRequestUrl;
 

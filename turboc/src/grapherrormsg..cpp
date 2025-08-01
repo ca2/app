@@ -28,7 +28,7 @@
 
 //#include "graphics.h"
 
-static const_char_pointer  ErrorMessages[] = {
+static const_char_pointer ErrorMessages[] = {
   "No error",
   "(BGI) graphics not installed (use initgraph)",
   "Graphics hardware not detected",

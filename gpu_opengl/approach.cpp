@@ -277,7 +277,7 @@ namespace gpu_opengl
 //         if (err != GLEW_OK)
 //         {
 //
-//            const ::ansi_character * pszErrorString = (const_char_pointer  ) glewGetErrorString(err);
+//            const_char_pointer pszErrorString = (const_char_pointer )glewGetErrorString(err);
 //
 //            //throw ::exception(error_resource);
 //            // Problem: glewInit failed, something is seriously wrong.

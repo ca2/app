@@ -4396,7 +4396,7 @@ Type string_array_base < Type, RawType, t_etypeContainer >::get_at(::collection:
 }
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//void string_array_base < Type, RawType, t_etypeContainer >::set_at(::collection::index nIndex, const_char_pointer  newElement)
+//void string_array_base < Type, RawType, t_etypeContainer >::set_at(::collection::index nIndex, const_char_pointer newElement)
 //{
 //   if (nIndex < 0 || nIndex >= this->size())
 //      throw_exception(error_index_out_of_bounds);

@@ -15,9 +15,9 @@
 //    FILE *         m_pfile;
 //    char           m_chSeparator = ' ';
 //#ifdef WINDOWS
-//    const_char_pointer  m_pszEolSeparator = "\r\n";
+//    const_char_pointer m_pszEolSeparator = "\r\n";
 //#else
-//    const_char_pointer  m_pszEolSeparator = "\n";
+//    const_char_pointer m_pszEolSeparator = "\n";
 //#endif
 
 //// template < typename FILE >
@@ -120,7 +120,7 @@
 //
 //// template < typename FILE >
 //template < primitive_number NUMBER >
-//void write_text_stream < FILE >::write_number(NUMBER number, const ::ansi_character * pszFormat)
+//void write_text_stream < FILE >::write_number(NUMBER number, const_char_pointer pszFormat)
 //{
 //
 //   print(as_string(number, pszFormat));
@@ -180,7 +180,7 @@
 //    void exchange(const ::atom & atom, TYPE & t) { ::__string_exchange(*this, t); }*/
 //
 // // template < typename FILE >
-// void write_text_stream < FILE >::append_format(const ::ansi_character * pszFormat, ...)
+// void write_text_stream < FILE >::append_format(const_char_pointer pszFormat, ...)
 // {
 //
 //    ::string strText;
@@ -486,7 +486,7 @@
 //
 //
 //// template < typename FILE >
-//write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::ansi_character * psz)
+//write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const_char_pointer psz)
 //{
 //
 //   if (this->fmtflags() & ::file::network_payload)
@@ -662,7 +662,7 @@
 //
 //
 ////// template < typename FILE >
-////write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::ansi_character * psz)
+////write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const_char_pointer psz)
 ////{
 ////
 ////   if (this->fmtflags() & ::file::network_payload)

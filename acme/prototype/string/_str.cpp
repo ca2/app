@@ -580,7 +580,7 @@ bool str::begins_ci_iws(const ::scoped_string & scopedstr, const ::scoped_string
    //   {
    //      return true;
    //   }
-   //   const ::ansi_character * pszEnd = pcsz;
+   //   const_char_pointer pszEnd = pcsz;
 
    //   const ::scoped_string & scopedstrSuffixEnd = pcszSuffix;
 
@@ -638,7 +638,7 @@ bool str::begins_ci_iws(const ::scoped_string & scopedstr, const ::scoped_string
    //   {
    //      return true;
    //   }
-   //   const ::ansi_character * pszEnd = pcsz;
+   //   const_char_pointer pszEnd = pcsz;
 
    //   const ::scoped_string & scopedstrSuffixEnd = pcszSuffix;
 
@@ -688,7 +688,7 @@ bool str::begins_ci_iws(const ::scoped_string & scopedstr, const ::scoped_string
 //      }
 //      const ::scoped_string & scopedstr = str;
 //
-//      const ::ansi_character * pszEnd = pcsz + str.length();
+//      const_char_pointer pszEnd = pcsz + str.length();
 //
 //      const ::scoped_string & scopedstrSuffixEnd = pcszSuffix;
 //
@@ -1211,7 +1211,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 //            pszC2 += len2;
 //            if(*pszC2 == '\0')
 //            {
-//               return psz1 - (const_char_pointer ) str;
+//               return psz1 - (const_char_pointer )str;
 //            }
 //            if(*pszC1 == '\0')
 //            {
@@ -1323,7 +1323,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 
    {
 
-      const ::ansi_character * pszOkToContinue = strchr(scopedstr, '.');
+      const_char_pointer pszOkToContinue = strchr(scopedstr, '.');
 
       if (pszOkToContinue == nullptr || pszOkToContinue - (const_char_pointer )scopedstr >= iLast)
       {
@@ -1340,9 +1340,9 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 
    int len2;
 
-   const ::ansi_character * psz1 = scopedstr;
+   const_char_pointer psz1 = scopedstr;
 
-   const ::ansi_character * psz2 = scopedstrOld;
+   const_char_pointer psz2 = scopedstrOld;
 
    character_count iPos = 0;
 
@@ -1389,9 +1389,9 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 
          }
 
-         const ::ansi_character * pszC1 = psz1;
+         const_char_pointer pszC1 = psz1;
 
-         const ::ansi_character * pszC2 = psz2;
+         const_char_pointer pszC2 = psz2;
 
          iPos2 = iPos;
 
@@ -1465,9 +1465,9 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 
  auto psz = &scopedstr[iStart];
 
- const_char_pointer  pSrc;
+ const_char_pointer pSrc;
 
- const_char_pointer  pFin = scopedstrOld;
+ const_char_pointer pFin = scopedstrOld;
 
  int lenSrc;
 
@@ -1658,7 +1658,7 @@ character_count str::find_ww(const ::scoped_string & scopedstrOld, const ::scope
 
    auto psz = scopedstrParam.c_str();
 
-   const ::ansi_character * pszIter = &scopedstrParam[iStart];
+   const_char_pointer pszIter = &scopedstrParam[iStart];
 
    if (pszIter == nullptr)
    {
@@ -1706,7 +1706,7 @@ character_count str::find_aww(const ::scoped_string & scopedstrOld, const ::scop
 
    auto psz = scopedstrParam.c_str();
 
-   const ::ansi_character * pszIter = &psz[iStart];
+   const_char_pointer pszIter = &psz[iStart];
 
    if (pszIter == nullptr)
    {
@@ -1747,13 +1747,13 @@ string str::has_character(const ::scoped_string & scopedstrIfHasChar, const ::sc
 
    string str;
 
-   if (strIfHasChar.is_empty())
+   if (scopedstrIfHasChar.is_empty())
    {
 
-      if (strDoesnt.has_character())
+      if (scopedstrDoesnt.has_character())
       {
 
-         return strDoesnt;
+         return scopedstrDoesnt;
 
       }
       else
@@ -1765,26 +1765,26 @@ string str::has_character(const ::scoped_string & scopedstrIfHasChar, const ::sc
 
    }
 
-   if (strIfHasChar.is_empty())
+   if (scopedstrIfHasChar.is_empty())
    {
 
       return str;
 
    }
 
-   if (strBefore.has_character())
+   if (scopedstrBefore.has_character())
    {
 
-      str = strBefore;
+      str = scopedstrBefore;
 
    }
 
-   str += strIfHasChar;
+   str += scopedstrIfHasChar;
 
-   if (strAfter.has_character())
+   if (scopedstrAfter.has_character())
    {
 
-      str += strAfter;
+      str += scopedstrAfter;
 
    }
 
@@ -1800,7 +1800,7 @@ bool str::has_upper(const ::scoped_string & scopedstr)
    bool bHasLower;
    bool bHasDigit;
 
-   calc_v1(str, bHasUpper, bHasLower, bHasDigit);
+   calc_v1(scopedstr, bHasUpper, bHasLower, bHasDigit);
 
    return bHasUpper;
 
@@ -1814,7 +1814,7 @@ bool str::has_lower(const ::scoped_string & scopedstr)
    bool bHasLower;
    bool bHasDigit;
 
-   calc_v1(str, bHasUpper, bHasLower, bHasDigit);
+   calc_v1(scopedstr, bHasUpper, bHasLower, bHasDigit);
 
    return bHasLower;
 
@@ -1828,7 +1828,7 @@ bool str::has_digit(const ::scoped_string & scopedstr)
    bool bHasLower;
    bool bHasDigit;
 
-   calc_v1(str, bHasUpper, bHasLower, bHasDigit);
+   calc_v1(scopedstr, bHasUpper, bHasLower, bHasDigit);
 
    return bHasDigit;
 
@@ -1847,7 +1847,7 @@ void str::calc_v1(const ::scoped_string & scopedstrParam, bool & bHasUpper, bool
    while (true)
    {
 
-      string strUtf8Char = get_utf8_char(scopedstr);
+      string strUtf8Char = get_utf8_char(psz);
 
       if (strUtf8Char.is_empty())
       {
@@ -1879,7 +1879,7 @@ void str::calc_v1(const ::scoped_string & scopedstrParam, bool & bHasUpper, bool
          break;
       }
       
-      unicode_increment(scopedstr);
+      unicode_increment(psz);
 
    }
 
@@ -1889,7 +1889,7 @@ void str::calc_v1(const ::scoped_string & scopedstrParam, bool & bHasUpper, bool
 bool str::has_one_v1(const ::scoped_string & scopedstr, bool & bHasUpper, bool & bHasLower, bool & bHasDigit)
 {
 
-   calc_v1(str, bHasUpper, bHasLower, bHasDigit);
+   calc_v1(scopedstr, bHasUpper, bHasLower, bHasDigit);
 
    return bHasUpper || bHasLower || bHasDigit;
 
@@ -1899,7 +1899,7 @@ bool str::has_one_v1(const ::scoped_string & scopedstr, bool & bHasUpper, bool &
 bool str::has_all_v1(const ::scoped_string & scopedstr, bool & bHasUpper, bool & bHasLower, bool & bHasDigit)
 {
 
-   calc_v1(str, bHasUpper, bHasLower, bHasDigit);
+   calc_v1(scopedstr, bHasUpper, bHasLower, bHasDigit);
 
    return bHasUpper && bHasLower && bHasDigit;
 
@@ -1913,7 +1913,7 @@ bool str::has_all_v1(const ::scoped_string & scopedstr)
    bool bHasLower;
    bool bHasDigit;
 
-   return has_all_v1(str, bHasUpper, bHasLower, bHasDigit);
+   return has_all_v1(scopedstr, bHasUpper, bHasLower, bHasDigit);
 
 }
 
@@ -1921,16 +1921,16 @@ bool str::has_all_v1(const ::scoped_string & scopedstr)
 string str::if_null(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrIfNull)
 {
 
-   if (str.is_empty())
+   if (scopedstr.is_empty())
    {
     
-      return strIfNull;
+      return scopedstrIfNull;
 
    }
    else
    {
 
-      return str;
+      return scopedstr;
 
    }
 
@@ -1940,16 +1940,16 @@ string str::if_null(const ::scoped_string & scopedstr, const ::scoped_string & s
 string str::get_word(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSeparator, bool bWithSeparator, bool bEndIsSeparator)
 {
 
-   if (str.is_empty())
+   if (scopedstr.is_empty())
       return {};
 
-   if (strSeparator.is_empty())
+   if (scopedstrSeparator.is_empty())
    {
 
       if (bEndIsSeparator)
       {
 
-         return str;
+         return scopedstr;
 
       }
       else
@@ -1961,11 +1961,15 @@ string str::get_word(const ::scoped_string & scopedstr, const ::scoped_string & 
 
    }
 
+   ::string str(scopedstr);
+
    auto psz = str.c_str();
 
-   const ::ansi_character * pszOld = strstr(scopedstr, strSeparator);
+   ::string strSeparator(scopedstr);
 
-   if (scopedstrOld == nullptr)
+   const_char_pointer pszOld = strstr(psz, strSeparator);
+
+   if (pszOld == nullptr)
    {
 
       if (bEndIsSeparator)
@@ -1986,13 +1990,13 @@ string str::get_word(const ::scoped_string & scopedstr, const ::scoped_string & 
    if (bWithSeparator)
    {
 
-      return string(scopedstr, pszOld - psz + 1);
+      return string(psz, pszOld - psz + 1);
 
    }
    else
    {
 
-      return string(scopedstr, pszOld - psz);
+      return string(psz, pszOld - psz);
 
    }
 
@@ -2080,7 +2084,7 @@ character_count unicode_to_utf8_length(long long i)
 
 
 
-//const_char_pointer  str::utf8_next_add_length(character_count * paddlength, const ::ansi_character * psz)
+//const_char_pointer str::utf8_next_add_length(character_count * paddlength, const_char_pointer psz)
 //{
 //
 //   char len = 1 + trailingBytesForUTF8(*psz);
@@ -2130,7 +2134,7 @@ character_count unicode_to_utf8_length(long long i)
 //}
 
 
-//const_char_pointer  str::utf8_inc_copy_slide_back(character_count * pslideback, char * pchDst, const_char_pointer  pchSrc)
+//const_char_pointer str::utf8_inc_copy_slide_back(character_count * pslideback, char * pchDst, const_char_pointer pchSrc)
 //{
 //
 //   character_count count = 0;
@@ -2151,7 +2155,7 @@ character_count unicode_to_utf8_length(long long i)
 
 
 
-//const_char_pointer  str::utf8_dec(const character & character, const ::ansi_character * pszBeg, const ::ansi_character * psz)
+//const_char_pointer str::utf8_dec(const character & character, const_char_pointer pszBeg, const_char_pointer psz)
 //{
 //
 //   if (scopedstr <= pszBeg)
@@ -2311,20 +2315,20 @@ character_count unicode_to_utf8_length(long long i)
 //}
 
 
-const_char_pointer  utf8_dec(const ::ansi_character * pszBeg, const ::ansi_character * psz)
+const_char_pointer utf8_dec(const_char_pointer pszBeg, const_char_pointer psz)
 {
 
-   if (scopedstr <= pszBeg)
+   if (psz <= pszBeg)
    {
 
       return nullptr;
 
    }
 
-   if ((*(scopedstr - 1) & 0x80) == 0x00)
+   if ((*(psz - 1) & 0x80) == 0x00)
    {
 
-      if ((scopedstr - 1) < pszBeg)
+      if ((psz - 1) < pszBeg)
       {
 
          return nullptr;
@@ -2334,10 +2338,10 @@ const_char_pointer  utf8_dec(const ::ansi_character * pszBeg, const ::ansi_chara
       return psz - 1;
 
    }
-   else if ((*(scopedstr - 2) & 0xE0) == 0xC0)
+   else if ((*(psz - 2) & 0xE0) == 0xC0)
    {
 
-      if ((scopedstr - 2) < pszBeg)
+      if ((psz - 2) < pszBeg)
       {
 
          return nullptr;
@@ -2347,10 +2351,10 @@ const_char_pointer  utf8_dec(const ::ansi_character * pszBeg, const ::ansi_chara
       return psz - 2;
 
    }
-   else if ((*(scopedstr - 3) & 0xF0) == 0xE0)
+   else if ((*(psz - 3) & 0xF0) == 0xE0)
    {
 
-      if ((scopedstr - 3) < pszBeg)
+      if ((psz - 3) < pszBeg)
       {
 
          return nullptr;
@@ -2360,10 +2364,10 @@ const_char_pointer  utf8_dec(const ::ansi_character * pszBeg, const ::ansi_chara
       return psz - 3;
 
    }
-   else if ((*(scopedstr - 4) & 0xF8) == 0xF0)
+   else if ((*(psz - 4) & 0xF8) == 0xF0)
    {
 
-      if ((scopedstr - 4) < pszBeg)
+      if ((psz - 4) < pszBeg)
       {
 
          return nullptr;
@@ -2373,10 +2377,10 @@ const_char_pointer  utf8_dec(const ::ansi_character * pszBeg, const ::ansi_chara
       return psz - 4;
 
    }
-   else if ((*(scopedstr - 5) & 0xFC) == 0xF8)
+   else if ((*(psz - 5) & 0xFC) == 0xF8)
    {
 
-      if ((scopedstr - 5) < pszBeg)
+      if ((psz - 5) < pszBeg)
       {
 
          return nullptr;
@@ -2386,10 +2390,10 @@ const_char_pointer  utf8_dec(const ::ansi_character * pszBeg, const ::ansi_chara
       return psz - 5;
 
    }
-   else if ((*(scopedstr - 6) & 0xFE) == 0xFC)
+   else if ((*(psz - 6) & 0xFE) == 0xFC)
    {
 
-      if ((scopedstr - 6) < pszBeg)
+      if ((psz - 6) < pszBeg)
       {
 
          return nullptr;
@@ -2400,7 +2404,7 @@ const_char_pointer  utf8_dec(const ::ansi_character * pszBeg, const ::ansi_chara
 
    }
 
-   if ((scopedstr - 1) < pszBeg)
+   if ((psz - 1) < pszBeg)
    {
 
       return nullptr;
@@ -2412,12 +2416,12 @@ const_char_pointer  utf8_dec(const ::ansi_character * pszBeg, const ::ansi_chara
 }
 
 
-string get_utf8_char(const ::ansi_character * psz)
+string get_utf8_char(const_char_pointer psz)
 {
 
    int iLength;
    
-   auto iIndex = unicode_index_length(scopedstr, iLength);
+   auto iIndex = unicode_index_length(psz, iLength);
 
    if (iLength < 0)
    {
@@ -2426,41 +2430,41 @@ string get_utf8_char(const ::ansi_character * psz)
 
    }
 
-   return string(scopedstr, iLength);
+   return string(psz, iLength);
 
 }
 
 
-string get_utf8_char(const ::ansi_character * psz, const ::ansi_character * pszEnd)
+string get_utf8_char(const_char_pointer psz, const_char_pointer pszEnd)
 {
 
-   const ::ansi_character * pszNext = unicode_next(scopedstr);
+   const_char_pointer pszNext = unicode_next(psz);
 
-   if (scopedstrNext > pszEnd)
+   if (pszNext > pszEnd)
    {
 
       return "";
 
    }
 
-   return string(scopedstr, pszNext - psz);
+   return string(psz, pszNext - psz);
 
 }
 
 
-bool get_utf8_char(string & strChar, const_char_pointer & psz, const ::ansi_character * pszEnd)
+bool get_utf8_char(string & strChar, const_char_pointer &psz, const_char_pointer pszEnd)
 {
 
-   const ::ansi_character * pszNext = unicode_next(scopedstr);
+   const_char_pointer pszNext = unicode_next(psz);
 
-   if (scopedstrNext > pszEnd)
+   if (pszNext > pszEnd)
    {
 
       return false;
 
    }
 
-   strChar = string(scopedstr, pszNext - psz);
+   strChar = string(psz, pszNext - psz);
 
    psz = pszNext;
 
@@ -2469,7 +2473,7 @@ bool get_utf8_char(string & strChar, const_char_pointer & psz, const ::ansi_char
 }
 
 
-string get_utf8_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, ::collection::index i)
+string get_utf8_char(const_char_pointer pszBeg, const_char_pointer psz, ::collection::index i)
 {
 
    if (i > 0)
@@ -2478,7 +2482,7 @@ string get_utf8_char(const ::ansi_character * pszBeg, const ::ansi_character * p
       while (i != 0)
       {
 
-         unicode_increment(scopedstr);
+         unicode_increment(psz);
 
          if (*psz == '\0')
          {
@@ -2491,7 +2495,7 @@ string get_utf8_char(const ::ansi_character * pszBeg, const ::ansi_character * p
 
       }
 
-      return get_utf8_char(scopedstr);
+      return get_utf8_char(psz);
 
    }
    else
@@ -2500,9 +2504,9 @@ string get_utf8_char(const ::ansi_character * pszBeg, const ::ansi_character * p
       while (i != 0)
       {
 
-         psz = unicode_prior(scopedstrBeg, psz);
+         psz = unicode_prior(pszBeg, psz);
 
-         if (scopedstr == nullptr)
+         if (psz == nullptr)
          {
 
             return "";
@@ -2519,43 +2523,43 @@ string get_utf8_char(const ::ansi_character * pszBeg, const ::ansi_character * p
 
       }
 
-      return get_utf8_char(scopedstr);
+      return get_utf8_char(psz);
 
    }
 
 }
 
 
-string utf8_next_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, ::collection::index i)
+string utf8_next_char(const_char_pointer pszBeg, const_char_pointer psz, ::collection::index i)
 {
 
-   return get_utf8_char(scopedstrBeg, psz, i + 1);
+   return get_utf8_char(pszBeg, psz, i + 1);
 
 }
 
 
-string utf8_previous_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, ::collection::index i)
+string utf8_previous_char(const_char_pointer pszBeg, const_char_pointer psz, ::collection::index i)
 {
 
-   return utf8_next_char(scopedstrBeg, psz, -i);
+   return utf8_next_char(pszBeg, psz, -i);
 
 }
 
 
-int str::get_escaped_char(const ::ansi_character * psz, character_count pos, character_count & retPos)
+int str::get_escaped_char(const_char_pointer psz, character_count pos, character_count & retPos)
 {
 
    retPos = pos;
 
-   if (scopedstr[pos] == '\\')
+   if (psz[pos] == '\\')
    {
 
       retPos++;
 
-      if (scopedstr[pos + 1] == 'x')
+      if (psz[pos + 1] == 'x')
       {
 
-         if (scopedstr[pos + 2] == '{')
+         if (psz[pos + 2] == '{')
          {
 
             string val;
@@ -2588,7 +2592,7 @@ int str::get_escaped_char(const ::ansi_character * psz, character_count pos, cha
 
             long long hex = ::hex::to_long_long(string(&psz[pos + 2], 2));
 
-            if ((long long)(strlen(scopedstr)) <= pos + 2 || hex == -1)
+            if ((long long)(strlen(psz)) <= pos + 2 || hex == -1)
             {
 
                return BAD_WCHAR;
@@ -2612,14 +2616,14 @@ int str::get_escaped_char(const ::ansi_character * psz, character_count pos, cha
 }
 
 
-bool str::get_curly_content(const ::ansi_character * psz, string & str)
+bool str::get_curly_content(const_char_pointer psz, string & str)
 {
 
-   if (scopedstr[0] != '{') return false;
+   if (psz[0] != '{') return false;
 
-   const ::ansi_character * pszChar;
+   const_char_pointer pszChar;
 
-   for (scopedstrChar = unicode_next(scopedstr); pszChar != nullptr; unicode_increment(scopedstrChar))
+   for (pszChar = unicode_next(psz); pszChar != nullptr; unicode_increment(pszChar))
    {
 
       if (*pszChar == '}')
@@ -2633,14 +2637,14 @@ bool str::get_curly_content(const ::ansi_character * psz, string & str)
       cc == CHAR_CATEGORY_Cf || cc == CHAR_CATEGORY_Cs)
       return nullptr;*/
    };
-   if (scopedstrChar == nullptr || *pszChar == '\0')
+   if (pszChar == nullptr || *pszChar == '\0')
       return false;
    str = string(&psz[1], pszChar - psz - 1);
    return true;
 }
 
 
-bool str::is_simple_natural(const ::ansi_character * pszCandidate, character_count iCount)
+bool str::is_simple_natural(const_char_pointer pszCandidate, character_count iCount)
 {
 
    if (iCount == 0)
@@ -2650,7 +2654,7 @@ bool str::is_simple_natural(const ::ansi_character * pszCandidate, character_cou
 
    }
 
-   string str(scopedstrCandidate);
+   string str(pszCandidate);
 
    str.trim();
 
@@ -2666,14 +2670,14 @@ bool str::is_simple_natural(const ::ansi_character * pszCandidate, character_cou
    while (*psz != '\0' && iCount != 0)
    {
 
-      if (!unicode_is_digit(scopedstr))
+      if (!unicode_is_digit(psz))
       {
 
          return false;
 
       }
 
-      unicode_increment(scopedstr);
+      unicode_increment(psz);
 
       iCount--;
 
@@ -2807,7 +2811,7 @@ public:
       }
    }
 
-   void append(const ::ansi_character * psz, character_count iSize)
+   void append(const_char_pointer psz, character_count iSize)
    {
 
       if (m_iPos + iSize > m_iSize)
@@ -2853,7 +2857,7 @@ public:
 string str::token(string & str, const ::scoped_string & scopedstrSeparatorText, bool bWithSeparator)
 {
 
-   auto pFind = str.find(strSeparatorText);
+   auto pFind = str.find(scopedstrSeparatorText);
 
    string strToken;
 
@@ -2863,7 +2867,7 @@ string str::token(string & str, const ::scoped_string & scopedstrSeparatorText, 
       if (bWithSeparator)
       {
 
-         pFind += strSeparatorText.size();
+         pFind += scopedstrSeparatorText.size();
 
          strToken = str(0, pFind);
 
@@ -2875,7 +2879,7 @@ string str::token(string & str, const ::scoped_string & scopedstrSeparatorText, 
 
          strToken = str(0, pFind);
 
-         str.begin(pFind + strSeparatorText.size());
+         str.begin(pFind + scopedstrSeparatorText.size());
 
       }
 
@@ -3090,7 +3094,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 int str::to_int(const ::scoped_string & scopedstr)
 {
 
-   return ansi_to_int(str);
+   return ansi_to_int(scopedstr);
 
 }
 
@@ -3108,9 +3112,9 @@ long long str::to_long_long(const ::scoped_string & scopedstr)
 
    int i = 0;
 
-   for (; i < str.length() && character_isspace(str[i]); i++);
+   for (; i < scopedstr.length() && character_isspace(scopedstr[i]); i++);
 
-   bool bNegative = str[i] == '-';
+   bool bNegative = scopedstr[i] == '-';
 
    if (bNegative)
    {
@@ -3121,10 +3125,10 @@ long long str::to_long_long(const ::scoped_string & scopedstr)
 
    unsigned long long u = 0;
 
-   for (; i < str.length() && character_isdigit(str[i]); i++)
+   for (; i < scopedstr.length() && character_isdigit(scopedstr[i]); i++)
    {
 
-      u = u * 10 + str[i] - 48;
+      u = u * 10 + scopedstr[i] - 48;
 
    }
 
@@ -3175,13 +3179,13 @@ unsigned long long str::to_unsigned_long_long(const ::scoped_string & scopedstr)
 
    int i = 0;
 
-   for (; i < str.length() && character_isspace(str[i]); i++);
+   for (; i < scopedstr.length() && character_isspace(scopedstr[i]); i++);
 
    unsigned long long u = 0;
 
-   for (; i < str.length() && character_isdigit(str[i]); i++)
+   for (; i < scopedstr.length() && character_isdigit(scopedstr[i]); i++)
    {
-      u = u * 10 + str[i] - 48;
+      u = u * 10 + scopedstr[i] - 48;
    }
 
    return u;
@@ -3240,7 +3244,7 @@ void str::increment_digit_letter(string & str)
 }
 
 
-//bool str::while_begins_with_chars_eat(string & str, const ::ansi_character * pszChars)
+//bool str::while_begins_with_chars_eat(string & str, const_char_pointer pszChars)
 //{
 //
 //   int i = 0;
@@ -3256,7 +3260,7 @@ void str::increment_digit_letter(string & str)
 //}
 //
 //
-//bool str::case_insensitive_while_begins_with_chars_eat(string & str, const ::ansi_character * pszChars) // case insensitive
+//bool str::case_insensitive_while_begins_with_chars_eat(string & str, const_char_pointer pszChars) // case insensitive
 //{
 //
 //   int i = 0;
@@ -3297,7 +3301,7 @@ void str::increment_digit_letter(string & str)
 //   }
 
 
-//bool str::replace_prefix(::string & str, const ::ansi_character * pszPrefixReplacement, const ::ansi_character * pszPrefix)
+//bool str::replace_prefix(::string & str, const_char_pointer pszPrefixReplacement, const_char_pointer pszPrefix)
 //{
 //
 //   if (!str.begins_eat(scopedstrPrefix))
@@ -3314,7 +3318,7 @@ void str::increment_digit_letter(string & str)
 //}
 //
 //
-//bool str::case_insensitive_replace_prefix(::string & str, const ::ansi_character * pszPrefixReplacement, const ::ansi_character * pszPrefix)
+//bool str::case_insensitive_replace_prefix(::string & str, const_char_pointer pszPrefixReplacement, const_char_pointer pszPrefix)
 //{
 //
 //   if (!str.case_insensitive_begins_eat(scopedstrPrefix))
@@ -3547,7 +3551,7 @@ void str::increment_digit_letter(string & str)
 string str::ansi_lower(const ::scoped_string & scopedstr)
 {
 
-   return str.lowered();
+   return scopedstr.lowered();
 
 }
 
@@ -3555,7 +3559,7 @@ string str::ansi_lower(const ::scoped_string & scopedstr)
 string str::ansi_upper(const ::scoped_string & scopedstr)
 {
 
-   return str.uppered();
+   return scopedstr.uppered();
 
 }
 
@@ -3576,7 +3580,7 @@ bool str::simple_escaped(const ::scoped_string & scopedstr, character_count pos)
 
    }
 
-   return str[pos - 1] == '\\' && !simple_escaped(str, pos - 1);
+   return scopedstr[pos - 1] == '\\' && !simple_escaped(scopedstr, pos - 1);
 
 }
 
@@ -3676,20 +3680,20 @@ bool str::paired_trim(string & str, char ch)
 /// from:http://www.zedwood.com/article/cpp-is-valid-utf8-string-function
 /// more invalid strings to test: http://stackoverflow.com/questions/1301402/example-invalid-utf8-string
 ///
-bool str::utf8_check_is_valid(const ::scoped_string & scopedstring)
+bool str::utf8_check_is_valid(const ::scoped_string & scopedstr)
 {
 
    character_count i, c, ix, n, j;
 
-   for (i = 0, ix = string.length(); i < ix; i++)
+   for (i = 0, ix = scopedstr.length(); i < ix; i++)
    {
 
-      c = (unsigned char)string[i];
+      c = (unsigned char)scopedstr[i];
 
       //if (c==0x09 || c==0x0a || c==0x0d || (0x20 <= c && c <= 0x7e) ) n = 0; // is_printable_ascii
       if (0x00 <= c && c <= 0x7f) n = 0; // 0bbbbbbb
       else if ((c & 0xE0) == 0xC0) n = 1; // 110bbbbb
-      else if (c == 0xed && i < (ix - 1) && ((unsigned char)string[i + 1] & 0xa0) == 0xa0) return false; //U+d800 to U+dfff
+      else if (c == 0xed && i < (ix - 1) && ((unsigned char)scopedstr[i + 1] & 0xa0) == 0xa0) return false; //U+d800 to U+dfff
       else if ((c & 0xF0) == 0xE0) n = 2; // 1110bbbb
       else if ((c & 0xF8) == 0xF0) n = 3; // 11110bbb
       //else if (($c & 0xFC) == 0xF8) n=4; // 111110bb //unsigned char 5, unnecessary in 4 unsigned char UTF-8
@@ -3697,7 +3701,7 @@ bool str::utf8_check_is_valid(const ::scoped_string & scopedstring)
       else return false;
       for (j = 0; j < n && i < ix; j++)   // n bytes matching 10bbbbbb follow ?
       {
-         if ((++i == ix) || (((unsigned char)string[i] & 0xC0) != 0x80))
+         if ((++i == ix) || (((unsigned char)scopedstr[i] & 0xC0) != 0x80))
             return false;
 
       }
@@ -3712,8 +3716,10 @@ bool str::utf8_check_is_valid(const ::scoped_string & scopedstring)
 ///
 /// q(between quotes :-) )-valid string
 ///
-string str::q_valid(string str)
+string str::q_valid(const ::scoped_string & scopedstr)
 {
+
+   ::string str(scopedstr);
 
    if (str.is_empty())
    {
@@ -3790,8 +3796,10 @@ string str::signed_int(int i)
 }
 
 
-bool str::is_true(string str)
+bool str::is_true(const ::scoped_string & scopedstr)
 {
+
+   ::string str(scopedstr);
 
    str.trim();
 
@@ -3991,7 +3999,7 @@ string & str::zero_pad(string & str, character_count lenPad)
 string str::zero_padded(const ::scoped_string & scopedstrSrc, character_count lenPad)
 {
 
-   string str(strSrc);
+   string str(scopedstrSrc);
 
    if (lenPad > str.length())
    {
@@ -4122,7 +4130,7 @@ void str::get_lines(::string_array & stra, ::string & str, const ::scoped_string
 
       string strPrefixedLine;
 
-      strPrefixedLine = strPrefix + range;
+      strPrefixedLine = scopedstrPrefix + range;
 
       if (::is_set(pparticleSynchronization))
       {
@@ -4270,7 +4278,7 @@ public:
 
 };
 
-   template < > class get_char_type < const_char_pointer  > { public: using CHAR_TYPE = char; };
+   template < > class get_char_type < const_char_pointer >{ public: using CHAR_TYPE = char; };
    template < > class get_char_type < char * > { public: using CHAR_TYPE = char; };
    template < int n > class get_char_type < const char[n] > { public: using CHAR_TYPE = char; };
    template < int n > class get_char_type < char[n] > { public: using CHAR_TYPE = char; };

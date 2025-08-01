@@ -38,7 +38,7 @@ typedef struct
   PRunsigned int classFactor;
   nsPkgInt stateTable;
   const PRunsigned int* charLenTable;
-  const_char_pointer  name;
+  const_char_pointer name;
 } SMModel;
 
 class nsCodingStateMachine {
@@ -63,7 +63,7 @@ public:
   };
   PRunsigned int  GetCurrentCharLen(void) {return mCurrentCharLen;};
   void      Reset(void) {mCurrentState = eStart;};
-  const_char_pointer  GetCodingStateMachine() {return mModel->name;};
+  const_char_pointer GetCodingStateMachine() {return mModel->name;};
 
 protected:
   nsSMState mCurrentState;

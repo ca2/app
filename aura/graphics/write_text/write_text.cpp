@@ -184,7 +184,7 @@ namespace write_text
    }
 
 
-   font_descriptor write_text::calculate_font_descriptor(const_char_pointer  face, float size)
+   font_descriptor write_text::calculate_font_descriptor(const_char_pointer face, float size)
    {
       
       font_descriptor fontdescriptor;

@@ -14,7 +14,7 @@ namespace windowing
    struct cursor_pair
    {
       enum_cursor m_ecursor;
-      const_char_pointer  m_pszName;
+      const_char_pointer m_pszName;
 
    };
 
@@ -116,8 +116,10 @@ namespace windowing
    }
 
 
-   enum_cursor cursor_manager::cursor_enum(string strCursor)
+   enum_cursor cursor_manager::cursor_enum(const ::scoped_string & scopedstrCursor)
    {
+
+      ::string strCursor(scopedstrCursor);
 
       strCursor.make_lower();
       strCursor.trim();
@@ -229,12 +231,12 @@ namespace windowing
    }
 
 
-   void cursor_manager::parse_hotspot_text(string strText)
+   void cursor_manager::parse_hotspot_text(const ::scoped_string & scopedstrText)
    {
 
       string_array straLines;
 
-      straLines.add_lines(strText, false);
+      straLines.add_lines(scopedstrText, false);
 
       for (auto & strLine : straLines)
       {

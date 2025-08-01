@@ -3790,7 +3790,7 @@ namespace draw2d_cairo
          PFN_CAIRO_TEXT ftext)
    {
 
-      string str((const_char_pointer  )block.data(), block.size());
+      string str((const_char_pointer )block.data(), block.size());
 
       str = ::str::q_valid(str);
 
@@ -3933,7 +3933,7 @@ namespace draw2d_cairo
          if (status != CAIRO_STATUS_SUCCESS)
          {
 
-            const ::ansi_character * pszStatus = cairo_status_to_string(status);
+            const_char_pointer pszStatus = cairo_status_to_string(status);
 
             informationf("cairo error : graphics::draw_text %d %s", status, pszStatus);
 
@@ -3954,7 +3954,7 @@ namespace draw2d_cairo
                             const ::e_draw_text & edrawtext)
    {
 
-      if(strParam.is_empty())
+      if(scopedstrParam.is_empty())
       {
 
          //throw exception(error_invalid_empty_argument);
@@ -3971,7 +3971,7 @@ namespace draw2d_cairo
 
       rectangle = rectangleParam;
 
-      internal_draw_text(strParam, rectangle, ealign, edrawtext);
+      internal_draw_text(scopedstrParam, rectangle, ealign, edrawtext);
 
    }
 
@@ -4041,7 +4041,7 @@ namespace draw2d_cairo
 
       PangoFontDescription * pdesc = pfont->m_pdesc;
 
-      string strText((const_char_pointer  ) block.data(), block.size());
+      string strText((const_char_pointer )block.data(), block.size());
 
       draw2d_cairo::font::pango_layout * ppangolayout = nullptr;
 
@@ -4177,7 +4177,7 @@ namespace draw2d_cairo
    //void graphics::internal_draw_text_cairo(const ::block & block, const ::double_rectangle & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_CAIRO_TEXT pfnCairo)
    //{
 
-   //    string str((const_char_pointer  ) block.get_data(), block.get_size());
+   //    string str((const_char_pointer )block.get_data(), block.get_size());
 
    //    str = ::str::q_valid(str);
 
@@ -4318,7 +4318,7 @@ namespace draw2d_cairo
    //        if (status != CAIRO_STATUS_SUCCESS)
    //        {
 
-   //            const ::ansi_character * pszStatus = cairo_status_to_string(status);
+   //            const_char_pointer pszStatus = cairo_status_to_string(status);
 
    //            informationf("cairo error : graphics::draw_text %d %s", status, pszStatus);
 
@@ -4361,7 +4361,7 @@ namespace draw2d_cairo
 //   }
 
 
-//   double_size graphics::get_text_extent(const_char_pointer  lpszString, character_count nCount)
+//   double_size graphics::get_text_extent(const_char_pointer lpszString, character_count nCount)
 //   {
 //
 //      return get_text_extent(lpszString, nCount, -1);
@@ -4372,7 +4372,7 @@ namespace draw2d_cairo
 //   double_size graphics::get_text_extent(const block & block)
 //   {
 //
-//      return get_text_extent((const_char_pointer  ) block.get_data(), block.get_size());
+//      return get_text_extent((const_char_pointer )block.get_data(), block.get_size());
 //
 //   }
 
@@ -4517,7 +4517,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_GetTextExtent(double_size & size, const_char_pointer  lpszString, character_count nCount, character_count iIndex)
+   bool graphics::_GetTextExtent(double_size & size, const_char_pointer lpszString, character_count nCount, character_count iIndex)
    {
 
       if (iIndex < 0)
@@ -4622,7 +4622,7 @@ namespace draw2d_cairo
          if (status != CAIRO_STATUS_SUCCESS)
          {
 
-            const ::ansi_character * pszStatus = cairo_status_to_string(status);
+            const_char_pointer pszStatus = cairo_status_to_string(status);
 
             informationf("cairo error : graphics::_GetTextExtent %d %s", status, pszStatus);
 
@@ -6453,7 +6453,7 @@ namespace draw2d_cairo
       if (status != CAIRO_STATUS_SUCCESS)
       {
 
-         const ::ansi_character * pszStatus = cairo_status_to_string(status);
+         const_char_pointer pszStatus = cairo_status_to_string(status);
 
          informationf("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
 
@@ -6489,7 +6489,7 @@ namespace draw2d_cairo
       if (status != CAIRO_STATUS_SUCCESS)
       {
 
-         const ::ansi_character * pszStatus = cairo_status_to_string(status);
+         const_char_pointer pszStatus = cairo_status_to_string(status);
 
          informationf("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
 
@@ -7023,7 +7023,7 @@ namespace draw2d_cairo
 
       ::pointer < ::draw2d_cairo::draw2d > pdraw2d = system()->draw2d();
 
-      FT_Face ftface = pdraw2d->m_mapFontFace[pszFontName][iWeight * 10 + (bItalic ? 1 : 0)];
+      FT_Face ftface = pdraw2d->m_mapFontFace[scopedstrFontName][iWeight * 10 + (bItalic ? 1 : 0)];
 
       if (ftface)
       {
@@ -7074,7 +7074,7 @@ namespace draw2d_cairo
 
          auto ftlibrary = __ftlibrary();
 
-         const_char_pointer  psz = path;
+         const_char_pointer psz = path;
 
          FT_Error error = FT_New_Face(ftlibrary, psz, 0, &ftface);
 
@@ -7099,13 +7099,13 @@ namespace draw2d_cairo
          else
          {
 
-            information() << "Creating font : " << pszFontName;
+            information() << "Creating font : " << scopedstrFontName;
 
          }
 
       }
 
-      pdraw2d->m_mapFontFace[pszFontName][iWeight * 10 + (bItalic ? 1 : 0)] = ftface;
+      pdraw2d->m_mapFontFace[scopedstrFontName][iWeight * 10 + (bItalic ? 1 : 0)] = ftface;
 
       return ftface;
 

@@ -25,7 +25,7 @@ namespace sockets
 
 
 
-      http_session(const string & protocol, const string & host);
+      http_session(const string & protocol, const ::scoped_string & scopedstrHost);
       ~http_session();
 
 

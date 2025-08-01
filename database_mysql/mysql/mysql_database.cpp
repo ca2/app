@@ -869,7 +869,7 @@ namespace mysql
    }
 
 
-   string database::escape(const_char_pointer  psz, character_count iLen)
+   string database::escape(const_char_pointer psz, character_count iLen)
    {
 
       string strEscaped;

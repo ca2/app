@@ -48,7 +48,7 @@ namespace universal_windows
       return;
    }
 
-   bool file_find::FindFile(const_char_pointer  pstrName /* = nullptr */, unsigned int dwUnused /* = 0 */)
+   bool file_find::FindFile(const_char_pointer pstrName /* = nullptr */, unsigned int dwUnused /* = 0 */)
    {
       UNUSED_ALWAYS(dwUnused);
       close();

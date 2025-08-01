@@ -57,7 +57,7 @@ void file_system::touch(const ::file::path& path)
 }
 
 
-void file_system::touch_app_cloud(const ::file::path& path, const_char_pointer  pszContentIdentifier)
+void file_system::touch_app_cloud(const ::file::path& path, const_char_pointer pszContentIdentifier)
 {
 
    touch(path);
@@ -642,7 +642,7 @@ void file_system::find_replace(const ::file::path& path, const ::property_set & 
 }
 
 
-void file_system::put_app_cloud_data(const ::file::path& path, const_char_pointer  pszContentIdentifier, const ::block& block)
+void file_system::put_app_cloud_data(const ::file::path& path, const_char_pointer pszContentIdentifier, const ::block& block)
 {
 
    auto pathAppCloud = path_system()->defer_get_icloud_container_path(path, pszContentIdentifier);
@@ -652,7 +652,7 @@ void file_system::put_app_cloud_data(const ::file::path& path, const_char_pointe
 }
 
 
-::memory file_system::get_app_cloud_data(const ::file::path& path, const_char_pointer  pszContentIdentifier)
+::memory file_system::get_app_cloud_data(const ::file::path& path, const_char_pointer pszContentIdentifier)
 {
 
    auto pathAppCloud = path_system()->defer_get_icloud_container_path(path, pszContentIdentifier);
@@ -1196,7 +1196,7 @@ void file_system::put_block(const ::file::path& path, const block& block)
 
    throw interface_only();
 
-   //put_contents(path, (const_char_pointer ) block.data(), block.size());
+   //put_contents(path, (const_char_pointer )block.data(), block.size());
 
 }
 

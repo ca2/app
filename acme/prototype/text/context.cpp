@@ -588,7 +588,7 @@ namespace text
    //      }
    //   }
 
-   //   void append(character_count start,character_count end, ::range < const ::ansi_character * > range)
+   //   void append(character_count start,character_count end, ::range < const_char_pointer >range)
    //   {
    //      stack[m_pos].s = start;
    //      stack[m_pos].e = end;
@@ -599,7 +599,7 @@ namespace text
    //   }
 
 
-   //   void merge(::range < const ::ansi_character * > range)
+   //   void merge(::range < const_char_pointer >range)
    //   {
 
    //      if(m_pos <= 0)
@@ -728,17 +728,17 @@ namespace text
 //
 //      //bool bEof = false;
 //
-//      const_char_pointer  s;
+//      const_char_pointer s;
 //
 //      char * wr;
 //
-//      const_char_pointer  rd;
+//      const_char_pointer rd;
 //
 //      character_count l;
 //
 //      string str;
 //
-//      const ::ansi_character * pszEnd;
+//      const_char_pointer pszEnd;
 //
 //      string strRoot;
 //
@@ -1016,7 +1016,7 @@ namespace text
          {
 
             table = (*pcontext->m_pschema)[atom];
-            if(table.has_character() && case_insensitive_string_begins(strTopic, table))
+            if(table.has_character() && case_insensitive_string_begins(scopedstrTopic, table))
                return true;
 
          }
@@ -1024,7 +1024,7 @@ namespace text
          if(pcontext->m_pschemaLocale != nullptr)
          {
             table = (*pcontext->m_pschemaLocale)[atom];
-            if(table.has_character() && case_insensitive_string_begins(strTopic, table))
+            if(table.has_character() && case_insensitive_string_begins(scopedstrTopic, table))
                return true;
          }
 
@@ -1032,7 +1032,7 @@ namespace text
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
-            if(table.has_character() && case_insensitive_string_begins(strTopic, table))
+            if(table.has_character() && case_insensitive_string_begins(scopedstrTopic, table))
                return true;
 
          }
@@ -1043,20 +1043,20 @@ namespace text
       {
 
          table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-         if(table.has_character() && case_insensitive_string_begins(strTopic, table))
+         if(table.has_character() && case_insensitive_string_begins(scopedstrTopic, table))
             return true;
 
       }
 
       table = (*m_pschemaEn)[atom]; // lang=en style=en
-      if(table.has_character() && case_insensitive_string_begins(strTopic, table))
+      if(table.has_character() && case_insensitive_string_begins(scopedstrTopic, table))
          return true;
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
          table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-         if(table.has_character() && case_insensitive_string_begins(strTopic, table))
+         if(table.has_character() && case_insensitive_string_begins(scopedstrTopic, table))
             return true;
 
       }

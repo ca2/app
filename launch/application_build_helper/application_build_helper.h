@@ -127,14 +127,14 @@ namespace application_build_helper
       void translate_items(const ::scoped_string & scopedstrFileDst, const ::scoped_string & scopedstrFileSrc);
       //void static_factory(const ::scoped_string & scopedstrFileDst, const ::scoped_string & scopedstrFileFactory, const ::scoped_string & scopedstrFileSrc);
       void static_factory(const ::scoped_string & scopedstrFileDst, const ::scoped_string & scopedstrFileSrc);
-      string defer_translate_dependency(string strDependency);
-      string defer_binary_to_project(string strBinary);
-      string defer_project_to_binary(string strProject);
+      string defer_translate_dependency(const ::scoped_string & scopedstrDependency);
+      string defer_binary_to_project(const ::scoped_string & scopedstrBinary);
+      string defer_project_to_binary(const ::scoped_string & scopedstrProject);
 
 
-      void load_map(string_to_string & map, string strMap, string strRoot);
+      void load_map(string_to_string & map, const ::scoped_string & scopedstrMap, const ::scoped_string & scopedstrRoot);
 
-      string defer_translate_application_name(string strDependency);
+      string defer_translate_application_name(const ::scoped_string & scopedstrDependency);
 
 #ifdef LINUX
 

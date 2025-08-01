@@ -21,7 +21,7 @@ namespace acme
 //#ifdef WINDOWS
 //
 
-   //exclusive::exclusive(::particle * pparticle, string strId ARG_SEC_ATTRS)
+   //exclusive::exclusive(::particle * pparticle, const ::scoped_string & scopedstrId ARG_SEC_ATTRS)
    exclusive::exclusive()
    {
 
@@ -67,7 +67,7 @@ namespace acme
 //#else
 //
 //
-//   exclusive::exclusive(::particle * pparticle, string strId ARG_SEC_ATTRS)
+//   exclusive::exclusive(::particle * pparticle, const ::scoped_string & scopedstrId ARG_SEC_ATTRS)
 //   {
 //
 //      initialize(pparticle);

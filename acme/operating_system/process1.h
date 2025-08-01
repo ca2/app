@@ -19,7 +19,7 @@
 
 
 
-//CLASS_DECL_ACME bool launch_command(::platform::system * psystem, const_char_pointer  const pszCommand);
+//CLASS_DECL_ACME bool launch_command(::platform::system * psystem, const_char_pointer const pszCommand);
 
 
 
@@ -85,7 +85,7 @@
 #include "exit_status.h"
 
 
-//CLASS_DECL_ACME string app_id_to_app_name(string strId);
+//CLASS_DECL_ACME string app_id_to_app_name(const ::scoped_string & scopedstrId);
 
 
 #if !defined(UNIVERSAL_WINDOWS)

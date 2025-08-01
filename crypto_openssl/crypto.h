@@ -72,7 +72,7 @@ namespace crypto_openssl
 
       // result is 20-unsigned char digest
       void hmac(void * result,const memory & memMessage,const memory & key) override;
-      void hmac(void * result,const string & memMessage,const string & key) override;
+      void hmac(void * result,const ::scoped_string & scopedstrMessage,const ::scoped_string & scopedstrKey) override;
 
       //virtual bool file_set(::payload payloadFile,const ::scoped_string & scopedstrData,const ::scoped_string & scopedstrSalt, ::apex::application * papp);
       //virtual void     file_get(::payload payloadFile,string & str,const ::scoped_string & scopedstrSalt, ::apex::application * papp);
@@ -135,9 +135,9 @@ namespace crypto_openssl
 } //   namespace crypto_openssl
 
 
-CLASS_DECL_APEX void stunCalculateIntegrity_longterm(char* hmac, const_char_pointer  input, int length, const_char_pointer  username, const_char_pointer  realm, const_char_pointer  password);
+CLASS_DECL_APEX void stunCalculateIntegrity_longterm(char* hmac, const_char_pointer input, int length, const_char_pointer username, const_char_pointer realm, const_char_pointer password);
 
-CLASS_DECL_APEX void stunCalculateIntegrity_shortterm(char* hmac, const_char_pointer  input, int length, const_char_pointer  key);
+CLASS_DECL_APEX void stunCalculateIntegrity_shortterm(char* hmac, const_char_pointer input, int length, const_char_pointer key);
 
 
 CLASS_DECL_APEX void hmac_evp_sha1_1234(unsigned char * hmac, unsigned int * hmacSize, const unsigned char * buf, size_t bufLen);

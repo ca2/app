@@ -175,7 +175,7 @@ namespace platform
    }
 
 
-   string acme_context_layer::matter_locator(string strApp)
+   string acme_context_layer::matter_locator(const ::scoped_string & scopedstrApp)
    {
       return {};
    }
@@ -187,7 +187,7 @@ namespace platform
    }
 
 
-   void acme_context_layer::add_matter_locator(string strApp)
+   void acme_context_layer::add_matter_locator(const ::scoped_string & scopedstrApp)
    {
    }
 
@@ -206,7 +206,7 @@ namespace platform
 
    //::file::path acme_context_layer::defer_process_relative_path(const ::file::path & path){}
 
-   ::file::path acme_context_layer::get_matter_path(string strMatter)
+   ::file::path acme_context_layer::get_matter_path(const ::scoped_string & scopedstrMatter)
    {
       return {};
    }
@@ -218,7 +218,7 @@ namespace platform
    }
 
 
-   ::file::path acme_context_layer::side_get_matter_path(string strMatter)
+   ::file::path acme_context_layer::side_get_matter_path(const ::scoped_string & scopedstrMatter)
    {
       return {};
    }

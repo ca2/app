@@ -18,7 +18,7 @@ namespace graphics
 {
 
 
-   int next_char(char & ch, const_char_pointer & psz, int & x, int & y, int cx, int cy)
+   int next_char(char & ch, const_char_pointer &psz, int & x, int & y, int cx, int cy)
    {
 
       if (!*psz)

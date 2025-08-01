@@ -139,7 +139,7 @@
       virtual ::file::path matter_from_locator(const ::file::path_array & patha, const string_array & straMatterLocator);
       virtual ::file::path matter_from_locator(::file::path path, const string_array & straMatterLocator);
 
-      virtual ::file::path appmatter(string strApp, ::file::path pathRel);
+      virtual ::file::path appmatter(const ::scoped_string & scopedstrApp, ::file::path pathRel);
 
       virtual bool matter_enumerate(const ::file::path & str, ::file::listing & listing, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
       //virtual bool matter_ls_file(const ::file::path & str, ::file::listing& stra);

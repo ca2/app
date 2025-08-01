@@ -103,7 +103,7 @@ public:
    string_base(nullptr_t) { default_construct(); }
    //string_base(enum_for_moving) { }
    //string_base(enum_get_buffer, character_count length) { get_buffer(length); }
-   //string_base(const ::ansi_character * psz);
+   //string_base(const_char_pointer psz);
    //string_base(const ::wd16_character * psz);
    //string_base(const ::wd32_character * psz);
    //string_base(const ::std::string & str) : string_base(str.c_str()) { }
@@ -213,7 +213,7 @@ public:
 
 //   template<typed_range<::ansi_character *> RANGE>
 //   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
-//   template<typed_range<const ::ansi_character *> RANGE>
+//   template<typed_range<const_char_pointer >RANGE>
 //   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
 //   template<typed_range<::wd16_character *> RANGE>
 //   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
@@ -233,7 +233,7 @@ public:
    //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
 
 
-   //template<typed_range<const ::ansi_character *> RANGE>
+   //template<typed_range<const_char_pointer >RANGE>
    //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
    //template<typed_range<const ::wd16_character *> RANGE>
    //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
@@ -248,7 +248,7 @@ public:
 
 //   template<typed_range<::ansi_character *> RANGE>
 //   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
-////   template<typed_range<const ::ansi_character *> RANGE>
+////   template<typed_range<const_char_pointer >RANGE>
 ////   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str, start, count); }
 //   template<typed_range<::wd16_character *> RANGE>
 //   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
@@ -298,7 +298,7 @@ public:
    string_base(const inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
       string_base(inlinestring.begin(), inlinestring.end())
    { }
-   //   string_base(const ::ansi_character * pansichar, character_count length);
+   //   string_base(const_char_pointer pansichar, character_count length);
       //string_base(::str < iterator > str) : string_base((const_iterator)str.begin(), (const_iterator)str.end()) {}
       //string_base(::str < const_iterator > str) : string_base(str.begin(), str.end()) {}
       //string_base(::block block) : string_base((const_iterator)block.begin(), (const_iterator)block.end()) {}
@@ -645,7 +645,7 @@ public:
    //
    //   }
 
-      //string_base & operator = (const ::ansi_character * pansichar);
+      //string_base & operator = (const_char_pointer pansichar);
       //string_base & operator = (const ::wd16_character * pwd16char);
       //string_base & operator = (const ::wd32_character * pwd32char);
       //string_base & operator = (const natural_ansistring & ansistr);
@@ -704,7 +704,7 @@ public:
 
       // so exhaustively implementing them at least
       // for most relevant and proper acme types
-   string_base & operator += (const ::ansi_character * psz) { append(psz); return *this; }
+   string_base & operator += (const_char_pointer psz) { append(psz); return *this; }
    string_base & operator += (const ::wd16_character * psz) { append(psz); return *this; }
    string_base & operator += (const ::wd32_character * psz) { append(psz); return *this; }
    string_base & operator += (::ansi_character ansich) { append(&ansich, 1); return *this; }
@@ -918,7 +918,7 @@ public:
       //inline string_base & assign(const ansi_string & ansistr);
       //inline string_base & assign(const wd16_string & wd16str);
       //inline string_base & assign(const wd32_string & wd32str);
-      //inline string_base & assign(const ::ansi_character * pansiszSrc);
+      //inline string_base & assign(const_char_pointer pansiszSrc);
       //inline string_base & assign(const ::wd16_character * pwd16szSrc);
       //inline string_base & assign(const ::wd32_character * pwd32szSrc);
       //inline string_base & assign(::ansi_character ansich);
@@ -1018,7 +1018,7 @@ public:
    {_append(range.m_begin, range.size()); return *this; }
    
    
-   //inline string_base & append(const ::ansi_character * psz) { return _append(psz, string_safe_length(psz)); }
+   //inline string_base & append(const_char_pointer psz) { return _append(psz, string_safe_length(psz)); }
    //inline string_base & append(const ::wd16_character * psz) { return _append(psz, string_safe_length(psz)); }
    //inline string_base & append(const ::wd32_character * psz) { return _append(psz, string_safe_length(psz)); }
 
@@ -1030,7 +1030,7 @@ public:
    { return _append(psz, string_safe_length(psz)); }
 
 
-   //inline string_base & append(const ::ansi_character * psz, character_count size) { return _append(psz, size); }
+   //inline string_base & append(const_char_pointer psz, character_count size) { return _append(psz, size); }
    //inline string_base & append(const ::wd16_character * psz, character_count size) { return _append(psz, size); }
    //inline string_base & append(const ::wd32_character * psz, character_count size) { return _append(psz, size); }
 
@@ -2181,7 +2181,7 @@ public:
 
 //inline ::string operator + (const ::string & cstr, char ch);
 
-//inline ::string operator +(const ::string & cstr, const ::ansi_character * psz)
+//inline ::string operator +(const ::string & cstr, const_char_pointer psz)
 //{
 //
 //   return str + ::string(scopedstr);
@@ -2355,7 +2355,7 @@ public:
 
 // For MSVC, but not for GCC?
 //template < typename ITERATOR_TYPE >
-//inline ::string_base < ITERATOR_TYPE > operator + (const_char_pointer  psz, const string_base < ITERATOR_TYPE > & str)
+//inline ::string_base < ITERATOR_TYPE > operator + (const_char_pointer psz, const string_base < ITERATOR_TYPE > & str)
 //{
 //
 //   return ::transfer(::string_base < ITERATOR_TYPE >(scopedstr) + str);
@@ -2376,7 +2376,7 @@ public:
 
 
 template < primitive_floating FLOATING >
-inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat = "%f"_ansi);
+inline ::string as_string(FLOATING f, const_char_pointer pszFormat = "%f"_ansi);
 
 
 inline ::string as_string(const ::block & block)
@@ -2391,13 +2391,13 @@ inline ::string as_string(const ::block & block)
    if (::is_set(p) && offset < block.size())
    {
 
-      return { (const_char_pointer ) block.data(), offset };
+      return { (const_char_pointer )block.data(), offset };
 
    }
    else
    {
 
-      return { (const_char_pointer ) block.data(), block.size() };
+      return { (const_char_pointer )block.data(), block.size() };
 
    }
 
@@ -2428,7 +2428,7 @@ inline ::hash32 as_hash32 < wide_string >(const wide_string & widestr);
 //template < typed_range < ::wd32_character * > WD32_RANGE >
 //string_base operator + (const WD32_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::transfer(str); }
 //
-//template < typed_range < const ::ansi_character * > ANSI_RANGE >
+//template < typed_range < const_char_pointer >ANSI_RANGE >
 //string_base operator + (const ANSI_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::transfer(str); }
 //
 //template < typed_range < const ::wd16_character * > WD16_RANGE >
@@ -2489,7 +2489,7 @@ template < primitive_character CHARACTER2, has_as_string HAS_AS_STRING >
 
 
 
-inline string & operator <<(string & str, const ::ansi_character * psz)
+inline string & operator <<(string & str, const_char_pointer psz)
 {
 
    str += psz;
@@ -2576,7 +2576,7 @@ format(const std::format_string<Args...> fmt, Args&&... args) noexcept
 #endif
 
 
-[[nodiscard]] inline ::string formatf(const_char_pointer  pszFormat, ...) noexcept
+[[nodiscard]] inline ::string formatf(const_char_pointer pszFormat, ...) noexcept
 {
    
    ::string str;

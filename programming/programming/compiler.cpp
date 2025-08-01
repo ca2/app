@@ -302,7 +302,7 @@ namespace programming
    }
 
 
-   void compiler::prepare1(const ::string& lpcszSource, const ::string& lpcszDest)
+   void compiler::prepare1(const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrDest)
    {
 
       string_array stra;
@@ -583,7 +583,7 @@ namespace programming
          strFolder += "/";
       string strTemplate;
       string strSource = "operating_system/operating_system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/";
-      strSource += lpcszSource;
+      strSource += scopedstrSource;
 
       //   string strN = m_pmanager->m_strNetnodePath;
             //strN.replace("\\","/");
@@ -611,7 +611,7 @@ namespace programming
 
       m_pintegrationcontext->prepare_compilation_script(str);
 
-      string strDest = m_strDynamicSourceStage / "front" / lpcszDest;
+      string strDest = m_strDynamicSourceStage / "front" / scopedstrDest;
       ::file::path strCmd;
       //#ifdef _DEBUG
       strCmd = strFolder / strDest;

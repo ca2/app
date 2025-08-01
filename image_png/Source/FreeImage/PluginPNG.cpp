@@ -101,7 +101,7 @@ static int_bool
 /*ReadMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP * pimage)
 {
    // XMP keyword
-   const_char_pointer  g_png_xmp_keyword = "XML:com.adobe.xmp";
+   const_char_pointer g_png_xmp_keyword = "XML:com.adobe.xmp";
 
    FITAG *tag = nullptr;
    png_textp text_ptr = nullptr;
@@ -184,7 +184,7 @@ static int_bool
 /*WriteMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP * pimage)
 {
    // XMP keyword
-   const_char_pointer  g_png_xmp_keyword = "XML:com.adobe.xmp";
+   const_char_pointer g_png_xmp_keyword = "XML:com.adobe.xmp";
 
    FITAG *tag = nullptr;
    FIMETADATA *mdhandle = nullptr;
@@ -254,31 +254,31 @@ static int s_format_id;
 // Plugin Implementation
 // ==========================================================
 
-static const_char_pointer  DLL_CALLCONV
+static const_char_pointer DLL_CALLCONV
 Format()
 {
    return "PNG";
 }
 
-static const_char_pointer  DLL_CALLCONV
+static const_char_pointer DLL_CALLCONV
 Description()
 {
    return "Portable Network Graphics";
 }
 
-static const_char_pointer  DLL_CALLCONV
+static const_char_pointer DLL_CALLCONV
 Extension()
 {
    return "png";
 }
 
-static const_char_pointer  DLL_CALLCONV
+static const_char_pointer DLL_CALLCONV
 RegExpr()
 {
    return "^.PNG\r";
 }
 
-static const_char_pointer  DLL_CALLCONV
+static const_char_pointer DLL_CALLCONV
 MimeType()
 {
    return "image/png";

@@ -543,15 +543,15 @@ namespace windows
 
       unichar * pszRoot = wstrRoot.get_buffer(iLength);
 
-      wcsncpy(scopedstrRoot, wstrPath.c_str(), iLength + 1);
+      wcsncpy(pszRoot, wstrPath.c_str(), iLength + 1);
 
       unichar * psz = pszRoot;
 
-      for (; *psz != '\0'; psz = _wcsinc(scopedstr))
+      for (; *psz != '\0'; psz = _wcsinc(psz))
       {
 
          // find first double slash and stop
-         if (IsDirSep(scopedstr[0]) && IsDirSep(scopedstr[1]))
+         if (IsDirSep(psz[0]) && IsDirSep(psz[1]))
          {
 
             break;
@@ -564,30 +564,30 @@ namespace windows
       {
 
          // it is a UNC name, find second slash past '\\'
-         ASSERT(IsDirSep(scopedstr[0]));
+         ASSERT(IsDirSep(psz[0]));
 
-         ASSERT(IsDirSep(scopedstr[1]));
+         ASSERT(IsDirSep(psz[1]));
 
          psz += 2;
 
          while (*psz != '\0' && (!IsDirSep(*psz)))
          {
 
-            psz = _wcsinc(scopedstr);
+            psz = _wcsinc(psz);
 
          }
 
          if (*psz != '\0')
          {
 
-            psz = _wcsinc(scopedstr);
+            psz = _wcsinc(psz);
 
          }
 
          while (*psz != '\0' && (!IsDirSep(*psz)))
          {
 
-            psz = _wcsinc(scopedstr);
+            psz = _wcsinc(psz);
 
          }
 
@@ -609,7 +609,7 @@ namespace windows
          while (*psz != '\0' && (!IsDirSep(*psz)))
          {
 
-            psz = _wcsinc(scopedstr);
+            psz = _wcsinc(psz);
 
          }
 

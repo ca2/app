@@ -25,7 +25,7 @@
 
 //#include "graphics.h"
 
-static const_char_pointer  DriverNames[11] = {
+static const_char_pointer DriverNames[11] = {
   NULL, "CGA", "CGA", "EGAVGA", "EGAVGA", "EGAVGA",
   "IBM8514", "HERC", "ATT", "EGAVGA", "PC3270"
 };

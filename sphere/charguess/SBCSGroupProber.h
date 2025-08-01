@@ -33,7 +33,7 @@ public:
   nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
   PRBool FilterWithoutEnglishLetters(const ::string & aBuf, PRunsigned int aLen, char** newBuf, PRunsigned int& newLen);
   PRBool FilterWithEnglishLetters(const ::string & aBuf, PRunsigned int aLen, char** newBuf, PRunsigned int& newLen);
-  const_char_pointer  GetCharSetName();
+  const_char_pointer GetCharSetName();
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
   float     GetConfidence(void);

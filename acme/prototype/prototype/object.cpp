@@ -312,10 +312,10 @@ string object::as_string() const
 }
 
 
-void object::dev_log(string strMessage)
+void object::dev_log(const ::scoped_string & scopedstrMessage)
 {
 
-   information() << strMessage.c_str();
+   information() << scopedstrMessage.c_str();
 
 //#ifdef _DEBUG
 //
@@ -1715,7 +1715,7 @@ bool object::__is_child_task(::particle * pparticleTask) const
 //}
 
 
-//string object::__get_text(string str)
+//string object::__get_text(const ::scoped_string & scopedstr)
 //{
 //
 //   if (get_app() == nullptr)
@@ -3147,7 +3147,7 @@ void object::initialize(::particle * pparticle)
 // ::user::interaction * get_host_user_interaction();
 
 
-//void object::dev_log(string str) const
+//void object::dev_log(const ::scoped_string & scopedstr) const
 //{
 //
 //
@@ -3596,7 +3596,7 @@ void object::initialize(::particle * pparticle)
 //}
 
 
-//string object::lstr(const ::atom& atom, string strDefault)
+//string object::lstr(const ::atom& atom, const ::scoped_string & scopedstrDefault)
 //{
 //
 //   return "";
@@ -3604,7 +3604,7 @@ void object::initialize(::particle * pparticle)
 //}
 //
 //
-//string object::__get_text(string str)
+//string object::__get_text(const ::scoped_string & scopedstr)
 //{
 //
 //   return "";
@@ -3618,7 +3618,7 @@ void object::initialize(::particle * pparticle)
 
 // ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
 // ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-// ::image::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
+// ::image::image_pointer load_matter_icon(string_array & straMatter, const ::scoped_string & scopedstrIcon);
 // ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
 // ::image::image_pointer load_thumbnail(const ::file::path & path);
 // ::image::image_pointer load_dib(const ::file::path & pathDib);
@@ -3765,7 +3765,7 @@ bool object::IsSerializable() const
    //   return nullptr;
 
    //}
-   //::thread_pointer defer_fork(string strThread = "");
+   //::thread_pointer defer_fork(const ::scoped_string & scopedstrThread = "");
 
 //#ifdef __APPLE__
 //    void ns_main_post(dispatch_block_t block);

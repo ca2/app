@@ -1748,7 +1748,7 @@ namespace operating_system
 {
 
 
-   CLASS_DECL_ACME const_char_pointer  get_message_text(enum_message emessage);
+   CLASS_DECL_ACME const_char_pointer get_message_text(enum_message emessage);
 
 
 } // namespace operating_system

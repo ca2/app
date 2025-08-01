@@ -94,7 +94,7 @@ namespace sockets
    }
 
 
-   void http_debug_socket::OnData(const_char_pointer  point,memsize l)
+   void http_debug_socket::OnData(const_char_pointer point,memsize l)
    {
       write(point,l);
       m_read_ptr += (int)l;

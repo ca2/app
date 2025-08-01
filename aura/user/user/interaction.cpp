@@ -9709,7 +9709,7 @@ if(get_parent())
          while (pinteractionItem != nullptr)
          {
 
-            pchild = pinteractionItem->get_child_by_name(strName, iItem, iLevel);
+            pchild = pinteractionItem->get_child_by_name(scopedstrName, iItem, iLevel);
 
             if (pchild != nullptr)
             {
@@ -22382,7 +22382,7 @@ if(get_parent())
 
       m_bMessageOnlyWindow = true;
 
-      m_strName = strName;
+      m_strName = scopedstrName;
 
       create_window();
 
@@ -24742,7 +24742,7 @@ void interaction::on_control_box_zoom(){
 
       //auto estatus =
 
-      window()->set_bitmap_source(strBitmapSource);
+      window()->set_bitmap_source(scopedstrBitmapSource);
 
       //if (!estatus)
       //{
@@ -27273,7 +27273,7 @@ __check_refdbg;
 
       auto pszType = typeid(*this).name();
 
-      information("interaction::on_message_left_button_double_click" + ::string(scopedstrType));
+      information("interaction::on_message_left_button_double_click" + ::string(pszType));
 
       if (!is_window_enabled())
       {
@@ -29065,12 +29065,12 @@ __check_refdbg;
 
 
 
-   void interaction::edit_on_text(string str)
+   void interaction::edit_on_text(const ::scoped_string & scopedstr)
    {
 
       //set_text(str, ::e_source_user);
 
-      m_textproperty.set_text(str, ::e_source_user);
+      m_textproperty.set_text(scopedstr, ::e_source_user);
 
    }
 
@@ -29083,15 +29083,17 @@ __check_refdbg;
    }
 
 
-   void interaction::on_text_composition(string str)
+   void interaction::on_text_composition(const ::scoped_string & scopedstr)
    {
+
+      ::string str(scopedstr);
 
       auto psz = str.c_str();
 
       while (*psz)
       {
 
-         string strCharacter = get_utf8_char(scopedstr);
+         string strCharacter = get_utf8_char(psz);
 
          int iCharacter = unicode_index(strCharacter);
 
@@ -29934,7 +29936,8 @@ __check_refdbg;
       pToolBar->SetButtonStyle(m_nIndex, nNewStyle | TBBS_CHECKBOX);*/
    }
 
-   void control_cmd_ui::SetText(const ::string &)
+
+   void control_cmd_ui::SetText(const ::scoped_string & scopedstr)
    {
       // ignore it
    }
@@ -29965,18 +29968,20 @@ __check_refdbg;
    }
 
 
-   string interaction::get_class_style(string strClass)
+   string interaction::get_class_style(const ::scoped_string & scopedstrClass)
    {
 
-      if (strClass.is_empty())
+      if (scopedstrClass.is_empty())
       {
 
          return "";
 
       }
 
-      if (!strClass.contains(','))
+      if (!scopedstrClass.contains(','))
       {
+
+         ::string strClass(scopedstrClass);
 
          strClass.trim();
 
@@ -30009,7 +30014,7 @@ __check_refdbg;
 
       string_array straClass;
 
-      straClass.add_tokens(strClass, ",", false);
+      straClass.add_tokens(scopedstrClass, ",", false);
 
       string strStyle;
 
@@ -30032,17 +30037,17 @@ __check_refdbg;
    }
 
 
-   void interaction::set_class_style(string strClass, string strStyle)
+   void interaction::set_class_style(const ::scoped_string & scopedstrClass, const ::scoped_string & scopedstrStyle)
    {
 
-      if (strClass.contains(","))
+      if (scopedstrClass.contains(","))
       {
 
          throw ::exception(error_bad_argument);
 
       }
 
-      m_mapClassStyle[strClass] = strStyle;
+      m_mapClassStyle[scopedstrClass] = scopedstrStyle;
 
       //return true;
 
@@ -30079,12 +30084,12 @@ __check_refdbg;
    }
 
 
-   void interaction::load_style(string strStyle)
+   void interaction::load_style(const ::scoped_string & scopedstrStyle)
    {
 
       string_array stra;
 
-      stra.explode(";", strStyle);
+      stra.explode(";", scopedstrStyle);
 
       for (auto & str : stra)
       {
@@ -31277,5 +31282,3 @@ CLASS_DECL_AURA void __set_bottom_right(const ::int_point & pointBottomRight)
    g_pointAuraBottomRight = pointBottomRight;
 
 }
-
-

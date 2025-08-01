@@ -893,7 +893,7 @@ namespace gpu_opengl
          __construct_new(m_pshaderCopy);
 
          // Vertex shader
-         const_char_pointer  vertexShaderSource = R"(
+         const_char_pointer vertexShaderSource = R"(
 #version 330 core
 layout(location = 0) in vec2 inPos;
 layout(location = 1) in vec2 inUV;
@@ -905,7 +905,7 @@ void main() {
 )";
 
          // Fragment shader
-         const_char_pointer  fragmentShaderSource = R"(
+         const_char_pointer fragmentShaderSource = R"(
 #version 330 core
 in vec2 fragUV;
 out vec4 outColor;
@@ -2037,7 +2037,7 @@ void main() {
 
       //   pgpuapproach->defer_init_gpu_library();
 
-      //   auto pszVersion = (const_char_pointer  )glGetString(GL_VERSION);
+      //   auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
       //   //::e_status estatus = 
 
       //   ::string strVersion(scopedstrVersion);
@@ -2225,7 +2225,7 @@ void main() {
 
       //         m_pgpudevice->m_pgpuapproach->defer_init_gpu_library();
 
-      //         auto pszVersion = (const_char_pointer  )glGetString(GL_VERSION);
+      //         auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
       //         //::e_status estatus = 
 
       //         ::string strVersion(scopedstrVersion);

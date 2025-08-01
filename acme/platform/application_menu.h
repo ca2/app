@@ -65,7 +65,7 @@ public:
    virtual application_menu * separator();
 
    
-   ::collection::index find_child_with_name(const_char_pointer  pszName) const;
+   ::collection::index find_child_with_name(const_char_pointer pszName) const;
    
    bool is_popup() const
    {

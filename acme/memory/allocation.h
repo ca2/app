@@ -9,7 +9,7 @@
 
 #if MEMORY_ANNOTATION
 
-#define MEMORY_ANNOTATION_COMMA_PARAM , const_char_pointer  pszAnnotation
+#define MEMORY_ANNOTATION_COMMA_PARAM , const_char_pointer pszAnnotation
 #define MEMORY_ANNOTATION_COMMA_PARAM_DEF MEMORY_ANNOTATION_COMMA_PARAM = nullptr
 #define MEMORY_ANNOTATION_COMMA_ARG , pszAllocation
 
@@ -208,15 +208,15 @@ typedef MEMORY_SIZE * PFN_MEMORY_SIZE;
 
 // CLASS_DECL_EXPORT void nodeos_set_cache_dir(const ::scoped_string & scopedstrDir);
 
-// CLASS_DECL_EXPORT const_char_pointer  nodeos_get_cache_dir(void);
+// CLASS_DECL_EXPORT const_char_pointer nodeos_get_cache_dir(void);
 
 // CLASS_DECL_EXPORT void nodeos_set_home(const ::scoped_string & scopedstrDir);
 
-// CLASS_DECL_EXPORT const_char_pointer  nodeos_get_home(void);
+// CLASS_DECL_EXPORT const_char_pointer nodeos_get_home(void);
 
 // CLASS_DECL_EXPORT void nodeos_set_temp(const ::scoped_string & scopedstrDir);
 
-// CLASS_DECL_EXPORT const_char_pointer  nodeos_get_temp(void);
+// CLASS_DECL_EXPORT const_char_pointer nodeos_get_temp(void);
 
 
 

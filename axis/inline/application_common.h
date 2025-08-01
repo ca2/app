@@ -8,7 +8,7 @@
 
 #include "aura/os/binreloc.h"
 
-const_char_pointer  br_init_get_symbol();
+const_char_pointer br_init_get_symbol();
 
 #endif
 

@@ -11,11 +11,11 @@ class CLASS_DECL_ACME text_reader
 public:
 
 
-   const_char_pointer  m_psz;
+   const_char_pointer m_psz;
 
 
    text_reader() {}
-   text_reader(const_char_pointer  psz) : m_psz(scopedstr) { }
+   text_reader(const_char_pointer psz) : m_psz(scopedstr) { }
    text_reader(const text_reader & textreader) :
       m_psz(textreader.m_psz)
    {
@@ -239,7 +239,7 @@ public:
    }
 
 
-   static string read_line(const_char_pointer & psz)
+   static string read_line(const_char_pointer &psz)
    {
 
       if (::is_null(scopedstr))
@@ -279,7 +279,7 @@ public:
    }
 
 
-   static const_ansi_range read_word(const_char_pointer & psz)
+   static const_ansi_range read_word(const_char_pointer &psz)
    {
 
       if (::is_null(scopedstr))
@@ -320,7 +320,7 @@ public:
 
 
    template < typename TYPE >
-   void read_natural(TYPE & t, const_char_pointer & psz)
+   void read_natural(TYPE & t, const_char_pointer &psz)
    {
 
       skip_whitespace(scopedstr);
@@ -342,7 +342,7 @@ public:
 
 
    template < typename TYPE >
-   void read_integer(TYPE & t, const_char_pointer & psz)
+   void read_integer(TYPE & t, const_char_pointer &psz)
    {
 
       skip_whitespace(scopedstr);
@@ -362,7 +362,7 @@ public:
 
 
    template < typename TYPE >
-   void read_float(TYPE & t, const_char_pointer & psz)
+   void read_float(TYPE & t, const_char_pointer &psz)
    {
 
       skip_whitespace(scopedstr);
@@ -381,7 +381,7 @@ public:
    }
 
 
-   static void skip_whitespace(const_char_pointer & psz)
+   static void skip_whitespace(const_char_pointer &psz)
    {
 
       while (unicode_is_whitespace(*psz))
@@ -394,11 +394,11 @@ public:
    }
 
 
-   static void paired_trim(const_ansi_range & block, const ::ansi_character * pszBeg, const ::ansi_character * pszEnd)
+   static void paired_trim(const_ansi_range & block, const_char_pointer pszBeg, const_char_pointer pszEnd)
    {
 
-      const ::ansi_character * pszBegChar = pszBeg;
-      const ::ansi_character * pszEndChar = pszEnd;
+      const_char_pointer pszBegChar = pszBeg;
+      const_char_pointer pszEndChar = pszEnd;
 
       for (;
          *pszBegChar != '\0' &&
@@ -424,7 +424,7 @@ public:
    }
 
 
-   static string ellipsis(const_char_pointer  psz, character_count maximum_length)
+   static string ellipsis(const_char_pointer psz, character_count maximum_length)
    {
 
       if (maximum_length < 3)

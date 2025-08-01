@@ -2,7 +2,7 @@
 #pragma once
 
 
-inline int get_utf8_char_length(const ::ansi_character * psz)
+inline int get_utf8_char_length(const_char_pointer psz)
 {
 
    int len = utf8_unicode_length(*psz);
@@ -47,7 +47,7 @@ inline int get_utf8_char_length(const ::ansi_character * psz)
 
 
 
-//inline int unicode_index(const_char_pointer & input, character_count * psrclen)
+//inline int unicode_index(const_char_pointer &input, character_count * psrclen)
 //{
 //
 //   if (*input == 0)
@@ -144,7 +144,7 @@ inline int unicode_index_length(const ::wd32_character *& input, character_count
 }
 
 
-inline int unicode_index_length(const ::ansi_character * pszUtf8, int & len)
+inline int unicode_index_length(const_char_pointer pszUtf8, int & len)
 {
 
    if (is_empty(pszUtf8))
@@ -193,7 +193,7 @@ inline int unicode_index_length(const ::ansi_character * pszUtf8, int & len)
 }
 
 
-inline int consume_unicode_index(const ::ansi_character *& pszUtf8)
+inline int consume_unicode_index(const_char_pointer &pszUtf8)
 {
 
    int len = 0;
@@ -317,7 +317,7 @@ inline int unicode_to_upper_case(int i)
 //}
 
 
-//inline const ::ansi_character * _string_scan(const array_range < ::ansi_character > & block, const array_range < ::ansi_character > & blockCharacters) noexcept
+//inline const_char_pointer _string_scan(const array_range < ::ansi_character > & block, const array_range < ::ansi_character > & blockCharacters) noexcept
 //{
 //
 //   return ansi_scan(block, blockCharacters);
@@ -523,7 +523,7 @@ inline int unicode_size_of_tables()
    return sizeof(arr_idxCharInfo) + sizeof(arr_CharInfo) + sizeof(arr_idxCharInfo2) + sizeof(arr_CharInfo2);
 }
 
-inline const ::ansi_character * unicode_next(const ::ansi_character * psz)
+inline const_char_pointer unicode_next(const_char_pointer psz)
 {
 
    if (psz == nullptr)
@@ -617,7 +617,7 @@ inline const ::ansi_character * unicode_next(const ::ansi_character * psz)
 }
 
 
-inline const ::ansi_character * unicode_next(const ::ansi_character * psz, int * piError)
+inline const_char_pointer unicode_next(const_char_pointer psz, int * piError)
 {
 
    if (psz == nullptr)
@@ -738,7 +738,7 @@ inline const ::wd32_character * unicode_next(const ::wd32_character * psz)
 }
 
 
-inline const_char_pointer  unicode_prior(const ::ansi_character * psz, const ::ansi_character * pszBeg)
+inline const_char_pointer unicode_prior(const_char_pointer psz, const_char_pointer pszBeg)
 {
 
    if (psz <= pszBeg)
@@ -883,7 +883,7 @@ inline const ::wd32_character * unicode_prior(const ::wd32_character * psz, cons
 }
 
 
-//inline int unicode_index(const ::ansi_character *& pszUtf8)
+//inline int unicode_index(const_char_pointer &pszUtf8)
 //{
 //
 //   if (*pszUtf8 == '\0')
@@ -1197,7 +1197,7 @@ bool string_eat_before_let_separator(string_base < CHAR_TYPE > & strBefore, cons
 
 
 
-inline int unicode_len(const ::ansi_character * pszUtf8)
+inline int unicode_len(const_char_pointer pszUtf8)
 {
 
    int len;

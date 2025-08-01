@@ -11,10 +11,10 @@
 //#include "ios_internal.h"
 
 
-int _ui_MessageBoxA(const_char_pointer  pszMessageParam, const_char_pointer  pszHeaderParam, unsigned int uType, const_char_pointer  pszDetails, ::function < void (enum_dialog_result) > function);
+int _ui_MessageBoxA(const_char_pointer pszMessageParam, const_char_pointer pszHeaderParam, unsigned int uType, const_char_pointer pszDetails, ::function < void (enum_dialog_result) > function);
 
 
-int _ui_MessageBoxA_sync(const_char_pointer  pszMessageParam, const_char_pointer  pszHeaderParam, unsigned int uType, const_char_pointer  pszDetails);
+int _ui_MessageBoxA_sync(const_char_pointer pszMessageParam, const_char_pointer pszHeaderParam, unsigned int uType, const_char_pointer pszDetails);
 
 
 int ui_MessageBoxA(const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrHeaderParam, unsigned int uType, const ::scoped_string & scopedstrDetails, ::function < void (enum_dialog_result) > function);
@@ -46,7 +46,7 @@ void message_box_synchronous(oswindow oswindow, const ::scoped_string & scopedst
    
 }
 
-int _ui_MessageBoxA_sync(const_char_pointer  pszMessageParam, const_char_pointer  pszHeaderParam, unsigned int uType, const_char_pointer  pszDetails)
+int _ui_MessageBoxA_sync(const_char_pointer pszMessageParam, const_char_pointer pszHeaderParam, unsigned int uType, const_char_pointer pszDetails)
 {
    
    

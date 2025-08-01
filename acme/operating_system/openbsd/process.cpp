@@ -20,7 +20,7 @@
 //#include <unistd.h>
 //#include "node.h"
 //
-//int create_process6(const_char_pointer  _cmd_line, int * pprocessId);
+//int create_process6(const_char_pointer _cmd_line, int * pprocessId);
 //
 //CLASS_DECL_ACME void dll_processes(unsigned_int_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrDll)
 //{
@@ -95,7 +95,7 @@
 //}
 //
 //
-//int create_process3(const_char_pointer  _cmd_line, int * pprocessId)
+//int create_process3(const_char_pointer _cmd_line, int * pprocessId)
 //{
 //
 //   char *   exec_path_name;
@@ -480,7 +480,7 @@
 //
 //   mem.get_data()[s] = '\0';
 //
-//   return (const_char_pointer ) mem.get_data();
+//   return (const_char_pointer )mem.get_data();
 //
 //}
 //
@@ -790,7 +790,7 @@
 //
 //
 //
-//CLASS_DECL_ACME ::file::path core_app_path(string strApp)
+//CLASS_DECL_ACME ::file::path core_app_path(const ::scoped_string & scopedstrApp)
 //{
 //
 //   strApp.replace("-", "_");

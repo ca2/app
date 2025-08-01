@@ -50,11 +50,11 @@ namespace universal_windows
       virtual bool file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
 
 
-      void link_open(string strUrl) override;
+      void link_open(const ::scoped_string & scopedstrUrl) override;
 
       virtual bool native_full_web_browser(const ::scoped_string & scopedstr)  override;
       virtual bool native_modern_web_browser(const ::scoped_string & scopedstr)  override;
-      virtual bool file_open(::file::path path, string strParams, string strFolder) override;
+      virtual bool file_open(::file::path path, const ::scoped_string & scopedstrParams, const ::scoped_string & scopedstrFolder) override;
 
 
       virtual void create_service() override;

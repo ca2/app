@@ -58,11 +58,11 @@ namespace account
 
       //::pointer<credentials>get_credentials(::file::path pathUrl, bool bInteractive = true);
 
-      virtual product * get_product(string strAppId, bool bFetch = false, bool bInteractive = true);
-//      virtual product * interactive_get_product(string strAppId);
-//      virtual product * noninteractive_get_product(string strAppId);
+      virtual product * get_product(const ::scoped_string & scopedstrAppId, bool bFetch = false, bool bInteractive = true);
+//      virtual product * interactive_get_product(const ::scoped_string & scopedstrAppId);
+//      virtual product * noninteractive_get_product(const ::scoped_string & scopedstrAppId);
 
-      bool is_licensed(string strAppId, bool bInteractive = true);
+      bool is_licensed(const ::scoped_string & scopedstrAppId, bool bInteractive = true);
 
       virtual bool url_requires_auth(::file::path pathUrl);
 

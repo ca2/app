@@ -57,7 +57,7 @@ using utf8_character = inline_string < ::ansi_character, 8 >;
 //
 //   //}
 //
-////   operator const_char_pointer  () const { return m_sz; }
+////   operator const_char_pointer () const { return m_sz; }
 //
 //};
 //

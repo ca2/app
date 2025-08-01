@@ -39,7 +39,7 @@ namespace write_text
       void set_text_box_init(bool bSet = true);
       void set_text_box_ok(bool bSet = true);
 
-      void update(font_list * pdata, int iBox, string strText);
+      void update(font_list * pdata, int iBox, const ::scoped_string & scopedstrText);
 
 
    };

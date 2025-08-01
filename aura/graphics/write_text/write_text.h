@@ -55,7 +55,7 @@ namespace write_text
       virtual memory_pointer get_file_memory(::platform::context * pcontext, const ::file::path & path);
 
       
-      virtual font_descriptor calculate_font_descriptor(const_char_pointer  face, float size);
+      virtual font_descriptor calculate_font_descriptor(const_char_pointer face, float size);
       virtual string get_font_descriptor_face(const font_descriptor & font_descriptor);
 
       

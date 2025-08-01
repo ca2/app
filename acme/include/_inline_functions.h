@@ -47,12 +47,12 @@ constexpr FLOATING default_epsilon()
 
 
 
-inline bool is_empty(const ::ansi_character * p) { return is_string_empty(p); }
+inline bool is_empty(const_char_pointer p) { return is_string_empty(p); }
 inline bool is_empty(const ::wd16_character * p) { return is_string_empty(p); }
 inline bool is_empty(const ::wd32_character * p) { return is_string_empty(p); }
 
 
-inline bool has_character(const ::ansi_character * p) { return !is_empty(p); }
+inline bool has_character(const_char_pointer p) { return !is_empty(p); }
 inline bool has_character(const ::wd16_character * p) { return !is_empty(p); }
 inline bool has_character(const ::wd32_character * p) { return !is_empty(p); }
 
@@ -238,7 +238,7 @@ inline bool is_string_ok(::ansi_character * p, character_count s)
 }
 
 
-inline bool is_string_ok(const ::ansi_character * p, character_count s)
+inline bool is_string_ok(const_char_pointer p, character_count s)
 {
 
    return ::is_array_ok(p, s);
@@ -334,7 +334,7 @@ inline bool is_string_ok(::ansi_character * p)
 }
 
 
-inline bool is_string_ok(const ::ansi_character * p)
+inline bool is_string_ok(const_char_pointer p)
 {
 
    return is_null_terminated_primitive_array_ok(p);

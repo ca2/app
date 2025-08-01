@@ -31,7 +31,7 @@ public:
                       Reset();};
   virtual ~nsEUCKRProber(void){delete mCodingSM;};
   nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
-  const_char_pointer  GetCharSetName() {return "EUC-KR";};
+  const_char_pointer GetCharSetName() {return "EUC-KR";};
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
   float     GetConfidence(void);

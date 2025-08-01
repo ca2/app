@@ -74,7 +74,7 @@ namespace image
 //   ////virtual bool read_from_file(file_pointer  pfile)= 0;
 //
 //
-//   //virtual bool load_matter_icon(string_array & straMatter, string strIcon)= 0;
+//   //virtual bool load_matter_icon(string_array & straMatter, const ::scoped_string & scopedstrIcon)= 0;
 //
 //
 //   //virtual bool load_thumbnail(::payload payloadFile, int w, int h)= 0;
@@ -84,10 +84,10 @@ namespace image
 //   //virtual bool save_dib(::payload payloadFile) = 0;
 //
 //   virtual image get_image(::payload payloadFile, bool bSync = false) = 0;
-//   virtual image matter_image(string strMatter, bool bSync = false) = 0;
+//   virtual image matter_image(const ::scoped_string & scopedstrMatter, bool bSync = false) = 0;
 //   virtual image load_image(::payload payloadFile, bool bCreateHelperMaps = false) = 0;
 //   virtual image load_matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bCreateHelperMaps = false) = 0;
-//   virtual image load_matter_icon(string_array & straMatter, string strIcon) = 0;
+//   virtual image load_matter_icon(string_array & straMatter, const ::scoped_string & scopedstrIcon) = 0;
 //   virtual image load_thumbnail(::payload payloadFile, int w, int h) = 0;
 //   virtual image load_thumbnail(const ::scoped_string & scopedstrPath) = 0;
 //   virtual image load_dib(const ::file::path & pathDib) = 0;
@@ -310,7 +310,7 @@ namespace image
 //   virtual bool create_nanosvg(char * pszXml, double dDpi = 0.0) = 0;
 //   virtual bool nanosvg(char * pszXml, double dDpi = 0.0)= 0;
 //
-//   virtual bool op(string str)= 0;
+//   virtual bool op(const ::scoped_string & scopedstr)= 0;
 //
 //   //virtual bool from( ::image::image *pimage)= 0;
 //

@@ -413,7 +413,7 @@ namespace micro
 
       
 
-      //void _on_window_simple_action(const_char_pointer  pszActionName) override;
+      //void _on_window_simple_action(const_char_pointer pszActionName) override;
 
 
       //

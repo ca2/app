@@ -128,7 +128,7 @@ namespace file
 
       //path(const ::wd16_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
       //path(const ::wd32_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
-      //path(const ::ansi_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+      //path(const_char_pointer pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
       //path(const ::wd16_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
       //path(const ::wd32_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
       //template < character_range CHARACTER_RANGE >
@@ -136,7 +136,7 @@ namespace file
 
       //template<typed_range<::ansi_character *> RANGE>
       //path(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
-      //template<typed_range<const ::ansi_character *> RANGE>
+      //template<typed_range<const_char_pointer >RANGE>
       //path(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
       //template<typed_range<::wd16_character *> RANGE>
       //path(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
@@ -150,7 +150,7 @@ namespace file
 
       //template<typed_range<::ansi_character *> RANGE>
       //path(const RANGE & str, character_count count) : NATURAL_POINTER(no_initialize_t{}) { construct2(str, count); }
-      //template<typed_range<const ::ansi_character *> RANGE>
+      //template<typed_range<const_char_pointer >RANGE>
       //path(const RANGE & str, character_count count) : NATURAL_POINTER(no_initialize_t{}) { construct2(str, count); }
       //template<typed_range<::wd16_character *> RANGE>
       //path(const RANGE & str, character_count count) : NATURAL_POINTER(no_initialize_t{}) { construct2(str, count); }
@@ -165,7 +165,7 @@ namespace file
 
       //template<typed_range<::ansi_character *> RANGE>
       //path(const RANGE & str, character_count start, character_count count) : NATURAL_POINTER(no_initialize_t{}) { construct2(str, start, count); }
-      //template<typed_range<const ::ansi_character *> RANGE>
+      //template<typed_range<const_char_pointer >RANGE>
       //path(const RANGE & str, character_count start, character_count count) : NATURAL_POINTER(no_initialize_t{}) { construct2(str, start, count); }
       //template<typed_range<::wd16_character *> RANGE>
       //path(const RANGE & str, character_count start, character_count count) : NATURAL_POINTER(no_initialize_t{}) { construct2(str, start, count); }
@@ -203,7 +203,7 @@ namespace file
       path(const inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
          path(inlinestring.begin(), inlinestring.end())
       { }
-      //   path(const ::ansi_character * pansichar, character_count len);
+      //   path(const_char_pointer pansichar, character_count len);
          //path(::str < iterator > str) : path((const_iterator)str.begin(), (const_iterator)str.end()) {}
          //path(::str < const_iterator > str) : path(str.begin(), str.end()) {}
          //path(::block block) : path((const_iterator)block.begin(), (const_iterator)block.end()) {}
@@ -236,7 +236,7 @@ namespace file
       path(const ::atom & atom);
       path(const ::payload & payload);
       path(const ::property & property);
-      //path(const ::range < const ::ansi_character * > & range) : path(::string(range)) { }
+      //path(const ::range < const_char_pointer >& range) : path(::string(range)) { }
 
 
       ::url::url as_url() const;
@@ -372,7 +372,7 @@ namespace file
 
       //}
 
-      //inline const_char_pointer  separator_sz() const
+      //inline const_char_pointer separator_sz() const
       //{
 
       //   return "/";
@@ -504,7 +504,7 @@ namespace file
       path slashed_path(const ::scoped_string & scopedstr) const;
       //path operator / (const ::scoped_string & scopedstr) const;
       //path operator / (const path & path) const;
-      //path operator / (const ::ansi_character * psz) const;
+      //path operator / (const_char_pointer psz) const;
       //path operator / (const ::scoped_string & scopedstr) const;
 
       path slash_path(const ::scoped_string & scopedstr) const;
@@ -668,7 +668,7 @@ namespace file
 
 
 
-inline const_char_pointer  FormatArgument(const ::file::path & value) noexcept;
+inline const_char_pointer FormatArgument(const ::file::path & value) noexcept;
 
 
 template < >
@@ -682,7 +682,7 @@ inline ::hash32 as_hash32 < const ::file::path & >(const ::file::path & key);
 
 
 
-//inline ::file::path operator / (const ::ansi_character * psz, const ::file::path & pathConcat)
+//inline ::file::path operator / (const_char_pointer psz, const ::file::path & pathConcat)
 //{
 //
 //   string str(scopedstr);

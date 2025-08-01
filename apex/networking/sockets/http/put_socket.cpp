@@ -56,15 +56,15 @@ namespace sockets
    }
 
 
-   void http_put_socket::SetFile(const string & file)
+   void http_put_socket::SetFile(const ::scoped_string & scopedstrFile)
    {
 
-      if(::particle::file()->exists(file))
+      if(::particle::file()->exists(scopedstrFile))
       {
 
-         m_filename = file;
+         m_filename = scopedstrFile;
 
-         m_content_length = ::particle::file()->length(file).as_long_long();
+         m_content_length = ::particle::file()->length(scopedstrFile).as_long_long();
 
       }
       else
@@ -81,10 +81,10 @@ namespace sockets
    }
 
 
-   void http_put_socket::SetContentType(const string & type)
+   void http_put_socket::SetContentType(const ::scoped_string & scopedstrType)
    {
 
-      m_content_type = type;
+      m_content_type = scopedstrType;
 
    }
 

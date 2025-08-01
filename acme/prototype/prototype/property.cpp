@@ -189,16 +189,16 @@ void prop_id_debug(::particle * pparticle);
 //
 //void property::parse_network_payload(const ::scoped_string & scopedstr)
 //{
-//   const ::ansi_character * pszJson = str;
+//   const_char_pointer pszJson = str;
 //   parse_network_payload(scopedstrJson, str.length());
 //}
 //
-//void property::parse_network_payload(const_char_pointer  & pszJson, character_count length)
+//void property::parse_network_payload(const_char_pointer &pszJson, character_count length)
 //{
 //   parse_network_payload(scopedstrJson, pszJson + length - 1);
 //}
 //
-//void property::parse_network_payload(const_char_pointer  & pszJson,const ::ansi_character * pszEnd)
+//void property::parse_network_payload(const_char_pointer &pszJson,const_char_pointer pszEnd)
 //{
 //   ::property_parse_network_payload_id(m_atom, pszJson, pszEnd);
 //   ::property_parse_network_payload_value(m_var,pszJson,pszEnd);

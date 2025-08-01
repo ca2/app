@@ -32,7 +32,7 @@ namespace fs
       bool enumerate(::file::listing & listing) override;
 
 
-      virtual void defer_fill_folder(string strTitle, ::file::path pathFolder);
+      virtual void defer_fill_folder(const ::scoped_string & scopedstrTitle, ::file::path pathFolder);
 
       virtual bool has_subdir(const ::file::path & path) override;
       virtual int is_dir(const ::file::path & path) override;

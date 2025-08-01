@@ -51,7 +51,7 @@ namespace folder_zip
 //
 //   }
 
-//   bool file_container::unzip_open(const_char_pointer  pcwsz)
+//   bool file_container::unzip_open(const_char_pointer pcwsz)
 //
 //   {
 //
@@ -132,7 +132,7 @@ namespace folder_zip
    //}
 
 
-   //bool file_container::zip_open(const_char_pointer  pcwsz)
+   //bool file_container::zip_open(const_char_pointer pcwsz)
 
    //{
 
@@ -419,7 +419,7 @@ void file::write(const void * p, ::memsize s)
 //
 //
 //
-//voidpf fileopen_file_func (voidpf opaque, const_char_pointer  filename, int mode)
+//voidpf fileopen_file_func (voidpf opaque, const_char_pointer filename, int mode)
 //{
 //   __UNREFERENCED_PARAMETER(mode);
 //   __UNREFERENCED_PARAMETER(filename);

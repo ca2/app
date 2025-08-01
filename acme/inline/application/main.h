@@ -21,7 +21,7 @@ extern "C" void APPLICATION_NAMESPACE_MAIN(create_system)();
 #if defined(WINDOWS)
 CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(initialize_system)(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow);
 #elif defined(__ANDROID__)
-CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const_char_pointer  p1, const_char_pointer  p2);
+CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const_char_pointer p1, const_char_pointer p2);
 #else
 CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[]);
 #endif

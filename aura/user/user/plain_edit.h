@@ -46,7 +46,7 @@ namespace user
 
    };
 
-   inline enum_line as_enum_line(const_char_pointer  psz)
+   inline enum_line as_enum_line(const_char_pointer psz)
    {
 
       if (*psz == '\r')
@@ -86,7 +86,7 @@ namespace user
       }
 
    }
-   inline const_char_pointer  as_string(enum_line eline)
+   inline const_char_pointer as_string(enum_line eline)
    {
 
       if (eline == e_line_end_r_n)
@@ -374,10 +374,10 @@ namespace user
 
 
       virtual void get_text_composition_area(::int_rectangle & r) override;
-      void edit_on_text(string str) override;
+      void edit_on_text(const ::scoped_string & scopedstr) override;
       void edit_on_sel(character_count iSelBeg, character_count iSelEnd) override;
-      void on_text_composition(string str) override;
-      void on_text_commit(string str) override;
+      void on_text_composition(const ::scoped_string & scopedstr) override;
+      void on_text_commit(const ::scoped_string & scopedstr) override;
       void on_text_composition_done() override;
       void clear_ime_composition() override;
 

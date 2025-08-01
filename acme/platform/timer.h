@@ -39,7 +39,7 @@ public:
    void destroy() override;
 
 
-   const_char_pointer  debug_note() const override;
+   const_char_pointer debug_note() const override;
 
 
 };

@@ -14,7 +14,7 @@ namespace gpu
 
 
 
-   //const_char_pointer  shader_type_c_str(GLenum etype)
+   //const_char_pointer shader_type_c_str(GLenum etype)
    //{
 
    //   switch (etype)

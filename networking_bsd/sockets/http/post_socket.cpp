@@ -58,7 +58,7 @@ namespace sockets
    }
 
 
-   void http_post_socket::AddFile(const string & name,const string & filename,const string & type)
+   void http_post_socket::AddFile(const string & name,const string & filename,const ::scoped_string & scopedstrType)
    {
 
       if (file()->exists(filename))

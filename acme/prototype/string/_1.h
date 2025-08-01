@@ -15,8 +15,8 @@ typedef int HRes;
 struct end_of_line_and_next_line
 {
 
-   const_char_pointer  end_of_line;
-   const_char_pointer  next_line;
+   const_char_pointer end_of_line;
+   const_char_pointer next_line;
 
 };
 
@@ -37,7 +37,7 @@ const auto __string_base(const TYPE & t)
 
 }
 
-inline const ansi_string __string_base(const ::ansi_character * psz);
+inline const ansi_string __string_base(const_char_pointer psz);
 inline const wd16_string __string_base(const ::wd16_character * psz);
 inline const wd32_string __string_base(const ::wd32_character * psz);
 
@@ -85,7 +85,7 @@ inline const wd32_string __string_base(const ::wd32_character * psz);
 #include "acme/prototype/prototype/bit.h"
 #include "acme/prototype/collection/bit_array.h"
 
-inline  string consume_char(const ::ansi_character *& p)
+inline  string consume_char(const_char_pointer &p)
 {
    auto len = ::utf8_len(p);
    string strChar(p, len);
@@ -108,7 +108,7 @@ inline  wd32_string consume_char(const ::wd32_character *& p)
 }
 
 
-inline  ::ansi_character * next_char(const ::ansi_character *& p)
+inline  ::ansi_character * next_char(const_char_pointer &p)
 {
    auto len = ::utf8_len(p);
    p += len;
@@ -190,7 +190,7 @@ inline  ::wd32_character * next_char(const ::wd32_character *& p)
 #include "_conv.h"
 
 
-CLASS_DECL_ACME string string_formatf(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME string string_formatf(const_char_pointer pszFormat, ...);
 
 
 

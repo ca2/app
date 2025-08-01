@@ -60,7 +60,7 @@ namespace xml
 
       //virtual bool load_attr(const ::scoped_string & scopedstrName, int & iValue);
 
-      //virtual bool get_attr(const ::scoped_string & scopedstrName, string & strValue, string strDefault = "");
+      //virtual bool get_attr(const ::scoped_string & scopedstrName, string & strValue, const ::scoped_string & scopedstrDefault = "");
 
       //virtual bool get_attr(const ::scoped_string & scopedstrName, bool & b, bool bDefault = false);
 

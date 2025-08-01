@@ -67,7 +67,7 @@ namespace data
 
 
 /*
-   void * simple_item::operator new(size_t, const_char_pointer , int)
+   void * simple_item::operator new(size_t, const_char_pointer ,int)
    {
       return _alloc001SimpleTreeItem.Alloc();
    }
@@ -83,7 +83,7 @@ namespace data
       return _alloc001SimpleTreeItem.Free(point);
    }
 
-   void simple_item::operator delete(void * p, const_char_pointer , int)
+   void simple_item::operator delete(void * p, const_char_pointer ,int)
    {
       return _alloc001SimpleTreeItem.Free(point);
    }*/

@@ -612,7 +612,7 @@ public:
 
 
    // c_get
-   ::array < const ::ansi_character * > c_ansi_get(bool bMemoryAlloc = false) const;
+   ::array < const_char_pointer >c_ansi_get(bool bMemoryAlloc = false) const;
    //::array < const ::wide_character * > c_wide_get(bool bMemoryAlloc = false) const;
    void c_add(char ** ppsz, ::collection::count iCount, bool bMemoryAlloc = false);
    void c_add(char ** ppsz, bool bMemoryAlloc = false);
@@ -726,7 +726,7 @@ class CLASS_DECL_ACME string_array_array :
 public:
 
 
-   void add_csv(string str);
+   void add_csv(const ::scoped_string & scopedstr);
 
 
 };
@@ -735,7 +735,7 @@ public:
 CLASS_DECL_ACME bool next_csv(string & str, const string_array & stra);
 CLASS_DECL_ACME void add_csv(string_array & stra, const ::scoped_string & scopedstr);
 
-CLASS_DECL_ACME string_array string_array_from_strdup_count(const_char_pointer * pszaUrl, long lCount);
+CLASS_DECL_ACME string_array string_array_from_strdup_count(const_char_pointer *pszaUrl, long lCount);
 
 
 

@@ -38,7 +38,7 @@
 //char * GetCommandLineA()
 //{
 //
-//   return (char *) (const_char_pointer ) get_command_line_string();
+//   return (char *) (const_char_pointer )get_command_line_string();
 //
 //}
 //

@@ -1068,7 +1068,7 @@ namespace gpu
       //   iLen = ::str::get_utf8_char(scopedstr).length();
       //   iRange++;
       //   i += iLen;
-      //   unicode_increment(scopedstr);
+      //   unicode_increment(psz);
       //   if(scopedstr == nullptr)
       //      break;
       //   if(*psz == '\0')
@@ -1436,7 +1436,7 @@ namespace gpu
    }
 
 
-   // void graphics::nanosvg(string str, int x, int y, int w, int h)
+   // void graphics::nanosvg(const ::scoped_string & scopedstr, int x, int y, int w, int h)
    // {
    //
    //    struct NSVGimage* pnsvgimage;

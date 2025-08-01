@@ -69,7 +69,7 @@ namespace apex
    };
 
 
-   CLASS_DECL_APEX int SimpleDebugReport(int, const_char_pointer , int, const_char_pointer , const_char_pointer  pszFormat, va_list list);
+   CLASS_DECL_APEX int SimpleDebugReport(int, const_char_pointer ,int, const_char_pointer ,const_char_pointer pszFormat, va_list list);
 
 
 } // namespace apex

@@ -6,7 +6,7 @@
 ::e_status fgets_string(string & str, FILE * pfile, memsize iBufferSize);
 
 
-int get_process_pid(const_char_pointer  procNameParam)
+int get_process_pid(const_char_pointer procNameParam)
 {
 
    string procName(procNameParam);

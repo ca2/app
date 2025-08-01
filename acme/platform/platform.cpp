@@ -736,7 +736,7 @@ namespace platform
    }
 
 
-   void platform::set_resource_block(const_char_pointer  pstart, const_char_pointer  pend)
+   void platform::set_resource_block(const_char_pointer pstart, const_char_pointer pend)
    {
 
       m_blockMatter = ::block(pstart, pend);
@@ -882,7 +882,7 @@ g_bWindowingOutputDebugString = true;
 
       string strLibrary;
 
-      strLibrary = library_filter(strLibraryRequest);
+      strLibrary = library_filter(scopedstrLibraryRequest);
 
       auto & pfactory = m_factorymap[strLibrary];
 
@@ -945,12 +945,12 @@ g_bWindowingOutputDebugString = true;
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
 
-      auto & factorymapComponent = m_componentfactorymap[strComponent];
+      auto & factorymapComponent = m_componentfactorymap[scopedstrComponent];
 
       if (factorymapComponent.size() <= 0)
       {
 
-         debugf("No existing factory for component \"%s\".\n", strComponent.c_str());
+         debugf("No existing factory for component \"%s\".\n", scopedstrComponent.c_str());
 
          return nullptr;
 
@@ -1043,12 +1043,12 @@ g_bWindowingOutputDebugString = true;
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
 
-      auto& factorymapComponent = m_componentfactorymap[strComponent];
+      auto& factorymapComponent = m_componentfactorymap[scopedstrComponent];
 
       if (factorymapComponent.size() <= 0)
       {
 
-         debugf("No existing factory for component \"%s\".\n", strComponent.c_str());
+         debugf("No existing factory for component \"%s\".\n", scopedstrComponent.c_str());
 
          return nullptr;
 
@@ -1066,14 +1066,14 @@ g_bWindowingOutputDebugString = true;
 
       //informationf("platform::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
 
-      auto strImplementationName = implementation_name(strComponent, strImplementation);
+      auto strImplementationName = implementation_name(scopedstrComponent, scopedstrImplementation);
 
-      auto & pfactory = m_componentfactorymap[strComponent][strImplementationName];
+      auto & pfactory = m_componentfactorymap[scopedstrComponent][strImplementationName];
 
       if (pfactory)
       {
 
-         debugf("Returning existing factory \"%s\" - \"%s\".\n", strComponent.c_str(), strImplementation.c_str());
+         debugf("Returning existing factory \"%s\" - \"%s\".\n", scopedstrComponent.c_str(), scopedstrImplementation.c_str());
 
          return pfactory;
 
@@ -1117,7 +1117,7 @@ g_bWindowingOutputDebugString = true;
       string strLibrary;
 
       //strLibrary = library_name(strComponent, strImplementation);
-      strLibrary = strComponent + "_" + strImplementation;
+      strLibrary = scopedstrComponent + "_" + scopedstrImplementation;
 
       //informationf("Getting library \"%s\".", strLibrary.c_str());
 
@@ -1146,7 +1146,7 @@ g_bWindowingOutputDebugString = true;
          informationf("Library not found : \"%s\".\n", strLibrary.c_str());
 
          //pfactory = (const ::extended::status&)plibrary;
-         throw ::exception(error_resource, strComponent + "_" + strImplementation + "_factory not found!!");
+         throw ::exception(error_resource, scopedstrComponent + "_" + scopedstrImplementation + "_factory not found!!");
 
       }
 
@@ -1241,12 +1241,12 @@ g_bWindowingOutputDebugString = true;
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
 
-      auto & pfactory = m_componentfactorymap[strComponent][implementation_name(strComponent, strImplementation)];
+      auto & pfactory = m_componentfactorymap[scopedstrComponent][implementation_name(scopedstrComponent, scopedstrImplementation)];
 
       try
       {
 
-         return factory(strComponent, strImplementation);
+         return factory(scopedstrComponent, scopedstrImplementation);
 
       }
       catch (const ::exception & exception)
@@ -1282,11 +1282,11 @@ g_bWindowingOutputDebugString = true;
 
       //auto estatus = plibrary->open(strLibrary);
 
-      debugf("platform::create_library Going to open library \"%s\".", strLibrary.c_str());
+      debugf("platform::create_library Going to open library \"%s\".", scopedstrLibrary.c_str());
 
       //information() << "platform::create_library Going to open library \"" << strLibrary << "\".";
 
-      plibrary->open(strLibrary);
+      plibrary->open(scopedstrLibrary);
 
       //if (!estatus)
       //{
@@ -1300,9 +1300,9 @@ g_bWindowingOutputDebugString = true;
 
          string strMessage = plibrary->m_strMessage;
 
-         warning() << "Library wasn't opened (\"" << strLibrary << "\") : " << strMessage;
+         warning() << "Library wasn't opened (\"" << scopedstrLibrary << "\") : " << strMessage;
 
-         throw ::exception(error_failed, "Library wasn't opened (\"" + strLibrary + "\")", strMessage);
+         throw ::exception(error_failed, "Library wasn't opened (\"" + scopedstrLibrary + "\")", strMessage);
 
       }
       
@@ -1312,7 +1312,7 @@ g_bWindowingOutputDebugString = true;
       //
       // #endif
 
-      printf_line("Library was opened: \"%s\".", strLibrary.c_str());
+      printf_line("Library was opened: \"%s\".", scopedstrLibrary.c_str());
 
       return plibrary;
 
@@ -1322,7 +1322,7 @@ g_bWindowingOutputDebugString = true;
    ::pointer<::acme::library> platform::create_library_statically(const ::scoped_string & scopedstrLibrary)
    {
 
-      auto pfnFactory = ::factory_function::get(strLibrary);
+      auto pfnFactory = ::factory_function::get(scopedstrLibrary);
 
       if (!pfnFactory)
       {
@@ -1333,7 +1333,7 @@ g_bWindowingOutputDebugString = true;
 
       auto plibrary = __create_new < ::acme::library >();
 
-      plibrary->m_strName = strLibrary;
+      plibrary->m_strName = scopedstrLibrary;
 
       plibrary->m_pfnFactory = pfnFactory;
 
@@ -1357,7 +1357,7 @@ g_bWindowingOutputDebugString = true;
 //      try
   //    {
 
-         plibrary = create_library_dynamically(strLibrary);
+         plibrary = create_library_dynamically(scopedstrLibrary);
 
     //  }
 //      catch (library_not_loaded& librarynotloaded)
@@ -1378,7 +1378,7 @@ g_bWindowingOutputDebugString = true;
       if (!plibrary)
       {
 
-         plibrary = create_library_statically(strLibrary);
+         plibrary = create_library_statically(scopedstrLibrary);
 
       }
 
@@ -1396,7 +1396,7 @@ g_bWindowingOutputDebugString = true;
 
       //informationf("platform::library \"%s\".", str.c_str());
 
-      if (str.is_empty())
+      if (scopedstr.is_empty())
       {
 
          throw ::exception(error_bad_argument);
@@ -1405,7 +1405,7 @@ g_bWindowingOutputDebugString = true;
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
 
-      string strLibrary = library_filter(str);
+      string strLibrary = library_filter(scopedstr);
 
       auto & plibrary = m_mapLibrary[strLibrary];
 
@@ -1468,7 +1468,7 @@ g_bWindowingOutputDebugString = true;
    //}
 
 
-   release_time_for_project platform::as_release_time_for_project(const_char_pointer  pszStaticText)
+   release_time_for_project platform::as_release_time_for_project(const_char_pointer pszStaticText)
    {
 
       release_time_for_project releasetimeforproject;
@@ -1477,42 +1477,42 @@ g_bWindowingOutputDebugString = true;
 
       // 0123-56-89-12-45-78
 
-      auto len = ansi_length(scopedstrStaticText);
+      auto len = ansi_length(pszStaticText);
 
       if (len >= 10
-         && ::character_isdigit(scopedstrStaticText[0])
-         && ::character_isdigit(scopedstrStaticText[1])
-         && ::character_isdigit(scopedstrStaticText[2])
-         && ::character_isdigit(scopedstrStaticText[3])
-         && !::character_isalnum(scopedstrStaticText[4])
-         && ::character_isdigit(scopedstrStaticText[5])
-         && ::character_isdigit(scopedstrStaticText[6])
-         && !::character_isalnum(scopedstrStaticText[7])
-         && ::character_isdigit(scopedstrStaticText[8])
-         && ::character_isdigit(scopedstrStaticText[9])
+         && ::character_isdigit(pszStaticText[0])
+         && ::character_isdigit(pszStaticText[1])
+         && ::character_isdigit(pszStaticText[2])
+         && ::character_isdigit(pszStaticText[3])
+         && !::character_isalnum(pszStaticText[4])
+         && ::character_isdigit(pszStaticText[5])
+         && ::character_isdigit(pszStaticText[6])
+         && !::character_isalnum(pszStaticText[7])
+         && ::character_isdigit(pszStaticText[8])
+         && ::character_isdigit(pszStaticText[9])
          )
       {
 
-         releasetimeforproject.m_iYear = ::as_int(scoped_ansi_string(scopedstrStaticText + 0, 4));
-         releasetimeforproject.m_iMonth = ::as_int(scoped_ansi_string(scopedstrStaticText + 5, 2));
-         releasetimeforproject.m_iDay = ::as_int(scoped_ansi_string(scopedstrStaticText + 8, 2));
+         releasetimeforproject.m_iYear = ::as_int(scoped_ansi_string(pszStaticText + 0, 4));
+         releasetimeforproject.m_iMonth = ::as_int(scoped_ansi_string(pszStaticText + 5, 2));
+         releasetimeforproject.m_iDay = ::as_int(scoped_ansi_string(pszStaticText + 8, 2));
 
          if (len >= 19
-            && !::character_isalnum(scopedstrStaticText[10])
-            && ::character_isdigit(scopedstrStaticText[11])
-            && ::character_isdigit(scopedstrStaticText[12])
-            && !::character_isalnum(scopedstrStaticText[13])
-            && ::character_isdigit(scopedstrStaticText[14])
-            && ::character_isdigit(scopedstrStaticText[15])
-            && !::character_isalnum(scopedstrStaticText[16])
-            && ::character_isdigit(scopedstrStaticText[17])
-            && ::character_isdigit(scopedstrStaticText[18])
+            && !::character_isalnum(pszStaticText[10])
+            && ::character_isdigit(pszStaticText[11])
+            && ::character_isdigit(pszStaticText[12])
+            && !::character_isalnum(pszStaticText[13])
+            && ::character_isdigit(pszStaticText[14])
+            && ::character_isdigit(pszStaticText[15])
+            && !::character_isalnum(pszStaticText[16])
+            && ::character_isdigit(pszStaticText[17])
+            && ::character_isdigit(pszStaticText[18])
             )
          {
 
-            releasetimeforproject.m_iHour = ::as_int(scoped_ansi_string(scopedstrStaticText + 11, 2));
-            releasetimeforproject.m_iMinute = ::as_int(scoped_ansi_string(scopedstrStaticText + 14, 2));
-            releasetimeforproject.m_iSecond = ::as_int(scoped_ansi_string(scopedstrStaticText + 17, 2));
+            releasetimeforproject.m_iHour = ::as_int(scoped_ansi_string(pszStaticText + 11, 2));
+            releasetimeforproject.m_iMinute = ::as_int(scoped_ansi_string(pszStaticText + 14, 2));
+            releasetimeforproject.m_iSecond = ::as_int(scoped_ansi_string(pszStaticText + 17, 2));
 
          }
 

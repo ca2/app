@@ -742,7 +742,7 @@ namespace browser
 
    }
 
-   void impact::set_browser(string strText)
+   void impact::set_browser(const ::scoped_string & scopedstrText)
    {
 
       string strFork;

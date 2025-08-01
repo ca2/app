@@ -69,7 +69,7 @@ namespace platform
       // ::base::session* get_session();
 
 
-      virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom);
+      virtual ::pointer<::user::document>defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom);
       virtual ::user::document * place_hold(::user::interaction * pinteraction);
       virtual void on_create_split_impact(::user::split_impact* pimpact);
       virtual void on_change_cur_sel(::user::tab* ptab);

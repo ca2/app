@@ -85,7 +85,7 @@ return {};
    // ::base::session* get_session(){}
 
 
-   ::pointer<::user::document>base_application_layer::defer_create_impact(string strImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom)
+   ::pointer<::user::document>base_application_layer::defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom)
    {
 
       return {};

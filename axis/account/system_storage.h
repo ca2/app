@@ -29,11 +29,11 @@ namespace account
 
       virtual void initialize_system_storage(department* pdepartment);
       
-      virtual ::file::path path_prefix(string strToken);
+      virtual ::file::path path_prefix(const ::scoped_string & scopedstrToken);
       
       
-      virtual bool get(string strKey, string strToken, string & strValue) override;
-      virtual void set(string strKey, string strToken, string strValue) override;
+      virtual bool get(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrToken, string & strValue) override;
+      virtual void set(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrValue) override;
       
       
    };

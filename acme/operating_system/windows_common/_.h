@@ -95,7 +95,7 @@ namespace windows
    public:
 
 
-      inline static PFN get_address(const ::scoped_string & scopedstrModule, const_char_pointer  lpszName)
+      inline static PFN get_address(const ::scoped_string & scopedstrModule, const_char_pointer lpszName)
       {
 
          return (PFN) get_library_symbol_address(scopedstrModule, lpszName);

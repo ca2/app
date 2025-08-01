@@ -208,7 +208,7 @@ namespace networking_bsd
 
       virtual bool reverse_sync(reverse_cache_item* pitem);
 
-      bool reverse(string& hostname, const string& number) override;
+      bool reverse(string& hostname, const ::scoped_string & scopedstrNumber) override;
 
 
       bool u2service(const string& name, int& service, int ai_flags) override;

@@ -28,7 +28,7 @@ namespace user
 
       void align(line * pline, const ::double_rectangle & rectangle);
 
-      ::collection::count get_vars(strsize_array & ia1, strsize_array & ia2, string str)
+      ::collection::count get_vars(strsize_array & ia1, strsize_array & ia2, const ::scoped_string & scopedstr)
       {
 
          character_count i1 = 0;
@@ -38,7 +38,7 @@ namespace user
          while (true)
          {
 
-            i1 = str.find_index('%', i1);
+            i1 = scopedstr.find_index('%', i1);
 
             if (i1 < 0)
             {
@@ -47,7 +47,7 @@ namespace user
 
             }
 
-            i2 = str.find_index('%', i1 + 1);
+            i2 = scopedstr.find_index('%', i1 + 1);
 
             if (i2 < 0)
             {
@@ -767,12 +767,12 @@ namespace user
       }
 
 
-      int longest_word(string & strSlice, double & dPosition, string strWord, double * pdaPosition, double dPositionLeft, int cx)
+      int longest_word(string & strSlice, double & dPosition, const ::scoped_string & scopedstrWord, double * pdaPosition, double dPositionLeft, int cx)
       {
 
          long l = 1;
 
-         auto u = strWord.length();
+         auto u = scopedstrWord.length();
 
          long m = 1;
 
@@ -799,7 +799,7 @@ namespace user
 
          }
 
-         while (m < strWord.length())
+         while (m < scopedstrWord.length())
          {
 
             dPosition = pdaPosition[m - 1] - dPositionLeft;
@@ -838,7 +838,7 @@ namespace user
 
          }
 
-         strSlice = strWord.left(m);
+         strSlice = scopedstrWord.left(m);
 
          dPosition = pdaPosition[m - 1];
 

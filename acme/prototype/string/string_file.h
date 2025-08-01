@@ -69,7 +69,7 @@ public:
    }
 
 
-   operator const_char_pointer  () const noexcept
+   operator const_char_pointer () const noexcept
    {
 
       return m_pszBuffer;

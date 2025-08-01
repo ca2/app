@@ -195,18 +195,18 @@ void ansi_parse_command_line(char * cmdstart, char ** argv, char * args, int * n
 }
 
 
-string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const_char_pointer * pszEndPtr)
+string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const_char_pointer *pszEndPtr)
 {
 
    if(scopedstrCommandLine.is_empty())
       return "";
 
-   const_char_pointer  psz = scopedstrCommandLine.begin();
+   const_char_pointer psz = scopedstrCommandLine.begin();
 
    while(*psz && ansi_char_isspace(*psz))
       psz++;
 
-   const_char_pointer  pszStart;
+   const_char_pointer pszStart;
 
    bool bQuoted = *psz == '\"';
 
@@ -224,7 +224,7 @@ string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLi
          psz++;
    }
 
-   const_char_pointer  pszEnd = psz;
+   const_char_pointer pszEnd = psz;
 
    if(pszEndPtr != nullptr)
    {
@@ -518,7 +518,7 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 //
 //   string_array straAfterColon;
 //
-//   const ::ansi_character * pszEnd = psz + strlen(scopedstr);
+//   const_char_pointer pszEnd = psz + strlen(scopedstr);
 //
 //   string str;
 //
@@ -557,7 +557,7 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 //         while (!unicode_is_whitespace(scopedstr))
 //         {
 //
-//            unicode_increment(scopedstr);
+//            unicode_increment(psz);
 //
 //            if (scopedstr >= pszEnd)
 //            {
@@ -674,7 +674,7 @@ string_array get_c_args_from_c(const ::scoped_string & scopedstr)
       else
       {
 
-         const_char_pointer  pszValueStart = range.m_begin;
+         const_char_pointer pszValueStart = range.m_begin;
 
          while (!unicode_is_whitespace(range.m_begin))
          {
@@ -703,7 +703,7 @@ string_array get_c_args_from_c(const ::scoped_string & scopedstr)
 
          }
 
-         str = string(scopedstrValueStart, range.m_begin - pszValueStart);
+         str = string(pszValueStart, range.m_begin - pszValueStart);
 
       }
 
@@ -782,7 +782,7 @@ string_array get_c_args_for_c(const ::scoped_string & scopedstr)
       else
       {
 
-         const_char_pointer  pszValueStart = range.m_begin;
+         const_char_pointer pszValueStart = range.m_begin;
 
          while (!unicode_is_whitespace(range.m_begin))
          {
@@ -811,7 +811,7 @@ string_array get_c_args_for_c(const ::scoped_string & scopedstr)
 
          }
 
-         str.assign(scopedstrValueStart, range.m_begin - pszValueStart);
+         str.assign(pszValueStart, range.m_begin - pszValueStart);
 
       }
 
@@ -903,9 +903,9 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
 
    bool bNeedQuote = false;
 
-   const_char_pointer  psz = scopedstr.begin();
+   const_char_pointer psz = scopedstr.begin();
 
-   const_char_pointer  pszParse = psz;
+   const_char_pointer pszParse = psz;
 
    char chQuote = '\0';
 
@@ -918,7 +918,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
          if (*pszParse == '\\')
          {
 
-            unicode_increment(scopedstrParse);
+            unicode_increment(pszParse);
 
          }
          else if (*pszParse == chQuote)
@@ -941,7 +941,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
          chQuote = '\"';
 
       }
-      else if (unicode_is_whitespace(scopedstrParse) || *pszParse == ':')
+      else if (unicode_is_whitespace(pszParse) || *pszParse == ':')
       {
 
          bNeedQuote = true;
@@ -950,7 +950,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
 
       }
 
-      unicode_increment(scopedstrParse);
+      unicode_increment(pszParse);
 
    }
 

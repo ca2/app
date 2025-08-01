@@ -395,10 +395,10 @@ namespace account
 //   }
 
 
-   void user::logon_local(string strAccount)
+   void user::logon_local(const ::scoped_string & scopedstrAccount)
    {
 
-      m_strLogin = strAccount;
+      m_strLogin = scopedstrAccount;
 
       m_strSessId = "local";
 
@@ -410,7 +410,7 @@ namespace account
 
 
 
-   void user::not_auth(string strServer)
+   void user::not_auth(const ::scoped_string & scopedstrServer)
    {
 
       m_strSessId = "not_auth";

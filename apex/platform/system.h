@@ -308,7 +308,7 @@ namespace apex
 
 
       virtual int _debug_logging_report(int iReportType, const ::scoped_string& scopedstrFilename, int iLinenumber,
-                                        const ::scoped_string& scopedstrModuleName, const_char_pointer  pszFormat,
+                                        const ::scoped_string& scopedstrModuleName, const_char_pointer pszFormat,
                                         va_list list) override;
 
 
@@ -361,32 +361,32 @@ namespace apex
 
       //#ifdef __ANDROID__
       ////#pragma message("at macos??")
-      //      virtual bool android_set_user_wallpaper(string strUrl);
+      //      virtual bool android_set_user_wallpaper(const ::scoped_string & scopedstrUrl);
       //      virtual bool android_get_user_wallpaper(string & strUrl);
       //
       //#endif
 
-      virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra) override;
+      virtual bool defer_accumulate_on_open_file(string_array stra, const ::scoped_string & scopedstrExtra) override;
 
 
       //virtual bool merge_accumulated_on_open_file(::request * prequest);
 
-      virtual bool on_open_file(::payload payloadFile, string strExtra) override;
+      virtual bool on_open_file(::payload payloadFile, const ::scoped_string & scopedstrExtra) override;
 
 
       void on_open_file(const ::scoped_string& scopedstrFile) override;
 
 
-      virtual void on_os_text(enum_os_text etext, string strText) override;
+      virtual void on_os_text(enum_os_text etext, const ::scoped_string & scopedstrText) override;
 
 
-      virtual void on_extra(string str) override;
+      virtual void on_extra(const ::scoped_string & scopedstr) override;
 
 
-      virtual string standalone_setting(string str) override;
+      virtual string standalone_setting(const ::scoped_string & scopedstr) override;
 
 
-      virtual void set_standalone_setting(string str, string strSetting) override;
+      virtual void set_standalone_setting(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSetting) override;
 
 
       virtual void process_machine_event_data(machine_event_data* pdata) override;
@@ -398,18 +398,18 @@ namespace apex
       virtual void set_user_language(::apex::application* papp, ::collection::index iSel) override;
 
 
-      virtual void set_user_language(::apex::application* papp, string strLang) override;
+      virtual void set_user_language(::apex::application* papp, const ::scoped_string & scopedstrLang) override;
 
 
-      void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile,
-                    string strParam) override;
+      void chromium(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrId, ::file::path path, const ::scoped_string & scopedstrProfile,
+                    const ::scoped_string & scopedstrParam) override;
 
 
-      void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName,
+      void defer_create_firefox_profile(::file::path pathFirefox, const ::scoped_string & scopedstrProfileName,
                                         ::file::path pathProfile) override;
 
 
-      void firefox(string strUrl, string strBrowser, string strProfile, string strParam) override;
+      void firefox(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam) override;
 
 
       virtual void discard_to_factory(::pointer<object> pca) override;

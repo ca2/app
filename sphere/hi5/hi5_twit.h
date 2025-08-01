@@ -120,28 +120,28 @@ namespace hi5
       bool search(string & query /* in */);
 
 
-      string mediaUpload(file_pointer pfile, string strMimeType, string strCategory);
-      string mediaUploadInit(int iTotalSize, string strMimeType, string strCategory);
-      bool mediaUploadAppend(string strMediaId, ::collection::index iIndex, file_pointer pfile, int iSize, string strMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends);
-      ::payload mediaUploadFinalize(string strMediaId);
-      ::payload mediaUploadStatus(string strMediaId);
+      string mediaUpload(file_pointer pfile, const ::scoped_string & scopedstrMimeType, const ::scoped_string & scopedstrCategory);
+      string mediaUploadInit(int iTotalSize, const ::scoped_string & scopedstrMimeType, const ::scoped_string & scopedstrCategory);
+      bool mediaUploadAppend(const ::scoped_string & scopedstrMediaId, ::collection::index iIndex, file_pointer pfile, int iSize, const ::scoped_string & scopedstrMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends);
+      ::payload mediaUploadFinalize(const ::scoped_string & scopedstrMediaId);
+      ::payload mediaUploadStatus(const ::scoped_string & scopedstrMediaId);
 
       /* Twitter status APIs */
-      bool statusUpdate(string & newStatus /* in */, string_array straMediaIds = {}, string strReplyStatusId = "");
+      bool statusUpdate(string & newStatus /* in */, string_array straMediaIds = {}, const ::scoped_string & scopedstrReplyStatusId = "");
       bool statusShowById(string & statusId /* in */);
       bool statusDestroyById(string & statusId /* in */);
 
       /* Twitter timeline APIs */
       bool timelinePublicGet();
       bool timelineFriendsGet();
-      bool timelineUserGet(string userInfo = "" /* in */, bool isUserId = false /* in */);
+      bool timelineUserGet(const ::scoped_string & scopedstrUserInfo = "" /* in */, bool isUserId = false /* in */);
       bool featuredUsersGet();
       bool mentionsGet();
 
       /* Twitter user APIs */
       bool userGet(string & userInfo /* in */, bool isUserId = false /* in */);
-      bool friendsGet(string userInfo = "" /* in */, bool isUserId = false /* in */);
-      bool followersGet(string userInfo = "" /* in */, bool isUserId = false /* in */);
+      bool friendsGet(const ::scoped_string & scopedstrUserInfo = "" /* in */, bool isUserId = false /* in */);
+      bool followersGet(const ::scoped_string & scopedstrUserInfo = "" /* in */, bool isUserId = false /* in */);
 
       /* Twitter direct message APIs */
       bool directMessageGet();

@@ -153,12 +153,12 @@ namespace sockets_bsd
       /** Set socks4 server ip that all ___new tcp sockets should use. */
       //virtual void SetSocks4Host(in_addr) = 0;
       /** Set socks4 server hostname that all ___new tcp sockets should use. */
-      virtual void SetSocks4Host(const string & ) = 0;
+      virtual void SetSocks4Host(const ::scoped_string & scopedstrHost) = 0;
 #endif
       /** Set socks4 server port number that all ___new tcp sockets should use. */
       virtual void SetSocks4Port(::networking::port_t) = 0;
       /** Set optional socks4 userid. */
-      virtual void SetSocks4Userid(const string & ) = 0;
+      virtual void SetSocks4Userid(const ::scoped_string & scopedstrUserId) = 0;
       /** If connection to socks4 server fails, immediately try direct connection to final host. */
       virtual void SetSocks4TryDirect(bool = true) = 0;
       /** get socks4 server ip.
@@ -185,8 +185,8 @@ namespace sockets_bsd
       /** Queue a dns request.
       \lparam host Hostname to be resolved
       \lparam port Port number will be echoed in socket::OnResolved callback */
-      //virtual int Resolve(base_socket *,const string & host,port_t port) = 0;
-      //virtual int Resolve6(base_socket *,const string & host,port_t port) = 0;
+      //virtual int Resolve(base_socket *,const ::scoped_string & scopedstrHost,port_t port) = 0;
+      //virtual int Resolve6(base_socket *,const ::scoped_string & scopedstrHost,port_t port) = 0;
       /** Do a reverse dns lookup. */
       //virtual int Resolve(base_socket *,in_addr a) = 0;
       //virtual int Resolve(base_socket *,in6_addr& a) = 0;

@@ -57,13 +57,13 @@ namespace account
       virtual void initialize(::particle * pparticle) override;
 
 
-      virtual void logon_local(string strAccount);
+      virtual void logon_local(const ::scoped_string & scopedstrAccount);
       
       virtual void logon(::file::path pathUrl, bool bInteractive);
 
       virtual void  do_logon(::file::path pathUrl, bool bInteractive);
       
-      void not_auth(string strServer);
+      void not_auth(const ::scoped_string & scopedstrServer);
       
       virtual bool is_ok();
       

@@ -305,9 +305,9 @@ namespace VistaTools
    bool
    RunElevated(
    __in      oswindow   hwnd,
-   __in      const_char_pointer  pszPath,
-   __in_opt   const_char_pointer  pszParameters,   //   = nullptr,
-   __in_opt   const_char_pointer  pszDirectory,   //   = nullptr,
+   __in      const_char_pointer pszPath,
+   __in_opt   const_char_pointer pszParameters,   //   = nullptr,
+   __in_opt   const_char_pointer pszDirectory,   //   = nullptr,
    __out_opt   HANDLE *phProcess )      //   = nullptr );
    {
       return MyShellExec(

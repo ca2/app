@@ -5,7 +5,7 @@
 
 
 template < >
-inline ::hash32 as_hash32 < const ::ansi_character * >(const ::ansi_character * const & p)
+inline ::hash32 as_hash32 < const_char_pointer >(const_char_pointer const & p)
 {
 
    auto psz = p;

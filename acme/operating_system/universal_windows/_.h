@@ -26,7 +26,7 @@
 //CLASS_DECL_ACME oswindow WINAPI WinSetFocus(oswindow oswindow);
 
 
-CLASS_DECL_ACME string normalize_path(const_char_pointer  lpcszPath);
+CLASS_DECL_ACME string normalize_path(const_char_pointer lpcszPath);
 
 
 //CLASS_DECL_ACME oswindow get_mouse_capture();
@@ -46,7 +46,7 @@ void CLASS_DECL_ACME __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 bool CLASS_DECL_ACME __windows_init();
 
 
-CLASS_DECL_ACME HANDLE hfile_create(const_char_pointer  lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile);
+CLASS_DECL_ACME HANDLE hfile_create(const_char_pointer lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile);
 
 
 //CLASS_DECL_ACME int WINAPI GetSystemMetrics(int i);
@@ -74,8 +74,8 @@ namespace user
 
 
 
-//CLASS_DECL_ACME ::winrt::Windows::Storage::StorageFolder ^ get_os_folder(const_char_pointer  lpcszDirName);
-//CLASS_DECL_ACME::winrt::Windows::Storage::StorageFile ^ get_os_file(const_char_pointer  lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
+//CLASS_DECL_ACME ::winrt::Windows::Storage::StorageFolder ^ get_os_folder(const_char_pointer lpcszDirName);
+//CLASS_DECL_ACME::winrt::Windows::Storage::StorageFile ^ get_os_file(const_char_pointer lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
 //CLASS_DECL_ACME bool get_file_time(::winrt::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime);
 
 
@@ -130,8 +130,8 @@ CLASS_DECL_ACME itask main_itask();
 
 
 
-//CLASS_DECL_ACME char* getenv(const_char_pointer  name);
-//CLASS_DECL_ACME HANDLE WINAPI CreateMutex(_In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes, _In_ BOOL bInitialOwner, _In_opt_ const_char_pointer  lpName  );
+//CLASS_DECL_ACME char* getenv(const_char_pointer name);
+//CLASS_DECL_ACME HANDLE WINAPI CreateMutex(_In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes, _In_ BOOL bInitialOwner, _In_opt_ const_char_pointer lpName  );
 
 //CLASS_DECL_ACME HANDLE WINAPI CreateMutexW(    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,    _In_ BOOL bInitialOwner,    _In_opt_ const ::wide_character * lpName    );
 

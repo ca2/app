@@ -22,7 +22,7 @@ namespace helloworld
 
    }
 
-   render::bilbo::bilbo(string strPath) :
+   render::bilbo::bilbo(const ::scoped_string & scopedstrPath) :
       bilbo()
    {
 
@@ -166,7 +166,7 @@ namespace helloworld
 
    }
 
-   bool render::initialize_render(string strId)
+   bool render::initialize_render(const ::scoped_string & scopedstrId)
    {
 
       if (!::hellobase::render::initialize_render(strId))
@@ -1263,7 +1263,7 @@ namespace helloworld
    //}
 
 
-   ::image::image_pointer & render::image23(string strImage)
+   ::image::image_pointer & render::image23(const ::scoped_string & scopedstrImage)
    {
 
 /*      auto & pimage = m_mapDib23[strImage];

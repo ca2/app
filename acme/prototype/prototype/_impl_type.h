@@ -15,7 +15,7 @@ inline type_atom::type_atom(const ::std::type_info & typeinfo) :
 }
 
 
-//inline bool type_atom::name_contains(const ::ansi_character * psz) const
+//inline bool type_atom::name_contains(const_char_pointer psz) const
 //{
 //
 //   return m_str.contains(scopedstr);

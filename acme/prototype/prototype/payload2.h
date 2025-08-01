@@ -1,7 +1,7 @@
 #pragma once
 
 
-::payload CLASS_DECL_ACME str_ends_get(const ::scoped_string & scopedstr, const_char_pointer  lpcszSuffix);
+::payload CLASS_DECL_ACME str_ends_get(const ::scoped_string & scopedstr, const_char_pointer lpcszSuffix);
 
 
 CLASS_DECL_ACME ::payload ends_get(const ::scoped_string & scopedstrSuffix, const ::scoped_string & scopedstr);

@@ -64,14 +64,14 @@ namespace wallpaper_system_summary
       bool is_in_memory_file() const override { return true; }
 
 
-      //virtual bool zip_open(const_char_pointer  ,unsigned int);
+      //virtual bool zip_open(const_char_pointer ,unsigned int);
       //virtual bool zip_open(::zip::file * pzfile,const ::file::path & path);
 
 
       //virtual bool unzip_open(::file::file * pfile, const string_array & = {}, int iBufferLevel = 2, ::file::enum_type * petype = nullptr);
       //virtual bool unzip_open(::zip::file * pzfile,const ::file::path & path);
 
-      //virtual bool unzip_open(const_char_pointer  , ::file::enum_type * petype = nullptr);
+      //virtual bool unzip_open(const_char_pointer ,::file::enum_type * petype = nullptr);
 
       //virtual bool locate(const ::file::path & path);
 

@@ -41,7 +41,7 @@ class CLASS_DECL_ACME parse
 public:
 
    // publicy made(camilo already xpced a good public, so i said first :-)
-   const_char_pointer  m_psz;
+   const_char_pointer m_psz;
    string   pa_splits;
    string   m_strWord;
    character_count  m_iPos;
@@ -53,12 +53,12 @@ public:
    character_count  m_iLen;
 
    parse();
-   parse(::range < const ::ansi_character * > range) : parse(range.begin(), range.size()) {}
-   parse(::range < const ::ansi_character * > range, ::range < const ::ansi_character * > splits):parse(range.begin(), range.size(), splits) {}
-   parse(::range < const ::ansi_character * > range, ::range < const ::ansi_character * > splits, short nospace):parse(range.begin(), range.size(),splits,nospace) {}
-   parse(const ::ansi_character * psz, character_count iLen);
-   parse(const ::ansi_character * psz, character_count iLen, ::range < const ::ansi_character * > splits);
-   parse(const ::ansi_character * psz, character_count iLen, ::range < const ::ansi_character * > splits, short);
+   parse(::range < const_char_pointer >range) : parse(range.begin(), range.size()) {}
+   parse(::range < const_char_pointer >range, ::range < const_char_pointer >splits):parse(range.begin(), range.size(), splits) {}
+   parse(::range < const_char_pointer >range, ::range < const_char_pointer >splits, short nospace):parse(range.begin(), range.size(),splits,nospace) {}
+   parse(const_char_pointer psz, character_count iLen);
+   parse(const_char_pointer psz, character_count iLen, ::range < const_char_pointer >splits);
+   parse(const_char_pointer psz, character_count iLen, ::range < const_char_pointer >splits, short);
    ~parse();
    short issplit(const char);
    void getsplit();

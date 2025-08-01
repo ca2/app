@@ -45,7 +45,7 @@
 //   {
 //   public:
 //
-//      mutex(::particle * pparticle, string strPlatform, string strSuffix = "");
+//      mutex(::particle * pparticle, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix = "");
 //
 //   };
 //
@@ -58,7 +58,7 @@
 //   {
 //   public:
 //
-//      admin_mutex(::particle * pparticle, string strPlatform, string strSuffix = "");
+//      admin_mutex(::particle * pparticle, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix = "");
 //
 //   };
 //

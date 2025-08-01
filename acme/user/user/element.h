@@ -207,7 +207,7 @@ namespace user
       virtual ::e_display defer_window_get_best_display_deduction();
 
 
-      virtual void _on_window_simple_action(const_char_pointer  pszActionName, ::user::activation_token * puseractivationtoken);
+      virtual void _on_window_simple_action(const_char_pointer pszActionName, ::user::activation_token * puseractivationtoken);
 
       
       virtual void on_window_close();
@@ -852,13 +852,13 @@ namespace user
       virtual int get_total_page_count(::handler_context * pcontext);
 
 
-      virtual void edit_on_text(string str);
+      virtual void edit_on_text(const ::scoped_string & scopedstr);
       virtual void edit_on_sel(character_count iBeg, character_count iEnd);
       virtual void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context);
 
 
-      virtual void on_text_composition(string str);
-      virtual void on_text_commit(string str);
+      virtual void on_text_composition(const ::scoped_string & scopedstr);
+      virtual void on_text_commit(const ::scoped_string & scopedstr);
       virtual void on_text_composition_done();
       //virtual bool is_text_composition_active();
 

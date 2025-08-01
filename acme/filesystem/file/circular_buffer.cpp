@@ -31,7 +31,7 @@ namespace file
    void circular_file::write(const void * pdata, memsize l)
    {
 
-      const_char_pointer  s = (const_char_pointer ) pdata;
+      const_char_pointer s= (const_char_pointer )pdata;
 
       m_count += (memsize) l;
 
@@ -150,7 +150,7 @@ namespace file
    const_char_pointer circular_file::GetStart()
    {
 
-      return (const_char_pointer  ) (m_memory.data() + m_b);
+      return (const_char_pointer )(m_memory.data() + m_b);
 
    }
 
@@ -197,7 +197,7 @@ namespace file
 
       mem.data()[l] = '\0';
 
-      return (const_char_pointer  ) mem.data();
+      return (const_char_pointer )mem.data();
 
    }
 

@@ -201,7 +201,7 @@ namespace sockets
       /** open connection.
       \lparam host Hostname
       \lparam port Port number */
-      virtual bool open(const string &host,::networking::port_t port);
+      virtual bool open(const ::scoped_string & scopedstrHost,::networking::port_t port);
 
       
       

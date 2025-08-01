@@ -8,7 +8,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME char * libc_strdup(const_char_pointer  psz);
+CLASS_DECL_ACME char * libc_strdup(const_char_pointer psz);
 
 
 

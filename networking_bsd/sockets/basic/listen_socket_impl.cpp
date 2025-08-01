@@ -21,7 +21,7 @@
 #include <cstring>
 
 // Demangle C++ symbols using __cxa_demangle
-void demangle_and_print(const_char_pointer  mangled_name) {
+void demangle_and_print(const_char_pointer mangled_name) {
     int status = 0;
     char *demangled_name = abi::__cxa_demangle(mangled_name, nullptr, nullptr, &status);
     
@@ -120,16 +120,19 @@ namespace sockets_bsd
    void listen_socket_impl::set_ssl_catalog(const ::scoped_string & scopedstrCat)
    {
 
-      m_strCat = strCat;
+      m_strCat = scopedstrCat;
 
    }
+
 
    void listen_socket_impl::set_ssl_cipher_list(const ::scoped_string & scopedstrCipherList)
    {
 
-      m_strCipherList = strCipherList;
+      m_strCipherList = scopedstrCipherList;
 
    }
+
+
    /** close file descriptor. */
    void listen_socket_impl::close()
    {
@@ -198,10 +201,10 @@ namespace sockets_bsd
    \lparam intf Interface hostname
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   int listen_socket_impl::Bind(const string & intf,::networking::port_t port,int depth)
+   int listen_socket_impl::Bind(const ::scoped_string & scopedstrInterface,::networking::port_t port,int depth)
    {
       
-      auto paddress = __SystemNetworking(system())->create_address(intf, preferred_address_type(), port);
+      auto paddress = __SystemNetworking(system())->create_address(scopedstrInterface, preferred_address_type(), port);
 
       if (paddress->is_valid())
       {
@@ -222,10 +225,10 @@ namespace sockets_bsd
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   int listen_socket_impl::Bind(const string & intf,::networking::port_t port,const string & protocol,int depth)
+   int listen_socket_impl::Bind(const ::scoped_string & scopedstrInterface,::networking::port_t port,const string & protocol,int depth)
    {
 
-      auto paddress = __SystemNetworking(system())->create_address(intf, preferred_address_type(), port);
+      auto paddress = __SystemNetworking(system())->create_address(scopedstrInterface, preferred_address_type(), port);
 
       if (paddress->is_valid())
       {

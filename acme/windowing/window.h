@@ -373,7 +373,7 @@ namespace acme
          //virtual ::int_size get_main_screen_size();
 
 
-         void _on_window_simple_action(const_char_pointer  pszActionName, ::user::activation_token * puseractivationtoken) override;
+         void _on_window_simple_action(const_char_pointer pszActionName, ::user::activation_token * puseractivationtoken) override;
 
 
          //virtual ::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;

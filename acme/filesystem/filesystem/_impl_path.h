@@ -20,7 +20,7 @@ namespace file
    //    }
 
 
-   //    inline path path::operator/(const ::ansi_character *psz) const
+   //    inline path path::operator/(const_char_pointer psz) const
    //    {
    //
    //       return ::transfer(*this / ::scoped_string(scopedstr));
@@ -151,7 +151,7 @@ namespace file
    //}
 
 
-   //inline path::path(const ::ansi_character * pansisz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //inline path::path(const_char_pointer pansisz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
    //   path(::ansi_string(pansisz), epath, etype, bNormalizePath, iSize)
    //{
 
@@ -1474,7 +1474,7 @@ namespace file
 //    inline path path::sibling(const ::scoped_string & scopedstr) const { return { ::file_path_folder(*this) + ::string(this->separator()) + ::string(::sz::trim_left_path_sep(str)), m_epath }; }
 //    //inline path path::sibling(const ::scoped_string & scopedstr) const { return { ::file_path_folder(*this) + sep() + ::sz::trim_left_path_sep(scopedstr), m_epath }; }
 //    //inline string path::extension() const { return &m_pdata[find_skip_or_length('.', rear_find(sep()) + 1)]; }
-//    inline string path::final_extension() const { return file_path_final_extension(operator const_char_pointer  ()); }
+//    inline string path::final_extension() const { return file_path_final_extension(operator const_char_pointer ()); }
 //    //inline patha path::ascendants_path() const { patha patha; return ascendants_path(patha); }
 //    //inline string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
 //    //   inline path path::folder() const { return ::file_path_folder(*this); }

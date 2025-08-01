@@ -108,7 +108,7 @@ try_again:
 
    wstring wstrPath(path);
 
-   wstring wstrAttributes(strAttributes);
+   wstring wstrAttributes(scopedstrAttributes);
 
    m_pfile = _wfsopen(wstrPath, wstrAttributes, iShare);
 
@@ -604,9 +604,10 @@ memory file_system::__safe_get_memory(const ::file::path& pathParam, character_c
 
 #define BUFFER_SIZE 4096
 
-memsize file_system::__safe_find_string(const ::file::path& path, const_char_pointer  psz)
+memsize file_system::__safe_find_string(const ::file::path& path, const_char_pointer psz)
 {
-   int targetLength = strlen(scopedstr);
+   
+   int targetLength = strlen(psz);
 
    if (targetLength >= BUFFER_SIZE)
    {
@@ -764,19 +765,19 @@ void __cdecl __clearerr_s(FILE * stream)
 
    auto pszBuffer = str.get_buffer(iBufferSize);
 
-   if (::is_null(scopedstrBuffer))
+   if (::is_null(pszBuffer))
    {
 
       return error_resource;
 
    }
 
-   auto psz = fgets(scopedstrBuffer, (int)iBufferSize, pfile);
+   auto psz = fgets(pszBuffer, (int)iBufferSize, pfile);
 
-   if (::is_null(scopedstr))
+   if (::is_null(psz))
    {
 
-      zero(scopedstrBuffer, iBufferSize);
+      zero(pszBuffer, iBufferSize);
 
       str.release_buffer();
 
@@ -1076,16 +1077,16 @@ string file_system::line(const ::file::path & pathParam, ::collection::index iLi
 void file_system::append_wait(const ::scoped_string & scopedstrFile, const block & block, const class time & time)
 {
 
-   m_pdirectorysystem->create(::file_path_folder(strFile));
+   m_pdirectorysystem->create(::file_path_folder(scopedstrFile));
 
-   if (!m_pdirectorysystem->is(::file_path_folder(strFile)))
+   if (!m_pdirectorysystem->is(::file_path_folder(scopedstrFile)))
    {
 
       throw ::exception(::error_not_a_directory);
 
    }
 
-   wstring wstr(strFile);
+   wstring wstr(scopedstrFile);
 
    FILE * pfile = nullptr;
 

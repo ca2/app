@@ -100,7 +100,7 @@ public:
 
 
    //string factory_id_to_text(const ::atom & atom) ;
-   //::atom text_to_factory_id(string strText) ;
+   //::atom text_to_factory_id(const ::scoped_string & scopedstrText) ;
 
 
    //template < typename TYPE >
@@ -363,7 +363,7 @@ public:
    // void set_object_link(const ::matter * preference, const ::scoped_string & scopedstrLink, bool bReadOnly) ;
 
 
-   // ::file::path get_link_path(string strLink);
+   // ::file::path get_link_path(const ::scoped_string & scopedstrLink);
 
    //bool is_version(::collection::index i);
 
@@ -399,7 +399,7 @@ public:
    //template < typename BASE_TYPE >
    //inline ::pointer<BASE_TYPE>load_object();
 
-    //::pointer<::matter>create_object_from_text(string strText);
+    //::pointer<::matter>create_object_from_text(const ::scoped_string & scopedstrText);
 
 
    template < typename BLOCK >
@@ -670,10 +670,10 @@ public:
    //}
 
 
-   binary_stream & operator <<(const ::ansi_character * psz);
+   binary_stream & operator <<(const_char_pointer psz);
 
 
-   virtual binary_stream & operator <<(const ::range < const_char_pointer  > & str);
+   virtual binary_stream & operator <<(const ::range < const_char_pointer >& str);
 
 
    //binary_stream & operator <<(const ::particle * pparticle)
@@ -1217,7 +1217,7 @@ public:
 
    virtual void read_to_hex(string & str, filesize tickStart, filesize tickEnd);
 
-   virtual ::pointer<::matter>create_object_from_text(::particle * pparticle, string strText);
+   virtual ::pointer<::matter>create_object_from_text(::particle * pparticle, const ::scoped_string & scopedstrText);
 
 
 

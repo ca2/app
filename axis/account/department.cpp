@@ -94,15 +94,15 @@ namespace account
    }
 
 
-   product * department::get_product(string strAppId, bool bFetch, bool bInteractive)
+   product * department::get_product(const ::scoped_string & scopedstrAppId, bool bFetch, bool bInteractive)
    {
 
-      return m_pproducta->get_product(strAppId, bFetch, bInteractive);
+      return m_pproducta->get_product(scopedstrAppId, bFetch, bInteractive);
 
    }
 
 
-//   product * department::interactive_get_product(string strAppId)
+//   product * department::interactive_get_product(const ::scoped_string & scopedstrAppId)
 //   {
 //
 //      return m_pproducta->interactive_get_product(strAppId);
@@ -110,7 +110,7 @@ namespace account
 //   }
 //
 //
-//   product * department::noninteractive_get_product(string strAppId)
+//   product * department::noninteractive_get_product(const ::scoped_string & scopedstrAppId)
 //   {
 //
 //      return m_pproducta->noninteractive_get_product(strAppId);
@@ -118,10 +118,10 @@ namespace account
 //   }
 //
 
-   bool department::is_licensed(string strAppId, bool bInteractive)
+   bool department::is_licensed(const ::scoped_string & scopedstrAppId, bool bInteractive)
    {
 
-      return m_pproducta->is_licensed(strAppId, bInteractive);
+      return m_pproducta->is_licensed(scopedstrAppId, bInteractive);
 
    }
 

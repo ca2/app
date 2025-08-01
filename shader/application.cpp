@@ -118,7 +118,7 @@ namespace app_shader
 
       get_shader_listing(listing);
 
-      auto next = listing.get_next(strPath);
+      auto next = listing.get_next(scopedstrPath);
 
       return ::transfer(next);
 

@@ -645,10 +645,10 @@ template < primitive_integral INTEGRAL >
 inline short  __hiword(INTEGRAL i) {return (i >> 16) & 0xffff; }
 
 
-//inline long long as_long_long(const_char_pointer  psz, int iBase = 10)
+//inline long long as_long_long(const_char_pointer psz, int iBase = 10)
 //{
 //
-//   const_char_pointer  pszEnd = nullptr;
+//   const_char_pointer pszEnd = nullptr;
 //
 //   return ansi_to_long_long(scopedstr, &pszEnd, iBase);
 //

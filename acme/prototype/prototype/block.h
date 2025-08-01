@@ -11,7 +11,7 @@
 
 
 CLASS_DECL_ACME character_count string_get_length(const ::ansi_character* psz) noexcept;
-CLASS_DECL_ACME character_count string_safe_length(const ::ansi_character * psz) noexcept;
+CLASS_DECL_ACME character_count string_safe_length(const_char_pointer psz) noexcept;
 
 
 using BLOCK = ::range < unsigned char * >;
@@ -78,7 +78,7 @@ struct CLASS_DECL_ACME block :
       this->m_end = (unsigned char *) (this->m_begin + c);
 
    }
-   block(const ::ansi_character * psz)
+   block(const_char_pointer psz)
    {
       this->m_begin = (unsigned char *) psz;
       this->m_end = this->m_begin + ::string_safe_length(psz);

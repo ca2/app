@@ -70,7 +70,7 @@ namespace sockets
       /** Callback fires when all http headers have been received. */
       virtual void OnHeaderComplete();
       /** Chunk of http body data recevied. */
-      virtual void OnData(const_char_pointer  , memsize);
+      virtual void OnData(const_char_pointer ,memsize);
       /** The full request/response body has been received. */
       virtual void OnDataComplete();
 
@@ -91,21 +91,21 @@ namespace sockets
       virtual string MyUseragent();
 
       /** Parse url. If protocol is https, EnableSSL() will be called. */
-      void url_this(string strUrl, string & strProtocol, string & strHost, port_t & port, string & strRequestUri, string & strFile);
+      void url_this(const ::scoped_string & scopedstrUrl, string & strProtocol, string & strHost, port_t & port, string & strRequestUri, string & strFile);
 
       /** Transfer coding 'chunked' */
       bool IsChunked() { return m_b_chunked; }
 
-      property & inattr(const_char_pointer  lpszName);
+      property & inattr(const_char_pointer lpszName);
       ::property_set & inattrs();
 
-      property & inheader(const_char_pointer  lpszName);
+      property & inheader(const_char_pointer lpszName);
       ::property_set & inheaders();
 
-      property & outattr(const_char_pointer  lpszName);
+      property & outattr(const_char_pointer lpszName);
       ::property_set & outattrs();
 
-      property & outheader(const_char_pointer  lpszName);
+      property & outheader(const_char_pointer lpszName);
       ::property_set & outheaders();
 
       ::http::request & request();
@@ -139,7 +139,7 @@ namespace sockets
    }
 
 
-   inline property & http_socket::inattr(const_char_pointer  lpszName)
+   inline property & http_socket::inattr(const_char_pointer lpszName)
    {
 
       return m_request.attr(lpszName);
@@ -155,7 +155,7 @@ namespace sockets
    }
 
 
-   inline property & http_socket::outattr(const_char_pointer  lpszName)
+   inline property & http_socket::outattr(const_char_pointer lpszName)
    {
 
       return m_response.attr(lpszName);
@@ -171,7 +171,7 @@ namespace sockets
    }
 
 
-   inline property & http_socket::inheader(const_char_pointer  lpszName)
+   inline property & http_socket::inheader(const_char_pointer lpszName)
    {
 
       return m_request.header(lpszName);
@@ -187,7 +187,7 @@ namespace sockets
    }
 
 
-   inline property & http_socket::outheader(const_char_pointer  lpszName)
+   inline property & http_socket::outheader(const_char_pointer lpszName)
    {
 
       return m_response.header(lpszName);

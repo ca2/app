@@ -33,7 +33,7 @@ namespace dynamic_source
    }
 
 
-   const_char_pointer  script_interface::debug_note() const
+   const_char_pointer script_interface::debug_note() const
    {
 
       return m_strNote;

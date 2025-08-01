@@ -3002,9 +3002,9 @@ namespace user
 
       //   ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 
-      //   const ::ansi_character * pszStart = strLine;
+      //   const_char_pointer pszStart = strLine;
 
-      //   const ::ansi_character * psz = pszStart;
+      //   const_char_pointer psz = pszStart;
 
       //   character_count iLen = 0;
 
@@ -3012,7 +3012,7 @@ namespace user
 
       //   iPos = 0;
 
-      //   const ::ansi_character * pszNext = pszStart;
+      //   const_char_pointer pszNext = pszStart;
 
       //   double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
 
@@ -3473,9 +3473,9 @@ namespace user
       //
       //         }
       //
-      //         const ::ansi_character * pszStart = strLine;
+      //         const_char_pointer pszStart = strLine;
       //
-      //         const ::ansi_character * psz = pszStart;
+      //         const_char_pointer psz = pszStart;
       //
       //         character_count iLen = 0;
       //
@@ -3483,7 +3483,7 @@ namespace user
       //
       //         iPos = 0;
       //
-      //         const ::ansi_character * pszNext = pszStart;
+      //         const_char_pointer pszNext = pszStart;
       //
       //         ::int_size sizeLast(0, 0);
       //
@@ -3919,9 +3919,9 @@ namespace user
 
          }
 
-         const ::ansi_character * pszStart = strLine;
+         const_char_pointer pszStart = strLine;
 
-         const ::ansi_character * psz = pszStart;
+         const_char_pointer psz = pszStart;
 
          character_count iLen = 0;
 
@@ -3929,7 +3929,7 @@ namespace user
 
          iPos = 0;
 
-         const ::ansi_character * pszNext = pszStart;
+         const_char_pointer pszNext = pszStart;
 
          ::int_size sizeLast(0, 0);
 
@@ -4281,9 +4281,9 @@ namespace user
    //
    //      //   ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
    //
-   //      //   const ::ansi_character * pszStart = strLine;
+   //      //   const_char_pointer pszStart = strLine;
    //
-   //      //   const ::ansi_character * psz = pszStart;
+   //      //   const_char_pointer psz = pszStart;
    //
    //      //   character_count iLen = 0;
    //
@@ -4291,7 +4291,7 @@ namespace user
    //
    //      //   iPos = 0;
    //
-   //      //   const ::ansi_character * pszNext = pszStart;
+   //      //   const_char_pointer pszNext = pszStart;
    //
    //      //   double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
    //
@@ -4691,9 +4691,9 @@ namespace user
    //
    //         replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
    //
-   //         const ::ansi_character * pszStart = strLine;
+   //         const_char_pointer pszStart = strLine;
    //
-   //         const ::ansi_character * psz = pszStart;
+   //         const_char_pointer psz = pszStart;
    //
    //         character_count iLen = 0;
    //
@@ -4701,7 +4701,7 @@ namespace user
    //
    //         character_count iPos = 0;
    //
-   //         const ::ansi_character * pszNext = pszStart;
+   //         const_char_pointer pszNext = pszStart;
    //
    //         double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
    //
@@ -5331,11 +5331,11 @@ namespace user
 
       int lim1;
 
-      const ::ansi_character * psz = strLine;
+      const_char_pointer psz = strLine;
 
-      const ::ansi_character * pszEnd = psz;
+      const_char_pointer pszEnd = psz;
 
-      const ::ansi_character * pszPrevious = psz;
+      const_char_pointer pszPrevious = psz;
 
       //string strLineGraphics = strLine;
 
@@ -6026,9 +6026,9 @@ namespace user
 
             get_text(str, iSelEnd, -1);
 
-            const_char_pointer  pdata = str.c_str();
+            const_char_pointer pdata = str.c_str();
 
-            const ::ansi_character * psz = pdata;
+            const_char_pointer psz = pdata;
 
             for (character_count i = 0; i < afterLength; i++)
             {
@@ -6090,9 +6090,9 @@ namespace user
 
             get_text(str, 0, iSelBeg);
 
-            const ::ansi_character * psz = str.c_str() + iSelBeg;
+            const_char_pointer psz = str.c_str() + iSelBeg;
 
-            const_char_pointer  pdata = psz;
+            const_char_pointer pdata = psz;
 
             for (character_count i = 0; i < beforeLength; i++)
             {
@@ -6158,7 +6158,7 @@ namespace user
    }
 
 
-   inline const_char_pointer  _001DeferEOLPrior(const ::ansi_character * psz, const ::ansi_character * pszBeg)
+   inline const_char_pointer _001DeferEOLPrior(const_char_pointer psz, const_char_pointer pszBeg)
    {
 
       psz--;
@@ -6204,7 +6204,7 @@ namespace user
    }
 
 
-   inline const_char_pointer  _001UnicodePrior(const ::ansi_character * psz, const ::ansi_character * pszBeg)
+   inline const_char_pointer _001UnicodePrior(const_char_pointer psz, const_char_pointer pszBeg)
    {
 
       auto pszTry = _001DeferEOLPrior(psz, pszBeg);
@@ -6221,7 +6221,7 @@ namespace user
    }
 
 
-   inline const_char_pointer  _001DeferEOLNext(const ::ansi_character * psz)
+   inline const_char_pointer _001DeferEOLNext(const_char_pointer psz)
    {
 
       if (!*psz)
@@ -6262,7 +6262,7 @@ namespace user
    }
 
 
-   inline const_char_pointer  _001UnicodeNext(const ::ansi_character * psz, int * piError)
+   inline const_char_pointer _001UnicodeNext(const_char_pointer psz, int * piError)
    {
 
       if (!*psz)
@@ -6596,9 +6596,9 @@ namespace user
 
       //   //auto amountRead = m_ptree->m_peditfile->read(buf, amountToRead);
 
-      //   //const ::ansi_character * pszBefore;
+      //   //const_char_pointer pszBefore;
 
-      //   //const ::ansi_character * pszNext;
+      //   //const_char_pointer pszNext;
 
       //   //if (bBackIfSelectionEmpty)
       //   //{
@@ -6902,9 +6902,9 @@ namespace user
 
             //   //auto amountRead = m_ptree->m_peditfile->read(buf, amountToRead);
 
-            //   //const ::ansi_character * pszBefore;
+            //   //const_char_pointer pszBefore;
 
-            //   //const ::ansi_character * pszNext;
+            //   //const_char_pointer pszNext;
 
             //   //if (bBackIfSelectionEmpty)
             //   //{
@@ -7325,7 +7325,7 @@ namespace user
 
       }
 
-      return ::string((const ::ansi_character *)m_pitemComposing->data(), m_pitemComposing->get_extent());
+      return ::string((const_char_pointer )m_pitemComposing->data(), m_pitemComposing->get_extent());
 
    }
 
@@ -8074,7 +8074,7 @@ namespace user
                      //   character_count iCur = m_ptree->m_iSelEnd - iProperBegin;
                      //   m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
                      //   m_ptree->m_peditfile->read(buf, sizeof(buf));
-                     //   const ::ansi_character * psz;
+                     //   const_char_pointer psz;
                      //   character_count iMultiByteUtf8DeleteCount;
                      //   if (iCur > 1 && buf[iCur - 1] == '\n' && buf[iCur - 2] == '\r')
                      //   {
@@ -8730,10 +8730,10 @@ namespace user
    }
 
 
-   void plain_edit::edit_on_text(string str)
+   void plain_edit::edit_on_text(const ::scoped_string & scopedstr)
    {
 
-      ::user::interaction::edit_on_text(str);
+      ::user::interaction::edit_on_text(scopedstr);
 
    }
 
@@ -8746,15 +8746,15 @@ namespace user
    }
 
 
-   void plain_edit::on_text_composition(string strText)
+   void plain_edit::on_text_composition(const ::scoped_string & scopedstrText)
    {
 
       if (m_pitemComposing
-         && !strText.contains('\r')
-         && !strText.contains('\n'))
+         && !scopedstrText.contains('\r')
+         && !scopedstrText.contains('\n'))
       {
 
-         m_ptree->m_peditfile->change_insert_item_data(m_pitemComposing.get(), strText);
+         m_ptree->m_peditfile->change_insert_item_data(m_pitemComposing.get(), scopedstrText);
 
          ::collection::index i1 = (::collection::index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
 
@@ -8808,7 +8808,7 @@ namespace user
 
 #else
 
-         insert_text(strText, true, e_source_user);
+         insert_text(scopedstrText, true, e_source_user);
 
 #endif
 
@@ -8817,17 +8817,17 @@ namespace user
    }
 
 
-   void plain_edit::on_text_commit(string strText)
+   void plain_edit::on_text_commit(const ::scoped_string & scopedstrText)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pitemComposing
-         && !strText.contains('\r')
-         && !strText.contains('\n'))
+         && !scopedstrText.contains('\r')
+         && !scopedstrText.contains('\n'))
       {
 
-         m_ptree->m_peditfile->append_insert_item_data(m_pitemComposing.get(), strText);
+         m_ptree->m_peditfile->append_insert_item_data(m_pitemComposing.get(),scopedstrText);
 
          ::collection::index i1 = (::collection::index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
 
@@ -9348,7 +9348,7 @@ namespace user
                character_count iCur = m_ptree->m_iSelEnd - iProperBegin;
                m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
                m_ptree->m_peditfile->read(buf, sizeof(buf));
-               const ::ansi_character * psz = unicode_prior(&buf[iCur], buf);
+               const_char_pointer psz = unicode_prior(&buf[iCur], buf);
                character_count iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
                m_ptree->m_peditfile->Delete((memsize)(iMultiByteUtf8DeleteCount));
@@ -10957,9 +10957,9 @@ namespace user
 
             auto eolOldLen = as_length(eolOld);
 
-            const_char_pointer  pszLine;
+            const_char_pointer pszLine;
 
-            const_char_pointer  pszEOLInsert;
+            const_char_pointer pszEOLInsert;
 
             enum_line eolInsert;
 

@@ -49,7 +49,7 @@ namespace filemanager
 
       }
 
-      void list_impact::initialize_folder_list_impact(string strDataKeyModifier, bool bRecursive)
+      void list_impact::initialize_folder_list_impact(const ::scoped_string & scopedstrDataKeyModifier, bool bRecursive)
       {
 
          m_bRecursive = bRecursive;
@@ -60,7 +60,7 @@ namespace filemanager
 
          m_pfolderlistdata = __create_new < folder::list_data >();
 
-         m_pfolderlistdata->set_data_key_modifier(strDataKeyModifier);
+         m_pfolderlistdata->set_data_key_modifier(scopedstrDataKeyModifier);
 
          set_data_interface(m_pfolderlistdata);
 

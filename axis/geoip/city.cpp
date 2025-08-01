@@ -71,12 +71,12 @@ GeoIPRecord * _extract_record(GeoIP* gi, unsigned int seek_record, int *next_rec
    {
       if ( gi->charset == GEOIP_CHARSET_UTF8 )
       {
-         record->city = _iso_8859_1__utf8( (const_char_pointer  ) record_buf );
+         record->city = _iso_8859_1__utf8( (const_char_pointer )record_buf );
       }
       else
       {
          record->city = (char *) malloc(str_length+1);
-         ansi_count_copy(record->city, ( const_char_pointer  ) record_buf, str_length+1);
+         ansi_count_copy(record->city, ( const_char_pointer )record_buf, str_length+1);
       }
    }
    record_buf += (str_length + 1);
@@ -283,7 +283,7 @@ void GeoIPRecord_delete (GeoIPRecord *gir)
 
 
 
-char * _iso_8859_1__utf8(const_char_pointer  iso)
+char * _iso_8859_1__utf8(const_char_pointer iso)
 {
 
    signed char ca;

@@ -1769,7 +1769,7 @@ namespace draw2d
    //
    //      ::double_rectangle rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
    //
-   //      const ::int_size & size = ::int_size(get_text_extent((const_char_pointer ) block.get_data(), block.get_size()));
+   //      const ::int_size & size = ::int_size(get_text_extent((const_char_pointer )block.get_data(), block.get_size()));
    //
    //      ::double_rectangle rectangleText(int_point((int)x, (int)y), size);
    //
@@ -1974,7 +1974,7 @@ namespace draw2d
    //}
 
 
-   //double_size graphics::GetTabbedTextExtent(const ::ansi_character * pszString, character_count nCount, ::collection::count nTabPositions, int * pnTabStopPositions)
+   //double_size graphics::GetTabbedTextExtent(const_char_pointer pszString, character_count nCount, ::collection::count nTabPositions, int * pnTabStopPositions)
    //{
 
    //   __UNREFERENCED_PARAMETER(scopedstrString);
@@ -4116,16 +4116,16 @@ namespace draw2d
 
       ::string str(scopedstr);
 
-      const_char_pointer  pszStart = str;
+      const_char_pointer pszStart = str;
 
-      const_char_pointer  psz = pszStart;
+      const_char_pointer psz = pszStart;
 
       double dLeft = 0.0;
 
       while (*psz && iRange < iStart + iCount)
       {
 
-         const_char_pointer  pszNext = unicode_next(scopedstr);
+         const_char_pointer pszNext = unicode_next(scopedstr);
 
          if (pszNext == nullptr)
          {
@@ -4190,7 +4190,7 @@ namespace draw2d
    }
 
 
-   //double_size graphics::get_text_extent(const ::ansi_character * pszString, character_count nCount, character_count iIndex)
+   //double_size graphics::get_text_extent(const_char_pointer pszString, character_count nCount, character_count iIndex)
    //{
 
    //   return get_text_extent(scopedstrString, iIndex);
@@ -4198,7 +4198,7 @@ namespace draw2d
    //}
 
 
-   //double_size graphics::get_text_extent(const ::ansi_character * pszString, character_count nCount)
+   //double_size graphics::get_text_extent(const_char_pointer pszString, character_count nCount)
    //{
 
    //   return get_text_extent(scopedstrString, nCount));
@@ -4226,7 +4226,7 @@ namespace draw2d
    }
 
 
-   //void graphics::get_text_extent(double_size & size, const ::ansi_character * pszString)
+   //void graphics::get_text_extent(double_size & size, const_char_pointer pszString)
    //{
 
    //   ::double_size sz = get_text_extent(string(scopedstrString), nCount, iIndex);
@@ -4239,7 +4239,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::get_text_extent(double_size & size, const ::ansi_character * pszString)
+   //void graphics::get_text_extent(double_size & size, const_char_pointer pszString)
    //{
 
    //   ::double_size sz = get_text_extent(string(scopedstrString), nCount);
@@ -4264,7 +4264,7 @@ namespace draw2d
    //}
 
 
-   //double_size graphics::GetOutputTextExtent(const ::ansi_character * pszString, character_count nCount)
+   //double_size graphics::GetOutputTextExtent(const_char_pointer pszString, character_count nCount)
    //{
 
    //   __UNREFERENCED_PARAMETER(scopedstrString);
@@ -4990,9 +4990,9 @@ namespace draw2d
          if (sz.cx() > rectangleClip.width())
          {
 
-            const ::ansi_character * pszStart = str;
+            const_char_pointer pszStart = str;
 
-            const ::ansi_character * psz = pszStart;
+            const_char_pointer psz = pszStart;
 
             string strLastSample = "...";
 
@@ -5262,23 +5262,23 @@ namespace draw2d
 
       ::string strSource(scopedstrSource);
 
-      const ::ansi_character * pszSource = strSource;
+      const_char_pointer pszSource = strSource;
 
       character_count len = strSource.length();
 
-      const ::ansi_character * pszEnd = pszSource + len;
+      const_char_pointer pszEnd = pszSource + len;
 
-      const ::ansi_character * pszStart = unicode_next(scopedstrSource);
+      const_char_pointer pszStart = unicode_next(scopedstrSource);
 
       int_size sz;
 
-      const ::ansi_character * pszSpaceStart = nullptr;
+      const_char_pointer pszSpaceStart = nullptr;
 
-      const ::ansi_character * pszSpaceEnd = nullptr;
+      const_char_pointer pszSpaceEnd = nullptr;
 
-      const ::ansi_character * psz = pszStart;
+      const_char_pointer psz = pszStart;
 
-      const ::ansi_character * pszPrevious = pszSource;
+      const_char_pointer pszPrevious = pszSource;
 
       string strChar;
 
@@ -6494,12 +6494,12 @@ namespace draw2d
    }
 
 
-   void graphics::nanosvg(string str, int x, int y, int w, int h)
+   void graphics::nanosvg(const ::scoped_string & scopedstr, int x, int y, int w, int h)
    {
 
       struct NSVGimage* pnsvgimage;
 
-      pnsvgimage = nsvgParse((char*)(const_char_pointer )str, "px", 96);
+      pnsvgimage = nsvgParse((char*)(const_char_pointer )scopedstr, "px", 96);
 
       nanosvg_drawframe(pnsvgimage, x, y, w, h);
 

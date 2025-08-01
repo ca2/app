@@ -2185,12 +2185,12 @@ namespace draw2d
    //}
 
 
-   void path::nanosvg(string str, int x, int y, int w, int h)
+   void path::nanosvg(const ::scoped_string & scopedstr, int x, int y, int w, int h)
    {
 
       struct NSVGimage* pnsvgimage;
 
-      pnsvgimage = nsvgParse((char*)(const_char_pointer )str, "px", 96);
+      pnsvgimage = nsvgParse((char*)(const_char_pointer )scopedstr, "px", 96);
 
       nanosvg_drawframe(pnsvgimage, x, y, w, h);
 

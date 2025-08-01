@@ -16,7 +16,7 @@ namespace database
 
 
       exception();
-      exception(const_char_pointer  pszFormat, ...);
+      exception(const_char_pointer pszFormat, ...);
 
 
    };

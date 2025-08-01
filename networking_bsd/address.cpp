@@ -190,7 +190,7 @@ namespace networking_bsd
 #endif
 
 
-//   void address::set_address(const string & host, ::networking::port_t port)
+//   void address::set_address(const ::scoped_string & scopedstrHost, ::networking::port_t port)
 //   {
 //
 //      ::zero(&u.m_sa, sizeof(u.m_sa));
@@ -220,7 +220,7 @@ namespace networking_bsd
 //   }
 
 
-//   void address::set_address(::particle * pparticle, const string & host, const ::scoped_string & scopedstrService)
+//   void address::set_address(::particle * pparticle, const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrService)
 //   {
 //
 //      auto psystem = pparticle->system();

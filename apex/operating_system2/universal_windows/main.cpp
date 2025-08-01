@@ -137,7 +137,7 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 //}
 
 
-//int CLASS_DECL_APEX ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const_char_pointer  lpCmdLine, int nCmdShow)
+//int CLASS_DECL_APEX ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const_char_pointer lpCmdLine, int nCmdShow)
 //{
 //   try
 //   {

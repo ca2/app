@@ -42,14 +42,14 @@ trace_statement::~trace_statement()
 }
 
 
-void trace_statement::formatf_output_arguments(const ::ansi_character * psz, va_list & arguments)
+void trace_statement::formatf_output_arguments(const_char_pointer pszFormat, va_list & arguments)
 {
 
    //m_ptracer->format_output_arguments(scopedstr, arguments);
 
    string str;
 
-   str.formatf_arguments(scopedstr, arguments);
+   str.formatf_arguments(pszFormat, arguments);
 
    operator << (str);
 
@@ -57,7 +57,7 @@ void trace_statement::formatf_output_arguments(const ::ansi_character * psz, va_
 }
 
 
-//trace_statement & trace_statement::operator()(const ::ansi_character * pszFormat, ...)
+//trace_statement & trace_statement::operator()(const_char_pointer pszFormat, ...)
 //{
 //
 //   va_list arguments;

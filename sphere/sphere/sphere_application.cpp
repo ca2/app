@@ -626,7 +626,7 @@ namespace sphere
    //}
 
 
-   bool application::on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId)
+   bool application::on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId)
    {
 
       if (m_strAppName == "app/userstack")

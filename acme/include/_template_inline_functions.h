@@ -380,14 +380,14 @@ inline bool __sort(T1& t1, T2& t2)
 //
 //
 //
-//inline long long ansi_to_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+//inline long long ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
 //{
 //
 //   return strtoll(scopedstr, (::ansi_character **) ppszEnd, iBase);
 //
 //}
 //
-//inline unsigned long long ansi_to_unsigned_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+//inline unsigned long long ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
 //{
 //
 //   return strtoull(scopedstr, (::ansi_character **) ppszEnd, iBase);
@@ -395,7 +395,7 @@ inline bool __sort(T1& t1, T2& t2)
 //}
 //
 //
-//inline int ansi_to_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+//inline int ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
 //{
 //
 //#ifdef WINDOWS
@@ -430,7 +430,7 @@ inline bool __sort(T1& t1, T2& t2)
 //}
 //
 //
-//inline unsigned int ansi_to_unsigned_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+//inline unsigned int ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
 //{
 //
 //#ifdef WINDOWS
@@ -818,7 +818,7 @@ bool not_found(const T * p)
 
 
 //template < primitive_floating FLOATING, int len >
-//inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat = "%f");
+//inline ::string as_string(FLOATING f, const_char_pointer pszFormat = "%f");
 
 
 template < typename BOOLEAN, typename ASSIGNED, typename ASSIGNEE >

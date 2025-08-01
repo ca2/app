@@ -6,7 +6,7 @@
 
 #include "acme/_operating_system.h"
 
-int_bool SetThreadName(unsigned int dwThreadID, const_char_pointer  threadName);
+int_bool SetThreadName(unsigned int dwThreadID, const_char_pointer threadName);
 typedef HRESULT WINAPI FN_GetThreadDescription(HANDLE htask, PWSTR* ppszThreadDescription);
 
 
@@ -308,7 +308,7 @@ const unsigned int MS_VC_EXCEPTION = 0x406D1388;
 typedef struct tagTHREADNAME_INFO
 {
    unsigned int dwType; // Must be 0x1000.
-   const_char_pointer  szName; // Pointer to name (in user addr space).
+   const_char_pointer szName; // Pointer to name (in user addr space).
    unsigned int dwThreadID; // Thread ID (-1=caller thread).
    unsigned int dwFlags; // Reserved for future use, must be zero.
 } THREADNAME_INFO;
@@ -316,7 +316,7 @@ typedef struct tagTHREADNAME_INFO
 
 
 
-int_bool SetThreadName(unsigned int dwThreadID, const_char_pointer  threadName)
+int_bool SetThreadName(unsigned int dwThreadID, const_char_pointer threadName)
 {
    THREADNAME_INFO info;
    info.dwType = 0x1000;

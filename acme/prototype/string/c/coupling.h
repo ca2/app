@@ -1,38 +1,38 @@
 #pragma once
 
 
-CLASS_DECL_ACME ::ansi_character * ansi_dup(const ::ansi_character * psz);
-CLASS_DECL_ACME character_count ansi_len(const ::ansi_character * psz);
-CLASS_DECL_ACME character_count ansi_nlen(const ::ansi_character * psz, memsize len);
-CLASS_DECL_ACME ::ansi_character * ansi_cat(::ansi_character * pszDst, const ::ansi_character * psz);
-CLASS_DECL_ACME ::ansi_character * ansi_cpy(::ansi_character * pszDst, const ::ansi_character * psz);
-CLASS_DECL_ACME ::ansi_character * ansi_ncpy(::ansi_character * pszDst, const ::ansi_character * psz, character_count len);
-CLASS_DECL_ACME const ::ansi_character * ansi_chr(const ::ansi_character * psz1, ::ansi_character ch);
-CLASS_DECL_ACME const ::ansi_character * ansi_pbrk(const ::ansi_character * psz, const ::ansi_character * pszCharsToFind);
-CLASS_DECL_ACME ::ansi_character * ansi_tok_r(::ansi_character * psz, const ::ansi_character * sep, ::ansi_character ** state);
-CLASS_DECL_ACME ::ansi_character * ansi_token(::ansi_character * psz, const ::ansi_character * separators);
-CLASS_DECL_ACME const ::ansi_character * ansi_rchr(const ::ansi_character * psz1, ::ansi_character ch);
-CLASS_DECL_ACME int ansi_cmp(const ::ansi_character * psz1, const ::ansi_character * psz2);
-CLASS_DECL_ACME int ansi_ncmp(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s);
-CLASS_DECL_ACME const ::ansi_character * ansi_str(const ::ansi_character * psz, const ::ansi_character * pszFind);
+CLASS_DECL_ACME ::ansi_character * ansi_dup(const_char_pointer psz);
+CLASS_DECL_ACME character_count ansi_len(const_char_pointer psz);
+CLASS_DECL_ACME character_count ansi_nlen(const_char_pointer psz, memsize len);
+CLASS_DECL_ACME ::ansi_character * ansi_cat(::ansi_character * pszDst, const_char_pointer psz);
+CLASS_DECL_ACME ::ansi_character * ansi_cpy(::ansi_character * pszDst, const_char_pointer psz);
+CLASS_DECL_ACME ::ansi_character * ansi_ncpy(::ansi_character * pszDst, const_char_pointer psz, character_count len);
+CLASS_DECL_ACME const_char_pointer ansi_chr(const_char_pointer psz1, ::ansi_character ch);
+CLASS_DECL_ACME const_char_pointer ansi_pbrk(const_char_pointer psz, const_char_pointer pszCharsToFind);
+CLASS_DECL_ACME ::ansi_character * ansi_tok_r(::ansi_character * psz, const_char_pointer sep, ::ansi_character ** state);
+CLASS_DECL_ACME ::ansi_character * ansi_token(::ansi_character * psz, const_char_pointer separators);
+CLASS_DECL_ACME const_char_pointer ansi_rchr(const_char_pointer psz1, ::ansi_character ch);
+CLASS_DECL_ACME int ansi_cmp(const_char_pointer psz1, const_char_pointer psz2);
+CLASS_DECL_ACME int ansi_ncmp(const_char_pointer psz1, const_char_pointer psz2, character_count s);
+CLASS_DECL_ACME const_char_pointer ansi_str(const_char_pointer psz, const_char_pointer pszFind);
 CLASS_DECL_ACME ::ansi_character ansi_tolower(::ansi_character ch);
 CLASS_DECL_ACME ::ansi_character ansi_toupper(::ansi_character ch);
 CLASS_DECL_ACME ::ansi_character * ansi_lwr(::ansi_character * psz);
 CLASS_DECL_ACME ::ansi_character * ansi_lwr_s(::ansi_character * psz, character_count s);
 CLASS_DECL_ACME ::ansi_character * ansi_upr(::ansi_character * psz);
 CLASS_DECL_ACME ::ansi_character * ansi_upr_s(::ansi_character * psz, character_count s);
-CLASS_DECL_ACME const ::ansi_character * ansi_ichr(const ::ansi_character * psz1, ::ansi_character ch);
-CLASS_DECL_ACME int ansi_icmp(const ::ansi_character * psz1, const ::ansi_character * psz2);
-CLASS_DECL_ACME int ansi_nicmp(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s);
-CLASS_DECL_ACME const ::ansi_character * ansi_istr(const ::ansi_character * psz, const ::ansi_character * pszFind);
+CLASS_DECL_ACME const_char_pointer ansi_ichr(const_char_pointer psz1, ::ansi_character ch);
+CLASS_DECL_ACME int ansi_icmp(const_char_pointer psz1, const_char_pointer psz2);
+CLASS_DECL_ACME int ansi_nicmp(const_char_pointer psz1, const_char_pointer psz2, character_count s);
+CLASS_DECL_ACME const_char_pointer ansi_istr(const_char_pointer psz, const_char_pointer pszFind);
 //CLASS_DECL_ACME ::ansi_character * u64toansi(unsigned long long u, ::ansi_character * buf, int iBase);
 //CLASS_DECL_ACME ::ansi_character * i64toansi(unsigned long long u, ::ansi_character * buf, int iBase);
-CLASS_DECL_ACME int ansi_coll(const ::ansi_character * psz1, const ::ansi_character * psz2);
-CLASS_DECL_ACME int ansi_ncoll(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s);
-CLASS_DECL_ACME int ansi_icoll(const ::ansi_character * psz1, const ::ansi_character * psz2);
-CLASS_DECL_ACME int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s);
-CLASS_DECL_ACME character_count ansi_spn(const ::ansi_character * psz1, const ::ansi_character * psz2);
-CLASS_DECL_ACME character_count ansi_cspn(const ::ansi_character * psz1, const ::ansi_character * psz2);
+CLASS_DECL_ACME int ansi_coll(const_char_pointer psz1, const_char_pointer psz2);
+CLASS_DECL_ACME int ansi_ncoll(const_char_pointer psz1, const_char_pointer psz2, character_count s);
+CLASS_DECL_ACME int ansi_icoll(const_char_pointer psz1, const_char_pointer psz2);
+CLASS_DECL_ACME int ansi_nicoll(const_char_pointer psz1, const_char_pointer psz2, character_count s);
+CLASS_DECL_ACME character_count ansi_spn(const_char_pointer psz1, const_char_pointer psz2);
+CLASS_DECL_ACME character_count ansi_cspn(const_char_pointer psz1, const_char_pointer psz2);
 
 
 CLASS_DECL_ACME character_count wd16_len(const ::wd16_character * psz);

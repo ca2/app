@@ -2,6 +2,15 @@
 #pragma once
 
 
+template < typename A, typename B>
+bool weakly_contains(const A & a, const B &b)
+{
+
+   return a.contains(b);
+
+}
+
+
 namespace loosely
 {
 
@@ -19,7 +28,7 @@ namespace loosely
    inline bool contains(const A& a, const B& b)
    {
 
-      return a.weakly_contains(b);
+      return weakly_contains(a, b);
 
    }
 
@@ -41,10 +50,10 @@ namespace loosely
    }
 
    template <  >
-   inline bool contains(const string & a, const ::scoped_string & scopedstr)
+   inline bool contains(const ::scoped_string & scopedstrAddress, const ::scoped_string & scopedstr)
    {
 
-      return case_insensitive_ansi_count_compare(a, (const_char_pointer )scopedstr.data(), scopedstr.size());
+      return case_insensitive_ansi_count_compare(scopedstrAddress, (const_char_pointer )scopedstr.data(), scopedstr.size());
 
    }
 

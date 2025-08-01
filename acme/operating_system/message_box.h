@@ -18,7 +18,7 @@
 //   public:
 //
 //
-//      //virtual void do_modal(const_char_pointer  pszMsg, bool bError);
+//      //virtual void do_modal(const_char_pointer pszMsg, bool bError);
 //
 ////      virtual ::atom initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails = {});
 //

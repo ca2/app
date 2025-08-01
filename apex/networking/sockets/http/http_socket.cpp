@@ -926,7 +926,7 @@ namespace sockets
       //http_socket::OnHeader(key, value);
       /*if(key.case_insensitive_order("user-agent") == 0)
       {
-         informationf("  (request)OnHeader %s: %s\n", (const_char_pointer ) key, (const_char_pointer ) value);
+         informationf("  (request)OnHeader %s: %s\n", (const_char_pointer )key, (const_char_pointer )value);
       }*/
       m_request.header(atom) = scopedstr;
       if (atom.as_string().case_insensitive_equals("cookie"))
@@ -980,7 +980,7 @@ namespace sockets
    }
 
 
-   void http_socket::OnData(const_char_pointer , memsize)
+   void http_socket::OnData(const_char_pointer ,memsize)
    {
 
    }

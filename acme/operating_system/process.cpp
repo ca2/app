@@ -45,7 +45,7 @@ namespace operating_system
    bool process::write(const ::scoped_string & scopedstr)
    {
 
-      return m_pipe.m_ppipeIn->write(str);
+      return m_pipe.m_ppipeIn->write(scopedstr);
 
    }
 

@@ -46,7 +46,7 @@ namespace sockets
       virtual void OnFirst();
       virtual void OnHeader(atom idKey, const string & value);
       virtual void OnHeaderComplete();
-      virtual void OnData(const_char_pointer  , memsize);
+      virtual void OnData(const_char_pointer ,memsize);
       virtual void OnDataComplete();
 
       void Respond();
@@ -58,11 +58,11 @@ namespace sockets
       virtual void OnResponseComplete();
 
       //string set_cookie(
-      //const_char_pointer  name,
+      //const_char_pointer name,
       //::payload payload,
       //int iExpire,
       //const ::file::path & path,
-      //const_char_pointer  domain,
+      //const_char_pointer domain,
       //bool bSecure);
 
       virtual void on_compress();

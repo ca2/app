@@ -433,7 +433,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::load_matter_icon(string_array& straMatter, string strIcon)
+   ::image::image_pointer image_context::load_matter_icon(string_array& straMatter, const ::scoped_string & scopedstrIcon)
    {
 
       ::image::image_pointer pimage;
@@ -451,7 +451,7 @@ namespace image
 
       //estatus = 
 
-      _load_matter_icon(pimage, straMatter, strIcon);
+      _load_matter_icon(pimage, straMatter, scopedstrIcon);
 
       //if (!estatus)
       //{
@@ -648,7 +648,7 @@ namespace image
    }
 
 
-   void image_context::_load_matter_icon(::image::image* pimage, string_array& straMatter, string strIcon)
+   void image_context::_load_matter_icon(::image::image* pimage, string_array& straMatter, const ::scoped_string & scopedstrIcon)
    {
 
       ::file::path path;
@@ -660,7 +660,7 @@ namespace image
 
          path = scopedstrMatter;
 
-         path = directory()->matter(path / strIcon);
+         path = directory()->matter(path / scopedstrIcon);
 
          //auto estatus = 
 
@@ -1359,8 +1359,10 @@ namespace image
    }
 
 
-   enum_format image_context::text_to_format(string strText)
+   enum_format image_context::text_to_format(const ::scoped_string & scopedstrText)
    {
+
+      ::string strText(scopedstrText);
 
       strText.make_lower();
 

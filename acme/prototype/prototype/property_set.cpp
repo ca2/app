@@ -810,7 +810,7 @@ void property_set::_008ParseArguments(bool bApp, ::string_array & straArguments,
 }
 
 
-//void property_set_skip_network_payload(const_char_pointer & pszJson)
+//void property_set_skip_network_payload(const_char_pointer &pszJson)
 //{
 //
 //   property_set_skip_network_payload(scopedstrJson, pszJson + strlen(scopedstrJson) - 1);
@@ -1232,15 +1232,15 @@ void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNet
 
    }
 
-   const ::ansi_character * pszArgument = scopedstrNetworkArguments.begin();
+   const_char_pointer pszArgument = scopedstrNetworkArguments.begin();
 
-   const ::ansi_character * pszArgumentEnd1;
+   const_char_pointer pszArgumentEnd1;
 
-   const ::ansi_character * pszArgumentEnd2;
+   const_char_pointer pszArgumentEnd2;
 
-   const ::ansi_character * pszArgumentEnd;
+   const_char_pointer pszArgumentEnd;
 
-   const ::ansi_character * pszKeyEnd;
+   const_char_pointer pszKeyEnd;
 
    string strKey;
 

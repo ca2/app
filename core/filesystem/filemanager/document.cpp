@@ -98,10 +98,10 @@ namespace filemanager
    // }
 
 
-   bool document::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pfilemanagerdataOther)
+   bool document::do_prompt_file_name(::payload & payloadFile, const ::scoped_string & scopedstrTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pfilemanagerdataOther)
    {
 
-      __UNREFERENCED_PARAMETER(nIDSTitle);
+      __UNREFERENCED_PARAMETER(scopedstrTitle);
       __UNREFERENCED_PARAMETER(lFlags);
       __UNREFERENCED_PARAMETER(ptemplate);
 
@@ -541,7 +541,7 @@ namespace filemanager
    }
 
 
-   // void document::defer_check_manager_id(string strManagerId)
+   // void document::defer_check_manager_id(const ::scoped_string & scopedstrManagerId)
    // {
 
    //    auto pcontext = m_papplication;

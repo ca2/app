@@ -201,12 +201,12 @@ namespace platform
    }
 
 
-   // void apex_system_layer::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
+   // void apex_system_layer::browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    // {
    // }
    //
    //
-   // void apex_system_layer::open_profile_link(string strUrl, string strProfile, string strTarget)
+   // void apex_system_layer::open_profile_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    // {
    // }
 
@@ -289,7 +289,7 @@ namespace platform
 
 
    int apex_system_layer::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber,
-                                                const ::string& iModuleName, const_char_pointer  pszFormat, va_list list)
+                                                const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list)
    {
       return 0;
    }
@@ -369,12 +369,12 @@ namespace platform
 
 #ifdef __ANDROID__
 //#pragma message("at macos??")
-      bool apex_system_layer::android_set_user_wallpaper(string strUrl){return false;}
+      bool apex_system_layer::android_set_user_wallpaper(const ::scoped_string & scopedstrUrl){return false;}
       bool apex_system_layer::android_get_user_wallpaper(string & strUrl){return false;}
 
 #endif
 
-   bool apex_system_layer::defer_accumulate_on_open_file(string_array stra, string strExtra)
+   bool apex_system_layer::defer_accumulate_on_open_file(string_array stra, const ::scoped_string & scopedstrExtra)
    {
       return false;
    }
@@ -382,7 +382,7 @@ namespace platform
 
    //bool apex_system_layer::merge_accumulated_on_open_file(::request * prequest){}
 
-   bool apex_system_layer::on_open_file(::payload payloadFile, string strExtra)
+   bool apex_system_layer::on_open_file(::payload payloadFile, const ::scoped_string & scopedstrExtra)
    {
       return false;
    }
@@ -393,23 +393,23 @@ namespace platform
    }
 
 
-   void apex_system_layer::on_os_text(enum_os_text etext, string strText)
+   void apex_system_layer::on_os_text(enum_os_text etext, const ::scoped_string & scopedstrText)
    {
    }
 
 
-   void apex_system_layer::on_extra(string str)
+   void apex_system_layer::on_extra(const ::scoped_string & scopedstr)
    {
    }
 
 
-   ::string apex_system_layer::standalone_setting(string str)
+   ::string apex_system_layer::standalone_setting(const ::scoped_string & scopedstr)
    {
       return {};
    }
 
 
-   void apex_system_layer::set_standalone_setting(string str, string strSetting)
+   void apex_system_layer::set_standalone_setting(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSetting)
    {
    }
 
@@ -430,25 +430,25 @@ namespace platform
    }
 
 
-   void apex_system_layer::set_user_language(::apex::application* papp, string strLang)
+   void apex_system_layer::set_user_language(::apex::application* papp, const ::scoped_string & scopedstrLang)
    {
    }
 
 
-   void apex_system_layer::chromium(string strUrl, string strBrowser, string strId, ::file::path path,
-                                    string strProfile,
-                                    string strParam)
+   void apex_system_layer::chromium(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrId, ::file::path path,
+                                    const ::scoped_string & scopedstrProfile,
+                                    const ::scoped_string & scopedstrParam)
    {
    }
 
 
-   void apex_system_layer::defer_create_firefox_profile(::file::path pathFirefox, string strProfileName,
+   void apex_system_layer::defer_create_firefox_profile(::file::path pathFirefox, const ::scoped_string & scopedstrProfileName,
                                                         ::file::path pathProfile)
    {
    }
 
 
-   void apex_system_layer::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
+   void apex_system_layer::firefox(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam)
    {
    }
 

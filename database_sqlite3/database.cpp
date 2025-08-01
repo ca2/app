@@ -159,7 +159,7 @@ namespace sqlite
 
       char * errmsg = nullptr;
 
-      int iResult = sqlite3_exec((sqlite3 *) get_handle(), pszQuery, nullptr, nullptr, &errmsg);
+      int iResult = sqlite3_exec((sqlite3 *) get_handle(), scopedstrQuery, nullptr, nullptr, &errmsg);
 
       set_error_code(iResult);
 
@@ -209,7 +209,7 @@ namespace sqlite
 
       char * errmsg = nullptr;
 
-      m_iLastError = sqlite3_exec((sqlite3 *) get_handle(), pszQuery, &database_sqlite3_sqlite_callback, presultset.m_p, &errmsg);
+      m_iLastError = sqlite3_exec((sqlite3 *) get_handle(), scopedstrQuery, &database_sqlite3_sqlite_callback, presultset.m_p, &errmsg);
 
       set_error_code(m_iLastError);
 
@@ -302,16 +302,16 @@ namespace sqlite
       const ::scoped_string & scopedstrPort,
       const ::scoped_string & scopedstrUser,
       const ::scoped_string & scopedstrPass,
-      const ::scoped_string & scopedstrSocket,
+      const ::scoped_string & scopedstrSckt,
       unsigned long long uConnectionFlags)
    {
 
-      m_strHost = host;
-      m_strPort = port;
-      m_strName = name;
-      m_strUser = user;
-      m_strPass = pass;
-      m_strSckt = sckt;
+      m_strHost = scopedstrHost;
+      m_strPort = scopedstrPort;
+      m_strName = scopedstrName;
+      m_strUser = scopedstrUser;
+      m_strPass = scopedstrPass;
+      m_strSckt = scopedstrSckt;
       m_uConnectionFlags = uConnectionFlags;
 
       //auto estatus = 
@@ -477,7 +477,7 @@ namespace sqlite
    string database::add_error_message(const ::scoped_string & scopedstr)
    {
 
-      m_strError += str;
+      m_strError += scopedstr;
 
       return m_strError;
 
@@ -713,7 +713,7 @@ namespace sqlite
    }
 
 
-   void database::set_id_blob(string strKey, ::block block)
+   void database::set_id_blob(const ::scoped_string & scopedstrKey, ::block block)
    {
 
       try
@@ -767,9 +767,9 @@ namespace sqlite
 
             }
 
-            character_count iLength = strKey.length();
+            character_count iLength = scopedstrKey.length();
 
-            int res = sqlite3_bind_text(m_pstmtReplace, m_iReplaceId, strKey, (int) iLength,
+            int res = sqlite3_bind_text(m_pstmtReplace, m_iReplaceId, scopedstrKey, (int) iLength,
                                         SQLITE_TRANSIENT);
 
             if (res != SQLITE_OK)
@@ -809,7 +809,7 @@ namespace sqlite
    }
 
 
-   bool database::get_id_blob(string strKey, get_memory getmemory)
+   bool database::get_id_blob(const ::scoped_string & scopedstrKey, get_memory getmemory)
    {
       
       if (m_pstmtSelect == nullptr)
@@ -857,9 +857,9 @@ namespace sqlite
 
       }
 
-      int iLength = (int) strKey.length();
+      int iLength = (int) scopedstrKey.length();
 
-      int res = sqlite3_bind_text(m_pstmtSelect, m_iSelectId, strKey, (int) iLength, SQLITE_TRANSIENT);
+      int res = sqlite3_bind_text(m_pstmtSelect, m_iSelectId, scopedstrKey, (int) iLength, SQLITE_TRANSIENT);
 
       if (res != SQLITE_OK)
       {
@@ -892,11 +892,11 @@ namespace sqlite
 
       }
 
-      const_char_pointer  psz = (const_char_pointer  ) sqlite3_column_blob(m_pstmtSelect, 0);
+      const_char_pointer psz = (const_char_pointer )sqlite3_column_blob(m_pstmtSelect, 0);
 
       character_count iLen = sqlite3_column_bytes(m_pstmtSelect, 0);
 
-      if (!getmemory.get(scopedstr, iLen))
+      if (!getmemory.get(scopedstrKey, iLen))
       {
 
          throw ::exception(error_failed);

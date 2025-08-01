@@ -113,7 +113,7 @@ xfplayer_impact_line::~xfplayer_impact_line()
 }
 
 
-bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, string str, int flags, const ::int_rectangle & rectangle)
+bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, int flags, const ::int_rectangle & rectangle)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization());
@@ -130,7 +130,7 @@ bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, s
 
    ASSERT(pgraphics != nullptr);
 
-   iStrLen = str.length();
+   iStrLen = scopedstr.length();
 
    iChars = -1;
 
@@ -141,7 +141,7 @@ bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, s
    for (iStr = 0; iStr < iStrLen; iStr++)
    {
 
-      add_char(str[iStr], iChars);
+      add_char(scopedstr[iStr], iChars);
 
    }
 

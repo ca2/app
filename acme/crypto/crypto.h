@@ -80,7 +80,7 @@ namespace crypto
 
       // result is 20-unsigned char digest
       virtual void hmac(void * result,const memory & memMessage,const memory & key) = 0;
-      virtual void hmac(void * result,const string & memMessage,const string & key) = 0;
+      virtual void hmac(void * result,const ::scoped_string & scopedstrMessage,const ::scoped_string & scopedstrKey) = 0;
 
       virtual void file_set(::payload payloadFile,const ::scoped_string & scopedstrData,const ::scoped_string & scopedstrSalt, ::platform::application * papp);
       virtual void file_get(::payload payloadFile,string & str,const ::scoped_string & scopedstrSalt, ::platform::application * papp);
@@ -145,9 +145,9 @@ namespace crypto
 
 
 
-CLASS_DECL_ACME void stunCalculateIntegrity_longterm(char* hmac, const_char_pointer  input, int length, const_char_pointer username, const_char_pointer realm, const_char_pointer password);
+CLASS_DECL_ACME void stunCalculateIntegrity_longterm(char* hmac, const_char_pointer input, int length, const_char_pointer username, const_char_pointer realm, const_char_pointer password);
 
-CLASS_DECL_ACME void stunCalculateIntegrity_shortterm(char* hmac, const_char_pointer  input, int length, const_char_pointer  key);
+CLASS_DECL_ACME void stunCalculateIntegrity_shortterm(char* hmac, const_char_pointer input, int length, const_char_pointer key);
 
 
 CLASS_DECL_ACME void hmac_evp_sha1_1234(unsigned char * hmac, unsigned int * hmacSize, const unsigned char * buf, size_t bufLen);

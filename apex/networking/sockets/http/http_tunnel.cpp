@@ -239,7 +239,7 @@ namespace sockets
    }
 
 
-   void http_tunnel::OnData(const_char_pointer  psz, memsize size)
+   void http_tunnel::OnData(const_char_pointer psz, memsize size)
    {
 
       m_pfileBody->write({ psz, size });
@@ -247,7 +247,7 @@ namespace sockets
    }
 
 
-   bool http_tunnel::proxy_open(const string &host, ::networking::port_t port)
+   bool http_tunnel::proxy_open(const ::scoped_string & scopedstrHost, ::networking::port_t port)
    {
 
 //      m_strProxy = host;

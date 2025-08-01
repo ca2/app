@@ -19,7 +19,7 @@
 //
 ////#if OBJECT_TYPE_COUNTER
 ////
-////   extern map < const_char_pointer , const ::scoped_string & scopedstr, long long, long long >* g_pmapObjTypCtr;
+////   extern map < const_char_pointer ,const ::scoped_string & scopedstr, long long, long long >* g_pmapObjTypCtr;
 ////
 ////#endif
 //

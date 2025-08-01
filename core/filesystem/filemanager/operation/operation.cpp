@@ -16,10 +16,10 @@
 namespace filemanager
 {
 
-   bool has_digit(string strName);
-   string get_number_mask(string strName);
-   long long get_number_value(string strName);
-   string set_number_value(string strName, long long iValue);
+   bool has_digit(const ::scoped_string & scopedstrName);
+   string get_number_mask(const ::scoped_string & scopedstrName);
+   long long get_number_value(const ::scoped_string & scopedstrName);
+   string set_number_value(const ::scoped_string & scopedstrName, long long iValue);
 
 
    operation::operation()
@@ -715,13 +715,13 @@ namespace filemanager
    }
 
 
-   bool has_digit(string strName)
+   bool has_digit(const ::scoped_string & scopedstrName)
    {
 
-      for(::collection::index i= 0; i < strName.length(); i++)
+      for(::collection::index i= 0; i < scopedstrName.length(); i++)
       {
 
-         if(::ansi_char_isdigit(strName[i]))
+         if(::ansi_char_isdigit(scopedstrName[i]))
          {
 
             return true;
@@ -735,17 +735,17 @@ namespace filemanager
    }
 
 
-   string get_number_mask(string strName)
+   string get_number_mask(const ::scoped_string & scopedstrName)
    {
 
       string strResult;
 
       bool bFirst = true;
 
-      for(::collection::index i= 0; i < strName.length(); i++)
+      for(::collection::index i= 0; i < scopedstrName.length(); i++)
       {
 
-         if(::ansi_char_isdigit(strName[i]))
+         if(::ansi_char_isdigit(scopedstrName[i]))
          {
 
             if(bFirst)
@@ -778,12 +778,12 @@ namespace filemanager
    }
 
 
-   long long get_number_value(string strName)
+   long long get_number_value(const ::scoped_string & scopedstrName)
    {
 
       string strResult;
 
-      string strMask = get_number_mask(strName);
+      string strMask = get_number_mask(scopedstrName);
 
       ::collection::index i;
 
@@ -793,7 +793,7 @@ namespace filemanager
          if(strMask[i] == '1' || strMask[i] == 'X')
          {
 
-            strResult = strName[i] + strResult;
+            strResult = scopedstrName[i] + strResult;
 
          }
 
@@ -811,14 +811,14 @@ namespace filemanager
    }
 
 
-   string set_number_value(string strName, long long iValue)
+   string set_number_value(const ::scoped_string & scopedstrName, long long iValue)
    {
 
       string strValue = as_string(iValue);
 
-      string strResult = strName;
+      string strResult = scopedstrName;
 
-      string strMask = get_number_mask(strName);
+      string strMask = get_number_mask(scopedstrName);
 
       character_count j = strValue.length() - 1;
 

@@ -351,7 +351,7 @@ namespace user
       if (m_bNeedAutoResizePerformLayout)
       {
 
-         const_char_pointer  pszWndTxt = get_window_text().c_str();
+         const_char_pointer pszWndTxt = get_window_text().c_str();
 
          m_bNeedAutoResizePerformLayout = false;
 

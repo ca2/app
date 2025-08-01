@@ -8,10 +8,10 @@
 
 
 
-inline ::string ellipsis(const ::ansi_character * psz, character_count len);
-inline unsigned long long consume_natural(const_char_pointer & psz, const ::ansi_character * pszBegin, int iRadix = 10);
-inline long long consume_integer(const_char_pointer  & psz, const ::ansi_character * pszBegin, int iRadix = 10);
-inline double consume_floating(const_char_pointer & psz, const ::ansi_character * pszBegin, int iRadix = 10);
+inline ::string ellipsis(const_char_pointer psz, character_count len);
+inline unsigned long long consume_natural(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10);
+inline long long consume_integer(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10);
+inline double consume_floating(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10);
 
 
 #include "write_text_stream.h"
@@ -379,7 +379,7 @@ public:
 
 
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(const ::ansi_character * psz)
+//text_stream < FILE >& text_stream < FILE >::operator <<(const_char_pointer psz)
 //{
 //
 //   if (::is_null(scopedstr))
@@ -759,7 +759,7 @@ public:
 //}
 
 
-inline read_sz_stream::read_sz_stream(const ::ansi_character * psz, const ::ansi_character * pszBegin) :
+inline read_sz_stream::read_sz_stream(const_char_pointer psz, const_char_pointer pszBegin) :
    m_psz(psz),
    m_pszBegin(!pszBegin ? psz : pszBegin)
 {

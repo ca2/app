@@ -159,11 +159,11 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
 
    ::string strEntity(scopedstrEntity);
 
-   const ::ansi_character * pszEntity = strEntity;
+   const_char_pointer pszEntity = strEntity;
 
-   const ::ansi_character * pszBegin = pszEntity;
+   const_char_pointer pszBegin = pszEntity;
 
-   const ::ansi_character * pszEnd = ::ansi_chr(scopedstrEntity, ';');
+   const_char_pointer pszEnd = ::ansi_chr(scopedstrEntity, ';');
 
    char   chTemp = 0;
 

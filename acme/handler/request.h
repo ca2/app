@@ -121,7 +121,7 @@ public:
 
    
    virtual void initialize_create(arguments arguments);
-   virtual void initialize_create(string strAppId, ::payload payloadFile, const ::payload& varOptions = __visible(true), ::user::element * puiParent = nullptr, e_window_flag eflag = e_window_flag_none, ::atom = ::atom());
+   virtual void initialize_create(const ::scoped_string & scopedstrAppId, ::payload payloadFile, const ::payload& varOptions = __visible(true), ::user::element * puiParent = nullptr, e_window_flag eflag = e_window_flag_none, ::atom = ::atom());
    virtual void initialize_create(::data::data * pdata, const ::payload & varOptions = __visible(true), ::user::element * puiParent = nullptr, e_window_flag eflag = e_window_flag_none, ::atom = ::atom());
 
 
@@ -134,7 +134,7 @@ public:
    void finish_initialization();
 
    virtual string get_description();
-   virtual void set_description(string strDescription);
+   virtual void set_description(const ::scoped_string & scopedstrDescription);
 
    virtual ::collection::index get_edge();
    //virtual ::application_bias * get_application_bias();

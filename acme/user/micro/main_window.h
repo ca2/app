@@ -211,7 +211,7 @@ namespace micro
 
 
          //virtual ::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true);
-         void _on_window_simple_action(const_char_pointer  pszActionName, ::user::activation_token * puseractivationtoken) override;
+         void _on_window_simple_action(const_char_pointer pszActionName, ::user::activation_token * puseractivationtoken) override;
          
 
          void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
@@ -407,7 +407,7 @@ namespace micro
          //void release_mouse_capture() override;
 
 
-         //void _on_window_simple_action(const_char_pointer  pszActionName) override;
+         //void _on_window_simple_action(const_char_pointer pszActionName) override;
 
 
          //

@@ -77,7 +77,7 @@ void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppoin
 //}
 //
 //
-//int CLASS_DECL_ACME ca2_main(::platform::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, const_char_pointer  lpCmdLine, int nCmdShow)
+//int CLASS_DECL_ACME ca2_main(::platform::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, const_char_pointer lpCmdLine, int nCmdShow)
 //{
 //   try
 //   {

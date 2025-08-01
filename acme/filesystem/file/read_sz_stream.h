@@ -10,11 +10,11 @@ class read_sz_stream :
 public:
 
 
-    const_char_pointer  m_psz;
-    const_char_pointer  m_pszBegin;
+    const_char_pointer m_psz;
+    const_char_pointer m_pszBegin;
 
 
-    read_sz_stream(const ::ansi_character * psz, const ::ansi_character * pszBegin = nullptr);
+    read_sz_stream(const_char_pointer psz, const_char_pointer pszBegin = nullptr);
     read_sz_stream(const read_sz_stream& stream) = delete;
     ~read_sz_stream();
 
@@ -61,14 +61,14 @@ public:
 //    }
 
 
-    ::string get_word(const ::ansi_character * pszBreakCharacters = " \n\t\r,;");
+    ::string get_word(const_char_pointer pszBreakCharacters = " \n\t\r,;");
 //    {
 //
 //       return read_find_first_character_in(scopedstrBreakCharacters);
 //
 //    }
 
-    ::string read_find_first_character_in(const ::ansi_character * pszBreakCharacters);
+    ::string read_find_first_character_in(const_char_pointer pszBreakCharacters);
 //    {
 //
 //       auto size = string_find_first_character_in(m_psz, pszBreakCharacters);
@@ -102,7 +102,7 @@ public:
 //   // void write(const ::int_size & size) ;
 //   // void write(const ::int_rectangle &rectangle) ;
 //
-//   text_stream& operator <<(const ::ansi_character * psz);
+//   text_stream& operator <<(const_char_pointer psz);
 //   //text_stream & operator <<(const ::atom & atom) ;
 //   text_stream& operator <<(const ::scoped_string & scopedstr);
 //   //text_stream & operator <<(const ::property_set & set) ;

@@ -1543,7 +1543,7 @@ namespace sockets
    //}
 
 
-   //void socket_handler::SetSocks4Host(const string & host)
+   //void socket_handler::SetSocks4Host(const ::scoped_string & scopedstrHost)
    //{
 
    //   auto paddressdepartment = ::networking::address_department();
@@ -1559,13 +1559,13 @@ namespace sockets
    //}
 
 
-   //void socket_handler::SetSocks4Userid(const string & atom)
+   //void socket_handler::SetSocks4Userid(const ::scoped_string & scopedstr)
    //{
    //   m_socks4_userid = atom;
    //}
 
 
-//   int socket_handler::Resolve(base_socket * pbasesocket_id, const string & host, ::networking::port_t port)
+//   int socket_handler::Resolve(base_socket * pbasesocket_id, const ::scoped_string & scopedstrHost, ::networking::port_t port)
 //   {
 //
 //      // check cache
@@ -1602,7 +1602,7 @@ namespace sockets
 //   }
 
 
-//   int socket_handler::Resolve6(base_socket * pbasesocket_id, const string & host, ::networking::port_t port)
+//   int socket_handler::Resolve6(base_socket * pbasesocket_id, const ::scoped_string & scopedstrHost, ::networking::port_t port)
 //   {
 //
 //      // check cache

@@ -16,7 +16,7 @@ namespace heap
 //   public:
 //
 //#if MEMDLEAK  || defined(__MCRTDBG)
-//      void * alloc(memsize iSize, const_char_pointer  pszFile, int iLine)  override
+//      void * alloc(memsize iSize, const_char_pointer pszFile, int iLine)  override
 //      {
 //
 //         return system_heap_alloc_debug(iSize, 725, pszFile, iLine);
@@ -50,7 +50,7 @@ namespace heap
 
 #if MEMDLEAK || defined(__MCRTDBG)
 
-      void * alloc(memsize iSize, const_char_pointer  pszFile, int iLine, const_char_pointer  pszAnnotation = nullptr) override
+      void * alloc(memsize iSize, const_char_pointer pszFile, int iLine, const_char_pointer pszAnnotation = nullptr) override
       {
 
          return memory_allocate_debug(iSize, 724, pszFile, iLine, pszAnnotation);
@@ -59,7 +59,7 @@ namespace heap
 
 #else
 
-      void * allocate(memsize iSize, memsize * psizeAllocated, const_char_pointer  pszAnnotation = nullptr) override
+      void * allocate(memsize iSize, memsize * psizeAllocated, const_char_pointer pszAnnotation = nullptr) override
       {
 
          return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize, psizeAllocated, pszAnnotation);

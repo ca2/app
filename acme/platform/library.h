@@ -44,7 +44,7 @@ namespace acme
 
       //static ::acme::library* loading_library();
 
-      //virtual bool open_library(string strTitle = "");
+      //virtual bool open_library(const ::scoped_string & scopedstrTitle = "");
 
       //library * get_library();
 
@@ -101,13 +101,13 @@ namespace acme
       //virtual void get_extension_list(string_array & stra);
 
 
-      // virtual ::matter * factory_new(::particle * pparticle, const_char_pointer  lpszClass);
+      // virtual ::matter * factory_new(::particle * pparticle, const_char_pointer lpszClass);
 
 
-      //virtual ::pointer<::matter>factory_create(const_char_pointer  lpszClass);
-      //virtual bool factory_has_object_class(const_char_pointer  lpszClass);
+      //virtual ::pointer<::matter>factory_create(const_char_pointer lpszClass);
+      //virtual bool factory_has_object_class(const_char_pointer lpszClass);
 
-      //library_object_allocator_base * find_allocator(const_char_pointer  lpszClass);
+      //library_object_allocator_base * find_allocator(const_char_pointer lpszClass);
 
       //virtual void initialize_factory();
 

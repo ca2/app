@@ -279,7 +279,7 @@ namespace acme
    //}
 
 
-   //bool library::open_library(string strTitle)
+   //bool library::open_library(const ::scoped_string & scopedstrTitle)
    //{
 
    //   auto psystem = system();

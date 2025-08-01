@@ -359,7 +359,7 @@ bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_st
 
 
 
-CLASS_DECL_ACME ::file::path core_app_path(string strApp)
+CLASS_DECL_ACME ::file::path core_app_path(const ::scoped_string & scopedstrApp)
 {
 
    throw ::exception(todo);

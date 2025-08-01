@@ -71,7 +71,7 @@ namespace os
 
       rootwin              =  RootWindow(display, m_iScreen);
 
-      const_char_pointer  xserver = getenv( "DISPLAY" ) ;
+      const_char_pointer xserver = getenv( "DISPLAY" ) ;
 
       if (display == 0)
       {

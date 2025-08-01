@@ -53,7 +53,7 @@ namespace sockets
 
       websocket_client();
       
-      //websocket_client(const string & host, ::networking::port_t port, const string & url);
+      //websocket_client(const ::scoped_string & scopedstrHost, ::networking::port_t port, const string & url);
       ~websocket_client() override;
 
 
@@ -82,15 +82,15 @@ namespace sockets
       virtual void OnRawData(char *buf, memsize len) override;
 
       virtual void on_websocket_data(unsigned char * pdata, int len);
-      virtual void on_websocket_data(string str);
+      virtual void on_websocket_data(const ::scoped_string & scopedstr);
 
       virtual bool client_ping_pong_ok();
 
       virtual memory get_client_send(int fin, memory & memory, bool useMask);
-      virtual memory get_client_send(int fin, const_char_pointer  src);
+      virtual memory get_client_send(int fin, const_char_pointer src);
 
-      virtual memory get_client_send_text(const_char_pointer  src);
-      virtual memory get_client_send_text(const_char_pointer  src, bool bMasked);
+      virtual memory get_client_send_text(const_char_pointer src);
+      virtual memory get_client_send_text(const_char_pointer src, bool bMasked);
       virtual memory get_client_send_binary(memory & memory);
 
 

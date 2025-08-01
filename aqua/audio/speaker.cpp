@@ -68,7 +68,7 @@ namespace text_to_speech
    }
 
 
-   void speaker::stop(string strLang)
+   void speaker::stop(const ::scoped_string & scopedstrLang)
    {
 
       if (m_pspeakerFallback.is_null())
@@ -79,12 +79,12 @@ namespace text_to_speech
 
       }
 
-      return m_pspeakerFallback->stop(strLang);
+      return m_pspeakerFallback->stop(scopedstrLang);
 
    }
 
 
-   bool speaker::is_speaking(string strLang)
+   bool speaker::is_speaking(const ::scoped_string & scopedstrLang)
    {
 
       if (m_pspeakerFallback.is_null())
@@ -94,7 +94,7 @@ namespace text_to_speech
 
       }
 
-      m_pspeakerFallback->speak(strLang);
+      m_pspeakerFallback->speak(scopedstrLang);
 
       return true;
 

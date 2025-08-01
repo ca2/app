@@ -236,7 +236,7 @@ unicode_rear_find_first_character_in(const ::range<CHARACTER> &block, const ::ra
 }
 
 
-using ansi_range = ::string_range< const ::ansi_character * >;
+using ansi_range = ::string_range< const_char_pointer >;
 using wd16_range = ::string_range< const ::wd16_character * >;
 using wd32_range = ::string_range< const ::wd32_character * >;
 
@@ -262,7 +262,7 @@ inline ::hash32 _string_range_unsigned_int_hash(::string_range<const CHARACTER *
 //inline ::hash32 as_hash32(const_ansi_range range)
 //{
 //
-//   return _string_range_unsigned_int_hash((::string_range<const ::ansi_character *>) range);
+//   return _string_range_unsigned_int_hash((::string_range<const_char_pointer >) range);
 //
 //}
 //

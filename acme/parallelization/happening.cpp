@@ -14,7 +14,7 @@
 #include "acme/operating_system/ansi/_pthread.h"
 #endif
 
-void printf_line(const ::ansi_character * pszFormat, ...);
+void printf_line(const_char_pointer pszFormat, ...);
 
 #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__)
 #include <sys/ipc.h>

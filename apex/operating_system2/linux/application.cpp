@@ -146,7 +146,7 @@
 //                     // Retrieve file description for language and code page "i".
 //                     VerQueryValue(pdata,
 //
-//                        (char *) (const_char_pointer ) strKey,
+//                        (char *) (const_char_pointer )strKey,
 //                        (LPVOID *)&psz,
 //
 //                        &uiSize);

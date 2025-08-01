@@ -49,7 +49,7 @@ template < character_range RANGE, has_as_string HAS_AS_STRING >
 
 
 //template < character_count n >
-//const_string_range_static_array < const_char_pointer , 2 > operator + (const ::range < const_char_pointer  > & range, const ansi_string_literal<n> & literal)
+//const_string_range_static_array < const_char_pointer ,2 > operator + (const ::range < const_char_pointer >& range, const ansi_string_literal<n> & literal)
 //{
 //
 //   //return { range, ::as_string_literal<typename RANGE::CHARACTER, n>(s) };

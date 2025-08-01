@@ -156,7 +156,7 @@ return g_pdraw2dcairo;
 //
 //   }
 //
-//   enum_format draw2d::text_to_format(string strText)
+//   enum_format draw2d::text_to_format(const ::scoped_string & scopedstrText)
 //   {
 //
 //      strText.make_lower();
@@ -1422,7 +1422,7 @@ return g_pdraw2dcairo;
    cairo_font_face_t * draw2d::private_ftface_from_memory(const ::block & block, const ::scoped_string & scopedstrName)
    {
 
-      auto & pprivatefont = m_mapPrivateFont[strName];
+      auto & pprivatefont = m_mapPrivateFont[scopedstrName];
 
       if(::is_set(pprivatefont))
       {

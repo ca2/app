@@ -5798,7 +5798,7 @@ bool payload::has_property(const ::atom & atom) const
 }
 
 
-void payload::consume_identifier(const_char_pointer  & psz)
+void payload::consume_identifier(const_char_pointer &psz)
 {
 
    consume_number(scopedstr, psz + strlen(scopedstr) - 1);
@@ -5806,7 +5806,7 @@ void payload::consume_identifier(const_char_pointer  & psz)
 }
 
 
-void payload::consume_identifier(const_char_pointer  & psz, const ::ansi_character * pszEnd)
+void payload::consume_identifier(const_char_pointer &psz, const_char_pointer pszEnd)
 {
 
    const_char_pointer scopedstrParse = psz;
@@ -5846,12 +5846,12 @@ void payload::consume_identifier(const_char_pointer  & psz, const ::ansi_charact
    psz = pszParse;
 }
 
-void payload::consume_number(const_char_pointer  & psz)
+void payload::consume_number(const_char_pointer &psz)
 {
    consume_number(scopedstr, psz + strlen(scopedstr) - 1);
 }
 
-void payload::consume_number(const_char_pointer  & psz, const ::ansi_character * pszEnd)
+void payload::consume_number(const_char_pointer &psz, const_char_pointer pszEnd)
 {
    const_char_pointer scopedstrParse = psz;
    bool bSigned = false;
@@ -5964,7 +5964,7 @@ end:
 
 
 
-void payload::parse_network_payload(const_char_pointer  & pszJson)
+void payload::parse_network_payload(const_char_pointer &pszJson)
 {
 
    parse_network_payload(scopedstrJson, pszJson + strlen(scopedstrJson) - 1);
@@ -5975,13 +5975,13 @@ void payload::parse_network_payload(const_char_pointer  & pszJson)
 
 
 
-void var_skip_identifier(const_char_pointer & psz)
+void var_skip_identifier(const_char_pointer &psz)
 {
    var_skip_number(scopedstr, psz + strlen(scopedstr) - 1);
 }
 
 
-void var_skip_identifier(const_char_pointer & psz, const ::ansi_character * pszEnd)
+void var_skip_identifier(const_char_pointer &psz, const_char_pointer pszEnd)
 {
    const_char_pointer scopedstrParse = psz;
    ::str::consume_spaces(scopedstrParse, 0, pszEnd);
@@ -6014,12 +6014,12 @@ void var_skip_identifier(const_char_pointer & psz, const ::ansi_character * pszE
 
 
 
-void var_skip_number(const_char_pointer & psz)
+void var_skip_number(const_char_pointer &psz)
 {
    var_skip_number(scopedstr, psz + strlen(scopedstr) - 1);
 }
 
-void var_skip_number(const_char_pointer & psz, const ::ansi_character * pszEnd)
+void var_skip_number(const_char_pointer &psz, const_char_pointer pszEnd)
 {
    const_char_pointer scopedstrParse = psz;
    ::str::consume_spaces(scopedstrParse, 0, pszEnd);
@@ -6087,7 +6087,7 @@ end:
 }
 
 
-void var_skip_network_payload(const_char_pointer & pszJson, const ::ansi_character * pszEnd)
+void var_skip_network_payload(const_char_pointer &pszJson, const_char_pointer pszEnd)
 {
 
    ::str::consume_spaces(scopedstrJson, 0, pszEnd);
@@ -6144,7 +6144,7 @@ void var_skip_network_payload(const_char_pointer & pszJson, const ::ansi_charact
 }
 
 
-void var_skip_network_payload(const_char_pointer & pszJson)
+void var_skip_network_payload(const_char_pointer &pszJson)
 {
    var_skip_network_payload(scopedstrJson, pszJson + strlen(scopedstrJson) - 1);
 }
@@ -6152,10 +6152,10 @@ void var_skip_network_payload(const_char_pointer & pszJson)
 
 
 
-const_char_pointer  payload::parse_network_payload(const ::scoped_string & scopedstrJson)
+const_char_pointer payload::parse_network_payload(const ::scoped_string & scopedstrJson)
 {
 
-   const ::ansi_character * pszJson = strJson;
+   const_char_pointer pszJson = strJson;
 
    parse_network_payload(scopedstrJson, pszJson + strJson.length());
 
@@ -6164,7 +6164,7 @@ const_char_pointer  payload::parse_network_payload(const ::scoped_string & scope
 }
 
 
-void payload::parse_network_payload(const_char_pointer & pszJson, const ::ansi_character * pszEnd)
+void payload::parse_network_payload(const_char_pointer &pszJson, const_char_pointer pszEnd)
 {
 
    ::str::consume_spaces(scopedstrJson, 0, pszEnd);
@@ -6252,7 +6252,7 @@ void payload::parse_network_payload(const_char_pointer & pszJson, const ::ansi_c
 }
 
 
-::enum_type payload::find_network_payload_child(const_char_pointer & pszJson, const ::ansi_character * pszEnd, const ::payload & varChild)
+::enum_type payload::find_network_payload_child(const_char_pointer &pszJson, const_char_pointer pszEnd, const ::payload & varChild)
 {
 
    ::str::consume_spaces(scopedstrJson, 0, pszEnd);
@@ -6403,7 +6403,7 @@ void payload::parse_network_payload(const_char_pointer & pszJson, const ::ansi_c
 }
 
 
-::enum_type payload::find_network_payload_id(const_char_pointer  & pszJson, const ::ansi_character * pszEnd, const ::payload & varChild)
+::enum_type payload::find_network_payload_id(const_char_pointer &pszJson, const_char_pointer pszEnd, const ::payload & varChild)
 {
 
    ::str::consume_spaces(scopedstrJson, 0, pszEnd);

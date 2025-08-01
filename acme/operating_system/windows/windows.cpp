@@ -431,7 +431,7 @@ string read_resource_as_string(hinstance hinst, unsigned int nID, const ::scoped
 
       psz = str.get_buffer(iReadAtMostByteCount);
 
-      ::memory_copy(scopedstr, pnRes, iReadAtMostByteCount);
+      ::memory_copy(psz, pnRes, iReadAtMostByteCount);
 
       psz[dwResSize] = '\0';
 

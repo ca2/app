@@ -37,7 +37,7 @@ CLASS_DECL_ACME long long long_long_nanosecond()
 }
 
 
-//void information(const ::ansi_character * psz)
+//void information(const_char_pointer psz)
 //{
 //
 //#ifdef WINDOWS

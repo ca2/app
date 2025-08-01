@@ -124,7 +124,7 @@ const char GeoIP_country_code3[253][4] = { "--","AP","EU","AND","ARE","AFG","ATG
                                            "BLM","MAF"
                                          };
 
-const_char_pointer  GeoIP_country_name[253] = {"N/A","Asia/Pacific Region","Europe","Andorra","United Arab Emirates","Afghanistan","Antigua and Barbuda","Anguilla","Albania","Armenia","Netherlands Antilles",
+const_char_pointer GeoIP_country_name[253] = {"N/A","Asia/Pacific Region","Europe","Andorra","United Arab Emirates","Afghanistan","Antigua and Barbuda","Anguilla","Albania","Armenia","Netherlands Antilles",
                                         "Angola","Antarctica","Argentina","American Samoa","Austria","Australia","Aruba","Azerbaijan","Bosnia and Herzegovina","Barbados",
                                         "Bangladesh","Belgium","Burkina Faso","Bulgaria","Bahrain","Burundi","Benin","Bermuda","Brunei Darussalam","Bolivia",
                                         "Brazil","Bahamas","Bhutan","Bouvet Island","Botswana","Belarus","Belize","Canada","Cocos (Keeling) Islands","Congo, The Democratic Republic of the",
@@ -191,13 +191,13 @@ static int _GeoIP_inet_pton(int af, const_char_pointer src, void *dst)
 {
    return c_inet_pton(af, src, dst);
 }
-static const_char_pointer  _GeoIP_inet_ntop(int af, const void *src, char *dst, socklen_t cnt)
+static const_char_pointer _GeoIP_inet_ntop(int af, const void *src, char *dst, socklen_t cnt)
 {
    return c_inet_ntop(af, src, dst, cnt);
 }
 #elif defined(_WIN32)
 /* http://www.mail-archive.com/users@ipv6.org/msg02107.html */
-static const_char_pointer  _GeoIP_inet_ntop(int af, const void *src, char *dst, socklen_t cnt)
+static const_char_pointer _GeoIP_inet_ntop(int af, const void *src, char *dst, socklen_t cnt)
 {
    if (af == AF_INET)
    {
@@ -251,7 +251,7 @@ static int _GeoIP_inet_pton(int af, const_char_pointer src, void *dst)
 {
    return inet_pton(af, src, dst);
 }
-static const_char_pointer  _GeoIP_inet_ntop(int af, const void *src, char *dst, socklen_t cnt)
+static const_char_pointer _GeoIP_inet_ntop(int af, const void *src, char *dst, socklen_t cnt)
 {
    return inet_ntop(af, src, dst, cnt);
 }
@@ -272,7 +272,7 @@ int __GEOIP_V6_IS_NULL(geoipv6_t v6)
 
 #endif // GEOIP_NETWORKING
 
-const_char_pointer  GeoIPDBDescription[NUM_DB_TYPES] = {nullptr, "GeoIP Country Edition", "GeoIP City Edition, Rev 1", "GeoIP Region Edition, Rev 1", "GeoIP ISP Edition", "GeoIP Organization Edition", "GeoIP City Edition, Rev 0", "GeoIP Region Edition, Rev 0","GeoIP Proxy Edition","GeoIP ASNum Edition","GeoIP Netspeed Edition","GeoIP Domain Name Edition", "GeoIP Country V6 Edition"};
+const_char_pointer GeoIPDBDescription[NUM_DB_TYPES] = {nullptr, "GeoIP Country Edition", "GeoIP City Edition, Rev 1", "GeoIP Region Edition, Rev 1", "GeoIP ISP Edition", "GeoIP Organization Edition", "GeoIP City Edition, Rev 0", "GeoIP Region Edition, Rev 0","GeoIP Proxy Edition","GeoIP ASNum Edition","GeoIP Netspeed Edition","GeoIP Domain Name Edition", "GeoIP Country V6 Edition"};
 
 char * custom_directory = nullptr;
 
@@ -352,7 +352,7 @@ void _GeoIP_setup_dbfilename()
 
 int GeoIP_db_avail(int type)
 {
-   const_char_pointer  filePath;
+   const_char_pointer filePath;
    if (type < 0 || type >= NUM_DB_TYPES)
    {
       return 0;
@@ -808,7 +808,7 @@ _GeoIP_addr_to_num(const_char_pointer addr)
 GeoIP* GeoIP_open_type (int type, int flags)
 {
    GeoIP * gi;
-   const_char_pointer  filePath;
+   const_char_pointer filePath;
    if (type < 0 || type >= NUM_DB_TYPES)
    {
       debug_print("Invalid database type %d\n", type);
@@ -833,7 +833,7 @@ GeoIP* GeoIP_new (int flags)
    return gi;
 }
 
-GeoIP* GeoIP_open (const_char_pointer  filename, int flags)
+GeoIP* GeoIP_open (const_char_pointer filename, int flags)
 {
    struct stat buf;
    GeoIP * gi;
@@ -1877,7 +1877,7 @@ int GeoIP_last_netmask (GeoIP* gi)
 
 
 /** return two letter country code */
-const_char_pointer  GeoIP_code_by_id(int atom)
+const_char_pointer GeoIP_code_by_id(int atom)
 {
    if (atom < 0 || atom >= (int) num_GeoIP_countries)
       return nullptr;
@@ -1886,7 +1886,7 @@ const_char_pointer  GeoIP_code_by_id(int atom)
 }
 
 /** return three letter country code */
-const_char_pointer  GeoIP_code3_by_id(int atom)
+const_char_pointer GeoIP_code3_by_id(int atom)
 {
    if (atom < 0 || atom >= (int) num_GeoIP_countries)
       return nullptr;
@@ -1896,7 +1896,7 @@ const_char_pointer  GeoIP_code3_by_id(int atom)
 
 
 /** return full name of country */
-const_char_pointer  GeoIP_name_by_id(int atom)
+const_char_pointer GeoIP_name_by_id(int atom)
 {
    if (atom < 0 || atom >= (int) num_GeoIP_countries)
       return nullptr;
@@ -1905,7 +1905,7 @@ const_char_pointer  GeoIP_name_by_id(int atom)
 }
 
 /** return continent of country */
-const_char_pointer  GeoIP_continent_by_id(int atom)
+const_char_pointer GeoIP_continent_by_id(int atom)
 {
    if (atom < 0 || atom >= (int) num_GeoIP_countries)
       return nullptr;

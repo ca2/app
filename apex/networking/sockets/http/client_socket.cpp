@@ -478,7 +478,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnDataArrived(const_char_pointer  buf, memsize len)
+   void http_client_socket::OnDataArrived(const_char_pointer buf, memsize len)
    {
 
       __UNREFERENCED_PARAMETER(buf);

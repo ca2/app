@@ -169,7 +169,7 @@ namespace data
    //   }
    //
    //
-   //   void text_property::insert_text(string str, bool bForceNewStep, const ::action_context& context)
+   //   void text_property::insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context& context)
    //   {
    //
    //
@@ -478,7 +478,7 @@ namespace data
       }
 
 
-      void text_property::insert_text(string str, bool bForceNewStep, const ::action_context& context)
+      void text_property::insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context& context)
       {
 
 

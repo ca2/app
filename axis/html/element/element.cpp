@@ -1076,7 +1076,7 @@ namespace html
    bool element::parse(html_data * phtmldata, ::ansi_range & range)
    {
 
-      const_char_pointer  pszStart = range.m_begin;
+      const_char_pointer pszStart = range.m_begin;
 
       // skip white space
       range.consume_spaces(0);
@@ -1100,7 +1100,7 @@ namespace html
       // skip white space
       range.consume_spaces(0);
 
-      const_char_pointer  pszTag = range.m_begin;
+      const_char_pointer pszTag = range.m_begin;
 
       // skip valid char
       while (*range.m_begin != '\0' && !character_isspace(*range.m_begin) && *range.m_begin != '>')
@@ -1179,7 +1179,7 @@ namespace html
 
       }
 
-      const_char_pointer  pszBody = range.m_begin;
+      const_char_pointer pszBody = range.m_begin;
 
       while (true)
       {
@@ -1225,7 +1225,7 @@ namespace html
       // skip white space
       range.consume_spaces(0);      
 
-      const_char_pointer  pszCloseTag = range.m_begin;
+      const_char_pointer pszCloseTag = range.m_begin;
 
       // skip valid char
       while (*range.m_begin != '\0' && !character_isspace(*range.m_begin) && *range.m_begin != '>')
@@ -1276,7 +1276,7 @@ namespace html
 
          }
 
-         const_char_pointer  pszKey = range.m_begin;
+         const_char_pointer pszKey = range.m_begin;
 
          // skip valid char
          while (*range.m_begin != '\0' && !character_isspace(*range.m_begin) && *range.m_begin != '=' && *range.m_begin != '/' && *range.m_begin != '>')
@@ -1325,7 +1325,7 @@ namespace html
          while (*range.m_begin != '\0' && character_isspace(*range.m_begin))
             range.m_begin++;
 
-         const_char_pointer  pszValue;
+         const_char_pointer pszValue;
          if (*range.m_begin == '\"' || *range.m_begin == '\'')
          {
             chQuote = *range.m_begin;

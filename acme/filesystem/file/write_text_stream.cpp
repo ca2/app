@@ -204,7 +204,7 @@ template < typename TYPE >
 void exchange(const ::atom & atom, TYPE & t) { ::__string_exchange(*this, t); }*/
 
 // // template < typename FILE >
-void write_text_stream::append_format(const ::ansi_character * pszFormat, ...)
+void write_text_stream::append_format(const_char_pointer pszFormat, ...)
 {
 
    ::string strText;
@@ -431,7 +431,7 @@ write_text_stream & write_text_stream::operator <<(unichar wch)
 
 
 // // template < typename FILE >
-write_text_stream & write_text_stream::operator <<(const ::ansi_character * psz)
+write_text_stream & write_text_stream::operator <<(const_char_pointer psz)
 {
 
    if (this->fmtflags() & ::file::network_payload)
@@ -463,7 +463,7 @@ write_text_stream & write_text_stream::operator <<(const ::ansi_character * psz)
 
 
 // // template < typename FILE >
-write_text_stream & write_text_stream::operator <<(const ::range < const_char_pointer  > & range)
+write_text_stream & write_text_stream::operator <<(const ::range < const_char_pointer >& range)
 {
 
    this->write(range.data(), range.size());
@@ -542,7 +542,7 @@ void write_text_stream::write(const void * psz, character_count s)
 }
 
 
-void write_text_stream::print(const ::range < const_char_pointer  > & range)
+void write_text_stream::print(const ::range < const_char_pointer >& range)
 {
 
    m_pfile->write(range.data(), range.size());
@@ -578,7 +578,7 @@ void write_text_stream::print(const ::range < const_char_pointer  > & range)
 
 
 //// // template < typename FILE >
-//write_text_stream & write_text_stream::operator <<(const ::ansi_character * psz)
+//write_text_stream & write_text_stream::operator <<(const_char_pointer psz)
 //{
 //
 //   if (this->fmtflags() & ::file::network_payload)

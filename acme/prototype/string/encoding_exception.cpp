@@ -4,7 +4,7 @@
 
 
 encoding_exception::encoding_exception(const ::scoped_string & scopedstrMessage) :
-   exception(::error_encoding, strMessage)
+   exception(::error_encoding, scopedstrMessage)
 {
 
 

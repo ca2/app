@@ -61,7 +61,7 @@ namespace programming
 
       virtual void prepare_compile_and_link_environment();
 
-      virtual void prepare1(const ::string& lpcszSource, const ::string& lpcszDest);
+      virtual void prepare1(const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrDest);
 
 
 

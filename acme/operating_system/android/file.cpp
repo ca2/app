@@ -123,7 +123,7 @@ int lockf(int fd, int cmd, off_t ignored_len)
 //}
 //
 //extern "C"
-//const_char_pointer  android_get_cache_dir()
+//const_char_pointer android_get_cache_dir()
 //{
 //
 //   return ::acmeacmesystem()->m_pathCacheDir;

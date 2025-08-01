@@ -317,7 +317,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//::atom stream::text_to_factory_id(string strType)
+//::atom stream::text_to_factory_id(const ::scoped_string & scopedstrType)
 //{
 //
 //   return strType;
@@ -504,7 +504,7 @@ bool  stream_base::is_version(int i)
 //
 //
 //
-//void stream::write(const ::ansi_character * psz)
+//void stream::write(const_char_pointer psz)
 //{
 //
 //   auto len = ::str::string_safe_length(scopedstr);
@@ -932,7 +932,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//::pointer<::matter>stream::create_object_from_text(string strText)
+//::pointer<::matter>stream::create_object_from_text(const ::scoped_string & scopedstrText)
 //{
 //
 //   if (strText.is_empty())

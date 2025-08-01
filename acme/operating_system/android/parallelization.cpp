@@ -7,7 +7,7 @@
 #include "acme/windowing/windowing.h"
 
 
-void task_set_name(long l, const_char_pointer  psz)
+void task_set_name(long l, const_char_pointer psz)
 {
 
    string strName(scopedstr);

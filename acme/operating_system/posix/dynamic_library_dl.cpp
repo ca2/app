@@ -242,7 +242,7 @@ namespace dl
 
          int iError = errno;
 
-         const_char_pointer  psz = strerror(iError);
+         const_char_pointer psz = strerror(iError);
 
          if (scopedstr != nullptr)
          {
@@ -307,7 +307,7 @@ namespace dl
 
       int iError = errno;
 
-      const_char_pointer  psz = strerror(iError);
+      const_char_pointer psz = strerror(iError);
 
       if (scopedstr != nullptr)
       {
@@ -316,7 +316,7 @@ namespace dl
 
       }
 
-      const_char_pointer  psz2 = dlerror();
+      const_char_pointer psz2 = dlerror();
 
       if (scopedstr2 != nullptr)
       {

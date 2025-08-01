@@ -14,7 +14,7 @@ namespace acme
  namespace solaris
  {
 
-int create_process(const_char_pointer  _cmd_line, int * pprocessId)
+int create_process(const_char_pointer _cmd_line, int * pprocessId)
 {
    char *   exec_path_name;
    char *	cmd_line;

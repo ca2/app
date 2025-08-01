@@ -10,7 +10,7 @@
 //
 //
 //
-//CLASS_DECL_ACME HANDLE WinFindFirstFileA(const_char_pointer  pwsz, WIN32_FIND_DATAA * pdata);
+//CLASS_DECL_ACME HANDLE WinFindFirstFileA(const_char_pointer pwsz, WIN32_FIND_DATAA * pdata);
 //CLASS_DECL_ACME HANDLE WinFindFirstFileW(const unichar * pwsz, WIN32_FIND_DATAW * pdata);
 
 

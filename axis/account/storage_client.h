@@ -32,8 +32,8 @@ namespace account
       virtual void initialize_account_storage_client(storage * pstorage);
 
       
-      virtual bool get(string strKey, string & strValue);
-      virtual void set(string strKey, string strValue);
+      virtual bool get(const ::scoped_string & scopedstrKey, string & strValue);
+      virtual void set(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrValue);
 
       
    };

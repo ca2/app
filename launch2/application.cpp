@@ -10,12 +10,12 @@
 #include <memory.h>
 
 
-bool curl_check_http_ok(const_char_pointer  pszUrl);
-bool wget_check_http_ok(const_char_pointer  pszUrl);
-char * get_command_output(const_char_pointer  pszCommand);
+bool curl_check_http_ok(const_char_pointer pszUrl);
+bool wget_check_http_ok(const_char_pointer pszUrl);
+char * get_command_output(const_char_pointer pszCommand);
 
 
-bool touch(const_char_pointer  filename) {
+bool touch(const_char_pointer filename) {
    int fd = open(filename, O_CREAT, S_IRWXU | S_IRWXG | S_IRWXO);
 
    if (fd == -1) {
@@ -114,7 +114,7 @@ char * FILE_as_string(FILE * f)
 }
 
 
-char * as_string(const_char_pointer  pszFilename)
+char * as_string(const_char_pointer pszFilename)
 {
 
    char * buffer = nullptr;
@@ -164,7 +164,7 @@ char * get_line(char * str, char * & next)
 
 }
 
-char * case_insensitive_begins_skip(char * psz, const_char_pointer  pszPrefix)
+char * case_insensitive_begins_skip(char * psz, const_char_pointer pszPrefix)
 {
 
    auto iLenPrefix = strlen(scopedstrPrefix);
@@ -430,7 +430,7 @@ system(szCommand);
 }
 
 
-char * application::get_download_url(const_char_pointer  pszRoot, const_char_pointer  pszName)
+char * application::get_download_url(const_char_pointer pszRoot, const_char_pointer pszName)
 {
 
 auto pszEtcOsRelease = as_string("/etc/os-release");
@@ -635,7 +635,7 @@ return strdup(szUrl);
 }
 
 
-   void application::log_system(const_char_pointer  pszCommand)
+   void application::log_system(const_char_pointer pszCommand)
    {
 
    printf("%s\n", pszCommand);
@@ -711,7 +711,7 @@ void application::install_dependencies()
 }
 
 
-bool application::check_http_ok(const_char_pointer  pszUrl)
+bool application::check_http_ok(const_char_pointer pszUrl)
 {
 
 bool bOk = false;
@@ -760,7 +760,7 @@ int main(int argc, char * argv[])
    {
       application.run();
    }
-   catch(const_char_pointer  psz)
+   catch(const_char_pointer psz)
    {
 
    fprintf(stderr, psz, 1, strlen(scopedstr));
@@ -785,7 +785,7 @@ int main(int argc, char * argv[])
 //#include <memory.h>
 //
 //
-//         bool wget_check_http_ok(const_char_pointer  pszUrl)
+//         bool wget_check_http_ok(const_char_pointer pszUrl)
 //         {
 //
 //
@@ -819,7 +819,7 @@ int main(int argc, char * argv[])
 //#include <memory.h>
 //
 //
-//         bool wget_check_http_ok(const_char_pointer  pszUrl)
+//         bool wget_check_http_ok(const_char_pointer pszUrl)
 //         {
 //
 //
@@ -993,7 +993,7 @@ char * end_temporary_file_name_as_string(char * ptmpname)
 }
 
 
-char * get_command_output(const_char_pointer  pszCommand)
+char * get_command_output(const_char_pointer pszCommand)
 {
 
    auto ptmpname = start_temporary_file_name();

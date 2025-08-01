@@ -82,7 +82,7 @@ public:
 
 
 template < primitive_number NUMBER >
-inline string as_string(NUMBER number, const ::ansi_character * pszFormat);
+inline string as_string(NUMBER number, const_char_pointer pszFormat);
 
 // template < primitive_unsigned UNSIGNED >
 // inline inline_number_string as_string(UNSIGNED u, int radix = 10, enum_digit_case edigitcase = e_digit_case_lower);

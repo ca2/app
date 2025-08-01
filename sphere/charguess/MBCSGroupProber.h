@@ -36,7 +36,7 @@ public:
   nsMBCSGroupProber();
   virtual ~nsMBCSGroupProber();
   nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
-  const_char_pointer  GetCharSetName();
+  const_char_pointer GetCharSetName();
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
   float     GetConfidence(void);

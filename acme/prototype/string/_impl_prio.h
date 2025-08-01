@@ -49,7 +49,7 @@ class fixed_alloc_array;
 ////inline ::hash32 as_hash32 < const ansi_string & >(const ansi_string & ansistr)
 ////{
 ////
-////   return as_hash32 < const ::ansi_character * >(ansistr.c_str());
+////   return as_hash32 < const_char_pointer >(ansistr.c_str());
 ////
 ////}
 ////
@@ -81,7 +81,7 @@ class fixed_alloc_array;
 ////}
 
 
-inline const_char_pointer  FormatArgument(const string & value) noexcept { return value.c_str(); }
+inline const_char_pointer FormatArgument(const string & value) noexcept { return value.c_str(); }
 
 
 //template < typename TYPE_CHAR >

@@ -65,7 +65,7 @@
 #include "acme/prototype/string/base64.h"
 
 
-int file_put_contents(const ::file::path & path, const_char_pointer  contents);;
+int file_put_contents(const ::file::path & path, const_char_pointer contents);;
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::scoped_string & scopedstrMoreDetails);
 
 
@@ -2066,7 +2066,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   int system::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFileName, int iLineNumber, const ::scoped_string & scopedstrModuleName, const_char_pointer  pszFormat, va_list list)
+   int system::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFileName, int iLineNumber, const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list)
    {
 
       //if(!m_ptracelog || !m_ptracelog->m_bExtendedLog)
@@ -2846,7 +2846,7 @@ pdirectorysystem->create("/ca2core");
 
 //#ifdef __ANDROID__
 //
-//   bool system::android_set_user_wallpaper(string strUrl)
+//   bool system::android_set_user_wallpaper(const ::scoped_string & scopedstrUrl)
 //   {
 //
 //      //operating_system_driver::get().m_strSetUserWallpaper = strUrl;
@@ -2898,7 +2898,7 @@ pdirectorysystem->create("/ca2core");
    //}
 
 
-   bool system::defer_accumulate_on_open_file(string_array stra, string strExtra)
+   bool system::defer_accumulate_on_open_file(string_array stra, const ::scoped_string & scopedstrExtra)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -3054,7 +3054,7 @@ pdirectorysystem->create("/ca2core");
    //}
 
 
-   bool system::on_open_file(::payload payloadFile, string strExtra)
+   bool system::on_open_file(::payload payloadFile, const ::scoped_string & scopedstrExtra)
    {
 
       //
@@ -3174,7 +3174,7 @@ pdirectorysystem->create("/ca2core");
 
 //#ifndef __ANDROID__
 
-   void system::on_os_text(enum_os_text etext, string strText)
+   void system::on_os_text(enum_os_text etext, const ::scoped_string & scopedstrText)
    {
 
 
@@ -3247,28 +3247,28 @@ pdirectorysystem->create("/ca2core");
    //   }
 
 
-   string system::standalone_setting(string str)
+   string system::standalone_setting(const ::scoped_string & scopedstr)
    {
 
-      return file_system()->as_string(directory()->standalone() / (str + ".txt"));
+      return file_system()->as_string(directory()->standalone() / (scopedstr + ".txt"));
 
    }
 
 
-   void system::set_standalone_setting(string str, string strSetting)
+   void system::set_standalone_setting(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSetting)
    {
 
-      file_system()->put_contents(directory()->standalone() / (str + ".txt"), strSetting);
+      file_system()->put_contents(directory()->standalone() / (scopedstr + ".txt"), scopedstrSetting);
 
    }
 
 
-   void system::on_extra(string str)
+   void system::on_extra(const ::scoped_string & scopedstr)
    {
 
 //      auto purl = url();
 
-      ::url::url url(str);
+      ::url::url url(scopedstr);
 
       string strProtocol = url.connect().protocol();
 
@@ -3416,7 +3416,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   void system::set_user_language(::apex::application * papp, string strLang)
+   void system::set_user_language(::apex::application * papp, const ::scoped_string & scopedstrLang)
    {
 
       auto psession = session();
@@ -3425,9 +3425,9 @@ pdirectorysystem->create("/ca2core");
 
       auto puserlanguagemap = papexapplication->m_puserlanguagemap;
 
-      puserlanguagemap->set_language(papp, strLang);
+      puserlanguagemap->set_language(papp, scopedstrLang);
 
-      set_standalone_setting("current_language", strLang);
+      set_standalone_setting("current_language", scopedstrLang);
 
    }
 
@@ -3778,7 +3778,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
 
 
-   void system::chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam)
+   void system::chromium(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrId, ::file::path path, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -3799,14 +3799,14 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       string strBrowserProfile;
 
-      if (strId == "chrome" || strId == "commander")
+      if (scopedstrId == "chrome" || scopedstrId == "commander")
       {
 
          strBrowserProfile = "Chrome";
 
 
       }
-      else if (strId == "vivaldi")
+      else if (scopedstrId == "vivaldi")
       {
 
          strBrowserProfile = "Vivaldi";
@@ -3819,32 +3819,33 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       }
 
+      ::string strParam;
 
       try
       {
 
          bool bFound = false;
 
-         pathProfile = pathAppDataDir / strBrowserProfile / "Profile" / strProfile;
+         pathProfile = pathAppDataDir / strBrowserProfile / "Profile" / scopedstrProfile;
 
          if (!bFound)
          {
 
-            if (strUrl.has_character())
+            if (scopedstrUrl.has_character())
             {
 
-               auto iFind = strParam.find_index("%1");
+               auto iFind = scopedstrParam.find_index("%1");
 
                if (::found(iFind))
                {
 
-                  strParam = strParam(0, iFind) + strUrl + strParam.substr(iFind + 2) + " ";
+                  strParam = scopedstrParam(0, iFind) + scopedstrUrl + scopedstrParam.substr(iFind + 2) + " ";
 
                }
                else
                {
 
-                  strParam = "\"" + strUrl + "\" ";
+                  strParam = "\"" + scopedstrUrl + "\" ";
 
                }
 
@@ -3948,7 +3949,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
    }
 
 
-   void system::defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile)
+   void system::defer_create_firefox_profile(::file::path pathFirefox, const ::scoped_string & scopedstrProfileName, ::file::path pathProfile)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -3973,7 +3974,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       directory()->create(pathProfileDir);
 
-      string strParam = "-no-remote -CreateProfile \"" + strProfileName + " " + pathProfile + "\"";
+      string strParam = "-no-remote -CreateProfile \"" + scopedstrProfileName + " " + pathProfile + "\"";
 
       ::property_set set;
 
@@ -3990,7 +3991,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
 
 
-   void system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
+   void system::firefox(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -4008,12 +4009,14 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       ::file::path pathProfile;
 
-      strParam = "-P \"" + strProfile + "\"";
+      ::string strParam(scopedstrParam);
 
-      if (strUrl.has_character())
+      strParam = "-P \"" + scopedstrProfile + "\"";
+
+      if (scopedstrUrl.has_character())
       {
 
-         strParam += " -___new-tab \"" + strUrl + "\"";
+         strParam += " -___new-tab \"" + scopedstrUrl + "\"";
 
       }
 
@@ -4037,9 +4040,9 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       strBrowserHelperDir = ::file::path(strBrowserDir) / "uninstall";
 
-      pathProfile = pathAppDataDir / "ca2/Firefox/Profile" / strProfile;
+      pathProfile = pathAppDataDir / "ca2/Firefox/Profile" / scopedstrProfile;
 
-      defer_create_firefox_profile(strBrowserPath, strProfile, pathProfile);
+      defer_create_firefox_profile(strBrowserPath, scopedstrProfile, pathProfile);
 
       bool bFound = false;
 
@@ -4054,10 +4057,10 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
       }
 
-      if (strBrowser.has_character())
+      if (scopedstrBrowser.has_character())
       {
 
-         file()->put_text_utf8(directory_system()->userconfig() / "browser.txt", strBrowser);
+         file()->put_text_utf8(directory_system()->userconfig() / "browser.txt", scopedstrBrowser);
 
          file()->put_text_utf8(directory_system()->userconfig() / "browser_path.txt", strBrowserPath);
 

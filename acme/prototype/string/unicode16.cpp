@@ -84,7 +84,7 @@ character_count wd16_to_ansi(char* psz, const ::wd16_character* pwsz, character_
    while (srclen != 0 && *pwsz != L'\0')
    {
 
-      n = wd16_to_ansi_char(scopedstr, &pwsz, &srclen);
+      n = wd16_to_ansi_char(psz, &pwsz, &srclen);
 
       if (n <= 0)
       {
@@ -106,7 +106,7 @@ character_count wd16_to_ansi(char* psz, const ::wd16_character* pwsz, character_
 }
 
 
-character_count ansi_to_wd16_len_len(const ::ansi_character * psz, character_count srclen)
+character_count ansi_to_wd16_len_len(const_char_pointer psz, character_count srclen)
 {
 
    character_count len;
@@ -116,7 +116,7 @@ character_count ansi_to_wd16_len_len(const ::ansi_character * psz, character_cou
    while (srclen > 0 && psz != nullptr && *psz != '\0')
    {
 
-      len = unicode_len(scopedstr);
+      len = unicode_len(psz);
 
       if (len > srclen)
       {
@@ -140,7 +140,7 @@ character_count ansi_to_wd16_len_len(const ::ansi_character * psz, character_cou
 }
 
 
-//character_count ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * psz, character_count srclen)
+//character_count ansi_to_wd16(::wd16_character* pwsz, const_char_pointer psz, character_count srclen)
 //{
 //
 //   character_count len;
@@ -148,7 +148,7 @@ character_count ansi_to_wd16_len_len(const ::ansi_character * psz, character_cou
 //   while (srclen != 0 && psz != nullptr && *psz != '\0')
 //   {
 //
-//      *pwsz++ = (::wd16_character) unicode_index_length(scopedstr, len);
+//      *pwsz++ = (::wd16_character) unicode_index_length(psz, len);
 //
 //      psz += len;
 //
@@ -156,7 +156,7 @@ character_count ansi_to_wd16_len_len(const ::ansi_character * psz, character_cou
 //
 //   }
 //
-//   if (scopedstr != nullptr)
+//   if (psz != nullptr)
 //   {
 //
 //      *pwsz = L'\0';
@@ -170,7 +170,7 @@ character_count ansi_to_wd16_len_len(const ::ansi_character * psz, character_cou
 
 
 
-//::wd16_character* ansi_to_wd16_dup(const_char_pointer  input, character_count input_size)
+//::wd16_character* ansi_to_wd16_dup(const_char_pointer input, character_count input_size)
 //{
 //
 //   character_count s = ansi_to_wd16_len_len(input, input_size);
@@ -304,7 +304,7 @@ extern "C"
       return strdup(unicode_to_utf8(str));
    }
 
-   wchar_t* c_wide_str(const_char_pointer  str)
+   wchar_t* c_wide_str(const_char_pointer str)
    {
 #if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__)
       wchar_t* p = ansi_to_wd32_dup(str);
@@ -325,7 +325,7 @@ extern "C"
 
 
 
-// CLASS_DECL_ACME const_char_pointer  yoshi_strcat(const ::ansi_character * psz1, const ::ansi_character * psz2, bool bFree2)
+// CLASS_DECL_ACME const_char_pointer yoshi_strcat(const_char_pointer psz1, const_char_pointer psz2, bool bFree2)
 // {
 
 //    character_count iLen1 = psz1 == nullptr ? 0 : strlen(scopedstr1);
@@ -336,12 +336,12 @@ extern "C"
 
 //    char* psz = (char*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iLen);
 
-//    strcpy(scopedstr, "");
+//    strcpy(psz, "");
 
 //    if (scopedstr1 != nullptr)
 //    {
 
-//       ansi_concatenate(scopedstr, psz1);
+//       ansi_concatenate(psz, psz1);
 
 //       ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free((void*)psz1);
 
@@ -350,7 +350,7 @@ extern "C"
 //    if (scopedstr2 != nullptr)
 //    {
 
-//       ansi_concatenate(scopedstr, psz2);
+//       ansi_concatenate(psz, psz2);
 
 //       if (bFree2)
 //       {
@@ -653,7 +653,7 @@ extern "C"
 //   }
 //   while (srclen > 0 && *pwsz != L'\0')
 //   {
-//      n = wd16_to_ansichar(scopedstr, *pwsz);
+//      n = wd16_to_ansichar(psz, *pwsz);
 //      if (n <= 0)
 //         break;
 //      c += n;
@@ -676,7 +676,7 @@ extern "C"
 //
 //   char* psz = str.get_buffer(iUtf8Len);
 //
-//   wd16_to_ansi(scopedstr, pwszUni32, iUni32Len);
+//   wd16_to_ansi(psz, pwszUni32, iUni32Len);
 //
 //   str.release_buffer(iUtf8Len);
 //
@@ -685,7 +685,7 @@ extern "C"
 //}
 
 
-character_count ansi_to_wd16_len(const ::ansi_character * psz, character_count srclen)
+character_count ansi_to_wd16_len(const_char_pointer psz, character_count srclen)
 {
 
    character_count utf16len = 0;
@@ -697,7 +697,7 @@ character_count ansi_to_wd16_len(const ::ansi_character * psz, character_count s
 
       int len;
 
-      int iChar = unicode_index_length(scopedstr, len);
+      int iChar = unicode_index_length(psz, len);
 
       if (iChar < 0)
       {
@@ -732,7 +732,7 @@ character_count ansi_to_wd16_len(const ::ansi_character * psz, character_count s
 }
 
 
-character_count ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * psz, character_count srclen)
+character_count ansi_to_wd16(::wd16_character* pwsz, const_char_pointer psz, character_count srclen)
 {
 
    character_count len = 0;
@@ -786,7 +786,7 @@ character_count ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * ps
 
 
 
-::wd16_character* ansi_to_wd16_dup(const_char_pointer  input, character_count input_size)
+::wd16_character* ansi_to_wd16_dup(const_char_pointer input, character_count input_size)
 {
 
    character_count s = ansi_to_wd16_len(input, input_size);
@@ -936,7 +936,7 @@ character_count utf16_to_utf16(::wd16_character * p, const ::wd16_character* cod
 //
 //   char * psz = str.get_buffer(iUtf8Len);
 //
-//   wd16_to_ansi(scopedstr, pwszUni32, iUni32Len);
+//   wd16_to_ansi(psz, pwszUni32, iUni32Len);
 //
 //   str.release_buffer(iUtf8Len);
 //
@@ -966,7 +966,7 @@ string wd16_to_ansi_str(const ::wd16_character * pwsz, character_count srclen)
 
    char * psz = str.get_buffer(iUtf8Len);
 
-   wd16_to_ansi(scopedstr, pwsz, srclen);
+   wd16_to_ansi(psz, pwsz, srclen);
 
    str.release_buffer(iUtf8Len);
 

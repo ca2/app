@@ -132,7 +132,7 @@ namespace browser
    }
 
 
-   bool render::initialize_render(string strId)
+   bool render::initialize_render(const ::scoped_string & scopedstrId)
    {
 
       m_pslideshow = __allocate ::gcom::slide_show(this);
@@ -1224,7 +1224,7 @@ namespace browser
    }
 
 
-   //::image::image_pointer & render::image23(string strImage)
+   //::image::image_pointer & render::image23(const ::scoped_string & scopedstrImage)
    //{
 
    //   synchronous_lock synchronouslock(this->synchronization());

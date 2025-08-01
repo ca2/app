@@ -110,8 +110,8 @@ namespace sqlite
       string query_error(const ::scoped_string & scopedstrPrefix = nullptr) override;
 
 
-      virtual void set_id_blob(string strKey, ::block block) override;
-      virtual bool get_id_blob(string strKey, ::get_memory getmemory) override;
+      virtual void set_id_blob(const ::scoped_string & scopedstrKey, ::block block) override;
+      virtual bool get_id_blob(const ::scoped_string & scopedstrKey, ::get_memory getmemory) override;
 
 
 

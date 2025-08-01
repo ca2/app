@@ -56,7 +56,7 @@ void dumpBacktrace(string & str, void ** buffer, int count)
 
       const void * addr = buffer[idx];
 
-      const_char_pointer  symbol = "";
+      const_char_pointer symbol = "";
 
       Dl_info info;
 

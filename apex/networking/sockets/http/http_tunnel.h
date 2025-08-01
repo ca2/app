@@ -51,7 +51,7 @@ namespace sockets
 
       using ::sockets::http_socket::open;
       virtual bool open(bool bConfigProxy = true);
-      virtual bool proxy_open(const string &host, ::networking::port_t port);
+      virtual bool proxy_open(const ::scoped_string & scopedstrHost, ::networking::port_t port);
 
 
       void OnConnect() override;
@@ -63,7 +63,7 @@ namespace sockets
       virtual void OnFirst() override;
       virtual void OnHeader(const ::atom & atom, const ::scoped_string & scopedstr) override;
       virtual void OnHeaderComplete() override;
-      virtual void OnData(const_char_pointer  psz, memsize size) override;
+      virtual void OnData(const_char_pointer psz, memsize size) override;
 
 
    };

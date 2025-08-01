@@ -92,7 +92,7 @@ namespace filemanager
 
       ::string strParameter(scopedstrParam);
 
-      const ::ansi_character * psz = strParameter;
+      const_char_pointer psz = strParameter;
 
       ::collection::count c = 0;
 
@@ -137,7 +137,7 @@ namespace filemanager
 
       ::string strParameter(scopedstrParam);
 
-      const ::ansi_character * psz = strParameter;
+      const_char_pointer psz = strParameter;
 
       ::collection::count c = 0;
 

@@ -54,12 +54,12 @@
 //
 //      acme::malloc < char * > pszRealName = abi::__cxa_demangle(scopedstrMangledName, 0, 0, &status);
 //
-//      const ::ansi_character * pszSymbolName;
+//      const_char_pointer pszSymbolName;
 //
 //      if (status == 0)
 //      {
 //
-//         strSymbolName = (const_char_pointer ) (char *) pszRealName;
+//         strSymbolName = (const_char_pointer )(char *) pszRealName;
 //
 //      }
 //      else
@@ -126,12 +126,12 @@ void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * 
 
         acme::malloc < char * > pszRealName = abi::__cxa_demangle(scopedstrMangledName, 0, 0, &status);
 
-        const ::ansi_character * pszSymbolName;
+        const_char_pointer pszSymbolName;
 
         if (status == 0)
         {
 
-            strSymbolName = (const_char_pointer ) (char *) pszRealName;
+            strSymbolName = (const_char_pointer )(char *) pszRealName;
 
         }
         else

@@ -108,7 +108,7 @@ public:
    virtual void initialize(::particle * pparticle) override;
    virtual void destroy() override;
 
-   inline const_char_pointer  topic_text();
+   inline const_char_pointer topic_text();
 
    context& __context(const ::payload& payload);
 
@@ -175,7 +175,7 @@ public:
    //virtual ::user::interaction * get_host_user_interaction();
 
 
-   virtual void dev_log(string str) const;
+   virtual void dev_log(const ::scoped_string & scopedstr) const;
 
    ::object& operator = (const ::payload& payload);
 
@@ -399,16 +399,16 @@ public:
 
    virtual void run() override;
 
-   virtual string lstr(const ::atom& atom, string strDefault = "");
+   virtual string lstr(const ::atom& atom, const ::scoped_string & scopedstrDefault = "");
 
-   virtual string __get_text(string str);
+   virtual string __get_text(const ::scoped_string & scopedstr);
 
    //template < typename PRED >
    //::image::image_pointer get_image(const ::payload & payloadFile, unsigned long long uTrait, PRED pred);
 
    //virtual ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
+   //virtual ::image::image_pointer load_matter_icon(string_array & straMatter, const ::scoped_string & scopedstrIcon);
    //virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
    //virtual ::image::image_pointer load_thumbnail(const ::file::path & path);
    //virtual ::image::image_pointer load_dib(const ::file::path & pathDib);
@@ -537,7 +537,7 @@ public:
       unsigned int nStackSize = 0,
       unsigned int dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
-   //::thread_pointer defer_fork(string strThread = "");
+   //::thread_pointer defer_fork(const ::scoped_string & scopedstrThread = "");
 
 //#ifdef __APPLE__
 //   virtual void ns_main_async(dispatch_block_t block);

@@ -247,7 +247,7 @@ namespace apex
 
 //   extern ::pointer<::apex::application>g_papp;
 
-   CLASS_DECL_APEX int SimpleDebugReport(int iReportType, const ::file::path & path,int iLine,const_char_pointer ,const_char_pointer  pszFormat, va_list list)
+   CLASS_DECL_APEX int SimpleDebugReport(int iReportType, const ::file::path & path,int iLine,const_char_pointer ,const_char_pointer pszFormat, va_list list)
    {
 #ifdef WIN32
 

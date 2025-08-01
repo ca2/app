@@ -147,7 +147,7 @@ public:
       ::file::path_object * m_ppath;
       payload_all_t                          m_payloadall;
       ::string                               m_str;
-      ::range < const ::ansi_character * >   m_ansirange;
+      ::range < const_char_pointer >m_ansirange;
       ::function_common_base *               m_pfunctioncommonbase;
 
    };
@@ -212,11 +212,11 @@ public:
    template < character_range CHARACTER_RANGE >
    payload(const CHARACTER_RANGE & range);
    //template < ::collection::count count >
-   //payload(const ::ansi_character(&sz)[count]) : payload((const ::ansi_character *)sz, count) {}
+   //payload(const ::ansi_character(&sz)[count]) : payload((const_char_pointer )sz, count) {}
    template < primitive_integral INTEGRAL >
-   payload(const ::ansi_character * begin, INTEGRAL count) : payload(begin, begin + count) {}
-   payload(const ::ansi_character * begin, const ::ansi_character * end);
-   payload(const ::ansi_character * psz);
+   payload(const_char_pointer begin, INTEGRAL count) : payload(begin, begin + count) {}
+   payload(const_char_pointer begin, const_char_pointer end);
+   payload(const_char_pointer psz);
    payload(const ::scoped_string & scopedstr);
    payload(const ::type_atom & typeatom);
    payload(const ::atom & atom);
@@ -1534,12 +1534,12 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //void consume_identifier((::ansi_range & range);
    void parse_network_payload(::ansi_range & range);
    //void parse_network_payload((::ansi_range & range);
-   const_char_pointer  parse_network_payload(const ::scoped_string & scopedstrNetworkPayload);
+   const_char_pointer parse_network_payload(const ::scoped_string & scopedstrNetworkPayload);
    ::enum_type find_network_payload_child(::ansi_range & range, const payload & payload);
    //::enum_type find_network_payload_child((::ansi_range & range, const payload & payload);
    ::enum_type find_network_payload_id(::ansi_range & range, const payload & payload);
    bool parse_network_payload_step(::ansi_range & range);
-   // bool parse_network_payload_step(const_char_pointer & pszJson, const ::ansi_character * pszEnd);
+   // bool parse_network_payload_step(const_char_pointer &pszJson, const_char_pointer pszEnd);
 
    ::string & get_network_payload(::string & str, bool bNewLine = true) const;
    ::string get_network_payload(bool bNewLine = true) const;
@@ -1589,11 +1589,11 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 //} // namespace str
 
 
-//CLASS_DECL_ACME void var_skip_number(const_char_pointer & psz);
+//CLASS_DECL_ACME void var_skip_number(const_char_pointer &psz);
 CLASS_DECL_ACME void payload_skip_number(::ansi_range & range);
-//CLASS_DECL_ACME void var_skip_identifier(const_char_pointer & psz);
+//CLASS_DECL_ACME void var_skip_identifier(const_char_pointer &psz);
 CLASS_DECL_ACME void payload_skip_identifier(::ansi_range & range);
-//CLASS_DECL_ACME void var_skip_network_payload(const_char_pointer & pszJson);
+//CLASS_DECL_ACME void var_skip_network_payload(const_char_pointer &pszJson);
 CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 
 

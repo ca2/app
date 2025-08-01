@@ -15,10 +15,10 @@ CLASS_DECL_ACME enum_trace_level trace_level_constraint(enum_trace_level elevel)
 }
 
 
-extern const_char_pointer  g_pszTraceLevelName[];
+extern const_char_pointer g_pszTraceLevelName[];
 
 
-CLASS_DECL_ACME const_char_pointer  trace_level_name(enum_trace_level elevel)
+CLASS_DECL_ACME const_char_pointer trace_level_name(enum_trace_level elevel)
 {
 
    return g_pszTraceLevelName[trace_level_constraint(elevel)];
@@ -157,10 +157,10 @@ CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessagePara
 }
 
 
-void output_debug_string_formatf(const_char_pointer  pszFormat, ...)
+void output_debug_string_formatf(const_char_pointer pszFormat, ...)
 {
 
-   ASSERT(is_string_ok(scopedstrFormat));
+   ASSERT(is_string_ok(pszFormat));
 
    va_list argList;
 
@@ -168,7 +168,7 @@ void output_debug_string_formatf(const_char_pointer  pszFormat, ...)
 
    ::string str;
 
-   str.formatf_arguments(scopedstrFormat, argList);
+   str.formatf_arguments(pszFormat, argList);
 
    va_end(argList);
 

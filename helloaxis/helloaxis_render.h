@@ -102,7 +102,7 @@ namespace helloaxis
 
       virtual void     run() override;
 
-      virtual bool initialize_render(string strId) override;
+      virtual bool initialize_render(const ::scoped_string & scopedstrId) override;
 
 
       //virtual void full_render();
@@ -119,7 +119,7 @@ namespace helloaxis
 
       virtual void defer_update_bilbo() override;
 
-      ::image::image_pointer & image23(string strDib) override;
+      ::image::image_pointer & image23(const ::scoped_string & scopedstrDib) override;
 
       virtual bool in_anime() override;
       virtual void helloaura_fast_render(const ::scoped_string & scopedstrHelloAxis) override;

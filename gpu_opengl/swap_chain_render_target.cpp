@@ -5,7 +5,7 @@
 //
 //#include <d3dcompiler.h>
 //#pragma comment(lib, "d3dcompiler.lib")
-//const_char_pointer  fullscreen_vertex_shader = R"shader(// fullscreen_vs.hlsl
+//const_char_pointer fullscreen_vertex_shader = R"shader(// fullscreen_vs.hlsl
 //      struct VSOut {
 //         float4 pos : SV_POSITION;
 //         float2 uv : TEXCOORD0;
@@ -30,7 +30,7 @@
 //      }
 //)shader";
 //
-//const_char_pointer  fullscreen_pixel_shader = R"shader(// fullscreen_ps.hlsl
+//const_char_pointer fullscreen_pixel_shader = R"shader(// fullscreen_ps.hlsl
 //Texture2D tex : register(t0);
 //SamplerState samp : register(s0);
 //

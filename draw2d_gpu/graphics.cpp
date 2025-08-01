@@ -188,14 +188,14 @@ void main() {
    //}
 
 
-   //bool graphics::CreateDC(const ::scoped_string& lpszDriverName, const ::scoped_string& lpszDeviceName, const_char_pointer  lpszOutput, const void* lpInitData)
+   //bool graphics::CreateDC(const ::scoped_string& lpszDriverName, const ::scoped_string& lpszDeviceName, const_char_pointer lpszOutput, const void* lpInitData)
    //{
    //   //return Attach(::CreateDC(lpszDriverName, lpszDeviceName, lpszOutput, (const DEVMODE*)lpInitData));
    //   return false;
    //}
 
 
-   //bool graphics::CreateIC(const ::scoped_string& lpszDriverName, const ::scoped_string& lpszDeviceName, const_char_pointer  lpszOutput, const void* lpInitData)
+   //bool graphics::CreateIC(const ::scoped_string& lpszDriverName, const ::scoped_string& lpszDeviceName, const_char_pointer lpszOutput, const void* lpInitData)
    //{
    //   //return Attach(::CreateIC(lpszDriverName, lpszDeviceName, lpszOutput, (const DEVMODE*) lpInitData));
    //   return false;
@@ -3012,7 +3012,7 @@ void main() {
    //}
 
 
-   //int graphics::Escape(int nEscape, int nInputSize, __in_bcount(nInputSize) const_char_pointer  lpszInputData, int nOutputSize, __out_bcount(nOutputSize) char* lpszOutputData)
+   //int graphics::Escape(int nEscape, int nInputSize, __in_bcount(nInputSize) const_char_pointer lpszInputData, int nOutputSize, __out_bcount(nOutputSize) char* lpszOutputData)
    //{
    //   // ASSERT(m_hdc != nullptr);
    //   //return ::ExtEscape(m_hdc, nEscape, nInputSize, lpszInputData, nOutputSize, lpszOutputData);
@@ -5462,7 +5462,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       //   iLen = ::str::get_utf8_char(scopedstr).length();
       //   iRange++;
       //   i += iLen;
-      //   unicode_increment(scopedstr);
+      //   unicode_increment(psz);
       //   if(scopedstr == nullptr)
       //      break;
       //   if(*psz == '\0')

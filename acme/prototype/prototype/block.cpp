@@ -31,7 +31,7 @@ block::block(const atom & atom) :
 //void block::to_string(string & str) const
 //{
 //
-//   str.assign((const ::ansi_character *)data(), size());
+//   str.assign((const_char_pointer )data(), size());
 //
 //}
 

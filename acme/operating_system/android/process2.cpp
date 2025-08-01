@@ -10,7 +10,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //   namespace android
 //   {
 //
-//void node::create_process(const_char_pointer  _cmd_line, int * pprocessId, int * piErrorCode)
+//void node::create_process(const_char_pointer _cmd_line, int * pprocessId, int * piErrorCode)
 //{
 //
 //   char *   exec_path_name = nullptr;
@@ -290,7 +290,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
 }
 
 //
-//CLASS_DECL_ACME ::file::path core_app_path(string strApp)
+//CLASS_DECL_ACME ::file::path core_app_path(const ::scoped_string & scopedstrApp)
 //{
 //
 //   throw todo();

@@ -21,7 +21,7 @@ class this_type
 public:
    
    
-   const_char_pointer  m_psz;
+   const_char_pointer m_psz;
    
    
    this_type(const ::scoped_string & scopedstr) :

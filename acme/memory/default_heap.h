@@ -16,12 +16,12 @@
 //   public:
 //
 //
-//      void * allocate_debug(memsize size, int nBlockUse, const_char_pointer  pszFile, int iLine) override;
+//      void * allocate_debug(memsize size, int nBlockUse, const_char_pointer pszFile, int iLine) override;
 //      void * reallocate_normal(void * p, memsize size) override;
 //      memsize allocation_size(void * p) override;
 //
 //
-//      void * reallocate_debug(void * p, memsize size, int nBlockUse, const_char_pointer  pszFile, int iLine) override;
+//      void * reallocate_debug(void * p, memsize size, int nBlockUse, const_char_pointer pszFile, int iLine) override;
 //
 //
 //      void free(void * p) override;

@@ -157,7 +157,7 @@ namespace nano2d
 	typedef struct compositeOperationState compositeOperationState;
 
 	struct glyphPosition {
-		const_char_pointer  str;	// Position of the glyph in the input string.
+		const_char_pointer str;	// Position of the glyph in the input string.
 		float x;			// The x-coordinate of the logical glyph position.
 		float minx, maxx;	// The bounds of the glyph shape.
 	};
@@ -691,7 +691,7 @@ namespace nano2d
 //		// While this may sound a little odd, the setup allows you to always render the
 //		// same way regardless of scaling. I.e. following works regardless of scaling:
 //		//
-//		//		const_char_pointer  txt = "Text me up.";
+//		//		const_char_pointer txt = "Text me up.";
 //		//		TextBounds(vg, x,y, txt, NULL, bounds);
 //		//		BeginPath(vg);
 //		//		RoundedRect(vg, bounds[0],bounds[1], bounds[2]-bounds[0], bounds[3]-bounds[1]);

@@ -75,7 +75,7 @@ int process_get_os_priority(int nCa2Priority);
 //}
 
 
-bool ns_set_thread_name(const_char_pointer  psz);
+bool ns_set_thread_name(const_char_pointer psz);
 
 
 char * ns_get_thread_name();

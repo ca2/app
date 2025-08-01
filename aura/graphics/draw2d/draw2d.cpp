@@ -483,7 +483,7 @@ namespace draw2d
    void draw2d::embossed_text_out(
       ::draw2d::graphics_pointer & pgraphics,
       const ::int_rectangle & rectangle,
-      string strText,
+      const ::scoped_string & scopedstrText,
       ::image::fastblur & blur,
       ::image::image_pointer & imageBlur,
       ::write_text::font * pfont,
@@ -498,7 +498,7 @@ namespace draw2d
       const ::color_filter & colorfilter)
    {
 
-      if (strText.is_empty())
+      if (scopedstrText.is_empty())
       {
 
          throw ::exception(error_null_pointer);
@@ -509,7 +509,7 @@ namespace draw2d
       {
 
             pgraphicsParam->set(pfont);
-            pgraphicsParam->_DrawText(strText, rectangle, ealign, edrawtext);
+            pgraphicsParam->_DrawText(scopedstrText, rectangle, ealign, edrawtext);
 
       };
 
@@ -534,7 +534,7 @@ namespace draw2d
 
       pgraphics->set(pbrushText);
       pgraphics->set(pfont);
-      pgraphics->_DrawText(strText, rectangle, ealign, edrawtext);
+      pgraphics->_DrawText(scopedstrText, rectangle, ealign, edrawtext);
 
       //return true;
 

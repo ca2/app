@@ -72,7 +72,7 @@ namespace calculator
          token->m_etype = token::type_end;
          return token;
       }
-      const_char_pointer  nextinput = unicode_next(input);
+      const_char_pointer nextinput = unicode_next(input);
 
       if((*input == 'j' || *input == 'i') &&
          unicode_is_digit(nextinput))

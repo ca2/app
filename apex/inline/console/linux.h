@@ -158,10 +158,10 @@
 //
 
 
-//static const_char_pointer  s_pszBinRelocInitGetSymbol = "br_init_get_symbol";
+//static const_char_pointer s_pszBinRelocInitGetSymbol = "br_init_get_symbol";
 //
 //
-//const_char_pointer  br_init_get_symbol()
+//const_char_pointer br_init_get_symbol()
 //{
 //
 //   return s_pszBinRelocInitGetSymbol;

@@ -146,7 +146,7 @@ namespace sockets
    }
 
 
-   void http_base_socket::OnData(const_char_pointer  buf,memsize sz)
+   void http_base_socket::OnData(const_char_pointer buf,memsize sz)
    {
 
       m_request.write( buf, sz );
@@ -297,11 +297,11 @@ namespace sockets
 
 
    //string http_base_socket::set-cookie(
-   //const_char_pointer  name,
+   //const_char_pointer name,
    //::payload payload,
    //int iExpire,
    //const ::file::path & path,
-   //const_char_pointer  domain,
+   //const_char_pointer domain,
    //bool bSecure)
    //{
    //   m_request.cookies().set-cookie(

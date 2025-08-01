@@ -95,19 +95,19 @@ namespace geo
 
       ::pointer< ::mutex > get_openweather_city_mutex() { return m_pmutexOpenweatherCity; }
 
-      virtual openweather_city* openweather_find_city(string strQuery);
-      virtual ::collection::index openweather_find_city2(string strQuery, string& strCit, long long& iId, double& dLat, double& dLon);
-      virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string& strCit, long long& iId, double& dLat, double& dLon, bool bPrefix);
+      virtual openweather_city* openweather_find_city(const ::scoped_string & scopedstrQuery);
+      virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string& strCit, long long& iId, double& dLat, double& dLon);
+      virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string& strCit, long long& iId, double& dLat, double& dLon, bool bPrefix);
 
 
 
       virtual bool locality_sunset(openweather_city* pcity, int& iRise, int& iSet);
       virtual string initial_locality_time_zone(openweather_city* pcity, double& dZone);
-      virtual bool locality_sunset(string strCountry, string strLocality, int& iRise, int& iSet);
-      virtual string initial_locality_time_zone(string strCountry, string strLocality, double& dZone);
-      virtual string initial_country_time_zone(string strCountry);
+      virtual bool locality_sunset(const ::scoped_string & scopedstrCountry, const ::scoped_string & scopedstrLocality, int& iRise, int& iSet);
+      virtual string initial_locality_time_zone(const ::scoped_string & scopedstrCountry, const ::scoped_string & scopedstrLocality, double& dZone);
+      virtual string initial_country_time_zone(const ::scoped_string & scopedstrCountry);
       virtual string utc_offset_string(double dUTCOffset);
-      virtual double time_zone(string str, string strCountryCode);
+      virtual double time_zone(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrCountryCode);
 
 
       virtual ::datetime::time_zone get_time_zone(openweather_city* pcity);

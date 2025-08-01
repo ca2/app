@@ -12,7 +12,7 @@
 
 
 CLASS_DECL_APEX ::file::path get_resource_path();
-CLASS_DECL_APEX ::file::path get_resource_path(string strRelative);
+CLASS_DECL_APEX ::file::path get_resource_path(const ::scoped_string & scopedstrRelative);
 
 
 #endif

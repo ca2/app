@@ -186,7 +186,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
    ::collection::index i;
    for (i = 0; i < c->m_ticketkeya.get_size(); ++i) {
       auto& key = c->m_ticketkeya[i];
-      if (strncmp((const_char_pointer  )key.key_name, (const_char_pointer  )key_name, 16))
+      if (strncmp((const_char_pointer )key.key_name, (const_char_pointer )key_name, 16))
       {
          break;
       }
@@ -757,7 +757,7 @@ m_ibuf(isize)
    }
 
 
-   bool tcp_socket::open(const string& host, ::networking::port_t port)
+   bool tcp_socket::open(const ::scoped_string & scopedstrHost, ::networking::port_t port)
    {
 
       auto pnetworking = system()->networking();
@@ -788,7 +788,7 @@ m_ibuf(isize)
 
             eaddresstype = ::networking::e_address_type_ipv6;
 
-            paddress = pnetworking->create_ip6_address(host, port);
+            paddress = pnetworking->create_ip6_address(scopedstrHost, port);
 
             //if(!paddressdepartment->convert(a,host))
             if (!paddress)
@@ -829,7 +829,7 @@ m_ibuf(isize)
 
             }
 
-            paddress = pnetworking->create_address(host, eaddresstype, port);
+            paddress = pnetworking->create_address(scopedstrHost, eaddresstype, port);
 
             //paddress = pnetworking->create_address(host, port);
 
@@ -920,7 +920,7 @@ m_ibuf(isize)
    void tcp_socket::set_host(const ::scoped_string & scopedstrHost)
    {
 
-      m_strHost = strHost;
+      m_strHost = scopedstrHost;
 
    }
 
@@ -936,7 +936,7 @@ m_ibuf(isize)
    void tcp_socket::set_tls_hostname(const ::scoped_string & scopedstrTlsHostname)
    {
 
-      m_strTlsHostName = strTlsHostname;
+      m_strTlsHostName = scopedstrTlsHostname;
 
    }
 
@@ -944,7 +944,7 @@ m_ibuf(isize)
    void tcp_socket::set_connect_host(const ::scoped_string & scopedstrConnectHost)
    {
 
-      m_strConnectHost = strConnectHost;
+      m_strConnectHost = scopedstrConnectHost;
 
    }
 
@@ -976,7 +976,7 @@ m_ibuf(isize)
    void tcp_socket::set_url(const ::scoped_string & scopedstrUrl)
    {
 
-      m_strUrl = strUrl;
+      m_strUrl = scopedstrUrl;
 
    }
 
@@ -1486,7 +1486,7 @@ m_ibuf(isize)
 
       ::iptr n = 0;
 
-      const_char_pointer  psz = (const_char_pointer  )buf;
+      const_char_pointer psz = (const_char_pointer )buf;
 
 
 #ifdef HAVE_OPENSSL
@@ -1538,7 +1538,7 @@ m_ibuf(isize)
 
                SetLost();
 
-               const_char_pointer  errbuf = ERR_error_string(errnr, nullptr);
+               const_char_pointer errbuf = ERR_error_string(errnr, nullptr);
 
                fatal() << "OnWrite / SSL_write " << errnr << " " << errbuf;
 
@@ -1556,7 +1556,7 @@ m_ibuf(isize)
             SetFlushBeforeClose(false);
             SetLost();
             int errnr = SSL_get_error(m_psslcontext->m_ssl, (int)n);
-            const_char_pointer  errbuf = ERR_error_string(errnr, nullptr);
+            const_char_pointer errbuf = ERR_error_string(errnr, nullptr);
             information() << "SSL_write() returns 0: " << errnr << ", " << errbuf;
             //throw ::exception(io_exception(errbuf));
          }
@@ -1570,16 +1570,16 @@ m_ibuf(isize)
 //         int iSocket = GetSocketId();
 //         n = (int)(::send(iSocket, buf, len, SO_NOSIGPIPE));
 //#elif defined(SOLARIS)
-//         n = ::send(GetSocketId(), (const_char_pointer  )buf, (int)len, 0);
+//         n = ::send(GetSocketId(), (const_char_pointer )buf, (int)len, 0);
 //#else
 
 #if defined(MSG_NOSIGNAL)
 
-         n = ::send(GetSocketId(), (const_char_pointer  )buf, (int)len, MSG_NOSIGNAL);
+         n = ::send(GetSocketId(), (const_char_pointer )buf, (int)len, MSG_NOSIGNAL);
          
 #else
 
-         n = ::send(GetSocketId(), (const_char_pointer  )buf, (int)len, 0);
+         n = ::send(GetSocketId(), (const_char_pointer )buf, (int)len, 0);
          
 #endif
 
@@ -1651,7 +1651,7 @@ m_ibuf(isize)
    void tcp_socket::buffer(const void* pdata, int len)
    {
 
-      const_char_pointer  buf = (const_char_pointer  )pdata;
+      const_char_pointer buf = (const_char_pointer )pdata;
 
       memsize ptr = 0;
 
@@ -1664,7 +1664,7 @@ m_ibuf(isize)
 
          if (m_obuf_top && (space = m_obuf_top->Space()) > 0)
          {
-            const_char_pointer  pbuf = buf + ptr;
+            const_char_pointer pbuf = buf + ptr;
             int sz = (int)(len - ptr);
             if (space >= sz)
             {
@@ -1816,7 +1816,7 @@ m_ibuf(isize)
    void tcp_socket::OnLine(const ::scoped_string & scopedstr)
    {
 
-      m_ptcpsocketInterface->OnLine(str);
+      m_ptcpsocketInterface->OnLine(scopedstr);
 
    }
 
@@ -2025,7 +2025,7 @@ m_ibuf(isize)
             if (m_strTlsHostName.has_character())
             {
 
-               SSL_set_tlsext_host_name(m_psslcontext->m_ssl, (char*)(const_char_pointer  )m_strTlsHostName);
+               SSL_set_tlsext_host_name(m_psslcontext->m_ssl, (char*)(const_char_pointer )m_strTlsHostName);
 
             }
 
@@ -2261,7 +2261,7 @@ m_ibuf(isize)
       {
 
          long error = ERR_get_error();
-         const_char_pointer  error_str = ERR_error_string(error, nullptr);
+         const_char_pointer error_str = ERR_error_string(error, nullptr);
          warning() << "could not SSL_connect: " << error_str;
 
          int iErrorSsl = SSL_get_error(m_psslcontext->m_ssl, r);
@@ -2472,7 +2472,7 @@ m_ibuf(isize)
    void tcp_socket::set_init_ssl_client_context(const ::scoped_string & scopedstrInitSSLClientContext)
    {
 
-      m_strInitSSLClientContext = strInitSSLClientContext;
+      m_strInitSSLClientContext = scopedstrInitSSLClientContext;
 
    }
 
@@ -2589,7 +2589,7 @@ m_ibuf(isize)
 
 
 #define TLS_ECDHE_CURVES	"X25519,P-256,P-384"
-         //const_char_pointer  curves = NID_secp384r1;
+         //const_char_pointer curves = NID_secp384r1;
 
          //free(config->ecdhecurves);
          //config->ecdhecurves = NULL;
@@ -2684,11 +2684,11 @@ m_ibuf(isize)
       if (context.length())
       {
          //iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
-         //                                                   (const uchar *) (const_char_pointer  ) context,
+         //                                                   (const uchar *) (const_char_pointer )context,
          //                                                   minimum((unsigned int) context.length(), uSessionIdMaxLen));
 
          SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
-            (const uchar*)(const_char_pointer  )strContextMd5,
+            (const uchar*)(const_char_pointer )strContextMd5,
             minimum((unsigned int)strContextMd5.length(), uSessionIdMaxLen));
       }
       else
@@ -3400,11 +3400,11 @@ m_ibuf(isize)
 
 #if (defined(LINUX)) && (OPENSSL_API_COMPAT < 0x10100000L)
 
-                     string strDnsName((const_char_pointer  )ASN1_STRING_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
+                     string strDnsName((const_char_pointer )ASN1_STRING_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
 
 #else
 
-                     string strDnsName((const_char_pointer  )ASN1_STRING_get0_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
+                     string strDnsName((const_char_pointer )ASN1_STRING_get0_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
 
 #endif
 

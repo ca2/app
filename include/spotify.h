@@ -641,11 +641,11 @@ typedef struct sp_session_callbacks {
  */
 typedef struct sp_session_config {
   int api_version;                       ///< The version of the Spotify API your application is compiled with. Set to #SPOTIFY_API_VERSION
-  const_char_pointer  cache_location;            /**< The location where Spotify will write cache files.
+  const_char_pointer cache_location;            /**< The location where Spotify will write cache files.
             *   This cache include tracks, cached browse results and coverarts.
                                           *   Set to empty string ("") to disable cache
             */
-  const_char_pointer  settings_location;         /**< The location where Spotify will write setting files and per-user
+  const_char_pointer settings_location;         /**< The location where Spotify will write setting files and per-user
             *   cache items. This includes playlists, track metadata, etc.
             *   'settings_location' may be the same path as 'cache_location'.
             *   'settings_location' folder will not be created (unlike 'cache_location'),
@@ -653,7 +653,7 @@ typedef struct sp_session_config {
             */
   const void *application_key;           ///< Your application key
   size_t application_key_size;           ///< The int_size of the application key in bytes
-  const_char_pointer  user_agent;                /**< "User-Agent" for your application - maximum 255 characters long
+  const_char_pointer user_agent;                /**< "User-Agent" for your application - maximum 255 characters long
                  The User-Agent should be a relevant, customer facing identification of your application
                  */
 
@@ -683,27 +683,27 @@ typedef struct sp_session_config {
    * i.e. no two units must supply the same Device ID. The Device ID must not change between sessions or power cycles.
    * Good examples is the device's MAC address or unique serial number.
    */
-  const_char_pointer  device_id;
+  const_char_pointer device_id;
 
   /**
    * Url to the proxy server that should be used.
    * The format is protocol://<host>:port (where protocal is http/https/socks4/socks5)
    */
-  const_char_pointer  proxy;
+  const_char_pointer proxy;
   /**
    * Username to authenticate with proxy server
    */
-  const_char_pointer  proxy_username;
+  const_char_pointer proxy_username;
   /**
    * Password to authenticate with proxy server
    */
-  const_char_pointer  proxy_password;
+  const_char_pointer proxy_password;
 
 
   /**
    * Path to API trace file
    */
-  const_char_pointer  tracefile;
+  const_char_pointer tracefile;
 
 } sp_session_config;
 

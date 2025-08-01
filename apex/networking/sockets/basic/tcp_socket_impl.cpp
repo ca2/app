@@ -278,7 +278,7 @@
 //   }
 //
 //
-//   bool tcp_socket_impl::open(const string &host,::networking::port_t port)
+//   bool tcp_socket_impl::open(const ::scoped_string & scopedstrHost,::networking::port_t port)
 //   {
 //
 //      SetCloseAndDelete(false);
@@ -958,7 +958,7 @@
 //   void tcp_socket_impl::buffer(const void * pdata,int len)
 //   {
 //
-//      const_char_pointer  buf = (const_char_pointer )pdata;
+//      const_char_pointer buf = (const_char_pointer )pdata;
 //
 //      memsize ptr = 0;
 //
@@ -1089,7 +1089,7 @@
 //   }
 //
 //
-//   void tcp_socket_impl::OnLine(const string &)
+//   void tcp_socket_impl::OnLine(const ::scoped_string & scopedstrLine)
 //   {
 //   }
 //
@@ -1480,7 +1480,7 @@
 //      //   {
 //
 //      //      long error = ERR_get_error();
-//      //      const_char_pointer  error_str = ERR_error_string(error, nullptr);
+//      //      const_char_pointer error_str = ERR_error_string(error, nullptr);
 //      //      warning() <<"could not SSL_connect: " << error_str;
 //
 //      //      int iErrorSsl = SSL_get_error(m_psslcontext->m_ssl,r);

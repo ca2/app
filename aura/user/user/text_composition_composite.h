@@ -37,15 +37,15 @@ namespace user
 
 		//virtual void on_text_composition_done();
 
-		//virtual void on_text_composition(string strMessage);
+		//virtual void on_text_composition(const ::scoped_string & scopedstrMessage);
 
-		//virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context);
+		//virtual void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context);
 
 		//virtual bool is_text_composition_active() const;
 
 		void on_text_composition_done() override;
 
-		void on_text_composition(string strMessage) override;
+		void on_text_composition(const ::scoped_string & scopedstrMessage) override;
 
 		void insert_text(const ::scoped_string & scopedstring, bool bForceNewStep, const ::action_context & context) override;
 

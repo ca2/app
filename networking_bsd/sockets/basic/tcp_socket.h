@@ -45,13 +45,13 @@ namespace sockets_bsd
 
    //struct OUTPUT {
    //   OUTPUT() : _b(0), _t(0), _q(0) {}
-   //   OUTPUT(const_char_pointer  buf, memsize len) : _b(0), _t(len), _q(len) {
+   //   OUTPUT(const_char_pointer buf, memsize len) : _b(0), _t(len), _q(len) {
    //      ::memory_copy(_buf, buf, len);
    //   }
    //   memsize Space() {
    //      return TCP_OUTPUT_CAPACITY - _t;
    //   }
-   //   void add(const_char_pointer  buf, memsize len) {
+   //   void add(const_char_pointer buf, memsize len) {
    //      ::memory_copy(_buf + _t, buf, len);
    //      _t += len;
    //      _q += len;
@@ -61,7 +61,7 @@ namespace sockets_bsd
    //      _q -= len;
    //      return _q;
    //   }
-   //   const_char_pointer  Buf() {
+   //   const_char_pointer Buf() {
    //      return _buf + _b;
    //   }
    //   memsize Len() {
@@ -151,7 +151,7 @@ namespace sockets_bsd
       /** open connection.
       \lparam host Hostname
       \lparam port Port number */
-      bool open(const string &host,::networking::port_t port) override;
+      bool open(const ::scoped_string & scopedstrHost,::networking::port_t port) override;
 
 
       void set_host(const ::scoped_string & scopedstrHost) override;

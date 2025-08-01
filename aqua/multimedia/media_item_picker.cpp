@@ -42,7 +42,7 @@ namespace aqua
    }
 
    
-   void media_item_picker::pick_media(const_char_pointer  pszUTType)
+   void media_item_picker::pick_media(const_char_pointer pszUTType)
    {
 
 

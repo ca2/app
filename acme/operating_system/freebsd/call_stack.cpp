@@ -38,7 +38,7 @@ string get_callstack(::particle * pparticle,  const ::scoped_string & scopedstrF
 //   }
 
 
-//   const_char_pointer  callstack::get_dup(const ::scoped_string & scopedstrFormat, int iSkip, int iCount)
+//   const_char_pointer callstack::get_dup(const ::scoped_string & scopedstrFormat, int iSkip, int iCount)
 //   {
 //
 //      return nullptr;
@@ -141,7 +141,7 @@ void freebsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolNa
 //         if (status == 0)
 //         {
 //
-//            strSymbolName = (const_char_pointer ) (char *) pszRealName;
+//            strSymbolName = (const_char_pointer )(char *) pszRealName;
 //
 //         }
 //         else

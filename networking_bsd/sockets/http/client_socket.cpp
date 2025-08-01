@@ -271,7 +271,7 @@ namespace sockets
    {
 
 #if HEAVY_HTTP_LOG
-      informationf("OnHeader %s: %s", (const_char_pointer  )key, (const_char_pointer  )value);
+      informationf("OnHeader %s: %s", (const_char_pointer )key, (const_char_pointer )value);
 #endif
 
       m_content += as_string(key) + ": " + value + "\r\n";
@@ -404,7 +404,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnData(const_char_pointer  buf,memsize len)
+   void http_client_socket::OnData(const_char_pointer buf,memsize len)
    {
 
       if(m_response.attr("http_status_code").as_int() >= 300 && m_response.attr("http_status_code").as_int() <= 399)
@@ -453,7 +453,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnDataArrived(const_char_pointer  buf, memsize len)
+   void http_client_socket::OnDataArrived(const_char_pointer buf, memsize len)
    {
 
       __UNREFERENCED_PARAMETER(buf);
@@ -592,7 +592,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::request_url(string strUrlParam)
+   void http_client_socket::request_url(const ::scoped_string & scopedstrUrlParam)
    {
       string strRequestUri;
 

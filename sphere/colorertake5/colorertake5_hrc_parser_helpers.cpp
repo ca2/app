@@ -104,7 +104,7 @@ namespace colorertake5
    };
 
 
-   const_char_pointer  schemeNodeTypeNames[] =  { "EMPTY", "RE", "SCHEME", "KEYWORDS", "INHERIT" };
+   const_char_pointer schemeNodeTypeNames[] =  { "EMPTY", "RE", "SCHEME", "KEYWORDS", "INHERIT" };
 
 
    SchemeNode::SchemeNode()

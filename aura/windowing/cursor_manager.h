@@ -37,9 +37,9 @@ namespace windowing
       void load_hotspot(const ::file::path & pathFolder);
 
       string cursor_name(enum_cursor ecursor);
-      enum_cursor cursor_enum(string strCursor);
+      enum_cursor cursor_enum(const ::scoped_string & scopedstrCursor);
 
-      void parse_hotspot_text(string strText);
+      void parse_hotspot_text(const ::scoped_string & scopedstrText);
       ::pointer<cursor>set_system_default_cursor(enum_cursor ecursor);
 
       ::pointer<cursor>get_cursor(enum_cursor ecursor);
@@ -87,9 +87,9 @@ namespace windowing
 //      void load_hotspot(const ::file::path & pathFolder);
 //
 //      string cursor_name(enum_cursor ecursor);
-//      enum_cursor cursor_enum(string strCursor);
+//      enum_cursor cursor_enum(const ::scoped_string & scopedstrCursor);
 //
-//      void parse_hotspot_text(string strText);
+//      void parse_hotspot_text(const ::scoped_string & scopedstrText);
 //      ::pointer<cursor>set_system_default_cursor(enum_cursor ecursor);
 //
 //      ::pointer<cursor>get_cursor(enum_cursor ecursor);

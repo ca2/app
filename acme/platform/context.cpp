@@ -583,7 +583,7 @@ namespace platform
 
             auto psz = ansi_rchr(ptextdata->m_atom.m_str.c_str() + 7, '/');
 
-            if (scopedstr)
+            if (psz)
             {
 
                ptextdata->m_str = psz + 1;
@@ -951,8 +951,10 @@ namespace platform
    }
 
 
-   ::file::path context::get_matter_path(string strMatter)
+   ::file::path context::get_matter_path(const ::scoped_string & scopedstrMatter)
    {
+
+      ::string strMatter(scopedstrMatter);
 
       if (strMatter.case_insensitive_begins_eat("appmatter:/"))
       {
@@ -961,12 +963,12 @@ namespace platform
 
       }
 
-      return strMatter;
+      return scopedstrMatter;
 
    }
 
 
-   ::file::path context::side_get_matter_path(string strMatter)
+   ::file::path context::side_get_matter_path(const ::scoped_string & scopedstrMatter)
    {
 
       auto psystem = system();
@@ -981,7 +983,7 @@ namespace platform
 
 #endif
 
-      return pathResource / strMatter;
+      return pathResource / scopedstrMatter;
 
    }
 
@@ -1202,10 +1204,10 @@ namespace platform
    }
 
 
-   string context::matter_locator(string strApp)
+   string context::matter_locator(const ::scoped_string & scopedstrApp)
    {
 
-      string strMatterLocator = strApp;
+      string strMatterLocator = scopedstrApp;
 
       if (!strMatterLocator.case_insensitive_contains("/_matter/"))
       {
@@ -1236,12 +1238,12 @@ namespace platform
    }
 
 
-   void context::add_matter_locator(string strApp)
+   void context::add_matter_locator(const ::scoped_string & scopedstrApp)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      string strMatterLocator = matter_locator(strApp);
+      string strMatterLocator = matter_locator(scopedstrApp);
 
       m_straMatterLocatorPriority.add(strMatterLocator);
 

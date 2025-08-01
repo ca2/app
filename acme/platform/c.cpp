@@ -7,7 +7,7 @@ namespace c
 {
 
 
-//   CLASS_DECL_ACME char * strdup(const_char_pointer  psz)
+//   CLASS_DECL_ACME char * strdup(const_char_pointer psz)
 //   {
 //
 //      return ::strdup(scopedstr);
@@ -15,12 +15,12 @@ namespace c
 //   }
 
 
-   CLASS_DECL_ACME char* strdup2(const_char_pointer  psz1, const_char_pointer  psz2)
+   CLASS_DECL_ACME char* strdup2(const_char_pointer psz1, const_char_pointer psz2)
    {
 
-      auto len1 = string_safe_length(scopedstr1);
+      auto len1 = string_safe_length(psz1);
 
-      auto len2 = string_safe_length(scopedstr2);
+      auto len2 = string_safe_length(psz2);
 
       auto len = len1 + len2;
 
@@ -29,14 +29,14 @@ namespace c
       if (len1 > 0)
       {
 
-         memcpy(scopedstr, psz1, len1);
+         memcpy(psz, psz1, len1);
 
       }
 
       if (len2 > 0)
       {
 
-         memcpy(scopedstr + len1, psz2, len2);
+         memcpy(psz + len1, psz2, len2);
 
       }
 

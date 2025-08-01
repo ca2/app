@@ -1920,11 +1920,11 @@ namespace user
 
                      _001GetLayoutText(strText);
 
-                     const_char_pointer  psz = strText.c_str();
+                     const_char_pointer psz = strText.c_str();
 
-                     const_char_pointer  end = &psz[m_iSelEnd];
+                     const_char_pointer end = &psz[m_iSelEnd];
 
-                     const_char_pointer  inc = unicode_next(end);
+                     const_char_pointer inc = unicode_next(end);
 
                      m_iSelEnd += inc - end;
 
@@ -1982,11 +1982,11 @@ namespace user
 
                   _001GetLayoutText(strText);
 
-                  const ::ansi_character * psz = strText.c_str();
+                  const_char_pointer psz = strText.c_str();
 
-                  const_char_pointer  end = &psz[m_iSelEnd];
+                  const_char_pointer end = &psz[m_iSelEnd];
 
-                  const_char_pointer  dec = unicode_prior(end, psz);
+                  const_char_pointer dec = unicode_prior(end, psz);
 
                   m_iSelEnd -= end - dec;
 
@@ -2331,7 +2331,7 @@ namespace user
       }
 
 
-      void edit_impl::on_text_composition(string str)
+      void edit_impl::on_text_composition(const ::scoped_string & scopedstr)
       {
 
          if (!m_bComposing)
@@ -2347,7 +2347,7 @@ namespace user
 
          }
 
-         _001InsertText(str);
+         _001InsertText(scopedstr);
 
       }
 

@@ -31,7 +31,7 @@ namespace motif
 
 
       ::atom do_modal(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails) override;
-      //void do_modal(const_char_pointer  pszMsg, bool bError) override;
+      //void do_modal(const_char_pointer pszMsg, bool bError) override;
 
 
       static void s_map_dialog(Widget dialog, XtPointer client_data, XtPointer call_data);

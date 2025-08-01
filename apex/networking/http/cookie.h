@@ -88,15 +88,15 @@ namespace http
       virtual ~cookies();
 
 
-      ::collection::index find_cookie(const_char_pointer  name);
-      ::collection::index lowfind_cookie(const_char_pointer  name);
-      ::http::cookie & cookie(const_char_pointer  name);
-      ::http::cookie & lowcookie(const_char_pointer  name);
+      ::collection::index find_cookie(const_char_pointer name);
+      ::collection::index lowfind_cookie(const_char_pointer name);
+      ::http::cookie & cookie(const_char_pointer name);
+      ::http::cookie & lowcookie(const_char_pointer name);
       using  pointer_array < http::cookie >::add;
       void add(const ::scoped_string & scopedstr);
       void parse_header(const ::scoped_string & scopedstr);
       string get_cookie_header();
-      character_count get_length(const_char_pointer  name);
+      character_count get_length(const_char_pointer name);
       bool set_cookie(
          const ::scoped_string & scopedstrKey,
          const ::payload & payload,
@@ -108,7 +108,7 @@ namespace http
       static string expire(const class time & time = 5_minute);
 
 
-      http::cookie & operator [](const_char_pointer  name);
+      http::cookie & operator [](const_char_pointer name);
 
 
       cookies & operator = (const cookies & cookies);

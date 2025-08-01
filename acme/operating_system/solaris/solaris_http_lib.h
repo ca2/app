@@ -71,7 +71,7 @@ public:
    tiny_http();
    ~tiny_http();
 
-   http_retcode t_put(const_char_pointer  data, int length, int overwrite, void (*callback)(void *, int, dword_ptr) = nullptr, void * callback_param = nullptr);
+   http_retcode t_put(const_char_pointer data, int length, int overwrite, void (*callback)(void *, int, dword_ptr) = nullptr, void * callback_param = nullptr);
    http_retcode t_get(char ** pdata, int * plength, void (*callback)(void *, int, dword_ptr) = nullptr, void * callback_param = nullptr);
    http_retcode t_delete() ;
    http_retcode t_head(int *plength);

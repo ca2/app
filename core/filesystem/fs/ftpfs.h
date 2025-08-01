@@ -73,7 +73,7 @@ public:
    ::file::e_type file_type(const ::file::path & path) override;
    virtual ::file::listing & root_ones(::file::listing & listing) override;
 
-   virtual void defer_initialize(::ftp::client_socket ** client, string strPath);
+   virtual void defer_initialize(::ftp::client_socket ** client, const ::scoped_string & scopedstrPath);
 
    //virtual string file_name(const ::scoped_string & scopedstrPath);
    //virtual string dir_path(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2);

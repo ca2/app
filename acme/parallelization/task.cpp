@@ -237,7 +237,7 @@ string task::task_get_name() const
 }
 
 
-const_char_pointer  task::get_task_tag()
+const_char_pointer task::get_task_tag()
 {
 
    return m_strTaskTag.c_str();

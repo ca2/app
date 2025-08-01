@@ -167,7 +167,7 @@ namespace acme
       }
 
 
-      void windowing::set_clipboard_text(const_char_pointer  psz)
+      void windowing::set_clipboard_text(const_char_pointer psz)
       {
 
 
@@ -771,7 +771,7 @@ namespace acme
 //      }
 //
 //
-//      bool windowing::set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::acme::windowing::display * pwindowingdisplay)
+//      bool windowing::set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath, ::acme::windowing::display * pwindowingdisplay)
 //      {
 //
 //         throw interface_only();

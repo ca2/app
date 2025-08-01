@@ -267,7 +267,7 @@ namespace browser
 
       virtual void calc_processed_browser(string & str);
 
-      virtual void set_browser(string strText);
+      virtual void set_browser(const ::scoped_string & scopedstrText);
 
       virtual void defer_check_on_draw_layout();
       virtual void on_draw_image_layer(::draw2d::graphics_pointer & pgraphics);

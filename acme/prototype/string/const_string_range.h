@@ -2661,7 +2661,7 @@ public:
 };
 
 
-constexpr string_literal < const ::ansi_character * > operator ""_ansi(const ::ansi_character * s, std::size_t n)
+constexpr string_literal < const_char_pointer >operator ""_ansi(const_char_pointer s, std::size_t n)
 {
 
    return { s, n };

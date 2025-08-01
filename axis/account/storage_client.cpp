@@ -46,7 +46,7 @@ namespace account
    }
 
 
-   bool storage_client::get(string strKey, string & strValue)
+   bool storage_client::get(const ::scoped_string & scopedstrKey, string & strValue)
    {
       
       if(m_strToken.is_empty())
@@ -60,12 +60,12 @@ namespace account
          
       }
 
-      return m_pstorage->get(strKey, m_strToken, strValue);
+      return m_pstorage->get(scopedstrKey, m_strToken, strValue);
       
    }
    
    
-   void storage_client::set(string strKey, string strValue)
+   void storage_client::set(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrValue)
    {
       
       if(m_strToken.is_empty())
@@ -79,7 +79,7 @@ namespace account
          
       }
       
-      m_pstorage->set(strKey, m_strToken, strValue);
+      m_pstorage->set(scopedstrKey, m_strToken, scopedstrValue);
       
    }
 

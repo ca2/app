@@ -1836,7 +1836,7 @@ namespace filemanager
    }
 
 
-   bool file_list::add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName)
+   bool file_list::add_fs_item(::file::path pathUser, ::file::path pathFinal, const ::scoped_string & scopedstrName)
    {
 
       synchronous_lock synchronouslock(fs_list()->synchronization());
@@ -1847,7 +1847,7 @@ namespace filemanager
 
       item.set_final_path(pathFinal);
 
-      item.m_strName = strName;
+      item.m_strName = scopedstrName;
 
       // auto pcontext = get_context();
 

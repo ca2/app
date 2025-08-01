@@ -31,7 +31,7 @@ namespace dynamic_source
 
       void set_all_out_of_date();
 
-      void set_out_of_date(string str);
+      void set_out_of_date(const ::scoped_string & scopedstr);
 
       //void cache(script * pscript);
       ::pointer<ds_script>create_new_ds_script(const ::scoped_string & scopedstrName);

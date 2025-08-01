@@ -102,7 +102,7 @@ void request::initialize_create(arguments arguments)
 }
 
 
-void request::initialize_create(string strAppId, ::payload payloadFile, const ::payload & varOptions, ::user::element * puiParent, e_window_flag ewindowflag, ::atom atom)
+void request::initialize_create(const ::scoped_string & scopedstrAppId, ::payload payloadFile, const ::payload & varOptions, ::user::element * puiParent, e_window_flag ewindowflag, ::atom atom)
 {
 
    m_ewindowflag = ewindowflag;
@@ -111,10 +111,10 @@ void request::initialize_create(string strAppId, ::payload payloadFile, const ::
 
    create_common_construct(varOptions, puiParent);
 
-   if(strAppId.has_character())
+   if(scopedstrAppId.has_character())
    {
 
-      m_strAppId = strAppId;
+      m_strAppId = scopedstrAppId;
 
    }
 
@@ -267,10 +267,10 @@ string request::get_description()
 }
 
 
-void request::set_description(string strDescription)
+void request::set_description(const ::scoped_string & scopedstrDescription)
 {
 
-   m_strDescription = strDescription;
+   m_strDescription = scopedstrDescription;
 
 }
 

@@ -513,13 +513,13 @@ namespace database
    //}
 
 
-   void database::set_id_blob(string strKey, ::block block)
+   void database::set_id_blob(const ::scoped_string & scopedstrKey, ::block block)
    {
 
    }
 
 
-   bool database::get_id_blob(string strKey, ::get_memory getmemory)
+   bool database::get_id_blob(const ::scoped_string & scopedstrKey, ::get_memory getmemory)
    {
 
       return false;

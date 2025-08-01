@@ -130,11 +130,11 @@ namespace platform
 
 
 
-      virtual string matter_locator(string strApp);
+      virtual string matter_locator(const ::scoped_string & scopedstrApp);
       virtual string matter_locator(::platform::application * papp);
 
 
-      virtual void add_matter_locator(string strApp);
+      virtual void add_matter_locator(const ::scoped_string & scopedstrApp);
       virtual void add_matter_locator(::platform::application * papp);
 
 
@@ -142,9 +142,9 @@ namespace platform
 
       //virtual ::file::path defer_process_relative_path(const ::file::path & path);
 
-      virtual ::file::path get_matter_path(string strMatter);
+      virtual ::file::path get_matter_path(const ::scoped_string & scopedstrMatter);
       virtual ::file::path get_matter_cache_path(::file::path path);
-      virtual ::file::path side_get_matter_path(string strMatter);
+      virtual ::file::path side_get_matter_path(const ::scoped_string & scopedstrMatter);
 
 
       virtual bool os_is_alias(const ::file::path & path);

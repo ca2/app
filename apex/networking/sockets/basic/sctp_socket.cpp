@@ -25,7 +25,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::Bind(const string & a,::networking::port_t int_point)
+   int SctpSocket::Bind(const ::scoped_string & scopedstrAddress,::networking::port_t int_point)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -68,7 +68,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::AddAddress(const string & a,::networking::port_t int_point)
+   int SctpSocket::AddAddress(const ::scoped_string & scopedstrAddress,::networking::port_t int_point)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -105,7 +105,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::RemoveAddress(const string & a,::networking::port_t int_point)
+   int SctpSocket::RemoveAddress(const ::scoped_string & scopedstrAddress,::networking::port_t int_point)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -142,7 +142,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::open(const string & a,::networking::port_t int_point)
+   int SctpSocket::open(const ::scoped_string & scopedstrAddress,::networking::port_t int_point)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -200,7 +200,7 @@ namespace sockets
 
 
 #ifndef SOLARIS
-   int SctpSocket::AddConnection(const string & a,::networking::port_t int_point)
+   int SctpSocket::AddConnection(const ::scoped_string & scopedstrAddress,::networking::port_t int_point)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6

@@ -666,7 +666,7 @@ static int_bool
 /*jpeg_read_xmp_profile(FIBITMAP * pimage, const unsigned char *dataptr, unsigned int datalen)
 {
    // marker identifying string for XMP (null terminated)
-   const_char_pointer  xmp_signature = "http://ns.adobe.com/xap/1.0/";
+   const_char_pointer xmp_signature = "http://ns.adobe.com/xap/1.0/";
    // XMP signature is 29 bytes long
    const size_t xmp_signature_size = strlen(xmp_signature) + 1;
 
@@ -839,7 +839,7 @@ static int_bool
 /*   FreeImage_GetMetadata(FIMD_COMMENTS, pimage, "Comment", &tag);
    if(tag)
    {
-      const_char_pointer  tag_value = (char*)FreeImage_GetTagValue(tag);
+      const_char_pointer tag_value = (char*)FreeImage_GetTagValue(tag);
 
       if(nullptr != tag_value)
       {
@@ -899,7 +899,7 @@ static int_bool
 static int_bool
 /*jpeg_write_iptc_profile(j_compress_ptr cinfo, FIBITMAP * pimage)
 {
-   //const_char_pointer  ps_header = "Photoshop 3.0\x08BIM\x04\x04\x0\x0\x0\x0";
+   //const_char_pointer ps_header = "Photoshop 3.0\x08BIM\x04\x04\x0\x0\x0\x0";
    const unsigned tag_length = 26;
 
 /*   if(FreeImage_GetMetadataCount(FIMD_IPTC, pimage))
@@ -951,7 +951,7 @@ static int_bool
 /*jpeg_write_xmp_profile(j_compress_ptr cinfo, FIBITMAP * pimage)
 {
    // marker identifying string for XMP (null terminated)
-   const_char_pointer  xmp_signature = "http://ns.adobe.com/xap/1.0/";
+   const_char_pointer xmp_signature = "http://ns.adobe.com/xap/1.0/";
 
    FITAG *tag_xmp = nullptr;
 /*   FreeImage_GetMetadata(FIMD_XMP, pimage, g_TagLib_XMPFieldName, &tag_xmp);
@@ -1190,31 +1190,31 @@ static void
 // Plugin Implementation
 // ==========================================================
 
-static const_char_pointer  DLL_CALLCONV
+static const_char_pointer DLL_CALLCONV
 Format()
 {
    return "JPEG";
 }
 
-static const_char_pointer  DLL_CALLCONV
+static const_char_pointer DLL_CALLCONV
 Description()
 {
    return "JPEG - JFIF Compliant";
 }
 
-static const_char_pointer  DLL_CALLCONV
+static const_char_pointer DLL_CALLCONV
 Extension()
 {
    return "jpg,jif,jpeg,jpe";
 }
 
-static const_char_pointer  DLL_CALLCONV
+static const_char_pointer DLL_CALLCONV
 RegExpr()
 {
    return "^\377\330\377";
 }
 
-static const_char_pointer  DLL_CALLCONV
+static const_char_pointer DLL_CALLCONV
 MimeType()
 {
    return "image/jpeg";
@@ -1556,7 +1556,7 @@ static int_bool DLL_CALLCONV
       {
          // Check image format
 
-         const_char_pointer  sError = "only 24-bit highcolor or 8-bit greyscale/palette bitmaps can be saved as JPEG";
+         const_char_pointer sError = "only 24-bit highcolor or 8-bit greyscale/palette bitmaps can be saved as JPEG";
 
 /*         FREE_IMAGE_COLOR_TYPE color_type = FreeImage_GetColorType(pimage);
 /*         unsigned short bpp = (unsigned short)FreeImage_GetBPP(pimage);

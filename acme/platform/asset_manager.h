@@ -20,7 +20,7 @@ namespace acme
       ~asset_manager() override;
 
 
-      virtual ::pointer<asset>get_asset(const_char_pointer  path);
+      virtual ::pointer<asset>get_asset(const_char_pointer path);
 
 
    };

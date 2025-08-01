@@ -683,16 +683,16 @@ bool tokenizer::_001GetNextToken(string & strToken)
 bool tokenizer::get_next_word(string * pstrToken)
 {
 
-   const ::ansi_character * psz = m_iterator;
+   const_char_pointer psz = m_iterator;
 
-   const ::ansi_character * pszEnd = this->end();
+   const_char_pointer pszEnd = this->end();
 
-   const ::ansi_character * pszStart = nullptr;
+   const_char_pointer pszStart = nullptr;
 
-   while(scopedstr < pszEnd)
+   while(psz < pszEnd)
    {
 
-      if(unicode_is_whitespace(scopedstr))
+      if(unicode_is_whitespace(psz))
       {
 
          if(pszStart != nullptr)
@@ -750,7 +750,7 @@ bool tokenizer::get_next_word(string * pstrToken)
             
       }
 
-      unicode_increment(scopedstr);
+      unicode_increment(psz);
 
    }
 

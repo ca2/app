@@ -157,7 +157,7 @@ constexpr ::std::strong_ordering case_insensitive__count_sz_compare(const CHARAC
 
 
 //template < typename ITERATOR_TYPE >
-//inline ::std::strong_ordering case_insensitive__string_compare(const CHARACTER * pszA, character_count sizeA, const ::ansi_character * pszB, character_count sizeB) noexcept
+//inline ::std::strong_ordering case_insensitive__string_compare(const CHARACTER * pszA, character_count sizeA, const_char_pointer pszB, character_count sizeB) noexcept
 //{
 //
 //   character_count lenCompare = minimum(sizeA, sizeB);
@@ -217,7 +217,7 @@ inline ::std::strong_ordering _case_insensitive_scopedstr_collate(::scoped_strin
 
 
 //template < typename ITERATOR_TYPE >
-//inline int string_compare(const CHARACTER * pszA, character_count sizeA, const ::ansi_character * pszB, character_count sizeB) noexcept
+//inline int string_compare(const CHARACTER * pszA, character_count sizeA, const_char_pointer pszB, character_count sizeB) noexcept
 //{
 //
 //   int iCompare;
@@ -306,23 +306,23 @@ inline ::std::strong_ordering _case_insensitive_sz_count_collate(const CHARACTER
 }
 
 
-inline ::std::strong_ordering _count_sz_collate(const ::ansi_character * pszA, character_count sizeA, const ::ansi_character * pszB) noexcept
+inline ::std::strong_ordering _count_sz_collate(const_char_pointer pszA, character_count sizeA, const_char_pointer pszB) noexcept
 {
 
-   return range_collate<const ::ansi_character *>({ pszA, sizeA }, pszB);
+   return range_collate<const_char_pointer >({ pszA, sizeA }, pszB);
 
 }
 
 
-inline ::std::strong_ordering _case_insensitive_count_sz_collate(const ::ansi_character * pszA, character_count sizeA, const ::ansi_character * pszB) noexcept
+inline ::std::strong_ordering _case_insensitive_count_sz_collate(const_char_pointer pszA, character_count sizeA, const_char_pointer pszB) noexcept
 {
 
-   return case_insensitive_range_collate<const ::ansi_character * >({ pszA, sizeA }, pszB);
+   return case_insensitive_range_collate<const_char_pointer >({ pszA, sizeA }, pszB);
 
 }
 
 
-CLASS_DECL_ACME ::string string_formatf(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME ::string string_formatf(const_char_pointer pszFormat, ...);
 
 
 
@@ -713,7 +713,7 @@ inline character_count const_string_range < ITERATOR_TYPE >::unichar_count() con
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator=(const ::ansi_character * pansichar)
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator=(const_char_pointer pansichar)
 //{
 //
 //   return assign(*this, pansichar);
@@ -824,7 +824,7 @@ inline character_count const_string_range < ITERATOR_TYPE >::unichar_count() con
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator +=(const ::ansi_character * pszSrc)
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator +=(const_char_pointer pszSrc)
 //{
 //
 //   return append(scopedstrSrc);
@@ -914,7 +914,7 @@ inline character_count const_string_range < ITERATOR_TYPE >::unichar_count() con
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::operator +(const ::ansi_character * psz) const
+//inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::operator +(const_char_pointer psz) const
 //{
 //
 //   auto scopedstr(*this);
@@ -1127,7 +1127,7 @@ inline ::string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(c
 
 //
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const ::ansi_character * pszSrc)
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const_char_pointer pszSrc)
 //{
 //
 //   return assign(*this, pszSrc);
@@ -1521,7 +1521,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHA
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const ::ansi_character * pszSrc)
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const_char_pointer pszSrc)
 //{
 //
 //   return append(scopedstrSrc, string_safe_length(scopedstrSrc));
@@ -2224,7 +2224,7 @@ inline const CHARACTER * FormatArgument(const typename GET_BLOCK_TYPE<CHARACTER>
 
 //template < typename ITERATOR_TYPE >
 //inline string_base < ITERATOR_TYPE >::string_base(const SCOPED_STRING & scopedstr) :
-//   string_base((const ::ansi_character *)scopedstr.data(), (character_count)scopedstr.size())
+//   string_base((const_char_pointer )scopedstr.data(), (character_count)scopedstr.size())
 //{
 //
 //
@@ -4110,7 +4110,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
       }
 
-      ::unicode_increment(scopedstr);
+      ::unicode_increment(psz);
 
    }
 
@@ -4794,7 +4794,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left()
    ////while (unicode_is_whitespace(scopedstr))
    ////{
 
-   ////   unicode_increment(scopedstr);
+   ////   unicode_increment(psz);
 
    ////   iHere = (character_count)(scopedstr - this->begin());
 
@@ -4899,7 +4899,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(CHARAC
    //      pszLast = nullptr;
    //   }
 
-   //   unicode_increment(scopedstr);
+   //   unicode_increment(psz);
 
    //}
 
@@ -4962,7 +4962,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(const 
    //      pszLast = nullptr;
    //   }
 
-   //   unicode_increment(scopedstr);
+   //   unicode_increment(psz);
 
    //}
 
@@ -4998,7 +4998,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(CHARACT
    //while (chTarget == *psz)
    //{
 
-   //   unicode_increment(scopedstr);
+   //   unicode_increment(psz);
 
    //}
 
@@ -5047,7 +5047,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(const S
    //auto psz = this->begin();
    //while ((*psz != 0) && (string_find_char(scopedstrTargets, *psz) != nullptr))
    //{
-   //   unicode_increment(scopedstr);
+   //   unicode_increment(psz);
    //}
 
    //if (scopedstr != this->begin())
@@ -6778,7 +6778,7 @@ inline bool string_ends_eat(STRING & ansistr, const STRING & scopedstrSuffix)
 //inline character_count string::find(::ansi_character ch) const RELEASENOTHROW
 //{
 //
-//   const ::ansi_character * psz = strchr(m_psz, ch);
+//   const_char_pointer psz = strchr(m_psz, ch);
 //
 //   return psz == nullptr ? -1 : psz - m_psz;
 //
@@ -6789,7 +6789,7 @@ inline bool string_ends_eat(STRING & ansistr, const STRING & scopedstrSuffix)
 //inline character_count string::find(::ansi_character ch) const RELEASENOTHROW
 //{
 //
-//   const ::ansi_character * psz = strchr(&m_psz[start], ch);
+//   const_char_pointer psz = strchr(&m_psz[start], ch);
 //
 //   return psz == nullptr ? -1 : psz - m_psz;
 //
@@ -6843,7 +6843,7 @@ inline string_base < ITERATOR_TYPE > operator +(const scoped_string_base < ITERA
 }
 
 template < character_count n >
-inline const_string_range_static_array < const_char_pointer  , 2 > operator +(const char (&s)[n], const inline_number_string& inlinenumberstring)
+inline const_string_range_static_array < const_char_pointer ,2 > operator +(const char (&s)[n], const inline_number_string& inlinenumberstring)
 {
 
    return { ::as_string_literal<char, n>(s), inlinenumberstring };

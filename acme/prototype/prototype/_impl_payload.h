@@ -1040,7 +1040,7 @@ namespace file
 
 
 //template <  >
-//inline scoped_string_base < const ::ansi_character * >::scoped_string_base(const ::payload & payload) :
+//inline scoped_string_base < const_char_pointer >::scoped_string_base(const ::payload & payload) :
 //   m_str(no_initialize_t{}), RANGE(no_initialize_t{})
 //{
 //

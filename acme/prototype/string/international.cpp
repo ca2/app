@@ -137,7 +137,7 @@
 
          char * psz = str.get_buffer(lenTarget); // worst guess?!?
 
-         character_count iLen = unichar_to_utf8(scopedstr, scopedwstr, scopedwstr.size());
+         character_count iLen = unichar_to_utf8(psz, scopedwstr, scopedwstr.size());
 
          str.release_buffer(iLen);
 
@@ -181,7 +181,7 @@
       }
 
 
-      bool multibyte_to_unicode(unsigned int uCodePage, ::wide_character * pwsz, character_count iBuffer, const ::ansi_character * pcsz, character_count iCount)
+      bool multibyte_to_unicode(unsigned int uCodePage, ::wide_character * pwsz, character_count iBuffer, const_char_pointer pcsz, character_count iCount)
       {
 
          if(pwsz == nullptr)
@@ -235,10 +235,10 @@
 
 #define ERROR_NO_UNICODE_TRANSLATION     1113L
 
-      wstring multibyte_to_unicode(unsigned int uCodePage, const ::scoped_string & scopedstr)
+      wstring multibyte_to_unicode(unsigned int uCodePage, const_char_pointer psz)
       {
 
-         character_count iBuffer = multibyte_to_unicode_count(uCodePage, scopedstr);
+         character_count iBuffer = multibyte_to_unicode_count(uCodePage, psz);
 
          if(iBuffer == ERROR_NO_UNICODE_TRANSLATION)
          {
@@ -252,7 +252,7 @@
          }
          wstring wstr;
          auto pwsz = wstr.get_buffer(iBuffer);
-         if(multibyte_to_unicode(uCodePage, pwsz, iBuffer + 1, scopedstr))
+         if(multibyte_to_unicode(uCodePage, pwsz, iBuffer + 1, psz))
 
          {
             wstr.release_buffer(iBuffer);
@@ -269,12 +269,12 @@
          {
            // return wstring(str);
          }
-         if(str.length() <= 0)
+         if(scopedstr.length() <= 0)
          {
             ::wide_character push[]={0};
             return push;
          }
-         character_count iBuffer = multibyte_to_unicode_count(uCodePage, str);
+         character_count iBuffer = multibyte_to_unicode_count(uCodePage, scopedstr);
          if(iBuffer == ERROR_NO_UNICODE_TRANSLATION)
          {
             ::wide_character push[]={0};
@@ -290,7 +290,7 @@
 
          ::wide_character * pwsz = wstr.get_buffer(iBuffer);
 
-         if(multibyte_to_unicode(uCodePage,pwsz, iBuffer + 1, str, (character_count) str.length()))
+         if(multibyte_to_unicode(uCodePage,pwsz, iBuffer + 1, scopedstr, (character_count) scopedstr.length()))
          {
 
             wstr.release_buffer(iBuffer);
@@ -574,10 +574,10 @@
       }
 
 
-      wstring utf8_to_unicode(const ::scoped_string & scopedstr)
+      wstring utf8_to_unicode(const_char_pointer psz)
       {
 
-         return multibyte_to_unicode(CodePageUtf8, str);
+         return multibyte_to_unicode(CodePageUtf8, psz);
 
       }
 
@@ -585,7 +585,7 @@
       wstring utf8_to_unicode(const ::payload & payload)
       {
 
-         return multibyte_to_unicode(CodePageUtf8, (const string &) payload);
+         return multibyte_to_unicode(CodePageUtf8, (const ::scoped_string &) payload);
 
       }
 
@@ -598,10 +598,10 @@
       }
 
 
-      character_count utf8_to_unicode_count(const ::scoped_string & scopedstr)
+      character_count utf8_to_unicode_count(const_char_pointer psz)
       {
 
-         return multibyte_to_unicode_count(CodePageUtf8, str);
+         return multibyte_to_unicode_count(CodePageUtf8, psz);
 
       }
 
@@ -625,8 +625,8 @@
 
 
       bool multibyte_to_utf8(unsigned int uCodePageSrc, string & str, const ::scoped_string & scopedstr)
-
       {
+
          return multibyte_to_multibyte(65001, str, uCodePageSrc, scopedstr);
 
       }

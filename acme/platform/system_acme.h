@@ -73,7 +73,7 @@ namespace platform
       ::int_sz *                                      m_pintstringLanguageResourceMap;
       int                                             m_iMatterFromHttpCache;
 
-      const_char_pointer  m_pszMain;
+      const_char_pointer m_pszMain;
 
       bool                                                  m_bAcmeSystemDarkMode;
       class ::time                                          m_timeDarkMode;
@@ -484,7 +484,7 @@ namespace platform
 
       virtual void open_internet_link_in_browser(const ::scoped_string & strUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {});
       virtual void open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {});
-      //virtual void open_url(string strUrl, string strProfile, string strTarget);
+      //virtual void open_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget);
 
 
       //void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override;
@@ -518,7 +518,7 @@ namespace platform
 
 //
 //   template < typename ENUM >
-//   inline void set_enum_text(ENUM e, const ::string &psz)
+//   inline void set_enum_text(ENUM e, const ::scoped_string & scopedstr)
 //   {
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
@@ -542,7 +542,7 @@ namespace platform
 
 //
 //   template < class ENUM >
-//   inline ENUM text_enum(ENUM& e, const ::string &psz, ENUM eDefault = (ENUM)0)
+//   inline ENUM text_enum(ENUM& e, const ::scoped_string & scopedstr, ENUM eDefault = (ENUM)0)
 //   {
 //
 //      critical_section_lock lock(&m_csEnumText);
@@ -568,7 +568,7 @@ namespace platform
 //
 //
 //   template < class ENUM, ENUM edefault = 0>
-//   inline base_enum < ENUM, edefault >& text_enum(base_enum < ENUM, edefault >& b, const ::string &psz, ENUM eDefault = edefault)
+//   inline base_enum < ENUM, edefault >& text_enum(base_enum < ENUM, edefault >& b, const ::scoped_string & scopedstr, ENUM eDefault = edefault)
 //   {
 //
 //      return b = text_enum(b.m_evalue, psz, eDefault);
@@ -602,7 +602,7 @@ namespace platform
       virtual void check_exit();
 
       virtual ::regular_expression_pointer create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr);
-      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::string &pszStyle, int iCount);
+      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount);
       virtual ::pointer<::regular_expression::context> get_regular_expression_context(const ::scoped_string & scopedstrStyle);
 
       virtual ::regular_expression_pointer compile_pcre(const ::scoped_string & scopedstr);
@@ -720,9 +720,9 @@ namespace platform
 
 
       virtual ::file::path local_get_matter_cache_path();
-      virtual ::file::path local_get_matter_cache_path(string strMatter);
+      virtual ::file::path local_get_matter_cache_path(const ::scoped_string & scopedstrMatter);
       virtual ::file::path local_get_matter_path();
-      virtual ::file::path local_get_matter_path(string strMatter);
+      virtual ::file::path local_get_matter_path(const ::scoped_string & scopedstrMatter);
 
       virtual void install_progress_add_up(int iAddUp = 1);
 

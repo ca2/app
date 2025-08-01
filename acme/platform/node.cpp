@@ -337,7 +337,7 @@ namespace platform
    }
 
 
-   void node::node_application_on_status(const_char_pointer  pszStatus, void * p, long long hi)
+   void node::node_application_on_status(const_char_pointer pszStatus, void * p, long long hi)
    {
       
       
@@ -847,7 +847,7 @@ namespace platform
    ::pointer < ::mutex > node::get_install_mutex(::particle *pparticleContext, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix)
    {
 
-      string strName = "::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix;
+      string strName = "::ca2::account::ccwarehouse::install::" + scopedstrPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + scopedstrSuffix;
 
       return open_global_named_mutex(pparticleContext, strName);
 
@@ -867,12 +867,12 @@ namespace platform
    ::pointer < ::acme::exclusive > node::get_exclusive(::particle * pparticleContext, const ::scoped_string & scopedstrName, ::security_attributes * psecurityattributes)
    {
 
-      auto & pexclusive = m_mapExclusive[strName];
+      auto & pexclusive = m_mapExclusive[scopedstrName];
 
       if (!pexclusive)
       {
 
-         auto pexclusiveNew = _get_exclusive(pparticleContext, strName, psecurityattributes);
+         auto pexclusiveNew = _get_exclusive(pparticleContext, scopedstrName, psecurityattributes);
 
          pexclusive = pexclusiveNew;
 
@@ -886,7 +886,7 @@ namespace platform
    bool node::erase_exclusive(const ::scoped_string & scopedstrName)
    {
 
-      return m_mapExclusive.erase_item(strName);
+      return m_mapExclusive.erase_item(scopedstrName);
 
    }
 
@@ -902,7 +902,7 @@ namespace platform
    bool node::exclusive_fails(::particle * pparticleContext, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
    {
 
-      auto pexclusive = get_exclusive(pparticleContext, strName, psecurityattributes);
+      auto pexclusive = get_exclusive(pparticleContext, scopedstrName, psecurityattributes);
 
       if (!pexclusive)
       {
@@ -921,10 +921,10 @@ namespace platform
 
       string strName;
 
-      for (::collection::index i = 0; i < strAppId.length(); i++)
+      for (::collection::index i = 0; i < scopedstrAppId.length(); i++)
       {
 
-         if (strAppId[i] == '-' || strAppId[i] == '/' || strAppId[i] == '\\')
+         if (scopedstrAppId[i] == '-' || scopedstrAppId[i] == '/' || scopedstrAppId[i] == '\\')
          {
 
             strName += "_";
@@ -933,7 +933,7 @@ namespace platform
          else
          {
 
-            strName += strAppId[i];
+            strName += scopedstrAppId[i];
 
          }
 
@@ -947,19 +947,19 @@ namespace platform
    string node::app_id_to_executable_name(const ::scoped_string & scopedstrAppId)
    {
 
-      string strName = app_id_to_app_name(strAppId);
+      string strName = app_id_to_app_name(scopedstrAppId);
 
       return strName;
 
    }
 
 
-   bool node::is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   bool node::is_application_installed(const ::file::path & pathExe, const ::scoped_string & scopedstrAppId, string & strBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
       ::file::path path;
 
-      path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
+      path = application_installer_folder(pathExe, scopedstrAppId, scopedstrPlatform, scopedstrConfiguration, scopedstrLocale, scopedstrSchema) / "installed.txt";
 
       strBuild = file_system()->as_string(path);
 
@@ -968,34 +968,34 @@ namespace platform
    }
 
 
-   void node::set_application_installed(const ::file::path & pathExe, string strAppId, const ::scoped_string & scopedstrBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   void node::set_application_installed(const ::file::path & pathExe, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
       ::file::path path;
 
-      path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
+      path = application_installer_folder(pathExe, scopedstrAppId, scopedstrPlatform, scopedstrConfiguration, scopedstrLocale, scopedstrSchema) / "installed.txt";
 
-      file_system()->put_contents(path, pszBuild);
+      file_system()->put_contents(path, scopedstrBuild);
 
    }
 
 
-   ::file::path node::application_installer_folder(const ::file::path & pathExe, string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   ::file::path node::application_installer_folder(const ::file::path & pathExe, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
       string strFolder = pathExe.folder();
 
       strFolder.replace_with("", ":");
 
-      return directory_system()->ca2roaming() / "appdata" / strFolder / strAppId / pszPlatform / pszConfiguration / pszLocale / pszSchema;
+      return directory_system()->ca2roaming() / "appdata" / strFolder / scopedstrAppId / scopedstrPlatform / scopedstrConfiguration / scopedstrLocale / scopedstrSchema;
 
    }
 
 
-   ::file::path node::get_application_path(string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
+   ::file::path node::get_application_path(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
 
-      auto pathLastRun = get_last_run_application_path(strAppId);
+      auto pathLastRun = get_last_run_application_path(scopedstrAppId);
 
       if (pathLastRun.has_character() && file_system()->exists(pathLastRun))
       {
@@ -1006,11 +1006,11 @@ namespace platform
 
       ::file::path pathFolder;
 
-      pathFolder = directory_system()->stage(strAppId, pszPlatform, pszConfiguration);
+      pathFolder = directory_system()->stage(scopedstrAppId, scopedstrPlatform, scopedstrConfiguration);
 
       string strName;
 
-      strName = app_id_to_executable_name(strAppId);
+      strName = app_id_to_executable_name(scopedstrAppId);
 
       ::file::path path;
 
@@ -1024,7 +1024,7 @@ namespace platform
    ::file::path node::get_last_run_application_path_file(const ::scoped_string & scopedstrAppIdParam)
    {
 
-      string strAppId = strAppIdParam;
+      string strAppId = scopedstrAppIdParam;
 
       auto range = strAppId();
 
@@ -1065,7 +1065,7 @@ namespace platform
    ::file::path node::get_last_run_application_path(const ::scoped_string & scopedstrAppId)
    {
 
-      ::file::path pathFile = get_last_run_application_path_file(strAppId);
+      ::file::path pathFile = get_last_run_application_path_file(scopedstrAppId);
 
       ::file::path path = file_system()->as_string(pathFile);
 
@@ -1079,7 +1079,7 @@ namespace platform
 
       ::file::path path = file_system()->module();
 
-      ::file::path pathFile = get_last_run_application_path_file(strAppId);
+      ::file::path pathFile = get_last_run_application_path_file(scopedstrAppId);
 
       information() << "node::set_last_run_application_path_file path:" << path;
 
@@ -1329,19 +1329,19 @@ namespace platform
    // }
 
 
-   // void node::os_process_user_theme(string strTheme)
+   // void node::os_process_user_theme(const ::scoped_string & scopedstrTheme)
    // {
    //
    // }
    //
    //
-   // void node::os_process_user_icon_theme(string strTheme)
+   // void node::os_process_user_icon_theme(const ::scoped_string & scopedstrTheme)
    // {
    //
    // }
 
 
-//   bool node::set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::acme::windowing::display * pwindowingdisplay)
+//   bool node::set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath, ::acme::windowing::display * pwindowingdisplay)
 //   {
 //
 //      throw interface_only();
@@ -1700,9 +1700,9 @@ namespace platform
 
       auto pathFolder = directory_system()->get_memory_map_base_folder_path();
 
-      auto path = pathFolder / (strName + ".filememorymap");
+      auto path = pathFolder / (scopedstrName + ".filememorymap");
 
-      return ::transfer(path);
+      return path;
 
    }
 
@@ -1822,7 +1822,7 @@ namespace platform
 #endif
 
 
-   void node::launch_app(const ::scoped_string & scopedstr, const_char_pointer * argv, int iFlags)
+   void node::launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags)
    {
       
       throw ::interface_only();
@@ -2205,7 +2205,7 @@ namespace platform
    }
 
 
-   bool node::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
+   bool node::low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
 
       throw ::exception(todo);
@@ -2219,22 +2219,22 @@ return false;
    }
 
 
-   void node::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+   void node::defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
 
-      if (low_is_app_app_admin_running(strPlatform, strConfiguration))
+      if (low_is_app_app_admin_running(scopedstrPlatform, scopedstrConfiguration))
       {
 
          return;
 
       }
 
-      start_program_files_app_app_admin(strPlatform, strConfiguration);
+      start_program_files_app_app_admin(scopedstrPlatform, scopedstrConfiguration);
 
    }
 
 
-   void node::start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+   void node::start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
 
       //return error_failed;
@@ -2283,7 +2283,7 @@ return false;
 
          path = str;
 
-         path /= pszCommand;
+         path /= scopedstrCommand;
 
          if (file_system()->exists(path))
          {
@@ -2294,7 +2294,7 @@ return false;
 
       }
 
-      return pszCommand;
+      return scopedstrCommand;
 
 #endif
 
@@ -2400,7 +2400,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    void node::report_exception_to_user(::particle* pparticle, ::exception& exception, const ::scoped_string & scopedstrMoreDetails)
    {
 
-      send(__initialize_new ::message_box(exception, strMoreDetails));
+      send(__initialize_new ::message_box(exception, scopedstrMoreDetails));
 
    }
 
@@ -2501,7 +2501,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
     string node::get_local_mutex_name(const ::scoped_string & scopedstrAppId)
     {
 
-       string strApp(strAppId);
+       string strApp(scopedstrAppId);
 
        strApp.find_replace(".", "_");
 
@@ -2521,7 +2521,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
     string node::get_local_id_mutex_name(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrId)
     {
 
-       string strApp(strAppId);
+       string strApp(scopedstrAppId);
 
        strApp.find_replace(".", "_");
 
@@ -2531,7 +2531,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
 
        string strMutex;
 
-       strMutex.formatf("Local\\%s, atom:%s", strApp.c_str(), strId.c_str());
+       strMutex.formatf("Local\\%s, atom:%s", strApp.c_str(), scopedstrId.c_str());
 
        return strMutex;
 
@@ -2541,7 +2541,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
     string node::get_global_mutex_name(const ::scoped_string & scopedstrAppId)
     {
 
-       string strApp(strAppId);
+       string strApp(scopedstrAppId);
 
        strApp.find_replace(".", "_");
 
@@ -2561,7 +2561,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
     string node::get_global_id_mutex_name(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrId)
     {
 
-       string strApp(strAppId);
+       string strApp(scopedstrAppId);
 
        strApp.find_replace(".", "_");
 
@@ -2571,7 +2571,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
 
        string strMutex;
 
-       strMutex.formatf("Global\\%s, atom:%s", strApp.c_str(), strId.c_str());
+       strMutex.formatf("Global\\%s, atom:%s", strApp.c_str(), scopedstrId.c_str());
 
        return strMutex;
 
@@ -2726,8 +2726,10 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
 #endif
 
 
-   ::file::path node::core_app_path(string strAppId)
+   ::file::path node::core_app_path(const ::scoped_string & scopedstrAppId)
    {
+
+      ::string strAppId(scopedstrAppId);
 
       ::file::path path = get_last_run_application_path(strAppId);
 
@@ -2784,7 +2786,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    string node::executable_title_from_appid(const ::scoped_string & scopedstrParam)
    {
 
-      string str(strParam);
+      string str(scopedstrParam);
 
 #ifdef WINDOWS
 
@@ -2832,7 +2834,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    string node::time_binary_platform(const ::scoped_string & scopedstrPlatformParam)
    {
 
-      ::string strPlatform(strPlatformParam);
+      ::string strPlatform(scopedstrPlatformParam);
 
       strPlatform.make_lower();
 
@@ -3267,7 +3269,7 @@ bool node::defer_component_factory(const ::scoped_string & scopedstrComponent)
 
 #endif
 
-   bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath, const_char_pointer  pszPath)
+   bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath, const_char_pointer pszPath)
    {
 
       throw interface_only();
@@ -3620,7 +3622,7 @@ bool node::_is_smart_git_installed()
 
 #if defined(__BSD__) || defined(__APPLE__)
 
-   void node::arp_a(void *p, void(*callback)(void * addr, unsigned int uIp, const_char_pointer  status))
+   void node::arp_a(void *p, void(*callback)(void * addr, unsigned int uIp, const_char_pointer status))
    {
       
       
@@ -3850,7 +3852,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    void node::terminate_processes_by_title(const ::scoped_string & scopedstrName)
    {
 
-      __UNREFERENCED_PARAMETER(lpszName);
+      __UNREFERENCED_PARAMETER(scopedstrName);
 
       throw ::interface_only("this is an interface");
 
@@ -4086,7 +4088,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
 
    {
 
-      native_full_web_browser(pcsz);
+      native_full_web_browser(scopedstr);
 
 
    }
@@ -4570,7 +4572,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    ::file::path node::get_app_path(const ::scoped_string & scopedstrApp)
    {
 
-      return strApp;
+      return scopedstrApp;
 
    }
 
@@ -4674,127 +4676,127 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    string node::get_file_extension_mime_type(const ::scoped_string & scopedstrExtension)
    {
 
-      if (strExtension == "iso")
+      if (scopedstrExtension == "iso")
       {
          return "application/octetstream";
       }
-      else if (strExtension == "mp3")
+      else if (scopedstrExtension == "mp3")
       {
          return "audio/mpeg";
       }
-      else if (strExtension == "exe")
+      else if (scopedstrExtension == "exe")
       {
          return "application/x-msdownload";
       }
-      else if (strExtension == "spa")
+      else if (scopedstrExtension == "spa")
       {
          return "application/x-spa";
       }
-      else if (strExtension == "mid")
+      else if (scopedstrExtension == "mid")
       {
          return "audio/midi";
       }
-      else if (strExtension == "js")
+      else if (scopedstrExtension == "js")
       {
          return "text/javascript";
       }
-      else if (strExtension == "css")
+      else if (scopedstrExtension == "css")
       {
          return "text/css";
       }
-      else if (strExtension == "xpi")
+      else if (scopedstrExtension == "xpi")
       {
          return "application/x-xpinstall";
       }
-      else if (strExtension == "ttf")
+      else if (scopedstrExtension == "ttf")
       {
          return "font/ttf";
       }
-      else if (strExtension == "ogv")
+      else if (scopedstrExtension == "ogv")
       {
          return "video/ogg";
       }
-      else if (strExtension == "mp4")
+      else if (scopedstrExtension == "mp4")
       {
          return "video/mp4";
       }
-      else if (strExtension == "webm")
+      else if (scopedstrExtension == "webm")
       {
          return "video/webm";
       }
-      else if (strExtension == "zip")
+      else if (scopedstrExtension == "zip")
       {
          return "application/x-zip-compressed";
       }
-      else if (strExtension == "crx")
+      else if (scopedstrExtension == "crx")
       {
          return "application/x-chrome-extension";
       }
-      else if (strExtension == "swf")
+      else if (scopedstrExtension == "swf")
       {
          return "application/x-shockwave-flash";
       }
-      else if (strExtension == "cab")
+      else if (scopedstrExtension == "cab")
       {
          return "application/vnd.ms-cab-compressed";
       }
-      else if (strExtension == "jar")
+      else if (scopedstrExtension == "jar")
       {
          return "application/x-jar";
       }
-      else if (strExtension == "jpg")
+      else if (scopedstrExtension == "jpg")
       {
          return "image/jpeg";
       }
-      else if (strExtension == "webp")
+      else if (scopedstrExtension == "webp")
       {
          return "image/webp";
       }
-      else if (strExtension == "png")
+      else if (scopedstrExtension == "png")
       {
          return "image/png";
       }
-      else if (strExtension == "gif")
+      else if (scopedstrExtension == "gif")
       {
          return "image/gif";
       }
-      else if (strExtension == "svg")
+      else if (scopedstrExtension == "svg")
       {
          return "image/svg+xml";
       }
-      else if (strExtension == "ttf")
+      else if (scopedstrExtension == "ttf")
       {
          return "application/x-font-ttf";
       }
-      else if (strExtension == "otf")
+      else if (scopedstrExtension == "otf")
       {
          return "application/x-font-opentype";
       }
-      else if (strExtension == "woff")
+      else if (scopedstrExtension == "woff")
       {
          return "application/x-font-woff";
       }
-      else if (strExtension == "eot")
+      else if (scopedstrExtension == "eot")
       {
          return "application/vnd.ms-fontobject";
       }
-      else if (strExtension == "md5")
+      else if (scopedstrExtension == "md5")
       {
          return "text/plain";
       }
-      else if (strExtension == "html")
+      else if (scopedstrExtension == "html")
       {
          return "text/html";
       }
-      else if (strExtension == "htm")
+      else if (scopedstrExtension == "htm")
       {
          return "text/html";
       }
-      else if (strExtension == "rdf")
+      else if (scopedstrExtension == "rdf")
       {
          return "application/rdf+xml";
       }
-      else if (strExtension == "raw")
+      else if (scopedstrExtension == "raw")
       {
          return "application/x-cd-image;application/x-raw-disk-image;";
       }
@@ -4976,10 +4978,10 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
 } // namespace platform
 
 
-void node_application_send_status(const_char_pointer  pszStatus, void * p, long long hi)
+void node_application_send_status(const_char_pointer pszStatus, void * p, long long hi)
 {
    
-   system()->node()->node_application_on_status(scopedstrStatus, p, hi);
+   system()->node()->node_application_on_status(pszStatus, p, hi);
    
 }
 

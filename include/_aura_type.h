@@ -16,7 +16,7 @@ typedef unsigned char         uchar;
 
 //typedef unsigned char         uch;
 
-typedef const char * const_char_pointer  ;
+typedef const char * const_char_pointer ;
 
 
 #ifdef __cplusplus

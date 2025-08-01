@@ -14,7 +14,7 @@ enum enum_character_set : int
 };
 
 
-inline const_char_pointer  enum_character_set_text(enum_character_set echaracterset)
+inline const_char_pointer enum_character_set_text(enum_character_set echaracterset)
 {
 
    switch (echaracterset)

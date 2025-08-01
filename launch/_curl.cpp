@@ -9,10 +9,10 @@
 #include <memory.h>
 
 char * get_line(char * str, char * & next);
-char * get_command_output(const_char_pointer  pszCommand);
+char * get_command_output(const_char_pointer pszCommand);
 
 
-bool curl_check_http_ok(const_char_pointer  pszUrl)
+bool curl_check_http_ok(const_char_pointer pszUrl)
 {
 
    char szCommand[4096];

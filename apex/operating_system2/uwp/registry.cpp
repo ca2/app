@@ -18,7 +18,7 @@ namespace universal_windows
 
    bool registry::RegQueryValue(
    HKEY hKey,
-   const_char_pointer  lpSubKey,
+   const_char_pointer lpSubKey,
    string &str)
    {
       unsigned int cbValue;
@@ -44,7 +44,7 @@ namespace universal_windows
       m_hkey = nullptr;
    }
 
-   registry::Key::Key(HKEY hkey, const_char_pointer  lpcszSubKey, bool bCreate)
+   registry::Key::Key(HKEY hkey, const_char_pointer lpcszSubKey, bool bCreate)
    {
       m_hkey = nullptr;
       OpenKey(hkey, lpcszSubKey, bCreate);
@@ -58,7 +58,7 @@ namespace universal_windows
       }
    }
 
-   bool registry::Key::OpenKey(HKEY hkey, const_char_pointer  lpcszSubKey, bool bCreate)
+   bool registry::Key::OpenKey(HKEY hkey, const_char_pointer lpcszSubKey, bool bCreate)
    {
       if(bCreate)
       {
@@ -90,7 +90,7 @@ namespace universal_windows
    }
 
    bool registry::Key::QueryValue(
-   const_char_pointer  lpcszValueName,
+   const_char_pointer lpcszValueName,
    string &str)
    {
       unsigned int cbValue;
@@ -110,7 +110,7 @@ namespace universal_windows
 
    }
 
-   bool registry::Key::QueryValue(const_char_pointer  lpcszValueName, memory & mem)
+   bool registry::Key::QueryValue(const_char_pointer lpcszValueName, memory & mem)
    {
       unsigned int cbValue;
       unsigned int dwType;
@@ -129,8 +129,8 @@ namespace universal_windows
    }
 
    bool registry::Key::SetValue(
-   const_char_pointer  lpcszValueName,
-   const_char_pointer  lpcszValue)
+   const_char_pointer lpcszValueName,
+   const_char_pointer lpcszValue)
    {
       return ERROR_SUCCESS ==
              RegSetValueEx(m_hkey, lpcszValueName, nullptr, REG_SZ,
@@ -139,7 +139,7 @@ namespace universal_windows
 
 
    bool registry::Key::DeleteValue(
-   const_char_pointer  lpcszValueName)
+   const_char_pointer lpcszValueName)
    {
       return ERROR_SUCCESS ==
              ::RegDeleteValue(m_hkey, (char *)lpcszValueName);

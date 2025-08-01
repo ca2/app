@@ -114,9 +114,9 @@ namespace draw2d_gpu
 
       // Constructors
       bool CreateDC(const ::scoped_string & lpszDriverName, const ::scoped_string & lpszDeviceName,
-                    const_char_pointer  lpszOutput, const void * lpInitData);
+                    const_char_pointer lpszOutput, const void * lpInitData);
       bool CreateIC(const ::scoped_string & lpszDriverName, const ::scoped_string & lpszDeviceName,
-                    const_char_pointer  lpszOutput, const void * lpInitData);
+                    const_char_pointer lpszOutput, const void * lpInitData);
       void create_memory_graphics(const ::int_size & size = {}) override;
       void create_window_graphics(::windowing::window * pwindow) override;
       void CreateCompatibleDC(::draw2d::graphics * pgraphics) override;
@@ -487,7 +487,7 @@ namespace draw2d_gpu
 
       // Printer/Device Escape Functions
       //virtual int Escape(int nEscape, int nCount, const ::scoped_string & lpszInData, LPVOID lpOutData);
-      //int Escape(int nEscape, int nInputSize,  const_char_pointer  lpszInputData,int nOutputSize, char * lpszOutputData);
+      //int Escape(int nEscape, int nInputSize,  const_char_pointer lpszInputData,int nOutputSize, char * lpszOutputData);
       //int DrawEscape(int nEscape, int nInputSize, const ::scoped_string & lpszInputData);
 
       // Escape helpers

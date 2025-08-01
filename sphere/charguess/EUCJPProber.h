@@ -37,7 +37,7 @@ public:
                       Reset();};
   virtual ~nsEUCJPProber(void){delete mCodingSM;};
   nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
-  const_char_pointer  GetCharSetName() {return "EUC-JP";};
+  const_char_pointer GetCharSetName() {return "EUC-JP";};
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
   float     GetConfidence(void);

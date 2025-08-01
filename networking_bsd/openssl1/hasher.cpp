@@ -310,7 +310,7 @@
 ////{
 ////   int plainlen = (int)storageDecrypt.get_size();
 ////   int cipherlen, tmplen;
-////   const_char_pointer  iv = "skdfjghsdlkfjghs";
+////   const_char_pointer iv = "skdfjghsdlkfjghs";
 ////   EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
 ////   EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char*)key.get_data(), iv);
 ////   cipherlen = (int)(storageDecrypt.get_size() + 16 - 1); //; 16 = key int_size
@@ -331,7 +331,7 @@
 //
 //CLASS_DECL_APEX int crypto_decrypt2(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
 //{
-//   const_char_pointer  iv = "skdajhgbmvkbjghs";
+//   const_char_pointer iv = "skdajhgbmvkbjghs";
 //   EVP_CIPHER_CTX* cipher_ctx = EVP_CIPHER_CTX_new();
 //   auto cipher_type = EVP_aes_128_cbc();
 //   auto data_len = storageEncrypt.get_length();
@@ -373,7 +373,7 @@
 //
 //CLASS_DECL_APEX int crypto_encrypt2(memory& storageDecrypt, const memory& storageEncrypt, memory& key)
 //{
-//   const_char_pointer  iv = "skdajhgbmvkbjghs";
+//   const_char_pointer iv = "skdajhgbmvkbjghs";
 //   EVP_CIPHER_CTX* cipher_ctx = EVP_CIPHER_CTX_new();
 //   auto cipher_type = EVP_aes_128_cbc();
 //   auto data_len = storageEncrypt.get_length();

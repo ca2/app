@@ -40,7 +40,7 @@ const_char_pointer MD5Info = "MD5 Digest of installed database is %s\n";
 const_char_pointer SavingGzip = "Saving gzip file to %s ... ";
 const_char_pointer WritingFile = "Writing uncompressed data to %s ...";
 
-const_char_pointer  GeoIP_get_error_message(int i) {
+const_char_pointer GeoIP_get_error_message(int i) {
   switch (i) {
   case GEOIP_NO_NEW_UPDATES:
     return "no ___new updates";
@@ -146,9 +146,9 @@ void GeoIP_printf(void (*f)(char *), const_char_pointer str,...) {
  */
 
 /* The Protocol is usually "" OR "http://" with a proxy. */
-//static const_char_pointer  GeoIPProxyHTTP = "";
+//static const_char_pointer GeoIPProxyHTTP = "";
 /* GeoIP Hostname where proxy forwards requests. */
-//static const_char_pointer  GeoIPProxiedHost = "";
+//static const_char_pointer GeoIPProxiedHost = "";
 
 /* read http_proxy env. ::payload & parse it.
  * -----------------------------------------

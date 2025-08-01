@@ -127,7 +127,7 @@ bool string_buffer_base::unget_if(::ansi_character ch)
 //void string_buffer::write(const void *pdata, memsize nCount)
 //
 //{
-//   append((const_char_pointer ) pdata, nCount);
+//   append((const_char_pointer )pdata, nCount);
 //
 //}
 //
@@ -269,7 +269,7 @@ string_reference_buffer::~string_reference_buffer()
 void string_reference_buffer::write(const void * dataToWrite, ::memsize amountToWrite)
 {
 
-   m_str.append((const ::ansi_character *)dataToWrite, amountToWrite);
+   m_str.append((const_char_pointer )dataToWrite, amountToWrite);
 
 }
 

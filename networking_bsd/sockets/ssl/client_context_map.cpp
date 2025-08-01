@@ -21,10 +21,10 @@ namespace sockets_bsd
    }
 
 
-   ::pointer<ssl_client_context>ssl_client_context_map::get_context(string strContext, const SSL_METHOD * pmethod)
+   ::pointer<ssl_client_context>ssl_client_context_map::get_context(const ::scoped_string & scopedstrContext, const SSL_METHOD * pmethod)
    {
 
-      ::pointer<ssl_client_context>pcontext = m_map[strContext][pmethod];
+      ::pointer<ssl_client_context>pcontext = m_map[scopedstrContext][pmethod];
 
       if (pcontext.is_null())
       {

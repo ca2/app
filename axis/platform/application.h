@@ -53,7 +53,7 @@ namespace axis
 //      // void dump(dump_context & dumpcontext) const override;
       bool assert_user_logged_in() override;
 
-       string __get_text(string str) override;
+       string __get_text(const ::scoped_string & scopedstr) override;
 
       //virtual ::user::style* get_user_style() const;
     

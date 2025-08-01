@@ -802,7 +802,7 @@ namespace core
 
       long long i64Size;
 
-      if (!get_fs_size(i64Size, pszPath, bPending))
+      if (!get_fs_size(i64Size, scopedstrPath, bPending))
       {
 
          strSize.empty();
@@ -1245,7 +1245,7 @@ namespace core
    //}
 
 
-   //bool user::set_os_desktop_theme(string strTheme)
+   //bool user::set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
    //{
 
    //   return impl_set_os_desktop_theme(strTheme);
@@ -1261,7 +1261,7 @@ namespace core
    //}
 
 
-   //bool user::set_wallpaper(::collection::index iScreen, string strWallpaper)
+   //bool user::set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrWallpaper)
    //{
 
    //   return impl_set_wallpaper(iScreen, strWallpaper);
@@ -1279,7 +1279,7 @@ namespace core
    //}
 
 
-   //bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+   //bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
    //{
 
    //   return SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, wstring(strLocalImagePath), SPIF_UPDATEINIFILE | SPIF_SENDCHANGE) != false;
@@ -1315,7 +1315,7 @@ namespace core
    //}
 
 
-   //bool user::impl_set_os_desktop_theme(string strTheme)
+   //bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
    //{
 
    //   __UNREFERENCED_PARAMETER(strTheme);
@@ -1328,7 +1328,7 @@ namespace core
 #elif defined(LINUX)
 
 
-//   bool user::impl_set_os_desktop_theme(string strTheme)
+//   bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 //   {
 //
 //      auto pnode = Node;
@@ -1346,7 +1346,7 @@ namespace core
 //   }
 
 
-//   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+//   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 //   {
 //
 //      // wall-changer sourceforge.net contribution
@@ -1390,14 +1390,14 @@ namespace core
 
 #elif defined(APPLE_IOS)
 
-//   bool user::impl_set_os_desktop_theme(string strTheme)
+//   bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+//   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 //   {
 //
 //      return false;
@@ -1426,7 +1426,7 @@ namespace core
 
 #elif defined(__ANDROID__)
 
-//   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+//   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 //   {
 //
 //      return psystem->android_set_user_wallpaper(strLocalImagePath);
@@ -1458,7 +1458,7 @@ namespace core
 //   }
 //
 //
-//   bool user::impl_set_os_desktop_theme(string strTheme)
+//   bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(strTheme);
@@ -1478,7 +1478,7 @@ namespace core
 //   }
 
 
-//   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+//   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 //   {
 //
 //      // Someday we will be together...
@@ -1504,7 +1504,7 @@ namespace core
 //   }
 //
 //
-//   bool user::impl_set_os_desktop_theme(string strTheme)
+//   bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(strTheme);
@@ -1521,7 +1521,7 @@ namespace core
 //
 //   }
 
-//   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
+//   bool user::impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrLocalImagePath)
 //   {
 //
 //      return macos_set_user_wallpaper((int)iScreen, strLocalImagePath);
@@ -1547,7 +1547,7 @@ namespace core
 //   }
 //
 //
-//   bool user::impl_set_os_desktop_theme(string strTheme)
+//   bool user::impl_set_os_desktop_theme(const ::scoped_string & scopedstrTheme)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(strTheme);

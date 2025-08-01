@@ -1961,7 +1961,7 @@ namespace apex
 
       //string_array straSource = psession->userex()->get_wallpaper();
 
-      //for (string str : straSource)
+      //for (const ::scoped_string & scopedstr : straSource)
       //{
 
       //   if (str.case_insensitive_begins_eat("file://"))

@@ -18,7 +18,7 @@ public:
    ~stringtow();
 
 
-   inline operator const_char_pointer  () { return m_str; }
+   inline operator const_char_pointer () { return m_str; }
    inline operator char* () { return m_pszBuffer; }
 
 };

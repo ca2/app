@@ -21,9 +21,9 @@ public:
 
 
    void run() override;
-   //bool open_link(string strLink, string strProfile = "", string strTarget = "");
-   //void open_profile_link(string strUrl, string strProfile, string strTarget);
-   //virtual void sync_open_profile_link(string strUrl, string strProfile, string strTarget);
+   //bool open_link(const ::scoped_string & scopedstrLink, const ::scoped_string & scopedstrProfile = "", const ::scoped_string & scopedstrTarget = "");
+   //void open_profile_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget);
+   //virtual void sync_open_profile_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget);
 
 
 

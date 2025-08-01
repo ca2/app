@@ -52,7 +52,7 @@ public:
    //}
 
 
-   //void informationf(const ::ansi_character * pszFormat, ...)
+   //void informationf(const_char_pointer pszFormat, ...)
    //{
 
    //   va_list arguments;
@@ -74,7 +74,7 @@ public:
    //}
 
 
-   //void warningf(const ::ansi_character * pszFormat, ...)
+   //void warningf(const_char_pointer pszFormat, ...)
    //{
 
    //   va_list arguments;
@@ -96,7 +96,7 @@ public:
    //}
 
 
-   //void errorf(const ::ansi_character * pszFormat, ...)
+   //void errorf(const_char_pointer pszFormat, ...)
    //{
 
    //   va_list arguments;
@@ -118,7 +118,7 @@ public:
    //}
 
 
-   //void fatalf(const ::ansi_character * pszFormat, ...)
+   //void fatalf(const_char_pointer pszFormat, ...)
    //{
 
    //   va_list arguments;

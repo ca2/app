@@ -104,7 +104,7 @@ namespace hellobase
 
       virtual int run();
 
-      virtual bool initialize_render(string strId);
+      virtual bool initialize_render(const ::scoped_string & scopedstrId);
 
 
       virtual void full_render() override;
@@ -121,7 +121,7 @@ namespace hellobase
 
       //virtual void defer_update_bilbo() override;
 
-      //::image::image_pointer & image23(string strDib) override;
+      //::image::image_pointer & image23(const ::scoped_string & scopedstrDib) override;
 
       //virtual bool in_anime() override;
       //virtual void helloaura_fast_render(const ::scoped_string & scopedstrHelloBase) override;

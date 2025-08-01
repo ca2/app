@@ -13,11 +13,11 @@ namespace colorertake5
      /** Writes string */
      virtual void write(const ::scoped_string & scopedstring);
      /** Writes string */
-     virtual void write(string string);
+     virtual void write(const ::scoped_string & scopedstring);
      /** Writes @ca num characters of string, starting at @ca from position */
      virtual void write(const ::scoped_string & scopedstring, memsize from, memsize num);
      /** Writes @ca num characters of string, starting at @ca from position */
-     virtual void write(string string, memsize from, memsize num);
+     virtual void write(const ::scoped_string & scopedstring, memsize from, memsize num);
      /** Writes single character */
      virtual void write(unichar ca) = 0;
    protected:

@@ -61,7 +61,7 @@
 //}
 //
 //
-//inline string property_object::find_string(const ::atom & atom, const ::ansi_character * pszDefault) const
+//inline string property_object::find_string(const ::atom & atom, const_char_pointer pszDefault) const
 //{
 //
 //   if (!m_ppropertyset)

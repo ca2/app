@@ -3,7 +3,7 @@
 
 
 
-int get_process_pid(const_char_pointer  procNameParam)
+int get_process_pid(const_char_pointer procNameParam)
 {
 
    vsstring procName(procNameParam);

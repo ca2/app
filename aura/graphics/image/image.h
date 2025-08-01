@@ -352,7 +352,7 @@ namespace image
 
       //virtual void _defer_load_multi_frame_image_(memory_pointer pmemory);
 
-      virtual void op(string str);
+      virtual void op(const ::scoped_string & scopedstr);
       
       
       virtual ::memory copy_with_no_stride();

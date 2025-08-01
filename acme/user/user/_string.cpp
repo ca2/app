@@ -139,7 +139,7 @@ CLASS_DECL_ACME ::string as_string(::user::enum_activation useractivation)
 #undef DO
 #define DO(e) MAKE_STRING(e)
 
-const_char_pointer  g_pszaEnumCursor[]= {
+const_char_pointer g_pszaEnumCursor[]= {
    DO(e_cursor_unmodified),
    DO(e_cursor_draw2d),
    DO(e_cursor_default),

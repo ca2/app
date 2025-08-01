@@ -21,8 +21,8 @@
 
 //CLASS_DECL_ACME int_bool is_file_ok(const ::file::path & path1, const ::scoped_string & scopedstrTemplate);
 //CLASS_DECL_ACME int_bool xxxfile_put_contents(const ::file::path & path, const void * contents, memsize len);
-//CLASS_DECL_ACME int_bool get_temp_file_name_dup(char * szRet, count iBufferSize, const_char_pointer  lpszName, const ::scoped_string & scopedstrExtension);
-//CLASS_DECL_ACME int_bool get_temp_file_name_template(char * szRet, character_count iBufferSize, const_char_pointer  lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate);
+//CLASS_DECL_ACME int_bool get_temp_file_name_dup(char * szRet, count iBufferSize, const_char_pointer lpszName, const ::scoped_string & scopedstrExtension);
+//CLASS_DECL_ACME int_bool get_temp_file_name_template(char * szRet, character_count iBufferSize, const_char_pointer lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate);
 //CLASS_DECL_ACME filesize file_length(const ::file::path & path);
 
 

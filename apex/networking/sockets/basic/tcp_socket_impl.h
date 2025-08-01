@@ -79,7 +79,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //            _buf = (char *)m_memory.get_data();
 //         }
 //
-//         output(int iTcpOutputCapacity, const_char_pointer  buf, int len) :
+//         output(int iTcpOutputCapacity, const_char_pointer buf, int len) :
 //            m_iTcpOuputCapacity(iTcpOutputCapacity),
 //            _b(0), _t(len), _q(len)
 //         {
@@ -96,7 +96,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //         {
 //            return m_iTcpOuputCapacity - _t;
 //         }
-//         void add(const_char_pointer  buf, int len)
+//         void add(const_char_pointer buf, int len)
 //         {
 //            ::memory_copy(_buf + _t, buf, len);
 //            _t += len;
@@ -108,7 +108,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //            _q -= len;
 //            return _q;
 //         }
-//         const_char_pointer  Buf()
+//         const_char_pointer Buf()
 //         {
 //            return _buf + _b;
 //         }
@@ -170,7 +170,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      /** open connection.
 //      \lparam host Hostname
 //      \lparam port Port number */
-//      bool open(const string & host, ::networking::port_t port);
+//      bool open(const ::scoped_string & scopedstrHost, ::networking::port_t port);
 //
 //      /** Connect timeout callback. */
 //      void on_connection_timeout() override;

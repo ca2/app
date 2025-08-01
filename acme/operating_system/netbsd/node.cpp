@@ -45,7 +45,7 @@ namespace user
 //   }
 
 
-//   CLASS_DECL_ACME void _os_process_user_theme(string strTheme)
+//   CLASS_DECL_ACME void _os_process_user_theme(const ::scoped_string & scopedstrTheme)
 //   {
 //
 //      auto pnode = ::acmeacmesystem()->node();

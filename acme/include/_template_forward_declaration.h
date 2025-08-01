@@ -20,7 +20,7 @@ template < typename ITERATOR_TYPE >
 class scoped_string_base;
 
 
-using scoped_ansi_string = scoped_string_base < const ::ansi_character * >;
+using scoped_ansi_string = scoped_string_base < const_char_pointer >;
 using scoped_wd16_string = scoped_string_base < const ::wd16_character * >;
 using scoped_wd32_string = scoped_string_base < const ::wd32_character * >;
 using scoped_wide_string = scoped_string_base < const ::wide_character * >;
@@ -112,7 +112,7 @@ namespace write_text
 
 template < typename T >
 concept const_c_string =
-std::is_convertible < T, const ::ansi_character * >::value ||
+std::is_convertible < T, const_char_pointer >::value ||
 std::is_convertible < T, const ::wd16_character * >::value ||
 std::is_convertible < T, const ::wd32_character * >::value;
 
@@ -134,9 +134,8 @@ struct base_const_c_string
 
    using type =
       typename if_else <
-      std::is_convertible < T, const ::ansi_character * >::value,
-      const ::ansi_character *,
-      typename if_else <
+      std::is_convertible < T, const_char_pointer >::value,
+      const_char_pointer ,  typename if_else <
       std::is_convertible < T, const ::wd16_character * >::value,
       const ::wd16_character *,
       typename if_else <
@@ -427,7 +426,7 @@ using regular_expression_pointer = ::pointer<::regular_expression::regular_expre
 
 
 
-typedef address_array < const_char_pointer  > const_char_ptra;
+typedef address_array < const_char_pointer >const_char_ptra;
 
 typedef address_array < void * > void_ptra;
 

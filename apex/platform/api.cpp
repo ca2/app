@@ -465,12 +465,12 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
    }
 
 
-   memory api::sha256(string strInput)
+   memory api::sha256(const ::scoped_string & scopedstrInput)
    {
 
       memory m;
 
-      m.from_asc(strInput);
+      m.from_asc(scopedstrInput);
 
       memory mDst;
 

@@ -124,7 +124,7 @@ CLASS_DECL_ACME void trace_category_static_term();
 //static ::platform::system * g_psystem = nullptr;
 
 
-//extern const_char_pointer  g_pszTopLevelDomainList[];
+//extern const_char_pointer g_pszTopLevelDomainList[];
 
 
 enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrTitle,
@@ -1844,7 +1844,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   // void system::open_url(string strUrl, string strProfile, string strTarget)
+   // void system::open_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    // {
    //
    //    throw ::exception(::error_interface_only);
@@ -1940,7 +1940,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    string system::__get_text(const ::scoped_string & scopedstr)
    {
 
-      return str;
+      return scopedstr;
 
    }
 
@@ -2611,7 +2611,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       }
 
-      auto pregularexpression = pcontext->compile(str);
+      auto pregularexpression = pcontext->compile(scopedstr);
 
       if (!pregularexpression)
       {
@@ -2632,12 +2632,12 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       __defer_construct_new(m_pmapRegularExpressionContext);
 
-      auto& pcontext = (*m_pmapRegularExpressionContext)[pszStyle];
+      auto& pcontext = (*m_pmapRegularExpressionContext)[scopedstrStyle];
 
       if (!pcontext)
       {
 
-         auto& pfactory = factory("regular_expression", pszStyle);
+         auto& pfactory = factory("regular_expression", scopedstrStyle);
 
          if (!pfactory)
          {
@@ -2658,7 +2658,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    ::regular_expression_pointer system::compile_pcre(const ::scoped_string & scopedstr)
    {
 
-      return create_regular_expression("pcre2", str);
+      return create_regular_expression("pcre2", scopedstr);
 
    }
 
@@ -3692,7 +3692,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
             auto pszUrl = (const_char_pointer )ptopic->payload("wparam").as_iptr();
 
-            application()->did_pick_document_at_url(scopedstrUrl);
+            application()->did_pick_document_at_url(pszUrl);
 
          }
 
@@ -4298,7 +4298,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          if (m_papplication)
          {
 
-            if (m_papplication->_handle_call(payload, strObject, strMember, propertyset))
+            if (m_papplication->_handle_call(payload, scopedstrObject, scopedstrMember, propertyset))
             {
 
                return true;
@@ -4417,7 +4417,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::file::path system::local_get_matter_path(string strMatter)
+   ::file::path system::local_get_matter_path(const ::scoped_string & scopedstrMatter)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -4426,7 +4426,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 #else
 
-      return local_get_matter_path() / strMatter;
+      return local_get_matter_path() / scopedstrMatter;
 
 #endif
 
@@ -4441,10 +4441,10 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::file::path system::local_get_matter_cache_path(string strMatter)
+   ::file::path system::local_get_matter_cache_path(const ::scoped_string & scopedstrMatter)
    {
 
-      return local_get_matter_cache_path() / strMatter;
+      return local_get_matter_cache_path() / scopedstrMatter;
 
    }
 
@@ -5111,7 +5111,7 @@ void node_did_finish_launching(::platform::system* psystem);
 void system_on_open_untitled_file(::platform::system* psystem);
 
 
-void system_on_open_file(::platform::system* psystem, const_char_pointer  pszFile);
+void system_on_open_file(::platform::system* psystem, const_char_pointer pszFile);
 
 
 void node_will_finish_launching(::platform::system* psystem)
@@ -5138,10 +5138,10 @@ void system_on_open_untitled_file(::platform::system* psystem)
 }
 
 
-void system_on_open_file(::platform::system* psystem, const_char_pointer  pszFile)
+void system_on_open_file(::platform::system* psystem, const_char_pointer pszFile)
 {
 
-   psystem->on_open_file(scopedstrFile);
+   psystem->on_open_file(pszFile);
 
 }
 

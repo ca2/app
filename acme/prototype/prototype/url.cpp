@@ -593,7 +593,7 @@ namespace url
 
    //   auto pszSecondSlash = pszSlash + 1;
 
-   //   const_char_pointer  pszHost;
+   //   const_char_pointer pszHost;
 
    //   if (*pszSecondSlash != '/')
    //   {
@@ -868,9 +868,9 @@ namespace url
 
    ////   auto pszLastSlashOnScript = strrchr(scopedstrScript, '/');
 
-   ////   const_char_pointer  pszQuestion = strchr(scopedstrScript, '?');
+   ////   const_char_pointer pszQuestion = strchr(scopedstrScript, '?');
 
-   ////   const_char_pointer  pszFragment;
+   ////   const_char_pointer pszFragment;
 
    ////   if (scopedstrQuestion)
    ////   {
@@ -1090,7 +1090,7 @@ namespace url
 
       auto pszSecondSlash = pszSlash + 1;
 
-      const_char_pointer  pszHost;
+      const_char_pointer pszHost;
 
       if (*pszSecondSlash != '/')
       {
@@ -1242,9 +1242,9 @@ namespace url
 
       auto pszLastSlashOnScript = strrchr(pszScript, '/');
 
-      const_char_pointer  pszQuestion = strchr(pszScript, '?');
+      const_char_pointer pszQuestion = strchr(pszScript, '?');
 
-      const_char_pointer  pszFragment;
+      const_char_pointer pszFragment;
 
       if (pszQuestion)
       {

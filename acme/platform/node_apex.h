@@ -77,7 +77,7 @@ namespace platform
       virtual void defer_innate_ui();
 
 
-      virtual void shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco = "", int iIcon = -1);
+      virtual void shell_create_link(::file::path pathObj, ::file::path pathLnk, const ::scoped_string & scopedstrDesc, ::file::path pathIco = "", int iIcon = -1);
 
       virtual bool shell_link_target(::file::path & pathTarget, const ::file::path & pathLnk);
       virtual bool shell_link_icon(::file::path & pathIcon, int & iIcon, const ::file::path& pathLnk);

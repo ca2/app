@@ -935,7 +935,7 @@ pdirectorysystem->create("/var/tmp/ca2/intermediate");
       //      file()->del(lib->m_pathScript + ".old");
       //   }
       //}
-      //catch(string strError)
+      //catch(const ::scoped_string & scopedstrError)
       //{
       //   TRACE0(strError + "\n");
       //}
@@ -946,10 +946,10 @@ pdirectorysystem->create("/var/tmp/ca2/intermediate");
          //   file()->copy(strCppPath,lib->m_pathScript);
          //}
       }
-      catch(string strError)
+      catch(const ::scoped_string & scopedstrError)
       {
 
-         information(strError + "\n");
+         information(scopedstrError + "\n");
 
       }
       //try
@@ -959,7 +959,7 @@ pdirectorysystem->create("/var/tmp/ca2/intermediate");
       //      file()->del(lib->m_pathScript + ".old");
       //   }
       //}
-      //catch(string strError)
+      //catch(const ::scoped_string & scopedstrError)
       //{
       //   TRACE0(strError + "\n");
       //}

@@ -49,7 +49,7 @@ inline const_string_range < ITERATOR_TYPE > & const_string_range < ITERATOR_TYPE
 
 
 //template < >
-//inline string_range <  const ::ansi_character * >::string_range(const atom & atom)
+//inline string_range <  const_char_pointer >::string_range(const atom & atom)
 //{
 //
 //   if (atom.is_text())
@@ -83,7 +83,7 @@ inline string_range < ITERATOR_TYPE >::string_range(const BLOCK & block) :
 
 
 //template <  >
-//inline string_range < const ::ansi_character * > & string_range <  const ::ansi_character * >::operator = (const atom & atom)
+//inline string_range < const_char_pointer >& string_range <  const_char_pointer >::operator = (const atom & atom)
 //{
 //
 //   if (atom.is_text())
@@ -106,12 +106,12 @@ inline string_range < ITERATOR_TYPE >::string_range(const BLOCK & block) :
 
 
 //template <  >
-//inline string_range < const ::ansi_character * > & string_range <  const ::ansi_character * >::operator = (const block & block)
+//inline string_range < const_char_pointer >& string_range <  const_char_pointer >::operator = (const block & block)
 //{
 //
 //
-//   this->m_begin = (const ::ansi_character *)block.m_begin;
-//   this->m_end = (const ::ansi_character *)block.m_end;
+//   this->m_begin = (const_char_pointer )block.m_begin;
+//   this->m_end = (const_char_pointer )block.m_end;
 //
 //   return *this;
 //
@@ -206,7 +206,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator =
 
 
 //template < >
-//inline scoped_string_base < const ::ansi_character * >::scoped_string_base(const ::atom & atom) :
+//inline scoped_string_base < const_char_pointer >::scoped_string_base(const ::atom & atom) :
 //   m_str(no_initialize_t{}), RANGE(no_initialize_t{})
 //{
 //
@@ -475,7 +475,7 @@ inline atom::atom(const domain_id & domainid)  :
 
 }
 
-inline atom::atom(const ::ansi_character * psz) :
+inline atom::atom(const_char_pointer psz) :
    m_str(psz)
 {
 
@@ -1618,7 +1618,7 @@ inline bool atom::case_insensitive_ends(const ::scoped_string & scopedstrCandida
 
 
 
-inline void from_string(::atom & atom, const ::ansi_character * psz)
+inline void from_string(::atom & atom, const_char_pointer psz)
 {
 
    atom = psz;
@@ -1626,7 +1626,7 @@ inline void from_string(::atom & atom, const ::ansi_character * psz)
 }
 
 
-//inline atom::atom(const ::ansi_character * psz) :
+//inline atom::atom(const_char_pointer psz) :
 //        m_str(scopedstr)
 //{
 //
@@ -1804,7 +1804,7 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 //}
 
 
-//inline ::string operator +(const ::ansi_character * psz, const ::atom & atom)
+//inline ::string operator +(const_char_pointer psz, const ::atom & atom)
 //{
 //
 //   return ::string(scopedstr) + atom.as_string();
@@ -1925,7 +1925,7 @@ atom::atom(const PAYLOAD & payload)
 //}
 
 
-inline ::string atom::operator +(const ::ansi_character * psz) const
+inline ::string atom::operator +(const_char_pointer psz) const
 {
 
    return this->as_string() + psz;

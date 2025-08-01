@@ -73,8 +73,10 @@ namespace userex
    }
 
 
-   ::file::path image_list_impact::get_link_path(string strLink)
+   ::file::path image_list_impact::get_link_path(const ::scoped_string & scopedstrLink)
    {
+
+      ::string strLink(scopedstrLink);
 
       if (strLink.case_insensitive_begins_eat(get_link_prefix()))
       {

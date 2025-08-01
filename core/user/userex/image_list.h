@@ -53,7 +53,7 @@ namespace userex
 
       virtual string get_link_prefix();
 
-      virtual ::file::path get_link_path(string strLink);
+      virtual ::file::path get_link_path(const ::scoped_string & scopedstrLink);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

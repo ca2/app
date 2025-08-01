@@ -144,7 +144,7 @@ namespace sockets_bsd
 
       m_iSocketType = iType;
       
-      m_strSocketProtocol = strProtocol;
+      m_strSocketProtocol = scopedstrProtocol;
 
       int protno;
 
@@ -167,10 +167,10 @@ namespace sockets_bsd
 
          struct protoent * pprotoent = nullptr;
 
-         if (strProtocol.length())
+         if (scopedstrProtocol.length())
          {
 
-            pprotoent = getprotobyname(strProtocol);
+            pprotoent = getprotobyname(scopedstrProtocol);
 
             if (pprotoent == nullptr)
             {

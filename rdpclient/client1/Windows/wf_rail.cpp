@@ -36,7 +36,7 @@
 struct _WINDOW_STYLE
 {
 	unsigned int style;
-	const_char_pointer  name;
+	const_char_pointer name;
 	BOOL multi;
 };
 typedef struct _WINDOW_STYLE WINDOW_STYLE;

@@ -129,7 +129,7 @@ namespace acme
 {
 
 
-   CLASS_DECL_ACME void format_strings(string& rString, const ::scoped_string & scopedstrFormat, const_char_pointer  const* rgpsz, int nString);
+   CLASS_DECL_ACME void format_strings(string& rString, const ::scoped_string & scopedstrFormat, const_char_pointer const* rgpsz, int nString);
 
    CLASS_DECL_ACME bool extract_sub_string(string& rString, const ::scoped_string & scopedstrFullString, int iSubString, char chSep = '\n');
 

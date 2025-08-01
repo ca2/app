@@ -31,29 +31,29 @@ namespace account
    }
 
 
-   void product::license(string strAppId, bool bInteractive)
+   void product::license(const ::scoped_string & scopedstrAppId, bool bInteractive)
    {
 
-      do_license(strAppId, bInteractive);
+      do_license(scopedstrAppId, bInteractive);
 
    }
 
 
-   bool product::do_license(string strAppId, bool bInteractive)
+   bool product::do_license(const ::scoped_string & scopedstrAppId, bool bInteractive)
    {
 
       m_timeRequest = ::earth::time::now();
 
-      m_strAppId = strAppId;
+      m_strAppId = scopedstrAppId;
 
-      _do_license(strAppId, bInteractive);
+      _do_license(scopedstrAppId, bInteractive);
 
       return m_estatusLicensing == ::success_licensed;
 
    }
 
 
-   void product::_do_license(string strAppId, bool bInteractive)
+   void product::_do_license(const ::scoped_string & scopedstrAppId, bool bInteractive)
    {
 
       ::pointer<::axis::application>papp = get_app();

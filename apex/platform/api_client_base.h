@@ -44,7 +44,7 @@ public:
    //virtual void api_get(::payload & payload, const ::scoped_string & scopedstrUrl, ::property_set & set);
 
 
-   //virtual void api_download(string strGet, const ::file::path & path, ::property_set & set);
+   //virtual void api_download(const ::scoped_string & scopedstrGet, const ::file::path & path, ::property_set & set);
 
 
 };

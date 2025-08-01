@@ -103,9 +103,9 @@ namespace sandbox_windowing
          //
          //         string strApplicationServerName = psystem->get_application_server_name();
          //
-         //         pupdate->res_class = (char *) (const_char_pointer ) strApplicationServerName;
+         //         pupdate->res_class = (char *) (const_char_pointer )strApplicationServerName;
          //
-         //         pupdate->res_name = (char *) (const_char_pointer ) strApplicationServerName;
+         //         pupdate->res_name = (char *) (const_char_pointer )strApplicationServerName;
          //
          //         XSetClassHint(display, window, pupdate);
          //

@@ -397,7 +397,7 @@ namespace platform
 
       virtual void open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {}) override;
       virtual void open_internet_link_in_browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {}) override;
-//      virtual void open_url(string strUrl, string strProfile, string strTarget) override;
+//      virtual void open_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
 
 
       bool _handle_uri(const ::block & block) override;
@@ -432,7 +432,7 @@ namespace platform
 
 //
 //   template < typename ENUM >
-//   inline void set_enum_text(ENUM e, const ::string &psz)
+//   inline void set_enum_text(ENUM e, const ::scoped_string & scopedstr)
 //   {
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
@@ -456,7 +456,7 @@ namespace platform
 
 //
 //   template < class ENUM >
-//   inline ENUM text_enum(ENUM& e, const ::string &psz, ENUM eDefault = (ENUM)0)
+//   inline ENUM text_enum(ENUM& e, const ::scoped_string & scopedstr, ENUM eDefault = (ENUM)0)
 //   {
 //
 //      critical_section_lock lock(&m_csEnumText);
@@ -482,7 +482,7 @@ namespace platform
 //
 //
 //   template < class ENUM, ENUM edefault = 0>
-//   inline base_enum < ENUM, edefault >& text_enum(base_enum < ENUM, edefault >& b, const ::string &psz, ENUM eDefault = edefault)
+//   inline base_enum < ENUM, edefault >& text_enum(base_enum < ENUM, edefault >& b, const ::scoped_string & scopedstr, ENUM eDefault = edefault)
 //   {
 //
 //      return b = text_enum(b.m_evalue, psz, eDefault);
@@ -516,7 +516,7 @@ namespace platform
       virtual void check_exit() override;
 
       virtual ::regular_expression_pointer create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr) override;
-      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::string &pszStyle, int iCount);
+      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount);
       virtual ::pointer<::regular_expression::context> get_regular_expression_context(const ::scoped_string & scopedstrStyle) override;
 
       virtual ::regular_expression_pointer compile_pcre(const ::scoped_string & scopedstr) override;
@@ -635,9 +635,9 @@ namespace platform
 
 
       virtual ::file::path local_get_matter_cache_path() override;
-      virtual ::file::path local_get_matter_cache_path(string strMatter) override;
+      virtual ::file::path local_get_matter_cache_path(const ::scoped_string & scopedstrMatter) override;
       virtual ::file::path local_get_matter_path() override;
-      virtual ::file::path local_get_matter_path(string strMatter) override;
+      virtual ::file::path local_get_matter_path(const ::scoped_string & scopedstrMatter) override;
 
       virtual void install_progress_add_up(int iAddUp = 1) override;
 
@@ -963,10 +963,10 @@ namespace platform
 //       }
 //
 //
-//       //virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget) override;
-//       //virtual void open_profile_link(string strUrl, string strProfile, string strTarget) override;
-//       //virtual void open_link(string strUrl, string strProfile, string strTarget) override;
-//       //virtual void open_url(string strUrl, string strProfile, string strTarget) override;
+//       //virtual void browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
+//       //virtual void open_profile_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
+//       //virtual void open_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
+//       //virtual void open_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
 //
 //
 //       //virtual void __set_thread_on() override;
@@ -1117,9 +1117,9 @@ namespace platform
 // //virtual void start() override;
 //
 // //virtual ::file::path local_get_matter_cache_path() override;
-// //virtual ::file::path local_get_matter_cache_path(string strMatter) override;
+// //virtual ::file::path local_get_matter_cache_path(const ::scoped_string & scopedstrMatter) override;
 // //virtual ::file::path local_get_matter_path() override;
-// //virtual ::file::path local_get_matter_path(string strMatter) override;
+// //virtual ::file::path local_get_matter_path(const ::scoped_string & scopedstrMatter) override;
 //
 // //virtual bool find_applications_from_cache() override;
 // //virtual bool find_applications_to_cache(bool bSave = true) override;
@@ -1170,22 +1170,22 @@ namespace platform
 //
 //       //virtual void defer_check_openweather_city_list();
 //
-//       //virtual openweather_city * openweather_find_city(string strQuery);
-//       //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, long long & iId, double & dLat, double & dLon);
-//       //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, long long & iId, double & dLat, double & dLon, bool bPrefix);
+//       //virtual openweather_city * openweather_find_city(const ::scoped_string & scopedstrQuery);
+//       //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string & strCit, long long & iId, double & dLat, double & dLon);
+//       //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string & strCit, long long & iId, double & dLat, double & dLon, bool bPrefix);
 //
 // //#ifdef __ANDROID__
 // ////#pragma message("at macos??")
-// //      virtual bool android_set_user_wallpaper(string strUrl) override;
+// //      virtual bool android_set_user_wallpaper(const ::scoped_string & scopedstrUrl) override;
 // //      virtual bool android_get_user_wallpaper(string & strUrl) override;
 // //
 // //#endif
 // //
-// //      virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra) override;
+// //      virtual bool defer_accumulate_on_open_file(string_array stra, const ::scoped_string & scopedstrExtra) override;
 // //
 // //      virtual bool merge_accumulated_on_open_file(::request * prequest) override;
 // //
-// //      virtual bool on_open_file(::payload payloadFile, string strExtra) override;
+// //      virtual bool on_open_file(::payload payloadFile, const ::scoped_string & scopedstrExtra) override;
 // //
 //       //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 //
@@ -1194,7 +1194,7 @@ namespace platform
 //       //virtual void * initialize_native_window2(const ::int_rectangle & rectangle);
 //
 //
-//       //virtual void on_os_text(e_os_text etext, string strText) override;
+//       //virtual void on_os_text(e_os_text etext, const ::scoped_string & scopedstrText) override;
 //
 //       //virtual ::windowing::window * impl_from_handle(void * posdata);
 //       //virtual ::user::interaction * ui_from_handle(void * posdata);
@@ -1202,10 +1202,10 @@ namespace platform
 //
 //
 //
-//       //virtual void on_extra(string str) override;
+//       //virtual void on_extra(const ::scoped_string & scopedstr) override;
 //
-//       //virtual string standalone_setting(string str) override;
-//       //virtual bool set_standalone_setting(string str, string strSetting) override;
+//       //virtual string standalone_setting(const ::scoped_string & scopedstr) override;
+//       //virtual bool set_standalone_setting(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSetting) override;
 //
 //
 //       //virtual void on_event(unsigned long long u, ::particle * pparticle) override;
@@ -1222,11 +1222,11 @@ namespace platform
 //       //virtual void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override;
 //
 //
-//       //void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
+//       //void chromium(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrId, ::file::path path, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam);
 //
-//       //void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile);
+//       //void defer_create_firefox_profile(::file::path pathFirefox, const ::scoped_string & scopedstrProfileName, ::file::path pathProfile);
 //
-//       //void     firefox(string strUrl, string strBrowser, string strProfile, string strParam);
+//       //void     firefox(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam);
 //       //void     get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory);
 //
 //

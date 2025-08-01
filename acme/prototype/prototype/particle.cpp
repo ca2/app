@@ -139,7 +139,7 @@ void particle::defer_create_synchronization()
 
 
 
-const_char_pointer  __sz_defer_skip(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSkip)
+const_char_pointer __sz_defer_skip(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSkip)
 {
 
    auto len = scopedstrSkip.size();
@@ -158,7 +158,7 @@ const_char_pointer  __sz_defer_skip(const ::scoped_string & scopedstr, const ::s
 }
 
 
-const_char_pointer  particle::topic_text() const
+const_char_pointer particle::topic_text() const
 {
 
    return __sz_defer_skip(typeid(*this).name(), "class ");
@@ -185,7 +185,7 @@ const_char_pointer  particle::topic_text() const
 //}
 
 
-//const_char_pointer  particle::raw_class_title() const
+//const_char_pointer particle::raw_class_title() const
 //{
 //
 //   auto pszName =  typeid(*this).name();
@@ -812,7 +812,7 @@ void particle::print_out(const ::scoped_string & scopedstr) const
 }
 
 
-//void printf_line(const ::ansi_character * pszFormat, ...)
+//void printf_line(const_char_pointer pszFormat, ...)
 //{
 //
 //   va_list arguments;
@@ -832,7 +832,7 @@ void particle::print_out(const ::scoped_string & scopedstr) const
 //}
 
 
-void particle::printf_line(const ::ansi_character * pszFormat, ...) const
+void particle::printf_line(const_char_pointer pszFormat, ...) const
 {
 
    va_list arguments;
@@ -852,7 +852,7 @@ void particle::printf_line(const ::ansi_character * pszFormat, ...) const
 }
 
 
-void particle::printf_out(const ::ansi_character * pszFormat, ...) const
+void particle::printf_out(const_char_pointer pszFormat, ...) const
 {
 
    va_list arguments;
@@ -894,7 +894,7 @@ void particle::err_out(const ::scoped_string & scopedstr) const
 }
 
 
-void particle::errf_line(const ::ansi_character * pszFormat, ...) const
+void particle::errf_line(const_char_pointer pszFormat, ...) const
 {
 
    va_list arguments;
@@ -914,7 +914,7 @@ void particle::errf_line(const ::ansi_character * pszFormat, ...) const
 }
 
 
-void particle::errf_out(const ::ansi_character * pszFormat, ...) const
+void particle::errf_out(const_char_pointer pszFormat, ...) const
 {
 
    va_list arguments;
@@ -947,7 +947,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 
 
 
-//void particle::trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
+//void particle::trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const_char_pointer pszFormat, va_list & arguments)
 //{
 //
 //
@@ -956,7 +956,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 
 
-//void particle::trace_log_information_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
+//void particle::trace_log_information_arguments(enum_trace_category etracecategory, const_char_pointer pszFormat, va_list & arguments)
 //{
 //
 //   get_tracer()(m_papplication, e_trace_level_information, etracecategory).format_output_arguments(scopedstrFormat, arguments);
@@ -964,7 +964,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 //
 //
-//void particle::trace_log_warning_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
+//void particle::trace_log_warning_arguments(enum_trace_category etracecategory, const_char_pointer pszFormat, va_list & arguments)
 //{
 //
 //   get_tracer()(m_papplication, e_trace_level_warning, etracecategory).format_output_arguments(scopedstrFormat, arguments);
@@ -972,7 +972,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 //
 //
-//void particle::trace_log_error_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
+//void particle::trace_log_error_arguments(enum_trace_category etracecategory, const_char_pointer pszFormat, va_list & arguments)
 //{
 //
 //   get_tracer()(m_papplication, e_trace_level_error, etracecategory).format_output_arguments(scopedstrFormat, arguments);
@@ -980,7 +980,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 //
 //
-//void particle::trace_log_fatal_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
+//void particle::trace_log_fatal_arguments(enum_trace_category etracecategory, const_char_pointer pszFormat, va_list & arguments)
 //{
 //
 //   get_tracer()(m_papplication, e_trace_level_fatal, etracecategory).format_output_arguments(scopedstrFormat, arguments);
@@ -990,7 +990,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //
 //
 //
-//void particle::trace_arguments(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments)
+//void particle::trace_arguments(enum_trace_level etracelevel, const_char_pointer pszFormat, va_list & arguments)
 //{
 //
 //   get_tracer()(m_papplication, etracelevel, trace_category()).format_output_arguments(scopedstrFormat, arguments);
@@ -998,7 +998,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 //
 //
-//void particle::trace_log_information_arguments(const ::ansi_character * pszFormat, va_list & arguments)
+//void particle::trace_log_information_arguments(const_char_pointer pszFormat, va_list & arguments)
 //{
 //
 //   get_tracer()(m_papplication, e_trace_level_information, trace_category()).format_output_arguments(scopedstrFormat, arguments);
@@ -1006,7 +1006,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 //
 //
-//void particle::trace_log_warning_arguments(const ::ansi_character * pszFormat, va_list & arguments)
+//void particle::trace_log_warning_arguments(const_char_pointer pszFormat, va_list & arguments)
 //{
 //
 //   get_tracer()(m_papplication, e_trace_level_warning, trace_category()).format_output_arguments(scopedstrFormat, arguments);
@@ -1014,7 +1014,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 //
 //
-//void particle::trace_log_error_arguments(const ::ansi_character * pszFormat, va_list & arguments)
+//void particle::trace_log_error_arguments(const_char_pointer pszFormat, va_list & arguments)
 //{
 //
 //   get_tracer()(m_papplication, e_trace_level_error, trace_category()).format_output_arguments(scopedstrFormat, arguments);
@@ -1022,7 +1022,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 //
 //
-//void particle::trace_log_fatal_arguments(const ::ansi_character * pszFormat, va_list & arguments)
+//void particle::trace_log_fatal_arguments(const_char_pointer pszFormat, va_list & arguments)
 //{
 //
 //   get_tracer()(m_papplication, e_trace_level_fatal, trace_category()).format_output_arguments(scopedstrFormat, arguments);
@@ -1030,7 +1030,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 
 
-//void particle::trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
+//void particle::trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const_char_pointer pszFormat, ...)
 //{
 //
 //   va_list arguments;
@@ -1044,7 +1044,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 //
 //
-//void particle::trace_log_information(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
+//void particle::trace_log_information(enum_trace_category etracecategory, const_char_pointer pszFormat, ...)
 //{
 //
 //   va_list arguments;
@@ -1058,7 +1058,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 //
 //
-//void particle::trace_log_warning(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
+//void particle::trace_log_warning(enum_trace_category etracecategory, const_char_pointer pszFormat, ...)
 //{
 //
 //   va_list arguments;
@@ -1072,7 +1072,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 //
 //
-//void particle::trace_log_error(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
+//void particle::trace_log_error(enum_trace_category etracecategory, const_char_pointer pszFormat, ...)
 //{
 //
 //   va_list arguments;
@@ -1086,7 +1086,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 //
 //
-//void particle::trace_log_fatal(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
+//void particle::trace_log_fatal(enum_trace_category etracecategory, const_char_pointer pszFormat, ...)
 //{
 //
 //   va_list arguments;
@@ -1239,7 +1239,7 @@ class tracer * particle::tracer() const
 }
 
 
-void particle::formatf_trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments) const
+void particle::formatf_trace(enum_trace_level etracelevel, const_char_pointer pszFormat, va_list & arguments) const
 {
 
    auto statement = ::transfer(log_statement());
@@ -1251,7 +1251,7 @@ void particle::formatf_trace(enum_trace_level etracelevel, const ::ansi_characte
 }
 
 
-void particle::tracef(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...) const
+void particle::tracef(enum_trace_level etracelevel, const_char_pointer pszFormat, ...) const
 {
 
     va_list arguments;
@@ -1273,7 +1273,7 @@ void particle::tracef(enum_trace_level etracelevel, const ::ansi_character * psz
  }
 
 
-void particle::debugf(const ::ansi_character * pszFormat, ...) const
+void particle::debugf(const_char_pointer pszFormat, ...) const
 {
 
    va_list arguments;
@@ -1287,7 +1287,7 @@ void particle::debugf(const ::ansi_character * pszFormat, ...) const
 }
 
 
-void particle::informationf(const ::ansi_character * pszFormat, ...) const
+void particle::informationf(const_char_pointer pszFormat, ...) const
 {
 
    va_list arguments;
@@ -1301,7 +1301,7 @@ void particle::informationf(const ::ansi_character * pszFormat, ...) const
 }
 
 
-void particle::warningf(const ::ansi_character * pszFormat, ...) const
+void particle::warningf(const_char_pointer pszFormat, ...) const
 {
 
    va_list arguments;
@@ -1315,7 +1315,7 @@ void particle::warningf(const ::ansi_character * pszFormat, ...) const
 }
 
 
-void particle::errorf(const ::ansi_character * pszFormat, ...) const
+void particle::errorf(const_char_pointer pszFormat, ...) const
 {
 
    va_list arguments;
@@ -1329,7 +1329,7 @@ void particle::errorf(const ::ansi_character * pszFormat, ...) const
 }
 
 
-void particle::fatalf(const ::ansi_character * pszFormat, ...) const
+void particle::fatalf(const_char_pointer pszFormat, ...) const
 {
 
    va_list arguments;
@@ -1465,7 +1465,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //}
 //
 //
-//void particle::trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...)
+//void particle::trace(enum_trace_level etracelevel, const_char_pointer pszFormat, ...)
 //{
 //
 //   va_list arguments;
@@ -1485,7 +1485,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 
 
 
-//particle::particle(const_char_pointer  lpszName)
+//particle::particle(const_char_pointer lpszName)
 //{
 //
 //   m_bOwner = true;
@@ -1515,7 +1515,7 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
 //#ifdef WINDOWS
 //
 //
-//particle::particle(hsynchronization hsyncobject, const_char_pointer  lpszName) :
+//particle::particle(hsynchronization hsyncobject, const_char_pointer lpszName) :
 //   m_hsync(hsyncobject)
 //{
 //
@@ -2169,7 +2169,7 @@ bool particle::should_run_async() const
 
 
 
-void * particle::new_object(const_char_pointer  psz)
+void * particle::new_object(const_char_pointer psz)
 {
    
    throw interface_only();
@@ -2192,7 +2192,7 @@ CLASS_DECL_ACME ::particle_pointer detach_pointer(::lparam& lparam)
 }
 
 
-const_char_pointer  particle::debug_note() const
+const_char_pointer particle::debug_note() const
 {
 
    return nullptr;

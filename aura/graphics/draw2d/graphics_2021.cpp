@@ -1565,7 +1565,7 @@ namespace draw2d
 
       ::double_rectangle rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
 
-      const ::int_size & size = ::int_size(get_text_extent((const_char_pointer ) block.get_data(), block.get_size()));
+      const ::int_size & size = ::int_size(get_text_extent((const_char_pointer )block.get_data(), block.get_size()));
 
       ::double_rectangle rectangleText(int_point((int)x, (int)y), size);
 
@@ -3438,7 +3438,7 @@ namespace draw2d
 
       character_count iLen;
 
-      const_char_pointer  pszStart = str;
+      const_char_pointer pszStart = str;
 
       const ::scoped_string & scopedstr = pszStart;
 
@@ -4259,7 +4259,7 @@ namespace draw2d
          if (sz.cx() > rectangleClip.width())
          {
 
-            const_char_pointer  pszStart = str;
+            const_char_pointer pszStart = str;
 
             const ::scoped_string & scopedstr = pszStart;
 
@@ -4270,7 +4270,7 @@ namespace draw2d
             while (true)
             {
 
-               unicode_increment(scopedstr);
+               unicode_increment(psz);
 
                strSample = string(pszStart, psz - pszStart) + "...";
 
@@ -4501,9 +4501,9 @@ namespace draw2d
 
       character_count len = strSource.length();
 
-      const ::ansi_character * pszEnd = pszSource + len;
+      const_char_pointer pszEnd = pszSource + len;
 
-      const_char_pointer  pszStart = unicode_next(scopedstrSource);
+      const_char_pointer pszStart = unicode_next(scopedstrSource);
 
       int_size sz;
 
@@ -4598,7 +4598,7 @@ namespace draw2d
 
                pszPrevious      = psz;
 
-               unicode_increment(scopedstr);
+               unicode_increment(psz);
 
             }
             while(scopedstr != nullptr);
@@ -4638,7 +4638,7 @@ namespace draw2d
 
          pszPrevious = psz;
 
-         unicode_increment(scopedstr);
+         unicode_increment(psz);
 
          if(bEnd)
          {
@@ -5592,12 +5592,12 @@ namespace draw2d
    //}
 
 
-   void graphics::nanosvg(string str, int x, int y, int w, int h)
+   void graphics::nanosvg(const ::scoped_string & scopedstr, int x, int y, int w, int h)
    {
 
       struct NSVGimage* pnsvgimage;
 
-      pnsvgimage = nsvgParse((char *) (const_char_pointer ) str, "px", 96);
+      pnsvgimage = nsvgParse((char *) (const_char_pointer )str, "px", 96);
 
       nanosvg_drawframe(pnsvgimage, x, y, w, h);
 

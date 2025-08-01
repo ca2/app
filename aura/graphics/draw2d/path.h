@@ -194,7 +194,7 @@ namespace draw2d
       virtual void nanosvg_drawframe(NSVGimage* pimage, int x, int y, int w, int h);
       // virtual void nanosvg_resizecb(int width, int height, int x, int y, int w, int h);
 
-      virtual void nanosvg(string str, int x, int y, int w, int h);
+      virtual void nanosvg(const ::scoped_string & scopedstr, int x, int y, int w, int h);
 
 
 

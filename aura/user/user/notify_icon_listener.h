@@ -33,7 +33,7 @@ namespace user
 
       //   item();
 
-      //   item(string strName, string strId = "", string strLabel = "", string strAccelerator = "", string strDescription = "");
+      //   item(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrId = "", const ::scoped_string & scopedstrLabel = "", const ::scoped_string & scopedstrAccelerator = "", const ::scoped_string & scopedstrDescription = "");
 
       //   virtual ~item();
 
@@ -59,15 +59,15 @@ namespace user
 
 
       //virtual int _get_notification_area_action_count();
-      //virtual const_char_pointer  _get_notification_area_action_name(int iIndex);
-      //virtual const_char_pointer  _get_notification_area_action_id(int iIndex);
-      //virtual const_char_pointer  _get_notification_area_action_label(int iIndex);
-      //virtual const_char_pointer  _get_notification_area_action_accelerator(int iIndex);
-      //virtual const_char_pointer  _get_notification_area_action_description(int iIndex);
+      //virtual const_char_pointer _get_notification_area_action_name(int iIndex);
+      //virtual const_char_pointer _get_notification_area_action_id(int iIndex);
+      //virtual const_char_pointer _get_notification_area_action_label(int iIndex);
+      //virtual const_char_pointer _get_notification_area_action_accelerator(int iIndex);
+      //virtual const_char_pointer _get_notification_area_action_description(int iIndex);
       bool handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 
 
-      //virtual bool notify_icon_insert_item(bool bStockItem, ::collection::index & iIndex, string strName, string strId = "", string strLabel = "", string strAccelerator = "", string strDescription = "");
+      //virtual bool notify_icon_insert_item(bool bStockItem, ::collection::index & iIndex, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrId = "", const ::scoped_string & scopedstrLabel = "", const ::scoped_string & scopedstrAccelerator = "", const ::scoped_string & scopedstrDescription = "");
 
 
    };

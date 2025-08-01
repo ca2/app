@@ -29,7 +29,7 @@ namespace helloworld
       //   bool           m_bNew;
 
       //   bilbo();
-      //   bilbo(string strPath);
+      //   bilbo(const ::scoped_string & scopedstrPath);
       //   ~bilbo();
 
       //};
@@ -120,7 +120,7 @@ namespace helloworld
 
       virtual int run();
 
-      virtual bool initialize_render(string strId);
+      virtual bool initialize_render(const ::scoped_string & scopedstrId);
 
 
       virtual void full_render();
@@ -137,7 +137,7 @@ namespace helloworld
 
       //virtual void defer_update_bilbo();
 
-      //::image::image_pointer & image23(string strDib);
+      //::image::image_pointer & image23(const ::scoped_string & scopedstrDib);
 
       //virtual bool in_anime();
       //virtual void helloaura_fast_render(const ::scoped_string & scopedstrHelloWorld);

@@ -3,7 +3,7 @@
 #include "acme/operating_system/windows_common/_string.h"
 
 
-hresult_exception::hresult_exception(HRESULT hresult, const_char_pointer  pszMessage) :
+hresult_exception::hresult_exception(HRESULT hresult, const_char_pointer pszMessage) :
    ::exception(::error_hresult, pszMessage)
 {
 

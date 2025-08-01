@@ -37,7 +37,7 @@ namespace filemanager
          document * get_document();
 
 
-         virtual void initialize_folder_list_impact(string strDataKeyModifier, bool bRecursive);
+         virtual void initialize_folder_list_impact(const ::scoped_string & scopedstrDataKeyModifier, bool bRecursive);
 
 
          virtual void on_insert_columns() override;

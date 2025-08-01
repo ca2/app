@@ -50,7 +50,7 @@ namespace universal_windows
       //--------------------------------------------------------------------
       // Initializes the text speaker.
       //--------------------------------------------------------------------
-      bool speaker::initialize(string strLang)
+      bool speaker::initialize(const ::scoped_string & scopedstrLang)
       {
 
          destroy(strLang);
@@ -102,14 +102,14 @@ namespace universal_windows
          return false;
 
       }
-      bool speaker::initialize_translator(string strLang)
+      bool speaker::initialize_translator(const ::scoped_string & scopedstrLang)
       {
 
          return false;
 
       }
 
-      bool speaker::destroy(string strLang)
+      bool speaker::destroy(const ::scoped_string & scopedstrLang)
       {
 
          if(m_synth[strLang] != nullptr)
@@ -125,7 +125,7 @@ namespace universal_windows
 
          return true;
       }
-      bool speaker::finalize_translator(string strLang)
+      bool speaker::finalize_translator(const ::scoped_string & scopedstrLang)
       {
 
          return false;
@@ -224,7 +224,7 @@ namespace universal_windows
       }
 
 
-      bool speaker::is_speaking(string strLang)
+      bool speaker::is_speaking(const ::scoped_string & scopedstrLang)
       {
          return false;
          //if(m_synth[strLang].is_null())
@@ -250,7 +250,7 @@ namespace universal_windows
       }
 
 
-      bool speaker::stop(string strLang)
+      bool speaker::stop(const ::scoped_string & scopedstrLang)
       {
 
          if (m_tts[strLang])
@@ -271,7 +271,7 @@ namespace universal_windows
       }
 
       //actual creation of the stream using the ___new voice synthesis stream
-      IAsyncOperation < SpeechSynthesisStream^ > ^ speaker::GetSpeechStreamTask(string strLang, string text)
+      IAsyncOperation < SpeechSynthesisStream^ > ^ speaker::GetSpeechStreamTask(const ::scoped_string & scopedstrLang, string text)
       {
          return m_synth[strLang]->SynthesizeTextToStreamAsync(text);
       }

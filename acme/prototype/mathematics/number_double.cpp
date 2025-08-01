@@ -20,8 +20,10 @@ namespace mathematics
    }
 
    
-   CLASS_DECL_ACME bool convert_to_double(double & d, string str)
+   CLASS_DECL_ACME bool convert_to_double(double & d, const ::scoped_string & scopedstr)
    {
+
+      ::string str(scopedstr);
 
       str.replace_with("", " ");
       

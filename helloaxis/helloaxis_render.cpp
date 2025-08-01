@@ -81,7 +81,7 @@ namespace helloaxis
 
 
 
-   bool render::initialize_render(string strId)
+   bool render::initialize_render(const ::scoped_string & scopedstrId)
    {
 
       return ::helloaura::render::initialize_render(strId);
@@ -1117,7 +1117,7 @@ namespace helloaxis
    }
 
 
-   ::image::image_pointer & render::image23(string strImage)
+   ::image::image_pointer & render::image23(const ::scoped_string & scopedstrImage)
    {
       return ::helloaura::render::image23(strImage);
       //auto & pimage = m_mapDib23[strImage];

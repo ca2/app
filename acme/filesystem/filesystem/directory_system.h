@@ -115,12 +115,12 @@ public:
    //virtual ::file::path module_folder();
 
 
-   virtual ::file::path app(string strPlatform, string strConfiguration);
-   virtual ::file::path app_app_admin(string strPlatform, string strConfiguration);
-   virtual ::file::path app_app_nest(string strPlatform, string strConfiguration);
-   virtual ::file::path app_app(string strPlatform, string strConfiguration);
-   virtual ::file::path vcredist(string strPlatform, string strConfiguration);
-   virtual ::file::path install_log(string strPlatform, string strConfiguration);
+   virtual ::file::path app(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   virtual ::file::path app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   virtual ::file::path app_app_nest(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   virtual ::file::path app_app(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   virtual ::file::path vcredist(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   virtual ::file::path install_log(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
 
 
    virtual ::file::path install();
@@ -151,16 +151,16 @@ public:
    virtual ::file::path public_root(); // writable common root (non-bin, non-exe)
    virtual ::file::path bookmark();
    virtual ::file::path home();
-   virtual ::file::path icloud_container2(const_char_pointer  pszContentIdentifier = nullptr);
-   virtual ::file::path icloud_container_documents(const_char_pointer  pszContentIdentifier = nullptr);
-   virtual ::file::path icloud_container2_final(const_char_pointer  pszContentIdentifier = nullptr);
-   virtual bool is_icloud_container(const ::file::path & path, const_char_pointer  pszContentIdentifier = nullptr);
-   virtual bool has_icloud_container(const_char_pointer  pszContentIdentifier = nullptr);
+   virtual ::file::path icloud_container2(const_char_pointer pszContentIdentifier = nullptr);
+   virtual ::file::path icloud_container_documents(const_char_pointer pszContentIdentifier = nullptr);
+   virtual ::file::path icloud_container2_final(const_char_pointer pszContentIdentifier = nullptr);
+   virtual bool is_icloud_container(const ::file::path & path, const_char_pointer pszContentIdentifier = nullptr);
+   virtual bool has_icloud_container(const_char_pointer pszContentIdentifier = nullptr);
    virtual ::file::path pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode);
    virtual ::file::path program_files_x86();
    virtual ::file::path program_files();
    //virtual ::file::path program_data();
-   virtual ::file::path stage(string strAppId, string strPlatform, string strConfiguration);
+   virtual ::file::path stage(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
    virtual ::file::path sys_temp();
    virtual ::file::path temp();
    virtual ::string dir_root();
@@ -174,10 +174,10 @@ public:
    virtual string system_short_name();
 
 
-   //::file::path inplace_install(string strAppId, string strPlatform, string strConfiguration);
-   //virtual ::file::path inplace_install(string strAppId, string strPlatform, string strConfiguration);
-   virtual ::file::path inplace_install(string strAppId, string strPlatform, string strConfiguration);
-   virtual ::file::path inplace_matter_install(string strAppId, string strPlatform, string strConfiguration);
+   //::file::path inplace_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   //virtual ::file::path inplace_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   virtual ::file::path inplace_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+   virtual ::file::path inplace_matter_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
 
 
    virtual void set_path_install_folder(const ::scoped_string & scopedstrPath);

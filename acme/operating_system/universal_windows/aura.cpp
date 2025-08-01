@@ -215,7 +215,7 @@ int_bool main_finalize()
 
 
 
-string normalize_path(const_char_pointer  lpcszPath)
+string normalize_path(const_char_pointer lpcszPath)
 {
 
    if(lpcszPath == nullptr)
@@ -327,13 +327,13 @@ string key_to_char(wparam wparam, lparam lparam)
 //CreateMutex(
 //    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,
 //    _In_ BOOL bInitialOwner,
-//    _In_opt_ const_char_pointer  lpName
+//    _In_opt_ const_char_pointer lpName
 //    )
 //{
 //   return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
 //}
 
-//CLASS_DECL_ACME char* getenv (const_char_pointer  name)
+//CLASS_DECL_ACME char* getenv (const_char_pointer name)
 //{
 //   return "";
 //}

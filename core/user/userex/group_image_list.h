@@ -48,7 +48,7 @@ namespace userex
 
       virtual ::userex::image_list_impact * get_group_list(::atom idGroup);
 
-      virtual ::file::path get_link_path(string strLink);
+      virtual ::file::path get_link_path(const ::scoped_string & scopedstrLink);
 
       void install_message_routing(::channel * pchannel) override;
 
@@ -63,7 +63,7 @@ namespace userex
 
       virtual void on_command(::message::command * pcommand) override;
 
-      virtual ::userex::image_list_impact * add_group(::atom idGroup, string strIcon, string strTitle, ::file::path pathFolder = "");
+      virtual ::userex::image_list_impact * add_group(::atom idGroup, const ::scoped_string & scopedstrIcon, const ::scoped_string & scopedstrTitle, ::file::path pathFolder = "");
 
       void set_current_item(::item * pitem, const ::action_context & action_context) override;
 

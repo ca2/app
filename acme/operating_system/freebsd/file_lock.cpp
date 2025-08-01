@@ -182,7 +182,7 @@ namespace file_lock
 
    // }
 
-//   string file_lock::_get_file_name(const_char_pointer  lpszName)
+//   string file_lock::_get_file_name(const_char_pointer lpszName)
 //   {
 //
 //      string str;

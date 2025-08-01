@@ -36,7 +36,7 @@ namespace user
 
 		virtual void on_text_composition_done() = 0;
 
-		virtual void on_text_composition(string strMessage) = 0;
+		virtual void on_text_composition(const ::scoped_string & scopedstrMessage) = 0;
 
 		virtual void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context& context) = 0;
 

@@ -847,7 +847,7 @@ namespace html
    bool style::get_alpha(const ::scoped_string & scopedstrSubClass, html_data * pdata, const ::html::element * pelement, double & d)
    {
 
-      const_char_pointer  rangeName = "opacity";
+      const_char_pointer rangeName = "opacity";
 
       e_tag etag = pelement->m_etag;
 
@@ -872,14 +872,14 @@ namespace html
    }
 
 
-   const_char_pointer  style::parse(html_data * pdata, const ::scoped_string & scopedstrParam)
+   const_char_pointer style::parse(html_data * pdata, const ::scoped_string & scopedstrParam)
    {
 
-      const_char_pointer  psz = scopedstrParam;
+      const_char_pointer psz = scopedstrParam;
       __UNREFERENCED_PARAMETER(pdata);
       while(*psz != '\0' && *psz != '}')
       {
-         const_char_pointer  pszStart = psz;
+         const_char_pointer pszStart = psz;
          while(*psz != ':' && *psz != '\0' && *psz != '}')
          {
             psz++;
@@ -1100,7 +1100,7 @@ namespace html
       if(iFindDigit >= 0 && iFindColor >= 0 && iFindDigit > iFindColor)
       {
          auto range = str(iFindColor);
-         const_char_pointer  pszStart = range.m_begin;
+         const_char_pointer pszStart = range.m_begin;
          if(iFindRgb >= 0)
          {
             try
@@ -1246,7 +1246,7 @@ namespace html
          return false;
 
       auto range = scopedstrParam(iFindColor);
-      const_char_pointer  pszStart = range.m_begin;
+      const_char_pointer pszStart = range.m_begin;
       if(iFindRgb >= 0)
       {
          try

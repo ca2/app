@@ -68,11 +68,11 @@ extern "C"
 
 
 #ifdef MACOS
-::file::path macos_app_path(string strApp);
+::file::path macos_app_path(const ::scoped_string & scopedstrApp);
 //void ns_app_terminate();
 // 0x00010000 NSWorkspaceLaunchAsync
 // 0x00080000 NSWorkspaceLaunchNewInstance
-void ns_launch_app(const ::scoped_string & scopedstr, const_char_pointer * argv, int iFlags);
+void ns_launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags);
 #endif
 
 #if defined(LINUX)
@@ -919,7 +919,7 @@ namespace aura
 
    //// lang string
    //// load string
-   //string application::lstr(const ::atom & atom, string strDefault)
+   //string application::lstr(const ::atom & atom, const ::scoped_string & scopedstrDefault)
    //{
 
    //   string str;
@@ -1289,7 +1289,7 @@ namespace aura
 
 
 
-   //void application::sync_open_profile_link(string strUrl, string strProfile, string strTarget)
+   //void application::sync_open_profile_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    //{
 
    //   browser(strUrl, "", strProfile, strTarget);
@@ -1297,7 +1297,7 @@ namespace aura
    //}
 
 
-   //bool application::open_link(string strLink, string strProfile, string strTarget)
+   //bool application::open_link(const ::scoped_string & scopedstrLink, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    //{
 
    //   if (is_system())
@@ -1431,7 +1431,7 @@ namespace aura
 //
 //
 
-//   string CLASS_DECL_AURA application::get_cred(const ::scoped_string & scopedstrRequestUrl, const ::int_rectangle & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+//   string CLASS_DECL_AURA application::get_cred(const ::scoped_string & scopedstrRequestUrl, const ::int_rectangle & rectangle, string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrTitle, bool bInteractive)
 // {
 
 //  throw ::not_implemented();
@@ -3425,7 +3425,7 @@ retry_license:
 
 
 
-   //bool application::app_set(string strPath, string strValue)
+   //bool application::app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue)
    //{
 
    //   return sys_set(::file::path(m_strAppName) / strPath, strValue);
@@ -3433,7 +3433,7 @@ retry_license:
    //}
 
 
-   //string application::app_get(string strPath, string strDefault)
+   //string application::app_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault)
    //{
 
    //   return sys_get(::file::path(m_strAppName) / strPath, strDefault);
@@ -3558,7 +3558,7 @@ retry_license:
 //   }
 //
 //
-//   bool application::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
+//   bool application::low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 //   {
 //
 //      ::install::admin_mutex smutex(strPlatform);
@@ -3568,7 +3568,7 @@ retry_license:
 //   }
 //
 //
-//   void application::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+//   void application::defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 //   {
 //
 //      if (low_is_app_app_admin_running(strPlatform, strConfiguration))
@@ -3583,7 +3583,7 @@ retry_license:
 //   }
 //
 //
-//   void application::start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+//   void application::start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -4333,7 +4333,7 @@ retry_license:
    }
 
 
-   //::pointer<::user::document>application::defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom)
+   //::pointer<::user::document>application::defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom)
    //{
 
    //   //auto pcontroller = pmultimedia->defer_create_impact(strImpact, puiParent, ewindowflag, atom);
@@ -5726,21 +5726,21 @@ retry_license:
    //   }
    //
    //
-   //   string application::interactive_get_credentials(string & strUsername, string & strPassword, string strToken)
+   //   string application::interactive_get_credentials(string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken)
    //   {
    //
    //      return ::account::get_cred(this, strUsername, strPassword, strToken);
    //
    //   }
    //
-   //   void application::set_cred(string strToken, const ::scoped_string & scopedstrUsername, const ::scoped_string & scopedstrPassword)
+   //   void application::set_cred(const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrUsername, const ::scoped_string & scopedstrPassword)
    //   {
    //
    //      ::account::set_cred(this,strToken, pszUsername, pszPassword);
    //
    //   }
    //
-   //   void application::set_cred_ok(string strToken, bool bOk)
+   //   void application::set_cred_ok(const ::scoped_string & scopedstrToken, bool bOk)
    //   {
    //
    //      ::account::set_cred_ok(this, strToken, bOk);
@@ -6118,7 +6118,7 @@ namespace aura
 
       // handle all the rest
       //linux unsigned int nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
-      const_char_pointer  nIDP = "Internal Failure";
+      const_char_pointer nIDP = "Internal Failure";
       pusermessage->m_lresult = 0;        // sensible default
       if (pusermessage->m_emessage == e_message_command)
       {
@@ -6877,7 +6877,7 @@ namespace aura
    const ::scoped_string & scopedstr2)
 
    {
-   const_char_pointer  rgpsz[2];
+   const_char_pointer rgpsz[2];
    rgpsz[0] = psz1;
 
    rgpsz[1] = psz2;
@@ -8937,7 +8937,7 @@ namespace aura
 
 
 
-   /*string application::get_cred(const ::scoped_string & scopedstrRequestUrlParam,const ::int_rectangle & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   /*string application::get_cred(const ::scoped_string & scopedstrRequestUrlParam,const ::int_rectangle & rectangle,string & strUsername,string & strPassword,const ::scoped_string & scopedstrToken,const ::scoped_string & scopedstrTitle,bool bInteractive)
    {
 
       string str = ::account::get_cred(this,strUsername,strPassword,strToken);
@@ -9162,7 +9162,7 @@ namespace aura
    }
 
 
-   //::pointer<::user::document>application::defer_create_impact(string strImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom)
+   //::pointer<::user::document>application::defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom)
    //{
 
    //   auto pcontroller = ::aura::application::defer_create_impact(strImpact, puiParent, ewindowflag, atom);
@@ -9374,12 +9374,12 @@ namespace aura
    //
 
 
-   void application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
+   void application::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine)
    {
 
       auto prequest = __create_new<::request >();
 
-      prequest->_001ParseCommandLine(strCommandLine);
+      prequest->_001ParseCommandLine(scopedstrCommandLine);
 
       ::cast < ::user::interaction > puserinteraction = m_pacmeuserinteractionMain;
       

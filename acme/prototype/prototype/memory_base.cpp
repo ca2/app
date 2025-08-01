@@ -891,7 +891,7 @@ string memory_base::as_utf8() const
 //
 //   }
 //
-//   return case_insensitive_ansi_count_compare((const_char_pointer ) data(), str.c_str(), iCount) == 0;
+//   return case_insensitive_ansi_count_compare((const_char_pointer )data(), str.c_str(), iCount) == 0;
 //
 //}
 //
@@ -995,7 +995,7 @@ string memory_base::as_utf8() const
 //
 //   }
 //
-//   return case_insensitive_ansi_count_compare((const_char_pointer ) data() + size() - iCount, str.c_str(), iCount) == 0;
+//   return case_insensitive_ansi_count_compare((const_char_pointer )data() + size() - iCount, str.c_str(), iCount) == 0;
 //
 //}
 
@@ -1290,7 +1290,7 @@ character_count memory_base::from_hex(const ::block & block)
       try
       {
 
-         ch = ::hex::to_nibble(scopedstr[i]);
+         ch = ::hex::to_nibble(psz[i]);
 
       }
       catch (...)
@@ -1308,7 +1308,7 @@ character_count memory_base::from_hex(const ::block & block)
          try
          {
 
-            ch2 = ::hex::to_nibble(scopedstr[i]);
+            ch2 = ::hex::to_nibble(psz[i]);
 
          }
          catch (...)
@@ -1413,12 +1413,12 @@ void memory_base::from_string(const ::scoped_string & scopedstr)
 }
 
 
-void memory_base::from_string(const ::scoped_string & scopedstr)
+void memory_base::from_string(const ::string & str)
 {
 
-   set_size(str.length());
+   set_size(str.length_in_bytes());
 
-   ::memory_copy(data(), str, this->size());
+   ::memory_copy(data(), str.data(), this->size());
 
 }
 
@@ -1453,7 +1453,7 @@ void memory_base::append_from_string(const ::scoped_string & scopedstr)
 }
 
 
-void memory_base::append_from_string(const ::scoped_string & scopedstr)
+void memory_base::append_from_string(const ::string & str)
 {
 
 
@@ -1533,7 +1533,7 @@ string memory_base::get_string(memsize iStart, memsize iCount) const
 
    char * psz = str.get_buffer(iCount + 1);
 
-   ::memory_copy(scopedstr, &data()[iStart], iCount);
+   ::memory_copy(psz, &data()[iStart], iCount);
 
    psz[iCount] = '\0';
 
@@ -2097,7 +2097,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
       auto ptarget = pdata + iStart;
 
-      auto psource = (const_char_pointer ) blockSuffix.data();
+      auto psource = (const_char_pointer )blockSuffix.data();
 
       auto c = blockSuffix.size();
 
@@ -2392,7 +2392,7 @@ namespace acme
 
 
 
-//const_char_pointer  matter::type(this).name() const
+//const_char_pointer matter::type(this).name() const
 //{
 //
 //   return ::type(this).name();

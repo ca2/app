@@ -312,7 +312,7 @@ namespace app_shader
 
          string strText;
 
-         prender->m_strShaderPath = strShaderPath;
+         prender->m_strShaderPath = scopedstrShaderPath;
 
          prender->update_shader();
 
@@ -320,7 +320,7 @@ namespace app_shader
 
             synchronous_lock synchronouslock(this->synchronization());
 
-            m_maprender[strShaderPath] = prender;
+            m_maprender[scopedstrShaderPath] = prender;
 
          }
 

@@ -219,9 +219,9 @@ using map_ptr_to_ptr = map < void *, void *, void *, void * >;
 
 using map_word_to_ob = map < unsigned short, unsigned short, matter *, matter * >;
 
-using map_string_to_ptr = map < string, const string &, void *, void * >;
+using map_string_to_ptr = map < string, const ::scoped_string & scopedstr, void *, void * >;
 
-using map_string_to_ob = map < string, const string &, matter *, matter * >;
+using map_string_to_ob = map < string, const ::scoped_string & scopedstr, matter *, matter * >;
 
 
 #include "string_to_string_map.h"

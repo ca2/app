@@ -8,7 +8,7 @@
 //{
 //
 //
-//   mutex::mutex(::particle * pparticle, string strPlatform, string strSuffix) :
+//   mutex::mutex(::particle * pparticle, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix) :
 //#ifdef WINDOWS_DESKTOP
 //      ::mutex(pmatter, false, "Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &((SECURITY_ATTRIBUTES &)m_securityattributes))
 //      , synchronization("Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
@@ -20,7 +20,7 @@
 //   }
 //
 //
-//   admin_mutex::admin_mutex(::particle * pparticle, string strPlatform, string strSuffix) :
+//   admin_mutex::admin_mutex(::particle * pparticle, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrSuffix) :
 //#ifdef WINDOWS_DESKTOP
 //      mutex(pmatter, false, "Global\\::ca2::account::ccwarehouse::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &((SECURITY_ATTRIBUTES &)m_securityattributes))
 //#else

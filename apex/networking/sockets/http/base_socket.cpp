@@ -355,11 +355,11 @@ namespace sockets
 
 
    //string http_base_socket::set-cookie(
-   //const_char_pointer  name,
+   //const_char_pointer name,
    //::payload payload,
    //int iExpire,
    //const ::file::path & path,
-   //const_char_pointer  domain,
+   //const_char_pointer domain,
    //bool bSecure)
    //{
    //   m_request.cookies().set-cookie(

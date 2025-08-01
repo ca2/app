@@ -13,7 +13,7 @@ namespace sockets
 {
 
 
-   http_session::http_session(const string & protocol,const string & host) //:
+   http_session::http_session(const string & protocol,const ::scoped_string & scopedstrHost) //:
      /* ::object(&handler),
       base_socket(handler),
       socket(handler),

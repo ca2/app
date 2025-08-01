@@ -464,10 +464,10 @@ bool lite_html_reader::parseComment(string &rComment)
    if (::ansi_count_compare(&m_strBuffer[m_dwBufPos], "<!--", 4))
       return (false);
 
-   const_char_pointer  pszBegin = &m_strBuffer[m_dwBufPos + 4];
+   const_char_pointer pszBegin = &m_strBuffer[m_dwBufPos + 4];
 
    // HTML comments end with two hyphen symbols '--'
-   const_char_pointer  pszEnd = ::ansi_str(pszBegin, "--");
+   const_char_pointer pszEnd = ::ansi_str(pszBegin, "--");
 
 
    // comment ending delimeter could not be found?

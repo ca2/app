@@ -84,7 +84,7 @@ namespace sockets
       /** add multiline field to post. */
       void AddMultilineField(const string & name, string_array & values);
       /** add file to post. */
-      void AddFile(const string & name,const string & filename,const string & type);
+      void AddFile(const string & name,const string & filename,const ::scoped_string & scopedstrType);
 
       /** use this to post with content-type multipart/form-data.
       // when adding a file to the post, this is the default and only content-type */

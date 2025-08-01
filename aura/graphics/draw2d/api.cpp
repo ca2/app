@@ -160,7 +160,7 @@ namespace draw2d
 
    void api::embossed_text_out(
    ::draw2d::graphics_pointer & pgraphics,
-   const_char_pointer  psz,
+   const_char_pointer psz,
    int            iLeft,
    int            iTop,
    int            iWidth,

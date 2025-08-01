@@ -136,11 +136,11 @@ namespace sockets
       ///** set socks4 server ip that all ___new tcp sockets should use. */
       //void SetSocks4Host(in_addr addr) override;
       ///** set socks4 server hostname that all ___new tcp sockets should use. */
-      //void SetSocks4Host(const string & ) override;
+      //void SetSocks4Host(const ::scoped_string & scopedstrHost) override;
       ///** set socks4 server port number that all ___new tcp sockets should use. */
       //void SetSocks4Port(::networking::port_t) override;
       ///** set optional socks4 userid. */
-      //void SetSocks4Userid(const string & ) override;
+      //void SetSocks4Userid(const ::scoped_string & scopedstrUserId) override;
       /** If connection to socks4 server fails, immediately try direct connection to final host. */
       //void SetSocks4TryDirect(bool x = true) override;
       ///** get socks4 server ip.
@@ -166,8 +166,8 @@ namespace sockets
       /** Queue a dns request.
       \lparam host Hostname to be resolved
       \lparam port Port number will be echoed in base_socket::OnResolved callback */
-      //int Resolve(base_socket *,const string & host,::networking::port_t port) override;
-      //int Resolve6(base_socket *,const string & host,::networking::port_t port) override;
+      //int Resolve(base_socket *,const ::scoped_string & scopedstrHost,::networking::port_t port) override;
+      //int Resolve6(base_socket *,const ::scoped_string & scopedstrHost,::networking::port_t port) override;
       /** Do a reverse dns lookup. */
       //int Resolve(base_socket *,in_addr a) override;
       //int Resolve(base_socket *,in6_addr& a) override;

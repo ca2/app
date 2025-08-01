@@ -1202,9 +1202,9 @@ namespace html
 
             string str = m_straLines[i];
 
-            const ::ansi_character * pszStart = str;
+            const_char_pointer pszStart = str;
 
-            const ::ansi_character * pszEnd = pszStart;
+            const_char_pointer pszEnd = pszStart;
 
             float cur_x = i == 0 ? x : m_bound.left();
 //            int cur_y = y + cy;

@@ -20,7 +20,7 @@
 //{
 //
 
-   bool whole_word_contains(string str, string strFind)
+   bool whole_word_contains(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrFind)
    {
 
       ::collection::index iFind = 0;
@@ -50,7 +50,7 @@
    }
 
 
-   bool whole_word_find(string_array & stra, string str)
+   bool whole_word_find(string_array & stra, const ::scoped_string & scopedstr)
    {
 
       for (auto & strFind : stra)
@@ -71,7 +71,7 @@
 
    /// [Idee:ChrifRachid@liveedutv] erase http:// and https:// from resident speech
 
-   void whole_word_erase(string & str, string strFind)
+   void whole_word_erase(string & str, const ::scoped_string & scopedstrFind)
    {
 
       ::collection::index iFind = 0;

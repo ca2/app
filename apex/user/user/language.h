@@ -42,9 +42,9 @@ namespace user
 
       virtual string load_podata(bool bOnlyHeader = false);
 
-      virtual bool parse_podata(string strPoData, bool bOnlyHeader = false);
+      virtual bool parse_podata(const ::scoped_string & scopedstrPoData, bool bOnlyHeader = false);
 
-      virtual string get_text(string strText);
+      virtual string get_text(const ::scoped_string & scopedstrText);
 
 
    };

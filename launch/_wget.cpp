@@ -8,11 +8,11 @@
 #include <time.h>
 #include <memory.h>
 
-char * as_string(const_char_pointer  pszFilename);
+char * as_string(const_char_pointer pszFilename);
 
 
 char * get_line(char * str, char * & next);
-char * get_command_output(const_char_pointer  pszCommand);
+char * get_command_output(const_char_pointer pszCommand);
 
 
 char * start_temporary_file_name();
@@ -20,7 +20,7 @@ void end_temporary_file_name(char * ptmpname);
 char * end_temporary_file_name_as_string(char * ptmpname);
 
 
-bool wget_check_http_ok(const_char_pointer  pszUrl)
+bool wget_check_http_ok(const_char_pointer pszUrl)
 {
 
    char szCommand[4096];

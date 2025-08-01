@@ -135,7 +135,7 @@ namespace hellobase
 
    }
 
-   bool render::initialize_render(string strId)
+   bool render::initialize_render(const ::scoped_string & scopedstrId)
    {
 
       return ::helloaxis::render::initialize_render(strId);
@@ -1263,7 +1263,7 @@ namespace hellobase
    }
 
 
-   //::image::image_pointer & render::image23(string strImage)
+   //::image::image_pointer & render::image23(const ::scoped_string & scopedstrImage)
    //{
 
    //   auto & pimage = m_mapDib23[strImage];

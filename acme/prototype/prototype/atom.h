@@ -41,7 +41,7 @@ class lparam;
 #define __id_is_null_ptr(p) (!(p))
 
 
-inline bool __atom_str_is_empty(const ::ansi_character * psz)
+inline bool __atom_str_is_empty(const_char_pointer psz)
 {
 
    return __id_is_null_ptr(psz) || *psz == '\0';
@@ -84,7 +84,7 @@ int __atom_sgn(T x)
 
 
 
-//inline int __atom_safe_strcmp(const_char_pointer  a, const_char_pointer  b)
+//inline int __atom_safe_strcmp(const_char_pointer a, const_char_pointer b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -120,7 +120,7 @@ int __atom_sgn(T x)
 //}
 //
 //
-//inline int __atom_safe_stricmp(const_char_pointer  a, const_char_pointer  b)
+//inline int __atom_safe_stricmp(const_char_pointer a, const_char_pointer b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -155,7 +155,7 @@ int __atom_sgn(T x)
 //
 //}
 //
-//inline bool __atom_str_begins(const_char_pointer  a, const_char_pointer  b)
+//inline bool __atom_str_begins(const_char_pointer a, const_char_pointer b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -191,7 +191,7 @@ int __atom_sgn(T x)
 //}
 //
 //
-//inline bool case_insensitive___atom_str_begins(const_char_pointer  a, const_char_pointer  b)
+//inline bool case_insensitive___atom_str_begins(const_char_pointer a, const_char_pointer b)
 //{
 //
 //   if (__atom_str_is_empty(a))
@@ -361,7 +361,7 @@ public:
    inline atom(enum_type etypeAdd, const atom & atom);
    inline atom(const atom & atom);
    inline atom(const domain_id & domainid);
-   atom(const ::ansi_character * psz);
+   atom(const_char_pointer psz);
    atom(const inline_number_string & inlinenumberstring);
    //template <typename ITERATOR_TYPE2, int t_size >
    //atom(const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a) : atom((const ::string&)a) {}
@@ -701,7 +701,7 @@ public:
 #undef IMPLEMENT_ATOM_ENUMERATION
 
 
-   //inline operator const_char_pointer  () const;
+   //inline operator const_char_pointer () const;
    //inline operator enum_dialog_result () const;
 
    //inline ::e_check & echeck_reference() { if(m_etype != e_type_check) set_compounded_type(e_type_check); return m_echeck; }
@@ -750,7 +750,7 @@ public:
 
 
    //inline string operator +(const atom & atom) const;
-   inline ::string operator +(const ::ansi_character * psz) const;
+   inline ::string operator +(const_char_pointer psz) const;
    inline ::string operator +(const ::scoped_string & scopedstr) const;
 
 

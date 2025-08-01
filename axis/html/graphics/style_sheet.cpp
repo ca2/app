@@ -42,14 +42,14 @@ namespace html
 
       while(range.has_character())
       {
-         const ::ansi_character * pszStart = range.m_begin;
+         const_char_pointer pszStart = range.m_begin;
          while(*range.m_begin != '{' && *range.m_begin != '\0')
          {
             range.m_begin++;
          }
          if(range.is_empty())
             return;
-         const ::ansi_character * pszRestart = range.m_begin + 1;
+         const_char_pointer pszRestart = range.m_begin + 1;
          string str(pszStart, pszRestart - pszStart);
          str.trim();
          if(str.length() <= 0)

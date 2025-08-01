@@ -202,7 +202,7 @@ namespace aura
       //virtual ::database::key calc_data_key() override;
 
 
-      //virtual string load_podata(string strLang, bool bOnlyHeader);
+      //virtual string load_podata(const ::scoped_string & scopedstrLang, bool bOnlyHeader);
 
       //virtual string load_string(const ::atom & atom) override;
       //virtual bool load_string(string & str, const ::atom & atom) override;
@@ -455,8 +455,8 @@ namespace aura
       virtual string get_theme() override;
 
 
-      //virtual ::pointer<::acme::exclusive>get_exclusive(string str, LPSECURITY_ATTRIBUTES psa) override;
-      //virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa) override;
+      //virtual ::pointer<::acme::exclusive>get_exclusive(const ::scoped_string & scopedstr, LPSECURITY_ATTRIBUTES psa) override;
+      //virtual bool exclusive_fails(const ::scoped_string & scopedstr, LPSECURITY_ATTRIBUTES psa) override;
 
 
       //virtual bool start_application(bool bSynch, ::request * prequest) override;
@@ -532,8 +532,8 @@ namespace aura
       virtual void on_thread_on_idle(::thread * pthread,int lCount) override;
 
 
-      //virtual bool app_set(string strPath, string strValue) override;
-      //virtual string app_get(string strPath, string strDefault = "") override;
+      //virtual bool app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue) override;
+      //virtual string app_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault = "") override;
 
 
       //virtual bool Ex2OnAppInstall();
@@ -657,7 +657,7 @@ namespace aura
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this ___new additional instance creation
-      //virtual void on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override;
+      //virtual void on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId) override;
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this ___new additional instance creation
@@ -665,13 +665,13 @@ namespace aura
 
             /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this ___new additional instance creation
-      //virtual bool on_exclusive_instance_local_conflict_id(bool & bHandled, string strId) override;
+      //virtual bool on_exclusive_instance_local_conflict_id(bool & bHandled, const ::scoped_string & scopedstrId) override;
 
       /// return true if the external additional instance might continue execution
       /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
-      //virtual void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
+      //virtual void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine) override;
 
-      //virtual void on_new_instance(string strModule, const ::atom & idPid) override;
+      //virtual void on_new_instance(const ::scoped_string & scopedstrModule, const ::atom & idPid) override;
 
       //virtual string get_local_mutex_id() override;
       //virtual string get_global_mutex_id() override;
@@ -761,7 +761,7 @@ namespace aura
       //virtual void _001FranceExit() override;
 
 
-      //virtual string lstr(const ::atom & atom, string strDefault = "") override;
+      //virtual string lstr(const ::atom & atom, const ::scoped_string & scopedstrDefault = "") override;
 
 
 
@@ -809,9 +809,9 @@ namespace aura
       //virtual void install_trace(double dRate) override;
       //virtual bool register_spa_file_type() override;
 
-      //virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration) override;
-      //virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration) override;
-      //virtual void start_program_files_app_app_admin(string strPlatform, string strConfiguration) override;
+      //virtual bool low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
+      //virtual void defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
+      //virtual void start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override;
 
 
 
@@ -883,7 +883,7 @@ void initialize_context() override;
       void close_application() override;
 
 
-      //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr);
+      //user virtual ::pointer<::user::document>defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr);
 
 
       void HideApplication() override;
@@ -1076,7 +1076,7 @@ void initialize_context() override;
       string imaging_get_default_implementation_name() override;
 
 
-      void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
+      void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine) override;
 
 
       // ::user::user * aurauser() override;

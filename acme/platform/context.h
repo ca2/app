@@ -200,11 +200,11 @@ namespace platform
 
 
 
-      virtual string matter_locator(string strApp) override;
+      virtual string matter_locator(const ::scoped_string & scopedstrApp) override;
       virtual string matter_locator(::platform::application * papp) override;
 
 
-      virtual void add_matter_locator(string strApp) override;
+      virtual void add_matter_locator(const ::scoped_string & scopedstrApp) override;
       virtual void add_matter_locator(::platform::application * papp) override;
 
 
@@ -212,9 +212,9 @@ namespace platform
 
       //virtual ::file::path defer_process_relative_path(const ::file::path & path);
 
-      virtual ::file::path get_matter_path(string strMatter) override;
+      virtual ::file::path get_matter_path(const ::scoped_string & scopedstrMatter) override;
       virtual ::file::path get_matter_cache_path(::file::path path) override;
-      virtual ::file::path side_get_matter_path(string strMatter) override;
+      virtual ::file::path side_get_matter_path(const ::scoped_string & scopedstrMatter) override;
 
 
       virtual bool os_is_alias(const ::file::path & path) override;

@@ -368,7 +368,7 @@ namespace apex
    }
 
 
-   void node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
+   void node::shell_create_link(::file::path pathObj, ::file::path pathLnk, const ::scoped_string & scopedstrDesc, ::file::path pathIco, int iIcon)
    {
 
       throw ::interface_only();
@@ -498,7 +498,7 @@ namespace apex
    }
 
 
-//   bool node::is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild,
+//   bool node::is_application_installed(const ::file::path & pathExe, const ::scoped_string & scopedstrAppId, string & strBuild,
 //                                       const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
 //                                       const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 //   {
@@ -507,7 +507,7 @@ namespace apex
 //
 //   }
 //
-//   bool node::set_application_installed(const ::file::path & pathExe, string strAppId, const ::scoped_string & scopedstrBuild,
+//   bool node::set_application_installed(const ::file::path & pathExe, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild,
 //                                        const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
 //                                        const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 //   {
@@ -518,7 +518,7 @@ namespace apex
 //   }
 //
 //
-//   bool node::set_last_run_application_path(string strAppId)
+//   bool node::set_last_run_application_path(const ::scoped_string & scopedstrAppId)
 //   {
 //
 //      return false;

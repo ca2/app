@@ -108,7 +108,7 @@ namespace aura
    //}
 
 
-//   ::file::path context::defer_make_file_system_url(string str)
+//   ::file::path context::defer_make_file_system_url(const ::scoped_string & scopedstr)
 //   {
 //
 //      if (str.is_empty())
@@ -160,7 +160,7 @@ namespace aura
 //   }
 //
 //
-//   string context::defer_get_file_title(string strParam)
+//   string context::defer_get_file_title(const ::scoped_string & scopedstrParam)
 //   {
 //
 //      if (strParam.is_empty())
@@ -401,7 +401,7 @@ namespace aura
 //
 //   }
 //
-//   ::file::path context::get_matter_path(string strMatter)
+//   ::file::path context::get_matter_path(const ::scoped_string & scopedstrMatter)
 //   {
 //
 //      if (strMatter.case_insensitive_begins_eat("appmatter://"))
@@ -416,7 +416,7 @@ namespace aura
 //   }
 //
 //
-//   ::file::path context::side_get_matter_path(string strMatter)
+//   ::file::path context::side_get_matter_path(const ::scoped_string & scopedstrMatter)
 //   {
 //
 //      auto psystem = system();
@@ -880,7 +880,7 @@ namespace aura
 //   }
 //
 //
-//   bool context::sys_set(string strPath, string strValue)
+//   bool context::sys_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue)
 //   {
 //
 //      return file()->put_text_utf8(directory_system()->config() / strPath, strValue);
@@ -888,7 +888,7 @@ namespace aura
 //   }
 //
 //
-//   string context::sys_get(string strPath, string strDefault)
+//   string context::sys_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault)
 //   {
 //
 //      string strValue = file()->as_string(directory_system()->config() / strPath);
@@ -930,7 +930,7 @@ namespace aura
 //
 //
 //
-//   string context::matter_locator(string strApp)
+//   string context::matter_locator(const ::scoped_string & scopedstrApp)
 //   {
 //
 //      string strMatterLocator = strApp;
@@ -964,7 +964,7 @@ namespace aura
 //   }
 //
 //
-//   void context::add_matter_locator(string strApp)
+//   void context::add_matter_locator(const ::scoped_string & scopedstrApp)
 //   {
 //
 //      synchronous_lock synchronouslock(this->synchronization());

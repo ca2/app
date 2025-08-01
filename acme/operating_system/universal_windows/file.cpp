@@ -24,7 +24,7 @@
 
 
 
-//int_bool file_system()->put_contents(const ::file::path & path, const_char_pointer  contents, memsize len)
+//int_bool file_system()->put_contents(const ::file::path & path, const_char_pointer contents, memsize len)
 //{
 //
 //            auto psystem = system();
@@ -908,7 +908,7 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //
 //
 //
-//int_bool file_move(const_char_pointer  lpszNewName,const_char_pointer  lpszOldName)
+//int_bool file_move(const_char_pointer lpszNewName,const_char_pointer lpszOldName)
 //{
 //
 //   if(!::MoveFile((char *)lpszOldName,(char *)lpszNewName))
@@ -918,7 +918,7 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //
 //}
 
-//int_bool file_delete(const_char_pointer  lpszFileName)
+//int_bool file_delete(const_char_pointer lpszFileName)
 //{
 //
 //   wstring wstr(lpszFileName);
@@ -1531,7 +1531,7 @@ HANDLE WinFindFirstFileW(const unichar* pwsz, WIN32_FIND_DATAW* pdata)
 
 }
 
-HANDLE WinFindFirstFileA(const_char_pointer  pwsz, WIN32_FIND_DATAA* pdata)
+HANDLE WinFindFirstFileA(const_char_pointer pwsz, WIN32_FIND_DATAA* pdata)
 {
 
    return FindFirstFileExA(pwsz, FindExInfoStandard, pdata, FindExSearchNameMatch, nullptr, 0);
@@ -1571,7 +1571,7 @@ return true;
 */
 
 
-HANDLE hfile_create(const_char_pointer  lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile)
+HANDLE hfile_create(const_char_pointer lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile)
 {
 
    CREATEFILE2_EXTENDED_PARAMETERS ps;
@@ -1598,7 +1598,7 @@ HANDLE hfile_create(const_char_pointer  lpcszFileName, unsigned int dwDesiredAcc
 //}
 //
 
-//::winrt::Windows::Storage::StorageFolder^ get_os_folder(const_char_pointer  lpcszDirName)
+//::winrt::Windows::Storage::StorageFolder^ get_os_folder(const_char_pointer lpcszDirName)
 //{
 //
 //   return wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(lpcszDirName)));
@@ -1606,7 +1606,7 @@ HANDLE hfile_create(const_char_pointer  lpcszFileName, unsigned int dwDesiredAcc
 //}
 //
 //
-//::winrt::Windows::Storage::StorageFile^ get_os_file(const_char_pointer  lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile)
+//::winrt::Windows::Storage::StorageFile^ get_os_file(const_char_pointer lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile)
 //{
 //
 //   /*
@@ -1764,7 +1764,7 @@ HANDLE hfile_create(const_char_pointer  lpcszFileName, unsigned int dwDesiredAcc
 ////
 //
 //
-////int_bool file_system()->put_contents(const ::file::path & path,const_char_pointer  contents,::collection::count len)
+////int_bool file_system()->put_contents(const ::file::path & path,const_char_pointer contents,::collection::count len)
 ////{
 ////
 ////            auto psystem = system();

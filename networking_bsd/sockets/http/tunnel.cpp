@@ -213,7 +213,7 @@ namespace sockets
    }
 
 
-   bool http_tunnel::proxy_open(const string &host, port_t port)
+   bool http_tunnel::proxy_open(const ::scoped_string & scopedstrHost, port_t port)
    {
 
       m_strProxy = host;

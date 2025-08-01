@@ -1500,7 +1500,7 @@ public:
    //           inline bool operator==(const ::wd32_string &str) const;
    //
    //    //inline bool operator ==(const SCOPED_STRING & scopedstr) const { return this->equals(scopedstr); }
-   //    inline bool operator==(const ::ansi_character *psz) const { return this->equals(scopedstr); }
+   //    inline bool operator==(const_char_pointer psz) const { return this->equals(scopedstr); }
    //
    //    inline bool operator==(const ::wd16_character *psz) const { return this->equals(scopedstr); }
    //
@@ -1860,8 +1860,8 @@ public:
    bool ends_eat(const ::scoped_string & scopedstr);
    bool case_insensitive_begins_eat(const ::scoped_string & scopedstr);
    bool case_insensitive_ends_eat(const ::scoped_string & scopedstr);
-   void consume(const ::ansi_character * pszToConsume);
-   //static void consume(::const_ansi_range & range, const ::ansi_character * psz);
+   void consume(const_char_pointer pszToConsume);
+   //static void consume(::const_ansi_range & range, const_char_pointer psz);
    void consume(const ::scoped_string & scopedstr);
    //void consume_spaces(::collection::count iMinimumCount = 1);
    unsigned long long consume_natural(unsigned long long uiMax = ((unsigned long long)-1), unsigned long long uiMin = 0);
@@ -1871,7 +1871,7 @@ public:
    string_range consume_non_spaces();
    //::string_base < ITERATOR_TYPE > consume_non_spaces(::const_ansi_range & range);
    string_range consume_nc_name();
-   //  ::string_base < ITERATOR_TYPE > consume_quoted_value(const ::ansi_character * & pszParse);
+   //  ::string_base < ITERATOR_TYPE > consume_quoted_value(const_char_pointer &pszParse);
    //static void no_escape_consume_quoted_value(::const_ansi_range & range, ::ansi_character ** ppsz, character_count & iBufferSize);
    string_base<ITERATOR_TYPE> no_escape_consume_quoted_value();
    void no_escape_skip_quoted_value();
@@ -1883,10 +1883,10 @@ public:
    string_base<ITERATOR_TYPE> consume_quoted_value_ex();
    void skip_quoted_value_ex();
    //static ::string_base < ITERATOR_TYPE > consume_spaced_value(string & str);
-   //::string_base < ITERATOR_TYPE > consume_spaced_value(const ::ansi_character *& pszParse);
+   //::string_base < ITERATOR_TYPE > consume_spaced_value(const_char_pointer &pszParse);
    string_range consume_spaced_value();
    //static ::string_base < ITERATOR_TYPE > consume_command_line_argument(string & str);
-   //::string_base < ITERATOR_TYPE > consume_command_line_argument(const ::ansi_character *& pszParse);
+   //::string_base < ITERATOR_TYPE > consume_command_line_argument(const_char_pointer &pszParse);
    string_base<ITERATOR_TYPE> consume_command_line_argument();
    void consume_until_any_character_in(const ::scoped_string & scopedstr);
    //static bool begins_consume(::const_ansi_range & range, const ::scoped_string & scopedstr);
@@ -1925,7 +1925,7 @@ public:
    /// Coder    Date                      Desc
    /// bro      2002-10-29
    ///========================================================
-   void escape_skip_to_first_character_in(const_char_pointer  chset, int escape);
+   void escape_skip_to_first_character_in(const_char_pointer chset, int escape);
 
 
    ///========================================================
@@ -2008,7 +2008,7 @@ public:
 
 
 
-using ansi_range = ::string_range< const ::ansi_character *>;
+using ansi_range = ::string_range< const_char_pointer >;
 using wd16_range = ::string_range< const ::wd16_character *>;
 using wd32_range = ::string_range< const ::wd32_character *>;
 using wide_range = ::string_range< const ::wide_character *>;

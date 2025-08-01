@@ -68,7 +68,7 @@ namespace freedesktop
    }
 
 
-   string desktop_file::proper_category(string str)
+   string desktop_file::proper_category(const ::scoped_string & scopedstr)
    {
 
       if(str.case_insensitive_order("Multimedia") == 0)

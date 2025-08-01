@@ -135,7 +135,7 @@ namespace draw2d
       virtual void embossed_text_out(
          ::draw2d::graphics_pointer & pgraphics,
          const ::int_rectangle & rectangle,
-         string strText,
+         const ::scoped_string & scopedstrText,
          ::image::fastblur & blur,
          ::image::image_pointer & imageBlur,
          ::write_text::font * pfont,

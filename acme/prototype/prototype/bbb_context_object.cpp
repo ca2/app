@@ -263,7 +263,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
 
 
-   //inline const_char_pointer  object::topic_text();
+   //inline const_char_pointer object::topic_text();
 
     //context& object::__context(const ::payload& payload)
     //{
@@ -359,7 +359,7 @@ void object::process_exit_status(const ::e_status & estatus)
    // ::user::interaction * get_host_user_interaction();
 
 
-       void object::dev_log(string str) const
+       void object::dev_log(const ::scoped_string & scopedstr) const
     {
 
 
@@ -812,7 +812,7 @@ void object::delete_this()
     }
 
 
-    string object::lstr(const ::atom& atom, string strDefault)
+    string object::lstr(const ::atom& atom, const ::scoped_string & scopedstrDefault)
     {
 
        return "";
@@ -820,7 +820,7 @@ void object::delete_this()
     }
 
 
-    string object::__get_text(string str)
+    string object::__get_text(const ::scoped_string & scopedstr)
     {
 
        return "";
@@ -834,7 +834,7 @@ void object::delete_this()
 
    // ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    // ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   // ::image::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
+   // ::image::image_pointer load_matter_icon(string_array & straMatter, const ::scoped_string & scopedstrIcon);
    // ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
    // ::image::image_pointer load_thumbnail(const ::file::path & path);
    // ::image::image_pointer load_dib(const ::file::path & pathDib);
@@ -981,7 +981,7 @@ void object::delete_this()
    //   return nullptr;
 
    //}
-   //::thread_pointer defer_fork(string strThread = "");
+   //::thread_pointer defer_fork(const ::scoped_string & scopedstrThread = "");
 
 //#ifdef __APPLE__
 //    void ns_main_async(dispatch_block_t block);

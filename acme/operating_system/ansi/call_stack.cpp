@@ -65,8 +65,8 @@ string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, 
 
    //char syscom[1024];
 
-   //const_char_pointer  func;
-   //const_char_pointer  file;
+   //const_char_pointer func;
+   //const_char_pointer file;
    //unsigned iLine;
 
    auto ppMessages = messages.get();

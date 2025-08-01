@@ -95,12 +95,12 @@ namespace write_text
    }
 
 
-   bool font_list::set_sel_by_name(string str)
+   bool font_list::set_sel_by_name(const ::scoped_string & scopedstr)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      ::collection::index iSel = find_name(str);
+      ::collection::index iSel = find_name(scopedstr);
 
       if (iSel >= 0)
       {
@@ -115,7 +115,7 @@ namespace write_text
 
       }
 
-      m_strFontFamily = str;
+      m_strFontFamily = scopedstr;
 
       return ::is_item_set(m_puserinteraction->main_content().m_pitemCurrent);
 
@@ -1888,7 +1888,7 @@ namespace write_text
    }
 
 
-   ::collection::index font_list::find_name(string str)
+   ::collection::index font_list::find_name(const ::scoped_string & scopedstr)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1914,7 +1914,7 @@ namespace write_text
 
          }
 
-         if(pfontlistitem->m_strName.case_insensitive_order(str) == 0)
+         if(pfontlistitem->m_strName.case_insensitive_order(scopedstr) == 0)
          {
 
             return i;

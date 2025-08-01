@@ -40,7 +40,7 @@ namespace freedesktop
       void create();
 
       string_array registered_categories();
-      string proper_category(string strCategory);
+      string proper_category(const ::scoped_string & scopedstrCategory);
       string_array proper_category(string_array straCategory);
 
       void set_file_path(const ::file::path & path);

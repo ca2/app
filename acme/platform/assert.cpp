@@ -25,7 +25,7 @@
 //#endif
 
 
-CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const ::ansi_character * pszFileName, int iLineNumber);
+CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const_char_pointer pszFileName, int iLineNumber);
 
 
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
@@ -117,7 +117,7 @@ namespace acme
 //::platform::system * system();
 
 
-CLASS_DECL_ACME bool __assert_failed_line(const_char_pointer  pszFileName, int iLineNumber)
+CLASS_DECL_ACME bool __assert_failed_line(const_char_pointer pszFileName, int iLineNumber)
 {
 
 #ifdef LINUX
@@ -155,7 +155,7 @@ CLASS_DECL_ACME bool __assert_failed_line(const_char_pointer  pszFileName, int i
 }
 
 
-CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const_char_pointer  pszFileName, int iLineNumber)
+CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const_char_pointer pszFileName, int iLineNumber)
 {
 
    char szMessage[1024*4];

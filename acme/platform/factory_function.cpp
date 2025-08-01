@@ -11,7 +11,7 @@
 factory_function* factory_function::g_pfactoryfunctionNext = nullptr;
 
 
-factory_function::factory_function(const_char_pointer  pszName, FACTORY_FUNCTION* pfnFactory) :
+factory_function::factory_function(const_char_pointer pszName, FACTORY_FUNCTION* pfnFactory) :
    m_pszName(pszName),
    m_pfnFactory(pfnFactory)
 {

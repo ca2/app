@@ -5,7 +5,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 
 
-typedef void FN_CAIRO_TEXT(cairo_t *, const_char_pointer  );
+typedef void FN_CAIRO_TEXT(cairo_t *, const_char_pointer );
 typedef FN_CAIRO_TEXT * PFN_CAIRO_TEXT;
 
 #if defined(USE_PANGO)
@@ -396,11 +396,11 @@ namespace draw2d_cairo
       double_size get_text_extent(const ::scoped_string & scopedstr, character_count iIndex) override;
       double_size get_text_extent(const ::scoped_string & scopedstr) override;
       //double_size get_text_extent(const block & block) override;
-      bool _GetTextExtent(double_size & double_size, const_char_pointer  lpszString, character_count nCount, character_count iIndex);
+      bool _GetTextExtent(double_size & double_size, const_char_pointer lpszString, character_count nCount, character_count iIndex);
       //double_size get_text_extent(const ::scoped_string & scopedstr, character_count iIndex) override;
       //double_size get_text_extent(const ::scoped_string & scopedstr) override;
       ///double_size get_text_extent(const ::scoped_string & scopedstr) override;
-      //double_size GetOutputTextExtent(const_char_pointer  lpszString, character_count nCount) override;
+      //double_size GetOutputTextExtent(const_char_pointer lpszString, character_count nCount) override;
       //double_size GetOutputTextExtent(const ::scoped_string & scopedstr) override;
       //double_size GetTabbedTextExtent(const ::scoped_string & scopedstrString, character_count nCount, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
       //double_size GetTabbedTextExtent(const ::scoped_string & scopedstr, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
@@ -636,7 +636,7 @@ namespace draw2d_cairo
    };
 
 
-   CLASS_DECL_AURA string q_valid_string(string str);
+   CLASS_DECL_AURA string q_valid_string(const ::scoped_string & scopedstr);
 
 
 } // namespace win

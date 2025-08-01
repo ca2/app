@@ -10,6 +10,6 @@ typedef void NANO_HTTP_RESPONSE(long http_status, const void * data, long size, 
 using PFN_NANO_HTTP_RESPONSE = NANO_HTTP_RESPONSE *;
 
 
-void nano_asynchronous_http_memory(const_char_pointer  pszUrl, PFN_NANO_HTTP_RESPONSE pfn, void * userdata);
+void nano_asynchronous_http_memory(const_char_pointer pszUrl, PFN_NANO_HTTP_RESPONSE pfn, void * userdata);
 
 

@@ -28,7 +28,7 @@
 //}
 
 
-const_char_pointer  g_pszMainAppId = nullptr;
+const_char_pointer g_pszMainAppId = nullptr;
 
 
 CLASS_DECL_APEX void set_main_app_id(const ::scoped_string & scopedstrAppId)
@@ -41,7 +41,7 @@ CLASS_DECL_APEX void set_main_app_id(const ::scoped_string & scopedstrAppId)
 }
 
 
-CLASS_DECL_APEX const_char_pointer  get_main_app_id()
+CLASS_DECL_APEX const_char_pointer get_main_app_id()
 {
 
    return g_pszMainAppId;

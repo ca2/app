@@ -110,11 +110,11 @@
 
 
 #ifdef MACOS
-::file::path macos_app_path(string strApp);
+::file::path macos_app_path(const ::scoped_string & scopedstrApp);
 //void ns_app_terminate();
 // 0x00010000 NSWorkspaceLaunchAsync
 // 0x00080000 NSWorkspaceLaunchNewInstance
-void ns_launch_app(const ::scoped_string & scopedstr, const_char_pointer * argv, int iFlags);
+void ns_launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags);
 #endif
 
 #if defined(LINUX)
@@ -560,8 +560,10 @@ namespace apex
    }
 
 
-   string application::__get_text(string str)
+   string application::__get_text(const ::scoped_string & scopedstr)
    {
+
+      ::string str(scopedstr);
 
       if (!m_puserlanguagemap)
       {
@@ -1296,7 +1298,7 @@ namespace apex
 
    //// lang string
    //// load string
-   //string application::lstr(const ::atom & atom, string strDefault)
+   //string application::lstr(const ::atom & atom, const ::scoped_string & scopedstrDefault)
    //{
 
    //   string str;
@@ -3744,7 +3746,7 @@ namespace apex
    }
 
 
-   //::pointer<::acme::exclusive>application_impl::get_exclusive(string strId ARG_SEC_ATTRS)
+   //::pointer<::acme::exclusive>application_impl::get_exclusive(const ::scoped_string & scopedstrId ARG_SEC_ATTRS)
    //{
 
    //   auto & pexclusive = m_mapExclusive[strId];
@@ -3763,7 +3765,7 @@ namespace apex
    //}
 
 
-   //bool application_impl::erase_exclusive(string strId ARG_SEC_ATTRS)
+   //bool application_impl::erase_exclusive(const ::scoped_string & scopedstrId ARG_SEC_ATTRS)
    //{
 
    //   auto & pexclusive = m_mapExclusive[strId];
@@ -3784,7 +3786,7 @@ namespace apex
    //}
 
 
-   //bool application::exclusive_fails(string strId ARG_SEC_ATTRS)
+   //bool application::exclusive_fails(const ::scoped_string & scopedstrId ARG_SEC_ATTRS)
    //{
 
    //   auto pexclusive = m_pappimpl->get_exclusive(strId ADD_PARAM_SEC_ATTRS);
@@ -3801,7 +3803,7 @@ namespace apex
    //}
 
 
-   //bool application::exclusive_erase(string strId ARG_SEC_ATTRS)
+   //bool application::exclusive_erase(const ::scoped_string & scopedstrId ARG_SEC_ATTRS)
    //{
 
    //   if (!m_pappimpl->erase_exclusive(strId ADD_PARAM_SEC_ATTRS))
@@ -4207,7 +4209,7 @@ namespace apex
    }
 
 
-   void application::on_exclusive_instance_conflict(::request * prequest, bool & bHandled, enum_exclusive_instance eexclusive, string strId)
+   void application::on_exclusive_instance_conflict(::request * prequest, bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId)
    {
 
       if (eexclusive == e_exclusive_instance_local)
@@ -4223,7 +4225,7 @@ namespace apex
       else if (eexclusive == e_exclusive_instance_local_id)
       {
 
-         return on_exclusive_instance_local_conflict_id(prequest, bHandled, strId);
+         return on_exclusive_instance_local_conflict_id(prequest, bHandled, scopedstrId);
 
       }
       else if (eexclusive == e_exclusive_instance_global)
@@ -4297,7 +4299,7 @@ namespace apex
    }
 
 
-   void application::on_exclusive_instance_local_conflict_id(::request * prequest, bool & bHandled, string strId)
+   void application::on_exclusive_instance_local_conflict_id(::request * prequest, bool & bHandled, const ::scoped_string & scopedstrId)
    {
 
       //bool bContinue = false;
@@ -4316,7 +4318,7 @@ namespace apex
 
             (*pcall)["command_line"] = prequest->m_strCommandLine;
 
-            (*pcall)["id"] = strId;
+            (*pcall)["id"] = scopedstrId;
 
             for (auto & ptask : pcall->m_mapTask.payloads())
             {
@@ -4411,12 +4413,12 @@ namespace apex
    }
 
 
-   void application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
+   void application::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine)
    {
 
       auto prequest = __create_new < ::request >();
 
-      prequest->initialize_command_line2(strCommandLine);
+      prequest->initialize_command_line2(scopedstrCommandLine);
 
       post_request(prequest);
 
@@ -4427,7 +4429,7 @@ namespace apex
    }
 
 
-   void application::on_new_instance(string strModule, const ::atom & iPid)
+   void application::on_new_instance(const ::scoped_string & scopedstrModule, const ::atom & iPid)
    {
 
    }
@@ -4897,18 +4899,18 @@ namespace apex
    }
 
 
-   void application::app_set(string strPath, string strValue)
+   void application::app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue)
    {
 
-      return m_papplication->sys_set(::file::path(m_strAppName) / strPath, strValue);
+      return m_papplication->sys_set(::file::path(m_strAppName) / scopedstrPath, scopedstrValue);
 
    }
 
 
-   string application::app_get(string strPath, string strDefault)
+   string application::app_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault)
    {
 
-      return m_papplication->sys_get(::file::path(m_strAppName) / strPath, strDefault);
+      return m_papplication->sys_get(::file::path(m_strAppName) / scopedstrPath, scopedstrDefault);
 
    }
 
@@ -5479,7 +5481,7 @@ namespace apex
 
 
 
-   //::pointer<::user::document>application::defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom)
+   //::pointer<::user::document>application::defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom)
    //{
 
    //   //auto pcontroller = pmultimedia->defer_create_impact(strImpact, puiParent, ewindowflag, atom);
@@ -7329,21 +7331,21 @@ namespace apex
    //   }
    //
    //
-   //   string application::interactive_get_credentials(string & strUsername, string & strPassword, string strToken)
+   //   string application::interactive_get_credentials(string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken)
    //   {
    //
    //      return ::account::get_cred(this, strUsername, strPassword, strToken);
    //
    //   }
    //
-   //   void application::set_cred(string strToken, const ::scoped_string & scopedstrUsername, const ::scoped_string & scopedstrPassword)
+   //   void application::set_cred(const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrUsername, const ::scoped_string & scopedstrPassword)
    //   {
    //
    //      ::account::set_cred(this,strToken, pszUsername, pszPassword);
    //
    //   }
    //
-   //   void application::set_cred_ok(string strToken, bool bOk)
+   //   void application::set_cred_ok(const ::scoped_string & scopedstrToken, bool bOk)
    //   {
    //
    //      ::account::set_cred_ok(this, strToken, bOk);

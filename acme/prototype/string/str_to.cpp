@@ -7,7 +7,7 @@
 bool str::to(long long & i, const ::scoped_string & scopedstr)
 {
 
-   const ::ansi_character * pszEnd = nullptr;
+   const_char_pointer pszEnd = nullptr;
 
    long long iConversion = ::ansi_to_long_long(str, &pszEnd);
 
@@ -28,7 +28,7 @@ bool str::to(long long & i, const ::scoped_string & scopedstr)
 bool str::to(int & i, const ::scoped_string & scopedstr)
 {
 
-   const ::ansi_character * pszEnd = nullptr;
+   const_char_pointer pszEnd = nullptr;
 
    i = ::ansi_to_int(str, &pszEnd, 10);
 
@@ -120,7 +120,7 @@ bool str::to(int & i, int iBase, const ::scoped_string & scopedstr)
 bool str::to(unsigned long long & u, const ::scoped_string & scopedstr)
 {
 
-   const ::ansi_character * pszEnd = nullptr;
+   const_char_pointer pszEnd = nullptr;
 
    unsigned long long uiConversion = ::ansi_to_long_long(str, &pszEnd);
 
@@ -140,7 +140,7 @@ bool str::to(unsigned long long & u, const ::scoped_string & scopedstr)
 bool str::to(unsigned int & u, const ::scoped_string & scopedstr)
 {
 
-   const ::ansi_character * pszEnd = nullptr;
+   const_char_pointer pszEnd = nullptr;
 
    long long uiConversion = ::ansi_to_unsigned_int(str, &pszEnd);
 
@@ -175,7 +175,7 @@ bool str::to(unsigned long long & u, int iBase, const ::scoped_string & scopedst
 
    }
 
-   const ::ansi_character * pszEnd = nullptr;
+   const_char_pointer pszEnd = nullptr;
 
    unsigned long long uiConversion = ::ansi_to_unsigned_long_long(str, &pszEnd, iBase);
 
@@ -203,7 +203,7 @@ bool str::to(unsigned int & u, int iBase, const ::scoped_string & scopedstr)
 
    }
 
-   const ::ansi_character * pszEnd = nullptr;
+   const_char_pointer pszEnd = nullptr;
 
    unsigned int uiConversion = ::ansi_to_unsigned_int(str, &pszEnd, iBase);
 

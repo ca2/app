@@ -3,7 +3,7 @@
 
 
 CLASS_DECL_ACME int MultiByteToWideChar2(
-   unsigned int CodePage, unsigned int uFlags, const_char_pointer  pMultiByteStr,
+   unsigned int CodePage, unsigned int uFlags, const_char_pointer pMultiByteStr,
    int cbMultiByte, LPWSTR  pWideCharStr, int cchWideChar)
 {
 
@@ -16,7 +16,7 @@ CLASS_DECL_ACME int MultiByteToWideChar2(
 CLASS_DECL_ACME int WideCharToMultiByte2(
    unsigned int CodePage, unsigned int uFlags, const ::wide_character *  pWideCharStr,
    int cchWideChar, char * pMultiByteStr, int cbMultiByte,
-   const_char_pointer  pDefaultChar, int_bool * pUsedDefaultChar)
+   const_char_pointer pDefaultChar, int_bool * pUsedDefaultChar)
 {
 
    return WideCharToMultiByte(CodePage, uFlags, pWideCharStr, cchWideChar, pMultiByteStr, cbMultiByte, pDefaultChar, pUsedDefaultChar);

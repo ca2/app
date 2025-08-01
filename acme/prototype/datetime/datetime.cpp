@@ -517,7 +517,7 @@ namespace datetime
    }
 
 
-   //string datetime::international::date_time_text(string strFormat, const class ::time & timeshift)
+   //string datetime::international::date_time_text(const ::scoped_string & scopedstrFormat, const class ::time & timeshift)
    //{
 
    //   ::earth::time time;
@@ -537,7 +537,7 @@ namespace datetime
    //}
 
 
-   //string datetime::international::date_text(const ::earth::time & time, string strFormat, const class ::time & timeshift)
+   //string datetime::international::date_text(const ::earth::time & time, const ::scoped_string & scopedstrFormat, const class ::time & timeshift)
    //{
 
    //   string str;
@@ -549,7 +549,7 @@ namespace datetime
    //}
 
 
-   //string datetime::international::date_text(string strFormat, const class ::time & timeshift)
+   //string datetime::international::date_text(const ::scoped_string & scopedstrFormat, const class ::time & timeshift)
    //{
 
    //   ::earth::time time;
@@ -573,7 +573,7 @@ namespace datetime
 
 
 
-   //string datetime::international::utc_get_date_time(string strFormat)
+   //string datetime::international::utc_get_date_time(const ::scoped_string & scopedstrFormat)
    //{
 
    //   ::earth::time time;
@@ -587,7 +587,7 @@ namespace datetime
 
 
 
-   //string datetime::international::get_date_time(const ::earth::time & time, string strFormat, const class ::time& timeshift)
+   //string datetime::international::get_date_time(const ::earth::time & time, const ::scoped_string & scopedstrFormat, const class ::time& timeshift)
    //{
    //   
    //   string str;
@@ -1477,7 +1477,7 @@ namespace datetime
       ::property_set set;
       bool bAdd = false;
       bool bMinus = false;
-      const_char_pointer  psz = str.c_str();
+      const_char_pointer psz = str.c_str();
       string strNumber;
       string strText1;
       string strChar;

@@ -7,10 +7,10 @@ namespace sz
 {
 
 
-   const_char_pointer  trim_left(const ::ansi_character * psz, const ::scoped_string & scopedstrTrimmer)
+   const_char_pointer trim_left(const_char_pointer psz, const ::scoped_string & scopedstrTrimmer)
    {
 
-      if (scopedstr == nullptr)
+      if (psz == nullptr)
       {
 
          return nullptr;
@@ -20,7 +20,7 @@ namespace sz
       while((*psz != 0) && scopedstrTrimmer.find(*psz) != nullptr)
       {
          
-         unicode_increment(scopedstr);
+         unicode_increment(psz);
 
       }
 
@@ -29,10 +29,10 @@ namespace sz
    }
 
 
-   const_char_pointer  trim_left_path_sep(const ::ansi_character * psz)
+   const_char_pointer trim_left_path_sep(const_char_pointer psz)
    {
 
-      if (scopedstr == nullptr)
+      if (psz == nullptr)
       {
 
          return nullptr;

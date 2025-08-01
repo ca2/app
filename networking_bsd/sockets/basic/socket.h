@@ -33,7 +33,7 @@ namespace sockets_bsd
       \lparam af Address family AF_INET / AF_INET6 / ...
       \lparam type SOCK_STREAM / SOCK_DGRAM / ...
       \lparam protocol "tcp" / "udp" / ... */
-      SOCKET CreateSocket(int af,int type,const string & protocol = "");
+      SOCKET CreateSocket(int af,int type,const ::scoped_string & scopedstrProcotol= "");
 
 
 

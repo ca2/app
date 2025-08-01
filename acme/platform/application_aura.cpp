@@ -39,7 +39,7 @@ namespace platform
    //virtual ::database::key calc_data_key() override{}
 
 
-   //::string aura_application_layer::load_podata(string strLang, bool bOnlyHeader){}
+   //::string aura_application_layer::load_podata(const ::scoped_string & scopedstrLang, bool bOnlyHeader){}
 
    //::string aura_application_layer::load_string(const ::atom & atom) override{}
    //bool aura_application_layer::load_string(string & str, const ::atom & atom) override{}
@@ -282,8 +282,8 @@ namespace platform
    //::string aura_application_layer::get_theme() override{}
 
 
-   //virtual ::pointer<::acme::exclusive>get_exclusive(string str, LPSECURITY_ATTRIBUTES psa) override{}
-   //bool aura_application_layer::exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa) override{}
+   //virtual ::pointer<::acme::exclusive>get_exclusive(const ::scoped_string & scopedstr, LPSECURITY_ATTRIBUTES psa) override{}
+   //bool aura_application_layer::exclusive_fails(const ::scoped_string & scopedstr, LPSECURITY_ATTRIBUTES psa) override{}
 
 
    //bool aura_application_layer::start_application(bool bSynch, ::request * prequest) override{}
@@ -356,8 +356,8 @@ namespace platform
    //void aura_application_layer::on_thread_on_idle(::thread * pthread,int lCount) override{}
 
 
-   //bool aura_application_layer::app_set(string strPath, string strValue) override{}
-   //::string aura_application_layer::app_get(string strPath, string strDefault = "") override{}
+   //bool aura_application_layer::app_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue) override{}
+   //::string aura_application_layer::app_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault = "") override{}
 
 
    //bool aura_application_layer::Ex2OnAppInstall(){}
@@ -480,7 +480,7 @@ namespace platform
 
    /// return true if this instance might continue execution
    /// bHandled true if some action was done in response to this ___new additional instance creation
-   //void aura_application_layer::on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override{}
+   //void aura_application_layer::on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId) override{}
 
    /// return true if this instance might continue execution
    /// bHandled true if some action was done in response to this ___new additional instance creation
@@ -488,13 +488,13 @@ namespace platform
 
    /// return true if this instance might continue execution
 /// bHandled true if some action was done in response to this ___new additional instance creation
-   //bool aura_application_layer::on_exclusive_instance_local_conflict_id(bool & bHandled, string strId) override{}
+   //bool aura_application_layer::on_exclusive_instance_local_conflict_id(bool & bHandled, const ::scoped_string & scopedstrId) override{}
 
    /// return true if the external additional instance might continue execution
    /// bHandled true if some action was done in response to the external aaa_memory_new additional instance creation
-   //void aura_application_layer::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override{}
+   //void aura_application_layer::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine) override{}
 
-   //void aura_application_layer::on_new_instance(string strModule, const ::atom & idPid) override{}
+   //void aura_application_layer::on_new_instance(const ::scoped_string & scopedstrModule, const ::atom & idPid) override{}
 
    //::string aura_application_layer::get_local_mutex_id() override{}
    //::string aura_application_layer::get_global_mutex_id() override{}
@@ -581,7 +581,7 @@ namespace platform
    //void aura_application_layer::_001FranceExit() override{}
 
 
-   //::string aura_application_layer::lstr(const ::atom & atom, string strDefault = "") override{}
+   //::string aura_application_layer::lstr(const ::atom & atom, const ::scoped_string & scopedstrDefault = "") override{}
 
 
    //bool aura_application_layer::do_install(){}
@@ -626,9 +626,9 @@ namespace platform
    //void aura_application_layer::install_trace(double dRate) override{}
    //bool aura_application_layer::register_spa_file_type() override{}
 
-   //bool aura_application_layer::low_is_app_app_admin_running(string strPlatform, string strConfiguration) override{}
-   //void aura_application_layer::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration) override{}
-   //void aura_application_layer::start_program_files_app_app_admin(string strPlatform, string strConfiguration) override{}
+   //bool aura_application_layer::low_is_app_app_admin_running(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override{}
+   //void aura_application_layer::defer_start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override{}
+   //void aura_application_layer::start_program_files_app_app_admin(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration) override{}
 
 
    // bool aura_application_layer::keyboard_focus_is_focusable(const ::user::interaction_base * pue) override{}
@@ -721,7 +721,7 @@ namespace platform
    // void aura_application_layer::close(::enum_exit eexit) override{}
 
 
-   //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr){}
+   //user virtual ::pointer<::user::document>defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr){}
 
    //
    // void aura_application_layer::HideApplication() override{}
@@ -786,7 +786,7 @@ namespace platform
    //      bool aura_application_layer::OnX11WindowMessage(void* pev){}
    //#endif
 
-   bool  aura_application_layer::CreateFileFromRawResource(unsigned int nID, const ::string& lcszType, const ::scoped_string & scopedstrFilePath)
+   bool  aura_application_layer::CreateFileFromRawResource(unsigned int nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath)
    {
       return false;
    }
@@ -983,7 +983,7 @@ namespace platform
       return {};
    }
 
-   //void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override{}
+   //void on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine) override{}
 
 
    //virtual ::user::user * user(){}
@@ -994,7 +994,7 @@ namespace platform
 
    // void pick_browse(const ::function < void(const ::file::path & path) > & callback) override{}
    //
-   // void pick_media(const_char_pointer  pszMediaType) override{}
+   // void pick_media(const_char_pointer pszMediaType) override{}
    //
    // void on_prompt_write_file(::user::controller * pusercontroller) override{}
 

@@ -321,10 +321,10 @@ namespace aura
       }
 
 
-      //virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget) override;
-      //virtual void open_profile_link(string strUrl, string strProfile, string strTarget) override;
-      //virtual void open_link(string strUrl, string strProfile, string strTarget) override;
-      //virtual void open_url(string strUrl, string strProfile, string strTarget) override;
+      //virtual void browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
+      //virtual void open_profile_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
+      //virtual void open_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
+      //virtual void open_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override;
 
 
       //virtual void __set_thread_on() override;
@@ -480,9 +480,9 @@ namespace aura
       //virtual void start() override;
 
       //virtual ::file::path local_get_matter_cache_path() override;
-      //virtual ::file::path local_get_matter_cache_path(string strMatter) override;
+      //virtual ::file::path local_get_matter_cache_path(const ::scoped_string & scopedstrMatter) override;
       //virtual ::file::path local_get_matter_path() override;
-      //virtual ::file::path local_get_matter_path(string strMatter) override;
+      //virtual ::file::path local_get_matter_path(const ::scoped_string & scopedstrMatter) override;
 
       //virtual bool find_applications_from_cache() override;
       //virtual bool find_applications_to_cache(bool bSave = true) override;
@@ -533,22 +533,22 @@ namespace aura
 
       //virtual void defer_check_openweather_city_list();
 
-      //virtual openweather_city * openweather_find_city(string strQuery);
-      //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, long long & iId, double & dLat, double & dLon);
-      //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, long long & iId, double & dLat, double & dLon, bool bPrefix);
+      //virtual openweather_city * openweather_find_city(const ::scoped_string & scopedstrQuery);
+      //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string & strCit, long long & iId, double & dLat, double & dLon);
+      //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string & strCit, long long & iId, double & dLat, double & dLon, bool bPrefix);
 
 //#ifdef __ANDROID__
 ////#pragma message("at macos??")
-//      virtual bool android_set_user_wallpaper(string strUrl) override;
+//      virtual bool android_set_user_wallpaper(const ::scoped_string & scopedstrUrl) override;
 //      virtual bool android_get_user_wallpaper(string & strUrl) override;
 //
 //#endif
 //
-//      virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra) override;
+//      virtual bool defer_accumulate_on_open_file(string_array stra, const ::scoped_string & scopedstrExtra) override;
 //
 //      virtual bool merge_accumulated_on_open_file(::request * prequest) override;
 //
-//      virtual bool on_open_file(::payload payloadFile, string strExtra) override;
+//      virtual bool on_open_file(::payload payloadFile, const ::scoped_string & scopedstrExtra) override;
 //
       //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 
@@ -557,7 +557,7 @@ namespace aura
       //virtual void * initialize_native_window2(const ::int_rectangle & rectangle);
 
 
-      //virtual void on_os_text(e_os_text etext, string strText) override;
+      //virtual void on_os_text(e_os_text etext, const ::scoped_string & scopedstrText) override;
 
       //virtual ::windowing::window * impl_from_handle(void * posdata);
       //virtual ::user::interaction * ui_from_handle(void * posdata);
@@ -565,10 +565,10 @@ namespace aura
 
 
 
-      //virtual void on_extra(string str) override;
+      //virtual void on_extra(const ::scoped_string & scopedstr) override;
 
-      //virtual string standalone_setting(string str) override;
-      //virtual bool set_standalone_setting(string str, string strSetting) override;
+      //virtual string standalone_setting(const ::scoped_string & scopedstr) override;
+      //virtual bool set_standalone_setting(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSetting) override;
 
 
       //virtual void on_event(unsigned long long u, ::particle * pparticle) override;
@@ -585,11 +585,11 @@ namespace aura
       //virtual void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override;
 
 
-      //void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
+      //void chromium(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrId, ::file::path path, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam);
 
-      //void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile);
+      //void defer_create_firefox_profile(::file::path pathFirefox, const ::scoped_string & scopedstrProfileName, ::file::path pathProfile);
 
-      //void     firefox(string strUrl, string strBrowser, string strProfile, string strParam);
+      //void     firefox(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam);
       //void     get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory);
 
 

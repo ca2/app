@@ -1,5 +1,6 @@
 // Created by camilo on 2012-12-18 18:44 <3ThomasBorregaardSorensen!!
 #pragma once
+#include "scoped_string_base.h"
 
 
 template < typename ITERATOR_TYPE >
@@ -95,7 +96,7 @@ public:
 //   scoped_string_base(const ::ansi_character ch) :m_str(ch), BASE_RANGE(m_str) { }
 //   scoped_string_base(const ::wd16_character ch) :m_str(ch), BASE_RANGE(m_str) { }
 //   scoped_string_base(const ::wd32_character ch) :m_str(ch), BASE_RANGE(m_str) { }
-   //scoped_string_base(const ::ansi_character * psz) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(scopedstr); }
+   //scoped_string_base(const_char_pointer psz) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(scopedstr); }
    //scoped_string_base(const ::wd16_character * psz) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(scopedstr); }
    //scoped_string_base(const ::wd32_character * psz) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(scopedstr); }
 //   scoped_string_base(const ::const_ansi_range & range) :m_str(e_zero_initialize), BASE_RANGE(range) { }
@@ -385,15 +386,48 @@ public:
    }
 
 
-   inline bool operator ==(const ::ansi_string & str) const { return this->equals((const scoped_string_base&)str); }
-   inline bool operator ==(const ::wd16_string & str) const { return this->equals((const scoped_string_base&)str); }
-   inline bool operator ==(const ::wd32_string & str) const { return this->equals((const scoped_string_base&)str); }
-   inline bool operator ==(const ::ansi_character * psz) const { return this->equals(psz); }
-   inline bool operator ==(const ::wd16_character * psz) const { return this->equals(psz); }
-   inline bool operator ==(const ::wd32_character * psz) const { return this->equals(psz); }
-   inline bool operator ==(const ::scoped_ansi_string & str) const { return this->equals((const scoped_string_base&)str); }
-   inline bool operator ==(const ::scoped_wd16_string & str) const { return this->equals((const scoped_string_base&)str); }
-   inline bool operator ==(const ::scoped_wd32_string & str) const { return this->equals((const scoped_string_base&)str); }
+   //inline bool operator ==(const ::ansi_string & str) const { return this->equals((const scoped_string_base&)str); }
+   //inline bool operator ==(const ::wd16_string & str) const { return this->equals((const scoped_string_base&)str); }
+   //inline bool operator ==(const ::wd32_string & str) const { return this->equals((const scoped_string_base&)str); }
+   //inline bool operator ==(const_char_pointer psz) const { return this->equals(psz); }
+   //inline bool operator ==(const ::wd16_character * psz) const { return this->equals(psz); }
+   //inline bool operator ==(const ::wd32_character * psz) const { return this->equals(psz); }
+   //inline bool operator ==(const ::scoped_ansi_string & str) const { return this->equals((const scoped_string_base&)str); }
+   //inline bool operator ==(const ::scoped_wd16_string & str) const { return this->equals((const scoped_string_base&)str); }
+   //inline bool operator ==(const ::scoped_wd32_string & str) const { return this->equals((const scoped_string_base&)str); }
+
+
+
+   template < typename RANGE >
+   bool operator ==(const RANGE & str) const requires
+      (::std::is_base_of_v < ::range < const typename scoped_string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE >
+      && !
+      (::std::is_base_of_v < scoped_string_base < ITERATOR_TYPE >, RANGE >
+         || ::std::is_same_v < scoped_string_base < ITERATOR_TYPE >, RANGE >))
+   {
+
+      return this->equals((const scoped_string_base&)str);
+
+   }
+
+
+   template < typename OTHER_CHARACTER >
+   bool operator ==(const ::range < const OTHER_CHARACTER* >& range) const
+   requires other_primitive_character < OTHER_CHARACTER, CHARACTER >
+   {
+
+      return this->equals((const scoped_string_base&)str);
+
+   }
+
+
+   template < primitive_character CHARACTER >
+   bool operator ==(const CHARACTER* p) const
+   {
+
+      return this->equals(p);
+
+   }
 
    const CHARACTER * null_terminated() const
    { 

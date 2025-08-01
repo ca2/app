@@ -53,7 +53,7 @@ namespace ca
       if(ansi_find_string(strPath, ".") == nullptr)
          strPath += ".so";
 
-      if(strstr((const_char_pointer ) strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
+      if(strstr((const_char_pointer )strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
          strPath = "lib" + strPath;
 
       m_plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);

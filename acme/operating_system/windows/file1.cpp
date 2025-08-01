@@ -10,7 +10,7 @@
 string CLASS_DECL_ACME windows_get_short_file_name(const ::scoped_string & scopedstrPath)
 {
 
-   wstring wstrLongName("\\\\?\\" + strPath);
+   wstring wstrLongName("\\\\?\\" + scopedstrPath);
 
    auto requiredLength = ::GetShortPathNameW(wstrLongName, nullptr, 0);
 
@@ -18,7 +18,7 @@ string CLASS_DECL_ACME windows_get_short_file_name(const ::scoped_string & scope
    {
 
       // rare failure case (especially on not-so-modern file systems)
-      return strPath;
+      return scopedstrPath;
 
    }
 
@@ -34,7 +34,7 @@ string CLASS_DECL_ACME windows_get_short_file_name(const ::scoped_string & scope
    {
 
       // rare failure case (especially on not-so-modern file systems)
-      return strPath;
+      return scopedstrPath;
 
    }
 

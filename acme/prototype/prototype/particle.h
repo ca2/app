@@ -267,8 +267,8 @@ public:
 
 
 
-   virtual const_char_pointer  topic_text() const;
-   //virtual const_char_pointer  raw_class_title() const;
+   virtual const_char_pointer topic_text() const;
+   //virtual const_char_pointer raw_class_title() const;
 
 
 
@@ -301,32 +301,32 @@ public:
 
 
 
-   //virtual void trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_information_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_warning_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_error_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_fatal_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments);
+   //virtual void trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_information_arguments(enum_trace_category etracecategory, const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_warning_arguments(enum_trace_category etracecategory, const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_error_arguments(enum_trace_category etracecategory, const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_fatal_arguments(enum_trace_category etracecategory, const_char_pointer pszFormat, va_list & arguments);
 
 
-   //virtual void trace_arguments(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_information_arguments(const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_warning_arguments(const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_error_arguments(const ::ansi_character * pszFormat, va_list & arguments);
-   //virtual void trace_log_fatal_arguments(const ::ansi_character * pszFormat, va_list & arguments);
+   //virtual void trace_arguments(enum_trace_level etracelevel, const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_information_arguments(const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_warning_arguments(const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_error_arguments(const_char_pointer pszFormat, va_list & arguments);
+   //virtual void trace_log_fatal_arguments(const_char_pointer pszFormat, va_list & arguments);
 
 
-   //virtual void trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...);
-   //virtual void trace_log_information() << enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...;
-   //virtual void trace_log_warning() << enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...;
-   //virtual void trace_log_error() << enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...;
-   //virtual void trace_log_fatal() << enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...;
+   //virtual void trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const_char_pointer pszFormat, ...);
+   //virtual void trace_log_information() << enum_trace_category etracecategory, const_char_pointer pszFormat, ...;
+   //virtual void trace_log_warning() << enum_trace_category etracecategory, const_char_pointer pszFormat, ...;
+   //virtual void trace_log_error() << enum_trace_category etracecategory, const_char_pointer pszFormat, ...;
+   //virtual void trace_log_fatal() << enum_trace_category etracecategory, const_char_pointer pszFormat, ...;
 
 
-   //virtual void trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...);
-   //virtual void trace_log_information() << const ::ansi_character * pszFormat, ...;
-   //virtual void trace_log_warning() << const ::ansi_character * pszFormat, ...;
-   //virtual void trace_log_error() << const ::ansi_character * pszFormat, ...;
-   //virtual void trace_log_fatal() << const ::ansi_character * pszFormat, ...;
+   //virtual void trace(enum_trace_level etracelevel, const_char_pointer pszFormat, ...);
+   //virtual void trace_log_information() << const_char_pointer pszFormat, ...;
+   //virtual void trace_log_warning() << const_char_pointer pszFormat, ...;
+   //virtual void trace_log_error() << const_char_pointer pszFormat, ...;
+   //virtual void trace_log_fatal() << const_char_pointer pszFormat, ...;
 
 
    virtual class tracer * tracer() const;
@@ -350,24 +350,24 @@ public:
    virtual ::trace_statement fatal() const;
 
    
-   virtual void tracef(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...) const;
+   virtual void tracef(enum_trace_level etracelevel, const_char_pointer pszFormat, ...) const;
 
-   virtual void formatf_trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments) const;
+   virtual void formatf_trace(enum_trace_level etracelevel, const_char_pointer pszFormat, va_list & arguments) const;
 
    virtual void print_line(const ::scoped_string & scopedstr) const;
    virtual void print_out(const ::scoped_string & scopedstr) const;
-   virtual void printf_line(const ::ansi_character * pszFormat, ...) const;
-   virtual void printf_out(const ::ansi_character * pszFormat, ...) const;
+   virtual void printf_line(const_char_pointer pszFormat, ...) const;
+   virtual void printf_out(const_char_pointer pszFormat, ...) const;
    virtual void err_line(const ::scoped_string & scopedstr) const;
    virtual void err_out(const ::scoped_string & scopedstr) const;
-   virtual void errf_line(const ::ansi_character * pszFormat, ...) const;
-   virtual void errf_out(const ::ansi_character * pszFormat, ...) const;
+   virtual void errf_line(const_char_pointer pszFormat, ...) const;
+   virtual void errf_out(const_char_pointer pszFormat, ...) const;
 
-   virtual void debugf(const ::ansi_character * pszFormat, ...) const;
-   virtual void informationf(const ::ansi_character * pszFormat, ...) const;
-   virtual void warningf(const ::ansi_character * pszFormat, ...) const;
-   virtual void errorf(const ::ansi_character * pszFormat, ...) const;
-   virtual void fatalf(const ::ansi_character * pszFormat, ...) const;
+   virtual void debugf(const_char_pointer pszFormat, ...) const;
+   virtual void informationf(const_char_pointer pszFormat, ...) const;
+   virtual void warningf(const_char_pointer pszFormat, ...) const;
+   virtual void errorf(const_char_pointer pszFormat, ...) const;
+   virtual void fatalf(const_char_pointer pszFormat, ...) const;
 
 
 #if defined(__STD_FORMAT__)
@@ -499,7 +499,7 @@ public:
 
 
 
-   virtual const_char_pointer  debug_note() const;
+   virtual const_char_pointer debug_note() const;
 
 
 
@@ -752,7 +752,7 @@ public:
 #endif
    
    
-   virtual void * new_object(const_char_pointer  psz);
+   virtual void * new_object(const_char_pointer psz);
 
 
    virtual string as_string() const;
@@ -1019,10 +1019,10 @@ inline long long global_release(T*& p);
 //CLASS_DECL_ACME ::trace_statement fatal();
 //
 //
-//CLASS_DECL_ACME void informationf(const ::ansi_character * pszFormat, ...);
-//CLASS_DECL_ACME void warningf(const ::ansi_character * pszFormat, ...);
-//CLASS_DECL_ACME void errorf(const ::ansi_character * pszFormat, ...);
-//CLASS_DECL_ACME void fatalf(const ::ansi_character * pszFormat, ...);
+//CLASS_DECL_ACME void informationf(const_char_pointer pszFormat, ...);
+//CLASS_DECL_ACME void warningf(const_char_pointer pszFormat, ...);
+//CLASS_DECL_ACME void errorf(const_char_pointer pszFormat, ...);
+//CLASS_DECL_ACME void fatalf(const_char_pointer pszFormat, ...);
 //
 //
 //inline void information(const ::scoped_string & scopedstr)

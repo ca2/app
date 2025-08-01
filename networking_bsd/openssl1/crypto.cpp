@@ -1074,7 +1074,7 @@ namespace crypto
 
       unsigned int md_len = 0;
 
-      HMAC(EVP_sha1(), strKey.c_str(), int(strKey.length()), (const unsigned char*)(const_char_pointer  )strMessage, (size_t)strMessage.length(), (unsigned char*)result, &md_len);
+      HMAC(EVP_sha1(), strKey.c_str(), int(strKey.length()), (const unsigned char*)(const_char_pointer )strMessage, (size_t)strMessage.length(), (unsigned char*)result, &md_len);
 
 #endif
 
@@ -1350,7 +1350,7 @@ namespace crypto
 //
 //      auto iInSize = (int)in.get_size();
 //
-//      auto pInData = (const uchar*)(const_char_pointer  )in.get_data();
+//      auto pInData = (const uchar*)(const_char_pointer )in.get_data();
 //
 //      auto pOutData = out.get_data();
 //
@@ -1570,7 +1570,7 @@ namespace crypto
       X509* signer = nullptr;
       {
          string strSigner = file()->as_string(strSignerPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(const_char_pointer  )strSigner, (int)strSigner.length());
+         BIO* pbio = BIO_new_mem_buf((void*)(const_char_pointer )strSigner, (int)strSigner.length());
          //signer = PEM_read_bio_X509_AUX(pbio, nullptr, 0, nullptr);
          signer = PEM_read_bio_X509(pbio, nullptr, 0, nullptr);
          BIO_free(pbio);
@@ -1579,7 +1579,7 @@ namespace crypto
       EVP_PKEY* pkey;
       {
          string strKey = file()->as_string(strKeyPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(const_char_pointer  )strKey, (int)strKey.length());
+         BIO* pbio = BIO_new_mem_buf((void*)(const_char_pointer )strKey, (int)strKey.length());
          pkey = PEM_read_bio_PrivateKey(pbio, nullptr, nullptr, nullptr);
          BIO_free(pbio);
       }
@@ -1623,7 +1623,7 @@ namespace crypto
          }
       }
 
-      BIO* input = BIO_new_mem_buf((void*)(const_char_pointer  )strSignature, (int)strSignature.length());
+      BIO* input = BIO_new_mem_buf((void*)(const_char_pointer )strSignature, (int)strSignature.length());
 
       PKCS7* pkcs7 = PKCS7_sign(signer, pkey, pstack509, input, PKCS7_BINARY | PKCS7_DETACHED);
 
@@ -1859,8 +1859,8 @@ namespace crypto
 
 
 void
-stunCalculateIntegrity_longterm(char* hmac, const_char_pointer  input, int length,
-   const_char_pointer  username, const_char_pointer  realm, const_char_pointer  password)
+stunCalculateIntegrity_longterm(char* hmac, const_char_pointer input, int length,
+   const_char_pointer username, const_char_pointer realm, const_char_pointer password)
 {
 
 #if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
@@ -1879,7 +1879,7 @@ stunCalculateIntegrity_longterm(char* hmac, const_char_pointer  input, int lengt
 }
 
 void
-stunCalculateIntegrity_shortterm(char* hmac, const_char_pointer  input, int length, const_char_pointer  key)
+stunCalculateIntegrity_shortterm(char* hmac, const_char_pointer input, int length, const_char_pointer key)
 {
 #if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
    unsigned int resultSize = 0;

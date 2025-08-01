@@ -65,7 +65,7 @@ CLASS_DECL_ACME void set_main_user_thread();
 
 #include "apex/operating_system/binreloc.h"
 
-const_char_pointer  br_init_get_symbol();
+const_char_pointer br_init_get_symbol();
 
 #endif
 

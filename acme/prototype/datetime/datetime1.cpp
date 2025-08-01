@@ -80,7 +80,7 @@ namespace datetime
 //      const ::scoped_string & scopedstr = str;
 //      string strNumber;
 //      string strText1;
-//      for(int i = 0; *psz; unicode_increment(scopedstr))
+//      for(int i = 0; *psz; unicode_increment(psz))
 //      {
 //         string strChar = ::str::get_utf8_char(scopedstr);
 //         if(unicode_is_whitespace(scopedstr))

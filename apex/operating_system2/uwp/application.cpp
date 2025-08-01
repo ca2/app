@@ -117,7 +117,7 @@ namespace apex
 
                // Retrieve file description for language and code page "i".
                VerQueryValue(lpdata,
-                             (char *) (const_char_pointer ) strKey,
+                             (char *) (const_char_pointer )strKey,
                              (LPVOID *)&lpsz,
                              &uiSize);
 

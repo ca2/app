@@ -77,7 +77,7 @@
 //
 //      virtual ::extended::status open(const ::file::path & lpszFileName, ::file::e_open eopen) override;
 //
-//      //virtual bool PASCAL GetStatus(const_char_pointer  lpszFileName, ::file::file_status& rStatus);
+//      //virtual bool PASCAL GetStatus(const_char_pointer lpszFileName, ::file::file_status& rStatus);
 //
 //      //unsigned long long ReadHuge(void * lpBuffer, unsigned long long dwCount);
 //      //void WriteHuge(const void * lpBuffer, unsigned long long dwCount);
@@ -112,8 +112,8 @@
 //
 //   //   void PASCAL OsErrorToException(int lOsError);
 //   //   void PASCAL ErrnoToException(int nErrno);
-//   //   void PASCAL ThrowOsError(::particle * pparticle, int lOsError, const_char_pointer  lpszFileName = nullptr);
-//   //   void PASCAL ThrowErrno(::particle * pparticle, int nErrno, const_char_pointer  lpszFileName = nullptr);
+//   //   void PASCAL ThrowOsError(::particle * pparticle, int lOsError, const_char_pointer lpszFileName = nullptr);
+//   //   void PASCAL ThrowErrno(::particle * pparticle, int nErrno, const_char_pointer lpszFileName = nullptr);
 //
 //
 //   //}  // namespace file_exception

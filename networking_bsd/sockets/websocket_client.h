@@ -50,14 +50,14 @@ namespace networking_bsd
 
       websocket_client();
       websocket_client(const string & url, const ::scoped_string & scopedstrProtocol);
-      //websocket_client(const string & host, ::networking::port_t port, const string & url);
+      //websocket_client(const ::scoped_string & scopedstrHost, ::networking::port_t port, const string & url);
       ~websocket_client() override;
 
       virtual void InitSSLClient() override;
 
       bool step() override;
 
-      void OnLine(const string &) override;
+      void OnLine(const ::scoped_string & scopedstrLine) override;
 
       void OnHeaderComplete() override;
 
@@ -73,7 +73,7 @@ namespace networking_bsd
       virtual void OnRawData(char *buf, memsize len) override;
 
       virtual void on_websocket_data(unsigned char * pdata, int len);
-      virtual void on_websocket_data(string str);
+      virtual void on_websocket_data(const ::scoped_string & scopedstr);
 
       virtual bool client_ping_pong_ok();
 

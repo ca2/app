@@ -82,12 +82,12 @@ namespace file
 
 class memory_base;
 
-// CLASS_DECL_ACME bool xxxfile_save_stra(const_char_pointer  lpszName, const string_array & stra);
-// CLASS_DECL_ACME bool xxxfile_load_stra(const_char_pointer  lpszName, string_array & stra, bool bAddEmpty = true);
+// CLASS_DECL_ACME bool xxxfile_save_stra(const_char_pointer lpszName, const string_array & stra);
+// CLASS_DECL_ACME bool xxxfile_load_stra(const_char_pointer lpszName, string_array & stra, bool bAddEmpty = true);
 
 
 // CLASS_DECL_ACME bool xxxfile_put_contents(const ::file::path & path, const memory_base & memory);
-// CLASS_DECL_ACME int_bool xxxfile_put_contents(const ::file::path & path, const_char_pointer  contents);
+// CLASS_DECL_ACME int_bool xxxfile_put_contents(const ::file::path & path, const_char_pointer contents);
 // CLASS_DECL_ACME bool xxxfile_as_memory(memory_base & memory, const ::file::path & path, memsize iReadAtMostByteCount = -1);
 // CLASS_DECL_ACME memsize xxxfile_as_memory(const ::file::path & path, void * p, memsize s);
 
@@ -104,7 +104,7 @@ class memory_base;
 
 
 //CLASS_DECL_ACME string file_path_title(const ::file::path & path);
-//CLASS_DECL_ACME const_char_pointer  file_path_name(const ::file::path & path);
+//CLASS_DECL_ACME const_char_pointer file_path_name(const ::file::path & path);
 
 
 

@@ -22,7 +22,7 @@
 //      enum_dialog_result m_edialogresult;
 //
 //
-//      button(const ::string &psz, enum_dialog_result edialogresult);
+//      button(const ::scoped_string & scopedstr, enum_dialog_result edialogresult);
 //
 //      virtual ~button();
 //

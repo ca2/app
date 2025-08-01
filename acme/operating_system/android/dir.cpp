@@ -19,7 +19,7 @@
 // }
 
 
-// CLASS_DECL_EXPORT const_char_pointer  android_get_cache_dir()
+// CLASS_DECL_EXPORT const_char_pointer android_get_cache_dir()
 // {
 
 //    return g_pszCacheDir;
@@ -45,7 +45,7 @@
 // }
 
 
-// CLASS_DECL_EXPORT const_char_pointer  nodeos_get_home()
+// CLASS_DECL_EXPORT const_char_pointer nodeos_get_home()
 // {
 
 //    return g_pszHome;
@@ -71,7 +71,7 @@
 // }
 
 
-// CLASS_DECL_EXPORT const_char_pointer  nodeos_get_temp()
+// CLASS_DECL_EXPORT const_char_pointer nodeos_get_temp()
 // {
 
 //    return g_pszTemp;

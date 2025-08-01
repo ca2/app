@@ -14,7 +14,7 @@ CLASS_DECL_ACME void get_message(::string & strMessage, const ::error_code & err
 namespace file
 {
 
-   static const_char_pointer  rgszFileExceptionCause[] =
+   static const_char_pointer rgszFileExceptionCause[] =
    {
       "genericFileError",
       "fileNotFound",
@@ -34,7 +34,7 @@ namespace file
 
 
 
-   const_char_pointer  status_short_description(const ::e_status & estatus)
+   const_char_pointer status_short_description(const ::e_status & estatus)
    {
 
       if (estatus < error_file ||
@@ -101,7 +101,7 @@ namespace file
 
          //m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0 && !(m_eopen & ::file::e_open_no_callstack);
 
-         const_char_pointer  psz = ::file::status_short_description(estatus);
+         const_char_pointer psz = ::file::status_short_description(estatus);
 
          if (psz == NULL)
          {

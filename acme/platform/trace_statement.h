@@ -56,7 +56,7 @@ public:
    inline trace_statement & operator()(::particle * pparticle) { m_pparticleLogging = pparticle; return *this; }
    inline trace_statement & operator()(enum_trace_level etracelevel) { m_etracelevel = etracelevel; return *this; }
    inline trace_statement & operator()(enum_trace_category etracecategory) { m_etracecategory = etracecategory; return *this; }
-   inline trace_statement & operator()(const ::ansi_character * pszFunction, const ::ansi_character * pszFile, int iLine)
+   inline trace_statement & operator()(const_char_pointer pszFunction, const_char_pointer pszFile, int iLine)
    {
       m_pszFunction = pszFunction;
       m_pszFile = pszFile;
@@ -65,7 +65,7 @@ public:
    }
 
 
-   void formatf_output_arguments(const ::ansi_character * psz, va_list & arguments);
+   void formatf_output_arguments(const_char_pointer psz, va_list & arguments);
 
    #if defined(__STD_FORMAT__)
    
@@ -81,7 +81,7 @@ public:
 
    }
 
-   //trace_statement & operator()(const ::ansi_character * pszFormat, ...);
+   //trace_statement & operator()(const_char_pointer pszFormat, ...);
 
    template<typename... Ts>
    trace_statement & operator()(const std::format_string<Ts...> fmt, Ts&&... args)
@@ -93,7 +93,7 @@ public:
    #endif
    
    
-   //void format_output_arguments(const ::ansi_character * psz, va_list & arguments)
+   //void format_output_arguments(const_char_pointer psz, va_list & arguments)
 //{
 
 //   string str;
@@ -105,7 +105,7 @@ public:
 //}
 
 
-//tracer & format_output(const ::ansi_character * psz, ...)
+//tracer & format_output(const_char_pointer psz, ...)
 //{
 
 //   va_list arguments;

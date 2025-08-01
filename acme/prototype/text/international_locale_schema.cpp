@@ -802,7 +802,7 @@ namespace text
 #endif
 
 
-      //bool locale_schema::_add_locale_variant(const ::string& idLocale, const ::string& idStyle)
+      //bool locale_schema::_add_locale_variant(const ::scoped_string & scopedstrIdLocale, const ::scoped_string & scopedstrIdStyle)
       //{
 
       //   if (::is_empty(idLocale.m_str))
@@ -819,7 +819,7 @@ namespace text
       //}
 
 
-      //bool locale_schema::defer_add_locale(const scoped_string& strLocale, character_count iLen, const ::string& idSchema)
+      //bool locale_schema::defer_add_locale(const scoped_string& strLocale, character_count iLen, const ::scoped_string & scopedstrIdSchema)
       //{
 
       //   return defer_add_locale(localeid(scopedstrLocale, iLen), idSchema);

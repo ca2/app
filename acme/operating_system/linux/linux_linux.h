@@ -51,9 +51,9 @@ CLASS_DECL_ACME bool main_finalize();
 /*
 bool os_on_start_application(::particle * pparticle);
 ::file::path app_desktop_file_path(::particle * pparticle);
-::file::path app_desktop_file_path(::particle * pparticle, string strAppId);
+::file::path app_desktop_file_path(::particle * pparticle, const ::scoped_string & scopedstrAppId);
 bool linux_prepare_app_desktop_file(::particle * pparticle);
-bool linux_prepare_app_desktop_file(::particle * pparticle, string strAppId);
+bool linux_prepare_app_desktop_file(::particle * pparticle, const ::scoped_string & scopedstrAppId);
 */
 
 #include "x11.h"

@@ -113,7 +113,7 @@ namespace filemanager
 
 
       //virtual ::color::color get_background_color() override;
-      bool add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName);
+      bool add_fs_item(::file::path pathUser, ::file::path pathFinal, const ::scoped_string & scopedstrName);
       virtual void browse_sync(const ::action_context & action_context) override;
 
       ::image::image_list * GetActionButtonImageList(::collection::index i);

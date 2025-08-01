@@ -56,7 +56,7 @@ namespace sip
    }
 
 
-   void request::write( const_char_pointer  buf, size_t sz )
+   void request::write( const_char_pointer buf, size_t sz )
    {
 
       m_file.write(buf, sz);

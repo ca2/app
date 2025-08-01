@@ -130,7 +130,7 @@
 // //static ::platform::system * g_psystem = nullptr;
 //
 //
-// //extern const_char_pointer  g_pszTopLevelDomainList[];
+// //extern const_char_pointer g_pszTopLevelDomainList[];
 //
 //
 // enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrTitle,
@@ -1020,7 +1020,7 @@ namespace platform
    //    }
    //
    //
-   //    void acme_system_layer::system::open_profile_link(string strUrl, string strProfile, string strTarget)
+   //    void acme_system_layer::system::open_profile_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    //    {
    //
    //       throw ::interface_only();
@@ -1028,7 +1028,7 @@ namespace platform
    //    }
    //
    //
-   //    void acme_system_layer::system::open_link(string strUrl, string strProfile, string strTarget)
+   //    void acme_system_layer::system::open_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    //    {
    //
    //       open_profile_link(strUrl, strProfile, strTarget);
@@ -1036,7 +1036,7 @@ namespace platform
    //    }
    //
    //
-   //    void acme_system_layer::system::open_url(string strUrl, string strProfile, string strTarget)
+   //    void acme_system_layer::system::open_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    //    {
    //
    //       throw ::exception(::error_interface_only);
@@ -2622,7 +2622,7 @@ namespace platform
    //          if (::is_set(application()))
    //          {
    //
-   //             auto pszUrl = (const_char_pointer ) ptopic->payload("wparam").as_iptr();
+   //             auto pszUrl = (const_char_pointer )ptopic->payload("wparam").as_iptr();
    //
    //             application()->did_pick_document_at_url(scopedstrUrl);
    //
@@ -3288,7 +3288,7 @@ namespace platform
    //    }
    //
    //
-   //    ::file::path system::local_get_matter_path(string strMatter)
+   //    ::file::path system::local_get_matter_path(const ::scoped_string & scopedstrMatter)
    //    {
    //
    // #ifdef UNIVERSAL_WINDOWS
@@ -3312,7 +3312,7 @@ namespace platform
    //    }
    //
    //
-   //    ::file::path system::local_get_matter_cache_path(string strMatter)
+   //    ::file::path system::local_get_matter_cache_path(const ::scoped_string & scopedstrMatter)
    //    {
    //
    //       return local_get_matter_cache_path() / strMatter;
@@ -4474,7 +4474,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    }
 
 
-   // void acme_system_layer::open_url(string strUrl, string strProfile, string strTarget)
+   // void acme_system_layer::open_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    // {
    // }
 
@@ -4511,7 +4511,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
 
    //
    //   template < typename ENUM >
-   //   inline void acme_system_layer::set_enum_text(ENUM e, const ::string &psz)
+   //   inline void acme_system_layer::set_enum_text(ENUM e, const ::scoped_string & scopedstr)
    //   {
    //
    //      critical_section_lock synchronouslock(&m_csEnumText){}
@@ -4535,7 +4535,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
 
    //
    //   template < class ENUM >
-   //   inline ENUM text_enum(ENUM& e, const ::string &psz, ENUM eDefault = (ENUM)0)
+   //   inline ENUM text_enum(ENUM& e, const ::scoped_string & scopedstr, ENUM eDefault = (ENUM)0)
    //   {
    //
    //      critical_section_lock lock(&m_csEnumText){}
@@ -4561,7 +4561,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    //
    //
    //   template < class ENUM, ENUM edefault>
-   //   inline base_enum < ENUM, edefault >& text_enum(base_enum < ENUM, edefault >& b, const ::string &psz, ENUM eDefault = edefault)
+   //   inline base_enum < ENUM, edefault >& text_enum(base_enum < ENUM, edefault >& b, const ::scoped_string & scopedstr, ENUM eDefault = edefault)
    //   {
    //
    //      return b = text_enum(b.m_evalue, psz, eDefault){}
@@ -4634,7 +4634,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    }
 
 
-   //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::string &pszStyle, int iCount){}
+   //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount){}
    ::pointer<::regular_expression::context> acme_system_layer::get_regular_expression_context(const ::scoped_string & scopedstrStyle)
    {
       return {};
@@ -4862,7 +4862,7 @@ void acme_system_layer::on_open_untitled_file()
    }
 
 
-   ::file::path acme_system_layer::local_get_matter_cache_path(string strMatter)
+   ::file::path acme_system_layer::local_get_matter_cache_path(const ::scoped_string & scopedstrMatter)
    {
       return {};
    }
@@ -4874,7 +4874,7 @@ void acme_system_layer::on_open_untitled_file()
    }
 
 
-   ::file::path acme_system_layer::local_get_matter_path(string strMatter)
+   ::file::path acme_system_layer::local_get_matter_path(const ::scoped_string & scopedstrMatter)
    {
       return {};
    }
@@ -5063,7 +5063,7 @@ void acme_system_layer::on_open_untitled_file()
 // void acme_system_layer::system_on_open_untitled_file(void* pSystem);
 //
 //
-// void acme_system_layer::system_on_open_file(void* pSystem, const_char_pointer  pszFile);
+// void acme_system_layer::system_on_open_file(void* pSystem, const_char_pointer pszFile);
 //
 //
 // void acme_system_layer::node_will_finish_launching(void* pSystem)
@@ -5086,7 +5086,7 @@ void acme_system_layer::on_open_untitled_file()
 // }
 //
 //
-// void acme_system_layer::system_on_open_file(void* pSystem, const_char_pointer  pszFile)
+// void acme_system_layer::system_on_open_file(void* pSystem, const_char_pointer pszFile)
 // {
 //
 //    auto psystem = (::platform::system *)pSystem;

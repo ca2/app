@@ -242,15 +242,17 @@ namespace apex
    }
 
 
-   ::file::path context::defer_make_file_system_url(string str)
+   ::file::path context::defer_make_file_system_url(const ::scoped_string & scopedstr)
    {
 
-      if (str.is_empty())
+      if (scopedstr.is_empty())
       {
 
          return "";
 
       }
+
+      ::string str(scopedstr);
 
       if (directory()->image().has_character() && path_system()->case_insensitive_real_path_begins_eat(str, directory()->image()))
       {
@@ -292,17 +294,17 @@ namespace apex
    }
 
 
-   string context::defer_get_file_title(string strParam)
+   string context::defer_get_file_title(const ::scoped_string & scopedstrParam)
    {
 
-      if (strParam.is_empty())
+      if (scopedstrParam.is_empty())
       {
 
          return "";
 
       }
 
-      ::file::path path = defer_process_path(strParam);
+      ::file::path path = defer_process_path(scopedstrParam);
 
       if (directory()->image().has_character() && path.case_insensitive_order(directory()->image()) == 0)
       {

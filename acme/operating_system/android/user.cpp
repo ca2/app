@@ -19,7 +19,7 @@
 ////   }
 //
 //
-//   void _os_process_user_theme(string strTheme)
+//   void _os_process_user_theme(const ::scoped_string & scopedstrTheme)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(strTheme);

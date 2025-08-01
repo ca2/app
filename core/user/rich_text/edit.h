@@ -181,7 +181,7 @@ namespace user
 
 
          void get_text_composition_area(::int_rectangle & r) override;
-         void on_text_composition(string str) override;
+         void on_text_composition(const ::scoped_string & scopedstr) override;
          void on_text_composition_done() override;
          bool edit_undo() override;
 

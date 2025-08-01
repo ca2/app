@@ -54,8 +54,10 @@ namespace account
    }
 
    
-   ::file::path system_storage::path_prefix(string strToken)
+   ::file::path system_storage::path_prefix(const ::scoped_string & scopedstrToken)
    {
+
+      ::string strToken(scopedstrToken);
       
       if(strToken.is_empty())
       {
@@ -73,16 +75,18 @@ namespace account
    }
    
    
-   bool system_storage::get(string strKey, string strToken, string & strValue)
+   bool system_storage::get(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrToken, string & strValue)
    {
       
       ::file::path path;
+
+      ::string strToken(scopedstrToken);
       
       path = path_prefix(strToken);
 
       auto psystem = system();
       
-      path /= psystem->crypto()->md5(::string(strToken + strKey));
+      path /= psystem->crypto()->md5(::string(strToken + scopedstrKey));
 
       try
       {
@@ -102,10 +106,12 @@ namespace account
    }
    
    
-   void system_storage::set(string strKey, string strToken, string strValue)
+   void system_storage::set(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrValue)
    {
       
       ::file::path path;
+
+      ::string strToken(scopedstrToken);
       
       path = path_prefix(strToken);
       
@@ -115,9 +121,9 @@ namespace account
 
       pdirectorysystem->create(path);
 
-      path /= psystem->crypto()->md5(::string(strToken + strKey));
+      path /= psystem->crypto()->md5(::string(strToken + scopedstrKey));
       
-      psystem->crypto()->file_set(path, strValue, strToken, get_app());
+      psystem->crypto()->file_set(path, scopedstrValue, strToken, get_app());
       
    }
    

@@ -139,10 +139,10 @@ std::is_same < T, ::ansi_character * >::value ||
 std::is_same < T, ::wd16_character * >::value ||
 std::is_same < T, ::wd32_character * >::value ||
 std::is_same < T, const unsigned char * >::value ||
-std::is_same < T, const_char_pointer  >::value ||
+std::is_same < T, const_char_pointer >::value ||
 std::is_same < T, const char8_t * >::value ||
 std::is_same < T, const wchar_t * >::value ||
-std::is_same < T, const ::ansi_character * >::value ||
+std::is_same < T, const_char_pointer >::value ||
 std::is_same < T, const ::wd16_character * >::value ||
 std::is_same < T, const ::wd32_character * >::value;
 
@@ -157,10 +157,10 @@ std::is_same < T, ::ansi_character * & >::value ||
 std::is_same < T, ::wd16_character * & >::value ||
 std::is_same < T, ::wd32_character * & >::value ||
 std::is_same < T, const unsigned char * & >::value ||
-std::is_same < T, const_char_pointer  & >::value ||
+std::is_same < T, const_char_pointer &>::value ||
 std::is_same < T, const char8_t *& >::value ||
 std::is_same < T, const wchar_t * & >::value ||
-std::is_same < T, const ::ansi_character * & >::value ||
+std::is_same < T, const_char_pointer &>::value ||
 std::is_same < T, const ::wd16_character * & >::value ||
 std::is_same < T, const ::wd32_character * & >::value;
 
@@ -307,7 +307,7 @@ template < typename ITERATOR >
 class string_base;
 
 
-using ansi_string = string_base < const ::ansi_character * >;
+using ansi_string = string_base < const_char_pointer >;
 using wd16_string = string_base < const ::wd16_character * >;
 using wd32_string = string_base < const ::wd32_character * >;
 using wide_string = string_base < const ::wide_character * >;
@@ -828,7 +828,7 @@ template < typename CONST_STRING_CASTABLE >
 concept const_string_castable =
 ::std::is_convertible < CONST_STRING_CASTABLE, ::string >::value ||
 ::std::is_convertible < CONST_STRING_CASTABLE, ::scoped_string >::value ||
-::std::is_convertible < CONST_STRING_CASTABLE, const_char_pointer  >::value;
+::std::is_convertible < CONST_STRING_CASTABLE, const_char_pointer >::value;
 
 
 

@@ -4015,10 +4015,10 @@ void image::color_blend(::color::color color, unsigned char bAlpha)
 }
 
 
-void image::op(string str)
+void image::op(const ::scoped_string & scopedstr)
 {
 
-   if (str == "horz-__swap")
+   if (scopedstr == "horz-__swap")
    {
 
       map();
@@ -9880,7 +9880,7 @@ void image::on_exif_orientation()
 //}
 //
 
-//void image::load_matter_icon(string_array & straMatter, string strIcon)
+//void image::load_matter_icon(string_array & straMatter, const ::scoped_string & scopedstrIcon)
 //{
 //
 //   ::file::path path;

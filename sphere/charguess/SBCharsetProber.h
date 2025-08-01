@@ -38,14 +38,14 @@ typedef struct
   char *precedenceMatrix;           //[SAMPLE_SIZE][SAMPLE_SIZE]; table to find a 2-char sequence's frequency
   float  mTypicalPositiveRatio;     // = freqSeqs / totalSeqs 
   PRBool keepEnglishLetter;         //it says if this script contains latin letters
-  const_char_pointer  charsetName;
+  const_char_pointer charsetName;
 } SequenceModel;
 
 
 class nsSingleByteCharSetProber : public nsCharSetProber{
 public:
   nsSingleByteCharSetProber(SequenceModel *model){mModel = model; Reset();};
-  const_char_pointer  GetCharSetName() {return mModel->charsetName;};
+  const_char_pointer GetCharSetName() {return mModel->charsetName;};
   nsProbingState HandleData(const ::string & aBuf, PRunsigned int aLen);
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);

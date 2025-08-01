@@ -198,7 +198,7 @@ void memory_file::write_from_hex(const ::block & block)
 
    char * pch = (char *)&(pb)[m_position];
 
-   const_char_pointer  psz = (const_char_pointer )block.data();
+   const_char_pointer psz = (const_char_pointer )block.data();
 
    bool bEven = true;
 

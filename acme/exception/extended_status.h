@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME const_char_pointer  status_short_description(const ::e_status & estatus);
+CLASS_DECL_ACME const_char_pointer status_short_description(const ::e_status & estatus);
 
 //
 //namespace extended

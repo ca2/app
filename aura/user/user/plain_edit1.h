@@ -278,10 +278,10 @@ namespace user
 
 
       void get_text_composition_area(::int_rectangle & r) override;
-      void edit_on_text(string str) override;
+      void edit_on_text(const ::scoped_string & scopedstr) override;
       void edit_on_sel(character_count iSelBeg, character_count iSelEnd) override;
-      void on_text_composition(string str) override;
-      void on_text_commit(string str) override;
+      void on_text_composition(const ::scoped_string & scopedstr) override;
+      void on_text_commit(const ::scoped_string & scopedstr) override;
       void on_text_composition_done() override;
       void clear_ime_composition() override;
 
@@ -529,9 +529,9 @@ namespace user
 
       virtual void on_before_change_text();
 
-      virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
+      virtual void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) override;
 
-      virtual void insert_text(::draw2d::graphics_pointer& pgraphics, string str, bool bForceNewStep);
+      virtual void insert_text(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & scopedstr, bool bForceNewStep);
 
       virtual void plain_edit_update(::draw2d::graphics_pointer& pgraphics, bool bFullUpdate, ::collection::index iLineUpdate);
 

@@ -32,7 +32,7 @@ namespace account
       virtual void initialize_simple_ui(::account::credentials * pcredentials);
 
 
-      virtual string get_cred(const ::int_rectangle & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle);
+      virtual string get_cred(const ::int_rectangle & rectangle, string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrTitle);
 
       virtual string do_account(const ::int_rectangle & rectangle);
 

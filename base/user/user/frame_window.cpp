@@ -1444,7 +1444,7 @@ namespace user
       VERIFY(__defer_register_class(__WNDFRAMEORVIEW_REG));
 
       // attempt to create the interaction_impl
-      const_char_pointer  lpszClass = GetIconWndClass(dwDefaultStyle, nIDResource);
+      const_char_pointer lpszClass = GetIconWndClass(dwDefaultStyle, nIDResource);
 
       string strTitle = m_strTitle;
       if (!create_window_ex(0, lpszClass, strTitle, dwDefaultStyle, rectangleDefault,

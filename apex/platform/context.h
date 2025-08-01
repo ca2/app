@@ -100,8 +100,8 @@ namespace apex
 
       string get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId) override;
 
-      virtual ::file::path defer_make_file_system_url(string str) override;
-      virtual string defer_get_file_title(string str) override;
+      virtual ::file::path defer_make_file_system_url(const ::scoped_string & scopedstr) override;
+      virtual string defer_get_file_title(const ::scoped_string & scopedstr) override;
 
 
       bool defer_process_media_library_path(::file::path& path) override;
@@ -157,7 +157,7 @@ namespace apex
 
       //virtual ::image::image_pointer load_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false) override;
       //virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
-      //virtual ::image::image_pointer load_matter_icon(string_array & straMatter, string strIcon) override;
+      //virtual ::image::image_pointer load_matter_icon(string_array & straMatter, const ::scoped_string & scopedstrIcon) override;
       //virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h) override;
       //virtual ::image::image_pointer load_thumbnail(const ::scoped_string & scopedstrPath);
       //virtual ::image::image_pointer load_dib(const ::file::path & pathDib) override;
@@ -170,7 +170,7 @@ namespace apex
 
       //virtual void _load_image(::image::image *pimage, const ::payload & payloadFile, bool bSync = true, bool bCreateHelperMaps = false);
       //virtual void _load_matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCreateHelperMaps = false);
-      //virtual void _load_matter_icon(::image::image *pimage, string_array & straMatter, string strIcon);
+      //virtual void _load_matter_icon(::image::image *pimage, string_array & straMatter, const ::scoped_string & scopedstrIcon);
       //virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile, int w, int h);
       //virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile);
       //virtual void _load_dib(::image::image *pimage, const ::file::path & pathDib);
@@ -184,11 +184,11 @@ namespace apex
       //virtual void _save_to_file(const ::payload & payloadFile, const ::image::image *pimage, const ::payload & varOptions);
 
 
-      /*virtual string matter_locator(string strApp);
+      /*virtual string matter_locator(const ::scoped_string & scopedstrApp);
       virtual string matter_locator(::apex::application* papp);
 
 
-      virtual void add_matter_locator(string strApp);
+      virtual void add_matter_locator(const ::scoped_string & scopedstrApp);
       virtual void add_matter_locator(::apex::application* papp);*/
 
 

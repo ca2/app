@@ -105,7 +105,7 @@ namespace sphere
 
       virtual void check_topic_file_change();
 
-      virtual bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override;
+      virtual bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId) override;
 
       void launch_app(const ::scoped_string & scopedstr);
       void install_app(const ::scoped_string & scopedstr);

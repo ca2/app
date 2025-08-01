@@ -31,9 +31,9 @@ public:
 
 #ifndef VARIADIC_TEMPLATE_FORMAT
 
-   virtual void printf(string str,...);
+   virtual void printf(const_char_pointer pszFormat,...);
 
-   virtual void printstr(string str,...);
+   virtual void printstr(const_char_pointer pszFormat,...);
 
 #else
 

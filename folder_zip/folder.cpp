@@ -195,7 +195,7 @@ namespace folder_zip
 
 #endif
 
-      zipOpenNewFileInZip(m_zipfile, pszRelative, &zipfi, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, Z_DEFAULT_COMPRESSION);
+      zipOpenNewFileInZip(m_zipfile, pathRelative, &zipfi, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, Z_DEFAULT_COMPRESSION);
 
       memory mem;
 
@@ -391,10 +391,10 @@ namespace folder_zip
    }
 
 
-   void didnt_locate_file(const_char_pointer  pszFile)
+   void didnt_locate_file(const_char_pointer pszFile)
    {
 
-      information("The file \"" + ::string(scopedstrFile) + "\" wasn't find in the zip folder.");
+      information("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
 
       //::fflush(stdout);
 
@@ -592,12 +592,12 @@ namespace folder_zip
 
       strFile.replace_with("/", "\\");
 
-      if (!locate([strFile](const_char_pointer  psz) {return strFile.case_insensitive_equals(scopedstr); }))
+      if (!locate([strFile](const_char_pointer psz) {return strFile.case_insensitive_equals(psz); }))
       {
 
          strFile.replace_with("\\", "/");
 
-         if (!locate([strFile](const_char_pointer  psz) {return strFile.case_insensitive_equals(scopedstr); }))
+         if (!locate([strFile](const_char_pointer psz) {return strFile.case_insensitive_equals(psz); }))
          {
 
             didnt_locate_file(strFile);
@@ -638,7 +638,7 @@ namespace folder_zip
    }
 
 
-   bool folder::locate(const ::function < bool(const_char_pointer  ) >& function)
+   bool folder::locate(const ::function < bool(const_char_pointer )>& function)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -766,10 +766,10 @@ namespace folder_zip
 
       strPrefix.replace_with("/", "\\");
 
-      bool bLocated = locate([strPrefix](const_char_pointer  pszItem)
+      bool bLocated = locate([strPrefix](const_char_pointer pszItem)
          {
 
-            string strItem(scopedstrItem);
+            string strItem(pszItem);
 
             if (strItem.case_insensitive_begins(strPrefix))
             {
@@ -817,10 +817,10 @@ namespace folder_zip
 
       strPrefix.replace_with("/", "\\");
 
-      bool bLocated = locate([strPrefix](const_char_pointer  pszItem)
+      bool bLocated = locate([strPrefix](const_char_pointer pszItem)
          {
 
-            string strItem(scopedstrItem);
+            string strItem(pszItem);
 
             if (strItem.case_insensitive_begins_eat(strPrefix))
             {

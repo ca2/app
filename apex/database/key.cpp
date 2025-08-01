@@ -50,7 +50,7 @@
 ////   }
 ////
 ////
-////   key::key(string strDataKey, bool bLocalData)
+////   key::key(const ::scoped_string & scopedstrDataKey, bool bLocalData)
 ////   {
 ////
 ////      m_strDataKey = strDataKey;
@@ -60,7 +60,7 @@
 ////   }
 ////
 ////
-////   key::key(const_char_pointer  pszDataKey, bool bLocalData)
+////   key::key(const_char_pointer pszDataKey, bool bLocalData)
 ////   {
 ////
 ////      m_strDataKey = pszDataKey;

@@ -440,7 +440,7 @@ namespace universal_windows
    }
 
 
-   void os_context::link_open(string strUrl)
+   void os_context::link_open(const ::scoped_string & scopedstrUrl)
    {
 
       try
@@ -471,7 +471,7 @@ namespace universal_windows
    }
 
 
-   bool os_context::file_open(::file::path path, string strParams, string strFolder)
+   bool os_context::file_open(::file::path path, const ::scoped_string & scopedstrParams, const ::scoped_string & scopedstrFolder)
    {
 
       ::winrt::Windows::Storage::StorageFile ^ fileSrc = nullptr;
@@ -655,7 +655,7 @@ namespace universal_windows
 
    }
 
-   bool os_context::native_modern_web_browser(const_char_pointer  pcsz)
+   bool os_context::native_modern_web_browser(const_char_pointer pcsz)
    {
 
 #ifdef WINDOWS_DESKTOP

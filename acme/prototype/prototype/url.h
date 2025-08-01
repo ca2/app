@@ -188,10 +188,10 @@ namespace url
    //   };
 
    //   enum_type      m_type;
-   //   const_char_pointer  m_pszLastQuestionMarkAfterLastSlash;
-   //   const_char_pointer  m_pszLastSlash;
+   //   const_char_pointer m_pszLastQuestionMarkAfterLastSlash;
+   //   const_char_pointer m_pszLastSlash;
 
-   //   part(const_char_pointer  psz);
+   //   part(const_char_pointer psz);
 
    //};
 
@@ -558,17 +558,17 @@ namespace url
 
       
       
-      //virtual bool server_ends(string strUrl, string strRoot);
+      //virtual bool server_ends(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrRoot);
 
 
       //virtual string to_punycode(const ::scoped_string & scopedstr);
       //virtual string from_punycode(const ::scoped_string & scopedstr);
       
-      //string os_fspath(string strUrl);
+      //string os_fspath(const ::scoped_string & scopedstrUrl);
       
-      //string os_fsname(string strUrl);
+      //string os_fsname(const ::scoped_string & scopedstrUrl);
       
-      //string os_fs(string strUrl, bool bPath);
+      //string os_fs(const ::scoped_string & scopedstrUrl, bool bPath);
       
 
 

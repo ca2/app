@@ -416,7 +416,7 @@ public:
    requires other_primitive_character < OTHER_CHARACTER, CHARACTER >
    {
 
-      return this->equals((const scoped_string_base&)str);
+      return this->equals((const scoped_string_base&)range);
 
    }
 

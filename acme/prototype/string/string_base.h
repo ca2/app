@@ -2316,7 +2316,7 @@ class argument_of_struct < ::string_base < const CHARACTER * > >
 {
 public:
 
-   using type = ::scoped_string_base < const CHARACTER * >;
+   using type = const ::scoped_string_base < const CHARACTER * > &;
 
 };
 

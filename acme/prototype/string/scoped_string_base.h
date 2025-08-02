@@ -653,3 +653,20 @@ inline ::block as_block(const ::scoped_string & scopedstr)
 
 
 
+template <  >
+inline bool EqualElements(const ::scoped_string_base < const char * > & element1, const ::scoped_string_base < const char * > & element2)
+{
+
+   return element1.equals(element2);
+
+}
+
+template <  >
+inline bool EqualElements(const ::scoped_string_base < const wchar_t * >& element1, const ::scoped_string_base < const wchar_t* >& element2)
+{
+
+   return element1.equals(element2);
+
+}
+
+

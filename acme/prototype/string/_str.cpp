@@ -1965,9 +1965,7 @@ string str::get_word(const ::scoped_string & scopedstr, const ::scoped_string & 
 
    auto psz = str.c_str();
 
-   ::string strSeparator(scopedstr);
-
-   const_char_pointer pszOld = strstr(psz, strSeparator);
+   const_char_pointer pszOld = strstr(psz, scopedstrSeparator.c_str());
 
    if (pszOld == nullptr)
    {

@@ -289,7 +289,7 @@ namespace test_compilation_some_strong_ordering_swap_functions
       string_array straName;
       for (int i = 0; i < straPath.size(); i++)
       {
-         string strCode(straPath[i] + strSuffix);
+         string strCode(straPath[i] + scopedstrSuffix);
          string str;
          str.formatf("%08x", atoi(strCode));
          straName.set_at_grow(i, str);

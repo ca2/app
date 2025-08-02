@@ -61,10 +61,10 @@ namespace hi5
 
          //}
 
-         m_strAuthorizationUrl = pszAuthorizationUrl;
+         m_strAuthorizationUrl = scopedstrAuthorizationUrl;
          m_bInteractive = bInteractive;
          m_bAuth = bAuth;
-         m_strForm = pszForm;
+         m_strForm = scopedstrForm;
 
          auto psystem = system();
 

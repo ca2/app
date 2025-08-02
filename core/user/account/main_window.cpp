@@ -325,7 +325,7 @@ namespace account
    string main_window::get_cred(const ::int_rectangle & rectangle, string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrTitle)
    {
 
-      if (strTitle == "ca2")
+      if (scopedstrTitle == "ca2")
       {
 
          m_plogin->m_bCred = false;
@@ -338,7 +338,7 @@ namespace account
 
          m_plogin->m_bCred = true;
 
-         m_plogin->m_strCred = strTitle;
+         m_plogin->m_strCred = scopedstrTitle;
 
       }
 

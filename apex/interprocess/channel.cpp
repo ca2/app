@@ -49,7 +49,7 @@ namespace interprocess
       try
       {
 
-         m_pcaller->call(strUri, timeTimeout);
+         m_pcaller->call(scopedstrUri, timeTimeout);
 
       }
       catch (...)
@@ -173,7 +173,7 @@ namespace interprocess
    bool channel::open_ab(const ::scoped_string & scopedstrKey, launcher * plauncher)
    {
 
-      m_strChannel = pszKey;
+      m_strChannel = scopedstrKey;
 
       //m_ptarget->m_phandler = this;
 
@@ -193,7 +193,7 @@ namespace interprocess
    bool channel::open_ba(const ::scoped_string & scopedstrKey, launcher * plauncher)
    {
 
-      m_strChannel = pszKey;
+      m_strChannel = scopedstrKey;
 
       //m_ptarget->m_listenera.add_unique(this);
 

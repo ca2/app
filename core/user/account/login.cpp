@@ -74,24 +74,24 @@ namespace account
    void login::defer_translate(const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass, const ::scoped_string & scopedstrOpen)
    {
 
-      if (strUser.has_character())
+      if (scopedstrUser.has_character())
       {
 
-         m_pstillUser->set_window_text(strUser);
+         m_pstillUser->set_window_text(scopedstrUser);
 
       }
 
-      if (strPass.has_character())
+      if (scopedstrPass.has_character())
       {
 
-         m_pstillPassword->set_window_text(strPass);
+         m_pstillPassword->set_window_text(scopedstrPass);
 
       }
 
-      if (strOpen.has_character())
+      if (scopedstrOpen.has_character())
       {
 
-         m_pbutton->set_window_text(strOpen);
+         m_pbutton->set_window_text(scopedstrOpen);
 
       }
 
@@ -370,7 +370,7 @@ namespace account
    bool login::on_action(const ::scoped_string & scopedstrId)
    {
 
-      if (strId == "submit")
+      if (scopedstrId == "submit")
       {
 
          if (m_bSubmitted)
@@ -418,7 +418,7 @@ namespace account
          return true;
 
       }
-      else if (strId == "submit_timer")
+      else if (scopedstrId == "submit_timer")
       {
 
          if (m_bSubmitted)
@@ -449,7 +449,7 @@ namespace account
          return true;
 
       }
-      else if (strId == "escape")
+      else if (scopedstrId == "escape")
       {
 
          m_bSubmitted = true;

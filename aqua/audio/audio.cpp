@@ -26,7 +26,7 @@ namespace aqua
    }
 
 
-   void audio::play_audio(const ::payload& payloadFile, bool bSynch)
+   void audio::play_audio(const ::payload& payloadFile, enum_synchronicity esynchronicity)
    {
 
       auto pfile = file() -> get_reader(payloadFile);
@@ -38,12 +38,12 @@ namespace aqua
 
       }
 
-      _play_audio(pfile, bSynch);
+      _play_audio(pfile, esynchronicity);
 
    }
 
 
-   void audio::_play_audio(::file::file * pfile, bool bSynch)
+   void audio::_play_audio(::file::file * pfile, enum_synchronicity esynchronicity)
    {
 
       throw ::interface_only();
@@ -120,7 +120,7 @@ namespace aqua
    }
 
 
-   void audio::speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSynch, const ::scoped_string & scopedstrImplementation)
+   void audio::speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, enum_synchronicity esynchronicity, const ::scoped_string & scopedstrImplementation)
    {
 
       throw ::interface_only();

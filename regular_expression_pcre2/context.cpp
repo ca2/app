@@ -50,7 +50,7 @@ namespace regular_expression_pcre2
 
       pregularexpression->m_papplication = this;
 
-      pregularexpression->compile(str);
+      pregularexpression->compile(scopedstr);
 
       return pregularexpression;
 

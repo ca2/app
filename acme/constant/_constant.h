@@ -1098,3 +1098,13 @@ namespace user
 } // namespace user
 
 
+enum enum_synchronicity
+{
+
+   e_synchronicity_synchronous,
+   e_synchronicity_asynchronous
+
+};
+
+
+

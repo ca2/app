@@ -286,7 +286,7 @@ public:
 
    virtual ::pointer<::task> branch_procedure_synchronously(const ::procedure& procedure, bool bAutoDelete = true, const create_task_attributes_t& createtaskattributes = {});
 
-   virtual ::task_pointer run_procedure(bool bSyncronously, const ::procedure & procedure);
+   virtual ::task_pointer run_procedure(enum_synchronicity esynchronicity, const ::procedure & procedure);
 
    template < typename TYPE >
    ::task_pointer branch_below_normal(void (TYPE::* pfn)())

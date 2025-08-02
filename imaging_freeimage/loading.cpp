@@ -295,7 +295,7 @@ namespace imaging_freeimage
 
          const_char_pointer psz = (const_char_pointer )memory.data();
 
-         if (::is_null(scopedstr))
+         if (::is_null(psz))
          {
             continue;
          }
@@ -311,8 +311,8 @@ namespace imaging_freeimage
 
          char pszPngSignature[] = {(char)137, 80, 78, 71, 13, 10, 26, 10};
 
-         bool bPng = size > sizeof(scopedstrPngSignature)
-                     && ansi_ncmp((const_char_pointer )pszData, pszPngSignature, sizeof(scopedstrPngSignature)) == 0;
+         bool bPng = size > sizeof(pszPngSignature)
+                     && ansi_ncmp((const_char_pointer )pszData, pszPngSignature, sizeof(pszPngSignature)) == 0;
 
          bool bJpegBegins = memory.begins("\x0FF\x0D8");
 

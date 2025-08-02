@@ -1,3 +1,5 @@
+#pragma once
+
 #ifdef CLASS_DECL_CORE
 #include "core/user/user/user.h"
 #include "core/platform/system.h"

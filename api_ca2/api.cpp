@@ -192,7 +192,7 @@ namespace api_ca2
 
          ::string strSecFetchMode = psocket->inheader("sec-fetch-mode");
 
-         ::string strScript = ::url::get_request_path(strUrl);
+         ::string strScript = ::url::get_request_path(scopedstrUrl);
 
          if (strSecFetchMode.case_insensitive_equals("cors"))
          {
@@ -261,9 +261,9 @@ namespace api_ca2
       strHtml += "</head>";
       strHtml += "<body style=\"font-family:'Fira Code', monospace;\">";
 
-      string strAppState = ::url::get_parameter(strUrl, "appstate");
+      string strAppState = ::url::get_parameter(scopedstrUrl, "appstate");
 
-      string strAppCode = ::url::get_parameter(strUrl, "appcode");
+      string strAppCode = ::url::get_parameter(scopedstrUrl, "appcode");
 
       if (check_authenticated(strAppState, strAppCode))
       {
@@ -311,8 +311,8 @@ namespace api_ca2
 
       set["headers"]["User-Agent"] = get_app()->m_strAppId;
       set["post"]["applogin"] = strAppLogin;
-      set["post"]["appstate"] = strAppState;
-      set["post"]["appcode"] = strAppCode;
+      set["post"]["appstate"] = scopedstrAppState;
+      set["post"]["appcode"] = scopedstrAppCode;
 
       set["raw_http"] = true;
       set["disable_common_name_cert_check"] = true;
@@ -338,7 +338,7 @@ namespace api_ca2
 
       m_setProfile["applogin"] = strAppLogin;
 
-      m_setProfile["appstate"] = strAppState;
+      m_setProfile["appstate"] = scopedstrAppState;
 
       m_strToken = strResponse;
 

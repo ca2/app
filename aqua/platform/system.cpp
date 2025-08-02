@@ -169,7 +169,7 @@ namespace aqua
          if (application()->m_bAudio)
          {
 
-            audio()->speak(scopedstrLang, scopedstr, true);
+            audio()->speak(scopedstrLang, scopedstr, e_synchronicity_synchronous);
 
             return;
 

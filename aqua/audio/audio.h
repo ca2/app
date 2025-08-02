@@ -30,8 +30,8 @@ namespace aqua
       ~audio() override;
 
 
-      virtual void play_audio(const ::payload & payloadFile, bool bSynch = false);
-      virtual void _play_audio(::file::file * pfile, bool bSynch = false);
+      virtual void play_audio(const ::payload & payloadFile, enum_synchronicity esynchronicity = e_synchronicity_asynchronous);
+      virtual void _play_audio(::file::file * pfile, enum_synchronicity esynchronicity = e_synchronicity_asynchronous);
 
 
       virtual string text_to_speech_implementation();
@@ -41,7 +41,7 @@ namespace aqua
 
 
       virtual void speak(const ::scoped_string & scopedstrText);
-      virtual void speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSynch, const ::scoped_string & scopedstrImplementation = nullptr);
+      virtual void speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, enum_synchronicity esynchronicity, const ::scoped_string & scopedstrImplementation = nullptr);
       //virtual void trans_speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSynch);
       //virtual void google_speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSynch);
 

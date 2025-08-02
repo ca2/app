@@ -147,7 +147,7 @@ namespace gpu_opengl
 #endif
       int iError2 = glGetError();
       auto pszError2 = (const_char_pointer )opengl_error_string(iError2);
-      if(scopedstrError2)
+      if(pszError2)
       {
          
          information() << "error " << pszError2;
@@ -160,7 +160,7 @@ namespace gpu_opengl
 #endif
       int iErrorA = glGetError();
       auto pszErrorA = (const_char_pointer )opengl_error_string(iErrorA);
-      if(scopedstrErrorA)
+      if(pszErrorA)
       {
          
          information() << "error " << pszErrorA;
@@ -170,7 +170,7 @@ namespace gpu_opengl
       glGenBuffers(1, (GLuint *)&m_vbo_vertices); // vertex buffer object
       int iError1 = glGetError();
       auto pszError1 = (const_char_pointer )opengl_error_string(iError1);
-      if(scopedstrError1)
+      if(pszError1)
       {
          
          information() << "error " << pszError1;
@@ -181,7 +181,7 @@ namespace gpu_opengl
       glBindBuffer(GL_ARRAY_BUFFER, m_vbo_vertices);
       int iError5 = glGetError();
       auto pszError5 = (const_char_pointer )opengl_error_string(iError5);
-      if(scopedstrError5)
+      if(pszError5)
       {
          
          information() << "error " << pszError5;
@@ -194,7 +194,7 @@ namespace gpu_opengl
       glBufferData(GL_ARRAY_BUFFER, byteCount1, data1, GL_STATIC_DRAW);
       int iError4 = glGetError();
       auto pszError4 = (const_char_pointer )opengl_error_string(iError4);
-      if(scopedstrError4)
+      if(pszError4)
       {
          
          information() << "error " << pszError4;

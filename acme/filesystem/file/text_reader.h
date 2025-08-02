@@ -15,7 +15,7 @@ public:
 
 
    text_reader() {}
-   text_reader(const_char_pointer psz) : m_psz(scopedstr) { }
+   text_reader(const_char_pointer psz) : m_psz(psz) { }
    text_reader(const text_reader & textreader) :
       m_psz(textreader.m_psz)
    {
@@ -242,7 +242,7 @@ public:
    static string read_line(const_char_pointer &psz)
    {
 
-      if (::is_null(scopedstr))
+      if (::is_null(psz))
       {
 
          return "";
@@ -267,7 +267,7 @@ public:
 
       auto pszEnd = psz;
 
-      if (*psz == '\n' && *(scopedstr - 1) == '\r')
+      if (*psz == '\n' && *(psz - 1) == '\r')
       {
 
          psz++;
@@ -282,7 +282,7 @@ public:
    static const_ansi_range read_word(const_char_pointer &psz)
    {
 
-      if (::is_null(scopedstr))
+      if (::is_null(psz))
       {
 
          return {};
@@ -307,7 +307,7 @@ public:
 
       auto pszEnd = psz;
 
-      if (*psz == '\n' && *(scopedstr - 1) == '\r')
+      if (*psz == '\n' && *(psz - 1) == '\r')
       {
 
          psz++;
@@ -323,13 +323,13 @@ public:
    void read_natural(TYPE & t, const_char_pointer &psz)
    {
 
-      skip_whitespace(scopedstr);
+      skip_whitespace(psz);
 
       auto pszStart = psz;
 
-      auto l = strtol(scopedstr, (char **) & psz, 10);
+      auto l = strtol(psz, (char **) & psz, 10);
 
-      if (scopedstr == pszStart || l < 0)
+      if (psz == pszStart || l < 0)
       {
 
          throw parsing_exception("cannot text_reader::read_natural from \"" + ellipsis(pszStart, 20) + "\"");
@@ -345,13 +345,13 @@ public:
    void read_integer(TYPE & t, const_char_pointer &psz)
    {
 
-      skip_whitespace(scopedstr);
+      skip_whitespace(psz);
 
       auto pszStart = psz;
 
-      t = (TYPE)strtol(scopedstr, (char **) & psz, 10);
+      t = (TYPE)strtol(psz, (char **) & psz, 10);
 
-      if (scopedstr == pszStart)
+      if (psz == pszStart)
       {
 
          throw parsing_exception("cannot text_reader::read_integer from \"" + ellipsis(pszStart, 20) + "\"");
@@ -365,13 +365,13 @@ public:
    void read_float(TYPE & t, const_char_pointer &psz)
    {
 
-      skip_whitespace(scopedstr);
+      skip_whitespace(psz);
 
       auto pszStart = psz;
 
-      t = (TYPE)strtod(scopedstr, (char **) & psz);
+      t = (TYPE)strtod(psz, (char **) & psz);
 
-      if (scopedstr == pszStart)
+      if (psz == pszStart)
       {
 
          throw parsing_exception("cannot text_reader::read_float from \"" + ellipsis(pszStart, 32) + "\"");
@@ -457,15 +457,15 @@ public:
       if (i == maximum_length && *psz != '\0')
       {
 
-         memory_copy(scopedstrBuffer, pszStart, maximum_length - 3);
+         memory_copy(pszBuffer, pszStart, maximum_length - 3);
 
-         ansi_copy(scopedstrBuffer + maximum_length - 3, "...");
+         ansi_copy(pszBuffer + maximum_length - 3, "...");
 
       }
       else
       {
 
-         memory_copy(scopedstrBuffer, pszStart, i);
+         memory_copy(pszBuffer, pszStart, i);
 
       }
 

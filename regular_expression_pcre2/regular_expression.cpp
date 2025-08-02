@@ -38,7 +38,7 @@ namespace regular_expression_pcre2
    void regular_expression::compile(const ::scoped_string & scopedstr)
    {
 
-      m_str = str;
+      m_str = scopedstr;
 
       int e;
 
@@ -85,11 +85,11 @@ namespace regular_expression_pcre2
 
       presult->m_pregularexpression = this;
 
-      presult->m_str = str;
+      presult->m_str = scopedstr;
 
       presult->m_pmatchdata = pcre2_match_data_create(m_iRangeCount + 1, m_pgeneralcontext);
 
-      auto iMatchResult = pcre2_match(m_pcode, (PCRE2_SPTR)str.c_str(), str.length(), 0, 0, presult->m_pmatchdata, nullptr);
+      auto iMatchResult = pcre2_match(m_pcode, (PCRE2_SPTR)scopedstr.data(), scopedstr.length(), 0, 0, presult->m_pmatchdata, nullptr);
 
       if (iMatchResult < 0)
       {
@@ -115,7 +115,7 @@ namespace regular_expression_pcre2
    bool regular_expression::replace(string& str, const ::scoped_string & scopedstrPrefix, string& strRet)
    {
 
-      size_t s = maximum(256, str.length() + strPrefix.length() * 3);
+      size_t s = maximum(256, str.length() + scopedstrPrefix.length() * 3);
 
       int err;
 
@@ -131,7 +131,7 @@ namespace regular_expression_pcre2
             /*m_pcreContext->m_pimpl->m_pmd*/
             nullptr,
             nullptr,
-            (PCRE2_SPTR8)strPrefix.c_str(), strPrefix.length(),
+            (PCRE2_SPTR8)scopedstrPrefix.data(), scopedstrPrefix.size(),
             (PCRE2_UCHAR8*)strRet.get_buffer(s), &s);
 
          strRet.release_buffer(s);

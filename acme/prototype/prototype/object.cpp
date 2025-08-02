@@ -1944,10 +1944,10 @@ void object::branch_each(const ::procedure_array& routinea)
 //}
 
 
-::task_pointer object::run_procedure(bool bSyncronously, const ::procedure & procedure)
+::task_pointer object::run_procedure(enum_synchronicity esynchronicity, const ::procedure & procedure)
 {
 
-   if (bSyncronously)
+   if (esynchronicity == e_synchronicity_synchronous)
    {
 
       procedure();

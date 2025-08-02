@@ -35,7 +35,7 @@ namespace text_to_speech
    }
 
 
-   void speaker::speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSynch)
+   void speaker::speak(const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, enum_synchronicity esynchronicity)
    {
 
       if (m_pspeakerFallback.is_null())
@@ -47,12 +47,12 @@ namespace text_to_speech
 
       }
 
-      return m_pspeakerFallback->speak(scopedstrLang, scopedstrText, bSynch);
+      return m_pspeakerFallback->speak(scopedstrLang, scopedstrText, esynchronicity);
 
    }
 
 
-   void speaker::speak(const ::scoped_string & scopedstrAttributes, const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, bool bSynch)
+   void speaker::speak(const ::scoped_string & scopedstrAttributes, const ::scoped_string & scopedstrLang, const ::scoped_string & scopedstrText, enum_synchronicity esynchronicity)
    {
 
       if (m_pspeakerFallback.is_null())
@@ -63,7 +63,7 @@ namespace text_to_speech
 
       }
 
-      return m_pspeakerFallback->speak(scopedstrAttributes, scopedstrLang, scopedstrText, bSynch);
+      return m_pspeakerFallback->speak(scopedstrAttributes, scopedstrLang, scopedstrText, esynchronicity);
 
    }
 

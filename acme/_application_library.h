@@ -1,8 +1,18 @@
 //
-// Created by camilo on 2025-08-01.
+// Created by camilo on 2025-08-01 <3ThomasBorregaardSørensen!!
 //
+#pragma once
 
-#ifndef _APPLICATION_LIBRARY_H
-#define _APPLICATION_LIBRARY_H
 
-#endif //_APPLICATION_LIBRARY_H
+#include "acme/_library.h"
+
+
+//
+//
+// #ifdef CUBE
+// #include  "acme/platform/factory_function.h"
+// //#include "slashed_operating_system_appconfig.h"
+// #include "operating_system/appconfig.h"
+// #include "_static_factory_.inl"
+// DO_FACTORY(REFERENCE_FACTORY)
+// #endif

@@ -422,7 +422,7 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
       auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
       //::e_status estatus = 
 
-      ::string strVersion(scopedstrVersion);
+      ::string strVersion(pszVersion);
 
       if (strVersion.case_insensitive_contains("mesa"))
       {

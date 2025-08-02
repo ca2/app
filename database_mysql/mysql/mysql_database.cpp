@@ -219,7 +219,7 @@ namespace mysql
    string database::query_error(const ::scoped_string & scopedstrPrefixParam)
    {
       
-      string strPrefix(strPrefixParam);
+      string strPrefix(scopedstrPrefixParam);
 
       string strFormat;
 
@@ -274,7 +274,7 @@ namespace mysql
       try
       {
 
-         if (mysql_query((MYSQL*)m_pmysql, pszSql) != 0) /* the statement failed */
+         if (mysql_query((MYSQL*)m_pmysql, scopedstrSql.c_str()) != 0) /* the statement failed */
          {
 
             if (m_pmysql == nullptr || mysql_errno(m_pmysql) == 2006) // MySQL server has gone away
@@ -291,7 +291,7 @@ namespace mysql
 
                }
 
-               if (mysql_query((MYSQL*)m_pmysql, pszSql) != 0) /* the statement failed */
+               if (mysql_query((MYSQL*)m_pmysql, scopedstrSql.c_str()) != 0) /* the statement failed */
                {
 
                   trace_error1("Could not execute statement");
@@ -852,7 +852,7 @@ namespace mysql
          if (!query(strSql))
             return false;
       }
-      if (!pszUser)
+      if (scopedstrUser.has_character())
       {
          if (!query("UPDATE " + strTable + " SET `user` = '" +::string(scopedstrUser) + "' WHERE `atom` = '" + strId + "'"))
             return false;
@@ -876,7 +876,7 @@ namespace mysql
 
       char* pszEscaped = strEscaped.get_buffer(iLen * 2 + 1);
 
-      if (scopedstr == nullptr)
+      if (psz == nullptr)
       {
 
          throw ::exception(error_no_memory);
@@ -895,7 +895,7 @@ namespace mysql
    string database::escape(const ::scoped_string & scopedstr)
    {
 
-      return escape(str.c_str(), str.length());
+      return escape(scopedstr.c_str(), scopedstr.length());
 
    }
 

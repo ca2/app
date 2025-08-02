@@ -92,17 +92,17 @@ namespace dynamic_source
 
 
       virtual void print_r(::payload payload);
-      ::property& request(const ::atom & atom);
-      ::property_set& geta();
-      ::property_set& posta();
-      http::cookies& cookies();
-      ::property_set& requesta();
+      virtual ::property& request(const ::atom & atom);
+      virtual ::property_set& geta();
+      virtual ::property_set& posta();
+      virtual http::cookies& cookies();
+      virtual ::property_set& requesta();
 
-      ::property& inheader(const ::atom & atom);
-      ::property& outheader(const ::atom & atom);
+      virtual ::property& inheader(const ::atom & atom);
+      virtual ::property& outheader(const ::atom & atom);
 
-      ::property& inattr(const ::atom & atom);
-      ::property& outattr(const ::atom & atom);
+      virtual ::property& inattr(const ::atom & atom);
+      virtual ::property& outattr(const ::atom & atom);
 
       virtual string& gstr(const ::atom & atom);
       virtual ::property& gprop(const ::atom & atom);

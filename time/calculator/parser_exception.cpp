@@ -33,7 +33,7 @@ CLASS_DECL_CA2_TIME bool throw_datetime_parsing_exception(const ::scoped_string 
 
    }
 
-   throw ::exception(error_datetime_parser, strMessage);
+   throw ::exception(error_datetime_parser, scopedstrMessage);
 
    return true;
 

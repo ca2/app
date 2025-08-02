@@ -277,13 +277,13 @@ element * parser::expr(::datetime::element * pelement1)
 
    void parser::syntax_error(const ::scoped_string & scopedstr)
    {
-      error(string("syntax") + psz);
+      error(string("syntax") + scopedstr);
    }
    void parser::error(const ::scoped_string & scopedstr)
    {
       string str;
       str = "error: ";
-      str += psz;
+      str += scopedstr;
       throw_datetime_parsing_exception(str);
 
    }

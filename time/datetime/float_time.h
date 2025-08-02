@@ -1036,13 +1036,13 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    inline bool float_time::ParseDateTime(const ::scoped_string & scopedstrDate, unsigned int dwFlags, LCID lcid) RELEASENOTHROW
    {
 
-      const_char_pointer pszDate = strDate;
+      const_char_pointer pszDate = scopedstrDate;
 
-      const ::scoped_string & scopedstrDate = (::is_null(scopedstrDate)) ? "" : pszDate;
+      const_char_pointer pszDateToParse = (::is_null(scopedstrDate)) ? "" : pszDate;
 
       HRESULT hr;
 
-      if (FAILED(hr = FloatTimeFromStr(scopedstrDate, lcid, dwFlags, &m_dt )))
+      if (FAILED(hr = FloatTimeFromStr(pszDateToParse, lcid, dwFlags, &m_dt )))
       {
          if (hr == DISP_E_TYPEMISMATCH)
          {

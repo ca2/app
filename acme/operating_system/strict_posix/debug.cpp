@@ -30,7 +30,7 @@ void output_debug_string(const ::scoped_string & scopedstr)
 
       auto iSize = scopedstr.size();
 
-      fwrite(scopedstrBeg, 1, iSize, stdout);
+      fwrite(pszBeg, 1, iSize, stdout);
 
       //fflush(stdout);
 

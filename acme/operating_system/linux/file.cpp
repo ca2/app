@@ -146,16 +146,16 @@ namespace path
 
 #endif
 
-      if (scopedstrModuleFilePath == nullptr)
+      if (pszModuleFilePath == nullptr)
       {
 
          return "";
 
       }
 
-      string strModuleFileName(scopedstrModuleFilePath);
+      string strModuleFileName(pszModuleFilePath);
 
-      free(scopedstrModuleFilePath);
+      free(pszModuleFilePath);
 
       return strModuleFileName;
 
@@ -178,7 +178,7 @@ namespace path
 
 #else
 
-   if ((scopedstrModule = br_find_exe(nullptr)) == nullptr)
+   if ((pszModule = br_find_exe(nullptr)) == nullptr)
    {
 
       if (!br_init_lib(nullptr)) {
@@ -209,7 +209,7 @@ namespace path
 
    path = pszModule;
 
-   ::free(scopedstrModule);
+   ::free(pszModule);
 
    return path;
 

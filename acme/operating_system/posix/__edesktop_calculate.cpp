@@ -20,8 +20,14 @@ namespace windowing
 
    ::windowing::enum_operating_ambient calculate_edesktop()
    {
-      
-#if defined(APPLE_IOS)
+
+#if defined(__ANDROID__)
+
+      printf_line("calculate_edesktop e_operating_ambient_android");
+
+         return ::windowing::e_operating_ambient_android;
+
+#elif defined(APPLE_IOS)
          
          printf_line("calculate_edesktop e_operating_ambient_ios");
 

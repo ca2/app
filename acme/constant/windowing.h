@@ -26,7 +26,8 @@ namespace windowing
       e_operating_ambient_windows,
       e_operating_ambient_cinnamon,
       e_operating_ambient_ios,
-      e_operating_ambient_macos
+      e_operating_ambient_macos,
+      e_operating_ambient_android
    };
 
    enum enum_toolkit

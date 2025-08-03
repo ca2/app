@@ -164,7 +164,7 @@ namespace acme
          //virtual int_bool is_window( windowing_android_WINDOW_MEMBER );
          
          
-         virtual void set_window_text(const ::scoped_string & scopedstrString);
+         void set_window_text(const ::scoped_string & scopedstrString) override;
 
          ::pointer<::nano::graphics::device>create_device();
 

@@ -10,7 +10,7 @@
 void task_set_name(long l, const_char_pointer psz)
 {
 
-   string strName(scopedstr);
+   string strName(psz);
 
    thread_name_abbreviate(strName, 15);
 

@@ -38,13 +38,7 @@ CLASS_DECL_ACME bool os_on_init_thread();
 CLASS_DECL_ACME void os_on_term_thread();
 
 
-#if defined(WINDOWS)
-CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(create_system)()
-#elif defined(__ANDROID__)
-extern "C" void APPLICATION_NAMESPACE_MAIN(create_system)()
-#else
-extern "C" void APPLICATION_NAMESPACE_MAIN(create_system)()
-#endif
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(create_system)()
 {
 
    {
@@ -68,11 +62,11 @@ extern "C" void APPLICATION_NAMESPACE_MAIN(create_system)()
 
 
 #if defined(WINDOWS)
-CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(initialize_system)(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow)
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow)
 #elif defined(__ANDROID__)
-extern "C" APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
 #else
-extern "C" APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[])
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[])
 #endif
 {
 
@@ -114,8 +108,7 @@ extern "C" APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[],
 }
 
 
-
-CLASS_DECL_APPLICATION_NAMESPACE int APPLICATION_NAMESPACE_MAIN(main)()
+APPLICATION_NAMESPACE_MAIN_EXPORT int APPLICATION_NAMESPACE_MAIN(main)()
 {
 
    int iExitCode = -1;

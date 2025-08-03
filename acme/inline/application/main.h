@@ -10,24 +10,25 @@
 
 
 #if defined(WINDOWS)
-CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(create_system)();
-#elif defined(__ANDROID__)
-extern "C" void APPLICATION_NAMESPACE_MAIN(create_system)();
+#define APPLICATION_NAMESPACE_MAIN_EXPORT CLASS_DECL_APPLICATION_NAMESPACE
 #else
-extern "C" void APPLICATION_NAMESPACE_MAIN(create_system)();
+#define APPLICATION_NAMESPACE_MAIN_EXPORT extern "C"
 #endif
+
+
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(create_system)();
 
 
 #if defined(WINDOWS)
-CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(initialize_system)(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow);
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow);
 #elif defined(__ANDROID__)
-CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const_char_pointer p1, const_char_pointer p2);
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const_char_pointer p1, const_char_pointer p2);
 #else
-CLASS_DECL_APPLICATION_NAMESPACE void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[]);
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[]);
 #endif
 
 
-CLASS_DECL_APPLICATION_NAMESPACE int APPLICATION_NAMESPACE_MAIN(main)();
+APPLICATION_NAMESPACE_MAIN_EXPORT int APPLICATION_NAMESPACE_MAIN(main)();
 
 
 

@@ -4,11 +4,11 @@
 #pragma once
 
 
-namespace acme
+namespace platform
 {
 
 
-    class CLASS_DECL_ACME driver
+    class CLASS_DECL_ACME application_state
 
     :
     virtual public ::particle
@@ -34,13 +34,13 @@ namespace acme
 
 
 
-    driver();
-    ~driver() override;
+    application_state();
+    ~application_state() override;
 
 
-    static ::acme::driver *get();
+    static ::platform::application_state *get();
 
-    static void set(::acme::driver * pdriver);
+    static void set(::platform::application_state * papplicationstate);
 
     virtual void exchange1();
 
@@ -59,7 +59,7 @@ namespace acme
 };
 
 
-} // namespace acme
+} // namespace platform
 
 
 

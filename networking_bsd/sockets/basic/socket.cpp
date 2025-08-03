@@ -152,7 +152,7 @@ namespace sockets_bsd
 
       protno = 6;
 
-      if (strProtocol.case_insensitive_order("tcp") == 0)
+      if (scopedstrProtocol.case_insensitive_order("tcp") == 0)
       {
 
          protno = 6;

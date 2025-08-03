@@ -2026,7 +2026,7 @@ bool base_socket::SetSoKeepalive(bool x)
    bool base_socket::SetSoBindtodevice(const ::scoped_string & scopedstrInterface)
    {
    
-      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const_char_pointer )intf, (unsigned int) intf.length()) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_BINDTODEVICE, (char *) scopedstrInterface.data(), (unsigned int) scopedstrInterface.size()) == -1)
       {
 
          fatal() <<"setsockopt(SOL_SOCKET, SO_BINDTODEVICE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());

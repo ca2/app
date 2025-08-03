@@ -293,7 +293,7 @@ namespace apex
       }
 
 #else
-      vprintf(scopedstrFormat, list);
+      vprintf(pszFormat, list);
 #endif
       return 0;
    }

@@ -2,53 +2,53 @@
 // Created by camilo on 2025-07-10 00:52 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "driver.h"
+#include "application_state.h"
 
 
-namespace acme
+namespace platform
 {
 
     
-    ::pointer<driver> g_pandroiddriver;
+    ::pointer<application_state> g_papplicationstate;
 
 
-    driver::driver()
+   application_state::application_state()
     {
 
 
     }
 
 
-    driver::~driver()
+   application_state::~application_state()
     {
 
 
     }
 
-    driver *driver::get()
+   application_state *application_state::get()
     {
 
-       return g_pandroiddriver;
+       return g_papplicationstate;
 
     }
 
 
-    void driver::set(driver *pdriver)
+    void application_state::set(application_state *papplicationstate)
     {
 
-       g_pandroiddriver = pdriver;
+       g_papplicationstate = papplicationstate;
 
     }
 
 
-    void driver::exchange1()
+    void application_state::exchange1()
     {
 
 
     }
 
 
-    void driver::after_exchange()
+    void application_state::after_exchange()
     {
 
 
@@ -56,7 +56,7 @@ namespace acme
 
 
     void
-    driver::queue_message_box(::message_box *pmessagebox)
+    application_state::queue_message_box(::message_box *pmessagebox)
     {
 
        //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer);
@@ -68,7 +68,7 @@ namespace acme
     }
 
 
-    ::pointer<::message_box> driver::pick_message_box()
+    ::pointer<::message_box> application_state::pick_message_box()
     {
 
        //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer);
@@ -88,7 +88,7 @@ namespace acme
     }
 
     
-    void driver::open_url(const ::scoped_string & scopedstrOpenUrl)
+    void application_state::open_url(const ::scoped_string & scopedstrOpenUrl)
     {
 
        synchronous_lock lock(this->synchronization());
@@ -99,7 +99,7 @@ namespace acme
 
 
 
-   void driver::list_file_enumerate(const ::scoped_string & scopedstrListFileEnumerate)
+   void application_state::list_file_enumerate(const ::scoped_string & scopedstrListFileEnumerate)
    {
 
    //synchronous_lock lock(m_pparticleMutexListFileEnumerate);
@@ -110,7 +110,7 @@ namespace acme
    }
 
 
-} // namespace acme
+} // namespace platform
 
 
 

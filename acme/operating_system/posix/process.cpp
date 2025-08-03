@@ -310,7 +310,7 @@ string get_current_directory_name();
 ::file::path deduct_module_path_from_current_directory(const_char_pointer pszOptionalExecutableRelativePath)
 {
 	
-   ::string strName(scopedstrOptionalExecutableRelativePath);
+   ::string strName(pszOptionalExecutableRelativePath);
 	
    if(strName.is_empty())
    {

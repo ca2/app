@@ -971,7 +971,7 @@ bool demangle (string & str, const_char_pointer pszType)
 
    int status = -4;
 
-   t_pszDemangle = abi::__cxa_demangle(scopedstrType, t_pszDemangle, &t_sizeDemangle, &status);
+   t_pszDemangle = abi::__cxa_demangle(pszType, t_pszDemangle, &t_sizeDemangle, &status);
 
    if (status == 0)
    {

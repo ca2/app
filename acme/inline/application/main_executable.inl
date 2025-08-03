@@ -4,8 +4,6 @@
 #include "acme/inline/application/main.h"
 
 
-
-
 #ifdef CUBE
 #include  "acme/platform/factory_function.h"
 #include "operating_system/appconfig.h"
@@ -25,8 +23,6 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 
 #if defined(WINDOWS)
 int WINAPI wWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow)
-#elif defined(__ANDROID__)
-extern "C" int android_main(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
 #else
 extern "C" int main(int argc, char* argv[], char* envp[])
 #endif
@@ -37,9 +33,11 @@ extern "C" int main(int argc, char* argv[], char* envp[])
 #if defined(WINDOWS)
    APPLICATION_NAMESPACE_MAIN(initialize_system)(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
 #elif defined(__ANDROID__)
+   const char * p1 = nullptr; //_todo_begin;
+   const char * p2 = nullptr; //_todo_end;
    APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp, p1, p2);
 #else
-   APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[]);
+   APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp);
 #endif
 
    auto iExitCode = APPLICATION_NAMESPACE_MAIN(main)();

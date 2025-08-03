@@ -893,19 +893,19 @@ void payload::set_string(::string && str)
 }
 
 
-void payload::set_string(const ::scoped_string & scopedstr)
+void payload::set_string(const ::string & str)
 {
 
    if (get_type() == e_type_string)
    {
 
-      m_str = scopedstr;
+      m_str = str;
 
    }
    else if (get_type() == e_type_pstring)
    {
 
-      *m_pstr = scopedstr;
+      *m_pstr = str;
 
    }
    //else if (get_type() == e_type_payload_pointer)
@@ -925,7 +925,7 @@ void payload::set_string(const ::scoped_string & scopedstr)
 
       set_type(e_type_string, false);
 
-      m_str = scopedstr;
+      m_str = str;
 
    }
 

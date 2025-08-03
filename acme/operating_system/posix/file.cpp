@@ -1379,7 +1379,7 @@ void create_directory(const ::file::path & path)
    
    auto pszPath = path.c_str();
 
-   if (::mkdir(scopedstrPath, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
+   if (::mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
    {
       
       auto cerrornumber = c_error_number();

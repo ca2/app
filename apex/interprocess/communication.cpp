@@ -516,7 +516,7 @@ namespace interprocess
 
 #else
 
-      strKey = directory_system()->userconfig() / "communication" / strApp / idPid.as_string();
+      strKey = directory_system()->userconfig() / "communication" / scopedstrApp / idPid.as_string();
 
 
 #endif

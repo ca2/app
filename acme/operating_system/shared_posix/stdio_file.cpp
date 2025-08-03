@@ -114,7 +114,7 @@ try_again:
 
 #else
 
-   m_pfile = fopen(path, strAttributes);
+   m_pfile = fopen(path, scopedstrAttributes);
 
 #endif
 
@@ -1097,7 +1097,7 @@ void file_system::append_wait(const ::scoped_string & scopedstrFile, const block
 
 #if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
 
-      pfile = fopen(strFile.c_str(), "ab");
+      pfile = fopen(scopedstrFile.c_str(), "ab");
 
 #else
 

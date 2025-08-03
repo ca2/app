@@ -39,7 +39,7 @@ namespace windowing
 
       printf_line("XDG_CURRENT_DESKTOP %s", pszDesktop);
 
-      string strDesktop(scopedstrDesktop);
+      string strDesktop(pszDesktop);
 
       if (strDesktop.case_insensitive_order("kde") == 0)
       {

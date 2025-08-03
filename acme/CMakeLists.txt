@@ -496,7 +496,10 @@ list(APPEND library_source
         platform/acme.h
         platform/allocator.cpp
         platform/allocator.h
-        platform/asset.cpp
+   platform/application_state.cpp
+   platform/application_state.h
+
+   platform/asset.cpp
         platform/asset.h
         platform/asset_manager.cpp
         platform/asset_manager.h
@@ -504,8 +507,6 @@ list(APPEND library_source
         platform/component.h
         platform/component_implementation.cpp
         platform/component_implementation.h
-        platform/driver.cpp
-        platform/driver.h
         #platform/acme_main_struct.cpp
         #platform/acme_main_struct.h
         #platform/apex_main_data.cpp

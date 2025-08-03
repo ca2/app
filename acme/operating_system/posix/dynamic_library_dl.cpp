@@ -244,7 +244,7 @@ namespace dl
 
          const_char_pointer psz = strerror(iError);
 
-         if (scopedstr != nullptr)
+         if (psz != nullptr)
          {
 
             strMessage += psz;
@@ -309,7 +309,7 @@ namespace dl
 
       const_char_pointer psz = strerror(iError);
 
-      if (scopedstr != nullptr)
+      if (psz != nullptr)
       {
 
          strMessage += psz;
@@ -318,7 +318,7 @@ namespace dl
 
       const_char_pointer psz2 = dlerror();
 
-      if (scopedstr2 != nullptr)
+      if (psz2 != nullptr)
       {
 
          strMessage += psz2;

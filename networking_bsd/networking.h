@@ -60,13 +60,13 @@ namespace networking_bsd
 
 
       class CLASS_DECL_NETWORKING_BSD dns_cache_item :
-         virtual public ::object
+         virtual public ::particle
       {
       public:
 
 
          in_addr           m_ipaddr;
-         class ::time m_timeLastChecked;
+         class ::time      m_timeLastChecked;
          bool              m_bOk;
          bool              m_bTimeout;
 
@@ -85,7 +85,7 @@ namespace networking_bsd
 
 
       class CLASS_DECL_NETWORKING_BSD reverse_cache_item :
-         virtual public ::matter
+         virtual public ::particle
       {
       public:
 

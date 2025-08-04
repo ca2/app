@@ -392,7 +392,9 @@ namespace dynamic_source
 
       pscript->m_strSourceDir = pscript->m_strSourcePath.folder();
 
-      if (!file()->exists(pscript->m_strSourcePath))
+      auto strSourcePath = pscript->m_strSourcePath;
+
+      if (!file()->exists(strSourcePath))
       {
          ostreamError << "<pre>";
          str.formatf("Source File : \"%s\" does not exist", pscript->m_strSourcePath.c_str());

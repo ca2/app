@@ -896,7 +896,7 @@ namespace sqlite
 
       character_count iLen = sqlite3_column_bytes(m_pstmtSelect, 0);
 
-      if (!getmemory.get(scopedstrKey, iLen))
+      if (!getmemory.get(psz, iLen))
       {
 
          throw ::exception(error_failed);

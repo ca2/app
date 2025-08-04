@@ -71,6 +71,11 @@ public:
    inline void clear_already_exists_flag() { clear_flag(e_flag_already_exists); }
 
 
+
+   [[nodiscard]] inline bool has_running_flag() const { return has_flag(e_flag_running); }
+   inline void set_running_flag() { set_flag(e_flag_running); }
+   inline void clear_running_flag() { clear_flag(e_flag_running); }
+
    // [[nodiscard]] inline bool is_heap_allocated() const { return has_flag(e_flag_heap_allocated); }
    // inline void set_heap_allocated() { set_flag(e_flag_heap_allocated); }
    // inline void clear_heap_allocated() { clear_flag(e_flag_heap_allocated); }

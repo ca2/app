@@ -4678,7 +4678,7 @@ namespace apex
    }
 
 
-   bool system::is_thread() const
+   bool system::is_thread_class() const
    {
 
       return false;

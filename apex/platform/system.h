@@ -441,10 +441,10 @@ namespace apex
       //
 
 
-      virtual string get_host_location_url() override;
+      string get_host_location_url() override;
 
 
-      virtual bool is_thread() const override;
+      bool is_thread_class() const override;
 
 
       // void assert_ok() const override;

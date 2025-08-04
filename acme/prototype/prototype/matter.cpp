@@ -266,7 +266,7 @@ bool matter::is_ready_to_quit() const
 //}
 
 
-bool matter::is_thread() const
+bool matter::is_thread_class() const
 {
 
    return false;

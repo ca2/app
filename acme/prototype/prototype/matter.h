@@ -115,7 +115,7 @@ public:
 
    virtual ::platform::application * _get_app();
 
-   virtual bool is_thread() const;
+   virtual bool is_thread_class() const;
    virtual ::thread * get_thread();
    virtual bool thread_is_running() const;
 

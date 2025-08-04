@@ -272,7 +272,7 @@ htask thread::get_os_handle() const
 }
 
 
-bool thread::is_thread() const
+bool thread::is_thread_class() const
 {
 
    return true;
@@ -1529,7 +1529,7 @@ void thread::Delete()
 void thread::kick_idle()
 {
 
-   if (!is_task_set())
+   if (!is_task_set2())
    {
 
       return;
@@ -1594,7 +1594,7 @@ void thread::post_quit()
 
    }
 
-   if (!is_task_set())
+   if (!is_task_set2())
    {
 
       return;
@@ -1613,7 +1613,7 @@ void thread::post_quit()
    try
    {
 
-      if (is_task_set() && !m_bAuraMessageQueue)
+      if (is_task_set2() && !m_bAuraMessageQueue)
       {
 
          if (m_bMessageThread)
@@ -3331,7 +3331,7 @@ void thread::post_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
    if (!pmessagequeue)
    {
 
-      if (!is_task_set())
+      if (!is_task_set2())
       {
 
          _post([this, emessage, wparam, lparam]()

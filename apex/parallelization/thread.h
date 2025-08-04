@@ -208,7 +208,7 @@ public:
 
    //virtual bool thread_active() const;
    virtual bool is_dedicated_thread() const;
-   virtual bool is_thread() const override;
+   virtual bool is_thread_class() const override;
    virtual ::thread * get_thread() override;
    //virtual bool is_running() const override;
 

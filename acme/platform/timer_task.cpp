@@ -270,7 +270,7 @@ void timer_task::stop_timer_task()
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      if (is_task_set())
+      if (is_task_set2())
       {
 
          set_finish();

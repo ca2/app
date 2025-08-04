@@ -8200,8 +8200,7 @@ namespace windowing
 
       //bool bForceUpdateBuffer = false;
 
-      if (!m_pgraphicsthread->is_thread()
-         || !m_pgraphicsthread->is_task_set())
+      if (!m_pgraphicsthread->is_task_set2())
       {
 
          warning() << "graphics thread is not a thread but posting redraw";
@@ -13656,7 +13655,7 @@ namespace windowing
 
       int hSource;
 
-      ::image32_t * pdataSource;
+      ::image32_t * pdataSource = nullptr;
 
       int scanSource;
 

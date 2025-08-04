@@ -288,7 +288,7 @@ public:
 #endif
 
 
-   bool is_task_set() const override;
+   bool is_task_set2() const override;
    //virtual void register_task();
    //virtual void unregister_task();
    
@@ -378,7 +378,7 @@ public:
 
 
 
-   virtual bool is_thread() const override;
+   virtual bool is_thread_class() const override;
    virtual bool task_get_run() const override;
 
    bool is_ready_to_quit() const override;

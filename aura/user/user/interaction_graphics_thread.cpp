@@ -144,7 +144,7 @@ namespace user
    void graphics_thread::defer_create_graphics_thread()
    {
 
-      if(is_thread())
+      if(is_task_set2())
       {
 
          return;

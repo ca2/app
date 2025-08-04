@@ -6555,10 +6555,10 @@ namespace apex
    }
 
 
-   bool application::is_task_set() const
+   bool application::is_task_set2() const
    {
 
-      return is_pinging() && ::thread::is_task_set();
+      return is_pinging() && ::thread::is_task_set2();
 
    }
 

@@ -406,6 +406,15 @@ namespace graphics
 
       synchronouslock.unlock();
 
+      if (!pitemScreen->m_pimage2.ok())
+      {
+
+         warning() << "pitemScreen->m_pimage2 not ok!";
+
+         return;
+
+      }
+
       on_update_screen(pitemScreen);
 
    }

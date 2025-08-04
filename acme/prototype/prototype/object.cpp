@@ -688,7 +688,7 @@ string object::get_tag() const
 }
 
 
-bool object::is_thread() const
+bool object::is_thread_class() const
 {
 
    return false;
@@ -704,7 +704,7 @@ bool object::task_get_run() const
 }
 
 
-bool object::is_task_set() const
+bool object::is_task_set2() const
 {
 
    return true;
@@ -1804,7 +1804,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    auto ptask = property_set()["thread"][atom].cast < ::task>();
 
-   if(ptask && ptask->is_task_set())
+   if(ptask && ptask->is_task_set2())
    {
 
       return ptask;

@@ -351,20 +351,20 @@ namespace apex
       //virtual void france_exit();
 
 
-      virtual void process_exception(const ::exception& e) override;
+      void process_exception(const ::exception& e) override;
 
 
       //virtual ::pointer<::apex::application>assert_running(const ::scoped_string & scopedstrAppId) override;
 
-      virtual bool is_task_set() const override;
+      bool is_task_set2() const override;
 
 
       //bool pump_runnable() override;
 
-      virtual void add_activation_message(const ::scoped_string & scopedstrMessage) override;
+      void add_activation_message(const ::scoped_string & scopedstrMessage) override;
 
 
-      virtual bool has_activation_message() const override;
+      bool has_activation_message() const override;
 
 
       virtual void handle_posted_activation_message();

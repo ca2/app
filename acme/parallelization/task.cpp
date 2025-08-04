@@ -454,10 +454,11 @@ bool task::is_ready_to_quit() const
 //
 
 
-bool task::is_task_set() const
+bool task::is_task_set2() const
 {
 
-   return has_flag(e_flag_running) && m_htask.is_set();
+   //return has_flag(e_flag_running) && m_htask.is_set();
+   return m_htask.is_set();
 
 }
 
@@ -1318,7 +1319,7 @@ void task::destroy()
 
 
 
-bool task::is_thread() const
+bool task::is_thread_class() const
 {
 
    return false;

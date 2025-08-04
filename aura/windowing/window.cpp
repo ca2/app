@@ -13629,34 +13629,119 @@ namespace windowing
    void window::android_fill_plasma(const void* pixels, int width, int height, int stride, long long time_ms)
    {
 
-      auto pitem = m_pgraphicsgraphics->get_screen_item();
+      ::particle * pparticleSynchronization = nullptr;
 
-      _synchronous_lock synchronouslock(pitem->m_pmutex);
+      ::graphics::buffer_item * pitem = nullptr;
+
+      ::image::image * pimageSource = nullptr;
+
+      if(m_pgraphicsgraphics) {
+
+         pitem = m_pgraphicsgraphics->get_screen_item();
+
+      }
+
+      if(pitem)
+      {
+
+         pparticleSynchronization = pitem->m_pmutex;
+
+      }
+
+      _synchronous_lock synchronouslock(pparticleSynchronization);
 
       //_synchronous_lock synchronouslock(pitem->m_pmutex);
 
-      auto pimageSource = pitem->m_pimage2;
+      int wSource;
 
-      pimageSource->map();
+      int hSource;
 
-      auto wSource = pimageSource->width();
+      ::image32_t * pdataSource;
 
-      auto hSource = pimageSource->height();
+      int scanSource;
 
-      auto pdataSource = pimageSource->get_data();
+      if(pitem)
+      {
 
-      auto scanSource = pimageSource->m_iScan;
+         pimageSource = pitem->m_pimage2;
 
-#ifdef __i386__
+         if(pimageSource)
+         {
 
-      ((image32_t*)pixels)->copy_swap_red_blue(minimum(width, wSource), minimum(height, hSource), stride, pdataSource, scanSource);
+            pimageSource->map();
+
+            wSource = pimageSource->width();
+
+            hSource = pimageSource->height();
+
+            pdataSource = pimageSource->get_data();
+
+            scanSource = pimageSource->m_iScan;
+
+         }
+
+      }
+
+      if(!pimageSource)
+      {
+
+         wSource = width;
+
+         hSource = height;
+
+         pdataSource = nullptr;
+
+         scanSource = wSource * 4;
+
+      }
+
+      if(pdataSource) {
+
+#if defined(__i386__) || defined(__x86_64__)
+
+         ((image32_t*)pixels)->copy_swap_red_blue(minimum(width, wSource), minimum(height, hSource), stride, pdataSource, scanSource);
 
 #else
 
-      ((image32_t*)pixels)->copy(minimum(width, wSource), minimum(height, hSource), stride, pdataSource,
-         scanSource);
+         ((image32_t *) pixels)->copy(
+            minimum(width, wSource), minimum(height, hSource), stride,
+                                      pdataSource,
+                                      scanSource);
 
 #endif
+
+      }
+      else
+      {
+
+         int r = 50;
+
+         int g = 100;
+
+         int b = 150;
+
+         int a = 180;
+
+         auto color = argb(a, r, g, b);
+
+         image32_t image32Color(color, ::color_indexes());
+
+         for(int i = 0; i < height; i++)
+         {
+
+            auto pline = (image32_t *)((unsigned char*)pixels + stride * i);
+
+            for(int j = 0; j < width; j++)
+            {
+
+               pline[j] = image32Color;
+
+            }
+
+         }
+
+
+      }
 
    }
 

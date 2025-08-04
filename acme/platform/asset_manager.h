@@ -10,7 +10,7 @@ namespace acme
    
 
    class CLASS_DECL_ACME asset_manager :
-      public ::particle
+      virtual public ::particle
    {
    public:
 

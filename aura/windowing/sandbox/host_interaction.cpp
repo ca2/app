@@ -138,7 +138,11 @@ namespace sandbox_windowing
 
       auto pwindow = window();
 
+      m_ewindowflag |= e_window_flag_root;
+
       pwindowing->m_pwindowApplicationHost = pwindow;
+
+      display(e_display_normal);
       
       window()->show_window();
 

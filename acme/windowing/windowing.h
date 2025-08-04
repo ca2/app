@@ -147,6 +147,8 @@ namespace acme
 
          virtual void on_start_system();
 
+         virtual void on_start_windowing_application();
+
          virtual void _do_tasks();
          
          virtual void application_handle(long long l, void * p);

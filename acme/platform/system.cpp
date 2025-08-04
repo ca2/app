@@ -277,9 +277,9 @@ namespace platform
 
          __raw_construct(m_papplicationMain);
 
-      }
+         application_main(m_papplicationMain);
 
-      application_main(m_papplicationMain);
+      }
 
    }
 
@@ -3147,7 +3147,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
                strApp);
 
          }
-         else
+         else if(this->m_argc > 0 && this->m_args)
          {
 
             strApp = this->m_args[0];
@@ -4721,38 +4721,39 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       auto pnode = node();
 
-      if (::is_set(pnode))
+      if (::is_null(pnode))
       {
 
-         if (pnode->defer_component_factory(scopedstrComponent))
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (pnode->defer_component_factory(scopedstrComponent))
+      {
+
+         return true;
+
+      }
+
+      ::string strComponentDefaultImplementation = pnode->default_component_implementation(scopedstrComponent);
+
+      if (strComponentDefaultImplementation.has_character())
+      {
+
+         auto pfactory = this->factory(scopedstrComponent, strComponentDefaultImplementation);
+
+         if (pfactory)
          {
+
+            printf_line("Merging factory of component \"%s\" with implementation \"%s\"",
+               ::string(scopedstrComponent).c_str(), strComponentDefaultImplementation.c_str());
+
+
+            pfactory->merge_to_global_factory();
 
             return true;
 
          }
-
-         ::string strComponentDefaultImplementation = pnode->default_component_implementation(scopedstrComponent);
-
-         if (strComponentDefaultImplementation.has_character())
-         {
-
-            auto pfactory = this->factory(scopedstrComponent, strComponentDefaultImplementation);
-
-            if (pfactory)
-            {
-
-               printf_line("Merging factory of component \"%s\" with implementation \"%s\"",
-                  ::string(scopedstrComponent).c_str(), strComponentDefaultImplementation.c_str());
-
-
-               pfactory->merge_to_global_factory();
-
-               return true;
-
-            }
-
-         }
-
 
       }
 
@@ -4930,7 +4931,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          //if(!is_sandboxed())
          {
 
-            nano()->graphics();
+            auto pnano = nano();
+
+            pnano->graphics();
 
             ::string strToolkit = ::windowing::get_user_toolkit_id();
 

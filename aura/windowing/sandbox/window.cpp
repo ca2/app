@@ -35,6 +35,10 @@ namespace sandbox_windowing
 
    void window::create_window()
 {
+
+      ::windowing::window::create_window();
+
+      return;
       
       bool bOk = true;
       

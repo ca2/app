@@ -144,6 +144,13 @@ namespace user
    void graphics_thread::defer_create_graphics_thread()
    {
 
+      if(is_thread())
+      {
+
+         return;
+
+      }
+
       //__refer(m_pgraphicsthread, m_puserinteraction->windowing_window()->m_pgraphicsthread);
 
       //if(m_pgraphicsthread)

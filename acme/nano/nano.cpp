@@ -57,10 +57,22 @@ namespace nano
    //{
    //   return system()->system_factory()->__factory(m_pdynamiclibrary);
    //}
+
+
    ::nano::graphics::graphics*nano::graphics()
    {
-      return system()->system_factory()->__factory(m_pgraphics);
+
+      auto psystem = system();
+
+      auto pfactory = psystem->system_factory();
+
+      auto pgraphics = pfactory->__factory(m_pgraphics);
+
+      return pgraphics;
+
    }
+
+
    ::nano::http::http*nano::http()
    {
       return system()->system_factory()->__factory(m_phttp);

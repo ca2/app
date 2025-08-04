@@ -3662,6 +3662,17 @@ namespace user
 
          bChange = true;
 
+#if MOBILE_PLATFORM
+
+         if(edisplay == e_display_normal)
+         {
+
+            edisplay = e_display_full_screen;
+
+         }
+
+#endif
+
          if (equivalence_sink(edisplay) == e_display_normal)
          {
 

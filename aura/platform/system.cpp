@@ -1209,7 +1209,9 @@ namespace aura
 
       }
 
-      ::file::path path = directory_system()->roaming() / "system/draw2d.txt";
+      auto pdirectorysystem = directory_system();
+
+      ::file::path path = pdirectorysystem->roaming() / "system/draw2d.txt";
 
       strImplementationName = file_system()->safe_get_string(path);
 

@@ -380,6 +380,16 @@ namespace acme
       }
 
 
+      void windowing::on_start_windowing_application()
+      {
+
+         system()->post_application_start();
+         system()->defer_post_file_open();
+         system()->post_application_started();
+
+      }
+
+
       ::windowing::windowing* windowing::windowing_windowing()
       {
 

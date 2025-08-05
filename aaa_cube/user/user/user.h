@@ -12,7 +12,7 @@ namespace bred
 
 
    class CLASS_DECL_BRED user :
-      virtual public ::base::user
+      virtual public ::berg::user
       //,
       //virtual public ::filemanager::component
    {

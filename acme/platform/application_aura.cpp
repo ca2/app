@@ -988,7 +988,7 @@ namespace platform
 
    //virtual ::user::user * user(){}
    // ::axis::user * axisuser() override{}
-   // ::base::user * user() override{}
+   // ::berg::user * user() override{}
    // ::bred::user * breduser() override{}
    // ::core::user * coreuser() override{}
 

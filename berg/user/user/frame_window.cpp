@@ -2849,7 +2849,7 @@ namespace user
    // }
    //
    //
-   // ::base::user* frame_window::user()
+   // ::berg::user* frame_window::user()
    // {
    //
    //

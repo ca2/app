@@ -96,7 +96,7 @@ namespace experience
       // ::berg::application * get_app();
       // ::berg::session * get_session();
       // ::berg::system * get_system();
-      // ::base::user * user();
+      // ::berg::user * user();
 
 
       virtual int adjust_client_height(int iHeight);

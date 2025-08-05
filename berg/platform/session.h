@@ -36,7 +36,7 @@ namespace berg
       virtual void on_instantiate_application(::platform::application* papp) override;
 
 
-      // ::base::user* user() override;
+      // ::berg::user* user() override;
       //
       //
       // ::berg::system* get_system();

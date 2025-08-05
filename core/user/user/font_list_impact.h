@@ -26,7 +26,7 @@ namespace user
       //::core::application * get_app();
       //::core::session * get_session();
       //::core::system * get_system();
-      //::base::user * user() override;
+      //::berg::user * user() override;
 
 
       //      // void assert_ok() const override;

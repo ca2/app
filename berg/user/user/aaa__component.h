@@ -558,7 +558,7 @@
 //{
 //
 //
-//   inline ::base::user* session::user() const
+//   inline ::berg::user* session::user() const
 //   { 
 //      
 //      return m_puser ? m_puser : nullptr; 

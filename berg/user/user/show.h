@@ -40,7 +40,7 @@ namespace user
       // ::berg::application* get_app() { return ::user::impact::get_app(); }
       // ::berg::session* get_session() { return ::user::impact::get_session(); }
       // ::berg::system* get_system() { return ::user::impact::get_system(); }
-      // ::base::user* user() override { return ::user::impact::user(); }
+      // ::berg::user* user() override { return ::user::impact::user(); }
 
 
       virtual void initialize(::particle * pparticle) override

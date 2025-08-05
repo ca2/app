@@ -86,7 +86,7 @@ namespace berg
    }
 
    
-   // ::base::user* session::user()
+   // ::berg::user* session::user()
    // {
    //
    //    return m_puser ? m_puser : nullptr;

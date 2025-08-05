@@ -132,7 +132,7 @@ namespace user
    // }
    //
    //
-   // ::base::user* document::user()
+   // ::berg::user* document::user()
    // {
    //
    //

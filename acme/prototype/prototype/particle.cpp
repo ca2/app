@@ -1958,7 +1958,7 @@ bool particle::_handle_call(::payload & payload, const ::scoped_string & scopeds
 // }
 //
 //
-// ::base::user * particle::user()
+// ::berg::user * particle::user()
 // {
 //
 //    return ::is_set(application()) ? application()->user() : nullptr;

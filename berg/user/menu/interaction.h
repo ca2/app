@@ -30,7 +30,7 @@ namespace user
       // ::berg::application* get_app();
       // ::berg::session* get_session();
       // ::berg::system* get_system();
-      // ::base::user* user() override;
+      // ::berg::user* user() override;
 
       void install_message_routing(::channel * pchannel) override;
 

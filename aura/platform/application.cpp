@@ -9436,7 +9436,7 @@ namespace aura
    // }
    //
    //
-   // ::base::user * application::user()
+   // ::berg::user * application::user()
    // {
    //
    //    return aurauser();

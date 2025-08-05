@@ -49,7 +49,7 @@ namespace user
 
 
       //::axis::user* m_paxisuser;
-      //::base::user* m_pbaseuser;
+      //::berg::user* m_pbaseuser;
       //::bred::user* m_pbreduser;
       //::core::user* m_pcoreuser;
 

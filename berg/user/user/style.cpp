@@ -69,7 +69,7 @@ namespace berg
    // }
    //
    //
-   // ::base::user* style::user()
+   // ::berg::user* style::user()
    // {
    //
    //

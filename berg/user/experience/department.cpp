@@ -269,7 +269,7 @@ namespace berg
    void user::initialize1_experience()
    {
 
-      information() << "base::user::initialize1_experience start";
+      information() << "berg::user::initialize1_experience start";
 
       //auto estatus = 
       

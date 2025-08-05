@@ -64,7 +64,7 @@ namespace bred
 //
 //      printf("core::user::initialize\n");
 //
-//      ::base::user::initialize(pparticle);
+//      ::berg::user::initialize(pparticle);
 //
 //      //if (!estatus)
 //      //{
@@ -82,7 +82,7 @@ namespace bred
    {
 
 
-      ::base::user::init1();
+      ::berg::user::init1();
 //
 //      factory()->add_factory_item < ::user::picture::picture_impl >();
 //
@@ -113,9 +113,9 @@ namespace bred
 void user::init(){
 //   {
 //
-      ::base::user::init();
+      ::berg::user::init();
 //
-//      //if (!::base::user::init())
+//      //if (!::berg::user::init())
 //      //{
 //
 //      //   return ::error_failed;
@@ -385,7 +385,7 @@ void user::init(){
 void user::init2()
 {
 //
-      ::base::user::init2();
+      ::berg::user::init2();
 //
 //      //if (!::acme::department::init2())
 //      //{

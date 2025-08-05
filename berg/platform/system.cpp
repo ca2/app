@@ -21,7 +21,7 @@ namespace berg
       common_construct();
 
       factory()->add_factory_item< ::berg::session, ::platform::session>();
-      factory()->add_factory_item< ::base::user, ::user::user>();
+      factory()->add_factory_item< ::berg::user, ::user::user>();
 
    }
 
@@ -120,7 +120,7 @@ namespace berg
    //    axis::system::on_set_platform();
    //
    //    factory()->add_factory_item< ::berg::session, ::platform::session>();
-   //    factory()->add_factory_item< ::base::user, ::user::user>();
+   //    factory()->add_factory_item< ::berg::user, ::user::user>();
    //
    // }
 
@@ -145,7 +145,7 @@ namespace berg
       //base_factory(factory());
 
 
-      //factory()->add_factory_item < ::base::user, ::user::user >();
+      //factory()->add_factory_item < ::berg::user, ::user::user >();
 
       //return estatus;
 

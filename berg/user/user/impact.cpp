@@ -826,7 +826,7 @@ namespace user
    // }
    //
    //
-   // ::base::user* impact::user()
+   // ::berg::user* impact::user()
    // {
    //
    //

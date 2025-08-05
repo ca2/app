@@ -57,7 +57,7 @@ namespace berg
    user::user()
    {
 
-      print_line("base::user::user");
+      print_line("berg::user::user");
 
       //m_pbaseuser = this;
 
@@ -75,7 +75,7 @@ namespace berg
 
       //auto estatus =
 
-      print_line("base::user::initialize");
+      print_line("berg::user::initialize");
 
       ::axis::user::initialize(pparticle);
 
@@ -88,7 +88,7 @@ namespace berg
 
       //estatus =
 
-      print_line("base::user::initialize (2)");
+      print_line("berg::user::initialize (2)");
 
       ::user::document_manager_container::initialize(pparticle);
 
@@ -136,7 +136,7 @@ namespace berg
    // }
 
 
-   //::base::user* user::user()
+   //::berg::user* user::user()
    //{
 
    //   
@@ -302,9 +302,9 @@ namespace berg
 
       bool bHasUninstall = psystem->is_true("uninstall");
 
-      debug_print("base::user::initialize bHasInstall %c", bHasInstall);
+      debug_print("berg::user::initialize bHasInstall %c", bHasInstall);
 
-      debug_print("base::user::initialize bHasUninstall %c", bHasUninstall);
+      debug_print("berg::user::initialize bHasUninstall %c", bHasUninstall);
 
       //return true;
 

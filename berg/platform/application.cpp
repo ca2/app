@@ -45,7 +45,7 @@ namespace berg
       ::axis::application::on_set_platform();
 
       factory()->add_factory_item< ::berg::system, ::platform::system>();
-      factory()->add_factory_item< ::base::user, ::user::user>();
+      factory()->add_factory_item< ::berg::user, ::user::user>();
 
    }
 

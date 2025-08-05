@@ -10,7 +10,7 @@ namespace user
 
 
    class CLASS_DECL_BERG options_impact_handler :
-      virtual public ::base::form_handler
+      virtual public ::berg::form_handler
    {
    public:
 

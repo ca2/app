@@ -31,7 +31,7 @@ namespace experience
       // ::berg::application * get_app();
       // ::berg::session * get_session();
       // ::berg::system * get_system();
-      // ::base::user * user() override;
+      // ::berg::user * user() override;
 
 
       virtual void update();

@@ -8804,7 +8804,7 @@ namespace user
 
 #if defined(LINUX) || defined(MACOS)
 
-         insert_text(strText, false, e_source_user);
+         insert_text(scopedstrText, false, e_source_user);
 
 #else
 

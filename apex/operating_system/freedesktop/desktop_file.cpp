@@ -71,31 +71,31 @@ namespace freedesktop
    string desktop_file::proper_category(const ::scoped_string & scopedstr)
    {
 
-      if(str.case_insensitive_order("Multimedia") == 0)
+      if(scopedstr.case_insensitive_order("Multimedia") == 0)
       {
 
          return "AudioVideo";
 
       }
-      else if(str.case_insensitive_order("Accessory") == 0)
+      else if(scopedstr.case_insensitive_order("Accessory") == 0)
       {
 
          return "Utility";
 
       }
-      else if(str.case_insensitive_order("Accessories") == 0)
+      else if(scopedstr.case_insensitive_order("Accessories") == 0)
       {
 
       return "Utility";
 
       }
-      else if(str.case_insensitive_order("Utility") == 0)
+      else if(scopedstr.case_insensitive_order("Utility") == 0)
       {
 
          return "Utility";
 
       }
-      else if(str.case_insensitive_order("Utilities") == 0)
+      else if(scopedstr.case_insensitive_order("Utilities") == 0)
       {
 
          return "Utility";
@@ -106,7 +106,7 @@ namespace freedesktop
 
          string_array stra = registered_categories();
 
-         auto iFind = stra.case_insensitive_find_first(str);
+         auto iFind = stra.case_insensitive_find_first(scopedstr);
 
          if(found(iFind))
          {
@@ -220,7 +220,7 @@ namespace freedesktop
    void desktop_file::set_app_id(const ::scoped_string & scopedstrAppId)
    {
 
-      m_strAppId = strAppId;
+      m_strAppId = scopedstrAppId;
 
    }
 

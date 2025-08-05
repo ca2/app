@@ -8,7 +8,7 @@ add_subdirectory(aqua)
 add_subdirectory(aura)
 add_subdirectory(nano2d)
 add_subdirectory(axis)
-add_subdirectory(base)
+add_subdirectory(berg)
 add_subdirectory(bred)
 add_subdirectory(core)
 

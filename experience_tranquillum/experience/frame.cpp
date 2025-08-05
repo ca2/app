@@ -6,10 +6,10 @@
 #include "aura/graphics/image/source.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/image/drawing.h"
-#include "base/platform/system.h"
-#include "base/user/experience/control_box.h"
-#include "base/user/experience/frame_window.h"
-#include "base/user/experience/size_manager.h"
+#include "berg/platform/system.h"
+#include "berg/user/experience/control_box.h"
+#include "berg/user/experience/frame_window.h"
+#include "berg/user/experience/size_manager.h"
 
 
 namespace experience_tranquillum

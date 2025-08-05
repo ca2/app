@@ -12,10 +12,10 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/array.h"
 #include "aura/message/user.h"
-#include "base/user/user/document.h"
-#include "base/user/user/impact.h"
-#include "base/user/user/impact_system.h"
-#include "base/platform/application.h"
+#include "berg/user/user/document.h"
+#include "berg/user/user/impact.h"
+#include "berg/user/user/impact_system.h"
+#include "berg/platform/application.h"
 #include "core/platform/session.h"
 
 

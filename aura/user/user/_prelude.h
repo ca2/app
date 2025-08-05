@@ -129,24 +129,24 @@ typedef ::pointer<::windowing::window>window_pointer;
 
 #if defined(__cplusplus) || defined(__cplusplus_winrt)
 
-//#include "base/user/user/front_end_style.h"
-//#include "base/user/user/front_end.h"
-#include "base/user/user/wait_cursor.h"
+//#include "berg/user/user/front_end_style.h"
+//#include "berg/user/user/front_end.h"
+#include "berg/user/user/wait_cursor.h"
 #include "simple_ui/simple_ui_style.h"
 #include "simple_ui/simple_ui_interaction.h"
-#include "base/user/user/control_bar.h"
-#include "base/user/user/scroll.h"
-#include "base/user/simple_ui/simple_ui_interaction.h"
-#include "base/user/user/box.h"
-#include "base/user/user/frame_window.h"
-#include "base/user/user/server.h"
-#include "base/user/user/impact_system.h"
+#include "berg/user/user/control_bar.h"
+#include "berg/user/user/scroll.h"
+#include "berg/user/simple_ui/simple_ui_interaction.h"
+#include "berg/user/user/box.h"
+#include "berg/user/user/frame_window.h"
+#include "berg/user/user/server.h"
+#include "berg/user/user/impact_system.h"
 
-#include "base/user/user/single_document_template.h"
-#include "base/user/user/multiple_document_template.h"
+#include "berg/user/user/single_document_template.h"
+#include "berg/user/user/multiple_document_template.h"
 
 
-//#include "base/user/user/tooltip.h"
+//#include "berg/user/user/tooltip.h"
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -159,13 +159,13 @@ typedef ::pointer<::windowing::window>window_pointer;
 
 
 
-#include "base/user/user/form_callback.h"
+#include "berg/user/user/form_callback.h"
 
 
-#include "base/user/user/document_data_map.h"
-#include "base/user/user/document.h"
-#include "base/user/user/impact.h"
-#include "base/user/user/show.h"
+#include "berg/user/user/document_data_map.h"
+#include "berg/user/user/document.h"
+#include "berg/user/user/impact.h"
+#include "berg/user/user/show.h"
 
 
 
@@ -179,7 +179,7 @@ typedef ::pointer<::windowing::window>window_pointer;
 
 
 
-//#include "base/user/user/window_map.h"
+//#include "berg/user/user/window_map.h"
 
 
 

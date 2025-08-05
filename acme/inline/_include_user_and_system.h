@@ -7,8 +7,8 @@
 #include "bred/user/user/user.h"
 #include "bred/platform/system.h"
 #elif defined(CLASS_DECL_BASE)
-#include "base/user/user/user.h"
-#include "base/platform/system.h"
+#include "berg/user/user/user.h"
+#include "berg/platform/system.h"
 #elif defined(CLASS_DECL_AXIS)
 #include "axis/user/user/user.h"
 #include "axis/platform/system.h"

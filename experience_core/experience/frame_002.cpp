@@ -2,10 +2,10 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/path.h"
 #include "frame_002.h"
-#include "base/user/experience/frame_window.h"
-#include "base/user/experience/size_manager.h"
-#include "base/user/experience/dock_manager.h"
-#include "base/user/experience/move_manager.h"
+#include "berg/user/experience/frame_window.h"
+#include "berg/user/experience/size_manager.h"
+#include "berg/user/experience/dock_manager.h"
+#include "berg/user/experience/move_manager.h"
 
 
 #define GRIP_CORNER_LARGE_CX 16

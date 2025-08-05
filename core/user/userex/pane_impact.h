@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "base/user/user/impact.h"
-#include "base/user/user/impact_creator.h"
+#include "berg/user/user/impact.h"
+#include "berg/user/user/impact_creator.h"
 
 
 namespace userex

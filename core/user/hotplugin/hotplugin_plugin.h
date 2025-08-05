@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "base/user/simple_ui/simple_ui_style.h"
-#include "base/user/simple_ui/simple_ui_interaction.h"
-#include "base/base/base/session.h"
+#include "berg/user/simple_ui/simple_ui_style.h"
+#include "berg/user/simple_ui/simple_ui_interaction.h"
+#include "berg/base/base/session.h"
 
 
 namespace hotplugin

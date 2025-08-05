@@ -7,8 +7,8 @@
 #include "frame_013.h"
 #include "frame_Minimal001.h"
 #include "experience.h"
-#include "base/platform/session.h"
-#include "base/user/user/user.h"
+#include "berg/platform/session.h"
+#include "berg/user/user/user.h"
 #include "aura/windowing/windowing.h"
 
 

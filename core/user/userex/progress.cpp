@@ -11,8 +11,8 @@
 #include "aura/user/user/progress.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/windowing.h"
-#include "base/user/user/multiple_document_template.h"
-#include "base/user/user/document.h"
+#include "berg/user/user/multiple_document_template.h"
+#include "berg/user/user/document.h"
 #include "core/user/user/user.h"
 
 

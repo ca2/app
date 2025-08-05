@@ -8,8 +8,8 @@
 #include "frame_011.h"
 #include "frame_022.h"
 #include "frame_Minimal001.h"
-#include "base/platform/session.h"
-#include "base/user/user/user.h"
+#include "berg/platform/session.h"
+#include "berg/user/user/user.h"
 
 
 namespace experience_tranquillum

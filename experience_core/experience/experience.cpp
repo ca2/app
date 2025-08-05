@@ -2,8 +2,8 @@
 
 #include "aura/windowing/windowing.h"
 #include "experience.h"
-#include "base/platform/session.h"
-#include "base/user/user/user.h"
+#include "berg/platform/session.h"
+#include "berg/user/user/user.h"
 #include "frame_001.h"
 #include "frame_002.h"
 #include "frame_005.h"

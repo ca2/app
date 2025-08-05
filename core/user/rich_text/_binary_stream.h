@@ -7,7 +7,7 @@
 #include "core/user/rich_text/data.h"
 #include "core/user/rich_text/edit_impl.h"
 #include "acme/prototype/collection/_array_binary_stream.h"
-#include "base/user/user/_binary_stream.h"
+#include "berg/user/user/_binary_stream.h"
 
 
 // template < typename FILE >

@@ -10,7 +10,7 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/message/user.h"
-#include "base/user/experience/control_box.h"
+#include "berg/user/experience/control_box.h"
 
 
 namespace experience_tranquillum

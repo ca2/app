@@ -7,10 +7,10 @@
 #include "core/user/userex/pane_tab_impact.h"
 #include "core/user/user/user.h"
 #include "core/platform/session.h"
-#include "base/user/simple/frame_window.h"
-#include "base/user/user/single_document_template.h"
-#include "base/user/user/document.h"
-#include "base/user/form/document.h"
+#include "berg/user/simple/frame_window.h"
+#include "berg/user/user/single_document_template.h"
+#include "berg/user/user/document.h"
+#include "berg/user/form/document.h"
 
 
 namespace filemanager

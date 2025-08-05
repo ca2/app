@@ -9,8 +9,8 @@
 #include "acme/handler/request.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/write_text/font.h"
-#include "base/user/user/impact.h"
-#include "base/user/user/multiple_document_template.h"
+#include "berg/user/user/impact.h"
+#include "berg/user/user/multiple_document_template.h"
 #include "core/platform/application.h"
 
 

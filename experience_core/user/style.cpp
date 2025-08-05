@@ -14,11 +14,11 @@
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/user/user/frame_interaction.h"
-#include "base/user/simple/scroll_bar.h"
-#include "base/user/user/tab.h"
-#include "base/user/user/tab_data.h"
-#include "base/user/user/tab_pane.h"
-#include "base/platform/session.h"
+#include "berg/user/simple/scroll_bar.h"
+#include "berg/user/user/tab.h"
+#include "berg/user/user/tab_data.h"
+#include "berg/user/user/tab_pane.h"
+#include "berg/platform/session.h"
 
 
 // pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The int_size is the int_size of the alien!!

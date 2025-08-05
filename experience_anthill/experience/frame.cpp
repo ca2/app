@@ -11,8 +11,8 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/windowing/windowing.h"
-#include "base/user/experience/frame_window.h"
-#include "base/user/experience/size_manager.h"
+#include "berg/user/experience/frame_window.h"
+#include "berg/user/experience/size_manager.h"
 
 
 namespace experience_anthill

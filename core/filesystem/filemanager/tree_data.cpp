@@ -17,7 +17,7 @@
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/shell.h"
 #include "aura/template/list.h"
-#include "base/user/user/user.h"
+#include "berg/user/user/user.h"
 #include "aura/message/user.h"
 #include "aura/windowing/window.h"
 #include "core/filesystem/userfs/item.h"

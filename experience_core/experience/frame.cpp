@@ -9,9 +9,9 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/imaging.h"
 #include "aura/windowing/windowing.h"
-#include "base/user/experience/control_box.h"
-#include "base/user/experience/frame_window.h"
-#include "base/user/experience/size_manager.h"
+#include "berg/user/experience/control_box.h"
+#include "berg/user/experience/frame_window.h"
+#include "berg/user/experience/size_manager.h"
 
 
 namespace experience_core

@@ -18,7 +18,7 @@
 #include "acme/platform/system.h"
 #include "apex/filesystem/fs/set.h"
 #include "aura/graphics/image/icon.h"
-#include "base/user/user/tab_pane.h"
+#include "berg/user/user/tab_pane.h"
 #include "core/user/user/user.h"
 #include "core/platform/session.h"
 #include "core/platform/application.h"

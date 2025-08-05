@@ -13,11 +13,11 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/write_text/font.h"
-#include "base/platform/session.h"
-#include "base/user/simple/scroll_bar.h"
-#include "base/user/user/tab.h"
-#include "base/user/user/tab_data.h"
-#include "base/user/user/tab_pane.h"
+#include "berg/platform/session.h"
+#include "berg/user/simple/scroll_bar.h"
+#include "berg/user/user/tab.h"
+#include "berg/user/user/tab_data.h"
+#include "berg/user/user/tab_pane.h"
 
 
 

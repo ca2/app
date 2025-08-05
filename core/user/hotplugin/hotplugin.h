@@ -50,24 +50,24 @@ namespace hotplugin
 
 
 
-   CLASS_DECL_BASE ::aura::system * get_aura_system();
+   CLASS_DECL_BERG ::aura::system * get_aura_system();
 
-   CLASS_DECL_BASE bool defer_start_base_system();
-   CLASS_DECL_BASE void defer_stop_base_system();
+   CLASS_DECL_BERG bool defer_start_base_system();
+   CLASS_DECL_BERG void defer_stop_base_system();
 
 
 #ifdef WINDOWS
 
    // hotplugin plugin dll HINSTANCE
-   CLASS_DECL_BASE HINSTANCE get_hinstance();
-   CLASS_DECL_BASE void set_hinstance(HINSTANCE hinstance);
-   //CLASS_DECL_BASE void entry_hall_windows_on_paint(HDC hdc,const ::int_rectangle & rectangle, const ::scoped_string & scopedstrEntryHallText);
+   CLASS_DECL_BERG HINSTANCE get_hinstance();
+   CLASS_DECL_BERG void set_hinstance(HINSTANCE hinstance);
+   //CLASS_DECL_BERG void entry_hall_windows_on_paint(HDC hdc,const ::int_rectangle & rectangle, const ::scoped_string & scopedstrEntryHallText);
 
 
 
 #endif
 
-      CLASS_DECL_BASE void entry_hall_windows_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, const ::scoped_string & scopedstrEntryHallText);
+      CLASS_DECL_BERG void entry_hall_windows_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, const ::scoped_string & scopedstrEntryHallText);
 
 } // namespace ca2plugin_container
 

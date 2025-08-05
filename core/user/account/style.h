@@ -5,7 +5,7 @@ namespace account
 {
 
 
-   class CLASS_DECL_BASE style :
+   class CLASS_DECL_BERG style :
       virtual public ::user::style
    {
    public:

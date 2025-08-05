@@ -283,7 +283,7 @@ namespace axis
 } // namespace axis
 
 
-namespace base
+namespace berg
 {
 
 
@@ -293,7 +293,7 @@ namespace base
    class user;
 
 
-} // namespace base
+} // namespace berg
 
 
 namespace bred

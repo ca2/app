@@ -8,7 +8,7 @@ namespace install
 {
 
 
-   class CLASS_DECL_BASE starter_start :
+   class CLASS_DECL_BERG starter_start :
       virtual public object
    {
    public:

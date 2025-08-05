@@ -19,14 +19,14 @@ namespace install
    };
 
 
-   class CLASS_DECL_BASE plugin :
+   class CLASS_DECL_BERG plugin :
       virtual public ::hotplugin::plugin,
       virtual public ::account::login_callback
    {
    public:
 
 
-      class CLASS_DECL_BASE thread_start_ca2 :
+      class CLASS_DECL_BERG thread_start_ca2 :
          public thread
       {
       public:

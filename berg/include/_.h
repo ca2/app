@@ -16,7 +16,7 @@
 
 
 #undef LAYER_NAMESPACE
-#define LAYER_NAMESPACE base
+#define LAYER_NAMESPACE berg
 
 
 #define __spin_namespace berg // back bone / four-letter "spin*" namespace name

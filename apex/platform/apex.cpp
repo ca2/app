@@ -1131,7 +1131,7 @@ void on_term_thread();
 //   } // namespace static_start
 //
 //
-//} // namespace base
+//} // namespace berg
 //
 //
 //

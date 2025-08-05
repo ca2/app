@@ -5,7 +5,7 @@ namespace hotplugin
 {
 
 
-   class CLASS_DECL_BASE host :
+   class CLASS_DECL_BERG host :
       virtual public plugin
    {
    public:

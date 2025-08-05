@@ -5,7 +5,7 @@ namespace hotplugin
 {
 
 
-   class CLASS_DECL_BASE composer
+   class CLASS_DECL_BERG composer
    {
    public:
 

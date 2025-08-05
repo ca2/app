@@ -13,7 +13,7 @@ namespace hotplugin
    class host;
 
 
-   class CLASS_DECL_BASE plugin :
+   class CLASS_DECL_BERG plugin :
       virtual public ::user::interaction,
       virtual public ::simple_ui::style,
       virtual public ::berg::session,

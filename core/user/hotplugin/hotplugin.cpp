@@ -17,7 +17,7 @@ namespace hotplugin
 
 
 
-   CLASS_DECL_BASE ::aura::system * get_aura_system()
+   CLASS_DECL_BERG ::aura::system * get_aura_system()
    {
 
       return g_paurasystem;
@@ -25,7 +25,7 @@ namespace hotplugin
    }
 
 
-   CLASS_DECL_BASE bool defer_start_base_system()
+   CLASS_DECL_BERG bool defer_start_base_system()
    {
 
       if(g_paurasystem != nullptr)
@@ -147,7 +147,7 @@ pdirectorysystem->system() / "config\\plugin\\npca2_beg_sleep.txt"))
    HINSTANCE g_hinstance = nullptr; // hotplugin plugin dll HINSTANCE
 
 
-   CLASS_DECL_BASE HINSTANCE get_hinstance()
+   CLASS_DECL_BERG HINSTANCE get_hinstance()
    {
 
       return g_hinstance;
@@ -155,7 +155,7 @@ pdirectorysystem->system() / "config\\plugin\\npca2_beg_sleep.txt"))
    }
 
 
-   CLASS_DECL_BASE void set_hinstance(HINSTANCE hinstance)
+   CLASS_DECL_BERG void set_hinstance(HINSTANCE hinstance)
    {
 
       g_hinstance = hinstance;
@@ -166,7 +166,7 @@ pdirectorysystem->system() / "config\\plugin\\npca2_beg_sleep.txt"))
 #endif
 
 
-   CLASS_DECL_BASE void defer_stop_base_system()
+   CLASS_DECL_BERG void defer_stop_base_system()
    {
 
       g_iSystemCount--;

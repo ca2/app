@@ -6,7 +6,7 @@
 #elif defined(CLASS_DECL_BRED)
 #include "bred/user/user/user.h"
 #include "bred/platform/system.h"
-#elif defined(CLASS_DECL_BASE)
+#elif defined(CLASS_DECL_BERG)
 #include "berg/user/user/user.h"
 #include "berg/platform/system.h"
 #elif defined(CLASS_DECL_AXIS)
@@ -57,7 +57,7 @@ public:
 //#endif
 //#ifdef CLASS_DECL_CORE
 //   ::static_object_factory < ::core::user > m_factoryUser{::system_setup::flag_object_user};
-//#elif defined(CLASS_DECL_BASE)
+//#elif defined(CLASS_DECL_BERG)
 //   ::static_object_factory < ::berg::user > m_factoryUser{ ::system_setup::flag_object_user };
 //#elif defined(CLASS_DECL_AXIS)
 //   ::static_object_factory < ::axis::user > m_factoryUser{ ::system_setup::flag_object_user };

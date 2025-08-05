@@ -146,7 +146,7 @@ list(APPEND library_references
         aqua
         aura
         axis
-        base)
+        berg)
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source})

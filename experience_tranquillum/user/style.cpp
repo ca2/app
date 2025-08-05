@@ -826,7 +826,7 @@ namespace experience_tranquillum
       }
 
 
-      return ::base::style::get_color(pinteraction, eelement, estate);
+      return ::berg::style::get_color(pinteraction, eelement, estate);
 
    }
 

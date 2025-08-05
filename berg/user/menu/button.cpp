@@ -196,12 +196,12 @@ namespace user
    void menu_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::pointer<::base::style>pbasestyle = get_style(pgraphics);
+      ::pointer<::berg::style>pbergstyle = get_style(pgraphics);
 
-      if (pbasestyle)
+      if (pbergstyle)
       {
 
-         if (pbasestyle->_001OnDrawMenuInteraction(pgraphics, this))
+         if (pbergstyle->_001OnDrawMenuInteraction(pgraphics, this))
          {
 
             return;

@@ -37,7 +37,7 @@ list(APPEND library_source
 
 
 list(APPEND library_references
-        acme apex aqua aura axis base)
+        acme apex aqua aura axis berg)
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source})

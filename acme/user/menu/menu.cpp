@@ -792,7 +792,7 @@ menu::~menu()
 //
 //   //   ::collection::count iItemCount = pmenuitema->get_size();
 //
-//   //   ::pointer<::base::style>pbasestyle = pstyle;
+//   //   ::pointer<::berg::style>pbergstyle = pstyle;
 //
 //   //   for (int i = 0; i < iItemCount; i++)
 //   //   {
@@ -801,7 +801,7 @@ menu::~menu()
 //
 //   //      pmenuitema->element_at(i)->m_rectangleUi.right() = x + m_iaColumnWidth[pitem->m_iColumn];
 //
-//   //      pbasestyle->prepare_menu(pgraphics, pitem);
+//   //      pbergstyle->prepare_menu(pgraphics, pitem);
 //
 //   //      pitem->m_rectangleUi.right() = maximum(pitem->m_rectangleUi.right(), pitem->m_rectangleUi.left() + m_sizeMinimum.cx());
 //
@@ -811,10 +811,10 @@ menu::~menu()
 //
 //   //   }
 //
-//   //   if (pbasestyle && m_bCloseButton)
+//   //   if (pbergstyle && m_bCloseButton)
 //   //   {
 //
-//   //      pbasestyle->prepare_menu(pgraphics, m_pitemClose);
+//   //      pbergstyle->prepare_menu(pgraphics, m_pitemClose);
 //
 //   //      m_pitemClose->m_puserinteraction->place(m_pitemClose->m_rectangleUi);
 //
@@ -2192,7 +2192,7 @@ menu::~menu()
 //
 //         ::collection::count iItemCount = pmenuitema->get_size();
 //
-//         ::pointer<::base::style>pbasestyle = pstyle;
+//         ::pointer<::berg::style>pbergstyle = pstyle;
 //
 //         for (int i = 0; i < iItemCount; i++)
 //         {
@@ -2209,7 +2209,7 @@ menu::~menu()
 //
 //            }
 //
-//               pbasestyle->prepare_menu(pgraphics, pitem);
+//               pbergstyle->prepare_menu(pgraphics, pitem);
 //
 //            //pitem->m_rectangleUi.right() = maximum(pitem->m_rectangleUi.right(), pitem->m_rectangleUi.left() + m_sizeMinimum.cx());
 //
@@ -2222,10 +2222,10 @@ menu::~menu()
 //         if (m_bCloseButton)
 //         {
 //
-//            if (pbasestyle)
+//            if (pbergstyle)
 //            {
 //
-//               pbasestyle->prepare_menu(pgraphics, m_pitemClose);
+//               pbergstyle->prepare_menu(pgraphics, m_pitemClose);
 //
 //            }
 //

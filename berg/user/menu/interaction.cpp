@@ -138,7 +138,7 @@ namespace user
    void menu_interaction::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::pointer<::base::style>pstyle = get_style(pgraphics);
+      ::pointer<::berg::style>pstyle = get_style(pgraphics);
 
       if (pstyle)
       {

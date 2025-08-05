@@ -10,7 +10,7 @@ namespace experience_tranquillum
 
 
    class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM style :
-   virtual public ::base::style
+   virtual public ::berg::style
    {
    public:
 

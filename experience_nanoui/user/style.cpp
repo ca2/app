@@ -46,7 +46,7 @@ namespace experience_nanoui
    void style::on_initialize_particle()
    {
 
-      ::base::style::on_initialize_particle();
+      ::berg::style::on_initialize_particle();
 
       if (::is_null(m_pfont))
       {

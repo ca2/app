@@ -9,7 +9,7 @@ namespace experience_anthill
 
 
    class CLASS_DECL_APP_EXPERIENCE_ANTHILL style :
-      virtual public ::base::style
+      virtual public ::berg::style
    {
    public:
 

@@ -61,7 +61,7 @@ if (MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_nanoui.lib")
     target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_nanoui.def")
-    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis base)
+    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis berg)
 elseif(${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
@@ -72,7 +72,7 @@ elseif(${LINUX} OR ${__BSD__} OR ${ANDROID})
 
     
     target_link_libraries(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})
-    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis base)
+    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis berg)
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 

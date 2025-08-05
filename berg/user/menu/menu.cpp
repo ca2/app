@@ -953,7 +953,7 @@ namespace user
 
    //   ::collection::count iItemCount = pmenuitema->get_size();
 
-   //   ::pointer<::base::style>pbasestyle = pstyle;
+   //   ::pointer<::berg::style>pbergstyle = pstyle;
 
    //   for (int i = 0; i < iItemCount; i++)
    //   {
@@ -962,7 +962,7 @@ namespace user
 
    //      pmenuitema->element_at(i)->m_rectangleUi.right() = x + m_iaColumnWidth[pitem->m_iColumn];
 
-   //      pbasestyle->prepare_menu(pgraphics, pitem);
+   //      pbergstyle->prepare_menu(pgraphics, pitem);
 
    //      pitem->m_rectangleUi.right() = maximum(pitem->m_rectangleUi.right(), pitem->m_rectangleUi.left() + m_sizeMinimum.cx());
 
@@ -972,10 +972,10 @@ namespace user
 
    //   }
 
-   //   if (pbasestyle && m_bCloseButton)
+   //   if (pbergstyle && m_bCloseButton)
    //   {
 
-   //      pbasestyle->prepare_menu(pgraphics, m_pitemClose);
+   //      pbergstyle->prepare_menu(pgraphics, m_pitemClose);
 
    //      m_pitemClose->m_puserinteraction->place(m_pitemClose->m_rectangleUi);
 
@@ -1090,7 +1090,7 @@ namespace user
 
       //auto pstyle = m_puserinteractionOwner->get_style(pgraphics);
 
-      ::pointer<::base::style>pstyle = get_style(pgraphics);
+      ::pointer<::berg::style>pstyle = get_style(pgraphics);
 
       //auto crBackground = get_color(pstyle, e_element_background);
 
@@ -2465,7 +2465,7 @@ namespace user
 
       ::collection::count iItemCount = pmenuitema->get_size();
 
-      ::pointer<::base::style>pbasestyle = pstyle;
+      ::pointer<::berg::style>pbergstyle = pstyle;
 
       for (int i = 0; i < iItemCount; i++)
       {
@@ -2482,7 +2482,7 @@ namespace user
 
          }
 
-         pbasestyle->prepare_menu(pgraphics, pitem);
+         pbergstyle->prepare_menu(pgraphics, pitem);
 
          //pitem->m_rectangleUi.right() = maximum(pitem->m_rectangleUi.right(), pitem->m_rectangleUi.left() + m_sizeMinimum.cx());
 
@@ -2495,10 +2495,10 @@ namespace user
       if (m_bCloseButton)
       {
 
-         if (pbasestyle)
+         if (pbergstyle)
          {
 
-            pbasestyle->prepare_menu(pgraphics, m_pitemClose);
+            pbergstyle->prepare_menu(pgraphics, m_pitemClose);
 
          }
 

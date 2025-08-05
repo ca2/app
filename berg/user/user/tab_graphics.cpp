@@ -64,7 +64,7 @@ namespace user
    void tab::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::pointer<::base::style>pstyle = get_style(pgraphics);
+      ::pointer<::berg::style>pstyle = get_style(pgraphics);
 
       if (pstyle)
       {
@@ -398,12 +398,12 @@ namespace user
          if (true)
          {
 
-            ::pointer<::base::style>pbasestyle = pstyle;
+            ::pointer<::berg::style>pbergstyle = pstyle;
 
-            if (pbasestyle && get_element_rectangle(iIndex, rectangleText, ::e_element_text))
+            if (pbergstyle && get_element_rectangle(iIndex, rectangleText, ::e_element_text))
             {
 
-               pbasestyle->_001OnTabPaneDrawTitle(*ppane, this, pgraphics, rectangleText, pbrushText, estate);
+               pbergstyle->_001OnTabPaneDrawTitle(*ppane, this, pgraphics, rectangleText, pbrushText, estate);
 
             }
 
@@ -754,7 +754,7 @@ namespace user
 
       }
 
-      ::pointer<::base::style>pstyle = get_style(pgraphics);
+      ::pointer<::berg::style>pstyle = get_style(pgraphics);
 
       if (pstyle)
       {

@@ -44,7 +44,7 @@ namespace experience_anthill
    void style::initialize_theme()
    {
 
-      ::base::style::initialize_theme();
+      ::berg::style::initialize_theme();
 
       __defer_construct(m_pfont);
 

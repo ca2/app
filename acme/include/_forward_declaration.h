@@ -1913,7 +1913,7 @@ namespace axis
 } // namespace axis
 
 
-namespace base
+namespace berg
 {
 
 
@@ -1932,7 +1932,7 @@ namespace base
    class user;
 
 
-} // namespace base
+} // namespace berg
 
 
 namespace bred
@@ -2364,7 +2364,7 @@ namespace acme
 
 
 // only usable from base and base dependants
-namespace base
+namespace berg
 {
 
    class application;

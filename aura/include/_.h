@@ -633,7 +633,7 @@ namespace aura
 ////} // namespace axis
 ////
 ////
-////namespace base
+////namespace berg
 ////{
 ////
 ////
@@ -643,7 +643,7 @@ namespace aura
 ////   class user;
 ////
 ////
-////} // namespace base
+////} // namespace berg
 ////
 ////
 ////namespace core
@@ -1218,7 +1218,7 @@ namespace aura
 ////
 ////
 ////// only usable from base and base dependants
-////namespace base
+////namespace berg
 ////{
 ////
 ////   class application;

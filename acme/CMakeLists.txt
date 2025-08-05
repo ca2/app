@@ -1167,6 +1167,7 @@ list(APPEND library_source
         prototype/string/command_line.cpp
         prototype/string/command_line.h
         prototype/string/composite.h
+   prototype/string/c_string.cpp
         prototype/string/c_string.h
         #prototype/string/dup.cpp
         prototype/string/encoding_exception.cpp

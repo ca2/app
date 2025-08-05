@@ -99,6 +99,14 @@ namespace c
 
          return !strcmp(m_psz, psz);
       }
+
+      int size() const;
+
+      int find_replace(const_char_pointer search, const_char_pointer replace);
+      int find_replace(char search, char replace);
+
+      string & operator += (const_char_pointer p);
+
    };
 
 } // namespace c

@@ -14359,7 +14359,7 @@ if(get_parent())
 
       }
 
-      if (is_top_level())
+      if (is_top_level() && !is_child_interaction())
       {
 
          window()->message_handler(pmessage);

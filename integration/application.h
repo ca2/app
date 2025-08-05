@@ -19,7 +19,7 @@ namespace app_integration
    };
 
    class CLASS_DECL_APP_INTEGRATION application :
-      virtual public ::base::application
+      virtual public ::berg::application
    {
    public:
 

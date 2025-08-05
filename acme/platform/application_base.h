@@ -65,8 +65,8 @@ namespace platform
       //      // void dump(dump_context & dumpcontext) const override;
 
 
-      // ::base::system* get_system();
-      // ::base::session* get_session();
+      // ::berg::system* get_system();
+      // ::berg::session* get_session();
 
 
       virtual ::pointer<::user::document>defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction* puiParent, e_window_flag ewindowflag, const ::atom& atom);

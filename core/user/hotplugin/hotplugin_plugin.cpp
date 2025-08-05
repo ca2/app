@@ -109,7 +109,7 @@ namespace hotplugin
 
       ::user::interaction::destroy();
 
-      ::base::session::destroy();
+      ::berg::session::destroy();
 
    }
 

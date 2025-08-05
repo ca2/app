@@ -44,7 +44,7 @@ namespace berg
 
       ::axis::application::on_set_platform();
 
-      factory()->add_factory_item< ::base::system, ::platform::system>();
+      factory()->add_factory_item< ::berg::system, ::platform::system>();
       factory()->add_factory_item< ::base::user, ::user::user>();
 
    }
@@ -213,7 +213,7 @@ namespace berg
    }
 
    
-   // ::base::system * application::get_system()
+   // ::berg::system * application::get_system()
    // {
    //
    //    auto pacmesystem = system();
@@ -223,7 +223,7 @@ namespace berg
    // }
    //
    //
-   // ::base::session * application::get_session()
+   // ::berg::session * application::get_session()
    // {
    //
    //    auto pacmesession = session();
@@ -233,7 +233,7 @@ namespace berg
    // }
    //
    //
-   // ::base::system * session::get_system()
+   // ::berg::system * session::get_system()
    // {
    //
    //    auto pacmesystem = system();

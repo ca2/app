@@ -132,9 +132,9 @@ namespace dynamic_source
 
 //
 //
-//#define SYSTEM_TYPE ::base::system
-//#define SESSION_TYPE ::base::session
-//#define APP_TYPE ::base::application
+//#define SYSTEM_TYPE ::berg::system
+//#define SESSION_TYPE ::berg::session
+//#define APP_TYPE ::berg::application
 
 
 

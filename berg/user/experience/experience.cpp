@@ -30,7 +30,7 @@ namespace experience
    }
 
 
-   // ::base::application * experience::get_app()
+   // ::berg::application * experience::get_app()
    // {
    //
    //    auto papplication = application();
@@ -40,7 +40,7 @@ namespace experience
    // }
    //
    //
-   // ::base::session * experience::get_session()
+   // ::berg::session * experience::get_session()
    // {
    //
    //    auto pacmesession = session();
@@ -50,7 +50,7 @@ namespace experience
    // }
    //
    //
-   // ::base::system * experience::get_system()
+   // ::berg::system * experience::get_system()
    // {
    //
    //    auto pacmesystem = system();

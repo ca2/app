@@ -117,7 +117,7 @@ IMPLEMENT_APPLICATION_FACTORY();
 
       default_toggle_check_handling("no_client_frame");
 
-      ::base::application::init_instance();
+      ::berg::application::init_instance();
 
       auto pdoctemplate = __initialize_new ::user::single_document_template(
                                "main",
@@ -164,7 +164,7 @@ IMPLEMENT_APPLICATION_FACTORY();
    void application::term_application()
    {
 
-      ::base::application::term_application();
+      ::berg::application::term_application();
 
    }
 

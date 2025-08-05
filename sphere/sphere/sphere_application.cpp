@@ -9,7 +9,7 @@ namespace sphere
    application::application(::particle * pparticle) :
       ::aura::application(pparticle),
       ::axis::application(pparticle),
-      ::base::application(pparticle),
+      ::berg::application(pparticle),
       ::aura::application(pparticle)
    {
 

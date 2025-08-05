@@ -2397,7 +2397,7 @@ namespace user
 
       }
 
-      ::pointer<::base::application>papp = get_app();
+      ::pointer<::berg::application>papp = get_app();
 
       papp->on_change_cur_sel(this);
 

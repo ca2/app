@@ -1476,7 +1476,7 @@ void user::destroy()
 //   //   informationf("\n\napp_message_box: " + string(scopedstrMessage) + "\n\n");
 //
 //   //   if (&Session == nullptr || user() == nullptr)
-//   //      return ::base::application::sync_message_box(puiOwner, pszMessage, fuStyle);
+//   //      return ::berg::application::sync_message_box(puiOwner, pszMessage, fuStyle);
 //
 //   //   return puser->message_box(puiOwner, pszMessage, fuStyle);
 //
@@ -1489,7 +1489,7 @@ void user::destroy()
 //   //   if (user() == nullptr)
 //   //   {
 //
-//   //      return ::base::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
+//   //      return ::berg::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
 //
 //   //   }
 //
@@ -1504,7 +1504,7 @@ void user::destroy()
 //
 //   //   }
 //
-//   //   return ::base::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
+//   //   return ::berg::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
 //
 //   //}
 //

@@ -39,7 +39,7 @@ namespace berg
       // ::base::user* user() override;
       //
       //
-      // ::base::system* get_system();
+      // ::berg::system* get_system();
 
 
    };

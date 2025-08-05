@@ -9,7 +9,7 @@ namespace bred
 
 
    class CLASS_DECL_BRED session :
-      virtual public ::base::session
+      virtual public ::berg::session
    {
    public:
 

@@ -42,7 +42,7 @@ namespace bred
    // void system::on_set_platform()
    // {
    //
-   //    ::base::system::on_set_platform();
+   //    ::berg::system::on_set_platform();
    //
    //    factory()->add_factory_item < ::bred::application, ::apex::application >();
    //    factory()->add_factory_item < ::bred::session, ::apex::session >();
@@ -56,7 +56,7 @@ namespace bred
    //
    //    //auto estatus =
    //
-   //    ::base::system::initialize(pparticle);
+   //    ::berg::system::initialize(pparticle);
    //
    //    //if (!estatus)
    //    //{
@@ -74,7 +74,7 @@ namespace bred
    //void system::on_add_session(::apex::session* papexsession)
    //{
 
-   //   ::base::system::on_add_session(papexsession);
+   //   ::berg::system::on_add_session(papexsession);
 
    //   if (papexsession->m_iEdge == 0)
    //   {

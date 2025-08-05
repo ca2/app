@@ -244,7 +244,7 @@ namespace user
    }
 
 
-   // ::base::application* menu_interaction::get_app()
+   // ::berg::application* menu_interaction::get_app()
    // {
    //
    //    auto papplication = application();
@@ -254,7 +254,7 @@ namespace user
    // }
    //
    //
-   // ::base::session* menu_interaction::get_session()
+   // ::berg::session* menu_interaction::get_session()
    // {
    //
    //    auto pacmesession = session();
@@ -264,7 +264,7 @@ namespace user
    // }
    //
    //
-   // ::base::system* menu_interaction::get_system()
+   // ::berg::system* menu_interaction::get_system()
    // {
    //
    //    auto pacmesystem = system();

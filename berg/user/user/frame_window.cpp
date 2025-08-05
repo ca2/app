@@ -2819,7 +2819,7 @@ namespace user
 //   }
 
 
-   // ::base::application* frame_window::get_app()
+   // ::berg::application* frame_window::get_app()
    // {
    //
    //    auto papplication = application();
@@ -2829,7 +2829,7 @@ namespace user
    // }
    //
    //
-   // ::base::session* frame_window::get_session()
+   // ::berg::session* frame_window::get_session()
    // {
    //
    //    auto pacmesession = session();
@@ -2839,7 +2839,7 @@ namespace user
    // }
    //
    //
-   // ::base::system* frame_window::get_system()
+   // ::berg::system* frame_window::get_system()
    // {
    //
    //    auto pacmesystem = system();

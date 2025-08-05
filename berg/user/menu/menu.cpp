@@ -2033,7 +2033,7 @@ namespace user
       //auto pstyle =
       //get->get_style(pgraphics);
 
-      ::pointer<::base::session>psession = session();
+      ::pointer<::berg::session>psession = session();
 
       auto puser = user();
 

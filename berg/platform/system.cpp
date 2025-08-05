@@ -20,7 +20,7 @@ namespace berg
 
       common_construct();
 
-      factory()->add_factory_item< ::base::session, ::platform::session>();
+      factory()->add_factory_item< ::berg::session, ::platform::session>();
       factory()->add_factory_item< ::base::user, ::user::user>();
 
    }
@@ -105,8 +105,8 @@ namespace berg
 
       //m_pbasesystem = this;
 
-      //factory()->add_factory_item < ::base::session, ::apex::session >();
-      //factory()->add_factory_item < ::base::application, ::apex::application >();
+      //factory()->add_factory_item < ::berg::session, ::apex::session >();
+      //factory()->add_factory_item < ::berg::application, ::apex::application >();
       //factory()->add_factory_item < ::base::idpool, ::acme::idpool >();
 
 
@@ -119,7 +119,7 @@ namespace berg
    //
    //    axis::system::on_set_platform();
    //
-   //    factory()->add_factory_item< ::base::session, ::platform::session>();
+   //    factory()->add_factory_item< ::berg::session, ::platform::session>();
    //    factory()->add_factory_item< ::base::user, ::user::user>();
    //
    // }

@@ -49,7 +49,7 @@ namespace bred
    void session::on_instantiate_application(::platform::application* papp)
    {
 
-      ::base::session::on_instantiate_application(papp);
+      ::berg::session::on_instantiate_application(papp);
 
       //papp->m_pbredsession = this;
       //papp->m_pbredsystem = m_pbredsystem;

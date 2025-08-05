@@ -94,7 +94,7 @@ namespace core
 
       //auto estatus =
 
-      ::base::application::initialize(pparticle);
+      ::berg::application::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -262,7 +262,7 @@ namespace core
    void application::create_options_footer(::user::interaction * puserinteraction)
    {
 
-      ::base::application::create_options_footer(puserinteraction);
+      ::berg::application::create_options_footer(puserinteraction);
 
       //if (m_bEnableAutoStartOption)
       //{

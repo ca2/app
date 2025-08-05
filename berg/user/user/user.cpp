@@ -106,7 +106,7 @@ namespace berg
    }
 
 
-   // ::base::application * user::get_app()
+   // ::berg::application * user::get_app()
    // {
    //
    //    auto papplication = application();
@@ -116,7 +116,7 @@ namespace berg
    // }
    //
    //
-   // ::base::session * user::get_session()
+   // ::berg::session * user::get_session()
    // {
    //
    //    auto pacmesession = session();
@@ -126,7 +126,7 @@ namespace berg
    // }
    //
    //
-   // ::base::system * user::get_system()
+   // ::berg::system * user::get_system()
    // {
    //
    //    auto pacmesystem = system();
@@ -456,7 +456,7 @@ namespace berg
       for (auto & pappApex : session()->m_applicationa)
       {
 
-         ::pointer<::base::application>pappItem = pappApex;
+         ::pointer<::berg::application>pappItem = pappApex;
 
          synchronous_lock synchronouslock(pappItem->m_pmutexFrame);
 

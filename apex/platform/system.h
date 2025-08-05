@@ -545,7 +545,7 @@ CLASS_DECL_APEX ::apex::system* create_apex_system();
 //}
 
 
-// void CLASS_DECL_APEX __start_core_system_main(::base::system * psystem);
+// void CLASS_DECL_APEX __start_core_system_main(::berg::system * psystem);
 
 //#ifdef UNIVERSAL_WINDOWS
 //

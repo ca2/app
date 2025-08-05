@@ -1791,7 +1791,7 @@ menu::~menu()
 //
 //         auto pstyle = m_puserinteractionOwner->get_style(pgraphics);
 //
-//         ::pointer<::base::session>psession = get_session();
+//         ::pointer<::berg::session>psession = get_session();
 //
 //         auto puser = user();
 //

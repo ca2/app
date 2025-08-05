@@ -11,7 +11,7 @@ namespace helloaxis
       ::thread(this),
       ::aura::application(pparticle),
       ::axis::application(pparticle),
-      ::base::application(pparticle),
+      ::berg::application(pparticle),
       ::aura::application(pparticle),
       ::sphere::application(pparticle) :
       m_pmutexAiFont(this)

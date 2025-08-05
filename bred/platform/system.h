@@ -9,7 +9,7 @@ namespace bred
 
 
    class CLASS_DECL_BRED system :
-      virtual public ::base::system
+      virtual public ::berg::system
    {
    public:
 

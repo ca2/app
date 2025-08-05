@@ -44,7 +44,7 @@ namespace simpledb
 
       bool_array baRecursive;
 
-      if(!datastream()->get(::base::system::idEmpty, stra))
+      if(!datastream()->get(::berg::system::idEmpty, stra))
          return false;
 
       datastream()->get("recursive") >> baRecursive;
@@ -62,12 +62,12 @@ namespace simpledb
 
       string_array stra;
 
-      datastream()->get(::base::system::idEmpty, stra);
+      datastream()->get(::berg::system::idEmpty, stra);
 
       if(stra.add_unique(scopedstrSearchDirectory) < 0)
          return true;
 
-      if(!datastream()->set(::base::system::idEmpty, stra))
+      if(!datastream()->set(::berg::system::idEmpty, stra))
          return false;
 
       if(!refresh())
@@ -83,7 +83,7 @@ namespace simpledb
 
       string_array stra;
 
-      if(!datastream()->set(::base::system::idEmpty, stra))
+      if(!datastream()->set(::berg::system::idEmpty, stra))
          return false;
 
       if(!refresh())

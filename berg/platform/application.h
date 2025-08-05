@@ -51,8 +51,8 @@ namespace berg
 //      // void dump(dump_context & dumpcontext) const override;
 
 
-      // ::base::system* get_system();
-      // ::base::session* get_session();
+      // ::berg::system* get_system();
+      // ::berg::session* get_session();
 
 
       ::pointer<::user::document>defer_create_impact(const ::scoped_string & scopedstrImpact, ::user::interaction* puiParent = nullptr, e_window_flag ewindowflag = ::e_window_flag(), const ::atom& atom = ::atom()) override;

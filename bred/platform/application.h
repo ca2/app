@@ -10,7 +10,7 @@ namespace bred
 
 
    class CLASS_DECL_BRED application :
-      virtual public ::base::application
+      virtual public ::berg::application
    {
    public:
 

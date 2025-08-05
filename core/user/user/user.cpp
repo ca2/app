@@ -1598,7 +1598,7 @@ namespace core
    //   informationf("\n\napp_message_box: " + string(scopedstrMessage) + "\n\n");
 
    //   if (&Session == nullptr || user() == nullptr)
-   //      return ::base::application::sync_message_box(puiOwner, pszMessage, fuStyle);
+   //      return ::berg::application::sync_message_box(puiOwner, pszMessage, fuStyle);
 
    //   return puser->message_box(puiOwner, pszMessage, fuStyle);
 
@@ -1611,7 +1611,7 @@ namespace core
    //   if (user() == nullptr)
    //   {
 
-   //      return ::base::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
+   //      return ::berg::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
 
    //   }
 
@@ -1626,7 +1626,7 @@ namespace core
 
    //   }
 
-   //   return ::base::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
+   //   return ::berg::application::sync_message_box_timeout(puserinteractionOwner, payload, timeTimeOut, fuStyle);
 
    //}
 

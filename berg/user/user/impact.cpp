@@ -796,7 +796,7 @@ namespace user
 //   }
 
 
-   // ::base::application* impact::get_app()
+   // ::berg::application* impact::get_app()
    // {
    //
    //    auto papplication = application();
@@ -806,7 +806,7 @@ namespace user
    // }
    //
    //
-   // ::base::session* impact::get_session()
+   // ::berg::session* impact::get_session()
    // {
    //
    //    auto pacmesession = session();
@@ -816,7 +816,7 @@ namespace user
    // }
    //
    //
-   // ::base::system* impact::get_system()
+   // ::berg::system* impact::get_system()
    // {
    //
    //    auto pacmesystem = system();

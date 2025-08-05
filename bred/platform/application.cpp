@@ -36,7 +36,7 @@ namespace bred
    void application::on_set_platform()
    {
 
-      ::base::application::on_set_platform();
+      ::berg::application::on_set_platform();
 
       factory()->add_factory_item < ::bred::system, ::platform::system >();
 
@@ -131,7 +131,7 @@ namespace bred
    ::string application::draw2d_get_default_implementation_name()
    {
       
-      auto strName = ::base::application::draw2d_get_default_implementation_name();
+      auto strName = ::berg::application::draw2d_get_default_implementation_name();
 
       return strName;
 

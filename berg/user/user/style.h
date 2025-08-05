@@ -24,9 +24,9 @@ namespace berg
       void destroy() override;
 
 
-      //::base::application * get_app();
-      //::base::session * get_session();
-      //::base::system * get_system();
+      //::berg::application * get_app();
+      //::berg::session * get_session();
+      //::berg::system * get_system();
       //::base::user * user() override;
 
 

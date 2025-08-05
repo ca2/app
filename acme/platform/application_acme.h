@@ -18,7 +18,7 @@ namespace platform
 //      // mutable ::aqua::application* m_paquaapplication;
 //      // mutable ::aura::application* m_pauraapplication;
 //      // mutable ::axis::application* m_paxisapplication;
-//      // mutable ::base::application* m_pbaseapplication;
+//      // mutable ::berg::application* m_pbaseapplication;
 //      // mutable ::bred::application* m_pbredapplication;
 //      // mutable ::core::application* m_pcoreapplication;
 //

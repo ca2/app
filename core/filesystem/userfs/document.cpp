@@ -67,7 +67,7 @@ namespace userfs
    //::aura::application * document::get_app() const
    //{
 
-   //   return dynamic_cast < ::base::session * >(get_app()->m_psession)->m_pappCurrent;
+   //   return dynamic_cast < ::berg::session * >(get_app()->m_psession)->m_pappCurrent;
 
    //}
 

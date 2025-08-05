@@ -39,7 +39,7 @@ namespace berg
    }
 
 
-   // ::base::application* style::get_app()
+   // ::berg::application* style::get_app()
    // {
    //
    //    auto papplication = application();
@@ -49,7 +49,7 @@ namespace berg
    // }
    //
    //
-   // ::base::session* style::get_session()
+   // ::berg::session* style::get_session()
    // {
    //
    //    auto pacmesession = session();
@@ -59,7 +59,7 @@ namespace berg
    // }
    //
    //
-   // ::base::system* style::get_system()
+   // ::berg::system* style::get_system()
    // {
    //
    //    auto pacmesystem = system();

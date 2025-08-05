@@ -147,7 +147,7 @@ namespace experience
    }
 
 
-   // ::base::application * frame::get_app()
+   // ::berg::application * frame::get_app()
    // {
    //
    //    auto papplication = application();
@@ -157,7 +157,7 @@ namespace experience
    // }
    //
    //
-   // ::base::session * frame::get_session()
+   // ::berg::session * frame::get_session()
    // {
    //
    //    auto pacmesession = session();
@@ -167,7 +167,7 @@ namespace experience
    // }
    //
    //
-   // ::base::system * frame::get_system()
+   // ::berg::system * frame::get_system()
    // {
    //
    //    auto pacmesystem = system();

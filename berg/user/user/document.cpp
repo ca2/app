@@ -102,7 +102,7 @@ namespace user
    }
 
 
-   // ::base::application* document::get_app()
+   // ::berg::application* document::get_app()
    // {
    //
    //    auto papplication = application();
@@ -112,7 +112,7 @@ namespace user
    // }
    //
    //
-   // ::base::session* document::get_session()
+   // ::berg::session* document::get_session()
    // {
    //
    //    auto pacmesession = session();
@@ -122,7 +122,7 @@ namespace user
    // }
    //
    //
-   // ::base::system* document::get_system()
+   // ::berg::system* document::get_system()
    // {
    //
    //    auto pacmesystem = system();

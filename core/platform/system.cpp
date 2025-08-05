@@ -52,7 +52,7 @@ namespace core
    //
    //    //auto estatus =
    //
-   //    ::base::system::initialize(pparticle);
+   //    ::berg::system::initialize(pparticle);
    //
    //
    //

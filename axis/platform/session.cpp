@@ -227,7 +227,7 @@ namespace axis
    //      catch (const ::exception & e)
    //      {
 
-   //         // aura::session, axis::session and ::base::session, could get more specialized handling in aura::application (aura::system)
+   //         // aura::session, axis::session and ::berg::session, could get more specialized handling in aura::application (aura::system)
    //         // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carou e o Lucio e Eu 2019-01-15) !! Thank you God!! <3tbs
 
    //         handle_exception(pe);

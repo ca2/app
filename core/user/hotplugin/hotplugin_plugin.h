@@ -16,7 +16,7 @@ namespace hotplugin
    class CLASS_DECL_BASE plugin :
       virtual public ::user::interaction,
       virtual public ::simple_ui::style,
-      virtual public ::base::session,
+      virtual public ::berg::session,
       virtual public ::aura::ipc::ipc
    {
    public:

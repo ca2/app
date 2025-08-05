@@ -27,9 +27,9 @@ namespace user
       virtual void initialize_menu_interaction(::menu::item* pmenuitem);
 
 
-      // ::base::application* get_app();
-      // ::base::session* get_session();
-      // ::base::system* get_system();
+      // ::berg::application* get_app();
+      // ::berg::session* get_session();
+      // ::berg::system* get_system();
       // ::base::user* user() override;
 
       void install_message_routing(::channel * pchannel) override;

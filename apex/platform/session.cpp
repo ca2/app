@@ -741,7 +741,7 @@ class ::fs::data * session::fs()
    //      catch (const ::exception & e)
    //      {
 
-   //         // apex::session, axis::session and ::base::session, could get more specialized handling in apex::application (apex::system)
+   //         // apex::session, axis::session and ::berg::session, could get more specialized handling in apex::application (apex::system)
    //         // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carou e o Lucio e Eu 2019-01-15) !! Thank you God!! <3tbs
 
    //         handle_exception(e);

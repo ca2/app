@@ -22,6 +22,7 @@ namespace platform
     long long m_lMemFreeAvailableKb;
 
     bool m_bRedraw;
+       bool m_bSetApplicationReady;
     ::pointer_array<::message_box> m_messageboxa;
 
     ::pointer<::acme::asset_manager> m_passetmanager;

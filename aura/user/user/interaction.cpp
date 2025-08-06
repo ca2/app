@@ -4840,6 +4840,19 @@ namespace user
 
       pmessage->previous();
 
+//      if(psize->m_wparam & 1024)
+//      {
+//
+//         m_bNeedPerformLayout = true;
+//
+//         set_need_layout();
+//
+//         set_need_redraw();
+//
+//         post_redraw();
+//
+//      }
+
       if (psize->m_nType == ::user::e_size_minimized)
       {
 
@@ -4909,11 +4922,13 @@ namespace user
 
                   //synchronouslock.lock();
 
-                  //                  puserinteraction->set_need_layout();
-                  //
-                  //                  puserinteraction->set_need_redraw();
-                  //
-                  //                  puserinteraction->post_redraw();
+                  puserinteraction->m_bNeedPerformLayout = true;
+
+                  puserinteraction->set_need_layout();
+
+                  puserinteraction->set_need_redraw();
+
+                  puserinteraction->post_redraw();
 
                }
 

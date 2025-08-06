@@ -3153,7 +3153,7 @@ namespace windowing
 
       ::lparam lparam(w, h);
 
-      user_interaction()->post_message(e_message_size, 0, lparam);
+      user_interaction()->post_message(e_message_size, 1024, lparam);
 
    }
 
@@ -13659,6 +13659,23 @@ namespace windowing
          pparticleSynchronization = pitem->m_pmutex;
 
       }
+
+//      if(payload("android_fill_plasma").is_false())
+//      {
+//
+//         payload("android_fill_plasma") = true;
+//
+//         auto puserinteraction = user_interaction();
+//
+//         __check_refdbg
+//
+//         puserinteraction->set_need_redraw();
+//
+//         __check_refdbg
+//
+//         puserinteraction->post_redraw();
+//
+//      }
 
       _synchronous_lock synchronouslock(pparticleSynchronization);
 

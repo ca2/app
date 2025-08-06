@@ -265,7 +265,8 @@ namespace message
       unsigned int  m_nStatus;
 
 
-      show_window() { }
+      show_window();
+      ~show_window() override;
 
       // using ::user::message::set;
 

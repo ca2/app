@@ -637,6 +637,14 @@ namespace user
 
          //pimpactdata->m_pplaceholder->m_bLockGraphicalUpdate = false;
 
+//#if MOBILE_PLATFORM
+//
+//         auto puserhostinteraction = get_host_user_interaction();
+//
+//         puserhostinteraction->m_bNeedPerformLayout = true;
+//
+//#endif
+//
          m_bNeedPerformLayout = true;
          
          pimpactdata->m_pplaceholder->m_bNeedPerformLayout = true;
@@ -644,8 +652,6 @@ namespace user
          __check_refdbg
 
          pimpactdata->m_pplaceholder->set_need_layout();
-
-         __check_refdbg
 
       }
 

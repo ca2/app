@@ -83,7 +83,7 @@ namespace draw2d
       //bool                                         m_bHasCurrentPoint;
       bool                                         m_bOutline;
       void* m_pthis;
-      ::user::interaction* m_puserinteraction;
+      ::pointer < ::user::interaction >            m_puserinteraction;
       ::pointer<::draw2d::host>                    m_pdraw2dhost;
 
       bool                                         m_bPat;

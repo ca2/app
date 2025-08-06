@@ -21,6 +21,7 @@
 #include "acme/parallelization/single_lock.h"
 #include "acme/prototype/string/str.h"
 #include "aura/user/user/interaction.h"
+#include "aura/user/user/style.h"
 #include "nanosvg.h"
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "aura/graphics/write_text/_defer_geometry2d_item.h"
@@ -552,7 +553,7 @@ namespace draw2d
 
       auto pstyle = pinteraction->get_style(m_puserstyleGraphics);
 
-      auto pfont = pinteraction->get_font(pstyle, eelement, estate);
+      auto pfont = pstyle->get_font(pinteraction, eelement, estate);
 
       return set(pfont);
 

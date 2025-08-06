@@ -1431,19 +1431,7 @@ namespace user
    ::write_text::font_pointer interaction::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
-      if (pstyle)
-      {
-
-         if (pstyle->m_pfont)
-         {
-
-            return pstyle->m_pfont;
-
-         }
-
-      }
-
-      return nullptr;
+      return {};
 
    }
 
@@ -3662,16 +3650,16 @@ namespace user
 
          bChange = true;
 
-#if MOBILE_PLATFORM
-
-         if(edisplay == e_display_normal)
-         {
-
-            edisplay = e_display_full_screen;
-
-         }
-
-#endif
+//#if MOBILE_PLATFORM
+//
+//         if(edisplay == e_display_normal)
+//         {
+//
+//            edisplay = e_display_full_screen;
+//
+//         }
+//
+//#endif
 
          if (equivalence_sink(edisplay) == e_display_normal)
          {

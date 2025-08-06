@@ -9828,6 +9828,8 @@ namespace windowing
 
          }
 
+         pgraphics->m_puserinteraction = m_pacmeuserinteraction;
+
          //draw2dlock.unlock();
 
          pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()

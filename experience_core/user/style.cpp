@@ -550,7 +550,7 @@ namespace experience_core
                   if (!pfont)
                   {
 
-                     pfont = ptab->get_font(pstyle, e_element_none, ::user::e_state_selected | ::user::e_state_hover);
+                     pfont = pstyle->get_font(ptab, e_element_tab, ::user::e_state_selected | ::user::e_state_hover);
 
                   }
 
@@ -568,7 +568,7 @@ namespace experience_core
                   if (!pfont)
                   {
 
-                     pfont = ptab->get_font(pstyle, e_element_none, ::user::e_state_selected);
+                     pfont = pstyle->get_font(ptab, e_element_tab, ::user::e_state_selected);
 
                   }
 
@@ -634,13 +634,11 @@ namespace experience_core
 
                      pgraphics->set(pbrush);
 
-                     auto offset = ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x();
+                     auto offsetcontext = pgraphics->offset_context();
 
-                     pgraphics->x_offset(offset);
+                     offsetcontext.Δx() += ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x();
 
                      pgraphics->fill(ppath);
-
-                     pgraphics->x_offset(-offset);
 
                   }
 
@@ -670,7 +668,7 @@ namespace experience_core
                         if (!pfont)
                         {
 
-                           pfont = ptab->get_font(pstyle, e_element_none, ::user::e_state_hover);
+                           pfont = pstyle->get_font(ptab, e_element_tab, ::user::e_state_hover);
 
                         }
 
@@ -756,7 +754,7 @@ namespace experience_core
                      if (!pfont)
                      {
 
-                        pfont = ptab->get_font(pstyle, e_element_none);
+                        pfont = pstyle->get_font(ptab, e_element_none);
 
                      }
 

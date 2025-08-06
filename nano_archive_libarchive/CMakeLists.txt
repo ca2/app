@@ -43,7 +43,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
     if(${USE_PKGCONFIG})
-    pkg_check_modules(PKGCONFIG libarchive)
+    pkg_check_modules(${PROJECT_NAME}_PKGCONFIG libarchive)
     else()
         list(APPEND library_references
         archive)

@@ -8,7 +8,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "base/user/user/impact.h"
+#include "berg/user/user/impact.h"
 #include <math.h>
 
 

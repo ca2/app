@@ -458,7 +458,7 @@ bool task::is_task_set2() const
 {
 
    //return has_flag(e_flag_running) && m_htask.is_set();
-   return m_htask.is_set();
+   return m_htask.is_set() && m_taskindex && m_itask.is_set();
 
 }
 
@@ -760,6 +760,8 @@ void task::__priority_and_affinity()
 
 void task::set_task()
 {
+
+   _synchronous_lock synchronouslock(this->synchronization());
 
    auto taskindex = ::current_task_index();
 

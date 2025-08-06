@@ -5779,46 +5779,60 @@ namespace draw2d_cairo
 
       _synchronous_lock ml(::draw2d_cairo::mutex());
 
-      auto eitem = pitem->type();
+      return ::draw2d::graphics::_set(pitem);
 
-      switch (eitem)
-      {
-      case ::draw2d::e_item_begin_figure:
-         return _set(::draw2d::e_item_begin_figure);
-      case ::draw2d::e_item_close_figure:
-         return _set(::draw2d::e_item_close_figure);
-      case ::draw2d::e_item_end_figure:
-         return _set(::draw2d::e_item_end_figure);
-      case ::draw2d::e_item_arc:
-         return _set(pitem->cast <::geometry2d::arc_item>()->m_item);
-         //case ::draw2d::e_item_line:
-         //   return _set(pshape->shape < ::line > ());
-      case ::draw2d::e_item_line:
-         return _set(pitem->cast <::geometry2d::line_item>()->m_item);
-         //case ::draw2d::e_item_lines:
-         //   return _set(pshape->shape < ::lines > ());
-      case ::draw2d::e_item_lines:
-         return _set(pitem->cast <::geometry2d::lines_item>()->m_item);
-         //case ::draw2d::e_item_rect:
-         //   return _set(pshape->shape < ::int_rectangle > ());
-      case ::draw2d::e_item_rectangle:
-         return _set(pitem->cast <::geometry2d::rectangle_item>()->m_item);
-         //case ::draw2d::e_item_polygon:
-         //   return _set(pshape->shape < ::int_polygon > ());
-      case ::draw2d::e_item_ellipse:
-         return _set(pitem->cast <::geometry2d::ellipse_item>()->m_item);
-      case ::draw2d::e_item_polygon:
-         return _set(pitem->cast <::geometry2d::polygon_item>()->m_polygon);
-      case ::draw2d::e_item_text_out:
-         return _set(pitem->cast <::geometry2d::text_out_item>()->m_item);
-      case ::draw2d::e_item_draw_text:
-         return _set(pitem->cast <::geometry2d::draw_text_item>()->m_item);
-      default:
-         throw "unexpected simple os graphics matter type";
-      }
-
-      return false;
-
+//      auto eitem = pitem->type();
+//
+//      switch (eitem)
+//      {
+//      case ::draw2d::e_item_begin_figure:
+//         return _set(::draw2d::e_item_begin_figure);
+//      case ::draw2d::e_item_close_figure:
+//         return _set(::draw2d::e_item_close_figure);
+//      case ::draw2d::e_item_end_figure:
+//         return _set(::draw2d::e_item_end_figure);
+//      case ::draw2d::e_item_arc:
+//         return _set(pitem->cast <::geometry2d::arc_item>()->m_item);
+//         //case ::draw2d::e_item_line:
+//         //   return _set(pshape->shape < ::line > ());
+//      case ::draw2d::e_item_line: {
+//
+//         auto plineitem=pitem->cast<::geometry2d::line_item>();
+//
+//         if(::is_null(plineitem))
+//         {
+//
+//            throw ::exception(error_wrong_state);
+//
+//         }
+//
+//         return _set(plineitem->m_item);
+//
+//      }
+//         //case ::draw2d::e_item_lines:
+//         //   return _set(pshape->shape < ::lines > ());
+//      case ::draw2d::e_item_lines:
+//         return _set(pitem->cast <::geometry2d::lines_item>()->m_item);
+//         //case ::draw2d::e_item_rect:
+//         //   return _set(pshape->shape < ::int_rectangle > ());
+//      case ::draw2d::e_item_rectangle:
+//         return _set(pitem->cast <::geometry2d::rectangle_item>()->m_item);
+//         //case ::draw2d::e_item_polygon:
+//         //   return _set(pshape->shape < ::int_polygon > ());
+//      case ::draw2d::e_item_ellipse:
+//         return _set(pitem->cast <::geometry2d::ellipse_item>()->m_item);
+//      case ::draw2d::e_item_polygon:
+//         return _set(pitem->cast <::geometry2d::polygon_item>()->m_polygon);
+//      case ::draw2d::e_item_text_out:
+//         return _set(pitem->cast <::geometry2d::text_out_item>()->m_item);
+//      case ::draw2d::e_item_draw_text:
+//         return _set(pitem->cast <::geometry2d::draw_text_item>()->m_item);
+//      default:
+//         throw "unexpected simple os graphics matter type";
+//      }
+//
+//      return false;
+//
    }
 
 

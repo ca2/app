@@ -980,6 +980,17 @@ namespace windowing
    ::windowing::display* window::display()
    {
 
+      if(!m_pdisplay)
+      {
+
+         auto psystem = ::system();
+
+         auto pwindowing = psystem->acme_windowing();
+
+         m_pdisplay = pwindowing->acme_display();
+
+      }
+
       return m_pdisplay.cast < ::windowing::display>();
 
    }
@@ -3090,9 +3101,11 @@ namespace windowing
 
       m_pointCursor2.y() = yHost;
 
-      m_pdisplay->m_pointCursor2.x() = xAbsolute;
+      auto pdisplay = this->display();
 
-      m_pdisplay->m_pointCursor2.y() = yAbsolute;
+      pdisplay->m_pointCursor2.x() = xAbsolute;
+
+      pdisplay->m_pointCursor2.y() = yAbsolute;
 
       user_interaction()->post_message(e_message_left_button_down, 0, lparam);
 
@@ -3140,7 +3153,7 @@ namespace windowing
 
       ::lparam lparam(w, h);
 
-      user_interaction()->post_message(e_message_size, 0, lparam);
+      user_interaction()->post_message(e_message_size, 1024, lparam);
 
    }
 
@@ -9815,6 +9828,8 @@ namespace windowing
 
          }
 
+         pgraphics->m_puserinteraction = m_pacmeuserinteraction;
+
          //draw2dlock.unlock();
 
          pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()
@@ -13646,6 +13661,23 @@ namespace windowing
          pparticleSynchronization = pitem->m_pmutex;
 
       }
+
+//      if(payload("android_fill_plasma").is_false())
+//      {
+//
+//         payload("android_fill_plasma") = true;
+//
+//         auto puserinteraction = user_interaction();
+//
+//         __check_refdbg
+//
+//         puserinteraction->set_need_redraw();
+//
+//         __check_refdbg
+//
+//         puserinteraction->post_redraw();
+//
+//      }
 
       _synchronous_lock synchronouslock(pparticleSynchronization);
 

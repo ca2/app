@@ -93,6 +93,7 @@ namespace user
       m_pfontStill.release();
       m_pfontEdit.release();
       m_pfontCombo.release();
+      m_pfontTab.release();
 
       m_ppenFocusRect.release();
       m_ppenFocusRect0.release();
@@ -1640,6 +1641,42 @@ namespace user
    {
 
       return false;
+
+   }
+
+
+   ::write_text::font_pointer style::get_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
+   {
+
+      if(eelement == e_element_tab)
+      {
+
+         if(m_pfontTab)
+         {
+
+            return m_pfontTab;
+
+         }
+
+      }
+
+      auto pfont = pinteraction->get_font(this, eelement, estate);
+
+      if(pfont)
+      {
+
+         return pfont;
+
+      }
+
+      if(m_pfont)
+      {
+
+         return m_pfont;
+
+      }
+
+      return {};
 
    }
 

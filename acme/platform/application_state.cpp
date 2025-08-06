@@ -14,7 +14,13 @@ namespace platform
 
    application_state::application_state()
     {
+       m_iWidth = 0;
+       m_iHeight = 0;
 
+       m_lMemFreeAvailableKb = 0;
+
+       m_bRedraw = false;
+       m_bSetApplicationReady = false;
 
     }
 

@@ -93,9 +93,9 @@ namespace networking_bsd
          ::pointer<::networking_bsd::address>   m_paddress;
          string                                 m_strIpAddress;
          string                                 m_strReverse;
-         class ::time                           m_timeLastChecked;
+         class ::time                           m_timeLastChecked2;
          bool                                   m_bOk;
-         bool                                   m_bTimeout;
+         //bool                                   m_bTimeout;
          bool                                   m_bProcessing;
 
 
@@ -106,7 +106,12 @@ namespace networking_bsd
          //void read(::binary_stream& stream);
 
          reverse_cache_item& operator = (const reverse_cache_item& item);
+         bool is_timeout() const
+         {
 
+            return m_timeLastChecked2.elapsed() > 1_hour;
+
+         }
       };
 
       ::pointer < ::mutex >                              m_pmutexCache;

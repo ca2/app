@@ -1635,6 +1635,21 @@ namespace experience
    void frame_window::on_message_size(::message::message * pmessage)
    {
 
+      ::cast < ::message::size > psize(pmessage);
+
+      if(psize->m_wparam & 1024)
+      {
+
+         m_bNeedPerformLayout = true;
+
+         set_need_layout();
+
+         set_need_redraw();
+
+         post_redraw();
+
+      }
+
    }
 
 

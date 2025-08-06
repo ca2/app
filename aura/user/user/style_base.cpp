@@ -299,6 +299,14 @@ namespace user
    }
 
 
+   ::write_text::font_pointer style_base::get_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
+   {
+
+      return {};
+
+   }
+
+
 } // namespace user
 
 

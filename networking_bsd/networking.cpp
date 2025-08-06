@@ -23,8 +23,16 @@ bool operating_system_has_ipv6_internet();
 #define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
 
 //#include <stdio.h>
-
-
+#ifdef WINDOWS
+#define _WIN32_WINNT 0x0600
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#include <windns.h>
+#include <stdio.h>
+#include <string.h>
+#pragma comment(lib, "ws2_32.lib")
+#pragma comment(lib, "dnsapi.lib")
+#endif
 bool defer_initialize_operating_system_networking();
 bool defer_finalize_operating_system_networking();
 
@@ -1115,7 +1123,7 @@ namespace networking_bsd
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(m_pmutexReverseCache);
 
          m_reversecacheaRequest.add(pitem);
 
@@ -1134,7 +1142,7 @@ namespace networking_bsd
 
                      ::task_set_name("reverse___dns");
 
-                     _single_lock synchronouslock(this->synchronization());
+                     _single_lock synchronouslock(m_pmutexReverseCache);
 
                      while (task_get_run())
                      {
@@ -1148,7 +1156,71 @@ namespace networking_bsd
 
                            synchronouslock.unlock();
 
-                           reverse_sync(pitem);
+                           bool bOk = reverse_sync(pitem);
+
+                           synchronouslock._lock();
+
+                           try
+                           {
+
+                              if (!pitem->is_timeout())
+                              {
+
+                                 auto& pitemToReplace = m_mapReverseCache[pitem->m_paddress->get_display_number()];
+
+                                 if (pitemToReplace.m_p != pitem.m_p)
+                                 {
+
+                                    pitem->m_timeLastChecked2.Now();
+
+                                    pitem->m_bProcessing = false;
+
+                                    pitem->m_bOk = bOk;
+
+                                    if (!bOk)
+                                    {
+
+                                       pitem->m_strReverse = pitem->m_paddress->get_display_number();
+
+                                    }
+
+                                    ::string strReverse = pitem->m_strReverse;
+
+                                    ::string strMessage;
+
+                                    if (bOk)
+                                    {
+
+                                       strMessage << "Reverse of ";
+                                       strMessage << pitem->m_paddress->get_display_number();
+                                       strMessage << " is \"";
+                                       strMessage << strReverse;
+                                       strMessage << "\".";
+
+                                    }
+                                    else
+                                    {
+
+                                       strMessage << "Failed to get reverse of ";
+                                       strMessage << pitem->m_paddress->get_display_number();
+
+                                    }
+
+                                    information() << strMessage;
+
+                                    pitemToReplace = pitem;
+
+                                 }
+
+                              }
+
+                           }
+                           catch (...)
+                           {
+
+                           }
+
+                           synchronouslock.unlock();
 
                         }
                         else
@@ -1182,7 +1254,7 @@ namespace networking_bsd
 
       auto& pitem = m_mapReverseCache[paddress->get_display_number()];
 
-      if (pitem && !pitem->m_bProcessing && !pitem->m_bTimeout && pitem->m_timeLastChecked.elapsed() < 6_hour)
+      if (pitem && !pitem->is_timeout())
       {
 
          hostname = pitem->m_strReverse;
@@ -1191,22 +1263,64 @@ namespace networking_bsd
 
       }
 
-      __construct_new(pitem);
+      {
 
-      pitem->m_paddress = paddress;
+         ::pointer<reverse_cache_item > pitemWait;
 
-      pitem->m_bTimeout = false;
+         __construct_new(pitemWait);
 
-      pitem->m_bProcessing = true;
+         pitemWait->m_paddress = paddress;
 
-      pitem->m_bOk = false;
+         pitemWait->m_bProcessing = true;
 
-      reverse_schedule(pitem);
+         pitemWait->m_bOk = false;
+
+         pitemWait->m_strReverse = paddress->get_display_number();
+
+         pitemWait->m_timeLastChecked2.Now();
+
+         pitem = pitemWait;
+
+      }
+
+      {
+
+         ::pointer<reverse_cache_item > pitemNew;
+
+         __construct_new(pitemNew);
+
+         pitemNew->m_paddress = paddress;
+
+         pitemNew->m_bProcessing = true;
+
+         pitemNew->m_bOk = false;
+
+         pitemNew->m_timeLastChecked2.Now();
+
+         reverse_schedule(pitemNew);
+
+      }
+
+      hostname = pitem->m_strReverse;
 
       return true;
 
    }
 
+
+   // Build IPv6 reverse name: nibble-reversed, dot-separated
+   void build_ipv6_reverse(const struct in6_addr* addr, char* out, size_t outlen) {
+      char* p = out;
+      for (int i = 15; i >= 0; i--) {
+         unsigned char byte = addr->s6_addr[i];
+         for (int nib = 0; nib < 2; nib++) {
+            unsigned char val = (nib == 0) ? (byte & 0x0F) : (byte >> 4);
+            *p++ = "0123456789abcdef"[val];
+            *p++ = '.';
+         }
+      }
+      strcpy(p, "ip6.arpa");
+   }
 
    bool networking::reverse_sync(reverse_cache_item* pitem)
    {
@@ -1300,47 +1414,87 @@ namespace networking_bsd
       }
       return false;
 #else
-      char host[NI_MAXHOST];
-      char serv[NI_MAXSERV];
+      char host[NI_MAXHOST *2]{};
+      //char serv[NI_MAXSERV];
       // NI_NOFQDN
       // NI_NUMERICHOST
       // NI_NAMEREQD
       // NI_NUMERICSERV
       // NI_DGRAM
 
+      flags = NI_NAMEREQD;
+
       auto psa = &pitem->m_paddress->u.m_sa;
 
       auto len = pitem->m_paddress->m_iLen;
 
-      int n = getnameinfo(psa, len, host, sizeof(host), serv, sizeof(serv), flags);
-      if (n)
+      //int n = getnameinfo(psa, len, host, sizeof(host), serv, sizeof(serv), flags);
+      int n = getnameinfo(psa, len, host, sizeof(host), nullptr, 0, flags);
+      if (!n)
       {
-         // EAI_AGAIN
-         // EAI_BADFLAGS
-         // EAI_FAIL
-         // EAI_FAMILY
-         // EAI_MEMORY
-         // EAI_NONAME
-         // EAI_OVERFLOW
-         // EAI_SYSTEM
-         return false;
+         pitem->m_strReverse = host;
+         //item.m_strService = serv;
+         pitem->m_timeLastChecked2.Now();
+
+         return true;
       }
+      // EAI_AGAIN
+      // EAI_BADFLAGS
+      // EAI_FAIL
+      // EAI_FAMILY
+      // EAI_MEMORY
+      // EAI_NONAME
+      // EAI_OVERFLOW
+      // EAI_SYSTEM
+      auto pszError = gai_strerror(n);
+      warningf("getnameinfo failed: %s", pszError);
 
+#ifdef WINDOWS_DESKTOP
 
+      // --- Build reverse name for DnsQuery
+      char reverse_ip[256];
+      if (psa->sa_family == AF_INET) {
+         unsigned char* b = (unsigned char*)&((struct sockaddr_in*)psa)->sin_addr;
+         snprintf(reverse_ip, sizeof(reverse_ip),
+            "%d.%d.%d.%d.in-addr.arpa",
+            b[3], b[2], b[1], b[0]);
+      }
+      else {
+         build_ipv6_reverse(&((struct sockaddr_in6*)psa)->sin6_addr,
+            reverse_ip, sizeof(reverse_ip));
+      }
       //   reverse_cache_item item;
 
-      _single_lock synchronouslock(m_pmutexReverseCache, true);
+      //_single_lock synchronouslock(m_pmutexReverseCache, true);
 
-      pitem->m_strReverse = host;
-      //item.m_strService = serv;
-      pitem->m_timeLastChecked.Now();
 
       //single_lock synchronouslock(m_pmutexCache, true);
 
       //m_mapReverseCache.set_at(strIpString, item);
+         // --- DNS PTR Query
+      PDNS_RECORD pDnsRecord = NULL;
+      DNS_STATUS status = DnsQuery_A(reverse_ip, DNS_TYPE_PTR,
+         DNS_QUERY_BYPASS_CACHE, NULL,
+         &pDnsRecord, NULL);
 
-      return true;
-#endif // NO_GETADDRINFO
+      if (status == 0 && pDnsRecord && pDnsRecord->wType == DNS_TYPE_PTR)
+      {
+         wstring wstr(pDnsRecord->Data.PTR.pNameHost);
+         pitem->m_strReverse = wstr;
+         //item.m_strService = serv;
+         pitem->m_timeLastChecked2.Now();
+
+                 DnsRecordListFree(pDnsRecord, DnsFreeRecordListDeep);
+         return true;
+      }
+
+      if (pDnsRecord) DnsRecordListFree(pDnsRecord, DnsFreeRecordListDeep);
+      //return -2;
+
+#endif
+      return false;
+
+#endif
 
    }
 
@@ -1531,7 +1685,7 @@ namespace networking_bsd
       //zero(m_ipaddr);
       //m_timeLastChecked = 0;
       m_bOk = false;
-      m_bTimeout = true;
+      //m_bTimeout = true;
 
    }
 
@@ -1557,10 +1711,10 @@ namespace networking_bsd
 
          m_paddress = paddress;
          m_strIpAddress = item.m_strIpAddress;
-         m_timeLastChecked = item.m_timeLastChecked;
+         m_timeLastChecked2 = item.m_timeLastChecked2;
          m_strReverse = item.m_strReverse;
          m_bOk = item.m_bOk;
-         m_bTimeout = item.m_bTimeout;
+         //m_bTimeout = item.m_bTimeout;
          m_bProcessing = item.m_bProcessing;
 
       }

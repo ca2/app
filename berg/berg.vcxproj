@@ -62,7 +62,7 @@
     <ProjectGuid>{A216ABD4-26C4-4746-96B3-9D30ED28CF92}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>app</RootNamespace>
-    <ProjectName>base</ProjectName>
+    <ProjectName>berg</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

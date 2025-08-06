@@ -3345,6 +3345,8 @@ void thread::post_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
 
       }
 
+      auto pmessagequeue2 = get_message_queue();
+
       throw ::exception(::error_wrong_state);
 
       return;
@@ -3618,13 +3620,28 @@ void thread::send_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
 //
 //}
 
+message_queue* thread::get_message_queue()
+{
+
+   _synchronous_lock synchronouslock(this->synchronization());
+
+   if(m_pmessagequeue)
+   {
+
+      return m_pmessagequeue;
+
+   }
+
+   return _get_message_queue();
+
+}
+
 
 message_queue* thread::_get_message_queue()
 {
 
    _synchronous_lock synchronouslock(this->synchronization());
 
-   //if (has_finishing_flag() || m_bThreadClosed)
    if (has_finishing_flag())
    {
 
@@ -3646,14 +3663,22 @@ message_queue* thread::_get_message_queue()
 
    }
 
-   if (!m_taskindex)
+   auto taskindex = this->m_taskindex;
+
+   if (!taskindex)
    {
+
+      auto taskindex2 = this->m_taskindex;
 
       return nullptr;
 
    }
 
-   auto pmessagequeue = ::system()->task_message_queue()->get_message_queue(m_taskindex, true);
+   auto psystem = ::system();
+
+   auto ptaskmessagequeue = psystem->task_message_queue();
+
+   auto pmessagequeue = ptaskmessagequeue->get_message_queue(m_taskindex, true);
 
    if (pmessagequeue->m_bQuit)
    {
@@ -3662,15 +3687,7 @@ message_queue* thread::_get_message_queue()
 
    }
 
-   //auto estatus =
    m_pmessagequeue = pmessagequeue;
-
-   /*if (!estatus)
-   {
-
-      return nullptr;
-
-   }*/
 
    return m_pmessagequeue;
 

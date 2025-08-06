@@ -20,6 +20,19 @@ namespace geometry2d
 
       TYPE        m_item;
 
+      item_type()
+      {
+
+
+      }
+
+      ~item_type()
+      {
+
+
+
+      }
+
 
       ::draw2d::enum_item type() const override { return t_eitem; }
 

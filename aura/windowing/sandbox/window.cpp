@@ -40,305 +40,305 @@ namespace sandbox_windowing
 
       return;
       
-      bool bOk = true;
-      
-      auto pwindow = this;
-
-      auto puserinteraction = user_interaction();
-      
-      auto pusersystem = puserinteraction->m_pusersystem;
-      
-      puserinteraction->m_bMessageOnlyWindow = false;
-      
-      auto pwindowing = windowing();
-      
-      auto pwindowingdisplay = pwindowing->display();
-      
-      int x = puserinteraction->const_layout().sketch().origin().x();
-      
-      int y = puserinteraction->const_layout().sketch().origin().y();
-      
-      int cx = puserinteraction->const_layout().sketch().width();
-      
-      int cy = puserinteraction->const_layout().sketch().height();
-      
-      bool bVisible = puserinteraction->const_layout().sketch().is_screen_visible();
-      
-      if (cx <= 0)
-      {
-         
-         cx = 1;
-         
-      }
-      
-      if (cy <= 0)
-      {
-         
-         cy = 1;
-         
-      }
-      
-      //m_pwindow = pimpl;
-      
-      //pimpl->m_pwindow = this;
-      
-      set_oswindow(this);
-      
-      //pimpl->m_puserinteraction->m_pinteractionimpl = pimpl;
-      
-      __refdbg_add_referer
-      
-      puserinteraction->increment_reference_count();
-      
-      auto papp = get_app();
-      
-      if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
-      {
-         
-         auto psystem = system();
-         
-         string strApplicationServerName = psystem->get_application_server_name();
-         
-         //set_wm_class(strApplicationServerName);
-         
-         //         XClassHint * pupdate = XAllocClassHint();
-         //
-         //         auto psystem = system();
-         //
-         //         string strApplicationServerName = psystem->get_application_server_name();
-         //
-         //         pupdate->res_class = (char *) (const_char_pointer )strApplicationServerName;
-         //
-         //         pupdate->res_name = (char *) (const_char_pointer )strApplicationServerName;
-         //
-         //         XSetClassHint(display, window, pupdate);
-         //
-         //         XFree(pupdate);
-         
-      }
-      
-
-      
-
-      //#ifndef RASPBERRYPIOS
-      //
-      //      if (pwindowing->m_pSnLauncheeContext != nullptr && !papp->m_bSnLauncheeSetup)
-      //      {
-      //
-      //         papp->os_on_start_application();
-      //
-      //         on_sn_launch_context(pwindowing->m_pSnLauncheeContext, window);
-      //
-      //         papp->m_bSnLauncheeSetup = true;
-      //
-      //      }
-      //
-      //#endif
-
-            //if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_dock_window)
-            //{
-
-            //   wm_dockwindow(true);
-
-            //}
-            //else if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_desktop_window)
-            //{
-
-            //   wm_desktopwindow(true);
-
-            //}
-            //else if (pimpl->m_puserinteraction->layout().sketch().activation() & ::user::e_activation_on_center_of_screen)
-            //{
-
-            //   wm_centerwindow(true);
-
-            //}
-            //else if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window
-            //   || pimpl->m_puserinteraction->m_bToolWindow)
-            //{
-
-            //   wm_toolwindow(true);
-
-            //}
-            //else
-            //{
-
-            //   wm_normalwindow();
-
-            //}
-
-            ////m_px11data->m_pgdkwindow = gdk_x11_window_foreign_new_for_display(gdk_display_get_default(), window);
-
-            //::Window root = 0;
-
-            //::Window * pchildren = nullptr;
-
-            //unsigned int ncount = 0;
-
-            //XQueryTree(display, window, &root, &m_parent, &pchildren, &ncount);
-
-            //if (pchildren != nullptr)
-            //{
-
-            //   XFree(pchildren);
-
-            //}
-
-            //htask htask = ::current_htask();
-
-            //m_htask = htask;
-
-            //if (!XGetWindowAttributes(Display(), Window(), &m_px11data->m_attr))
-            //{
-
-            //   information() << "freebsd::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.";
-
-            //}
-
-            //int event_base, error_base, major_version, minor_version;
-
-            //pimpl->m_bComposite = XGetSelectionOwner(Display(), x11_display()->intern_atom("_NET_WM_CM_S0", True));
-
-            //string strName;
-
-            ////      if (pusersystem && pusersystem->m_createstruct.lpszName != nullptr && strlen(pusersystem->m_createstruct.lpszName) > 0)
-            ////      {
-            ////
-            ////         strName = pusersystem->m_createstruct.lpszName;
-            ////
-            ////      }
-
-            ////if(strName.is_empty())
-            ////{
-
-      string strWindowText = puserinteraction->get_window_text();
-
-      //if (strWindowText.has_character())
-      //{
-
-      //   strName = strWindowText;
-
-      //}
-
-      //}
-
-      //if (strName.has_character())
-      //{
-
-      //   XStoreName(Display(), Window(), strName);
-
-      //}
-
-      //bamf_set_icon();
-
-      //_wm_nodecorations(0);
-
-      //if (pusersystem->m_createstruct.style & WS_VISIBLE)
-      //if (bVisible)
-      //{
-
-      //   map_window();
-
-      //}
-      //else
-      //{
-
-      //   pimpl->m_puserinteraction->layout().window().display() = e_display_none;
-
-      //}
-
-      ////if(m_px11data->m_attr.map_state != IsUnmapped)
-      //{
-
-      //   if (!attr.override_redirect)
-      //   {
-
-      //      if (is_docking_appearance(pimpl->m_puserinteraction->layout().sketch().display()))
-      //      {
-
-      //         // window managers generally "don't like" windows that starts "docked/snapped".
-      //         // initial (XCreateWindow) int_size and position maybe not be honored.
-      //         // so requesting the same change again in a effort to set the "docked/snapped" int_size and position.
-
-      //         //set_window_position(e_zorder_top, pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(),
-      //         //                  pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(), SWP_SHOWWINDOW);
-
-      //         set_window_position(e_zorder_top, x, y, cx, cy, SWP_SHOWWINDOW);
-
-      //      }
-
-      //   }
-
-      //}
-
-      //displaylock.unlock();
-
-      //if(pshowwindow->m_bShow)
-      {
-
-         //::int_rectangle rect32;
-
-         //(::window_rectangle((oswindow) get_handle(), rect32))
-         {
-
-
-            if (session() != nullptr)
-            {
-
-               // Initial position of window below the cursor position
-               // with invalid (empty) size.
-               // (Hinting for monitor placement, if no stored information
-               // available).
-
-               if (puserinteraction->const_layout().sketch().display() == e_display_undefined)
-               {
-
-                  auto pointCursor = puserinteraction->mouse_cursor_position();
-
-                  puserinteraction->set_position(pointCursor);
-
-                  puserinteraction->set_size({0, 0});
-
-               }
-
-            }
-
-         }
-
-         //   }
-
-         //});
-         //}
-
-      }
-
-      if (bOk)
-      {
-
-         //auto lresult = pimpl->m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
-
-         auto lresult = puserinteraction->send_message(e_message_create, 0, 0);
-
-         if (lresult == -1)
-         {
-
-            throw ::exception(error_failed);
-
-         }
-
-         puserinteraction->m_ewindowflag |= e_window_flag_window_created;
-
-         puserinteraction->set_flag(e_flag_task_started);
-
-      }
-
-      if (!bOk)
-      {
-
-         throw ::exception(error_failed);
-
-      }
-
+//      bool bOk = true;
+//
+//      auto pwindow = this;
+//
+//      auto puserinteraction = user_interaction();
+//
+//      auto pusersystem = puserinteraction->m_pusersystem;
+//
+//      puserinteraction->m_bMessageOnlyWindow = false;
+//
+//      auto pwindowing = windowing();
+//
+//      auto pwindowingdisplay = pwindowing->display();
+//
+//      int x = puserinteraction->const_layout().sketch().origin().x();
+//
+//      int y = puserinteraction->const_layout().sketch().origin().y();
+//
+//      int cx = puserinteraction->const_layout().sketch().width();
+//
+//      int cy = puserinteraction->const_layout().sketch().height();
+//
+//      bool bVisible = puserinteraction->const_layout().sketch().is_screen_visible();
+//
+//      if (cx <= 0)
+//      {
+//
+//         cx = 1;
+//
+//      }
+//
+//      if (cy <= 0)
+//      {
+//
+//         cy = 1;
+//
+//      }
+//
+//      //m_pwindow = pimpl;
+//
+//      //pimpl->m_pwindow = this;
+//
+//      set_oswindow(this);
+//
+//      //pimpl->m_puserinteraction->m_pinteractionimpl = pimpl;
+//
+//      __refdbg_add_referer
+//
+//      puserinteraction->increment_reference_count();
+//
+//      auto papp = get_app();
+//
+//      if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
+//      {
+//
+//         auto psystem = system();
+//
+//         string strApplicationServerName = psystem->get_application_server_name();
+//
+//         //set_wm_class(strApplicationServerName);
+//
+//         //         XClassHint * pupdate = XAllocClassHint();
+//         //
+//         //         auto psystem = system();
+//         //
+//         //         string strApplicationServerName = psystem->get_application_server_name();
+//         //
+//         //         pupdate->res_class = (char *) (const_char_pointer )strApplicationServerName;
+//         //
+//         //         pupdate->res_name = (char *) (const_char_pointer )strApplicationServerName;
+//         //
+//         //         XSetClassHint(display, window, pupdate);
+//         //
+//         //         XFree(pupdate);
+//
+//      }
+//
+//
+//
+//
+//      //#ifndef RASPBERRYPIOS
+//      //
+//      //      if (pwindowing->m_pSnLauncheeContext != nullptr && !papp->m_bSnLauncheeSetup)
+//      //      {
+//      //
+//      //         papp->os_on_start_application();
+//      //
+//      //         on_sn_launch_context(pwindowing->m_pSnLauncheeContext, window);
+//      //
+//      //         papp->m_bSnLauncheeSetup = true;
+//      //
+//      //      }
+//      //
+//      //#endif
+//
+//            //if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_dock_window)
+//            //{
+//
+//            //   wm_dockwindow(true);
+//
+//            //}
+//            //else if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_desktop_window)
+//            //{
+//
+//            //   wm_desktopwindow(true);
+//
+//            //}
+//            //else if (pimpl->m_puserinteraction->layout().sketch().activation() & ::user::e_activation_on_center_of_screen)
+//            //{
+//
+//            //   wm_centerwindow(true);
+//
+//            //}
+//            //else if (pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window
+//            //   || pimpl->m_puserinteraction->m_bToolWindow)
+//            //{
+//
+//            //   wm_toolwindow(true);
+//
+//            //}
+//            //else
+//            //{
+//
+//            //   wm_normalwindow();
+//
+//            //}
+//
+//            ////m_px11data->m_pgdkwindow = gdk_x11_window_foreign_new_for_display(gdk_display_get_default(), window);
+//
+//            //::Window root = 0;
+//
+//            //::Window * pchildren = nullptr;
+//
+//            //unsigned int ncount = 0;
+//
+//            //XQueryTree(display, window, &root, &m_parent, &pchildren, &ncount);
+//
+//            //if (pchildren != nullptr)
+//            //{
+//
+//            //   XFree(pchildren);
+//
+//            //}
+//
+//            //htask htask = ::current_htask();
+//
+//            //m_htask = htask;
+//
+//            //if (!XGetWindowAttributes(Display(), Window(), &m_px11data->m_attr))
+//            //{
+//
+//            //   information() << "freebsd::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.";
+//
+//            //}
+//
+//            //int event_base, error_base, major_version, minor_version;
+//
+//            //pimpl->m_bComposite = XGetSelectionOwner(Display(), x11_display()->intern_atom("_NET_WM_CM_S0", True));
+//
+//            //string strName;
+//
+//            ////      if (pusersystem && pusersystem->m_createstruct.lpszName != nullptr && strlen(pusersystem->m_createstruct.lpszName) > 0)
+//            ////      {
+//            ////
+//            ////         strName = pusersystem->m_createstruct.lpszName;
+//            ////
+//            ////      }
+//
+//            ////if(strName.is_empty())
+//            ////{
+//
+//      string strWindowText = puserinteraction->get_window_text();
+//
+//      //if (strWindowText.has_character())
+//      //{
+//
+//      //   strName = strWindowText;
+//
+//      //}
+//
+//      //}
+//
+//      //if (strName.has_character())
+//      //{
+//
+//      //   XStoreName(Display(), Window(), strName);
+//
+//      //}
+//
+//      //bamf_set_icon();
+//
+//      //_wm_nodecorations(0);
+//
+//      //if (pusersystem->m_createstruct.style & WS_VISIBLE)
+//      //if (bVisible)
+//      //{
+//
+//      //   map_window();
+//
+//      //}
+//      //else
+//      //{
+//
+//      //   pimpl->m_puserinteraction->layout().window().display() = e_display_none;
+//
+//      //}
+//
+//      ////if(m_px11data->m_attr.map_state != IsUnmapped)
+//      //{
+//
+//      //   if (!attr.override_redirect)
+//      //   {
+//
+//      //      if (is_docking_appearance(pimpl->m_puserinteraction->layout().sketch().display()))
+//      //      {
+//
+//      //         // window managers generally "don't like" windows that starts "docked/snapped".
+//      //         // initial (XCreateWindow) int_size and position maybe not be honored.
+//      //         // so requesting the same change again in a effort to set the "docked/snapped" int_size and position.
+//
+//      //         //set_window_position(e_zorder_top, pusersystem->m_createstruct.x(), pusersystem->m_createstruct.y(),
+//      //         //                  pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy(), SWP_SHOWWINDOW);
+//
+//      //         set_window_position(e_zorder_top, x, y, cx, cy, SWP_SHOWWINDOW);
+//
+//      //      }
+//
+//      //   }
+//
+//      //}
+//
+//      //displaylock.unlock();
+//
+//      //if(pshowwindow->m_bShow)
+//      {
+//
+//         //::int_rectangle rect32;
+//
+//         //(::window_rectangle((oswindow) get_handle(), rect32))
+//         {
+//
+//
+//            if (session() != nullptr)
+//            {
+//
+//               // Initial position of window below the cursor position
+//               // with invalid (empty) size.
+//               // (Hinting for monitor placement, if no stored information
+//               // available).
+//
+//               if (puserinteraction->const_layout().sketch().display() == e_display_undefined)
+//               {
+//
+//                  auto pointCursor = puserinteraction->mouse_cursor_position();
+//
+//                  puserinteraction->set_position(pointCursor);
+//
+//                  puserinteraction->set_size({0, 0});
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//         //   }
+//
+//         //});
+//         //}
+//
+//      }
+//
+//      if (bOk)
+//      {
+//
+//         //auto lresult = pimpl->m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
+//
+//         auto lresult = puserinteraction->send_message(e_message_create, 0, 0);
+//
+//         if (lresult == -1)
+//         {
+//
+//            throw ::exception(error_failed);
+//
+//         }
+//
+//         puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+//
+//         puserinteraction->set_flag(e_flag_task_started);
+//
+//      }
+//
+//      if (!bOk)
+//      {
+//
+//         throw ::exception(error_failed);
+//
+//      }
+//
    }
 
 

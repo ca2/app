@@ -615,7 +615,7 @@ namespace user
 
       puserinteractionOwner->m_menua.add(this);
 
-#elif defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS)
+#elif defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS) || defined(__ANDROID__)
 
       auto puserinteractionTopOwner = get_owner();
 

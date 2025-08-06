@@ -1431,19 +1431,7 @@ namespace user
    ::write_text::font_pointer interaction::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
-      if (pstyle)
-      {
-
-         if (pstyle->m_pfont)
-         {
-
-            return pstyle->m_pfont;
-
-         }
-
-      }
-
-      return nullptr;
+      return {};
 
    }
 
@@ -3662,16 +3650,16 @@ namespace user
 
          bChange = true;
 
-#if MOBILE_PLATFORM
-
-         if(edisplay == e_display_normal)
-         {
-
-            edisplay = e_display_full_screen;
-
-         }
-
-#endif
+//#if MOBILE_PLATFORM
+//
+//         if(edisplay == e_display_normal)
+//         {
+//
+//            edisplay = e_display_full_screen;
+//
+//         }
+//
+//#endif
 
          if (equivalence_sink(edisplay) == e_display_normal)
          {
@@ -4840,6 +4828,19 @@ namespace user
 
       pmessage->previous();
 
+//      if(psize->m_wparam & 1024)
+//      {
+//
+//         m_bNeedPerformLayout = true;
+//
+//         set_need_layout();
+//
+//         set_need_redraw();
+//
+//         post_redraw();
+//
+//      }
+
       if (psize->m_nType == ::user::e_size_minimized)
       {
 
@@ -4909,11 +4910,13 @@ namespace user
 
                   //synchronouslock.lock();
 
-                  //                  puserinteraction->set_need_layout();
-                  //
-                  //                  puserinteraction->set_need_redraw();
-                  //
-                  //                  puserinteraction->post_redraw();
+                  puserinteraction->m_bNeedPerformLayout = true;
+
+                  puserinteraction->set_need_layout();
+
+                  puserinteraction->set_need_redraw();
+
+                  puserinteraction->post_redraw();
 
                }
 
@@ -7015,7 +7018,9 @@ namespace user
 
       }
 
-      if (pgraphics->m_bInheritDraw && !this->is_this_visible())
+      bool bIsThisVisible = this->is_this_visible();
+
+      if (pgraphics->m_bInheritDraw && !bIsThisVisible)
       {
 
          //         if (!get_parent())
@@ -14359,7 +14364,7 @@ if(get_parent())
 
       }
 
-      if (is_top_level())
+      if (is_top_level() && !is_child_interaction())
       {
 
          window()->message_handler(pmessage);

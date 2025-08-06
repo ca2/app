@@ -545,6 +545,21 @@ namespace message
    //}
 
 
+   show_window::show_window()
+   {
+
+
+
+   }
+
+
+   show_window::~show_window()
+   {
+
+
+   }
+
+
    //void show_window::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 

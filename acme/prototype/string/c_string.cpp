@@ -15,12 +15,12 @@ namespace c
 
       const_char_pointer orig = m_psz;
 
-      if (!orig || !search || !replace) return NULL;
+      if (!orig || !search || !replace) return 0;
       size_t orig_len = strlen(orig);
       size_t search_len = strlen(search);
       size_t replace_len = strlen(replace);
 
-      if (search_len == 0) return NULL; // avoid infinite loop
+      if (search_len == 0) return 0; // avoid infinite loop
 
 // Count occurrences
       size_t count = 0;

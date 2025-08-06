@@ -980,6 +980,17 @@ namespace windowing
    ::windowing::display* window::display()
    {
 
+      if(!m_pdisplay)
+      {
+
+         auto psystem = ::system();
+
+         auto pwindowing = psystem->acme_windowing();
+
+         m_pdisplay = pwindowing->acme_display();
+
+      }
+
       return m_pdisplay.cast < ::windowing::display>();
 
    }
@@ -3090,9 +3101,11 @@ namespace windowing
 
       m_pointCursor2.y() = yHost;
 
-      m_pdisplay->m_pointCursor2.x() = xAbsolute;
+      auto pdisplay = this->display();
 
-      m_pdisplay->m_pointCursor2.y() = yAbsolute;
+      pdisplay->m_pointCursor2.x() = xAbsolute;
+
+      pdisplay->m_pointCursor2.y() = yAbsolute;
 
       user_interaction()->post_message(e_message_left_button_down, 0, lparam);
 

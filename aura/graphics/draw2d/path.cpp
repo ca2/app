@@ -597,26 +597,13 @@ namespace draw2d
    bool path::add_line(const double_point & p1, const double_point & p2)
    {
 
-      //auto pline = __allocate double_line_shape< path> ();
-
       auto pitem = __create_new < ::geometry2d::line_item >();
-
-      //pline->m_pholdee = this;
 
       auto & line = pitem->m_item;
 
       line.m_p1 = p1;
 
       line.m_p2 = p2;
-
-      //if (!m_pshapea)
-      //{
-
-      //   m_pshapea = __allocate shape_array < path> ();
-
-      //}
-
-      //m_pshapea->add(pline);
 
       m_itema.add(pitem);
 

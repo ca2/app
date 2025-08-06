@@ -29,7 +29,7 @@ namespace aura
       void destroy() override;
 
 
-      virtual string sound_path(const ::scoped_string & scopedstr);
+      string sound_path(const ::scoped_string & scopedstr) override;
 
 
    };

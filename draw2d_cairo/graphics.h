@@ -561,40 +561,40 @@ namespace draw2d_cairo
 
       //bool _set(___shape<::draw2d::region> * pshape);
       //bool _set(___shape<::draw2d::path> * pshape);
-      bool _set(::geometry2d::item * pitem);
+      bool _set(::geometry2d::item * pitem) override;
       bool _set(::draw2d::region * pregion);
       //bool _set(::draw2d::path * ppath);
-      bool _set(const ::draw2d::enum_item & eitem);
+      bool _set(const ::draw2d::enum_item & eitem) override;
 
 
-      bool _set(const ::double_arc & arc, const ::pointer<::draw2d::region>& pregion);
-      //bool _set(const ::line & line);
-      //bool _set(const ::lines & lines);
-      bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::region>& pregion);
-      bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::region>& pregion);
-      bool _set(const ::double_polygon & polygon, const ::pointer<::draw2d::region>& pregion);
-      bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::region>& pregion);
-      bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::region>& pregion);
+      bool _set(const ::double_arc & arc, const ::pointer<::draw2d::region>& pregion) override;
+      //bool _set(const ::line & line) override;
+      //bool _set(const ::lines & lines) override;
+      bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::region>& pregion) override;
+      bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::region>& pregion) override;
+      bool _set(const ::double_polygon & polygon, const ::pointer<::draw2d::region>& pregion) override;
+      bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::region>& pregion) override;
+      bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::region>& pregion) override;
 
 
-      bool _set(const ::double_arc & arc, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::double_line & line, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::double_lines & lines, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::double_polygon & polygon, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::path>& ppath);
-      bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::double_arc & arc, const ::pointer<::draw2d::path>& ppath) override;
+      bool _set(const ::double_line & line, const ::pointer<::draw2d::path>& ppath) override;
+      bool _set(const ::double_lines & lines, const ::pointer<::draw2d::path>& ppath) override;
+      bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::path>& ppath) override;
+      bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::path>& ppath) override;
+      bool _set(const ::double_polygon & polygon, const ::pointer<::draw2d::path>& ppath) override;
+      bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::path>& ppath) override;
+      bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::path>& ppath) override;
 
 
-      bool _set(const ::double_arc & arc);
-      bool _set(const ::double_line & line);
-      bool _set(const ::double_lines & lines);
-      bool _set(const ::double_rectangle & rectangle);
-      bool _set(const ::double_ellipse & ellipse);
-      bool _set(const ::double_polygon & polygon);
-      bool _set(const ::write_text::text_out & textout);
-      bool _set(const ::write_text::draw_text & drawtext);
+      bool _set(const ::double_arc & arc) override;
+      bool _set(const ::double_line & line) override;
+      bool _set(const ::double_lines & lines) override;
+      bool _set(const ::double_rectangle & rectangle) override;
+      bool _set(const ::double_ellipse & ellipse) override;
+      bool _set(const ::double_polygon & polygon) override;
+      bool _set(const ::write_text::text_out & textout) override;
+      bool _set(const ::write_text::draw_text & drawtext) override;
 
 
       bool fill_and_draw(::draw2d::brush * pbrush, ::draw2d::pen * ppen);

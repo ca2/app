@@ -1352,6 +1352,41 @@ namespace draw2d
       virtual int save_graphics_context();
       virtual void restore_graphics_context(int nSavedContext);
 
+
+      virtual bool _set(::geometry2d::item * pitem);
+      virtual bool _set(const ::draw2d::enum_item & eitem);
+
+
+      virtual bool _set(const ::double_arc & arc, const ::pointer<::draw2d::region>& pregion);
+      //virtual bool _set(const ::line & line);
+      //virtual bool _set(const ::lines & lines);
+      virtual bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::region>& pregion);
+      virtual bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::region>& pregion);
+      virtual bool _set(const ::double_polygon & polygon, const ::pointer<::draw2d::region>& pregion);
+      virtual bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::region>& pregion);
+      virtual bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::region>& pregion);
+
+
+      virtual bool _set(const ::double_arc & arc, const ::pointer<::draw2d::path>& ppath);
+      virtual bool _set(const ::double_line & line, const ::pointer<::draw2d::path>& ppath);
+      virtual bool _set(const ::double_lines & lines, const ::pointer<::draw2d::path>& ppath);
+      virtual bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::path>& ppath);
+      virtual bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::path>& ppath);
+      virtual bool _set(const ::double_polygon & polygon, const ::pointer<::draw2d::path>& ppath);
+      virtual bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::path>& ppath);
+      virtual bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::path>& ppath);
+
+
+      virtual bool _set(const ::double_arc & arc);
+      virtual bool _set(const ::double_line & line);
+      virtual bool _set(const ::double_lines & lines);
+      virtual bool _set(const ::double_rectangle & rectangle);
+      virtual bool _set(const ::double_ellipse & ellipse);
+      virtual bool _set(const ::double_polygon & polygon);
+      virtual bool _set(const ::write_text::text_out & textout);
+      virtual bool _set(const ::write_text::draw_text & drawtext);
+
+
    };
 
 

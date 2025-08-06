@@ -15,7 +15,7 @@ namespace draw2d
   public:
 
 
-     holdee      m_holdee;
+     ::pointer < holdee >      m_pholdee;
 
 
      holder();

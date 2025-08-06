@@ -14,12 +14,17 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/context.h"
+#include "aura/graphics/write_text/draw_text.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/graphics/write_text/fonts.h"
+#include "aura/graphics/write_text/text_out.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/prototype/string/str.h"
 #include "aura/user/user/interaction.h"
 #include "nanosvg.h"
+#include "acme/prototype/geometry2d/_defer_item.h"
+#include "aura/graphics/write_text/_defer_geometry2d_item.h"
+
 
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
@@ -6506,6 +6511,221 @@ namespace draw2d
       nsvgDelete(pnsvgimage);
 
    }
+
+
+   bool graphics::_set(::geometry2d::item * pitem)
+   {
+
+      auto eitem = pitem->type();
+
+      switch (eitem)
+      {
+         case ::draw2d::e_item_begin_figure:
+            return _set(::draw2d::e_item_begin_figure);
+         case ::draw2d::e_item_close_figure:
+            return _set(::draw2d::e_item_close_figure);
+         case ::draw2d::e_item_end_figure:
+            return _set(::draw2d::e_item_end_figure);
+         case ::draw2d::e_item_arc:
+            return _set(pitem->cast <::geometry2d::arc_item>()->m_item);
+            //case ::draw2d::e_item_line:
+            //   return _set(pshape->shape < ::line > ());
+         case ::draw2d::e_item_line: {
+
+            auto plineitem=pitem->cast<::geometry2d::line_item>();
+
+            if(::is_null(plineitem))
+            {
+
+               throw ::exception(error_wrong_state);
+
+            }
+
+            return _set(plineitem->m_item);
+
+         }
+            //case ::draw2d::e_item_lines:
+            //   return _set(pshape->shape < ::lines > ());
+         case ::draw2d::e_item_lines:
+            return _set(pitem->cast <::geometry2d::lines_item>()->m_item);
+            //case ::draw2d::e_item_rect:
+            //   return _set(pshape->shape < ::int_rectangle > ());
+         case ::draw2d::e_item_rectangle:
+            return _set(pitem->cast <::geometry2d::rectangle_item>()->m_item);
+            //case ::draw2d::e_item_polygon:
+            //   return _set(pshape->shape < ::int_polygon > ());
+         case ::draw2d::e_item_ellipse:
+            return _set(pitem->cast <::geometry2d::ellipse_item>()->m_item);
+         case ::draw2d::e_item_polygon:
+            return _set(pitem->cast <::geometry2d::polygon_item>()->m_polygon);
+         case ::draw2d::e_item_text_out:
+            return _set(pitem->cast <::geometry2d::text_out_item>()->m_item);
+         case ::draw2d::e_item_draw_text:
+            return _set(pitem->cast <::geometry2d::draw_text_item>()->m_item);
+         default:
+            throw "unexpected simple os graphics matter type";
+      }
+
+      return false;
+
+   }
+
+      bool graphics::_set(const ::draw2d::enum_item & eitem)
+      {
+
+      return false;
+
+      }
+
+
+      bool graphics::_set(const ::double_arc & arc, const ::pointer<::draw2d::region>& pregion)
+      {
+
+         return false;
+
+      }
+//      bool graphics::_set(const ::line & line)
+//      {
+//
+//         return false;
+//
+//      }
+//      bool graphics::_set(const ::lines & lines)
+//      {
+//
+//         return false;
+//
+//      }
+      bool graphics::_set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::region>& pregion)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::region>& pregion)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_polygon & polygon, const ::pointer<::draw2d::region>& pregion)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::write_text::text_out & textout, const ::pointer<::draw2d::region>& pregion)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::region>& pregion)
+      {
+
+         return false;
+
+      }
+
+
+      bool graphics::_set(const ::double_arc & arc, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_line & line, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_lines & lines, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_polygon & polygon, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::write_text::text_out & textout, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::path>& ppath)
+      {
+
+         return false;
+
+      }
+
+
+      bool graphics::_set(const ::double_arc & arc)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_line & line)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_lines & lines)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_rectangle & rectangle)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_ellipse & ellipse)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::double_polygon & polygon)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::write_text::text_out & textout)
+      {
+
+         return false;
+
+      }
+      bool graphics::_set(const ::write_text::draw_text & drawtext)
+      {
+
+         return false;
+
+      }
 
 
 } // namespace draw2d

@@ -12,9 +12,13 @@ namespace geometry2d
 
 
    class CLASS_DECL_ACME item :
-      virtual public ::particle
+      virtual public ::subparticle
    {
    public:
+
+
+      item();
+      ~item() override;
 
 
       virtual ::draw2d::enum_item type() const;
@@ -33,6 +37,9 @@ namespace geometry2d
    {
    public:
 
+
+      begin_figure_item();
+      ~begin_figure_item() override;
       
       ::draw2d::enum_item type() const override;
 
@@ -57,6 +64,9 @@ namespace geometry2d
    public:
 
 
+      close_figure_item();
+      ~close_figure_item() override;
+
       ::draw2d::enum_item type() const override;
 
 
@@ -80,6 +90,9 @@ namespace geometry2d
    public:
 
 
+      end_figure_item();
+      ~end_figure_item() override;
+
       ::draw2d::enum_item type() const override;
 
 
@@ -102,6 +115,9 @@ namespace geometry2d
    public:
 
 
+      intersect_clip_item();
+      ~intersect_clip_item() override;
+
       ::draw2d::enum_item type() const override;
 
 
@@ -122,6 +138,9 @@ namespace geometry2d
       virtual public item
    {
    public:
+
+      polygon_item();
+      ~polygon_item() override;
 
       
       ::double_polygon                          m_polygon;
@@ -169,7 +188,8 @@ namespace geometry2d
       ::double_poly_polygon                  m_polypolygon;
       ::draw2d::enum_fill_mode            m_efillmode;
 
-
+      poly_polygon_item();
+      ~poly_polygon_item() override;
       //::draw2d::enum_item type() const override;
 
 
@@ -209,7 +229,8 @@ namespace geometry2d
       ::pointer < ::geometry2d::region >     m_pregion1;
       ::pointer < ::geometry2d::region >     m_pregion2;
       ::draw2d::enum_combine                 m_ecombine;
-
+      combine_item();
+      ~combine_item() override;
 
       ::draw2d::enum_item type() const override;
 

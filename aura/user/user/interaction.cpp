@@ -7015,7 +7015,9 @@ namespace user
 
       }
 
-      if (pgraphics->m_bInheritDraw && !this->is_this_visible())
+      bool bIsThisVisible = this->is_this_visible();
+
+      if (pgraphics->m_bInheritDraw && !bIsThisVisible)
       {
 
          //         if (!get_parent())

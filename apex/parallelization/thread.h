@@ -158,7 +158,7 @@ public:
    void add_task(::object* pobjectTask) override;
 
 
-   inline message_queue* get_message_queue() { return m_pmessagequeue ? m_pmessagequeue.m_p : _get_message_queue(); }
+   message_queue* get_message_queue();
    message_queue* _get_message_queue();
 
    bool peek_message(MESSAGE * pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, bool bRemoveMessage = false);

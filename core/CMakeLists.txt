@@ -831,7 +831,7 @@ list(APPEND library_references
    aqua
    aura
    axis
-   base
+   berg
    bred
 )
 

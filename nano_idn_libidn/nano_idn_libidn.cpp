@@ -47,7 +47,7 @@ namespace libidn
 
             char *psz = nullptr;
 
-            Idna_rc rc = (Idna_rc) idna_to_ascii_8z(str, &psz, IDNA_ALLOW_UNASSIGNED);
+            Idna_rc rc = (Idna_rc) idna_to_ascii_8z(scopedstr, &psz, IDNA_ALLOW_UNASSIGNED);
 
             if (rc != IDNA_SUCCESS)
             {
@@ -56,9 +56,9 @@ namespace libidn
 
             }
 
-            string strReturn(scopedstr);
+            string strReturn(psz);
 
-            free(scopedstr);
+            free(psz);
 
             return strReturn;
 
@@ -67,14 +67,15 @@ namespace libidn
 
          string idn::idn_from_punycode(const ::scoped_string & scopedstr)
          {
-            if (str.is_empty())
+
+            if (scopedstr.is_empty())
             {
 
                return "";
 
             }
 
-            string strTrimmed(str);
+            string strTrimmed(scopedstr);
 
             strTrimmed.trim();
 
@@ -96,9 +97,9 @@ namespace libidn
 
             }
 
-            string strReturn(scopedstr);
+            string strReturn(psz);
 
-            free(scopedstr);
+            free(psz);
 
             return strReturn;
 

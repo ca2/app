@@ -1095,6 +1095,9 @@ namespace aura
    void system::initialize_draw2d()
    {
 
+      _synchronous_lock synchronouslock(this->synchronization());
+
+
       ::e_status estatus = ::success;
 
       //try
@@ -1175,7 +1178,7 @@ namespace aura
 
       //auto psystem = system();
 
-      critical_section_lock synchronouslock(&this->m_criticalsection);
+      //critical_section_lock synchronouslock(&this->m_criticalsection);
 
       ///estatus = 
       

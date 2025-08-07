@@ -181,6 +181,8 @@ namespace user
 
       e_interaction                             m_einteraction;
 
+      e_element                                 m_eelementMain;
+
       bool                                      m_bCompositedFrameWindow;
       bool                                      m_bEdgeGestureDisableTouchWhenFullscreen;
       //bool                                      m_bScreenVisible;

@@ -8992,18 +8992,7 @@ namespace windowing
 
       string strType = ::type(user_interaction()).name();
 
-      //this->windowing() = user_interaction()->windowing();
-
-      //::pointer<::user::thread> puserthread = m_puserthread;
-
-      //if (puserthread)
-      //{
-
-      //   puserthread->m_oswindow = this->oswindow();
-
-      //}
-
-      if (user_interaction()->m_ewindowflag & e_window_flag_graphical)
+      if (user_interaction()->is_graphical())
       {
 
          if (::is_set(m_pgraphicsthread))
@@ -9015,37 +9004,20 @@ namespace windowing
 
             pmessage->previous();
 
-            m_pgraphicsthread->graphics_thread_reset(user_interaction());
-
          }
 
-         if (user_interaction())
-         {
+         m_pcsDisplay = __raw_new critical_section();
 
-            if (!user_interaction()->m_bMessageOnlyWindow)
-            {
+         information() << "interaction_impl m_pgraphics alloc : " << strType;
 
-               m_pcsDisplay = __raw_new critical_section();
+         //update_graphics_resources();
 
-               information() << "interaction_impl m_pgraphics alloc : " << strType;
-
-               update_graphics_resources();
-
-               information() << "interaction_impl on _create_window : " << strType;
-
-            }
-
-            if (m_pgraphicsthread && user_interaction()->is_graphical())
-            {
-
-               m_pgraphicsthread->graphics_thread_reset(user_interaction());
-
-            }
-
-         }
+         information() << "interaction_impl on _create_window : " << strType;
 
          if (m_pgraphicsthread)
          {
+
+            m_pgraphicsthread->graphics_thread_reset(user_interaction());
 
             m_pgraphicsthread->defer_create_graphics_thread();
 
@@ -9278,75 +9250,8 @@ namespace windowing
    }
 
 
-   //void window::CloseWindow()
-   //{
-
-   //   throw ::interface_only();
-
-   //}
-
-
-   //void window::OpenIcon()
-   //{
-
-   //   throw ::interface_only();
-
-   //   return false;
-
-   //}
-
-
-   //int window::GetCheckedRadioButton(int nIDFirstButton,int nIDLastButton)
-   //{
-
-   //   __UNREFERENCED_PARAMETER(nIDFirstButton);
-   //   __UNREFERENCED_PARAMETER(nIDLastButton);
-
-   //   throw ::interface_only();
-
-   //   return 0;
-
-   //}
-
-
-   //void window::_EnableToolTips(bool bEnable,unsigned int nFlag)
-   //{
-
-   //   __UNREFERENCED_PARAMETER(bEnable);
-   //   __UNREFERENCED_PARAMETER(nFlag);
-
-   //   throw ::interface_only();
-
-   //   return false;
-
-   //}
-
-
-   //void window::_001BaseWndInterfaceMap()
-   //{
-
-   //   psystem->window_map().set(get_handle(), this);
-
-   //}
-
-
-   //interaction_impl * window::get_impl() const
-   //{
-
-   //   return (::windowing::window *)this;
-
-   //}
-
-
    void window::do_graphics()
    {
-
-      if (!user_interaction() || has_destroying_flag())
-      {
-
-         return;
-
-      }
 
       m_bDoingGraphics = true;
 
@@ -9357,207 +9262,9 @@ namespace windowing
 
       };
 
-#if TIME_REPORTING
-
-      ::time timeStart;
-
-      timeStart.Now();
-
-#endif
-
-      //::int_rectangle rectangleWindow;
-
-      //user_interaction()->window_rectangle(rectangleWindow);
-
-      windowing_output_debug_string("\n_001UpdateBuffer : after window_rectangle");
+      windowing_output_debug_string("windowing::window::do_graphics");
 
       string strType = ::type(user_interaction()).name();
-
-      //      if (strType.contains("list_box"))
-      //      {
-      //
-      //         informationf("list_box");
-      //
-      //      }
-
-      //preempt(10_s);
-
-      bool bDraw = false;
-
-      //{
-
-      //   ::draw2d::lock draw2dlock(this);
-
-      //   //m_bUpdateBuffer = false;
-
-      //   //m_bUpdateWindow = false;
-
-      //   user_interaction()->sketch_to_layout();
-
-      //   if (user_interaction()->should_perform_layout(pgraphics))
-      //   {
-
-      //      user_interaction()->perform_layout(pgraphics);
-
-      //   }
-
-      //   user_interaction()->layout_to_design(m_bUpdateBuffer, m_bUpdateWindow);
-
-      //   bool bIsThisScreenVisible = user_interaction()->const_layout().design().is_screen_visible();
-
-      //   //if (!m_pimpl)
-      //   //{
-
-      //   //   return;
-
-      //   //}
-
-      //   bool bHasProdevian = this->has_prodevian();
-
-      //   if (!user_interaction())
-      //   {
-
-      //      return;
-
-      //   }
-
-      //   bool bRedraw = user_interaction()->m_bNeedRedraw;
-
-      //   if (!user_interaction())
-      //   {
-
-      //      return;
-
-      //   }
-
-      //   bool bHasPendingGraphicalUpdate = user_interaction()->has_pending_graphical_update();
-
-      //   if (bIsThisScreenVisible
-      //      &&
-      //      (//bForce
-      //         //||
-      //         m_bUpdateBuffer
-      //         || bHasProdevian
-      //         || bRedraw
-      //         || bHasPendingGraphicalUpdate
-      //         )
-      //      )
-      //   {
-
-      //      bDraw = true;
-
-      //   }
-
-      //   if (!user_interaction())
-      //   {
-
-      //      return;
-
-      //   }
-
-      /*bool bDraw = false;
-
-      m_bVisualUpdated = false;
-
-      if (!user_interaction())
-      {
-
-         return;
-
-      }
-
-      {*/
-
-
-      //synchronouslock.unlock();
-
-      ////if (!user_interaction()->is_sketch_to_design_locked())
-      ////{
-
-      //   /*user_interaction()->sketch_to_design(bUpdateBuffer, bUpdateWindow);*/
-
-      ////}
-
-      //synchronouslock.lock();
-
-      //if (!user_interaction())
-      //{
-
-   //   return;
-
-   //}
-
-   //if (!this->task_get_run())
-   //{
-
-   //   return;
-
-   //}
-
-   //if (!user_interaction())
-   //{
-
-   //   return;
-
-   //}
-
-   /*       bool bIsThisScreenVisible = user_interaction()->const_layout().design().is_screen_visible();
-
-          if(!m_pimpl)
-          {
-
-             return;
-
-          }
-
-          bool bHasProdevian = m_pimpl->has_prodevian();
-
-          if(!user_interaction())
-          {
-
-             return;
-
-          }
-
-          bool bRedraw = user_interaction()->m_bNeedRedraw;
-
-          if(!user_interaction())
-          {
-
-             return;
-
-          }
-
-          bool bHasPendingGraphicalUpdate = user_interaction()->has_pending_graphical_update();
-
-          if (bIsThisScreenVisible
-             &&
-             (bForce
-             || bUpdateBuffer
-             || bHasProdevian
-             || bRedraw
-             || bHasPendingGraphicalUpdate
-             )
-             )
-          {
-
-             bDraw = true;
-
-          }
-
-          if(!user_interaction())
-          {
-
-             return;
-
-          }*/
-
-          /*      if (user_interaction()->m_bOffScreenRender)
-                {
-
-                   bDraw = true;
-
-                }*/
 
 #ifdef MORE_LOG
 
@@ -9567,7 +9274,7 @@ namespace windowing
 
       update_graphics_resources();
 
-      if (bDraw && m_pgraphicsgraphics.is_null())
+      if (m_pgraphicsgraphics.is_null())
       {
 
          information() << "do_graphics exit(A1)";
@@ -9576,134 +9283,9 @@ namespace windowing
 
       }
 
-      //}
-
-      if (user_interaction()->has_flag(e_flag_destroying)
-         || user_interaction()->has_finishing_flag()
-         || has_flag(e_flag_destroying)
-         || has_finishing_flag())
-      {
-
-         information() << "do_graphics exit(A2)";
-
-         return;
-
-      }
-
-
-      //::int_size sizeDrawn;
-
-      //single_lock synchronouslockObjects(system()->draw2d()->get_object_list_mutex());
-
-      //if (!synchronouslockObjects.lock(0_s))
-      //{
-
-      //   return;
-
-      //}
-      //single_lock synchronouslockImages(system()->draw2d()->get_image_list_mutex());
-
-      //if (!synchronouslockImages.lock(0_s))
-      //{
-
-      //   return;
-
-      //}
-      //single_lock synchronouslockGraphicsContext(system()->draw2d()->get_graphics_context_list_mutex());
-
-      //if (!synchronouslockGraphicsContext.lock(0_s))
-      //{
-
-      //   return;
-
-      //}
-
-      //m_bUpdateBuffer = false;
-
-      //m_bUpdateWindow = false;
-
-      //user_interaction()->sketch_to_layout();
-
-      //user_interaction()->layout_to_design(m_bUpdateBuffer, m_bUpdateWindow);
-
-
-#ifdef MORE_LOG
-
-      debug() << "do_graphics(B)";
-
-#endif
-
-
       ::draw2d::graphics_pointer pgraphics;
 
       user_interaction()->defer_do_graphics(pgraphics);
-
-
-
-      //if (pgraphics)
-      //{
-
-      //   for (::collection::index i = 0; i < pgraphics->m_rectangleaNeedRedraw.size();)
-      //   {
-
-      //      bool bErasedAny = false;
-
-      //      for (::collection::index j = 0; j < m_rectangleaNeedRedraw.size();)
-      //      {
-
-      //         if (pgraphics->m_rectangleaNeedRedraw[i] == m_rectangleaNeedRedraw[j])
-      //         {
-
-      //            m_rectangleaNeedRedraw.erase_at(j);
-
-      //            bErasedAny = true;
-
-      //         }
-      //         else
-      //         {
-
-      //            j++;
-
-      //         }
-
-      //      }
-
-      //      if (bErasedAny)
-      //      {
-
-      //         pgraphics->m_rectangleaNeedRedraw.erase_at(i);
-
-      //      }
-      //      else
-      //      {
-
-      //         i++;
-
-      //      }
-
-      //   }
-
-      if (m_redrawitema.has_element())
-      {
-
-         auto iRequestsDuringDrawing = m_redrawitema.size();
-
-         //information() << iRequestsDuringDrawing << " redraw requests while drawing.";
-
-      }
-
-      //}
-
-      //}
-
-   //#if TIME_REPORTING
-   //
-   //   auto elapsed = timeStart.elapsed();
-   //
-   //   informationf("_001UpdateBuffer " + as_string(elapsed.floating_millisecond().m_d) + "ms\n");
-   //
-   //#endif
-
 
    }
 
@@ -9740,9 +9322,9 @@ namespace windowing
          
          //::draw2d::lock draw2dlock(this);
 
+         auto pbuffer = m_pgraphicsgraphics;
 
-
-         _synchronous_lock slGraphics(m_pgraphicsgraphics->synchronization());
+         _synchronous_lock slGraphics(pbuffer->synchronization());
 
          //windowing::graphics_lock graphicslock(m_pwindow);
 
@@ -9754,7 +9336,7 @@ namespace windowing
 
 #endif
 
-         auto pbufferitem = m_pgraphicsgraphics->on_begin_draw(e_graphics_layout);
+         auto pbufferitem = pbuffer->on_begin_draw(e_graphics_layout);
          //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
 
          if (!pbufferitem)
@@ -9832,7 +9414,7 @@ namespace windowing
 
          //draw2dlock.unlock();
 
-         pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()
+         pgraphics->do_on_context([this, pbuffer, &pgraphics, &pbufferitem]()
             {
 
                _synchronous_lock synchronous_lock(m_pmutexGraphics);
@@ -9845,7 +9427,7 @@ namespace windowing
 
                   pgraphics->payload("set_transparent") = "";
 
-                  pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
+                  pgraphics->m_pgraphicsgraphics = pbuffer;
 
                   pgraphics->m_pgraphicsbufferitem = pbufferitem;
 
@@ -10075,12 +9657,14 @@ namespace windowing
 
       }
 
-      if (m_pgraphicsgraphics)
+      auto pbuffer = m_pgraphicsgraphics;
+
+      if (pbuffer)
       {
 
          //::draw2d::lock draw2dlock(this);
 
-         _synchronous_lock slGraphics(m_pgraphicsgraphics->synchronization());
+         _synchronous_lock slGraphics(pbuffer->synchronization());
 
          //windowing::graphics_lock graphicslock(m_pwindow);
 
@@ -10088,7 +9672,7 @@ namespace windowing
 
 
 
-         auto pbufferitem = m_pgraphicsgraphics->on_begin_draw(e_graphics_draw);
+         auto pbufferitem = pbuffer->on_begin_draw(e_graphics_draw);
          //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
 
          if (!pbufferitem)
@@ -10686,18 +10270,7 @@ namespace windowing
       if (m_pgraphicsgraphics.is_null())
       {
 
-         //auto estatus =
-
-         //m_pgraphicsgraphics = system()->windowing()->create_graphics();
-
          __øconstruct(m_pgraphicsgraphics);
-
-         //if (!estatus)
-         //{
-
-         //   return estatus;
-
-         //}
 
          if (m_pgraphicsgraphics)
          {
@@ -10707,8 +10280,6 @@ namespace windowing
          }
 
       }
-
-      //m_pgraphics.is_set() ? ::success : ::error_failed;
 
    }
 

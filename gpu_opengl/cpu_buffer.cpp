@@ -79,21 +79,34 @@ namespace gpu_opengl
       information() << "after glReadPixels cx,cy : " << cx << ", " << cy;
       
       //::memory_set(m_pixmap.m_pimage32Raw, 127, cx * cy * 4);
-
 #elif defined(LINUX) || defined(__BSD__)
 
-      glReadBuffer(GL_FRONT);
-      
+      auto targeting = m_pimagetarget->no_padded_targeting(::image::e_copy_disposition_y_swap);
 
+      auto w = targeting.width();
+      auto h = targeting.height();
+      auto p = targeting.data();
       glReadPixels(
          0, 0,
-         cx, cy,
+         w, h,
          GL_BGRA,
+         //GL_RGBA,
          GL_UNSIGNED_BYTE,
-         m_pixmap.m_pimage32Raw);
-      
-      //m_pixmap.mult_alpha();
-      
+         p);
+      GLCheckError("");
+
+//       glReadBuffer(GL_FRONT);
+//
+//
+//       glReadPixels(
+//          0, 0,
+//          cx, cy,
+//          GL_BGRA,
+//          GL_UNSIGNED_BYTE,
+//          m_pixmap.m_pimage32Raw);
+//
+//       //m_pixmap.mult_alpha();
+//
 #else
 
       //glReadBuffer(GL_FRONT);

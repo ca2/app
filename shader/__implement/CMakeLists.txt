@@ -29,18 +29,18 @@ list(APPEND executable_references
 
 
 
-if(${LINUX} OR ${__BSD__})
+#if(${LINUX} OR ${__BSD__})
 
 
-   add_custom_command(
-      OUTPUT ${PROJECT_SOURCE_DIR}/../.link_object/_matter.zip.o
-      COMMAND ${APPLICATION_BUILD_HELPER_BINARY} --prepare-application ${PROJECT_SOURCE_DIR}
-      COMMENT "Generating ${PROJECT_SOURCE_DIR}/../.link_object/_matter.zip.o"
-   )
+#   add_custom_command(
+#      OUTPUT ${PROJECT_SOURCE_DIR}/../.link_object/_matter.zip.o
+#      COMMAND ${APPLICATION_BUILD_HELPER_BINARY} --prepare-application ${PROJECT_SOURCE_DIR}
+#      COMMENT "Generating ${PROJECT_SOURCE_DIR}/../.link_object/_matter.zip.o"
+#   )
 
-   target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/../.link_object/_matter.zip.o)
+#   target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/../.link_object/_matter.zip.o)
 
-endif()
+#endif()
 
 
 if (MSVC)

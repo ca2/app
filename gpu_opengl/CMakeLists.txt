@@ -71,10 +71,13 @@ endif ()
 
 if(${LINUX} OR ${__BSD__})
     list(APPEND library_source
-            context_egl.cpp
-            context_egl.h
+#            context_egl.cpp
+ #           context_egl.h
             #context_glx.cpp
             #context_glx.h
+       #device_egl.cpp
+       #device_egl.h
+       approach_glx.cpp
             )
 
 endif ()
@@ -105,6 +108,7 @@ if(${LINUX} OR ${__BSD__})
 
     list(APPEND library_references
             aura_posix
+       glad
        #windowing_system_x11
             )
 

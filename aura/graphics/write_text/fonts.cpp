@@ -18,8 +18,6 @@ namespace write_text
    fonts::fonts()
    {
 
-      defer_create_synchronization();
-
    }
 
 
@@ -32,18 +30,10 @@ namespace write_text
    void fonts::initialize(::particle * pparticle)
    {
 
-      //auto estatus = 
-      
+
       ::acme::department::initialize(pparticle);
 
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return true;
+      defer_create_synchronization();
 
    }
 

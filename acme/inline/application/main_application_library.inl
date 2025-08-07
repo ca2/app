@@ -95,7 +95,7 @@ APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_sys
 
       psystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
       psystem->set_resource_block(p1, p2);
 

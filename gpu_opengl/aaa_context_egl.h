@@ -15,7 +15,7 @@ namespace gpu_opengl
 
 
    class CLASS_DECL_GPU_OPENGL context_egl :
-      virtual public ::opengl::context
+      virtual public ::gpu_opengl::context
    {
    public:
 
@@ -30,7 +30,8 @@ namespace gpu_opengl
       ~context_egl() override;
 
 
-      void create_context() override;
+      //void create_context() override;
+      void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size);
 
 
       void _create_offscreen_buffer(const ::int_size& size) override;

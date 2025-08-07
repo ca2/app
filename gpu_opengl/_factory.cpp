@@ -4,7 +4,6 @@
 #include "context.h"
 #include "cpu_buffer.h"
 #include "device.h"
-#include "device_win32.h"
 #include "frame_buffer.h"
 #include "input_layout.h"
 #include "memory_buffer.h"
@@ -22,6 +21,11 @@
 #include "bred/gpu/pixmap.h"
 
 
+#if defined(WINDOWS_DESKTOP)
+
+#include "device_win32.h"
+
+#endif
 
 //BEGIN_FACTORY(gpu_opengl)
 //FACTORY_ITEM(::opengl::opengl)

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "command_buffer.h"
 #include "context.h"
-#include "device_win32.h"
+#include "device.h"
 #include "frame_buffer.h"
 #include "lock.h"
 #include "model_buffer.h"
@@ -17,6 +17,11 @@
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
 #include "glm/mat4x4.hpp"
+
+
+#if defined(WINDOWS_DESKTOP)
+#include "device_win32.h"
+#endif
 
 
 namespace gpu_opengl
@@ -64,6 +69,8 @@ namespace gpu_opengl
 
       ::gpu::context_lock contextlock(this);
 
+#if defined(WINDOWS_DESKTOP)
+
       ::cast < device_win32 > pgpudevice = m_pgpudevice;
 
       if (pgpudevice->m_itaskCurrentGpuContext != ::current_itask())
@@ -72,6 +79,8 @@ namespace gpu_opengl
          ASSERT(false);
 
       }
+
+#endif
 
       if (m_VAO != 0)
       {
@@ -150,6 +159,9 @@ namespace gpu_opengl
 //glDrawElements(GL_TRIANGLES, size / sizeof(GLushort), GL_UNSIGNED_SHORT, 0);
 //int iError18 = glGetError();
 
+
+#if defined(WINDOWS_DESKTOP)
+
       ::cast < device_win32 > pgpudevice = m_pgpudevice;
 
       if (pgpudevice->m_itaskCurrentGpuContext != ::current_itask())
@@ -158,6 +170,8 @@ namespace gpu_opengl
          ASSERT(false);
 
       }
+
+#endif
 
       //      glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
@@ -244,6 +258,8 @@ namespace gpu_opengl
 
       ::gpu::context_lock contextlock(this);
 
+#if defined(WINDOWS_DESKTOP)
+
       ::cast < device_win32 > pgpudevice = m_pgpudevice;
 
       if (pgpudevice->m_itaskCurrentGpuContext != ::current_itask())
@@ -252,6 +268,9 @@ namespace gpu_opengl
          ASSERT(false);
 
       }
+
+#endif
+
 
       //#ifdef __APPLE__
 
@@ -314,6 +333,8 @@ namespace gpu_opengl
 
       ::gpu::context_lock contextlock(this);
 
+#if defined(WINDOWS_DESKTOP)
+
       ::cast < device_win32 > pgpudevice = m_pgpudevice;
 
       if (pgpudevice->m_itaskCurrentGpuContext != ::current_itask())
@@ -322,6 +343,9 @@ namespace gpu_opengl
          ASSERT(false);
 
       }
+
+#endif
+
 
       if (!m_gluTextureBitmap1)
       {
@@ -1849,9 +1873,13 @@ void main() {
    void context::_create_offscreen_window(const ::int_size& size)
    {
 
+#if defined(WINDOWS_DESKTOP)
+
       ::cast < device_win32 > pdevice = m_pgpudevice;
 
       pdevice->_defer_create_offscreen_window(size);
+
+#endif
 
       //if (::IsWindow(m_hwnd))
       //{
@@ -1920,9 +1948,13 @@ void main() {
    void context::_create_window_buffer()
    {
 
+#if defined(WINDOWS_DESKTOP)
+
       ::cast < device_win32 > pdevice = m_pgpudevice;
 
       pdevice->_create_device(m_rectangle.size());
+
+#endif
 
       //if (!m_hdc || !m_hrc)
       //{
@@ -2492,6 +2524,8 @@ void main() {
    void context::destroy_cpu_buffer()
    {
 
+#if defined(WINDOWS_DESKTOP)
+
       ::cast < device_win32 > pgpudevice = m_pgpudevice;
 
       if (pgpudevice->m_itaskCurrentGpuContext != ::current_itask())
@@ -2500,6 +2534,8 @@ void main() {
          ASSERT(false);
 
       }
+
+#endif
 
       m_pframebuffer.release();
 

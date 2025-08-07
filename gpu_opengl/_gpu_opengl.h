@@ -37,7 +37,9 @@
 #elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD)
 
 
-#define __GPU_OPENGL_USE_EGL
+//#define __GPU_OPENGL_USE_EGL
+
+#define __GPU_OPENGL_USE_GLAD
 
 
 #ifdef __GPU_OPENGL_USE_EGL
@@ -61,14 +63,14 @@
 //#define GL_GLEXT_PROTOTYPES 1
 //#include <GLES/gl.h>
 //#include <GLES/glext.h>
-//#include <glad.h>
+#include <glad/glad.h>
 
 // OpenGL ES includes
 //#include <GLES2/gl2.h>
 //#include <GLES2/gl2ext.h>
 
 
-#include <GL/gl.h>
+//#include <GL/gl.h>
 
 
 // apt install libosmesa6-dev

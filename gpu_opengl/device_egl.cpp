@@ -1,7 +1,11 @@
 #include "framework.h"
-#include "context_egl.h"
+#include "context.h"
+#include "device_egl.h"
+#include "swap_chain.h"
+#include "acme/platform/application.h"
 #include "aura/platform/system.h"
-#include "opengl.h"
+#include "aura/windowing/window.h"
+//#include "_opengl.h"
 //
 //extern "C"
 //{
@@ -14,15 +18,15 @@ namespace gpu_opengl
 {
 
 
-   ::pointer <::gpu::context > allocate_egl_context(::particle * pparticle)
-   {
+   //::pointer <::gpu::context > allocate_egl_context(::particle * pparticle)
+   //{
 
-      return pparticle->__create_new < context_egl >();
+     // return pparticle->__create_new < device_egl >();
 
-   }
+   //}
 
 
-   context_egl::context_egl()
+   device_egl::device_egl()
    {
 
 //      gladLoadGL();
@@ -38,19 +42,71 @@ namespace gpu_opengl
 //
 //#endif
 
-      m_emode = e_mode_egl;
+      //m_emode = e_mode_egl;
 
    }
 
 
-   context_egl::~context_egl()
+   device_egl::~device_egl()
    {
 
 
    }
 
 
-   void context_egl::create_context()
+   void device_egl::initialize_gpu_device_for_swap_chain(::gpu::approach* papproach, ::windowing::window* pwindow)
+   {
+
+      ::gpu::device::initialize_gpu_device_for_swap_chain(papproach, pwindow);
+
+      m_pgpuapproach = papproach;
+      m_pwindow = pwindow;
+      //m_bAddSwapChainSupport = true;
+      //m_hwnd = (HWND) m_pwindow->oswindow();
+
+      _create_device(m_pwindow->get_window_rectangle().size());
+
+
+      auto pcontext = main_context();
+
+      pcontext->m_pgpudevice = this;
+
+      pcontext->_send([this, pcontext]()
+         {
+
+            pcontext->initialize_gpu_context(this,
+               ::gpu::e_output_gpu_buffer,
+               m_pwindow,
+               m_pwindow->get_window_rectangle().size());
+
+            auto pswapchain = pcontext->get_swap_chain();
+
+            pswapchain->initialize_swap_chain_window(pcontext, m_pwindow);
+
+         });
+
+   }
+
+
+   void device_egl::initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::int_rectangle& rectanglePlacement)
+   {
+
+      ::gpu::device::initialize_gpu_device_for_off_screen(papproach, rectanglePlacement);
+
+      m_pgpuapproach = papproach;
+      m_pwindow = m_papplication->m_pacmeuserinteractionMain->window();
+      //m_bAddSwapChainSupport = false;
+      //::cast < ::windowing_win32::window > pwin32window = m_pwindow;
+      //m_hwnd = pwin32window->m_hwnd;
+
+      _create_device(rectanglePlacement.size());
+
+   }
+
+
+
+   //void context_egl::create_context()
+   void device_egl::_create_device(const ::int_size & size)
    {
 
 //      auto psystem = system();

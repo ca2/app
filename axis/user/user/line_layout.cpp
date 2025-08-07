@@ -4,6 +4,7 @@
 #include "acme/platform/node.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/user/user/interaction_array.h"
+#include "aura/user/user/style.h"
 #include "aura/message/user.h"
 
 
@@ -192,7 +193,7 @@ namespace user
 
                iMaximumNormal = ::maximum(iMaximumNormal, sizeItem.get_normal_dimension(m_eorientation));
 
-               auto dAscent = puserinteraction->get_font(pstyle)->get_ascent(pgraphics);
+               auto dAscent = pstyle->get_font(puserinteraction, puserinteraction->m_eelementMain)->get_ascent(pgraphics);
 
                dMaximumAscent = ::maximum(dMaximumAscent, dAscent);
 

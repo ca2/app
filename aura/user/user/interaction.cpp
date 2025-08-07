@@ -233,6 +233,8 @@ namespace user
    interaction::interaction()
    {
 
+      m_eelementMain = e_element_none;
+
       m_ekeyboardmode = e_keyboard_mode_none;
 
       m_bEmptyAreaIsClientArea = true;
@@ -27115,7 +27117,7 @@ __check_refdbg;
             if (window()->m_timeHoverNoiseSuppression.elapsed().m_iSecond > 10000)
             {
 
-               information() << "AiAiAi";
+               //information() << "AiAiAi";
 
             }
 

@@ -2364,10 +2364,11 @@ m_ibuf(isize)
    bool tcp_socket::SSLNegotiate_Server()
    {
 
-      int r = SSL_accept(m_psslcontext->m_ssl);
-      int iError = networking_last_error();
-      if (r > 0)
+      int iReturnCode = SSL_accept(m_psslcontext->m_ssl);
+
+      if (iReturnCode > 0)
       {
+
          SetSSLNegotiate(false);
          /// \todo: resurrect certificate check... server
          //         CheckCertificateChain( "");//ClientHOST);
@@ -2388,40 +2389,46 @@ m_ibuf(isize)
          return true;
 
       }
-      else if (!r)
+      else if (!iReturnCode)
       {
 
+         int iError = networking_last_error();
 
-         information() << "SSLNegotiate/SSL_accept: Connection failed";
+         information() << "SSLNegotiate/SSL_accept: Connection failed networking_last_error() = " << iError;
 
          SetSSLNegotiate(false);
+
          SetCloseAndDelete();
+
          OnSSLAcceptFailed();
+
       }
       else
       {
 
-         r = SSL_get_error(m_psslcontext->m_ssl, r);
+         int iError = networking_last_error();
 
-         if (r == SSL_ERROR_WANT_READ)
+         int iSslError = SSL_get_error(m_psslcontext->m_ssl, iReturnCode);
+
+         if (iSslError == SSL_ERROR_WANT_READ)
          {
 
             information() << "SSL_accept return code is SSL_ERROR_WANT_READ";
 
          }
-         else if (r == SSL_ERROR_WANT_WRITE)
+         else if (iSslError == SSL_ERROR_WANT_WRITE)
          {
 
             information() << "SSL_accept return code is SSL_ERROR_WANT_WRITE";
 
          }
-         else if (r == SSL_ERROR_WANT_CONNECT)
+         else if (iSslError == SSL_ERROR_WANT_CONNECT)
          {
 
             information() << "SSL_accept return code is SSL_ERROR_WANT_CONNECT";
 
          }
-         else if (r == SSL_ERROR_WANT_ACCEPT)
+         else if (iSslError == SSL_ERROR_WANT_ACCEPT)
          {
 
             information() << "SSL_accept return code is SSL_ERROR_WANT_ACCEPT";
@@ -2430,7 +2437,7 @@ m_ibuf(isize)
          else
          {
 
-            if (r == SSL_ERROR_SYSCALL)
+            if (iSslError == SSL_ERROR_SYSCALL)
             {
 
                error() << "SSLNegotiate SSL_ERROR_SYSCALL networking_last_error() = " << iError;
@@ -2439,7 +2446,7 @@ m_ibuf(isize)
             else
             {
 
-               information() << "SSLNegotiate SSL_accept() failed with : " << r << " network error = : " << iError;
+               information() << "SSLNegotiate SSL_accept() failed with : " << iReturnCode << " ssl error = " << iSslError << " network error = : " << iError;
 
             }
 

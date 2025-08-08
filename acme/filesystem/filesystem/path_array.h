@@ -15,7 +15,7 @@ namespace file
 
 
    class CLASS_DECL_ACME path_array :
-      virtual public ::string_array_base < ::file::path, string, e_type_string_array >
+      public ::string_array_base < ::file::path, string, e_type_string_array >
    {
    public:
 

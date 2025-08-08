@@ -22,8 +22,7 @@ namespace file
 
    listing::listing(const listing & listing) :
       LISTING(listing),
-      path_array(listing),
-      ::string_array_base < ::file::path, string, e_type_string_array >(listing)
+      path_array(listing)
    {
       
       m_countAddUp = 128;
@@ -33,8 +32,7 @@ namespace file
 
    listing::listing(listing&& listing) :
       LISTING(::transfer(listing)),
-      path_array(::transfer(listing)),
-      ::string_array_base < ::file::path, string, e_type_string_array >(::transfer(listing))
+      path_array(::transfer(listing))
    {
 
    }

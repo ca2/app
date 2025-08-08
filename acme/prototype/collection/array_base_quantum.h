@@ -213,7 +213,7 @@ public:
    array_flags             m_arrayflags;
 
 
-   using ::range < TYPE * >::range;
+   //using ::range < TYPE * >::range;
 
    
    array_base_quantum();
@@ -223,7 +223,7 @@ public:
    template < primitive_array ARRAY >
    array_base_quantum(const ARRAY & a) : array_base_quantum() {
       this->set_size(a.size());
-      for (::collection::index i = 0; this->size(); i++) this->element_at(i) = a.element_at(i);
+      for (::collection::index i = 0; i < this->size(); i++) this->element_at(i) = a.element_at(i);
    }
    array_base_quantum(pre_allocate_t, ::collection::count n) : array_base_quantum() { this->m_countAddUp = n; }
    array_base_quantum(zeroe_on_allocation_t, ::collection::count n) : array_base_quantum() { this->m_arrayflags.m_bZeroeOnAllocation = true; this->m_countAddUp = n; }

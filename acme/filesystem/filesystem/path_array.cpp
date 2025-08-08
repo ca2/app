@@ -266,3 +266,23 @@ CLASS_DECL_ACME::string_array ascendants_name(const ::file::path& pathBase)
 
 
 
+
+
+void _000001_stra_to_patha_assignment_test()
+{
+
+   string_array stra;
+
+   stra.add("C:\\a");
+   stra.add("C:\\b");
+   stra.add("C:\\c");
+   stra.add("C:\\d");
+
+   ::file::path_array patha;
+
+   patha = stra;
+
+}
+
+
+

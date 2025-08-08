@@ -33,30 +33,32 @@ public:
 
    using BASE_ARRAY::BASE_ARRAY;
 
-   array_non_particle();
-   array_non_particle(nullptr_t) : array_non_particle() {}
-   array_non_particle(std::initializer_list < TYPE > initializer_list) : BASE_ARRAY(initializer_list) {}
-   //array_non_particle(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
-   array_non_particle(const array_non_particle & a);
-   array_non_particle(enum_create_new, ::collection::count n);
-   array_non_particle(::collection::count n);
-   array_non_particle(::collection::count n, ARG_TYPE t);
-   array_non_particle(::range < const_iterator > constrange) : BASE_ARRAY(constrange) {}
-   template < primitive_integral INTEGRAL >
-   array_non_particle(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
-   array_non_particle(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
-   array_non_particle(array_non_particle && a) noexcept : array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >(::transfer(a)) { }
-   ~array_non_particle() override;
+   //using ::array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_base_quantum;
+
+   // array_non_particle();
+   // array_non_particle(nullptr_t) : array_non_particle() {}
+   // array_non_particle(std::initializer_list < TYPE > initializer_list) : BASE_ARRAY(initializer_list) {}
+   // //array_non_particle(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
+   // array_non_particle(const array_non_particle & a);
+   // array_non_particle(enum_create_new, ::collection::count n);
+   // array_non_particle(::collection::count n);
+   // array_non_particle(::collection::count n, ARG_TYPE t);
+   // array_non_particle(::range < const_iterator > constrange) : BASE_ARRAY(constrange) {}
+   // template < primitive_integral INTEGRAL >
+   // array_non_particle(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
+   // array_non_particle(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
+   // array_non_particle(array_non_particle && a) noexcept : array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >(::transfer(a)) { }
+   // ~array_non_particle() override;
 
 
-   array_non_particle & operator = (const array_non_particle & array_non_particle) { BASE_ARRAY::operator=(array_non_particle); return *this; }
-   array_non_particle & operator = (array_non_particle && array_non_particle) { BASE_ARRAY::operator=(::transfer(array_non_particle)); return *this; }
-   array_non_particle & operator = (std::initializer_list < TYPE > initializer_list)
-   {
-      this->clear();
-      for (auto & item : initializer_list) this->add(item);
-      return *this;
-   }
+   // array_non_particle & operator = (const array_non_particle & array_non_particle) { BASE_ARRAY::operator=(array_non_particle); return *this; }
+   // array_non_particle & operator = (array_non_particle && array_non_particle) { BASE_ARRAY::operator=(::transfer(array_non_particle)); return *this; }
+   // array_non_particle & operator = (std::initializer_list < TYPE > initializer_list)
+   // {
+   //    this->clear();
+   //    for (auto & item : initializer_list) this->add(item);
+   //    return *this;
+   // }
 
 
 
@@ -352,7 +354,12 @@ class array :
 {
 public:
 
+
    using BASE_ARRAY = array_non_particle< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
+
+
+   using array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_non_particle;
+
 
    //array() : array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >() {}
    //template < typename ...Args >
@@ -360,21 +367,21 @@ public:
    //   array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >(::std::forward < Args >(args)...)
    //{
    //}
-   array() {}
-   array(nullptr_t) : BASE_ARRAY() {}
-   array(std::initializer_list < TYPE > initializer_list) : BASE_ARRAY(initializer_list) {}
-   //array_non_particle(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
-   array(const BASE_ARRAY & a) : BASE_ARRAY(a) {}
-   array(BASE_ARRAY && a) noexcept : BASE_ARRAY(::transfer(a)) { }
-   array(enum_create_new, ::collection::count n) : BASE_ARRAY(e_create_new, n) {}
-   array(pre_allocate_t, ::collection::count n) : BASE_ARRAY() { this->m_countAddUp = n; }
-   array(zeroe_on_allocation_t, ::collection::count n) : BASE_ARRAY(zeroe_on_allocation_t{}, n) { }
-   array(::collection::count n) : BASE_ARRAY(n) {}
-   array(::collection::count n, ARG_TYPE t) : BASE_ARRAY(n, t) {}
-   array(::range < typename BASE_ARRAY::const_iterator > constrange) : BASE_ARRAY(constrange) {}
-   template < primitive_integral INTEGRAL >
-   array(typename BASE_ARRAY::const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
-   array(typename BASE_ARRAY::const_iterator begin, typename BASE_ARRAY::const_iterator end) : BASE_ARRAY(begin, end) {}
+   // array() {}
+   // array(nullptr_t) : BASE_ARRAY() {}
+   // array(std::initializer_list < TYPE > initializer_list) : BASE_ARRAY(initializer_list) {}
+   // //array_non_particle(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
+   // array(const BASE_ARRAY & a) : BASE_ARRAY(a) {}
+   // array(BASE_ARRAY && a) noexcept : BASE_ARRAY(::transfer(a)) { }
+   // array(enum_create_new, ::collection::count n) : BASE_ARRAY(e_create_new, n) {}
+   // array(pre_allocate_t, ::collection::count n) : BASE_ARRAY() { this->m_countAddUp = n; }
+   // array(zeroe_on_allocation_t, ::collection::count n) : BASE_ARRAY(zeroe_on_allocation_t{}, n) { }
+   // array(::collection::count n) : BASE_ARRAY(n) {}
+   // array(::collection::count n, ARG_TYPE t) : BASE_ARRAY(n, t) {}
+   // array(::range < typename BASE_ARRAY::const_iterator > constrange) : BASE_ARRAY(constrange) {}
+   // template < primitive_integral INTEGRAL >
+   // array(typename BASE_ARRAY::const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
+   // array(typename BASE_ARRAY::const_iterator begin, typename BASE_ARRAY::const_iterator end) : BASE_ARRAY(begin, end) {}
 
 
 
@@ -490,23 +497,23 @@ inline ::collection::index array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t
 //
 //}
 
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle() :
-   BASE_ARRAY::array_base_quantum()
-{
-
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(const array_non_particle & a) :
-   BASE_ARRAY::array_base_quantum(a)
-{
-
-}
-
+//
+// template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+// array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle() :
+//    BASE_ARRAY::array_base_quantum()
+// {
+//
+//
+// }
+//
+//
+// template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+// array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(const array_non_particle & a) :
+//    BASE_ARRAY::array_base_quantum(a)
+// {
+//
+// }
+//
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 //inline array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(::std::initializer_list < TYPE >  l)
@@ -521,51 +528,51 @@ array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_n
 //
 //}
 
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(enum_create_new, ::collection::count n)
-{
-
-   this->set_size(n);
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(::collection::count n) :
-   array_non_particle()
-{
-
-   this->set_size(n);
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(::collection::count n, ARG_TYPE t) :
-   array_non_particle()
-{
-
-   while (n > 0)
-   {
-
-      add(t);
-
-      n--;
-
-   }
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::~array_non_particle()
-{
-
-   this->erase_all(); // on_destruct_element is virtual and won't be available for array_base_quantum
-
-}
-
+//
+// template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+// array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(enum_create_new, ::collection::count n)
+// {
+//
+//    this->set_size(n);
+//
+// }
+//
+//
+// template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+// array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(::collection::count n) :
+//    array_non_particle()
+// {
+//
+//    this->set_size(n);
+//
+// }
+//
+//
+// template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+// array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(::collection::count n, ARG_TYPE t) :
+//    array_non_particle()
+// {
+//
+//    while (n > 0)
+//    {
+//
+//       add(t);
+//
+//       n--;
+//
+//    }
+//
+// }
+//
+//
+// template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+// array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::~array_non_particle()
+// {
+//
+//    this->erase_all(); // on_destruct_element is virtual and won't be available for array_base_quantum
+//
+// }
+//
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 //inline ::collection::index array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::append(const array_non_particle & src)

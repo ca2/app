@@ -63,7 +63,25 @@ namespace file
 } // namespace file
 
 
-CLASS_DECL_ACME ::file::path_array operator / (const ::file::path & pathBase, const string_array & straRelativeItems);
+template < primitive_array ARRAY >
+inline ::file::path_array operator / (const ::file::path & pathBase, const ARRAY & straRelativeItems)
+{
+
+   ::file::path_array a;
+
+   for (auto & strRelative : straRelativeItems)
+   {
+
+      a.add(pathBase / strRelative);
+
+   }
+
+   return ::transfer(a);
+
+}
+
+
+
 CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & pathBase, ::file::path_array & pathaFolder, ::file::path_array * ppathaRelative = nullptr);
 CLASS_DECL_ACME ::file::path_array ascendants_path(const ::file::path & pathBase);
 CLASS_DECL_ACME ::file::path_array & ascendants_path(::file::path_array & patha, const ::file::path& pathBase);

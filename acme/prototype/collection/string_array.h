@@ -180,7 +180,7 @@ public:
 
    string_array_base slice(::collection::index iStart, ::collection::count iCount = -1) const;
 
-   string_array_base & operator =(const string_array_base & stra);
+   //string_array_base & operator =(const string_array_base & stra);
 
 
    Type & insert_empty(::collection::index nIndex);

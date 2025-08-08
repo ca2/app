@@ -646,17 +646,17 @@ string_array_base < Type, RawType, t_etypeContainer > string_array_base < Type, 
    return stra;
 
 }
-
-
-template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer >& string_array_base < Type, RawType, t_etypeContainer >::operator =(const string_array_base < Type, RawType, t_etypeContainer >& tokena)
-{
-
-   copy(tokena);
-
-   return *this;
-
-}
+//
+//
+// template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+// string_array_base < Type, RawType, t_etypeContainer >& string_array_base < Type, RawType, t_etypeContainer >::operator =(const string_array_base < Type, RawType, t_etypeContainer >& tokena)
+// {
+//
+//    copy(tokena);
+//
+//    return *this;
+//
+// }
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >

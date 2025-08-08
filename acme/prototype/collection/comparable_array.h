@@ -36,29 +36,32 @@ public:
    using iterator = typename BASE_ARRAY::iterator;
    using const_iterator = typename BASE_ARRAY::const_iterator;
 
-   comparable_array() { }
-   comparable_array(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }
-   comparable_array(const comparable_array & array) : BASE_ARRAY(array) {}
-   comparable_array(comparable_array && array) : BASE_ARRAY(::transfer(array)) {}
-   template < primitive_integral INTEGRAL >
-   comparable_array(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
-   comparable_array(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
-   comparable_array(const_iterator begin) : BASE_ARRAY(begin, find_first_null_character(begin)) {}
+
+   //using ARRAY_TYPE::ARRAY_TYPE;
+
+   // comparable_array() { }
+   // comparable_array(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }
+   // comparable_array(const comparable_array & array) : BASE_ARRAY(array) {}
+   // comparable_array(comparable_array && array) : BASE_ARRAY(::transfer(array)) {}
+   // template < primitive_integral INTEGRAL >
+   // comparable_array(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
+   // comparable_array(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
+   // comparable_array(const_iterator begin) : BASE_ARRAY(begin, find_first_null_character(begin)) {}
 
 
-   using ARRAY_TYPE::operator =;
-
-   comparable_array & operator = (const comparable_array & array)
-   {
-      BASE_ARRAY::operator = (array);
-      return *this;
-   }
-   comparable_array & operator = (comparable_array && array)
-   {
-      BASE_ARRAY::operator = (::transfer(array));
-      return *this;
-   }
-
+   // using ARRAY_TYPE::operator =;
+   //
+   // comparable_array & operator = (const comparable_array & array)
+   // {
+   //    BASE_ARRAY::operator = (array);
+   //    return *this;
+   // }
+   // comparable_array & operator = (comparable_array && array)
+   // {
+   //    BASE_ARRAY::operator = (::transfer(array));
+   //    return *this;
+   // }
+   //
 
 
       using BASE_RANGE::_order;

@@ -21,19 +21,21 @@ public:
 
    using iterator = typename ARRAY_TYPE::iterator;
    using const_iterator = typename ARRAY_TYPE::const_iterator;
-   
 
-   comparable_eq_array(no_initialize_t):BASE_RANGE(no_initialize_t{}){}
-   comparable_eq_array(nullptr_t):BASE_RANGE(nullptr){}
-   comparable_eq_array():BASE_RANGE(){}
-   comparable_eq_array(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }
-   comparable_eq_array(const comparable_eq_array & array) : BASE_RANGE(array) {}
-   comparable_eq_array(comparable_eq_array && array) noexcept : BASE_RANGE(::transfer(array)) { }
-   comparable_eq_array(::range < const_iterator > constrange) : BASE_RANGE(constrange) {}
-   template < primitive_integral INTEGRAL >
-   comparable_eq_array(const_iterator begin, INTEGRAL count) : BASE_RANGE(begin, count) {}
-   comparable_eq_array(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
-   comparable_eq_array(const_iterator begin) : BASE_RANGE(begin, find_first_null_character(begin)) {}
+
+   using ARRAY_TYPE::ARRAY_TYPE;
+
+   // comparable_eq_array(no_initialize_t):BASE_RANGE(no_initialize_t{}){}
+   // comparable_eq_array(nullptr_t):BASE_RANGE(nullptr){}
+   // comparable_eq_array():BASE_RANGE(){}
+   // comparable_eq_array(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }
+   // comparable_eq_array(const comparable_eq_array & array) : BASE_RANGE(array) {}
+   // comparable_eq_array(comparable_eq_array && array) noexcept : BASE_RANGE(::transfer(array)) { }
+   // comparable_eq_array(::range < const_iterator > constrange) : BASE_RANGE(constrange) {}
+   // template < primitive_integral INTEGRAL >
+   // comparable_eq_array(const_iterator begin, INTEGRAL count) : BASE_RANGE(begin, count) {}
+   // comparable_eq_array(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
+   // comparable_eq_array(const_iterator begin) : BASE_RANGE(begin, find_first_null_character(begin)) {}
 
    
    ::collection::index find_first(ARG_TYPE t) const;
@@ -96,26 +98,26 @@ public:
    //comparable_eq_array operator -(const comparable_eq_array & a) const;
 
 
-   using ARRAY_TYPE::operator =;
-   comparable_eq_array & operator = (const comparable_eq_array & array)
-   {
-      
-      BASE_ARRAY::operator =(array);
-      
-      return *this;
-      
-   }
-   
-   
-   comparable_eq_array & operator = (comparable_eq_array && array)
-   {
-      
-      BASE_ARRAY::operator = (::transfer(array));
-      
-      return *this;
-      
-   }
-   
+   // using ARRAY_TYPE::operator =;
+   // comparable_eq_array & operator = (const comparable_eq_array & array)
+   // {
+   //
+   //    BASE_ARRAY::operator =(array);
+   //
+   //    return *this;
+   //
+   // }
+   //
+   //
+   // comparable_eq_array & operator = (comparable_eq_array && array)
+   // {
+   //
+   //    BASE_ARRAY::operator = (::transfer(array));
+   //
+   //    return *this;
+   //
+   // }
+   //
    
    comparable_eq_array & transfer(comparable_eq_array && array)
    {

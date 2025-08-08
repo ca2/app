@@ -31,7 +31,7 @@ namespace gpu
       virtual ::gpu::command_buffer* getCurrentCommandBuffer4();
 
 
-      virtual void initialize_gpu_layer(renderer * pgpurenderer, int iFrameIndex, int iLayerIndex);
+      virtual void initialize_gpu_layer(::gpu::renderer * pgpurenderer, int iFrameIndex, int iLayerIndex);
 
 
       virtual void create_command_buffers();
@@ -42,9 +42,9 @@ namespace gpu
       virtual void layer_end();
 
 
-      ::pointer < class texture > & texture();
-      ::pointer < class texture > & source_texture();
-      renderer * renderer();
+      ::pointer < ::gpu::texture > & texture();
+      ::pointer < ::gpu::texture > & source_texture();
+      ::gpu::renderer * renderer();
 
 
    };

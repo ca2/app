@@ -589,7 +589,14 @@ memory file_system::__safe_get_memory(const ::file::path& pathParam, character_c
       return {};
    }
 
-   fread(data, 1, size, file);
+   auto iRead = fread(data, 1, size, file);
+
+   if (iRead != size)
+   {
+
+      warningf("read %lld bytes from reported size %lld", iRead, size);
+
+   }
    //str.release_buffer(size);
 
    fclose(file);

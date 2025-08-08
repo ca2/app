@@ -20,42 +20,47 @@ namespace file
    public:
 
 
-      path_array(){}
-      path_array(const ::file::path_array & array):
-         ::string_array_base < ::file::path, string, e_type_string_array >(array)
-      {}
-      path_array(::file::path_array&& array) :
-         ::string_array_base < ::file::path, string, e_type_string_array >(::transfer(array))
-      {
-      }
-      ~path_array() override {}
+      //using ::string_array_base < ::file::path, string, e_type_string_array >::string_array_base;
+
+
+      // path_array(){}
+      // path_array(const ::file::path_array & array):
+      //    ::string_array_base < ::file::path, string, e_type_string_array >(array)
+      // {}
+      // path_array(::file::path_array&& array) :
+      //    ::string_array_base < ::file::path, string, e_type_string_array >(::transfer(array))
+      // {
+      // }
+      //~path_array() override {}
 
 
       virtual void patch_base_path(const ::file::path & pathBase);
 
 
-      path_array& operator=(const ::file::path_array& array)
-      {
-         ::string_array_base < ::file::path, string, e_type_string_array >::operator =(array);
-            return *this;
-      }
+      // path_array& operator=(const ::file::path_array& array)
+      // {
+      //
+      //    ::string_array_base < ::file::path, string, e_type_string_array >::operator =(array);
+      //
+      //    return *this;
+      //
+      // }
+      //
+      //
+      // path_array& operator=(::file::path_array&& array)
+      // {
+      //
+      //    ::string_array_base < ::file::path, string, e_type_string_array >::operator =(::transfer(array));
+      //
+      //    return *this;
+      //
+      // }
 
-      path_array& operator=(::file::path_array&& array)
-      {
-         ::string_array_base < ::file::path, string, e_type_string_array >::operator =(::transfer(array));
-         return *this;
-      }
 
    };
 
-//   inline path_array path::ascendants_path() const { path_array patha; return ascendants_path(patha); }
-
-
 
 } // namespace file
-
-
-//inline void __exchange(::payload_stream & stream, ::file::path_array & array);
 
 
 CLASS_DECL_ACME ::file::path_array operator / (const ::file::path & pathBase, const string_array & straRelativeItems);

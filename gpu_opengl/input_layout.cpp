@@ -77,7 +77,7 @@ namespace gpu_opengl
 					opengltypeTypeUnit, 
 					GL_FALSE,
                sizeVertex, 
-					(void*)iOffset);
+					(void*)(::uptr)(::iptr)iOffset);
 				GLCheckError("");
 
 

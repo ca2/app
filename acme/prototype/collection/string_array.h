@@ -61,19 +61,22 @@ public:
    using THIS_RAW_RANGE = typename BASE_ARRAY::THIS_RAW_RANGE;
    using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
 
-   string_array_base() {}
+   using comparable_array < Type, const Type &, comparable_eq_array < Type, const Type &, array < Type, const Type &, ::typed::def < Type >, ::heap::typed_memory < Type, ::heap::e_memory_array >, t_etypeContainer > > >
+      ::comparable_array;
 
-   template < typename T >
-   string_array_base(const ::std::initializer_list < T > & l)
-   {
-      for (auto & e : l)
-      {
-         add(e);
-      }
-   }
+//   string_array_base() {}
 
-   string_array_base(const string_array_base & array);
-   string_array_base(string_array_base && array);
+   // template < typename T >
+   // string_array_base(const ::std::initializer_list < T > & l)
+   // {
+   //    for (auto & e : l)
+   //    {
+   //       add(e);
+   //    }
+   // }
+
+   //string_array_base(const string_array_base & array);
+   //string_array_base(string_array_base && array);
    //#ifdef UNIVERSAL_WINDOWS
    //   string_array_base(Platform::Array < Platform::String ^ > ^ refstra);
    //#endif

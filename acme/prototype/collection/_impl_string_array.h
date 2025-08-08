@@ -790,18 +790,18 @@ Type* string_array_base < Type, RawType, t_etypeContainer >::get_data()
 
 
 
-template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer > ::string_array_base(const string_array_base < Type, RawType, t_etypeContainer >& array) :
-   BASE_ARRAY((const BASE_ARRAY&)array)
-{
-}
-
-
-template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer > ::string_array_base(string_array_base < Type, RawType, t_etypeContainer >&& array) :
-   BASE_ARRAY(::transfer(array))
-{
-}
+// template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+// string_array_base < Type, RawType, t_etypeContainer > ::string_array_base(const string_array_base < Type, RawType, t_etypeContainer >& array) :
+//    BASE_ARRAY((const BASE_ARRAY&)array)
+// {
+// }
+//
+//
+// template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+// string_array_base < Type, RawType, t_etypeContainer > ::string_array_base(string_array_base < Type, RawType, t_etypeContainer >&& array) :
+//    BASE_ARRAY(::transfer(array))
+// {
+// }
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >

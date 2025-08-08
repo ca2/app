@@ -16,7 +16,7 @@ lparam::lparam(const ::subparticle * psubparticle)
 
 #if REFERENCING_DEBUGGING
 
-   if (psubparticle->m_bReferencingDebuggingEnabled)
+   if (psubparticle->is_referencing_debugging_enabled())
    {
 
       //((subparticle*)psubparticle)->m_prefererTransfer = ::allocator::defer_push_referer((::subparticle *)psubparticle, { (::subparticle *)psubparticle, this, __FUNCTION_FILE_LINE__ });

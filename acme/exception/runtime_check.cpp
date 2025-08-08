@@ -11,7 +11,7 @@ runtime_check_exception::runtime_check_exception(const ::e_status& estatus, cons
 }
 
 
-runtime_check_exception::runtime_check_exception(const ::e_status& estatus, const ::array_non_particle < error_code >& errorcodea, const_char_pointer pszMessage, const_char_pointer pszDetails, int iSkip, void* caller_address) :
+runtime_check_exception::runtime_check_exception(const ::e_status& estatus, const ::proto < array < error_code > > & errorcodea, const_char_pointer pszMessage, const_char_pointer pszDetails, int iSkip, void* caller_address) :
    ::exception::exception(estatus, errorcodea, pszMessage, pszDetails, iSkip, caller_address)
 {
 

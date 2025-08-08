@@ -20,18 +20,18 @@ class CLASS_DECL_ACME reference_item_array
 public:
 
 
-   ::reference_item_array *                                       m_preferenceitemarrayParent = nullptr;
-   long long                                                          m_iSerial;
-   int                                                            m_iStep;
-   ::subparticle*                                                 m_psubparticle;
-   ::subparticle*                                                 m_psubparticleParent;
-   bool                                                           m_bFirstAllocationInformation = false;
-   ::string                                                       m_strFirstAllocation;
-   ::string                                                       m_strDebug;
-   bool                                                           m_bFirstReference;
-   ::iptr                                                         m_iLastReferenceCount;
-   ::non_particle_comparable_array < reference_item * >           m_itema;
-   ::non_particle_comparable_array < reference_item_array * >     m_item2a;
+   ::reference_item_array *                                                   m_preferenceitemarrayParent = nullptr;
+   long long                                                                  m_iSerial;
+   int                                                                        m_iStep;
+   ::subparticle*                                                             m_psubparticle;
+   ::subparticle*                                                             m_psubparticleParent;
+   bool                                                                       m_bFirstAllocationInformation = false;
+   ::string                                                                   m_strFirstAllocation;
+   ::string                                                                   m_strDebug;
+   bool                                                                       m_bFirstReference;
+   ::iptr                                                                     m_iLastReferenceCount;
+   ::proto< ::comparable_array < reference_item * > >                         m_itema;
+   ::proto< ::comparable_array < reference_item_array * > >                   m_item2a;
 
 
    reference_item_array(::subparticle * psubparticle, ::subparticle * psubparticleParent);

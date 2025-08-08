@@ -27,10 +27,14 @@ namespace allocator
 bool g_bDefaultEnableObjectReferenceCountDebug = false;
 
 
+thread_local bool t_bDefaultEnableObjectReferenceCountDebug = true;
+
+
 //CLASS_DECL_ACME void on_construct_particle(::particle * pparticle);
 
 
-subparticle::subparticle() :
+subparticle::subparticle(const ::e_flag & eflag, const ::e_status & estatus) :
+   ::quantum(eflag, estatus),
    m_countReference(1)
 {
 
@@ -38,7 +42,8 @@ subparticle::subparticle() :
 
    //m_pstringCallStackTrace = nullptr;
 
-   if (!g_bDefaultEnableObjectReferenceCountDebug)
+   if (!this->is_referencing_debugging_enabled()
+      || !g_bDefaultEnableObjectReferenceCountDebug)
    {
 
       disable_referencing_debugging();

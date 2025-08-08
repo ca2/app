@@ -16,7 +16,14 @@ public:
    ::e_status                          m_estatus;
 
 
+   quantum(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined) :
+      m_eflagElement(eflag),
+      m_estatus(estatus)
+   {
+
+   }
    virtual ~quantum();
+
 
 
 
@@ -29,6 +36,9 @@ public:
    inline void set_ok_flag() { set_flag(e_flag_success); clear_flag(e_flag_timeout); clear_flag(e_flag_failure); }
    inline void set_nok(enum_flag estatusFailure = e_flag_failure) { clear_flag(e_flag_success); set_flag(estatusFailure); }
    inline void set_modified_flag(bool bModified = true) { set_flag(e_flag_changed, bModified); }
+
+
+   [[nodiscard]] inline bool has_proto_flag() const { return has_flag(e_flag_proto); }
 
 
    inline void set_fail_flag() { set_flag(e_flag_failure); clear_flag(e_flag_success); }
@@ -126,3 +136,4 @@ public:
 
 
 };
+

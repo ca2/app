@@ -64,7 +64,7 @@ public:
 
 
    ::critical_section                                             m_criticalsection;
-   ::non_particle_comparable_array < reference_item_array * >     m_item2a;
+   ::proto < comparable_array < reference_item_array * > >        m_item2a;
    bool                                                           m_bEnable = true;
    long long                                                          m_iCount = 0;
 

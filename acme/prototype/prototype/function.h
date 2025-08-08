@@ -1016,7 +1016,8 @@ class function_base_4 :
 public:
 
 
-   function_base_4()
+   function_base_4(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined) :
+      ::subparticle(eflag, estatus)
    {
 
 

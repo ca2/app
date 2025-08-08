@@ -33,7 +33,7 @@ exception(estatus, {::error_code(e_error_code_type_unknown, 0)}, scopedstrMessag
 
 
 //#else
-exception::exception(const ::e_status & estatus, const ::array_non_particle < error_code > & errorcodea, const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrDetails, int iSkip, void * caller_address):
+exception::exception(const ::e_status & estatus, const ::proto < array < error_code > > & errorcodea, const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrDetails, int iSkip, void * caller_address):
 m_errorcodea(errorcodea)
 //#endif
 {

@@ -268,8 +268,8 @@ namespace heap
 template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 class array_base;
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-class array_base_quantum;
+//template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
+//class array_base_quantum;
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
 class row;
@@ -283,8 +283,8 @@ class array;
 template < class TYPE, class ARG_TYPE = const TYPE&, class TYPED = ::typed::def_with_zero_init < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 using array_with_zero_init = array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::def < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-class array_non_particle;
+//template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::def < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
+//class array_non_particle;
 
 
 template < typename ARRAY_BASE, int t_preallocated_array_size >
@@ -356,16 +356,16 @@ template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array <
 class comparable_eq_array;
 
 
-template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = array_non_particle < TYPE, ARG_TYPE > >
-using non_particle_comparable_eq_array = comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >;
+//template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = array_non_particle < TYPE, ARG_TYPE > >
+//using non_particle_comparable_eq_array = comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >;
 
 
 template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array < TYPE, ARG_TYPE > >
 class comparable_array;
 
 
-template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = non_particle_comparable_eq_array < TYPE, ARG_TYPE > >
-using non_particle_comparable_array = comparable_array < TYPE, ARG_TYPE, ARRAY_TYPE >;
+//template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = non_particle_comparable_eq_array < TYPE, ARG_TYPE > >
+//using non_particle_comparable_array = comparable_array < TYPE, ARG_TYPE, ARRAY_TYPE >;
 
 
 namespace allocator
@@ -401,8 +401,8 @@ template < typename TYPE, typename ARG_TYPE = const TYPE &, class TYPED = ::type
 class raw_array;
 
 
-template < typename TYPE, typename ARG_TYPE = const TYPE &, class TYPED = ::typed::rawcopy < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-class raw_array_quantum;
+//template < typename TYPE, typename ARG_TYPE = const TYPE &, class TYPED = ::typed::rawcopy < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
+//class raw_array_quantum;
 
 
 template < typename POINTER, class ARRAY_TYPE = comparable_array < POINTER, POINTER, comparable_eq_array < POINTER, POINTER, raw_array < POINTER, POINTER, ::allocator::zero < POINTER > > > > >

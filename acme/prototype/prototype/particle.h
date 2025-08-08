@@ -94,7 +94,8 @@ public:
    mutable ::particle_pointer                   m_pparticleSynchronization;
 
 //#if REFERENCING_DEBUGGING
-   particle() :
+   particle(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined) :
+      ::signal_handler::base(eflag, estatus),
       m_papplication(nullptr),
       m_pparticleSynchronization(nullptr)
    {

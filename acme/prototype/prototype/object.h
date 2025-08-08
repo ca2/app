@@ -32,7 +32,8 @@ public:
    ::object_meta *               m_pmeta;
 
 
-   object():
+   object(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined) :
+      property_object(eflag, estatus),
       m_pmeta(nullptr) 
    {
       

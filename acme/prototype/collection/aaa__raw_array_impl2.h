@@ -254,7 +254,7 @@ inline raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & raw_array
 // out-of-line functions
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::raw_array(::particle * pparticle) 
+raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::raw_array(::particle * pparticle)
    //:
    //::matter(pparticle)
 {

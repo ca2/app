@@ -555,6 +555,8 @@ namespace allocator
    void on_construct_subparticle(::subparticle * pparticle)
    {
 
+      bool bIsReferencingDebuggingEnabled = pparticle->is_referencing_debugging_enabled();
+
       if(!::is_set(t_pStartConstruct) || t_sStartConstruct <= 0)
       {
 
@@ -599,6 +601,10 @@ namespace allocator
 
       if (!bDisableReferencingDebugging)
       {
+
+         //pparticle->m_preferenceitema->m_pitema = { transfer_t{}, new ::comparable_array<::reference_item *>(e_flag_disable_referencing_debugging)};
+
+         //pparticle->m_preferenceitema->m_pitem2a = { transfer_t{}, new ::comparable_array<::reference_item_array *>(e_flag_disable_referencing_debugging)};
 
          if (::is_set(t_psubparticleTrackAllocation)
             && t_psubparticleTrackAllocation->contains_top_track(pparticle))
@@ -909,7 +915,7 @@ namespace allocator
 void subparticle::disable_referencing_debugging()
 {
 
-   m_bReferencingDebuggingEnabled = false;
+   m_bReferencingDebuggingEnabled5 = false;
 
    //m_eflagElement.set(e_flag_no_referencing_debugging);
 

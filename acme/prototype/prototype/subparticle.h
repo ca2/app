@@ -21,6 +21,7 @@ class sequence;
 
 
 
+
 class CLASS_DECL_ACME subparticle :
    virtual public ::quantum
 {
@@ -32,9 +33,10 @@ public:
 
 
 #if REFERENCING_DEBUGGING
-   subparticle();
+   subparticle(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined);
 #else
-   subparticle() :
+   subparticle(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined) :
+      ::quantum(eflag, estatus),
       m_countReference(1)
    {
          
@@ -46,6 +48,10 @@ public:
 
    virtual void initialize(::particle * pparticle);
    //virtual void finalize();
+
+
+   //virtual bool is_proto() const;
+   inline bool should_disable_referencing_debugging() const { return this->has_proto_flag(); }
 
 
    ::platform::system* system() const;
@@ -121,7 +127,7 @@ public:
    void *                              m_pType = nullptr;
    memsize                             m_sType = sizeof(::subparticle);
    ::reference_referer *               m_prefererTransfer2 = nullptr;
-   bool                                m_bReferencingDebuggingEnabled = true;
+   bool                                m_bReferencingDebuggingEnabled5 = true;
    bool                                m_bIncludeCallStackTrace = false;
 
    void set_size_type(memsize s) { m_sType = s; }
@@ -143,7 +149,7 @@ public:
    bool is_referencing_debugging_enabled() const
    {
 
-      return m_bReferencingDebuggingEnabled;
+      return !this->should_disable_referencing_debugging() && m_bReferencingDebuggingEnabled5;
 
    }
 
@@ -256,3 +262,56 @@ public:
 
 inline bool is_nok(const ::subparticle * p) { return !::is_set(p) || !p->_is_ok(); }
 
+
+
+
+template < typename TYPE >
+class proto :
+   public TYPE
+{
+public:
+
+
+   using TYPE::TYPE;
+   using TYPE::operator =;
+
+
+   proto(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined):
+   TYPE(eflag | e_flag_proto, estatus)
+   {
+
+   }
+
+
+   //
+   //
+   // ~no_referencing_debugging() override
+   // {
+   //
+   //
+   // }
+
+   //
+   // bool is_proto() const override
+   // {
+   //
+   //    // if (!(this->m_eflagElement & e_flag_disable_referencing_debugging))
+   //    // {
+   //    //
+   //    //    ((proto *) this)->m_eflagElement |= e_flag_disable_referencing_debugging;
+   //    //
+   //    // }
+   //    //
+   //    // if (!this->m_bReferencingDebuggingEnabled3)
+   //    // {
+   //    //
+   //    //    ((proto *) this)->m_bReferencingDebuggingEnabled3 = false;
+   //    //
+   //    // }
+   //
+   //    return true;
+   //
+   // }
+
+
+};

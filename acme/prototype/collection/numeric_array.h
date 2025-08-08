@@ -961,7 +961,7 @@ unique_number_sort_array()
 
 template < typename TYPE, ::enum_type t_etypeContainer >
 unique_number_sort_array < TYPE, t_etypeContainer >::
-unique_number_sort_array(const unique_number_sort_array < TYPE, t_etypeContainer > & a) 
+unique_number_sort_array(const unique_number_sort_array < TYPE, t_etypeContainer > & a)
 {
    numeric_array < TYPE, t_etypeContainer > ::operator = (a);
 }
@@ -1579,7 +1579,7 @@ namespace acme
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 template < typename PRED >
-void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::predicate_sort(PRED pred)
+void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::predicate_sort(PRED pred)
 {
 
    ::acme::array::predicate_sort(*this, pred);
@@ -1589,7 +1589,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pre
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,::enum_type t_etypeContainer >
 template < typename T, typename PRED >
-::collection::index array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::predicate_binary_search(const T & t, PRED pred) const
+::collection::index array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::predicate_binary_search(const T & t, PRED pred) const
 {
 
    return ::acme::array::predicate_binary_search(*this, t, pred);

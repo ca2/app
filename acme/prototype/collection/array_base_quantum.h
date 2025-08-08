@@ -175,7 +175,7 @@ struct array_flags
 
 struct pre_allocate_t {};
 struct zeroe_on_allocation_t {};
-
+struct null_terminated_t {};
 
 // raw_array is an array that does not call constructors or destructor in elements
 // array is an array that call only copy constructor and destructor in elements
@@ -217,6 +217,7 @@ public:
 
    
    array_base_quantum();
+   array_base_quantum(nullptr_t) : array_base_quantum() {}
    array_base_quantum(std::initializer_list < TYPE > initializer_list);
    array_base_quantum(const array_base_quantum & a);
    array_base_quantum(array_base_quantum && a) noexcept;
@@ -236,7 +237,7 @@ public:
       auto p = this->begin();
       while (p != end) add(*p);
    }
-   array_base_quantum(const_iterator begin) : array_base_quantum(begin, find_first_null_character(begin)){}
+   array_base_quantum(null_terminated_t, const_iterator begin) : array_base_quantum(begin, find_first_null_character(begin)){}
    ~array_base_quantum() override;
 
 

@@ -222,7 +222,7 @@ public:
    array_base_quantum(array_base_quantum && a) noexcept;
    template < primitive_array ARRAY >
    array_base_quantum(const ARRAY & a) : array_base_quantum() {
-      this->vset_size(a.size());
+      this->set_size(a.size());
       for (::collection::index i = 0; this->size(); i++) this->element_at(i) = a.element_at(i);
    }
    array_base_quantum(pre_allocate_t, ::collection::count n) : array_base_quantum() { this->m_countAddUp = n; }

@@ -14,7 +14,7 @@
 // ::property set key is case insensitive
 // PROPERTY_ARRAY Property set ordered
 class CLASS_DECL_ACME property_set :
-   virtual public ::property_holder_array
+   public ::property_holder_array
 {
 public:
 

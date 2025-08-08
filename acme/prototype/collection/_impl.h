@@ -235,7 +235,7 @@ inline sequence_continuation particle::async()
             if (this->m_arrayflags.m_bZeroeOnAllocation)
             {
 
-               memset(this->m_begin, 0, this->size() * sizeof(TYPE));
+               memset(this->m_begin, 0, maximum(0, countOld) * sizeof(TYPE));
 
             }
 

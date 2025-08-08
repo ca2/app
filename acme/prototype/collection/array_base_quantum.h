@@ -322,6 +322,22 @@ public:
    }
 
 
+   array_base_quantum & operator = (const std::initializer_list < TYPE > & initializer_list)
+   {
+
+      this->clear();
+
+      for (auto & item : initializer_list)
+      {
+
+         this->add(item);
+
+      }
+
+      return *this;
+
+   }
+
    // Forwarding constructor arguments to T's constructor
    template<typename... Args>
    TYPE& add_construct(Args&&... args)

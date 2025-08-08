@@ -22,11 +22,13 @@ public:
    //__declare_iterator(name_iterator, &(*this->m_pelement)->id());
    //__declare_iterator(value_iterator, &(*this->m_pelement)->m_var);
 
+   using property_holder_array::property_holder_array;
+   using property_holder_array::operator =;
 
-   property_set() {}
    property_set(::std::initializer_list < ::payload > list);
-   property_set(const ::property_set & set);
-   property_set(::property_set && set);
+   // property_set() {}
+   // property_set(const ::property_set & set);
+   // property_set(::property_set && set);
    ~property_set() override;
 
 
@@ -416,7 +418,7 @@ public:
 
 
    ::property_set & operator = (const ::payload & payload);
-   ::property_set & operator = (const ::property_set & set);
+   //::property_set & operator = (const ::property_set & set);
 //   ::property_set & operator = (const pair_set_interface & set);
 //   ::property_set & operator = (const str_str_interface & set);
 

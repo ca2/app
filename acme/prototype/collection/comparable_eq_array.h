@@ -24,6 +24,7 @@ public:
 
 
    using ARRAY_TYPE::ARRAY_TYPE;
+   using ARRAY_TYPE::operator =;
 
    // comparable_eq_array(no_initialize_t):BASE_RANGE(no_initialize_t{}){}
    // comparable_eq_array(nullptr_t):BASE_RANGE(nullptr){}

@@ -222,7 +222,7 @@ public:
    array_base_quantum(array_base_quantum && a) noexcept;
    template < primitive_array ARRAY >
    array_base_quantum(const ARRAY & a) : array_base_quantum() {
-      this->set_size(a.size());
+      this->vset_size(a.size());
       for (::collection::index i = 0; this->size(); i++) this->element_at(i) = a.element_at(i);
    }
    array_base_quantum(pre_allocate_t, ::collection::count n) : array_base_quantum() { this->m_countAddUp = n; }
@@ -260,32 +260,32 @@ public:
 
       if (this != &a)
       {
-         
+
          auto c = a.size();
-         
+
          set_size(c);
-         
+
          auto ptarget = this->data();
-         
+
          auto psource = a.data();
 
          while(c > 0)
          {
-            
+
             *ptarget = *psource;
-            
+
             ptarget++;
-            
+
             psource++;
-            
+
             c--;
-            
+
          }
 
       }
-      
-      return *this; 
-   
+
+      return *this;
+
    }
 
 
@@ -298,9 +298,27 @@ public:
          transfer(::transfer(array_base_quantum));
 
       }
-      
+
       return *this;
-   
+
+   }
+
+
+   template < primitive_array ARRAY >
+   array_base_quantum & operator = (const ARRAY & a)
+   {
+
+       this->set_size(a.size());
+
+       for (::collection::index i = 0; i < this->size(); i++)
+       {
+
+          this->element_at(i) = a[i];
+
+       }
+
+       return *this;
+
    }
 
 

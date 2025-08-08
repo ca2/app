@@ -1503,19 +1503,19 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 //}
 
 
-property_set::property_set(const ::property_set & set)
-{
-
-   operator = (set);
-
-}
-
-
-property_set::property_set(::property_set && set) :
-   property_holder_array(::transfer(set))
-{
-
-}
+// property_set::property_set(const ::property_set & set)
+// {
+//
+//    operator = (set);
+//
+// }
+//
+//
+// property_set::property_set(::property_set && set) :
+//    property_holder_array(::transfer(set))
+// {
+//
+// }
 
 
 //property_set::property_set(const pair_set_interface & set)
@@ -1650,19 +1650,19 @@ property_set::property_set(::property_set && set) :
 }
 
 
-::property_set & property_set::operator = (const ::property_set & set)
-{
-
-   if (&set != this)
-   {
-
-      ::property_holder_array::operator=(set);
-
-   }
-
-   return *this;
-
-}
+// ::property_set & property_set::operator = (const ::property_set & set)
+// {
+//
+//    if (&set != this)
+//    {
+//
+//       ::property_holder_array::operator=(set);
+//
+//    }
+//
+//    return *this;
+//
+// }
 
 
 ::property_set & property_set::append(const ::property_set & set)

@@ -32,6 +32,7 @@ public:
    using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
 
    using BASE_ARRAY::BASE_ARRAY;
+   using BASE_ARRAY::operator =;
 
    //using ::array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_base_quantum;
 
@@ -135,7 +136,7 @@ public:
   //void erase_descending_indexes(const index_array & ia); // erase indexes from ::collection::index array_non_particle lower bound to ::collection::index array_non_particle upper bound
   //::collection::index insert_at(::collection::index nStartIndex, array_non_particle* pNewArray);
 
-   using array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator=;
+   //using array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator=;
    //inline array_non_particle & operator = (const array_non_particle & src);
    //inline array_non_particle & operator = (array_non_particle && a);
 
@@ -358,8 +359,8 @@ public:
    using BASE_ARRAY = array_non_particle< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
 
 
-   using array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_non_particle;
-
+   using BASE_ARRAY::BASE_ARRAY;
+   using BASE_ARRAY::operator =;
 
    //array() : array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >() {}
    //template < typename ...Args >

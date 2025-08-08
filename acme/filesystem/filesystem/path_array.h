@@ -33,6 +33,9 @@ namespace file
       // }
       //~path_array() override {}
 
+      using ::string_array_base < ::file::path, string, e_type_string_array >::string_array_base;
+      using ::string_array_base < ::file::path, string, e_type_string_array >::operator =;
+
 
       virtual void patch_base_path(const ::file::path & pathBase);
 

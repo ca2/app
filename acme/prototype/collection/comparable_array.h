@@ -32,6 +32,7 @@ public:
    //using comparable_range < ARRAY_TYPE >::comparable_range;
 
    using ARRAY_TYPE::ARRAY_TYPE;
+   using ARRAY_TYPE::operator =;
 
    using iterator = typename BASE_ARRAY::iterator;
    using const_iterator = typename BASE_ARRAY::const_iterator;

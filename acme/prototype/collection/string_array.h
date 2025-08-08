@@ -61,8 +61,10 @@ public:
    using THIS_RAW_RANGE = typename BASE_ARRAY::THIS_RAW_RANGE;
    using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
 
-   using comparable_array < Type, const Type &, comparable_eq_array < Type, const Type &, array < Type, const Type &, ::typed::def < Type >, ::heap::typed_memory < Type, ::heap::e_memory_array >, t_etypeContainer > > >
-      ::comparable_array;
+
+   using BASE_ARRAY::BASE_ARRAY;
+   using BASE_ARRAY::operator =;
+
 
 //   string_array_base() {}
 

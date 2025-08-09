@@ -288,7 +288,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //::user::interaction::_001OnDraw(pgraphics);
 
-   pgraphics->set(get_font(pstyle));
+   pgraphics->set(pstyle->get_font(this, e_element_none));
 
    m_fontsize = pgraphics->m_pfont->m_fontsize;
 

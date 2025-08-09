@@ -13,13 +13,20 @@ class address_array_base :
 public:
 
 
-   inline address_array_base() {}
-   inline address_array_base(const address_array_base & a) { this->operator = (a); }
-   inline address_array_base(address_array_base && a) { this->operator = (::transfer(a)); }
+   using BASE_ARRAY = ARRAY_TYPE;
 
 
-   inline address_array_base & operator = (const address_array_base & a) { this->ARRAY_TYPE::operator = (a); return *this; }
-   inline address_array_base & operator = (address_array_base && a) { this->ARRAY_TYPE::operator = (::transfer(a)); return *this; }
+   using BASE_ARRAY::BASE_ARRAY;
+   using BASE_ARRAY::operator =;
+
+
+   //inline address_array_base() {}
+   //inline address_array_base(const address_array_base & a) { this->operator = (a); }
+   //inline address_array_base(address_array_base && a) { this->operator = (::transfer(a)); }
+
+
+   //inline address_array_base & operator = (const address_array_base & a) { this->ARRAY_TYPE::operator = (a); return *this; }
+   //inline address_array_base & operator = (address_array_base && a) { this->ARRAY_TYPE::operator = (::transfer(a)); return *this; }
 
 
    ::collection::index add(POINTER newElement) { return ARRAY_TYPE::add(newElement); }

@@ -685,13 +685,6 @@ namespace user
 
          data.m_pdc->set(pbrushText);
 
-         if (!m_pfontTreeItem)
-         {
-
-            update_drawing_objects();
-
-         }
-
          data.m_pdc->set(m_pfontTreeItem);
 
          data.m_pdc->_DrawText(strItem, rectangle, m_ealignText, m_edrawtext);
@@ -1067,14 +1060,12 @@ namespace user
       __defer_construct(m_pbrushTextHighlight);
       __defer_construct(m_pbrushText);
 
-      __defer_construct(m_pfontTreeItem);
-
       m_pbrushTextSelectedHighlight->create_solid(get_color(pstyle, ::e_element_hilite_text, ::user::e_state_selected));
       m_pbrushTextSelected->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
       m_pbrushTextHighlight->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
       m_pbrushText->create_solid(get_color(pstyle, ::e_element_item_text));
 
-      m_pfontTreeItem = get_font(pstyle);
+      m_pfontTreeItem = pstyle->get_font(this, e_element_none);
 
    }
 

@@ -11,6 +11,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/message/user.h"
 #include "aura/platform/application.h"
+#include "aura/user/user/style.h"
 
 
 namespace user
@@ -92,7 +93,7 @@ namespace user
 
          auto pstyle = get_style(pdrawitem->m_pgraphics);
 
-         auto pfont = get_font(pstyle);
+         auto pfont = pstyle->get_font(this, e_element_none);
 
          //pfont->m_strFontFamilyName = "Arial";
 

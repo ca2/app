@@ -227,8 +227,8 @@ public:
          virtual void erase_recursively(const ::file::path & path);
 
 
-         //virtual void enumerate_recursively(::file::path_array & stra, const ::scoped_string & scopedstr);
-         //virtual void enumerate_recursively_directory(::file::path_array & stra, const ::scoped_string & scopedstr);
+         //virtual void enumerate_recursively(::file::path_array_base & stra, const ::scoped_string & scopedstr);
+         //virtual void enumerate_recursively_directory(::file::path_array_base & stra, const ::scoped_string & scopedstr);
 
          //bool _enumerates(::file::listing_base & listing) override;
          
@@ -250,8 +250,8 @@ public:
 
          //virtual void enumerate(::file::listing_base & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
          //virtual void enumerate_pattern(::file::listing_base & listing, const ::file::path & path, const ::string_array & straNamePattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
-         //virtual void enumerate_directory(::file::path_array & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
-         //virtual void enumerate_file(::file::path_array & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
+         //virtual void enumerate_directory(::file::path_array_base & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
+         //virtual void enumerate_file(::file::path_array_base & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
 
          virtual int make_path(const ::scoped_string & scopedstr);
 
@@ -267,11 +267,11 @@ public:
             //virtual bool _is(const ::file::path & path);
             //virtual bool mk(const  char * path); // makes a directory path (all intermediates too)
             //virtual bool mkdir(const  char * path); // only creates if parent dir already exists
-            //virtual void ls(::file::path_array & patha, const ::file::path & path);
-            //virtual void ls_dir(::file::path_array & patha, const ::file::path & path);
-            //virtual void ls_file(::file::path_array & patha, const ::file::path & path);
-            //virtual void rls(::file::path_array & patha, const ::file::path & path);
-            //virtual void rls_dir(::file::path_array & patha, const ::file::path & path);
+            //virtual void ls(::file::path_array_base & patha, const ::file::path & path);
+            //virtual void ls_dir(::file::path_array_base & patha, const ::file::path & path);
+            //virtual void ls_file(::file::path_array_base & patha, const ::file::path & path);
+            //virtual void rls(::file::path_array_base & patha, const ::file::path & path);
+            //virtual void rls_dir(::file::path_array_base & patha, const ::file::path & path);
 
 
             //virtual::file::path ca2_module();

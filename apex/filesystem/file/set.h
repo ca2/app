@@ -33,7 +33,7 @@ namespace file
 
       // reference
       virtual void add_search(const ::file::path & pathSearchFolder, bool bRecursive);
-      virtual void add_search(const ::file::path_array & pathaSearchFolder, const bool_array & baRecursive);
+      virtual void add_search(const ::file::path_array_base & pathaSearchFolder, const bool_array & baRecursive);
       virtual void add_filter(string_array & stra);
       virtual ::collection::count get_file_count();
       virtual void file_at(::collection::index i, string & str);

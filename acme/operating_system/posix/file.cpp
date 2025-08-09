@@ -1321,7 +1321,7 @@ bool file_exists(const ::file::path & path)
 //
 //   character_count iLastPos = -1;
 //
-//   ::file::path_array stra;
+//   ::file::path_array_base stra;
 //
 //   ::file::path path(pathParam);
 //

@@ -168,10 +168,10 @@ namespace fs
    }
 
 
-   //void data::get_ascendants_path(const ::file::path & path,::file::path_array & straParam)
+   //void data::get_ascendants_path(const ::file::path & path,::file::path_array_base & straParam)
 
    //{
-   //   ::file::path_array stra;
+   //   ::file::path_array_base stra;
    //   get_ascendants_name(pcsz, stra);
 
    //   string str;
@@ -186,7 +186,7 @@ namespace fs
    //   }
    //}
 
-   //void data::get_ascendants_name(const ::file::path & path,::file::path_array & straParam)
+   //void data::get_ascendants_name(const ::file::path & path,::file::path_array_base & straParam)
 
    //{
    //   string_array straSeparator;

@@ -144,7 +144,7 @@ namespace application_build_helper
 
          string strFolders;
 
-         ::file::path_array patha;
+         ::file::path_array_base patha;
 
          ::file_pointer preader;
 
@@ -181,7 +181,7 @@ namespace application_build_helper
 
                   string_array straOutput;
 
-                  ::file::listing listing;
+                  ::file::listing_base listing;
 
                   auto pathFolder = pathOutput / strFolder;
 

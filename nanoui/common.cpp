@@ -307,7 +307,7 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::arr
 
    auto papexcontext = pparticle->m_papplication;
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
    listing.set_file_listing(path.c_str());
 

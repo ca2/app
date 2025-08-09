@@ -36,7 +36,7 @@ namespace universal_windows
       //virtual string relpath(const_char_pointer lpcszSource,const_char_pointer lpcszRelative,const_char_pointer lpcsz2 = nullptr);
       //virtual bool  ls_pattern(const ::scoped_string & scopedstr,const_char_pointer lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,bool_array * pbaIsDir = nullptr,long_long_array * piaSize = nullptr);
       using ::directory_context::ls;
-      virtual ::file::listing & ls(::file::listing & listing) override;
+      virtual ::file::listing_base & ls(::file::listing_base & listing) override;
       //virtual bool  rls_pattern(const ::scoped_string & scopedstr,const_char_pointer lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,bool_array * pbaIsDir = nullptr,long_long_array * piaSize = nullptr,enum_extract eextract = e_extract_first);
       //virtual bool  rls(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,enum_extract eextract = e_extract_first);
       //virtual bool  rls_dir(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr);
@@ -48,7 +48,7 @@ namespace universal_windows
       virtual bool  has_subdir( const ::file::path & path);
       virtual bool  is_inside(const ::file::path & pathFolder, const ::file::path & path);
       virtual bool  is_inside_time(const ::file::path & path);
-      virtual ::file::listing & root_ones(::file::listing & listing);
+      virtual ::file::listing_base & root_ones(::file::listing_base & listing);
       virtual bool mk(const ::file::path & path);
       virtual bool rm( const ::file::path & path, bool bRecursive = true);
 

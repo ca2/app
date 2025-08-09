@@ -2678,7 +2678,7 @@ namespace dynamic_source
 
       string strPath = m_pmanager->m_pathNetseedDsCa2Path / "core/persistent";
 
-      ::file::listing stra;
+      ::file::listing_base stra;
 
       //auto papp = get_app();
 
@@ -2965,7 +2965,7 @@ namespace dynamic_source
    void script_compiler::parse_pstr_set()
    {
 
-      ::file::listing straFile;
+      ::file::listing_base straFile;
 
       //auto papp = get_app();
 

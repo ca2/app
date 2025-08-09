@@ -39,7 +39,7 @@ folder_dialog::~folder_dialog()
 //                                          const ::file::path & pathStartFolder )
 //   {
 //
-////      auto functionHere = [function](const ::file::path_array & stra)
+////      auto functionHere = [function](const ::file::path_array_base & stra)
 ////      {
 ////
 ////         if (stra.size() <= 0)

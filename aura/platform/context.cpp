@@ -673,7 +673,7 @@ namespace aura
 //
 //   }
 //
-//   ::file::listing& context::perform_file_listing(::file::listing& listing)
+//   ::file::listing_base& context::perform_file_listing(::file::listing_base& listing)
 //   {
 //
 //      return directory()->ls(listing);
@@ -681,7 +681,7 @@ namespace aura
 //   }
 //
 //
-//   ::file::listing& context::perform_file_relative_name_listing(::file::listing& listing)
+//   ::file::listing_base& context::perform_file_relative_name_listing(::file::listing_base& listing)
 //   {
 //
 //      return directory()->ls_relative_name(listing);

@@ -303,7 +303,7 @@ namespace dynamic_source
 
       }
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       auto papp = get_app();
 

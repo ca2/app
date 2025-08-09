@@ -105,7 +105,7 @@ namespace fs
    }
 
 
-   //void native::get_ascendants_path(const ::file::path & path,::file::path_array & stra)
+   //void native::get_ascendants_path(const ::file::path & path,::file::path_array_base & stra)
    //{
 
    //   return file()->get_ascendants_path(scopedstrPath, stra);
@@ -113,7 +113,7 @@ namespace fs
    //}
 
 
-   //void native::get_ascendants_name(const ::file::path & path,::file::path_array & straParam)
+   //void native::get_ascendants_name(const ::file::path & path,::file::path_array_base & straParam)
 
    //{
 

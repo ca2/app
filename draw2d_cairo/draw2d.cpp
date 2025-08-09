@@ -1043,7 +1043,7 @@ return g_pdraw2dcairo;
 //      if (dAndroid >= 8.0)
 //      {
 //
-//         ::file::path_array patha;
+//         ::file::path_array_base patha;
 //
 //         ::dir::ls(patha, "/system/fonts");
 //

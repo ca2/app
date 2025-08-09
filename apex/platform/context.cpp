@@ -806,9 +806,9 @@ namespace apex
       //
       //    ::pointer < ::file::link > plink;
       //
-      //    ::file::path_array patha;
+      //    ::file::path_array_base patha;
       //
-      //    ::file::path_array pathaRelative;
+      //    ::file::path_array_base pathaRelative;
       //
       //    ascendants_path(path, patha, &pathaRelative);
       //

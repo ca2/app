@@ -52,7 +52,7 @@ namespace file
       ::file::path                                       m_pathStartFolder;
       bool                                               m_bSave;
       bool                                               m_bMultiple;
-      ::file::path_array                                 m_patha;
+      ::file::path_array_base                                 m_patha;
       ::collection::index                                m_iFilter;
 
       

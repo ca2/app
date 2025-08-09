@@ -599,6 +599,8 @@ class rectangle_type;
 
 
 
+template<typename SUBPARTICLE>
+concept primitive_subparticle = ::std::is_base_of_v<::subparticle, SUBPARTICLE>;
 
 
 
@@ -834,8 +836,6 @@ concept const_string_castable =
 
 
 
-template < typename SUBPARTICLE >
-concept primitive_subparticle = ::std::is_base_of_v<::subparticle, SUBPARTICLE>;
 
 
 template < typename NON_SUBPARTICLE >
@@ -876,3 +876,6 @@ constexpr _Ty&& land(_Ty&& t, non_reference < _Ty>&& _Arg) noexcept
    static_assert(!is_lvalue_reference<_Ty>, "bad argument");
    return t = static_cast<_Ty&&>(_Arg);
 }
+
+
+

@@ -357,11 +357,11 @@ namespace file
    //
    //      // find extend equalitys..
    //
-   //      ::file::path_array patha1;
+   //      ::file::path_array_base patha1;
    //
    //      split(patha1);
    //
-   //      ::file::path_array patha2;
+   //      ::file::path_array_base patha2;
    //
    //      path.split(patha2);
    //

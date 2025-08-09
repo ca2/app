@@ -600,13 +600,13 @@ namespace platform
    }
 
 
-   ::file::path_array acme_node_layer::process_identifier_modules_paths(::process_identifier processidentifier)
+   ::file::path_array_base acme_node_layer::process_identifier_modules_paths(::process_identifier processidentifier)
    {
       return {};
    }
 
 
-   ::file::path_array acme_node_layer::modules_paths()
+   ::file::path_array_base acme_node_layer::modules_paths()
    {
       return {};
    }
@@ -1274,7 +1274,7 @@ namespace platform
    }
 
 
-   bool acme_node_layer::are_any_shared_libraries_mapped(const ::file::path_array & patha)
+   bool acme_node_layer::are_any_shared_libraries_mapped(const ::file::path_array_base & patha)
    {
       
       return false;
@@ -1599,12 +1599,12 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    //void acme_node_layer::browse_file_or_folder(::property_set & set){}
 
 
-   void acme_node_layer::list_process(::file::path_array& patha, ::process_identifier_array& uaPid)
+   void acme_node_layer::list_process(::file::path_array_base& patha, ::process_identifier_array& uaPid)
    {
    }
 
 
-   ::file::path_array list_process_path()
+   ::file::path_array_base list_process_path()
    {return{};
    }
 

@@ -490,7 +490,7 @@
 //
 //   ::int_array ia;
 //
-//   ::file::path_array stra;
+//   ::file::path_array_base stra;
 //
 //   ::dir::ls_dir(stra, "/proc/");
 //
@@ -534,7 +534,7 @@
 //
 //         atom_array ia;
 //
-//         ::file::path_array stra;
+//         ::file::path_array_base stra;
 //
 //         ::dir::ls_dir(stra, "/proc/");
 //

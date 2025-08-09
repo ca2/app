@@ -574,7 +574,7 @@ namespace aura
       //Sess(this).userex()->shell()->m_straThemeableIconName.add("Folders-OS-Windows-8-Metro.ico");
       //Sess(this).userex()->shell()->m_straThemeableIconName.add("firefox_weather.ico");
 
-      ::file::listing patha;
+      ::file::listing_base patha;
 
       // auto pcontext = get_context();
 

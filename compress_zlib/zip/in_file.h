@@ -98,15 +98,15 @@ namespace zip
       void flush() override;
       void close() override;
 
-      virtual ::file::listing & ls(::file::listing & listing);
-      virtual ::file::listing & ls_relative_name(::file::listing & listing);
+      virtual ::file::listing_base & ls(::file::listing_base & listing);
+      virtual ::file::listing_base & ls_relative_name(::file::listing_base & listing);
 
 
       bool is_opened() const override;
 
 
-      ::file::listing & perform_file_listing(::file::listing & listing) override;
-      ::file::listing & perform_file_relative_name_listing(::file::listing & listing) override;
+      ::file::listing_base & perform_file_listing(::file::listing_base & listing) override;
+      ::file::listing_base & perform_file_relative_name_listing(::file::listing_base & listing) override;
 
 
    };

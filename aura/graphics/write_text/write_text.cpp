@@ -316,7 +316,7 @@ namespace write_text
    //   if (dAndroid >= 8.0)
    //   {
 
-   //      ::file::listing listing;
+   //      ::file::listing_base listing;
 
    //      listing.set_file_listing("/system/fonts");
 

@@ -180,7 +180,7 @@ namespace fs
    }
 
 
-   //void folder_sync::get_ascendants_path(const ::file::path & path,::file::path_array & stra)
+   //void folder_sync::get_ascendants_path(const ::file::path & path,::file::path_array_base & stra)
    //{
 
    //   return file()->get_ascendants_path(scopedstrPath, stra);
@@ -188,7 +188,7 @@ namespace fs
    //}
 
 
-   //void folder_sync::get_ascendants_name(const ::file::path & path,::file::path_array & straParam)
+   //void folder_sync::get_ascendants_name(const ::file::path & path,::file::path_array_base & straParam)
 
    //{
 

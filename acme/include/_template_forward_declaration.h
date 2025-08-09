@@ -10,6 +10,9 @@
 #pragma once
 
 
+template<typename T>
+class pointer;
+
 
 
 
@@ -60,8 +63,8 @@ template < typename RESULT >
 class process;
 
 
-template<class T>
-class pointer;
+//template<class T>
+//class pointer;
 
 
 template < typename HOLDEE >
@@ -72,36 +75,12 @@ class holdee
 
 
 
-template<class T>
-class pointer;
+//template<primitive_subparticle T>
+//class pointer;
 
 
 //template<class T>
 //class pointer_array;
-
-
-namespace image
-{
-
-   
-   using image_pointer = ::pointer<::image::image>;
-
-
-} // namespace image
-
-
-using mutex_pointer = ::pointer<::mutex>;
-
-
-namespace write_text
-{
-
-
-   using font_pointer = ::pointer<font>;
-
-
-} // namespace write_text
-
 
 
 
@@ -311,16 +290,7 @@ using array_with_zero_init = array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeConta
 
 
 template < typename ARRAY_BASE, int t_preallocated_array_size >
-class preallocated_array;
-
-template < class T, typename ARG_T = const T *, typename ARRAY_BASE = array_base < ::pointer < T >, ARG_T > >
-class pointer_array_base;
-
-template < class T, typename ARG_T = const T *, typename ARRAY_BASE = array_base < ::pointer < T >, ARG_T > >
-class pointer_array; // = ::array_particle < pointer_array_base < T, ARG_T, ARRAY_BASE > >;
-
-template < class T, int t_preallocated_array_size, typename ARG_T = const T *, typename ARRAY_BASE = array < ::pointer < T >, ARG_T > >
-using preallocated_pointer_array = pointer_array < T, ARG_T, preallocated_array < ARRAY_BASE, t_preallocated_array_size > >;
+class preallocated_array_base;
 
 
 template < typename FUNCTION >
@@ -366,10 +336,6 @@ template<class EENUM, EENUM edefault = (EENUM)0>
 class base_enum;
 
 
-
-using item_pointer = ::pointer < ::item >;
-
-using memory_pointer = ::pointer < ::memory >;
 
 template < typename TYPE, typename PAIR = pair < ::atom, TYPE > >
 using atom_map = ::map < atom, TYPE, PAIR >;
@@ -449,14 +415,8 @@ using exception_array_base = ::array_base < ::exception >;
 using exception_array = ::array_particle < ::exception_array_base >;
 
 
-using particle_array_base = pointer_array_base < particle >;
-using particle_array = ::array_particle < particle_array_base >;
-using subparticle_array_base = pointer_array_base < subparticle >;
-using subparticle_array = ::array_particle < subparticle_array_base >;
 
 
-
-using regular_expression_pointer = ::pointer<::regular_expression::regular_expression>;
 
 
 
@@ -472,13 +432,6 @@ using particle_address_array_base = address_array_base < particle * >;
 using particle_address_array = ::array_particle <particle_address_array_base> ;
 
 
-using file_pointer = ::pointer<::file::file>;
-
-
-using memory_file_pointer = ::pointer<::memory_file>;
-
-
-using folder_pointer = ::pointer<::folder>;
 
 
 template < typename T >
@@ -495,25 +448,12 @@ concept an_object = !std::is_pointer < T >::value
                     && !std::is_floating_point < T >::value;
 
 
-template<typename T>
-inline ::pointer < T > pointer_transfer(T * p);
-
-
-template < typename T, typename ...Args >
-inline ::pointer < T > __call__allocate(Args &&... args);
-
 
 
 //template < typename SEQUENCE >
 class sequencer;
 
 
-using manager_pointer = ::pointer<manager>;
-using context_pointer = ::pointer<context>;
-
-
-using topic_pointer = ::pointer<topic>;
-using extended_topic_pointer = ::pointer<extended_topic>;
 
 //template < typename SEQUENCE >
 class sequencer;
@@ -576,11 +516,6 @@ using unsigned_long_long_array = ::array_particle < unsigned_long_long_array_bas
 using float_array = ::array_particle < float_array_base >;
 using double_array = ::array_particle < double_array_base >;
 
-using int_array_array = ::pointer_array < int_array >;
-
-using float_array_array = ::pointer_array < float_array >;
-using double_array_array = ::pointer_array < double_array >;
-
 
 using index_array_base = numeric_array_base < ::collection::index >;
 using count_array_base = numeric_array_base < ::collection::count >;
@@ -638,26 +573,6 @@ using process_identifier_array = ::array_particle < process_identifier_array_bas
 using byte_array_base = unsigned_char_array_base;
 using byte_array = unsigned_char_array;
 
-using task_pointer = ::pointer < task >;
-
-
-//#include "acme/prototype/prototype/_u32hash.h"
-
-
-CLASS_DECL_ACME task_pointer fork(::particle * pparticle, const ::procedure & procedure);
-
-
-namespace draw2d
-{
-
-
-   using graphics_pointer = ::pointer<graphics>;
-
-
-} // namespace draw2d
-
-
-
 
 
 //template<typename TYPE>
@@ -696,12 +611,6 @@ void __swap(A & a, B & b)
    b = aCopy;
 
 }
-
-
-using particle_array_base = pointer_array_base< ::particle >;
-
-
-using particle_array = ::array_particle < ::particle_array_base >;
 
 
 
@@ -858,18 +767,6 @@ public:
 
 
 
-namespace write_text
-{
-
-
-
-   using font_enumeration_item_array = pointer_array < font_enumeration_item >;
-
-
-} // namespace write_text
-
-
-
 
 
 namespace mathematics
@@ -915,13 +812,6 @@ namespace _std
 
 template<typename POINTER_TYPE>
 class ptr_array;
-
-
-using object_ptra = pointer_array < ::matter >; // Please use just for keeping non-member-based references.
-
-using matter_array = pointer_array < ::matter >; // Please use just for keeping non-member-based references.
-
-using task_array = pointer_array < ::task >; // Please use just for keeping non-member-based references.
 
 
 //template < typename SEQUENCE >
@@ -1029,15 +919,6 @@ template < typename TYPE >
 using index_map = map < ::collection::index, TYPE >;
 
 
-namespace platform
-{
-
-
-   using session_map = ::index_map < ::pointer < ::platform::session > >;
-
-
-} // namespace platform
-
 
 
 template < typename TYPE >
@@ -1122,3 +1003,153 @@ class payload_array;
 
 using arguments = payload_array;
 
+
+
+
+
+
+
+
+
+
+namespace image
+{
+
+
+   using image_pointer = ::pointer<::image::image>;
+
+
+} // namespace image
+
+
+using mutex_pointer = ::pointer<::mutex>;
+
+
+namespace write_text
+{
+
+
+   using font_pointer = ::pointer<font>;
+
+
+} // namespace write_text
+
+
+using item_pointer = ::pointer<::item>;
+
+using memory_pointer = ::pointer<::memory>;
+
+
+template<class T, typename ARG_T = const T *, typename ARRAY_BASE = array_base<::pointer<T>, ARG_T>>
+class pointer_array_base;
+
+template<class T, typename ARG_T = const T *, typename ARRAY_BASE = array_base<::pointer<T>, ARG_T>>
+class pointer_array; // = ::array_particle < pointer_array_base < T, ARG_T, ARRAY_BASE > >;
+
+
+
+template<class T, int t_preallocated_array_size, typename ARG_T = const T *, typename ARRAY_BASE = array_base<::pointer<T>, ARG_T> >
+using preallocated_pointer_array_base = pointer_array_base<T, ARG_T, preallocated_array_base<ARRAY_BASE, t_preallocated_array_size>>;
+
+
+using particle_array_base = pointer_array_base<particle>;
+using subparticle_array_base = pointer_array_base<subparticle>;
+
+
+using particle_array = ::array_particle<particle_array_base>;
+using subparticle_array = ::array_particle<subparticle_array_base>;
+
+
+using regular_expression_pointer = ::pointer<::regular_expression::regular_expression>;
+
+
+using file_pointer = ::pointer<::file::file>;
+
+
+using memory_file_pointer = ::pointer<::memory_file>;
+
+
+using folder_pointer = ::pointer<::folder>;
+
+template<typename T>
+inline ::pointer<T> pointer_transfer(T *p);
+
+
+template<typename T, typename... Args>
+inline ::pointer<T> __call__allocate(Args &&...args);
+
+
+using manager_pointer = ::pointer<manager>;
+using context_pointer = ::pointer<context>;
+
+
+using topic_pointer = ::pointer<topic>;
+using extended_topic_pointer = ::pointer<extended_topic>;
+
+
+using int_array_array = ::pointer_array<int_array>;
+
+using float_array_array = ::pointer_array<float_array>;
+using double_array_array = ::pointer_array<double_array>;
+
+
+using task_pointer = ::pointer<task>;
+
+
+// #include "acme/prototype/prototype/_u32hash.h"
+
+
+CLASS_DECL_ACME task_pointer fork(::particle *pparticle, const ::procedure &procedure);
+
+using task_pointer = ::pointer<task>;
+
+
+// #include "acme/prototype/prototype/_u32hash.h"
+
+
+CLASS_DECL_ACME task_pointer fork(::particle *pparticle, const ::procedure &procedure);
+
+
+namespace draw2d
+{
+
+
+   using graphics_pointer = ::pointer<graphics>;
+
+
+} // namespace draw2d
+
+
+
+
+using particle_array_base = pointer_array_base<::particle>;
+
+
+using particle_array = ::array_particle<::particle_array_base>;
+
+
+namespace write_text
+{
+
+
+   using font_enumeration_item_array = pointer_array<font_enumeration_item>;
+
+
+} // namespace write_text
+
+
+using object_ptra = pointer_array<::matter>; // Please use just for keeping non-member-based references.
+
+using matter_array = pointer_array<::matter>; // Please use just for keeping non-member-based references.
+
+using task_array = pointer_array<::task>; // Please use just for keeping non-member-based references.
+
+
+namespace platform
+{
+
+
+   using session_map = ::index_map<::pointer<::platform::session>>;
+
+
+} // namespace platform

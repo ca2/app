@@ -746,11 +746,11 @@ inline void destruct(T * p)
 //
 
 template < typename T >
-inline bool is_found(const pointer < T > & p) { return p.is_set(); }
+inline bool is_found(const ::pointer < T > & p) { return p.is_set(); }
 
 
 template < typename T >
-inline bool not_found(const pointer < T > & p) { return p.is_null(); }
+inline bool not_found(const ::pointer < T > & p) { return p.is_null(); }
 
 
 //template < typename T >

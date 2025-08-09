@@ -77,7 +77,7 @@ CLASS_DECL_APEX ::winrt::Windows::Storage::StorageFolder ^ winrt_folder(string &
    }
 
 
-   ::file::path_array patha;
+   ::file::path_array_base patha;
 
    ::file::path path(strPath);
 

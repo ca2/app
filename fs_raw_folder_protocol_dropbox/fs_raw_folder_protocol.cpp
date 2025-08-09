@@ -144,7 +144,7 @@ namespace fs_raw_folder_protocol_dropbox
 //   }
 //
 //
-//   bool folder_sync::enumerate(::file::listing& listing)
+//   bool folder_sync::enumerate(::file::listing_base& listing)
 //   {
 //
 //      return ::fs::folder_sync::enumerate(listing);
@@ -161,7 +161,7 @@ namespace fs_raw_folder_protocol_dropbox
 //
 //
 //
-//   /*::file::listing & folder_sync::ls_relative_name(::file::listing & listing)
+//   /*::file::listing_base & folder_sync::ls_relative_name(::file::listing_base & listing)
 //   {
 //
 //      directory()->ls_relative_name(listing);
@@ -180,7 +180,7 @@ namespace fs_raw_folder_protocol_dropbox
 //   }
 //
 //
-//   ::file::listing& folder_sync::root_ones(::file::listing& listing)
+//   ::file::listing_base& folder_sync::root_ones(::file::listing_base& listing)
 //   {
 //
 //      return ::fs::folder_sync::root_ones(listing);
@@ -188,7 +188,7 @@ namespace fs_raw_folder_protocol_dropbox
 //   }
 //
 //
-//   //void folder_sync::get_ascendants_path(const ::file::path & path,::file::path_array & stra)
+//   //void folder_sync::get_ascendants_path(const ::file::path & path,::file::path_array_base & stra)
 //   //{
 //
 //   //   return file()->get_ascendants_path(scopedstrPath, stra);
@@ -196,7 +196,7 @@ namespace fs_raw_folder_protocol_dropbox
 //   //}
 //
 //
-//   //void folder_sync::get_ascendants_name(const ::file::path & path,::file::path_array & straParam)
+//   //void folder_sync::get_ascendants_name(const ::file::path & path,::file::path_array_base & straParam)
 //
 //   //{
 //

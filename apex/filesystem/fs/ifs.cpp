@@ -245,10 +245,10 @@ bool ifs::enumerate(::file::listing_base & listing)
    ////   m_mapdirFolderDir[strDir] = __allocate bool_array();
 
 
-   ////::file::path_array  & straThisDir         = m_mapdirFolder[strDir];
-   ////::file::path_array  & straThisDirName     = m_mapdirFolderName[strDir];
-   ////::file::path_array  & straThisFile        = m_mapdirFile[strDir];
-   ////::file::path_array  & straThisFileName    = m_mapdirFileName[strDir];
+   ////::file::path_array_base  & straThisDir         = m_mapdirFolder[strDir];
+   ////::file::path_array_base  & straThisDirName     = m_mapdirFolderName[strDir];
+   ////::file::path_array_base  & straThisFile        = m_mapdirFile[strDir];
+   ////::file::path_array_base  & straThisFileName    = m_mapdirFileName[strDir];
    ////long_long_array    & iaThisFileSize      = *m_mapdirFileSize[strDir];
    ////long_long_array    & iaThisFolderSize    = *m_mapdirFolderSize[strDir];
    ////bool_array     & baThisFileDir       = *m_mapdirFileDir[strDir];

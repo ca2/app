@@ -27,7 +27,7 @@ namespace microsoft
 
       auto pathProgramData = directory_system()->program_data();
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       auto pathInstances = pathProgramData / "Microsoft\\VisualStudio\\Packages\\_Instances";
 

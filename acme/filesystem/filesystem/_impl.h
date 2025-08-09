@@ -5,7 +5,7 @@
 
 
 //
-//inline void __exchange(::payload_stream & stream, ::file::path_array & array)
+//inline void __exchange(::payload_stream & stream, ::file::path_array_base & array)
 //{
 //
 //   __exchange_array(stream, array);

@@ -131,18 +131,18 @@
       virtual ::file::path locale_schema_matter(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema, const ::file::path & pathRoot, const ::file::path & pathDomain);
       virtual ::file::path matter(const ::file::path & path, const ::file::path & pathRoot, const ::file::path & pathDomain);
 
-      virtual ::file::path matter(const ::file::path_array & patha);
+      virtual ::file::path matter(const ::file::path_array_base & patha);
       virtual ::file::path matter(::file::path path);
 
       virtual ::file::path appmatter(::file::path path);
 
-      virtual ::file::path matter_from_locator(const ::file::path_array & patha, const string_array & straMatterLocator);
+      virtual ::file::path matter_from_locator(const ::file::path_array_base & patha, const string_array & straMatterLocator);
       virtual ::file::path matter_from_locator(::file::path path, const string_array & straMatterLocator);
 
       virtual ::file::path appmatter(const ::scoped_string & scopedstrApp, ::file::path pathRel);
 
       virtual bool matter_enumerate(const ::file::path & str, ::file::listing_base & listing, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
-      //virtual bool matter_ls_file(const ::file::path & str, ::file::listing& stra);
+      //virtual bool matter_ls_file(const ::file::path & str, ::file::listing_base& stra);
 
       //virtual ::file::path commonappdata(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild = nullptr, const ::scoped_string & scopedstrPlatform = nullptr, const ::scoped_string & scopedstrConfiguration = nullptr);
       //virtual ::file::path commonappdata_locale_schema(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild = nullptr, const ::scoped_string & scopedstrPlatform = nullptr, const ::scoped_string & scopedstrConfiguration = nullptr, const ::scoped_string & scopedstrLocale = nullptr, const ::scoped_string & scopedstrSchema = nullptr);
@@ -193,12 +193,12 @@
 
       //virtual string_array locale_schema_matter(string & strLocale, const ::scoped_string & scopedstrStyle);
       //virtual string_array locale_schema_matter(string & strLocale, const ::scoped_string & scopedstrStyle, const string & pathRoot, const ::file::path & pathDomain);
-      //virtual string matter(const ::file::path_array & patha, bool bDir);
+      //virtual string matter(const ::file::path_array_base & patha, bool bDir);
       //virtual string matter(const ::file::path & path, bool bDir );
 
-      //virtual void   matter_ls(const ::file::path & str, ::file::path_array & stra);
+      //virtual void   matter_ls(const ::file::path & str, ::file::path_array_base & stra);
       //virtual ::file::path matter_file(const ::file::path & path, bool bDir = false);
-      //virtual void   matter_ls_file(const ::file::path & str, ::file::path_array & stra);
+      //virtual void   matter_ls_file(const ::file::path & str, ::file::path_array_base & stra);
 
       //virtual ::file::path usersystemappdata(const string & pcszPrefix);
 

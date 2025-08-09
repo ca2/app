@@ -2303,7 +2303,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 //      }
 //
 //
-//      ::file::path_array straLocaleSchema;
+//      ::file::path_array_base straLocaleSchema;
 //
 //      string_array straSep;
 //
@@ -2337,7 +2337,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 //}
 
 
-::file::path directory_context::matter_from_locator(const ::file::path_array& patha, const string_array& straMatterLocator)
+::file::path directory_context::matter_from_locator(const ::file::path_array_base& patha, const string_array& straMatterLocator)
 {
 
    bool bOk = true;
@@ -2715,7 +2715,7 @@ ret:
 ::file::path directory_context::matter_from_locator(::file::path path, const string_array& straMatterLocator)
 {
 
-   ::file::path_array patha;
+   ::file::path_array_base patha;
 
    path.case_insensitive_begins_eat("matter://");
 
@@ -2728,7 +2728,7 @@ ret:
 }
 
 
-::file::path directory_context::matter(const ::file::path_array& patha)
+::file::path directory_context::matter(const ::file::path_array_base& patha)
 {
 
    string_array straMatterLocator;
@@ -3136,7 +3136,7 @@ bool directory_context::is_inside(const ::file::path & pathFolder, const ::file:
 //::file::path directory_context::pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode)
 //{
 //
-//   ::file::path_array stra;
+//   ::file::path_array_base stra;
 //
 //   stra.add_tokens(scopedstrEnv, ":", false);
 //
@@ -3518,7 +3518,7 @@ bool directory_context::is_inside(const ::file::path & pathFolder, const ::file:
 //}
 
 //
-//string directory_context::matter(const ::file::path_array & patha, bool bDir)
+//string directory_context::matter(const ::file::path_array_base & patha, bool bDir)
 //{
 //
 //   return psystem->m_spdir->matter(get_app(), patha, bDir);
@@ -3534,12 +3534,12 @@ bool directory_context::is_inside(const ::file::path & pathFolder, const ::file:
 //}
 ////
 //
-//void directory_context::matter_ls(const ::file::path & str, ::file::path_array & stra)
+//void directory_context::matter_ls(const ::file::path & str, ::file::path_array_base & stra)
 //{
 //   psystem->m_spdir->matter_ls(get_app(), str, stra);
 //}
 //
-//void directory_context::matter_ls_file(const ::file::path & str, ::file::path_array & stra)
+//void directory_context::matter_ls_file(const ::file::path & str, ::file::path_array_base & stra)
 //{
 //   psystem->m_spdir->matter_ls_file(get_app(), str, stra);
 //}

@@ -3592,7 +3592,7 @@ inline ::collection::count base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCo
 
 
 template < typename ARRAY_BASE, int t_preallocated_array_size = 5 >
-class preallocated_array :
+class preallocated_array_base :
    public ARRAY_BASE
 {
 public:
@@ -3603,7 +3603,7 @@ public:
    
    CONTAINER_ITEM_TYPE  m_elementaPreallocated[t_preallocated_array_size];
    
-   preallocated_array()
+   preallocated_array_base()
    {
       
       this->m_earray |= e_array_preallocated;

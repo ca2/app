@@ -642,13 +642,13 @@ namespace acme
       inline ::collection::index add(string_array& stra, const ::property& property);
       inline ::collection::index add(string_array& stra, const ::property_set& propertyset);
 
-      inline ::collection::index add(::file::path_array& patha, const ::scoped_string & scopedstr);
+      inline ::collection::index add(::file::path_array_base& patha, const ::scoped_string & scopedstr);
 
       inline ::collection::index add(string_array& stra, const string_array& straSource);
 
-      inline ::collection::index add(::file::path_array& patha, const string_array& stra);
-      inline ::collection::index add(::file::path_array& patha, const ::file::path_array& pathaSrc);
-      inline ::collection::index add(::file::path_array& patha, const ::file::listing_base& listing);
+      inline ::collection::index add(::file::path_array_base& patha, const string_array& stra);
+      inline ::collection::index add(::file::path_array_base& patha, const ::file::path_array_base& pathaSrc);
+      inline ::collection::index add(::file::path_array_base& patha, const ::file::listing_base& listing);
 
       template < typename T >
       inline bool are_all_elements_equal(const pointer_array < T >& a1, const pointer_array < T >& a2);
@@ -1373,12 +1373,12 @@ namespace acme
       ////inline ::collection::index add(string_array & stra, const ::file::path & path) { return stra.add_item(path); }
 
 
-      ////inline ::collection::index add(::file::path_array & patha, const ::scoped_string & scopedstr) { return patha.add_item(scopedstr); }
-      ////inline ::collection::index add(::file::path_array & patha, const char & ch) { return patha.add_item(ch); }
-      ////inline ::collection::index add(::file::path_array & patha, const ansi_string & str) { return patha.add_item(str); }
-      ////inline ::collection::index add(::file::path_array & patha, const wd16_string & str) { return patha.add_item(str); }
-      ////inline ::collection::index add(::file::path_array & patha, const wd32_string & str) { return patha.add_item(str); }
-      ////inline ::collection::index add(::file::path_array & patha, const ::file::path & path) { return patha.add_item(path); }
+      ////inline ::collection::index add(::file::path_array_base & patha, const ::scoped_string & scopedstr) { return patha.add_item(scopedstr); }
+      ////inline ::collection::index add(::file::path_array_base & patha, const char & ch) { return patha.add_item(ch); }
+      ////inline ::collection::index add(::file::path_array_base & patha, const ansi_string & str) { return patha.add_item(str); }
+      ////inline ::collection::index add(::file::path_array_base & patha, const wd16_string & str) { return patha.add_item(str); }
+      ////inline ::collection::index add(::file::path_array_base & patha, const wd32_string & str) { return patha.add_item(str); }
+      ////inline ::collection::index add(::file::path_array_base & patha, const ::file::path & path) { return patha.add_item(path); }
 
 
       //inline ::collection::index add(string_array & stra, const ::payload & payload)
@@ -1458,9 +1458,9 @@ namespace acme
 
       //inline ::collection::index add(string_array & stra, const string_array & straSource) { return add_array(stra, straSource); }
 
-      //inline ::collection::index add(::file::path_array & patha, const string_array & stra) { return add_array(patha, stra); }
-      //inline ::collection::index add(::file::path_array & patha, const ::file::path_array & pathaSrc) { return add_array(patha, pathaSrc); }
-      //inline ::collection::index add(::file::path_array & patha, const ::file::listing_base & listing) { return add_array(patha, listing); }
+      //inline ::collection::index add(::file::path_array_base & patha, const string_array & stra) { return add_array(patha, stra); }
+      //inline ::collection::index add(::file::path_array_base & patha, const ::file::path_array_base & pathaSrc) { return add_array(patha, pathaSrc); }
+      //inline ::collection::index add(::file::path_array_base & patha, const ::file::listing_base & listing) { return add_array(patha, listing); }
 
 
       //template < typename TYPE, ::enum_type t_etypeContainer >

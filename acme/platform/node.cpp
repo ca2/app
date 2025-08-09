@@ -1939,7 +1939,7 @@ namespace platform
    }
 
 
-   ::file::path_array node::process_identifier_modules_paths(::process_identifier processidentifier)
+   ::file::path_array_base node::process_identifier_modules_paths(::process_identifier processidentifier)
    {
 	   
 	   printf_line("node::process_identifier_modules_paths THROW INTERFACE ONLY");
@@ -1951,12 +1951,12 @@ namespace platform
    }
 
 
-   ::file::path_array node::modules_paths()
+   ::file::path_array_base node::modules_paths()
    {
 
       auto processidentifiera = processes_identifiers();
 
-      ::file::path_array patha;
+      ::file::path_array_base patha;
 
       for (auto processidentifier : processidentifiera)
       {
@@ -3696,7 +3696,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    stra.add(this->library_file_name("aqua"));
    stra.add(this->library_file_name("aura"));
 
-   ::file::path_array patha;
+   ::file::path_array_base patha;
 
    ::file::path pathBin = directory_system()->home() / "application" / scopedstrRepos / scopedstrApp / "binary";
 
@@ -3743,7 +3743,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 }
 
 
-bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
+bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha)
 {
 
    auto pathaSystem = this->modules_paths();
@@ -4417,9 +4417,9 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
 
       ::file::path pathSource(scopedstr);
 
-      ::file::path_array patha;
+      ::file::path_array_base patha;
 
-      ///::file::path_array pathaRelative;
+      ///::file::path_array_base pathaRelative;
 
       ascendants_path(pathSource, patha, nullptr);
 
@@ -4625,7 +4625,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    //}
 
 
-   void node::list_process(::file::path_array& patha, ::process_identifier_array& uaPid)
+   void node::list_process(::file::path_array_base& patha, ::process_identifier_array& uaPid)
    {
 
       ASSERT(sizeof(unsigned int) == sizeof(unsigned int));
@@ -4644,10 +4644,10 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    }
 
 
-   ::file::path_array node::list_process_path()
+   ::file::path_array_base node::list_process_path()
    {
 
-      ::file::path_array patha;
+      ::file::path_array_base patha;
 
       ::process_identifier_array uaPid;
 

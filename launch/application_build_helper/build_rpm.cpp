@@ -120,7 +120,7 @@ namespace application_build_helper
 
       pathRPMS = pathRpmbuild / "RPMS";
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_pattern_file_listing(pathRPMS/"x86_64", {"*.rpm"});
 

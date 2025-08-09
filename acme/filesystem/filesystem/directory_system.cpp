@@ -674,7 +674,7 @@ void directory_system::set_path_install_folder(const ::scoped_string & scopedstr
 ::file::path directory_system::pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode)
 {
 
-   ::file::path_array patha;
+   ::file::path_array_base patha;
 
    patha.add_tokens(scopedstrEnv, ":", false);
 
@@ -816,7 +816,7 @@ void directory_system::create(const ::file::path & pathParam)
 
    character_count iLastPo = -1;
 
-   ::file::path_array patha;
+   ::file::path_array_base patha;
 
    ascendants_path(path, patha);
 
@@ -910,7 +910,7 @@ void directory_system::_create2(const ::file::path & pathParam)
 //string name(const ::scoped_string & scopedstrPath);
 
 
-//void directory_system::enumrls(::file::path_array & stra, const ::scoped_string & scopedstr)
+//void directory_system::enumrls(::file::path_array_base & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -918,7 +918,7 @@ void directory_system::_create2(const ::file::path & pathParam)
 //}
 //
 
-//void directory_system::rls_dir(::file::path_array & stra, const ::scoped_string & scopedstr)
+//void directory_system::rls_dir(::file::path_array_base & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -1150,7 +1150,7 @@ bool directory_system::list(string_array & stra, const ::scoped_string & scopeds
 
 
 
-//void directory_system::enumerate(::file::path_array & stra, const ::scoped_string & scopedstr)
+//void directory_system::enumerate(::file::path_array_base & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -1158,7 +1158,7 @@ bool directory_system::list(string_array & stra, const ::scoped_string & scopeds
 //}
 //
 //
-//void directory_system::ls_file(::file::path_array & stra, const ::scoped_string & scopedstr)
+//void directory_system::ls_file(::file::path_array_base & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -1201,11 +1201,11 @@ int directory_system::make_path(const ::scoped_string & scopedstr)
       //bool _is(const ::file::path & path);
       //bool mk(const  char * path); // makes a directory path (all intermediates too)
       //bool mkdir(const  char * path); // only creates if parent dir already exists
-      //void ls(::file::path_array & patha, const ::file::path & path);
-      //void ls_dir(::file::path_array & patha, const ::file::path & path);
-      //void ls_file(::file::path_array & patha, const ::file::path & path);
-      //void rls(::file::path_array & patha, const ::file::path & path);
-      //void rls_dir(::file::path_array & patha, const ::file::path & path);
+      //void ls(::file::path_array_base & patha, const ::file::path & path);
+      //void ls_dir(::file::path_array_base & patha, const ::file::path & path);
+      //void ls_file(::file::path_array_base & patha, const ::file::path & path);
+      //void rls(::file::path_array_base & patha, const ::file::path & path);
+      //void rls_dir(::file::path_array_base & patha, const ::file::path & path);
 
 
 //::file::path directory_system::module_folder()

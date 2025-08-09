@@ -114,7 +114,7 @@ namespace app_shader
    string application::get_next_shader_path(const ::scoped_string & scopedstrPath)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       get_shader_listing(listing);
 
@@ -125,7 +125,7 @@ namespace app_shader
    }
 
 
-   void application::get_shader_listing(::file::listing & listing)
+   void application::get_shader_listing(::file::listing_base & listing)
    {
 
       auto pcontext = m_papplication;

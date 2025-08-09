@@ -672,7 +672,7 @@ namespace zip
    }
 
 
-   ::file::listing & in_file::ls(::file::listing & listing)
+   ::file::listing_base & in_file::ls(::file::listing_base & listing)
    {
 
       in_file infile = *this;
@@ -731,7 +731,7 @@ namespace zip
    }
 
 
-   ::file::listing & in_file::ls_relative_name(::file::listing & listing)
+   ::file::listing_base & in_file::ls_relative_name(::file::listing_base & listing)
    {
 
       in_file infile = *this;
@@ -790,14 +790,14 @@ namespace zip
    }
 
 
-   ::file::listing & in_file::perform_file_listing(::file::listing & listing)
+   ::file::listing_base & in_file::perform_file_listing(::file::listing_base & listing)
    {
 
       return ls(listing);
 
    }
 
-   ::file::listing & in_file::perform_file_relative_name_listing(::file::listing & listing)
+   ::file::listing_base & in_file::perform_file_relative_name_listing(::file::listing_base & listing)
    {
 
       return ls_relative_name(listing);

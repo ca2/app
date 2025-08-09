@@ -40,7 +40,7 @@ namespace userstack
 
 
       ::write_text::font_pointer          m_pfont;
-      ::file::listing            m_straImagePath;
+      ::file::listing_base            m_straImagePath;
       string                     m_strCurrentImagePath;
       bool                       m_bDestroy;
       int_rectangle_array                 m_rectangleaUpdate;

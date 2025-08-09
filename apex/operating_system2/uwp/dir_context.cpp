@@ -118,7 +118,7 @@ pdirectorysystem->ca2roaming() / "home";
    }
 
 
-   ::file::listing & directory_context::root_ones(::file::listing & listing)
+   ::file::listing_base & directory_context::root_ones(::file::listing_base & listing)
    {
 
       listing.add("image://");
@@ -141,7 +141,7 @@ pdirectorysystem->ca2roaming() / "home";
 
 
 
-   ::file::listing & directory_context::ls(::file::listing & listing)
+   ::file::listing_base & directory_context::ls(::file::listing_base & listing)
    {
 
       if(listing.m_bRecursive)
@@ -168,7 +168,7 @@ pdirectorysystem->ca2roaming() / "home";
 
             }
 
-            ::file::listing dira;
+            ::file::listing_base dira;
 
             ls_dir(dira, listing.m_pathFinal);
 
@@ -195,7 +195,7 @@ pdirectorysystem->ca2roaming() / "home";
 
          }
 
-         ::file::path_array stra;
+         ::file::path_array_base stra;
 
          ::dir::ls(stra, listing.m_pathFinal);
 
@@ -240,7 +240,7 @@ pdirectorysystem->ca2roaming() / "home";
 
          }
 
-         ::file::path_array stra;
+         ::file::path_array_base stra;
 
          ::dir::ls(stra,listing.m_pathFinal);
 
@@ -441,7 +441,7 @@ pdirectorysystem->ca2roaming() / "home";
       if(is(pcsz))
          return true;
 
-      ::file::path_array stra;
+      ::file::path_array_base stra;
 
       pcsz.ascendants_path(stra);
 
@@ -568,7 +568,7 @@ try1:;
       if(bRecursive)
       {
 
-         ::file::listing straPath;
+         ::file::listing_base straPath;
 
          ls(straPath, psz);
 

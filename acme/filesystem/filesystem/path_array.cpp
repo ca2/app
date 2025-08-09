@@ -26,10 +26,10 @@ namespace file
 } // namespace file
 
 
-CLASS_DECL_ACME ::file::path_array operator / (const ::file::path & pathBase, const string_array & straRelativeItems)
+CLASS_DECL_ACME ::file::path_array_base operator / (const ::file::path & pathBase, const string_array & straRelativeItems)
 {
 
-   ::file::path_array patha;
+   ::file::path_array_base patha;
 
    for(auto & strRelative : straRelativeItems)
    {
@@ -58,7 +58,7 @@ constexpr smallest_type<TYPE1, TYPE2> non_null_minimum(const TYPE1 & a, const TY
 
 
 
-CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & path, ::file::path_array & pathaFolder, ::file::path_array * ppathaRelative)
+CLASS_DECL_ACME ::file::path_array_base & ascendants_path(const ::file::path & path, ::file::path_array_base & pathaFolder, ::file::path_array_base * ppathaRelative)
 //path_array & path::ascendants_path(path_array & straParam, path_array * ppathaRelative) const
 {
 
@@ -193,7 +193,7 @@ CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & path, 
 
 
 
-CLASS_DECL_ACME ::file::path_array & ascendants_path(::file::path_array & patha, const ::file::path & pathParam)
+CLASS_DECL_ACME ::file::path_array_base & ascendants_path(::file::path_array_base & patha, const ::file::path & pathParam)
 {
 
    if(pathParam.has_character())
@@ -241,10 +241,10 @@ CLASS_DECL_ACME ::string_array & ascendants_name(::string_array & stra, const ::
 }
 
 
-CLASS_DECL_ACME::file::path_array ascendants_path(const ::file::path& pathBase)
+CLASS_DECL_ACME::file::path_array_base ascendants_path(const ::file::path& pathBase)
 {
 
-   ::file::path_array patha;
+   ::file::path_array_base patha;
 
    ascendants_path(patha, pathBase);
 
@@ -278,7 +278,7 @@ void _000001_stra_to_patha_assignment_test()
    stra.add("C:\\c");
    stra.add("C:\\d");
 
-   ::file::path_array patha;
+   ::file::path_array_base patha;
 
    patha = stra;
 

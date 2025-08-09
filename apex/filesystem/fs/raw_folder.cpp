@@ -208,7 +208,7 @@ namespace fs
    }
 
 
-   //void raw_folder::get_ascendants_path(const ::file::path & path,::file::path_array & stra)
+   //void raw_folder::get_ascendants_path(const ::file::path & path,::file::path_array_base & stra)
    //{
 
    //   return file()->get_ascendants_path(scopedstrPath, stra);
@@ -216,7 +216,7 @@ namespace fs
    //}
 
 
-   //void raw_folder::get_ascendants_name(const ::file::path & path,::file::path_array & straParam)
+   //void raw_folder::get_ascendants_name(const ::file::path & path,::file::path_array_base & straParam)
 
    //{
 

@@ -30,10 +30,10 @@ namespace file
 
 
       // path_array(){}
-      // path_array(const ::file::path_array & array):
+      // path_array(const ::file::path_array_base & array):
       //    ::string_base_array < ::file::path, string, e_type_string_array >(array)
       // {}
-      // path_array(::file::path_array&& array) :
+      // path_array(::file::path_array_base&& array) :
       //    ::string_base_array < ::file::path, string, e_type_string_array >(::transfer(array))
       // {
       // }
@@ -43,7 +43,7 @@ namespace file
       virtual void patch_base_path(const ::file::path & pathBase);
 
 
-      // path_array& operator=(const ::file::path_array& array)
+      // path_array& operator=(const ::file::path_array_base& array)
       // {
       //
       //    ::string_base_array < ::file::path, string, e_type_string_array >::operator =(array);
@@ -53,7 +53,7 @@ namespace file
       // }
       //
       //
-      // path_array& operator=(::file::path_array&& array)
+      // path_array& operator=(::file::path_array_base&& array)
       // {
       //
       //    ::string_base_array < ::file::path, string, e_type_string_array >::operator =(::transfer(array));
@@ -86,10 +86,10 @@ namespace file
 
 
 template < primitive_array ARRAY >
-inline ::file::path_array operator / (const ::file::path & pathBase, const ARRAY & straRelativeItems)
+inline ::file::path_array_base operator / (const ::file::path & pathBase, const ARRAY & straRelativeItems)
 {
 
-   ::file::path_array a;
+   ::file::path_array_base a;
 
    for (auto & strRelative : straRelativeItems)
    {
@@ -104,9 +104,9 @@ inline ::file::path_array operator / (const ::file::path & pathBase, const ARRAY
 
 
 
-CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & pathBase, ::file::path_array & pathaFolder, ::file::path_array * ppathaRelative = nullptr);
-CLASS_DECL_ACME ::file::path_array ascendants_path(const ::file::path & pathBase);
-CLASS_DECL_ACME ::file::path_array & ascendants_path(::file::path_array & patha, const ::file::path& pathBase);
+CLASS_DECL_ACME ::file::path_array_base & ascendants_path(const ::file::path & pathBase, ::file::path_array_base & pathaFolder, ::file::path_array_base * ppathaRelative = nullptr);
+CLASS_DECL_ACME ::file::path_array_base ascendants_path(const ::file::path & pathBase);
+CLASS_DECL_ACME ::file::path_array_base & ascendants_path(::file::path_array_base & patha, const ::file::path& pathBase);
 CLASS_DECL_ACME ::string_array ascendants_name(const ::file::path & pathBase);
 CLASS_DECL_ACME ::string_array & ascendants_name(::string_array & stra, const ::file::path& pathBase);
 

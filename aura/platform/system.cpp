@@ -3201,7 +3201,7 @@ namespace aura
 ////
 ////      string strLibraryId;
 ////
-////      ::file::listing straTitle(this);
+////      ::file::listing_base straTitle(this);
 ////
 ////      ::file::path pathCa2Module = directory()->ca2module();
 ////

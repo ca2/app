@@ -293,7 +293,7 @@ namespace userstack
    void pane_impact::check_menu_dir(const ::file::path & path)
    {
 
-      ::file::listing straPath(get_app());
+      ::file::listing_base straPath(get_app());
 
       straPath.rls(directory()->commonprograms());
 
@@ -379,7 +379,7 @@ namespace userstack
 
 #ifdef WINDOWS_DESKTOP
 
-      ::file::listing listing(get_app());
+      ::file::listing_base listing(get_app());
 
 //      wchar_t buf[4096];
 //      memory_set(buf, 0, sizeof(buf));

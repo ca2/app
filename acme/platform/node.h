@@ -395,9 +395,9 @@ namespace platform
 
       virtual void run_silent(const ::scoped_string & scopedstrFunct, const ::scoped_string & scopedstrstrParams) override;
 
-      virtual ::file::path_array process_identifier_modules_paths(::process_identifier processidentifier) override;
+      virtual ::file::path_array_base process_identifier_modules_paths(::process_identifier processidentifier) override;
 
-      virtual ::file::path_array modules_paths() override;
+      virtual ::file::path_array_base modules_paths() override;
 
       virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const ::scoped_string & scopedstrExceptDir) override;
 
@@ -729,7 +729,7 @@ namespace platform
 
       bool are_framework_shared_libraries_busy(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp) override;
       
-      bool are_any_shared_libraries_mapped(const ::file::path_array & patha) override;
+      bool are_any_shared_libraries_mapped(const ::file::path_array_base & patha) override;
 
 
       ::string get_error_code_message(const ::error_code & errorcode) override;
@@ -869,10 +869,10 @@ namespace platform
    //virtual void browse_file_or_folder(::property_set & set);
 
 
-   void list_process(::file::path_array & patha, ::process_identifier_array& uaPid) override;
+   void list_process(::file::path_array_base & patha, ::process_identifier_array& uaPid) override;
 
 
-   ::file::path_array list_process_path();
+   ::file::path_array_base list_process_path();
 
    //virtual ::icon_pointer load_icon(const ::payload & payloadFile);
 

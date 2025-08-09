@@ -234,7 +234,7 @@ namespace core
       //virtual ::type_atom get_simple_child_frame_type_info();
 
 
-      void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha) override;
+      void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array_base& patha) override;
 
 
 
@@ -538,7 +538,7 @@ namespace core
 
       //virtual ::write_text::font_list* get_single_column_font_list();
 
-      //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha);
+      //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array_base& patha);
 
 
       //virtual void do_request(::create* pcreate) override;

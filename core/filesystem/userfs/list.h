@@ -21,7 +21,7 @@ namespace userfs
 
 
       string_array               m_straFileSize;
-      ::file::path_array         m_pathaStrictOrder;
+      ::file::path_array_base         m_pathaStrictOrder;
       ::collection::index                      m_iSelectionSubItem;
       ::collection::index                      m_iNameSubItem;
       ::collection::index                      m_iNameSubItemText;
@@ -55,13 +55,13 @@ namespace userfs
       ::image::image_list * GetActionButtonImageList(::collection::index i);
 
 
-      virtual void get_selected_user_path(::file::path_array & stra);
-      virtual void get_selected_final_path(::file::path_array & stra);
+      virtual void get_selected_user_path(::file::path_array_base & stra);
+      virtual void get_selected_final_path(::file::path_array_base & stra);
       virtual void get_selected_items(::file::item_array & itema);
 
 
-      virtual ::file::path_array get_selected_user_path();
-      virtual ::file::path_array get_selected_final_path();
+      virtual ::file::path_array_base get_selected_user_path();
+      virtual ::file::path_array_base get_selected_final_path();
       virtual ::file::item_array get_selected_items();
       virtual ::file::item * get_first_selected_item();
 

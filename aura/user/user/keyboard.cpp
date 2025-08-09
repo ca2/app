@@ -532,7 +532,7 @@ namespace user
 //
 //      keyboard_layout_ida layoutida;
 //
-//      ::file::path_array patha;
+//      ::file::path_array_base patha;
 //
 //      directory()->matter_ls_file("keyboard layout", patha);
 //

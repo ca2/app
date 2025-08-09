@@ -23,7 +23,7 @@ namespace write_text
       ::pointer<font_enumeration_item_array>          m_pfontenumerationitema;
       bool                                            m_bUpdating;
       manual_reset_happening                              m_happeningReady;
-      ::file::path_array                              m_pathaLoading;
+      ::file::path_array_base                              m_pathaLoading;
 
 
       font_enumeration();

@@ -132,7 +132,7 @@ namespace berg
       ::type_atom get_simple_child_frame_type_info() override;
 
 
-      void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha) override;
+      void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array_base& patha) override;
 
 
       void initialize_html() override;

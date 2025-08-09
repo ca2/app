@@ -2071,7 +2071,7 @@ namespace filemanager
       if (m_bStatic && ptopic->id() == id_add_location)
       {
 
-         ::file::path_array filepatha;
+         ::file::path_array_base filepatha;
 
          ::cast < ::database::client > pdatabaseclient = application();
 

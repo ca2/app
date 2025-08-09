@@ -52,7 +52,7 @@ namespace filemanager
       double get_item_read(int iItem);
       double get_item_size(int iItem);
 
-      void expand(::file::listing_base & straExpanded,::file::path_array & straExpand);
+      void expand(::file::listing_base & straExpanded,::file::path_array_base & straExpand);
 
       virtual void start();
       virtual bool file_operation_thread_step();

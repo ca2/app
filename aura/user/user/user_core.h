@@ -201,7 +201,7 @@ namespace user
       //virtual ::type_atom get_simple_child_frame_type_info();
 
 
-      //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha) override;
+      //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array_base& patha) override;
 
 
 

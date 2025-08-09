@@ -2815,7 +2815,7 @@ namespace user
 //
 //      virtual void pick_multiple_file(
 //         const ::array < ::pair < ::string, ::string > > & filetypes,
-//         const ::function < void(const ::file::path_array &) >& function);
+//         const ::function < void(const ::file::path_array_base &) >& function);
 //     
 //      virtual void pick_single_folder(
 //         //const ::array < ::pair < ::string, ::string > >& filetypes,

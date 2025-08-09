@@ -187,10 +187,10 @@ bool ftpfs::enumerate(::file::listing_base & listing)
    listing.clear_results();
 
 
-   //::file::path_array  straDir;
-   //::file::path_array  straDirName;
-   //::file::path_array  straFile;
-   //::file::path_array  straFileName;
+   //::file::path_array_base  straDir;
+   //::file::path_array_base  straDirName;
+   //::file::path_array_base  straFile;
+   //::file::path_array_base  straFileName;
    //long_long_array    iaFileSize;
    //long_long_array    iaFolderSize;
    //bool_array     baFileDir;

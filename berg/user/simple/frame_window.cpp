@@ -3381,7 +3381,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //   set_active_window();      // activate us first !
 //   unsigned int nFiles = ::DragQueryFile(hDropInfo, (unsigned int)-1, nullptr, 0);
 //
-//   ::file::path_array patha;
+//   ::file::path_array_base patha;
 //
 //   natural_wstring pwszFileName(char_count, _MAX_PATH);
 //

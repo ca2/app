@@ -50,10 +50,10 @@ public:
    //file_path_map < unsigned int >    m_mapdirTimeout;
    //file_path_map < unsigned int >    m_mapfileTimeout;
    //file_path_map < unsigned int >    m_maplsTimeout;
-   //filepathmap(::file::path_array)    m_mapdirFile;
-   //filepathmap(::file::path_array)    m_mapdirFolder;
-   //filepathmap(::file::path_array)    m_mapdirFileName;
-   //filepathmap(::file::path_array)    m_mapdirFolderName;
+   //filepathmap(::file::path_array_base)    m_mapdirFile;
+   //filepathmap(::file::path_array_base)    m_mapdirFolder;
+   //filepathmap(::file::path_array_base)    m_mapdirFileName;
+   //filepathmap(::file::path_array_base)    m_mapdirFolderName;
    //filepathmap(long_long_array)      m_mapdirFileSize;
    //filepathmap(long_long_array)      m_mapdirFolderSize; // by now, always store item count?
    //filepathmap(bool_array)       m_mapdirFileDir;

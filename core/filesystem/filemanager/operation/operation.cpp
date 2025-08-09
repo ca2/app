@@ -928,7 +928,7 @@ namespace filemanager
    }
 
 
-   void operation::expand(::file::listing_base & listingExpanded,::file::path_array & pathaExpand)
+   void operation::expand(::file::listing_base & listingExpanded,::file::path_array_base & pathaExpand)
    {
 
       auto papplication = m_papplication;

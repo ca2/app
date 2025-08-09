@@ -296,7 +296,7 @@ namespace userfs
    }
 
 
-   void list::get_selected_user_path(::file::path_array & patha)
+   void list::get_selected_user_path(::file::path_array_base & patha)
    {
 
       patha.erase_all();
@@ -313,7 +313,7 @@ namespace userfs
    }
 
 
-   void list::get_selected_final_path(::file::path_array & patha)
+   void list::get_selected_final_path(::file::path_array_base & patha)
    {
 
       patha.erase_all();
@@ -360,10 +360,10 @@ namespace userfs
    }
 
 
-   ::file::path_array list::get_selected_user_path()
+   ::file::path_array_base list::get_selected_user_path()
    {
 
-      ::file::path_array patha;
+      ::file::path_array_base patha;
 
       get_selected_user_path(patha);
 
@@ -372,10 +372,10 @@ namespace userfs
    }
 
 
-   ::file::path_array list::get_selected_final_path()
+   ::file::path_array_base list::get_selected_final_path()
    {
 
-      ::file::path_array patha;
+      ::file::path_array_base patha;
 
       get_selected_final_path(patha);
 

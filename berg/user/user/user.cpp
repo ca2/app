@@ -1392,7 +1392,7 @@ namespace berg
    }
 
 
-   void user::on_frame_window_drop_files(::user::interaction * pinteraction, ::file::path_array & patha)
+   void user::on_frame_window_drop_files(::user::interaction * pinteraction, ::file::path_array_base & patha)
    {
 
 

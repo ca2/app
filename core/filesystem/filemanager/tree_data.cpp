@@ -464,7 +464,7 @@ namespace filemanager
 
       //      ::data::tree_item * ptreeitemParent = get_base_item();
 
-      //      ::file::path_array patha;
+      //      ::file::path_array_base patha;
 
       //      ascendants_path(pathUser, patha);
 
@@ -704,7 +704,7 @@ namespace filemanager
 //            if (pathUser.has_character())
 //            {
 //
-//               ::file::path_array filepatha;
+//               ::file::path_array_base filepatha;
 //
 //               ascendants_path(pathUser, filepatha);
 //
@@ -844,7 +844,7 @@ return;
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      ::file::path_array patha;
+      ::file::path_array_base patha;
       
       if(bExpandAscendants)
       {
@@ -1009,7 +1009,7 @@ return;
 
    //      ::data::tree_item * ptreeitemParent = get_base_item();
 
-   //      ::file::path_array patha;
+   //      ::file::path_array_base patha;
 
    //      ascendants_path(pathUser, patha);
 

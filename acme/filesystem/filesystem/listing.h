@@ -184,7 +184,7 @@ namespace file
       bool preferred_name(const path & pcsz);
 
 
-      ::collection::count preferred_name(path_array & stra);
+      ::collection::count preferred_name(path_array_base & stra);
 
 
       void defer_add(::file::path & path);

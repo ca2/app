@@ -120,7 +120,7 @@ namespace file
    }
 
 
-   ::collection::count listing_base::preferred_name(path_array & stra)
+   ::collection::count listing_base::preferred_name(path_array_base & stra)
    {
       ::collection::count count = 0;
       for(::collection::index i = stra.get_upper_bound(); i >= 0; i--)

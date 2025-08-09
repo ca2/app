@@ -1656,7 +1656,7 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::free_extra(
 
    auto sizeNew = size;
 
-   if(!(this->m_eflagElement & e_flag_preallocated))
+   if(!(this->m_earray & e_array_preallocated))
    {
       
       if(sizeNew != m_countAllocation)
@@ -2566,13 +2566,13 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::reserve(::c
       ::safe_memory_copy2(pNewData, (size_t)newAllocationSize, this->m_begin, (size_t) this->size());
 
       // get rid of old stuff (note: no destructors called)
-      if(!(this->m_eflagElement & e_flag_preallocated))
+      if(!(this->m_earray & e_array_preallocated))
       {
          MEMORY::free(this->m_begin);
       }
       else
       {
-         this->m_eflagElement -= e_flag_preallocated;
+         this->m_earray -= e_array_preallocated;
       }
 
       this->m_begin = pNewData;

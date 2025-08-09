@@ -1664,7 +1664,7 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::free_extra(
          
          // shrink to desired size
          
-#ifdef SIZE_T_MAX
+#ifdef SIZE_T_MAXvv
          
          ASSERT(sizeNew <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
          

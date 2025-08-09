@@ -263,9 +263,15 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
       auto atomFileManager = get_document()->id();
 
-      ptabimpact->filemanager_document(atomFileManager)->get_operation_doc(true)->m_poperationthread->queue_copy(listing, strDir, nullptr, true, false, bDeleteOriginOnSuccessfulCopy, this, WM_APP + 1024, 4096);
+      auto pdocument = ptabimpact->filemanager_document(atomFileManager);
 
-      ptabimpact->filemanager_document(atomFileManager)->get_operation_doc(true)->m_poperationthread->kick();
+      auto poperationdocument = pdocument->get_operation_doc(true);
+
+      auto poperationthread = poperationdocument->m_poperationthread;
+
+      poperationthread->queue_copy(listing, strDir, nullptr, true, false, bDeleteOriginOnSuccessfulCopy, this, WM_APP + 1024, 4096);
+
+      poperationthread->kick();
 
    }
 

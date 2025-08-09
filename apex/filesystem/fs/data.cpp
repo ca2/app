@@ -114,7 +114,7 @@ namespace fs
    //}
 
 
-   bool data::enumerate(::file::listing & listing)
+   bool data::enumerate(::file::listing_base & listing)
    {
 
       __UNREFERENCED_PARAMETER(listing);
@@ -124,7 +124,7 @@ namespace fs
    }
 
 
-   //::file::listing & data::ls_relative_name(::file::listing & listing)
+   //::file::listing_base & data::ls_relative_name(::file::listing_base & listing)
    //{
 
    //   __UNREFERENCED_PARAMETER(listing);
@@ -160,7 +160,7 @@ namespace fs
 
    }
 
-   ::file::listing & data::root_ones(::file::listing & listing)
+   ::file::listing_base & data::root_ones(::file::listing_base & listing)
    {
 
       return listing;
@@ -227,7 +227,7 @@ namespace fs
    bool data::file_exists(const ::file::path & path)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_file_listing(path.folder());
 
@@ -241,7 +241,7 @@ namespace fs
    ::payload data::file_length(const ::file::path & path)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_file_listing(path.folder());
 
@@ -293,7 +293,7 @@ namespace fs
    }
 
 
-   //bool data::_enumerateperform_file_listing(::file::listing & listing)
+   //bool data::_enumerateperform_file_listing(::file::listing_base & listing)
    //{
 
    //   return ls(listing);
@@ -301,7 +301,7 @@ namespace fs
    //}
 
 
-   //bool data::perform_file_relative_name_listing(::file::listing & listing)
+   //bool data::perform_file_relative_name_listing(::file::listing_base & listing)
    //{
 
    //   return ls_relative_name(listing);

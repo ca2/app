@@ -133,7 +133,7 @@ CLASS_DECL_ACME const ::wd32_character * wd32_str(const ::wd32_character * psz, 
 CLASS_DECL_ACME ::wd16_character wd16_tolower(::wd16_character ch) { return towlower(ch); }
 CLASS_DECL_ACME ::wd32_character wd32_tolower(::wd32_character ch) { return __wd32tolower(ch); }
 
-CLASS_DECL_ACME ::wd32_character wd16_toupper(::wd16_character ch) { return towupper(ch); }
+CLASS_DECL_ACME ::wd16_character wd16_toupper(::wd16_character ch) { return towupper(ch); }
 CLASS_DECL_ACME ::wd32_character wd32_toupper(::wd32_character ch) { return __wd32toupper(ch); }
 
 CLASS_DECL_ACME ::wd16_character * wd16_lwr(::wd16_character * psz) { return _wcslwr(psz); }

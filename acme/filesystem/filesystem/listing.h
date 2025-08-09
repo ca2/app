@@ -8,7 +8,7 @@ namespace file
 {
 
 
-   class listing;
+   class listing_base;
    class enumerator;
 
 
@@ -26,15 +26,15 @@ namespace file
    };
 
 
-   class CLASS_DECL_ACME listing:
+   class CLASS_DECL_ACME listing_base:
    // recursive fetchings should set a meaningful m_iRelative value at each returned path
-      public ::file::path_array,
+      public ::file::path_array_base,
       public LISTING
    {
    protected:
 
       
-      using ::file::path_array::add;
+      using ::file::path_array_base::add;
 
 
    public:
@@ -45,18 +45,19 @@ namespace file
       ::file::path                                    m_pathBasePath;
       ::file::e_flag                                  m_eflag;
       ::enum_depth                                    m_edepth;
-      string_array                                    m_straPattern;
-      string_array                                    m_straIgnoreName;
-      string_array                                    m_straTitle;
+      string_array_base                               m_straPattern;
+      string_array_base                               m_straIgnoreName;
+      string_array_base                               m_straTitle;
+      ::e_status                                      m_estatusListing;
 
 
       ::function < void(const ::file::path & path) >  m_functionOnNewPath;
 
 
-      listing();
-      listing(const listing & listing);
-      listing(listing&& listing);
-      ~listing();
+      listing_base();
+      listing_base(const listing_base & listing_base);
+      listing_base(listing_base&& listing_base);
+      ~listing_base();
 
 
 
@@ -99,15 +100,15 @@ namespace file
 
       //}
 
-      //listing & operator = (const ::e_status & estatus) { m_estatus.set_error(estatus); return *this; }
+      //listing_base & operator = (const ::e_status & estatus) { m_estatus.set_error(estatus); return *this; }
 
 
-      //listing& operator = (const ::e_status & estatus) { return *this; }
+      //listing_base& operator = (const ::e_status & estatus) { return *this; }
       template < primitive_container CONTAINER >
       inline ::collection::index add_container(const CONTAINER & container)
       {
 
-         auto iIndex = ::file::path_array::append_container(container);
+         auto iIndex = ::file::path_array_base::append_container(container);
          
          return iIndex;
 
@@ -118,7 +119,7 @@ namespace file
       inline ::collection::index add_listing(const CONTAINER & container)
       {
 
-         auto iIndex = ::file::path_array::append_container(container);
+         auto iIndex = ::file::path_array_base::append_container(container);
 
          m_straTitle.append_container(container.m_straTitle);
 
@@ -150,7 +151,7 @@ namespace file
       }
 
 
-      listing & ignore(const ::scoped_string & scopedstrName)
+      listing_base & ignore(const ::scoped_string & scopedstrName)
       {
 
          m_straIgnoreName.add(scopedstrName);
@@ -173,7 +174,7 @@ namespace file
       void to_name();
 
 
-      //listing & operator = (const listing & listing);
+      //listing_base & operator = (const listing_base & listing_base);
 
 
       ::collection::index case_insensitive_name_find_first(const path & pcsz,::collection::index find = 0,::collection::index last = -1) const;
@@ -221,7 +222,7 @@ namespace file
       }
 
 
-      void set_pattern_listing(const ::file::path & path, const ::string_array & straPattern, enum_depth edepth = e_depth_none, ::file::e_flag eflag = ::file::e_flag_none)
+      void set_pattern_listing(const ::file::path & path, const ::string_array_base & straPattern, enum_depth edepth = e_depth_none, ::file::e_flag eflag = ::file::e_flag_none)
       {
 
          m_straPattern = straPattern;
@@ -231,7 +232,7 @@ namespace file
       }
 
 
-      void set_pattern_folder_listing(const ::file::path & path, const ::string_array & straPattern, enum_depth edepth = e_depth_none)
+      void set_pattern_folder_listing(const ::file::path & path, const ::string_array_base & straPattern, enum_depth edepth = e_depth_none)
       {
 
          set_pattern_listing(path, straPattern, edepth, ::file::e_flag_folder);
@@ -239,32 +240,35 @@ namespace file
       }
 
 
-      void set_pattern_file_listing(const ::file::path & path, const ::string_array & straPattern, enum_depth edepth = e_depth_none)
+      void set_pattern_file_listing(const ::file::path & path, const ::string_array_base & straPattern, enum_depth edepth = e_depth_none)
       {
 
          set_pattern_listing(path, straPattern, edepth, ::file::e_flag_file);
 
       }
 
-      listing& operator=(const ::file::listing& array);
+      listing_base& operator=(const ::file::listing_base& array);
 
-      listing& operator=(::file::listing&& array);
+      listing_base& operator=(::file::listing_base&& array);
 
    };
 
 
    class CLASS_DECL_ACME relative_name_listing :
-      virtual public listing
+      virtual public listing_base
    {
    public:
 
 
       relative_name_listing();
-      relative_name_listing(const relative_name_listing & listing);
+      relative_name_listing(const relative_name_listing & listing_base);
       virtual ~relative_name_listing();
 
      
    };
+
+
+   using listing = ::array_particle < listing_base >;
 
 
 } // namespace file
@@ -275,7 +279,7 @@ namespace file
 CLASS_DECL_ACME string normalize_wildcard_criteria(const ::scoped_string & scopedstrPattern);
 
 
-CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria, const ::scoped_string & scopedstrValue);
-CLASS_DECL_ACME bool case_insensitive_matches_wildcard_criteria(const string_array & straCriteria, const ::scoped_string & scopedstrValue);
+CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array_base & straCriteria, const ::scoped_string & scopedstrValue);
+CLASS_DECL_ACME bool case_insensitive_matches_wildcard_criteria(const string_array_base & straCriteria, const ::scoped_string & scopedstrValue);
 
 

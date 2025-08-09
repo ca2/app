@@ -72,9 +72,8 @@ CLASS_DECL_ACME const ::wd32_character * wd32_str(const ::wd32_character * psz, 
 CLASS_DECL_ACME ::wd16_character wd16_tolower(::wd16_character ch);
 CLASS_DECL_ACME ::wd32_character wd32_tolower(::wd32_character ch);
 
-CLASS_DECL_ACME ::wd32_character wd16_toupper(::wd16_character ch);
+CLASS_DECL_ACME ::wd16_character wd16_toupper(::wd16_character ch);
 CLASS_DECL_ACME ::wd32_character wd32_toupper(::wd32_character ch);
-
 
 CLASS_DECL_ACME ::wd16_character * wd16_lwr(::wd16_character * psz);
 CLASS_DECL_ACME ::wd32_character * wd32_lwr(::wd32_character * psz);

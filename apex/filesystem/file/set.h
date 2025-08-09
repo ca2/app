@@ -19,9 +19,9 @@ namespace file
 
       ::pointer< ::file::path_array >  m_ppathaSearch;
       ::pointer< bool_array >          m_pbaRecursive;
-      string_array                     m_straFilter;
-      ::file::listing                  m_listing;
-      ::file::listing                  m_listingAddUp;
+      string_array_base                m_straFilter;
+      ::file::listing_base             m_listing;
+      ::file::listing_base             m_listingAddUp;
 
 
       set();

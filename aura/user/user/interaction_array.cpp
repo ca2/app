@@ -347,7 +347,7 @@ namespace user
    }
 
 
-   interaction_array::interaction_array(const address_array < ::user::interaction * > & ptra)
+   interaction_array::interaction_array(const address_array_base < ::user::interaction * > & ptra)
    {
 
       for (::collection::index i = 0; i < ptra.get_count(); i++)

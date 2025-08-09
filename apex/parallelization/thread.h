@@ -102,11 +102,11 @@ public:
    bool                                               m_bTemporary;
    ::pointer<::object>                                m_pobjectScript;
 
-   ::pointer_array < ::message::message >             m_messagea;
-   numeric_array < enum_message >                     m_emessageaGetLast;
+   ::pointer_array_base < ::message::message >        m_messagea;
+   numeric_array_base < enum_message >                m_emessageaGetLast;
 
 #ifdef WINDOWS
-   ::raw_array < MESSAGE >                            m_messageaInitialQueue;
+   ::raw_array_base < MESSAGE >                       m_messageaInitialQueue;
    //bool                                               m_bCertainlyTheresWindowsMessageQueue;
    //::pointer < ::manual_reset_happening >                 m_phappeningMessageQueueReady;
 #endif

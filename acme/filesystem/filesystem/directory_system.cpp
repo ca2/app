@@ -928,7 +928,7 @@ void directory_system::_create2(const ::file::path & pathParam)
 //}
 //
 //
-//void directory_system::enumerate(::file::listing & listing, const ::scoped_string & scopedstr, ::file::e_flag eflag, enum_depth edepth)
+//void directory_system::enumerate(::file::listing_base & listing, const ::scoped_string & scopedstr, ::file::e_flag eflag, enum_depth edepth)
 //{
 //
 //   throw ::interface_only();
@@ -936,7 +936,7 @@ void directory_system::_create2(const ::file::path & pathParam)
 //}
 //
 //
-//void directory_system::enumerate(::file::listing & listing, const ::scoped_string & scopedstr, ::file::e_flag eflag, enum_depth edepth)
+//void directory_system::enumerate(::file::listing_base & listing, const ::scoped_string & scopedstr, ::file::e_flag eflag, enum_depth edepth)
 //{
 //
 //   throw ::interface_only();
@@ -944,7 +944,7 @@ void directory_system::_create2(const ::file::path & pathParam)
 //}
 
 
-bool directory_system::enumerate(::file::listing & listing)
+bool directory_system::enumerate(::file::listing_base & listing)
 {
 
    return ::file::enumerator::enumerate(listing);
@@ -952,7 +952,7 @@ bool directory_system::enumerate(::file::listing & listing)
 }
 
 
-bool directory_system::defer_enumerate_media_library(::file::listing& listing)
+bool directory_system::defer_enumerate_media_library(::file::listing_base& listing)
 {
 
    _synchronous_lock sl(m_pmutexMediaLibrary);
@@ -1009,7 +1009,7 @@ bool directory_system::defer_enumerate_media_library(::file::listing& listing)
 }
 
 
-bool directory_system::defer_enumerate_protocol(::file::listing& listing)
+bool directory_system::defer_enumerate_protocol(::file::listing_base& listing)
 {
    
    return node()->defer_enumerate_protocol(listing);
@@ -1125,7 +1125,7 @@ bool directory_system::list(string_array & stra, const ::scoped_string & scopeds
 }
 
 
-::file::listing directory_system::folders(const ::file::path& path)
+::file::listing_base directory_system::folders(const ::file::path& path)
 {
 
    return ::file::enumerator::folders(path);
@@ -1133,7 +1133,7 @@ bool directory_system::list(string_array & stra, const ::scoped_string & scopeds
 }
 
 
-::file::listing directory_system::files(const ::file::path& path)
+::file::listing_base directory_system::files(const ::file::path& path)
 {
 
     return ::file::enumerator::files(path);
@@ -1141,7 +1141,7 @@ bool directory_system::list(string_array & stra, const ::scoped_string & scopeds
 }
 
 
-::file::listing directory_system::folders_and_files(const ::file::path& path)
+::file::listing_base directory_system::folders_and_files(const ::file::path& path)
 {
 
    return ::file::enumerator::folders_and_files(path);
@@ -1303,7 +1303,7 @@ string_to_string directory_system::map_content(const ::file::path & path)
 
    ::string_to_string stringmap;
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
    listing.set_file_listing(path);
 
@@ -1326,7 +1326,7 @@ string_array directory_system::enumerate_content(const ::file::path &path)
 
    ::string_array stra;
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
    listing.set_file_listing(path);
 

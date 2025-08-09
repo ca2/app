@@ -61,7 +61,7 @@ public:
 
 
    virtual void trash_that_is_not_trash(const ::file::path & path);
-   virtual void trash_that_is_not_trash(::file::path_array & patha);
+   virtual void trash_that_is_not_trash(::file::path_array_base & patha);
 
 
    virtual ::file::path get_filesystem_file(const ::file::path& path);
@@ -160,7 +160,7 @@ public:
    //}
 
 
-   virtual int filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array & stra);
+   virtual int filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array_base & stra);
    virtual bool try_create_file(const ::file::path & path, bool bTryDelete);
 
 
@@ -244,7 +244,7 @@ public:
 
    //virtual void dtf(const ::file::path & pathFile, const ::file::path & pathFolder);
 
-   //virtual void dtf(const ::file::path & pathFile, ::file::path_array & stra);
+   //virtual void dtf(const ::file::path & pathFile, ::file::path_array_base & stra);
 
    //virtual void ftd(const ::file::path & pathFolder, const ::file::path & pathFile);
 
@@ -308,7 +308,7 @@ public:
 
 
    //virtual void trash_that_is_not_trash(const ::file::path & path);
-   //virtual void trash_that_is_not_trash(::file::path_array & stra);
+   //virtual void trash_that_is_not_trash(::file::path_array_base & stra);
 
 
    //virtual ::extended::status replace(const ::file::path & pathContext, const ::scoped_string & scopedstrFind, const ::scoped_string & scopedstrReplace);
@@ -413,7 +413,7 @@ public:
 
 
    //void dtf(const ::file::path & pathFile, const ::file::path & pathFolder);
-   void dtf(const ::file::path & pathFile, ::file::path_array & stra, ::file::path_array & straRelative);
+   void dtf(const ::file::path & pathFile, ::file::path_array_base & stra, ::file::path_array_base & straRelative);
    //void ftd(const ::file::path & pathFolder, const ::file::path & pathFile);
 
 

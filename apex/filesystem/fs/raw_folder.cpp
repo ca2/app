@@ -111,7 +111,7 @@ namespace fs
    }
 
 
-   bool raw_folder::enumerate(::file::listing & listing)
+   bool raw_folder::enumerate(::file::listing_base & listing)
    {
 
       if (listing.m_pathFinal.is_empty())
@@ -160,7 +160,7 @@ namespace fs
 
 
 
-   /*::file::listing & raw_folder::ls_relative_name(::file::listing & listing)
+   /*::file::listing_base & raw_folder::ls_relative_name(::file::listing_base & listing)
    {
 
       directory()->ls_relative_name(listing);
@@ -179,7 +179,7 @@ namespace fs
    }
 
 
-   ::file::listing & raw_folder::root_ones(::file::listing & listing)
+   ::file::listing_base & raw_folder::root_ones(::file::listing_base & listing)
    {
 
       if (listing.m_pathFinal.is_empty())

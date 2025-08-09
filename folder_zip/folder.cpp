@@ -215,7 +215,7 @@ namespace folder_zip
    }
 
 
-   bool folder::enumerate(::file::listing& listing)
+   bool folder::enumerate(::file::listing_base& listing)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -461,7 +461,7 @@ namespace folder_zip
    void folder::e_extract_all(const ::file::path& pathTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.m_bRecursive = true;
 
@@ -522,7 +522,7 @@ namespace folder_zip
    ::file::path folder::e_extract_first_ends(const ::file::path& pathTargetDir, const ::scoped_string & scopedstrSuffix)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.m_bRecursive = true;
 

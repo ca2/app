@@ -132,7 +132,7 @@ namespace user
       public:
 
 
-         raw_array < CSortInfoItem > m_itema;
+         raw_array_base < CSortInfoItem > m_itema;
 
 
       };

@@ -38,36 +38,36 @@
       //::file::watcher & watcher();
 
 
-      //bool _enumerates(::file::listing & listing) override;
-      bool enumerate(::file::listing & listing) override;
-      virtual bool _enumerate(::file::listing & listing);
+      //bool _enumerates(::file::listing_base & listing) override;
+      bool enumerate(::file::listing_base & listing) override;
+      virtual bool _enumerate(::file::listing_base & listing);
 
 
-      //virtual bool list_relative_name(::file::listing & listing);
+      //virtual bool list_relative_name(::file::listing_base & listing);
 
-      //virtual bool list_recursively(::file::listing& listing);
-      //virtual bool list_recursively_relative_name(::file::listing& listing);
+      //virtual bool list_recursively(::file::listing_base& listing);
+      //virtual bool list_recursively_relative_name(::file::listing_base& listing);
 
-      //virtual bool list_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
-      //virtual bool list_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
-      //virtual bool list_recursively_pattern(::file::listing& listing, const ::file::path& path, const string_array & straPattern);
-      //virtual bool list_recursively_file_pattern(::file::listing& listing, const ::file::path& path, const string_array & straPattern);
+      //virtual bool list_pattern(::file::listing_base& listing, const ::file::path& path, const string_array& straPattern);
+      //virtual bool list_file_pattern(::file::listing_base& listing, const ::file::path& path, const string_array& straPattern);
+      //virtual bool list_recursively_pattern(::file::listing_base& listing, const ::file::path& path, const string_array & straPattern);
+      //virtual bool list_recursively_file_pattern(::file::listing_base& listing, const ::file::path& path, const string_array & straPattern);
 
-      //virtual bool list_file(::file::listing& listing);
-      //virtual bool list_directory(::file::listing& listing);
+      //virtual bool list_file(::file::listing_base& listing);
+      //virtual bool list_directory(::file::listing_base& listing);
 
-      //virtual bool list_recursively_file(::file::listing& listing);
-      //virtual bool list_recursively_directory(::file::listing& listing);
+      //virtual bool list_recursively_file(::file::listing_base& listing);
+      //virtual bool list_recursively_directory(::file::listing_base& listing);
 
-      //inline bool enumerate(::file::listing& listing, const ::file::path& path) { listing(path); return ls(listing); }
+      //inline bool enumerate(::file::listing_base& listing, const ::file::path& path) { listing(path); return ls(listing); }
 
-      //inline bool list_recursively(::file::listing& listing, const ::file::path& path) { listing(path); return list_recursively(listing); }
+      //inline bool list_recursively(::file::listing_base& listing, const ::file::path& path) { listing(path); return list_recursively(listing); }
 
-      //inline bool list_file(::file::listing& listing, const ::file::path & path) { listing(path); return ls_file(listing); }
-      //inline bool list_directory(::file::listing& listing, const ::file::path& path) { listing(path); return ls_dir(listing); }
+      //inline bool list_file(::file::listing_base& listing, const ::file::path & path) { listing(path); return ls_file(listing); }
+      //inline bool list_directory(::file::listing_base& listing, const ::file::path& path) { listing(path); return ls_dir(listing); }
 
-      //inline bool list_recursively_file(::file::listing& listing, const ::file::path& path) { listing(path); return list_recursively_file(listing); }
-      //inline bool list_recursively_directory(::file::listing& listing, const ::file::path& path) { listing(path); return list_recursively_dir(listing); }
+      //inline bool list_recursively_file(::file::listing_base& listing, const ::file::path& path) { listing(path); return list_recursively_file(listing); }
+      //inline bool list_recursively_directory(::file::listing_base& listing, const ::file::path& path) { listing(path); return list_recursively_dir(listing); }
 
 
       inline bool is(const ::payload & payload) { return file_type(payload) & ::file::e_type_folder2; }
@@ -96,7 +96,7 @@
 
       virtual bool is_inside_time(const ::file::path & path);
 
-      virtual ::file::listing & root_ones(::file::listing & listing);
+      virtual ::file::listing_base & root_ones(::file::listing_base & listing);
       virtual void  create(const ::file::path & path);
 
       virtual void  erase(const ::file::path & path, bool bRecursive = true);
@@ -141,7 +141,7 @@
 
       virtual ::file::path appmatter(const ::scoped_string & scopedstrApp, ::file::path pathRel);
 
-      virtual bool matter_enumerate(const ::file::path & str, ::file::listing & listing, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
+      virtual bool matter_enumerate(const ::file::path & str, ::file::listing_base & listing, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
       //virtual bool matter_ls_file(const ::file::path & str, ::file::listing& stra);
 
       //virtual ::file::path commonappdata(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild = nullptr, const ::scoped_string & scopedstrPlatform = nullptr, const ::scoped_string & scopedstrConfiguration = nullptr);
@@ -218,8 +218,8 @@
       //virtual ::file::path userprograms();
 
 
-      //virtual ::file::listing & ls(::file::listing & listing);
-      //virtual ::file::listing & ls_relative_name(::file::listing & listing);
+      //virtual ::file::listing_base & ls(::file::listing_base & listing);
+      //virtual ::file::listing_base & ls_relative_name(::file::listing_base & listing);
 
 
       //virtual bool  has_subdir(const ::file::path & path);
@@ -232,7 +232,7 @@
 
       //virtual bool  is_inside_time(const ::file::path & path);
 
-      //virtual ::file::listing & root_ones(::file::listing & listing);
+      //virtual ::file::listing_base & root_ones(::file::listing_base & listing);
       //virtual bool  mk(const ::file::path & path);
 
       //virtual bool  rm(const ::file::path & path, bool bRecursive = true);

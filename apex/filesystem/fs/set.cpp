@@ -69,14 +69,14 @@ namespace fs
    }
 
 
-   ::file::listing & set::root_ones(::file::listing & listing)
+   ::file::listing_base & set::root_ones(::file::listing_base & listing)
    {
 
       _synchronous_lock synchronouslock(synchronization());
 
       m_fsdatamap.erase_all();
 
-      ::file::listing listingFsPath;
+      ::file::listing_base listingFsPath;
 
       for(int i = 0; i < m_spafsdata.get_count(); i++)
       {
@@ -212,7 +212,7 @@ namespace fs
    }
 
    
-   bool set::enumerate(::file::listing & listing)
+   bool set::enumerate(::file::listing_base & listing)
    {
 
       if(listing.m_pathUser.is_empty())
@@ -238,7 +238,7 @@ namespace fs
    }
 
 
-   //::file::listing & set::ls_relative_name(::file::listing & listing)
+   //::file::listing_base & set::ls_relative_name(::file::listing_base & listing)
    //{
 
    //   if (listing.m_pathFinal.is_empty())

@@ -24,7 +24,7 @@
 //      ~node() override;
 //      
 //      
-//      void root_ones(::file::listing & listing) override;
+//      void root_ones(::file::listing_base & listing) override;
 //
 //      
 //      

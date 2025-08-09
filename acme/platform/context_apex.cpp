@@ -158,9 +158,9 @@ namespace platform
    }
 
 
-   //bool _enumerates(::file::listing & listing) override{}
-   //bool enumerate(::file::listing& listing) override{}
-   //bool apex_context_layer::perform_file_relative_name_listing(::file::listing& listing) override{}
+   //bool _enumerates(::file::listing_base & listing) override{}
+   //bool enumerate(::file::listing_base& listing) override{}
+   //bool apex_context_layer::perform_file_relative_name_listing(::file::listing_base& listing) override{}
 
 
    //virtual ::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true){}

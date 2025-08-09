@@ -30,12 +30,12 @@ namespace fs
 
       // optional if ls_dir is implemented
       virtual bool has_subdir(const ::file::path & path);
-      //virtual bool _enumerates(::file::listing & listing) override;
-      virtual bool enumerate(::file::listing & listing) override;
-      //virtual ::file::listing & ls_relative_name(::file::listing & listing);
+      //virtual bool _enumerates(::file::listing_base & listing) override;
+      virtual bool enumerate(::file::listing_base & listing) override;
+      //virtual ::file::listing_base & ls_relative_name(::file::listing_base & listing);
       virtual int is_dir(const ::file::path & path);
       virtual ::file::e_type file_type(const ::file::path& path);
-      virtual ::file::listing & root_ones(::file::listing & listing);
+      virtual ::file::listing_base & root_ones(::file::listing_base & listing);
 
 
       virtual bool tree_show_subdir(const ::file::path & path);
@@ -61,8 +61,8 @@ namespace fs
       virtual bool is_zero_latency(const ::file::path & path);
 
 
-      //bool _enumerate(::file::listing & listing) override;
-      //virtual bool perform_file_relative_name_listing(::file::listing & listing) override;
+      //bool _enumerate(::file::listing_base & listing) override;
+      //virtual bool perform_file_relative_name_listing(::file::listing_base & listing) override;
 
 
    };

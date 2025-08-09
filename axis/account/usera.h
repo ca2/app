@@ -9,7 +9,7 @@ namespace account
 
 
    class CLASS_DECL_AXIS usera :
-      virtual public address_array < user * >
+      virtual public address_array_base < user * >
    {
    public:
 

@@ -3793,7 +3793,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    }
 
 
-   bool node::defer_enumerate_protocol(::file::listing& listing)
+   bool node::defer_enumerate_protocol(::file::listing_base& listing)
    {
       
       return false;

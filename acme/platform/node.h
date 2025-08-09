@@ -735,7 +735,7 @@ namespace platform
       ::string get_error_code_message(const ::error_code & errorcode) override;
 
 
-      bool defer_enumerate_protocol(::file::listing& listing) override;
+      bool defer_enumerate_protocol(::file::listing_base& listing) override;
 
       bool defer_process_protocol_path(::file::path & path) override;
 

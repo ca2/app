@@ -233,7 +233,7 @@ unsigned long long chars_to_unsigned_long_long(const CHAR_TYPE *psz, const CHAR_
          while (true)
          {
 
-            CHAR_TYPE ch = wd32_char_tolower(*psz);
+            auto ch = wd32_char_tolower(*psz);
 
             if (ch == '\0')
             {

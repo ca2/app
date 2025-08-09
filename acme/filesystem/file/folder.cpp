@@ -158,7 +158,7 @@ void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_arra
 //}
 
 //
-//bool folder::enumerates(::file::listing & listing)
+//bool folder::enumerates(::file::listing_base & listing)
 //{
 //
 //   return true;
@@ -166,7 +166,7 @@ void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_arra
 //}
 
 
-bool folder::enumerate(::file::listing& listing)
+bool folder::enumerate(::file::listing_base& listing)
 {
 
    throw ::interface_only();
@@ -176,7 +176,7 @@ bool folder::enumerate(::file::listing& listing)
 }
 
 
-//bool folder::perform_file_relative_name_listing(::file::listing& listing)
+//bool folder::perform_file_relative_name_listing(::file::listing_base& listing)
 //{
 //
 //   throw ::interface_only();

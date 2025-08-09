@@ -38,7 +38,7 @@ namespace fs
    }
 
 
-   ::file::listing & raw_folder_protocol::root_ones(::file::listing & listing)
+   ::file::listing_base & raw_folder_protocol::root_ones(::file::listing_base & listing)
    {
 
       ::file::path path;

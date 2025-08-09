@@ -883,7 +883,7 @@ namespace apex
 //#endif
 //
 
-   bool context::enumerate(::file::listing & listing)
+   bool context::enumerate(::file::listing_base & listing)
    {
 
       return directory()->enumerate(listing);
@@ -891,7 +891,7 @@ namespace apex
    }
 
 
-   /*bool context::perform_file_relative_name_listing(::file::listing & listing)
+   /*bool context::perform_file_relative_name_listing(::file::listing_base & listing)
    {
 
       return directory()->ls_relative_name(listing);

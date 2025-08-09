@@ -908,7 +908,7 @@ namespace platform
       virtual ::string get_error_code_message(const ::error_code& errorcode);
 
 
-      virtual bool defer_enumerate_protocol(::file::listing& listing);
+      virtual bool defer_enumerate_protocol(::file::listing_base& listing);
 
 
       virtual bool defer_process_protocol_path(::file::path& path);

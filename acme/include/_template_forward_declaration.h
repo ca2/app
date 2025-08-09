@@ -47,6 +47,15 @@ class binary_stream;
 //// template < typename FILE >
 class write_text_stream;
 
+
+namespace file
+{
+
+   using listing = ::array_particle < listing_base >;
+
+} // namespace file
+
+
 template < typename RESULT >
 class process;
 

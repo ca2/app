@@ -828,7 +828,7 @@ void file_system::copy(const ::file::path& pathNew, const ::file::path& pathExis
 
       directory_system()->create(pathNew);
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_listing(pathExisting, e_depth_recursively);
 

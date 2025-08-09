@@ -77,7 +77,7 @@ namespace fs
 
    }
 
-   ::file::listing & remote_native::root_ones(::file::listing & listing)
+   ::file::listing_base & remote_native::root_ones(::file::listing_base & listing)
    {
 
       ::file::path path;
@@ -95,7 +95,7 @@ namespace fs
    }
 
 
-   bool remote_native::enumerate(::file::listing & listing)
+   bool remote_native::enumerate(::file::listing_base & listing)
    {
 
       try
@@ -231,7 +231,7 @@ namespace fs
          if(millisLast.elapsed() > *system()->file_listing_cache_time())
          {
             
-            ::file::listing listing;
+            ::file::listing_base listing;
 
             listing.set_listing(path);
 
@@ -253,7 +253,7 @@ namespace fs
          if(millisLast.elapsed() > system()->m_timeFileListingCache)
          {
             
-            ::file::listing listing;
+            ::file::listing_base listing;
 
             listing.set_listing(path);
 

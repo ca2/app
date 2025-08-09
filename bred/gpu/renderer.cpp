@@ -454,7 +454,7 @@ namespace gpu
 
    }
 
-   ::pointer_array<::particle >* renderer::current_frame_particle_array()
+   ::particle_array * renderer::current_frame_particle_array()
    {
 
       auto iFrameIndex = m_pgpucontext->m_pgpudevice->get_frame_index2();

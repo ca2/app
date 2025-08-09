@@ -230,26 +230,26 @@ public:
          //virtual void enumerate_recursively(::file::path_array & stra, const ::scoped_string & scopedstr);
          //virtual void enumerate_recursively_directory(::file::path_array & stra, const ::scoped_string & scopedstr);
 
-         //bool _enumerates(::file::listing & listing) override;
+         //bool _enumerates(::file::listing_base & listing) override;
          
-         bool enumerate(::file::listing & listing) override;
+         bool enumerate(::file::listing_base & listing) override;
 
-         virtual bool defer_enumerate_protocol(::file::listing& listing);
+         virtual bool defer_enumerate_protocol(::file::listing_base& listing);
 
-         virtual bool defer_enumerate_media_library(::file::listing& listing);
+         virtual bool defer_enumerate_media_library(::file::listing_base& listing);
          virtual ::media_library::item* media_library_item(const ::file::path& path);
          virtual bool defer_process_media_library_path(::file::path& path);
          virtual bool defer_media_library_representative_file_name(::file::path & path);
 
          bool list(::string_array & stra, const ::scoped_string & path, ::file::e_flag eflag = ::file::e_flag_file_or_folder) override;
 
-         virtual ::file::listing folders(const ::file::path & path) override;
-         virtual ::file::listing files(const ::file::path& path) override;
-         virtual ::file::listing folders_and_files(const ::file::path& path) override;
+         virtual ::file::listing_base folders(const ::file::path & path) override;
+         virtual ::file::listing_base files(const ::file::path& path) override;
+         virtual ::file::listing_base folders_and_files(const ::file::path& path) override;
 
 
-         //virtual void enumerate(::file::listing & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
-         //virtual void enumerate_pattern(::file::listing & listing, const ::file::path & path, const ::string_array & straNamePattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
+         //virtual void enumerate(::file::listing_base & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
+         //virtual void enumerate_pattern(::file::listing_base & listing, const ::file::path & path, const ::string_array & straNamePattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
          //virtual void enumerate_directory(::file::path_array & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
          //virtual void enumerate_file(::file::path_array & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
 

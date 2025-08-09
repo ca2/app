@@ -255,7 +255,7 @@ namespace test_compilation_some_strong_ordering_swap_functions
 
    void filelistingSwap(void * lpVoidSwapArg, ::collection::index i1, ::collection::index i2)
    {
-      ::file::listing * plisting = (::file::listing *)lpVoidSwapArg;
+      ::file::listing_base * plisting = (::file::listing_base *)lpVoidSwapArg;
       ::file::path path = plisting->element_at(i1);
       plisting->element_at(i1) = plisting->element_at(i2);
       plisting->element_at(i2) = path;

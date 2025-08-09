@@ -24,7 +24,6 @@ bool operating_system_has_ipv6_internet();
 
 //#include <stdio.h>
 #ifdef WINDOWS
-#define _WIN32_WINNT 0x0600
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <windns.h>
@@ -617,7 +616,7 @@ namespace networking_bsd
 #endif // NO_GETADDRINFO
       }
       item.m_bOk = true;
-      address_array < addrinfo* > vec;
+      address_array_base < addrinfo* > vec;
       addrinfo* ai = res;
       while (ai)
       {

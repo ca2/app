@@ -1171,7 +1171,7 @@ namespace crypto_openssl
       stack_st_X509* pstack509 = nullptr;
       {
          string strOthers = file()->as_string(scopedstrOthersPath);
-         address_array < X509* > xptra;
+         address_array_base < X509* > xptra;
          character_count iStart = 0;
          character_count iFind;
          string strEnd = "-----END CERTIFICATE-----";

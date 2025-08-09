@@ -1584,7 +1584,7 @@ namespace datetime
 namespace file
 {
 
-   class listing;
+   class listing_base;
 
 
    class path;

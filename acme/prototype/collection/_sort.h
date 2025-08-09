@@ -1424,9 +1424,9 @@ namespace sort
 
       typedef typename LIST::node node;
 
-      ::raw_array < node * > stackLowerBound;
+      ::raw_array_base < node * > stackLowerBound;
 
-      ::raw_array < node * > stackUpperBound;
+      ::raw_array_base < node * > stackUpperBound;
 
       node * iLowerBound;
 

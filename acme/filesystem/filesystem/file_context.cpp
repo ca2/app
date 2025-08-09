@@ -440,7 +440,7 @@ restart:
 
    directory()->create(str);
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
    string strFormat;
 
@@ -582,17 +582,17 @@ restart:
 }
 
 
-int file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array & stra)
+int file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array_base & patha)
 {
 
    int iMax = -1;
 
    int iIndex;
 
-   for (int i = 0; i < stra.size(); i++)
+   for (int i = 0; i < patha.size(); i++)
    {
 
-      string str = stra[i].name();
+      string str = patha[i].name();
 
       if (str.case_insensitive_begins_eat(scopedstrPrefix))
       {
@@ -600,7 +600,7 @@ int file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, 
          if (str.length() < 2)
          {
 
-            stra.erase_at(i);
+            patha.erase_at(i);
 
             i--;
 
@@ -611,7 +611,7 @@ int file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, 
          if (!character_isdigit(str[0]) || !character_isdigit(str[1]))
          {
 
-            stra.erase_at(i);
+            patha.erase_at(i);
 
             i--;
 
@@ -1642,7 +1642,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
        (eextract == e_extract_first || eextract == e_extract_all || !(case_insensitive_string_ends(varSource.as_file_path(), ".zip"))))
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_listing(varSource, e_depth_recursively);
 
@@ -2231,24 +2231,24 @@ void file_context::trash_that_is_not_trash(const ::file::path & path)
 
 
 
-void file_context::trash_that_is_not_trash(::file::path_array & stra)
+void file_context::trash_that_is_not_trash(::file::path_array_base & patha)
 {
 
-   if (stra.size() <= 0)
+   if (patha.size() <= 0)
    {
 
       return;
 
    }
 
-   ::file::path strDir = directory()->trash_that_is_not_trash(stra[0]);
+   ::file::path strDir = directory()->trash_that_is_not_trash(patha[0]);
 
    directory()->create(strDir);
 
-   for (int i = 0; i < stra.size(); i++)
+   for (int i = 0; i < patha.size(); i++)
    {
 
-      transfer(strDir / stra[i].name(), stra[i]);
+      transfer(strDir / patha[i].name(), patha[i]);
 
    }
 
@@ -2304,7 +2304,7 @@ void file_context::set_status(const ::file::path & path, const ::file::file_stat
 void file_context::replace_with(const ::file::path & pathContext, const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrOld)
 {
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
    string strOldName;
 
@@ -2654,7 +2654,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //void file_context::dtf(const ::file::path & pathFile, const ::file::path & pathFolder)
 //{
 //
-//   ::file::listing ls;
+//   ::file::listing_base ls;
 //
 //   directory()->rls(ls, pszDir);
 //
@@ -2663,7 +2663,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //}
 //
 //
-//void file_context::dtf(const ::file::path & pathFile, ::file::path_array & stra)
+//void file_context::dtf(const ::file::path & pathFile, ::file::path_array_base & patha)
 //{
 //
 //   file_pointer pfile = get_file(scopedstrFile, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary);
@@ -2699,20 +2699,20 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //
 //   unsigned long long iPos;
 //
-//   for (int i = 0; i < stra.size(); i++)
+//   for (int i = 0; i < patha.size(); i++)
 //   {
-//      if (case_insensitive_string_ends(stra[i], ".zip"))
+//      if (case_insensitive_string_ends(patha[i], ".zip"))
 //      {
 //      }
-//      else if (directory()->is(stra[i]))
+//      else if (directory()->is(patha[i]))
 //         continue;
 //      write_n_number(pfile, nullptr, 1);
 //      iPos = pfile->get_position();
 //      write_gen_string(pfile, nullptr, strMd5);
 //      MD5_Init(&ctx);
-//      string strRelative = stra[i].relative();
+//      string strRelative = patha[i].relative();
 //      write_gen_string(pfile, &ctx, strRelative);
-//      if (pfile2->open(stra[i], ::file::e_open_read | ::file::e_open_binary).failed())
+//      if (pfile2->open(patha[i], ::file::e_open_read | ::file::e_open_binary).failed())
 //         throw ::exception(::exception("failed"));
 //      write_n_number(pfile, &ctx, (int)pfile2->size());
 //      while ((uRead = pfile2->read(buf, iBufSize)) > 0)
@@ -4036,9 +4036,9 @@ bool file_context::is_link(const ::file::path & path)
 //   return psystem->m_spfile->trash_that_is_not_trash(scopedstr, get_app());
 //}
 //
-//void file_context::trash_that_is_not_trash(::file::path_array & stra)
+//void file_context::trash_that_is_not_trash(::file::path_array_base & patha)
 //{
-//   return psystem->m_spfile->trash_that_is_not_trash(stra, get_app());
+//   return psystem->m_spfile->trash_that_is_not_trash(patha, get_app());
 //}
 
 //::extended::status file_context::replace(const ::file::path & pathContext, const ::scoped_string & scopedstrFind, const ::scoped_string & scopedstrReplace)
@@ -4190,17 +4190,17 @@ bool file_context::is_link(const ::file::path & path)
    //}
 
    //
-   //void file_context::lines(string_array & stra, const ::payload & payloadFile)
+   //void file_context::lines(string_array & patha, const ::payload & payloadFile)
    //{
    //
-   //   return psystem->m_spfile->lines(stra, payloadFile, get_app());
+   //   return psystem->m_spfile->lines(patha, payloadFile, get_app());
    //
    //}
    //
    //
-   //void file_context::put_lines(const ::payload & payloadFile, const string_array & stra)
+   //void file_context::put_lines(const ::payload & payloadFile, const string_array & patha)
    //{
-   //   return psystem->m_spfile->put_lines(payloadFile, stra, get_app());
+   //   return psystem->m_spfile->put_lines(payloadFile, patha, get_app());
    //}
    //
    //bool file_context::put_contents(const ::payload & payloadFile, const void * pvoidContents, ::collection::count count)
@@ -4304,10 +4304,10 @@ bool file_context::is_link(const ::file::path & path)
 //}
 
 
-//void file_context::dtf(const ::file::path & pathFile, ::file::path_array & stra, ::file::path_array & straRelative)
+//void file_context::dtf(const ::file::path & pathFile, ::file::path_array_base & patha, ::file::path_array_base & straRelative)
 //{
 //
-//   return psystem->m_spfile->dtf(scopedstrFile, stra, get_app());
+//   return psystem->m_spfile->dtf(scopedstrFile, patha, get_app());
 //
 //}
 //

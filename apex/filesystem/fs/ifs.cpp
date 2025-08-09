@@ -63,7 +63,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    synchronouslock.unlock();
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
    listing.set_folder_listing(path);
 
@@ -76,7 +76,7 @@ bool ifs::has_subdir(const ::file::path & path)
 }
 
 
-::file::listing & ifs::root_ones(::file::listing & listing)
+::file::listing_base & ifs::root_ones(::file::listing_base & listing)
 {
 
    ::file::path path;
@@ -94,7 +94,7 @@ bool ifs::has_subdir(const ::file::path & path)
 }
 
 
-bool ifs::enumerate(::file::listing & listing)
+bool ifs::enumerate(::file::listing_base & listing)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
@@ -315,7 +315,7 @@ int ifs::is_dir(const ::file::path & path)
    if(dir.m_timeLast.timeout(psystem->m_timeFileListingCache))
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_listing(path.folder());
 

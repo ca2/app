@@ -676,7 +676,7 @@ namespace apex
    }
 
 
-   void node::root_ones(::file::listing &listing)
+   void node::root_ones(::file::listing_base &listing)
    {
       
       auto pfilesystemoptions = application()->m_pfilesystemoptions;
@@ -852,7 +852,7 @@ namespace apex
 
 
 
-//   bool node::defer_enumerate_protocol(::file::listing& listing)
+//   bool node::defer_enumerate_protocol(::file::listing_base& listing)
 //   {
 //      
 //      return false;

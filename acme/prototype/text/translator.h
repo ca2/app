@@ -16,7 +16,7 @@ namespace text
    public:
 
 
-      address_array < data * >         m_dataaddressa;
+      address_array_base < data * >    m_dataaddressa;
 
 
       translator();

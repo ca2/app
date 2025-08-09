@@ -70,7 +70,7 @@ namespace mathematics
 
       string strNumber;
 //      binary_operation * pbinopNew;
-      address_array < number * > stackptra;
+      address_array_base < number * > stackptra;
 
       throw ::not_implemented();
 

@@ -77,10 +77,10 @@ public:
 
 
    ::heap::allocator * m_pallocator;
-   int                                       m_i;
-   int                                       m_iShareCount;
-   ::array < ::critical_section >            m_criticalsectiona;
-   address_array < fixed_alloc_no_sync * >   m_allocptra;
+   int                                             m_i;
+   int                                             m_iShareCount;
+   ::array_base < ::critical_section >             m_criticalsectiona;
+   address_array_base < fixed_alloc_no_sync * >    m_allocptra;
 
 
    fixed_alloc_sync(::heap::allocator * pallocator, unsigned int nAllocSize, unsigned int nBlockSize = 64, int iShareCount = 2);
@@ -102,10 +102,10 @@ class CLASS_DECL_ACME fixed_alloc
 public:
 
 
-   ::heap::allocator * m_pallocator;
-   int                                         m_i;
-   int                                         m_iShareCount;
-   address_array < fixed_alloc_sync * >            m_allocptra;
+   ::heap::allocator *                          m_pallocator;
+   int                                          m_i;
+   int                                          m_iShareCount;
+   address_array_base < fixed_alloc_sync * >    m_allocptra;
 
 
    fixed_alloc(::heap::allocator * pallocator, unsigned int nAllocSize, unsigned int nBlockSize = 64);
@@ -120,10 +120,8 @@ public:
 };
 
 
-
-
 class CLASS_DECL_ACME fixed_alloc_array :
-   public address_array < fixed_alloc * >
+   public address_array_base < fixed_alloc * >
 {
 public:
 

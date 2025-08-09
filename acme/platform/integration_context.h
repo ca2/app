@@ -55,7 +55,7 @@ namespace integration
       ::particle_pointer                  m_pmutexLines;
 
 
-      ::file::listing   m_listingBuild;
+      ::file::listing_base   m_listingBuild;
 
 
       context();

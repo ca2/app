@@ -194,12 +194,12 @@ namespace platform
    }
 
 
-   void apex_node_layer::root_ones(::file::listing& listing)
+   void apex_node_layer::root_ones(::file::listing_base& listing)
    {
    }
 
 
-   //      bool apex_node_layer::defer_enumerate_protocol(::file::listing& listing){}
+   //      bool apex_node_layer::defer_enumerate_protocol(::file::listing_base& listing){}
 
    //::string http_get_effective_url(const ::scoped_string & scopedstrUrl) override{}
 

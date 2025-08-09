@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_AURA interaction_ptra:
-      public address_array < ::user::interaction * >
+      public address_array_base < ::user::interaction * >
    {
    public:
 
@@ -24,7 +24,7 @@ namespace user
 
       
       
-      using address_array < ::user::interaction * >::find_first;
+      using address_array_base < ::user::interaction * >::find_first;
       ::user::interaction * find_first_typed(const ::type_atom & typeatom);
       ::user::interaction * find_first(oswindow oswindow);
 
@@ -83,12 +83,12 @@ namespace user
 
 
       interaction_array();
-      interaction_array(const address_array < ::user::interaction * > & a);
-      interaction_array(const pointer_array < ::user::interaction > & a) :
+      interaction_array(const address_array_base < ::user::interaction * > & a);
+      interaction_array(const pointer_array_base < ::user::interaction > & a) :
          m_interactiona(a) {}
 
       template < typename OTHER >
-      interaction_array(const pointer_array < OTHER > & a) :
+      interaction_array(const pointer_array_base < OTHER > & a) :
          m_interactiona(a) {}
 
       interaction_array(const ::user::interaction_array & a)

@@ -23,10 +23,10 @@ namespace file
    //protected:
 
 
-   //   //virtual bool _enumerates(::file::listing & listing) = 0;
+   //   //virtual bool _enumerates(::file::listing_base & listing) = 0;
 
 
-   //   virtual bool _enumerate(listing & listing) = 0;
+   //   virtual bool _enumerate(listing_base & listing) = 0;
 
 
    //public:
@@ -37,18 +37,18 @@ namespace file
       // returns false the enumerator is not a enumerator for the
       // source m_pathUser member in the listing.
       // throws exception if listing enumeration fails for some reason.
-      virtual bool enumerate(listing & listing);
+      virtual bool enumerate(listing_base & listing);
 
       virtual bool list(string_array & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag = ::file::e_flag_file_or_folder);
 
-      virtual listing get_folders(const ::scoped_string & scopedstr);
+      virtual listing_base get_folders(const ::scoped_string & scopedstr);
 
-      virtual ::file::listing folders(const ::file::path& path);
-      virtual ::file::listing files(const ::file::path& path);
-      virtual ::file::listing folders_and_files(const ::file::path& path);
+      virtual ::file::listing_base folders(const ::file::path& path);
+      virtual ::file::listing_base files(const ::file::path& path);
+      virtual ::file::listing_base folders_and_files(const ::file::path& path);
 
-      //virtual bool enumerate(::file::listing & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
-      //virtual bool enumerate_pattern(::file::listing & listing, const ::file::path & path, const ::string_array & straPattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
+      //virtual bool enumerate(::file::listing_base & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
+      //virtual bool enumerate_pattern(::file::listing_base & listing, const ::file::path & path, const ::string_array & straPattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
 
 
    };

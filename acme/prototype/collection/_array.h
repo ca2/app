@@ -102,7 +102,7 @@ namespace acme
 
 
       template < class TDST, class TSRC >
-      ::collection::count copy(address_array < TDST >& dsta, const address_array < TSRC >& srca);
+      ::collection::count copy(address_array_base < TDST >& dsta, const address_array_base < TSRC >& srca);
 
       template < class TDST, class TSRC >
       ::collection::count ptrcopy(TDST& dsta, const TSRC& srca);
@@ -543,13 +543,13 @@ namespace acme
       ::collection::index unfold_add(string_base_array < Type, RawType, t_etypeContainer >& array, const ::payload& payload);
 
       template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-      ::collection::count ensure_sequence(::numeric_array < TYPE, t_etypeContainer >& a, TYPE start, TYPE end, TYPE increment = 1);
+      ::collection::count ensure_sequence(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE start, TYPE end, TYPE increment = 1);
 
       template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-      ::collection::count append_sequence(::numeric_array < TYPE, t_etypeContainer >& a, TYPE iterator, TYPE end, TYPE increment = 1);
+      ::collection::count append_sequence(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE iterator, TYPE end, TYPE increment = 1);
 
       template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-      ::collection::count set_sequence(::numeric_array < TYPE, t_etypeContainer >& a, TYPE start, TYPE end, TYPE increment = 1);
+      ::collection::count set_sequence(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE start, TYPE end, TYPE increment = 1);
 
       template<class ARRAY>
       bool binary_search(ARRAY& a, typename ARRAY::BASE_ARG_TYPE t, ::collection::index& iIndex, ::collection::index(*fCompare) (typename ARRAY::BASE_ARG_TYPE, typename ARRAY::BASE_ARG_TYPE));
@@ -648,7 +648,7 @@ namespace acme
 
       inline ::collection::index add(::file::path_array& patha, const string_array& stra);
       inline ::collection::index add(::file::path_array& patha, const ::file::path_array& pathaSrc);
-      inline ::collection::index add(::file::path_array& patha, const ::file::listing& listing);
+      inline ::collection::index add(::file::path_array& patha, const ::file::listing_base& listing);
 
       template < typename T >
       inline bool are_all_elements_equal(const pointer_array < T >& a1, const pointer_array < T >& a2);
@@ -715,35 +715,35 @@ namespace acme
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_greater_than(::numeric_array < TYPE, t_etypeContainer >& a, TYPE hi);
+   ::collection::count erase_greater_than(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE hi);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer >& a, TYPE hi);
+   ::collection::count erase_greater_than_or_equal(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE hi);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_lesser_than(::numeric_array < TYPE, t_etypeContainer >& a, TYPE lo);
+   ::collection::count erase_lesser_than(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE lo);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_lesser_than_or_equal(::numeric_array < TYPE, t_etypeContainer >& a, TYPE lo);
+   ::collection::count erase_lesser_than_or_equal(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE lo);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_lesser_than_or_greater_than(::numeric_array < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
+   ::collection::count erase_lesser_than_or_greater_than(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_lesser_than_or_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
+   ::collection::count erase_lesser_than_or_greater_than_or_equal(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_lesser_than_or_equal_or_greater_than(::numeric_array < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
+   ::collection::count erase_lesser_than_or_equal_or_greater_than(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::collection::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
+   ::collection::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE lo, TYPE hi);
 
 
 }   // namespace acme
@@ -1238,7 +1238,7 @@ namespace acme
    {
 
       template < class TDST, class TSRC >
-      ::collection::count copy(address_array < TDST >& dsta, const address_array < TSRC >& srca)
+      ::collection::count copy(address_array_base < TDST >& dsta, const address_array_base < TSRC >& srca)
       {
 
          ::collection::count ca = 0;
@@ -1460,16 +1460,16 @@ namespace acme
 
       //inline ::collection::index add(::file::path_array & patha, const string_array & stra) { return add_array(patha, stra); }
       //inline ::collection::index add(::file::path_array & patha, const ::file::path_array & pathaSrc) { return add_array(patha, pathaSrc); }
-      //inline ::collection::index add(::file::path_array & patha, const ::file::listing & listing) { return add_array(patha, listing); }
+      //inline ::collection::index add(::file::path_array & patha, const ::file::listing_base & listing) { return add_array(patha, listing); }
 
 
       //template < typename TYPE, ::enum_type t_etypeContainer >
-      //::collection::count ensure_sequence(::numeric_array < TYPE, t_etypeContainer > & aParam, TYPE start, TYPE end, TYPE increment)
+      //::collection::count ensure_sequence(::numeric_array_base < TYPE, t_etypeContainer > & aParam, TYPE start, TYPE end, TYPE increment)
       //{
 
       //   ::collection::count c = 0;
 
-      //   ::numeric_array < TYPE, t_etypeContainer > a;
+      //   ::numeric_array_base < TYPE, t_etypeContainer > a;
 
       //   ::acme::array::set_sequence(a, start, end, increment);
 
@@ -1480,7 +1480,7 @@ namespace acme
 
       //      auto pFind = 0;
 
-      //      if (::acme::array::binary_search(a, aParam.element_at(i), iFind, &::numeric_compare < typename ::numeric_array < TYPE, t_etypeContainer >::BASE_ARG_TYPE >))
+      //      if (::acme::array::binary_search(a, aParam.element_at(i), iFind, &::numeric_compare < typename ::numeric_array_base < TYPE, t_etypeContainer >::BASE_ARG_TYPE >))
       //      {
 
       //         a.erase_at(iFind);
@@ -1712,7 +1712,7 @@ namespace acme
 
 
       template < typename TYPE, ::enum_type t_etypeContainer >
-      ::collection::count append_sequence(::numeric_array < TYPE, t_etypeContainer >& a, TYPE iterator, TYPE end, TYPE increment)
+      ::collection::count append_sequence(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE iterator, TYPE end, TYPE increment)
       {
          if (increment == 0)
          {
@@ -1744,7 +1744,7 @@ namespace acme
 
 
       template < typename TYPE, ::enum_type t_etypeContainer >
-      ::collection::count set_sequence(::numeric_array < TYPE, t_etypeContainer >& a, TYPE start, TYPE end, TYPE increment)
+      ::collection::count set_sequence(::numeric_array_base < TYPE, t_etypeContainer >& a, TYPE start, TYPE end, TYPE increment)
       {
          a.erase_all();
          return append_sequence(a, start, end, increment);

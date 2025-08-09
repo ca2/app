@@ -614,7 +614,7 @@ memory file_system::__safe_get_memory(const ::file::path& pathParam, character_c
 memsize file_system::__safe_find_string(const ::file::path& path, const_char_pointer psz)
 {
    
-   int targetLength = strlen(psz);
+   auto targetLength = strlen(psz);
 
    if (targetLength >= BUFFER_SIZE)
    {
@@ -629,10 +629,10 @@ memsize file_system::__safe_find_string(const ::file::path& path, const_char_poi
    char buffer[BUFFER_SIZE * 2];
    char* found;
    size_t bytesRead;
-   int offset = 0;
+   size_t offset = 0;
    memsize pos=0;
-   int amountToRead = BUFFER_SIZE;
-   int whereToRead = 0;
+   size_t amountToRead = BUFFER_SIZE;
+   size_t whereToRead = 0;
    while ((bytesRead = fread(buffer + whereToRead, 1, amountToRead, file)) > 0) 
    {
       (buffer + whereToRead)[bytesRead] = '\0';

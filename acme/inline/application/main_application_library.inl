@@ -10,7 +10,7 @@ CLASS_DECL_ACME void string_short_test();
 namespace APPLICATION_NAMESPACE
 {
 
-   CLASS_DECL_IMPORT void application_factory(::factory::factory* pfactory);
+   CLASS_DECL_EXPORT void application_factory(::factory::factory* pfactory);
 
 }
 

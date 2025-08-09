@@ -12,8 +12,8 @@
 
 template < typename TYPE >
 class make_particle1 :
-   public TYPE,
-   virtual public ::particle
+   virtual public ::particle,
+   public TYPE
 {
 public:
 
@@ -44,8 +44,8 @@ public:
 
 template < typename TYPE >
 class array_particle :
-   public TYPE,
-   virtual public ::particle
+   virtual public ::particle,
+   public TYPE
 {
 public:
 

@@ -191,7 +191,7 @@ namespace database
 
 
    class CLASS_DECL_APEX client_array :
-      public address_array < client * >
+      public address_array_base < client * >
    {
    public:
 

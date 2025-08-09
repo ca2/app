@@ -168,18 +168,18 @@ namespace html
       ::user::interaction* m_puserinteraction;
       ::pointer<::draw2d::graphics>m_pgraphics;
       ::float_rectangle                              m_box;
-      string                           m_strTitle;
-      layout_state1                    m_layoutstate1;
-      layout_state2                    m_layoutstate2;
-      layout_state3                    m_layoutstate3;
+      string                                 m_strTitle;
+      layout_state1                          m_layoutstate1;
+      layout_state2                          m_layoutstate2;
+      layout_state3                          m_layoutstate3;
 
-      address_array < impl::table* >   m_tableptra;
+      address_array_base < impl::table* >    m_tableptra;
 
       //string_map < ::image::image_pointer >     m_imagemap;
 
-      pointer_array < font >                 m_fonta;
+      pointer_array_base < font >            m_fonta;
 
-      ::user::interaction_ptra         m_focusptra;
+      ::user::interaction_ptra               m_focusptra;
 
       style_sheet_array                m_stylesheeta;
       ::file::path                     m_strPathName;

@@ -147,9 +147,9 @@ namespace apex
       virtual bool is_key_pressed(bool * pbPressed, ::user::enum_key ekey) override;
 
 
-      virtual void root_ones(::file::listing & listing) override;
+      virtual void root_ones(::file::listing_base & listing) override;
       
-//      virtual bool defer_enumerate_protocol(::file::listing& listing);
+//      virtual bool defer_enumerate_protocol(::file::listing_base& listing);
 
        //::string http_get_effective_url(const ::scoped_string & scopedstrUrl) override;
 

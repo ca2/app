@@ -31,10 +31,10 @@ namespace fs
 
       virtual ::pointer<data>path_data(const ::payload & payloadFile)override;
       virtual ::pointer<data>node_path_data(const ::file::path & path)override;
-      virtual ::file::listing & root_ones(::file::listing & listing)override;
-      //virtual bool _enumerates(::file::listing & listing)override;
-      virtual bool enumerate(::file::listing & listing)override;
-      //virtual ::file::listing & ls_relative_name(::file::listing & listing)override;
+      virtual ::file::listing_base & root_ones(::file::listing_base & listing)override;
+      //virtual bool _enumerates(::file::listing_base & listing)override;
+      virtual bool enumerate(::file::listing_base & listing)override;
+      //virtual ::file::listing_base & ls_relative_name(::file::listing_base & listing)override;
       virtual int is_dir(const ::file::path & path)override;
       virtual ::file::e_type file_type(const ::file::path& path)override;
       virtual bool file_move(const ::file::path & pathTarget,const ::file::path & pathSource)override;

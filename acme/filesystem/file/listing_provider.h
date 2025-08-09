@@ -14,8 +14,8 @@
 //   public:
 //
 //
-//      virtual bool perform_file_listing(::file::listing& listing) = 0;
-//      virtual bool perform_file_relative_name_listing(::file::listing& listing) = 0;
+//      virtual bool perform_file_listing(::file::listing_base& listing) = 0;
+//      virtual bool perform_file_relative_name_listing(::file::listing_base& listing) = 0;
 //
 //
 //   };

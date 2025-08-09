@@ -85,7 +85,7 @@ namespace tinyexpr
 #define ARITY(TYPE) ( ((TYPE) & (TE_FUNCTION0 | TE_CLOSURE0)) ? ((TYPE) & 0x00000007) : 0 )
 #define NEW_EXPR(type, ...) new_expr((type), {__VA_ARGS__})
    
-   static te_expr *new_expr(const int type, const ::raw_array< te_expr * > & parameters) 
+   static te_expr *new_expr(const int type, const ::raw_array_base< te_expr * > & parameters) 
    {
 
       const int arity = ARITY(type);

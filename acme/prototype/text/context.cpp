@@ -226,21 +226,21 @@ namespace text
 //
 //      string strMain = pszBaseDir;
 //
-//      ::file::listing locales(this);
+//      ::file::listing_base locales(this);
 //
 //      locales.ignore(".svn").ls_dir(strMain);
 //
 //      for(auto & locale : locales)
 //      {
 //
-//         ::file::listing schemas(this);
+//         ::file::listing_base schemas(this);
 //
 //         schemas.ignore(".svn").ls_dir(locale);
 //
 //         for(auto & schema : schemas)
 //         {
 //
-//            ::file::listing listing(this);
+//            ::file::listing_base listing(this);
 //
 //            listing.ignore(".svn").rls_file(schema / "uistr");
 //

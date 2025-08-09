@@ -45,7 +45,7 @@ namespace fs
    }
 
 
-   bool native::enumerate(::file::listing & listing)
+   bool native::enumerate(::file::listing_base & listing)
    {
 
       return directory()->enumerate(listing);
@@ -76,7 +76,7 @@ namespace fs
 
 
 
-   /*::file::listing & native::ls_relative_name(::file::listing & listing)
+   /*::file::listing_base & native::ls_relative_name(::file::listing_base & listing)
    {
 
       directory()->ls_relative_name(listing);
@@ -95,7 +95,7 @@ namespace fs
    }
 
 
-   ::file::listing & native::root_ones(::file::listing & listing)
+   ::file::listing_base & native::root_ones(::file::listing_base & listing)
    {
       
       node()->root_ones(listing);

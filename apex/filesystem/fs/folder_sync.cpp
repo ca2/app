@@ -75,7 +75,7 @@ namespace fs
    }
 
 
-   bool folder_sync::enumerate(::file::listing& listing)
+   bool folder_sync::enumerate(::file::listing_base& listing)
    {
 
       auto pathLocal(listing.m_pathUser);
@@ -137,7 +137,7 @@ namespace fs
    }
 
 
-   /*::file::listing & folder_sync::ls_relative_name(::file::listing & listing)
+   /*::file::listing_base & folder_sync::ls_relative_name(::file::listing_base & listing)
    {
 
       directory()->ls_relative_name(listing);
@@ -166,7 +166,7 @@ namespace fs
    }
 
 
-   ::file::listing& folder_sync::root_ones(::file::listing& listing)
+   ::file::listing_base& folder_sync::root_ones(::file::listing_base& listing)
    {
 
       auto pathLocal = m_pathProtocol;

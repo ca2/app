@@ -531,6 +531,6 @@ public:
 
 // Data Members
 private:
-   typedef address_array < LiteHTMLElemAttr * >   CElemAttrArray;
+   using CElemAttrArray = address_array_base < LiteHTMLElemAttr * >;
    CElemAttrArray   *m_parrAttrib;   // array of attributes/value pairs
 };

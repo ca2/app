@@ -1287,7 +1287,7 @@ namespace platform
    }
 
 
-   bool acme_node_layer::defer_enumerate_protocol(::file::listing& listing)
+   bool acme_node_layer::defer_enumerate_protocol(::file::listing_base& listing)
    {
       return false;
    }

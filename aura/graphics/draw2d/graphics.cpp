@@ -6479,7 +6479,7 @@ namespace draw2d
    void graphics::nanosvg_drawframe(NSVGimage* pnsvgimage, int x, int y, int w, int h)
    {
 
-      float impact[4], cx, cy, hw, hh, aspect, px;
+      //float impact[4], cx, cy, hw, hh, aspect, px;
 
       auto ppath = __øcreate < ::draw2d::path >();
 

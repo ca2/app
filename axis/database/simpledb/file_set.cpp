@@ -44,7 +44,7 @@ namespace simpledb
 
       ::file::set::clear_search();
 
-      ::pointer<::file::path_array_base>ppatha;
+      ::pointer<::file::path_array>ppatha;
 
       __construct_new(ppatha);
 

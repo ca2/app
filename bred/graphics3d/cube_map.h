@@ -39,8 +39,9 @@ namespace graphics3d
 
       };
 
+
       struct cube :
-         public ::preallocated_array < ::array < cube_face >, 6 >
+         public ::preallocated_array_base < ::array < cube_face >, 6 >
       {
       public:
 

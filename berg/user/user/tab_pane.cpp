@@ -125,7 +125,7 @@ namespace user
    void tab_pane::do_split_layout(::draw2d::graphics_extension * pgraphicsextension, ::draw2d::graphics_pointer & pgraphics)
    {
 
-      string_array straTitle = m_straTitle.c_stra();
+      auto straTitle = m_straTitle.c_stra();
 
       straTitle.explode(MAGIC_PALACE_TAB_SPLT, get_title());
 

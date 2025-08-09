@@ -16,6 +16,17 @@
 #include "acme/prototype/prototype/enumeration.h"
 
 
+
+
+//template < typename TYPE, ::enum_flag t_eflag = e_flag_none, ::enum_status t_estatus = undefined >
+template < typename TYPE >
+class make_particle1;
+
+
+template < typename TYPE >
+class array_particle;
+
+
 template < typename ITERATOR_TYPE >
 class scoped_string_base;
 
@@ -266,10 +277,10 @@ namespace heap
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-class array_base;
+class base_array;
 
 //template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-//class array_base_quantum;
+//class base_array_quantum;
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
 class row;
@@ -278,7 +289,10 @@ template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nod
 class array_2d;
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::def < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-class array;
+class array_base;
+
+template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::def < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
+using array = array_particle < array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > > ;
 
 template < class TYPE, class ARG_TYPE = const TYPE&, class TYPED = ::typed::def_with_zero_init < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 using array_with_zero_init = array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
@@ -290,9 +304,11 @@ using array_with_zero_init = array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeConta
 template < typename ARRAY_BASE, int t_preallocated_array_size >
 class preallocated_array;
 
+template < class T, typename ARG_T = const T *, typename ARRAY_BASE = array_base < ::pointer < T >, ARG_T > >
+class pointer_array_base;
 
-template < class T, typename ARG_T = const T *, typename ARRAY_BASE = array < ::pointer < T >, ARG_T > >
-class pointer_array;
+template < class T, typename ARG_T = const T *, typename ARRAY_BASE = array_base < ::pointer < T >, ARG_T > >
+class pointer_array; // = ::array_particle < pointer_array_base < T, ARG_T, ARRAY_BASE > >;
 
 template < class T, int t_preallocated_array_size, typename ARG_T = const T *, typename ARRAY_BASE = array < ::pointer < T >, ARG_T > >
 using preallocated_pointer_array = pointer_array < T, ARG_T, preallocated_array < ARRAY_BASE, t_preallocated_array_size > >;
@@ -352,16 +368,23 @@ using atom_map = ::map < atom, TYPE, PAIR >;
 
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE > >
-class comparable_eq_array;
+template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array_base < TYPE, ARG_TYPE > >
+class comparable_eq_array_base;
+
+template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array_base < TYPE, ARG_TYPE > >
+using comparable_eq_array = ::array_particle< comparable_eq_array_base< TYPE, ARG_TYPE, ARRAY_TYPE > >;
 
 
 //template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = array_non_particle < TYPE, ARG_TYPE > >
 //using non_particle_comparable_eq_array = comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >;
 
 
-template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array < TYPE, ARG_TYPE > >
-class comparable_array;
+template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array_base < TYPE, ARG_TYPE > >
+class comparable_array_base;
+
+
+template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array_base < TYPE, ARG_TYPE > >
+using comparable_array = ::array_particle< comparable_array_base< TYPE, ARG_TYPE, ARRAY_TYPE > >;
 
 
 //template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = non_particle_comparable_eq_array < TYPE, ARG_TYPE > >
@@ -503,7 +526,11 @@ class unique_number_sort_array;
 
 
 template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-class numeric_array;
+class numeric_base_array;
+
+
+template < typename TYPE, enum_type t_etypeContainer = e_type_element >
+using numeric_array = ::array_particle < numeric_base_array < TYPE, t_etypeContainer > >;
 
 
 using char_array = numeric_array < char >;
@@ -867,8 +894,6 @@ class cotaskptr_array;
 #endif
 
 
-using arguments = payload_array;
-
 
 template<class T>
 class guard_pointer;
@@ -1043,4 +1068,13 @@ template <typename T1, typename T2>
 inline bool is_equivalent(T1 t1, T2 t2);
 
 
+
+class payload_array;
+
+
+
+
+
+
+using arguments = payload_array;
 

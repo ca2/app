@@ -226,7 +226,7 @@ using map_string_to_ob = map < string, const ::scoped_string & scopedstr, matter
 
 #include "string_to_string_map.h"
 #include "bit_array.h"
-//#include "string_array_base.h"
+//#include "string_base_array.h"
 
 
 

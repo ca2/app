@@ -10,7 +10,7 @@ namespace file
 {
 
 
-   void path_array::patch_base_path(const ::file::path & pathBase)
+   void path_array_base::patch_base_path(const ::file::path & pathBase)
    {
 
       for (auto & path : *this)

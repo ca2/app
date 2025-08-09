@@ -1294,3 +1294,31 @@ CLASS_DECL_ACME void warningf(const ::ansi_character* pszFormat, ...);
 CLASS_DECL_ACME void errorf(const ::ansi_character* pszFormat, ...);
 CLASS_DECL_ACME void fatalf(const ::ansi_character* pszFormat, ...);
 
+
+
+// template < typename TYPE, ::enum_flag t_eflag = e_flag_none, ::enum_status t_estatus = undefined >
+// class make_particle :
+//     public TYPE,
+//     virtual public ::particle
+// {
+// public:
+//
+//
+//    // Universal forwarding constructor
+//    template <typename... Args>
+//    make_particle(Args&&... args):
+//       ::particle(t_eflag, t_estatus),
+//       ::quantum(t_eflag, t_estatus),
+//       TYPE(std::forward<Args>(args)...) // forward to TYPE's ctor
+//    {
+//
+//    }
+//
+//
+//    template <typename Arg>
+//    TYPE & operator=(Arg&& arg)
+//    {
+//       return TYPE::operator=(arg);
+//    }
+//
+// };

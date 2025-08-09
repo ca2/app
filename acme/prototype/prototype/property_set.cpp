@@ -25,7 +25,7 @@ extern locale_t g_localeC;
 #endif
 
 
-property_set::property_set(::std::initializer_list < ::payload > list)
+property_set_base::property_set_base(::std::initializer_list < ::payload > list)
 {
 
    ::atom atom;
@@ -62,13 +62,13 @@ property_set::property_set(::std::initializer_list < ::payload > list)
 }
 
 
-property_set::~property_set()
+property_set_base::~property_set_base()
 {
 
 }
 
 
-//atom property_set::get_new_id()
+//atom property_set_base::get_new_id()
 //{
 //
 //   index iMax = -1;
@@ -99,7 +99,7 @@ property_set::~property_set()
 
 
 //
-//property & property_set::defer_auto_add(atom atom)
+//property & property_set_base::defer_auto_add(atom atom)
 //{
 //
 //   return *add(atom);
@@ -107,18 +107,18 @@ property_set::~property_set()
 //}
 
 
-bool property_set::is_set_empty(::collection::count countMinimum) const
+bool property_set_base::is_set_empty(::collection::count countMinimum) const
 {
    return property_count() < countMinimum;
 }
 
-bool property_set::has_properties(::collection::count countMinimum) const
+bool property_set_base::has_properties(::collection::count countMinimum) const
 {
    return property_count() >= countMinimum;
 }
 
 
-::collection::index property_set::index_of_case_insensitive_payload(const ::payload & payload, ::collection::index iStart) const
+::collection::index property_set_base::index_of_case_insensitive_payload(const ::payload & payload, ::collection::index iStart) const
 {
 
    for (::collection::index iIndex = iStart; iIndex < this->size(); iIndex++)
@@ -140,7 +140,7 @@ bool property_set::has_properties(::collection::count countMinimum) const
 }
 
 
-::collection::index property_set::index_of_case_insensitive_string(const ::scoped_string & scopedstr, ::collection::index iStart) const
+::collection::index property_set_base::index_of_case_insensitive_string(const ::scoped_string & scopedstr, ::collection::index iStart) const
 {
 
    for (::collection::index iIndex = iStart; iIndex < this->size(); iIndex++)
@@ -162,7 +162,7 @@ bool property_set::has_properties(::collection::count countMinimum) const
 }
 
 
-::collection::index property_set::index_of_payload(const ::payload & payload, ::collection::index iStart) const
+::collection::index property_set_base::index_of_payload(const ::payload & payload, ::collection::index iStart) const
 {
 
    for (::collection::index iIndex = iStart; iIndex < this->size(); iIndex++)
@@ -184,7 +184,7 @@ bool property_set::has_properties(::collection::count countMinimum) const
 }
 
 
-::collection::index property_set::index_of_string(const ::scoped_string & scopedstr, ::collection::index iStart) const
+::collection::index property_set_base::index_of_string(const ::scoped_string & scopedstr, ::collection::index iStart) const
 {
 
    for (::collection::index iIndex = iStart; iIndex < this->size(); iIndex++)
@@ -206,7 +206,7 @@ bool property_set::has_properties(::collection::count countMinimum) const
 }
 
 
-bool property_set::case_insensitive_contains_payload_count(const ::payload & payload, ::collection::count countMin, ::collection::count countMax) const
+bool property_set_base::case_insensitive_contains_payload_count(const ::payload & payload, ::collection::count countMin, ::collection::count countMax) const
 {
    ::collection::count count = 0;
    ::collection::index iIndex = -1;
@@ -218,7 +218,7 @@ bool property_set::case_insensitive_contains_payload_count(const ::payload & pay
 
 
 
-bool property_set::case_insensitive_contains_string_count(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax) const
+bool property_set_base::case_insensitive_contains_string_count(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax) const
 {
    ::collection::count count = 0;
    ::collection::index iIndex = -1;
@@ -228,7 +228,7 @@ bool property_set::case_insensitive_contains_string_count(const ::scoped_string 
 }
 
 
-bool property_set::contains_payload_count(const ::payload & payload, ::collection::count countMin, ::collection::count countMax) const
+bool property_set_base::contains_payload_count(const ::payload & payload, ::collection::count countMin, ::collection::count countMax) const
 {
    ::collection::count count = 0;
    ::collection::index iIndex = -1;
@@ -238,7 +238,7 @@ bool property_set::contains_payload_count(const ::payload & payload, ::collectio
 }
 
 
-bool property_set::contains_string_count(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax) const
+bool property_set_base::contains_string_count(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax) const
 {
    ::collection::count count = 0;
    ::collection::index iIndex = -1;
@@ -248,7 +248,7 @@ bool property_set::contains_string_count(const ::scoped_string & scopedstr, ::co
 }
 
 
-bool property_set::case_insensitive_erase_first_payload(const ::payload & payload, ::collection::index iStart)
+bool property_set_base::case_insensitive_erase_first_payload(const ::payload & payload, ::collection::index iStart)
 {
 
    auto iIndex = index_of_case_insensitive_payload(payload, iStart);
@@ -267,7 +267,7 @@ bool property_set::case_insensitive_erase_first_payload(const ::payload & payloa
 }
 
 
-bool property_set::case_insensitive_erase_first_string(const ::scoped_string & scopedstr, ::collection::index iStart)
+bool property_set_base::case_insensitive_erase_first_string(const ::scoped_string & scopedstr, ::collection::index iStart)
 {
 
    auto iIndex = index_of_case_insensitive_string(scopedstr, iStart);
@@ -286,7 +286,7 @@ bool property_set::case_insensitive_erase_first_string(const ::scoped_string & s
 }
 
 
-bool property_set::erase_first_payload(const ::payload & payload, ::collection::index iStart)
+bool property_set_base::erase_first_payload(const ::payload & payload, ::collection::index iStart)
 {
 
    auto iIndex = index_of_payload(payload, iStart);
@@ -305,7 +305,7 @@ bool property_set::erase_first_payload(const ::payload & payload, ::collection::
 }
 
 
-bool property_set::erase_first_string(const ::scoped_string & scopedstr, ::collection::index iStart)
+bool property_set_base::erase_first_string(const ::scoped_string & scopedstr, ::collection::index iStart)
 {
 
    auto iIndex = index_of_string(scopedstr, iStart);
@@ -324,7 +324,7 @@ bool property_set::erase_first_string(const ::scoped_string & scopedstr, ::colle
 }
 
 
-::collection::count property_set::case_insensitive_erase_payload_count(const ::payload & payload, ::collection::count countMin, ::collection::count countMax)
+::collection::count property_set_base::case_insensitive_erase_payload_count(const ::payload & payload, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
@@ -346,7 +346,7 @@ bool property_set::erase_first_string(const ::scoped_string & scopedstr, ::colle
 }
 
 
-::collection::count property_set::case_insensitive_erase_string_count(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax)
+::collection::count property_set_base::case_insensitive_erase_string_count(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
@@ -368,7 +368,7 @@ bool property_set::erase_first_string(const ::scoped_string & scopedstr, ::colle
 }
 
 
-::collection::count property_set::erase_payload_count(const ::payload & payload, ::collection::count countMin, ::collection::count countMax)
+::collection::count property_set_base::erase_payload_count(const ::payload & payload, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
@@ -390,7 +390,7 @@ bool property_set::erase_first_string(const ::scoped_string & scopedstr, ::colle
 }
 
 
-::collection::count property_set::erase_string_count(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax)
+::collection::count property_set_base::erase_string_count(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
@@ -412,7 +412,7 @@ bool property_set::erase_first_string(const ::scoped_string & scopedstr, ::colle
 }
 
 
-::collection::count property_set::unset(const ::atom & atom)
+::collection::count property_set_base::unset(const ::atom & atom)
 {
 
    ::collection::count c = 0;
@@ -440,7 +440,7 @@ bool property_set::erase_first_string(const ::scoped_string & scopedstr, ::colle
 }
 
 
-bool property_set::is_new(const ::atom & atom) const
+bool property_set_base::is_new(const ::atom & atom) const
 {
 
    auto pproperty = lookup(atom);
@@ -457,7 +457,7 @@ bool property_set::is_new(const ::atom & atom) const
 }
 
 
-bool property_set::is_null(const ::atom & atom) const
+bool property_set_base::is_null(const ::atom & atom) const
 {
 
    auto pproperty = lookup(atom);
@@ -474,7 +474,7 @@ bool property_set::is_null(const ::atom & atom) const
 }
 
 
-bool property_set::is_new_or_null(const ::atom & atom) const
+bool property_set_base::is_new_or_null(const ::atom & atom) const
 {
 
    auto pproperty = lookup(atom);
@@ -491,7 +491,7 @@ bool property_set::is_new_or_null(const ::atom & atom) const
 }
 
 
-bool property_set::is_empty(const ::atom & atom) const
+bool property_set_base::is_empty(const ::atom & atom) const
 {
 
    auto pproperty = lookup(atom);
@@ -508,7 +508,7 @@ bool property_set::is_empty(const ::atom & atom) const
 }
 
 
-void property_set::_008ParseCommandLine(const ::scoped_string & scopedstrCmdLineParam, ::payload & payloadFile)
+void property_set_base::_008ParseCommandLine(const ::scoped_string & scopedstrCmdLineParam, ::payload & payloadFile)
 {
 
    string strApp;
@@ -518,7 +518,7 @@ void property_set::_008ParseCommandLine(const ::scoped_string & scopedstrCmdLine
 }
 
 
-void property_set::_008ParseCommandFork(const ::scoped_string & scopedstrCmdLineParam, ::payload & payloadFile, string & strApp)
+void property_set_base::_008ParseCommandFork(const ::scoped_string & scopedstrCmdLineParam, ::payload & payloadFile, string & strApp)
 {
 
    _008Parse(true, scopedstrCmdLineParam, payloadFile, strApp);
@@ -526,7 +526,7 @@ void property_set::_008ParseCommandFork(const ::scoped_string & scopedstrCmdLine
 }
 
 
-void property_set::_008ParseCommandArguments(string_array & straArguments, ::payload & payloadFile, string & strApp)
+void property_set_base::_008ParseCommandArguments(string_array & straArguments, ::payload & payloadFile, string & strApp)
 {
 
    _008ParseArguments(true, straArguments, payloadFile, strApp);
@@ -534,7 +534,7 @@ void property_set::_008ParseCommandArguments(string_array & straArguments, ::pay
 }
 
 
-void property_set::_008AddArgumentPairs(::string_array & straArguments)
+void property_set_base::_008AddArgumentPairs(::string_array & straArguments)
 {
 
    for (::collection::index i = 0; i < straArguments.get_size() - 1; i++)
@@ -600,7 +600,7 @@ void property_set::_008AddArgumentPairs(::string_array & straArguments)
 }
 
 
-void property_set::_008AddArgumentOrFile(::payload & payloadFile, const ::scoped_string & scopedstrArgument)
+void property_set_base::_008AddArgumentOrFile(::payload & payloadFile, const ::scoped_string & scopedstrArgument)
 {
 
    auto range = scopedstrArgument();
@@ -642,7 +642,7 @@ void property_set::_008AddArgumentOrFile(::payload & payloadFile, const ::scoped
 }
 
 
-void property_set::_008AddArgument(const ::scoped_string & scopedstrArg)
+void property_set_base::_008AddArgument(const ::scoped_string & scopedstrArg)
 {
 
    auto range = scopedstrArg();
@@ -689,7 +689,7 @@ void property_set::_008AddArgument(const ::scoped_string & scopedstrArg)
 }
 
 
-void property_set::_008Add(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrValue)
+void property_set_base::_008Add(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrValue)
 {
 
    string_array straKey;
@@ -703,7 +703,7 @@ void property_set::_008Add(const ::scoped_string & scopedstrKey, const ::scoped_
 
    }
 
-   ::property_set * pset = this;
+   ::property_set_base * pset = this;
 
    int i = 0;
 
@@ -738,7 +738,7 @@ void property_set::_008Add(const ::scoped_string & scopedstrKey, const ::scoped_
 }
 
 
-void property_set::_008Parse(bool bApp, const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile, string & strApp)
+void property_set_base::_008Parse(bool bApp, const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile, string & strApp)
 {
 
    if (scopedstrCmdLine.is_empty())
@@ -780,7 +780,7 @@ void property_set::_008Parse(bool bApp, const ::scoped_string & scopedstrCmdLine
 }
 
 
-void property_set::_008ParseArguments(bool bApp, ::string_array & straArguments, ::payload & payloadFile, string & strApp)
+void property_set_base::_008ParseArguments(bool bApp, ::string_array & straArguments, ::payload & payloadFile, string & strApp)
 {
 
    int i = 0;
@@ -886,14 +886,14 @@ void property_set_skip_network_payload(::ansi_range & range)
 }
 
 
-void property_set::parse_ini(const ::scoped_string & scopedstrIni)
+void property_set_base::parse_ini(const ::scoped_string & scopedstrIni)
 {
 
    string_array stra;
 
    stra.add_lines(scopedstrIni);
 
-   ::property_set * pset = this;
+   ::property_set_base * pset = this;
 
    for (auto & strLine : stra)
    {
@@ -940,7 +940,7 @@ void property_set::parse_ini(const ::scoped_string & scopedstrIni)
 }
 
 
-::string_array property_set::get_ini_lines() const
+::string_array property_set_base::get_ini_lines() const
 {
 
    ::string_array stra;
@@ -975,7 +975,7 @@ void property_set::parse_ini(const ::scoped_string & scopedstrIni)
 }
 
 
-::string property_set::get_ini() const
+::string property_set_base::get_ini() const
 {
 
    ::string_array stra = get_ini_lines();
@@ -998,7 +998,7 @@ void property_set::parse_ini(const ::scoped_string & scopedstrIni)
 /// PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
 /// UBUNTU_CODENAME=kinetic
 /// LOGO=ubuntu-logo
-void property_set::parse_standard_configuration(const ::scoped_string & scopedstrStandardConfiguration)
+void property_set_base::parse_standard_configuration(const ::scoped_string & scopedstrStandardConfiguration)
 {
 
    ::string_array straLines;
@@ -1029,7 +1029,7 @@ void property_set::parse_standard_configuration(const ::scoped_string & scopedst
 }
 
 
-void property_set::parse_network_payload(const ::scoped_string & scopedstrNetworkPayload)
+void property_set_base::parse_network_payload(const ::scoped_string & scopedstrNetworkPayload)
 {
 
 // #ifdef LINUX
@@ -1051,7 +1051,7 @@ void property_set::parse_network_payload(const ::scoped_string & scopedstrNetwor
 }
 
 
-//void property_set::parse_network_payload(::const_ansi_range & range)
+//void property_set_base::parse_network_payload(::const_ansi_range & range)
 //{
 //
 //#ifdef LINUX
@@ -1063,7 +1063,7 @@ void property_set::parse_network_payload(const ::scoped_string & scopedstrNetwor
 //}
 
 
-void property_set::parse_network_payload(::ansi_range & range)
+void property_set_base::parse_network_payload(::ansi_range & range)
 {
 
 
@@ -1138,7 +1138,7 @@ void property_set::parse_network_payload(::ansi_range & range)
 }
 
 
-string & property_set::get_network_payload(string & str, bool bNewLine) const
+string & property_set_base::get_network_payload(string & str, bool bNewLine) const
 {
 
    str += "{";
@@ -1194,7 +1194,7 @@ string & property_set::get_network_payload(string & str, bool bNewLine) const
 }
 
 
-void property_set::parse_network_arguments(const ::scoped_string & scopedstrUriOrNetworkArguments)
+void property_set_base::parse_network_arguments(const ::scoped_string & scopedstrUriOrNetworkArguments)
 {
 
    if (scopedstrUriOrNetworkArguments.is_empty())
@@ -1222,7 +1222,7 @@ void property_set::parse_network_arguments(const ::scoped_string & scopedstrUriO
 }
 
 
-void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNetworkArguments)
+void property_set_base::_parse_network_arguments(const ::scoped_string & scopedstrNetworkArguments)
 {
 
    if (scopedstrNetworkArguments.is_empty())
@@ -1307,7 +1307,7 @@ void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNet
 }
 
 
-void property_set::parse_network_headers(const ::scoped_string & scopedstrHeaders)
+void property_set_base::parse_network_headers(const ::scoped_string & scopedstrHeaders)
 {
 
    string_array stra;
@@ -1351,7 +1351,7 @@ void property_set::parse_network_headers(const ::scoped_string & scopedstrHeader
 }
 
 
-string property_set::_001Replace(const ::scoped_string & scopedstr) const
+string property_set_base::_001Replace(const ::scoped_string & scopedstr) const
 {
 
    return evaluate(scopedstr);
@@ -1359,7 +1359,7 @@ string property_set::_001Replace(const ::scoped_string & scopedstr) const
 }
 
 
-::particle * property_set::source_channel()
+::particle * property_set_base::source_channel()
 {
 
    return cast < ::particle >("source_channel");
@@ -1367,7 +1367,7 @@ string property_set::_001Replace(const ::scoped_string & scopedstr) const
 }
 
 
-::collection::count property_set::erase_by_name(const ::atom & atom)
+::collection::count property_set_base::erase_by_name(const ::atom & atom)
 {
 
    return unset(atom);
@@ -1375,7 +1375,7 @@ string property_set::_001Replace(const ::scoped_string & scopedstr) const
 }
 
 
-::collection::count property_set::erase_by_name(string_array & stra)
+::collection::count property_set_base::erase_by_name(string_array & stra)
 {
 
    ::collection::count count = 0;
@@ -1395,7 +1395,7 @@ string property_set::_001Replace(const ::scoped_string & scopedstr) const
 
 //
 //
-//string property_set::eval(const ::scoped_string & scopedstrParam)
+//string property_set_base::eval(const ::scoped_string & scopedstrParam)
 //{
 //
 //   return property_ptra::eval(strParam);
@@ -1403,7 +1403,7 @@ string property_set::_001Replace(const ::scoped_string & scopedstr) const
 //}
 //
 //
-//string property_set::gen_eval(const ::scoped_string & scopedstr)
+//string property_set_base::gen_eval(const ::scoped_string & scopedstr)
 //{
 //
 //   ASSERT(str[0] == '$' && str.length() >= 2);
@@ -1413,7 +1413,7 @@ string property_set::_001Replace(const ::scoped_string & scopedstr) const
 //}
 //
 //
-//string property_set::gen_string(const ::scoped_string & scopedstr)
+//string property_set_base::gen_string(const ::scoped_string & scopedstr)
 //{
 //
 //   return operator[](str);
@@ -1421,7 +1421,7 @@ string property_set::_001Replace(const ::scoped_string & scopedstr) const
 //}
 
 
-void property_set::clear()
+void property_set_base::clear()
 {
 
    erase_all_properties();
@@ -1429,7 +1429,7 @@ void property_set::clear()
 }
 
 
-string property_set::implode(const ::scoped_string & scopedstrGlue) const
+string property_set_base::implode(const ::scoped_string & scopedstrGlue) const
 {
 
    string str;
@@ -1464,7 +1464,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-//property * property_set::find_payload(const ::scoped_string & scopedstr) const
+//property * property_set_base::find_payload(const ::scoped_string & scopedstr) const
 //{
 //
 //   for(const_iterator it = begin(); it != end(); it++)
@@ -1484,7 +1484,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 //}
 //
 
-//property * property_set::case_insensitive_find_value(const ::scoped_string & scopedstr) const
+//property * property_set_base::case_insensitive_find_value(const ::scoped_string & scopedstr) const
 //{
 //
 //   for(const_iterator it = begin(); it != end(); it++)
@@ -1503,7 +1503,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 //}
 
 
-// property_set::property_set(const ::property_set & set)
+// property_set_base::property_set_base(const ::property_set_base & set)
 // {
 //
 //    operator = (set);
@@ -1511,14 +1511,14 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 // }
 //
 //
-// property_set::property_set(::property_set && set) :
-//    property_holder_array(::transfer(set))
+// property_set_base::property_set_base(::property_set_base && set) :
+//    property_holder_array_base(::transfer(set))
 // {
 //
 // }
 
 
-//property_set::property_set(const pair_set_interface & set)
+//property_set_base::property_set_base(const pair_set_interface & set)
 //{
 //
 //   m_iIndex = 0;
@@ -1528,7 +1528,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 //}
 //
 //
-//property_set::property_set(const str_str_interface & set)
+//property_set_base::property_set_base(const str_str_interface & set)
 //{
 //
 //   m_iIndex = 0;
@@ -1538,7 +1538,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 //}
 
 
-//property & property_set::at(::collection::index iIndex)
+//property & property_set_base::at(::collection::index iIndex)
 //{
 //
 //   return operator[](iIndex);
@@ -1546,7 +1546,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 //}
 
 
-//::payload property_set::at(::collection::index iIndex) const
+//::payload property_set_base::at(::collection::index iIndex) const
 //{
 //
 //   return operator[](iIndex);
@@ -1554,7 +1554,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 //}
 
 
-//::property & property_set::property(const ::atom_array& atoma)
+//::property & property_set_base::property(const ::atom_array_base& atoma)
 //{
 //
 //   auto iIndex = index_of(atoma);
@@ -1571,7 +1571,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 //}
 
 //
-//::property & property_set::property(const ::atom& atom)
+//::property & property_set_base::property(const ::atom& atom)
 //{
 //
 //   auto pproperty = lookup(atom);
@@ -1589,7 +1589,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 //
 //}
 
-::property * property_set::add_property(const ::atom_array & atoma)
+::property * property_set_base::add_property(const ::atom_array_base & atoma)
 {
 
    return &property(atoma);
@@ -1598,7 +1598,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 
 
 
-::property_set & property_set::operator = (const ::payload & payload)
+::property_set_base & property_set_base::operator = (const ::payload & payload)
 {
 
    if (payload.m_etype == e_type_property_set)
@@ -1625,7 +1625,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
       //else
       //{
 
-      (property_holder_array &)*this = (const property_holder_array &)*payload.m_ppropertyset;
+      (property_holder_array_base &)*this = (const property_holder_array_base &)*payload.m_ppropertyset;
 
       //      }
 
@@ -1650,13 +1650,13 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-// ::property_set & property_set::operator = (const ::property_set & set)
+// ::property_set_base & property_set_base::operator = (const ::property_set_base & set)
 // {
 //
 //    if (&set != this)
 //    {
 //
-//       ::property_holder_array::operator=(set);
+//       ::property_holder_array_base::operator=(set);
 //
 //    }
 //
@@ -1665,7 +1665,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 // }
 
 
-::property_set & property_set::append(const ::property_set & set)
+::property_set_base & property_set_base::append(const ::property_set_base & set)
 {
 
    if (&set != this)
@@ -1685,7 +1685,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-::property_set & property_set::merge(const ::property_set & set)
+::property_set_base & property_set_base::merge(const ::property_set_base & set)
 {
 
    if (::is_reference_set(set) && &set != this)
@@ -1797,7 +1797,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-::property_set & property_set::merge(const ::property & property)
+::property_set_base & property_set_base::merge(const ::property & property)
 {
 
    if (property.get_type() == e_type_property_set)
@@ -1818,7 +1818,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-::property_set & property_set::operator += (const ::property_set & set)
+::property_set_base & property_set_base::operator += (const ::property_set_base & set)
 {
 
    return append(set);
@@ -1826,7 +1826,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-::property_set & property_set::operator |= (const ::property_set & set)
+::property_set_base & property_set_base::operator |= (const ::property_set_base & set)
 {
 
    return merge(set);
@@ -1834,16 +1834,16 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-//bool property_set::case_insensitive_contains_value(const ::payload & payload) const { return case_insensitive_find_value(payload) != nullptr; }
-//bool property_set::case_insensitive_contains_value(const ::scoped_string & scopedstr) const { return case_insensitive_find_value(scopedstr) != nullptr; }
+//bool property_set_base::case_insensitive_contains_value(const ::payload & payload) const { return case_insensitive_find_value(payload) != nullptr; }
+//bool property_set_base::case_insensitive_contains_value(const ::scoped_string & scopedstr) const { return case_insensitive_find_value(scopedstr) != nullptr; }
 //
-//bool property_set::contains_payload(const ::payload & payload) const { return find_payload(payload) != nullptr; }
-//bool property_set::contains_payload(const ::scoped_string & scopedstr) const { return find_payload(scopedstr) != nullptr; }
+//bool property_set_base::contains_payload(const ::payload & payload) const { return find_payload(payload) != nullptr; }
+//bool property_set_base::contains_payload(const ::scoped_string & scopedstr) const { return find_payload(scopedstr) != nullptr; }
 
 
 
 
-//::property_set & property_set::operator = (const pair_set_interface & set)
+//::property_set_base & property_set_base::operator = (const pair_set_interface & set)
 //{
 //
 //   erase_all();
@@ -1871,7 +1871,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 //
 //
 //
-//::property_set & property_set::operator = (const str_str_interface & set)
+//::property_set_base & property_set_base::operator = (const str_str_interface & set)
 //{
 //
 //   erase_all();
@@ -1893,7 +1893,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 //}
 
 
-//property * property_set::str_find(const property & property) const
+//property * property_set_base::str_find(const property & property) const
 //{
 //
 //   for (auto & pproperty : *this)
@@ -1913,7 +1913,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 //}
 
 
-bool property_set::payload_contains(const ::property_set & set) const
+bool property_set_base::payload_contains(const ::property_set_base & set) const
 {
 
    for (auto & pproperty : set)
@@ -1933,7 +1933,7 @@ bool property_set::payload_contains(const ::property_set & set) const
 }
 
 
-bool property_set::string_contains(const ::property_set & set) const
+bool property_set_base::string_contains(const ::property_set_base & set) const
 {
 
    for (auto & pproperty : set)
@@ -1953,7 +1953,7 @@ bool property_set::string_contains(const ::property_set & set) const
 }
 
 
-bool property_set::contains_keys(const ::property_set & set) const
+bool property_set_base::contains_keys(const ::property_set_base & set) const
 {
 
    for (auto & pproperty : set)
@@ -1976,7 +1976,7 @@ bool property_set::contains_keys(const ::property_set & set) const
 
 
 
-bool property_set::contains(const ::property_set & set) const
+bool property_set_base::contains(const ::property_set_base & set) const
 {
 
    for (auto & pproperty : set)
@@ -2005,7 +2005,7 @@ bool property_set::contains(const ::property_set & set) const
 }
 
 
-string & property_set::get_network_arguments(string & strNetworkArguments) const
+string & property_set_base::get_network_arguments(string & strNetworkArguments) const
 {
 
    auto p = this->begin();
@@ -2171,7 +2171,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //}
 
 
-string property_set::get_command_line(const string_array & straKeys) const
+string property_set_base::get_command_line(const string_array & straKeys) const
 {
 
    string str;
@@ -2261,7 +2261,7 @@ string property_set::get_command_line(const string_array & straKeys) const
 }
 
 
-string property_set::get_command_line() const
+string property_set_base::get_command_line() const
 {
 
    string str;
@@ -2344,7 +2344,7 @@ string property_set::get_command_line() const
 
 
 
-void property_set::parse_environment_variable(const string_array & straEnvironment)
+void property_set_base::parse_environment_variable(const string_array & straEnvironment)
 {
 
    for (auto & strEnvironment : straEnvironment)
@@ -2375,7 +2375,7 @@ void property_set::parse_environment_variable(const string_array & straEnvironme
 }
 
 
-bool property_set::get_bool(const atom & atom, bool bDefault) const
+bool property_set_base::get_bool(const atom & atom, bool bDefault) const
 {
 
    auto pproperty = lookup(atom);
@@ -2399,7 +2399,7 @@ bool property_set::get_bool(const atom & atom, bool bDefault) const
 }
 
 
-int property_set::get_int(const atom & atom, int iDefault) const
+int property_set_base::get_int(const atom & atom, int iDefault) const
 {
 
    auto pproperty = lookup(atom);
@@ -2423,7 +2423,7 @@ int property_set::get_int(const atom & atom, int iDefault) const
 }
 
 
-unsigned int property_set::get_unsigned_int(const atom & atom, unsigned int uDefault) const
+unsigned int property_set_base::get_unsigned_int(const atom & atom, unsigned int uDefault) const
 {
 
    auto pproperty = lookup(atom);
@@ -2448,7 +2448,7 @@ unsigned int property_set::get_unsigned_int(const atom & atom, unsigned int uDef
 
 
 
-::string property_set::get_string(const atom & atom, const ::scoped_string & scopedstrDefault) const
+::string property_set_base::get_string(const atom & atom, const ::scoped_string & scopedstrDefault) const
 {
 
    auto pproperty = lookup(atom);
@@ -2465,7 +2465,7 @@ unsigned int property_set::get_unsigned_int(const atom & atom, unsigned int uDef
 }
 
 
-::file::path property_set::get_file_path(const atom & atom, const ::file::path & pathDefault) const
+::file::path property_set_base::get_file_path(const atom & atom, const ::file::path & pathDefault) const
 {
 
    auto pproperty = lookup(atom);
@@ -2501,7 +2501,7 @@ unsigned int property_set::get_unsigned_int(const atom & atom, unsigned int uDef
 //}
 
 
-string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const ::scoped_string& scopedstrSeparator2)
+string property_set_base::as_string(const ::scoped_string& scopedstrSeparator1, const ::scoped_string& scopedstrSeparator2)
 {
 
    ::string str;
@@ -2524,7 +2524,7 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 }
 
 
-::collection::index property_set::index_of(const ::atom & atom, ::collection::index i) const
+::collection::index property_set_base::index_of(const ::atom & atom, ::collection::index i) const
 {
 
    for (; i < this->get_count(); i++)
@@ -2544,7 +2544,7 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 }
 
 
-::property * property_set::lookup(const ::atom & atom, ::collection::index iStart) const
+::property * property_set_base::lookup(const ::atom & atom, ::collection::index iStart) const
 {
 
    auto iIndex = index_of(atom, iStart);
@@ -2562,7 +2562,7 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 }
 
 
-//property* property_set::find_by_text(const ::scoped_string & scopedstr, ::collection::index iStart) const
+//property* property_set_base::find_by_text(const ::scoped_string & scopedstr, ::collection::index iStart) const
 //{
 //
 //   auto p = this->begin() + iStart;
@@ -2584,7 +2584,7 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 //}
 
 
-//::collection::index property_set::index_of(const ::atom & atom, ::collection::index iStart) const
+//::collection::index property_set_base::index_of(const ::atom & atom, ::collection::index iStart) const
 //{
 //
 //   for(::collection::index iIndex = iStart; iIndex < this->size(); iIndex++)
@@ -2604,7 +2604,7 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 //}
 
 
-property & property_set::property(const ::atom & atom)
+property & property_set_base::property(const ::atom & atom)
 {
 
    auto iIndex = index_of(atom);
@@ -2621,7 +2621,7 @@ property & property_set::property(const ::atom & atom)
 }
 
 
-property & property_set::property(const ::atom_array & atoma)
+property & property_set_base::property(const ::atom_array_base & atoma)
 {
 
    if (atoma.is_empty())
@@ -2644,10 +2644,10 @@ property & property_set::property(const ::atom_array & atoma)
 }
 
 
-//property & property_set::get(const ::atom_array & atoma)
+//property & property_set_base::get(const ::atom_array_base & atoma)
 //{
 //
-//   ::property_set * pset = this;
+//   ::property_set_base * pset = this;
 //
 //   ::property * pproperty = nullptr;
 //
@@ -2672,7 +2672,7 @@ property & property_set::property(const ::atom_array & atoma)
 
 
 
-//::property * property_set::find_index(::iptr i) const
+//::property * property_set_base::find_index(::iptr i) const
 //{
 //
 //   auto p = this->m_begin;
@@ -2694,7 +2694,7 @@ property & property_set::property(const ::atom_array & atoma)
 //}
 
 
-//property & property_set::get_index(::iptr i)
+//property & property_set_base::get_index(::iptr i)
 //{
 //
 //   while (i >= this->size())
@@ -2706,12 +2706,12 @@ property & property_set::property(const ::atom_array & atoma)
 //
 //   }
 //
-//   return *(const_cast <::property_set *> (this))->m_begin[i];
+//   return *(const_cast <::property_set_base *> (this))->m_begin[i];
 //
 //}
 
 
-//::payload property_set::operator()(const ::atom & atom, const ::payload & payloadDefault) const
+//::payload property_set_base::operator()(const ::atom & atom, const ::payload & payloadDefault) const
 //{
 //
 //   auto pproperty = find(atom);
@@ -2728,7 +2728,7 @@ property & property_set::property(const ::atom_array & atoma)
 //}
 
 
-//::payload & property_set::topic(const atom & atom)
+//::payload & property_set_base::topic(const atom & atom)
 //{
 //
 //   return set(atom);
@@ -2736,7 +2736,7 @@ property & property_set::property(const ::atom_array & atoma)
 //}
 
 
-::payload_reference property_set::reference(const ::atom & atom)
+::payload_reference property_set_base::reference(const ::atom & atom)
 {
 
    return property(atom);
@@ -2745,7 +2745,7 @@ property & property_set::property(const ::atom_array & atoma)
 
 
 
-::payload_reference property_set::reference(const ::atom_array & atoma)
+::payload_reference property_set_base::reference(const ::atom_array_base & atoma)
 {
 
    return property(atoma);
@@ -2832,7 +2832,7 @@ property & property_set::property(const ::atom_array & atoma)
 //}
 
 
-bool property_set::has_property(const atom & atom) const
+bool property_set_base::has_property(const atom & atom) const
 {
 
    if (::is_null(this))
@@ -2850,7 +2850,7 @@ bool property_set::has_property(const atom & atom) const
 }
 
 
-bool property_set::is_true(const atom & atom) const
+bool property_set_base::is_true(const atom & atom) const
 {
 
    auto pproperty = lookup(atom);
@@ -2867,7 +2867,7 @@ bool property_set::is_true(const atom & atom) const
 }
 
 
-bool property_set::is_true_or_empty(const atom & atom) const
+bool property_set_base::is_true_or_empty(const atom & atom) const
 {
 
    auto pproperty = lookup(atom);
@@ -2884,7 +2884,7 @@ bool property_set::is_true_or_empty(const atom & atom) const
 }
 
 
-//::payload property_set::value(const ::atom & atom) const
+//::payload property_set_base::value(const ::atom & atom) const
 //{
 //
 //   auto pproperty = lookup(atom);
@@ -2901,7 +2901,7 @@ bool property_set::is_true_or_empty(const atom & atom) const
 //}
 //
 //
-//::payload property_set::value(const ::atom & atom, ::payload payloadDefault) const
+//::payload property_set_base::value(const ::atom & atom, ::payload payloadDefault) const
 //{
 //
 //   property * pproperty = find(atom);
@@ -2919,14 +2919,14 @@ bool property_set::is_true_or_empty(const atom & atom) const
 //
 
 
-// ::property_set set;
+// ::property_set_base set;
 //
 // set["var5"] = "searching value";
 //
 // str = "SELECT field1, field2, field3 FROM table1 WHERE table1.field5 = '$var5'"
 //
 // real-ization: "SELECT field1, field2, field3 FROM table1 WHERE table1.field5 = 'searching value'"
-string property_set::evaluate(const ::scoped_string & scopedstrSource) const
+string property_set_base::evaluate(const ::scoped_string & scopedstrSource) const
 {
 
    string str(scopedstrSource);
@@ -3054,7 +3054,7 @@ string property_set::evaluate(const ::scoped_string & scopedstrSource) const
 }
 
 
-bool property_set::get_evaluation(::string & str, const ::scoped_string & scopedstrExpression) const
+bool property_set_base::get_evaluation(::string & str, const ::scoped_string & scopedstrExpression) const
 {
 
    return get_string(str, scopedstrExpression);

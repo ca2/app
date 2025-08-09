@@ -156,7 +156,7 @@ namespace data
    }
 
 
-   bool property::operator &&(const ::atom_array & atoma) const
+   bool property::operator &&(const ::atom_array_base & atoma) const
    {
 
       if (atoma.is_empty())
@@ -208,7 +208,7 @@ namespace data
    }
 
 
-   ::atom_array property::get_key(const ::atom_array & atomaSuffix) const
+   ::atom_array_base property::get_key(const ::atom_array_base & atomaSuffix) const
    {
 
       if (atomaSuffix.is_empty())
@@ -229,7 +229,7 @@ namespace data
    }
 
 
-   bool property::set_property(const ::atom_array & atomaSuffix, const ::payload & payload, const ::action_context & actioncontext) const
+   bool property::set_property(const ::atom_array_base & atomaSuffix, const ::payload & payload, const ::action_context & actioncontext) const
    {
 
       return m_ppropertycontainer->set_property(get_key(atomaSuffix), payload, actioncontext);
@@ -237,7 +237,7 @@ namespace data
    }
 
 
-   ::payload property::get_property(const ::atom_array & atomaSuffix) const
+   ::payload property::get_property(const ::atom_array_base & atomaSuffix) const
    {
 
 

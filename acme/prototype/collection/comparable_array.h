@@ -3,7 +3,7 @@
 
 
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-class comparable_array :
+class comparable_array_base :
    public ARRAY_TYPE
    //public comparable_range < ARRAY_TYPE >
 {
@@ -40,24 +40,24 @@ public:
 
    //using ARRAY_TYPE::ARRAY_TYPE;
 
-   // comparable_array() { }
-   // comparable_array(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }
-   // comparable_array(const comparable_array & array) : BASE_ARRAY(array) {}
-   // comparable_array(comparable_array && array) : BASE_ARRAY(::transfer(array)) {}
+   // comparable_array_base() { }
+   // comparable_array_base(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }
+   // comparable_array_base(const comparable_array_base & array) : BASE_ARRAY(array) {}
+   // comparable_array_base(comparable_array_base && array) : BASE_ARRAY(::transfer(array)) {}
    // template < primitive_integral INTEGRAL >
-   // comparable_array(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
-   // comparable_array(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
-   // comparable_array(const_iterator begin) : BASE_ARRAY(begin, find_first_null_character(begin)) {}
+   // comparable_array_base(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
+   // comparable_array_base(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
+   // comparable_array_base(const_iterator begin) : BASE_ARRAY(begin, find_first_null_character(begin)) {}
 
 
    // using ARRAY_TYPE::operator =;
    //
-   // comparable_array & operator = (const comparable_array & array)
+   // comparable_array_base & operator = (const comparable_array_base & array)
    // {
    //    BASE_ARRAY::operator = (array);
    //    return *this;
    // }
-   // comparable_array & operator = (comparable_array && array)
+   // comparable_array_base & operator = (comparable_array_base && array)
    // {
    //    BASE_ARRAY::operator = (::transfer(array));
    //    return *this;
@@ -84,7 +84,7 @@ public:
    
       }
    
-      constexpr ::std::strong_ordering operator<=>(const comparable_array & array) const
+      constexpr ::std::strong_ordering operator<=>(const comparable_array_base & array) const
       {
    
          return this->order(array);
@@ -93,7 +93,7 @@ public:
    
 
 //
-//   comparable_array & operator = (comparable_array && array)
+//   comparable_array_base & operator = (comparable_array_base && array)
 //   {
 //
 //      BASE_ARRAY::operator = (::transfer(array));
@@ -105,7 +105,7 @@ public:
 
 
       // template < primitive_container CONTAINER >
-      // inline comparable_array & operator += (const CONTAINER & container)
+      // inline comparable_array_base & operator += (const CONTAINER & container)
       // {
       //
       //    if (&container == this)
@@ -128,7 +128,7 @@ public:
       // }
 
 
-      inline comparable_array & operator += (const TYPE & t)
+      inline comparable_array_base & operator += (const TYPE & t)
       {
 
          this->add_item(t);

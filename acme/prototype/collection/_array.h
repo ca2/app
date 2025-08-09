@@ -71,7 +71,7 @@ namespace acme
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-inline auto& __array_object(::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >& a, ::collection::index i);
+inline auto& __array_object(::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >& a, ::collection::index i);
 
 
 template < typename ARRAY_TYPE, typename T >
@@ -523,7 +523,7 @@ namespace acme
       //::stream & exchange_container(::stream & stream, INITIALIZER * pinitializer, const pointer_array < TYPE > & a);
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::collection::index add(string_array_base < Type, RawType, t_etypeContainer >& array, const Type& psz)
+      ::collection::index add(string_base_array < Type, RawType, t_etypeContainer >& array, const Type& psz)
       {
 
          auto iIndex = __index(array.m_nSize);
@@ -536,11 +536,11 @@ namespace acme
 
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::collection::index add(string_array_base < Type, RawType, t_etypeContainer >& array, const ::payload& payload);
+      ::collection::index add(string_base_array < Type, RawType, t_etypeContainer >& array, const ::payload& payload);
 
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::collection::index unfold_add(string_array_base < Type, RawType, t_etypeContainer >& array, const ::payload& payload);
+      ::collection::index unfold_add(string_base_array < Type, RawType, t_etypeContainer >& array, const ::payload& payload);
 
       template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
       ::collection::count ensure_sequence(::numeric_array < TYPE, t_etypeContainer >& a, TYPE start, TYPE end, TYPE increment = 1);
@@ -935,7 +935,7 @@ namespace acme
 
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::collection::index add(string_array_base < Type, RawType, t_etypeContainer >& array, const ::payload& payload)
+      ::collection::index add(string_base_array < Type, RawType, t_etypeContainer >& array, const ::payload& payload)
       {
 
          ::collection::index i = -1;
@@ -950,10 +950,10 @@ namespace acme
             i = ::acme::array::add(array, payload.as_string_array());
 
          }
-         else if (payload.cast < string_array_base < Type, RawType, t_etypeContainer > >() != nullptr)
+         else if (payload.cast < string_base_array < Type, RawType, t_etypeContainer > >() != nullptr)
          {
 
-            i = ::acme::array::add(array, *payload.cast < string_array_base < Type, RawType, t_etypeContainer > >());
+            i = ::acme::array::add(array, *payload.cast < string_base_array < Type, RawType, t_etypeContainer > >());
 
          }
          else if (payload.get_type() == ::e_type_payload_array)

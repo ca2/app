@@ -14,27 +14,27 @@ namespace file
 {
 
 
-   class CLASS_DECL_ACME path_array :
-      public ::string_array_base < ::file::path, string, e_type_string_array >
+   class CLASS_DECL_ACME path_array_base :
+      public ::string_base_array < ::file::path, string, e_type_string_array >
    {
    public:
 
 
-      //using ::string_array_base < ::file::path, string, e_type_string_array >::string_array_base;
+      //using ::string_base_array < ::file::path, string, e_type_string_array >::string_base_array;
 
 
       // path_array(){}
       // path_array(const ::file::path_array & array):
-      //    ::string_array_base < ::file::path, string, e_type_string_array >(array)
+      //    ::string_base_array < ::file::path, string, e_type_string_array >(array)
       // {}
       // path_array(::file::path_array&& array) :
-      //    ::string_array_base < ::file::path, string, e_type_string_array >(::transfer(array))
+      //    ::string_base_array < ::file::path, string, e_type_string_array >(::transfer(array))
       // {
       // }
       //~path_array() override {}
 
-      using ::string_array_base < ::file::path, string, e_type_string_array >::string_array_base;
-      using ::string_array_base < ::file::path, string, e_type_string_array >::operator =;
+      using ::string_base_array < ::file::path, string, e_type_string_array >::string_base_array;
+      using ::string_base_array < ::file::path, string, e_type_string_array >::operator =;
 
 
       virtual void patch_base_path(const ::file::path & pathBase);
@@ -43,7 +43,7 @@ namespace file
       // path_array& operator=(const ::file::path_array& array)
       // {
       //
-      //    ::string_array_base < ::file::path, string, e_type_string_array >::operator =(array);
+      //    ::string_base_array < ::file::path, string, e_type_string_array >::operator =(array);
       //
       //    return *this;
       //
@@ -53,11 +53,27 @@ namespace file
       // path_array& operator=(::file::path_array&& array)
       // {
       //
-      //    ::string_array_base < ::file::path, string, e_type_string_array >::operator =(::transfer(array));
+      //    ::string_base_array < ::file::path, string, e_type_string_array >::operator =(::transfer(array));
       //
       //    return *this;
       //
       // }
+
+
+   };
+
+
+   class CLASS_DECL_ACME path_array :
+      public ::array_particle < ::file::path_array_base >
+   {
+   public:
+
+
+      using BASE_ARRAY = ::array_particle< ::file::path_array_base >;
+
+
+      using BASE_ARRAY::BASE_ARRAY;
+      using BASE_ARRAY::operator =;
 
 
    };

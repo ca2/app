@@ -9,7 +9,7 @@ public:
 
 
    runtime_check_exception(const ::e_status& estatus, const_char_pointer pszMessage = nullptr, const_char_pointer pszDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
-   runtime_check_exception(const ::e_status& estatus, const ::proto < ::array < error_code > >& errorcodea, const_char_pointer pszMessage = nullptr, const_char_pointer pszDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
+   runtime_check_exception(const ::e_status& estatus, const ::array_base < error_code > & errorcodea, const_char_pointer pszMessage = nullptr, const_char_pointer pszDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
    virtual ~runtime_check_exception();
 
 

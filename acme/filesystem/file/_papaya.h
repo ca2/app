@@ -2,7 +2,7 @@
 
 
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-//void __io_array(stream & stream, ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array);
+//void __io_array(stream & stream, ::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array);
 
 //template < typename ARRAY, typename READER >
 //inline void __load_array(ARRAY & array, READER && reader);

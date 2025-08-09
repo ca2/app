@@ -277,7 +277,7 @@ application_menu * application_menu::separator()
 
       ::pointer_array < application_menu >::clear();
 
-      ::pointer_array < application_menu >::destroy();
+      ::pointer_array < application_menu >::base_destroy();
 
    }
 //} // namespace apex

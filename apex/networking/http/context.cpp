@@ -2611,7 +2611,7 @@ namespace http
       if (set.has_property("get_memory"))
       {
 
-         memory_base * pmemory = set.cast < memory_base >("get_memory");
+         auto pmemory = set.cast < ::memory_base >("get_memory");
 
          if (pmemory != nullptr)
          {

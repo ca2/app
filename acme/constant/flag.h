@@ -71,12 +71,3 @@ enum enum_flag : unsigned long long
 
 
 
-
-enum enum_array : unsigned long long
-{
-
-   e_array_none = 0,
-
-   e_array_disable_referencing_debugging = 1ll << 52,
-
-};

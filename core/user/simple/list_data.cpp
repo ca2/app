@@ -44,7 +44,7 @@ void simple_list_data::_001GetSubItemText(::user::mesh_subitem * pmeshsubitem)
 
    }
 
-   string_array & stra = m_array(pmeshsubitem->m_iSubItem);
+   auto & stra = *m_array[pmeshsubitem->m_iSubItem];
 
    auto pmeshitem = pmeshsubitem->m_pitem;
 

@@ -18,7 +18,7 @@
 //#endif
 //
 //
-//#define __default_array_array_base_non_particle(TYPE) ::array_base_quantum < TYPE, const TYPE &, ::allocator::def < TYPE > >
+//#define __default_array_base_array_non_particle(TYPE) ::base_array_quantum < TYPE, const TYPE &, ::allocator::def < TYPE > >
 //
 //
 //#define DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
@@ -173,7 +173,7 @@
 //// array is an array that call only copy constructor and destructor in elements
 //// array is an array that call default constructors, copy constructs and destructors in elements
 //template < class TYPE, class ARG_TYPE, class TYPED, class MEMORY, ::enum_type t_etypeContainer >
-//class array_base_quantum :
+//class base_array_quantum :
 //   //virtual public ::particle,
 //   //public ::array_range < ::range < TYPE * > >
 //   public ::range < TYPE * >,
@@ -204,20 +204,20 @@
 //   ::collection::count   m_countAddUp;
 //
 //
-//   array_base_quantum();
-//   array_base_quantum(std::initializer_list < TYPE > initializer_list);
-//   array_base_quantum(const array_base_quantum & a);
-//   array_base_quantum(array_base_quantum && a) noexcept;
-//   array_base_quantum(const TYPE * p, ::collection::count c);
-//   array_base_quantum(::range < const_iterator > constrange) : array_base_quantum(constrange.begin(), constrange.end()) {}
+//   base_array_quantum();
+//   base_array_quantum(std::initializer_list < TYPE > initializer_list);
+//   base_array_quantum(const base_array_quantum & a);
+//   base_array_quantum(base_array_quantum && a) noexcept;
+//   base_array_quantum(const TYPE * p, ::collection::count c);
+//   base_array_quantum(::range < const_iterator > constrange) : base_array_quantum(constrange.begin(), constrange.end()) {}
 //   template < primitive_integral INTEGRAL >
-//   array_base_quantum(const_iterator begin, INTEGRAL count) : array_base_quantum(begin, begin + count) {}
-//   array_base_quantum(const_iterator begin, const_iterator end)
+//   base_array_quantum(const_iterator begin, INTEGRAL count) : base_array_quantum(begin, begin + count) {}
+//   base_array_quantum(const_iterator begin, const_iterator end)
 //   {
 //      auto p = this->begin();
 //      while (p != end) add(*p);
 //   }
-//   virtual ~array_base_quantum();
+//   virtual ~base_array_quantum();
 //
 //
 //   void defer_destroy()
@@ -233,7 +233,7 @@
 //   }
 //
 //
-//   array_base_quantum & operator = (const array_base_quantum & a)
+//   base_array_quantum & operator = (const base_array_quantum & a)
 //   {
 //
 //      if (this != &a)
@@ -267,13 +267,13 @@
 //   }
 //
 //
-//   array_base_quantum & operator = (array_base_quantum && array_base_quantum)
+//   base_array_quantum & operator = (base_array_quantum && base_array_quantum)
 //   {
 //
-//      if (this != &array_base_quantum)
+//      if (this != &base_array_quantum)
 //      {
 //
-//         transfer(::transfer(array_base_quantum));
+//         transfer(::transfer(base_array_quantum));
 //
 //      }
 //      
@@ -296,7 +296,7 @@
 //   }
 //
 //
-//   inline array_base_quantum & transfer(array_base_quantum && a)
+//   inline base_array_quantum & transfer(base_array_quantum && a)
 //   {
 //
 //      if (this != &a)
@@ -837,7 +837,7 @@
 //   TYPE & insert_at(::collection::index nIndex, const TYPE & newElement, ::collection::count nCount = 1);
 //   TYPE * insert_at(::collection::index nStartIndex, const TYPE * p, ::collection::count nCount = 1);
 //
-//   TYPE * insert_array_at(::collection::index nStartIndex, const array_base_quantum * pNewArray);
+//   TYPE * insert_array_at(::collection::index nStartIndex, const base_array_quantum * pNewArray);
 //
 //
 //   ::collection::index erase_at(::collection::index nIndex, ::collection::count nCount = 1);
@@ -848,7 +848,7 @@
 //   TYPE pick_at(::collection::index nIndex);
 //   TYPE pick_first(::collection::index nIndex = 0) { return ::transfer(pick_at(nIndex)); }
 //   TYPE pick_last(::collection::index nIndex = -1) { return ::transfer(pick_at(this->size() + nIndex)); }
-//   array_base_quantum pick_at(::collection::index nIndex, ::collection::count nCount);
+//   base_array_quantum pick_at(::collection::index nIndex, ::collection::count nCount);
 //
 //
 //   ::collection::index erase_item(TYPE * p);
@@ -886,8 +886,8 @@
 //   inline TYPE takeFirst(::collection::index i = 0);
 //   inline TYPE takeLast(::collection::index i = -1);
 //
-//   virtual ::collection::count append(const array_base_quantum & src); // return old int_size
-//   virtual void copy(const array_base_quantum & src);
+//   virtual ::collection::count append(const base_array_quantum & src); // return old int_size
+//   virtual void copy(const base_array_quantum & src);
 //
 //
 //   template < primitive_container CONTAINER >
@@ -938,7 +938,7 @@
 //   ::collection::count predicate_each(PRED pred, ::collection::index iStart = 0, ::collection::count c = -1) const
 //   {
 //
-//      return ((array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >*)this)->predicate_each(pred, iStart, c);
+//      return ((base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >*)this)->predicate_each(pred, iStart, c);
 //
 //   }
 //
@@ -1297,39 +1297,39 @@
 //};
 
 
-#include "array_base_quantum.h"
+#include "base_array_quantum.h"
 #include "acme/prototype/prototype/particle.h"
 
 
 template < class TYPE, class ARG_TYPE, class TYPED, class MEMORY, ::enum_type t_etypeContainer >
-class array_base :
+class base_array :
    virtual public ::particle,
-   public array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
+   public base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 {
 public:
 
 
-   using BASE_ARRAY = array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
+   using BASE_ARRAY = base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
 
 
-   //array_base() : array_base_quantum< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >() {}
+   //base_array() : base_array_quantum< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >() {}
    //template < typename ...Args >
-   //array_base(Args&&... args) : 
-   //   array_base_quantum< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >(::std::forward < Args >(args)...)
+   //base_array(Args&&... args) :
+   //   base_array_quantum< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >(::std::forward < Args >(args)...)
    //{
    //}
 
-   array_base() {}
-   array_base(std::initializer_list < TYPE > initializer_list) :BASE_ARRAY(initializer_list) {}
-   array_base(const BASE_ARRAY & a) :BASE_ARRAY(a) {}
-   array_base(BASE_ARRAY && a) noexcept :BASE_ARRAY(a) {}
-   array_base(const TYPE * p, ::collection::count c) :BASE_ARRAY(p, c) {}
-   array_base(::range < typename BASE_ARRAY::const_iterator > constrange) :
+   base_array() {}
+   base_array(std::initializer_list < TYPE > initializer_list) :BASE_ARRAY(initializer_list) {}
+   base_array(const BASE_ARRAY & a) :BASE_ARRAY(a) {}
+   base_array(BASE_ARRAY && a) noexcept :BASE_ARRAY(a) {}
+   base_array(const TYPE * p, ::collection::count c) :BASE_ARRAY(p, c) {}
+   base_array(::range < typename BASE_ARRAY::const_iterator > constrange) :
       BASE_ARRAY(constrange.begin(), constrange.end()) {}
    template < primitive_integral INTEGRAL >
-   array_base(typename BASE_ARRAY::const_iterator begin, INTEGRAL count) :
+   base_array(typename BASE_ARRAY::const_iterator begin, INTEGRAL count) :
       BASE_ARRAY(begin, begin + count) {}
-   array_base(typename BASE_ARRAY::const_iterator begin, typename BASE_ARRAY::const_iterator end)
+   base_array(typename BASE_ARRAY::const_iterator begin, typename BASE_ARRAY::const_iterator end)
    {
       auto p = this->begin();
       while (p != end) add(*p);
@@ -1350,7 +1350,7 @@ public:
 
 
 //template < primitive_integral INTEGRAL, class TYPE, class ARG_TYPE, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-//inline TYPE& operator%(INTEGRAL nIndex, const array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
+//inline TYPE& operator%(INTEGRAL nIndex, const base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 //{
 //
 //   return (TYPE &) (a % nIndex);
@@ -1363,7 +1363,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_base_quantum() :
+//base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array_quantum() :
 //ARRAY_RANGE()
 //{
 //
@@ -1373,7 +1373,7 @@ public:
 //}
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_base_quantum(array_base_quantum && array) noexcept :
+//base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array_quantum(base_array_quantum && array) noexcept :
 //   ARRAY_RANGE(array)
 //{
 //
@@ -1388,8 +1388,8 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_base_quantum(std::initializer_list<TYPE > initializer_list) :
-//   array_base_quantum()
+//base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array_quantum(std::initializer_list<TYPE > initializer_list) :
+//   base_array_quantum()
 //{
 //
 //   for (auto & item : initializer_list)
@@ -1403,7 +1403,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_base_quantum(const array_base_quantum & array)
+//base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array_quantum(const base_array_quantum & array)
 //{
 //
 //   m_countAddUp = 0;
@@ -1425,7 +1425,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::~array_base_quantum ()
+//base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::~base_array_quantum ()
 //{
 //
 //   defer_destroy();
@@ -1434,7 +1434,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::resize(::collection::count nNewSize, ARG_TYPE t)
+//::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::resize(::collection::count nNewSize, ARG_TYPE t)
 //{
 //
 //   return allocate(nNewSize, false, false, t);
@@ -1443,7 +1443,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate_in_bytes(::collection::count nNewSize, bool bShrink, bool bRaw)
+//::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate_in_bytes(::collection::count nNewSize, bool bShrink, bool bRaw)
 //{
 //
 //   return allocate((nNewSize + sizeof(TYPE)) / sizeof(TYPE), bShrink, bRaw);
@@ -1452,7 +1452,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//::collection::index array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_at(::collection::index first, ::collection::count in_count_out_last)
+//::collection::index base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_at(::collection::index first, ::collection::count in_count_out_last)
 //{
 //
 //   if (!prepare_first_in_count_last_out(first, in_count_out_last))
@@ -1485,7 +1485,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//::collection::index array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_item(TYPE * p)
+//::collection::index base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_item(TYPE * p)
 //{
 //
 //   return erase_at(p - this->m_begin);
@@ -1495,7 +1495,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::free_extra()
+//void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::free_extra()
 //{
 //
 //   auto size = this->size();
@@ -1590,7 +1590,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::destroy()
+//void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::destroy()
 //{
 //
 //   if(this->m_begin != nullptr)
@@ -1612,7 +1612,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//TYPE * array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::raw_allocate_at(::collection::index i, ::collection::count c)
+//TYPE * base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::raw_allocate_at(::collection::index i, ::collection::count c)
 //{
 //   
 //   auto newSize = this->size() + c;
@@ -1629,7 +1629,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//TYPE & array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::collection::index i, const TYPE & element, ::collection::count c)
+//TYPE & base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::collection::index i, const TYPE & element, ::collection::count c)
 //{
 //
 //   auto p = this->raw_allocate_at(i, c);
@@ -1642,7 +1642,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//TYPE * array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::collection::index i, const TYPE * pelements, ::collection::count c)
+//TYPE * base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::collection::index i, const TYPE * pelements, ::collection::count c)
 //{
 //
 //   auto p = this->raw_allocate_at(i, c);
@@ -1655,7 +1655,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//TYPE * array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_array_at(::collection::index i, const array_base_quantum * p)
+//TYPE * base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_array_at(::collection::index i, const base_array_quantum * p)
 //{
 //
 //   return this->insert_at(i, p->m_begin, p->size());
@@ -1664,7 +1664,7 @@ public:
 //
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-////::collection::index array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate_at(::collection::index nIndex, ::collection::count nCount)
+////::collection::index base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate_at(::collection::index nIndex, ::collection::count nCount)
 ////{
 ////
 ////   if(nCount <= 0)
@@ -1715,7 +1715,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append(const array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & src)
+//::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append(const base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & src)
 //{
 //
 //   ::collection::count nOldSize = this->size();
@@ -1732,7 +1732,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & src)
+//void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & src)
 //{
 //
 //   if(this == &src)
@@ -1757,8 +1757,8 @@ public:
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
 ////template < primitive_container CONTAINER >
-////array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
-////array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::operator + (const CONTAINER & array) const
+////base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
+////base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::operator + (const CONTAINER & array) const
 ////{
 ////
 ////   auto a = *this;
@@ -1774,7 +1774,7 @@ public:
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
 //template < primitive_array ARRAY >
-//void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_indexes(const ARRAY & ia)
+//void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_indexes(const ARRAY & ia)
 //{
 //
 //
@@ -1791,7 +1791,7 @@ public:
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
 //template < primitive_array ARRAY >
-//void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_descending_indexes(const ARRAY & ia)
+//void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_descending_indexes(const ARRAY & ia)
 //{
 //
 //   for(::collection::index i = 0; i < ia.get_count(); i++)
@@ -1806,7 +1806,7 @@ public:
 //
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-////TYPE * array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::collection::index nIndex,array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > * pNewArray)
+////TYPE * base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::collection::index nIndex,base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > * pNewArray)
 ////{
 ////
 ////   ASSERT(pNewArray != nullptr);
@@ -1867,7 +1867,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//TYPE array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::collection::index nIndex)
+//TYPE base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::collection::index nIndex)
 //{
 //
 //   ::collection::count nCount = 1;
@@ -1902,7 +1902,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::collection::index nIndex, ::collection::count nCount)
+//base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::collection::index nIndex, ::collection::count nCount)
 //{
 //
 //   //ASSERT_VALID(this);
@@ -1918,7 +1918,7 @@ public:
 //
 //   ::collection::count nMoveCount = this->size() - (nUpperBound);
 //
-//   array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > a(this->m_begin + nIndex, (size_t)nMoveCount);
+//   base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > a(this->m_begin + nIndex, (size_t)nMoveCount);
 //
 //   TYPED::destruct_count(this->m_begin + nIndex, nCount);
 //
@@ -1937,7 +1937,7 @@ public:
 //
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-////::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::set_raw_size(::collection::count nNewSize,::collection::count nGrowBy)
+////::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::set_raw_size(::collection::count nNewSize,::collection::count nGrowBy)
 ////{
 ////
 ////   ::collection::count countOld = get_count();
@@ -2128,7 +2128,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::reserve(::collection::count newAllocationSize)
+//void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::reserve(::collection::count newAllocationSize)
 //{
 //
 //   if(newAllocationSize <= m_countAllocation)
@@ -2307,7 +2307,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::_allocate(::collection::count nNewSize, bool bShrink, bool bRaw, const TYPE * ptype)
+//::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::_allocate(::collection::count nNewSize, bool bShrink, bool bRaw, const TYPE * ptype)
 //{
 //
 //   ASSERT(nNewSize >= 0);
@@ -2609,7 +2609,7 @@ public:
 //
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-////::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate(::collection::count nNewSize, bShrink, const TYPE * ptype)
+////::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate(::collection::count nNewSize, bShrink, const TYPE * ptype)
 ////{
 ////
 ////   ::collection::count countOld = get_count();
@@ -2897,7 +2897,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::on_after_read()
+//void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::on_after_read()
 //{
 //
 //
@@ -2908,7 +2908,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_at_grow(::collection::index nIndex, ARG_TYPE newElement)
+//inline void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_at_grow(::collection::index nIndex, ARG_TYPE newElement)
 //{
 //
 //   ASSERT(nIndex >= 0);
@@ -2926,7 +2926,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline TYPE & array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at_grow(::collection::index nIndex)
+//inline TYPE & base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at_grow(::collection::index nIndex)
 //{
 //
 //   ASSERT(nIndex >= 0);
@@ -2944,7 +2944,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_each(ARG_TYPE element, ::collection::index first, ::collection::count in_count_out_last)
+//inline void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_each(ARG_TYPE element, ::collection::index first, ::collection::count in_count_out_last)
 //{
 //
 //   prepare_first_in_count_last_out(first, in_count_out_last);
@@ -2961,7 +2961,7 @@ public:
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
 //template < typename ITERATOR2 >
-//inline void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase(const ITERATOR2 & begin, const ITERATOR2 & last)
+//inline void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase(const ITERATOR2 & begin, const ITERATOR2 & last)
 //{
 //
 //   auto start = this->index_of(begin);
@@ -2984,7 +2984,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//bool array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::prepare_first_last(::collection::index & first, ::collection::index & last) const
+//bool base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::prepare_first_last(::collection::index & first, ::collection::index & last) const
 //{
 //
 //   if (first < 0)
@@ -3007,7 +3007,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//bool array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::prepare_first_in_count_last_out(::collection::index & first, ::collection::count & in_count_out_last) const
+//bool base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::prepare_first_in_count_last_out(::collection::index & first, ::collection::count & in_count_out_last) const
 //{
 //
 //   if (first < 0)
@@ -3050,111 +3050,111 @@ public:
 //// array is an array that call default constructors, copy constructs and destructors in elements
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline ::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_size() const
+//inline ::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_size() const
 //{
 //   return (::collection::count) this->size();
 //}
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline ::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_count() const
+//inline ::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_count() const
 //{
 //   return (::collection::count) this->size();
 //}
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline ::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_length() const
+//inline ::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_length() const
 //{
 //   return (::collection::count) this->size();
 //}
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline ::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_size_in_bytes() const
+//inline ::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_size_in_bytes() const
 //{
 //   return (::collection::count)this->size() * sizeof(TYPE);
 //}
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline ::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_byte_count() const
+//inline ::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_byte_count() const
 //{
 //   return (::collection::count) (this->size() * sizeof(TYPE));
 //}
 //
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-////inline ::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::size() const
+////inline ::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::size() const
 ////{
 ////   return this->get_size();
 ////}
 ////
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline ::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::collection::count() const
+//inline ::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::collection::count() const
 //{
 //   return this->get_count();
 //}
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline ::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::length() const
+//inline ::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::length() const
 //{
 //   return this->get_length();
 //}
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-////inline bool array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::is_empty(::collection::count countMinimum) const
+////inline bool base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::is_empty(::collection::count countMinimum) const
 ////{
 ////   return this->size() < countMinimum;
 ////}
 //
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-////inline bool array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::empty(::collection::count countMinimum) const
+////inline bool base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::empty(::collection::count countMinimum) const
 ////{
 ////   return is_empty(countMinimum);
 ////}
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-////inline bool array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::isEmpty(::collection::count countMinimum) const
+////inline bool base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::isEmpty(::collection::count countMinimum) const
 ////{
 ////   return empty(countMinimum);
 ////}
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-////inline bool array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::has_elements(::collection::count countMinimum) const
+////inline bool base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::has_elements(::collection::count countMinimum) const
 ////{
 ////   return this->size() >= countMinimum;
 ////}
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline ::collection::index array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_lower_bound(::collection::index i) const
+//inline ::collection::index base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_lower_bound(::collection::index i) const
 //{
 //   return i < this->size() ? i : -1;
 //}
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline ::collection::index array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_middle_index(::collection::index iIndex) const
+//inline ::collection::index base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_middle_index(::collection::index iIndex) const
 //{
 //   return this->size() / 2 + iIndex;
 //}
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline ::collection::index array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_upper_bound(::collection::index iIndex) const
+//inline ::collection::index base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_upper_bound(::collection::index iIndex) const
 //{
 //   return this->size() + iIndex;
 //}
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline bool array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::bounds(::collection::index i) const
+//inline bool base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::bounds(::collection::index i) const
 //{
 //   return i >= 0 && i < this->size();
 //}
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline ::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase_all()
+//inline ::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase_all()
 //{
 //   
 //   return allocate(0, false, false);
@@ -3163,7 +3163,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline ::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_size(::collection::index nNewSize)
+//inline ::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_size(::collection::index nNewSize)
 //{
 //   
 //   return allocate(nNewSize, false, false);
@@ -3172,7 +3172,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::clear()
+//inline void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::clear()
 //{
 //   
 //   erase_all();
@@ -3181,7 +3181,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase_last()
+//inline void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase_last()
 //{
 //   ASSERT(this->size() > 0);
 //   erase_at(get_upper_bound());
@@ -3189,7 +3189,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::zero(::collection::index iStart,::collection::count c)
+//inline void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::zero(::collection::index iStart,::collection::count c)
 //{
 //   if(c < 0)
 //   {
@@ -3200,7 +3200,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline const TYPE& array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at(::collection::index nIndex) const
+//inline const TYPE& base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at(::collection::index nIndex) const
 //{
 //
 //   ASSERT(nIndex >= 0 && nIndex < this->size());
@@ -3211,7 +3211,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline TYPE& array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at(::collection::index nIndex)
+//inline TYPE& base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at(::collection::index nIndex)
 //{
 //
 //   ASSERT(nIndex >= 0 && nIndex < this->size());
@@ -3259,7 +3259,7 @@ public:
 ////}
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-////inline const TYPE& array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator[](::collection::index i) const
+////inline const TYPE& base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator[](::collection::index i) const
 ////{
 ////
 ////   return this->m_begin[i];
@@ -3268,7 +3268,7 @@ public:
 //
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-////inline TYPE& array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator[](::collection::index i)
+////inline TYPE& base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator[](::collection::index i)
 ////{
 ////
 ////   return this->m_begin[i];
@@ -3277,7 +3277,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::__swap(::collection::index index1, ::collection::index index2)
+//inline void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::__swap(::collection::index index1, ::collection::index index2)
 //{
 //
 //   ::__swap(this->m_begin[index1], this->m_begin[index2]);
@@ -3286,7 +3286,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::__swap(iterator it1, iterator it2)
+//inline void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::__swap(iterator it1, iterator it2)
 //{
 //
 //   TYPE t = *it1;
@@ -3300,7 +3300,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::__swap(const_iterator it1, const_iterator it2)
+//inline void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::__swap(const_iterator it1, const_iterator it2)
 //{
 //
 //   auto t = (TYPE) *it1;
@@ -3313,7 +3313,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline const TYPE& array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::first(::collection::index nIndex) const
+//inline const TYPE& base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::first(::collection::index nIndex) const
 //{
 //
 //   return this->element_at(nIndex);
@@ -3322,7 +3322,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline TYPE & array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::first(::collection::index nIndex)
+//inline TYPE & base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::first(::collection::index nIndex)
 //{
 //
 //   return this->element_at(nIndex);
@@ -3331,7 +3331,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline const TYPE & array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::last(::collection::index i) const
+//inline const TYPE & base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::last(::collection::index i) const
 //{
 //
 //   return element_at(this->get_upper_bound(i));
@@ -3340,7 +3340,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline TYPE & array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::last(::collection::index i)
+//inline TYPE & base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::last(::collection::index i)
 //{
 //
 //   return element_at(this->get_upper_bound(i));
@@ -3349,7 +3349,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline const TYPE & array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::middle(::collection::index i) const
+//inline const TYPE & base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::middle(::collection::index i) const
 //{
 //
 //   return element_at(this->get_middle_index(i));
@@ -3358,7 +3358,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline TYPE & array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::middle(::collection::index i)
+//inline TYPE & base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::middle(::collection::index i)
 //{
 //
 //   return element_at(this->get_middle_index(i));
@@ -3367,7 +3367,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//void  array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::set_all(const TYPE & t)
+//void  base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::set_all(const TYPE & t)
 //{
 //
 //   for (::collection::index i = 0; i < get_count(); i++)
@@ -3382,7 +3382,7 @@ public:
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
 ////template < typename VAR >
-////inline array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::operator = (const payload_type < VAR > & a)
+////inline base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::operator = (const payload_type < VAR > & a)
 ////{
 ////
 ////   ::collection::count c = a.this_var()->array_get_count();
@@ -3407,7 +3407,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline TYPE array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop(::collection::index n)
+//inline TYPE base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop(::collection::index n)
 //{
 //
 //   ::collection::index i = this->get_upper_bound(n);
@@ -3421,7 +3421,7 @@ public:
 //}
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline TYPE array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop_first(::collection::index i)
+//inline TYPE base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop_first(::collection::index i)
 //{
 //
 //   auto t = ::transfer(this->first(i));
@@ -3434,7 +3434,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop_back(::collection::index n)
+//inline void base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop_back(::collection::index n)
 //{
 //
 //   erase_at(this->get_upper_bound(n));
@@ -3443,7 +3443,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline ::collection::index array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::push(ARG_TYPE newElement)
+//inline ::collection::index base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::push(ARG_TYPE newElement)
 //{
 //
 //   return index_of(&insert_at(this->size(), newElement));
@@ -3452,7 +3452,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline TYPE& array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::add_item(ARG_TYPE newElement)
+//inline TYPE& base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::add_item(ARG_TYPE newElement)
 //{
 //
 //   auto nIndex = this->size();
@@ -3465,7 +3465,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//TYPE& array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::add_new()
+//TYPE& base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::add_new()
 //{
 //
 //   auto nIndex = this->size();
@@ -3478,7 +3478,7 @@ public:
 //
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-////inline TYPE & array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::add_item(ARG_TYPE newElement)
+////inline TYPE & base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::add_item(ARG_TYPE newElement)
 ////{
 ////
 ////   return insert_at(this->size(), newElement);
@@ -3487,7 +3487,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline TYPE array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::takeAt(::collection::index i)
+//inline TYPE base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::takeAt(::collection::index i)
 //{
 //
 //   TYPE t = element_at(i);
@@ -3500,7 +3500,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline TYPE array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::takeFirst(::collection::index i)
+//inline TYPE base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::takeFirst(::collection::index i)
 //{
 //
 //   TYPE t = element_at(i);
@@ -3513,7 +3513,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline TYPE array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::takeLast(::collection::index n)
+//inline TYPE base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::takeLast(::collection::index n)
 //{
 //
 //   ::collection::index i = this->get_upper_bound(n);
@@ -3528,7 +3528,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_base_quantum(const TYPE * p, ::collection::count c)
+//base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array_quantum(const TYPE * p, ::collection::count c)
 //{
 //
 //   m_countAddUp = 0;
@@ -3552,7 +3552,7 @@ public:
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline ::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase(const TYPE * begin, const TYPE * last)
+//inline ::collection::count base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase(const TYPE * begin, const TYPE * last)
 //{
 //
 //   auto iStart = index_of(begin);

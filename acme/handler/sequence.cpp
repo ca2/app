@@ -691,7 +691,7 @@ void sequence::destroy()
 {
 
    
-   subparticle_array::destroy();
+   subparticle_array::base_destroy();
    
    
 //   task_context<sequence>::destroy();

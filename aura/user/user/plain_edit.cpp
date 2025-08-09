@@ -1921,7 +1921,7 @@ namespace user
    }
 
 
-   ::payload plain_edit::on_get_property(const ::atom_array & atoma) const
+   ::payload plain_edit::on_get_property(const ::atom_array_base & atoma) const
    {
 
       if (m_textproperty && atoma)

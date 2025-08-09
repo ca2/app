@@ -63,8 +63,8 @@ namespace user
 
       manual_reset_happening                                   m_happeningExpand;
       manual_reset_happening                                   m_happeningOpen;
-      raw_pointer_array < ::data::tree_item_base >             m_treeitemaExpand;
-      raw_pointer_array < ::data::tree_item_base >             m_treeitemaOpen;
+      raw_pointer_array_base < ::data::tree_item_base >        m_treeitemaExpand;
+      raw_pointer_array_base < ::data::tree_item_base >        m_treeitemaOpen;
 
 
 

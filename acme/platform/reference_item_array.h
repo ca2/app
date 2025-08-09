@@ -30,8 +30,8 @@ public:
    ::string                                                                   m_strDebug;
    bool                                                                       m_bFirstReference;
    ::iptr                                                                     m_iLastReferenceCount;
-   ::proto< ::comparable_array < reference_item * > >                         m_itema;
-   ::proto< ::comparable_array < reference_item_array * > >                   m_item2a;
+   ::comparable_array_base < reference_item * >                               m_itema;
+   ::comparable_array_base < reference_item_array * >                         m_item2a;
 
 
    reference_item_array(::subparticle * psubparticle, ::subparticle * psubparticleParent);

@@ -10,7 +10,7 @@
 
 
 //template < primitive_number NUMBER >
-//class point_array_base;
+//class point_base_array;
 
 
 
@@ -43,10 +43,10 @@
 #include "acme/prototype/geometry2d/rectangle_array.h"
 
 
-//using int_point_array = point_array_base < int >;
-//using long_long_point_array = point_array_base < long long >;
-//using float_point_array = point_array_base < float >;
-//using double_point_array = point_array_base < double >;
+//using int_point_array = point_base_array < int >;
+//using long_long_point_array = point_base_array < long long >;
+//using float_point_array = point_base_array < float >;
+//using double_point_array = point_base_array < double >;
 
 
 #include "polygon.h"

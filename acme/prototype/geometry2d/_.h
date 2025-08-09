@@ -989,7 +989,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //class rectangle_type;
 //
 //template < typename POINT_TYPE >
-//class point_array_base;
+//class point_base_array;
 //
 //
 //namespace design
@@ -1074,10 +1074,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //using double_rectangle = rectangle_type < ::double_rectangle, ::double_point, ::double_size >;
 //
 //
-//using int_point_array = point_array_base < int_point >;
-//using long_long_point_array = point_array_base < long_long_point >;
-//using float_point_array = point_array_base < float_point >;
-//using double_point_array = point_array_base < double_point >;
+//using int_point_array = point_base_array < int_point >;
+//using long_long_point_array = point_base_array < long_long_point >;
+//using float_point_array = point_base_array < float_point >;
+//using double_point_array = point_base_array < double_point >;
 //
 //
 //using rectangle = ::double_rectangle;
@@ -1812,7 +1812,7 @@ template < primitive_number NUMBER >
 class arc_type;
 
 template < primitive_number NUMBER >
-class point_array_base;
+class point_base_array;
 
 template < primitive_number NUMBER >
 class polygon_type;
@@ -1821,13 +1821,13 @@ template < primitive_number NUMBER >
 class poly_polygon_type;
 
 template < primitive_number NUMBER >
-class point_array_base;
+class point_base_array;
 
 template < primitive_number NUMBER >
-class size_array_base;
+class size_base_array;
 
 template < primitive_number NUMBER >
-class rectangle_array_base;
+class rectangle_base_array;
 
 template < primitive_number NUMBER >
 class lines_base;
@@ -1869,10 +1869,10 @@ using float_arc = arc_type < float >;
 using double_arc = arc_type < double >;
 
 
-using int_point_array = point_array_base < int >;
-using long_long_point_array = point_array_base < long long >;
-using float_point_array = point_array_base < float >;
-using double_point_array = point_array_base < double >;
+using int_point_array = point_base_array < int >;
+using long_long_point_array = point_base_array < long long >;
+using float_point_array = point_base_array < float >;
+using double_point_array = point_base_array < double >;
 
 
 using int_polygon = polygon_type < int >;
@@ -1887,22 +1887,22 @@ using float_poly_polygon = poly_polygon_type < float >;
 using double_poly_polygon = poly_polygon_type < double >;
 
 
-using int_point_array = point_array_base < int >;
-using long_long_point_array = point_array_base < long long >;
-using float_point_array = point_array_base < float >;
-using double_point_array = point_array_base < double >;
+using int_point_array = point_base_array < int >;
+using long_long_point_array = point_base_array < long long >;
+using float_point_array = point_base_array < float >;
+using double_point_array = point_base_array < double >;
 
 
-using int_size_array = size_array_base < int >;
-using long_long_size_array = size_array_base < long long >;
-using float_size_array = size_array_base < float >;
-using double_size_array = size_array_base < double >;
+using int_size_array = size_base_array < int >;
+using long_long_size_array = size_base_array < long long >;
+using float_size_array = size_base_array < float >;
+using double_size_array = size_base_array < double >;
 
 
-using int_rectangle_array = rectangle_array_base < int >;
-using long_long_rectangle_array = rectangle_array_base < long long >;
-using float_rectangle_array = rectangle_array_base < float >;
-using double_rectangle_array = rectangle_array_base < double >;
+using int_rectangle_array = rectangle_base_array < int >;
+using long_long_rectangle_array = rectangle_base_array < long long >;
+using float_rectangle_array = rectangle_base_array < float >;
+using double_rectangle_array = rectangle_base_array < double >;
 
 
 using int_lines = lines_base < int >;

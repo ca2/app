@@ -114,7 +114,7 @@ public:
 
    using STRING = string_base < ITERATOR_TYPE >;
 
-   using STRING_ARRAY = ::string_array_base < STRING, STRING, e_type_string_array >;
+   using STRING_ARRAY = ::string_base_array < STRING, STRING, e_type_string_array >;
 
 
    //template<character_count n>

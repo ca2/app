@@ -28,7 +28,7 @@ public:
 
    using ::array < ::color::color >::array;
    
-   ~color_array() override;
+   ~color_array();
 
    void create_web_palette();
 

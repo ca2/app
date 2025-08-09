@@ -543,7 +543,7 @@ namespace user
       ::string get_text() const override;
 
       virtual void on_set_property(::data::property_change & change) override;
-      virtual ::payload on_get_property(const ::atom_array & atoma) const override;
+      virtual ::payload on_get_property(const ::atom_array_base & atoma) const override;
 
       //virtual void get_text(string & str) override;
       //virtual void get_selection_text(string & str) override;

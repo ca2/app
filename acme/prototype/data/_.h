@@ -4,6 +4,9 @@
 using atom_array = ::comparable_array < atom >;
 
 
+using atom_array_base = ::comparable_array_base < atom >;
+
+
 namespace data
 {
 
@@ -35,7 +38,7 @@ namespace data
    {
 
       property_container * m_ppropertycontainer;
-      const ::atom_array & m_atoma;
+      const ::atom_array_base & m_atoma;
       const ::payload & m_payload;
       const ::action_context & m_actioncontext;
 

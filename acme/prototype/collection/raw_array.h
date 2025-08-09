@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/prototype/collection/array_base.h"
+#include "acme/prototype/collection/base_array.h"
 
 
 // raw_array is an array that does not call constructors or destructor in elements
@@ -11,7 +11,7 @@
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 class raw_array :
-   public array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
+   public base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 {
 public:
 
@@ -19,7 +19,7 @@ public:
    typedef TYPE BASE_TYPE;
    typedef ARG_TYPE BASE_ARG_TYPE;
    typedef raw_array < TYPE,ARG_TYPE > BASE_ARRAY;
-   using ARRAY_BASE = array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >;
+   using ARRAY_BASE = base_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >;
    using iterator = typename ARRAY_BASE::iterator;
    using const_iterator = typename ARRAY_BASE::const_iterator;
 
@@ -148,7 +148,7 @@ public:
    raw_array operator + (const raw_array & a) const;
 
 
-   using array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::operator =;
+   using base_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::operator =;
    inline raw_array & operator = (raw_array && a);
    inline raw_array & transfer(raw_array && a);
 
@@ -634,7 +634,7 @@ raw_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_array()
 //}
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-//void array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::set_at_grow(::collection::index nIndex, ARG_TYPE newElement)
+//void base_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::set_at_grow(::collection::index nIndex, ARG_TYPE newElement)
 //{
 //   //ASSERT_VALID(this);
 //   //ASSERT(nIndex >= 0);
@@ -669,7 +669,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::
 TYPE & raw_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::insert_at(::collection::index nIndex, ARG_TYPE newElement, ::collection::count nCount /*=1*/)
 {
 
-   return array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::insert_at(nIndex, newElement,nCount);
+   return base_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::insert_at(nIndex, newElement,nCount);
 
 }
 
@@ -1111,7 +1111,7 @@ inline raw_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & raw_array 
 //raw_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::raw_array(const raw_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & a)// :
 //// matter(a.get_app())
 //{
-//   ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::operator = (a);
+//   ::base_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::operator = (a);
 //}
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
@@ -1355,7 +1355,7 @@ inline raw_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & raw_array 
 ////}
 //
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-////void array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::set_at_grow(::collection::index nIndex, ARG_TYPE newElement)
+////void base_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::set_at_grow(::collection::index nIndex, ARG_TYPE newElement)
 ////{
 ////   //ASSERT_VALID(this);
 ////   //ASSERT(nIndex >= 0);
@@ -1388,7 +1388,7 @@ inline raw_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > & raw_array 
 //::collection::index raw_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::insert_at(::collection::index nIndex, ARG_TYPE newElement, ::collection::count nCount /*=1*/)
 //{
 //
-//   return array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::insert_at(nIndex, newElement,nCount);
+//   return base_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::insert_at(nIndex, newElement,nCount);
 //
 //}
 //

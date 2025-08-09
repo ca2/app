@@ -2,7 +2,7 @@
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type t_etypeContainer = e_type_element >
-inline auto & __array_object(::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a, ::collection::index i);
+inline auto & __array_object(::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a, ::collection::index i);
 
 
 template < typename ARRAY_TYPE, typename T >
@@ -480,7 +480,7 @@ namespace acme
       //::stream & exchange_container(::stream & stream, INITIALIZER * pinitializer, const pointer_array < TYPE > & a);
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::collection::index add(string_array_base < Type, RawType, t_etypeContainer > & array, const Type & psz)
+      ::collection::index add(string_base_array < Type, RawType, t_etypeContainer > & array, const Type & psz)
       {
 
          auto iIndex = __index(array.m_nSize);
@@ -493,11 +493,11 @@ namespace acme
 
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::collection::index add(string_array_base < Type, RawType, t_etypeContainer > & array, const ::payload & payload);
+      ::collection::index add(string_base_array < Type, RawType, t_etypeContainer > & array, const ::payload & payload);
 
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::collection::index unfold_add(string_array_base < Type, RawType, t_etypeContainer > & array, const ::payload & payload);
+      ::collection::index unfold_add(string_base_array < Type, RawType, t_etypeContainer > & array, const ::payload & payload);
 
       template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
       ::collection::count ensure_sequence(::numeric_array < TYPE, t_etypeContainer > & a, TYPE start, TYPE end, TYPE increment = 1);

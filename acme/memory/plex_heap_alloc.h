@@ -5,7 +5,7 @@
 
 
 class CLASS_DECL_ACME plex_heap_alloc :
-   public ::proto < ::array < plex_heap_alloc_sync *, plex_heap_alloc_sync * > >
+   public ::array_base < plex_heap_alloc_sync *, plex_heap_alloc_sync * >
 {
 protected:
 

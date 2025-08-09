@@ -5,7 +5,7 @@
 
 
 template < primitive_number NUMBER >
-class size_array_base :
+class size_base_array :
 public ::array < ::size_type < NUMBER > >
 {
 public:
@@ -16,8 +16,8 @@ public:
    //using POINT_TYPE = typename SIZE_TYPE::POINT_TYPE;
 
 
-   size_array_base() { }
-   ~size_array_base() override { }
+   size_base_array() { }
+   ~size_base_array() override { }
 
 
    using array < ::size_type < NUMBER > >::add;
@@ -32,10 +32,10 @@ public:
 };
 
 
-using int_size_array = size_array_base < int >;
-using long_long_size_array = size_array_base < long long >;
-using float_size_array = size_array_base < float >;
-using double_size_array = size_array_base < double >;
+using int_size_array = size_base_array < int >;
+using long_long_size_array = size_base_array < long long >;
+using float_size_array = size_base_array < float >;
+using double_size_array = size_base_array < double >;
 
 
 

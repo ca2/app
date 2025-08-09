@@ -195,7 +195,7 @@ namespace html
       font.m_strTextDecoration.trim();
       for (int i = 0; i < m_fonta.get_count(); i++)
       {
-         if (m_fonta(i) == font)
+         if (*m_fonta[i] == font)
             return i;
       }
       auto pfont = __allocate class font (font);

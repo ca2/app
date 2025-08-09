@@ -258,60 +258,95 @@ public:
    virtual void end_notify_lock(::notify_lock * pnotifylock);
 
 };
-
+//
+// template < typename TYPE >
+// class ARRAY_BASE
+// {
+// public:
+//
+//    ARRAY_BASE(){}
+//    ARRAY_BASE(const ARRAY_BASE & base){}
+//
+// };
+//
+//
+// class particle
+// {
+// public:
+//
+//    int flag = 0;
+//
+// };
+//
+//
+// template < typename TYPE, int t_iFlag >
+// class make_particle :
+// public TYPE,
+// virtual public ::particle
+// {
+// public:
+//
+//    using TYPE::TYPE;
+//    using TYPE::operator =;
+//
+// };
 
 inline bool is_nok(const ::subparticle * p) { return !::is_set(p) || !p->_is_ok(); }
 
-
-
-
-template < typename TYPE >
-class proto :
-   public TYPE
-{
-public:
-
-
-   using TYPE::TYPE;
-   using TYPE::operator =;
-
-
-   proto(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined):
-   TYPE(eflag | e_flag_proto, estatus)
-   {
-
-   }
-
-
-   //
-   //
-   // ~no_referencing_debugging() override
-   // {
-   //
-   //
-   // }
-
-   //
-   // bool is_proto() const override
-   // {
-   //
-   //    // if (!(this->m_eflagElement & e_flag_disable_referencing_debugging))
-   //    // {
-   //    //
-   //    //    ((proto *) this)->m_eflagElement |= e_flag_disable_referencing_debugging;
-   //    //
-   //    // }
-   //    //
-   //    // if (!this->m_bReferencingDebuggingEnabled3)
-   //    // {
-   //    //
-   //    //    ((proto *) this)->m_bReferencingDebuggingEnabled3 = false;
-   //    //
-   //    // }
-   //
-   //    return true;
-   //
-   // }
-
-
-};
+//
+//
+//
+// template < typename TYPE >
+// class proto :
+//    public TYPE
+// {
+// public:
+//
+//
+//    using TYPE::TYPE;
+//    using TYPE::operator =;
+//
+//
+//    proto(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined):
+//       TYPE(eflag | e_flag_proto, estatus),
+//       ::subparticle(eflag | e_flag_proto, estatus),
+//       ::quantum(eflag | e_flag_proto, estatus)
+//    {
+//
+//    }
+//
+//
+//
+//
+//    //
+//    //
+//    // ~no_referencing_debugging() override
+//    // {
+//    //
+//    //
+//    // }
+//
+//    //
+//    // bool is_proto() const override
+//    // {
+//    //
+//    //    // if (!(this->m_eflagElement & e_flag_disable_referencing_debugging))
+//    //    // {
+//    //    //
+//    //    //    ((proto *) this)->m_eflagElement |= e_flag_disable_referencing_debugging;
+//    //    //
+//    //    // }
+//    //    //
+//    //    // if (!this->m_bReferencingDebuggingEnabled3)
+//    //    // {
+//    //    //
+//    //    //    ((proto *) this)->m_bReferencingDebuggingEnabled3 = false;
+//    //    //
+//    //    // }
+//    //
+//    //    return true;
+//    //
+//    // }
+//
+//
+// };

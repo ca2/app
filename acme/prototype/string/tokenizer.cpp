@@ -272,7 +272,7 @@ bool tokenizer::get_next_token(::string & strToken, const ::scoped_string & scop
 //}
 
 
-bool tokenizer::get_next_smallest_token(string & strToken, const string_array & straSeparator, bool bWithSeparator)
+bool tokenizer::get_next_smallest_token(string & strToken, const string_array_base & straSeparator, bool bWithSeparator)
 {
 
    const_iterator iteratorMinPos = m_end;

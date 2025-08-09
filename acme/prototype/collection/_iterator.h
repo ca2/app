@@ -212,7 +212,7 @@ typedef CLASS_DECL_ACME numeric_array < ::collection::count > count_array;
 #include "tiny_array.h"
 
 
-//#include "array_base.h"
+//#include "base_array.h"
 //#include "array.h"
 
 

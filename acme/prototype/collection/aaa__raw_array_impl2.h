@@ -277,7 +277,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::raw_array(const raw_array <TYPE, ARG_TYPE, ALLOCATOR> & a)// :
    // matter(a.get_app())
 {
-   ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::operator = (a);
+   ::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::operator = (a);
 }
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
@@ -521,7 +521,7 @@ raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::~raw_array()
 //}
 
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-//void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::set_at_grow(::collection::index nIndex, ARG_TYPE newElement)
+//void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::set_at_grow(::collection::index nIndex, ARG_TYPE newElement)
 //{
 //   //ASSERT_VALID(this);
 //   //ASSERT(nIndex >= 0);
@@ -554,7 +554,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 ::collection::index raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::collection::index nIndex, ARG_TYPE newElement, ::collection::count nCount /*=1*/)
 {
 
-   return array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(nIndex, newElement,nCount);
+   return base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(nIndex, newElement,nCount);
 
 }
 

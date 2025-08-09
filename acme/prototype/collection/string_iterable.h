@@ -194,9 +194,9 @@ typename ITERABLE::iterator string_iterable < ITERABLE >::add(const ::payload & 
    {
       ::acme::array::add(*this, payload.stra());
    }
-   else if (payload.cast < string_array_base < Type > >() != nullptr)
+   else if (payload.cast < string_base_array < Type > >() != nullptr)
    {
-      ::acme::array::add(*this, *payload.cast < string_array_base < Type > >());
+      ::acme::array::add(*this, *payload.cast < string_base_array < Type > >());
    }
    else if (payload.get_type() == ::type_vara)
    {

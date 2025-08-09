@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "array.h"
+#include "array_base.h"
 //#include "comparable_eq_array.h"
 //#include "comparable_array.h"
 //
@@ -42,16 +42,16 @@ using strsize_range_array = ::array < strsize_range >;
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-class string_array_base :
-   public comparable_array < Type, const Type &, comparable_eq_array < Type, const Type &, array < Type, const Type &, ::typed::def < Type >, ::heap::typed_memory < Type, ::heap::e_memory_array >, t_etypeContainer > > >
+class string_base_array :
+   public comparable_array_base < Type, const Type &, comparable_eq_array_base < Type, const Type &, array_base < Type, const Type &, ::typed::def < Type >, ::heap::typed_memory < Type, ::heap::e_memory_array >, t_etypeContainer > > >
 {
 public:
 
 
-   using BASE_ARRAY = comparable_array < Type, const Type &, comparable_eq_array < Type, const Type &, array < Type, const Type &, ::typed::def < Type >, ::heap::typed_memory < Type, ::heap::e_memory_array >, t_etypeContainer > > >;
+   using BASE_ARRAY = comparable_array_base < Type, const Type &, comparable_eq_array_base < Type, const Type &, array_base < Type, const Type &, ::typed::def < Type >, ::heap::typed_memory < Type, ::heap::e_memory_array >, t_etypeContainer > > >;
    typedef Type                                                      String;
    typedef RawType                                                   RawString;
-   typedef string_array_base < RawType, RawType, t_etypeContainer >    RawStringArray;
+   typedef string_base_array < RawType, RawType, t_etypeContainer >    RawStringArray;
    using CHARACTER = typename Type::CHARACTER;
    using RANGE = typename RawType::RANGE;
    typedef Type BASE_TYPE;
@@ -66,10 +66,10 @@ public:
    using BASE_ARRAY::operator =;
 
 
-//   string_array_base() {}
+//   string_base_array() {}
 
    // template < typename T >
-   // string_array_base(const ::std::initializer_list < T > & l)
+   // string_base_array(const ::std::initializer_list < T > & l)
    // {
    //    for (auto & e : l)
    //    {
@@ -77,13 +77,13 @@ public:
    //    }
    // }
 
-   //string_array_base(const string_array_base & array);
-   //string_array_base(string_array_base && array);
+   //string_base_array(const string_base_array & array);
+   //string_base_array(string_base_array && array);
    //#ifdef UNIVERSAL_WINDOWS
-   //   string_array_base(Platform::Array < Platform::String ^ > ^ refstra);
+   //   string_base_array(Platform::Array < Platform::String ^ > ^ refstra);
    //#endif
-   string_array_base(CHARACTER * const * ppsz, ::collection::count c);
-   ~string_array_base() override;
+   string_base_array(CHARACTER * const * ppsz, ::collection::count c);
+   ~string_base_array();
 
 
    ::collection::count get_size() const;
@@ -147,7 +147,7 @@ public:
    Type & add_get(const Type & newElement);
 
 
-   void copy(const string_array_base & src);
+   void copy(const string_base_array & src);
 
    template < primitive_array ARRAY >
    void copy(const ARRAY & src);
@@ -172,17 +172,17 @@ public:
 
    }
 
-   string_array_base & c_stra(string_array_base & stra) const;
-   string_array_base c_stra() const;
+   string_base_array & c_stra(string_base_array & stra) const;
+   string_base_array c_stra() const;
 
    Type & insert_at(::collection::index nIndex, const Type & strElement);
    void insert_at(::collection::index nIndex, const Type & strElement, ::collection::count nCount);
-   void insert_at(::collection::index nStartIndex, const string_array_base & NewArray);
+   void insert_at(::collection::index nStartIndex, const string_base_array & NewArray);
 
 
-   string_array_base slice(::collection::index iStart, ::collection::count iCount = -1) const;
+   string_base_array slice(::collection::index iStart, ::collection::count iCount = -1) const;
 
-   //string_array_base & operator =(const string_array_base & stra);
+   //string_base_array & operator =(const string_base_array & stra);
 
 
    Type & insert_empty(::collection::index nIndex);
@@ -208,8 +208,8 @@ public:
    ::collection::index add_unique(const Type & str);
    ::collection::index case_insensitive_add_unique(const Type & str);
 
-   ::collection::count append_unique(const string_array_base & stra);
-   ::collection::count case_insensitive_append_unique(const string_array_base & stra);
+   ::collection::count append_unique(const string_base_array & stra);
+   ::collection::count case_insensitive_append_unique(const string_base_array & stra);
 
    void make_lower();
    void make_upper();
@@ -253,10 +253,10 @@ public:
    Type pop_random_element();
 
    Type pop(::collection::index i = -1);
-   void slice(string_array_base & stra, ::collection::index i, ::collection::count ca = -1);
+   void slice(string_base_array & stra, ::collection::index i, ::collection::count ca = -1);
    void erase(::collection::index i, ::collection::count count);
-   void splice(const string_array_base & stra, ::collection::index i, ::collection::count ca = -1);
-   void splice(const string_array_base & stra, ::collection::index i, string_array_base & straRemoved, ::collection::count ca = -1);
+   void splice(const string_base_array & stra, ::collection::index i, ::collection::count ca = -1);
+   void splice(const string_base_array & stra, ::collection::index i, string_base_array & straRemoved, ::collection::count ca = -1);
 
 
    // if Type is found, transfer it to specified position
@@ -266,7 +266,7 @@ public:
    // transfer preferred in order
    bool preferred(const SCOPED_STRING & str);
 
-   ::collection::count preferred(string_array_base & stra);
+   ::collection::count preferred(string_base_array & stra);
 
 
    ::collection::count case_insensitive_count(const SCOPED_STRING & strFind, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
@@ -384,16 +384,16 @@ public:
    ::collection::count search(STRING_ARRAY & stra, const SCOPED_STRING & strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
 
 
-   //::collection::count case_insensitive_begins(string_array_base & straPrefixed,const SCOPED_STRING &strPrefix,::collection::index first = 0,::collection::index iLast = -1);
-   //::collection::count begins(string_array_base& straPrefixed, const SCOPED_STRING &strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
+   //::collection::count case_insensitive_begins(string_base_array & straPrefixed,const SCOPED_STRING &strPrefix,::collection::index first = 0,::collection::index iLast = -1);
+   //::collection::count begins(string_base_array& straPrefixed, const SCOPED_STRING &strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
 
 
-   //::collection::count case_insensitive_ends(string_array_base& straSuffixed, const SCOPED_STRING &strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
-   //::collection::count ends(string_array_base& straSuffixed, const SCOPED_STRING &strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
+   //::collection::count case_insensitive_ends(string_base_array& straSuffixed, const SCOPED_STRING &strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
+   //::collection::count ends(string_base_array& straSuffixed, const SCOPED_STRING &strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
 
 
-   //::collection::count case_insensitive_search(string_array_base& straResult, const SCOPED_STRING &strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
-   //::collection::count search(string_array_base& straResult, const SCOPED_STRING &strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
+   //::collection::count case_insensitive_search(string_base_array& straResult, const SCOPED_STRING &strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
+   //::collection::count search(string_base_array& straResult, const SCOPED_STRING &strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
 
 
    ::collection::count case_insensitive_filter_begins(const SCOPED_STRING & strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
@@ -429,15 +429,15 @@ public:
    ::collection::count erase(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1);
 
 
-   ::collection::count case_insensitive_erase(const string_array_base & stra);
-   ::collection::count erase(const string_array_base & stra);
+   ::collection::count case_insensitive_erase(const string_base_array & stra);
+   ::collection::count erase(const string_base_array & stra);
 
-   string_array_base & explode(const SCOPED_STRING & strSeparator, const SCOPED_STRING & str, bool bAddEmpty = true);
+   string_base_array & explode(const SCOPED_STRING & strSeparator, const SCOPED_STRING & str, bool bAddEmpty = true);
 
-   string_array_base & _001Explode(const SCOPED_STRING & str);
+   string_base_array & _001Explode(const SCOPED_STRING & str);
 
    // csstidy: Same as explode, but not within a Type
-   //string_array_base & csstidy_explode_ws(char sep,const SCOPED_STRING &str);
+   //string_base_array & csstidy_explode_ws(char sep,const SCOPED_STRING &str);
 
 
    //template < typename PRED >
@@ -481,21 +481,21 @@ public:
 
    //   void XFV001Expand();
 
-   //string_array_base & operator =(const ::payload & payload);
-   //   string_array_base & operator =(const string_array_base & stra);
-   //string_array_base & operator =(const long_long_array & ia);
-   //   string_array_base & operator =(const string_array_base & stra);
-   //string_array_base & operator -=(const string_array_base & stra);
-   //string_array_base & operator +=(const string_array_base & stra);
+   //string_base_array & operator =(const ::payload & payload);
+   //   string_base_array & operator =(const string_base_array & stra);
+   //string_base_array & operator =(const long_long_array & ia);
+   //   string_base_array & operator =(const string_base_array & stra);
+   //string_base_array & operator -=(const string_base_array & stra);
+   //string_base_array & operator +=(const string_base_array & stra);
 
    using BASE_ARRAY::operator +=;
    //using BASE_ARRAY::operator -=;
 
 
-   //string_array_base operator -(const string_array_base & stra) const;
-   //string_array_base operator +(const string_array_base & stra) const;
-   //   string_array_base operator -(const string_array_base & stra) const;
-   //   string_array_base operator +(const string_array_base & stra) const;
+   //string_base_array operator -(const string_base_array & stra) const;
+   //string_base_array operator +(const string_base_array & stra) const;
+   //   string_base_array operator -(const string_base_array & stra) const;
+   //   string_base_array operator +(const string_base_array & stra) const;
 
 
    bool operator == (const RawStringArray & a) const;
@@ -607,10 +607,10 @@ public:
    void decode_v16(const SCOPED_STRING & str);
 
    ::collection::count count_except(const SCOPED_STRING & str);
-   ::collection::count count_except(const string_array_base & stra);
+   ::collection::count count_except(const string_base_array & stra);
 
    ::collection::count case_insensitive_count_except(const SCOPED_STRING & str);
-   ::collection::count case_insensitive_count_except(const string_array_base & stra);
+   ::collection::count case_insensitive_count_except(const string_base_array & stra);
 
    Type & get_network_payload(Type & str, bool bNewLine = true) const;
 
@@ -652,7 +652,7 @@ public:
       }
    }
 
-   string_array_base & intersect(const string_array_base & a)
+   string_base_array & intersect(const string_base_array & a)
    {
 
       for (::collection::index i = 0; i < get_size(); )
@@ -677,7 +677,7 @@ public:
 
    }
 
-   string_array_base & case_insensitive_intersect(const string_array_base & a)
+   string_base_array & case_insensitive_intersect(const string_base_array & a)
    {
 
       for (::collection::index i = 0; i < get_size(); )
@@ -702,7 +702,7 @@ public:
 
    }
 
-   string_array_base & operator &=(const string_array_base & a)
+   string_base_array & operator &=(const string_base_array & a)
    {
 
       return intersect(a);
@@ -721,7 +721,7 @@ public:
 };
 
 
-//typedef CLASS_DECL_ACME string_array_base < string > string_array;
+//typedef CLASS_DECL_ACME string_base_array < string > string_array;
 
 
 

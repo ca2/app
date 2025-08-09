@@ -555,7 +555,14 @@ namespace allocator
    void on_construct_subparticle(::subparticle * pparticle)
    {
 
-      bool bIsReferencingDebuggingEnabled = pparticle->is_referencing_debugging_enabled();
+      bool bHasProtoFlag = pparticle->has_proto_flag();
+
+      if (bHasProtoFlag)
+      {
+
+         return;
+
+      }
 
       if(!::is_set(t_pStartConstruct) || t_sStartConstruct <= 0)
       {

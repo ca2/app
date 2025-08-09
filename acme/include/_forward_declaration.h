@@ -1407,7 +1407,9 @@ class istring;
 class property_set;
 
 
-class payload_array;
+class payload_array_base;
+
+//using payload_array = ::make_particle < payload_array_base >;
 
 
 class property;
@@ -2576,8 +2578,8 @@ namespace windowing
 
 
 class get_file_extension_mime_type;
-template<class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-class comparable_array;
+//template<class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+//class comparable_array;
 class application_menu;
 
 

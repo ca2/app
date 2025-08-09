@@ -152,10 +152,10 @@ inline sequence_continuation particle::async()
 
 
    template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-::collection::count array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::_allocate(::collection::count nNewSize, bool bShrink, bool bRaw, const TYPE * ptype)
+::collection::count base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::_allocate(::collection::count nNewSize, bool bShrink, bool bRaw, const TYPE * ptype)
 {
 
-   if (this->m_eflagElement & e_flag_preallocated)
+   if (this->m_earray & e_array_preallocated)
    {
 
       if (nNewSize > this->m_countAllocation)
@@ -209,7 +209,7 @@ inline sequence_continuation particle::async()
          if(bShrink)
          {
             
-            if(!(this->m_eflagElement & e_flag_preallocated))
+            if(!(this->m_earray & e_array_preallocated))
             {
                
                MEMORY::free(this->m_begin + this->m_countAllocationOffset);
@@ -232,7 +232,7 @@ inline sequence_continuation particle::async()
          else
          {
 
-            if (this->m_arrayflags.m_bZeroeOnAllocation)
+            if (this->m_earray & e_array_zeroe_on_allocation)
             {
 
                memset(this->m_begin, 0, maximum(0, countOld) * sizeof(TYPE));
@@ -309,7 +309,7 @@ inline sequence_continuation particle::async()
 
 #endif
 
-      if (this->m_arrayflags.m_bZeroeOnAllocation)
+      if (this->m_earray & e_array_zeroe_on_allocation)
       {
 
          memset(this->m_begin, 0, nAllocSize * sizeof(TYPE));
@@ -369,7 +369,7 @@ inline sequence_continuation particle::async()
 
             TYPED::destruct_count(this->m_begin + nNewSize, countOld - nNewSize);
 
-            if (this->m_arrayflags.m_bZeroeOnAllocation)
+            if (this->m_earray & e_array_zeroe_on_allocation)
             {
 
                memset(this->m_begin + nNewSize, 0, (countOld - nNewSize) * sizeof(TYPE));
@@ -476,7 +476,7 @@ inline sequence_continuation particle::async()
       // copy ___new data from old
       ::safe_memory_copy2(pNewData, (size_t)countNewAllocation, this->m_begin, (size_t) countOld);
 
-      if (this->m_arrayflags.m_bZeroeOnAllocation)
+      if (this->m_earray & e_array_zeroe_on_allocation)
       {
 
          memset(this->m_begin + countOld, 0, (countNewAllocation - countOld) * sizeof(TYPE));
@@ -509,7 +509,7 @@ inline sequence_continuation particle::async()
          
       }
       
-      if(!(m_eflagElement & e_flag_preallocated))
+      if(!(this->m_earray & e_array_preallocated))
       {
          
          // get rid of old stuff (note: no destructors called)
@@ -519,7 +519,7 @@ inline sequence_continuation particle::async()
       else
       {
          
-         m_eflagElement -= e_flag_preallocated;
+         this->m_earray -= e_array_preallocated;
          
       }
 

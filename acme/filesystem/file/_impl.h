@@ -91,7 +91,7 @@
 //
 //
 ////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-////binary_stream & binary_stream::operator << (const array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
+////binary_stream & binary_stream::operator << (const base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 ////{
 //
 ////   ::collection::count c = a.get_count();
@@ -106,7 +106,7 @@
 //
 //
 ////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-////binary_stream & binary_stream::operator >> (array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
+////binary_stream & binary_stream::operator >> (base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 ////{
 //
 ////   ::collection::count c = 0;
@@ -697,7 +697,7 @@
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-//inline void __exchange(::binary_stream & binary_stream, ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array)
+//inline void __exchange(::binary_stream & binary_stream, ::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array)
 //{
 //   __exchange_array(binary_stream, array);
 //}
@@ -718,7 +718,7 @@
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//inline void __exchange(::binary_stream & binary_stream, ::string_array_base < Type, RawType, t_etypeContainer > & array)
+//inline void __exchange(::binary_stream & binary_stream, ::string_base_array < Type, RawType, t_etypeContainer > & array)
 //{
 //   __exchange_array(binary_stream, array);
 //}

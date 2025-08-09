@@ -164,7 +164,7 @@ namespace user
             //if (!estatus)
             {
 
-               ::user::split_bar & splitbar = m_splitbara(i);
+               ::user::split_bar & splitbar = *m_splitbara[i];
 
                splitbar.m_iIndex = i;
 

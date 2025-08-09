@@ -47,7 +47,7 @@ public:
    string                                 m_strLink;
    string                                 m_strFile;
    int                                    m_iLine;
-   ::proto < ::array < error_code > >     m_errorcodea;
+   ::array_base < error_code >            m_errorcodea;
    static bool                            s_bEnableCallStackBackTrace;
 
 
@@ -57,7 +57,7 @@ public:
 //#else
    exception(const ::e_status& estatus, const ::scoped_string& scopedstrMessage = {}, const ::scoped_string& scopedstrDetails = {}, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
 //#endif
-   exception(const ::e_status& estatus, const ::proto< ::array < error_code > >& errorcodea, const ::scoped_string& scopedstrMessage = {}, const ::scoped_string& scopedstrDetails = {}, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
+   exception(const ::e_status& estatus, const ::array_base < error_code > & errorcodea, const ::scoped_string& scopedstrMessage = {}, const ::scoped_string& scopedstrDetails = {}, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
    exception(const ::exception& exception);
    ~exception() override;
 

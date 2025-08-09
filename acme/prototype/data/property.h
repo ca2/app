@@ -53,7 +53,7 @@ namespace data
       //::payload get_property() const;
 
       bool operator &&(::data::property_change & change) const;
-      bool operator &&(const ::atom_array & atoma) const;
+      bool operator &&(const ::atom_array_base & atoma) const;
 
       /*   void notify_property_changed(const ::action_context & actioncontext) const;
 
@@ -78,12 +78,12 @@ namespace data
 
       bool set_property(const ::payload & payload, const ::action_context & actioncontext) const;
 
-      ::atom_array get_key(const ::atom_array & atomaSuffix) const;
+      ::atom_array_base get_key(const ::atom_array_base & atomaSuffix) const;
 
 
-      bool set_property(const ::atom_array & atomaSuffix, const ::payload & payload, const ::action_context & actioncontext) const;
+      bool set_property(const ::atom_array_base & atomaSuffix, const ::payload & payload, const ::action_context & actioncontext) const;
 
-      ::payload get_property(const ::atom_array & atomaSuffix = {}) const;
+      ::payload get_property(const ::atom_array_base & atomaSuffix = {}) const;
 
       
       bool operator == (const property & property) const;

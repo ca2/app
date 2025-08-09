@@ -9,12 +9,12 @@
 
 template < primitive_number NUMBER >
 class polygon_type :
-   virtual public point_array_base < NUMBER >
+   virtual public point_base_array < NUMBER >
 {
 public:
 
 
-   //using POLYGON_BASE_TYPE = point_array_base < NUMBER >;
+   //using POLYGON_BASE_TYPE = point_base_array < NUMBER >;
    //using POINT_BASE_TYPE = POINT_TYPE;
    using UNIT_TYPE = NUMBER;
    //using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
@@ -56,7 +56,7 @@ public:
    void rotate(double dAngle)
    {
 
-      point_array_base < NUMBER >::rotate(dAngle);
+      point_base_array < NUMBER >::rotate(dAngle);
       m_bDirtyBoundingRect = true;
 
    }
@@ -65,7 +65,7 @@ public:
    void rotate(double dAngle, ::point_type < UNIT_TYPE > pointCenter)
    {
 
-      point_array_base < NUMBER >::rotate(dAngle, pointCenter);
+      point_base_array < NUMBER >::rotate(dAngle, pointCenter);
       m_bDirty = true;
       m_bDirtyBoundingRect = true;
 
@@ -99,14 +99,14 @@ public:
    bool contains(const ::point_type < NUMBER > & point) const
    {
     
-      return point_array_base < NUMBER >::polygon_contains_winding(point);
+      return point_base_array < NUMBER >::polygon_contains_winding(point);
     
    }
 
    bool contains_alternate(const ::point_type < NUMBER > & point) const
    {
 
-      return point_array_base < NUMBER >::polygon_contains_alternate(point);
+      return point_base_array < NUMBER >::polygon_contains_alternate(point);
 
    }
 
@@ -120,14 +120,14 @@ public:
 
 template < primitive_number NUMBER >
 inline polygon_type < NUMBER >::polygon_type(const polygon_type& polygon) :
-point_array_base < NUMBER >(polygon)
+point_base_array < NUMBER >(polygon)
 {
 
 }
 
 template < primitive_number NUMBER >
 inline polygon_type < NUMBER >::polygon_type(polygon_type&& polygon) :
-   point_array_base < NUMBER >(::transfer(polygon))
+   point_base_array < NUMBER >(::transfer(polygon))
 {
    
    m_bDirty = polygon.m_bDirty;
@@ -182,7 +182,7 @@ polygon_type < NUMBER > & polygon_type < NUMBER >::operator = (const polygon_typ
    if (&polygon != this)
    {
 
-      point_array_base < NUMBER >::operator = (polygon);
+      point_base_array < NUMBER >::operator = (polygon);
       m_bDirty = polygon.m_bDirty;
       m_bDirtyBoundingRect = polygon.m_bDirtyBoundingRect;
       m_rectangleBounding = polygon.m_rectangleBounding;
@@ -201,7 +201,7 @@ polygon_type < NUMBER > & polygon_type < NUMBER >::operator = (polygon_type&& po
    if (&polygon != this)
    {
 
-      point_array_base < NUMBER >::operator = (::transfer(polygon));
+      point_base_array < NUMBER >::operator = (::transfer(polygon));
       m_bDirty = polygon.m_bDirty;
       m_bDirtyBoundingRect = polygon.m_bDirtyBoundingRect;
       if(!m_bDirtyBoundingRect)
@@ -588,7 +588,7 @@ polygon_type < NUMBER > polygon_type < NUMBER >::convex_intersection(const polyg
 
 template < primitive_number NUMBER >
 class poly_polygon_type :
-   public ::pointer_array < ::polygon_type < NUMBER > >
+   public ::pointer_array < ::array_particle < ::polygon_type < NUMBER > > >
 {
 public:
    
@@ -596,7 +596,7 @@ public:
    using UNIT_TYPE = NUMBER;
    
    
-   using ::pointer_array < ::polygon_type < NUMBER > >::pointer_array;
+   using ::pointer_array < ::array_particle < ::polygon_type < NUMBER > > >::pointer_array;
    
    
    void expand_bounding_box(::point_type < UNIT_TYPE > & top_left, ::point_type < UNIT_TYPE > & bottom_right)

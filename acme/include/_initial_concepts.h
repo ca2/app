@@ -12,6 +12,7 @@ template < typename ITERATOR_TYPE >
 class scoped_string_base;
 
 
+
 template < typename SEQUENCE >
 concept primitive_sequence = ::std::is_same < typename SEQUENCE::sequence_tag, sequence_t >::value;
 
@@ -841,18 +842,19 @@ concept non_primitive_subparticle = !primitive_subparticle<NON_SUBPARTICLE>;
 
 
 template<typename Type, typename RawType = Type, ::enum_type t_etypeContainer = e_type_element >
-class string_array_base;
+class string_base_array;
 
 
+using string_array_base = string_base_array < string, string, e_type_string_array >;
+using wstring_array_base = string_base_array < wstring, wstring >;
 
-using string_array = string_array_base < string, string, e_type_string_array >;
-using wstring_array = string_array_base < wstring, wstring >;
 
+using string_array = ::array_particle < string_array_base >;
+using wstring_array = ::array_particle < wstring_array_base >;
 
 
 template < typename POINTER_BUT_NO_INTEGRAL, typename TYPE >
 concept pointer_but_not_integral = ::std::convertible_to < POINTER_BUT_NO_INTEGRAL, TYPE * > && !primitive_integral < POINTER_BUT_NO_INTEGRAL >;
-
 
 
 template <class>

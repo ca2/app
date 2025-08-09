@@ -56,7 +56,7 @@ namespace file
       listing();
       listing(const listing & listing);
       listing(listing&& listing);
-      ~listing() override;
+      ~listing();
 
 
 

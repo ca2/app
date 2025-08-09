@@ -756,6 +756,7 @@ concept primitive_array = requires(ARRAY array, ::collection::index i, ::collect
    array.get_count();
    array.element_at(i);
    array.set_size(c);
+   { array.size() } -> ::std::convertible_to <::collection::count>;
 };
 
 template < typename ARRAY >

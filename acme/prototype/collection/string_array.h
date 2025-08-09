@@ -626,7 +626,7 @@ public:
 
    void feed_line(const ::scoped_string& scopedstr, bool bCarriage)
    {
-      if (this->has_flag(e_flag_carriage_return))
+      if (this->m_earray & e_array_carriage_return)
       {
          if (this->has_elements())
          {
@@ -638,7 +638,7 @@ public:
          }
          if (!bCarriage)
          {
-            this->clear_flag(e_flag_carriage_return);
+            this->m_earray -= e_array_carriage_return;
          }
       }
       else
@@ -646,7 +646,7 @@ public:
          this->add(scopedstr);
          if (bCarriage)
          {
-            this->set_flag(e_flag_carriage_return);
+            this->m_earray |= e_array_carriage_return;
          }
 
       }

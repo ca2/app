@@ -195,8 +195,8 @@ struct iterator_common :
 };
 
 
-typedef CLASS_DECL_ACME numeric_array < ::collection::index > index_array;
-typedef CLASS_DECL_ACME numeric_array < ::collection::count > count_array;
+//typedef CLASS_DECL_ACME numeric_array < ::collection::index > index_array;
+//typedef CLASS_DECL_ACME numeric_array < ::collection::count > count_array;
 
 
 

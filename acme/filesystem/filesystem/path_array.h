@@ -19,6 +19,12 @@ namespace file
    {
    public:
 
+      using BASE_ARRAY = ::string_base_array < ::file::path, string, e_type_string_array >;
+
+
+      using BASE_ARRAY::BASE_ARRAY;
+      using BASE_ARRAY::operator =;
+
 
       //using ::string_base_array < ::file::path, string, e_type_string_array >::string_base_array;
 
@@ -32,9 +38,6 @@ namespace file
       // {
       // }
       //~path_array() override {}
-
-      using ::string_base_array < ::file::path, string, e_type_string_array >::string_base_array;
-      using ::string_base_array < ::file::path, string, e_type_string_array >::operator =;
 
 
       virtual void patch_base_path(const ::file::path & pathBase);

@@ -18,10 +18,10 @@ namespace write_text
    public:
 
 
-      ::collection::index                   m_iSerial;
-      ::collection::index                   m_iUpdateId;
+      ::collection::index     m_iSerial;
+      ::collection::index     m_iUpdateId;
       int                     m_iBaseSize;
-      ::int_array             m_iaSize;
+      ::int_array        m_iaSize;
       ::int_rectangle         m_rectangleX;
       int                     m_iUpdatedCount;
       bool                    m_bLayoutStillIntersect;

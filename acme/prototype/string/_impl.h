@@ -379,7 +379,7 @@ namespace file
 
 
 template < typename TYPE, enum_type t_etypeContainer >
-inline void implode(const numeric_array < TYPE, t_etypeContainer > & a, string & str, const ::scoped_string & scopedstrSeparator, ::collection::index start, ::collection::count count)
+inline void implode(const numeric_array_base < TYPE, t_etypeContainer > & a, string & str, const ::scoped_string & scopedstrSeparator, ::collection::index start, ::collection::count count)
 {
    
    if(start < 0)
@@ -420,7 +420,7 @@ inline void implode(const numeric_array < TYPE, t_etypeContainer > & a, string &
 
 
 template < typename TYPE, enum_type t_etypeContainer >
-inline string implode(const numeric_array < TYPE, t_etypeContainer > & a,const ::scoped_string & scopedstrSeparator, ::collection::index start, ::collection::count count)
+inline string implode(const numeric_array_base < TYPE, t_etypeContainer > & a,const ::scoped_string & scopedstrSeparator, ::collection::index start, ::collection::count count)
 {
    
    string str;
@@ -433,7 +433,7 @@ inline string implode(const numeric_array < TYPE, t_etypeContainer > & a,const :
 
 
 template < typename TYPE, ::enum_type t_etypeContainer >
-string surround_and_implode(const numeric_array < TYPE, t_etypeContainer > & a, const ::scoped_string & scopedstrSeparator, const ::scoped_string & pszPrefix, const ::scoped_string & scopedstrSuffix, ::collection::index iStart, ::collection::count iCount)
+string surround_and_implode(const numeric_array_base < TYPE, t_etypeContainer > & a, const ::scoped_string & scopedstrSeparator, const ::scoped_string & pszPrefix, const ::scoped_string & scopedstrSuffix, ::collection::index iStart, ::collection::count iCount)
 {
    string str;
    string strSeparator(scopedstrSeparator);

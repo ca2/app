@@ -20,7 +20,9 @@
 #include "_string.h"
 
 
-using dword_array = ::numeric_array < DWORD >;
+using dword_array_base = ::numeric_array_base < DWORD >;
+
+using dword_array = ::array_particle < ::dword_array_base >;
 
 
 
@@ -170,8 +172,8 @@ namespace windows
 {
 
 
-   CLASS_DECL_ACME void enum_processes(dword_array & dwaProcesses);
-   CLASS_DECL_ACME dword_array enum_processes();
+   CLASS_DECL_ACME void enum_processes(dword_array_base & dwaProcesses);
+   CLASS_DECL_ACME dword_array_base enum_processes();
 
 
 } // namespace windows

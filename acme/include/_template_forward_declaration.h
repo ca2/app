@@ -421,26 +421,29 @@ namespace allocator
 
 
 template < typename TYPE, typename ARG_TYPE = const TYPE &, class TYPED = ::typed::rawcopy < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-class raw_array;
+class raw_array_base;
 
 
 //template < typename TYPE, typename ARG_TYPE = const TYPE &, class TYPED = ::typed::rawcopy < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 //class raw_array_quantum;
 
 
-template < typename POINTER, class ARRAY_TYPE = comparable_array < POINTER, POINTER, comparable_eq_array < POINTER, POINTER, raw_array < POINTER, POINTER, ::allocator::zero < POINTER > > > > >
-class address_array;
+template < typename POINTER, class ARRAY_TYPE = comparable_array_base < POINTER, POINTER, comparable_eq_array_base < POINTER, POINTER, raw_array_base < POINTER, POINTER, ::allocator::zero < POINTER > > > > >
+class address_array_base;
 
 
 class exception;
 
 
-using exception_array = ::array < ::exception >;
+using exception_array_base = ::array_base < ::exception >;
+
+using exception_array = ::array_particle < ::exception_array_base >;
 
 
-
-using particle_array = pointer_array < particle >;
-using subparticle_array = pointer_array < subparticle >;
+using particle_array_base = pointer_array_base < particle >;
+using particle_array = ::array_particle < particle_array_base >;
+using subparticle_array_base = pointer_array_base < subparticle >;
+using subparticle_array = ::array_particle < subparticle_array_base >;
 
 
 
@@ -449,12 +452,15 @@ using regular_expression_pointer = ::pointer<::regular_expression::regular_expre
 
 
 
-typedef address_array < const_char_pointer >const_char_ptra;
+using const_char_ptra_base= address_array_base < const_char_pointer >;
+using const_char_ptra =  ::array_particle < const_char_ptra_base >;
 
-typedef address_array < void * > void_ptra;
+using void_ptra_base =  address_array_base<void *>;
+using void_ptra =  ::array_particle < void_ptra_base >;
 
 
-using particle_address_array = address_array < particle * >;
+using particle_address_array_base = address_array_base < particle * >;
+using particle_address_array = ::array_particle <particle_address_array_base> ;
 
 
 using file_pointer = ::pointer<::file::file>;
@@ -526,38 +532,57 @@ class unique_number_sort_array;
 
 
 template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-class numeric_base_array;
+class numeric_array_base;
 
 
-template < typename TYPE, enum_type t_etypeContainer = e_type_element >
-using numeric_array = ::array_particle < numeric_base_array < TYPE, t_etypeContainer > >;
+//template < typename TYPE, enum_type t_etypeContainer = e_type_element >
+//using numeric_array = ::array_particle < numeric_base_array < TYPE, t_etypeContainer > >;
 
 
-using char_array = numeric_array < char >;
-using short_array = numeric_array < short >;
-using int_array = numeric_array < int >;
-using long_long_array = numeric_array < long long >;
+using char_array_base = numeric_array_base < char >;
+using short_array_base = numeric_array_base < short >;
+using int_array_base = numeric_array_base < int >;
+using long_long_array_base = numeric_array_base < long long >;
 
-using unsigned_char_array = numeric_array < unsigned char >;
-using unsigned_short_array = numeric_array < unsigned short >;
-using unsigned_int_array = numeric_array < unsigned int >;
-using u64_array = numeric_array < unsigned long long >;
+using unsigned_char_array_base = numeric_array_base < unsigned char >;
+using unsigned_short_array_base = numeric_array_base < unsigned short >;
+using unsigned_int_array_base = numeric_array_base < unsigned int >;
+using unsigned_long_long_array_base = numeric_array_base < unsigned long long >;
 
-using float_array = numeric_array < float >;
-using double_array = numeric_array < double >;
-
-
-using int_array_array = ::array < int_array >;
-
-using float_array_array = ::array < float_array >;
-using double_array_array = ::array < double_array >;
+using float_array_base = numeric_array_base < float >;
+using double_array_base = numeric_array_base < double >;
 
 
-using index_array = numeric_array < ::collection::index >;
-using count_array = numeric_array < ::collection::count >;
+
+using char_array = ::array_particle < char_array_base >;
+using short_array = ::array_particle < short_array_base >;
+using int_array = ::array_particle < int_array_base >;
+using long_long_array = ::array_particle < long_long_array_base >;
+
+using unsigned_char_array = ::array_particle < unsigned_char_array_base >;
+using unsigned_short_array = ::array_particle < unsigned_short_array_base >;
+using unsigned_int_array = ::array_particle < unsigned_int_array_base >;
+using unsigned_long_long_array = ::array_particle < unsigned_long_long_array_base >;
+
+using float_array = ::array_particle < float_array_base >;
+using double_array = ::array_particle < double_array_base >;
+
+using int_array_array = ::pointer_array < int_array >;
+
+using float_array_array = ::pointer_array < float_array >;
+using double_array_array = ::pointer_array < double_array >;
 
 
-using unsigned_int_array = numeric_array < unsigned int >;
+using index_array_base = numeric_array_base < ::collection::index >;
+using count_array_base = numeric_array_base < ::collection::count >;
+
+using index_array = ::array_particle < index_array_base >;
+using count_array = ::array_particle < count_array_base >;
+
+
+using unsigned_int_array_base = numeric_array_base < unsigned int >;
+
+using unsigned_int_array = ::array_particle < unsigned_int_array_base >;
 
 
 using unique_int_sort_array = unique_number_sort_array < int >;
@@ -567,14 +592,18 @@ using unique_long_long_sort_array = unique_number_sort_array < long long >;
 #ifdef OS64BIT
 
 
+using iptr_array_base = long_long_array_base;
+using uptr_array_base = unsigned_long_long_array_base;
 using iptr_array = long_long_array;
-using uptr_array = u64_array;
+using uptr_array = unsigned_long_long_array;
 
 using unique_iptr_sort_array = unique_long_long_sort_array;
 
 
 #else
 
+using iptr_array_base = int_array_base;
+using uptr_array_base = unsigned_int_array_base;
 
 using iptr_array = int_array;
 using uptr_array = unsigned_int_array;
@@ -584,16 +613,20 @@ using unique_iptr_sort_array = unique_int_sort_array;
 
 #endif
 
-using float_array = numeric_array < float >;
-using double_array = numeric_array < double >;
+//using float_array = numeric_array < float >;
+//using double_array = numeric_array < double >;
+
+using strsize_array_base = iptr_array_base;
 
 using strsize_array = iptr_array;
 
-using process_identifier_array = ::numeric_array < process_identifier >;
+using process_identifier_array_base = ::numeric_array_base < process_identifier >;
+
+using process_identifier_array = ::array_particle < process_identifier_array_base >;
 
 //using strsize_ptr_array = ptr_array < character_count *  >;
 
-
+using byte_array_base = unsigned_char_array_base;
 using byte_array = unsigned_char_array;
 
 using task_pointer = ::pointer < task >;
@@ -656,8 +689,10 @@ void __swap(A & a, B & b)
 }
 
 
+using particle_array_base = pointer_array_base< ::particle >;
 
-typedef pointer_array < ::particle > particle_array;
+
+using particle_array = ::array_particle < ::particle_array_base >;
 
 
 

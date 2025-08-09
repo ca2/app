@@ -42,13 +42,13 @@ CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_
 
 
 template < typename TYPE, enum_type t_etypeContainer >
-inline void implode(const numeric_array < TYPE, t_etypeContainer > & a, string & rwstr, const ::scoped_string & scopedstrSeparator = nullptr, ::collection::index start = 0, ::collection::count count = -1);
+inline void implode(const numeric_array_base < TYPE, t_etypeContainer > & a, string & rwstr, const ::scoped_string & scopedstrSeparator = nullptr, ::collection::index start = 0, ::collection::count count = -1);
 
 template < typename TYPE, enum_type t_etypeContainer >
-   inline string implode(const numeric_array < TYPE, t_etypeContainer > & a,const ::scoped_string & scopedstrSeparator = nullptr, ::collection::index iStart = 0, ::collection::count iCount = -1);
+   inline string implode(const numeric_array_base < TYPE, t_etypeContainer > & a,const ::scoped_string & scopedstrSeparator = nullptr, ::collection::index iStart = 0, ::collection::count iCount = -1);
 
 template < typename TYPE, enum_type t_etypeContainer >
-   string surround_and_implode(const numeric_array < TYPE, t_etypeContainer > & a,const ::scoped_string & scopedstrSeparator = nullptr, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr, ::collection::index iStart = 0, ::collection::count iCount = -1);
+   string surround_and_implode(const numeric_array_base < TYPE, t_etypeContainer > & a,const ::scoped_string & scopedstrSeparator = nullptr, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr, ::collection::index iStart = 0, ::collection::count iCount = -1);
 
 #include "acme/prototype/collection/_impl_string_array.h"
 #include "acme/prototype/prototype/_impl_atom.h"

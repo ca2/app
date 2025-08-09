@@ -7,7 +7,8 @@
 
 
 //#ifdef WINDOWS
-using hsynchronization_array = ::address_array < hsynchronization >;
+using hsynchronization_array_base = ::address_array_base < hsynchronization >;
+using hsynchronization_array = ::array_particle < hsynchronization_array_base >;
 //#endif
 
 

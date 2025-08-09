@@ -7,6 +7,16 @@
 #include "acme/memory/operation.h"
 #include "acme/prototype/prototype/particle.h"
 
+template < typename TYPE >
+const TYPE * find_first_non_null(const TYPE * p)
+{
+
+   while (*p) p++;
+
+   return p;
+
+}
+
 
 CLASS_DECL_ACME ::string get_task_object_name();
 
@@ -169,6 +179,7 @@ enum enum_array : unsigned long long
    e_array_none = 0,
    e_array_zeroe_on_allocation = 1,
    e_array_preallocated = 2,
+   e_array_carriage_return = 4,
    //e_array_disable_referencing_debugging = 1ll << 52,
 
 };
@@ -231,7 +242,8 @@ public:
 
    
    //base_array(const ::e_array & earray = e_array_none, const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined);
-   base_array(const ::e_array & earray = e_array_none);
+   base_array();
+   base_array(const ::e_array & earray);
    base_array(nullptr_t) : base_array() {}
    base_array(std::initializer_list < TYPE > initializer_list);
    base_array(const base_array & a);
@@ -242,7 +254,7 @@ public:
       for (::collection::index i = 0; i < this->size(); i++) this->element_at(i) = a.element_at(i);
    }
    base_array(pre_allocate_t, ::collection::count n) : base_array() { this->m_countAddUp = n; }
-   base_array(zeroe_on_allocation_t, ::collection::count n) : base_array() { this->m_arrayflags.m_bZeroeOnAllocation = true; this->m_countAddUp = n; }
+   base_array(zeroe_on_allocation_t, ::collection::count n) : base_array() { this->m_earray |= e_array_zeroe_on_allocation; this->m_countAddUp = n; }
    base_array(const TYPE * p, ::collection::count c);
    base_array(::range < const_iterator > constrange) : base_array(constrange.begin(), constrange.end()) {}
    template < primitive_integral INTEGRAL >
@@ -252,7 +264,10 @@ public:
       auto p = this->begin();
       while (p != end) add(*p);
    }
-   base_array(null_terminated_t, const_iterator begin) : base_array(begin, find_first_null_character(begin)){}
+   template < typename SOME_TYPE >
+   base_array(null_terminated_t, const SOME_TYPE *begin) : base_array(begin, find_first_non_null(begin))
+   {
+   }
    ~base_array();
 
 
@@ -1472,6 +1487,18 @@ inline TYPE& operator%(INTEGRAL nIndex, const base_array < TYPE, ARG_TYPE, TYPED
 
 
 
+template<typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer>
+// base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(const ::e_array & earray, const ::e_flag &
+// eflag, const ::e_status & estatus) :
+base_array<TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer>::base_array() :
+    //::particle(eflag, estatus),
+    ARRAY_RANGE()
+{
+
+   m_countAddUp = 0;
+   m_countAllocation = 0;
+   m_countAllocationOffset = 0;
+}
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >

@@ -1859,5 +1859,7 @@ public:
    using POINTER_ARRAY_BASE::operator[];
    using POINTER_ARRAY_BASE::operator();
 
+   using POINTER_ARRAY_BASE::call_member;
+
 
 };

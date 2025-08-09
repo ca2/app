@@ -148,7 +148,7 @@ namespace filemanager
 
       Folder folder;
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_listing(strParent);
 

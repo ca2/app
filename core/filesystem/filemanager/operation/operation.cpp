@@ -59,7 +59,7 @@ namespace filemanager
    }
 
 
-   bool operation::set_copy(::file::listing & stra,const ::file::path & pathTargetBase,const ::file::path & pathSourceBase,bool bExpand)
+   bool operation::set_copy(::file::listing_base & stra,const ::file::path & pathTargetBase,const ::file::path & pathSourceBase,bool bExpand)
    {
 
       set_operation(e_operation_copy);
@@ -141,7 +141,7 @@ namespace filemanager
    }
 
 
-   bool operation::set_move(::file::listing & stra,const ::file::path & path)
+   bool operation::set_move(::file::listing_base & stra,const ::file::path & path)
    {
 
       set_operation(e_operation_move);
@@ -172,7 +172,7 @@ namespace filemanager
    }
 
 
-   bool operation::set_delete(::file::listing & stra)
+   bool operation::set_delete(::file::listing_base & stra)
    {
 
       set_operation(e_operation_delete);
@@ -928,7 +928,7 @@ namespace filemanager
    }
 
 
-   void operation::expand(::file::listing & listingExpanded,::file::path_array & pathaExpand)
+   void operation::expand(::file::listing_base & listingExpanded,::file::path_array & pathaExpand)
    {
 
       auto papplication = m_papplication;

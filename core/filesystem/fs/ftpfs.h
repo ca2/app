@@ -25,7 +25,7 @@ public:
 
 
    class CLASS_DECL_CORE dir_listing :
-      public ::file::listing
+      public ::file::listing_base
    {
    public:
 
@@ -69,9 +69,9 @@ public:
 
    virtual bool has_subdir(const ::file::path & path) override;
    virtual bool fast_has_subdir(const ::file::path  & pszPath) override;
-   virtual bool enumerate(::file::listing & listing) override;
+   virtual bool enumerate(::file::listing_base & listing) override;
    ::file::e_type file_type(const ::file::path & path) override;
-   virtual ::file::listing & root_ones(::file::listing & listing) override;
+   virtual ::file::listing_base & root_ones(::file::listing_base & listing) override;
 
    virtual void defer_initialize(::ftp::client_socket ** client, const ::scoped_string & scopedstrPath);
 

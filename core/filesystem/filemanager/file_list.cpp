@@ -868,7 +868,7 @@ namespace filemanager
 
    //   string_array stra;
 
-   //   ::file::listing straSub;
+   //   ::file::listing_base straSub;
 
    //   string strFileList;
    //   string strFileCheck;
@@ -941,7 +941,7 @@ namespace filemanager
    //
    //   string_array stra;
    //
-   //   ::file::listing straSub(get_context());
+   //   ::file::listing_base straSub(get_context());
 
    //   string strFileList;
 
@@ -1175,9 +1175,9 @@ namespace filemanager
 
          synchronous_lock lock(pparticleSynchronization);
 
-         ::file::listing & listingUser = filemanager_data()->m_listingUser2;
+         ::file::listing_base & listingUser = filemanager_data()->m_listingUser2;
 
-         ::file::listing & listingFinal = filemanager_data()->m_listingFinal2;
+         ::file::listing_base & listingFinal = filemanager_data()->m_listingFinal2;
 
          auto cItem = listingUser.get_size();
 

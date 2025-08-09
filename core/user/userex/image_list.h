@@ -16,7 +16,7 @@ namespace userex
 
 
       ::file::path                     m_pathFolder;
-      ::pointer<::file::listing>      m_plisting;
+      ::pointer<::file::listing_base>      m_plisting;
       //string_array                     m_straPattern;
       //string_array                     m_straPatternNames;
       ::file::file_dialog_filter       m_filedialogfilter;

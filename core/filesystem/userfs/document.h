@@ -18,11 +18,11 @@ namespace userfs
       ::pointer<::userfs::data>            m_puserfsdata;
       //::file::path                              m_pathFolder;
       //::pointer<::fs::set>                      m_pfsset;
-      //::file::listing                           m_listingRoot;
-      //::file::listing                           m_listingUser2;
-      //::file::listing                           m_listingFinal2;
-      //::file::listing                           m_listingFolderUser2;
-      //::file::listing                           m_listingFolderFinal2;
+      //::file::listing_base                           m_listingRoot;
+      //::file::listing_base                           m_listingUser2;
+      //::file::listing_base                           m_listingFinal2;
+      //::file::listing_base                           m_listingFolderUser2;
+      //::file::listing_base                           m_listingFolderFinal2;
       //::userfs::enum_mode                 m_emode;
 
 

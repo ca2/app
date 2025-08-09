@@ -125,7 +125,7 @@ namespace userfs
 
       //   information() << "::userfs::document getting root listing";
 
-      //   ::file::listing listing;
+      //   ::file::listing_base listing;
 
       //   fs_data()->root_ones(listing);
 
@@ -146,7 +146,7 @@ namespace userfs
 
       //}
 
-      //::file::listing listingUser;
+      //::file::listing_base listingUser;
 
       //auto papp = get_app();
 
@@ -185,7 +185,7 @@ namespace userfs
 
       //   {
 
-      //      ::file::listing listingUserFormatted;
+      //      ::file::listing_base listingUserFormatted;
 
       //      listingUserFormatted.m_straPattern = listingUser.m_straPattern;
 
@@ -227,7 +227,7 @@ namespace userfs
 
       //}
 
-      //::file::listing listingFinal;
+      //::file::listing_base listingFinal;
 
       //listingFinal.m_straPattern = listingUser.m_straPattern;
 
@@ -263,9 +263,9 @@ namespace userfs
 
       //}
 
-      //::file::listing listingFolderUser;
+      //::file::listing_base listingFolderUser;
 
-      //::file::listing listingFolderFinal;
+      //::file::listing_base listingFolderFinal;
 
       //listingFolderUser.m_eflag = ::file::e_flag_folder;
 

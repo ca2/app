@@ -107,7 +107,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    }
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
    listing.set_listing(path);
 
@@ -118,7 +118,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 }
 
 
-::file::listing & ftpfs::root_ones(::file::listing & listing)
+::file::listing_base & ftpfs::root_ones(::file::listing_base & listing)
 {
 
    ::file::path path;
@@ -136,7 +136,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 }
 
 
-bool ftpfs::enumerate(::file::listing & listing)
+bool ftpfs::enumerate(::file::listing_base & listing)
 {
 
    if (listing.m_pathUser == "ftp://")
@@ -304,7 +304,7 @@ retry:
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
-      ((::file::listing &)dir) = listing;
+      ((::file::listing_base &)dir) = listing;
 
       dir.m_timeLast.Now();
 
@@ -377,7 +377,7 @@ retry:
    if (dir.m_timeLast.elapsed() > psystem->m_timeFileListingCache)
    {
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
       listing.set_listing(path.folder());
 

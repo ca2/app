@@ -264,9 +264,9 @@ namespace filemanager
 
       auto pitemParent = find_item_by_user_path(pathUser);
 
-      ::file::listing listing;
+      ::file::listing_base listing;
 
-      ::file::listing listingFinal;
+      ::file::listing_base listingFinal;
 
       ::file::path strDir;
 
@@ -390,7 +390,7 @@ namespace filemanager
 
       {
 
-         ::file::listing & listing = filemanager_data()->m_listingRoot2;
+         ::file::listing_base & listing = filemanager_data()->m_listingRoot2;
 
          for (::collection::index i = 0; i < listing.size(); i++)
          {
@@ -431,7 +431,7 @@ namespace filemanager
 
       {
 
-         ::file::listing & listingUser = filemanager_data()->m_listingFolderUser2;
+         ::file::listing_base & listingUser = filemanager_data()->m_listingFolderUser2;
 
          for (auto & path : listingUser)
          {
@@ -536,9 +536,9 @@ namespace filemanager
 
       //   }
 
-      //   ::file::listing & listingUser = filemanager_data()->m_listingFolderUser2;
+      //   ::file::listing_base & listingUser = filemanager_data()->m_listingFolderUser2;
 
-      //   ::file::listing & listingFinal = filemanager_data()->m_listingFolderFinal2;
+      //   ::file::listing_base & listingFinal = filemanager_data()->m_listingFolderFinal2;
 
       //   pointer_array < ::data::tree_item > childrenNew;
 
@@ -737,9 +737,9 @@ namespace filemanager
 //
 //         string str;
 //
-//         //::file::listing & listingUser = ::userfs::tree_data::filemanager_data()->m_listingFolderUser2;
+//         //::file::listing_base & listingUser = ::userfs::tree_data::filemanager_data()->m_listingFolderUser2;
 //
-//         //::file::listing & listingFinal = ::userfs::tree_data::filemanager_data()->m_listingFolderFinal2;
+//         //::file::listing_base & listingFinal = ::userfs::tree_data::filemanager_data()->m_listingFolderFinal2;
 //
 //         if (!context.is(::e_source_system))
 //         {
@@ -1081,9 +1081,9 @@ return;
 
    //   }
 
-   //   ::file::listing & listingUser = filemanager_data()->m_listingFolderUser2;
+   //   ::file::listing_base & listingUser = filemanager_data()->m_listingFolderUser2;
 
-   //   ::file::listing & listingFinal = filemanager_data()->m_listingFolderFinal2;
+   //   ::file::listing_base & listingFinal = filemanager_data()->m_listingFolderFinal2;
 
    //   pointer_array < ::data::tree_item > childrenNew;
 

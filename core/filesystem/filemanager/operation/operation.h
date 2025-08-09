@@ -17,7 +17,7 @@ namespace filemanager
 
 
       enum_operation             m_eoperation;
-      ::file::listing            m_filelisting;
+      ::file::listing_base            m_filelisting;
       double_array               m_daRead;
       double_array               m_daSize;
       ::file::path               m_path;
@@ -39,9 +39,9 @@ namespace filemanager
       operation();
       virtual ~operation();
 
-      virtual bool set_copy(::file::listing & stra,const ::file::path & pathDestBase,const ::file::path & pathSourceBase,bool bExpand);
-      virtual bool set_move(::file::listing & stra,const ::file::path & path);
-      virtual bool set_delete(::file::listing & stra);
+      virtual bool set_copy(::file::listing_base & stra,const ::file::path & pathDestBase,const ::file::path & pathSourceBase,bool bExpand);
+      virtual bool set_move(::file::listing_base & stra,const ::file::path & path);
+      virtual bool set_delete(::file::listing_base & stra);
 
       //   virtual double size();
       //   virtual double progress();
@@ -52,7 +52,7 @@ namespace filemanager
       double get_item_read(int iItem);
       double get_item_size(int iItem);
 
-      void expand(::file::listing & straExpanded,::file::path_array & straExpand);
+      void expand(::file::listing_base & straExpanded,::file::path_array & straExpand);
 
       virtual void start();
       virtual bool file_operation_thread_step();

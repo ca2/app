@@ -9075,7 +9075,7 @@ namespace windowing
 
          {
 
-            decltype(m_userinteractionaMouseHover) userinteractiona;
+            ::user::interaction_ptra userinteractiona;
 
             {
 

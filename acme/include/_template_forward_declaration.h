@@ -1029,6 +1029,8 @@ namespace write_text
 {
 
 
+   class font;
+
    using font_pointer = ::pointer<font>;
 
 

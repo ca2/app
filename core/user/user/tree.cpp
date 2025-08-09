@@ -685,6 +685,13 @@ namespace user
 
          data.m_pdc->set(pbrushText);
 
+         if (!m_pfontTreeItem)
+         {
+
+            update_drawing_objects();
+
+         }
+
          data.m_pdc->set(m_pfontTreeItem);
 
          data.m_pdc->_DrawText(strItem, rectangle, m_ealignText, m_edrawtext);
@@ -1040,6 +1047,8 @@ namespace user
    
    void tree::update_drawing_objects()
    {
+
+      _synchronous_lock synchronouslock(this->synchronization());
    
       //      style_context context(this);
 

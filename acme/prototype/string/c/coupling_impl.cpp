@@ -246,7 +246,7 @@ CLASS_DECL_ACME ::wd16_character wd16_tolower(::wd16_character ch) { return __wd
 CLASS_DECL_ACME ::wd32_character wd32_tolower(::wd32_character ch) { return __wd32tolower(ch); }
 CLASS_DECL_ACME ::wide_character wide_tolower(::wide_character ch) { return __wd32tolower(ch); }
 
-CLASS_DECL_ACME ::wd32_character wd16_toupper(::wd16_character ch) { return __wd16toupper(ch); }
+CLASS_DECL_ACME ::wd16_character wd16_toupper(::wd16_character ch) { return __wd16toupper(ch); }
 CLASS_DECL_ACME ::wd32_character wd32_toupper(::wd32_character ch) { return __wd32toupper(ch); }
 CLASS_DECL_ACME ::wide_character wide_toupper(::wide_character ch) { return __wd32toupper(ch); }
 

@@ -746,7 +746,7 @@ void list<TYPE, ARG_TYPE>::erase_all()
 
    }
 
-   this->begin() = nullptr;
+   this->m_begin = nullptr;
 
    this->m_end = nullptr;
 
@@ -860,30 +860,49 @@ template<class TYPE, class ARG_TYPE>
 {
 
    ASSERT_VALID(this);
-   ASSERT(this->begin().is_set());  // don't call on is_empty list !!!
 
-   auto old = this->begin();
+   ASSERT(this->m_begin.is_set());  // don't call on is_empty list !!!
 
-   ::auto_pointer < ::list_node < TYPE > > pnode(old.m_p);
+   auto pnodeBegin = this->m_begin.m_p;
 
-   this->begin() = old.next();
-
-   if (this->begin())
+   if (!pnodeBegin->m_back.m_p) // this->m_begin.back() must be null,
+      // this is what is expected at the head (this->m_begin)
    {
 
-      this->begin().back() = nullptr;
+      if (!pnodeBegin->m_next.m_p)
+      {
+
+         this->m_begin.m_p = nullptr;
+
+         this->m_end.m_p = nullptr;
+
+         ASSERT(this->m_count == 1);
+
+         this->m_count = 0;
+
+      }
+      else
+      {
+
+         ASSERT(pnodeBegin->m_next.m_p->m_back.m_p == pnodeBegin);
+
+         this->m_begin.m_p = pnodeBegin->m_next.m_p;
+
+         this->m_begin.m_p->m_back.m_p = nullptr;
+
+         this->m_count--;
+
+      }
+
+      return ::transfer(pnodeBegin);
 
    }
    else
    {
 
-      this->m_end = nullptr;
+      throw "this->m_begin isn't pointing to the beggining of list?";
 
    }
-
-   this->m_count--;
-
-   return ::transfer(pnode);
 
 }
 
@@ -896,28 +915,46 @@ template<class TYPE, class ARG_TYPE>
 
    ASSERT(this->m_end.is_set());  // don't call on is_empty list !!!
 
-   auto old = this->m_end;
+   auto pnodeEnd = this->m_end.m_p;
 
-   ::auto_pointer < ::list_node < TYPE > > pnode(old.m_p);
-
-   this->m_end = old.back();
-
-   if (this->m_end)
+   if (!pnodeEnd->m_next.m_p) // this->m_end.next() must be null,
+      // this is what is expected at the tail (this->m_end)
    {
 
-      this->m_end.next() = nullptr;
+      if (!pnodeEnd->m_back.m_p)
+      {
+
+         this->m_end.m_p = nullptr;
+
+         this->m_begin.m_p = nullptr;
+
+         ASSERT(this->m_count == 1);
+
+         this->m_count = 0;
+
+      }
+      else
+      {
+
+         ASSERT(pnodeEnd->m_back.m_p->m_next.m_p == pnodeEnd);
+
+         this->m_end.m_p = pnodeEnd->m_back.m_p;
+
+         this->m_end.m_p->m_next.m_p = nullptr;
+
+         this->m_count--;
+
+      }
+
+      return ::transfer(pnodeEnd);
 
    }
    else
    {
 
-      this->begin() = nullptr;
+      throw "this->m_end isn't pointing to the end of list?";
 
    }
-
-   this->m_count--;
-
-   return ::transfer(pnode);
 
 }
 
@@ -945,28 +982,49 @@ void list<TYPE, ARG_TYPE>::erase_head()
 {
 
    ASSERT_VALID(this);
-   ASSERT(this->begin().is_set());  // don't call on is_empty list !!!
 
-   auto pOld = this->begin();
+   ASSERT(this->m_begin.is_set());  // don't call on is_empty list !!!
 
-   this->begin() = pOld.next();
+   auto pnodeBegin = this->m_begin.m_p;
 
-   if (this->begin())
+   if (!pnodeBegin->m_back.m_p) // this->m_begin.back() must be null,
+      // this is what is expected at the head (this->m_begin)
    {
 
-      this->begin().back() = nullptr;
+      if (!pnodeBegin->m_next.m_p)
+      {
+
+         this->m_begin.m_p = nullptr;
+
+         this->m_end.m_p = nullptr;
+
+         ASSERT(this->m_count == 1);
+
+         this->m_count = 0;
+
+      }
+      else
+      {
+
+         ASSERT(pnodeBegin->m_next.m_p->m_back.m_p == pnodeBegin);
+
+         this->m_begin.m_p = pnodeBegin->m_next.m_p;
+
+         this->m_begin.m_p->m_back.m_p = nullptr;
+
+         this->m_count--;
+
+      }
+
+      delete pnodeBegin;
 
    }
    else
    {
 
-      this->m_end = nullptr;
+      throw "this->m_begin isn't pointing to the beggining of list?";
 
    }
-
-   delete pOld.get();
-
-   this->m_count--;
 
 }
 
@@ -1021,7 +1079,6 @@ void list<TYPE, ARG_TYPE>::erase_tail()
    }
 
 }
-
 
 
 template<class TYPE, class ARG_TYPE>

@@ -19,8 +19,8 @@ namespace fs
 
 
 
-      ::file::path                  m_strTitle;
-      ::pointer<::file::listing_base>   m_plisting;
+      ::file::path                     m_strTitle;
+      ::pointer < ::file::listing >    m_plisting;
 
 
       link();

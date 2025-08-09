@@ -224,7 +224,7 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
    __UNREFERENCED_PARAMETER(pmessage);
 
-   ::file::listing listing;
+   ::file::listing_base listing;
 
    ::user::copydesk::enum_op eop;
 

@@ -30,14 +30,14 @@ namespace fs
       ~remote_native() override;
 
 
-      //virtual bool _enumerates(::file::listing & listing) override;
-      bool enumerate(::file::listing & listing) override;
+      //virtual bool _enumerates(::file::listing_base & listing) override;
+      bool enumerate(::file::listing_base & listing) override;
 
 
       virtual bool has_subdir(const ::file::path & path) override;
       virtual bool fast_has_subdir(const ::file::path & path) override;
       virtual int is_dir(const ::file::path & path) override;
-      virtual ::file::listing & root_ones(::file::listing & listing) override;
+      virtual ::file::listing_base & root_ones(::file::listing_base & listing) override;
 
       //virtual string file_name(const ::file::path & path);
       //virtual string dir_path(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2);

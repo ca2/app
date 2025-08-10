@@ -34,10 +34,11 @@ if(${LINUX})
     add_subdirectory(fs_folder_sync_dropbox)
 endif()
 
-add_dependencies(axis fs_raw_folder_protocol_dropbox)
-
 add_subdirectory(fs_raw_folder_protocol_dropbox)
 add_subdirectory(regular_expression_pcre2)
+
+
+add_dependencies(axis fs_raw_folder_protocol_dropbox)
 
 
 if(INCLUDE_DRAW2D_CAIRO)

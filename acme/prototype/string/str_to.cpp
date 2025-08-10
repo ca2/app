@@ -207,7 +207,7 @@ bool str::to(unsigned int & u, int iBase, const ::scoped_string & scopedstr)
 
    unsigned int uiConversion = ::ansi_to_unsigned_int(scopedstr, &pszEnd, iBase);
 
-   if (pszEnd == scopedstr.c_str())
+   if (pszEnd == scopedstr.as_string().c_str())
    {
 
       return false;

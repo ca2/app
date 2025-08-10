@@ -344,7 +344,7 @@ namespace dl
    void* dynamic_library::raw_get(library_t* plibrary, const ::scoped_string& scopedstrEntryName)
    {
 
-      return dlsym(plibrary, scopedstrEntryName.c_str());
+      return dlsym(plibrary, scopedstrEntryName.as_string().c_str());
 
    }
 

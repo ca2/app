@@ -470,13 +470,13 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 
       strTopic.case_insensitive_begins_eat("struct ");
 
-      strMessage.formatf("%c:%s> %s", trace_level_char(elevel), strTopic.c_str(), scopedstr.c_str());
+      strMessage.formatf("%c:%s> %s", trace_level_char(elevel), strTopic.c_str(), scopedstr.as_string().c_str());
 
    }
    else
    {
 
-      strMessage.formatf("%c> %s", trace_level_char(elevel), scopedstr.c_str());
+      strMessage.formatf("%c> %s", trace_level_char(elevel), scopedstr.as_string().c_str());
 
    }
 

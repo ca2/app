@@ -412,7 +412,7 @@ namespace database
 
       string strSql;
 
-      strSql.formatf("SELECT `%s` FROM `%s` WHERE %s",scopedstrItem.c_str(), table.c_str(), where.c_str());
+      strSql.formatf("SELECT `%s` FROM `%s` WHERE %s",scopedstrItem.as_string().c_str(), table.c_str(), where.c_str());
 
       return database::query_item(payload, strSql);
 

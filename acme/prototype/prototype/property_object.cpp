@@ -603,7 +603,7 @@ string property_object::property_set_evaluate(const ::scoped_string & scopedstr)
 string property_object::property_set_get_evaluation(const ::scoped_string & scopedstr) const
 {
 
-   return property_set_get_string(scopedstr.c_str() + 1);
+   return property_set_get_string(scopedstr.as_string().c_str() + 1);
 
 }
 
@@ -611,7 +611,7 @@ string property_object::property_set_get_evaluation(const ::scoped_string & scop
 bool property_object::property_set_get_evaluation(string & strResult, const ::scoped_string & scopedstr) const
 {
 
-   return property_set_get_string(strResult, scopedstr.c_str() + 1);
+   return property_set_get_string(strResult, scopedstr.as_string().c_str() + 1);
 
 }
 

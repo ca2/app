@@ -76,7 +76,7 @@
 //      return ;
 //   }
       
-//   printf("command: %s\n", scopedstrCommand.c_str());
+//   printf("command: %s\n", scopedstrCommand.as_string().c_str());
    
 //   fflush(stdout);
    

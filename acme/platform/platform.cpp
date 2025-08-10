@@ -950,7 +950,7 @@ g_bWindowingOutputDebugString = true;
       if (factorymapComponent.size() <= 0)
       {
 
-         debugf("No existing factory for component \"%s\".\n", scopedstrComponent.c_str());
+         debugf("No existing factory for component \"%s\".\n", scopedstrComponent.as_string().c_str());
 
          return nullptr;
 
@@ -1048,7 +1048,7 @@ g_bWindowingOutputDebugString = true;
       if (factorymapComponent.size() <= 0)
       {
 
-         debugf("No existing factory for component \"%s\".\n", scopedstrComponent.c_str());
+         debugf("No existing factory for component \"%s\".\n", scopedstrComponent.as_string().c_str());
 
          return nullptr;
 
@@ -1073,7 +1073,7 @@ g_bWindowingOutputDebugString = true;
       if (pfactory)
       {
 
-         debugf("Returning existing factory \"%s\" - \"%s\".\n", scopedstrComponent.c_str(), scopedstrImplementation.c_str());
+         debugf("Returning existing factory \"%s\" - \"%s\".\n", scopedstrComponent.as_string().c_str(), scopedstrImplementation.as_string().c_str());
 
          return pfactory;
 
@@ -1282,7 +1282,7 @@ g_bWindowingOutputDebugString = true;
 
       //auto estatus = plibrary->open(strLibrary);
 
-      debugf("platform::create_library Going to open library \"%s\".", scopedstrLibrary.c_str());
+      debugf("platform::create_library Going to open library \"%s\".", scopedstrLibrary.as_string().c_str());
 
       //information() << "platform::create_library Going to open library \"" << strLibrary << "\".";
 
@@ -1312,7 +1312,7 @@ g_bWindowingOutputDebugString = true;
       //
       // #endif
 
-      printf_line("Library was opened: \"%s\".", scopedstrLibrary.c_str());
+      printf_line("Library was opened: \"%s\".", scopedstrLibrary.as_string().c_str());
 
       return plibrary;
 

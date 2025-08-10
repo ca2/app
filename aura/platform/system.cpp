@@ -6289,7 +6289,7 @@ if(!m_pimaging)
 
       string strMessage;
 
-      strMessage.formatf("system::on_allocation_error Implement \"%s\" allocation\n", scopedstr.c_str());
+      strMessage.formatf("system::on_allocation_error Implement \"%s\" allocation\n", scopedstr.as_string().c_str());
 
       dev_log(strMessage);
 

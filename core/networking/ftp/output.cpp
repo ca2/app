@@ -65,7 +65,7 @@ namespace ftp
 
       string strMessage;
 
-      strMessage.formatf(("%s ==> File \"%s\" (%d)"),scopedstrErrorMsg.c_str(), scopedstrFileName.c_str(), dwLineNr);
+      strMessage.formatf(("%s ==> File \"%s\" (%d)"),scopedstrErrorMsg.as_string().c_str(), scopedstrFileName.as_string().c_str(), dwLineNr);
 
       WriteLine(strMessage, "E");
 
@@ -74,7 +74,7 @@ namespace ftp
    void output::WriteLine(const ::scoped_string & scopedstrLine, const ::scoped_string & scopedstrStatus)
    {
 
-      informationf("%s: %s", scopedstrStatus.c_str(), scopedstrLine.c_str());
+      informationf("%s: %s", scopedstrStatus.as_string().c_str(), scopedstrLine.as_string().c_str());
 
    }
 

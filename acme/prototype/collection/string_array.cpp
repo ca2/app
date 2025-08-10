@@ -137,7 +137,7 @@ CLASS_DECL_ACME bool next_csv(string & str, const_char_pointer &psz)
 void add_csv(string_array_base & stra, const ::scoped_string & scopedstr)
 {
 
-   const_char_pointer psz = scopedstr.c_str();
+   const_char_pointer psz = scopedstr.as_string().c_str();
 
    string strValue;
 

@@ -315,7 +315,7 @@ public:
 
    inline void to_asc(string & str) const { str.assign((const_char_pointer )data(), size()); }
    inline string to_asc() const { string str; to_asc(str); return str; }
-   inline void from_asc(const ::scoped_string & scopedstr) { assign(scopedstr.c_str(), scopedstr.size()); }
+   inline void from_asc(const ::scoped_string & scopedstr) { assign(scopedstr.data(), scopedstr.size()); }
 
    bool operator == (const memory_base & s) const;
    bool operator == (const struct block & block) const ;

@@ -40,6 +40,7 @@ template < character_range RANGE, typed_character_range < typename RANGE::CHARAC
 
 template < character_range RANGE, has_as_string HAS_AS_STRING >
 ::string_base < typename RANGE::const_iterator > operator + (const RANGE& range, const HAS_AS_STRING& has_as_string)
+requires (!character_range < HAS_AS_STRING >)
 {
 
    return ::transfer(::string_base < typename RANGE::const_iterator >(range) + has_as_string.as_string());

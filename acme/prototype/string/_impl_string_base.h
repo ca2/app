@@ -6988,3 +6988,16 @@ inline string_base< ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = 
 
 template < typename ITERATOR_TYPE >
 inline string_base< ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const scoped_wd32_string & wd32str) { assign_range(wd32str); return *this; }
+
+
+
+template < typename ITERATOR_TYPE >
+inline typename scoped_string_base < ITERATOR_TYPE >::STRING scoped_string_base < ITERATOR_TYPE > ::as_string() const
+{
+
+   return *this;
+
+}
+
+
+

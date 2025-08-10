@@ -1011,7 +1011,7 @@ namespace crypto_openssl
 
       unsigned int md_len = 0;
 
-      HMAC(EVP_sha1(), scopedstrKey.c_str(), int(scopedstrKey.length()), (const unsigned char*)(const_char_pointer )scopedstrMessage, (size_t)scopedstrMessage.length(), (unsigned char*)result, &md_len);
+      HMAC(EVP_sha1(), scopedstrKey.as_string().c_str(), int(scopedstrKey.length()), (const unsigned char*)(const_char_pointer )scopedstrMessage, (size_t)scopedstrMessage.length(), (unsigned char*)result, &md_len);
 
 #endif
 

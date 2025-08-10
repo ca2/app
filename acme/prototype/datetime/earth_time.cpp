@@ -639,7 +639,7 @@ return str;
      // #else
       struct tm * ptmTemp = gmtime(&timeUtc);
       //#endif
-      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, scopedstrFormat.c_str(), ptmTemp))
+      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, scopedstrFormat.as_string().c_str(), ptmTemp))
       {
          szBuffer[0] = '\0';
       }

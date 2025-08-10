@@ -103,7 +103,7 @@ bool dialog::show(const ::scoped_string & scopedstrMatter)
 
       string str;
 
-      str.formatf("Could not show dialog %s", scopedstrMatter.c_str());
+      str.formatf("Could not show dialog %s", scopedstrMatter.as_string().c_str());
 
       informationf(str);
 

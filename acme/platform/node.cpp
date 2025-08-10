@@ -2531,7 +2531,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
 
        string strMutex;
 
-       strMutex.formatf("Local\\%s, atom:%s", strApp.c_str(), scopedstrId.c_str());
+       strMutex.formatf("Local\\%s, atom:%s", strApp.c_str(), scopedstrId.as_string().c_str());
 
        return strMutex;
 
@@ -2571,7 +2571,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
 
        string strMutex;
 
-       strMutex.formatf("Global\\%s, atom:%s", strApp.c_str(), scopedstrId.c_str());
+       strMutex.formatf("Global\\%s, atom:%s", strApp.c_str(), scopedstrId.as_string().c_str());
 
        return strMutex;
 

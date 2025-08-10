@@ -374,7 +374,7 @@ bool str::begins_ci_iws(const ::scoped_string & scopedstr, const ::scoped_string
 
    }
 
-   auto pcszPrefix = scopedstrPrefix.c_str();
+   auto pcszPrefix = scopedstrPrefix.as_string().c_str();
 
    while (ansi_char_tolower(*pcsz) == ansi_char_tolower(*pcszPrefix))
    {
@@ -1656,7 +1656,7 @@ character_count str::find_ww(const ::scoped_string & scopedstrOld, const ::scope
 
    }
 
-   auto psz = scopedstrParam.c_str();
+   auto psz = scopedstrParam.as_string().c_str();
 
    const_char_pointer pszIter = &scopedstrParam[iStart];
 
@@ -1704,7 +1704,7 @@ character_count str::find_aww(const ::scoped_string & scopedstrOld, const ::scop
 
    }
 
-   auto psz = scopedstrParam.c_str();
+   auto psz = scopedstrParam.as_string().c_str();
 
    const_char_pointer pszIter = &psz[iStart];
 
@@ -1838,7 +1838,7 @@ bool str::has_digit(const ::scoped_string & scopedstr)
 void str::calc_v1(const ::scoped_string & scopedstrParam, bool & bHasUpper, bool & bHasLower, bool & bHasDigit)
 {
 
-   auto psz = scopedstrParam.c_str();
+   auto psz = scopedstrParam.as_string().c_str();
 
    bHasUpper = false;
    bHasLower = false;
@@ -1965,7 +1965,7 @@ string str::get_word(const ::scoped_string & scopedstr, const ::scoped_string & 
 
    auto psz = str.c_str();
 
-   const_char_pointer pszOld = strstr(psz, scopedstrSeparator.c_str());
+   const_char_pointer pszOld = strstr(psz, scopedstrSeparator.as_string().c_str());
 
    if (pszOld == nullptr)
    {

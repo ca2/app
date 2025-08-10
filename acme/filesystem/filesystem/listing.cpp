@@ -275,7 +275,7 @@ CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array_base & straCri
    for (auto & strCriteria : straCriteria)
    {
 
-      if (matches_wildcard_criteria(strCriteria.c_str(), scopedstrValue.c_str()))
+      if (matches_wildcard_criteria(strCriteria.c_str(), scopedstrValue.as_string().c_str()))
       {
 
          return true;
@@ -309,7 +309,7 @@ CLASS_DECL_ACME bool case_insensitive_matches_wildcard_criteria(const string_arr
 
       }
 
-      if (case_insensitive_matches_wildcard_criteria(strCriteria.c_str(), scopedstrValue.c_str()))
+      if (case_insensitive_matches_wildcard_criteria(strCriteria.c_str(), scopedstrValue.as_string().c_str()))
       {
 
          return true;

@@ -20,7 +20,7 @@ CLASS_DECL_ACME bool equal_ignore_case(const_char_pointer left, const_char_point
 CLASS_DECL_ACME bool str::trimmed_is_empty(const ::scoped_string & scopedstr)
 {
 
-   const_char_pointer psz = scopedstr.c_str();
+   const_char_pointer psz = scopedstr.as_string().c_str();
 
    while (true)
    {
@@ -460,7 +460,7 @@ CLASS_DECL_ACME bool str::namespaced(const_char_pointer psz, const_char_pointer 
 //
 //   auto length = scopedstrPrefix.size();
 //
-//   if (ansi_nicmp(scopedstr, scopedstrPrefix.c_str(), length) != 0)
+//   if (ansi_nicmp(scopedstr, scopedstrPrefix.as_string().c_str(), length) != 0)
 //   {
 //
 //      return false;

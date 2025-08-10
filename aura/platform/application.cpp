@@ -5155,7 +5155,7 @@ retry_license:
       
       string strSchema;
 
-      informationf("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pathRoot.c_str(), scopedstrRelative.c_str(), scopedstrLocale.c_str(), scopedstrStyle.c_str());
+      informationf("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pathRoot.c_str(), scopedstrRelative.as_string().c_str(), scopedstrLocale.as_string().c_str(), scopedstrStyle.as_string().c_str());
 
       ::file::path strRelative = ::file::path(pathRoot) / "_matter" / scopedstrRelative / get_locale_schema_dir(scopedstrLocale, scopedstrStyle) + ".zip";
 

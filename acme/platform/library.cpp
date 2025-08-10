@@ -1034,7 +1034,7 @@ CLASS_DECL_ACME string implementation_name(const ::scoped_string & scopedstrComp
    if (scopedstrImplementation.case_insensitive_begins(scopedstrComponent) && scopedstrImplementation[scopedstrComponent.length()] == '_')
    {
 
-      return scopedstrImplementation.c_str() + scopedstrComponent.size() + 1;
+      return scopedstrImplementation.as_string().c_str() + scopedstrComponent.size() + 1;
 
    }
 

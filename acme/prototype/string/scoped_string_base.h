@@ -53,7 +53,7 @@ public:
       BASE_RANGE(no_initialize_t{})
    {
       //construct_range(str);
-      this->str(str);
+      this->construct_str(str);
 
    }
 
@@ -67,10 +67,10 @@ public:
    //}
 
    template < has_as_string HAS_AS_STRING >
-   scoped_string_base(const HAS_AS_STRING & has_as_string) : BASE_RANGE(nullptr) { this->str(has_as_string.as_string()); }
+   scoped_string_base(const HAS_AS_STRING & has_as_string) : BASE_RANGE(nullptr) { this->construct_str(has_as_string.as_string()); }
 
    template < has_get_string HAS_GET_STRING >
-   scoped_string_base(const HAS_GET_STRING & has_get_string) : BASE_RANGE(nullptr) { this->str(has_get_string.get_string()); }
+   scoped_string_base(const HAS_GET_STRING & has_get_string) : BASE_RANGE(nullptr) { this->construct_str(has_get_string.get_string()); }
 
 //   template < primitive_character CHARACTER2 >
 //   scoped_string_base(CHARACTER2 character) : BASE_RANGE(no_initialize_t{})
@@ -292,6 +292,65 @@ public:
 
    }
 
+
+   scoped_string_base & operator +=(const scoped_string_base & scopedstr)
+   {
+
+      if (this->m_erange & e_range_scoped_ownership
+      && this->m_erange& e_range_string)
+      {
+
+         ((STRING *)this)->append(scopedstr);
+
+      }
+      else
+      {
+
+         auto data = this->data();
+         auto size = this->size();
+         this->m_begin = nullptr;
+         this->m_end = nullptr;
+
+         this->construct_str(string_concatenate(data, size, scopedstr.data(), scopedstr.size()));
+
+      }
+
+   }
+
+
+   void assign_block(const block & block)
+   {
+
+      destroy();
+
+      this->m_begin = (ITERATOR_TYPE) block.m_begin;
+      this->m_end = (ITERATOR_TYPE) block.m_end;
+      this->m_erange = e_range_none;
+
+   }
+
+
+   void assign_string(const STRING & str)
+   {
+
+      if (this->m_erange & e_range_scoped_ownership
+      && this->m_erange& e_range_string)
+      {
+
+         *((STRING *)this) = str;
+
+      }
+      else
+      {
+
+         this->m_begin = nullptr;
+         this->m_end = nullptr;
+
+         construct_str(str);
+      }
+
+   }
+
    //template < character_count n >
    //scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(cha); }
 
@@ -322,24 +381,24 @@ public:
    
    }
 
-   STRING & str(const STRING& str)
-   {
+   // STRING & str(const STRING& str)
+   // {
+   //
+   //    this->destroy();
+   //
+   //    this->construct_str(str);
+   //
+   //    return *(STRING*)this;
+   //
+   // }
 
-      this->destroy();
-      
-      this->construct_str(str);
-   
-      return *(STRING*)this;
 
-   }
-
-
-   STRING & fork()
-   {
-
-      return this->str({this->m_begin, this->m_end});
-
-   }
+   // STRING & fork()
+   // {
+   //
+   //    return this->str({this->m_begin, this->m_end});
+   //
+   // }
 
 
    //template < primitive_character CHARACTER2 >
@@ -385,6 +444,7 @@ public:
 
    }
 
+   STRING as_string() const;
 
    //inline bool operator ==(const ::ansi_string & str) const { return this->equals((const scoped_string_base&)str); }
    //inline bool operator ==(const ::wd16_string & str) const { return this->equals((const scoped_string_base&)str); }
@@ -429,24 +489,24 @@ public:
 
    }
 
-   const CHARACTER * null_terminated() const
-   { 
+   // const CHARACTER * null_terminated() const
+   // {
+   //
+   //    if (!(this->m_erange & e_range_string) && (this->m_erange & e_range_null_terminated))
+   //    {
+   //
+   //       ((scoped_string_base *)this)->fork();
+   //
+   //    }
+   //
+   //    return this->m_begin;
+   //
+   // }
 
-      if (!(this->m_erange & e_range_string) && (this->m_erange & e_range_null_terminated))
-      {
 
-         ((scoped_string_base *)this)->fork();
+   //operator const CHARACTER * () const { return this->null_terminated(); }
 
-      }
-
-      return this->m_begin;
-
-   }
-
-
-   operator const CHARACTER * () const { return this->null_terminated(); }
-
-   const CHARACTER * c_str() const { return this->null_terminated(); }
+   //const CHARACTER * c_str() const { return this->null_terminated(); }
 
 
    ::block as_block() const { return { (unsigned char *)this->begin(), this->size() * sizeof(CHARACTER) }; }

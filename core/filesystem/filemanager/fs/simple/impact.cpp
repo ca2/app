@@ -191,7 +191,7 @@ namespace filemanager
             
             string strFileNameEncoded =  ::url::encode(scopedstrFileName);
 
-            strUrl.formatf("http://file.ca2.network/ifs/get?name=%s&folder=%I64d&extension=.%s",strFileNameEncoded.c_str(), iFolder, scopedstrExtension.c_str());
+            strUrl.formatf("http://file.ca2.network/ifs/get?name=%s&folder=%I64d&extension=.%s",strFileNameEncoded.c_str(), iFolder, scopedstrExtension.as_string().c_str());
 
             //if(m_prequestinterface != nullptr)
             //{

@@ -315,7 +315,7 @@ string object::as_string() const
 void object::dev_log(const ::scoped_string & scopedstrMessage)
 {
 
-   information() << scopedstrMessage.c_str();
+   information() << scopedstrMessage.as_string().c_str();
 
 //#ifdef _DEBUG
 //

@@ -2834,15 +2834,27 @@ bool base_socket::SetSoKeepalive(bool x)
          int x = i;
          for (; i < n && LineProtocol(); i++)
          {
+            auto pNextLine = strpbrk(buf + i, "\r\n");
+            if (pNextLine) i = pNextLine - buf;
             while ((buf[i] == 13 || buf[i] == 10) && LineProtocol())
             {
                char c = buf[i];
                buf[i] = 0;
                if (buf[x])
                {
-                  m_line += (buf + x);
+                  if (m_scopedstrLine.has_character())
+                  {
+                     ::string str(m_scopedstrLine + ::string(buf + x, i - x));
+                     m_scopedstrLine.destroy();
+                     m_scopedstrLine = str;
+                  }
+                  else
+                  {
+                     m_scopedstrLine.destroy();
+                     m_scopedstrLine.construct_str({buf + x, i - x});
+                  }
                }
-               OnLine( m_line );
+               OnLine( m_scopedstrLine);
                if(IsCloseAndDelete())
                   break;
                i++;
@@ -2854,7 +2866,8 @@ bool base_socket::SetSoKeepalive(bool x)
                   i++;
                }
                x = i;
-               m_line = "";
+               m_scopedstrLine.destroy();
+               m_scopedstrLine.construct_str("");
             }
             if (!LineProtocol())
             {
@@ -2893,7 +2906,8 @@ bool base_socket::SetSoKeepalive(bool x)
          else if (buf[x])
          {
 
-            m_line += (buf + x);
+            m_scopedstrLine.destroy();
+            m_scopedstrLine.construct_str({buf + x, string_safe_length(buf+x)});
 
          }
 

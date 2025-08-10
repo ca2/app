@@ -352,7 +352,7 @@ namespace acme
 
          ::string strCommand;
 
-         strCommand.formatf("command -v %s", scopedstrCommand.c_str());
+         strCommand.formatf("command -v %s", scopedstrCommand.as_string().c_str());
 
          ::string strOutput;
 
@@ -427,7 +427,7 @@ namespace acme
 
             ::string strLine;
             
-            strLine.append_formatf("Retrying to install_posix_shell_command(\"%s\",...) Attempt no. %d...", scopedstr.c_str(), iTry + 2);
+            strLine.append_formatf("Retrying to install_posix_shell_command(\"%s\",...) Attempt no. %d...", scopedstr.as_string().c_str(), iTry + 2);
 
             tracefunction(e_trace_level_warning, strOutput, false);
 
@@ -442,7 +442,7 @@ namespace acme
       ::string strMessage;
 
       strMessage.formatf("Failed to install command \"%s\" after %d attempts with output: \"%s\"",
-         scopedstr.c_str(), iTry, strOutput.c_str());
+         scopedstr.as_string().c_str(), iTry, strOutput.c_str());
 
       tracefunction(e_trace_level_error, strMessage, false);
 

@@ -274,7 +274,7 @@ namespace mysql
       try
       {
 
-         if (mysql_query((MYSQL*)m_pmysql, scopedstrSql.c_str()) != 0) /* the statement failed */
+         if (mysql_query((MYSQL*)m_pmysql, scopedstrSql.as_string().c_str()) != 0) /* the statement failed */
          {
 
             if (m_pmysql == nullptr || mysql_errno(m_pmysql) == 2006) // MySQL server has gone away
@@ -291,7 +291,7 @@ namespace mysql
 
                }
 
-               if (mysql_query((MYSQL*)m_pmysql, scopedstrSql.c_str()) != 0) /* the statement failed */
+               if (mysql_query((MYSQL*)m_pmysql, scopedstrSql.as_string().c_str()) != 0) /* the statement failed */
                {
 
                   trace_error1("Could not execute statement");
@@ -895,7 +895,7 @@ namespace mysql
    string database::escape(const ::scoped_string & scopedstr)
    {
 
-      return escape(scopedstr.c_str(), scopedstr.length());
+      return escape(scopedstr.as_string().c_str(), scopedstr.length());
 
    }
 

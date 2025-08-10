@@ -720,7 +720,7 @@ pdirectorysystem->is(strPath))
 
             string str = file()->as_string(imagekey.m_strPath);
 
-            string_array stra;
+            string_array_base stra;
 
             stra.add_lines(str);
 

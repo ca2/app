@@ -47,7 +47,7 @@ namespace platform
       virtual ::string system_options_main_body();
 
 
-      //virtual void defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId);
+      //virtual void defer_create_main_menu(const string_array_base & straParent, const string_array_base & straMenu, const string_array_base & straId);
 
 
 //      virtual void set_main_menu(application_menu * pmenu, ::apex::application * papp);

@@ -34,7 +34,7 @@ namespace databaseuser
    void data_key_mesh_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       if (!datastream()->get(::atom(), stra))
       {
@@ -50,10 +50,10 @@ namespace databaseuser
    }
 
 
-   void data_key_mesh_data::GetSel(::user::list * plist, string_array & stra)
+   void data_key_mesh_data::GetSel(::user::list * plist, string_array_base & stra)
    {
       
-      string_array wstraTotal;
+      string_array_base wstraTotal;
 
       if (!datastream()->get(::atom(), wstraTotal))
       {
@@ -78,16 +78,16 @@ namespace databaseuser
 
    ::collection::count data_key_mesh_data::_001GetItemCount()
    {
-      string_array straTotal;
+      string_array_base straTotal;
       if(!datastream()->get(::atom(), straTotal))
          return -1;
       return straTotal.get_size();
    }
 
 
-   bool data_key_mesh_data::add_unique(const string_array & stra)
+   bool data_key_mesh_data::add_unique(const string_array_base & stra)
    {
-      string_array straData;
+      string_array_base straData;
       datastream()->get(::atom(), straData);
       straData.append_unique(stra);
       datastream()->set(::atom(), straData);
@@ -96,9 +96,9 @@ namespace databaseuser
       return true;
    }
 
-   bool data_key_mesh_data::erase(const string_array & stra)
+   bool data_key_mesh_data::erase(const string_array_base & stra)
    {
-      string_array straData;
+      string_array_base straData;
       if(!datastream()->get(::atom(), straData))
          return true;
       straData.erase(stra);

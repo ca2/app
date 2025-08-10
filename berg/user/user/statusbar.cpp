@@ -92,7 +92,7 @@ namespace user
       return ::user::control_bar::pre_create_window(pusersystem);
    }
 
-   bool status_bar::SetIndicators(string_array & stra)
+   bool status_bar::SetIndicators(string_array_base & stra)
    {
       ASSERT_VALID(this);
       ASSERT(stra.get_count() >= 1);  // must be at least one of them

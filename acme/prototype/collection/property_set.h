@@ -33,7 +33,7 @@ public:
 
 
    ::collection::count erase_by_name(const ::atom & atom);
-   ::collection::count erase_by_name(string_array & straName);
+   ::collection::count erase_by_name(string_array_base & straName);
 
    virtual ::particle * source_channel();
 
@@ -363,13 +363,13 @@ public:
    void _008ParseCommandLine(const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile);
    void _008ParseCommandFork(const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile, string & strApp);
    void _008Parse(bool bApp, const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile, string & strApp);
-   void _008AddArgumentPairs(::string_array & straArguments);
+   void _008AddArgumentPairs(::string_array_base & straArguments);
    void _008AddArgumentOrFile(::payload & payloadFile, const ::scoped_string & scopedstrArgument);
    void _008AddArgument(const ::scoped_string & scopedstrArgument);
    void _008Add(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrValue);
 
-   void _008ParseCommandArguments(string_array & straArguments, ::payload & payloadFile, string & strApp);
-   void _008ParseArguments(bool bApp, string_array & straArguments, ::payload & payloadFile, string & strApp);
+   void _008ParseCommandArguments(string_array_base & straArguments, ::payload & payloadFile, string & strApp);
+   void _008ParseArguments(bool bApp, string_array_base & straArguments, ::payload & payloadFile, string & strApp);
 
 
    void clear();
@@ -388,7 +388,7 @@ public:
 
    void parse_ini(const ::scoped_string & scopedstrIni);
    ::string get_ini() const;
-   ::string_array get_ini_lines() const;
+   ::string_array_base get_ini_lines() const;
    void parse_standard_configuration(const ::scoped_string & scopedstrStandardConfiguration);
    //void parse_ini_file(const ::file::path& path);
    //void parse_ini_folder(const ::file::path& path);
@@ -404,7 +404,7 @@ public:
    string & get_network_payload(string & str, bool bNewLine = true) const;
    string get_network_arguments() const { string str; return get_network_arguments(str); }
    string get_network_payload() const { string str; return get_network_payload(str); }
-   string get_command_line(const string_array & straKeys) const;
+   string get_command_line(const string_array_base & straKeys) const;
    string get_command_line() const;
 
 
@@ -459,7 +459,7 @@ public:
    }
 
 
-   void parse_environment_variable(const string_array & straEnvironment);
+   void parse_environment_variable(const string_array_base & straEnvironment);
 
 
 };

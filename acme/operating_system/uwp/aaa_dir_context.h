@@ -34,13 +34,13 @@ namespace universal_windows
       //virtual string path(const ::scoped_string & scopedstrFolder,character_count iLenFolder,const ::scoped_string & scopedstrRelative,character_count iLenRelative,const ::scoped_string & scopedstr2,character_count iLen2,bool bUrl);
 
       //virtual string relpath(const char * lpcszSource,const char * lpcszRelative,const char * lpcsz2 = nullptr);
-      //virtual bool  ls_pattern(const ::scoped_string & scopedstr,const char * lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,bool_array * pbaIsDir = nullptr,long_long_array * piaSize = nullptr);
+      //virtual bool  ls_pattern(const ::scoped_string & scopedstr,const char * lpcszPattern,string_array_base * pstraPath = nullptr,string_array_base * pstraTitle = nullptr,bool_array * pbaIsDir = nullptr,long_long_array * piaSize = nullptr);
       virtual ::file::listing & ls(::file::listing & listing) override;
-      //virtual bool  rls_pattern(const ::scoped_string & scopedstr,const char * lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,bool_array * pbaIsDir = nullptr,long_long_array * piaSize = nullptr,enum_extract eextract = e_extract_first);
-      //virtual bool  rls(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,enum_extract eextract = e_extract_first);
-      //virtual bool  rls_dir(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr);
-      //virtual bool  ls_dir(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);
-      //virtual bool  ls_file(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);
+      //virtual bool  rls_pattern(const ::scoped_string & scopedstr,const char * lpcszPattern,string_array_base * pstraPath = nullptr,string_array_base * pstraTitle = nullptr,string_array_base * pstraRelative = nullptr,bool_array * pbaIsDir = nullptr,long_long_array * piaSize = nullptr,enum_extract eextract = e_extract_first);
+      //virtual bool  rls(const ::scoped_string & scopedstr,string_array_base * pstraPath = nullptr,string_array_base * pstraTitle = nullptr,string_array_base * pstraRelative = nullptr,enum_extract eextract = e_extract_first);
+      //virtual bool  rls_dir(const ::scoped_string & scopedstr,string_array_base * pstraPath = nullptr,string_array_base * pstraTitle = nullptr,string_array_base * pstraRelative = nullptr);
+      //virtual bool  ls_dir(const ::scoped_string & scopedstr,string_array_base * pstraPath = nullptr,string_array_base * pstraTitle = nullptr);
+      //virtual bool  ls_file(const ::scoped_string & scopedstr,string_array_base * pstraPath = nullptr,string_array_base * pstraTitle = nullptr);
       virtual bool  is_impl(const ::file::path & path) override;
       //virtual bool  is(const ::scoped_string & scopedstr);
       virtual bool  name_is(const ::file::path & str);

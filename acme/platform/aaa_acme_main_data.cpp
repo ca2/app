@@ -226,7 +226,7 @@ void apex_main_data::on_system_construct()
 #elif defined(UNIVERSAL_WINDOWS)
 
 
-void apex_main_data::system_construct(const ::string_array & straParam)
+void apex_main_data::system_construct(const ::string_array_base & straParam)
 {
 
    //m_poslocal = nullptr;

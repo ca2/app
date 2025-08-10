@@ -159,7 +159,7 @@ int                 cy)
 }
 
 
-//void imaging::GetMultiLineTextExtent(HDC hDC,string_array * pArray,LPSIZE32 pSize)
+//void imaging::GetMultiLineTextExtent(HDC hDC,string_array_base * pArray,LPSIZE32 pSize)
 //
 //{
 //
@@ -204,7 +204,7 @@ int                 cy)
 //}
 //
 
-//void imaging::DrawMultiLineText(HDC hDC,string_array * pArray)
+//void imaging::DrawMultiLineText(HDC hDC,string_array_base * pArray)
 //{
 //
 //#ifdef WINDOWS_DESKTOP

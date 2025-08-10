@@ -136,8 +136,8 @@ NAMESPACE_END(detail)
       {
          ASSERT(m_pscreen);
          m_pwindow = ___new Window(m_pscreen, title);
-         int_array ia1{ 10, 0, 10, 0 };
-         int_array ia2;
+         int_array_base ia1{ 10, 0, 10, 0 };
+         int_array_base ia2;
          m_playout = ___new AdvancedGridLayout(ia1, ia2);
          m_playout->set_margin(10);
          m_playout->set_col_stretch(2, 1);

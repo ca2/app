@@ -390,7 +390,7 @@
 //   }
 //
 //
-//   void ::str::get(string_array & stra, const str_context * pcontext, const ::atom & atom) const
+//   void ::str::get(string_array_base & stra, const str_context * pcontext, const ::atom & atom) const
 //   {
 //
 //      _get(stra, pcontext, atom);
@@ -399,7 +399,7 @@
 //
 //      ::collection::index i = 0;
 //
-//      string_array stra2;
+//      string_array_base stra2;
 //
 //      do
 //      {
@@ -421,7 +421,7 @@
 //   }
 //
 //
-//   void ::str::_get(string_array & stra, const str_context * pcontext, const ::atom & atom) const
+//   void ::str::_get(string_array_base & stra, const str_context * pcontext, const ::atom & atom) const
 //   {
 //
 //      if (pcontext == nullptr)
@@ -1039,12 +1039,12 @@
 //
 //
 //
-//   bool str_context::match(string_array & stra, const ::scoped_string & scopedstr, atom idExpression, atom idRoot) const
+//   bool str_context::match(string_array_base & stra, const ::scoped_string & scopedstr, atom idExpression, atom idRoot) const
 //   {
 //
 //      synchronous_lock synchronouslock(this->synchronization());
 //
-//      string_array straCandidate;
+//      string_array_base straCandidate;
 //
 //      get(straCandidate,idRoot);
 //
@@ -1059,7 +1059,7 @@
 //
 //         strExp.replace("%1",strCandidate);
 //
-//         string_array straResult;
+//         string_array_base straResult;
 //
 //         auto pregex = ::auraacmesystem()->create_regular_expression("pcre", strExp);
 //

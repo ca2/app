@@ -46,7 +46,7 @@ namespace menu
 
       void add_item(::menu::item * pitem);
       ::menu::item * separator();
-      bool create_menu(const string_array & straCommand, const string_array & straCommandTitle);
+      bool create_menu(const string_array_base & straCommand, const string_array_base & straCommandTitle);
       bool load_menu(::xml::node * pxmlnode);
       bool load_menu(::xml::node * pxmlnode, int iLevel);
 

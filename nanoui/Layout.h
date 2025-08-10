@@ -337,7 +337,7 @@ namespace nanoui
 
 
       // Compute the maximum row and column sizes
-      void compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array * grid, bool bRecalcTextSize) const;
+      void compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array_base * grid, bool bRecalcTextSize) const;
 
    };
 
@@ -413,10 +413,10 @@ namespace nanoui
 
 
       /// The columns of this AdvancedGridLayout.
-      ::int_array m_cols;
+      ::int_array_base m_cols;
 
       /// The rows of this AdvancedGridLayout.
-      ::int_array m_rows;
+      ::int_array_base m_rows;
 
       /// The stretch for each column of this AdvancedGridLayout.
       ::float_array m_col_stretch;
@@ -432,7 +432,7 @@ namespace nanoui
 
 
       /// Creates an AdvancedGridLayout with specified columns, rows, and margin.
-      AdvancedGridLayout(const ::int_array& cols = {}, const ::int_array& rows = {}, int margin = 0);
+      AdvancedGridLayout(const ::int_array_base& cols = {}, const ::int_array_base& rows = {}, int margin = 0);
 
       /// The margin of this AdvancedGridLayout.
       int margin() const { return m_iMargin; }
@@ -487,7 +487,7 @@ namespace nanoui
       virtual void perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       // Compute the maximum row and column sizes
-      void compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array* grid);
+      void compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array_base* grid);
 
    };
 

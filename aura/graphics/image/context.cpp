@@ -433,7 +433,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::load_matter_icon(string_array& straMatter, const ::scoped_string & scopedstrIcon)
+   ::image::image_pointer image_context::load_matter_icon(string_array_base& straMatter, const ::scoped_string & scopedstrIcon)
    {
 
       ::image::image_pointer pimage;
@@ -648,7 +648,7 @@ namespace image
    }
 
 
-   void image_context::_load_matter_icon(::image::image* pimage, string_array& straMatter, const ::scoped_string & scopedstrIcon)
+   void image_context::_load_matter_icon(::image::image* pimage, string_array_base& straMatter, const ::scoped_string & scopedstrIcon)
    {
 
       ::file::path path;

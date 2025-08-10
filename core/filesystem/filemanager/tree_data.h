@@ -105,7 +105,7 @@ namespace filemanager
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
       DECLARE_MESSAGE_HANDLER(_001OnMainPostMessage);
-      void GetSelectedFilePath(string_array & stra);
+      void GetSelectedFilePath(string_array_base & stra);
       virtual bool _001IsTranslucent() override;
 
 

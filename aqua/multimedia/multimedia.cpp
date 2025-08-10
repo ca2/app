@@ -68,7 +68,7 @@ namespace aqua
    }
 
 
-   void multimedia::on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array & straTitle, string_array_array & straaTitle)
+   void multimedia::on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array_base & straTitle, string_array_array_base & straaTitle)
    {
 
 
@@ -98,10 +98,10 @@ namespace aqua
    }
 
 
-   string_array multimedia::detect_language(const ::scoped_string & scopedstr)
+   string_array_base multimedia::detect_language(const ::scoped_string & scopedstr)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       return stra;
 

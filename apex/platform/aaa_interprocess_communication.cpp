@@ -406,7 +406,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 //
 //   string strMember;
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   property_set propertyset;
 //
@@ -648,7 +648,7 @@ atom_array interprocess_intercommunication::get_pid(const ::scoped_string & scop
 
 #else
 
-   string_array stra;
+   string_array_base stra;
 
    ::file::path pathModule;
 
@@ -669,7 +669,7 @@ repeat:
 
    }
 
-   string_array stra2;
+   string_array_base stra2;
 
    ::int_array iaPid2;
 
@@ -683,7 +683,7 @@ repeat:
       if (str.has_character())
       {
 
-         string_array a;
+         string_array_base a;
 
          a.explode("|", str);
 
@@ -760,7 +760,7 @@ void interprocess_intercommunication::defer_add_module(const ::scoped_string & s
 
    m_straModule.add_lines(strModuleList);
 
-   string_array stra2;
+   string_array_base stra2;
 
    ::int_array iaPid2;
 
@@ -776,7 +776,7 @@ void interprocess_intercommunication::defer_add_module(const ::scoped_string & s
       if (str.has_character())
       {
 
-         string_array a;
+         string_array_base a;
 
          a.explode("|", str);
 
@@ -818,7 +818,7 @@ void interprocess_intercommunication::defer_add_module(const ::scoped_string & s
 
    }
 
-   string_array straUnique;
+   string_array_base straUnique;
 
    forallref(m_straModule)
    {

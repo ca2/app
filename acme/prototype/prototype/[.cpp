@@ -211,7 +211,7 @@ payload::payload(const ::file::path & path)
 }
 
 
-payload::payload(const string_array & payload)
+payload::payload(const string_array_base & payload)
 {
 
    m_etype  = e_type_new;
@@ -220,7 +220,7 @@ payload::payload(const string_array & payload)
 }
 
 
-payload::payload(const ::int_array & ia)
+payload::payload(const ::int_array_base & ia)
 {
 
    m_etype  = e_type_new;
@@ -1336,7 +1336,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
 }
 
 
-class ::payload & payload::operator = (const ::int_array & ia)
+class ::payload & payload::operator = (const ::int_array_base & ia)
 {
 
    ia_reference() = ia;
@@ -1356,7 +1356,7 @@ class ::payload & payload::operator = (const class memory & memoryParam)
 }
 
 
-class ::payload & payload::operator = (const string_array & straParam)
+class ::payload & payload::operator = (const string_array_base & straParam)
 {
 
    stra_reference() = straParam;
@@ -1696,7 +1696,7 @@ bool payload::is_empty() const
    case e_type_property_set:
       return ::is_null(m_ppropertyset) || m_ppropertyset->is_empty();
    case e_type_long_long_array:
-      return ::is_null(m_pi64a) || m_pi64a->is_empty();
+      return ::is_null(m_plonglonga) || m_plonglonga->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case e_type_path:
@@ -3544,7 +3544,7 @@ payload::operator ::file::path() const
 }
 
 
-string_array payload::stra() const
+string_array_base payload::stra() const
 {
 
    if (m_etype == e_type_payload_pointer)
@@ -3562,7 +3562,7 @@ string_array payload::stra() const
    else if (m_etype != e_type_string_array)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       try
       {
@@ -3592,9 +3592,9 @@ string_array payload::stra() const
    else if (::is_null(m_pstra))
    {
 
-      //m_pstra = ___new string_array();
+      //m_pstra = ___new string_array_base();
 
-      return string_array();
+      return string_array_base();
 
    }
 
@@ -3603,7 +3603,7 @@ string_array payload::stra() const
 }
 
 
-string_array & payload::stra_reference()
+string_array_base & payload::stra_reference()
 {
 
    if (m_etype == e_type_payload_pointer)
@@ -3621,7 +3621,7 @@ string_array & payload::stra_reference()
    else if (m_etype != e_type_string_array)
    {
 
-      auto pstra = ___new string_array();
+      auto pstra = ___new string_array_base();
 
       try
       {
@@ -3649,7 +3649,7 @@ string_array & payload::stra_reference()
    else if(::is_null(m_pstra))
    {
 
-      m_pstra = ___new string_array();
+      m_pstra = ___new string_array_base();
 
    }
 
@@ -3658,7 +3658,7 @@ string_array & payload::stra_reference()
 }
 
 
-::int_array payload::ia() const
+::int_array_base payload::ia() const
 {
 
    if (m_etype == e_type_payload_pointer)
@@ -3676,7 +3676,7 @@ string_array & payload::stra_reference()
    else if (m_etype != e_type_int_array)
    {
 
-      ::int_array ia;
+      ::int_array_base ia;
 
       try
       {
@@ -3702,7 +3702,7 @@ string_array & payload::stra_reference()
    else if (::is_null(m_pia))
    {
 
-      return ::int_array();
+      return ::int_array_base();
 
    }
 
@@ -3711,7 +3711,7 @@ string_array & payload::stra_reference()
 }
 
 
-::int_array & payload::ia_reference()
+::int_array_base & payload::ia_reference()
 {
 
    if (m_etype == e_type_payload_pointer)
@@ -3729,7 +3729,7 @@ string_array & payload::stra_reference()
    else if(m_etype != e_type_int_array)
    {
 
-      auto pia = ___new ::int_array ();
+      auto pia = ___new ::int_array_base ();
 
       try
       {
@@ -3757,7 +3757,7 @@ string_array & payload::stra_reference()
    else if (::is_null(m_pia))
    {
 
-      m_pia = ___new ::int_array ();
+      m_pia = ___new ::int_array_base ();
 
    }
 
@@ -3766,7 +3766,7 @@ string_array & payload::stra_reference()
 }
 
 
-long_long_array payload::i64a() const
+long_long_array_base payload::i64a() const
 {
 
    if (m_etype == e_type_payload_pointer)
@@ -3784,7 +3784,7 @@ long_long_array payload::i64a() const
    else if (m_etype != e_type_long_long_array)
    {
 
-      long_long_array i64a;
+      long_long_array_base i64a;
 
       try
       {
@@ -3806,25 +3806,25 @@ long_long_array payload::i64a() const
 
       //set_type(e_type_long_long_array, false);
 
-      //m_pi64a = pia64;
+      //m_plonglonga = pia64;
 
       return i64a;
 
    }
-   else if (::is_null(m_pi64a))
+   else if (::is_null(m_plonglonga))
    {
 
-      //m_pi64a = ___new long_long_array();
-      return long_long_array();
+      //m_plonglonga = ___new long_long_array_base();
+      return long_long_array_base();
 
    }
 
-   return *m_pi64a;
+   return *m_plonglonga;
 
 }
 
 
-long_long_array & payload::i64a_reference()
+long_long_array_base & payload::i64a_reference()
 {
 
    if (m_etype == e_type_payload_pointer)
@@ -3842,7 +3842,7 @@ long_long_array & payload::i64a_reference()
    else if(m_etype != e_type_long_long_array)
    {
 
-      auto pia64  = ___new long_long_array();
+      auto pia64  = ___new long_long_array_base();
 
       try
       {
@@ -3864,17 +3864,17 @@ long_long_array & payload::i64a_reference()
 
       set_type(e_type_long_long_array, false);
 
-      m_pi64a = pia64;
+      m_plonglonga = pia64;
 
    }
-   else if(::is_null(m_pi64a))
+   else if(::is_null(m_plonglonga))
    {
 
-      m_pi64a = ___new long_long_array();
+      m_plonglonga = ___new long_long_array_base();
 
    }
 
-   return *m_pi64a;
+   return *m_plonglonga;
 
 }
 
@@ -3970,7 +3970,7 @@ time & payload::time_reference()
 }
 
 
-//string_array payload::stra() const
+//string_array_base payload::stra() const
 //{
 //
 //   return ((::payload *)this)->stra();
@@ -3978,7 +3978,7 @@ time & payload::time_reference()
 //}
 //
 
-//const ::int_array & payload::ia() const
+//const ::int_array_base & payload::ia() const
 //{
 //
 //   return ((::payload *)this)->ia();
@@ -3986,7 +3986,7 @@ time & payload::time_reference()
 //}
 
 
-//const long_long_array & payload::i64a() const
+//const long_long_array_base & payload::i64a() const
 //{
 //
 //   return ((::payload *)this)->int64a();
@@ -5584,7 +5584,7 @@ bool payload::is_natural() const
 //   else if (m_etype == e_type_long_long_array)
 //   {
 //
-//      return m_pi64a != nullptr && (m_pi64a->get_count() >= 2 || (m_pi64a->get_count() == 1 && !m_pi64a->element_at(0)));
+//      return m_plonglonga != nullptr && (m_plonglonga->get_count() >= 2 || (m_plonglonga->get_count() == 1 && !m_plonglonga->element_at(0)));
 //
 //   }
 //   else if (m_etype == e_type_string_array)
@@ -6183,7 +6183,7 @@ void payload::parse_network_payload(const_char_pointer &pszJson, const_char_poin
       if(str.case_insensitive_begins_eat("hls://"))
       {
 
-         string_array stra;
+         string_array_base stra;
 
          stra.explode(":", str);
 
@@ -6939,7 +6939,7 @@ bool payload::is_false() const
    case e_type_property_set:
       return ::is_null(m_ppropertyset) || m_ppropertyset->is_empty();
    case e_type_long_long_array:
-      return ::is_null(m_pi64a) || m_pi64a->is_empty();
+      return ::is_null(m_plonglonga) || m_plonglonga->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case e_type_path:
@@ -7125,7 +7125,7 @@ bool payload::is_set_false() const
    case e_type_property_set:
       return ::is_null(m_ppropertyset) || m_ppropertyset->is_empty();
    case e_type_long_long_array:
-      return ::is_null(m_pi64a) || m_pi64a->is_empty();
+      return ::is_null(m_plonglonga) || m_plonglonga->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case e_type_path:
@@ -7237,7 +7237,7 @@ bool payload::is_bool_false() const
 // try to set string scalar if suitable.
 // no machine if source string array stream empty
 // and avoid duplicate
-void payload::_001Add(const string_array & straParam)
+void payload::_001Add(const string_array_base & straParam)
 {
 
    if(straParam.get_count() <= 0)

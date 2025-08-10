@@ -191,8 +191,8 @@ bool ftpfs::enumerate(::file::listing_base & listing)
    //::file::path_array_base  straDirName;
    //::file::path_array_base  straFile;
    //::file::path_array_base  straFileName;
-   //long_long_array    iaFileSize;
-   //long_long_array    iaFolderSize;
+   //long_long_array_base    iaFileSize;
+   //long_long_array_base    iaFolderSize;
    //bool_array     baFileDir;
    //bool_array     baFolderDir;
 

@@ -147,7 +147,7 @@ namespace zip
    }
 
 
-   bool in_file::unzip_open(::file::file * pfile, const string_array & straPath, int iBufferLevel, ::file::enum_type * petype)
+   bool in_file::unzip_open(::file::file * pfile, const string_array_base & straPath, int iBufferLevel, ::file::enum_type * petype)
    {
 
       m_filea.erase_all();
@@ -680,7 +680,7 @@ namespace zip
       unzFile pf = infile.get_zip_file()->m_pfUnzip;
       string str;
       string wstrFolder;
-      string_array wstraFolder;
+      string_array_base wstraFolder;
 
       unz_file_info fi;
 
@@ -739,7 +739,7 @@ namespace zip
       unzFile pf = infile.get_zip_file()->m_pfUnzip;
       string str;
       string wstrFolder;
-      string_array wstraFolder;
+      string_array_base wstraFolder;
 
       unz_file_info fi;
 

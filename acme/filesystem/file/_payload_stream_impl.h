@@ -47,8 +47,8 @@
 //inline void __exchange(::payload_stream& s, ::property& property) { s.default_exchange(property); }
 //inline void __exchange(::payload_stream& s, ::property_set & set) { s.default_exchange(set); }
 //inline void __exchange(::payload_stream& s, ::block& block) { s.default_exchange(block); }
-//inline void __exchange(::payload_stream& s, ::int_array& ia) { s.default_exchange(ia); }
-//inline void __exchange(::payload_stream& s, ::string_array& stra) { s.default_exchange(stra); }
+//inline void __exchange(::payload_stream& s, ::int_array_base& ia) { s.default_exchange(ia); }
+//inline void __exchange(::payload_stream& s, ::string_array_base& stra) { s.default_exchange(stra); }
 //inline void __exchange(::payload_stream& s, ::memory& memory) { s.default_exchange(memory); }
 //
 //

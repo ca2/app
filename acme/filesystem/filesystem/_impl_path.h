@@ -392,7 +392,7 @@ namespace file
    //   }
 
 
-   //inline void path::split(string_array& patha) const
+   //inline void path::split(string_array_base& patha) const
    //{
 
    //   ascendants_name(patha);
@@ -406,7 +406,7 @@ namespace file
    //{
 
 
-   //   string_array patha;
+   //   string_array_base patha;
 
    //   ascendants_name(patha);
 
@@ -437,7 +437,7 @@ namespace file
    //}
 
 
-   //inline string_array& path::ascendants_name(string_array& straParam) const
+   //inline string_array_base& path::ascendants_name(string_array_base& straParam) const
    //{
 
    //   string strPath = *this;
@@ -592,7 +592,7 @@ namespace file
 
 
 
-   //   path_array path::operator / (const string_array & stra) const
+   //   path_array path::operator / (const string_array_base & stra) const
    //   {
    //
    //      path_array patha;
@@ -793,7 +793,7 @@ namespace file
    }
 
    
-   inline void path::defer_set_extension(const ::string_array& straPreserveExtensions)
+   inline void path::defer_set_extension(const ::string_array_base& straPreserveExtensions)
    {
 
       defer_set_extension(straPreserveExtensions, {});
@@ -802,7 +802,7 @@ namespace file
 
 
 
-   inline void path::defer_set_extension(const ::string_array& straPreserveExtensions, const ::string_array & straRelatedExtensions)
+   inline void path::defer_set_extension(const ::string_array_base& straPreserveExtensions, const ::string_array_base & straRelatedExtensions)
    {
 
       if (straPreserveExtensions.is_empty())
@@ -925,7 +925,7 @@ namespace file
    }
 
 
-   inline ::file::path path::with_deferred_extension(const ::string_array& straPreserveExtensions) const
+   inline ::file::path path::with_deferred_extension(const ::string_array_base& straPreserveExtensions) const
    {
 
       return with_deferred_extension(straPreserveExtensions, {});
@@ -941,7 +941,7 @@ namespace file
    }
 
 
-   inline ::file::path path::with_deferred_extension(const ::string_array & straPreserveExtensions, const ::string_array& straRelatedExtensions) const
+   inline ::file::path path::with_deferred_extension(const ::string_array_base & straPreserveExtensions, const ::string_array_base& straRelatedExtensions) const
    {
 
       ::file::path path(*this);
@@ -1476,7 +1476,7 @@ namespace file
 //    //inline string path::extension() const { return &m_pdata[find_skip_or_length('.', rear_find(sep()) + 1)]; }
 //    inline string path::final_extension() const { return file_path_final_extension(operator const_char_pointer ()); }
 //    //inline patha path::ascendants_path() const { patha patha; return ascendants_path(patha); }
-//    //inline string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
+//    //inline string_array_base path::ascendants_name() const { string_array_base patha; return ascendants_name(patha); }
 //    //   inline path path::folder() const { return ::file_path_folder(*this); }
 //    //inline bool path::operator == (const ::payload & payload) const { return operator == (string(payload)); }
 //    //inline bool path::operator != (const ::payload & payload) const { return operator != (string(payload)); }

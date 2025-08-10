@@ -24,7 +24,7 @@ namespace filehandler
    bool library::handles_extension(const ::scoped_string & scopedstrExtension)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       get_extension_list(stra);
 
@@ -39,7 +39,7 @@ namespace filehandler
    bool library::handles_mime_type(const ::scoped_string & scopedstrMimeType)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       get_mime_type_list(stra);
 
@@ -51,13 +51,13 @@ namespace filehandler
    }
 
 
-   void library::get_extension_app(string_array & straAppId, const ::scoped_string & scopedstrExtension)
+   void library::get_extension_app(string_array_base & straAppId, const ::scoped_string & scopedstrExtension)
    {
 
       if(!handles_extension(scopedstrExtension))
          return;
 
-      string_array stra;
+      string_array_base stra;
 
       throw todo;
 
@@ -70,13 +70,13 @@ namespace filehandler
 
    }
 
-   void library::get_mime_type_app(string_array & straAppId, const ::scoped_string & scopedstrMimeType)
+   void library::get_mime_type_app(string_array_base & straAppId, const ::scoped_string & scopedstrMimeType)
    {
 
       if(!handles_mime_type(scopedstrMimeType))
          return;
 
-      string_array stra;
+      string_array_base stra;
 
       throw todo;
 
@@ -90,7 +90,7 @@ namespace filehandler
    }
 
 
-   void library::get_extension_list(string_array & stra)
+   void library::get_extension_list(string_array_base & stra)
    {
 
       __UNREFERENCED_PARAMETER(stra);
@@ -98,7 +98,7 @@ namespace filehandler
    }
 
 
-   void library::get_mime_type_list(string_array & stra)
+   void library::get_mime_type_list(string_array_base & stra)
    {
       __UNREFERENCED_PARAMETER(stra);
    }

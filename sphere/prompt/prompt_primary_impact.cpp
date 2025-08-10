@@ -99,7 +99,7 @@ namespace prompt
                   if(!bOk)
                   {
 
-                     string_array stra;
+                     string_array_base stra;
 
                      if(cregexp_util::match(stra, strLine, "(.+)\\s*segundos", true, 2) == 1)
                      {

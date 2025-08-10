@@ -398,7 +398,7 @@ namespace sockets
    //}
 
 
-   ::string_array & base_socket::debugstra()
+   ::string_array_base & base_socket::debugstra()
    {
 
       return base_socket_impl()->debugstra();

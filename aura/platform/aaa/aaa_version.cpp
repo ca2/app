@@ -29,11 +29,11 @@ namespace version
    {
 
 
-      string_array stra1;
+      string_array_base stra1;
 
-      string_array stra2;
+      string_array_base stra2;
 
-      string_array straSep;
+      string_array_base straSep;
 
       straSep.add(".");
       straSep.add("_");

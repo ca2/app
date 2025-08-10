@@ -49,7 +49,7 @@ namespace dynamic_source
       //string      m_strLibPlatform;
 
 
-      string_array                                   m_straSync;
+      string_array_base                                   m_straSync;
 //      map_string_to_ptr                         m_mapLib;
       string                                    m_strLibsLibs;
       //string                                    m_strEnv;
@@ -97,7 +97,7 @@ namespace dynamic_source
       void cppize1(ds_script * pscript);
       void cppize1(const ::file::path & pathSource,const ::file::path & pathDest,ecpptype enum_type);
 
-      string cppize2(const ::scoped_string & scopedstrSource,bool bScript,string_array & straId);
+      string cppize2(const ::scoped_string & scopedstrSource,bool bScript,string_array_base & straId);
 
       string get_ds_print(const ::scoped_string & scopedstr)   ;
 

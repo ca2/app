@@ -403,7 +403,7 @@ pdirectorysystem->localconfig() / "user.component";
 
          }
 
-         string_array stra;
+         string_array_base stra;
 
          {
 
@@ -528,7 +528,7 @@ pdirectorysystem->localconfig() / "user.component";
 
       }
 
-      //string_array stra;
+      //string_array_base stra;
 
       //document * pdocument;
 

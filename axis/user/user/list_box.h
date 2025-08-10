@@ -29,7 +29,7 @@ namespace user
       //::item                        m_itemLButtonDown;
       //::user::frame_window *            m_puiDeactivateTogether;
       ::user::interaction *               m_puiDeactivateTogether;
-      string_array                    m_straList;
+      string_array_base                    m_straList;
       ::atom_array                    m_atoma;
 
 

@@ -46,7 +46,7 @@ namespace database
       string            m_strSqlEmpty;       // Executed when result dataset is is_empty
       string            m_strSqlSelect;       // May be only single string ::payload
 
-      string_array           m_straSqlUpdate;       // May be an array in complex queries
+      string_array_base           m_straSqlUpdate;       // May be an array in complex queries
       /* Field values for updating must has prefix :NEW_ and :OLD_ and field name
          Example:
          update  wt_story dataset idobject dataset idobject=:NEW_idobject,body=:NEW_body
@@ -54,14 +54,14 @@ namespace database
          Essentually fields idobject and body must present in the
          result dataset (select_sql statement) */
 
-      string_array           m_straSqlInsert;       // May be an array in complex queries
+      string_array_base           m_straSqlInsert;       // May be an array in complex queries
       /* Field values for inserting must has prefix :NEW_ and field name
          Example:
          insert into wt_story (idobject, body) values (:NEW_idobject, :NEW_body)
          Essentually fields idobject and body must present in the
          result dataset (select_sql statement) */
 
-      string_array           m_straSqlDelete;       // May be an array in complex queries
+      string_array_base           m_straSqlDelete;       // May be an array in complex queries
       /* Field values for deleing must has prefix :OLD_ and field name
          Example:
          delete from wt_story where idobject=:OLD_idobject

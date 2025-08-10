@@ -30,7 +30,7 @@ namespace user
    }
 
 
-   void form_mesh::get_selection(const ::scoped_string & scopedstrDataKey, ::string_array & straDataKey)
+   void form_mesh::get_selection(const ::scoped_string & scopedstrDataKey, ::string_array_base & straDataKey)
    {
 
       //mesh::get_selection(key,selection);

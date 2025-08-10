@@ -102,7 +102,7 @@ namespace filemanager
       }
 
 
-      bool list_impact::add_unique(const string_array & stra)
+      bool list_impact::add_unique(const string_array_base & stra)
       {
 
          if (stra.get_size() == 0)
@@ -128,7 +128,7 @@ namespace filemanager
       }
 
 
-      bool list_impact::add_unique(const string_array & stra, ::int_array & baRecursive)
+      bool list_impact::add_unique(const string_array_base & stra, ::int_array_base & baRecursive)
       {
 
          if (stra.get_size() == 0)
@@ -154,7 +154,7 @@ namespace filemanager
       }
 
 
-      bool list_impact::erase(const string_array & stra)
+      bool list_impact::erase(const string_array_base & stra)
       {
 
          if (stra.get_size() == 0)
@@ -183,7 +183,7 @@ namespace filemanager
       }
 
 
-      void list_impact::GetSel(string_array & stra)
+      void list_impact::GetSel(string_array_base & stra)
       {
 
          if (m_pfolderlistdata)

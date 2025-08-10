@@ -36,7 +36,7 @@ namespace experience
 
       virtual void update();
 
-      virtual void get_frame_list(string_array & stra);
+      virtual void get_frame_list(string_array_base & stra);
 
       virtual ::pointer < frame > frame_experience(const ::scoped_string & scopedstrFrameSchema);
 

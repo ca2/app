@@ -97,7 +97,7 @@ int main(int argc, char ** argv, char ** envp)
 
    //::acme::acme::g_pacme->m_papplication->m_bConsole = true;
 
-   //string_array stra{ "StringNumber1", "StringNumber2", "StringNumber5" };
+   //string_array_base stra{ "StringNumber1", "StringNumber2", "StringNumber5" };
 
    //string str4("StringNumber4");
 

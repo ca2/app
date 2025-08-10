@@ -142,8 +142,8 @@ public:
    virtual void synchronize(const ::file::path & path1, const ::file::path & path2);
 
 
-   virtual void save_stra(const ::file::path & pathName, const string_array & stra);
-   virtual void load_stra(const ::file::path & pathName, string_array & stra, bool bAddEmpty = true);
+   virtual void save_stra(const ::file::path & pathName, const string_array_base & stra);
+   virtual void load_stra(const ::file::path & pathName, string_array_base & stra, bool bAddEmpty = true);
 
 
    virtual void put_contents(const ::file::path & path, const block & block);
@@ -203,10 +203,10 @@ public:
    // on 2021-08-10 00:46
 
 
-   //virtual string_array file_as_lines(const ::file::path & path, character_count iReadAtMostByteCount = -1);
+   //virtual string_array_base file_as_lines(const ::file::path & path, character_count iReadAtMostByteCount = -1);
    virtual string first_line(const ::file::path & path);
    virtual string line(const ::file::path & path, ::collection::index iLine);
-   virtual string_array lines(const ::file::path & path);
+   virtual string_array_base lines(const ::file::path & path);
    virtual void set_line(const ::file::path & path, ::collection::index iLine, const ::scoped_string & scopedstrLine);
    //virtual string file_extension_dup(const ::file::path & path);
    virtual string get_temporary_file_name(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension);

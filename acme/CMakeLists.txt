@@ -1974,10 +1974,10 @@ list(APPEND library_source
         prototype/collection/_papaya_heap.h
         prototype/collection/_sort.h
         prototype/collection/address_array.h
-        prototype/collection/array.h
         prototype/collection/array_base.h
         prototype/collection/attrib_map.h
         prototype/collection/back_insert_iterator.h
+         prototype/collection/base_array.h
         prototype/collection/base_enum.h
         prototype/collection/bit_array.h
         prototype/collection/bitset.h
@@ -3060,8 +3060,7 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   _application_library.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

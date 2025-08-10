@@ -285,8 +285,8 @@ pdirectorysystem->is(stra[i]))
    //   {
    //      if(bRecursive)
    //      {
-   //         string_array straPath;
-   //         string_array straTitle;
+   //         string_array_base straPath;
+   //         string_array_base straTitle;
    //         ls(papp, psz, &straPath, &straTitle);
    //         for(int i = 0; i < straPath.get_count(); i++)
    //         {

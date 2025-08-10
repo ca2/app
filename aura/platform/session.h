@@ -153,7 +153,7 @@ namespace aura
       //bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer& pgraphics) override;
 
 
-      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      //virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
       //virtual string get_locale_schema_dir() override;
 
 
@@ -403,7 +403,7 @@ namespace aura
       virtual bool is_remote_session() override;
 
 
-      //virtual string_array get_user_wallpaper() override;
+      //virtual string_array_base get_user_wallpaper() override;
 
 
       ::user::user* user() override;

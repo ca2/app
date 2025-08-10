@@ -40,7 +40,7 @@ namespace opengl
 
       virtual string get_shader_version_text() override;
 
-      virtual void _translate_shader(string_array& stra) override;
+      virtual void _translate_shader(string_array_base& stra) override;
 
 
    };

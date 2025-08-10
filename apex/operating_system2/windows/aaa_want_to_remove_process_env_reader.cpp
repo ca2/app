@@ -289,7 +289,7 @@ void CProcessEnvReader::ConvertUnicodeToMBCS(const ::wide_character * pStringToC
 /**
 * Extract each strings
 **/
-void CProcessEnvReader::ParseEnvironmentStrings(const ::wide_character * pStringToConvert,int nLen,string_array& EnvStrArr)
+void CProcessEnvReader::ParseEnvironmentStrings(const ::wide_character * pStringToConvert,int nLen,string_array_base& EnvStrArr)
 
 {
    int nIdx = 0;
@@ -316,7 +316,7 @@ void CProcessEnvReader::ParseEnvironmentStrings(const ::wide_character * pString
 * e.g PATH=C:\ will be changed to "PATH" and "C:\"
 * this will do for entire array
 **/
-void CProcessEnvReader::SeparateVariablesAndValues(const string_array& EnvStrArray,EnvVarValArray& varValArr)
+void CProcessEnvReader::SeparateVariablesAndValues(const string_array_base& EnvStrArray,EnvVarValArray& varValArr)
 {
 
    int nLen = (int) EnvStrArray.get_size();
@@ -347,7 +347,7 @@ void CProcessEnvReader::SeparateVariablesAndValues(const string_array& EnvStrArr
 ///**
 //* Function to export the string to specified destination
 //**/
-//void CProcessEnvReader::ExportEnvStrings(const string_array& csArrEnvStr,
+//void CProcessEnvReader::ExportEnvStrings(const string_array_base& csArrEnvStr,
 //   COPY_DEST_e Dest,
 //   HWND hClipboardOwner)
 //{

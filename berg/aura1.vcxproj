@@ -3315,7 +3315,7 @@ copy $(__operating_system)storage-windows\third\binary\$(PlatformName)\$(Configu
     <ClInclude Include="primitive\collection\composite_array.h" />
     <ClInclude Include="primitive\collection\ptr_array.h" />
     <ClInclude Include="primitive\collection\runnable_array.h" />
-    <ClInclude Include="primitive\collection\string_array_base.h" />
+    <ClInclude Include="primitive\collection\string_array.h" />
     <ClInclude Include="primitive\collection\_.h" />
     <ClInclude Include="primitive\collection\common.h" />
     <ClInclude Include="primitive\collection\comparable_array.h" />

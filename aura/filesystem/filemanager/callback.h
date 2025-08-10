@@ -24,7 +24,7 @@ namespace filemanager
       //virtual void on_request(::request * prequest) override;
 
 
-      virtual void on_file_manager_open_context_menu_folder(::filemanager::data * pdata, ::file::item * pitem, string_array & straCommand, string_array & straCommandTitle, const ::action_context & action_context);
+      virtual void on_file_manager_open_context_menu_folder(::filemanager::data * pdata, ::file::item * pitem, string_array_base & straCommand, string_array_base & straCommandTitle, const ::action_context & action_context);
       virtual void on_file_manager_open_context_menu_file(::filemanager::data * pdata, const ::file::item_array & itema, const ::action_context & action_context);
       virtual void on_file_manager_open_context_menu(::filemanager::data * pdata, const ::action_context & action_context);
       virtual void on_file_manager_open_folder(::filemanager::data * pdata, ::file::item * pitem, const ::action_context & action_context);

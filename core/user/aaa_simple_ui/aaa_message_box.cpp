@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "core/user/simple_ui/_simple_ui.h"
 
-void maximum_line_length(string_array & stra, int iLen)
+void maximum_line_length(string_array_base & stra, int iLen)
 {
 
    for(::collection::index i = 0; i < stra.get_size(); i++)
@@ -94,7 +94,7 @@ namespace simple_ui
 
       ::int_rectangle rectangleDesktop;
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add("\r");
 

@@ -34,9 +34,9 @@ namespace filesystem
       ::string             m_str_iCloudContainerName;
 
       
-      ::string_array       m_straUTType;
+      ::string_array_base       m_straUTType;
 
-      ::string_array       m_straFileSystemExtension;
+      ::string_array_base       m_straFileSystemExtension;
 
       
       file_system_options();

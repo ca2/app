@@ -133,13 +133,13 @@ namespace xml
       ::property *            GetChildAttr(const_char_pointer name, const_char_pointer attrname);
       string                  GetChildAttrValue(const_char_pointer name, const_char_pointer attrname);
       node *                  GetChildByAttr(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, const ::scoped_string & scopedstrAttrValue);
-      node *                  GetChildByAnyAttr(const ::scoped_string & scopedstrName, string_array & straName, string_array & straAttrValue);
-      node *                  GetChildByAllAttr(const ::scoped_string & scopedstrName, string_array & straName, string_array & straAttrValue);
+      node *                  GetChildByAnyAttr(const ::scoped_string & scopedstrName, string_array_base & straName, string_array_base & straAttrValue);
+      node *                  GetChildByAllAttr(const ::scoped_string & scopedstrName, string_array_base & straName, string_array_base & straAttrValue);
 
       node * get_child_at(::collection::index iIndex);
       node * get_child_at(const ::scoped_string & scopedstrName, ::collection::index iIndex, ::collection::index iDepth = 0);
       node * get_child_at_grow(const ::scoped_string & scopedstrName, ::collection::index iIndex);
-      ::collection::count get_child_attr_value(string_array & stra, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, ::collection::index iDepth = 1);
+      ::collection::count get_child_attr_value(string_array_base & stra, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, ::collection::index iDepth = 1);
       ::collection::count erase_child_with_attr(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, ::collection::index iIndex, ::collection::count iCount = 1, ::collection::index iDepth = 1);
 
       // search node
@@ -185,8 +185,8 @@ namespace xml
       bool                    erase_attribute(const ::atom & atom) { return m_set.erase_by_name(atom) > 0; }
 
 
-      bool from_row_column_v2(const string_array_array & straa);
-      bool to_row_column_v2(string_array_array & straa);
+      bool from_row_column_v2(const string_array_array_base & straa);
+      bool to_row_column_v2(string_array_array_base & straa);
 
       // operator overloads
       node * operator [] ( int i ) { return child_at(i); }

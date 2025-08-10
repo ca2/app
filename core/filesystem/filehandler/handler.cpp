@@ -83,7 +83,7 @@ namespace filehandler
    void handler::add_library(library * plibrary)
    {
 
-      string_array straExtension;
+      string_array_base straExtension;
 
       plibrary->get_extension_list(straExtension);
 
@@ -114,7 +114,7 @@ namespace filehandler
 
       }
 
-      string_array straMimeType;
+      string_array_base straMimeType;
 
       plibrary->get_mime_type_list(straMimeType);
 
@@ -150,7 +150,7 @@ namespace filehandler
    void handler::add_menu_library(menu_library * plibrary)
    {
 
-      string_array straExtension;
+      string_array_base straExtension;
 
       plibrary->get_extension_list(straExtension);
 
@@ -181,7 +181,7 @@ namespace filehandler
 
       }
 
-      string_array straMimeType;
+      string_array_base straMimeType;
 
       plibrary->get_mime_type_list(straMimeType);
 
@@ -335,7 +335,7 @@ namespace filehandler
    }
 
 
-   void handler::get_extension_app(string_array & straAppId, const ::scoped_string & scopedstrExtension)
+   void handler::get_extension_app(string_array_base & straAppId, const ::scoped_string & scopedstrExtension)
    {
 
       auto ptreeitem = get_extension_tree_item(scopedstrExtension, false);
@@ -359,7 +359,7 @@ namespace filehandler
    }
 
 
-   void handler::get_mime_type_app(string_array & straAppId, const ::scoped_string & scopedstrMimeType)
+   void handler::get_mime_type_app(string_array_base & straAppId, const ::scoped_string & scopedstrMimeType)
    {
 
       auto ptreeitem = get_mime_type_tree_item(scopedstrMimeType, false);

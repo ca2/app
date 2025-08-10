@@ -30,7 +30,7 @@ namespace userex
 
       double_size                        m_size;
       ::image::image_pointer                 m_pimage;
-      string_array                    m_straClass;
+      string_array_base                    m_straClass;
       ::pointer<::user::button>      m_pbuttonMenu;
       pointer_array < group >          m_groupa;
       ::pointer<::user::menu>        m_pmenu;

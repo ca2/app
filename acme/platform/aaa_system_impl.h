@@ -192,8 +192,8 @@ namespace acme
 //       ::pointer < ::mutex >                                m_pmutexMatter;
 //
 //       ::pointer < ::mutex >                  m_pmutexHttpDownload;
-//       string_array                           m_straHttpDownloading;
-//       string_array                           m_straHttpExists;
+//       string_array_base                           m_straHttpDownloading;
+//       string_array_base                           m_straHttpExists;
 //          //::pointer < ::windowing::windowing_base > m_pwindowingbase;
 // //#if defined(WITH_X11) || defined(WITH_XCB)
 //   //    ::particle_pointer                                 m_pmutexXlib;
@@ -392,7 +392,7 @@ namespace acme
 
 #elif defined(UNIVERSAL_WINDOWS)
 
-      void system_construct(const ::string_array & stra);
+      void system_construct(const ::string_array_base & stra);
 
       //#else
 
@@ -589,9 +589,9 @@ namespace acme
 
       virtual ::regular_expression_pointer compile_pcre(const ::scoped_string & scopedstr);
       virtual ::pointer<::regular_expression::context> get_pcre_context();
-      //virtual int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+      //virtual int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
 
-      virtual void get_public_internet_domain_extension_list(string_array & stra);
+      virtual void get_public_internet_domain_extension_list(string_array_base & stra);
       virtual ::string fetch_public_internet_domain_extension_list_text();
 
       virtual void system_id_update(long long iUpdate, long long iPayload);
@@ -931,7 +931,7 @@ namespace acme
 //       //virtual string ::url::encode(const ::scoped_string & scopedstr) override;
 //
 //
-//       virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+//       virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
 //       virtual string get_locale_schema_dir() override;
 //
 //
@@ -1212,7 +1212,7 @@ namespace acme
 //
 // //::pointer<regex>create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr);
 // //::pointer<regex_context>create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount);
-// //virtual int pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount);
+// //virtual int pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount);
 //
 //
 // //virtual string get_system_platform() override;
@@ -1255,7 +1255,7 @@ namespace acme
 // //
 // //#endif
 // //
-// //      virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra) override;
+// //      virtual bool defer_accumulate_on_open_file(string_array_base stra, string strExtra) override;
 // //
 // //      virtual bool merge_accumulated_on_open_file(::request * prequest) override;
 // //

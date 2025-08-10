@@ -81,7 +81,7 @@ namespace user
    bool copydesk::string_to_filea(::file::path_array_base * ppatha, const ::scoped_string & scopedstr)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_lines(scopedstr);
 
@@ -273,7 +273,7 @@ namespace user
             if(get_plain_text(strPlainText, e_flag_prevent_data_blob))
             {
 
-               string_array straLines;
+               string_array_base straLines;
 
                straLines.add_lines(strPlainText);
 

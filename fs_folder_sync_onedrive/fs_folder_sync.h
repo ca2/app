@@ -25,8 +25,8 @@ namespace fs_folder_sync_onedrive
       ~folder_sync() override;
 
 
-      virtual bool check_files(const ::file::path& pathSourceFolder, const ::string_array& straSource, const ::function < void(const ::scoped_string&) >& callbackStatus);
-      virtual void copy_files_out(const ::file::path& pathTargetFolder, const ::file::path& pathSourceFolder, const ::string_array& straSource, const ::function < void(const ::scoped_string&) >& callbackStatus);
+      virtual bool check_files(const ::file::path& pathSourceFolder, const ::string_array_base& straSource, const ::function < void(const ::scoped_string&) >& callbackStatus);
+      virtual void copy_files_out(const ::file::path& pathTargetFolder, const ::file::path& pathSourceFolder, const ::string_array_base& straSource, const ::function < void(const ::scoped_string&) >& callbackStatus);
 
 
       //bool _enumerates(::file::listing_base & listing) override;

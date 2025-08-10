@@ -608,7 +608,7 @@
     <ProjectReference Include="..\axis\axis.vcxproj">
       <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\base\base.vcxproj">
+    <ProjectReference Include="..\berg\berg.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">

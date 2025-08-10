@@ -230,7 +230,7 @@ namespace simpledb
 
    bool dataset::sql_do_select(const_char_pointer &pszSql)
    {
-      string_array straField;
+      string_array_base straField;
 
       string str;
 
@@ -265,7 +265,7 @@ namespace simpledb
       if(str != "from")
          return false;
 
-      string_array straTable;
+      string_array_base straTable;
       for(;;)
       {
          str = sql_consume_table(scopedstrSql);
@@ -390,7 +390,7 @@ namespace simpledb
 
          ::str::consume_spaces(scopedstrSql, 0);
 
-         string_array straValue;
+         string_array_base straValue;
          for(;;)
          {
             try
@@ -507,7 +507,7 @@ namespace simpledb
       return dynamic_cast < database * > (db);
    }
 
-   void dataset::make_query(string_array &_sql)
+   void dataset::make_query(string_array_base &_sql)
    {
       string query;
 
@@ -915,7 +915,7 @@ namespace simpledb
       throw ::exception(::database::exception("not in Select state"));
    }
 
-   void dataset::query_items(string_array & stra, const ::scoped_string & scopedstrSql)
+   void dataset::query_items(string_array_base & stra, const ::scoped_string & scopedstrSql)
    {
       if(query(scopedstrSql))
       {

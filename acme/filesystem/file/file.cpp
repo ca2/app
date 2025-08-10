@@ -1485,7 +1485,7 @@ namespace file
    }
 
 
-   void file::put_lines(const string_array& stra)
+   void file::put_lines(const string_array_base& stra)
    {
 
       for (auto& strLine : stra)

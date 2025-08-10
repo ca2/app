@@ -97,14 +97,14 @@ namespace filemanager
    void folder_selection_list_impact::FolderAdd()
    {
 
-      string_array straSel;
+      string_array_base straSel;
 
       m_ptreedata->GetSelectedFilePath(straSel);
 
       if(m_plistview->m_bRecursive)
       {
 
-         ::int_array ia;
+         ::int_array_base ia;
 
          m_plistview->add_unique(straSel, ia);
 
@@ -122,7 +122,7 @@ namespace filemanager
    void folder_selection_list_impact::FolderRemove()
    {
 
-      string_array wstraSel;
+      string_array_base wstraSel;
 
       m_plistview->GetSel(wstraSel);
 

@@ -57,7 +57,7 @@ namespace axis
 
 
       template < typename MULTIPLE_OPTION = ::user::multiple_option>
-      ::pointer < MULTIPLE_OPTION >create_multiple_option(::user::interaction* puserinteractionParent, const ::data::property & property, const ::atom_array & atomaOptions, const ::string_array& straName)
+      ::pointer < MULTIPLE_OPTION >create_multiple_option(::user::interaction* puserinteractionParent, const ::data::property & property, const ::atom_array & atomaOptions, const ::string_array_base& straName)
       {
 
          auto pmultipleoption = __create_new<MULTIPLE_OPTION>();

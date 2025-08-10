@@ -486,7 +486,7 @@ namespace sockets
 
       string strRefererHost = url.connect().host();
 
-      string_array straAllowedOrigin;
+      string_array_base straAllowedOrigin;
 
       straAllowedOrigin.add("ca2.network");
       straAllowedOrigin.add("ca2.network");
@@ -850,7 +850,7 @@ namespace sockets
 
       string str;
 
-      string_array stra;
+      string_array_base stra;
 
       file()->get_lines(stra, payloadFile);
 

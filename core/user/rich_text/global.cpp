@@ -29,7 +29,7 @@ namespace user
 
 
       // return words with trailing spaces
-      void words_trailing_spaces(string_array & stra, const ::scoped_string & scopedstr)
+      void words_trailing_spaces(string_array_base & stra, const ::scoped_string & scopedstr)
       {
 
          character_count iFind = 0;

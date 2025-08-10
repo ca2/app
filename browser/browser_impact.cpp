@@ -575,7 +575,7 @@ namespace browser
       }
 
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_lines(str);
 

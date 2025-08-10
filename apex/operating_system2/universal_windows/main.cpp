@@ -264,7 +264,7 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 
 //    }
 
-//    string_array stra;
+//    string_array_base stra;
 
 //    stra.explode(".", strAppId);
 

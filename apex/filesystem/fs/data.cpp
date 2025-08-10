@@ -189,7 +189,7 @@ namespace fs
    //void data::get_ascendants_name(const ::file::path & path,::file::path_array_base & straParam)
 
    //{
-   //   string_array straSeparator;
+   //   string_array_base straSeparator;
    //   straSeparator.add("/");
    //   straSeparator.add("\\");
    //   straParam.add_smallest_tokens(pcsz, straSeparator, true);

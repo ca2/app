@@ -162,7 +162,7 @@ namespace platform
    }
 
 
-   void acme_context_layer::locale_schema_matter(string_array& stra, const string_array& straMatterLocator,
+   void acme_context_layer::locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator,
                                                  const ::scoped_string& scopedstrLocale,
                                                  const ::scoped_string& scopedstrSchema)
    {

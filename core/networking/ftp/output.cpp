@@ -17,7 +17,7 @@ namespace ftp
    }
 
 
-   void output::OnSendCommand(const command& command, const string_array& straArguments)
+   void output::OnSendCommand(const command& command, const string_array_base& straArguments)
    {
 
       if (command.AsString().length() == 0)

@@ -54,7 +54,7 @@
 //
 //   //inline ::collection::count get_argument_count1() const { return _get_argc() - 1; }
 //
-//   //string_array get_arguments();
+//   //string_array_base get_arguments();
 //
 // /*  string get_executable() const;
 //
@@ -90,7 +90,7 @@
 //
 //#elif defined(UNIVERSAL_WINDOWS)
 //
-//   void system_construct(const string_array& stra);
+//   void system_construct(const string_array_base& stra);
 //
 //#else
 //

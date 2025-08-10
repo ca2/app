@@ -146,7 +146,7 @@ CLASS_DECL_APEX int_bool file_is_true_dup(const ::file::path & path)
 
 
 
-CLASS_DECL_APEX bool file_save_stra(const char * lpszName, const string_array & stra)
+CLASS_DECL_APEX bool file_save_stra(const char * lpszName, const string_array_base & stra)
 {
 
    return file_system()->put_contents(lpszName, stra.implode("\n"));
@@ -154,7 +154,7 @@ CLASS_DECL_APEX bool file_save_stra(const char * lpszName, const string_array & 
 }
 
 
-CLASS_DECL_APEX bool file_load_stra(const char * lpszName, string_array & stra, bool bAddEmpty)
+CLASS_DECL_APEX bool file_load_stra(const char * lpszName, string_array_base & stra, bool bAddEmpty)
 {
 
    stra.add_lines(file_system()->as_string(lpszName), bAddEmpty);

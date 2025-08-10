@@ -563,7 +563,7 @@ namespace filemanager
 
          }
 
-         string_array stra;
+         string_array_base stra;
 
          {
 
@@ -687,7 +687,7 @@ namespace filemanager
 
       }
 
-      //string_array stra;
+      //string_array_base stra;
 
       //document * pdocument;
 

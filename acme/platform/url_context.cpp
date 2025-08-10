@@ -1866,7 +1866,7 @@ namespace url
 //   }
 //
 //
-//   string url::query_erase(const ::scoped_string & scopedstrQueryParam, string_array & straKey)
+//   string url::query_erase(const ::scoped_string & scopedstrQueryParam, string_array_base & straKey)
 //   {
 //
 //      ::property_set set;

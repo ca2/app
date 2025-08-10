@@ -39,7 +39,7 @@ namespace file
       // throws exception if listing enumeration fails for some reason.
       virtual bool enumerate(listing_base & listing);
 
-      virtual bool list(string_array & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag = ::file::e_flag_file_or_folder);
+      virtual bool list(string_array_base & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag = ::file::e_flag_file_or_folder);
 
       virtual listing_base get_folders(const ::scoped_string & scopedstr);
 
@@ -48,7 +48,7 @@ namespace file
       virtual ::file::listing_base folders_and_files(const ::file::path& path);
 
       //virtual bool enumerate(::file::listing_base & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
-      //virtual bool enumerate_pattern(::file::listing_base & listing, const ::file::path & path, const ::string_array & straPattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
+      //virtual bool enumerate_pattern(::file::listing_base & listing, const ::file::path & path, const ::string_array_base & straPattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
 
 
    };

@@ -201,7 +201,7 @@ namespace api_ca2
 
             ::string strOriginHost = ::url::get_host(strOrigin);
 
-            string_array straAllowedOrigin;
+            string_array_base straAllowedOrigin;
 
             straAllowedOrigin.add("ca2.network");
             straAllowedOrigin.add("ca2.network");

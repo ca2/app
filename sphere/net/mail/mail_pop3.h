@@ -21,8 +21,8 @@ namespace mail
       ::pointer<pop3_socket>                 m_psocket;
       happening                            m_happeningFinish;
 
-      string_array                          m_straIndex;
-      string_array                          m_straId;
+      string_array_base                          m_straIndex;
+      string_array_base                          m_straId;
 
       string                           id();
       string                           m_strHeaders;

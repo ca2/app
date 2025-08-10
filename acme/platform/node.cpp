@@ -198,7 +198,7 @@ namespace platform
 
       //idaPid = pnode->get_pid_from_module_list_file(path, false);
 
-      string_array stra;
+      string_array_base stra;
 
       ::file::path pathModule;
 
@@ -219,9 +219,9 @@ namespace platform
 
       }
 
-      string_array stra2;
+      string_array_base stra2;
 
-      ::int_array iaPid2;
+      ::int_array_base iaPid2;
 
       auto psystem = system();
 
@@ -233,7 +233,7 @@ namespace platform
          if (str.has_character())
          {
 
-            string_array a;
+            string_array_base a;
 
             a.explode("|", str);
 
@@ -1835,7 +1835,7 @@ namespace platform
    ::file::path node::get_executable_path_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutableVersion)
    {
 
-      ::string_array stra;
+      ::string_array_base stra;
 
       stra.explode("/", scopedstrAppId);
 
@@ -1974,7 +1974,7 @@ namespace platform
    }
 
 
-   bool node::load_modules_diff(string_array& straOld, string_array& straNew, const ::scoped_string & scopedstrExceptDir)
+   bool node::load_modules_diff(string_array_base& straOld, string_array_base& straNew, const ::scoped_string & scopedstrExceptDir)
    {
 
       //throw ::interface_only();
@@ -2048,12 +2048,12 @@ namespace platform
    }
 
 
-   //bool is_shared_library_busy(::process_identifier processidentifier, const string_array & stra) override;
+   //bool is_shared_library_busy(::process_identifier processidentifier, const string_array_base & stra) override;
 
-        //bool is_shared_library_busy(const string_array & stra) override;
+        //bool is_shared_library_busy(const string_array_base & stra) override;
    
    
-   //bool node::is_shared_library_busy(::process_identifier processidentifier, const string_array & stra)
+   //bool node::is_shared_library_busy(::process_identifier processidentifier, const string_array_base & stra)
    //{
 
    //   auto straModulesPaths = process_identifier_modules_paths(processidentifier);
@@ -2080,7 +2080,7 @@ namespace platform
    //}
 
 
-   //bool node::is_shared_library_busy(const string_array & stra)
+   //bool node::is_shared_library_busy(const string_array_base & stra)
    //{
 
    //   return ::acme_windows::predicate_process([&](auto pid)
@@ -2105,7 +2105,7 @@ namespace platform
    }
 
 
-   ::process_identifier_array node::shared_library_process(string_array& straProcesses, const ::scoped_string & scopedstrLibrary)
+   ::process_identifier_array node::shared_library_process(string_array_base& straProcesses, const ::scoped_string & scopedstrLibrary)
    {
 
       //throw ::interface_only();
@@ -2272,7 +2272,7 @@ return false;
 
       string strPath = getenv("PATH");
 
-      string_array straPath;
+      string_array_base straPath;
 
       straPath.explode(":", strPath);
 
@@ -2921,7 +2921,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    }
 
 
-//   void node::command_system(string_array & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLines)
+//   void node::command_system(string_array_base & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLines)
 //   {
 //
 //      throw interface_only();
@@ -2942,7 +2942,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
 #if !defined(WINDOWS)
 
 
-   string_array node::cmdline_from_pid(::process_identifier pid)
+   string_array_base node::cmdline_from_pid(::process_identifier pid)
    {
 
       throw interface_only();
@@ -3689,7 +3689,7 @@ bool node::is_application_running_good_effort(const ::scoped_string & scopedstrR
 bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp)
 {
 
-   string_array stra;
+   string_array_base stra;
 
    stra.add(this->library_file_name("acme"));
    stra.add(this->library_file_name("apex"));
@@ -4010,7 +4010,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    }
 
 
-   void node::file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension)
+   void node::file_extension_get_open_with_list_keys(string_array_base & straKey, const ::scoped_string & scopedstrExtension)
    {
 
       __UNREFERENCED_PARAMETER(straKey);
@@ -4021,7 +4021,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    }
 
 
-   void node::file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension)
+   void node::file_extension_get_open_with_list_commands(string_array_base & straCommand, const ::scoped_string & scopedstrExtension)
    {
 
       __UNREFERENCED_PARAMETER(straCommand);
@@ -4540,7 +4540,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    }
 
 
-   void node::set_file_extension_mime_type(string_array & straExtension, string_array & straMimeType)
+   void node::set_file_extension_mime_type(string_array_base & straExtension, string_array_base & straMimeType)
    {
 
       __UNREFERENCED_PARAMETER(straExtension);

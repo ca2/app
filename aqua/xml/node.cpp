@@ -1960,7 +1960,7 @@ namespace xml
    node * node::get_node_from_attr_path(const ::file::path & path, const scoped_string & strName, const scoped_string & strAttr)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       stra.explode("/", path);
 
@@ -2013,7 +2013,7 @@ namespace xml
 
    node * node::get_node_from_simple_path(const ::file::path & path)
    {
-      string_array stra;
+      string_array_base stra;
       stra.explode("/", path);
       ::xml::node  * pnode = this;
       if(stra.get_size() <= 0 || (stra.get_size() == 1 && stra[0].length() == 0))
@@ -2716,7 +2716,7 @@ namespace xml
    // 0 nothing
    // 1 children
    // 2 children and children of children
-   ::collection::count node::get_child_attr_value(string_array & stra, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, ::collection::index iDepth)
+   ::collection::count node::get_child_attr_value(string_array_base & stra, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, ::collection::index iDepth)
    {
 
       if(iDepth == 0)
@@ -2842,7 +2842,7 @@ namespace xml
       return nullptr;
    }
 
-   node * node::GetChildByAnyAttr(const ::scoped_string & scopedstrName, string_array & straAttrName, string_array & straAttrValue)
+   node * node::GetChildByAnyAttr(const ::scoped_string & scopedstrName, string_array_base & straAttrName, string_array_base & straAttrValue)
    {
       
       string strValue;
@@ -2876,7 +2876,7 @@ namespace xml
    }
 
 
-   node * node::GetChildByAllAttr(const ::scoped_string & scopedstrName, string_array & straAttrName, string_array & straAttrValue)
+   node * node::GetChildByAllAttr(const ::scoped_string & scopedstrName, string_array_base & straAttrName, string_array_base & straAttrValue)
    {
       
       string strValue;
@@ -2933,7 +2933,7 @@ namespace xml
    }
 
 
-   bool node::from_row_column_v2(const string_array_array & straa)
+   bool node::from_row_column_v2(const string_array_array_base & straa)
    {
 
       m_strName = "row_column_v2";
@@ -2987,7 +2987,7 @@ namespace xml
    }
 
 
-   bool node::to_row_column_v2(string_array_array & straa)
+   bool node::to_row_column_v2(string_array_array_base& straa)
    {
 
       // "this is not a row column v2 xml node";

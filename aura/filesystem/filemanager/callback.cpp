@@ -24,7 +24,7 @@ namespace filemanager
    }
 
 
-   void callback::on_file_manager_open_context_menu_folder(::filemanager::data * pdata, ::file::item * pitem, string_array & straCommand, string_array & straCommandTitle, const ::action_context & context)
+   void callback::on_file_manager_open_context_menu_folder(::filemanager::data * pdata, ::file::item * pitem, string_array_base & straCommand, string_array_base & straCommandTitle, const ::action_context & context)
    {
       __UNREFERENCED_PARAMETER(pitem);
       __UNREFERENCED_PARAMETER(straCommand);

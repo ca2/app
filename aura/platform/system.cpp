@@ -305,7 +305,7 @@ namespace aura
    }
 
 
-   // void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   // void system::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    // {
    //
    //    ::aura::context::locale_schema_matter(stra, straMatterLocator, scopedstrLocale, scopedstrSchema);
@@ -776,7 +776,7 @@ namespace aura
 //
 //         }
 //
-//         string_array straLines;
+//         string_array_base straLines;
 //
 //         {
 //
@@ -2451,7 +2451,7 @@ namespace aura
 //      if(scopedstrFileName != nullptr || pszModuleName != nullptr)
 //      {
 //
-//         string_array stra;
+//         string_array_base stra;
 //
 //         if (scopedstrFileName != nullptr)
 //         {
@@ -3311,7 +3311,7 @@ namespace aura
 //
 //      on_map_application_library(library);
 //
-//      string_array stra;
+//      string_array_base stra;
 //
 //      string strRoot = library.get_root();
 //
@@ -3415,7 +3415,7 @@ namespace aura
    //}
 
 
-   //bool system::defer_accumulate_on_open_file(string_array stra, const ::scoped_string & scopedstrExtra)
+   //bool system::defer_accumulate_on_open_file(string_array_base stra, const ::scoped_string & scopedstrExtra)
    //{
 
    //   synchronous_lock synchronouslock(this->synchronization());
@@ -3529,9 +3529,9 @@ namespace aura
 
    //   }
 
-   //   string_array straAccumul = m_straCommandLineAccumul;
+   //   string_array_base straAccumul = m_straCommandLineAccumul;
 
-   //   string_array straExtra = m_straCommandLineExtra;
+   //   string_array_base straExtra = m_straCommandLineExtra;
 
    //   m_straCommandLineAccumul.erase_all();
 
@@ -4508,7 +4508,7 @@ namespace aura
 //
 //#elif defined(MACOS)
 //
-//         string_array sa;
+//         string_array_base sa;
 //
 //         sa = get_c_args_for_c(strParam);
 //
@@ -4520,7 +4520,7 @@ namespace aura
 //
 //pdirectorysystem->localconfig() / "app-core/commander/chrome.txt");
 //
-//         string_array sa2 = get_c_args_for_c(strChrome);
+//         string_array_base sa2 = get_c_args_for_c(strChrome);
 //
 //         sa.add(sa2);
 //

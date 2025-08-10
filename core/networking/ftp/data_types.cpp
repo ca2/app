@@ -269,7 +269,7 @@ namespace ftp
 
    /// Returns the command string.
    /// @lparam[in] strArgument Parameter which have to be added to the command.
-   string command::AsString(const string_array & Arguments) const
+   string command::AsString(const string_array_base & Arguments) const
    {
 
       if (Arguments.empty())

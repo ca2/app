@@ -85,7 +85,7 @@ namespace user
       void on_timer(::timer * ptimer) override;
 
       
-      virtual void get_selection(const ::scoped_string & scopedstrDataKey, ::string_array &stra) override;
+      virtual void get_selection(const ::scoped_string & scopedstrDataKey, ::string_array_base &stra) override;
 
 
       DECLARE_MESSAGE_HANDLER(_001OnNotify);

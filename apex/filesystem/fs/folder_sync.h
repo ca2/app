@@ -39,25 +39,25 @@ namespace fs
 
       virtual void folder_sync_touch_file(const ::file::path& path,
                                           const ::function<void(const ::scoped_string&)>& callbackStatus);
-      virtual bool check_files(const ::file::path& pathSourceFolder, const ::string_array& straSource,
+      virtual bool check_files(const ::file::path& pathSourceFolder, const ::string_array_base& straSource,
                                const ::function<void(const ::scoped_string&)>& callbackStatus = {});
       virtual void copy_files_out(const ::file::path& pathTargetFolder, const ::file::path& pathSourceFolder,
-                                  const ::string_array& straSource,
+                                  const ::string_array_base& straSource,
                                   const ::function<void(const ::scoped_string&)>& callbackStatus = {});
       virtual ::string non__empty__file_as_string(const ::payload& payloadFile,
                                                   const ::function<void(const ::scoped_string&)>& callbackStatus = {});
-      virtual void wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array& straName,
+      virtual void wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array_base& straName,
                                               int iMinimumSize,
                                               const ::function<void(const ::scoped_string&)>& callbackStatus = {});
 
 
       virtual ::file::path local_folder_path();
 
-      virtual ::string_array ls(const ::file::path& pathCloud, const ::function < void(const ::scoped_string&) >& callbackStatus);
-      virtual ::string_array ls_folder(const ::file::path& pathCloud, const ::function < void(const ::scoped_string&) >& callbackStatus);
-      virtual void sync_exclude(const ::string_array& stra, const ::function < void(const ::scoped_string&) >& callbackStatus);
-      virtual void sync_reinclude(const ::string_array& stra, const ::function < void(const ::scoped_string&) >& callbackStatus);
-      virtual ::string_array sync_exclusion_list(const ::function < void(const ::scoped_string&) >& callbackStatus);
+      virtual ::string_array_base ls(const ::file::path& pathCloud, const ::function < void(const ::scoped_string&) >& callbackStatus);
+      virtual ::string_array_base ls_folder(const ::file::path& pathCloud, const ::function < void(const ::scoped_string&) >& callbackStatus);
+      virtual void sync_exclude(const ::string_array_base& stra, const ::function < void(const ::scoped_string&) >& callbackStatus);
+      virtual void sync_reinclude(const ::string_array_base& stra, const ::function < void(const ::scoped_string&) >& callbackStatus);
+      virtual ::string_array_base sync_exclusion_list(const ::function < void(const ::scoped_string&) >& callbackStatus);
       virtual void defer_start_daemon(const ::function < void(const ::scoped_string&) >& callbackStatus);
       virtual void start_daemon(const ::function < void(const ::scoped_string&) >& callbackStatus);
 
@@ -93,7 +93,7 @@ namespace fs
       virtual bool _cloud_defer_check_file_txt(::file::path& pathTarget, const ::file::path& pathCloudFile,
                                                bool bForce = false, ::file::path* ppathSource = nullptr,
                                                const ::function<void(const ::scoped_string&)>& callbackStatus = {});
-      virtual ::string_array _cloud_get_file_txt_lines(const ::file::path& pathCloudFile, bool bForce = false,
+      virtual ::string_array_base _cloud_get_file_txt_lines(const ::file::path& pathCloudFile, bool bForce = false,
                                                        ::file::path* ppathTarget = nullptr,
                                                        ::file::path* ppathSource = nullptr,
                                                        const ::function<void(const ::scoped_string&)>& callbackStatus =
@@ -107,7 +107,7 @@ namespace fs
          int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus);
 
       virtual void _cloud_ensure_files_are_up_to_date_and_present(
-         const ::file::path& pathFolder, const ::string_array & stra,
+         const ::file::path& pathFolder, const ::string_array_base & stra,
          int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus);
 
    };

@@ -1255,7 +1255,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //}
 //
-//bool string::contains_any(const string_array & stra) const
+//bool string::contains_any(const string_array_base & stra) const
 //{
 //
 //   for (auto & str : stra)
@@ -1275,7 +1275,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //
-//bool string::contains_all(const string_array & stra) const
+//bool string::contains_all(const string_array_base & stra) const
 //{
 //
 //   for (auto & str : stra)
@@ -1335,7 +1335,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //
-//bool string::case_insensitive_contains_at_least_one_of(const string_array & stra) const
+//bool string::case_insensitive_contains_at_least_one_of(const string_array_base & stra) const
 //{
 //
 //   for (auto & str : stra)
@@ -1355,7 +1355,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //
-//bool string::case_insensitive_contains_all(const string_array & stra) const
+//bool string::case_insensitive_contains_all(const string_array_base & stra) const
 //{
 //
 //   for (auto & str : stra)
@@ -1406,7 +1406,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //}
 //
-//bool string::unicode_case_insensitive_contains_at_least_one_of(const string_array & stra) const
+//bool string::unicode_case_insensitive_contains_at_least_one_of(const string_array_base & stra) const
 //{
 //
 //   for (auto & str : stra)
@@ -1426,7 +1426,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //
-//bool string::unicode_case_insensitive_contains_all(const string_array & stra) const
+//bool string::unicode_case_insensitive_contains_all(const string_array_base & stra) const
 //{
 //
 //   for (auto & str : stra)

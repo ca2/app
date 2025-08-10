@@ -80,7 +80,7 @@ void component::_update_implementations_on_shelf()
    for (auto & str : straImplementationOnShelf)
    {
 
-      ::string_array stra;
+      ::string_array_base stra;
 
       stra.explode("=", str);
 
@@ -145,10 +145,10 @@ void component::_001CreateForm(::user::interaction * puserinteractionParent)
 //{
 //
 //
-//   ::string_array straImplementationOnShelf;
-//   ::string_array straImplementationInstalled;
-//   ::string_array straImplementationEnabled;
-//   ::string_array straImplementationAll;
+//   ::string_array_base straImplementationOnShelf;
+//   ::string_array_base straImplementationInstalled;
+//   ::string_array_base straImplementationEnabled;
+//   ::string_array_base straImplementationAll;
 //
 //
 //   auto module_folder_files = directory_system()->files(directory_system()->module());

@@ -234,21 +234,21 @@ namespace windowing
    void cursor_manager::parse_hotspot_text(const ::scoped_string & scopedstrText)
    {
 
-      string_array straLines;
+      string_array_base straLines;
 
       straLines.add_lines(scopedstrText, false);
 
       for (auto & strLine : straLines)
       {
 
-         string_array straColon;
+         string_array_base straColon;
 
          straColon.explode(":", strLine);
 
          if (straColon.get_count() == 2)
          {
 
-            string_array straComma;
+            string_array_base straComma;
 
             straComma.explode(",", straColon[1]);
 

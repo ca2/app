@@ -18,7 +18,7 @@ namespace user
       //
       // ::pointer < ::user::interaction_base >                    m_pmousefocusLButtonDown;
       // ::pointer < ::user::interaction_base >                    m_pmousefocusRButtonDown;
-      // string_array                                       m_straEscape;
+      // string_array_base                                       m_straEscape;
       //
       // //::pointer<::user::shell>                         m_pshell;
       //

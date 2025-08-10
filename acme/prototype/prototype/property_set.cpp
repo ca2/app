@@ -526,7 +526,7 @@ void property_set_base::_008ParseCommandFork(const ::scoped_string & scopedstrCm
 }
 
 
-void property_set_base::_008ParseCommandArguments(string_array & straArguments, ::payload & payloadFile, string & strApp)
+void property_set_base::_008ParseCommandArguments(string_array_base & straArguments, ::payload & payloadFile, string & strApp)
 {
 
    _008ParseArguments(true, straArguments, payloadFile, strApp);
@@ -534,7 +534,7 @@ void property_set_base::_008ParseCommandArguments(string_array & straArguments, 
 }
 
 
-void property_set_base::_008AddArgumentPairs(::string_array & straArguments)
+void property_set_base::_008AddArgumentPairs(::string_array_base & straArguments)
 {
 
    for (::collection::index i = 0; i < straArguments.get_size() - 1; i++)
@@ -692,7 +692,7 @@ void property_set_base::_008AddArgument(const ::scoped_string & scopedstrArg)
 void property_set_base::_008Add(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrValue)
 {
 
-   string_array straKey;
+   string_array_base straKey;
 
    straKey.explode(".", scopedstrKey);
 
@@ -748,8 +748,8 @@ void property_set_base::_008Parse(bool bApp, const ::scoped_string & scopedstrCm
 
    }
 
-   //string_array stra = get_c_args_for_c(scopedstrCmdLine);
-   //string_array stra = get_c_args_from_c(scopedstrCmdLine);
+   //string_array_base stra = get_c_args_for_c(scopedstrCmdLine);
+   //string_array_base stra = get_c_args_from_c(scopedstrCmdLine);
 
    auto range = scopedstrCmdLine();
 
@@ -780,7 +780,7 @@ void property_set_base::_008Parse(bool bApp, const ::scoped_string & scopedstrCm
 }
 
 
-void property_set_base::_008ParseArguments(bool bApp, ::string_array & straArguments, ::payload & payloadFile, string & strApp)
+void property_set_base::_008ParseArguments(bool bApp, ::string_array_base & straArguments, ::payload & payloadFile, string & strApp)
 {
 
    int i = 0;
@@ -889,7 +889,7 @@ void property_set_skip_network_payload(::ansi_range & range)
 void property_set_base::parse_ini(const ::scoped_string & scopedstrIni)
 {
 
-   string_array stra;
+   string_array_base stra;
 
    stra.add_lines(scopedstrIni);
 
@@ -940,10 +940,10 @@ void property_set_base::parse_ini(const ::scoped_string & scopedstrIni)
 }
 
 
-::string_array property_set_base::get_ini_lines() const
+::string_array_base property_set_base::get_ini_lines() const
 {
 
-   ::string_array stra;
+   ::string_array_base stra;
 
    for (auto& pprop : *this)
    {
@@ -978,7 +978,7 @@ void property_set_base::parse_ini(const ::scoped_string & scopedstrIni)
 ::string property_set_base::get_ini() const
 {
 
-   ::string_array stra = get_ini_lines();
+   ::string_array_base stra = get_ini_lines();
 
    return stra.implode("\n");
 
@@ -1001,7 +1001,7 @@ void property_set_base::parse_ini(const ::scoped_string & scopedstrIni)
 void property_set_base::parse_standard_configuration(const ::scoped_string & scopedstrStandardConfiguration)
 {
 
-   ::string_array straLines;
+   ::string_array_base straLines;
 
    straLines.add_lines(scopedstrStandardConfiguration);
 
@@ -1310,7 +1310,7 @@ void property_set_base::_parse_network_arguments(const ::scoped_string & scopeds
 void property_set_base::parse_network_headers(const ::scoped_string & scopedstrHeaders)
 {
 
-   string_array stra;
+   string_array_base stra;
 
    stra.add_lines(scopedstrHeaders, true);
 
@@ -1375,7 +1375,7 @@ string property_set_base::_001Replace(const ::scoped_string & scopedstr) const
 }
 
 
-::collection::count property_set_base::erase_by_name(string_array & stra)
+::collection::count property_set_base::erase_by_name(string_array_base & stra)
 {
 
    ::collection::count count = 0;
@@ -2171,7 +2171,7 @@ string & property_set_base::get_network_arguments(string & strNetworkArguments) 
 //}
 
 
-string property_set_base::get_command_line(const string_array & straKeys) const
+string property_set_base::get_command_line(const string_array_base & straKeys) const
 {
 
    string str;
@@ -2344,7 +2344,7 @@ string property_set_base::get_command_line() const
 
 
 
-void property_set_base::parse_environment_variable(const string_array & straEnvironment)
+void property_set_base::parse_environment_variable(const string_array_base & straEnvironment)
 {
 
    for (auto & strEnvironment : straEnvironment)

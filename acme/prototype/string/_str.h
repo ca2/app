@@ -124,9 +124,9 @@ public:
       return utf8_replace_with(scopedstrNew, scopedstrOld, scopedstr, iStart);
    }
 
-   static string   random_replace(::particle * pparticle, const string_array & straNew, const string_array & straOld, const ::scoped_string & scopedstr);
+   static string   random_replace(::particle * pparticle, const string_array_base & straNew, const string_array_base & straOld, const ::scoped_string & scopedstr);
 
-   static character_count   find_first(const string_array & straSearch, ::collection::index & iFound, const ::scoped_string & scopedstr, ::collection::index iStart = 0);
+   static character_count   find_first(const string_array_base & straSearch, ::collection::index & iFound, const ::scoped_string & scopedstr, ::collection::index iStart = 0);
 
    static character_count   case_insensitive_find(const ::scoped_string & scopedstrFind, const ::scoped_string & scopedstr, character_count iStart = 0);
 
@@ -326,13 +326,13 @@ public:
    static void get_lines(::string & str, bool bFinal, const ::function < void(const ::scoped_string &, bool bCarriage) > & functionNewLine);
 
 
-   static void get_lines(::string_array & stra, ::string & str, const ::scoped_string & scopedstrPrefix, bool bFinal, ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLines = nullptr);
+   static void get_lines(::string_array_base & stra, ::string & str, const ::scoped_string & scopedstrPrefix, bool bFinal, ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLines = nullptr);
 
 
    static character_count x_find_index(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrSearchedTerm);
    static bool x_contains(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrSearchedTerm);
 
-   static bool x_contains(const ::scoped_string& scopedstr, const ::string_array & straSearchedTerm);
+   static bool x_contains(const ::scoped_string& scopedstr, const ::string_array_base & straSearchedTerm);
 
 
 }; // class str

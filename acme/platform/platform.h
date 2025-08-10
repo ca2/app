@@ -278,11 +278,11 @@ namespace platform
 
       inline ::collection::count get_argument_count1() const { return _get_argc() - 1; }
 
-      string_array get_arguments();
+      string_array_base get_arguments();
 
       ::string get_argument_begins_eat(const ::scoped_string & scopedstrPrefix);
 
-      ::string_array get_argument_options(const ::scoped_string & scopedstrArgument);
+      ::string_array_base get_argument_options(const ::scoped_string & scopedstrArgument);
 
       string get_arg(::collection::index i) const;
       string get_env(const ::scoped_string & scopedstrVariableName) const;

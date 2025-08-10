@@ -22,7 +22,7 @@ namespace gpu_opengl
 
       GLuint m_gluDepthStencilTex;
 
-      ::int_array imageAvailable;
+      ::int_array_base imageAvailable;
 
       bool  m_bNeedRebuild;
 

@@ -661,7 +661,7 @@ namespace integration
 
       auto pathHostIntegrationFolder = host_integration_folder();
 
-      ::string_array straPattern;
+      ::string_array_base straPattern;
 
       straPattern.add("\?\?\?\?-\?\?-\?\? \?\?-\?\?-\?\?");
 

@@ -212,9 +212,9 @@ namespace apex
    void node::set_file_extension_mime_type(::get_file_extension_mime_type * pgetfileextensionmimetype)
    {
 
-      string_array straExtension;
+      string_array_base straExtension;
 
-      string_array straMimeType;
+      string_array_base straMimeType;
 
       pgetfileextensionmimetype->file_extension_mime_type(straExtension, straMimeType);
 
@@ -226,7 +226,7 @@ namespace apex
    void node::initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch)
    {
 
-      ::string_array stra;
+      ::string_array_base stra;
 
       //stra.add("_inheaven_1920x1080_o.JPG");
       //stra.add("02209_stratosphere_1920x1080_o.JPG");
@@ -261,7 +261,7 @@ namespace apex
 
 
 
-//   void node::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
+//   void node::defer_create_main_menu(const string_array_base & straParent, const string_array_base & straMenu, const string_array_base & straId)
 //   {
 //
 //      //throw ::interface_only();
@@ -640,7 +640,7 @@ namespace apex
       for (auto line : lines)
       {
 
-         ::string_array stra;
+         ::string_array_base stra;
 
          stra.explode("=", line);
 

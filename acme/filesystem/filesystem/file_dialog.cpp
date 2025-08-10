@@ -17,15 +17,15 @@ namespace file
 {
 
 
-   //CLASS_DECL_ACME string_array get_pattern_list(const file_dialog_filter & filedialogfiltera)
+   //CLASS_DECL_ACME string_array_base get_pattern_list(const file_dialog_filter & filedialogfiltera)
    //{
 
-   //   ::string_array stra;
+   //   ::string_array_base stra;
 
    //   for (auto & filedialogfilter : filedialogfiltera)
    //   {
 
-   //      ::string_array straPattern;
+   //      ::string_array_base straPattern;
 
    //      straPattern.explode(";", filedialogfilter.m_strPatternList);
 
@@ -41,10 +41,10 @@ namespace file
    //}
 
 
-   ::string_array file_dialog_filter_item::get_preserve_extensions() const
+   ::string_array_base file_dialog_filter_item::get_preserve_extensions() const
    {
 
-      ::string_array stra;
+      ::string_array_base stra;
 
       stra.explode(";", m_strPatternList, false);
 
@@ -102,7 +102,7 @@ namespace file
    ::collection::index file_dialog_filter::find_first_with_extension(const ::scoped_string & scopedstrExtension)
    {
 
-      ::string_array stra;
+      ::string_array_base stra;
       
       ::collection::index i = 0;
 
@@ -127,10 +127,10 @@ namespace file
    }
 
 
-   ::string_array file_dialog_filter::get_all_related_extensions() const
+   ::string_array_base file_dialog_filter::get_all_related_extensions() const
    {
 
-      ::string_array stra;
+      ::string_array_base stra;
 
       for (auto& item : *this)
       {
@@ -153,15 +153,15 @@ namespace file
    }
 
 
-   string_array file_dialog_filter::get_pattern_list() const
+   string_array_base file_dialog_filter::get_pattern_list() const
    {
 
-      ::string_array stra;
+      ::string_array_base stra;
 
       for (auto & filedialogfilter : *this)
       {
 
-         ::string_array straPattern;
+         ::string_array_base straPattern;
 
          straPattern.explode(";", filedialogfilter.m_strPatternList);
 

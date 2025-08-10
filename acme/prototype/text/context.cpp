@@ -30,7 +30,7 @@ namespace text
    }
 
 
-   const string_array & context::locale_ex() const
+   const string_array_base & context::locale_ex() const
    {
 
       return m_plocaleschema->m_straLocale;
@@ -38,7 +38,7 @@ namespace text
    }
 
    
-   const string_array & context::schema_ex() const
+   const string_array_base & context::schema_ex() const
    {
 
       return m_plocaleschema->m_straLocale;
@@ -107,7 +107,7 @@ namespace text
 
          }
 
-         string_array straFailedLocale;
+         string_array_base straFailedLocale;
 
          for(int i = 0; i < m_plocaleschema->m_straLocale.get_count(); i++)
          {
@@ -456,7 +456,7 @@ namespace text
    }
 
 
-   void table::get(string_array & stra, const ::text::context * pcontext, const ::atom & atom) const
+   void table::get(string_array_base & stra, const ::text::context * pcontext, const ::atom & atom) const
    {
 
       _get(stra, pcontext, atom);
@@ -465,7 +465,7 @@ namespace text
 
       ::collection::index i = 0;
 
-      string_array stra2;
+      string_array_base stra2;
 
       do
       {
@@ -487,7 +487,7 @@ namespace text
    }
 
 
-   void table::_get(string_array & stra, const ::text::context * pcontext, const ::atom & atom) const
+   void table::_get(string_array_base & stra, const ::text::context * pcontext, const ::atom & atom) const
    {
 
       if (pcontext == nullptr)
@@ -1137,12 +1137,12 @@ namespace text
    }
 
 
-   //bool context::match(string_array & stra, const ::scoped_string & scopedstr, ::atom idExpression, ::atom idRoot) const
+   //bool context::match(string_array_base & stra, const ::scoped_string & scopedstr, ::atom idExpression, ::atom idRoot) const
    //{
 
    //   synchronous_lock synchronouslock(this->synchronization());
 
-   //   string_array straCandstrate;
+   //   string_array_base straCandstrate;
 
    //   get(straCandstrate,idRoot);
 
@@ -1159,7 +1159,7 @@ namespace text
 
    //      strExp.replace("%1",strCandstrate);
 
-   //      string_array straResult;
+   //      string_array_base straResult;
 
    //      auto pregex = psystem->create_regular_expression("pcre", strExp);
 

@@ -438,12 +438,12 @@ char * malloc_get_current_dir_name()
 //
 //}
 //
-//string_array file_as_lines(const ::file::path & path, character_count iReadAtMostByteCount)
+//string_array_base file_as_lines(const ::file::path & path, character_count iReadAtMostByteCount)
 //{
 //
 //   string str = file_system()->as_string(path, iReadAtMostByteCount);
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   stra.add_lines(str);
 //

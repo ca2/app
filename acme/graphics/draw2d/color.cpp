@@ -1617,7 +1617,7 @@ namespace color
 
       str.make_upper();
 
-      ::string_array straPermitted;
+      ::string_array_base straPermitted;
 
       straPermitted.add("0");
       straPermitted.add("1");

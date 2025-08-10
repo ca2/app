@@ -502,7 +502,7 @@ namespace filemanager
 
             int iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
-            ::int_array iaRemove;
+            ::int_array_base iaRemove;
             while(true)
             {
             iItem = m_buildhelper.m_iStep + m_buildhelper.m_iTopIndex;
@@ -557,7 +557,7 @@ namespace filemanager
 
             int iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
-            ::int_array iaRemove;
+            ::int_array_base iaRemove;
             auto pFind = 0;
             sqlite::CFieldValue fv;
             while(true)

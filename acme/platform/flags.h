@@ -11,7 +11,7 @@ class flags :
 public:
 
 
-   long_long_array m_ia;
+   long_long_array_base m_ia;
 
 
    flags();

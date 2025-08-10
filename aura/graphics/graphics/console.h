@@ -30,8 +30,8 @@ namespace graphics
       int                                       m_iColor;
       enum_dos_color                            m_edoscolor;
       int                                       m_iBorder;
-      string_array                              m_stra;
-      array < ::int_array >                     m_i2aColor;
+      string_array_base                              m_stra;
+      array < ::int_array_base >                     m_i2aColor;
       int_map < ::draw2d::pen_pointer >         m_mappen2;
       int_map < ::draw2d::pen_pointer >         m_mappen1;
       //int                                     m_iColorPointer;

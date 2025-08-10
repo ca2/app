@@ -9880,7 +9880,7 @@ void image::on_exif_orientation()
 //}
 //
 
-//void image::load_matter_icon(string_array & straMatter, const ::scoped_string & scopedstrIcon)
+//void image::load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon)
 //{
 //
 //   ::file::path path;

@@ -73,7 +73,7 @@ namespace user
    // }
 
 
-   void form_list::get_selection(const ::scoped_string & scopedstrDataKey, ::string_array & stra)
+   void form_list::get_selection(const ::scoped_string & scopedstrDataKey, ::string_array_base & stra)
    {
 
       stra.add_item(scopedstrDataKey);

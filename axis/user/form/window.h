@@ -48,7 +48,7 @@ namespace user
       void on_command(::message::command * pcommand) override;
       DECLARE_MESSAGE_HANDLER(_001OnNotify);
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
-      void get_selection(const ::scoped_string & scopedstrDataKey, ::string_array & stra) override;
+      void get_selection(const ::scoped_string & scopedstrDataKey, ::string_array_base & stra) override;
       virtual void Update(bool bSave);
       virtual bool _001SetData(const ::atom & atom, bool bData);
       virtual bool _001GetData(const ::atom & atom, bool & bData);

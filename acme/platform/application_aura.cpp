@@ -223,7 +223,7 @@ namespace platform
    //application(){}
    //~ application() override{}
 
-   //void aura_application_layer::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema){}
+   //void aura_application_layer::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema){}
    //::string aura_application_layer::get_locale_schema_dir(){}
 
 
@@ -322,7 +322,7 @@ namespace platform
 
 
    //::string aura_application_layer::get_title() override{}
-   //virtual string_array get_categories() override{}
+   //virtual string_array_base get_categories() override{}
 
    //void aura_application_layer::defer_create_keyboard() override{}
    //bool aura_application_layer::set_keyboard_layout(const ::scoped_string & scopedstrPath, const ::action_context & action_context){}
@@ -545,8 +545,8 @@ namespace platform
 
    //void aura_application_layer::on_update_matter_locator() override{}
 
-   //void aura_application_layer::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
-   //void aura_application_layer::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
+   //void aura_application_layer::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
+   //void aura_application_layer::matter_locator_locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
 
    //::string aura_application_layer::get_locale_schema_dir(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
    //::string aura_application_layer::get_locale_schema_dir(const ::scoped_string & scopedstrLocale) override{}

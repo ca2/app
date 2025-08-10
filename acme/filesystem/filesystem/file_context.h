@@ -176,10 +176,10 @@ public:
    virtual memory beginning(const ::payload& payloadFile, memsize size, bool bNoExceptionOnFail = true);
 
 
-   inline string_array lines(const ::payload & payloadFile, bool bAddEmpty = true, bool bNoExceptionOnFail = true)
+   inline string_array_base lines(const ::payload & payloadFile, bool bAddEmpty = true, bool bNoExceptionOnFail = true)
    {
 
-       string_array straLines;
+       string_array_base straLines;
 
        get_lines(straLines, payloadFile, bAddEmpty, bNoExceptionOnFail);
 
@@ -188,9 +188,9 @@ public:
    }
 
 
-   virtual void get_lines(string_array & stra, const ::payload & payloadFile, bool bAddEmpty = true, bool bNoExceptionOnFail = true);
-   virtual void put_lines(const ::payload& payloadFile, const string_array& stra, const plain_text_file_options& options = {});
-   //virtual void put_lines_utf8(const ::payload & payloadFile, const string_array & stra);
+   virtual void get_lines(string_array_base & stra, const ::payload & payloadFile, bool bAddEmpty = true, bool bNoExceptionOnFail = true);
+   virtual void put_lines(const ::payload& payloadFile, const string_array_base& stra, const plain_text_file_options& options = {});
+   //virtual void put_lines_utf8(const ::payload & payloadFile, const string_array_base & stra);
 
 
    virtual ::memory _005Signature(const ::payload & payloadFile);
@@ -371,8 +371,8 @@ public:
    //}
 
 
-   //virtual void lines(string_array & stra, const ::payload & payloadFile);
-   //virtual void put_lines(const ::payload & payloadFile, const string_array & stra);
+   //virtual void lines(string_array_base & stra, const ::payload & payloadFile);
+   //virtual void put_lines(const ::payload & payloadFile, const string_array_base & stra);
 
    //virtual bool put_contents(const ::payload & payloadFile, const void * pvoidContents, ::collection::count count);
    //virtual bool put_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents);
@@ -438,8 +438,8 @@ public:
    }
 
 
-   virtual void save_lines(const ::payload & payloadFile, string_array & stra);
-   virtual void load_lines(string_array & stra, const ::payload & payloadFile);
+   virtual void save_lines(const ::payload & payloadFile, string_array_base & stra);
+   virtual void load_lines(string_array_base & stra, const ::payload & payloadFile);
 
 
 

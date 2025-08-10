@@ -3476,7 +3476,7 @@ namespace user
    }
 
 
-   void mesh::get_data_selection(const ::scoped_string & scopedstrDataKey, ::string_array & straSelection)
+   void mesh::get_data_selection(const ::scoped_string & scopedstrDataKey, ::string_array_base & straSelection)
    {
 
       if (!has_data_key(scopedstrDataKey))
@@ -4945,7 +4945,7 @@ namespace user
    }
 
 
-   void mesh::FilterInclude(::int_array & array)
+   void mesh::FilterInclude(::int_array_base & array)
    {
 
       ASSERT(m_efilterstate == FilterStateSetup);
@@ -5081,7 +5081,7 @@ namespace user
 
       }
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_tokens(scopedstrFilter," ",false);
 

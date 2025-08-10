@@ -52,7 +52,7 @@ namespace aura
       ::pointer < ::file::watch >            m_pfilewatchWeather;
 
 
-      string_array                           m_straTheme;
+      string_array_base                           m_straTheme;
       string                                 m_strTheme;
       ::file::path                           m_pathTheme;
       string_map < ::pointer < colors > >    m_mapColors;

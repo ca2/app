@@ -233,7 +233,7 @@ namespace folder_zip
 
       string str;
       string wstrFolder;
-      string_array wstraFolder;
+      string_array_base wstraFolder;
 
       unz_file_info unzfileinfo;
 
@@ -458,7 +458,7 @@ namespace folder_zip
    }
 
 
-   void folder::e_extract_all(const ::file::path& pathTargetDir, ::file::path_array_base* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback)
+   void folder::e_extract_all(const ::file::path& pathTargetDir, ::file::path_array_base* ppatha, string_array_base* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback)
    {
 
       ::file::listing_base listing;

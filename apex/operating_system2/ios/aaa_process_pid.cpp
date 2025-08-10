@@ -334,12 +334,12 @@ string get_cmdline(unsigned int uiPid)
 }
 
 
-string_array cmdline_from_pid(unsigned int uiPid)
+string_array_base cmdline_from_pid(unsigned int uiPid)
 {
 
 //   string strCmdLine = get_cmdline(uiPid);
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   string strArg;
 //
@@ -484,7 +484,7 @@ string_array cmdline_from_pid(unsigned int uiPid)
 //
 //   return stra;
 
-   return string_array();
+   return string_array_base();
 
 }
 

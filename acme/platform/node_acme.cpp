@@ -612,7 +612,7 @@ namespace platform
    }
 
 
-   bool acme_node_layer::load_modules_diff(string_array& straOld, string_array& straNew, const ::scoped_string & scopedstrExceptDir)
+   bool acme_node_layer::load_modules_diff(string_array_base& straOld, string_array_base& straNew, const ::scoped_string & scopedstrExceptDir)
    {
       return false;
    }
@@ -645,9 +645,9 @@ namespace platform
    }
 
 
-   //bool acme_node_layer::is_shared_library_busy(::process_identifier processidentifier, const string_array& stra){}
+   //bool acme_node_layer::is_shared_library_busy(::process_identifier processidentifier, const string_array_base& stra){}
 
-   //bool acme_node_layer::is_shared_library_busy(const string_array& stra){}
+   //bool acme_node_layer::is_shared_library_busy(const string_array_base& stra){}
 
    bool acme_node_layer::process_contains_module(string& strImage, ::process_identifier processidentifier,
                                                  const ::scoped_string & scopedstrLibrary)
@@ -657,7 +657,7 @@ namespace platform
 
 
    ::process_identifier_array acme_node_layer::
-   shared_library_process(string_array& straProcesses, const ::scoped_string & scopedstrLibrary)
+   shared_library_process(string_array_base& straProcesses, const ::scoped_string & scopedstrLibrary)
    {
       return{};
    }
@@ -1073,8 +1073,8 @@ namespace platform
    }
 
 
-   //bool acme_node_layer::is_shared_library_busy(::process_identifier processidentifier, const string_array & stra){}
-   //bool acme_node_layer::is_shared_library_busy(const string_array & stra){}
+   //bool acme_node_layer::is_shared_library_busy(::process_identifier processidentifier, const string_array_base & stra){}
+   //bool acme_node_layer::is_shared_library_busy(const string_array_base & stra){}
 
 
    // bool acme_node_layer::launch_application(::particle * pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams, int iBitCount){}
@@ -1386,12 +1386,12 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    }
 
 
-   void acme_node_layer::file_extension_get_open_with_list_keys(string_array& straKey, const ::scoped_string & scopedstrExtension)
+   void acme_node_layer::file_extension_get_open_with_list_keys(string_array_base& straKey, const ::scoped_string & scopedstrExtension)
    {
    }
 
 
-   void acme_node_layer::file_extension_get_open_with_list_commands(string_array& straCommand,
+   void acme_node_layer::file_extension_get_open_with_list_commands(string_array_base& straCommand,
                                                                     const ::scoped_string & scopedstrExtension)
    {
    }
@@ -1550,7 +1550,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    }
 
 
-   void acme_node_layer::set_file_extension_mime_type(string_array& straExtension, string_array& straMimeType)
+   void acme_node_layer::set_file_extension_mime_type(string_array_base& straExtension, string_array_base& straMimeType)
    {
    }
 
@@ -1650,7 +1650,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
 #endif
 
 #if !defined(WINDOWS)
-      string_array acme_node_layer::cmdline_from_pid(::process_identifier processidentifier)
+      string_array_base acme_node_layer::cmdline_from_pid(::process_identifier processidentifier)
 {
          
          return {};
@@ -1865,7 +1865,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    //
    //#ifndef UNIVERSAL_WINDOWS
    //      //bool acme_node_layer::process_contains_module(string & strImage, ::process_identifier processidentifier, const ::scoped_string & scopedstrLibrary){}
-   //      //void acme_node_layer::shared_library_process(dword_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrLibrary){}
+   //      //void acme_node_layer::shared_library_process(dword_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrLibrary){}
    //#endif
 #if defined(__BSD__) || defined(__APPLE__)
 

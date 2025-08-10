@@ -78,7 +78,7 @@ namespace hellobase
       //::image::image_pointer                 m_pimageFast;
 
 
-      //string_array                          m_stra23;
+      //string_array_base                          m_stra23;
       //string_map < ::image::image_pointer >    m_mapDib23;
       //bool                             m_b23;
       //unsigned int                         m_uiCurrent23;

@@ -26,7 +26,7 @@ namespace file
 } // namespace file
 
 
-CLASS_DECL_ACME ::file::path_array_base operator / (const ::file::path & pathBase, const string_array & straRelativeItems)
+CLASS_DECL_ACME ::file::path_array_base operator / (const ::file::path & pathBase, const string_array_base & straRelativeItems)
 {
 
    ::file::path_array_base patha;
@@ -161,7 +161,7 @@ CLASS_DECL_ACME ::file::path_array_base & ascendants_path(const ::file::path & p
 //
 //   }
 
-   //string_array stra;
+   //string_array_base stra;
 
    //ascendants_name(stra, pathBase);
 
@@ -217,7 +217,7 @@ CLASS_DECL_ACME ::file::path_array_base & ascendants_path(::file::path_array_bas
 }
 
 
-CLASS_DECL_ACME ::string_array & ascendants_name(::string_array & stra, const ::file::path & pathParam)
+CLASS_DECL_ACME ::string_array_base & ascendants_name(::string_array_base & stra, const ::file::path & pathParam)
 {
 
    if(pathParam.has_character())
@@ -253,10 +253,10 @@ CLASS_DECL_ACME::file::path_array_base ascendants_path(const ::file::path& pathB
 }
 
 
-CLASS_DECL_ACME::string_array ascendants_name(const ::file::path& pathBase)
+CLASS_DECL_ACME::string_array_base ascendants_name(const ::file::path& pathBase)
 {
 
-   ::string_array stra;
+   ::string_array_base stra;
 
    ascendants_name(stra, pathBase);
 
@@ -271,7 +271,7 @@ CLASS_DECL_ACME::string_array ascendants_name(const ::file::path& pathBase)
 void _000001_stra_to_patha_assignment_test()
 {
 
-   string_array stra;
+   string_array_base stra;
 
    stra.add("C:\\a");
    stra.add("C:\\b");

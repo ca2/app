@@ -181,8 +181,8 @@ namespace platform
       ::pointer < ::mutex >                                                   m_pmutexMatter;
 
       ::pointer < ::mutex >                                                   m_pmutexHttpDownload;
-      string_array                                                            m_straHttpDownloading;
-      string_array                                                            m_straHttpExists;
+      string_array_base                                                            m_straHttpDownloading;
+      string_array_base                                                            m_straHttpExists;
          //::pointer < ::windowing::windowing_base > m_pwindowingbase;
 //#if defined(WITH_X11) || defined(WITH_XCB)
   //    ::particle_pointer                                 m_pmutexXlib;
@@ -203,8 +203,8 @@ namespace platform
       virtual ::particle * matter_mutex();
       virtual ::particle * http_download_mutex();
 
-      virtual ::string_array * http_download_array();
-      virtual ::string_array * http_exists_array();
+      virtual ::string_array_base * http_download_array();
+      virtual ::string_array_base * http_exists_array();
 
       virtual class ::time * file_listing_cache_time();
 
@@ -406,7 +406,7 @@ namespace platform
 
 #elif defined(UNIVERSAL_WINDOWS)
 
-      void system_construct(const ::string_array & stra);
+      void system_construct(const ::string_array_base & stra);
 
       //#else
 
@@ -607,9 +607,9 @@ namespace platform
 
       virtual ::regular_expression_pointer compile_pcre(const ::scoped_string & scopedstr);
       virtual ::pointer<::regular_expression::context> get_pcre_context();
-      //virtual int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+      //virtual int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
 
-      virtual void get_public_internet_domain_extension_list(string_array & stra);
+      virtual void get_public_internet_domain_extension_list(string_array_base & stra);
       virtual ::string fetch_public_internet_domain_extension_list_text();
 
       virtual void system_id_update(int iUpdate, long long iPayload);

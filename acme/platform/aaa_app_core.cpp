@@ -262,7 +262,7 @@ void app_core::system_init()
 
 //   string strAppId;
 //
-//   string_array stra1;
+//   string_array_base stra1;
 //
 //#ifdef WINDOWS
 //
@@ -302,11 +302,11 @@ void app_core::system_init()
 //
 //#endif
 //
-//   string_array stra2;
+//   string_array_base stra2;
 //
 //   stra2 = get_c_args_from_string(m_strCommandLine);
 //
-//   string_array stra3;
+//   string_array_base stra3;
 //
 ////#ifdef WINDOWS_DESKTOP
 ////
@@ -322,7 +322,7 @@ void app_core::system_init()
 ////
 ////#endif
 //
-//   //string_array stra5;
+//   //string_array_base stra5;
 //
 //   //if(m_pszMain)
 //   //{
@@ -331,7 +331,7 @@ void app_core::system_init()
 //
 //   //}
 //
-//   //string_array stra4;
+//   //string_array_base stra4;
 //
 //   //string strCommandLine = merge_colon_args(
 //   //   {

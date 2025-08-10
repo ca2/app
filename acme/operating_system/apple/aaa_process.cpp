@@ -160,7 +160,7 @@ namespace apple
          
       }
 
-      string_array straParam;
+      string_array_base straParam;
 
       address_array < char * > argv;
 
@@ -386,7 +386,7 @@ namespace apple
 
       {
 
-         string_array stra;
+         string_array_base stra;
 
          address_array < char * > argv;
 
@@ -503,7 +503,7 @@ namespace apple
 
       informationf("\n\n** %s **\n\n", "This command should work.");
 
-//      string_array straParam;
+//      string_array_base straParam;
 //
       address_array < char * > argv;
 //
@@ -529,7 +529,7 @@ namespace apple
       //string strParam(scopedstrCmdLineParam);
 
 
-      string_array straParam;
+      string_array_base straParam;
 
       straParam = get_c_args_for_c(scopedstrCmdLineParam);
       //straParam.add("uid=" + as_string(uid));
@@ -579,7 +579,7 @@ namespace apple
 
 
       /*
-      string_array straParam;
+      string_array_base straParam;
 
       ref_array < char > argv;
 
@@ -778,7 +778,7 @@ auto tickStart = ::duration::now();
 
 #else
 
-      string_array straParam;
+      string_array_base straParam;
 
       address_array < char * > argv;
 

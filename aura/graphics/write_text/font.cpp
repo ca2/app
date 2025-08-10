@@ -603,7 +603,7 @@ namespace write_text
 //   }
 //
 //
-//   void font::AddXFGlyphs(string_array_array  & straaTokens)
+//   void font::AddXFGlyphs(string_array_array_base  & straaTokens)
 //   {
 //      char           ch;
 //      string         str;
@@ -613,7 +613,7 @@ namespace write_text
 //      SelectFont();
 //      for (i = 0; i < straaTokens.get_size(); i++)
 //      {
-//         string_array & straTokens = straaTokens[i];
+//         string_array_base & straTokens = straaTokens[i];
 //         for (j = 0; j < straTokens.get_size(); j++)
 //         {
 //            str = straTokens[j];

@@ -229,4 +229,4 @@ inline ::duration operator "" _tick(unsigned long long u) { return u; }
 
 
 
-typedef CLASS_DECL_AURA numeric_array < ::duration > musical_tick_array;
+typedef CLASS_DECL_AURA numeric_array < ::duration > musical_tick_array_base;

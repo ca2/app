@@ -72,7 +72,7 @@ namespace platform
 //      string                                          m_strLibraryName;
 //      string                                          m_strBuild;
 //      string                                          m_strInstallToken;
-//      string_array                                    m_straAppCategory;
+//      string_array_base                                    m_straAppCategory;
 //      bool                                            m_bLicense;
 //
 //      enum_application_capability_array               m_eapplicationcapabilitya;
@@ -233,8 +233,8 @@ namespace platform
       virtual ::string get_application_name();
 
 
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
-      virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+      virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+      virtual void matter_locator_locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
       virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
       virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale);
@@ -267,7 +267,7 @@ namespace platform
 
       virtual void term_application();
 
-      virtual ::string_array get_about_box_lines();
+      virtual ::string_array_base get_about_box_lines();
 
       virtual void show_about_box(::user::activation_token * puseractivationtoken);
 
@@ -285,7 +285,7 @@ namespace platform
       virtual void pick_browse(const ::function < void(const ::file::path & path) > & callback);
       virtual void pick_media(const ::scoped_string & scopedstrMediaType);
       virtual void did_pick_document_at_url(const ::scoped_string & scopedstrUrl);
-      virtual void did_pick_document_at_urls(const ::string_array & stra);
+      virtual void did_pick_document_at_urls(const ::string_array_base & stra);
       virtual void on_prompt_write_file(::user::controller * pusercontroller);
       virtual void file_manager_save_as(::user::controller * pusercontroller);
 

@@ -88,7 +88,7 @@ namespace application_build_helper
 
       string strInput = file_system()->as_string(pathPackageList);
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_lines(strInput, false);
 
@@ -156,7 +156,7 @@ namespace application_build_helper
          if (strLine.has_character())
          {
 
-            string_array straMatter;
+            string_array_base straMatter;
 
             straMatter.explode("/", strLine);
 
@@ -255,7 +255,7 @@ namespace application_build_helper
 
    }
 
-      ::string_array straOutput;
+      ::string_array_base straOutput;
 
       int iExitCode = acmenode()->command_system(strCmd, functionTrace);
 
@@ -268,7 +268,7 @@ namespace application_build_helper
       else if (iAdding > 0 || iDeleting > 0)
       {
 
-         ::string_array straStatus;
+         ::string_array_base straStatus;
 
          if (iAdding > 0) straStatus.append_format("%d added", iAdding);
 

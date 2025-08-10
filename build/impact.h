@@ -17,10 +17,10 @@ namespace app_build
    public:
 
 
-      string_array                  m_straLinePrebuild;
+      string_array_base                  m_straLinePrebuild;
 
       ::pointer<build>              m_pbuild;
-      array_union < string_array >  m_straunion;
+      array_union < string_array_base >  m_straunion;
 
 
       impact();

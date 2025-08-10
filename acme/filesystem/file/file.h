@@ -286,7 +286,7 @@ namespace file
       virtual bool is_opened() const;
 
 
-      virtual void put_lines(const string_array& stra);
+      virtual void put_lines(const string_array_base& stra);
 
       virtual class ::time modification_time();
       virtual void set_modification_time(const class ::time & time);

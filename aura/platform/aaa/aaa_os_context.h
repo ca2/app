@@ -48,8 +48,8 @@
       virtual bool defer_register_ca2_plugin_for_mozilla();
 
 
-      virtual bool file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension);
-      virtual bool file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension);
+      virtual bool file_extension_get_open_with_list_keys(string_array_base & straKey, const ::scoped_string & scopedstrExtension);
+      virtual bool file_extension_get_open_with_list_commands(string_array_base & straCommand, const ::scoped_string & scopedstrExtension);
 
       virtual bool file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrIconPath);
       virtual bool file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam);
@@ -98,7 +98,7 @@
 
       virtual bool set_default_browser();
 
-      virtual bool add_default_program(string_array & straExtension, string_array & straMimeType);
+      virtual bool add_default_program(string_array_base & straExtension, string_array_base & straMimeType);
 
       virtual bool register_user_auto_start(string strId, string strCommand, bool bRegister);
 

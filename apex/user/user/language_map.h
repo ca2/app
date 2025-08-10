@@ -18,7 +18,7 @@ namespace user
 
       ::int_sz *                                      m_pintstring;
       string_map < ::pointer<::user::language >>      m_languagemap;
-      string_array                                    m_straLang;
+      string_array_base                                    m_straLang;
       string                                          m_strLang;
       string_to_string *                              m_pstringmap;
       ::pointer<::user::language>                     m_planguage;
@@ -49,9 +49,9 @@ namespace user
       //virtual bool set_current_language(::collection::index iSel);
 
 
-      virtual ::collection::index get_language_list(string_array & stra);
-      virtual ::collection::index get_text_list(string_array & stra, const ::scoped_string & scopedstrText, bool bFull = false);
-      virtual string_array get_text_list(const ::scoped_string & scopedstrText, bool bFull = false);
+      virtual ::collection::index get_language_list(string_array_base & stra);
+      virtual ::collection::index get_text_list(string_array_base & stra, const ::scoped_string & scopedstrText, bool bFull = false);
+      virtual string_array_base get_text_list(const ::scoped_string & scopedstrText, bool bFull = false);
 
 
       virtual void parse_podata(const ::scoped_string & scopedstrPoData);

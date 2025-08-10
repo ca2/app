@@ -324,7 +324,7 @@ namespace experience_lite
    void user_style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,LPCRECT32 lpcrect,::draw2d::brush_pointer & pbrushText)
    {
 
-      string_array & straTitle = pane.m_straTitle;
+      string_array_base & straTitle = pane.m_straTitle;
 
       pgraphics->SelectObject(pbrushText);
 

@@ -90,7 +90,7 @@ namespace filehandler
 
       erase_all();
 
-      string_array straApp;
+      string_array_base straApp;
 
       phandler->get_extension_app(straApp, pszTopic);
 

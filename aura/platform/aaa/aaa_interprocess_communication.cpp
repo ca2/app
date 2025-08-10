@@ -594,7 +594,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       string strMember;
 
-      string_array stra;
+      string_array_base stra;
 
       payload_array payloada;
 
@@ -781,7 +781,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
 #else
 
-      string_array stra;
+      string_array_base stra;
 
       ::file::path pathModule;
 
@@ -802,7 +802,7 @@ repeat:
 
       }
 
-      string_array stra2;
+      string_array_base stra2;
 
       ::int_array iaPid2;
 
@@ -812,7 +812,7 @@ repeat:
          if (str.has_character())
          {
 
-            string_array a;
+            string_array_base a;
 
             a.explode("|", str);
 
@@ -885,7 +885,7 @@ repeat:
 
       m_straModule.add_lines(strModuleList);
 
-      string_array stra2;
+      string_array_base stra2;
 
       ::int_array iaPid2;
 
@@ -901,7 +901,7 @@ repeat:
          if (str.has_character())
          {
 
-            string_array a;
+            string_array_base a;
 
             a.explode("|", str);
 
@@ -943,7 +943,7 @@ repeat:
 
       }
 
-      string_array straUnique;
+      string_array_base straUnique;
 
       forallref(m_straModule)
       {

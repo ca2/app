@@ -195,7 +195,7 @@ namespace berg
       else
       {
 
-         string_array stra;
+         string_array_base stra;
 
          for (auto& pitem : itema)
          {

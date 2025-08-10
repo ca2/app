@@ -389,7 +389,7 @@ namespace filemanager
             else
             {
 
-               psession->m_varTopicFile = (const string_array &) patha;
+               psession->m_varTopicFile = (const string_array_base &) patha;
 
             }
 
@@ -501,9 +501,9 @@ namespace filemanager
    void file_list::_017OpenContextMenuFolder(::pointer<::file::item> item, const ::action_context & context)
    {
 
-      string_array straCommand;
+      string_array_base straCommand;
 
-      string_array straCommandTitle;
+      string_array_base straCommandTitle;
 
       filemanager_document()->on_file_manager_open_context_menu_folder(item, straCommand, straCommandTitle, context);
 
@@ -705,7 +705,7 @@ namespace filemanager
 
          string strExt = strPath.final_extension();
 
-         string_array stra;
+         string_array_base stra;
 
          // auto pcontext = get_context();
 
@@ -866,7 +866,7 @@ namespace filemanager
 
    //   auto itema = get_selected_items();
 
-   //   string_array stra;
+   //   string_array_base stra;
 
    //   ::file::listing_base straSub;
 
@@ -939,7 +939,7 @@ namespace filemanager
    //
    //   __UNREFERENCED_PARAMETER(pmessage);
    //
-   //   string_array stra;
+   //   string_array_base stra;
    //
    //   ::file::listing_base straSub(get_context());
 
@@ -1076,7 +1076,7 @@ namespace filemanager
 
          ::userfs::list_item item;
 
-         string_array stra;
+         string_array_base stra;
 
          auto papp = ::filemanager_impact_base::get_app();
 
@@ -1131,7 +1131,7 @@ namespace filemanager
 
       set_context_offset({0,0});
 
-      string_array straStrictOrder;
+      string_array_base straStrictOrder;
 
 //      papp->datastream()->get(data_get_current_sort_id() + "." +  data_get_current_list_layout_id() + ".straStrictOrder", straStrictOrder);
 
@@ -2089,7 +2089,7 @@ namespace filemanager
             if (filepatha.add_unique(filepath) >= 0)
             {
 
-               string_array stra;
+               string_array_base stra;
 
                ::generic::container::copy(stra, filepatha);
 

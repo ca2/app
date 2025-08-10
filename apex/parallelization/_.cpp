@@ -771,7 +771,7 @@ namespace apex
    //
    //   }
    //
-   //   string_array stra;
+   //   string_array_base stra;
    //
    //   character_count iFindLast = 0;
    //

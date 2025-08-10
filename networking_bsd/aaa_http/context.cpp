@@ -557,7 +557,7 @@ namespace http
 
       string strHost = file()->as_string(directory()->appdata() / "database\\text\\last_good_known_account_com.txt");
 
-      string_array straRequestingServer;
+      string_array_base straRequestingServer;
 
       straRequestingServer.add("ca2.network");
 
@@ -785,7 +785,7 @@ namespace http
       else if (payload.case_insensitive_begins_eat("PROXY"))
       {
          payload.trim();
-         string_array stra;
+         string_array_base stra;
          stra.explode(":", payload);
          pproxy->m_bDirect = false;
          pproxy->m_strProxy = stra[0];
@@ -854,7 +854,7 @@ namespace http
       //if (str.has_character() && str.find("<") < 0 && str.find(">") < 0)
       //{
 
-      //   string_array stra;
+      //   string_array_base stra;
 
       //   stra.explode(":", str);
 
@@ -2116,7 +2116,7 @@ namespace http
 
       }
 
-      string_array straProxy;
+      string_array_base straProxy;
 
       if (set.has_property("proxy"))
       {

@@ -890,7 +890,7 @@ namespace platform
    }
 
 
-   void context::locale_schema_matter(string_array& stra, const string_array& straMatterLocator,
+   void context::locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator,
                                       const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema)
    {
 
@@ -1212,7 +1212,7 @@ namespace platform
       if (!strMatterLocator.case_insensitive_contains("/_matter/"))
       {
 
-         string_array stra;
+         string_array_base stra;
 
          stra.explode("/", strMatterLocator);
 

@@ -32,7 +32,7 @@ namespace user
    namespace rich_text
    {
 
-      ::collection::count longest_pline(string & strSlice, double & d, string_array & straWords, double * pdaPosition, double dPositionLeft, int cx);
+      ::collection::count longest_pline(string & strSlice, double & d, string_array_base & straWords, double * pdaPosition, double dPositionLeft, int cx);
       int longest_word(string & strSlice, double & dPosition, const ::scoped_string & scopedstrWord, double * pdaPosition, double dPositionLeft, int cx);
       void align(line * pline, const ::double_rectangle & rectangle);
       ::collection::count get_vars(strsize_array & ia1, strsize_array & ia2, const ::scoped_string & scopedstr);
@@ -507,7 +507,7 @@ namespace user
          //index iSpanNextWord;
          string strSlice;
 
-         string_array straWords;
+         string_array_base straWords;
 
          double dPosition;
 

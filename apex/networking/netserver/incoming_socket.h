@@ -30,7 +30,7 @@ namespace netserver
 
       //virtual void simple_file_server(const ::scoped_string & scopedstrPath, bool bMatter = false);
 
-      //virtual bool http_filter_response_header(atom key, string_array & straValue);
+      //virtual bool http_filter_response_header(atom key, string_array_base & straValue);
 
 
    };

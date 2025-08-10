@@ -484,7 +484,7 @@ namespace aura
 #endif
 
 
-      string_array straAppList;
+      string_array_base straAppList;
 
       get_app_list(straAppList);
 
@@ -667,14 +667,14 @@ namespace aura
    }
 
 
-   void library::get_extension_list(string_array & stra)
+   void library::get_extension_list(string_array_base & stra)
    {
 
 
    }
 
 
-   void library::get_app_list(string_array & stra)
+   void library::get_app_list(string_array_base & stra)
    {
 
       synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
@@ -808,7 +808,7 @@ namespace aura
 
       synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
-      string_array stra;
+      string_array_base stra;
 
       get_app_list(stra);
 

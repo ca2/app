@@ -126,7 +126,7 @@ namespace menu
    }
 
 
-   bool item::create_menu(const string_array & straCommand, const string_array & straCommandTitle)
+   bool item::create_menu(const string_array_base & straCommand, const string_array_base & straCommandTitle)
    {
 
       ::collection::count iItemCount = straCommand.get_count();

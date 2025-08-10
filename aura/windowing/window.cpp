@@ -9075,7 +9075,7 @@ namespace windowing
 
          {
 
-            ::user::interaction_ptra userinteractiona;
+            class ::user::interaction_ptra userinteractiona;
 
             {
 

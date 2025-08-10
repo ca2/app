@@ -397,7 +397,7 @@ namespace datetime
 //
 //      }
 //
-//      string_array stra;
+//      string_array_base stra;
 //
 //      auto pcre1 = system()->create_regular_expression("pcre", "^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
 //
@@ -472,7 +472,7 @@ namespace datetime
 //      string str;
 //      if(value.m_bSpan)
 //      {
-//         string_array stra;
+//         string_array_base stra;
 //         string strItem;
 //         if(value.m_iYear != 0)
 //         {

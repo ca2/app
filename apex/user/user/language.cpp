@@ -174,7 +174,7 @@ namespace user
 
       strPo.case_insensitive_begins_eat(STR_BOM);
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_lines(strPo);
 
@@ -275,7 +275,7 @@ namespace user
                         if (strHeader.has_character())
                         {
 
-                           string_array stra;
+                           string_array_base stra;
 
                            stra.explode(":", strHeader);
 

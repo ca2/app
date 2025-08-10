@@ -127,7 +127,7 @@ namespace hi5
       ::payload mediaUploadStatus(const ::scoped_string & scopedstrMediaId);
 
       /* Twitter status APIs */
-      bool statusUpdate(string & newStatus /* in */, string_array straMediaIds = {}, const ::scoped_string & scopedstrReplyStatusId = "");
+      bool statusUpdate(string & newStatus /* in */, string_array_base straMediaIds = {}, const ::scoped_string & scopedstrReplyStatusId = "");
       bool statusShowById(string & statusId /* in */);
       bool statusDestroyById(string & statusId /* in */);
 

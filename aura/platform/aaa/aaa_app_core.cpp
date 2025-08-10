@@ -257,7 +257,7 @@ void app_core::system_init()
 
    string strAppId;
 
-   string_array stra1;
+   string_array_base stra1;
 
 #ifdef WINDOWS
 
@@ -288,11 +288,11 @@ void app_core::system_init()
 
 #endif
 
-   string_array stra2;
+   string_array_base stra2;
 
    stra2 = get_c_args_from_string(m_strCommandLine);
 
-   string_array stra3;
+   string_array_base stra3;
 
 #ifdef WINDOWS_DESKTOP
 
@@ -308,7 +308,7 @@ void app_core::system_init()
 
 #endif
 
-   string_array stra5;
+   string_array_base stra5;
 
    if(m_pszMain)
    {
@@ -317,7 +317,7 @@ void app_core::system_init()
 
    }
 
-   string_array stra4;
+   string_array_base stra4;
 
    string strCommandLine = merge_colon_args(
       {
@@ -1028,10 +1028,10 @@ struct heap_test_struct :
 
 
 
-string_array get_c_args_from_string(const ::scoped_string & scopedstr)
+string_array_base get_c_args_from_string(const ::scoped_string & scopedstr)
 {
 
-   string_array stra;
+   string_array_base stra;
 
    if (scopedstr == nullptr)
    {
@@ -1040,9 +1040,9 @@ string_array get_c_args_from_string(const ::scoped_string & scopedstr)
 
    }
 
-   string_array straBeforeColon;
+   string_array_base straBeforeColon;
 
-   string_array straAfterColon;
+   string_array_base straAfterColon;
 
    const ::ansi_character * pszEnd = psz + strlen(scopedstr);
 
@@ -1150,10 +1150,10 @@ string_array get_c_args_from_string(const ::scoped_string & scopedstr)
 }
 
 
-string_array get_c_args_from_c(const ::scoped_string & scopedstr)
+string_array_base get_c_args_from_c(const ::scoped_string & scopedstr)
 {
 
-   string_array stra;
+   string_array_base stra;
 
    if(scopedstr == nullptr)
    {
@@ -1162,9 +1162,9 @@ string_array get_c_args_from_c(const ::scoped_string & scopedstr)
 
    }
 
-   string_array straBeforeColon;
+   string_array_base straBeforeColon;
 
-   string_array straAfterColon;
+   string_array_base straAfterColon;
 
    const ::ansi_character * pszEnd = psz + strlen(scopedstr);
 
@@ -1272,10 +1272,10 @@ string_array get_c_args_from_c(const ::scoped_string & scopedstr)
 }
 
 
-string_array get_c_args_for_c(const ::scoped_string & scopedstr)
+string_array_base get_c_args_for_c(const ::scoped_string & scopedstr)
 {
 
-   string_array stra;
+   string_array_base stra;
 
    if(scopedstr == nullptr)
    {
@@ -1357,12 +1357,12 @@ string_array get_c_args_for_c(const ::scoped_string & scopedstr)
 }
 
 
-string_array get_c_args(int argc, char ** argv)
+string_array_base get_c_args(int argc, char ** argv)
 {
 
-   string_array straBeforeColon;
+   string_array_base straBeforeColon;
 
-   string_array straAfterColon;
+   string_array_base straAfterColon;
 
    if(argc > 0)
    {
@@ -1399,7 +1399,7 @@ string_array get_c_args(int argc, char ** argv)
 
    }
 
-   string_array stra;
+   string_array_base stra;
 
    stra = straBeforeColon;
 
@@ -1509,12 +1509,12 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
 }
 
 
-string merge_colon_args(const array < string_array > & straa)
+string merge_colon_args(const array < string_array_base > & straa)
 {
 
-   string_array straBeforeColon;
+   string_array_base straBeforeColon;
 
-   string_array straAfterColon;
+   string_array_base straAfterColon;
 
    string strCommandLine;
 

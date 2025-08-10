@@ -293,7 +293,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //CLASS_DECL_ACME ::pointer<alloc_interface>& get_factory_item2(const ::scoped_string & scopedstrName)
 //{
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   stra.explode("::", strName);
 //

@@ -1417,7 +1417,7 @@ namespace experience_anthill
 
       auto pstyle = ptab->get_style(pgraphics);
 
-      string_array & straTitle = pane.m_straTitle;
+      string_array_base & straTitle = pane.m_straTitle;
 
       pgraphics->set(pbrushText);
 

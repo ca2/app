@@ -48,10 +48,10 @@
       //virtual bool list_recursively(::file::listing_base& listing);
       //virtual bool list_recursively_relative_name(::file::listing_base& listing);
 
-      //virtual bool list_pattern(::file::listing_base& listing, const ::file::path& path, const string_array& straPattern);
-      //virtual bool list_file_pattern(::file::listing_base& listing, const ::file::path& path, const string_array& straPattern);
-      //virtual bool list_recursively_pattern(::file::listing_base& listing, const ::file::path& path, const string_array & straPattern);
-      //virtual bool list_recursively_file_pattern(::file::listing_base& listing, const ::file::path& path, const string_array & straPattern);
+      //virtual bool list_pattern(::file::listing_base& listing, const ::file::path& path, const string_array_base& straPattern);
+      //virtual bool list_file_pattern(::file::listing_base& listing, const ::file::path& path, const string_array_base& straPattern);
+      //virtual bool list_recursively_pattern(::file::listing_base& listing, const ::file::path& path, const string_array_base & straPattern);
+      //virtual bool list_recursively_file_pattern(::file::listing_base& listing, const ::file::path& path, const string_array_base & straPattern);
 
       //virtual bool list_file(::file::listing_base& listing);
       //virtual bool list_directory(::file::listing_base& listing);
@@ -125,7 +125,7 @@
       virtual ::file::path time_log(const ::scoped_string & scopedstrId);
 
 
-      virtual void get_matter_locator(string_array & straMatterLocator, bool bIncludeMain = true);
+      virtual void get_matter_locator(string_array_base & straMatterLocator, bool bIncludeMain = true);
 
 
       virtual ::file::path locale_schema_matter(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema, const ::file::path & pathRoot, const ::file::path & pathDomain);
@@ -136,8 +136,8 @@
 
       virtual ::file::path appmatter(::file::path path);
 
-      virtual ::file::path matter_from_locator(const ::file::path_array_base & patha, const string_array & straMatterLocator);
-      virtual ::file::path matter_from_locator(::file::path path, const string_array & straMatterLocator);
+      virtual ::file::path matter_from_locator(const ::file::path_array_base & patha, const string_array_base & straMatterLocator);
+      virtual ::file::path matter_from_locator(::file::path path, const string_array_base & straMatterLocator);
 
       virtual ::file::path appmatter(const ::scoped_string & scopedstrApp, ::file::path pathRel);
 
@@ -191,8 +191,8 @@
 
       virtual ::file::path standalone();
 
-      //virtual string_array locale_schema_matter(string & strLocale, const ::scoped_string & scopedstrStyle);
-      //virtual string_array locale_schema_matter(string & strLocale, const ::scoped_string & scopedstrStyle, const string & pathRoot, const ::file::path & pathDomain);
+      //virtual string_array_base locale_schema_matter(string & strLocale, const ::scoped_string & scopedstrStyle);
+      //virtual string_array_base locale_schema_matter(string & strLocale, const ::scoped_string & scopedstrStyle, const string & pathRoot, const ::file::path & pathDomain);
       //virtual string matter(const ::file::path_array_base & patha, bool bDir);
       //virtual string matter(const ::file::path & path, bool bDir );
 

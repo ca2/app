@@ -481,7 +481,7 @@ namespace platform
       virtual ::file::path_array_base modules_paths();
 
 
-      virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const ::scoped_string & scopedstrExceptDir);
+      virtual bool load_modules_diff(string_array_base& straOld, string_array_base& straNew, const ::scoped_string & scopedstrExceptDir);
 
 
       virtual ::process_identifier_array processes_identifiers();
@@ -497,16 +497,16 @@ namespace platform
       virtual string process_identifier_command_line(::process_identifier processidentifier);
 
 
-      //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array& stra);
+      //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array_base& stra);
 
-      //virtual bool is_shared_library_busy(const string_array& stra);
+      //virtual bool is_shared_library_busy(const string_array_base& stra);
 
       virtual bool process_contains_module(string& strImage, ::process_identifier processidentifier,
                                            const ::scoped_string & scopedstrLibrary);
 
 
       virtual ::process_identifier_array
-      shared_library_process(string_array& straProcesses, const ::scoped_string & scopedstrLibrary);
+      shared_library_process(string_array_base& straProcesses, const ::scoped_string & scopedstrLibrary);
 
 
       virtual bool is_process_running(::process_identifier processidentifier);
@@ -778,8 +778,8 @@ namespace platform
       virtual ::file::path core_app_path(const ::scoped_string & scopedstrApp);
 
 
-      //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array & stra);
-      //virtual bool is_shared_library_busy(const string_array & stra);
+      //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array_base & stra);
+      //virtual bool is_shared_library_busy(const string_array_base & stra);
 
 
       // virtual bool launch_application(::particle * pparticle, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrParams, int iBitCount);
@@ -972,10 +972,10 @@ namespace platform
       virtual void defer_register_ca2_plugin_for_mozilla();
 
 
-      virtual void file_extension_get_open_with_list_keys(string_array& straKey, const ::scoped_string& scopedstrExtension);
+      virtual void file_extension_get_open_with_list_keys(string_array_base& straKey, const ::scoped_string& scopedstrExtension);
 
 
-      virtual void file_extension_get_open_with_list_commands(string_array& straCommand, const ::scoped_string& scopedstrExtension);
+      virtual void file_extension_get_open_with_list_commands(string_array_base& straCommand, const ::scoped_string& scopedstrExtension);
 
 
       virtual void file_association_set_default_icon(const ::scoped_string& scopedstrExtension,
@@ -1075,7 +1075,7 @@ namespace platform
       virtual void set_file_extension_mime_type(::get_file_extension_mime_type* pgetfileextensionmimetype);
 
 
-      virtual void set_file_extension_mime_type(string_array& straExtension, string_array& straMimeType);
+      virtual void set_file_extension_mime_type(string_array_base& straExtension, string_array_base& straMimeType);
 
 
       virtual void register_user_auto_start(::platform::application* papplication, const ::scoped_string & scopedstrArguments,
@@ -1143,7 +1143,7 @@ namespace platform
 #endif
 
 #if !defined(WINDOWS)
-      virtual string_array cmdline_from_pid(::process_identifier processidentifier);
+      virtual string_array_base cmdline_from_pid(::process_identifier processidentifier);
       virtual atom_array app_get_pid(const ::scoped_string & scopedstrModuleName);
 
 #endif
@@ -1270,7 +1270,7 @@ namespace platform
       //
       //#ifndef UNIVERSAL_WINDOWS
       //      //virtual bool process_contains_module(string & strImage, ::process_identifier processidentifier, const ::scoped_string & scopedstrLibrary);
-      //      //virtual void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrLibrary);
+      //      //virtual void shared_library_process(dword_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrLibrary);
       //#endif
 #if defined(__BSD__) || defined(__APPLE__)
 

@@ -307,7 +307,7 @@ namespace user
       bool                                m_bRMouseDown;
       int_point                           m_pointSelStart;
       class ::time                          m_timeCaretPeriod;
-      string_array                        m_straLines;
+      string_array_base                        m_straLines;
       double                              m_dy;
       //bool                                m_bGetTextNeedUpdate;
       bool                                m_bNeedScrollUpdate;

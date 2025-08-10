@@ -192,7 +192,7 @@ namespace compare_swap
    //   void stringaSwap(void * lpVoidSwapArg, const index i1, const index i2)
    //   {
 
-   //      string_array * pstra = (string_array *)lpVoidSwapArg;
+   //      string_array_base * pstra = (string_array_base *)lpVoidSwapArg;
 
    //      string str = pstra->element_at(i1);
 
@@ -206,7 +206,7 @@ namespace compare_swap
    //   ::std::strong_ordering stringaCompare(void * lpVoidCompareArg, const index i1, const index i2)
    //   {
 
-   //      string_array * pstra = (string_array *)lpVoidCompareArg;
+   //      string_array_base * pstra = (string_array_base *)lpVoidCompareArg;
 
    //      return pstra->element_at(i1) <=> pstra->element_at(i2);
 
@@ -224,7 +224,7 @@ namespace compare_swap
 
    //      void_ptra swaparga;
 
-   //      string_array straName;
+   //      string_array_base straName;
 
    //      for (int i = 0; i < straPath.get_size(); i++)
    //      {
@@ -264,7 +264,7 @@ namespace test_compilation_some_strong_ordering_swap_functions
 
    void stringaSwap(void * lpVoidSwapArg, ::collection::index i1, ::collection::index i2)
    {
-      string_array * pstra = (string_array *)lpVoidSwapArg;
+      string_array_base * pstra = (string_array_base *)lpVoidSwapArg;
       string str = pstra->element_at(i1);
       pstra->element_at(i1) = pstra->element_at(i2);
       pstra->element_at(i2) = str;
@@ -273,20 +273,20 @@ namespace test_compilation_some_strong_ordering_swap_functions
 
    ::std::strong_ordering stringaCompare(void * lpVoidCompareArg, iptr i1, iptr i2)
    {
-      string_array * pstra = (string_array *)lpVoidCompareArg;
+      string_array_base * pstra = (string_array_base *)lpVoidCompareArg;
       return pstra->element_at(i1) <=> pstra->element_at(i2);
    }
 
 
 
-   void test_compilation_some_strong_ordering_swap_functions(string_array & straPath, const ::scoped_string & scopedstrSuffix)
+   void test_compilation_some_strong_ordering_swap_functions(string_array_base & straPath, const ::scoped_string & scopedstrSuffix)
    {
 
       ::array < ::function < ::std::strong_ordering(void *, iptr, iptr) > > comparefna;
       ::array < ::function < void(void *, iptr, iptr) > > swapfna;
       void_ptra comparearga;
       void_ptra swaparga;
-      string_array straName;
+      string_array_base straName;
       for (int i = 0; i < straPath.size(); i++)
       {
          string strCode(straPath[i] + scopedstrSuffix);

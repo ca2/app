@@ -82,7 +82,7 @@ namespace sockets
       /** add field to post. */
       void AddField(const string & name,const string & value);
       /** add multiline field to post. */
-      void AddMultilineField(const string & name, string_array & values);
+      void AddMultilineField(const string & name, string_array_base & values);
       /** add file to post. */
       void AddFile(const string & name,const string & filename,const ::scoped_string & scopedstrType);
 

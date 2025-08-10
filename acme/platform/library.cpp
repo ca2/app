@@ -605,7 +605,7 @@ namespace acme
 //#endif
 //
 //
-//      string_array straAppList;
+//      string_array_base straAppList;
 //
 //      get_app_list(straAppList);
 //
@@ -775,14 +775,14 @@ namespace acme
    //}
 
 
-   //void library::get_extension_list(string_array & stra)
+   //void library::get_extension_list(string_array_base & stra)
    //{
 
 
    //}
 
 
-//   void library::get_app_list(string_array & stra)
+//   void library::get_app_list(string_array_base & stra)
 //   {
 //
 //      auto psystem = system();
@@ -862,7 +862,7 @@ namespace acme
 
    //   synchronous_lock synchronouslock(&psystem->m_pmutexLibrary);
 
-   //   string_array stra;
+   //   string_array_base stra;
 
    //   get_app_list(stra);
 

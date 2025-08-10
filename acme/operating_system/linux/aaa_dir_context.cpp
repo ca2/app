@@ -34,7 +34,7 @@ inline bool linux_dir_myspace(char ch)
 
    string strDirs = file_system()->as_string(path);
 
-   string_array stra;
+   string_array_base stra;
 
    stra.add_lines(strDirs);
 

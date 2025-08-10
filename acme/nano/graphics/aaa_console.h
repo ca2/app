@@ -19,7 +19,7 @@ virtual public ::particle
 
     map < char, ::collection::index >         m_mapCharIndex;
     ::array < char >              m_cha1;
-    ::string_array                m_stra;
+    ::string_array_base                m_stra;
 ::pointer < ::micro::elemental > m_pinterchange;
 
    console();

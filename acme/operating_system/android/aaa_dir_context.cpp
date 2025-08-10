@@ -205,7 +205,7 @@ namespace android
    }
 
 
-   //bool directory_context::rls(const char * lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, enum_extract eextract)
+   //bool directory_context::rls(const char * lpcsz, string_array_base * pstraPath, string_array_base * pstraTitle, string_array_base * pstraRelative, enum_extract eextract)
    //{
 
    //   if(::file::system_dir::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract))
@@ -220,7 +220,7 @@ namespace android
    //}
 
 
-   //bool directory_context::rls_pattern(const char * lpcsz, const ::scoped_string & scopedstrPattern, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, bool_array * pbaIsDir, long_long_array * piaSize, enum_extract eextract)
+   //bool directory_context::rls_pattern(const char * lpcsz, const ::scoped_string & scopedstrPattern, string_array_base * pstraPath, string_array_base * pstraTitle, string_array_base * pstraRelative, bool_array * pbaIsDir, long_long_array * piaSize, enum_extract eextract)
    //{
 
 
@@ -231,7 +231,7 @@ namespace android
 
    //   }
 
-   //   string_array straDir;
+   //   string_array_base straDir;
 
    //   ::directory_context::ls_dir(straDir, lpcsz);
 
@@ -275,7 +275,7 @@ namespace android
 
    //   }
 
-   //   string_array stra;
+   //   string_array_base stra;
 
    //   ::directory_context::ls(stra, lpcsz);
 
@@ -354,7 +354,7 @@ namespace android
    //}
 
 
-   //bool directory_context::rls_dir(const char * lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative)
+   //bool directory_context::rls_dir(const char * lpcsz, string_array_base * pstraPath, string_array_base * pstraTitle, string_array_base * pstraRelative)
    //{
 
    //   if(::file::system_dir::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative))
@@ -364,7 +364,7 @@ namespace android
 
    //   }
 
-   //   string_array stra;
+   //   string_array_base stra;
 
    //   ::directory_context::ls(stra, lpcsz);
 
@@ -442,7 +442,7 @@ namespace android
    //}
 
 
-   //bool directory_context::ls_dir(const char * lpcsz, string_array * pstraPath, string_array * pstraTitle)
+   //bool directory_context::ls_dir(const char * lpcsz, string_array_base * pstraPath, string_array_base * pstraTitle)
    //{
 
    //   if(::file::system_dir::ls_dir(papp,lpcsz,pstraPath,pstraTitle))
@@ -452,7 +452,7 @@ namespace android
 
    //   }
 
-   //   string_array stra;
+   //   string_array_base stra;
 
    //   ::directory_context::ls(stra, lpcsz);
 
@@ -500,7 +500,7 @@ namespace android
    //}
 
 
-   //bool directory_context::ls_file(const char * lpcsz, string_array * pstraPath, string_array * pstraTitle)
+   //bool directory_context::ls_file(const char * lpcsz, string_array_base * pstraPath, string_array_base * pstraTitle)
    //{
 
    //   if(::file::system_dir::ls_file(papp,lpcsz,pstraPath,pstraTitle))
@@ -510,7 +510,7 @@ namespace android
 
    //   }
 
-   //   string_array stra;
+   //   string_array_base stra;
 
    //   ::directory_context::ls(stra, lpcsz);
 
@@ -559,7 +559,7 @@ namespace android
    //}
 
 
-   //bool directory_context::ls(const char * lpcsz, string_array * pstraPath, string_array * pstraTitle, bool_array * pbaIsDir, long_long_array * piaSize)
+   //bool directory_context::ls(const char * lpcsz, string_array_base * pstraPath, string_array_base * pstraTitle, bool_array * pbaIsDir, long_long_array * piaSize)
    //{
 
 
@@ -571,7 +571,7 @@ namespace android
    //   }
 
 
-   //   string_array stra;
+   //   string_array_base stra;
 
    //   ::directory_context::ls(stra, lpcsz);
 

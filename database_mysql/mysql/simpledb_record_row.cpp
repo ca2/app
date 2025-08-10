@@ -7,7 +7,7 @@ namespace simpledb
 
 
 //      table *     m_ptable;
-  //    string_array     m_straFields;
+  //    string_array_base     m_straFields;
     //  ::payload         m_var;
 
       void record_row::write(::file::output_stream & ostream) const

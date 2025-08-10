@@ -1638,7 +1638,7 @@ void tinyjs::trace()
 void tinyjs::execute(const string &code)
 {
    CScriptLex *oldLex = l;
-   address_array < CScriptVar * > oldScopes = scopes;
+   address_array_base < CScriptVar * > oldScopes = scopes;
    l = ___new CScriptLex(code);
 #ifdef TINYJS_callstack
    callstack.clear();
@@ -1672,7 +1672,7 @@ void tinyjs::execute(const string &code)
 CScriptVarLink tinyjs::evaluateComplex(const string &code)
 {
    CScriptLex *oldLex = l;
-   address_array < CScriptVar * > oldScopes = scopes;
+   address_array_base < CScriptVar * > oldScopes = scopes;
 
    l = ___new CScriptLex(code);
 #ifdef TINYJS_callstack

@@ -63,15 +63,15 @@ public:
 
 
 
-   static array < ::int_array > faces()
+   static array < ::int_array_base > faces()
    {
 
-      array < ::int_array > a2;
+      array < ::int_array_base > a2;
 
       // front
       {
 
-         ::int_array a;
+         ::int_array_base a;
 
          a.add(0);
          a.add(1);
@@ -84,7 +84,7 @@ public:
       // right
       {
 
-         ::int_array a;
+         ::int_array_base a;
 
          a.add(1);
          a.add(5);
@@ -97,7 +97,7 @@ public:
       // back
       {
 
-         ::int_array a;
+         ::int_array_base a;
 
          a.add(5);
          a.add(4);
@@ -110,7 +110,7 @@ public:
       // left
       {
 
-         ::int_array a;
+         ::int_array_base a;
 
          a.add(4);
          a.add(0);
@@ -123,7 +123,7 @@ public:
       // down
       {
 
-         ::int_array a;
+         ::int_array_base a;
 
          a.add(2);
          a.add(3);
@@ -136,7 +136,7 @@ public:
       // up
       {
 
-         ::int_array a;
+         ::int_array_base a;
 
          a.add(4);
          a.add(5);
@@ -156,14 +156,14 @@ public:
    {
 
       array < location_type < NUMBER > > v = vertices();
-      array < ::int_array > f = faces();
+      array < ::int_array_base > f = faces();
 
       array < array < location_type < NUMBER > > > fv;
       array < location_type < NUMBER > > vertices;
 
       for (::collection::index i = 0; i < f.get_count(); i++)
       {
-         ::int_array& ia = f[i];
+         ::int_array_base& ia = f[i];
          vertices.erase_all();
          for (::collection::index j = 0; j < ia.get_count(); j++)
          {
@@ -307,7 +307,7 @@ public:
    }
 
    //array < location_type < NUMBER > > vertices();
-   //static array < ::int_array > faces();
+   //static array < ::int_array_base > faces();
    //array < array < location_type < NUMBER > > > faces_vertices();
    //location_type < NUMBER > get_nearest_vertice(location_type < NUMBER > point);
    //index find_nearest_vertice(location_type < NUMBER > point);

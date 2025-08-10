@@ -39,7 +39,7 @@ namespace bred
 //      
 //
 //
-//      string_array                                 m_straEscape;
+//      string_array_base                                 m_straEscape;
 //
 //      ::type_atom                                  m_typeatomDefaultMeshData;
 //      ::type_atom                                  m_typeatomDefaultListHeader;
@@ -306,7 +306,7 @@ namespace bred
 //      ////virtual ~session();
 //
 //
-//      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+//      //virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
 //      //virtual string get_locale_schema_dir() override;
 //
 //
@@ -617,7 +617,7 @@ namespace bred
 //      ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle& rectangle, ::draw2d::brush_pointer& pbrushText) override;
 //
 //
-//      //virtual string_array get_user_wallpaper();
+//      //virtual string_array_base get_user_wallpaper();
 //
 //
 //
@@ -666,7 +666,7 @@ namespace bred
 //
 //      ::user::interaction_base* m_pmousefocusLButtonDown;
 //      ::user::interaction_base* m_pmousefocusRButtonDown;
-//      //string_array                       m_straEscape;
+//      //string_array_base                       m_straEscape;
 //      //::user::style_pointer              m_puserstyle;
 //
 //

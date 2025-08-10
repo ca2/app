@@ -602,7 +602,7 @@ namespace file
 
       //      edit_group_item * pitemgroup = nullptr;
 
-      ::int_array ia;
+      ::int_array_base ia;
 
       m_bRootDirection = calc_root_direction();
 

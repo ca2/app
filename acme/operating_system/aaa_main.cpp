@@ -3,7 +3,7 @@
 #include "acme/operating_system.h"
 #include "acme/platform/version.h"
 
-//#include "acme/prototype/collection/string_array.h"
+//#include "acme/prototype/collection/string_array_base.h"
 
 
 string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const char ** pszEndPtr)
@@ -532,10 +532,10 @@ CLASS_DECL_ACME string executable_title_from_appid(string str)
 
 
 
-//string_array get_c_args_from_string(const ::scoped_string & scopedstr)
+//string_array_base get_c_args_from_string(const ::scoped_string & scopedstr)
 //{
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   if (scopedstr == nullptr)
 //   {
@@ -544,9 +544,9 @@ CLASS_DECL_ACME string executable_title_from_appid(string str)
 //
 //   }
 //
-//   string_array straBeforeColon;
+//   string_array_base straBeforeColon;
 //
-//   string_array straAfterColon;
+//   string_array_base straAfterColon;
 //
 //   const ::ansi_character * pszEnd = psz + strlen(scopedstr);
 //
@@ -654,10 +654,10 @@ CLASS_DECL_ACME string executable_title_from_appid(string str)
 //}
 
 
-string_array get_c_args_from_c(const ::scoped_string & scopedstr)
+string_array_base get_c_args_from_c(const ::scoped_string & scopedstr)
 {
 
-   string_array stra;
+   string_array_base stra;
 
    if (scopedstr == nullptr)
    {
@@ -666,9 +666,9 @@ string_array get_c_args_from_c(const ::scoped_string & scopedstr)
 
    }
 
-   string_array straBeforeColon;
+   string_array_base straBeforeColon;
 
-   string_array straAfterColon;
+   string_array_base straAfterColon;
 
    const ::ansi_character * pszEnd = psz + strlen(scopedstr);
 
@@ -776,10 +776,10 @@ string_array get_c_args_from_c(const ::scoped_string & scopedstr)
 }
 
 
-string_array get_c_args_for_c(const ::scoped_string & scopedstr)
+string_array_base get_c_args_for_c(const ::scoped_string & scopedstr)
 {
 
-   string_array stra;
+   string_array_base stra;
 
    if (scopedstr == nullptr)
    {
@@ -861,12 +861,12 @@ string_array get_c_args_for_c(const ::scoped_string & scopedstr)
 }
 
 
-string_array get_c_args(int argc, char** argv)
+string_array_base get_c_args(int argc, char** argv)
 {
 
-   string_array straBeforeColon;
+   string_array_base straBeforeColon;
 
-   string_array straAfterColon;
+   string_array_base straAfterColon;
 
    if (argc > 0)
    {
@@ -903,7 +903,7 @@ string_array get_c_args(int argc, char** argv)
 
    }
 
-   string_array stra;
+   string_array_base stra;
 
    stra = straBeforeColon;
 
@@ -1021,12 +1021,12 @@ string transform_to_quoted_value(const ::scoped_string & scopedstr)
 }
 
 
-string merge_colon_args(const array < string_array >& straa)
+string merge_colon_args(const array < string_array_base >& straa)
 {
 
-   string_array straBeforeColon;
+   string_array_base straBeforeColon;
 
-   string_array straAfterColon;
+   string_array_base straAfterColon;
 
    string strCommandLine;
 

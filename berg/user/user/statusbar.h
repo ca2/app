@@ -62,7 +62,7 @@ namespace user
       //virtual bool create_window(::user::interaction * puiParent,unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,atom nID = "status_bar");
       //virtual bool create_window_ex(::user::interaction * puiParent,unsigned int dwCtrlStyle = 0,unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM, atom nID = "status_bar");
       //virtual bool create_child(::user)
-      bool SetIndicators(string_array & stra);
+      bool SetIndicators(string_array_base & stra);
 
       void SetBorders(const ::int_rectangle & rectangle);
 

@@ -22,7 +22,7 @@
 void CLASS_DECL_NANOUI file_dialog_from_platform(
    void * poswindow,
    const ::array<::pair<::string, ::string>> & filetypes,
-   const ::function < void(const ::string_array & ) > & function,
+   const ::function < void(const ::string_array_base & ) > & function,
    bool save, 
    bool multiple);
 

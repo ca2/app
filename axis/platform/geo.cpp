@@ -293,7 +293,7 @@ namespace geo
 
                DEBUGF_LINE("mnoxxd4");
 
-               string_array stra;
+               string_array_base stra;
 
                stra.add_lines(str);
 
@@ -452,7 +452,7 @@ namespace geo
    ::collection::index geo::openweather_find_city2(const ::scoped_string & scopedstrQuery, string& strCit, long long& iId, double& dLat, double& dLon)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       stra.explode(",", scopedstrQuery);
 

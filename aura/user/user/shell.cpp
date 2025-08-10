@@ -274,7 +274,7 @@ namespace user
    }
 
 
-   void shell::add_size_interest(::int_array iaSize)
+   void shell::add_size_interest(::int_array_base iaSize)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -293,7 +293,7 @@ namespace user
    }
 
 
-   void shell::set_size_interest(::int_array iaSize)
+   void shell::set_size_interest(::int_array_base iaSize)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1222,7 +1222,7 @@ namespace user
 
             string str = file()->as_string(getfileimage.m_imagekey.m_strPath);
 
-         string_array stra;
+         string_array_base stra;
 
          stra.add_lines(str);
 
@@ -1916,7 +1916,7 @@ namespace user
 
          ::pointer<::image::image>pimage;
 
-         ::int_array iaSizeFallback;
+         ::int_array_base iaSizeFallback;
 
          iaSizeFallback.add(1024);
          iaSizeFallback.add(512);

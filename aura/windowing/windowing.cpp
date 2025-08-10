@@ -916,7 +916,7 @@ namespace windowing
    }
 
 
-   void windowing::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
+   void windowing::defer_create_main_menu(const string_array_base & straParent, const string_array_base & straMenu, const string_array_base & straId)
    {
 
    }

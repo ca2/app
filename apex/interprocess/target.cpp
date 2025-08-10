@@ -155,7 +155,7 @@ namespace interprocess
    //   //
    //   //   string strMember;
    //   //
-   //   //   string_array stra;
+   //   //   string_array_base stra;
    //   //
    //   //   ::property_set propertyset;
    //   //

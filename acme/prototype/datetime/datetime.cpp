@@ -1288,7 +1288,7 @@ namespace datetime
             else if (iHouDiff >= 48 && iHouDiff < 24 * 6)
             {
 
-               string_array straWeekDay;
+               string_array_base straWeekDay;
 
                straWeekDay.add("Sun");
                straWeekDay.add("Mon");
@@ -1821,7 +1821,7 @@ namespace datetime
 
       }
 
-      string_array stra;
+      string_array_base stra;
 
       auto pdatetime = datetime();
 
@@ -1913,7 +1913,7 @@ namespace datetime
       if (result.m_bSpan)
       {
 
-         string_array stra;
+         string_array_base stra;
 
          string strItem;
 
@@ -2140,7 +2140,7 @@ namespace datetime
    auto iHour = iHours % 24;
    auto iDays = iHours / 24;
 
-   ::string_array stra;
+   ::string_array_base stra;
 
    if(iDays > 0)
    {

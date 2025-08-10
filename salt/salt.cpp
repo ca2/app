@@ -58,11 +58,11 @@
 #define M01(s1, s2, s5, s8) INTM2(s1, s2, s5, s8)
 
 
-string salt(::ca::application * papp, const ::scoped_string & scopedstrSourceSalt, string_array & straSourceSalt)
+string salt(::ca::application * papp, const ::scoped_string & scopedstrSourceSalt, string_array_base & straSourceSalt)
 {
-   string_array straSourceHash; 
+   string_array_base straSourceHash;
    straSourceHash.explode(";", pszSourceSalt); 
-   string_array straHash; 
+   string_array_base straHash;
    if(straSourceHash.get_count() == 1)
    {
       straHash.add(scopedstrSourceSalt);

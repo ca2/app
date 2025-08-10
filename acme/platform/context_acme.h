@@ -40,8 +40,8 @@ namespace platform
 //      ::string                                        m_strSchema;
 //
 //
-//      string_array                                    m_straMatterLocatorPriority;
-//      string_array                                    m_straMatterLocator;
+//      string_array_base                                    m_straMatterLocatorPriority;
+//      string_array_base                                    m_straMatterLocator;
 //
 //      ::pointer<::platform::http>                     m_phttp;
 //
@@ -125,7 +125,7 @@ namespace platform
       virtual ::string get_schema();
 
 
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+      virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
       virtual string get_locale_schema_dir();
 
 

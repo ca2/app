@@ -20,7 +20,7 @@ namespace user
 
       ::atom_array                  m_atomaOptions;
       ::pointer_array < ::image::image >   m_imagea;
-      ::string_array                m_straName;
+      ::string_array_base                m_straName;
 
       
 

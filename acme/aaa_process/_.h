@@ -60,7 +60,7 @@ CLASS_DECL_ACME string process_version_dir_name();
 
 #ifndef WINDOWS
 
-//CLASS_DECL_ACME string_array cmdline_from_pid(unsigned int pid);
+//CLASS_DECL_ACME string_array_base cmdline_from_pid(unsigned int pid);
 //CLASS_DECL_ACME atom_array app_get_pid(const ::scoped_string & scopedstrModuleName);
 
 
@@ -71,13 +71,13 @@ CLASS_DECL_ACME string process_version_dir_name();
 
 #ifndef UNIVERSAL_WINDOWS
 //CLASS_DECL_ACME bool process_contains_module(string & strImage, unsigned int processID, const ::scoped_string & scopedstrLibrary);
-//CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrLibrary);
+//CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrLibrary);
 #endif
 
 
 
-//CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string_array & stra);
-//CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra);
+//CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string_array_base & stra);
+//CLASS_DECL_ACME bool is_shared_library_busy(const string_array_base & stra);
 
 
 
@@ -97,11 +97,11 @@ CLASS_DECL_ACME void prepare_argc_argv(int & argc, char ** argv, char * cmd_line
 
 
 CLASS_DECL_ACME string transform_to_c_arg(const ::scoped_string & scopedstr);
-CLASS_DECL_ACME string_array get_c_args_from_string(const ::scoped_string & scopedstr);
-CLASS_DECL_ACME string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr);
-CLASS_DECL_ACME string_array get_c_args_from_c(const ::scoped_string & scopedstr);
-CLASS_DECL_ACME string_array get_c_args_for_c(const ::scoped_string & scopedstr);
-CLASS_DECL_ACME string_array get_c_args(int argc, char** argv);
+CLASS_DECL_ACME string_array_base get_c_args_from_string(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME string_array_base no_escape_get_c_args_from_string(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME string_array_base get_c_args_from_c(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME string_array_base get_c_args_for_c(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME string_array_base get_c_args(int argc, char** argv);
 
 // it was extracted from macOS code base
 // it is prepared for a command line supplied by macOS*1?
@@ -109,7 +109,7 @@ CLASS_DECL_ACME string_array get_c_args(int argc, char** argv);
 //          proc_pidinfo((pid_t) uiPid, PROC_PIDTASKALLINFO, SHOW_ZOMBIES, &info, sizeof(struct proc_taskallinfo));
 // return info.pbsd.pbi_comm;
 // )
-CLASS_DECL_ACME string_array command_arguments_from_command_line(const ::scoped_string & scopedstrCommandLine);
+CLASS_DECL_ACME string_array_base command_arguments_from_command_line(const ::scoped_string & scopedstrCommandLine);
 //#ifdef WINDOWS_DESKTOP
 //CLASS_DECL_ACME string ca2_command_line(hinstance hinstance);
 //#else

@@ -204,12 +204,12 @@ namespace serial
    }
 
 
-   string_array serial::readlines(size_t size, string eol)
+   string_array_base serial::readlines(size_t size, string eol)
    {
 
       synchronous_lock lock(read_synchronization());
 
-      string_array lines;
+      string_array_base lines;
 
       size_t eol_len = (size_t)eol.length();
 
@@ -871,11 +871,11 @@ namespace serial
 //}
 //
 //
-//string_array serial::readlines(size_t size, string eol)
+//string_array_base serial::readlines(size_t size, string eol)
 //{
 //
 //   scoped_read_lock lock(this);
-//   string_array lines;
+//   string_array_base lines;
 //   size_t eol_len = (size_t) eol.length();
 //   unsigned char * buffer_ = static_cast<unsigned char *>
 //   (alloca(size * sizeof(unsigned char)));

@@ -67,7 +67,7 @@ namespace install
       string               m_strLoginRequestingServer;
 
       ::int_rectangle             m_rectangleSent;
-      string_array              m_straLinesNativeLaunch;
+      string_array_base              m_straLinesNativeLaunch;
 
       //bool                 m_bHasCred;
       //bool                 m_bHasCredEval;

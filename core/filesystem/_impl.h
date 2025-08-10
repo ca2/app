@@ -24,7 +24,7 @@
 //   inline string path::extension() const { return &m_pdata[find_skip_or_length('.', rear_find(sep()) + 1)]; }
 //   inline string path::final_extension() const { return file_path_final_extension(operator const_char_pointer ()); }
 //   inline patha path::ascendants_path() const { patha patha; return ascendants_path(patha); }
-//   inline string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
+//   inline string_array_base path::ascendants_name() const { string_array_base patha; return ascendants_name(patha); }
 //   //   inline path path::folder() const { return ::file_path_folder(*this); }
 //   inline bool path::operator == (const ::payload & payload) const { return operator == (string(payload)); }
 //   inline bool path::operator != (const ::payload & payload) const { return operator != (string(payload)); }

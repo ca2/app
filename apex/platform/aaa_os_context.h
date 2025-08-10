@@ -52,8 +52,8 @@
 //   virtual void defer_register_ca2_plugin_for_mozilla();
 //
 //
-//   virtual void file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension);
-//   virtual void file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension);
+//   virtual void file_extension_get_open_with_list_keys(string_array_base & straKey, const ::scoped_string & scopedstrExtension);
+//   virtual void file_extension_get_open_with_list_commands(string_array_base & straCommand, const ::scoped_string & scopedstrExtension);
 //
 //   virtual void file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrIconPath);
 //   virtual void file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam);
@@ -112,7 +112,7 @@
 //
 //   virtual void set_file_extension_mime_type(::get_file_extension_mime_type * pgetfileextensionmimetype);
 //
-//   virtual void set_file_extension_mime_type(string_array & straExtension, string_array & straMimeType);
+//   virtual void set_file_extension_mime_type(string_array_base & straExtension, string_array_base & straMimeType);
 //
 //   virtual void register_user_auto_start(const ::scoped_string & scopedstrAppId, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bRegister);
 //

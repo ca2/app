@@ -173,7 +173,7 @@ namespace user
       virtual ::collection::index config_id_index(const ::scoped_string& strDataKey);
       ::collection::index data_key_to_sub_item(const ::scoped_string& strDataKey) override;
       bool has_data_key(const ::scoped_string& strDataKey) override;
-      void get_selection(const ::scoped_string& scopedstrDataKey, ::string_array& straSelection) override;
+      void get_selection(const ::scoped_string& scopedstrDataKey, ::string_array_base& straSelection) override;
 
       virtual void _001SetSingleColumnMode(bool bHeaderCtrl);
       //virtual bool _001InsertColumn(::user::list_column * pcolumn);

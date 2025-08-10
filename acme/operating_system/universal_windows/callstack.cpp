@@ -331,7 +331,7 @@ namespace platform
 
          auto process = GetCurrentProcess();
 
-         ::string_array stra;
+         ::string_array_base stra;
 
          character_count maximum_line_length = 0;
 

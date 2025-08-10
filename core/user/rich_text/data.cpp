@@ -366,7 +366,7 @@ namespace user
 
          strProcess.find_replace("\r", "\n");
 
-         string_array straLines;
+         string_array_base straLines;
 
          straLines.add_lines(strProcess);
 
@@ -735,7 +735,7 @@ namespace user
       // unicode_next(str.c_str()) - str.c_str(); // at least one char is the longest pline
 
       // find phrase with greatest word count that fits the x, right constraints
-      ::collection::count longest_pline(string & strSlice, double & d, string_array & straWords, double * pdaPosition, double dPositionLeft, int cx)
+      ::collection::count longest_pline(string & strSlice, double & d, string_array_base & straWords, double * pdaPosition, double dPositionLeft, int cx)
       {
 
          ::collection::count c = straWords.get_count();

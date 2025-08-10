@@ -50,7 +50,7 @@ namespace dynamic_source
 
    string escape(const ::scoped_string & scopedstr);
 
-   void add_var_id(string& strResult, character_count& iArroba, string_array& straId, bool bMakeKeyLower = true);
+   void add_var_id(string& strResult, character_count& iArroba, string_array_base& straId, bool bMakeKeyLower = true);
 
 
    script_compiler::script_compiler()
@@ -946,7 +946,7 @@ namespace dynamic_source
             informationf("Compilation FAILED: or object file is shorter than %lld bytes...", iObjFileMinimumByteCount);
             informationf("%s", strLog.c_str());
 
-            //string_array straLog;
+            //string_array_base straLog;
             //straLog.add_lines(strLog);
             //for(auto & strLine : straLog)
             //{
@@ -1221,7 +1221,7 @@ namespace dynamic_source
       pscript->m_strClassName = pscript->m_strClassNamePrefix + "_dynamic_source_script";
 
       character_count iPosId = -1;
-      string_array straId;
+      string_array_base straId;
       string strDest;
       strDest = "";
       strDest += "#include \"netnode_dynamic_source_script_framework.h\"\r\n";
@@ -1949,7 +1949,7 @@ namespace dynamic_source
       character_count iStart = 0;
       character_count iPos = 0;
       character_count iLastEnd = 0;
-      string_array straId;
+      string_array_base straId;
       while ((iPos = strSource.find_index("<?", iStart)) >= 0)
       {
          if (iPos > iLastEnd && bCode)
@@ -1988,7 +1988,7 @@ namespace dynamic_source
    }
 
 
-   void add_var_id(string& strResult, character_count& iArroba, string_array& straId, bool bMakeKeyLower)
+   void add_var_id(string& strResult, character_count& iArroba, string_array_base& straId, bool bMakeKeyLower)
    {
       string strKey = strResult.substr(iArroba);
       if (bMakeKeyLower)
@@ -2006,7 +2006,7 @@ namespace dynamic_source
       iArroba = -1;
    }
 
-   string script_compiler::cppize2(const ::scoped_string & scopedstr, bool bScript, string_array& straId)
+   string script_compiler::cppize2(const ::scoped_string & scopedstr, bool bScript, string_array_base& straId)
    {
       string str(scopedstr);
       str.trim();
@@ -2035,7 +2035,7 @@ namespace dynamic_source
       bool bInitial = true;
       string strSpec1;
       character_count iOpenParen = 1; // open Parenthesis Count
-      string_array straFunction;
+      string_array_base straFunction;
       index_array iaFunctionParen; // index of the parenthesis of the function
       bool bInserted = false;
       bool bNewLine = true;
@@ -2988,7 +2988,7 @@ namespace dynamic_source
          if (::str::case_insensitive_find(".svn", strFile) >= 0 || !case_insensitive_string_ends(strFile, ".txt"))
             continue;
          strFile = file()->as_string(strFile);
-         string_array straLine;
+         string_array_base straLine;
          straLine.explode("\r\n", strFile);
          string strExtra;
          for (int j = 0; j < straLine.get_count(); j++)

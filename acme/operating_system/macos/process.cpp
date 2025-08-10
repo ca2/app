@@ -29,7 +29,7 @@
 
 extern char ** environ;
 
-string_array get_c_args_for_c(const ::scoped_string & scopedstr);
+string_array_base get_c_args_for_c(const ::scoped_string & scopedstr);
 
 string transform_to_c_arg(const ::scoped_string & scopedstr);
 
@@ -83,7 +83,7 @@ int create_process2(const_char_pointer _cmd_line, int * pprocessId);
 //
 //}
 
-CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string_array & stra)
+CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string_array_base & stra)
 {
 
    return false;
@@ -91,7 +91,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string
 }
 
 
-CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
+CLASS_DECL_ACME bool is_shared_library_busy(const string_array_base & stra)
 {
 
    return false;

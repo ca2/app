@@ -487,7 +487,7 @@ namespace ftp
    /// @lparam[in] scopedstrPath Starting path for the list command.
    /// @lparam[out] vstrFileList Returns a simple list of the files and folders of the specified directory.
    /// @lparam[in] fPasv see documentation of client_socket::Passive
-   bool client_socket::List(const ::scoped_string & scopedstrPath, string_array& vstrFileList, bool fPasv)
+   bool client_socket::List(const ::scoped_string & scopedstrPath, string_array_base& vstrFileList, bool fPasv)
    {
       output_stream outputStream(mc_strEolCharacterSequence, command::LIST().AsString());
       if (!ExecuteDatachannelCommand(command::LIST(), scopedstrPath, representation(type::ASCII()), fPasv, 0, outputStream))
@@ -507,7 +507,7 @@ namespace ftp
    /// @lparam[in] scopedstrPath Starting path for the list command.
    /// @lparam[out] vstrFileList Returns a simple list of the files and folders of the specified the directory.
    /// @lparam[in] fPasv see documentation of client_socket::Passive
-   bool client_socket::NameList(const ::scoped_string & scopedstrPath, string_array& vstrFileList, bool fPasv)
+   bool client_socket::NameList(const ::scoped_string & scopedstrPath, string_array_base& vstrFileList, bool fPasv)
    {
       output_stream outputStream(mc_strEolCharacterSequence, command::NLST().AsString());
       if (!ExecuteDatachannelCommand(command::NLST(), scopedstrPath, representation(type::ASCII()), fPasv, 0, outputStream))
@@ -1354,7 +1354,7 @@ auto tickStart = ::time::now();
 
    /// Sends a command to the server.
    /// @lparam[in] Command Command to send.
-   bool client_socket::SendCommand(const command& Command, const string_array & Arguments)
+   bool client_socket::SendCommand(const command& Command, const string_array_base & Arguments)
    {
 
       if (!_is_connected())
@@ -1385,7 +1385,7 @@ auto tickStart = ::time::now();
    /// Sends a command to the server.
    /// @lparam[in]  Command Command to send.
    /// @lparam[out] Reply The Reply of the server to the sent command.
-   bool client_socket::SendCommand(const command& Command, const string_array & Arguments, reply& Reply)
+   bool client_socket::SendCommand(const command& Command, const string_array_base & Arguments, reply& Reply)
    {
       if (!SendCommand(Command, Arguments))
       {
@@ -1832,7 +1832,7 @@ auto tickStart = ::time::now();
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::_RepresentationType(const representation& representation, unsigned int dwSize)
    {
-      string_array Arguments({ representation.Type().AsString() });
+      string_array_base Arguments({ representation.Type().AsString() });
 
       switch (representation.Type().AsEnum())
       {
@@ -2018,7 +2018,7 @@ auto tickStart = ::time::now();
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::Allocate(int iReserveBytes, const int* piMaxPageOrRecordSize/*=nullptr*/)
    {
-      string_array Arguments({ ::as_string(iReserveBytes) });
+      string_array_base Arguments({ ::as_string(iReserveBytes) });
       if (piMaxPageOrRecordSize != nullptr)
       {
          Arguments.add("R");

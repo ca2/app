@@ -17,7 +17,7 @@ namespace filemanager
 
       
       ::pointer<context_menu>            m_pcontextmenu;
-      string_array                        m_straOpenWith;
+      string_array_base                        m_straOpenWith;
       bool                                m_bFileSize;
       bool                                m_bShow;
       ::collection::index                               m_iSizeSubItem;

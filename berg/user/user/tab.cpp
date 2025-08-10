@@ -456,7 +456,7 @@ namespace user
 
 
 
-   void tab::get_title(int iIndex, string_array & stra)
+   void tab::get_title(int iIndex, string_array_base & stra)
    {
 
       auto ppane = get_data()->m_tabpanea[iIndex].get();
@@ -3076,7 +3076,7 @@ namespace user
    }
 
 
-   void tab::get_text_id(string_array & stra)
+   void tab::get_text_id(string_array_base & stra)
    {
 
       get_presuffixed_ci_id(stra, nullptr, nullptr);
@@ -3084,7 +3084,7 @@ namespace user
    }
 
 
-   void tab::get_prefixed_ci_id(string_array & stra, const ::scoped_string & scopedstrPrefix)
+   void tab::get_prefixed_ci_id(string_array_base & stra, const ::scoped_string & scopedstrPrefix)
    {
 
       get_presuffixed_ci_id(stra, scopedstrPrefix, nullptr);
@@ -3092,7 +3092,7 @@ namespace user
    }
 
 
-   void tab::get_suffixed_ci_id(string_array & stra, const ::scoped_string & scopedstrSuffix)
+   void tab::get_suffixed_ci_id(string_array_base & stra, const ::scoped_string & scopedstrSuffix)
    {
 
       get_presuffixed_ci_id(stra, nullptr, scopedstrSuffix);
@@ -3100,7 +3100,7 @@ namespace user
    }
 
 
-   void tab::get_presuffixed_ci_id(string_array & stra, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
+   void tab::get_presuffixed_ci_id(string_array_base & stra, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
    {
 
       string strPrefix(scopedstrPrefix);
@@ -3135,7 +3135,7 @@ namespace user
    }
 
 
-   void tab::get_begins_ci_eat_id(string_array & stra, const ::scoped_string & scopedstrPrefix)
+   void tab::get_begins_ci_eat_id(string_array_base & stra, const ::scoped_string & scopedstrPrefix)
    {
 
       get_begins_ends_ci_eat_id(stra, scopedstrPrefix, nullptr);
@@ -3143,7 +3143,7 @@ namespace user
    }
 
 
-   void tab::get_ends_ci_eat_id(string_array & stra, const ::scoped_string & scopedstrSuffix)
+   void tab::get_ends_ci_eat_id(string_array_base & stra, const ::scoped_string & scopedstrSuffix)
    {
 
       get_begins_ends_ci_eat_id(stra, nullptr, scopedstrSuffix);
@@ -3151,7 +3151,7 @@ namespace user
    }
 
 
-   void tab::get_begins_ends_ci_eat_id(string_array & stra, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
+   void tab::get_begins_ends_ci_eat_id(string_array_base & stra, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
    {
 
       string strPrefix(scopedstrPrefix);
@@ -3280,7 +3280,7 @@ namespace user
 
       ::collection::count c = 0;
 
-      string_array stra;
+      string_array_base stra;
 
       for (int i = 0; i < payloada.get_count(); i++)
       {

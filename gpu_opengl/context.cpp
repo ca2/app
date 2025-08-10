@@ -765,7 +765,7 @@ namespace gpu_opengl
       //void context::translate_shader(string& strFragment)
       //{
 
-      //   string_array stra;
+      //   string_array_base stra;
 
       //   stra.add_lines(strFragment);
 
@@ -791,7 +791,7 @@ namespace gpu_opengl
       //}
 
 
-      //void context::_translate_shader(string_array& stra)
+      //void context::_translate_shader(string_array_base& stra)
       //{
 
       //}
@@ -2570,7 +2570,7 @@ void main() {
    }
 
 
-   void context::_translate_shader(string_array& stra)
+   void context::_translate_shader(string_array_base& stra)
    {
 
       ::gpu::context::_translate_shader(stra);

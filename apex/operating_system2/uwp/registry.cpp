@@ -155,7 +155,7 @@ namespace universal_windows
              ::RegDeleteKey(m_hkey, nullptr);
    }
 
-   ::collection::count registry::Key::EnumKey(string_array & stra)
+   ::collection::count registry::Key::EnumKey(string_array_base & stra)
    {
       unsigned int dwMaxSubKeyLen;
       RegQueryInfoKey(
@@ -189,7 +189,7 @@ namespace universal_windows
       return m_hkey;
    }
 
-   ::collection::count registry::Key::EnumValueName(string_array & stra)
+   ::collection::count registry::Key::EnumValueName(string_array_base & stra)
    {
       unsigned int dwMaxValueNameLen = 16384;
       char * pszBuf = (char *) malloc(dwMaxValueNameLen);

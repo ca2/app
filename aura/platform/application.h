@@ -44,7 +44,7 @@ namespace aura
 //       //string                                          m_strInstallBuild;
 //       //string                                          m_strHttpUserAgentToken;
 //       //string                                          m_strHttpUserAgentVersion;
-//       //string_array                                    m_straAppCategory;
+//       //string_array_base                                    m_straAppCategory;
 //       //bool                                            m_bLicense;
 //       //bool                                            m_bRequiresInstallation;
 //
@@ -57,7 +57,7 @@ namespace aura
 //
 //       ::pointer<shell_open>                        m_pshellopen;
 //
-//       ::string_array                               m_straOptionsFormMakerLibrary;
+//       ::string_array_base                               m_straOptionsFormMakerLibrary;
 //       ::user::interaction_base *                             m_puiCurrent;
 //       //bool                                            m_bContextTheme;
 //
@@ -146,7 +146,7 @@ namespace aura
 //       ::pointer<::aura::theme>                       m_ptheme;
 //
 //
-//       //string_array                                    m_straAppInterest;
+//       //string_array_base                                    m_straAppInterest;
 //       //string_map < oswindow, oswindow >               m_mapAppInterest;
 //
 //       //int                                             m_iGcomBackgroundUpdateMillis;
@@ -395,7 +395,7 @@ namespace aura
       //application();
       //~ application() override;
       
-      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+      //virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
       //virtual string get_locale_schema_dir();
 
 
@@ -496,7 +496,7 @@ namespace aura
 
 
       //virtual string get_title() override;
-      //virtual string_array get_categories() override;
+      //virtual string_array_base get_categories() override;
 
       virtual void defer_create_keyboard() override;
       //virtual bool set_keyboard_layout(const ::scoped_string & scopedstrPath, const ::action_context & action_context);
@@ -724,8 +724,8 @@ namespace aura
 
       //virtual void on_update_matter_locator() override;
 
-      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
-      //virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      //virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      //virtual void matter_locator_locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
 
       //virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
       //virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale) override;

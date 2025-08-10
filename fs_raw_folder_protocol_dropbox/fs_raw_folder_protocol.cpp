@@ -106,7 +106,7 @@ namespace fs_raw_folder_protocol_dropbox
 //
 //   bool folder_sync::check_files(
 //      const ::file::path& pathSourceFolder,
-//      const ::string_array& straSource,
+//      const ::string_array_base& straSource,
 //      const ::function < void(const ::scoped_string&) >& callbackStatus)
 //   {
 //
@@ -118,7 +118,7 @@ namespace fs_raw_folder_protocol_dropbox
 //   void folder_sync::copy_files_out(
 //      const ::file::path& pathTargetFolder,
 //      const ::file::path& pathSourceFolderParam,
-//      const ::string_array& straSource,
+//      const ::string_array_base& straSource,
 //      const ::function < void(const ::scoped_string&) >& callbackStatus)
 //   {
 //
@@ -323,7 +323,7 @@ namespace fs_raw_folder_protocol_dropbox
 //
 //      ::string strFile;
 //
-//      ::string_array lines;
+//      ::string_array_base lines;
 //
 //      lines.add(pathLocal.name());
 //
@@ -344,7 +344,7 @@ namespace fs_raw_folder_protocol_dropbox
 //
 //         print_line(scopedstrLs);
 //
-//         ::string_array stra;
+//         ::string_array_base stra;
 //
 //         stra.add_lines(scopedstrLs);
 //

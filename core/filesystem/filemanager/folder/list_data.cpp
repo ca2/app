@@ -72,7 +72,7 @@ namespace filemanager
          if (psubitem->m_iSubItem == 0)
          {
 
-            string_array stra;
+            string_array_base stra;
 
             if (!datastream()->get(::atom(), stra))
             {
@@ -98,12 +98,12 @@ namespace filemanager
       }
 
 
-      void list_data::GetSel(::user::list * plist, string_array & stra)
+      void list_data::GetSel(::user::list * plist, string_array_base & stra)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         string_array wstraTotal;
+         string_array_base wstraTotal;
 
          if (!datastream()->get(::atom(), wstraTotal))
          {
@@ -143,7 +143,7 @@ namespace filemanager
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         string_array straTotal;
+         string_array_base straTotal;
 
          if (!datastream()->get(::atom(), straTotal))
          {
@@ -157,12 +157,12 @@ namespace filemanager
       }
 
 
-      bool list_data::add_unique(const string_array & stra)
+      bool list_data::add_unique(const string_array_base & stra)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         string_array straFolderPath;
+         string_array_base straFolderPath;
 
          datastream()->get(::atom(), straFolderPath);
 
@@ -192,16 +192,16 @@ namespace filemanager
       }
 
 
-      bool list_data::add_unique(const string_array & stra, int_array & baRecursive)
+      bool list_data::add_unique(const string_array_base & stra, int_array_base & baRecursive)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         string_array straFolderPath;
+         string_array_base straFolderPath;
 
          datastream()->get(::atom(), straFolderPath);
 
-         int_array iaRecursive;
+         int_array_base iaRecursive;
 
          datastream()->get("recursive", iaRecursive);
 
@@ -255,12 +255,12 @@ namespace filemanager
       }
 
 
-      bool list_data::erase(const string_array & stra)
+      bool list_data::erase(const string_array_base & stra)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         string_array straFolderPath;
+         string_array_base straFolderPath;
 
          if (!datastream()->get(::atom(), straFolderPath))
          {
@@ -269,7 +269,7 @@ namespace filemanager
 
          }
 
-         int_array iaRecursive;
+         int_array_base iaRecursive;
 
          datastream()->get("recursive", iaRecursive);
 
@@ -338,7 +338,7 @@ namespace filemanager
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         int_array iaRecursive;
+         int_array_base iaRecursive;
 
          try
          {
@@ -376,7 +376,7 @@ namespace filemanager
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         int_array iaRecursive;
+         int_array_base iaRecursive;
 
          try
          {

@@ -195,7 +195,7 @@ bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_st
 
 
 
-CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string_array & stra)
+CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string_array_base & stra)
 {
 
    return false;
@@ -203,7 +203,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string
 }
 
 
-CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
+CLASS_DECL_ACME bool is_shared_library_busy(const string_array_base & stra)
 {
 
    return false;

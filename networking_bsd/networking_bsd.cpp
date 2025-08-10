@@ -368,7 +368,7 @@ struct c_in_addr
 //   c_in_addr & addr = (c_in_addr &) addrParam;
 //
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   stra.add_tokens(string, ".");
 //

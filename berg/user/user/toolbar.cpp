@@ -22,10 +22,10 @@
 #include "acme/_operating_system.h"
 
 
-::string_array semi_colon_string_array(const ::scoped_string & scopedstr)
+::string_array_base semi_colon_string_array(const ::scoped_string & scopedstr)
 {
 
-   ::string_array stra;
+   ::string_array_base stra;
 
    stra.explode(";", scopedstr, false);
 

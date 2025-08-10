@@ -209,7 +209,7 @@ namespace apex
    //}
 
    //
-   // void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   // void session::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    // {
    //
    //
@@ -659,7 +659,7 @@ class ::fs::data * session::fs()
 
          string strExtension = strPathName.final_extension();
 
-         string_array straApp;
+         string_array_base straApp;
 
          throw ::exception(todo, "filehandler");
 
@@ -1896,7 +1896,7 @@ namespace apex
    //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle& rectangle, ::draw2d::brush_pointer& pbrushText)
    //{
 
-   //   string_array& straTitle = pane.m_straTitle;
+   //   string_array_base& straTitle = pane.m_straTitle;
 
    //   pgraphics->set(pbrushText);
 
@@ -1954,12 +1954,12 @@ namespace apex
    //}
 
 
-   string_array session::get_user_wallpaper()
+   string_array_base session::get_user_wallpaper()
    {
 
-      string_array stra;
+      string_array_base stra;
 
-      //string_array straSource = psession->userex()->get_wallpaper();
+      //string_array_base straSource = psession->userex()->get_wallpaper();
 
       //for (const ::scoped_string & scopedstr : straSource)
       //{

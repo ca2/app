@@ -219,7 +219,7 @@ namespace user
    }
 
 
-   bool menu::create_menu(const string_array& straCommand, const string_array& straCommandTitle)
+   bool menu::create_menu(const string_array_base& straCommand, const string_array_base& straCommandTitle)
    {
 
       if (m_pmenuitem.is_null())

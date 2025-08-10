@@ -29,10 +29,10 @@ namespace databaseuser
 
       ::collection::count _001GetItemCount() override;
 
-      bool add_unique(const string_array & stra);
-      bool erase(const string_array & stra);
+      bool add_unique(const string_array_base & stra);
+      bool erase(const string_array_base & stra);
 
-      void GetSel(::user::list * plist , string_array & stra);
+      void GetSel(::user::list * plist , string_array_base & stra);
 
 
    };

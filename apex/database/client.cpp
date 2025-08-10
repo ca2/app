@@ -346,7 +346,7 @@ namespace database
    }
 
 
-   void client::_data_set(const ::string_array & straKey, const ::payload & payload, ::topic * ptopic)
+   void client::_data_set(const ::string_array_base & straKey, const ::payload & payload, ::topic * ptopic)
    {
 
       if (::is_null(m_pdataserver))

@@ -149,7 +149,7 @@ namespace userfs
          else
          {
 
-            string_array stra;
+            string_array_base stra;
 
             for (::collection::index iItem = iLItem; iItem < iLItem; iItem++)
             {

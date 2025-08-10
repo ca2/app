@@ -766,7 +766,7 @@ string str::replace_with(const ::scoped_string & scopedstrOld, const ::scoped_st
 }
 
 
-::collection::index  str::find_first(const string_array & straSearch, ::collection::index & iFound, const ::scoped_string & scopedstr, ::collection::index iStart)
+::collection::index  str::find_first(const string_array_base & straSearch, ::collection::index & iFound, const ::scoped_string & scopedstr, ::collection::index iStart)
 {
 
    ::collection::index iFind = -1;
@@ -798,7 +798,7 @@ string str::replace_with(const ::scoped_string & scopedstrOld, const ::scoped_st
 }
 
 
-string str::random_replace(::particle * pparticle, const string_array & straNew, const string_array & straOld, const ::scoped_string & scopedstrParam)
+string str::random_replace(::particle * pparticle, const string_array_base & straNew, const string_array_base & straOld, const ::scoped_string & scopedstrParam)
 {
 
    string str(scopedstrParam);
@@ -4120,7 +4120,7 @@ void str::get_lines(::string & str, bool bFinal, const ::function < void(const :
 }
 
 
-void str::get_lines(::string_array & stra, ::string & str, const ::scoped_string & scopedstrPrefix, bool bFinal, ::particle * pparticleSynchronization, ::file::file * pfileLog)
+void str::get_lines(::string_array_base & stra, ::string & str, const ::scoped_string & scopedstrPrefix, bool bFinal, ::particle * pparticleSynchronization, ::file::file * pfileLog)
 {
 
    auto functionNewLine = [&](auto & range, bool bCarriage)
@@ -4213,7 +4213,7 @@ bool str::x_contains(const ::scoped_string& scopedstr, const ::scoped_string& sc
 }
 
 
-bool str::x_contains(const ::scoped_string& scopedstr, const ::string_array& straSearchedTerm)
+bool str::x_contains(const ::scoped_string& scopedstr, const ::string_array_base& straSearchedTerm)
 {
 
    for (auto& strSearchedTerm : straSearchedTerm)

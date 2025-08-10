@@ -167,7 +167,7 @@ string apple_get_executable_path()
 //void apple_accumulate_on_open_file(const_char_pointer *psza, int iCount, const ::scoped_string & scopedstrExtra)
 //{
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   stra.c_add((char **) psza, iCount, false);
 //
@@ -218,7 +218,7 @@ string apple_get_executable_path()
 //   else
 //   {
 //
-//      string_array stra;
+//      string_array_base stra;
 //
 //      stra.c_add((char **) psza, iCount, false);
 //

@@ -33,7 +33,7 @@ namespace application_build_helper
 
       directory_system()->create(m_pathFolder / ".link_object");
 
-      string_array straOutput;
+      string_array_base straOutput;
 
       int iExitCode = 0;
 

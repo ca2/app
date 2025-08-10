@@ -156,7 +156,7 @@ void aura_main_data::system_construct(Array < String^ >^ refstra)
 
    m_poslocal = nullptr;
 
-   string_array stra(refstra);
+   string_array_base stra(refstra);
 
    m_argc = __argc;
 

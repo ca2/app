@@ -263,12 +263,12 @@ string & property::get_network_arguments(::string & str) const
 }
 
 
-//string_array & property::stra()
+//string_array_base & property::stra()
 //{
 //   return stra();
 //}
 //
-//::int_array & property::inta()
+//::int_array_base & property::inta()
 //{
 //   return inta();
 //}
@@ -283,12 +283,12 @@ string & property::get_network_arguments(::string & str) const
 //   return propset();
 //}
 //
-//const string_array & property::stra() const
+//const string_array_base & property::stra() const
 //{
 //   return stra();
 //}
 //
-//const ::int_array & property::inta() const
+//const ::int_array_base & property::inta() const
 //{
 //   return inta();
 //}

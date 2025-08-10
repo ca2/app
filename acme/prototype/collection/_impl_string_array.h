@@ -2378,7 +2378,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//string_base_array < Type, RawType, t_etypeContainer >  & string_base_array < Type, RawType, t_etypeContainer > ::operator =(const long_long_array & ia)
+//string_base_array < Type, RawType, t_etypeContainer >  & string_base_array < Type, RawType, t_etypeContainer > ::operator =(const long_long_array_base & ia)
 //{
 //
 //   this->_001CopyContainer(ia);

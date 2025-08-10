@@ -717,7 +717,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
                m_bPluginTypeTested = true;
 
-               string_array straSeparator;
+               string_array_base straSeparator;
 
                straSeparator.add("\r\n");
                straSeparator.add("\r");

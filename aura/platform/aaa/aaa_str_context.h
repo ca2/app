@@ -104,8 +104,8 @@
 //      void set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const ::scoped_string & scopedstr);
 //      string get(const str_context * pcontext, const ::atom & atom, bool bIdAsDefaultValue = true) const;
 //      string get(const str_context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue = true) const;
-//      void get(string_array & stra, const str_context * pcontext, const ::atom & atom) const;
-//      void _get(string_array & stra, const str_context * pcontext, const ::atom & atom) const ;
+//      void get(string_array_base & stra, const str_context * pcontext, const ::atom & atom) const;
+//      void _get(string_array_base & stra, const str_context * pcontext, const ::atom & atom) const ;
 //
 //      bool load(const ::scoped_string & scopedstrBaseDir);
 //      bool load_uistr_file(const ::atom & idLocale, const ::atom & idSchema, const ::scoped_string & scopedstrFile);
@@ -217,7 +217,7 @@
 //      }
 //
 //
-//      inline void get(string_array & stra, const ::atom & atom) const
+//      inline void get(string_array_base & stra, const ::atom & atom) const
 //      {
 //
 //         return m_pstr->get(stra, this, atom);
@@ -234,9 +234,9 @@
 //
 //      }
 //
-//      //virtual bool match(const regex * pregexp, string_array & stra, const ::scoped_string & scopedstr, atom pszExp, atom pszRoot);
+//      //virtual bool match(const regex * pregexp, string_array_base & stra, const ::scoped_string & scopedstr, atom pszExp, atom pszRoot);
 //
-//      virtual bool match(string_array & stra, const ::scoped_string & scopedstr, atom pszExp, atom pszRoot) const;
+//      virtual bool match(string_array_base & stra, const ::scoped_string & scopedstr, atom pszExp, atom pszRoot) const;
 //
 //
 //   };

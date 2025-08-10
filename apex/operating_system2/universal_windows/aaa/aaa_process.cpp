@@ -150,7 +150,7 @@ int get_current_process_maximum_affinity()
 
 #ifdef WINDOWS_DESKTOP
 
-bool process_modules(string_array & stra, unsigned int processID)
+bool process_modules(string_array_base & stra, unsigned int processID)
 {
 
    HANDLE hProcess;
@@ -204,7 +204,7 @@ bool process_modules(string_array & stra, unsigned int processID)
 
 #ifdef WINDOWS_DESKTOP
 
-bool load_modules_diff(string_array & straOld, string_array & straNew, const ::scoped_string & scopedstrExceptDir)
+bool load_modules_diff(string_array_base & straOld, string_array_base & straNew, const ::scoped_string & scopedstrExceptDir)
 {
 
    bool bFound;
@@ -317,7 +317,7 @@ CLASS_DECL_APEX int ui_open_url(const ::scoped_string & scopedstrUrl)
 
 
 
-//CLASS_DECL_APEX bool is_shared_library_busy(const string_array & stra)
+//CLASS_DECL_APEX bool is_shared_library_busy(const string_array_base & stra)
 //{
 //
 //   return true;

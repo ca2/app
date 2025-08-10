@@ -4217,7 +4217,7 @@ namespace user
 
                         synchronouslock._lock();
 
-                        string_array stra;
+                        string_array_base stra;
 
                         for (::collection::index a = 0; a <= m_plist->m_piconlayout->m_iaDisplayToStrict.m_iMaxA; a++)
                         {
@@ -4502,7 +4502,7 @@ namespace user
    }
 
 
-   void list::get_data_selection(const ::scoped_string & scopedstrDataKey, ::string_array & straSelection)
+   void list::get_data_selection(const ::scoped_string & scopedstrDataKey, ::string_array_base & straSelection)
    {
 
       if (!has_data_key(scopedstrDataKey))
@@ -6502,7 +6502,7 @@ namespace user
       }
    }
 
-   void list::FilterInclude(::int_array & array)
+   void list::FilterInclude(::int_array_base & array)
    {
       ASSERT(m_efilterstate == FilterStateSetup);
       for (::collection::index i = 0; i < array.get_size(); i++)
@@ -6632,7 +6632,7 @@ namespace user
          m_piaFilterMesh->erase_all();
       }
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_tokens(scopedstrFilter, " ", false);
 
@@ -7951,7 +7951,7 @@ namespace user
          // auto pcontext = get_context();
 
          string str = file()->safe_get_string(strSort);
-         string_array stra;
+         string_array_base stra;
          stra.add_lines(str);
          for (::collection::index a = 0; a < stra.get_size(); a++)
          {

@@ -219,7 +219,7 @@ namespace filemanager
 
       synchronous_lock synchronouslock(m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr);
 
-      string_array stra;
+      string_array_base stra;
 
       auto ptreeitem = find_item_by_user_path(pathUser);
 
@@ -733,7 +733,7 @@ namespace filemanager
 //
 //      {
 //
-//         string_array straChildItem;
+//         string_array_base straChildItem;
 //
 //         string str;
 //
@@ -1166,7 +1166,7 @@ return;
    }
 
 
-   void tree_data::GetSelectedFilePath(string_array & stra)
+   void tree_data::GetSelectedFilePath(string_array_base & stra)
    {
 
       ::data::tree_item_ptr_array< ::userfs::item > itemptraSelected;

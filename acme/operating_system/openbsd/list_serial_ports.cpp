@@ -25,7 +25,7 @@ namespace serial
 
 
 
-   static string_array glob(const string_array & patterns);
+   static string_array_base glob(const string_array_base & patterns);
 
    static string basename(const string & path);
 
@@ -37,17 +37,17 @@ namespace serial
 
    static string usb_sysfs_friendly_name(const string & sys_usb_path);
 
-   static string_array get_sysfs_info(const string & device_path);
+   static string_array_base get_sysfs_info(const string & device_path);
 
 //static string read_line(const string& file);
    static string usb_sysfs_hw_string(const string & sysfs_path);
 
    static string format(const_char_pointer format, ...);
 
-   string_array
-   glob(const string_array & patterns)
+   string_array_base
+   glob(const string_array_base & patterns)
    {
-      string_array paths_found;
+      string_array_base paths_found;
 
       if (patterns.size() == 0)
          return paths_found;
@@ -182,7 +182,7 @@ namespace serial
    }
 
 
-   string_array get_sysfs_info(const string & device_path)
+   string_array_base get_sysfs_info(const string & device_path)
    {
 
       string device_name = basename(device_path);
@@ -235,7 +235,7 @@ namespace serial
       if (hardware_id.empty())
          hardware_id = "n/a";
 
-      string_array result;
+      string_array_base result;
       result.push_back(friendly_name);
       result.push_back(hardware_id);
 
@@ -326,20 +326,20 @@ namespace serial
 
       array<port_info> results;
 
-      string_array search_globs;
+      string_array_base search_globs;
       search_globs.push_back("/dev/ttyACM*");
       search_globs.push_back("/dev/ttyS*");
       search_globs.push_back("/dev/ttyUSB*");
       search_globs.push_back("/dev/tty.*");
       search_globs.push_back("/dev/cu.*");
 
-      string_array devices_found = glob(search_globs);
+      string_array_base devices_found = glob(search_globs);
 
 
       for (auto device : devices_found)
       {
 
-         string_array sysfs_info = get_sysfs_info(device);
+         string_array_base sysfs_info = get_sysfs_info(device);
 
          string friendly_name = sysfs_info[0];
 

@@ -25,7 +25,7 @@ pdirectorysystem->home() / "Library/papp Support/ca2/mypath" / (strApp + ".txt")
 
 extern char ** environ;
 
-string_array get_c_args_for_c(const ::scoped_string & scopedstr);
+string_array_base get_c_args_for_c(const ::scoped_string & scopedstr);
 
 string transform_to_c_arg(const ::scoped_string & scopedstr);
 
@@ -34,7 +34,7 @@ int create_process2(const char * _cmd_line, int * pprocessId);
 int create_process(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
 {
 
-   string_array stra;
+   string_array_base stra;
    
    stra = get_c_args_for_c(scopedstrCommandLine);
 
@@ -291,7 +291,7 @@ string apple_app_module_path()
 
 }
 
-CLASS_DECL_APEX bool is_shared_library_busy(unsigned int processid, const string_array & stra)
+CLASS_DECL_APEX bool is_shared_library_busy(unsigned int processid, const string_array_base & stra)
 {
 
    return false;
@@ -299,7 +299,7 @@ CLASS_DECL_APEX bool is_shared_library_busy(unsigned int processid, const string
 }
 
 
-CLASS_DECL_APEX bool is_shared_library_busy(const string_array & stra)
+CLASS_DECL_APEX bool is_shared_library_busy(const string_array_base & stra)
 {
 
    return false;

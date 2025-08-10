@@ -32,7 +32,7 @@ namespace user
 
 
 
-      string_array                                 m_straEscape;
+      string_array_base                                 m_straEscape;
 
       ::type_atom                                  m_typeatomDefaultMeshData;
       ::type_atom                                  m_typeatomDefaultListHeader;

@@ -3047,7 +3047,7 @@ bool base_socket::SetSoKeepalive(bool x)
    }
 
 
-   ::string_array & base_socket::debugstra()
+   ::string_array_base & base_socket::debugstra()
    {
 
       return m_straDebug;

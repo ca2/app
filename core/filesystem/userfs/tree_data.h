@@ -24,7 +24,7 @@ namespace userfs
       bool                                   m_bCreateImageListRedraw;
       int                                    m_iAnimate;
       bool                                   m_bTimer123;
-      string_array                           m_straUpdatePtrFilter;
+      string_array_base                           m_straUpdatePtrFilter;
 
       ::pointer < ::userfs::document >       m_puserfsdocument;
 
@@ -78,7 +78,7 @@ namespace userfs
 
       void TakeAnimationSnapshot();
       virtual void StartAnimation(::user::interaction * pinteraction);
-      void GetSelectedFilePath(string_array & stra);
+      void GetSelectedFilePath(string_array_base & stra);
       virtual bool _001IsTranslucent();
 
       virtual void browse_sync(const ::action_context & action_context);

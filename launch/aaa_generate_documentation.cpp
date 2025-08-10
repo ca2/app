@@ -26,7 +26,7 @@ namespace application_build_helper
       //
       //   int iExitCode = 0;
       //
-      //   string_array straOutput;
+      //   string_array_base straOutput;
       //
       //   string strCmd;
       //
@@ -272,7 +272,7 @@ namespace application_build_helper
 
       directory_system()->create(path / scopedstrSubPath / "doxygen.directory");
 
-      string_array straOutput;
+      string_array_base straOutput;
 
       string strCmd;
 

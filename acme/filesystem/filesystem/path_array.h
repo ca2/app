@@ -107,8 +107,8 @@ inline ::file::path_array_base operator / (const ::file::path & pathBase, const 
 CLASS_DECL_ACME ::file::path_array_base & ascendants_path(const ::file::path & pathBase, ::file::path_array_base & pathaFolder, ::file::path_array_base * ppathaRelative = nullptr);
 CLASS_DECL_ACME ::file::path_array_base ascendants_path(const ::file::path & pathBase);
 CLASS_DECL_ACME ::file::path_array_base & ascendants_path(::file::path_array_base & patha, const ::file::path& pathBase);
-CLASS_DECL_ACME ::string_array ascendants_name(const ::file::path & pathBase);
-CLASS_DECL_ACME ::string_array & ascendants_name(::string_array & stra, const ::file::path& pathBase);
+CLASS_DECL_ACME ::string_array_base ascendants_name(const ::file::path & pathBase);
+CLASS_DECL_ACME ::string_array_base & ascendants_name(::string_array_base & stra, const ::file::path& pathBase);
 
 
 

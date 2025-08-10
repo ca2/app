@@ -1145,7 +1145,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
             if (strPrefix.has_character())
             {
 
-               string_array stra;
+               string_array_base stra;
 
                stra.explode("/", str);
 
@@ -1420,7 +1420,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
    ::file::path pathfind(const ::scoped_string & scopedstrEnv,const ::scoped_string & scopedstrTopic,const ::scoped_string & scopedstrMode)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_tokens(scopedstrEnv, ":");
 

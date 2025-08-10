@@ -461,7 +461,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 #elif defined(UNIVERSAL_WINDOWS)
 
 //
-//void main::system_construct(const ::string_array & straParam)
+//void main::system_construct(const ::string_array_base & straParam)
 //{
 //
 //   //m_poslocal = nullptr;
@@ -783,7 +783,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 ////   string strAppId;
 ////
-////   string_array stra1;
+////   string_array_base stra1;
 ////
 ////#ifdef WINDOWS
 ////
@@ -823,11 +823,11 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////#endif
 ////
-////   string_array stra2;
+////   string_array_base stra2;
 ////
 ////   stra2 = get_c_args_from_string(m_strCommandLine);
 ////
-////   string_array stra3;
+////   string_array_base stra3;
 ////
 //////#ifdef WINDOWS_DESKTOP
 //////
@@ -843,7 +843,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //////
 //////#endif
 ////
-////   //string_array stra5;
+////   //string_array_base stra5;
 ////
 ////   //if(m_pszMain)
 ////   //{
@@ -852,7 +852,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////   //}
 ////
-////   //string_array stra4;
+////   //string_array_base stra4;
 ////
 ////   //string strCommandLine = merge_colon_args(
 ////   //   {

@@ -20,7 +20,7 @@ namespace userfs
       
 
 
-      string_array               m_straFileSize;
+      string_array_base               m_straFileSize;
       ::file::path_array_base         m_pathaStrictOrder;
       ::collection::index                      m_iSelectionSubItem;
       ::collection::index                      m_iNameSubItem;
@@ -80,7 +80,7 @@ namespace userfs
       //void TakeAnimationSnapshot();
       //virtual void StartAnimation();
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      //void GetSelectedFilePath(string_array & array);
+      //void GetSelectedFilePath(string_array_base & array);
       void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
       void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
       ::collection::count _001GetItemCount() override;

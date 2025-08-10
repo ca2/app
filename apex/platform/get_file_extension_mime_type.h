@@ -11,7 +11,7 @@ class CLASS_DECL_APEX get_file_extension_mime_type :
 public:
 
 
-   virtual void file_extension_mime_type(string_array & straExtension, string_array & straMimeType);
+   virtual void file_extension_mime_type(string_array_base & straExtension, string_array_base & straMimeType);
 
 
 };

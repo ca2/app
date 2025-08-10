@@ -16,14 +16,14 @@ inline ::xml::input_tree & operator >> (::xml::input_tree & xmlif, point_base_ar
 
    xmlif.get_value(strPoints);
 
-   string_array straPoints;
+   string_array_base straPoints;
 
    straPoints.explode(";", strPoints);
 
    for (auto & strPoint : straPoints)
    {
 
-      string_array straCoord;
+      string_array_base straCoord;
 
       straCoord.explode(",", strPoint);
 

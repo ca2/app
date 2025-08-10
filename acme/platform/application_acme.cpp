@@ -271,15 +271,15 @@ void acme_application_layer::start_application()
    }
 
 
-   void acme_application_layer::locale_schema_matter(string_array& stra, const string_array& straMatterLocator,
+   void acme_application_layer::locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator,
                                                      const ::scoped_string& scopedstrLocale,
                                                      const ::scoped_string& scopedstrSchema)
    {
    }
 
 
-   void acme_application_layer::matter_locator_locale_schema_matter(string_array& stra,
-                                                                    const string_array& straMatterLocator,
+   void acme_application_layer::matter_locator_locale_schema_matter(string_array_base& stra,
+                                                                    const string_array_base& straMatterLocator,
                                                                     const ::scoped_string& scopedstrLocale,
                                                                     const ::scoped_string& scopedstrSchema)
    {
@@ -383,7 +383,7 @@ void acme_application_layer::start_application()
    }
 
 
-   ::string_array acme_application_layer::get_about_box_lines()
+   ::string_array_base acme_application_layer::get_about_box_lines()
    {
       return {};
    }
@@ -438,7 +438,7 @@ void acme_application_layer::start_application()
    }
 
 
-   void acme_application_layer::did_pick_document_at_urls(const ::string_array& stra)
+   void acme_application_layer::did_pick_document_at_urls(const ::string_array_base& stra)
    {
    }
 

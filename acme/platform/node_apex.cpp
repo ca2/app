@@ -41,7 +41,7 @@ namespace platform
    }
 
 
-   //void apex_node_layer::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId){}
+   //void apex_node_layer::defer_create_main_menu(const string_array_base & straParent, const string_array_base & straMenu, const string_array_base & straId){}
 
 
    //      void apex_node_layer::set_main_menu(application_menu * pmenu, ::apex::application * papp){}

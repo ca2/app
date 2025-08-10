@@ -21,8 +21,8 @@ namespace html
          ::pointer<::user::plain_edit>       m_pedit;
 
          array < ::float_size >             m_sizea;
-         string_array                       m_straLines;
-         string_array                       m_straWordSpace;
+         string_array_base                       m_straLines;
+         string_array_base                       m_straWordSpace;
          bool                          m_bLink;
          string                        m_strLink;
          bool                          m_bOnAfterChangeText;

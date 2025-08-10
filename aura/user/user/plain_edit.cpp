@@ -723,7 +723,7 @@ namespace user
 
       double dLineHeight = m_dLineHeight;
 
-      string_array & straLines = m_straLines;
+      string_array_base & straLines = m_straLines;
 
       string str1;
       string str2;
@@ -838,7 +838,7 @@ namespace user
 
             }
 
-            string_array stra;
+            string_array_base stra;
 
             character_count iCurLineComposeBeg = iComposeBeg - lim;
 
@@ -2968,9 +2968,9 @@ namespace user
 
       ////}
 
-      ////string_array & straLines = m_plinea->lines;
+      ////string_array_base & straLines = m_plinea->lines;
 
-      //string_array & straLines = m_straLines;
+      //string_array_base & straLines = m_straLines;
 
       //if (iLineUpdate < 0)
       //{
@@ -3348,7 +3348,7 @@ namespace user
       //
       //      //m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
       //
-      //      string_array & straLines = m_straLines;
+      //      string_array_base & straLines = m_straLines;
       //
       //      straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
       //
@@ -3385,7 +3385,7 @@ namespace user
       //
       //         string strLine = string((const_char_pointer )&mem.get_data()[iPos], iStrLen);
       //
-      //         string_array & straLines = m_straLines;
+      //         string_array_base & straLines = m_straLines;
       //
       //         //if (strLine != m_plinea->lines[i])
       //         if (strLine != straLines[i])
@@ -3430,8 +3430,8 @@ namespace user
       //
       //      //}
       //
-      ////      string_array & straLines = m_plinea->lines;
-      ////      string_array & straLines = m_straLines;
+      ////      string_array_base & straLines = m_plinea->lines;
+      ////      string_array_base & straLines = m_straLines;
       //
       //      if (iLineUpdate < 0)
       //      {
@@ -3792,7 +3792,7 @@ namespace user
 
       //m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
 
-      string_array & straLines = m_straLines;
+      string_array_base & straLines = m_straLines;
 
       straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
 
@@ -3835,7 +3835,7 @@ namespace user
 
          string strLine = string((const_char_pointer )p, iStrLen);
 
-         //string_array & straLines = m_straLines;
+         //string_array_base & straLines = m_straLines;
 
          //if (strLine != m_plinea->lines[i])
          if (strLine != straLines[i])
@@ -3877,8 +3877,8 @@ namespace user
 
       //}
 
-//      string_array & straLines = m_plinea->lines;
-//      string_array & straLines = m_straLines;
+//      string_array_base & straLines = m_plinea->lines;
+//      string_array_base & straLines = m_straLines;
 
       //if (iOnlyLineToUpdate < 0)
       //{
@@ -4247,9 +4247,9 @@ namespace user
    //
    //      ////}
    //
-   //      ////string_array & straLines = m_plinea->lines;
+   //      ////string_array_base & straLines = m_plinea->lines;
    //
-   //      //string_array & straLines = m_straLines;
+   //      //string_array_base & straLines = m_straLines;
    //
    //      //if (iLineUpdate < 0)
    //      //{
@@ -4613,9 +4613,9 @@ namespace user
    //
    //////}
    //
-   //////string_array & straLines = m_plinea->lines;
+   //////string_array_base & straLines = m_plinea->lines;
    //
-   ////string_array & straLines = m_straLines;
+   ////string_array_base & straLines = m_straLines;
    //
    ////if (iLineUpdate < 0)
    ////{
@@ -5055,14 +5055,14 @@ namespace user
 
       }
 
-      string_array stra;
+      string_array_base stra;
 
       string strLine;
 
       stra.erase_all();
 
-      //      string_array & straLines = m_plinea->lines;
-      string_array & straLines = m_straLines;
+      //      string_array_base & straLines = m_plinea->lines;
+      string_array_base & straLines = m_straLines;
 
       stra.add_lines(straLines[iLine - iLineOffset], false);
 
@@ -5181,7 +5181,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      //string_array & straLines = m_plinea->lines;
+      //string_array_base & straLines = m_plinea->lines;
 
       character_count i1;
 
@@ -5245,7 +5245,7 @@ namespace user
 
       //character_count iOffset = 0;
 
-      string_array stra;
+      string_array_base stra;
 
       ::collection::index iLine;
 
@@ -6302,7 +6302,7 @@ namespace user
 
          iLine2 = plain_edit_sel_to_line(pgraphics, i2);
 
-         ::string_array straLinesDeleted;
+         ::string_array_base straLinesDeleted;
 
          straLinesDeleted.add_lines(strSel);
 
@@ -6803,7 +6803,7 @@ namespace user
 
             //      int iLine2 = plain_edit_char_to_line(pgraphics, i2);
 
-            //      ::string_array straLinesDeleted;
+            //      ::string_array_base straLinesDeleted;
 
             //      straLinesDeleted.add_lines(strSel);
 
@@ -10932,7 +10932,7 @@ namespace user
 
          iLine1 = plain_edit_sel_to_line(pgraphics, i1);
 
-         ::string_array straLinesHere;
+         ::string_array_base straLinesHere;
 
          straLinesHere.add_lines(strTextHere, true, true);
 
@@ -11147,7 +11147,7 @@ namespace user
       else
       {
 
-         //::string_array straLines;
+         //::string_array_base straLines;
 
          //straLines.add_lines(strText);
 

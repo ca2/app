@@ -45,7 +45,7 @@ namespace simpledb
       }*/
 
 
-      string_array stra;
+      string_array_base stra;
       stra = psystem->m_simpledb.db().data_load(nullptr, "simpledb");
       for(int i = 0; i < stra.get_size(); i++)
       {

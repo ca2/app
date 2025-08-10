@@ -170,14 +170,14 @@ namespace acme
       // }
 
 
-      string_array display::get_wallpaper()
+      string_array_base display::get_wallpaper()
       {
 
          auto psession = session();
 
          ::collection::count iMonitorCount = get_monitor_count();
 
-         string_array stra;
+         string_array_base stra;
 
          for (::collection::index iScreen = 0; iScreen < iMonitorCount; iScreen++)
          {
@@ -212,7 +212,7 @@ namespace acme
       }
 
 
-      void display::set_wallpaper(const string_array& straWallpaper)
+      void display::set_wallpaper(const string_array_base& straWallpaper)
       {
 
          if (straWallpaper.is_empty())

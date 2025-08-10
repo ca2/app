@@ -50,7 +50,7 @@
    }
 
 
-   bool whole_word_find(string_array & stra, const ::scoped_string & scopedstr)
+   bool whole_word_find(string_array_base & stra, const ::scoped_string & scopedstr)
    {
 
       for (auto & strFind : stra)

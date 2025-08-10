@@ -37,7 +37,7 @@
          {
          }
 
-         void experience::get_frame_list(string_array & stra)
+         void experience::get_frame_list(string_array_base & stra)
          {
 
             stra.add("001");

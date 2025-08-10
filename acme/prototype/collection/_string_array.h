@@ -18,7 +18,7 @@ inline ::string quoted_string(const ::scoped_string& scopedstr)
 }
 
 
-inline ::string as_string(const string_array & container, const ::scoped_string& scopedstrSeparator = " ")
+inline ::string as_string(const string_array_base & container, const ::scoped_string& scopedstrSeparator = " ")
 {
 
    ::string str;
@@ -48,7 +48,7 @@ bool character_is_the_space(::ansi_character ansich) noexcept
 }
 
 
-inline void from_string(string_array& container, const ::scoped_string& scopedstr)
+inline void from_string(string_array_base& container, const ::scoped_string& scopedstr)
 {
 
    auto range = scopedstr();

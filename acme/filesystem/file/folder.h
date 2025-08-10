@@ -46,7 +46,7 @@ public:
 
    virtual bool locate(const ::function < bool(const_char_pointer )> & function);
 
-   virtual void e_extract_all(const ::file::path & pathTargetDir, ::file::path_array_base * ppatha = nullptr, string_array* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr, ::function<bool(const::scoped_string& scopedstr) > functionCallback = {});
+   virtual void e_extract_all(const ::file::path & pathTargetDir, ::file::path_array_base * ppatha = nullptr, string_array_base* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr, ::function<bool(const::scoped_string& scopedstr) > functionCallback = {});
    virtual ::file::path e_extract_first_ends(const ::file::path& pathTargetDir, const ::scoped_string & scopedstr);
 
    //bool _enumerates(::file::listing_base & listing) override;

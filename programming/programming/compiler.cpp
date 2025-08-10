@@ -305,7 +305,7 @@ namespace programming
    void compiler::prepare1(const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrDest)
    {
 
-      string_array stra;
+      string_array_base stra;
 
 
       string strLog;
@@ -481,7 +481,7 @@ namespace programming
       //
       //   //   string strLog;
       //
-      //   //   string_array m_strArray;
+      //   //   string_array_base m_strArray;
       //   //   // Open the process for further operations
       //   //   HANDLE hProcess = CProcessEnvReader::OpenProcessToRead(process->m_iPid);
       //   //   if(hProcess)
@@ -530,7 +530,7 @@ namespace programming
       //   }
       //
       //   strLog += process->read();
-      //   string_array stra;
+      //   string_array_base stra;
       //
       //   stra.add_lines(strLog);
       //

@@ -24,7 +24,7 @@ namespace experience_core
       virtual void update() override;
 
 
-      virtual void get_frame_list(string_array & stra) override;
+      virtual void get_frame_list(string_array_base & stra) override;
 
 
       ::pointer < ::experience::frame > frame_experience(const ::scoped_string & scopedstrFrameSchema) override;

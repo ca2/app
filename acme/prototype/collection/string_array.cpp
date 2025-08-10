@@ -6,10 +6,10 @@
 #include <stdlib.h>
 
 
-void string_array_array::add_csv(const ::scoped_string & scopedstr)
+void string_array_array_base::add_csv(const ::scoped_string & scopedstr)
 {
 
-   string_array stra;
+   string_array_base stra;
 
    stra.add_lines(scopedstr, false);
 
@@ -134,7 +134,7 @@ CLASS_DECL_ACME bool next_csv(string & str, const_char_pointer &psz)
 
 
 
-void add_csv(string_array & stra, const ::scoped_string & scopedstr)
+void add_csv(string_array_base & stra, const ::scoped_string & scopedstr)
 {
 
    const_char_pointer psz = scopedstr.c_str();
@@ -153,7 +153,7 @@ void add_csv(string_array & stra, const ::scoped_string & scopedstr)
 
 
 
-CLASS_DECL_ACME char * const * alloc_c_string_array(const string_array & stra)
+CLASS_DECL_ACME char * const * alloc_c_string_array(const string_array_base & stra)
 {
 
    auto iCount = stra.get_count();
@@ -204,7 +204,7 @@ CLASS_DECL_ACME void free_c_string_array(char * const * ppszList, int iCount)
 //namespace file
 //{
 //
-//string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
+//string_array_base path::ascendants_name() const { string_array_base patha; return ascendants_name(patha); }
 //////   inline path path::folder() const { return ::file_path_folder(*this); }
 ////inline bool path::operator == (const ::payload & payload) const { return operator == (payload.file_path()); }
 ////inline bool path::operator != (const ::payload & payload) const { return operator != (payload.file_path()); }
@@ -216,7 +216,7 @@ CLASS_DECL_ACME void free_c_string_array(char * const * ppszList, int iCount)
 
 
 
-CLASS_DECL_ACME string_array string_array_from_strdup_count(const_char_pointer *pszaUrl, long lCount)
+CLASS_DECL_ACME string_array_base string_array_from_strdup_count(const_char_pointer *pszaUrl, long lCount)
 {
    
    if(::is_null(pszaUrl))
@@ -226,7 +226,7 @@ CLASS_DECL_ACME string_array string_array_from_strdup_count(const_char_pointer *
       
    }
    
-   ::string_array stra;
+   ::string_array_base stra;
    
    for(long l = 0; l < lCount; l++)
    {

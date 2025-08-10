@@ -224,7 +224,7 @@
 //   }
 //
 //
-//   void os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension)
+//   void os_context::file_extension_get_open_with_list_keys(string_array_base & straKey, const ::scoped_string & scopedstrExtension)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(straKey);
@@ -235,7 +235,7 @@
 //   }
 //
 //
-//   void os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension)
+//   void os_context::file_extension_get_open_with_list_commands(string_array_base & straCommand, const ::scoped_string & scopedstrExtension)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(straCommand);
@@ -667,7 +667,7 @@
 //   void os_context::initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch)
 //   {
 //
-//      ::string_array stra;
+//      ::string_array_base stra;
 //
 //      //stra.add("_inheaven_1920x1080_o.JPG");
 //      //stra.add("02209_stratosphere_1920x1080_o.JPG");
@@ -781,9 +781,9 @@
 //   void os_context::set_file_extension_mime_type(::get_file_extension_mime_type * pgetfileextensionmimetype)
 //   {
 //
-//      string_array straExtension;
+//      string_array_base straExtension;
 //
-//      string_array straMimeType;
+//      string_array_base straMimeType;
 //
 //      pgetfileextensionmimetype->file_extension_mime_type(straExtension, straMimeType);
 //
@@ -792,7 +792,7 @@
 //   }
 //
 //
-//   void os_context::set_file_extension_mime_type(string_array & straExtension, string_array & straMimeType)
+//   void os_context::set_file_extension_mime_type(string_array_base & straExtension, string_array_base & straMimeType)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(straExtension);

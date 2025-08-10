@@ -312,7 +312,7 @@
 //
 //
 //   //CLASS_DECL_CORE bool set_wallpaper(string strLocalImagePath);
-//   //CLASS_DECL_CORE string_array get_wallpaper();
+//   //CLASS_DECL_CORE string_array_base get_wallpaper();
 //
 //
 //

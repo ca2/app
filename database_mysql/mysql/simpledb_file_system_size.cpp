@@ -93,9 +93,9 @@ void file_size_table::item::ls(::particle * pparticle, ::collection::index & iIt
 {
    if(m_bDir)
    {
-      string_array               straPath;
-      string_array               straTitle;
-      long_long_array iaSize;
+      string_array_base               straPath;
+      string_array_base               straTitle;
+      long_long_array_base iaSize;
       bool_array baIsDir;
       if(path().is_empty())
       {

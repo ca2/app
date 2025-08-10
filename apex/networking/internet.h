@@ -17,7 +17,7 @@ namespace internet
    public:
 
 
-      string_array                     m_straPublicDomainExtension;
+      string_array_base                     m_straPublicDomainExtension;
       ::critical_section               m_csPublicDomainExtension;
 
       internet();

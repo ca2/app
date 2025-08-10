@@ -517,7 +517,7 @@ namespace user
 
             throw_todo();
 
-//            ::int_array ia;
+//            ::int_array_base ia;
 //
 //            ::pointer<::database::client>pclient = pinteraction;
 //
@@ -636,7 +636,7 @@ namespace user
 
       ASSERT(pinteraction->m_eddx == e_control_ddx_dbflags);
 
-      ::int_array ia;
+      ::int_array_base ia;
 
       try
       {
@@ -770,7 +770,7 @@ namespace user
       if(typeid(plist->GetDataInterface()) == ::type < ::user::simple_mesh_data >())
       {
       ::user::simple_mesh_data * pdata = dynamic_cast < ::user::simple_mesh_data * > (plist->GetDataInterface());
-      string_array stra;
+      string_array_base stra;
       datastream()->get(pinteraction->m_dataid, stra);
       ASSERT(plist != nullptr);
       pdata->set_data(plist, stra);
@@ -890,7 +890,7 @@ namespace user
    }
 
 
-   void form_control::get_selection(const ::scoped_string & scopedstrDataKey,::string_array &selection)
+   void form_control::get_selection(const ::scoped_string & scopedstrDataKey,::string_array_base &selection)
    {
 
       selection.add_item(scopedstrDataKey);
@@ -1490,7 +1490,7 @@ namespace user
    //      if(pinteraction->m_eddx == e_control_ddx_dbflags)
    //      {
 
-   //         ::int_array ia;
+   //         ::int_array_base ia;
 
    //         ::pointer<::database::client>pclient = pinteraction;
 

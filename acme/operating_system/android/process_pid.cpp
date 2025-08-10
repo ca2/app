@@ -90,10 +90,10 @@ string module_path_from_pid(unsigned int iPid)
 
 
 
-//::int_array module_path_get_pid(const ::file::path & path)
+//::int_array_base module_path_get_pid(const ::file::path & path)
 //{
 //
-//   ::int_array ia;
+//   ::int_array_base ia;
 //
 //   ::file::path_array_base stra;
 //
@@ -163,7 +163,7 @@ string module_path_from_pid(unsigned int iPid)
 //         else
 //         {
 //
-//            string_array straCmdLine = cmdline_from_pid(iPid);
+//            string_array_base straCmdLine = cmdline_from_pid(iPid);
 //
 //            string strCmdLine;
 //
@@ -188,10 +188,10 @@ string module_path_from_pid(unsigned int iPid)
 //
 //
 //
-//string_array cmdline_from_pid(unsigned int iPid)
+//string_array_base cmdline_from_pid(unsigned int iPid)
 //{
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   string str;
 //

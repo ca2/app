@@ -294,7 +294,7 @@ namespace apex
    }
 
 
-   // void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   // void system::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    // {
    //
    //
@@ -554,16 +554,16 @@ namespace apex
       factory()->add_factory_item < ::int_array >();
 
       //factory()->add_factory_item < ::file::path_object >();
-      //factory()->add_factory_item < ::long_long_array >();
+      //factory()->add_factory_item < ::long_long_array_base >();
       //factory()->add_factory_item < ::double_array >();
       //factory()->add_factory_item < ::acme::library >();
 
       //factory()->add_factory_item < ::file::path_object >();
 
-      //factory()->add_factory_item < string_array >();
+      //factory()->add_factory_item < string_array_base >();
       //factory()->add_factory_item < memory >();
       //factory()->add_factory_item < memory_file >();
-      //factory()->add_factory_item < ::int_array >();
+      //factory()->add_factory_item < ::int_array_base >();
 
       ///estatus =
 
@@ -688,7 +688,7 @@ namespace apex
       //
       //         }
       //
-      //         string_array straLines;
+      //         string_array_base straLines;
       //
       //         {
       //
@@ -2081,7 +2081,7 @@ pdirectorysystem->create("/ca2core");
       if (scopedstrFileName.has_character() || scopedstrModuleName.has_character())
       {
 
-         string_array stra;
+         string_array_base stra;
 
          if (scopedstrFileName.has_character())
          {
@@ -2755,7 +2755,7 @@ pdirectorysystem->create("/ca2core");
    //
    //      on_map_application_library(library);
    //
-   //      string_array stra;
+   //      string_array_base stra;
    //
    //      string strRoot = library.get_root();
    //
@@ -2898,7 +2898,7 @@ pdirectorysystem->create("/ca2core");
    //}
 
 
-   bool system::defer_accumulate_on_open_file(string_array stra, const ::scoped_string & scopedstrExtra)
+   bool system::defer_accumulate_on_open_file(string_array_base stra, const ::scoped_string & scopedstrExtra)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -2999,9 +2999,9 @@ pdirectorysystem->create("/ca2core");
 
    //   }
 
-   //   string_array straAccumul = m_straCommandLineAccumul;
+   //   string_array_base straAccumul = m_straCommandLineAccumul;
 
-   //   string_array straExtra = m_straCommandLineExtra;
+   //   string_array_base straExtra = m_straCommandLineExtra;
 
    //   m_straCommandLineAccumul.erase_all();
 
@@ -3299,7 +3299,7 @@ pdirectorysystem->create("/ca2core");
 
          strProj = strAppId;
 
-         string_array stra;
+         string_array_base stra;
 
          stra.explode("/", strAppId);
 
@@ -3886,7 +3886,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
 #elif defined(MACOS)
 
-         string_array sa;
+         string_array_base sa;
 
          sa = get_c_args_for_c(strParam);
 
@@ -3894,7 +3894,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
          string strChrome = file_system()->as_string(directory_system()->localconfig() / "app-core/commander/chrome.txt");
 
-         string_array sa2 = get_c_args_for_c(strChrome);
+         string_array_base sa2 = get_c_args_for_c(strChrome);
 
          sa.append(sa2);
 
@@ -5123,7 +5123,7 @@ namespace apex
    }
 
 
-   //void system::get_public_internet_domain_extension_list(string_array& stra)
+   //void system::get_public_internet_domain_extension_list(string_array_base& stra)
    //{
 
    ////   //auto estatus =

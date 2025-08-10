@@ -160,7 +160,7 @@ struct chldstatus
 //      if(!::operating_system::process::create_child_process(scopedstrCmdLine,bPiped,pszDir,iCa2Priority))
 //         return false;
 //
-//      string_array straParam;
+//      string_array_base straParam;
 //
 //      address_array < char * > argv;
 //
@@ -335,7 +335,7 @@ struct chldstatus
 //   {
 //
 //
-//      string_array straParam;
+//      string_array_base straParam;
 //
 //      address_array < char * > argv;
 //

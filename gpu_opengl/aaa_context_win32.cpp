@@ -742,7 +742,7 @@ namespace gpu_opengl
    }
 
 
-   void context_win32::_translate_shader(string_array& stra)
+   void context_win32::_translate_shader(string_array_base& stra)
    {
 
       context::_translate_shader(stra);

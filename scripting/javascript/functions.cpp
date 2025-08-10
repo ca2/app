@@ -112,7 +112,7 @@ void scIsPlainHostName(CScriptVar *pvar, void *data)
 
    string str = pvar->getParameter("host")->getString();
 
-   string_array stra;
+   string_array_base stra;
 
    stra.explode(".", str);
 

@@ -231,7 +231,7 @@ namespace nano2d
 	}
 
 
-	void context::get_maximum_width_and_row_height(float& fMaximumWidth, float& fRowHeight, const string_array& straLines)
+	void context::get_maximum_width_and_row_height(float& fMaximumWidth, float& fRowHeight, const string_array_base& straLines)
 	{
 
 		::float_rectangle bounds;

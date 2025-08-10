@@ -22,7 +22,7 @@
 //#include <openssl/err.h>
 
 
-//typedef string ( *SALT)(::pointer<::aura::application> const ::string & , string_array &);
+//typedef string ( *SALT)(::pointer<::aura::application> const ::string & , string_array_base &);
 
 namespace hi5
 {

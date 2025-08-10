@@ -115,7 +115,7 @@ namespace sockets
       /** Reset state of socket to sucessfully implement keep-alive. */
       virtual void Reset();
 
-      virtual bool http_filter_response_header(string & strKey, string_array & straValue);
+      virtual bool http_filter_response_header(string & strKey, string_array_base & straValue);
 
       virtual void client_to_server(http_socket * psocket);
 

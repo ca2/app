@@ -328,7 +328,7 @@ string exception::get_consolidated_details(::particle * pparticle) const
 //
 //#ifdef __ANDROID__
 //
-//         string_array stra;
+//         string_array_base stra;
 //
 //         stra.add_lines(m_pcallstack->m_pszCallStack);
 //

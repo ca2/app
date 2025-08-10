@@ -76,7 +76,7 @@ namespace file
    }
 
 
-   void set::add_filter(string_array & stra)
+   void set::add_filter(string_array_base & stra)
    {
 
       m_straFilter.append(stra);

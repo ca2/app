@@ -12,7 +12,7 @@
 #include <signal.h>
 #endif
 
-int __is_ok_socket(int fd) {
+int __is_ok_socket(socket_id fd) {
     struct sockaddr sa{};
     socklen_t len = sizeof(sa);
     if (getsockname(fd, &sa, &len) == 0) {

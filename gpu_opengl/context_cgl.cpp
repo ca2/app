@@ -236,7 +236,7 @@ namespace opengl
    }
 
 
-   void context_cgl::_translate_shader(string_array & stra)
+   void context_cgl::_translate_shader(string_array_base & stra)
    {
 
       character_count iFindPrecision = stra.case_insensitive_find_first_begins("precision ");

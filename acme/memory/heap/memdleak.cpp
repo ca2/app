@@ -789,7 +789,7 @@
 //      }
 //
 //
-//      ::int_array ia;
+//      ::int_array_base ia;
 //
 //      ia.set_size(bla.get_count());
 //

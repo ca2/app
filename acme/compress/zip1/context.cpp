@@ -6,7 +6,7 @@
 namespace str
 {
 
-   ::collection::index case_insensitive_begins_eat(string & str,string_array & stra)
+   ::collection::index case_insensitive_begins_eat(string & str,string_array_base & stra)
    {
 
       for(::collection::index i = 0; i < stra.get_count(); i++)
@@ -22,7 +22,7 @@ namespace str
    }
 
 
-   ::collection::index begins_eat(string & str,string_array & stra)
+   ::collection::index begins_eat(string & str,string_array_base & stra)
    {
 
       for(::collection::index i = 0; i < stra.get_count(); i++)
@@ -104,7 +104,7 @@ namespace str
 
       ::file::path pathZip;
 
-      string_array straPath;
+      string_array_base straPath;
 
       if (!compress.get_patha(pathZip, straPath, strZip))
       {
@@ -139,7 +139,7 @@ namespace str
 
       string wstrFolder;
 
-      string_array wstraFolder;
+      string_array_base wstraFolder;
 
       strRemain.replace("\\", "/");
 
@@ -265,7 +265,7 @@ namespace str
 
       ::file::path pathZip;
 
-      string_array straPath;
+      string_array_base straPath;
 
       if (!compress.get_patha(pathZip, straPath, strZip))
       {
@@ -292,7 +292,7 @@ namespace str
    }
 
 
-   bool zip_context::is_file_or_dir(::file::file * pfile, const string_array & straPath, ::file::enum_type * petype)
+   bool zip_context::is_file_or_dir(::file::file * pfile, const string_array_base & straPath, ::file::enum_type * petype)
    {
 
       auto pinfile = get_in_file(pfile, straPath, petype);
@@ -302,7 +302,7 @@ namespace str
    }
 
 
-   ::pointer<::zip::in_file>zip_context::get_in_file(::file::file * pfile, const string_array & straPath, ::file::enum_type * petype)
+   ::pointer<::zip::in_file>zip_context::get_in_file(::file::file * pfile, const string_array_base & straPath, ::file::enum_type * petype)
    {
 
       ::pointer<::zip::in_file>pinfile;
@@ -321,7 +321,7 @@ namespace str
    }
 
 
-   bool zip_context::extract(memory & m, ::file::file * pfile, const string_array & straPath, ::file::enum_type * petype)
+   bool zip_context::extract(memory & m, ::file::file * pfile, const string_array_base & straPath, ::file::enum_type * petype)
    {
 
       auto pinfile = get_in_file(pfile, straPath, petype);
@@ -338,7 +338,7 @@ namespace str
    }
 
 
-   bool zip_context::e_extract_all(const ::scoped_string & scopedstrDir,::payload payloadFile, ::file::path_array_base * ppatha, string_array * pstraFilter, bool_array * pbaBeginsFilterEat)
+   bool zip_context::e_extract_all(const ::scoped_string & scopedstrDir,::payload payloadFile, ::file::path_array_base * ppatha, string_array_base * pstraFilter, bool_array * pbaBeginsFilterEat)
    {
 
       auto pfile = file()->get_file(payloadFile,::file::e_open_binary | ::file::e_open_read);
@@ -365,7 +365,7 @@ namespace str
 
       string wstrFolder;
 
-      string_array wstraFolder;
+      string_array_base wstraFolder;
 
       unz_file_info fi;
 

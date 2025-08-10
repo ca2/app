@@ -38,7 +38,7 @@ namespace user
       bool                                m_bTabPaneVisible;
       bool                                m_bPermanent;
       int_size                            m_size;
-      string_array                        m_straTitle;
+      string_array_base                        m_straTitle;
       ::double_size_array                    m_sizeaText;
       int_point                           m_point;
       e_flag                              m_eflag;

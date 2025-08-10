@@ -340,9 +340,9 @@ public:
    CScriptVar *root;   /// root of symbol table
 private:
    CScriptLex *l;             /// current lexer
-   address_array < CScriptVar * >  scopes; /// stack of scopes when parsing
+   address_array_base < CScriptVar * >  scopes; /// stack of scopes when parsing
 #ifdef TINYJS_callstack
-   string_array callstack; /// Names of places called so we can show when erroring
+   string_array_base callstack; /// Names of places called so we can show when erroring
 #endif
 
    CScriptVar *stringClass; /// Built in string class

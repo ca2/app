@@ -87,7 +87,7 @@ namespace acme
 
 
       //virtual ::pointer<::object>new_application(const ::scoped_string & scopedstrAppId);
-      //virtual void get_app_list(string_array & stra);
+      //virtual void get_app_list(string_array_base & stra);
 
       
       //virtual ::matter* new_object(const ::scoped_string & scopedstrClass);
@@ -98,7 +98,7 @@ namespace acme
       //virtual string get_app_id(const ::scoped_string & scopedstrAppName);
       //virtual string get_app_name(const ::scoped_string & scopedstrAppId);
 
-      //virtual void get_extension_list(string_array & stra);
+      //virtual void get_extension_list(string_array_base & stra);
 
 
       // virtual ::matter * factory_new(::particle * pparticle, const_char_pointer lpszClass);

@@ -32,8 +32,8 @@ namespace dynamic_source
 
       ::string_stream                            m_memfileError;
       string                                 m_strName;
-      string_array                                m_straSourcePath;
-      string_array                                m_straCppPath;
+      string_array_base                                m_straSourcePath;
+      string_array_base                                m_straCppPath;
       string                                 m_strLibraryPath;
       ::pointer<::acme::library>                      m_plibrary;
 

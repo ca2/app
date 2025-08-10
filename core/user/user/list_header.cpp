@@ -443,7 +443,7 @@ namespace user
 
       ::string strDataKey({ true, "::user::list_column_width" });
 
-      ::int_array iaWidth;
+      ::int_array_base iaWidth;
 
       if (bSave)
       {

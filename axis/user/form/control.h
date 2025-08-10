@@ -70,7 +70,7 @@ namespace user
       void on_command(::message::command * pcommand) override;
       DECLARE_MESSAGE_HANDLER(_001OnNotify);
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
-      virtual void get_selection(const ::scoped_string & scopedstrDataKey, ::string_array & stra);
+      virtual void get_selection(const ::scoped_string & scopedstrDataKey, ::string_array_base & stra);
       void Update(bool bSave);
       bool _001SetData(atom uId,bool bData);
       bool _001GetData(atom uId,bool & bData);

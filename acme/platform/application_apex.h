@@ -50,7 +50,7 @@ namespace platform
 //      // #endif
 //      //semaphore                                    m_semCompiler;
 //      // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
-//      string_array m_straActivationMessage;
+//      string_array_base m_straActivationMessage;
 //
 //      unsigned int m_dwInstallGoodToCheckAgain;
 //
@@ -72,7 +72,7 @@ namespace platform
 //      ::pointer<::interprocess::handler> m_pinterprocesshandler;
 //      //::pointer<service>                         m_pservice;
 //
-//      //::string_array                               m_straInterprocessCommunicationPendingHandleUri;
+//      //::string_array_base                               m_straInterprocessCommunicationPendingHandleUri;
 //
 //
 //      // apex commented
@@ -142,7 +142,7 @@ namespace platform
 //      //::pointer<::apex::theme>                   m_ptheme;
 //
 //
-//      string_array m_straAppInterest;
+//      string_array_base m_straAppInterest;
 //
 //      ::pointer<::service_handler> m_pservicehandler;
 //
@@ -192,7 +192,7 @@ namespace platform
    //       // #endif
    //       //semaphore                                    m_semCompiler;
    //       // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
-   //       string_array m_straActivationMessage;
+   //       string_array_base m_straActivationMessage;
    //
    //       unsigned int m_dwInstallGoodToCheckAgain;
    //
@@ -214,7 +214,7 @@ namespace platform
    //       ::pointer<::interprocess::handler> m_pinterprocesshandler;
    //       //::pointer<service>                         m_pservice;
    //
-   //       //::string_array                               m_straInterprocessCommunicationPendingHandleUri;
+   //       //::string_array_base                               m_straInterprocessCommunicationPendingHandleUri;
    //
    //
    //       // apex commented
@@ -282,7 +282,7 @@ namespace platform
    //       //::pointer<::apex::theme>                   m_ptheme;
    //
    //
-   //       string_array m_straAppInterest;
+   //       string_array_base m_straAppInterest;
    //
    //       ::pointer<::service_handler> m_pservicehandler;
    //
@@ -637,7 +637,7 @@ namespace platform
       virtual string title();
 
 
-      virtual string_array get_categories();
+      virtual string_array_base get_categories();
 
 
       virtual void defer_create_keyboard();

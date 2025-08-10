@@ -702,8 +702,8 @@ namespace text
          }
 
 
-         ::string_array straLocaleAdd1;
-         ::string_array straSchemaAdd1;
+         ::string_array_base straLocaleAdd1;
+         ::string_array_base straSchemaAdd1;
 
 
          if (bRTLLayout)

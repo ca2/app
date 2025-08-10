@@ -37,9 +37,9 @@ namespace windowing
 
       int groupCount() const;
 
-      string_array groupNames() const;
+      string_array_base groupNames() const;
 
-      string_array groupSymbols() const;
+      string_array_base groupSymbols() const;
 
       int currentGroupNum() const;
 
@@ -65,13 +65,13 @@ namespace windowing
 
       string getGroupNameByResNum(int groupResNum);
 
-      int groupLookup(int srcValue, string_array fromText, string_array toText, int count);
+      int groupLookup(int srcValue, string_array_base fromText, string_array_base toText, int count);
 
       void accomodateGroupXkb();
 
       int _groupCount;
-      string_array _groupNames;
-      string_array _symbolNames;
+      string_array_base _groupNames;
+      string_array_base _symbolNames;
       //int _currentGroupNum;
 
       //int _deviceId;
@@ -91,13 +91,13 @@ namespace windowing
 
       ~symbol_parser();
 
-      void parse(const string &symbols, string_array &symbolList);
+      void parse(const string &symbols, string_array_base &symbolList);
 
    private:
 
       bool isXkbLayoutSymbol(const string &symbol);
 
-      string_array   m_nonSymbols;
+      string_array_base   m_nonSymbols;
 
 
    };

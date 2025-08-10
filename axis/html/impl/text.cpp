@@ -869,7 +869,7 @@ namespace html
                if(pdata->m_pcoredata->m_bEdit)
                {
                   float y = top;
-                  string_array stra;
+                  string_array_base stra;
                   character_count i1 = iSelStart - lim;
                   character_count i2 = iSelEnd - lim;
                   character_count i3 = iCursor - lim;

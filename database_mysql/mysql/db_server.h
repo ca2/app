@@ -1,7 +1,7 @@
 #pragma once
 
 
-class string_array;
+class string_array_base;
 class db_server;
 //class db_long_set;
 class db_server;
@@ -11,7 +11,7 @@ class DBFileSystemSizeSet;
 
 class MidiInstrumentSet;
 
-class string_array;
+class string_array_base;
 
 
 namespace sqlite

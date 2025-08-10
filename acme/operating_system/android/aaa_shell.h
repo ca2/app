@@ -110,7 +110,7 @@ namespace android
       //
       //         HICON CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, int cx, int cy);
       //         bool _017HasSubFolder(::particle * pparticle, LPITEMIDLIST lpiidl, const char * lpcszExtra);
-      //         //      void CLASS_DECL_ACME GetChildren(string_array & stra, const char * lpcszPath);
+      //         //      void CLASS_DECL_ACME GetChildren(string_array_base & stra, const char * lpcszPath);
       //         LPITEMIDLIST _017ItemIDListGetLast(per_fork * pfork, LPITEMIDLIST lpiidl);
       //         LPITEMIDLIST _017ItemIDListDup(per_fork * pfork, LPITEMIDLIST lpiidl);
       //         LPITEMIDLIST _017ItemIDListGetFolderParent(per_fork * pfork, LPITEMIDLIST lpiidl);

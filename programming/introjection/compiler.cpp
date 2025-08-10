@@ -486,7 +486,7 @@ namespace introjection
 //
 //      strLog = file_system()->as_string(pdirectorysystem->system() / "env.txt");
 //
-//      string_array stra;
+//      string_array_base stra;
 //
 //      stra.add_lines(strLog);
 //

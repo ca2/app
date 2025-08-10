@@ -2427,7 +2427,7 @@
     <ClInclude Include="primitive\collection\strid_map.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\string_array_base.h">
+    <ClInclude Include="primitive\collection\string_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\string_iterable.h">

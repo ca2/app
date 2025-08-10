@@ -14,7 +14,7 @@ namespace database
    public:
 
 
-      string_array        m_stra;
+      string_array_base        m_stra;
       row            m_row;
 
 

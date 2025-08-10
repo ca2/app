@@ -38,8 +38,8 @@ namespace console_integration
          ::pointer < x264 > m_px264;
          ::pointer < x265 > m_px265;
 
-         ::string_array m_strax264;
-         ::string_array m_strax265;
+         ::string_array_base m_strax264;
+         ::string_array_base m_strax265;
 
 
 

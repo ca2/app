@@ -361,7 +361,7 @@ namespace sockets
    }
 
 
-   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < ::int_array >* prangea, const ::scoped_string & scopedstrContentType)
+   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < ::int_array_base >* prangea, const ::scoped_string & scopedstrContentType)
    {
 
       ::file::path pcsz(pcszParam);
@@ -407,7 +407,7 @@ namespace sockets
 
       string strServer = system()->url()->get_server(strReferer);
 
-      string_array straAllowedOrigin;
+      string_array_base straAllowedOrigin;
 
       straAllowedOrigin.add("ca2.network");
       straAllowedOrigin.add("ca2.network");
@@ -768,7 +768,7 @@ namespace sockets
 
       string str;
 
-      string_array stra;
+      string_array_base stra;
 
       file()->get_lines(stra, payloadFile);
 

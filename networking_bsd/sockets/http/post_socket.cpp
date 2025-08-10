@@ -52,7 +52,7 @@ namespace sockets
    }
 
 
-   void http_post_socket::AddMultilineField(const string & name, string_array & value)
+   void http_post_socket::AddMultilineField(const string & name, string_array_base & value)
    {
       m_fields[name] = value;
    }

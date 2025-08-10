@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "device.h"
 #include "acme/prototype/geometry2d/rectangle.h"
-//#include "acme/prototype/collection/string_array.h"
+//#include "acme/prototype/collection/string_array_base.h"
 namespace nano
 {
    
@@ -52,7 +52,7 @@ void device::draw_text123(const ::scoped_string & scopedstr, const ::int_rectang
    else
    {
 
-      string_array straLines;
+      string_array_base straLines;
 
       straLines.add_lines(str);
 

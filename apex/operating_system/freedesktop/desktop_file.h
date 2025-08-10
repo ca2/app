@@ -26,7 +26,7 @@ namespace freedesktop
 
 
       ::file::path                                 m_path;
-      string_array                                 m_straLine;
+      string_array_base                                 m_straLine;
       string                                       m_strAppId;
       ::pointer < get_file_extension_mime_type >   m_pgetfileextensionmimetype;
 
@@ -39,9 +39,9 @@ namespace freedesktop
       void create_default();
       void create();
 
-      string_array registered_categories();
+      string_array_base registered_categories();
       string proper_category(const ::scoped_string & scopedstrCategory);
-      string_array proper_category(string_array straCategory);
+      string_array_base proper_category(string_array_base straCategory);
 
       void set_file_path(const ::file::path & path);
       ::file::path get_file_path();

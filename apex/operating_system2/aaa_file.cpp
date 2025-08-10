@@ -10,7 +10,7 @@
 
 
 
-CLASS_DECL_APEX void dll_processes(unsigned_int_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrDll)
+CLASS_DECL_APEX void dll_processes(unsigned_int_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrDll)
 {
 
 

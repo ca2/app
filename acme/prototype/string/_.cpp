@@ -121,7 +121,7 @@ CLASS_DECL_ACME void erase_sharp_comment(::string& str)
 }
 
 
-CLASS_DECL_ACME void erase_sharp_comment(::string_array& stra)
+CLASS_DECL_ACME void erase_sharp_comment(::string_array_base& stra)
 {
 
    for (auto& str : stra)

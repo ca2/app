@@ -12,7 +12,7 @@
 //
 //      ::file::path strMatter = get_window_default_matter();
 //
-//      string_array straMatter;
+//      string_array_base straMatter;
 //
 //      if (strMatter.name(0) == "system")
 //      {

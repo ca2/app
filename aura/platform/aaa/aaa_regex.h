@@ -22,9 +22,9 @@ public:
 
    virtual bool replace(string& str, const ::scoped_string & scopedstrPrefix, string& strRet) = 0;
 
-   virtual ::collection::count matches(string_array & stra, const ::scoped_string & scopedstr);
+   virtual ::collection::count matches(string_array_base & stra, const ::scoped_string & scopedstr);
 
-   //virtual ::collection::count match(string_array & stra, const string & pcsz, character_count iSize);
+   //virtual ::collection::count match(string_array_base & stra, const string & pcsz, character_count iSize);
 
    //virtual int matches(const ::scoped_string & scopedstr, regex_context* pcreContext = nullptr) = 0;
 

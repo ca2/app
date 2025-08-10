@@ -489,9 +489,9 @@ namespace acme
    template < class A >
    void array_permute(pointer_array < A >& perm, const A& a);
 
-   CLASS_DECL_ACME string_array x1_decode_ida(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME string_array_base x1_decode_ida(const ::scoped_string & scopedstr);
 
-   CLASS_DECL_ACME string x1_encode_ida(const string_array& stra);
+   CLASS_DECL_ACME string x1_encode_ida(const string_array_base& stra);
 
 
    template < class A >
@@ -633,20 +633,20 @@ namespace acme
       }
 
 
-      inline ::collection::index add(string_array& stra, const ::scoped_string & scopedstr);
-      inline ::collection::index add(string_array& stra, const char& ch);
-      inline ::collection::index add(string_array& stra, const ansi_string& str);
-      inline ::collection::index add(string_array& stra, const wide_string& str);
-      inline ::collection::index add(string_array& stra, const ::file::path& path);
-      inline ::collection::index add(string_array& stra, const ::payload& payload);
-      inline ::collection::index add(string_array& stra, const ::property& property);
-      inline ::collection::index add(string_array& stra, const ::property_set& propertyset);
+      inline ::collection::index add(string_array_base& stra, const ::scoped_string & scopedstr);
+      inline ::collection::index add(string_array_base& stra, const char& ch);
+      inline ::collection::index add(string_array_base& stra, const ansi_string& str);
+      inline ::collection::index add(string_array_base& stra, const wide_string& str);
+      inline ::collection::index add(string_array_base& stra, const ::file::path& path);
+      inline ::collection::index add(string_array_base& stra, const ::payload& payload);
+      inline ::collection::index add(string_array_base& stra, const ::property& property);
+      inline ::collection::index add(string_array_base& stra, const ::property_set& propertyset);
 
       inline ::collection::index add(::file::path_array_base& patha, const ::scoped_string & scopedstr);
 
-      inline ::collection::index add(string_array& stra, const string_array& straSource);
+      inline ::collection::index add(string_array_base& stra, const string_array_base& straSource);
 
-      inline ::collection::index add(::file::path_array_base& patha, const string_array& stra);
+      inline ::collection::index add(::file::path_array_base& patha, const string_array_base& stra);
       inline ::collection::index add(::file::path_array_base& patha, const ::file::path_array_base& pathaSrc);
       inline ::collection::index add(::file::path_array_base& patha, const ::file::listing_base& listing);
 
@@ -1365,12 +1365,12 @@ namespace acme
       ////   Adding ITEM
       ////      to array
 
-      ////inline ::collection::index add(string_array & stra, const ::scoped_string & scopedstr) { return stra.add_item(scopedstr); }
-      ////inline ::collection::index add(string_array & stra, const char & ch) { return stra.add_item(ch); }
-      ////inline ::collection::index add(string_array & stra, const ansi_string & str) { return stra.add_item(str); }
-      ////inline ::collection::index add(string_array & stra, const wd16_string & str) { return stra.add_item(str); }
-      ////inline ::collection::index add(string_array & stra, const wd32_string & str) { return stra.add_item(str); }
-      ////inline ::collection::index add(string_array & stra, const ::file::path & path) { return stra.add_item(path); }
+      ////inline ::collection::index add(string_array_base & stra, const ::scoped_string & scopedstr) { return stra.add_item(scopedstr); }
+      ////inline ::collection::index add(string_array_base & stra, const char & ch) { return stra.add_item(ch); }
+      ////inline ::collection::index add(string_array_base & stra, const ansi_string & str) { return stra.add_item(str); }
+      ////inline ::collection::index add(string_array_base & stra, const wd16_string & str) { return stra.add_item(str); }
+      ////inline ::collection::index add(string_array_base & stra, const wd32_string & str) { return stra.add_item(str); }
+      ////inline ::collection::index add(string_array_base & stra, const ::file::path & path) { return stra.add_item(path); }
 
 
       ////inline ::collection::index add(::file::path_array_base & patha, const ::scoped_string & scopedstr) { return patha.add_item(scopedstr); }
@@ -1381,7 +1381,7 @@ namespace acme
       ////inline ::collection::index add(::file::path_array_base & patha, const ::file::path & path) { return patha.add_item(path); }
 
 
-      //inline ::collection::index add(string_array & stra, const ::payload & payload)
+      //inline ::collection::index add(string_array_base & stra, const ::payload & payload)
       //{
 
       //   ::collection::index iInsert = -1;
@@ -1417,14 +1417,14 @@ namespace acme
 
       //}
 
-      //inline ::collection::index add(string_array & stra, const ::property & property)
+      //inline ::collection::index add(string_array_base & stra, const ::property & property)
       //{
 
       //   return add(stra, (const ::payload &)property);
 
       //}
 
-      //inline ::collection::index add(string_array & stra, const ::property_set & propertyset)
+      //inline ::collection::index add(string_array_base & stra, const ::property_set & propertyset)
       //{
 
       //   ::collection::index iInsert = -1;
@@ -1456,9 +1456,9 @@ namespace acme
       //   Appending ARRAY
       //          to array
 
-      //inline ::collection::index add(string_array & stra, const string_array & straSource) { return add_array(stra, straSource); }
+      //inline ::collection::index add(string_array_base & stra, const string_array_base & straSource) { return add_array(stra, straSource); }
 
-      //inline ::collection::index add(::file::path_array_base & patha, const string_array & stra) { return add_array(patha, stra); }
+      //inline ::collection::index add(::file::path_array_base & patha, const string_array_base & stra) { return add_array(patha, stra); }
       //inline ::collection::index add(::file::path_array_base & patha, const ::file::path_array_base & pathaSrc) { return add_array(patha, pathaSrc); }
       //inline ::collection::index add(::file::path_array_base & patha, const ::file::listing_base & listing) { return add_array(patha, listing); }
 

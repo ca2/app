@@ -357,7 +357,7 @@ CLASS_DECL_APEX void from_string(in_addr & addrParam, const ::ansi_character * s
    c_in_addr & addr = (c_in_addr &) addrParam;
 
 
-   string_array stra;
+   string_array_base stra;
 
    stra.add_tokens(string, ".");
 
@@ -620,7 +620,7 @@ CLASS_DECL_APEX const char * c_inet_ntop(int af, const void *src, char *dst, int
 //   {
 //
 //
-//   string_array stra;
+//   string_array_base stra;
 //
 //   stra.add_tokens(src, ".");
 //

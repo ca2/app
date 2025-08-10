@@ -100,8 +100,8 @@ namespace text
       bool _get(::string & str, const ::text::context* pcontext, const ::atom& atom) const;
       string get(const ::text::context * pcontext, const ::atom & atom, bool bIdAsDefaultValue = true) const;
       string get(const ::text::context * pcontext,const ::atom & atom,const ::scoped_string & scopedstrLocale,const ::scoped_string & scopedstrSchema,bool bIdAsDefaultValue = true) const;
-      void get(string_array & stra, const ::text::context * pcontext, const ::atom & atom) const;
-      void _get(string_array & stra, const ::text::context * pcontext, const ::atom & atom) const ;
+      void get(string_array_base & stra, const ::text::context * pcontext, const ::atom & atom) const;
+      void _get(string_array_base & stra, const ::text::context * pcontext, const ::atom & atom) const ;
 
       bool load(const ::scoped_string & scopedstrBaseDir);
       bool load_uistr_file(const ::atom & idLocale, const ::atom & idSchema, ::file::file * pfile);
@@ -186,9 +186,9 @@ namespace text
       void prepare();
 
 
-      const string_array & locale_ex() const;
+      const string_array_base & locale_ex() const;
 
-      const string_array & schema_ex() const;
+      const string_array_base & schema_ex() const;
 
 
       inline ::text::international::locale_schema * localeschema()
@@ -231,7 +231,7 @@ namespace text
       }
 
 
-      inline void get(string_array & stra, const ::atom & atom) const
+      inline void get(string_array_base & stra, const ::atom & atom) const
       {
 
          return m_ptable->get(stra, this, atom);
@@ -254,9 +254,9 @@ namespace text
 
       }
 
-      //virtual bool match(const regex * pregexp, string_array & stra, const ::scoped_string & scopedstr, atom pszExp, atom pszRoot);
+      //virtual bool match(const regex * pregexp, string_array_base & stra, const ::scoped_string & scopedstr, atom pszExp, atom pszRoot);
 
-      //virtual bool match(string_array & stra, const ::scoped_string & scopedstr, ::atom pszExp, ::atom pszRoot) const;
+      //virtual bool match(string_array_base & stra, const ::scoped_string & scopedstr, ::atom pszExp, ::atom pszRoot) const;
 
 
    };

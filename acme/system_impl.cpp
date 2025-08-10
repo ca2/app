@@ -1057,7 +1057,7 @@ namespace platform
 
          string strExecutable = ::system()->get_executable();
 
-         string_array straArguments;
+         string_array_base straArguments;
 
          for (int i = 0; i < ::system()->get_argument_count1(); i++)
          {
@@ -1082,7 +1082,7 @@ namespace platform
 
       {
 
-         string_array straEnv;
+         string_array_base straEnv;
 #ifdef WINDOWS_DESKTOP
          if (::system()->m_wenvp)
          {
@@ -2105,7 +2105,7 @@ namespace platform
    }
 
 
-   //   int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+   //   int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
    //   {
    //
    //      throw_todo();
@@ -2125,7 +2125,7 @@ namespace platform
    }
 
 
-   void system::get_public_internet_domain_extension_list(string_array & stra)
+   void system::get_public_internet_domain_extension_list(string_array_base & stra)
    {
 
       //::file::path pathPublicDomainExtensionList = "https://ca2.network/public_internet_domain_extension_list.txt";
@@ -2453,7 +2453,7 @@ namespace platform
 
             strApp = m_args[0];
 
-            ::string_array straFiles;
+            ::string_array_base straFiles;
 
             for (int iArgument = 1; iArgument < m_argc; )
             {

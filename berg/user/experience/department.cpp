@@ -71,7 +71,7 @@ namespace experience
       if(pexperience == nullptr)
       {
 
-         string_array straExperience;
+         string_array_base straExperience;
 
          {
 

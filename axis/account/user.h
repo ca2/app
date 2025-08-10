@@ -38,7 +38,7 @@ namespace account
       int                                       m_iImpact;
       string                                    m_strForm;
       bool                                      m_bDeferRegistration;
-      string_array                              m_straSiblingServers;
+      string_array_base                              m_straSiblingServers;
       
       string                                    m_strHost;
       ::file::path                              m_pathUrl;

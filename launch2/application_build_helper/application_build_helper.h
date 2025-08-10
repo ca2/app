@@ -47,7 +47,7 @@ namespace application_build_helper
       string                              m_strOperatingSystem2;
       string                              m_strSystemAmbientRelease;
       package_reference_array             m_packagereferencea;
-      string_array                        m_straIgnorePackage;
+      string_array_base                        m_straIgnorePackage;
 
 
       ::string                            m_strInstallerType;
@@ -103,7 +103,7 @@ namespace application_build_helper
 
       void add_package(package_reference & packagereference);
       void add_package_dependencies(const package_reference & packagereference);
-      string_array get_lines(const ::file::path & path, bool bNoExceptionIfNotFound = true);
+      string_array_base get_lines(const ::file::path & path, bool bNoExceptionIfNotFound = true);
       package_reference_array get_package_list(const ::scoped_string & scopedstrList, const ::scoped_string & scopedstrPackage);
       package_reference_array get_package_references(const ::scoped_string & scopedstrPackage);
       package_reference_array get_package_dependencies(const ::scoped_string & scopedstrPackage);

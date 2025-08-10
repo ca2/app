@@ -228,17 +228,17 @@ bool ifs::enumerate(::file::listing_base & listing)
    //listing = dir;
 
    ////   if(m_mapdirFolder[strDir].is_null())
-   ////   m_mapdirFolder[strDir] = __allocate string_array();
+   ////   m_mapdirFolder[strDir] = __allocate string_array_base();
    ////if(m_mapdirFolderName[strDir].is_null())
-   ////   m_mapdirFolderName[strDir] = __allocate string_array();
+   ////   m_mapdirFolderName[strDir] = __allocate string_array_base();
    ////if(m_mapdirFile[strDir].is_null())
-   ////   m_mapdirFile[strDir] = __allocate string_array();
+   ////   m_mapdirFile[strDir] = __allocate string_array_base();
    ////if(m_mapdirFileName[strDir].is_null())
-   ////   m_mapdirFileName[strDir] = __allocate string_array();
+   ////   m_mapdirFileName[strDir] = __allocate string_array_base();
    ////if (m_mapdirFileSize[strDir].is_null())
-   ////   m_mapdirFileSize[strDir] = __allocate long_long_array();
+   ////   m_mapdirFileSize[strDir] = __allocate long_long_array_base();
    ////if (m_mapdirFolderSize[strDir].is_null())
-   ////   m_mapdirFolderSize[strDir] = __allocate long_long_array();
+   ////   m_mapdirFolderSize[strDir] = __allocate long_long_array_base();
    ////if(m_mapdirFileDir[strDir].is_null())
    ////   m_mapdirFileDir[strDir] = __allocate bool_array();
    ////if(m_mapdirFolderDir[strDir].is_null())
@@ -249,8 +249,8 @@ bool ifs::enumerate(::file::listing_base & listing)
    ////::file::path_array_base  & straThisDirName     = m_mapdirFolderName[strDir];
    ////::file::path_array_base  & straThisFile        = m_mapdirFile[strDir];
    ////::file::path_array_base  & straThisFileName    = m_mapdirFileName[strDir];
-   ////long_long_array    & iaThisFileSize      = *m_mapdirFileSize[strDir];
-   ////long_long_array    & iaThisFolderSize    = *m_mapdirFolderSize[strDir];
+   ////long_long_array_base    & iaThisFileSize      = *m_mapdirFileSize[strDir];
+   ////long_long_array_base    & iaThisFolderSize    = *m_mapdirFolderSize[strDir];
    ////bool_array     & baThisFileDir       = *m_mapdirFileDir[strDir];
    ////bool_array     & baThisFolderDir     = *m_mapdirFolderDir[strDir];
 

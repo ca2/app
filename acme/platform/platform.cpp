@@ -437,10 +437,10 @@ namespace platform
    }
 
 
-   string_array platform::get_arguments()
+   string_array_base platform::get_arguments()
    {
 
-      string_array stra;
+      string_array_base stra;
 
       for (::collection::index i = 0; i < m_argc; i++)
       {
@@ -502,7 +502,7 @@ namespace platform
    }
 
 
-   ::string_array platform::get_argument_options(const ::scoped_string & scopedstrArgument)
+   ::string_array_base platform::get_argument_options(const ::scoped_string & scopedstrArgument)
    {
 
       string strArgument = scopedstrArgument;
@@ -520,7 +520,7 @@ namespace platform
 
       }
 
-      ::string_array straOptions;
+      ::string_array_base straOptions;
 
       straOptions.explode(",", strOptions);
 

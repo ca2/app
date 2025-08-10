@@ -42,7 +42,7 @@ namespace gpu_opengl
 
       string get_shader_version_text() override;
 
-      void _translate_shader(string_array& stra) override;
+      void _translate_shader(string_array_base& stra) override;
 
 
    };

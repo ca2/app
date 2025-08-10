@@ -29,7 +29,7 @@ string chunk_split(const string & body,int chunklen,const string & end)
 }
 
 
-//typedef string(*SALT)(::pointer<::aura::application> const ::scoped_string & scopedstr, string_array &);
+//typedef string(*SALT)(::pointer<::aura::application> const ::scoped_string & scopedstr, string_array_base &);
 
 
 namespace account
@@ -166,7 +166,7 @@ namespace account
 //      string strPrefix(scopedstrPrefix);
 //      string strDomain(".ca2.network");
 //
-//      string_array straServer;
+//      string_array_base straServer;
 //
 //      straServer.add(strPrefix + strDomain);
 //      straServer.add("eu-" + strPrefix + strDomain);

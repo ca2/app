@@ -227,7 +227,7 @@ namespace ftp
       format m_Format;
    };
 
-   //class args : public string_array
+   //class args : public string_array_base
    //{
    //public:
    //   args() {}
@@ -272,7 +272,7 @@ namespace ftp
 
       enum_command AsEnum() const { return m_enCommand; }
       string AsString() const;
-      string AsString(const string_array & Arguments) const;
+      string AsString(const string_array_base & Arguments) const;
       const iextended_info& GetExtendedInfo() const;
 
       bool IsDatachannelReadCommand() const;

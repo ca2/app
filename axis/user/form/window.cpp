@@ -703,7 +703,7 @@ throw_todo();
             if(typeid(plist->GetDataInterface()) == ::type < ::user::simple_mesh_data >())
             {
                ::user::simple_mesh_data * pdata = dynamic_cast < ::user::simple_mesh_data * > (plist->GetDataInterface());
-               string_array stra;
+               string_array_base stra;
                datastream()->get(pinteraction->m_dataid, stra);
                ASSERT(plist != nullptr);
                pdata->set_data(plist, stra);
@@ -800,7 +800,7 @@ throw_todo();
 
 
 
-   void form_window::get_selection(const ::scoped_string & scopedstrDataKey, string_array & stra)
+   void form_window::get_selection(const ::scoped_string & scopedstrDataKey, string_array_base & stra)
    {
 
       stra.add_item(scopedstrDataKey);

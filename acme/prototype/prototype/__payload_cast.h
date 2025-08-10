@@ -47,9 +47,9 @@ public:
    //operator property ()const { return m_payload.property(); }
 
 
-   operator ::int_array ()const { return m_payload.as_int_array(); }
-   operator ::long_long_array ()const { return m_payload.as_long_long_array(); }
-   operator ::string_array ()const { return m_payload.as_string_array(); }
+   operator ::int_array_base ()const { return m_payload.as_int_array(); }
+   operator ::long_long_array_base ()const { return m_payload.as_long_long_array(); }
+   operator ::string_array_base ()const { return m_payload.as_string_array(); }
    operator ::payload_array() const { return m_payload.as_payload_array(); }
    operator ::property_set() const { return m_payload.as_property_set(); }
    operator ::file::path() const { return m_payload.as_file_path(); }

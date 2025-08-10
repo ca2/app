@@ -75,9 +75,9 @@ namespace geo
 
       //string_map < time_zone >      m_countryTimeZone;
 
-      string_array                                       m_straCityLo;
-      string_array                                       m_straCity;
-      long_long_array                                          m_iaIds;
+      string_array_base                                       m_straCityLo;
+      string_array_base                                       m_straCity;
+      long_long_array_base                                          m_iaIds;
       double_array                                       m_daLon;
       double_array                                       m_daLat;
 

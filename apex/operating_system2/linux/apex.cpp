@@ -79,7 +79,7 @@ CLASS_DECL_APEX bool __node_apex_pos_term()
 
 //    string str = file_system()->as_string("/proc/stat");
 
-//    string_array stra;
+//    string_array_base stra;
 
 //    stra.add_lines(str);
 

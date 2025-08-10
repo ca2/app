@@ -36,9 +36,9 @@ namespace nanoui
 
 
       ::string                                  m_font;
-      ::string_array                            m_straTabCaptions;
+      ::string_array_base                            m_straTabCaptions;
       ::index_array                             m_iaTabIds;
-      ::int_array                               m_iaTabOffsets;
+      ::int_array_base                               m_iaTabOffsets;
       int                                       m_iCloseButtonWidth = 0;
       ::collection::index                                 m_iActiveTab = 0;
       ::collection::index                                 m_iTabDragIndex = -1;

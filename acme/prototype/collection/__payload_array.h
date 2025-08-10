@@ -19,8 +19,8 @@ public:
 
    payload_array_base();
    payload_array_base(const std::initializer_list < ::payload > & varlist);
-   payload_array_base(const string_array & stra);
-   payload_array_base(const ::int_array & inta);
+   payload_array_base(const string_array_base & stra);
+   payload_array_base(const ::int_array_base & inta);
    payload_array_base(const ::property_set & propset);
    payload_array_base(const payload_array_base & payloada);
    payload_array_base(payload_array_base && payloada);
@@ -92,8 +92,8 @@ public:
    payload_array_base operator +(const ::payload & payload) const;
    payload_array_base operator +(const payload_array_base & payloada) const;
 
-   payload_array_base & operator = (const string_array & stra);
-   payload_array_base & operator = (const ::int_array & inta);
+   payload_array_base & operator = (const string_array_base & stra);
+   payload_array_base & operator = (const ::int_array_base & inta);
    payload_array_base & operator = (const ::property_set & propset);
    payload_array_base & operator = (const payload_array_base & payloada);
 
@@ -126,10 +126,10 @@ public:
    inline ::payload value_at(::collection::index i) const;
 
 
-   string_array stra() const
+   string_array_base stra() const
    {
 
-      string_array stra;
+      string_array_base stra;
 
       for (auto & item : *this)
       {

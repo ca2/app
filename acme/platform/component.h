@@ -13,11 +13,11 @@ public:
 
    ::string                                     m_strComponent;
    ::string                                     m_strComponentPath;
-   ::string_array                               m_straImplementationAll;
-   ::string_array                               m_straImplementationOnShelf;
-   ::string_array                               m_straImplementationInstalled;
-   ::string_array                               m_straImplementationEnabled;
-   ::string_array                               m_straImplementationOnShelfPath;
+   ::string_array_base                               m_straImplementationAll;
+   ::string_array_base                               m_straImplementationOnShelf;
+   ::string_array_base                               m_straImplementationInstalled;
+   ::string_array_base                               m_straImplementationEnabled;
+   ::string_array_base                               m_straImplementationOnShelfPath;
 
    ::string_map < ::pointer < ::component_implementation > > m_mapImplementation;
 

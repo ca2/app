@@ -562,7 +562,7 @@ namespace sockets
 
          string strKey = pproperty->name();
 
-         ::string_array straValue;
+         ::string_array_base straValue;
 
          if (pproperty->array_get_count() > 1)
          {

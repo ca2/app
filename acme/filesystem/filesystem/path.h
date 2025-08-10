@@ -353,16 +353,16 @@ namespace file
       /// @straRelatedExtensions are erased.
       /// </summary>
       /// <param name="scopestrExtension"></param>
-      void defer_set_extension(const ::string_array& straPreserveExtensions, const ::string_array& straRelatedExtensions);
-      void defer_set_extension(const ::string_array& straPreserveExtensions);
+      void defer_set_extension(const ::string_array_base& straPreserveExtensions, const ::string_array_base& straRelatedExtensions);
+      void defer_set_extension(const ::string_array_base& straPreserveExtensions);
       void defer_set_extension(const ::file::file_dialog * pdialog);
 
       ::file::path with_all_extensions(const ::scoped_string& scopestrExtension) const;
       ::file::path with_final_extension(const ::scoped_string& scopestrExtension) const;
       ::file::path with_extension_if_no_extension(const ::scoped_string& scopestrExtension) const;
 
-      ::file::path with_deferred_extension(const ::string_array & straPreserveExtensions, const ::string_array& straRelatedExtensions) const;
-      ::file::path with_deferred_extension(const ::string_array & straPreserveExtensions) const;
+      ::file::path with_deferred_extension(const ::string_array_base & straPreserveExtensions, const ::string_array_base& straRelatedExtensions) const;
+      ::file::path with_deferred_extension(const ::string_array_base & straPreserveExtensions) const;
       ::file::path with_deferred_extension(const ::file::file_dialog* pdialog) const;
 
       //inline char separator() const
@@ -605,11 +605,11 @@ namespace file
 
       ::const_ansi_range final_extension() const;
 
-      //void split(string_array & patha) const;
+      //void split(string_array_base & patha) const;
       bool is_relative();
 
-      //string_array & ascendants_name(string_array & namea) const;
-      //string_array ascendants_name() const;
+      //string_array_base & ascendants_name(string_array_base & namea) const;
+      //string_array_base ascendants_name() const;
 
       auto relative() const
       {

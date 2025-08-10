@@ -524,7 +524,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-   CLASS_DECL_ACME string consume_token(::string & str, const ::string_array & straSeparator)
+   CLASS_DECL_ACME string consume_token(::string & str, const ::string_array_base & straSeparator)
    {
 
       ::collection::index iFind = -1;

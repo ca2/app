@@ -764,7 +764,7 @@ namespace platform
    //
    //          string strExecutable = this->get_executable();
    //
-   //          string_array straArguments;
+   //          string_array_base straArguments;
    //
    //          for (int i; i < this->get_argument_count1(); i++)
    //          {
@@ -789,7 +789,7 @@ namespace platform
    //
    //       {
    //
-   //          string_array straEnv;
+   //          string_array_base straEnv;
    // #ifdef WINDOWS_DESKTOP
    //          if (this->m_wenvp)
    //          {
@@ -1803,7 +1803,7 @@ namespace platform
    //    }
    //
    //
-   //    //   int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+   //    //   int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
    //    //   {
    //    //
    //    //      throw_todo();
@@ -1823,7 +1823,7 @@ namespace platform
    //    }
    //
    //
-   //    void acme_system_layer::system::get_public_internet_domain_extension_list(string_array& stra)
+   //    void acme_system_layer::system::get_public_internet_domain_extension_list(string_array_base& stra)
    //    {
    //
    //       //::file::path pathPublicDomainExtensionList = "https://ca2.network/public_internet_domain_extension_list.txt";
@@ -2146,7 +2146,7 @@ namespace platform
    //
    //             strApp = this->m_args[0];
    //
-   //             ::string_array straFiles;
+   //             ::string_array_base straFiles;
    //
    //             for (int iArgument; iArgument < this->m_argc; )
    //             {
@@ -3863,7 +3863,7 @@ namespace platform
    }
 
 
-   ::string_array * acme_system_layer::http_download_array()
+   ::string_array_base * acme_system_layer::http_download_array()
    {
       
       return nullptr;
@@ -3871,7 +3871,7 @@ namespace platform
    }
 
 
-   ::string_array * acme_system_layer::http_exists_array()
+   ::string_array_base * acme_system_layer::http_exists_array()
    {
       
       return nullptr;
@@ -4323,7 +4323,7 @@ return nullptr;
 
 #elif defined(UNIVERSAL_WINDOWS)
 
-      void acme_system_layer::system_construct(const ::string_array & stra){}
+      void acme_system_layer::system_construct(const ::string_array_base & stra){}
 
       //#else
 
@@ -4653,9 +4653,9 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    }
 
 
-   //virtual int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+   //virtual int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
 
-   void acme_system_layer::get_public_internet_domain_extension_list(string_array& stra)
+   void acme_system_layer::get_public_internet_domain_extension_list(string_array_base& stra)
    {
    }
 

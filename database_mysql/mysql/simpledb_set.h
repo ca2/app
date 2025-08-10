@@ -23,7 +23,7 @@ namespace simpledb
       ~set();
 
 
-      virtual void query_items(string_array & stra, const ::scoped_string & scopedstrSql);
+      virtual void query_items(string_array_base & stra, const ::scoped_string & scopedstrSql);
 
       virtual bool exec(const ::scoped_string & scopedstrSql);
 
@@ -40,7 +40,7 @@ namespace simpledb
       static string consume_quoted_value(const_char_pointer &pszXml);
 
       /* Makes direct queries to database */
-      virtual void make_query(string_array &_sql);
+      virtual void make_query(string_array_base &_sql);
       /* Makes direct inserts into database */
       virtual void make_insert();
       /* Edit SQL */

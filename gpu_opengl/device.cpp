@@ -603,7 +603,7 @@ namespace gpu_opengl
       //void device::translate_shader(string& strFragment)
       //{
 
-      //   string_array stra;
+      //   string_array_base stra;
 
       //   stra.add_lines(strFragment);
 
@@ -629,7 +629,7 @@ namespace gpu_opengl
       //}
 
 
-      //void device::_translate_shader(string_array& stra)
+      //void device::_translate_shader(string_array_base& stra)
       //{
 
       //}

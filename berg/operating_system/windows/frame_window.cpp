@@ -25,7 +25,7 @@
 //      //blackcoder41 (1426)  Sep 12, 2010 at 2:43pm
 //      //hIconSm = (HICON)LoadImage(nullptr, "menu_two.ico", IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
 //
-//      string_array straMatter;
+//      string_array_base straMatter;
 //
 //      if (strMatter.name(0) == "system")
 //      {

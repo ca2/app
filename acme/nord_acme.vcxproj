@@ -1101,7 +1101,7 @@
     <ClInclude Include="primitive\collection\std_pair.h" />
     <ClInclude Include="primitive\collection\strid_map.h" />
     <ClInclude Include="primitive\collection\stringl.h" />
-    <ClInclude Include="primitive\collection\string_array_base.h" />
+    <ClInclude Include="primitive\collection\string_array.h" />
     <ClInclude Include="primitive\collection\string_iterable.h" />
     <ClInclude Include="primitive\collection\string_list.h" />
     <ClInclude Include="primitive\collection\string_map.h" />

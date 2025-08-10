@@ -20,10 +20,10 @@ public:
 
 
    bool erase_item(::collection::index iItem);
-   void get_data(string_array & stra);
-   void get_column_data(string_array & stra, ::collection::index iColumn);
-   void set_data(::user::mesh * pmesh,string_array & stra);
-   void set_column_data(::user::mesh * pmesh,string_array & stra, ::collection::index iColumn);
+   void get_data(string_array_base & stra);
+   void get_column_data(string_array_base & stra, ::collection::index iColumn);
+   void set_data(::user::mesh * pmesh,string_array_base & stra);
+   void set_column_data(::user::mesh * pmesh,string_array_base & stra, ::collection::index iColumn);
    void enable(bool bEnable);
    void set_item_text(::user::mesh * pmesh, ::collection::index iItem, ::collection::index iSubItem, const ::scoped_string & scopedstr);
 

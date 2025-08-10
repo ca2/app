@@ -45,8 +45,8 @@ namespace user
 
       bool                       m_bEdit;
       e_data_mode                m_edatamode;
-      string_array                    m_straList;
-      string_array                    m_straValue;
+      string_array_base                    m_straList;
+      string_array_base                    m_straValue;
 
 
       combo_box();

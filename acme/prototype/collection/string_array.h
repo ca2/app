@@ -483,7 +483,7 @@ public:
 
    //string_base_array & operator =(const ::payload & payload);
    //   string_base_array & operator =(const string_base_array & stra);
-   //string_base_array & operator =(const long_long_array & ia);
+   //string_base_array & operator =(const long_long_array_base & ia);
    //   string_base_array & operator =(const string_base_array & stra);
    //string_base_array & operator -=(const string_base_array & stra);
    //string_base_array & operator +=(const string_base_array & stra);
@@ -721,12 +721,12 @@ public:
 };
 
 
-//typedef CLASS_DECL_ACME string_base_array < string > string_array;
+//typedef CLASS_DECL_ACME string_base_array < string > string_array_base;
 
 
 
-class CLASS_DECL_ACME string_array_array :
-   public ::array < string_array >
+class CLASS_DECL_ACME string_array_array_base :
+   public ::array_base < string_array_base >
 {
 public:
 
@@ -737,10 +737,10 @@ public:
 };
 
 
-CLASS_DECL_ACME bool next_csv(string & str, const string_array & stra);
-CLASS_DECL_ACME void add_csv(string_array & stra, const ::scoped_string & scopedstr);
+CLASS_DECL_ACME bool next_csv(string & str, const string_array_base & stra);
+CLASS_DECL_ACME void add_csv(string_array_base & stra, const ::scoped_string & scopedstr);
 
-CLASS_DECL_ACME string_array string_array_from_strdup_count(const_char_pointer *pszaUrl, long lCount);
+CLASS_DECL_ACME string_array_base string_array_from_strdup_count(const_char_pointer *pszaUrl, long lCount);
 
 
 

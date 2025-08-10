@@ -11,7 +11,7 @@ namespace simple_ui
    public:
 
 
-      string_array                     m_stra;
+      string_array_base                     m_stra;
       pointer_array < tap >             m_tapaA;
       pointer_array < tap >             m_tapaB;
       int                              m_iResult;

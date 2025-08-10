@@ -30030,7 +30030,7 @@ __check_refdbg;
 
       }
 
-      string_array straClass;
+      string_array_base straClass;
 
       straClass.add_tokens(scopedstrClass, ",", false);
 
@@ -30105,14 +30105,14 @@ __check_refdbg;
    void interaction::load_style(const ::scoped_string & scopedstrStyle)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       stra.explode(";", scopedstrStyle);
 
       for (auto & str : stra)
       {
 
-         string_array straItem;
+         string_array_base straItem;
 
          straItem.explode(":", str);
 

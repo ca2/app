@@ -43,15 +43,15 @@ namespace filemanager
          virtual void on_insert_columns() override;
 
 
-         bool add_unique(const string_array & stra);
-         bool add_unique(const string_array & stra, ::int_array & baRecursive);
-         bool erase(const string_array & stra);
+         bool add_unique(const string_array_base & stra);
+         bool add_unique(const string_array_base & stra, ::int_array_base & baRecursive);
+         bool erase(const string_array_base & stra);
 
 
          void on_check_save(::user::interaction * puserinteraction) override;
          void on_check_load(::user::interaction * puserinteraction) override;
 
-         virtual void GetSel(string_array & stra);
+         virtual void GetSel(string_array_base & stra);
 
          void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

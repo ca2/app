@@ -99,7 +99,7 @@ namespace nano2d
 
 
 
-		virtual void get_maximum_width_and_row_height(float& fMaximumWidth, float& fRowHeight, const string_array& straLines);
+		virtual void get_maximum_width_and_row_height(float& fMaximumWidth, float& fRowHeight, const string_array_base& straLines);
 	
 		// Begin drawing a ___new frame
 // Calls to nanovg drawing API should be wrapped in __NANO2D_API(BeginFrame)() & __NANO2D_API(EndFrame)()

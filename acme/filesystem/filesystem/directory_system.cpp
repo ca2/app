@@ -1117,7 +1117,7 @@ bool directory_system::defer_media_library_representative_file_name(::file::path
 
 
 
-bool directory_system::list(string_array & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
+bool directory_system::list(string_array_base & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
 {
 
    return ::file::enumerator::list(stra, scopedstr, eflag);
@@ -1321,10 +1321,10 @@ string_to_string directory_system::map_content(const ::file::path & path)
 }
 
 
-string_array directory_system::enumerate_content(const ::file::path &path)
+string_array_base directory_system::enumerate_content(const ::file::path &path)
 {
 
-   ::string_array stra;
+   ::string_array_base stra;
 
    ::file::listing_base listing;
 
@@ -1448,7 +1448,7 @@ bool directory_system::is_accessible(const ::file::path & path)
 }
 
 
-bool directory_system::contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize)
+bool directory_system::contains_files(const ::file::path& path, const ::string_array_base& straName, int iMinimumSize)
 {
 
    for (auto& strName : straName)

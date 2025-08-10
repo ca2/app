@@ -74,7 +74,7 @@ namespace userpresence
         // return;
 
       string strHost = file()->as_string(directory()->appdata() / "database\\text\\last_good_known_account_com.txt");
-      string_array straRequestingServer;
+      string_array_base straRequestingServer;
       straRequestingServer.add("api.ca2.network");
       straRequestingServer.add("eu-api.ca2.network");
       straRequestingServer.add("asia-api.ca2.network");

@@ -22,7 +22,7 @@ namespace microsoft
    }
 
 
-   ::string_array visual_studio::get_instances()
+   ::string_array_base visual_studio::get_instances()
    {
 
       auto pathProgramData = directory_system()->program_data();
@@ -35,7 +35,7 @@ namespace microsoft
 
       directory_system()->enumerate(listing);
 
-      ::string_array straInstances;
+      ::string_array_base straInstances;
 
       for (auto& path : listing)
       {

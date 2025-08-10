@@ -362,7 +362,7 @@ HDC hdc = GetDC(m_hwnd);
 //    0
 //};
 
-int_array pixelAttribs;
+int_array_base pixelAttribs;
 
 
 pixelAttribs.append({ WGL_DRAW_TO_WINDOW_ARB, GL_TRUE });
@@ -1047,7 +1047,7 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
    }
 
 
-   //void device_win32::_translate_shader(string_array& stra)
+   //void device_win32::_translate_shader(string_array_base& stra)
    //{
 
    //   context::_translate_shader(stra);

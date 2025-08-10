@@ -551,7 +551,7 @@ namespace account
 //   if(strSomeBrothersAndSisters.has_character())
 //   {
 //
-//      string_array straSomeBrothersAndSisters;
+//      string_array_base straSomeBrothersAndSisters;
 //
 //      straSomeBrothersAndSisters.explode(";",strSomeBrothersAndSisters);
 //

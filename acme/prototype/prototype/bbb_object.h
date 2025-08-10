@@ -408,7 +408,7 @@ public:
 
    //virtual ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image::image_pointer load_matter_icon(string_array & straMatter, const ::scoped_string & scopedstrIcon);
+   //virtual ::image::image_pointer load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
    //virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
    //virtual ::image::image_pointer load_thumbnail(const ::file::path & path);
    //virtual ::image::image_pointer load_dib(const ::file::path & pathDib);

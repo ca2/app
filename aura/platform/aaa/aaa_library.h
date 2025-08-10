@@ -73,7 +73,7 @@ namespace aura
 
       // impl
       virtual ::pointer<::aura::application>get_new_application(::particle * pparticle, const ::scoped_string & scopedstrAppId);
-      virtual void get_app_list(string_array & stra);
+      virtual void get_app_list(string_array_base & stra);
 
 
       virtual ::matter* new_object(::object* pparticle, const ::scoped_string & scopedstrClass);
@@ -88,7 +88,7 @@ namespace aura
       virtual string get_app_id(const ::scoped_string & scopedstrAppName);
       virtual string get_app_name(const ::scoped_string & scopedstrAppId);
 
-      virtual void get_extension_list(string_array & stra);
+      virtual void get_extension_list(string_array_base & stra);
 
 
       virtual ::matter * factory_new(::particle * pparticle, const ::string & lpszClass);
@@ -134,7 +134,7 @@ namespace aura
       virtual ::pointer<::aura::application>get_new_application(::particle * pparticle, const ::scoped_string & scopedstrAppId) override;
 
 
-      virtual void get_extension_list(string_array & stra) override;
+      virtual void get_extension_list(string_array_base & stra) override;
 
    };
 

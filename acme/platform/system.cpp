@@ -1243,7 +1243,7 @@ namespace platform
 
          string strExecutable = this->get_executable();
 
-         string_array straArguments;
+         string_array_base straArguments;
 
          for (int i = 0; i < this->get_argument_count1(); i++)
          {
@@ -1268,7 +1268,7 @@ namespace platform
 
       {
 
-         string_array straEnv;
+         string_array_base straEnv;
 #ifdef WINDOWS_DESKTOP
          if (this->m_wenvp)
          {
@@ -1769,7 +1769,7 @@ namespace platform
    }
 
 
-   string_array* system::http_download_array()
+   string_array_base* system::http_download_array()
    {
 
       return &m_straHttpDownloading;
@@ -1777,7 +1777,7 @@ namespace platform
    }
 
 
-   string_array* system::http_exists_array()
+   string_array_base* system::http_exists_array()
    {
 
       return &m_straHttpExists;
@@ -2671,7 +2671,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //   int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+   //   int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
    //   {
    //
    //      throw_todo();
@@ -2691,7 +2691,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   void system::get_public_internet_domain_extension_list(string_array& stra)
+   void system::get_public_internet_domain_extension_list(string_array_base& stra)
    {
 
       //::file::path pathPublicDomainExtensionList = "https://ca2.network/public_internet_domain_extension_list.txt";
@@ -3035,7 +3035,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    //         strApp = this->m_args[0];
 
-   //         ::string_array straFiles;
+   //         ::string_array_base straFiles;
 
    //         for (int iArgument = 1; iArgument < this->m_argc;)
    //         {
@@ -3152,7 +3152,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
             strApp = this->m_args[0];
 
-            ::string_array straFiles;
+            ::string_array_base straFiles;
 
             for (int iArgument = 1; iArgument < this->m_argc;)
             {

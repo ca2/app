@@ -47,7 +47,7 @@ namespace simpledb
          App(pbaseapp).m_iDatabaseServerPort = 0;
       }*/
 
-      string_array stra;
+      string_array_base stra;
 
       stra = psystem->m_psimpledb->db().data_load(nullptr, "simpledb").stra();
 

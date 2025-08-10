@@ -29,9 +29,9 @@ namespace platform
 
     ::pointer<::acme::asset> m_passetResourceFolder;
 
-    string_array               m_straOpenUrl;
+    string_array_base               m_straOpenUrl;
 
-    ::string_array             m_straListFileEnumerate;
+    ::string_array_base             m_straListFileEnumerate;
 
 
 

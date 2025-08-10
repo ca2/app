@@ -4151,7 +4151,7 @@ namespace draw2d
             
          }
          
-         ::string_array stra;
+         ::string_array_base stra;
          
          stra.add_lines({ str.begin(), iAsciiCharCount });
          
@@ -4388,7 +4388,7 @@ namespace draw2d
 
          auto size = get_text_extent(str);
 
-         string_array stra;
+         string_array_base stra;
 
          stra.add_lines(str);
 

@@ -1275,7 +1275,7 @@ namespace nanoui
    //}
    //
    //void Screen::drop_callback_event(int count, const_char_pointer *filenames) {
-   //   ::string_array arg(count);
+   //   ::string_array_base arg(count);
    //   for (int i = 0; i < count; ++i)
    //      arg[i] = filenames[i];
    //   m_redraw |= drop_event(arg);

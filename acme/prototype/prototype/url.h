@@ -536,7 +536,7 @@ namespace url
       //string ::url::decode(const ::scoped_string & scopedstr, character_count iLen);
 
       //string query_append(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrQuery);
-      //string query_erase(const ::scoped_string & scopedstrQuery, string_array & straKey);
+      //string query_erase(const ::scoped_string & scopedstrQuery, string_array_base & straKey);
       //string query_erase(const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrKey);
       ////string query_set(const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrKey, ::payload payload);
       //bool query_get_param(string & strValue, const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrKey);

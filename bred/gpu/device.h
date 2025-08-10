@@ -194,7 +194,7 @@ namespace gpu
 
       virtual void translate_shader(string& str);
 
-      virtual void _translate_shader(string_array& stra);
+      virtual void _translate_shader(string_array_base& stra);
 
       //virtual void make_current();
 

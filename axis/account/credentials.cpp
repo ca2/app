@@ -404,7 +404,7 @@ namespace account
    }
 
 
-   void credentials::get_mod(string_array & straHash,string_array & straSource)
+   void credentials::get_mod(string_array_base & straHash,string_array_base & straSource)
    {
 
       straHash.erase_all();
@@ -423,9 +423,9 @@ namespace account
 
       }
 
-      string_array straHash;
+      string_array_base straHash;
 
-      string_array straSource;
+      string_array_base straSource;
 
       get_mod(straHash,straSource);
 
@@ -482,9 +482,9 @@ namespace account
 
       string strResponse;
 
-      string_array straHash;
+      string_array_base straHash;
 
-      string_array straSource;
+      string_array_base straSource;
 
       get_mod(straHash,straSource);
 

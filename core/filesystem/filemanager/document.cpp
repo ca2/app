@@ -134,7 +134,7 @@ namespace filemanager
 
 
 
-   void document::on_file_manager_open_context_menu_folder(::pointer<::file::item> item, string_array & straCommand, string_array & straCommandTitle, const ::action_context & context)
+   void document::on_file_manager_open_context_menu_folder(::pointer<::file::item> item, string_array_base & straCommand, string_array_base & straCommandTitle, const ::action_context & context)
    {
 
       auto pfilemanagerdata = filemanager_data();

@@ -752,7 +752,7 @@ namespace hi5
    *          response by twitter. Use get_response() for that.
    *
    *--*/
-   bool twit::statusUpdate( string & newStatus, string_array straMediaIds, const ::scoped_string & scopedstrReplyStatusId)
+   bool twit::statusUpdate( string & newStatus, string_array_base straMediaIds, const ::scoped_string & scopedstrReplyStatusId)
    {
 
       m_strRequest = "hi5::twit::statusUpdate(\"" + newStatus + "\", {" + straMediaIds.implode(", ")+"})" ;

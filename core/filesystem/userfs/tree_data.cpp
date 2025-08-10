@@ -350,7 +350,7 @@ namespace userfs
 
    }
 
-   void tree_data::GetSelectedFilePath(string_array & stra)
+   void tree_data::GetSelectedFilePath(string_array_base & stra)
    {
 
       ::data::tree_item_ptr_array<::userfs::item> itemptraSelected;

@@ -19,7 +19,7 @@ namespace app_build
 
 
       bool     m_bStdout;
-      ::string_array m_straLine;
+      ::string_array_base m_straLine;
       //::pointer<::user::interaction>     m_puserinteraction;
 
 

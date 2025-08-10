@@ -135,7 +135,7 @@ namespace platform
       string                                          m_strLibraryName;
       string                                          m_strBuild;
       string                                          m_strInstallToken;
-      string_array                                    m_straAppCategory;
+      string_array_base                                    m_straAppCategory;
       bool                                            m_bLicense;
 
       enum_application_capability_array               m_eapplicationcapabilitya;
@@ -206,7 +206,7 @@ namespace platform
       //       string                                          m_strLibraryName;
       //       string                                          m_strBuild;
       //       string                                          m_strInstallToken;
-      //       string_array                                    m_straAppCategory;
+      //       string_array_base                                    m_straAppCategory;
       //       bool                                            m_bLicense;
       //
       //       enum_application_capability_array               m_eapplicationcapabilitya;
@@ -254,7 +254,7 @@ namespace platform
       // #endif
       //semaphore                                    m_semCompiler;
       // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
-      string_array m_straActivationMessage;
+      string_array_base m_straActivationMessage;
 
       unsigned int m_dwInstallGoodToCheckAgain;
 
@@ -276,7 +276,7 @@ namespace platform
       ::pointer<::interprocess::handler> m_pinterprocesshandler;
       //::pointer<service>                         m_pservice;
 
-      //::string_array                               m_straInterprocessCommunicationPendingHandleUri;
+      //::string_array_base                               m_straInterprocessCommunicationPendingHandleUri;
 
 
       // apex commented
@@ -346,7 +346,7 @@ namespace platform
       //::pointer<::apex::theme>                   m_ptheme;
 
 
-      string_array m_straAppInterest;
+      string_array_base m_straAppInterest;
 
       ::pointer<::service_handler> m_pservicehandler;
 
@@ -392,7 +392,7 @@ namespace platform
       //string                                          m_strInstallBuild;
       //string                                          m_strHttpUserAgentToken;
       //string                                          m_strHttpUserAgentVersion;
-      //string_array                                    m_straAppCategory;
+      //string_array_base                                    m_straAppCategory;
       //bool                                            m_bLicense;
       //bool                                            m_bRequiresInstallation;
 
@@ -405,7 +405,7 @@ namespace platform
 
       ::pointer<shell_open>                        m_pshellopen;
 
-      ::string_array                               m_straOptionsFormMakerLibrary;
+      ::string_array_base                               m_straOptionsFormMakerLibrary;
       //::user::interaction_base *                             m_puiCurrent;
       //bool                                            m_bContextTheme;
 
@@ -494,7 +494,7 @@ namespace platform
       ::pointer<::aura::theme>                       m_ptheme;
 
 
-      //string_array                                    m_straAppInterest;
+      //string_array_base                                    m_straAppInterest;
       //string_map < oswindow, oswindow >               m_mapAppInterest;
 
       //int                                             m_iGcomBackgroundUpdateMillis;
@@ -706,8 +706,8 @@ namespace platform
       virtual ::string get_application_name() override;
 
 
-      void locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
-      virtual void matter_locator_locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
+      void locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
+      virtual void matter_locator_locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
 
       virtual string get_locale_schema_dir(const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
       virtual string get_locale_schema_dir(const ::scoped_string& scopedstrLocale) override;
@@ -740,7 +740,7 @@ namespace platform
 
       virtual void term_application() override;
 
-      virtual ::string_array get_about_box_lines() override;
+      virtual ::string_array_base get_about_box_lines() override;
 
       void show_about_box(::user::activation_token* puseractivationtoken) override;
 
@@ -758,7 +758,7 @@ namespace platform
       virtual void pick_browse(const ::function < void(const ::file::path& path) >& callback) override;
       virtual void pick_media(const ::scoped_string & scopedstrMediaType) override;
       virtual void did_pick_document_at_url(const ::scoped_string & scopedstrUrl) override;
-      virtual void did_pick_document_at_urls(const ::string_array& stra) override;
+      virtual void did_pick_document_at_urls(const ::string_array_base& stra) override;
       virtual void on_prompt_write_file(::user::controller* pusercontroller) override;
       virtual void file_manager_save_as(::user::controller* pusercontroller) override;
 

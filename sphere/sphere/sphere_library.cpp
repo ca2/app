@@ -16,7 +16,7 @@ namespace sphere
    }
 
 
-   void library::get_app_list(string_array & stra)
+   void library::get_app_list(string_array_base & stra)
    {
 
       stra.add("calculator");
@@ -27,14 +27,14 @@ namespace sphere
    }
 
 
-   void library::get_extension_list(string_array & stra)
+   void library::get_extension_list(string_array_base & stra)
    {
 
       stra.add("*");
 
    }
 
-   void library::get_extension_app(string_array & straApp, const ::scoped_string & scopedstrExtension)
+   void library::get_extension_app(string_array_base & straApp, const ::scoped_string & scopedstrExtension)
    {
 
       string strExtension(scopedstrExtension);

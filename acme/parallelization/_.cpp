@@ -555,7 +555,7 @@ void thread_name_abbreviate(string & strName, int len)
 
    }
 
-   string_array stra;
+   string_array_base stra;
 
    character_count iFindLast = 0;
 

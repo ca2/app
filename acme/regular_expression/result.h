@@ -64,7 +64,7 @@ namespace regular_expression
 
       //virtual bool replace(string & strFind, const ::scoped_string & scopedstrReplace, string & strResult);
 
-      //virtual ::collection::count matches(string_array & stra, const ::scoped_string & scopedstr);
+      //virtual ::collection::count matches(string_array_base & stra, const ::scoped_string & scopedstr);
 
 
    };

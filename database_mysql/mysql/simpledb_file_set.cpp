@@ -40,7 +40,7 @@ namespace simpledb
 
       m_p->clear_search();
 
-      string_array stra;
+      string_array_base stra;
 
       bool_array baRecursive;
 
@@ -60,7 +60,7 @@ namespace simpledb
    bool file_set::add_search(const ::scoped_string & scopedstrSearchDirectory)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       datastream()->get(::berg::system::idEmpty, stra);
 
@@ -81,7 +81,7 @@ namespace simpledb
    bool file_set::clear_search()
    {
 
-      string_array stra;
+      string_array_base stra;
 
       if(!datastream()->set(::berg::system::idEmpty, stra))
          return false;

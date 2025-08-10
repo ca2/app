@@ -10,7 +10,7 @@
 
 
 void free_c_string_array(char * const * ppszList, int iCount);
-char * const * alloc_c_string_array(const string_array & stra);
+char * const * alloc_c_string_array(const string_array_base & stra);
 
  menu_shared::menu_shared()
 {
@@ -32,7 +32,7 @@ char * const * alloc_c_string_array(const string_array & stra);
 }
 
 
-::pointer<menu_shared>create_menu_shared(::particle * pparticle, const string_array & straParent, const string_array & straMenu, const string_array & straId)
+::pointer<menu_shared>create_menu_shared(::particle * pparticle, const string_array_base & straParent, const string_array_base & straMenu, const string_array_base & straId)
 {
 
    int iCount = (int) straParent.get_count();

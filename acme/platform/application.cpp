@@ -821,7 +821,7 @@ void application::start_application()
       else
       {
 
-         string_array stra;
+         string_array_base stra;
 
          stra.explode("/", m_strAppId);
 
@@ -857,7 +857,7 @@ void application::start_application()
       else
       {
 
-         string_array stra;
+         string_array_base stra;
 
          stra.explode("/", m_strAppId);
 
@@ -1341,7 +1341,7 @@ void application::start_application()
    }
 
 
-   void application::matter_locator_locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema)
+   void application::matter_locator_locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema)
    {
 
       if (scopedstrLocale.is_empty() || scopedstrSchema.is_empty())
@@ -1363,7 +1363,7 @@ void application::start_application()
    }
 
 
-   void application::locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema)
+   void application::locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema)
    {
 
       if (straMatterLocator.has_elements())
@@ -1453,14 +1453,14 @@ void application::start_application()
       //localeschema.m_bAddAlternateStyle = true;
 
 
-      string_array straLocale;
-      string_array straSchema;
+      string_array_base straLocale;
+      string_array_base straSchema;
 
       straLocale.add(get_locale());
       straSchema.add(get_schema());
 
 
-      string_array stra;
+      string_array_base stra;
 
       stra = payload("locale").as_string_array();
 
@@ -1548,7 +1548,7 @@ void application::start_application()
       if (m_strAppId.has_character())
       {
 
-         string_array stra;
+         string_array_base stra;
 
          stra.explode("/", m_strAppId);
 
@@ -2242,12 +2242,12 @@ void application::start_application()
    }
 
 
-   ::string_array application::get_about_box_lines()
+   ::string_array_base application::get_about_box_lines()
    {
 
       auto releasetimeforproject = release_time();
 
-      ::string_array stra;
+      ::string_array_base stra;
 
       stra.add(m_strAppName);
 
@@ -2401,7 +2401,7 @@ void application::start_application()
    }
 
 
-   void application::did_pick_document_at_urls(const ::string_array& straUrl)
+   void application::did_pick_document_at_urls(const ::string_array_base& straUrl)
    {
 
       auto prequest = __create_new <::request>();

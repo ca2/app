@@ -857,7 +857,7 @@ string context::get_schema()
 }
 
 
-void context::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+void context::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 {
 
    if (get_app())
@@ -1020,7 +1020,7 @@ string context::matter_locator(string strApp)
    if (!strMatterLocator.case_insensitive_contains("/_matter/"))
    {
 
-      string_array stra;
+      string_array_base stra;
 
       stra.explode("/", strMatterLocator);
 

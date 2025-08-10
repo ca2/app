@@ -361,8 +361,8 @@ namespace userstack
       }
 
       //file()->put_contents(directory()->path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
-      /*      string_array straPath;
-            string_array straRelative;
+      /*      string_array_base straPath;
+            string_array_base straRelative;
             straPath.erase_all();
             directory()->rls(directory()->userquicklaunch(), &straPath, nullptr, &straRelative);
             for(int i = 0; i < straPath.get_size(); i++)

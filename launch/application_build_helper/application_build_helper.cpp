@@ -279,7 +279,7 @@ namespace application_build_helper
    //
    //   auto pathApplicationMatterList = m_pathBaseDir / "application_list.txt";
    //
-   //   string_array straApplications;
+   //   string_array_base straApplications;
    //
    //   file()->get_lines(straApplications, pathApplicationMatterList);
    //
@@ -456,7 +456,7 @@ namespace application_build_helper
 
       }
 
-      string_array stra;
+      string_array_base stra;
 
       stra.explode("/", packagereference.m_strPackage);
 
@@ -597,7 +597,7 @@ namespace application_build_helper
    }
 
 
-   string_array application_build_helper::get_lines(const ::file::path & path, bool bNoExceptionIfNotFound)
+   string_array_base application_build_helper::get_lines(const ::file::path & path, bool bNoExceptionIfNotFound)
    {
 
       auto strInput = file_system()->as_string(path, -1, bNoExceptionIfNotFound);
@@ -609,7 +609,7 @@ namespace application_build_helper
 
       }
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_lines(strInput, true);
 
@@ -830,7 +830,7 @@ namespace application_build_helper
 
          strApps.trim();
 
-         string_array straApps;
+         string_array_base straApps;
 
          straApps.add_lines(strApps, false);
 
@@ -1109,7 +1109,7 @@ namespace application_build_helper
    string application_build_helper::defer_binary_to_project(const ::scoped_string & scopedstrBinary)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       stra.explode("/", strBinary);
 
@@ -1152,7 +1152,7 @@ namespace application_build_helper
    string application_build_helper::defer_project_to_binary(const ::scoped_string & scopedstrProject)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       stra.explode("/", strProject);
 
@@ -1216,14 +1216,14 @@ namespace application_build_helper
 
       pathMap = pathMapBase / (strMap + ".txt");
 
-      string_array straLines;
+      string_array_base straLines;
 
       straLines = file_system()->lines(pathMap);
 
       for (auto & strLine : straLines)
       {
 
-         string_array stra;
+         string_array_base stra;
 
          stra.explode("=", strLine);
 
@@ -1273,7 +1273,7 @@ namespace application_build_helper
 
       //}
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_lines(strInput, false);
 
@@ -1302,7 +1302,7 @@ namespace application_build_helper
             if (strDependency.has_character())
             {
 
-               string_array stra;
+               string_array_base stra;
 
                stra.explode("/", strDependency);
 
@@ -1395,7 +1395,7 @@ namespace application_build_helper
 
       //}
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_lines(strInput, false);
 

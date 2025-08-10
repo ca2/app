@@ -134,7 +134,7 @@ namespace sockets_bsd
       //class ::time              m_timeStart;
 
 
-      ::string_array          m_straDebug;
+      ::string_array_base          m_straDebug;
 
       int m_iSelectRead;
       int m_iSelectWrite;
@@ -222,7 +222,7 @@ namespace sockets_bsd
       void get_ssl_session() override;
 
 
-      ::string_array & debugstra() override;
+      ::string_array_base & debugstra() override;
       //virtual ::string debug_text();
 
 

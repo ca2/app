@@ -1938,7 +1938,7 @@
     <ClInclude Include="primitive\collection\runnable_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\string_array_base.h">
+    <ClInclude Include="primitive\collection\string_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\_.h">

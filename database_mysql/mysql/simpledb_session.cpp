@@ -42,7 +42,7 @@ namespace simpledb
 
    bool session::query(const ::scoped_string & scopedstrQuery, ::payload & payload)
    {
-      string_array stra;
+      string_array_base stra;
       ::property_set set;
       set.parse_network_arguments(scopedstrQuery);
       if(set["command"] == "open")

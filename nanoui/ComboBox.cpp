@@ -27,7 +27,7 @@ namespace nanoui
    }
 
 
-   ComboBox::ComboBox(Widget* parent, const ::string_array& items)
+   ComboBox::ComboBox(Widget* parent, const ::string_array_base& items)
       : PopupButton(parent), m_container(popup()), m_iSelectedIndex(0) 
    {
 
@@ -36,7 +36,7 @@ namespace nanoui
    }
 
 
-   ComboBox::ComboBox(Widget* parent, const ::string_array& items, const ::string_array& items_short)
+   ComboBox::ComboBox(Widget* parent, const ::string_array_base& items, const ::string_array_base& items_short)
       : PopupButton(parent), m_container(popup()), m_iSelectedIndex(0)
    {
 
@@ -70,7 +70,7 @@ namespace nanoui
    }
 
 
-   void ComboBox::set_items(const ::string_array& items, const ::string_array& items_short)
+   void ComboBox::set_items(const ::string_array_base& items, const ::string_array_base& items_short)
    {
 
       ASSERT(items.size() == items_short.size());

@@ -61,7 +61,7 @@ namespace application_build_helper
 
       strZip.find_replace("\\", "/");
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_lines(strInput, false);
 
@@ -170,7 +170,7 @@ namespace application_build_helper
             if (strLine.has_character())
             {
 
-               string_array straMatter;
+               string_array_base straMatter;
 
                straMatter.explode("/", strLine);
 
@@ -179,7 +179,7 @@ namespace application_build_helper
 
                   ::string strFolder = straMatter[0] + "/_matter/" + straMatter[1];
 
-                  string_array straOutput;
+                  string_array_base straOutput;
 
                   ::file::listing_base listing;
 
@@ -292,7 +292,7 @@ namespace application_build_helper
 //      if(iAdding > 0 || iDeleting > 0)
 //      {
 //
-//         ::string_array straStatus;
+//         ::string_array_base straStatus;
 //
 //         if (iAdding > 0) straStatus.append_format("%d added", iAdding);
 //

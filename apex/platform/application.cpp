@@ -705,7 +705,7 @@ namespace apex
 
       }
 
-      string_array stra;
+      string_array_base stra;
 
       stra.explode("/", m_strAppName);
 
@@ -760,7 +760,7 @@ namespace apex
    }
 
 
-   string_array application::get_categories()
+   string_array_base application::get_categories()
    {
 
       return m_straAppCategory;
@@ -2900,8 +2900,8 @@ namespace apex
       string strId(scopedstrId);
       //string strSystemLocale = psystem->m_strLocale;
       //string strSystemSchema = psystem->m_strSchema;
-      string_array straLocale;
-      string_array straSchema;
+      string_array_base straLocale;
+      string_array_base straSchema;
 
       straLocale = payload("locale").as_string_array();
       straSchema = payload("schema").as_string_array();
@@ -4157,7 +4157,7 @@ namespace apex
             ::property_set set;
 
             set["oh_my_god"].as_string_array().add(str1);
-            set["oh_my_god2"].int_array_reference() = ::int_array({ 1, 2, 3 });
+            set["oh_my_god2"].int_array_reference() = ::int_array_base({ 1, 2, 3 });
 
             int a1 = 1;
             int a2 = 2;
@@ -9804,7 +9804,7 @@ namespace apex
    //   int application::send_simple_command(const ::scoped_string & scopedstr, void* osdataSender)
    //   {
    //      string strApp;
-   //      string_array stra;
+   //      string_array_base stra;
    //      stra.add_tokens(scopedstr, "::", true);
    //      if (stra.size() > 0)
    //      {

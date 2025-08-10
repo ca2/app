@@ -261,7 +261,7 @@ void CLASS_DECL_APEX __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 
 //    }
 
-//    string_array stra;
+//    string_array_base stra;
 
 //    stra.explode(".", strAppId);
 

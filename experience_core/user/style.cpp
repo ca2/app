@@ -521,7 +521,7 @@ namespace experience_core
 
                {
 
-                  auto & ppen = pgroupTabTheme->m_pena[__e_hover];
+                  auto & ppen = pgroupTabTheme->m_pena.element_at_grow(__e_hover);
 
                   if (__defer_construct(ppen))
                   {
@@ -929,7 +929,7 @@ namespace experience_core
    void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
    {
 
-      string_array & straTitle = pane.m_straTitle;
+      string_array_base & straTitle = pane.m_straTitle;
 
       pgraphics->set(pbrushText);
 

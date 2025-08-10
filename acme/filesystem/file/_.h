@@ -82,8 +82,8 @@ namespace file
 
 class memory_base;
 
-// CLASS_DECL_ACME bool xxxfile_save_stra(const_char_pointer lpszName, const string_array & stra);
-// CLASS_DECL_ACME bool xxxfile_load_stra(const_char_pointer lpszName, string_array & stra, bool bAddEmpty = true);
+// CLASS_DECL_ACME bool xxxfile_save_stra(const_char_pointer lpszName, const string_array_base & stra);
+// CLASS_DECL_ACME bool xxxfile_load_stra(const_char_pointer lpszName, string_array_base & stra, bool bAddEmpty = true);
 
 
 // CLASS_DECL_ACME bool xxxfile_put_contents(const ::file::path & path, const memory_base & memory);

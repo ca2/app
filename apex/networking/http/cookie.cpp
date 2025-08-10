@@ -192,7 +192,7 @@ namespace http
    {
       ::pointer<class cookie> cookie(__allocate class cookie ());
       cookie->m_bSecure = false;
-      //string_array stra;
+      //string_array_base stra;
       //stra.add_tokens(scopedstr, ";", true);
       auto psz = scopedstr.begin();
       bool bRun = true;
@@ -361,7 +361,7 @@ namespace http
       if(scopedstr.is_empty())
          return;
 
-      string_array stra;
+      string_array_base stra;
       const_char_pointer pszParam = scopedstr.begin();
       const_char_pointer pszParamEnd;
       const_char_pointer pszKeyEnd;

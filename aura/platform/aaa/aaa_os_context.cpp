@@ -170,7 +170,7 @@
 
    }
 
-   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension)
+   bool os_context::file_extension_get_open_with_list_keys(string_array_base & straKey, const ::scoped_string & scopedstrExtension)
    {
 
       __UNREFERENCED_PARAMETER(straKey);
@@ -180,7 +180,7 @@
 
    }
 
-   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension)
+   bool os_context::file_extension_get_open_with_list_commands(string_array_base & straCommand, const ::scoped_string & scopedstrExtension)
    {
 
       __UNREFERENCED_PARAMETER(straCommand);
@@ -393,7 +393,7 @@
 
          string str = file()->as_string(strSource);
 
-         string_array stra;
+         string_array_base stra;
 
          stra.add_lines(str);
 
@@ -506,7 +506,7 @@
    bool os_context::initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch)
    {
 
-      ::string_array stra;
+      ::string_array_base stra;
 
       //stra.add("_inheaven_1920x1080_o.JPG");
       //stra.add("02209_stratosphere_1920x1080_o.JPG");
@@ -585,7 +585,7 @@
    }
 
 
-   bool os_context::add_default_program(string_array & straExtension, string_array & straMimeType)
+   bool os_context::add_default_program(string_array_base & straExtension, string_array_base & straMimeType)
    {
 
       __UNREFERENCED_PARAMETER(straExtension);

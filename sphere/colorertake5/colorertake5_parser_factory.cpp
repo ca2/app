@@ -88,8 +88,8 @@ namespace colorertake5
                      hrd_descr = hrd_name;
                   }
                   hrdDescriptions.set_at(hrd_class + "-" + hrd_name, hrd_descr);
-                  string_map<string_array> & hrdClass = hrdLocations[hrd_class];
-                  string_array & hrdLocV =  hrdClass[hrd_name];
+                  string_map<string_array_base> & hrdClass = hrdLocations[hrd_class];
+                  string_array_base & hrdLocV =  hrdClass[hrd_name];
                   ::pointer<::xml::node>oc = hrd->first_child();
                   while(loc != nullptr)
                   {
@@ -160,7 +160,7 @@ namespace colorertake5
    //return hrdLocations.key(idx);
    //};
    //string ParserFactory::enumerateHRDInstances(const string &classID, int idx){
-   //string_map<pointer_object<string_array>> *hash = hrdLocations.pget(classID);
+   //string_map<pointer_object<string_array_base>> *hash = hrdLocations.pget(classID);
    //if (hash == nullptr) return "";
    //return hash->key(idx);
    //};
@@ -254,7 +254,7 @@ namespace colorertake5
    StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID)
    {
 
-      string_map<string_array> * hrdClass = nullptr;
+      string_map<string_array_base> * hrdClass = nullptr;
 
       if (classID.is_empty())
       {
@@ -272,7 +272,7 @@ namespace colorertake5
       if (hrdClass == nullptr)
          throw ::exception(ParserFactoryException(string("can't find hrdClass '")+classID+"'"));
 
-      string_array *hrdLocV = nullptr;
+      string_array_base *hrdLocV = nullptr;
       if (nameID.is_empty())
       {
          char * hrd = nullptr;
@@ -332,10 +332,10 @@ namespace colorertake5
    TextHRDMapper *ParserFactory::createTextMapper(string nameID)
    {
       // fixed class 'text'
-      string_map<string_array> *hrdClass = hrdLocations.pget(("text"));
+      string_map<string_array_base> *hrdClass = hrdLocations.pget(("text"));
       if (hrdClass == nullptr) throw ::exception(ParserFactoryException(string("can't find hrdClass 'text'")));
 
-      string_array *hrdLocV = nullptr;
+      string_array_base *hrdLocV = nullptr;
       if (nameID.is_empty())
          hrdLocV = hrdClass->pget(("default"));
       else

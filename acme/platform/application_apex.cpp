@@ -487,7 +487,7 @@ namespace platform
    }
 
 
-   string_array apex_application_layer::get_categories()
+   string_array_base apex_application_layer::get_categories()
    {
       return {};
    }

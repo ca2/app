@@ -156,7 +156,7 @@ namespace user
    int_size tooltip::CalcSize()
    {
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_lines(m_str);
 

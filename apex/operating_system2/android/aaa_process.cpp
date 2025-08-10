@@ -266,7 +266,7 @@ CLASS_DECL_APEX bool shell_execute_sync(const ::file::path & path, const ::scope
 }
 
 
-CLASS_DECL_APEX bool is_shared_library_busy(const string_array & stra)
+CLASS_DECL_APEX bool is_shared_library_busy(const string_array_base & stra)
 {
 
    return true;

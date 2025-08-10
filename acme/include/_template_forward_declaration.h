@@ -538,7 +538,7 @@ using unique_long_long_sort_array = unique_number_sort_array < long long >;
 
 using iptr_array_base = long_long_array_base;
 using uptr_array_base = unsigned_long_long_array_base;
-using iptr_array = long_long_array;
+using iptr_array = long_long_array_base;
 using uptr_array = unsigned_long_long_array;
 
 using unique_iptr_sort_array = unique_long_long_sort_array;
@@ -549,7 +549,7 @@ using unique_iptr_sort_array = unique_long_long_sort_array;
 using iptr_array_base = int_array_base;
 using uptr_array_base = unsigned_int_array_base;
 
-using iptr_array = int_array;
+using iptr_array = int_array_base;
 using uptr_array = unsigned_int_array;
 
 using unique_iptr_sort_array = unique_int_sort_array;
@@ -1089,10 +1089,9 @@ using topic_pointer = ::pointer<topic>;
 using extended_topic_pointer = ::pointer<extended_topic>;
 
 
-using int_array_array = ::pointer_array<int_array>;
-
-using float_array_array = ::pointer_array<float_array>;
-using double_array_array = ::pointer_array<double_array>;
+using int_array_array_base = ::array_base<int_array_base>;
+using float_array_array_base = ::array_base<float_array_base>;
+using double_array_array_base = ::array_base<double_array_base>;
 
 
 using task_pointer = ::pointer<task>;

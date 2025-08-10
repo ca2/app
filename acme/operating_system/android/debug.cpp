@@ -23,7 +23,7 @@ void output_debug_string(const ::scoped_string & scopedstr)
 
    //// very lazy implementation
 
-   //string_array stra;
+   //string_array_base stra;
 
    //stra.add_lines(*m_pstrOutputDebugStringA);
 

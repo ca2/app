@@ -13,7 +13,7 @@ namespace application_build_helper
 
 
       ::pointer < application >     m_papplication;
-      ::string_array                m_straLines;
+      ::string_array_base                m_straLines;
 
       
       project_list();

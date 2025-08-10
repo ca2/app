@@ -113,7 +113,7 @@ namespace user
 
 
    /// return selected language in the list
-   ::collection::index language_map::get_language_list(string_array & stra)
+   ::collection::index language_map::get_language_list(string_array_base & stra)
    {
 
       return get_text_list(stra, "IDS_LANGUAGE", false);
@@ -121,7 +121,7 @@ namespace user
    }
 
 /// return selected language in the list
-   ::collection::index language_map::get_text_list(string_array & stra, const ::scoped_string & scopedstrId, bool bFull)
+   ::collection::index language_map::get_text_list(string_array_base & stra, const ::scoped_string & scopedstrId, bool bFull)
    {
 
       ::collection::index iSel = -1;
@@ -163,10 +163,10 @@ namespace user
    }
 
 
-   string_array language_map::get_text_list(const ::scoped_string & scopedstrText, bool bFull)
+   string_array_base language_map::get_text_list(const ::scoped_string & scopedstrText, bool bFull)
    {
 
-      string_array stra;
+      string_array_base stra;
 
       get_text_list(stra, scopedstrText, bFull);
 
@@ -257,7 +257,7 @@ namespace user
 
             string strLocator = papp->m_straMatterLocator[i];
 
-            string_array straMatterLocator;
+            string_array_base straMatterLocator;
 
             straMatterLocator.add(strLocator);
 

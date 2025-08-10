@@ -436,7 +436,7 @@ void file_system::append(const ::file::path& pathFile, const block& block)
 bool file_system::append_unique_line(const file::path& pathFile, const scoped_string& scopedstrLine)
 {
 
-   ::string_array lines;
+   ::string_array_base lines;
 
    if (this->exists(pathFile))
    {
@@ -1151,7 +1151,7 @@ void file_system::synchronize(const ::file::path& path1, const ::file::path& pat
 }
 
 
-void file_system::save_stra(const ::file::path& pathName, const string_array& stra)
+void file_system::save_stra(const ::file::path& pathName, const string_array_base& stra)
 {
 
    throw ::interface_only();
@@ -1161,7 +1161,7 @@ void file_system::save_stra(const ::file::path& pathName, const string_array& st
 }
 
 
-void file_system::load_stra(const ::file::path& pathName, string_array& stra, bool bAddEmpty)
+void file_system::load_stra(const ::file::path& pathName, string_array_base& stra, bool bAddEmpty)
 {
 
    throw ::interface_only();
@@ -1292,7 +1292,7 @@ string file_system::first_line(const ::file::path& path)
 }
 
 
-string_array file_system::lines(const ::file::path& pathParam)
+string_array_base file_system::lines(const ::file::path& pathParam)
 {
 
    auto path = path_system()->defer_process_relative_path(pathParam);
@@ -1310,7 +1310,7 @@ string_array file_system::lines(const ::file::path& pathParam)
 
       }
 
-      string_array straLines;
+      string_array_base straLines;
 
       string strLine;
 

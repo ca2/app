@@ -17,7 +17,7 @@ namespace platform
 
 #elif defined(UNIVERSAL_WINDOWS)
 
-      void apex_system_layer::system_construct(const ::string_array & stra){}
+      void apex_system_layer::system_construct(const ::string_array_base & stra){}
 
 #else
 
@@ -161,7 +161,7 @@ namespace platform
    //::string apex_system_layer::url::encode(const ::scoped_string & scopedstr){}
 
 
-   //void apex_system_layer::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema){}
+   //void apex_system_layer::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema){}
    //::string apex_system_layer::get_locale_schema_dir(){}
 
    ::operating_system::department * apex_system_layer::operating_system()
@@ -374,7 +374,7 @@ namespace platform
 
 #endif
 
-   bool apex_system_layer::defer_accumulate_on_open_file(string_array stra, const ::scoped_string & scopedstrExtra)
+   bool apex_system_layer::defer_accumulate_on_open_file(string_array_base stra, const ::scoped_string & scopedstrExtra)
    {
       return false;
    }
@@ -577,7 +577,7 @@ namespace platform
    }
 
 
-   //void apex_system_layer::get_public_internet_domain_extension_list(string_array& stra) override{}
+   //void apex_system_layer::get_public_internet_domain_extension_list(string_array_base& stra) override{}
 
 
    ::string apex_system_layer::fetch_public_internet_domain_extension_list_text()

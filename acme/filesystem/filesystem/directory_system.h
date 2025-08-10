@@ -241,7 +241,7 @@ public:
          virtual bool defer_process_media_library_path(::file::path& path);
          virtual bool defer_media_library_representative_file_name(::file::path & path);
 
-         bool list(::string_array & stra, const ::scoped_string & path, ::file::e_flag eflag = ::file::e_flag_file_or_folder) override;
+         bool list(::string_array_base & stra, const ::scoped_string & path, ::file::e_flag eflag = ::file::e_flag_file_or_folder) override;
 
          virtual ::file::listing_base folders(const ::file::path & path) override;
          virtual ::file::listing_base files(const ::file::path& path) override;
@@ -249,7 +249,7 @@ public:
 
 
          //virtual void enumerate(::file::listing_base & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
-         //virtual void enumerate_pattern(::file::listing_base & listing, const ::file::path & path, const ::string_array & straNamePattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
+         //virtual void enumerate_pattern(::file::listing_base & listing, const ::file::path & path, const ::string_array_base & straNamePattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
          //virtual void enumerate_directory(::file::path_array_base & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
          //virtual void enumerate_file(::file::path_array_base & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
 
@@ -281,7 +281,7 @@ public:
          //} // namespace dir
 
    virtual string_to_string map_content(const ::file::path & path);
-   virtual ::string_array enumerate_content(const ::file::path & path);
+   virtual ::string_array_base enumerate_content(const ::file::path & path);
 
 
 
@@ -303,7 +303,7 @@ public:
 
    virtual bool is_accessible(const ::file::path & path);
 
-   virtual bool contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize);
+   virtual bool contains_files(const ::file::path& path, const ::string_array_base& straName, int iMinimumSize);
 
 
    //virtual void initialize(::particle * pparticle) override;

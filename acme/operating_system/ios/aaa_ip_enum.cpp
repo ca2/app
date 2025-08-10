@@ -19,7 +19,7 @@ namespace ios
    }
 
 
-   ::collection::count ip_enum::enumerate(string_array & stra)
+   ::collection::count ip_enum::enumerate(string_array_base & stra)
    {
       
       //get this machines host name

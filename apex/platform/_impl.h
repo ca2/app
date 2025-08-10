@@ -51,7 +51,7 @@
 //
 //
 //   template < class APP >
-//   void single_application_library < APP > ::get_extension_list(string_array & stra)
+//   void single_application_library < APP > ::get_extension_list(string_array_base & stra)
 //   {
 //
 //      if (m_strFileExt.has_character())

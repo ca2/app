@@ -57,7 +57,7 @@ string_to_string * g_pmapFontPath;
 //{
 //public:
 //
-//   string_array                    m_stra;
+//   string_array_base                    m_stra;
 //   ::write_text::font::csa        m_csa;
 //
 //};
@@ -3896,7 +3896,7 @@ namespace draw2d_cairo
 
       }
 
-      string_array stra;
+      string_array_base stra;
 
       stra.add_lines(str);
 
@@ -4255,7 +4255,7 @@ namespace draw2d_cairo
 
    //    }
 
-   //    string_array stra;
+   //    string_array_base stra;
 
    //    stra.add_lines(str);
 
@@ -4472,7 +4472,7 @@ namespace draw2d_cairo
 
       }
 
-      string_array straLines;
+      string_array_base straLines;
 
       straLines.add_lines(str, true);
 
@@ -6651,9 +6651,9 @@ namespace draw2d_cairo
 //    if (!g_pmapFontPath->lookup(str, strPath))
 //    {
 //
-//        string_array straPath;
+//        string_array_base straPath;
 //
-//        string_array stra;
+//        string_array_base stra;
 //
 //        ::write_text::font_enumeration_item_array itema;
 //

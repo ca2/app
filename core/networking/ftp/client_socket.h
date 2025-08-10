@@ -137,8 +137,8 @@ namespace ftp
       int  Logout();
       const logon * get_logon() const { return m_plogon; }
 
-      bool List(const ::scoped_string & scopedstrPath, string_array& vstrFileList, bool fPasv = false);
-      bool NameList(const ::scoped_string & scopedstrPath, string_array& vstrFileList, bool fPasv = false);
+      bool List(const ::scoped_string & scopedstrPath, string_array_base& vstrFileList, bool fPasv = false);
+      bool NameList(const ::scoped_string & scopedstrPath, string_array_base& vstrFileList, bool fPasv = false);
 
       bool List(const ::scoped_string & scopedstrPath, file_status_ptra& vFileList, bool fPasv = false);
       bool NameList(const ::scoped_string & scopedstrPath, file_status_ptra& vFileList, bool fPasv = false);
@@ -209,8 +209,8 @@ namespace ftp
 
       int  SimpleErrorCheck(const reply& Reply);
 
-      bool SendCommand(const command& Command, const string_array & Arguments);
-      bool SendCommand(const command& Command, const string_array & Arguments, reply& Reply);
+      bool SendCommand(const command& Command, const string_array_base & Arguments);
+      bool SendCommand(const command& Command, const string_array_base & Arguments, reply& Reply);
       bool GetResponse(reply& Reply);
       bool GetSingleResponseLine(string& strResponse);
       void OnLine(const ::scoped_string & scopedstrLine) override;
@@ -244,7 +244,7 @@ namespace ftp
       virtual void OnPostReceiveFile(const string& /*strSourceFile*/, const string& /*strTargetFile*/, long /*lFileSize*/) {}
       virtual void OnPostSendFile(const string& /*strSourceFile*/, const string& /*strTargetFile*/, long /*lFileSize*/) {}
 
-      virtual void OnSendCommand(const command& /*Command*/, const string_array& /*Arguments*/) {}
+      virtual void OnSendCommand(const command& /*Command*/, const string_array_base& /*Arguments*/) {}
       virtual void OnResponse(const reply& /*Reply*/) {}
    };
 

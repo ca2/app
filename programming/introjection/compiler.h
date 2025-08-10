@@ -41,7 +41,7 @@ namespace introjection
       //string                                    m_strLibPlatform;
 
 
-      string_array                                   m_straSync;
+      string_array_base                                   m_straSync;
       string                                    m_strLibsLibs;
       //string                                    m_strEnv;
       //string                                    m_strSdk1;

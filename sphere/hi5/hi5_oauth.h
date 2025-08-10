@@ -17,7 +17,7 @@ namespace hi5
       eOAuthHttpDelete
    } eOAuthHttpRequestType;
 
-   typedef string_array oAuthKeyValueList;
+   typedef string_array_base oAuthKeyValueList;
    typedef ::property_set oAuthKeyValuePairs;
 
    class CLASS_DECL_SPHERE oauth :

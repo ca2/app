@@ -42,10 +42,10 @@ namespace nanoui
       Widget* m_container = nullptr;
 
       /// The items associated with this ComboBox.
-      ::string_array m_straItems;
+      ::string_array_base m_straItems;
 
       /// The short descriptions of items associated with this ComboBox.
-      ::string_array m_straItemsShort;
+      ::string_array_base m_straItemsShort;
 
       /// The callback for this ComboBox.
       ::function<void(::collection::index)> m_callback;
@@ -58,14 +58,14 @@ namespace nanoui
       ComboBox(Widget* parent);
 
       /// Create a ___new combo box with the given items
-      ComboBox(Widget* parent, const ::string_array& items);
+      ComboBox(Widget* parent, const ::string_array_base& items);
 
       /**
        * \brief Create a ___new combo box with the given items, providing both short and
        * long descriptive labels for each item
        */
-      ComboBox(Widget* parent, const ::string_array& items,
-         const ::string_array& items_short);
+      ComboBox(Widget* parent, const ::string_array_base& items,
+         const ::string_array_base& items_short);
 
       /// The current iIndex this ComboBox has selected.
       ::collection::index selected_index() const { return m_iSelectedIndex; }
@@ -80,13 +80,13 @@ namespace nanoui
       void set_callback(const ::function<void(::collection::index)>& callback) { m_callback = callback; }
 
       /// Sets the items for this ComboBox, providing both short and long descriptive lables for each item.
-      void set_items(const ::string_array& items, const ::string_array& items_short);
+      void set_items(const ::string_array_base& items, const ::string_array_base& items_short);
       /// Sets the items for this ComboBox.
-      void set_items(const ::string_array& items) { set_items(items, items); }
+      void set_items(const ::string_array_base& items) { set_items(items, items); }
       /// The items associated with this ComboBox.
-      const ::string_array& items() const { return m_straItems; }
+      const ::string_array_base& items() const { return m_straItems; }
       /// The short descriptions associated with this ComboBox.
-      const ::string_array& items_short() const { return m_straItemsShort; }
+      const ::string_array_base& items_short() const { return m_straItemsShort; }
 
       /// Handles mouse scrolling happenings for this ComboBox.
       virtual bool scroll_event(const int_point& p, const float_size& rel) override;

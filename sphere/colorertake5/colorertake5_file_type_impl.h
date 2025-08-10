@@ -116,8 +116,8 @@ namespace colorertake5
       string_to_string paramDefaultHash;
       string_to_string paramHash;
       string_to_string paramDescriptionHash;
-      string_array paramVector;
-      string_array importVector;
+      string_array_base paramVector;
+      string_array_base importVector;
       string    m_strSourceLocation;
       string    m_strSource;
 

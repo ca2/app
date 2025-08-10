@@ -47,7 +47,7 @@ namespace file
 
       }
 
-      string_array stra;
+      string_array_base stra;
 
       if(list(stra, listing.m_pathFinal, listing.m_eflag))
       {
@@ -85,7 +85,7 @@ namespace file
    }
 
 
-   bool enumerator::list(string_array & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
+   bool enumerator::list(string_array_base & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
    {
 
       ::file::listing_base listing;
@@ -204,7 +204,7 @@ namespace file
 
 
 
-   //bool enumerator::enumerate_pattern(::file::listing_base & listing, const ::file::path & path, const ::string_array & straPattern, ::file::e_flag eflag, enum_depth edepth)
+   //bool enumerator::enumerate_pattern(::file::listing_base & listing, const ::file::path & path, const ::string_array_base & straPattern, ::file::e_flag eflag, enum_depth edepth)
    //{
 
    //   listing.m_straPattern = straPattern;

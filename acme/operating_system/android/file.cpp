@@ -43,7 +43,7 @@ long long fd_get_file_size(int fd)
 
 
 
-//CLASS_DECL_ACME void dll_processes(unsigned_int_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrDll)
+//CLASS_DECL_ACME void dll_processes(unsigned_int_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrDll)
 //{
 //
 //

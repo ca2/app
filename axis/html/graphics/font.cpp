@@ -62,7 +62,7 @@ namespace html
 
 
 
-      string_array stra;
+      string_array_base stra;
       stra.add_tokens(m_strFamily,",", false);
       for(int i = 0; i < stra.get_size(); i++)
       {

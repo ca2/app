@@ -111,7 +111,7 @@ namespace user
 
       ::int_map < ::image::image_list_pointer  >                          m_pimagelist; // int is the int_size
       ::int_map < ::image::image_list_pointer  >                          m_pimagelistHover; // int is the size;
-      map < ::pointer < ::user::interaction >, ::string_array >      m_mapInterest;
+      map < ::pointer < ::user::interaction >, ::string_array_base >      m_mapInterest;
 
 
    public:
@@ -147,7 +147,7 @@ namespace user
    protected:
 
 
-      ::int_array                                          m_iaSize;
+      ::int_array_base                                          m_iaSize;
 
 
    public:
@@ -157,7 +157,7 @@ namespace user
       image_key_map < image_key >                        m_imagekeymap;
 
       string                                             m_strShellThemePrefix;
-      string_array                                       m_straThemeableIconName;
+      string_array_base                                       m_straThemeableIconName;
       ::pointer<manual_reset_happening>                     m_pevNewImageKey;
 
       ::collection::index                                              m_iMaxThreadCount;
@@ -199,8 +199,8 @@ namespace user
 
       virtual void on_update_sizes_interest();
 
-      void add_size_interest(::int_array iaSize);
-      void set_size_interest(::int_array iaSize);
+      void add_size_interest(::int_array_base iaSize);
+      void set_size_interest(::int_array_base iaSize);
 
       int _reserve_image(const image_key & key);
 

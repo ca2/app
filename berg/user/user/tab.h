@@ -168,7 +168,7 @@ namespace user
       virtual bool get_element_rectangle(::collection::index iTab, ::int_rectangle & rectangle, enum_element eelement);
 
 
-      virtual void get_title(int iPane,string_array & stra);
+      virtual void get_title(int iPane,string_array_base & stra);
 
       void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -230,15 +230,15 @@ namespace user
 
       virtual void on_change_tab_count(::array < ::user::tab_pane * > array = ::array < ::user::tab_pane * >());
 
-      virtual void get_text_id(string_array & stra);
+      virtual void get_text_id(string_array_base & stra);
 
-      virtual void get_prefixed_ci_id(string_array & stra, const ::scoped_string & scopedstrPrefix);
-      virtual void get_suffixed_ci_id(string_array & stra, const ::scoped_string & scopedstrSuffix);
-      virtual void get_presuffixed_ci_id(string_array & stra, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffixed);
+      virtual void get_prefixed_ci_id(string_array_base & stra, const ::scoped_string & scopedstrPrefix);
+      virtual void get_suffixed_ci_id(string_array_base & stra, const ::scoped_string & scopedstrSuffix);
+      virtual void get_presuffixed_ci_id(string_array_base & stra, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffixed);
 
-      virtual void get_begins_ci_eat_id(string_array & stra, const ::scoped_string & scopedstrPrefix);
-      virtual void get_ends_ci_eat_id(string_array & stra, const ::scoped_string & scopedstrSuffix);
-      virtual void get_begins_ends_ci_eat_id(string_array & stra, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffixed);
+      virtual void get_begins_ci_eat_id(string_array_base & stra, const ::scoped_string & scopedstrPrefix);
+      virtual void get_ends_ci_eat_id(string_array_base & stra, const ::scoped_string & scopedstrSuffix);
+      virtual void get_begins_ends_ci_eat_id(string_array_base & stra, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffixed);
 
       virtual void _001ConnectParent(::channel * pchannel);
 

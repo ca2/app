@@ -58,11 +58,11 @@ namespace application_build_helper
       if (m_strRoot == "app" && m_strItem == "acme")
       {
 
-         string_array straOutput;
+         string_array_base straOutput;
 
          int iExitCode = 0;
 
-         string_array straCommand;
+         string_array_base straCommand;
 
          auto pathBeforeBase = m_pathBaseDir - 1;
 

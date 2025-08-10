@@ -29,9 +29,9 @@ namespace filehandler
 
       id_type                     m_etopictype;
       string                           m_strTopic;
-      string_array                     m_straHandlerLibrary;
-      string_array                     m_straMenuLibrary;
-      string_array                     m_straApp;
+      string_array_base                     m_straHandlerLibrary;
+      string_array_base                     m_straMenuLibrary;
+      string_array_base                     m_straApp;
 
 
       handler();
@@ -54,8 +54,8 @@ namespace filehandler
       ::pointer<::data::tree_item<item>>get_mime_type_tree_item(const ::scoped_string & scopedstrMimeType, bool bCreate);
 
 
-      virtual void get_extension_app(string_array & straAppId, const ::scoped_string & scopedstrExtension);
-      virtual void get_mime_type_app(string_array & straAppId, const ::scoped_string & scopedstrMimeType);
+      virtual void get_extension_app(string_array_base & straAppId, const ::scoped_string & scopedstrExtension);
+      virtual void get_mime_type_app(string_array_base & straAppId, const ::scoped_string & scopedstrMimeType);
 
 
       //virtual ::stream & write(::stream & stream) const override;

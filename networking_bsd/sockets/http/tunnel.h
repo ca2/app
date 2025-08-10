@@ -28,7 +28,7 @@ namespace sockets
       bool        m_bOk ;
       string m_host; ///< Hostname from url_in
       port_t m_port; ///< Port from url_in
-      string_array   m_straProxy;
+      string_array_base   m_straProxy;
       enum_state      m_estate;
       string      m_strRequest;
       //memory      m_memoryBody;

@@ -268,7 +268,7 @@
 //
 //
 //   //CLASS_DECL_AURA bool set_wallpaper(string strLocalImagePath);
-//   //CLASS_DECL_AURA string_array get_wallpaper();
+//   //CLASS_DECL_AURA string_array_base get_wallpaper();
 //
 //
 //

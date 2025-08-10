@@ -198,7 +198,7 @@ namespace interprocess
       //
       //   string strMember;
       //
-      //   string_array stra;
+      //   string_array_base stra;
       //
       //   ::property_set propertyset;
       //
@@ -613,7 +613,7 @@ namespace interprocess
    //   //
    //   //   string strMember;
    //   //
-   //   //   string_array stra;
+   //   //   string_array_base stra;
    //   //
    //   //   ::property_set propertyset;
    //   //
@@ -931,9 +931,9 @@ namespace interprocess
 
       m_straModule.add_lines(strModuleList);
 
-      string_array stra2;
+      string_array_base stra2;
 
-      ::int_array iaPid2;
+      ::int_array_base iaPid2;
 
       for (::collection::index i = 0; i < m_straModule.get_count();)
       {
@@ -947,7 +947,7 @@ namespace interprocess
          if (str.has_character())
          {
 
-            string_array a;
+            string_array_base a;
 
             a.explode("|", str);
 
@@ -989,7 +989,7 @@ namespace interprocess
 
       }
 
-      string_array straUnique;
+      string_array_base straUnique;
 
       for(auto & strItem : m_straModule)
       {

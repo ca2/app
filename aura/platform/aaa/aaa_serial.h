@@ -360,7 +360,7 @@ namespace serial
        * \throw ::exception( serial::port_not_opened_exception
        * \throw ::exception( serial::serial_exception
        */
-      string_array
+      string_array_base
       readlines (size_t size = 65536, string eol = "\n");
 
       /*! Write a string to the serial port.

@@ -65,8 +65,8 @@ namespace platform
       virtual ::particle * matter_mutex() override;
       virtual ::particle * http_download_mutex() override;
 
-      virtual ::string_array * http_download_array() override;
-      virtual ::string_array * http_exists_array() override;
+      virtual ::string_array_base * http_download_array() override;
+      virtual ::string_array_base * http_exists_array() override;
 
       virtual class ::time * file_listing_cache_time() override;
 
@@ -317,7 +317,7 @@ namespace platform
 
 #elif defined(UNIVERSAL_WINDOWS)
 
-      void system_construct(const ::string_array & stra);
+      void system_construct(const ::string_array_base & stra);
 
       //#else
 
@@ -521,9 +521,9 @@ namespace platform
 
       virtual ::regular_expression_pointer compile_pcre(const ::scoped_string & scopedstr) override;
       virtual ::pointer<::regular_expression::context> get_pcre_context() override;
-      //virtual int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+      //virtual int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
 
-      virtual void get_public_internet_domain_extension_list(string_array & stra) override;
+      virtual void get_public_internet_domain_extension_list(string_array_base & stra) override;
       virtual ::string fetch_public_internet_domain_extension_list_text() override;
 
       void system_id_update(int iUpdate, long long iPayload) override;
@@ -857,7 +857,7 @@ namespace platform
 //       //virtual string ::url::encode(const ::scoped_string & scopedstr) override;
 //
 //
-//       //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+//       //virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
 //       //virtual string get_locale_schema_dir() override;
 //
 //
@@ -1138,7 +1138,7 @@ namespace platform
 //
 // //::pointer<regex>create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr);
 // //::pointer<regex_context>create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount);
-// //virtual int pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount);
+// //virtual int pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount);
 //
 //
 // //virtual string get_system_platform() override;
@@ -1181,7 +1181,7 @@ namespace platform
 // //
 // //#endif
 // //
-// //      virtual bool defer_accumulate_on_open_file(string_array stra, const ::scoped_string & scopedstrExtra) override;
+// //      virtual bool defer_accumulate_on_open_file(string_array_base stra, const ::scoped_string & scopedstrExtra) override;
 // //
 // //      virtual bool merge_accumulated_on_open_file(::request * prequest) override;
 // //

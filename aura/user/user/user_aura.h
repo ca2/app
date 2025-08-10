@@ -16,7 +16,7 @@ namespace user
 
       ::pointer<::user::interaction_base>             m_pmousefocusLButtonDown;
       ::pointer<::user::interaction_base>             m_pmousefocusRButtonDown;
-      string_array                              m_straEscape;
+      string_array_base                              m_straEscape;
       ::user::style_pointer                     m_puserstyle;
       string_map < ::user::style_pointer >      m_mapUserStyle;
 

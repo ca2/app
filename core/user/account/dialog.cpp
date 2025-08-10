@@ -470,7 +470,7 @@ namespace account
 
          m_plogin->m_bCred = true;
 
-         string_array stra;
+         string_array_base stra;
 
          stra.explode("|", pcredentials->m_strTitle);
 

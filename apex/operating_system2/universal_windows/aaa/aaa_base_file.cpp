@@ -202,7 +202,7 @@ string file_module_path_dup()
 //
 //}
 //
-//void dll_processes(unsigned_int_array & dwa,string_array & straProcesses,const ::scoped_string & scopedstrDll)
+//void dll_processes(unsigned_int_array & dwa,string_array_base & straProcesses,const ::scoped_string & scopedstrDll)
 //{
 //   // Get the list of process identifiers.
 //

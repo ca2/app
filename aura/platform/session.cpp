@@ -219,7 +219,7 @@ namespace aura
    //}
 
    //
-   // void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   // void session::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    // {
    //
    //
@@ -395,7 +395,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
          string strExtension = strPathName.final_extension();
 
-         string_array straApp;
+         string_array_base straApp;
 
          throw ::exception(todo, "filehandler");
 
@@ -2498,14 +2498,14 @@ namespace aura
    }
 
 
-   //string_array session::get_user_wallpaper()
+   //string_array_base session::get_user_wallpaper()
    //{
 
-   //   string_array stra;
+   //   string_array_base stra;
 
    //   auto psession 
 
-   //   string_array straSource = psession->userex()->get_wallpaper();
+   //   string_array_base straSource = psession->userex()->get_wallpaper();
 
    //   for (const ::scoped_string & scopedstr : straSource)
    //   {

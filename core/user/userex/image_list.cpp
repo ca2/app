@@ -35,15 +35,15 @@ namespace userex
    }
 
 
-   string_array image_list_impact::get_ls_pattern_stra() const
+   string_array_base image_list_impact::get_ls_pattern_stra() const
    {
 
-      string_array stra;
+      string_array_base stra;
 
       for (auto & filedialogfilteritem : m_filedialogfilter)
       {
 
-         string_array straPattern;
+         string_array_base straPattern;
 
          straPattern.explode(";", filedialogfilteritem.m_strPatternList);
 

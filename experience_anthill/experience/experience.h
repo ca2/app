@@ -24,7 +24,7 @@ namespace experience_anthill
       void update() override;
 
 
-      void get_frame_list(string_array & stra) override;
+      void get_frame_list(string_array_base & stra) override;
 
 
 

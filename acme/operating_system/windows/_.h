@@ -29,10 +29,10 @@ inline oswindow as_oswindow(HWND hwnd)
 CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 
 
-CLASS_DECL_ACME bool process_modules(string_array & stra, unsigned int processID);
+CLASS_DECL_ACME bool process_modules(string_array_base & stra, unsigned int processID);
 
 
-CLASS_DECL_ACME bool load_modules_diff(string_array & straOld, string_array & straNew, const ::scoped_string & scopedstrExceptDir);
+CLASS_DECL_ACME bool load_modules_diff(string_array_base & straOld, string_array_base & straNew, const ::scoped_string & scopedstrExceptDir);
 
 
 //CLASS_DECL_ACME bool check_msys2_at_c_msys64(::particle* pparticle);

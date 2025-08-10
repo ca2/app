@@ -37,7 +37,7 @@ public:
    string                                          m_str;
    string                                          m_strPrefix;
    string                                          m_strRoot;
-   ::int_array                                       m_iaPosition;
+   ::int_array_base                                       m_iaPosition;
 
    ::int_rectangle                                 m_rectangle;
 
@@ -71,7 +71,7 @@ public:
 
    // Link
    //LOGFONTW                          m_logfontLink;
-   string_array                          m_straLink;
+   string_array_base                          m_straLink;
    index_array                      m_iaLinkStart;
    index_array                      m_iaLinkEnd;
 

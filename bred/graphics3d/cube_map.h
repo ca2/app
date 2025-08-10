@@ -66,7 +66,7 @@ namespace graphics3d
          }
 
       };
-      //::particle* pparticle, const ::string_array& faces
+      //::particle* pparticle, const ::string_array_base& faces
 
       //::pointer < engine >                m_pengine;
       ::graphics3d::model < Vertex >      m_pmodelCube;
@@ -104,7 +104,7 @@ namespace graphics3d
 
       //unsigned int skyboxVAO, skyboxVBO, skyboxEBO;
       //unsigned int cubemapTexture;
-      //::string_array facesCubemap;
+      //::string_array_base facesCubemap;
 
       
    };

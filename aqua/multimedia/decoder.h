@@ -5,7 +5,7 @@
 //#include "acme/filesystem/filesystem/path.h"
 
 
-class string_array_array;
+class string_array_array_base;
 
 
 namespace multimedia
@@ -43,7 +43,7 @@ namespace multimedia
 
       virtual bool            multimedia_get_attribute(::enum_id attribute, ::payload & payload);
 
-      virtual void            FillTitleInfo(string_array & wstraFormat, string_array_array & wstr2aTitle);
+      virtual void            FillTitleInfo(string_array_base & wstraFormat, string_array_array_base & wstr2aTitle);
 
 
    };

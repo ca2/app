@@ -411,7 +411,7 @@ void request::initialize_command_line2(const ::scoped_string & scopedstrCommandL
 }
 
 
-void request::initialize_arguments(::string_array& straArguments)
+void request::initialize_arguments(::string_array_base& straArguments)
 {
 
    common_construct();
@@ -727,7 +727,7 @@ void request::_001ParseCommandFork(const ::scoped_string & scopedstrCommandFork)
 }
 
 
-void request::_001ParseCommandArguments(::string_array& straArguments)
+void request::_001ParseCommandArguments(::string_array_base& straArguments)
 {
 
    property_set()._008ParseCommandArguments(straArguments, m_payloadFile, m_strExe);

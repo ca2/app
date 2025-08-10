@@ -205,7 +205,7 @@ bool file_context::exists(const ::file::path & pathParam)
 
          //::file::path pathZip;
 
-         //string_array straPath;
+         //string_array_base straPath;
 
          //if (!compress.get_patha(pathZip, straPath, path))
          //{
@@ -278,7 +278,7 @@ bool file_context::exists(const ::file::path & pathParam)
 
          //::file::path pathZip;
 
-         //string_array straPath;
+         //string_array_base straPath;
 
          //if (!compress.get_patha(pathZip, straPath, path))
          //{
@@ -1022,7 +1022,7 @@ memory file_context::beginning(const ::payload & payloadFile, memsize size, bool
 }
 
 
-void file_context::put_lines(const ::payload & payloadFile, const string_array & stra, const plain_text_file_options & options)
+void file_context::put_lines(const ::payload & payloadFile, const string_array_base & stra, const plain_text_file_options & options)
 {
 
    //try
@@ -1059,7 +1059,7 @@ void file_context::put_lines(const ::payload & payloadFile, const string_array &
 }
 
 
-//void file_context::put_lines_utf8(const ::payload &payloadFile, const string_array &stra)
+//void file_context::put_lines_utf8(const ::payload &payloadFile, const string_array_base &stra)
 //{
 //
 //   try
@@ -1091,7 +1091,7 @@ void file_context::put_lines(const ::payload & payloadFile, const string_array &
 //}
 
 
-//void file_context::_put_lines(::file::file *pfile, const string_array &stra)
+//void file_context::_put_lines(::file::file *pfile, const string_array_base &stra)
 //{
 //
 //   if (pfile == nullptr)
@@ -1111,7 +1111,7 @@ void file_context::put_lines(const ::payload & payloadFile, const string_array &
 //}
 
 
-void file_context::get_lines(string_array & stra, const ::payload & payloadFile, bool bAddEmpty, bool bNoExceptionIfFailToOpen)
+void file_context::get_lines(string_array_base & stra, const ::payload & payloadFile, bool bAddEmpty, bool bNoExceptionIfFailToOpen)
 {
 
    file_pointer pfile;
@@ -4190,7 +4190,7 @@ bool file_context::is_link(const ::file::path & path)
    //}
 
    //
-   //void file_context::lines(string_array & patha, const ::payload & payloadFile)
+   //void file_context::lines(string_array_base & patha, const ::payload & payloadFile)
    //{
    //
    //   return psystem->m_spfile->lines(patha, payloadFile, get_app());
@@ -4198,7 +4198,7 @@ bool file_context::is_link(const ::file::path & path)
    //}
    //
    //
-   //void file_context::put_lines(const ::payload & payloadFile, const string_array & patha)
+   //void file_context::put_lines(const ::payload & payloadFile, const string_array_base & patha)
    //{
    //   return psystem->m_spfile->put_lines(payloadFile, patha, get_app());
    //}
@@ -4340,7 +4340,7 @@ void file_context::crypto_get(const ::payload & payloadFile, string & str, const
 }
 
 
-void file_context::save_lines(const ::payload & payloadFile, string_array & stra)
+void file_context::save_lines(const ::payload & payloadFile, string_array_base & stra)
 {
 
    string str = stra.implode("\n");
@@ -4352,7 +4352,7 @@ void file_context::save_lines(const ::payload & payloadFile, string_array & stra
 }
 
 
-void file_context::load_lines(string_array & stra, const ::payload & payloadFile)
+void file_context::load_lines(string_array_base & stra, const ::payload & payloadFile)
 {
 
    string str = as_string(payloadFile);

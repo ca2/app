@@ -50,8 +50,8 @@ namespace apex
       //
       //       ::pointer < ::input::input >                       m_pinput;
       //
-      //       string_array                                       m_straCommandLineAccumul;
-      //       string_array                                       m_straCommandLineExtra;
+      //       string_array_base                                       m_straCommandLineAccumul;
+      //       string_array_base                                       m_straCommandLineExtra;
       //       class ::time                                         m_timeCommandLineLast;
       //       int                                                m_iCommandLineDelay;
       //
@@ -107,7 +107,7 @@ namespace apex
       //
       //#elif defined(UNIVERSAL_WINDOWS)
       //
-      //      void system_construct(const ::string_array & stra);
+      //      void system_construct(const ::string_array_base & stra);
       //
       //#else
       //
@@ -226,7 +226,7 @@ namespace apex
       //virtual string ::url::encode(const ::scoped_string & scopedstr);
 
 
-      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      //virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
       //virtual string get_locale_schema_dir() override;
 
       ::operating_system::department* operating_system() override;
@@ -366,7 +366,7 @@ namespace apex
       //
       //#endif
 
-      virtual bool defer_accumulate_on_open_file(string_array stra, const ::scoped_string & scopedstrExtra) override;
+      virtual bool defer_accumulate_on_open_file(string_array_base stra, const ::scoped_string & scopedstrExtra) override;
 
 
       //virtual bool merge_accumulated_on_open_file(::request * prequest);
@@ -493,7 +493,7 @@ namespace apex
       virtual int console_end(::e_status estatus) override;
 
 
-      //virtual void get_public_internet_domain_extension_list(string_array& stra) override;
+      //virtual void get_public_internet_domain_extension_list(string_array_base& stra) override;
 
 
       ::string fetch_public_internet_domain_extension_list_text() override;

@@ -142,7 +142,7 @@ public:
       ::int_array  * m_pia;
       ::payload_array  * m_ppayloada;
       ::property_set  * m_ppropertyset;
-      ::long_long_array * m_pi64a;
+      ::long_long_array * m_plonglonga;
       ::memory * m_pmemory;
       ::file::path_object * m_ppath;
       payload_all_t                          m_payloadall;
@@ -225,8 +225,8 @@ public:
    payload(const ::color::hls & hls);
    payload(const ::subparticle & particle);
    payload(const ::file::path & path);
-   payload(const ::string_array & stra);
-   payload(const ::int_array & ia);
+   payload(const ::string_array_base & stra);
+   payload(const ::int_array_base & ia);
    payload(const ::payload_array & payloada);
    payload(const ::property_set & set);
    //payload(const ::property & property);
@@ -525,9 +525,9 @@ public:
    ::atom as_atom(const ::atom & idDefault) const;
 
    ::memory as_memory() const;
-   ::string_array as_string_array() const;
-   ::int_array as_int_array() const;
-   ::long_long_array as_long_long_array() const;
+   ::string_array_base as_string_array() const;
+   ::int_array_base as_int_array() const;
+   ::long_long_array_base as_long_long_array() const;
    ::payload_array as_payload_array()  const;
    ::property_set as_property_set() const;
    class ::time as_time() const;
@@ -680,9 +680,9 @@ public:
    ::atom & atom_reference();
 
 
-   ::string_array & string_array_reference();
-   ::int_array & int_array_reference();
-   ::long_long_array & long_long_array_reference();
+   ::string_array_base & string_array_reference();
+   ::int_array_base & int_array_reference();
+   ::long_long_array_base & long_long_array_reference();
    ::payload_array & payload_array_reference();
    class ::time & time_reference();
    ::property_set & property_set_reference();
@@ -695,9 +695,9 @@ public:
    ::color::color & color_reference();
    ::color::hls & color_hls_reference();
 
-   const ::string_array & string_array_reference() const;
-   const ::int_array & int_array_reference() const;
-   const ::long_long_array & long_long_array_reference() const;
+   const ::string_array_base & string_array_reference() const;
+   const ::int_array_base & int_array_reference() const;
+   const ::long_long_array_base & long_long_array_reference() const;
    const ::payload_array & payload_array_reference() const;
    const class time & time_reference() const;
    const ::property_set & property_set_reference() const;
@@ -1136,8 +1136,8 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
    //}
    payload & operator = (const ::payload & payload);
-   payload & operator = (const ::int_array & ia);
-   payload & operator = (const ::string_array & stra);
+   payload & operator = (const ::int_array_base & ia);
+   payload & operator = (const ::string_array_base & stra);
    payload & operator = (const ::memory & memory);
    payload & operator = (const ::payload_array & payloada);
    payload & operator = (const ::property_set & propset);
@@ -1553,7 +1553,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
 
 
-   void _001Add(const ::string_array & stra);
+   void _001Add(const ::string_array_base & stra);
 
 
    void defer_run_payload();

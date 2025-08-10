@@ -88,7 +88,7 @@ namespace image
 
       virtual ::image::image_pointer load_image(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
       virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions = ::image::load_options());
-      virtual ::image::image_pointer load_matter_icon(string_array & straMatter, const ::scoped_string & scopedstrIcon);
+      virtual ::image::image_pointer load_matter_icon(string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
       virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
       virtual ::image::image_pointer load_thumbnail(const ::scoped_string & scopedstrPath);
       virtual ::image::image_pointer load_dib(const ::file::path & pathDib);
@@ -107,7 +107,7 @@ namespace image
 
       virtual void _load_image(::image::image *pimage, const ::payload & payloadFile, const ::image::load_options & options = ::image::load_options());
       virtual void _load_matter_image(::image::image *pimage, const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions = ::image::load_options());
-      virtual void _load_matter_icon(::image::image *pimage, string_array & straMatter, const ::scoped_string & scopedstrIcon);
+      virtual void _load_matter_icon(::image::image *pimage, string_array_base & straMatter, const ::scoped_string & scopedstrIcon);
       virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile, int w, int h);
       virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile);
       virtual void _load_dib(::image::image *pimage, const ::file::path & pathDib);

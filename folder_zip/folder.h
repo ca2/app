@@ -52,7 +52,7 @@ namespace folder_zip
 
       ::file_pointer get_file() override;
 
-      void e_extract_all(const ::file::path& pathTargetDir, ::file::path_array_base* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback = {}) override;
+      void e_extract_all(const ::file::path& pathTargetDir, ::file::path_array_base* ppatha, string_array_base* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback = {}) override;
       ::file::path e_extract_first_ends(const ::file::path& pathTargetDir, const ::scoped_string& scopedstr) override;
 
 

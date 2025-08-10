@@ -346,7 +346,7 @@ namespace user
       virtual int _001GetGroupHeight(::collection::index iGroup);
 
 
-      virtual void FilterInclude(::int_array & array);
+      virtual void FilterInclude(::int_array_base & array);
       virtual void FilterInclude(::collection::index iItem);
       virtual void FilterExcludeAll();
       virtual void FilterClose();
@@ -365,7 +365,7 @@ namespace user
       virtual ::collection::index data_key_to_column_key(const ::scoped_string & strDataKey);
       virtual ::collection::index data_key_to_sub_item(const ::scoped_string & strDataKey);
       virtual bool has_data_key(const ::scoped_string & strDataKey);
-      virtual void get_data_selection(const ::scoped_string & scopedstrDataKey,::string_array & straSelection);
+      virtual void get_data_selection(const ::scoped_string & scopedstrDataKey,::string_array_base & straSelection);
 
       virtual void set_data_interface(mesh_data * pinterface);
       virtual void cache_hint();

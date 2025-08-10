@@ -142,7 +142,7 @@ inline bool predicate_Sleep(int iTime, PRED pred);
 ////   }
 ////
 ////
-////   int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
+////   int system::pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
 ////   {
 ////
 ////      throw_todo();

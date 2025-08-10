@@ -33,7 +33,7 @@ namespace fs_folder_sync_onedrive
 
    bool folder_sync::check_files(
       const ::file::path& pathSourceFolder,
-      const ::string_array& straSource,
+      const ::string_array_base& straSource,
       const ::function < void(const ::scoped_string&) >& callbackStatus)
    {
 
@@ -45,7 +45,7 @@ namespace fs_folder_sync_onedrive
    void folder_sync::copy_files_out(
       const ::file::path& pathTargetFolder,
       const ::file::path& pathSourceFolderParam,
-      const ::string_array& straSource,
+      const ::string_array_base& straSource,
       const ::function < void(const ::scoped_string&) >& callbackStatus)
    {
 

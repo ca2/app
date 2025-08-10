@@ -326,9 +326,9 @@ public:
    int                 cx,
    int                 cy);
 
-   //void GetMultiLineTextExtent(HDC hDC, string_array *pArray, LPSIZE32 pSize);
+   //void GetMultiLineTextExtent(HDC hDC, string_array_base *pArray, LPSIZE32 pSize);
 
-   //void DrawMultiLineText(HDC hDC, string_array *pArray);
+   //void DrawMultiLineText(HDC hDC, string_array_base *pArray);
 
 
    ::image::image_pointer get_work_image();

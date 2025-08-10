@@ -95,7 +95,7 @@ namespace filemanager
 
       //virtual bool browse(::pointer<::file::item>item, const ::action_context & action_context) override;
 
-      virtual void on_file_manager_open_context_menu_folder(::pointer<::file::item> item, string_array & straCommand, string_array & straCommandTitle, const ::action_context & action_context);
+      virtual void on_file_manager_open_context_menu_folder(::pointer<::file::item> item, string_array_base & straCommand, string_array_base & straCommandTitle, const ::action_context & action_context);
       virtual void on_file_manager_open_context_menu_file(const ::file::item_array & itema, const ::action_context & action_context);
       virtual void on_file_manager_open_context_menu(const ::action_context & action_context);
       virtual void on_file_manager_open(const ::file::item_array & itema, const ::action_context & action_context);

@@ -282,7 +282,7 @@ CLASS_DECL_ACME bool main_finalize()
 //}
 
 
-CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
+CLASS_DECL_ACME bool is_shared_library_busy(const string_array_base & stra)
 {
 
    return true;

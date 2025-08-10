@@ -17,8 +17,8 @@ namespace userex
 
       ::file::path                     m_pathFolder;
       ::pointer < ::file::listing >    m_plisting;
-      //string_array                   m_straPattern;
-      //string_array                   m_straPatternNames;
+      //string_array_base                   m_straPattern;
+      //string_array_base                   m_straPatternNames;
       ::file::file_dialog_filter       m_filedialogfilter;
       string                           m_strLinkPrefix;
       int                              m_iForkAddDib;
@@ -30,7 +30,7 @@ namespace userex
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
 
-      virtual string_array get_ls_pattern_stra() const;
+      virtual string_array_base get_ls_pattern_stra() const;
 
       void update_data(bool bSaveAndValidate) override;
 

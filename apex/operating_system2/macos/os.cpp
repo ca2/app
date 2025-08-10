@@ -65,7 +65,7 @@ CLASS_DECL_APEX bool _istlead(int ch)
 //
 //
 //
-//string_array apple_browse_file_open(const_char_pointer *pszStartDir, bool bMulti)
+//string_array_base apple_browse_file_open(const_char_pointer *pszStartDir, bool bMulti)
 //{
 //
 //

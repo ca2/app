@@ -240,7 +240,7 @@ namespace nanoui
 
       //
       //   /// Handle a file drop happening
-      //   virtual bool drop_event(const ::string_array & /* filenames */) {
+      //   virtual bool drop_event(const ::string_array_base & /* filenames */) {
       //      return false; /* To be overridden */
       //   }
       //

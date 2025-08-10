@@ -28,7 +28,7 @@ namespace interprocess
       string_map < ::pointer<::interprocess::caller > >        m_callermap;
       string_map < ::pointer< ::mutex > >                      m_mapAppMutex;
       ::pointer<::interprocess::target>                        m_ptarget;
-      string_array                                             m_straModule;
+      string_array_base                                             m_straModule;
       ::pointer<::interprocess::handler>                       m_phandler;
 
       // strTask - Task

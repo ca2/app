@@ -1156,7 +1156,7 @@ namespace aura
 //
 //      string strPath = getenv("PATH");
 //
-//      string_array straPath;
+//      string_array_base straPath;
 //
 //      straPath.explode(":", strPath);
 //
@@ -2993,7 +2993,7 @@ retry_license:
    //}
 
 
-   //void application::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   //void application::matter_locator_locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    //{
 
    //   if (strLocale.is_empty() || strSchema.is_empty())
@@ -3015,7 +3015,7 @@ retry_license:
    //}
 
 
-   //void application::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   //void application::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    //{
 
    //  if (straMatterLocator.has_elements())
@@ -3101,14 +3101,14 @@ retry_license:
    //  //localeschema.m_bAddAlternateStyle = true;
 
 
-   //  string_array straLocale;
-   //  string_array straSchema;
+   //  string_array_base straLocale;
+   //  string_array_base straSchema;
 
    //  straLocale.add(get_locale());
    //  straSchema.add(get_schema());
 
 
-   //  string_array stra;
+   //  string_array_base stra;
 
    //  stra = value("locale").stra();
 
@@ -8268,7 +8268,7 @@ namespace aura
    //   int application::send_simple_command(const ::scoped_string & scopedstr, void* osdataSender)
    //   {
    //      string strApp;
-   //      string_array stra;
+   //      string_array_base stra;
    //      stra.add_tokens(scopedstr, "::", true);
    //      if (stra.get_size() > 0)
    //      {
@@ -9279,7 +9279,7 @@ namespace aura
    //
    //#ifdef WINDOWS_DESKTOP
    //
-   //      string_array straMatter;
+   //      string_array_base straMatter;
    //
    //      straMatter.add("main");
    //

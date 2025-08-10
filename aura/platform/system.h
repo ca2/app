@@ -215,7 +215,7 @@ namespace aura
       //virtual string ::url::encode(const ::scoped_string & scopedstr) override;
 
 
-      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
+      //virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
       //virtual string get_locale_schema_dir() override;
 
 
@@ -501,7 +501,7 @@ namespace aura
 
       //::pointer<regex>create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr);
       //::pointer<regex_context>create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount);
-      //virtual int pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount);
+      //virtual int pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount);
 
 
       //virtual string get_system_platform() override;
@@ -544,7 +544,7 @@ namespace aura
 //
 //#endif
 //
-//      virtual bool defer_accumulate_on_open_file(string_array stra, const ::scoped_string & scopedstrExtra) override;
+//      virtual bool defer_accumulate_on_open_file(string_array_base stra, const ::scoped_string & scopedstrExtra) override;
 //
 //      virtual bool merge_accumulated_on_open_file(::request * prequest) override;
 //

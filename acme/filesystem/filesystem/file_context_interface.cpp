@@ -85,12 +85,12 @@ void file_context_interface::safe_get_memory(const ::payload& payloadFile, memor
 }
 
 
-string_array file_context_interface::safe_get_lines(const ::payload& payloadFile, ::e_status* pestatus)
+string_array_base file_context_interface::safe_get_lines(const ::payload& payloadFile, ::e_status* pestatus)
 {
 
    ::string str = safe_get_string(payloadFile, pestatus);
 
-   ::string_array stra;
+   ::string_array_base stra;
 
    stra.add_lines(str);
 

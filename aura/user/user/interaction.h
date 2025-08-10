@@ -325,8 +325,8 @@ namespace user
       ::property_set                            m_setValue;
       int                                       m_iSubItemDisableCheckBox;
       int                                       m_iSubItemDuplicateCheckBox;
-      ::int_array                               m_iaSubItemDuplicate;
-      ::int_array                               m_iaSubItemDisable;
+      ::int_array_base                               m_iaSubItemDuplicate;
+      ::int_array_base                               m_iaSubItemDisable;
 
       string                                    m_strClass;
       string_to_string                          m_mapClassStyle;

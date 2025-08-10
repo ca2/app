@@ -39,11 +39,11 @@ namespace wallpaper_system_summary
       //void *                              m_punzfileinfo;
       string                              m_strFileName;
       unsigned long long                                 m_iPosition;
-      string_array                        m_straPath;
+      string_array_base                        m_straPath;
       ::pointer<folder>                  m_pfolder;
       //pointer_array < ::file_container >   m_filea;
       //pointer_array < ::zip::in_file >     m_infilea;
-      string_array                        m_straPrefix;
+      string_array_base                        m_straPrefix;
       e_mode                              m_emode;
       string                              m_strZipFile;
 
@@ -68,7 +68,7 @@ namespace wallpaper_system_summary
       //virtual bool zip_open(::zip::file * pzfile,const ::file::path & path);
 
 
-      //virtual bool unzip_open(::file::file * pfile, const string_array & = {}, int iBufferLevel = 2, ::file::enum_type * petype = nullptr);
+      //virtual bool unzip_open(::file::file * pfile, const string_array_base & = {}, int iBufferLevel = 2, ::file::enum_type * petype = nullptr);
       //virtual bool unzip_open(::zip::file * pzfile,const ::file::path & path);
 
       //virtual bool unzip_open(const_char_pointer ,::file::enum_type * petype = nullptr);

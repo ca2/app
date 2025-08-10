@@ -89,7 +89,7 @@ namespace nano
          } else
          {
 
-            string_array straLines;
+            string_array_base straLines;
 
             straLines.add_lines(scopedstr);
 

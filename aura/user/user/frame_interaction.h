@@ -40,9 +40,9 @@ namespace user
       
       
       ::pointer<::windowing::menu>m_pmenu;
-      string_array                                 m_straMenuParent;
-      string_array                                 m_straMenuName;
-      string_array                                 m_straMenuId;
+      string_array_base                                 m_straMenuParent;
+      string_array_base                                 m_straMenuName;
+      string_array_base                                 m_straMenuId;
       ::pointer<::task_pool>                      m_ptaskpool;
 
   

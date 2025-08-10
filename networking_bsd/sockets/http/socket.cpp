@@ -432,7 +432,7 @@ namespace sockets
    }
 
 
-   bool http_socket::http_filter_response_header(string & strKey, string_array & straValue)
+   bool http_socket::http_filter_response_header(string & strKey, string_array_base & straValue)
    {
       __UNREFERENCED_PARAMETER(strKey);
       __UNREFERENCED_PARAMETER(straValue);
@@ -489,7 +489,7 @@ namespace sockets
 
          string strKey = pproperty->name();
 
-         string_array & straValue = pproperty->as_stra();
+         string_array_base & straValue = pproperty->as_stra();
 
          if (!http_filter_response_header(strKey, straValue))
          {

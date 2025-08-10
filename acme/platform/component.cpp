@@ -112,7 +112,7 @@ void component::_update_installed_implementations()
 
       ::string strImplementation = file.name();
 
-      if (strImplementation.case_insensitive_begins_eat(m_strComponent + "_")
+      if (strImplementation.case_insensitive_begins_eat(node()->dynamic_library_prefix() + m_strComponent + "_")
          && strImplementation.case_insensitive_ends_eat(node()->dynamic_library_suffix()))
       {
 

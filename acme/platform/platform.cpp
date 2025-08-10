@@ -1348,7 +1348,7 @@ g_bWindowingOutputDebugString = true;
 
 #ifdef CUBE
 
-      return create_library_statically(strLibrary);
+      return create_library_statically(scopedstrLibrary);
 
 #else
 

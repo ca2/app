@@ -4,12 +4,6 @@
 #include "acme/inline/application/main.h"
 
 
-#ifdef CUBE
-#include  "acme/platform/factory_function.h"
-#include "operating_system/appconfig.h"
-#include "_static_factory_.inl"
-DO_FACTORY(REFERENCE_FACTORY)
-#endif
 
 
 #ifdef WINDOWS

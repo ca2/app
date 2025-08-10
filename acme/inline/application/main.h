@@ -31,4 +31,11 @@ APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_sys
 APPLICATION_NAMESPACE_MAIN_EXPORT int APPLICATION_NAMESPACE_MAIN(main)();
 
 
+#ifdef CUBE
+#include "acme/platform/factory_function.h"
+#include "operating_system/appconfig.h"
+#include "__implement/_static_factory_.inl"
+#endif
+
+
 

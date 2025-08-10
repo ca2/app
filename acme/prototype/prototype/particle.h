@@ -93,14 +93,39 @@ public:
    mutable ::platform::application *            m_papplication;
    mutable ::particle_pointer                   m_pparticleSynchronization;
 
+
 //#if REFERENCING_DEBUGGING
-   particle(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined) :
-      ::signal_handler::base(eflag, estatus),
+   particle() :
+      ::quantum(),
+      ::subparticle(),
+      ::signal_handler::base(),
+      m_papplication(nullptr),
+      m_pparticleSynchronization(nullptr)
+   {
+
+
+   }
+
+
+   particle(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
+   ::quantum(eflag, estatus),
+   ::subparticle(eflag, estatus),
+   ::signal_handler::base(eflag, estatus),
       m_papplication(nullptr),
       m_pparticleSynchronization(nullptr)
    {
          
          
+   }
+
+
+   particle(const ::particle & particle) :
+      ::quantum(particle),
+      ::subparticle(particle),
+      ::signal_handler::base(particle)
+   {
+
+
    }
    
    

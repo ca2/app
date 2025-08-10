@@ -16,12 +16,30 @@ public:
    ::e_status                          m_estatus;
 
 
-   quantum(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined) :
+
+   quantum()
+   {
+
+
+   }
+
+
+   quantum(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
       m_eflagElement(eflag),
       m_estatus(estatus)
    {
 
+
    }
+
+
+   quantum(const ::quantum & quantum)
+   {
+
+
+   }
+
+
    virtual ~quantum();
 
 

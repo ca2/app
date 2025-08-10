@@ -64,7 +64,7 @@ public:
 
 
    ::critical_section                                             m_criticalsection;
-   ::comparable_array < reference_item_array * >                  m_item2a;
+   ::comparable_array_base < reference_item_array * >             m_item2a;
    bool                                                           m_bEnable = true;
    long long                                                      m_iCount = 0;
 

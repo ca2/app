@@ -9,8 +9,6 @@
 #include "acme/platform/system.h"
 
 
-
-
 #if REFERENCING_DEBUGGING
 
 
@@ -30,7 +28,14 @@ bool g_bDefaultEnableObjectReferenceCountDebug = false;
 thread_local bool t_bDefaultEnableObjectReferenceCountDebug = true;
 
 
-//CLASS_DECL_ACME void on_construct_particle(::particle * pparticle);
+subparticle::subparticle() :
+   ::quantum(),
+   m_countReference(1)
+{
+
+   subparticle_referencing_debugging_construct();
+
+}
 
 
 subparticle::subparticle(const ::e_flag & eflag, const ::e_status & estatus) :
@@ -38,9 +43,25 @@ subparticle::subparticle(const ::e_flag & eflag, const ::e_status & estatus) :
    m_countReference(1)
 {
 
-#if REFERENCING_DEBUGGING
+   subparticle_referencing_debugging_construct();
 
-   //m_pstringCallStackTrace = nullptr;
+}
+
+
+subparticle::subparticle(const ::subparticle & subparticle) :
+   ::quantum(subparticle),
+   m_countReference(1)
+{
+
+   subparticle_referencing_debugging_construct();
+
+}
+
+
+void subparticle::subparticle_referencing_debugging_construct()
+{
+
+#if REFERENCING_DEBUGGING
 
    if (!this->is_referencing_debugging_enabled()
       || !g_bDefaultEnableObjectReferenceCountDebug)
@@ -59,23 +80,7 @@ subparticle::subparticle(const ::e_flag & eflag, const ::e_status & estatus) :
 }
 
 
-//particle::particle(disable_referencing_debugging_t) :
-//   m_countReference(1)
-//{
-//
-//#if REFERENCING_DEBUGGING
-//
-//   disable_referencing_debugging();
-//
-//#endif
-//
-//   ::allocator::on_construct_particle(this);
-//
-//}
-
-
 #endif
-
 
 
 subparticle::~subparticle()

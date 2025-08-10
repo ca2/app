@@ -33,9 +33,21 @@ public:
 
 
 #if REFERENCING_DEBUGGING
-   subparticle(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined);
+   subparticle();
 #else
-   subparticle(const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined) :
+   subparticle() :
+      ::quantum()
+   {
+
+
+   }
+#endif
+
+
+#if REFERENCING_DEBUGGING
+   subparticle(const ::e_flag & eflag, const ::e_status & estatus = undefined);
+#else
+   subparticle(const ::e_flag & eflag, const ::e_status & estatus = undefined) :
       ::quantum(eflag, estatus),
       m_countReference(1)
    {
@@ -43,7 +55,27 @@ public:
          
    }
 #endif
+
+
+#if REFERENCING_DEBUGGING
+   subparticle(const ::subparticle & subparticle);
+#else
+   subparticle(const ::subparticle & subparticle) :
+      ::quantum(subparticle)
+   {
+
+
+   }
+#endif
+
    ~subparticle() override;
+
+
+#if REFERENCING_DEBUGGING
+
+   void subparticle_referencing_debugging_construct();
+
+#endif
 
 
    virtual void initialize(::particle * pparticle);

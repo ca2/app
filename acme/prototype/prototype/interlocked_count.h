@@ -12,9 +12,9 @@ class INLINE_CLASS_DECL_ACME interlocked_long_long
 protected:
 
 
-   //char                 m_sz[16];
-   //long long *              m_plong;
-   long long                   m_hi;
+   //char               m_sz[16];
+   //long long *        m_plong;
+   long long            m_ll;
 
 
 public:
@@ -39,7 +39,7 @@ public:
    inline interlocked_long_long& operator-=(long long l);
 
 
-   inline long long as_integer() const { return m_hi;}
+   inline long long as_integer() const { return m_ll;}
    
 };
 
@@ -99,7 +99,7 @@ using interlocked_count = ::interlocked_long_long;
 
 
 inline interlocked_long_long::interlocked_long_long(long long i) :
-   m_hi(i)
+   m_ll(i)
 {
 
 }
@@ -108,7 +108,7 @@ inline interlocked_long_long::interlocked_long_long(long long i) :
 inline interlocked_long_long& interlocked_long_long::operator = (long long i)
 {
 
-   atomic_assign64(&m_hi, i);
+   atomic_assign64(&m_ll, i);
 
    return *this;
 
@@ -118,7 +118,7 @@ inline interlocked_long_long& interlocked_long_long::operator = (long long i)
 inline interlocked_long_long::operator long long() const
 {
 
-   return m_hi;
+   return m_ll;
 
 }
 
@@ -126,7 +126,7 @@ inline interlocked_long_long::operator long long() const
 inline long long interlocked_long_long::operator ++()
 {
 
-   return atomic_increment64(&m_hi);
+   return atomic_increment64(&m_ll);
 
 }
 
@@ -134,7 +134,7 @@ inline long long interlocked_long_long::operator ++()
 inline long long interlocked_long_long::operator--()
 {
 
-   return atomic_decrement64(&m_hi);
+   return atomic_decrement64(&m_ll);
 
 }
 
@@ -142,11 +142,11 @@ inline long long interlocked_long_long::operator--()
 inline long long interlocked_long_long::operator ++(int)
 {
 
-   auto i = m_hi;
+   auto ll = m_ll;
 
-   atomic_increment64(&m_hi);
+   atomic_increment64(&m_ll);
 
-   return i;
+   return ll;
 
 }
 
@@ -154,29 +154,29 @@ inline long long interlocked_long_long::operator ++(int)
 inline long long interlocked_long_long::operator--(int)
 {
 
-   auto i = m_hi;
+   auto ll = m_ll;
 
-   atomic_decrement64(&m_hi);
+   atomic_decrement64(&m_ll);
 
-   return i;
+   return ll;
 
 }
 
 
-inline interlocked_long_long& interlocked_long_long::operator +=(long long i)
+inline interlocked_long_long& interlocked_long_long::operator +=(long long ll)
 {
 
-   atomic_add64(&m_hi, i);
+   atomic_add64(&m_ll, ll);
 
    return *this;
 
 }
 
 
-inline interlocked_long_long& interlocked_long_long::operator-=(long long i)
+inline interlocked_long_long& interlocked_long_long::operator-=(long long ll)
 {
 
-   atomic_subtract64(&m_hi, i);
+   atomic_subtract64(&m_ll, ll);
 
    return *this;
 

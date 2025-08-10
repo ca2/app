@@ -1,6 +1,7 @@
 // Created by camilo on 2012-12-18 18:44 <3ThomasBorregaardSorensen!!
 #pragma once
 #include "scoped_string_base.h"
+#include "scoped_string_base.h"
 
 
 template < typename ITERATOR_TYPE >
@@ -293,7 +294,7 @@ public:
    }
 
 
-   scoped_string_base & operator +=(const scoped_string_base & scopedstr)
+   scoped_string_base & _append(const scoped_string_base & scopedstr)
    {
 
       if (this->m_erange & e_range_scoped_ownership
@@ -310,27 +311,98 @@ public:
          auto size = this->size();
          this->m_begin = nullptr;
          this->m_end = nullptr;
+         this->m_erange = e_range_none;
 
-         this->construct_str(string_concatenate(data, size, scopedstr.data(), scopedstr.size()));
+         string_concatenate(*((STRING *)this), data, size, scopedstr.data(), scopedstr.size());
 
       }
 
    }
 
 
-   void assign_block(const block & block)
+   scoped_string_base & append(const scoped_string_base & scopedstr)
    {
+      if (this->has_character())
+      {
+         //::string str(m_scopedstrLine + ::string(buf + x, i - x));
+         //m_scopedstrLine.destroy();
+         //m_scopedstrLine = str;
+         this->_append(scopedstr);
+      }
+      else
+      {
+         this->assign(scopedstr);
+         //m_scopedstrLine.destroy();
+         //m_scopedstrLine.construct_str({buf + x, i - x});
+      }
 
-      destroy();
-
-      this->m_begin = (ITERATOR_TYPE) block.m_begin;
-      this->m_end = (ITERATOR_TYPE) block.m_end;
-      this->m_erange = e_range_none;
+      return *this;
 
    }
 
 
-   void assign_string(const STRING & str)
+
+   scoped_string_base & operator +=(const scoped_string_base & scopedstr)
+   {
+
+      // if (this->m_erange & e_range_scoped_ownership
+      // && this->m_erange& e_range_string)
+      // {
+      //
+      //    ((STRING *)this)->append(scopedstr);
+      //
+      // }
+      // else
+      // {
+      //
+      //    auto data = this->data();
+      //    auto size = this->size();
+      //    this->m_begin = nullptr;
+      //    this->m_end = nullptr;
+      //
+      //    this->construct_str(string_concatenate(data, size, scopedstr.data(), scopedstr.size()));
+      //
+      // }
+
+      return this->append(scopedstr);
+
+   }
+
+
+   scoped_string_base & assign_range(const scoped_string_base & scopedstr)
+   {
+
+      if (this->m_begin == scopedstr.m_begin
+         && this->m_end == scopedstr.m_end)
+      {
+
+         this->m_erange = scopedstr.m_erange;
+
+      }
+      else if (this->m_erange & e_range_scoped_ownership
+      && this->m_erange& e_range_string
+      && !((STRING *)this)->is_shared()
+      && scopedstr.length_in_bytes() < ((STRING *)this)->storage_size())
+      {
+
+         *((STRING *)this) = scopedstr;
+
+      }
+      else
+      {
+
+         this->m_begin = scopedstr.m_begin;
+         this->m_end = scopedstr.m_end;
+         this->m_erange = scopedstr.m_erange;
+
+      }
+
+      return *this;
+
+   }
+
+
+   scoped_string_base & assign_copy(const STRING & str)
    {
 
       if (this->m_erange & e_range_scoped_ownership
@@ -347,9 +419,73 @@ public:
          this->m_end = nullptr;
 
          construct_str(str);
+
       }
 
+      return *this;
+
    }
+
+
+   scoped_string_base & assign(const scoped_string_base & scopedstr)
+   {
+
+      if (this->m_erange & e_range_scoped_ownership
+      && this->m_erange& e_range_string)
+      {
+
+         if (scopedstr.m_erange & e_range_scoped_ownership
+            && scopedstr.m_erange& e_range_string)
+         {
+
+            *((STRING *)this) = scopedstr;
+
+         }
+         else
+         {
+
+            this->destroy();
+
+            this->construct_str(scopedstr);
+
+
+         }
+
+      }
+      else if (scopedstr.m_erange & e_range_scoped_ownership
+         && scopedstr.m_erange& e_range_string)
+      {
+
+
+         this->m_begin = nullptr;
+
+         this->m_end = nullptr;
+
+         this->construct_str(scopedstr);
+
+
+      }
+      else
+      {
+
+         this->m_begin = scopedstr.m_begin;
+         this->m_end = scopedstr.m_end;
+         this->m_erange = scopedstr.m_erange;
+
+      }
+
+      return *this;
+
+   }
+
+
+   scoped_string_base & operator = (const scoped_string_base & scopedstr)
+   {
+
+      return this->assign(scopedstr);
+
+   }
+
 
    //template < character_count n >
    //scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(cha); }

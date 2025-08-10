@@ -2842,17 +2842,9 @@ bool base_socket::SetSoKeepalive(bool x)
                buf[i] = 0;
                if (buf[x])
                {
-                  if (m_scopedstrLine.has_character())
-                  {
-                     ::string str(m_scopedstrLine + ::string(buf + x, i - x));
-                     m_scopedstrLine.destroy();
-                     m_scopedstrLine = str;
-                  }
-                  else
-                  {
-                     m_scopedstrLine.destroy();
-                     m_scopedstrLine.construct_str({buf + x, i - x});
-                  }
+
+                  m_scopedstrLine += {buf + x, i - x};
+
                }
                OnLine( m_scopedstrLine);
                if(IsCloseAndDelete())
@@ -2906,8 +2898,7 @@ bool base_socket::SetSoKeepalive(bool x)
          else if (buf[x])
          {
 
-            m_scopedstrLine.destroy();
-            m_scopedstrLine.construct_str({buf + x, string_safe_length(buf+x)});
+            m_scopedstrLine.assign_copy({buf + x, string_safe_length(buf+x)});
 
          }
 

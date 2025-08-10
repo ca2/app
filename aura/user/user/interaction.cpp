@@ -13833,13 +13833,13 @@ if(get_parent())
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
-      auto preferenceitemaA1 = m_pacmeuserinteractionaChildren->m_preferenceitema;
+      //auto preferenceitemaA1 = m_pacmeuserinteractionaChildren->m_preferenceitema;
 
       auto puiptraChildNew = __allocate ::pointer_array < ::acme::user::interaction >(*m_pacmeuserinteractionaChildren);
 
-      auto preferenceitemaA2 = m_pacmeuserinteractionaChildren->m_preferenceitema;
+      //auto preferenceitemaA2 = m_pacmeuserinteractionaChildren->m_preferenceitema;
 
-      auto preferenceitemaB1 = puiptraChildNew->m_preferenceitema;
+      //auto preferenceitemaB1 = puiptraChildNew->m_preferenceitema;
 
 
       zorder_sort(*puiptraChildNew, e_layout_sketch);

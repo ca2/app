@@ -36,7 +36,8 @@ public:
    subparticle();
 #else
    subparticle() :
-      ::quantum()
+      ::quantum(), 
+      m_countReference(1)
    {
 
 
@@ -61,9 +62,9 @@ public:
    subparticle(const ::subparticle & subparticle);
 #else
    subparticle(const ::subparticle & subparticle) :
-      ::quantum(subparticle)
+      ::quantum(subparticle),
+      m_countReference(1)
    {
-
 
    }
 #endif

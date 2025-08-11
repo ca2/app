@@ -3817,7 +3817,7 @@ thread_local ::task_index t_taskindex = new_task_index();
 }
 
 
-//::collection::index task_index()
+//::collection::index current_task_index()
 //{
 
 //   return task_index(::current_itask());
@@ -3997,7 +3997,7 @@ CLASS_DECL_ACME void set_main_thread()
 
    set_main_itask(current_itask());
    
-   set_main_task_index(task_index());
+   set_main_task_index(current_task_index());
 
 }
 
@@ -4015,7 +4015,7 @@ CLASS_DECL_ACME void set_main_thread()
 CLASS_DECL_ACME bool is_main_thread()
 {
 
-	return task_index() == main_task_index();
+	return ::current_task_index() == main_task_index();
 
 //   return current_itask() == main_itask();
 

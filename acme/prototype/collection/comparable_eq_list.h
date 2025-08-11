@@ -86,7 +86,7 @@ find_first_item(const TYPE & t, iterator p, iterator end) const
 
    }
 
-   while(p != end)
+   while(p && p != end)
    {
 
       if(*p == t)
@@ -117,7 +117,7 @@ find_last_item(const TYPE & t, iterator start, iterator p) const
 
    }
 
-   while(p != start)
+   while(p && p != start)
    {
 
       if(*p == t)

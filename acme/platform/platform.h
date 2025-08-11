@@ -236,15 +236,13 @@ namespace platform
 
 #if defined(WINDOWS) && defined(UNICODE)
 
-      void initialize_system(int argc, wchar_t * args[], wchar_t * envp[]);
+      void initialize_system(int argc, wchar_t * args[], wchar_t * envp[]) override;
 
-      void initialize_system(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow);
-
-#else
-
-      void initialize_system(int argc, platform_char ** args, platform_char ** envp) override;
+      void initialize_system(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow) override;
 
 #endif
+
+      void initialize_system(int argc, char ** args, char ** envp) override;
 
 
       void platform_initialize();

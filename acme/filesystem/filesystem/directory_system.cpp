@@ -1595,7 +1595,7 @@ void directory_system::init_system()
 
    ::string strAppId = this->appid();
 
-   information() << "directory_system::init_system strAppId : " << strAppId;
+   debug() << "directory_system::init_system strAppId : " << strAppId;
 
    m_pathDefaultAppData = compute_default_app_data_path();
 
@@ -1659,7 +1659,7 @@ void directory_system::init_system()
 
    }
 
-   information() << "m_pathAppData : " << m_pathAppData;
+   debug() << "m_pathAppData : " << m_pathAppData;
 
 }
 

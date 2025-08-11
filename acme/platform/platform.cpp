@@ -309,10 +309,10 @@ namespace platform
    }
 
 
-#else
+#endif
 
 
-   void platform::initialize_system(int argc, platform_char ** args, platform_char ** envp)
+   void platform::initialize_system(int argc, char ** args, char ** envp)
    {
 
       m_argc = argc;
@@ -321,8 +321,6 @@ namespace platform
 
    }
 
-
-#endif
 
 
    //void platform::initialize_memory_counter()

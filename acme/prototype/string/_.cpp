@@ -176,6 +176,9 @@ CLASS_DECL_ACME void log_const_ansi_range_literal(int n)
 CLASS_DECL_ACME void string_short_test()
 {
 
+
+#if 0
+
    const_char_pointer pszStdSchema = strdup("_std");
 
    ::atom idSchema;
@@ -198,5 +201,6 @@ CLASS_DECL_ACME void string_short_test()
 
    print_line(strTest);
 
+#endif
 
 }

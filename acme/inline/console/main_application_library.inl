@@ -113,46 +113,6 @@ APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_sys
 }
 
 
-#if defined(WINDOWS)
-APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_console_system)(int argc, char* argv[], char* envp[])
-#elif defined(__ANDROID__)
-APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_console_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
-#else
-APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_console_system)(int argc, char* argv[], char* envp[])
-#endif
-{
-
-   {
-
-      auto psystem = ::system();
-
-#if defined(WINDOWS)
-
-      psystem->initialize_system(argc, argv, envp);
-
-#else
-
-      psystem->initialize_system(argc, argv, envp);
-
-#endif
-
-#if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
-
-      psystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
-
-#elif defined(__ANDROID__)
-
-      psystem->set_resource_block(p1, p2);
-
-#endif
-
-      string_short_test();
-
-   }
-
-}
-
-
 APPLICATION_NAMESPACE_MAIN_EXPORT int APPLICATION_NAMESPACE_MAIN(main)()
 {
 

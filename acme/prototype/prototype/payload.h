@@ -1444,14 +1444,22 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    inline ::payload operator[] (const RANGE & range) const { return find_property_by_text(range); }
 
    template < has_as_string HAS_AS_STRING >
-   inline ::property & operator[] (const HAS_AS_STRING & has_as_string) { return get_property(has_as_string.as_string()); }
+   inline ::property & operator[] (const HAS_AS_STRING & has_as_string) 
+   requires (!character_range<HAS_AS_STRING>)
+   { return get_property(has_as_string.as_string()); }
    template < has_as_string HAS_AS_STRING >
-   inline ::payload operator[] (const HAS_AS_STRING & has_as_string) const { return find_property_by_text(has_as_string.as_string()); }
+   inline ::payload operator[] (const HAS_AS_STRING & has_as_string) const
+   requires (!character_range<HAS_AS_STRING>)
+   { return find_property_by_text(has_as_string.as_string()); }
 
    template < has_get_string HAS_GET_STRING >
-   inline ::property & operator[] (const HAS_GET_STRING & has_get_string) { return get_property(has_get_string.get_string()); }
+   inline ::property & operator[] (const HAS_GET_STRING & has_get_string) 
+   requires (!character_range<HAS_GET_STRING> && has_as_string<HAS_GET_STRING>)
+   { return get_property(has_get_string.get_string()); }
    template < has_get_string HAS_GET_STRING >
-   inline ::payload operator[] (const HAS_GET_STRING & has_get_string) const { return find_property_by_text(has_get_string.get_string()); }
+   inline ::payload operator[] (const HAS_GET_STRING & has_get_string) const 
+   requires (!character_range<HAS_GET_STRING>&& has_as_string<HAS_GET_STRING>)
+   { return find_property_by_text(has_get_string.get_string()); }
 
 
    //inline ::property & operator[] (::iptr i);

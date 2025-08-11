@@ -290,7 +290,7 @@ int __nanoui_get_image(::nano2d::context  * pcontext, const ::scoped_string & na
 
 
 
-void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::array<::pair<int, ::string>> & images, const ::scoped_string & path)
+void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::array<::pair<int, ::string>> & images, const ::scoped_string & scopedstrPath)
 {
 
 //   ::array<::pair<int, ::string> > result;
@@ -309,7 +309,7 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::arr
 
    ::file::listing_base listing;
 
-   listing.set_file_listing(path.c_str());
+   listing.set_file_listing(scopedstrPath);
 
    papexcontext->directory()->enumerate(listing);
 

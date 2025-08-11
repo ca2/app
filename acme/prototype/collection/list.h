@@ -936,11 +936,11 @@ template<class TYPE, class ARG_TYPE>
       else
       {
 
-         ASSERT(pnodeEnd->back().m_p.next().m_p == pnodeEnd);
+         ASSERT(pnodeEnd->back().next().m_p == pnodeEnd);
 
          this->m_end.m_p = pnodeEnd->back().m_p;
 
-         this->m_end.m_p.next().m_p = nullptr;
+         this->m_end.next().m_p = nullptr;
 
          this->m_count--;
 
@@ -1006,11 +1006,11 @@ void list<TYPE, ARG_TYPE>::erase_head()
       else
       {
 
-         ASSERT(pnodeBegin->next().m_p.back().m_p == pnodeBegin);
+         ASSERT(pnodeBegin->next().back().m_p == pnodeBegin);
 
          this->m_begin.m_p = pnodeBegin->next().m_p;
 
-         this->m_begin.m_p.back().m_p = nullptr;
+         this->m_begin.back().m_p = nullptr;
 
          this->m_count--;
 
@@ -1910,14 +1910,14 @@ template<class TYPE, class ARG_TYPE>
 void list<TYPE, ARG_TYPE>::_add_head_node(NODE * p)
 {
 
-   p.back().m_p = nullptr;
+   p->back().m_p = nullptr;
 
-   p.next().m_p = this->m_begin.m_p;
+   p->next().m_p = this->m_begin.m_p;
 
    if (this->m_begin.m_p)
    {
 
-      this->m_begin.m_p.back().m_p = p;
+      this->m_begin.back().m_p = p;
 
    }
    else

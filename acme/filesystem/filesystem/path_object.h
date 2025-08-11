@@ -15,16 +15,16 @@ namespace file
    {
    public:
 
-      path_object();
+      inline path_object();
       //path_object(::matter*);
-      path_object(const ::file::path_object & pathobject):path_object((const::file::path & )pathobject){}
-      path_object(const ::file::path& path);
-      path_object(::file::path&& path);
-      ~path_object() override;
+      inline path_object(const ::file::path_object & pathobject):path_object((const::file::path & )pathobject){}
+      inline path_object(const ::file::path& path);
+      inline path_object(::file::path&& path);
+      inline ~path_object() override;
 
 
-      virtual character_count sz_len() const override;
-      virtual void to_sz(char* sz, character_count size) const override;
+      inline virtual character_count sz_len() const override;
+      inline virtual void to_sz(char* sz, character_count size) const override;
       
       //using matter::set_flag;
       //using matter::has_flag;

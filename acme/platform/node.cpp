@@ -3666,6 +3666,9 @@ bool node::_is_smart_git_installed()
 
 #if !defined(ANDROID) && !defined(LINUX)
 
+#if !defined(__APPLE__)
+
+
    string node::_get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string& scopedstrFormat , int iSkip , void* caller_address, int iCount)
    {
 
@@ -3674,6 +3677,10 @@ bool node::_is_smart_git_installed()
       return strCallStack;
 
    }
+
+
+#endif
+
 
 #endif
 

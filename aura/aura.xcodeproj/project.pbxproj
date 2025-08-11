@@ -608,69 +608,6 @@
 		9AEA1C6426797612006F4A68 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEA1C6326797612006F4A68 /* libapex.dylib */; };
 		9AF13617249DE735009410E0 /* _new_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF13616249DE735009410E0 /* _new_impl.h */; };
 		9AF4C3591F836F8300197385 /* (null) in Headers */ = {isa = PBXBuildFile; };
-		9AF595662DF506FE0017BFFD /* utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595642DF506FE0017BFFD /* utilities.h */; };
-		9AF595672DF506FE0017BFFD /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF5954A2DF506FE0017BFFD /* _.h */; };
-		9AF595682DF506FE0017BFFD /* model.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595572DF506FE0017BFFD /* model.h */; };
-		9AF595692DF506FE0017BFFD /* scene_object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF5955D2DF506FE0017BFFD /* scene_object.h */; };
-		9AF5956A2DF506FE0017BFFD /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595632DF506FE0017BFFD /* types.h */; };
-		9AF5956B2DF506FE0017BFFD /* device.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF5952B2DF506FE0017BFFD /* device.h */; };
-		9AF5956C2DF506FE0017BFFD /* face.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595312DF506FE0017BFFD /* face.h */; };
-		9AF5956D2DF506FE0017BFFD /* _constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595222DF506FE0017BFFD /* _constant.h */; };
-		9AF5956E2DF506FE0017BFFD /* aaaa_gpu.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595232DF506FE0017BFFD /* aaaa_gpu.h */; };
-		9AF5956F2DF506FE0017BFFD /* frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595512DF506FE0017BFFD /* frame.h */; };
-		9AF595702DF506FE0017BFFD /* scene.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF5955B2DF506FE0017BFFD /* scene.h */; };
-		9AF595712DF506FE0017BFFD /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595432DF506FE0017BFFD /* types.h */; };
-		9AF595722DF506FE0017BFFD /* frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595332DF506FE0017BFFD /* frame.h */; };
-		9AF595732DF506FE0017BFFD /* character.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595262DF506FE0017BFFD /* character.h */; };
-		9AF595742DF506FE0017BFFD /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595272DF506FE0017BFFD /* context.h */; };
-		9AF595752DF506FE0017BFFD /* render.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF5953D2DF506FE0017BFFD /* render.h */; };
-		9AF595772DF506FE0017BFFD /* draw2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF5952D2DF506FE0017BFFD /* draw2d.h */; };
-		9AF595782DF506FE0017BFFD /* approach.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595242DF506FE0017BFFD /* approach.h */; };
-		9AF595792DF506FE0017BFFD /* shader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595412DF506FE0017BFFD /* shader.h */; };
-		9AF5957A2DF506FE0017BFFD /* engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF5954F2DF506FE0017BFFD /* engine.h */; };
-		9AF5957B2DF506FE0017BFFD /* key_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595552DF506FE0017BFFD /* key_map.h */; };
-		9AF5957C2DF506FE0017BFFD /* cpu_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595292DF506FE0017BFFD /* cpu_buffer.h */; };
-		9AF5957D2DF506FE0017BFFD /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595202DF506FE0017BFFD /* _.h */; };
-		9AF5957E2DF506FE0017BFFD /* scene_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF5955F2DF506FE0017BFFD /* scene_system.h */; };
-		9AF5957F2DF506FE0017BFFD /* object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595372DF506FE0017BFFD /* object.h */; };
-		9AF595802DF506FE0017BFFD /* end_draw.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF5952F2DF506FE0017BFFD /* end_draw.h */; };
-		9AF595812DF506FE0017BFFD /* input.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595532DF506FE0017BFFD /* input.h */; };
-		9AF595822DF506FE0017BFFD /* properties.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF5953B2DF506FE0017BFFD /* properties.h */; };
-		9AF595832DF506FE0017BFFD /* renderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF5953F2DF506FE0017BFFD /* renderer.h */; };
-		9AF595842DF506FE0017BFFD /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595352DF506FE0017BFFD /* graphics.h */; };
-		9AF595862DF506FE0017BFFD /* shader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595612DF506FE0017BFFD /* shader.h */; };
-		9AF595872DF506FE0017BFFD /* renderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595592DF506FE0017BFFD /* renderer.h */; };
-		9AF595882DF506FE0017BFFD /* program.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595392DF506FE0017BFFD /* program.h */; };
-		9AF595892DF506FE0017BFFD /* camera.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF5954C2DF506FE0017BFFD /* camera.h */; };
-		9AF5958A2DF506FE0017BFFD /* aaa_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF5954B2DF506FE0017BFFD /* aaa_context.h */; };
-		9AF5958B2DF506FE0017BFFD /* device.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5952C2DF506FE0017BFFD /* device.cpp */; };
-		9AF5958C2DF506FE0017BFFD /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5955C2DF506FE0017BFFD /* scene.cpp */; };
-		9AF5958D2DF506FE0017BFFD /* scene_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5955E2DF506FE0017BFFD /* scene_object.cpp */; };
-		9AF5958E2DF506FE0017BFFD /* scene_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595602DF506FE0017BFFD /* scene_system.cpp */; };
-		9AF5958F2DF506FE0017BFFD /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595212DF506FE0017BFFD /* _.cpp */; };
-		9AF595902DF506FE0017BFFD /* properties.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5953C2DF506FE0017BFFD /* properties.cpp */; };
-		9AF595912DF506FE0017BFFD /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595542DF506FE0017BFFD /* input.cpp */; };
-		9AF595922DF506FE0017BFFD /* face.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595322DF506FE0017BFFD /* face.cpp */; };
-		9AF595932DF506FE0017BFFD /* frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595522DF506FE0017BFFD /* frame.cpp */; };
-		9AF595942DF506FE0017BFFD /* graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595362DF506FE0017BFFD /* graphics.cpp */; };
-		9AF595952DF506FE0017BFFD /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5954D2DF506FE0017BFFD /* camera.cpp */; };
-		9AF595962DF506FE0017BFFD /* approach.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595252DF506FE0017BFFD /* approach.cpp */; };
-		9AF595972DF506FE0017BFFD /* render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5953E2DF506FE0017BFFD /* render.cpp */; };
-		9AF595992DF506FE0017BFFD /* key_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595562DF506FE0017BFFD /* key_map.cpp */; };
-		9AF5959B2DF506FE0017BFFD /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595422DF506FE0017BFFD /* shader.cpp */; };
-		9AF5959C2DF506FE0017BFFD /* frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595342DF506FE0017BFFD /* frame.cpp */; };
-		9AF5959D2DF506FE0017BFFD /* object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595382DF506FE0017BFFD /* object.cpp */; };
-		9AF5959E2DF506FE0017BFFD /* engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595502DF506FE0017BFFD /* engine.cpp */; };
-		9AF5959F2DF506FE0017BFFD /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5954E2DF506FE0017BFFD /* context.cpp */; };
-		9AF595A02DF506FE0017BFFD /* program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5953A2DF506FE0017BFFD /* program.cpp */; };
-		9AF595A12DF506FE0017BFFD /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595282DF506FE0017BFFD /* context.cpp */; };
-		9AF595A22DF506FE0017BFFD /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595582DF506FE0017BFFD /* model.cpp */; };
-		9AF595A32DF506FE0017BFFD /* end_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595302DF506FE0017BFFD /* end_draw.cpp */; };
-		9AF595A42DF506FE0017BFFD /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5955A2DF506FE0017BFFD /* renderer.cpp */; };
-		9AF595A52DF506FE0017BFFD /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595622DF506FE0017BFFD /* shader.cpp */; };
-		9AF595A62DF506FE0017BFFD /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595402DF506FE0017BFFD /* renderer.cpp */; };
-		9AF595A72DF506FE0017BFFD /* draw2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5952E2DF506FE0017BFFD /* draw2d.cpp */; };
-		9AF595A82DF506FE0017BFFD /* cpu_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF5952A2DF506FE0017BFFD /* cpu_buffer.cpp */; };
 		9AF595AD2DF508DE0017BFFD /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF595AC2DF508DE0017BFFD /* buffer.cpp */; };
 		9AF595AE2DF508DE0017BFFD /* buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595AB2DF508DE0017BFFD /* buffer.h */; };
 		9AF595AF2DF508DE0017BFFD /* _constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF595AA2DF508DE0017BFFD /* _constant.h */; };
@@ -1180,69 +1117,6 @@
 		9AEA1C6126797612006F4A68 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEA1C6326797612006F4A68 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AF13616249DE735009410E0 /* _new_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _new_impl.h; sourceTree = "<group>"; };
-		9AF595202DF506FE0017BFFD /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9AF595212DF506FE0017BFFD /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
-		9AF595222DF506FE0017BFFD /* _constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _constant.h; sourceTree = "<group>"; };
-		9AF595232DF506FE0017BFFD /* aaaa_gpu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaaa_gpu.h; sourceTree = "<group>"; };
-		9AF595242DF506FE0017BFFD /* approach.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = approach.h; sourceTree = "<group>"; };
-		9AF595252DF506FE0017BFFD /* approach.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = approach.cpp; sourceTree = "<group>"; };
-		9AF595262DF506FE0017BFFD /* character.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = character.h; sourceTree = "<group>"; };
-		9AF595272DF506FE0017BFFD /* context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
-		9AF595282DF506FE0017BFFD /* context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
-		9AF595292DF506FE0017BFFD /* cpu_buffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cpu_buffer.h; sourceTree = "<group>"; };
-		9AF5952A2DF506FE0017BFFD /* cpu_buffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cpu_buffer.cpp; sourceTree = "<group>"; };
-		9AF5952B2DF506FE0017BFFD /* device.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = device.h; sourceTree = "<group>"; };
-		9AF5952C2DF506FE0017BFFD /* device.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = device.cpp; sourceTree = "<group>"; };
-		9AF5952D2DF506FE0017BFFD /* draw2d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = draw2d.h; sourceTree = "<group>"; };
-		9AF5952E2DF506FE0017BFFD /* draw2d.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d.cpp; sourceTree = "<group>"; };
-		9AF5952F2DF506FE0017BFFD /* end_draw.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = end_draw.h; sourceTree = "<group>"; };
-		9AF595302DF506FE0017BFFD /* end_draw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = end_draw.cpp; sourceTree = "<group>"; };
-		9AF595312DF506FE0017BFFD /* face.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = face.h; sourceTree = "<group>"; };
-		9AF595322DF506FE0017BFFD /* face.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = face.cpp; sourceTree = "<group>"; };
-		9AF595332DF506FE0017BFFD /* frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frame.h; sourceTree = "<group>"; };
-		9AF595342DF506FE0017BFFD /* frame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = frame.cpp; sourceTree = "<group>"; };
-		9AF595352DF506FE0017BFFD /* graphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
-		9AF595362DF506FE0017BFFD /* graphics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = graphics.cpp; sourceTree = "<group>"; };
-		9AF595372DF506FE0017BFFD /* object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
-		9AF595382DF506FE0017BFFD /* object.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = object.cpp; sourceTree = "<group>"; };
-		9AF595392DF506FE0017BFFD /* program.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = program.h; sourceTree = "<group>"; };
-		9AF5953A2DF506FE0017BFFD /* program.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = program.cpp; sourceTree = "<group>"; };
-		9AF5953B2DF506FE0017BFFD /* properties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = properties.h; sourceTree = "<group>"; };
-		9AF5953C2DF506FE0017BFFD /* properties.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = properties.cpp; sourceTree = "<group>"; };
-		9AF5953D2DF506FE0017BFFD /* render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = render.h; sourceTree = "<group>"; };
-		9AF5953E2DF506FE0017BFFD /* render.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = render.cpp; sourceTree = "<group>"; };
-		9AF5953F2DF506FE0017BFFD /* renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = renderer.h; sourceTree = "<group>"; };
-		9AF595402DF506FE0017BFFD /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
-		9AF595412DF506FE0017BFFD /* shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shader.h; sourceTree = "<group>"; };
-		9AF595422DF506FE0017BFFD /* shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
-		9AF595432DF506FE0017BFFD /* types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
-		9AF5954A2DF506FE0017BFFD /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9AF5954B2DF506FE0017BFFD /* aaa_context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_context.h; sourceTree = "<group>"; };
-		9AF5954C2DF506FE0017BFFD /* camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
-		9AF5954D2DF506FE0017BFFD /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
-		9AF5954E2DF506FE0017BFFD /* context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
-		9AF5954F2DF506FE0017BFFD /* engine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = engine.h; sourceTree = "<group>"; };
-		9AF595502DF506FE0017BFFD /* engine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = engine.cpp; sourceTree = "<group>"; };
-		9AF595512DF506FE0017BFFD /* frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frame.h; sourceTree = "<group>"; };
-		9AF595522DF506FE0017BFFD /* frame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = frame.cpp; sourceTree = "<group>"; };
-		9AF595532DF506FE0017BFFD /* input.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = input.h; sourceTree = "<group>"; };
-		9AF595542DF506FE0017BFFD /* input.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = input.cpp; sourceTree = "<group>"; };
-		9AF595552DF506FE0017BFFD /* key_map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = key_map.h; sourceTree = "<group>"; };
-		9AF595562DF506FE0017BFFD /* key_map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = key_map.cpp; sourceTree = "<group>"; };
-		9AF595572DF506FE0017BFFD /* model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = model.h; sourceTree = "<group>"; };
-		9AF595582DF506FE0017BFFD /* model.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = model.cpp; sourceTree = "<group>"; };
-		9AF595592DF506FE0017BFFD /* renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = renderer.h; sourceTree = "<group>"; };
-		9AF5955A2DF506FE0017BFFD /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
-		9AF5955B2DF506FE0017BFFD /* scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scene.h; sourceTree = "<group>"; };
-		9AF5955C2DF506FE0017BFFD /* scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene.cpp; sourceTree = "<group>"; };
-		9AF5955D2DF506FE0017BFFD /* scene_object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scene_object.h; sourceTree = "<group>"; };
-		9AF5955E2DF506FE0017BFFD /* scene_object.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_object.cpp; sourceTree = "<group>"; };
-		9AF5955F2DF506FE0017BFFD /* scene_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scene_system.h; sourceTree = "<group>"; };
-		9AF595602DF506FE0017BFFD /* scene_system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_system.cpp; sourceTree = "<group>"; };
-		9AF595612DF506FE0017BFFD /* shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shader.h; sourceTree = "<group>"; };
-		9AF595622DF506FE0017BFFD /* shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
-		9AF595632DF506FE0017BFFD /* types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
-		9AF595642DF506FE0017BFFD /* utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
 		9AF595AA2DF508DE0017BFFD /* _constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _constant.h; sourceTree = "<group>"; };
 		9AF595AB2DF508DE0017BFFD /* buffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
 		9AF595AC2DF508DE0017BFFD /* buffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = buffer.cpp; sourceTree = "<group>"; };
@@ -1407,9 +1281,7 @@
 				9ABA65A028B5CDB80063B976 /* _impl.h */,
 				9A2A52FA1F1FEDFD001AB0F8 /* draw2d */,
 				9A2A531C1F1FEDFD001AB0F8 /* draw3d */,
-				9AF595442DF506FE0017BFFD /* gpu */,
 				9A1E1D5822F0AF69004243B8 /* graphics */,
-				9AF595652DF506FE0017BFFD /* graphics3d */,
 				9A9230D627EACF2100B5A78D /* image */,
 				9A46D32C26784C8D000B22D0 /* user */,
 				9A8FCD6F2651AFAB00C0D8A1 /* write_text */,
@@ -1938,83 +1810,6 @@
 			path = user;
 			sourceTree = "<group>";
 		};
-		9AF595442DF506FE0017BFFD /* gpu */ = {
-			isa = PBXGroup;
-			children = (
-				9AF595202DF506FE0017BFFD /* _.h */,
-				9AF595212DF506FE0017BFFD /* _.cpp */,
-				9AF595222DF506FE0017BFFD /* _constant.h */,
-				9AF595232DF506FE0017BFFD /* aaaa_gpu.h */,
-				9AF595242DF506FE0017BFFD /* approach.h */,
-				9AF595252DF506FE0017BFFD /* approach.cpp */,
-				9AF595262DF506FE0017BFFD /* character.h */,
-				9AF595272DF506FE0017BFFD /* context.h */,
-				9AF595282DF506FE0017BFFD /* context.cpp */,
-				9AF595292DF506FE0017BFFD /* cpu_buffer.h */,
-				9AF5952A2DF506FE0017BFFD /* cpu_buffer.cpp */,
-				9AF5952B2DF506FE0017BFFD /* device.h */,
-				9AF5952C2DF506FE0017BFFD /* device.cpp */,
-				9AF5952D2DF506FE0017BFFD /* draw2d.h */,
-				9AF5952E2DF506FE0017BFFD /* draw2d.cpp */,
-				9AF5952F2DF506FE0017BFFD /* end_draw.h */,
-				9AF595302DF506FE0017BFFD /* end_draw.cpp */,
-				9AF595312DF506FE0017BFFD /* face.h */,
-				9AF595322DF506FE0017BFFD /* face.cpp */,
-				9AF595332DF506FE0017BFFD /* frame.h */,
-				9AF595342DF506FE0017BFFD /* frame.cpp */,
-				9AF595352DF506FE0017BFFD /* graphics.h */,
-				9AF595362DF506FE0017BFFD /* graphics.cpp */,
-				9AF595372DF506FE0017BFFD /* object.h */,
-				9AF595382DF506FE0017BFFD /* object.cpp */,
-				9AF595392DF506FE0017BFFD /* program.h */,
-				9AF5953A2DF506FE0017BFFD /* program.cpp */,
-				9AF5953B2DF506FE0017BFFD /* properties.h */,
-				9AF5953C2DF506FE0017BFFD /* properties.cpp */,
-				9AF5953D2DF506FE0017BFFD /* render.h */,
-				9AF5953E2DF506FE0017BFFD /* render.cpp */,
-				9AF5953F2DF506FE0017BFFD /* renderer.h */,
-				9AF595402DF506FE0017BFFD /* renderer.cpp */,
-				9AF595412DF506FE0017BFFD /* shader.h */,
-				9AF595422DF506FE0017BFFD /* shader.cpp */,
-				9AF595432DF506FE0017BFFD /* types.h */,
-			);
-			path = gpu;
-			sourceTree = "<group>";
-		};
-		9AF595652DF506FE0017BFFD /* graphics3d */ = {
-			isa = PBXGroup;
-			children = (
-				9AF5954A2DF506FE0017BFFD /* _.h */,
-				9AF5954B2DF506FE0017BFFD /* aaa_context.h */,
-				9AF5954C2DF506FE0017BFFD /* camera.h */,
-				9AF5954D2DF506FE0017BFFD /* camera.cpp */,
-				9AF5954E2DF506FE0017BFFD /* context.cpp */,
-				9AF5954F2DF506FE0017BFFD /* engine.h */,
-				9AF595502DF506FE0017BFFD /* engine.cpp */,
-				9AF595512DF506FE0017BFFD /* frame.h */,
-				9AF595522DF506FE0017BFFD /* frame.cpp */,
-				9AF595532DF506FE0017BFFD /* input.h */,
-				9AF595542DF506FE0017BFFD /* input.cpp */,
-				9AF595552DF506FE0017BFFD /* key_map.h */,
-				9AF595562DF506FE0017BFFD /* key_map.cpp */,
-				9AF595572DF506FE0017BFFD /* model.h */,
-				9AF595582DF506FE0017BFFD /* model.cpp */,
-				9AF595592DF506FE0017BFFD /* renderer.h */,
-				9AF5955A2DF506FE0017BFFD /* renderer.cpp */,
-				9AF5955B2DF506FE0017BFFD /* scene.h */,
-				9AF5955C2DF506FE0017BFFD /* scene.cpp */,
-				9AF5955D2DF506FE0017BFFD /* scene_object.h */,
-				9AF5955E2DF506FE0017BFFD /* scene_object.cpp */,
-				9AF5955F2DF506FE0017BFFD /* scene_system.h */,
-				9AF595602DF506FE0017BFFD /* scene_system.cpp */,
-				9AF595612DF506FE0017BFFD /* shader.h */,
-				9AF595622DF506FE0017BFFD /* shader.cpp */,
-				9AF595632DF506FE0017BFFD /* types.h */,
-				9AF595642DF506FE0017BFFD /* utilities.h */,
-			);
-			path = graphics3d;
-			sourceTree = "<group>";
-		};
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
@@ -2285,41 +2080,6 @@
 				9A2489E52453417F00F23D28 /* user.h in Headers */,
 				9AF8CE55271B670D00BF80B7 /* lock.h in Headers */,
 				9AC2CEE32653455600CC8096 /* button.h in Headers */,
-				9AF595662DF506FE0017BFFD /* utilities.h in Headers */,
-				9AF595672DF506FE0017BFFD /* _.h in Headers */,
-				9AF595682DF506FE0017BFFD /* model.h in Headers */,
-				9AF595692DF506FE0017BFFD /* scene_object.h in Headers */,
-				9AF5956A2DF506FE0017BFFD /* types.h in Headers */,
-				9AF5956B2DF506FE0017BFFD /* device.h in Headers */,
-				9AF5956C2DF506FE0017BFFD /* face.h in Headers */,
-				9AF5956D2DF506FE0017BFFD /* _constant.h in Headers */,
-				9AF5956E2DF506FE0017BFFD /* aaaa_gpu.h in Headers */,
-				9AF5956F2DF506FE0017BFFD /* frame.h in Headers */,
-				9AF595702DF506FE0017BFFD /* scene.h in Headers */,
-				9AF595712DF506FE0017BFFD /* types.h in Headers */,
-				9AF595722DF506FE0017BFFD /* frame.h in Headers */,
-				9AF595732DF506FE0017BFFD /* character.h in Headers */,
-				9AF595742DF506FE0017BFFD /* context.h in Headers */,
-				9AF595752DF506FE0017BFFD /* render.h in Headers */,
-				9AF595772DF506FE0017BFFD /* draw2d.h in Headers */,
-				9AF595782DF506FE0017BFFD /* approach.h in Headers */,
-				9AF595792DF506FE0017BFFD /* shader.h in Headers */,
-				9AF5957A2DF506FE0017BFFD /* engine.h in Headers */,
-				9AF5957B2DF506FE0017BFFD /* key_map.h in Headers */,
-				9AF5957C2DF506FE0017BFFD /* cpu_buffer.h in Headers */,
-				9AF5957D2DF506FE0017BFFD /* _.h in Headers */,
-				9AF5957E2DF506FE0017BFFD /* scene_system.h in Headers */,
-				9AF5957F2DF506FE0017BFFD /* object.h in Headers */,
-				9AF595802DF506FE0017BFFD /* end_draw.h in Headers */,
-				9AF595812DF506FE0017BFFD /* input.h in Headers */,
-				9AF595822DF506FE0017BFFD /* properties.h in Headers */,
-				9AF595832DF506FE0017BFFD /* renderer.h in Headers */,
-				9AF595842DF506FE0017BFFD /* graphics.h in Headers */,
-				9AF595862DF506FE0017BFFD /* shader.h in Headers */,
-				9AF595872DF506FE0017BFFD /* renderer.h in Headers */,
-				9AF595882DF506FE0017BFFD /* program.h in Headers */,
-				9AF595892DF506FE0017BFFD /* camera.h in Headers */,
-				9AF5958A2DF506FE0017BFFD /* aaa_context.h in Headers */,
 				9ACFE56528497F8800911485 /* window.h in Headers */,
 				9A92312A27EACF2100B5A78D /* pixmap.h in Headers */,
 				9AC2CEEA2653455600CC8096 /* exception.h in Headers */,
@@ -2714,35 +2474,7 @@
 				9A92316227EAE40F00B5A78D /* interaction.cpp in Sources */,
 				9A92316427EAE40F00B5A78D /* keyboard.cpp in Sources */,
 				9A92316527EAE40F00B5A78D /* main_window.cpp in Sources */,
-				9AF5958B2DF506FE0017BFFD /* device.cpp in Sources */,
-				9AF5958C2DF506FE0017BFFD /* scene.cpp in Sources */,
-				9AF5958D2DF506FE0017BFFD /* scene_object.cpp in Sources */,
-				9AF5958E2DF506FE0017BFFD /* scene_system.cpp in Sources */,
-				9AF5958F2DF506FE0017BFFD /* _.cpp in Sources */,
-				9AF595902DF506FE0017BFFD /* properties.cpp in Sources */,
-				9AF595912DF506FE0017BFFD /* input.cpp in Sources */,
-				9AF595922DF506FE0017BFFD /* face.cpp in Sources */,
-				9AF595932DF506FE0017BFFD /* frame.cpp in Sources */,
-				9AF595942DF506FE0017BFFD /* graphics.cpp in Sources */,
-				9AF595952DF506FE0017BFFD /* camera.cpp in Sources */,
-				9AF595962DF506FE0017BFFD /* approach.cpp in Sources */,
-				9AF595972DF506FE0017BFFD /* render.cpp in Sources */,
 				9AF595B02DF508DE0017BFFD /* buffer.cpp in Sources */,
-				9AF595992DF506FE0017BFFD /* key_map.cpp in Sources */,
-				9AF5959B2DF506FE0017BFFD /* shader.cpp in Sources */,
-				9AF5959C2DF506FE0017BFFD /* frame.cpp in Sources */,
-				9AF5959D2DF506FE0017BFFD /* object.cpp in Sources */,
-				9AF5959E2DF506FE0017BFFD /* engine.cpp in Sources */,
-				9AF5959F2DF506FE0017BFFD /* context.cpp in Sources */,
-				9AF595A02DF506FE0017BFFD /* program.cpp in Sources */,
-				9AF595A12DF506FE0017BFFD /* context.cpp in Sources */,
-				9AF595A22DF506FE0017BFFD /* model.cpp in Sources */,
-				9AF595A32DF506FE0017BFFD /* end_draw.cpp in Sources */,
-				9AF595A42DF506FE0017BFFD /* renderer.cpp in Sources */,
-				9AF595A52DF506FE0017BFFD /* shader.cpp in Sources */,
-				9AF595A62DF506FE0017BFFD /* renderer.cpp in Sources */,
-				9AF595A72DF506FE0017BFFD /* draw2d.cpp in Sources */,
-				9AF595A82DF506FE0017BFFD /* cpu_buffer.cpp in Sources */,
 				9A92316627EAE40F00B5A78D /* message_box.cpp in Sources */,
 				9A92316A27EAE40F00B5A78D /* notify_icon_listener.cpp in Sources */,
 				9AA3F7D12A946637004283CA /* interaction_graphics_thread.cpp in Sources */,
@@ -3141,6 +2873,7 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/port/_",
@@ -3257,6 +2990,7 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/port/_",

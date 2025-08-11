@@ -4,6 +4,7 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/filesystem/filesystem/windows_path.h"
 #include "acme/prototype/string/scoped_string_base.h"
 
@@ -936,7 +937,9 @@ namespace file
    inline ::file::path path::with_deferred_extension(const ::file::file_dialog* pfiledialog) const
    {
 
-      return with_deferred_extension(pfiledialog);
+      return with_deferred_extension(
+                                     pfiledialog->m_filedialogfilter[0].get_preserve_extensions(),
+                                     pfiledialog->m_filedialogfilter.get_all_related_extensions());
 
    }
 

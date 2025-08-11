@@ -28345,12 +28345,12 @@ __check_refdbg;
 
          auto ppath = puseritem->m_ppath;
 
-         if (1)
-         {
-
-            return false;
-
-         }
+//         if (1)
+//         {
+//
+//            return false;
+//
+//         }
 
          auto pgraphics = get_internal_draw2d_graphics();
 

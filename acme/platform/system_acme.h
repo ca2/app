@@ -49,7 +49,8 @@ namespace platform
 
       ::map < ::task_index, ::thread_storage >  m_mapThreadStorage;
 
-
+      bool m_bApplicationStartFileOpenRequest = false;
+      ::pointer<::request> m_prequestApplicationStartFileOpen;
       ::critical_section                              m_criticalsectionThreadStorage;
 
       ::pointer < ::task_message_queue >              m_ptaskmessagequeue;
@@ -438,8 +439,11 @@ namespace platform
       virtual void on_start_system();
 
 
+      virtual ::request * application_start_file_open_request();
+
+
       virtual void post_application_start();
-      virtual void defer_post_file_open();
+      virtual void defer_post_application_start_file_open_request();
       virtual void post_application_started();
 
 

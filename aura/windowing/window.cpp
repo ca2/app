@@ -12879,6 +12879,13 @@ namespace windowing
 
       _synchronous_lock synchronouslock(this->synchronization());
 
+      if (!m_pgraphicsgraphics)
+      {
+
+         return 0;
+
+      }
+
       auto pitem = m_pgraphicsgraphics->get_screen_item();
 
       _synchronous_lock synchronouslockScreen(pitem->m_pmutex);

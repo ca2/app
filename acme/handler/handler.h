@@ -55,7 +55,7 @@ namespace handler
       };
 
 
-      ::pointer < ::request >             m_prequest;
+      ::pointer < ::request >             m_prequestHandler;
       
       ::pointer < ::request >             m_prequestBeingAttended;
 

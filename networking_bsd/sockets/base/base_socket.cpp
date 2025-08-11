@@ -2859,7 +2859,6 @@ bool base_socket::SetSoKeepalive(bool x)
                }
                x = i;
                m_scopedstrLine.destroy();
-               m_scopedstrLine.construct_str("");
             }
             if (!LineProtocol())
             {

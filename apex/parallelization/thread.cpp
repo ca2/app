@@ -1949,7 +1949,7 @@ void thread::destroy()
 
    m_puserinteractionbaseaThread.release();
 
-   m_prequest.release();
+   m_prequest2.release();
 
    m_pmessagequeue.defer_destroy();
 
@@ -4894,7 +4894,7 @@ void thread::on_request_message(::request* prequest)
 void thread::request(::request* prequest)
 {
 
-   m_prequest = prequest;
+   m_prequest2 = prequest;
 
    on_request(prequest);
 

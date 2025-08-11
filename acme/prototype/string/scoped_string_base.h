@@ -282,14 +282,21 @@ public:
          this->m_erange = e_range_none;
 
       }
+      else
+      {
 
-      // don't need to cleanup if above flags are not set
+         //// don't need to cleanup if above flags are not set
+         // Actually you are asking to destroy...
+         // ... so it should be clean/clear after...
+         // ... and reported as empty or null....
 
-      //this->m_begin = nullptr;
+         this->m_begin = nullptr;
 
-      //this->m_end = nullptr;
+         this->m_end = nullptr;
 
-      //this->m_erange = e_range_none;
+         this->m_erange = e_range_none;
+
+      }
 
    }
 
@@ -316,6 +323,8 @@ public:
          string_concatenate(*((STRING *)this), data, size, scopedstr.data(), scopedstr.size());
 
       }
+
+      return *this;
 
    }
 

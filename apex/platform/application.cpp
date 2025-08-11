@@ -931,7 +931,7 @@ namespace apex
    void application::request(::request * prequest)
    {
 
-      m_prequest = prequest;
+      m_prequestHandler = prequest;
 
       if (m_bApplicationFirstRequest)
       {
@@ -1987,7 +1987,7 @@ namespace apex
       if (!::system()->is_sandboxed())
       {
 
-         if (!check_exclusive(m_prequest, bHandled))
+         if (!check_exclusive(system()->application_start_file_open_request(), bHandled))
          {
 
             if (!bHandled &&
@@ -4257,7 +4257,12 @@ namespace apex
 
             (*pcall)["pid"] = node()->current_process_identifier();
 
-            (*pcall)["command_line"] = prequest->m_strCommandLine;
+            if (::is_set(prequest))
+            {
+
+               (*pcall)["command_line"] = prequest->m_strCommandLine;
+
+            }
 
             //string strId;
 

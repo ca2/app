@@ -4380,6 +4380,13 @@ return nullptr;
    {
    }
 
+   ::request * acme_system_layer::application_start_file_open_request()
+   {
+
+      return nullptr;
+
+   }
+
 
    void acme_system_layer::post_application_start()
    {
@@ -4388,7 +4395,7 @@ return nullptr;
    }
 
 
-   void acme_system_layer::defer_post_file_open()
+   void acme_system_layer::defer_post_application_start_file_open_request()
    {
 
 

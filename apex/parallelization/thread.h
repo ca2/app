@@ -51,7 +51,7 @@ public:
    //bool                                               m_bBranchHandling : 1;
    ::pointer<message_queue>                           m_pmessagequeue;
    bool                                               m_bClosedMessageQueue;
-   ::pointer < ::request >                            m_prequest;
+   ::pointer < ::request >                            m_prequest2;
 
 
    MESSAGE                                            m_message;

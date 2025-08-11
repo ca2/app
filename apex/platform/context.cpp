@@ -1118,7 +1118,7 @@ namespace apex
    void context::request(::request * prequest)
    {
 
-      m_prequest = prequest;
+      m_prequestHandler = prequest;
 
       if (m_payloadFile.is_empty())
       {

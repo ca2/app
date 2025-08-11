@@ -199,12 +199,12 @@ namespace http
       int i = 0;
       while(bRun)
       {
-         const_char_pointer pszEnd = ansi_chr(scopedstr, ';');
+         const_char_pointer pszEnd = ansi_chr(psz, ';');
          bRun = pszEnd != nullptr;
          if(!bRun)
-            pszEnd = psz + ansi_len(scopedstr);
+            pszEnd = psz + ansi_len(psz);
 
-         const_char_pointer pszEqual = ansi_chr(scopedstr, '=');
+         const_char_pointer pszEqual = ansi_chr(psz, '=');
          if(pszEqual > pszEnd)
             pszEqual = nullptr;
          if(i == 0)

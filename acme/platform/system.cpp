@@ -2135,6 +2135,125 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
+   ::request * system::application_start_file_open_request()
+   {
+
+      if (m_bApplicationStartFileOpenRequest)
+      {
+
+         return m_prequestApplicationStartFileOpen;
+
+      }
+
+      m_bApplicationStartFileOpenRequest = true;
+
+      auto strCommandLine = this->m_strCommandLine;
+
+      strCommandLine.trim();
+
+      ::payload payloadFile;
+
+      ::string strAppId = application()->m_strAppId;
+
+      ::string strApp;
+
+      ::property_set setRequest;
+
+      if (strCommandLine.has_character())
+      {
+
+         information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
+
+         setRequest._008ParseCommandFork(strCommandLine, m_payloadFile, strApp);
+      }
+      else if (this->m_argc > 0 && this->m_args)
+      {
+
+         strApp = this->m_args[0];
+
+         ::string_array_base straFiles;
+
+         for (int iArgument = 1; iArgument < this->m_argc;)
+         {
+
+            auto iArgumentBefore = iArgument;
+
+            if (node()->defer_consume_main_arguments(this->m_argc, this->m_args, iArgument) &&
+                iArgument > iArgumentBefore)
+            {
+
+               continue;
+            }
+
+            if (application()->defer_consume_main_arguments(this->m_argc, this->m_args, iArgument) &&
+                iArgument > iArgumentBefore)
+            {
+
+               continue;
+            }
+
+            ::string strArgument = this->m_args[iArgument];
+
+            if (strArgument.begins("-"))
+            {
+
+               setRequest._008AddArgument(strArgument);
+            }
+            else
+            {
+
+               straFiles.add(strArgument);
+            }
+
+            iArgument++;
+         }
+
+         if (straFiles.has_elements())
+         {
+
+            if (straFiles.size() == 1)
+            {
+
+               payloadFile = straFiles[0];
+            }
+            else
+            {
+
+               payloadFile.string_array_reference() = straFiles;
+            }
+         }
+      }
+
+      if (!payloadFile.is_empty())
+      {
+
+         auto prequest = __create_new<::request>();
+
+         prequest->m_ecommand = e_command_file_open;
+
+         prequest->m_strAppId = strAppId;
+
+         prequest->property_set().merge(setRequest);
+
+         prequest->m_payloadFile = payloadFile;
+
+         payload("command_line_arg0") = strApp;
+
+         application()->property_set().merge(prequest->property_set());
+
+         prequest->m_bPreferSync = true;
+
+         //call_request(prequest);
+
+         m_prequestApplicationStartFileOpen = prequest;
+
+      }
+
+      return m_prequestApplicationStartFileOpen;
+
+   }
+
+
    ::nano::nano* system::nano()
    {
 
@@ -3116,7 +3235,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   void system::defer_post_file_open()
+   void system::defer_post_application_start_file_open_request()
    {
 
       if (!m_bPostedCommandLineFileOpen)
@@ -3124,125 +3243,15 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          m_bPostedCommandLineFileOpen = true;
 
-         auto strCommandLine = this->m_strCommandLine;
+         auto prequestApplicationStartFileOpen = application_start_file_open_request();
 
-         strCommandLine.trim();
-
-         ::payload payloadFile;
-         
-         ::string strAppId = application()->m_strAppId;
-
-         ::string strApp;
-
-         ::property_set setRequest;
-
-         if (strCommandLine.has_character())
+         if (::is_set(prequestApplicationStartFileOpen))
          {
 
-            information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
-
-            setRequest._008ParseCommandFork(
-               strCommandLine,
-               m_payloadFile,
-               strApp);
+            call_request(prequestApplicationStartFileOpen);
 
          }
-         else if(this->m_argc > 0 && this->m_args)
-         {
-
-            strApp = this->m_args[0];
-
-            ::string_array_base straFiles;
-
-            for (int iArgument = 1; iArgument < this->m_argc;)
-            {
-
-               auto iArgumentBefore = iArgument;
-
-               if (node()->defer_consume_main_arguments(
-                  this->m_argc,
-                  this->m_args,
-                  iArgument)
-                  && iArgument > iArgumentBefore)
-               {
-
-                  continue;
-
-               }
-
-               if (application()->defer_consume_main_arguments(
-                  this->m_argc,
-                  this->m_args,
-                  iArgument)
-                  && iArgument > iArgumentBefore)
-               {
-
-                  continue;
-
-               }
-
-               ::string strArgument = this->m_args[iArgument];
-
-               if (strArgument.begins("-"))
-               {
-
-                  setRequest._008AddArgument(strArgument);
-
-               }
-               else
-               {
-
-                  straFiles.add(strArgument);
-
-               }
-
-               iArgument++;
-
-            }
-
-            if (straFiles.has_elements())
-            {
-
-               if (straFiles.size() == 1)
-               {
-
-                  payloadFile = straFiles[0];
-
-               }
-               else
-               {
-
-                  payloadFile.string_array_reference() = straFiles;
-
-               }
-
-            }
-
-         }
-
-         if (!payloadFile.is_empty())
-         {
-
-            auto prequest = __create_new<::request>();
-
-            prequest->m_ecommand = e_command_file_open;
-
-            prequest->m_strAppId = strAppId;
-
-            prequest->property_set().merge(setRequest);
-
-            prequest->m_payloadFile = payloadFile;
- 
-            payload("command_line_arg0") = strApp;
-
-            application()->property_set().merge(prequest->property_set());
-
-            prequest->m_bPreferSync = true;
-
-            call_request(prequest);
-
-         }
-
+      
       }
 
    }

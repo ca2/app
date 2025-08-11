@@ -196,7 +196,7 @@ namespace handler
 
          //m_requestaHistory.add(prequest);
 
-         m_prequest = prequest;
+         m_prequestHandler = prequest;
 
          return true;
 
@@ -218,11 +218,11 @@ namespace handler
       while (pick_next_posted_request())
       {
 
-         handle(m_prequest);
+         handle(m_prequestHandler);
 
-         m_requestaHistory.add(m_prequest);
+         m_requestaHistory.add(m_prequestHandler);
 
-         m_prequest.release();
+         m_prequestHandler.release();
 
       }
 
@@ -245,7 +245,7 @@ namespace handler
 
       return m_requestaPosted.predicate_contains([&prequest](auto& p) { return p.get() == prequest; })
              || m_requestaHistory.predicate_contains([&prequest](auto& p) { return p.get() == prequest; })
-             || m_prequest.get() == prequest;
+             || m_prequestHandler.get() == prequest;
 
    }
 
@@ -253,21 +253,21 @@ namespace handler
    string handler::command_line_text() const
    {
 
-      if (!m_prequest)
+      if (!m_prequestHandler)
       {
 
          return "";
 
       }
 
-      //if (!m_prequest->m_pcommandline)
+      //if (!m_prequestHandler->m_pcommandline)
       //{
 
       //   return "";
 
       //}
 
-      return m_prequest->m_strCommandLine;
+      return m_prequestHandler->m_strCommandLine;
 
    }
 
@@ -373,7 +373,7 @@ namespace handler
    void handler::handle(::request * prequest)
    {
 
-      m_prequest = prequest;
+      m_prequestHandler = prequest;
       
       request(prequest);
 

@@ -179,7 +179,24 @@ namespace sockets_bsd
       else
       {
 
-         m_psockethandler = phandler;
+         auto psockethandlerOld = m_psockethandler;
+
+         if (psockethandlerOld != phandler)
+         {
+
+            m_psockethandler = phandler;
+
+            if (psockethandlerOld)
+            {
+
+               psockethandlerOld->erase(this);
+
+            }
+
+         }
+
+
+
 
       }
 

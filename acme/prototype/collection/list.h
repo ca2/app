@@ -7,9 +7,8 @@
 
 
 template < class TYPE, class ARG_TYPE >
-class list :
-   public ::particle,
-   virtual public ::range < ::list_iterator < ::list_node < TYPE > * > >
+class list_base :
+   public ::range < ::list_iterator < ::list_node < TYPE > * > >
 {
 public:
 
@@ -29,7 +28,7 @@ public:
 
    using const_iterator = typename RANGE::const_iterator;
 
-   //__declare_iterator_struct_ok(list, iterator, m_pnode, ::is_set(this->m_pnode));
+   //__declare_iterator_struct_ok(list_base, iterator, m_pnode, ::is_set(this->m_pnode));
 
    //template < typename ITERATOR > struct make_iterator : ITERATOR
    //{
@@ -200,17 +199,17 @@ public:
 
 
 
-   list();
-   list(const list & l);
-   list(class list && l);
-   ~list() override;
+   list_base();
+   list_base(const list_base & l);
+   list_base(class list_base && l);
+   ~list_base() ;
 
-   //inline list();
-   //inline list(const class list < TYPE, ARG_TYPE > & l);
-   //inline list(const class list < TYPE, ARG_TYPE > & l);
+   //inline list_base();
+   //inline list_base(const class list_base < TYPE, ARG_TYPE > & l);
+   //inline list_base(const class list_base < TYPE, ARG_TYPE > & l);
 
-   inline static void from(list < TYPE, ARG_TYPE > & l, iterator p);
-   inline static list < TYPE, ARG_TYPE >  from(iterator p);
+   inline static void from(list_base < TYPE, ARG_TYPE > & l, iterator p);
+   inline static list_base < TYPE, ARG_TYPE >  from(iterator p);
 
    //// helper functions (note: O(n) speed)
    //// defaults to starting at the HEAD, return nullptr if not found
@@ -224,19 +223,19 @@ public:
 
    //const_iterator index_iterator(index nIndex) const
    //{
-   //   return ((list *)this)->index_iterator(nIndex);
+   //   return ((list_base *)this)->index_iterator(nIndex);
    //}
 
    //const_iterator reverse_index_iterator(index nIndex) const
    //{
-   //   return ((list *)this)->reverse_index_iterator(nIndex);
+   //   return ((list_base *)this)->reverse_index_iterator(nIndex);
    //}
 
 
    //index iterator_index(const_iterator it) const
    //{
 
-   //   return ((list *)this)->iterator_index(it, (list *)this));
+   //   return ((list_base *)this)->iterator_index(it, (list_base *)this));
 
    //}
 
@@ -363,7 +362,7 @@ public:
    const TYPE & tail() const;
 
    
-   // get head or tail (and erase it) - don't call on is_empty list !
+   // get head or tail (and erase it) - don't call on is_empty list_base !
    void erase_head();
    void erase_tail();
 
@@ -385,10 +384,10 @@ public:
    void push_front(ARG_TYPE newElement);
    void add(ARG_TYPE newElement);
 
-   // add another list of elements before head or after tail
-   void copy_head(const list < TYPE, ARG_TYPE > & l);
-   void copy_tail(const list < TYPE, ARG_TYPE > & l);
-   void copy(const list < TYPE, ARG_TYPE > & l);
+   // add another list_base of elements before head or after tail
+   void copy_head(const list_base < TYPE, ARG_TYPE > & l);
+   void copy_tail(const list_base < TYPE, ARG_TYPE > & l);
+   void copy(const list_base < TYPE, ARG_TYPE > & l);
 
    // erase all elements
    void erase_all();
@@ -421,49 +420,49 @@ public:
    iterator insert(iterator position, ARG_TYPE newElement);
    //iterator insert(iterator position, iterator it);
    iterator insert(iterator position, iterator iterator);
-   iterator insert(iterator position, list < TYPE, ARG_TYPE > & l);
+   iterator insert(iterator position, list_base < TYPE, ARG_TYPE > & l);
    iterator insert(iterator position, iterator p, iterator end);
 
    iterator insert_before(iterator position, ARG_TYPE newElement);
    //iterator insert_before(iterator position, iterator it);
    iterator insert_before(iterator position, iterator iterator);
-   iterator insert_before(iterator position, list < TYPE, ARG_TYPE > & l);
+   iterator insert_before(iterator position, list_base < TYPE, ARG_TYPE > & l);
    iterator insert_before(iterator position, iterator p, iterator end);
 
    iterator insert_after(iterator position, ARG_TYPE newElement);
    //iterator insert_after(iterator position, iterator it);
    iterator insert_after(iterator position, iterator iterator);
-   iterator insert_after(iterator position, list < TYPE, ARG_TYPE > & l);
+   iterator insert_after(iterator position, list_base < TYPE, ARG_TYPE > & l);
    iterator insert_after(iterator position, iterator p, iterator end);
 
    //iterator insert(iterator position, ARG_TYPE newElement);
    ////iterator insert(iterator position, iterator it);
    //iterator insert(iterator position, iterator iterator);
-   //iterator insert(iterator position, list < TYPE, ARG_TYPE > & l);
+   //iterator insert(iterator position, list_base < TYPE, ARG_TYPE > & l);
    //iterator insert(iterator position, iterator p, iterator end);
 
    //iterator insert_before(iterator position, ARG_TYPE newElement);
    ////iterator insert_before(iterator position, iterator it);
    //iterator insert_before(iterator position, iterator iterator);
-   //iterator insert_before(iterator position, list < TYPE, ARG_TYPE > & l);
+   //iterator insert_before(iterator position, list_base < TYPE, ARG_TYPE > & l);
    //iterator insert_before(iterator position, iterator p, iterator end);
 
    //iterator insert_after(iterator position, ARG_TYPE newElement);
    ////iterator insert_after(iterator position, iterator it);
    //iterator insert_after(iterator position, iterator iterator);
-   //iterator insert_after(iterator position, list < TYPE, ARG_TYPE > & l);
+   //iterator insert_after(iterator position, list_base < TYPE, ARG_TYPE > & l);
    //iterator insert_after(iterator position, iterator p, iterator end);
 
 
-   void splice(iterator position, list & l);
-   void splice(iterator position, list & l, iterator i);
-   void splice(iterator position, list & l, iterator p, iterator end);
+   void splice(iterator position, list_base & l);
+   void splice(iterator position, list_base & l, iterator i);
+   void splice(iterator position, list_base & l, iterator p, iterator end);
    void __swap(iterator position1, iterator position2);
 
 
-   list < TYPE, ARG_TYPE > & operator = (const class list & l);
+   list_base < TYPE, ARG_TYPE > & operator = (const class list_base & l);
 #ifdef MOVE_SEMANTICS
-   list < TYPE, ARG_TYPE > & operator = (class list && l);
+   list_base < TYPE, ARG_TYPE > & operator = (class list_base && l);
 #endif
 
 
@@ -502,7 +501,7 @@ public:
 
 
 template<class TYPE, class ARG_TYPE>
-inline list < TYPE, ARG_TYPE >::list()
+inline list_base < TYPE, ARG_TYPE >::list_base()
 {
 
    this->m_count = 0;
@@ -513,7 +512,7 @@ inline list < TYPE, ARG_TYPE >::list()
 
 
 template<class TYPE, class ARG_TYPE>
-list<TYPE, ARG_TYPE>::list(const list & l)
+list_base<TYPE, ARG_TYPE>::list_base(const list_base & l)
 {
 
    this->m_count = 0;
@@ -526,7 +525,7 @@ list<TYPE, ARG_TYPE>::list(const list & l)
 
 
 template<class TYPE, class ARG_TYPE>
-inline void list < TYPE, ARG_TYPE >::from(list < TYPE, ARG_TYPE > & l, iterator p)
+inline void list_base < TYPE, ARG_TYPE >::from(list_base < TYPE, ARG_TYPE > & l, iterator p)
 {
 
    l.m_end = nullptr;
@@ -565,10 +564,10 @@ inline void list < TYPE, ARG_TYPE >::from(list < TYPE, ARG_TYPE > & l, iterator 
 }
 
 template<class TYPE, class ARG_TYPE>
-inline list < TYPE, ARG_TYPE > list < TYPE, ARG_TYPE >::from(iterator p)
+inline list_base < TYPE, ARG_TYPE > list_base < TYPE, ARG_TYPE >::from(iterator p)
 {
 
-   list < TYPE, ARG_TYPE >  l;
+   list_base < TYPE, ARG_TYPE >  l;
 
    from(l, p);
 
@@ -579,7 +578,7 @@ inline list < TYPE, ARG_TYPE > list < TYPE, ARG_TYPE >::from(iterator p)
 
 
 template<class TYPE, class ARG_TYPE>
-inline ::collection::count list<TYPE, ARG_TYPE>::get_count() const
+inline ::collection::count list_base<TYPE, ARG_TYPE>::get_count() const
 {
 
    return this->m_count;
@@ -587,7 +586,7 @@ inline ::collection::count list<TYPE, ARG_TYPE>::get_count() const
 }
 
 template<class TYPE, class ARG_TYPE>
-inline bool list<TYPE, ARG_TYPE>::has_element() const
+inline bool list_base<TYPE, ARG_TYPE>::has_element() const
 {
 
    return get_count() > 0;
@@ -596,7 +595,7 @@ inline bool list<TYPE, ARG_TYPE>::has_element() const
 
 
 template<class TYPE, class ARG_TYPE>
-inline ::collection::count list<TYPE, ARG_TYPE>::get_size() const
+inline ::collection::count list_base<TYPE, ARG_TYPE>::get_size() const
 {
 
    return this->m_count;
@@ -605,69 +604,69 @@ inline ::collection::count list<TYPE, ARG_TYPE>::get_size() const
 
 
 template<class TYPE, class ARG_TYPE>
-inline ::collection::count list<TYPE, ARG_TYPE>::size() const
+inline ::collection::count list_base<TYPE, ARG_TYPE>::size() const
 {
    return this->m_count;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline bool list<TYPE, ARG_TYPE>::is_empty(::collection::count countMinimum) const
+inline bool list_base<TYPE, ARG_TYPE>::is_empty(::collection::count countMinimum) const
 {
    return this->m_count < countMinimum;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline bool list<TYPE, ARG_TYPE>::empty(::collection::count countMinimum) const
+inline bool list_base<TYPE, ARG_TYPE>::empty(::collection::count countMinimum) const
 {
    return this->m_count < countMinimum;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline bool list<TYPE, ARG_TYPE>::has_elements(::collection::count countMinimum) const
+inline bool list_base<TYPE, ARG_TYPE>::has_elements(::collection::count countMinimum) const
 {
    return this->m_count >= countMinimum;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE & list<TYPE, ARG_TYPE>::head()
+inline TYPE & list_base<TYPE, ARG_TYPE>::head()
 {
    return this->m_begin.topic();
 }
 template<class TYPE, class ARG_TYPE>
-inline const TYPE & list<TYPE, ARG_TYPE>::head() const
+inline const TYPE & list_base<TYPE, ARG_TYPE>::head() const
 {
    return this->m_begin.topic();
 }
 template<class TYPE, class ARG_TYPE>
-inline TYPE & list<TYPE, ARG_TYPE>::tail()
+inline TYPE & list_base<TYPE, ARG_TYPE>::tail()
 {
    return this->m_end.topic();
 }
 template<class TYPE, class ARG_TYPE>
-inline const TYPE & list<TYPE, ARG_TYPE>::tail() const
+inline const TYPE & list_base<TYPE, ARG_TYPE>::tail() const
 {
    return this->m_end.topic();
 }
 //template<class TYPE, class ARG_TYPE>
-//inline typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::m_begin const
+//inline typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::m_begin const
 //{
 //   return this->m_begin;
 //}
 //template<class TYPE, class ARG_TYPE>
-//inline typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::m_end const
+//inline typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::m_end const
 //{
 //   return (iterator) this->m_end;
 //}
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE & list < TYPE, ARG_TYPE >::front()
+inline TYPE & list_base < TYPE, ARG_TYPE >::front()
 {
    return get_at(this->m_begin);
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline const TYPE & list < TYPE, ARG_TYPE >::front() const
+inline const TYPE & list_base < TYPE, ARG_TYPE >::front() const
 {
    
    return get_at(this->m_begin);
@@ -676,7 +675,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::front() const
 
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE list < TYPE, ARG_TYPE >::pop_front()
+inline TYPE list_base < TYPE, ARG_TYPE >::pop_front()
 {
 
    auto p = this->m_begin;
@@ -691,7 +690,7 @@ inline TYPE list < TYPE, ARG_TYPE >::pop_front()
 
 
 //template<class TYPE, class ARG_TYPE>
-//inline TYPE & list < TYPE, ARG_TYPE >::back()
+//inline TYPE & list_base < TYPE, ARG_TYPE >::back()
 //{
 //
 //   return *this->m_end;
@@ -700,7 +699,7 @@ inline TYPE list < TYPE, ARG_TYPE >::pop_front()
 //
 //
 //template<class TYPE, class ARG_TYPE>
-//inline const TYPE & list < TYPE, ARG_TYPE >::back() const
+//inline const TYPE & list_base < TYPE, ARG_TYPE >::back() const
 //{
 //
 //   return *this->m_end;
@@ -709,7 +708,7 @@ inline TYPE list < TYPE, ARG_TYPE >::pop_front()
 
 
 template<class TYPE, class ARG_TYPE>
-list<TYPE, ARG_TYPE>::list(class list && l)
+list_base<TYPE, ARG_TYPE>::list_base(class list_base && l)
 {
 
    this->m_count = l.m_count;
@@ -723,7 +722,7 @@ list<TYPE, ARG_TYPE>::list(class list && l)
 
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::erase_all()
+void list_base<TYPE, ARG_TYPE>::erase_all()
 {
 
    iterator pnext;
@@ -756,7 +755,7 @@ void list<TYPE, ARG_TYPE>::erase_all()
 
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::clear()
+void list_base<TYPE, ARG_TYPE>::clear()
 {
 
    erase_all();
@@ -764,7 +763,7 @@ void list<TYPE, ARG_TYPE>::clear()
 }
 
 template<class TYPE, class ARG_TYPE>
-list<TYPE, ARG_TYPE>::~list()
+list_base<TYPE, ARG_TYPE>::~list_base()
 {
    erase_all();
    ASSERT(this->m_count == 0);
@@ -772,7 +771,7 @@ list<TYPE, ARG_TYPE>::~list()
 
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::push_front(ARG_TYPE newElement)
+void list_base<TYPE, ARG_TYPE>::push_front(ARG_TYPE newElement)
 {
 
    add_head(newElement);
@@ -780,7 +779,7 @@ void list<TYPE, ARG_TYPE>::push_front(ARG_TYPE newElement)
 }
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
+void list_base<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
 {
 
    add_tail(newElement);
@@ -788,7 +787,7 @@ void list<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
 }
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::copy_head(const list < TYPE, ARG_TYPE > & l)
+void list_base<TYPE, ARG_TYPE>::copy_head(const list_base < TYPE, ARG_TYPE > & l)
 {
 
    ASSERT_VALID(this);
@@ -807,7 +806,7 @@ void list<TYPE, ARG_TYPE>::copy_head(const list < TYPE, ARG_TYPE > & l)
 }
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::copy_tail(const list < TYPE, ARG_TYPE > & l)
+void list_base<TYPE, ARG_TYPE>::copy_tail(const list_base < TYPE, ARG_TYPE > & l)
 {
 
    ASSERT_VALID(this);
@@ -827,7 +826,7 @@ void list<TYPE, ARG_TYPE>::copy_tail(const list < TYPE, ARG_TYPE > & l)
 
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::copy(const list < TYPE, ARG_TYPE > & l)
+void list_base<TYPE, ARG_TYPE>::copy(const list_base < TYPE, ARG_TYPE > & l)
 {
 
    ASSERT_VALID(this);
@@ -856,12 +855,12 @@ void list<TYPE, ARG_TYPE>::copy(const list < TYPE, ARG_TYPE > & l)
 
 
 template<class TYPE, class ARG_TYPE>
-::auto_pointer < ::list_node < TYPE > > list<TYPE, ARG_TYPE>::pick_auto_head()
+::auto_pointer < ::list_node < TYPE > > list_base<TYPE, ARG_TYPE>::pick_auto_head()
 {
 
    ASSERT_VALID(this);
 
-   ASSERT(this->m_begin.is_set());  // don't call on is_empty list !!!
+   ASSERT(this->m_begin.is_set());  // don't call on is_empty list_base !!!
 
    auto pnodeBegin = this->m_begin.m_p;
 
@@ -900,7 +899,7 @@ template<class TYPE, class ARG_TYPE>
    else
    {
 
-      throw "this->m_begin isn't pointing to the beggining of list?";
+      throw "this->m_begin isn't pointing to the beggining of list_base?";
 
    }
 
@@ -908,12 +907,12 @@ template<class TYPE, class ARG_TYPE>
 
 
 template<class TYPE, class ARG_TYPE>
-::auto_pointer < ::list_node < TYPE > > list<TYPE, ARG_TYPE>::pick_auto_tail()
+::auto_pointer < ::list_node < TYPE > > list_base<TYPE, ARG_TYPE>::pick_auto_tail()
 {
 
    ASSERT_VALID(this);
 
-   ASSERT(this->m_end.is_set());  // don't call on is_empty list !!!
+   ASSERT(this->m_end.is_set());  // don't call on is_empty list_base !!!
 
    auto pnodeEnd = this->m_end.m_p;
 
@@ -952,7 +951,7 @@ template<class TYPE, class ARG_TYPE>
    else
    {
 
-      throw "this->m_end isn't pointing to the end of list?";
+      throw "this->m_end isn't pointing to the end of list_base?";
 
    }
 
@@ -960,7 +959,7 @@ template<class TYPE, class ARG_TYPE>
 
 
 template<class TYPE, class ARG_TYPE>
-TYPE list<TYPE, ARG_TYPE>::pick_head()
+TYPE list_base<TYPE, ARG_TYPE>::pick_head()
 {
 
    return ::transfer(pick_auto_head()->topic());
@@ -969,7 +968,7 @@ TYPE list<TYPE, ARG_TYPE>::pick_head()
 
 
 template<class TYPE, class ARG_TYPE>
-TYPE list<TYPE, ARG_TYPE>::pick_tail()
+TYPE list_base<TYPE, ARG_TYPE>::pick_tail()
 {
 
    return ::transfer(pick_auto_tail()->topic());
@@ -978,12 +977,12 @@ TYPE list<TYPE, ARG_TYPE>::pick_tail()
 
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::erase_head()
+void list_base<TYPE, ARG_TYPE>::erase_head()
 {
 
    ASSERT_VALID(this);
 
-   ASSERT(this->m_begin.is_set());  // don't call on is_empty list !!!
+   ASSERT(this->m_begin.is_set());  // don't call on is_empty list_base !!!
 
    auto pnodeBegin = this->m_begin.m_p;
 
@@ -1022,7 +1021,7 @@ void list<TYPE, ARG_TYPE>::erase_head()
    else
    {
 
-      throw "this->m_begin isn't pointing to the beggining of list?";
+      throw "this->m_begin isn't pointing to the beggining of list_base?";
 
    }
 
@@ -1030,12 +1029,12 @@ void list<TYPE, ARG_TYPE>::erase_head()
 
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::erase_tail()
+void list_base<TYPE, ARG_TYPE>::erase_tail()
 {
 
    ASSERT_VALID(this);
    
-   ASSERT(this->m_end.is_set());  // don't call on is_empty list !!!
+   ASSERT(this->m_end.is_set());  // don't call on is_empty list_base !!!
 
    auto pnodeEnd = this->m_end.m_p;
 
@@ -1074,7 +1073,7 @@ void list<TYPE, ARG_TYPE>::erase_tail()
    else
    {
 
-      throw "this->m_end isn't pointing to the end of list?";
+      throw "this->m_end isn't pointing to the end of list_base?";
 
    }
 
@@ -1082,7 +1081,7 @@ void list<TYPE, ARG_TYPE>::erase_tail()
 
 
 template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_before(iterator position, list < TYPE, ARG_TYPE > & l)
+typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_before(iterator position, list_base < TYPE, ARG_TYPE > & l)
 {
 
    if (l.m_count <= 0)
@@ -1138,7 +1137,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_befo
 
 
 template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_before(iterator position, iterator p, iterator end)
+typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_before(iterator position, iterator p, iterator end)
 {
 
    ::collection::count count = end - p;
@@ -1200,7 +1199,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_befo
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::insert_after(iterator position, iterator it)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base<TYPE, ARG_TYPE>::insert_after(iterator position, iterator it)
 //{
 //
 //   return insert_after(position, it);
@@ -1209,12 +1208,12 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_befo
 
 
 template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_after(iterator position, iterator iterator)
+typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_after(iterator position, iterator iterator)
 {
 
-   list < TYPE, ARG_TYPE > l;
+   list_base < TYPE, ARG_TYPE > l;
 
-   list < TYPE, ARG_TYPE >::from(l, iterator);
+   list_base < TYPE, ARG_TYPE >::from(l, iterator);
 
    return insert_before(position, l);
 
@@ -1223,7 +1222,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_afte
 
 
 template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_after(iterator position, list < TYPE, ARG_TYPE > & l)
+typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_after(iterator position, list_base < TYPE, ARG_TYPE > & l)
 {
 
    if (l.m_count <= 0)
@@ -1283,7 +1282,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_afte
 
 
 template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_after(iterator position, iterator p, iterator end)
+typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_after(iterator position, iterator p, iterator end)
 {
 
    ::collection::count count = end - p;
@@ -1346,7 +1345,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_afte
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::insert_before(iterator position, iterator it)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base<TYPE, ARG_TYPE>::insert_before(iterator position, iterator it)
 //{
 //
 //   return insert_before(position, it);
@@ -1355,7 +1354,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_afte
 
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::__swap(iterator position1, iterator position2)
+void list_base<TYPE, ARG_TYPE>::__swap(iterator position1, iterator position2)
 {
    ASSERT_VALID(this);
 
@@ -1518,7 +1517,7 @@ void list<TYPE, ARG_TYPE>::__swap(iterator position1, iterator position2)
 
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::erase_at(::collection::index i)
+void list_base<TYPE, ARG_TYPE>::erase_at(::collection::index i)
 {
 
    this->erase(this->m_begin + i);
@@ -1527,7 +1526,7 @@ void list<TYPE, ARG_TYPE>::erase_at(::collection::index i)
 
 
 //template<class TYPE, class ARG_TYPE>
-//bool list<TYPE, ARG_TYPE>::erase_item(ARG_ITEM item)
+//bool list_base<TYPE, ARG_TYPE>::erase_item(ARG_ITEM item)
 //{
 //
 //   auto p = find_item(item);
@@ -1547,7 +1546,7 @@ void list<TYPE, ARG_TYPE>::erase_at(::collection::index i)
 
 
 template<class TYPE, class ARG_TYPE>
-bool list<TYPE, ARG_TYPE>::erase(iterator pErase)
+bool list_base<TYPE, ARG_TYPE>::erase(iterator pErase)
 {
 
    ASSERT_VALID(this);
@@ -1569,7 +1568,7 @@ bool list<TYPE, ARG_TYPE>::erase(iterator pErase)
 
 
 template < class TYPE, class ARG_TYPE >
-typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::detach(iterator p)
+typename list_base < TYPE, ARG_TYPE >::iterator list_base<TYPE, ARG_TYPE>::detach(iterator p)
 {
 
    ASSERT_VALID(this);
@@ -1587,7 +1586,7 @@ typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::detach(iterator
       if (p != this->m_begin)
       {
 
-         // item is not part of the list
+         // item is not part of the list_base
          throw ::exception(::error_not_found);
 
       }
@@ -1636,7 +1635,7 @@ typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::detach(iterator
 
 
 template < class TYPE, class ARG_TYPE >
-::collection::count list<TYPE, ARG_TYPE>::detach(iterator p, iterator end)
+::collection::count list_base<TYPE, ARG_TYPE>::detach(iterator p, iterator end)
 {
 
    ASSERT_VALID(this);
@@ -1697,24 +1696,24 @@ template < class TYPE, class ARG_TYPE >
 
 
 //template < class TYPE, class ARG_TYPE >
-//typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::splice(iterator position, const_iterator i)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base<TYPE, ARG_TYPE>::splice(iterator position, const_iterator i)
 //{
 //
-//   return splice(position, *((list *) i.m_pcontainer), i);
+//   return splice(position, *((list_base *) i.m_pcontainer), i);
 //
 //}
 
 //template < class TYPE, class ARG_TYPE >
-//typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::splice(const_iterator position, const_iterator p, const_iterator end)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base<TYPE, ARG_TYPE>::splice(const_iterator position, const_iterator p, const_iterator end)
 //{
 //
-//   return splice(position, *((list *) p.m_pcontainer), p, end);
+//   return splice(position, *((list_base *) p.m_pcontainer), p, end);
 //
 //}
 
 
 template < class TYPE, class ARG_TYPE >
-void list<TYPE, ARG_TYPE>::splice(iterator position, list & l)
+void list_base<TYPE, ARG_TYPE>::splice(iterator position, list_base & l)
 {
 
    auto p = l.m_begin;
@@ -1729,7 +1728,7 @@ void list<TYPE, ARG_TYPE>::splice(iterator position, list & l)
 
 
 template < class TYPE, class ARG_TYPE >
-void list<TYPE, ARG_TYPE>::splice(iterator position, list & l, iterator i)
+void list_base<TYPE, ARG_TYPE>::splice(iterator position, list_base & l, iterator i)
 {
 
    l.detach(i);
@@ -1739,7 +1738,7 @@ void list<TYPE, ARG_TYPE>::splice(iterator position, list & l, iterator i)
 }
 
 template < class TYPE, class ARG_TYPE >
-void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator p, iterator end)
+void list_base<TYPE, ARG_TYPE>::splice(iterator i, list_base & l, iterator p, iterator end)
 {
 
    l.detach(p, end);
@@ -1750,7 +1749,7 @@ void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator p, iterator end
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::index_iterator(::collection::index index)
+//typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::index_iterator(::collection::index index)
 //{
 //
 //   //ASSERT_VALID(this);
@@ -1779,7 +1778,7 @@ void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator p, iterator end
 //
 //
 //template<class TYPE, class ARG_TYPE>
-//index list<TYPE, ARG_TYPE>::iterator_index(iterator it)
+//index list_base<TYPE, ARG_TYPE>::iterator_index(iterator it)
 //{
 //
 //   ASSERT_VALID(this);
@@ -1810,7 +1809,7 @@ void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator p, iterator end
 //
 //
 //template<class TYPE, class ARG_TYPE>
-//inline typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE >::reverse_index_iterator(::collection::index index)
+//inline typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE >::reverse_index_iterator(::collection::index index)
 //{
 //
 //   //ASSERT_VALID(this);
@@ -1839,7 +1838,7 @@ void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator p, iterator end
 //
 //
 //template<class TYPE, class ARG_TYPE>
-//void list<TYPE, ARG_TYPE>::assert_ok() const
+//void list_base<TYPE, ARG_TYPE>::assert_ok() const
 //{
 //
 //   matter::assert_ok();
@@ -1847,7 +1846,7 @@ void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator p, iterator end
 //   if (this->m_count == 0)
 //   {
 //
-//      // is_empty list
+//      // is_empty list_base
 //
 //      ASSERT(this->m_begin == nullptr);
 //      ASSERT(this->m_end == nullptr);
@@ -1856,7 +1855,7 @@ void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator p, iterator end
 //   else
 //   {
 //
-//      // non-is_empty list
+//      // non-is_empty list_base
 //      ASSERT(::is_set(this->m_begin));
 //      ASSERT(::is_set(this->m_end));
 //
@@ -1866,8 +1865,8 @@ void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator p, iterator end
 
 
 template<class TYPE, class ARG_TYPE>
-list < TYPE, ARG_TYPE > &
-list<TYPE, ARG_TYPE>::operator = (const class list & l)
+list_base < TYPE, ARG_TYPE > &
+list_base<TYPE, ARG_TYPE>::operator = (const class list_base & l)
 {
 
    if (&l != this)
@@ -1885,8 +1884,8 @@ list<TYPE, ARG_TYPE>::operator = (const class list & l)
 #ifdef MOVE_SEMANTICS
 
 template<class TYPE, class ARG_TYPE>
-list < TYPE, ARG_TYPE > &
-list<TYPE, ARG_TYPE>::operator = (class list && l)
+list_base < TYPE, ARG_TYPE > &
+list_base<TYPE, ARG_TYPE>::operator = (class list_base && l)
 {
 
    if (&l != this)
@@ -1907,7 +1906,7 @@ list<TYPE, ARG_TYPE>::operator = (class list && l)
 
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::_add_head_node(NODE * p)
+void list_base<TYPE, ARG_TYPE>::_add_head_node(NODE * p)
 {
 
    p->back().m_p = nullptr;
@@ -1935,7 +1934,7 @@ void list<TYPE, ARG_TYPE>::_add_head_node(NODE * p)
 
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::_add_tail_node(NODE * p)
+void list_base<TYPE, ARG_TYPE>::_add_tail_node(NODE * p)
 {
 
    p->m_back.m_p = this->m_end.m_p;
@@ -1963,12 +1962,12 @@ void list<TYPE, ARG_TYPE>::_add_tail_node(NODE * p)
 
 
 template<class TYPE, class ARG_TYPE>
-typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_head(ARG_TYPE newElement)
+typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::add_head(ARG_TYPE newElement)
 {
 
    ASSERT_VALID(this);
 
-   auto p = __raw_new typename list < TYPE, ARG_TYPE >::NODE (newElement);
+   auto p = __raw_new typename list_base < TYPE, ARG_TYPE >::NODE (newElement);
 
    _add_head_node(p);
 
@@ -1978,12 +1977,12 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_head(ARG_TYPE 
 
 
 template<class TYPE, class ARG_TYPE>
-typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_tail(ARG_TYPE newElement)
+typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::add_tail(ARG_TYPE newElement)
 {
 
    ASSERT_VALID(this);
 
-   auto p = __raw_new typename list < TYPE, ARG_TYPE >::NODE(newElement);
+   auto p = __raw_new typename list_base < TYPE, ARG_TYPE >::NODE(newElement);
 
    _add_tail_node(p);
 
@@ -1993,12 +1992,12 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_tail(ARG_TYPE 
 
 
 template<class TYPE, class ARG_TYPE>
-typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::transfer_head(TYPE && newElement)
+typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::transfer_head(TYPE && newElement)
 {
 
    ASSERT_VALID(this);
 
-   auto p = __raw_new typename list < TYPE, ARG_TYPE >::NODE (::transfer(newElement));
+   auto p = __raw_new typename list_base < TYPE, ARG_TYPE >::NODE (::transfer(newElement));
 
    _add_head_node(p);
 
@@ -2008,12 +2007,12 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::transfer_head(TYPE
 
 
 template<class TYPE, class ARG_TYPE>
-typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::transfer_tail(TYPE && newElement)
+typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::transfer_tail(TYPE && newElement)
 {
 
    ASSERT_VALID(this);
 
-   auto p = __raw_new typename list < TYPE, ARG_TYPE >::NODE (::transfer(newElement));
+   auto p = __raw_new typename list_base < TYPE, ARG_TYPE >::NODE (::transfer(newElement));
 
    _add_tail_node(p);
 
@@ -2023,28 +2022,28 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::transfer_tail(TYPE
 
 
 template<class TYPE, class ARG_TYPE>
-typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_before(iterator position, ARG_TYPE newElement)
+typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::insert_before(iterator position, ARG_TYPE newElement)
 {
    ASSERT_VALID(this);
 
    if (!position)
    {
 
-      return add_head(newElement); // insert before nothing -> head of the list
+      return add_head(newElement); // insert before nothing -> head of the list_base
 
    }
 
    // Insert it before position
    auto old = position;
    iterator p;
-   p = __raw_new typename list < TYPE, ARG_TYPE >::NODE (newElement);
+   p = __raw_new typename list_base < TYPE, ARG_TYPE >::NODE (newElement);
    p.back() = old.back();
    p.next() = old;
    p.topic() = newElement;
 
    if (old.back())
    {
-//      ASSERT(is_memory_segment_ok(pOldNode->back(), sizeof(typename list < TYPE, ARG_TYPE >::node)));
+//      ASSERT(is_memory_segment_ok(pOldNode->back(), sizeof(typename list_base < TYPE, ARG_TYPE >::node)));
       old.back().next() = p;
    }
    else
@@ -2061,29 +2060,29 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_before(iter
 
 
 template<class TYPE, class ARG_TYPE>
-typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_after(iterator position, ARG_TYPE newElement)
+typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::insert_after(iterator position, ARG_TYPE newElement)
 {
    ASSERT_VALID(this);
 
    if (!position)
    {
 
-      return add_tail(newElement); // insert after nothing -> tail of the list
+      return add_tail(newElement); // insert after nothing -> tail of the list_base
 
    }
 
    // Insert it before position
    auto old = position;
-   ASSERT(is_memory_segment_ok(old.get(), sizeof(typename list < TYPE, ARG_TYPE >::NODE)));
+   ASSERT(is_memory_segment_ok(old.get(), sizeof(typename list_base < TYPE, ARG_TYPE >::NODE)));
    iterator p;
-   p = __raw_new typename list < TYPE, ARG_TYPE >::NODE(newElement);
+   p = __raw_new typename list_base < TYPE, ARG_TYPE >::NODE(newElement);
    p.back() = old;
    p.next() = old.next();
    p.topic() = newElement;
 
    if (old.next())
    {
-      ASSERT(is_memory_segment_ok(old.next().get(), sizeof(typename list < TYPE, ARG_TYPE >::NODE)));
+      ASSERT(is_memory_segment_ok(old.next().get(), sizeof(typename list_base < TYPE, ARG_TYPE >::NODE)));
       old.next().back() = p;
    }
    else
@@ -2105,7 +2104,7 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_after(itera
 
 
 template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator i, ARG_TYPE newElement) // same as insert before
+typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert(iterator i, ARG_TYPE newElement) // same as insert before
 {
 
    
@@ -2116,7 +2115,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 //
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator i, iterator it) // same as insert before
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert(iterator i, iterator it) // same as insert before
 //{
 //
 //   
@@ -2127,7 +2126,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 //
 //
 ////template<class TYPE, class ARG_TYPE>
-////typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator i, iterator iterator)
+////typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert(iterator i, iterator iterator)
 ////{
 ////
 ////   
@@ -2138,7 +2137,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator i, list < TYPE, ARG_TYPE > & l)
+typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert(iterator i, list_base < TYPE, ARG_TYPE > & l)
 {
 
    
@@ -2149,7 +2148,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator i, iterator p, iterator end)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert(iterator i, iterator p, iterator end)
 //{
 //
 //   
@@ -2162,7 +2161,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 //
 //
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_before(iterator i, ARG_TYPE newElement)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_before(iterator i, ARG_TYPE newElement)
 //{
 //
 //   ASSERT(this == i.container());
@@ -2173,7 +2172,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 //
 //
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_before(iterator i, iterator it)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_before(iterator i, iterator it)
 //{
 //
 //   
@@ -2186,7 +2185,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_before(iterator i, iterator iterator)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_before(iterator i, iterator iterator)
 //{
 //
 //   
@@ -2197,7 +2196,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 //
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_before(iterator i, list < TYPE, ARG_TYPE > & l)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_before(iterator i, list_base < TYPE, ARG_TYPE > & l)
 //{
 //
 //   return insert_before(i, l);
@@ -2206,7 +2205,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_before(iterator i, iterator p, iterator end)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_before(iterator i, iterator p, iterator end)
 //{
 //
 //   
@@ -2216,7 +2215,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_after(iterator i, ARG_TYPE newElement)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_after(iterator i, ARG_TYPE newElement)
 //{
 //
 //   
@@ -2227,7 +2226,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_after(iterator i, iterator it)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_after(iterator i, iterator it)
 //{
 //
 //   
@@ -2238,7 +2237,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_after(iterator i, iterator iterator)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_after(iterator i, iterator iterator)
 //{
 //
 //   
@@ -2249,7 +2248,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_after(iterator i, list < TYPE, ARG_TYPE > & l)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_after(iterator i, list_base < TYPE, ARG_TYPE > & l)
 //{
 //
 //   
@@ -2260,7 +2259,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_after(iterator i, iterator p, iterator end)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_after(iterator i, iterator p, iterator end)
 //{
 //
 //   
@@ -2273,7 +2272,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator position, ARG_TYPE newElement)
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert(iterator position, ARG_TYPE newElement)
 //{
 //
 //   return insert_before(position, newElement);
@@ -2282,7 +2281,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator position, iterator it)
+typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert(iterator position, iterator it)
 {
 
    return insert_before(position, it);
@@ -2291,7 +2290,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator position, iterator iterator) // same as insert before
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert(iterator position, iterator iterator) // same as insert before
 //{
 //
 //   return insert_before(position, iterator);
@@ -2301,7 +2300,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator position, list < TYPE, ARG_TYPE > & l) // same as insert before
+//typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert(iterator position, list_base < TYPE, ARG_TYPE > & l) // same as insert before
 //{
 //
 //   return insert_before(position, l);
@@ -2310,7 +2309,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator position, iterator p, iterator end) // same as insert before
+typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert(iterator position, iterator p, iterator end) // same as insert before
 {
 
    return insert_before(position, p, end);
@@ -2320,12 +2319,12 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_before(iterator position, iterator iterator)
+typename list_base < TYPE, ARG_TYPE >::iterator list_base < TYPE, ARG_TYPE > ::insert_before(iterator position, iterator iterator)
 {
 
-   list < TYPE, ARG_TYPE > l;
+   list_base < TYPE, ARG_TYPE > l;
 
-   list < TYPE, ARG_TYPE >::from(l, iterator);
+   list_base < TYPE, ARG_TYPE >::from(l, iterator);
 
    return insert_before(position, l);
 
@@ -2357,7 +2356,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_befo
 
 
 //template<class TYPE, class ARG_TYPE>
-//void list<TYPE, ARG_TYPE>::dump(dump_context& dumpcontext) const
+//void list_base<TYPE, ARG_TYPE>::dump(dump_context& dumpcontext) const
 //{
 //
 //   matter::dump(dumpcontext);
@@ -2388,12 +2387,12 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_befo
 
 
 //template < typename TYPE >
-//inline stream& operator <<(stream& stream, const string_list& list)
+//inline stream& operator <<(stream& stream, const string_list& list_base)
 //{
 //
-//   stream << list.get_count();
+//   stream << list_base.get_count();
 //
-//   for (auto& pitem : list)
+//   for (auto& pitem : list_base)
 //   {
 //      stream << *pitem;
 //   }
@@ -2404,7 +2403,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_befo
 //
 //
 //template < typename TYPE >
-//inline stream& operator >>(stream& stream, string_list& list)
+//inline stream& operator >>(stream& stream, string_list& list_base)
 //{
 //
 //   int iSize;
@@ -2413,7 +2412,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_befo
 //   for (int i = 0; i < iSize; i++)
 //   {
 //      stream >> str;
-//      list.add_tail(str);
+//      list_base.add_tail(str);
 //   }
 //   return stream;
 //}

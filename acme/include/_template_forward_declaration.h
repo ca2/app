@@ -471,7 +471,7 @@ class procedure_array;
 
 using procedure_map = ::atom_map < ::procedure_array >;
 
-using procedure_list = ::list < ::procedure >;
+using procedure_list_base = ::list < ::procedure >;
 
 
 

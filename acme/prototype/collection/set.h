@@ -9,8 +9,7 @@
 
 
 template < typename NODE >
-class node_set :
-   virtual public ::particle,
+class node_set_base :
    public ::range < ::list_iterator < ::set_node < NODE > * > >
 {
 public:

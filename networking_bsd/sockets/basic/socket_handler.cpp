@@ -1946,7 +1946,7 @@ end_processing_adding:
 
                      }
 
-                     psocket->OnDelete();
+                     //psocket->OnDelete();
 
                      if (psocket->DeleteByHandler())
                      {
@@ -1986,7 +1986,7 @@ end_processing_adding:
 
             m_socketmap.erase_item(socket);
 
-            m_delete.erase_item(ppairSocket->m_psocket);
+            m_delete.add_item(ppairSocket->m_psocket);
 
             m_socketmapAdd.erase_item(socket);
 

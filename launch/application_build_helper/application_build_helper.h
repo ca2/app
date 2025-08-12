@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/prototype/collection/map.h"
+#include "acme/prototype/collection/map_base.h"
 #include "acme/prototype/collection/string_map.h"
 
 
@@ -132,7 +132,7 @@ namespace application_build_helper
       string defer_project_to_binary(const ::scoped_string & scopedstrProject);
 
 
-      void load_map(string_to_string & map, const ::scoped_string & scopedstrMap, const ::scoped_string & scopedstrRoot);
+      void load_map(string_to_string & map_base, const ::scoped_string & scopedstrMap, const ::scoped_string & scopedstrRoot);
 
       string defer_translate_application_name(const ::scoped_string & scopedstrDependency);
 

@@ -88,7 +88,7 @@ namespace user
 
       form_mesh::install_message_routing(pchannel);
 
-      list::install_message_routing(pchannel);
+      list_base::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_scroll_y, pchannel, this, &form_list::on_message_scroll_y);
 
@@ -374,7 +374,7 @@ namespace user
             //   m_rangeSelection.add_item(rectangle);
 
             //}
-            return ::user::list::on_click(pitem, pmouse);
+            return ::user::list_base::on_click(pitem, pmouse);
 
          }
 
@@ -439,7 +439,7 @@ namespace user
    ::pointer<list_column>form_list::new_list_column_with_control(::user::interaction * puserinteraction)
    {
 
-      auto pcolumn = ::user::list::new_list_column_with_control(puserinteraction);
+      auto pcolumn = ::user::list_base::new_list_column_with_control(puserinteraction);
 
       _001AddControl(puserinteraction);
 
@@ -652,7 +652,7 @@ namespace user
 
       _001HideEditingControls();
 
-      ::user::list::on_update_item_count();
+      ::user::list_base::on_update_item_count();
 
       for_user_interaction_children(pinteraction, this)
       {
@@ -1004,7 +1004,7 @@ namespace user
 
                   _001SetSubItemText(psubitemTarget);
 
-                  //::pointer<::list::column>pcolumn = m_pcolumna->get_by_subitem(iSubItemTarget);
+                  //::pointer<::list_base::column>pcolumn = m_pcolumna->get_by_subitem(iSubItemTarget);
                   //
                   //if (pcolumn.is_set() && m_controldescriptorset.bounds(pcolumn->m_iControl))
                   //{
@@ -1125,7 +1125,7 @@ namespace user
 
    void form_list::on_timer(::timer * ptimer)
    {
-      list::on_timer(ptimer);
+      list_base::on_timer(ptimer);
    }
 
    void form_list::_001OnMessageNotify(::message::message * pmessage)
@@ -1172,7 +1172,7 @@ namespace user
 
    //   //_001RemoveControls();
 
-   //   list::_001UpdateColumns();
+   //   list_base::_001UpdateColumns();
 
    //}
 
@@ -1181,12 +1181,12 @@ namespace user
    //{
    //   switch(eprop)
    //   {
-   //   case list::PropertyBaseWndInterface:
-   //   case list::PropertyDrawBaseWndInterface:
+   //   case list_base::PropertyBaseWndInterface:
+   //   case list_base::PropertyDrawBaseWndInterface:
    //   {
    //      const ::user::interaction_base ** ppinterface = (const ::user::interaction_base **) lparam;
 
-   //      *ppinterface = (list *)this;
+   //      *ppinterface = (list_base *)this;
    //   }
    //   return 1;
    //   default:
@@ -1198,7 +1198,7 @@ namespace user
    void form_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      list::_001OnDraw(pgraphics);
+      list_base::_001OnDraw(pgraphics);
 
    }
 
@@ -1346,7 +1346,7 @@ namespace user
    void form_list::on_column_update()
    {
 
-      ::user::list::on_column_update();
+      ::user::list_base::on_column_update();
 
       {
 
@@ -2194,7 +2194,7 @@ namespace user
    bool form_list::_001HitTest_(const ::int_point & point, ::collection::index & iItem, ::collection::index & iSubItem)
    {
 
-      return ::user::list::_001HitTest_(point, iItem, iSubItem);
+      return ::user::list_base::_001HitTest_(point, iItem, iSubItem);
 
    }
 
@@ -2371,7 +2371,7 @@ namespace user
 
       //}
 
-      ::user::list::_001DrawSubItem(pgraphics, pdrawlistsubitem);
+      ::user::list_base::_001DrawSubItem(pgraphics, pdrawlistsubitem);
 
       //if (pdrawitem->m_pcolumn->m_bCustomDraw)
       {
@@ -2510,7 +2510,7 @@ namespace user
          }
       }
 
-      //::user::list::_001DrawSubItem(pdrawitem);
+      //::user::list_base::_001DrawSubItem(pdrawitem);
 
    }
 

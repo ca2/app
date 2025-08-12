@@ -192,7 +192,7 @@ __message_entry(WM_MENUSELECT),
 __message_entry(WM_MENUCHAR),
 __message_entry(WM_ENTERIDLE),
 #endif
-   {-1,nullptr,}    // end of message list
+   {-1,nullptr,}    // end of message list_base
 };
 
 

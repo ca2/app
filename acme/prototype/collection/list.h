@@ -829,7 +829,7 @@ template<class TYPE, class ARG_TYPE>
 void list_base<TYPE, ARG_TYPE>::copy(const list_base < TYPE, ARG_TYPE > & l)
 {
 
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
 
    if (this == &l)
    {
@@ -1965,7 +1965,7 @@ template<class TYPE, class ARG_TYPE>
 typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::add_head(ARG_TYPE newElement)
 {
 
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
 
    auto p = __raw_new typename list_base < TYPE, ARG_TYPE >::NODE (newElement);
 

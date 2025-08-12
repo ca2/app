@@ -300,12 +300,12 @@ namespace tinyexpr
    }
    
    
-   static te_expr *list(state *s);
+   static te_expr *list_base(state *s);
    static te_expr *expr(state *s);
    static te_expr *power(state *s);
    
    static te_expr *base(state *s) {
-      /* <base>      =    <constant> | <variable> | <function-0> {"(" ")"} | <function-1> <power> | <function-X> "(" <expr> {"," <expr>} ")" | "(" <list> ")" */
+      /* <base>      =    <constant> | <variable> | <function-0> {"(" ")"} | <function-1> <power> | <function-X> "(" <expr> {"," <expr>} ")" | "(" <list_base> ")" */
       te_expr *ret;
       int arity;
       
@@ -380,7 +380,7 @@ namespace tinyexpr
             
          case TOK_OPEN:
             next_token(s);
-            ret = list(s);
+            ret = list_base(s);
             if (s->type != TOK_CLOSE) {
                s->type = TOK_ERROR;
             } else {
@@ -506,8 +506,8 @@ namespace tinyexpr
    }
    
    
-   static te_expr *list(state *s) {
-      /* <list>      =    <expr> {"," <expr>} */
+   static te_expr *list_base(state *s) {
+      /* <list_base>      =    <expr> {"," <expr>} */
       te_expr *ret = expr(s);
       
       while (s->type == TOK_SEP) {
@@ -600,7 +600,7 @@ namespace tinyexpr
       s.lookup_len = var_count;
       
       next_token(&s);
-      te_expr *root = list(&s);
+      te_expr *root = list_base(&s);
       
       if (s.type != TOK_END) {
          te_free(root);

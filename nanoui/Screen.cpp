@@ -73,7 +73,7 @@ namespace nanoui
 {
 
    //
-   //std::map<GLFWwindow *, Screen *> __nanoui_screens;
+   //std::map_base<GLFWwindow *, Screen *> __nanoui_screens;
    //
    //#if defined(NANOUI_GLAD)
    //static bool glad_initialized = false;

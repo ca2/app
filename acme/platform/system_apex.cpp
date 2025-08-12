@@ -289,7 +289,7 @@ namespace platform
 
 
    int apex_system_layer::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber,
-                                                const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list)
+                                                const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list_base)
    {
       return 0;
    }

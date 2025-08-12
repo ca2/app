@@ -218,17 +218,17 @@ namespace acme
 
          KEEP(m_bOk, false);
 
-         decltype(m_timermap) map;
+         decltype(m_timermap) map_base;
 
          {
 
             _synchronous_lock synchronouslock(this->synchronization());
 
-            map = m_timermap;
+            map_base = m_timermap;
 
          }
 
-         for (auto & pair : map)
+         for (auto & pair : map_base)
          {
 
             auto ptimer = pair.element2();
@@ -263,17 +263,17 @@ namespace acme
 
          KEEP(m_bOk, false);
 
-         decltype(m_timermap) map;
+         decltype(m_timermap) map_base;
 
          {
 
             _synchronous_lock synchronouslock(this->synchronization());
 
-            map = m_timermap;
+            map_base = m_timermap;
 
          }
 
-         for (auto & pair : map)
+         for (auto & pair : map_base)
          {
 
             try

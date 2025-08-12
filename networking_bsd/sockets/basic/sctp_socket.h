@@ -76,9 +76,9 @@ namespace sockets_bsd
    #endif
 
       /** get peer addresses of an association. */
-      int getpaddrs(sctp_assoc_t atom,list<string>&);
+      int getpaddrs(sctp_assoc_t atom,list_base<string>&);
       /** get all bound addresses of an association. */
-      int getladdrs(sctp_assoc_t atom,list<string>&);
+      int getladdrs(sctp_assoc_t atom,list_base<string>&);
 
       /** sctp_peeloff */
       int PeelOff(sctp_assoc_t atom);

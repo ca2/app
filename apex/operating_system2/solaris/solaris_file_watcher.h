@@ -34,8 +34,8 @@ namespace file_watcher
 	class os_file_watcher : public file_watcher_impl
 	{
 	public:
-		/// type for a map from atom to watch_struct pointer
-		typedef map < atom, atom, watch_struct *, watch_struct * > WatchMap;
+		/// type for a map_base from atom to watch_struct pointer
+		typedef map_base < atom, atom, watch_struct *, watch_struct * > WatchMap;
 
 	public:
 		///
@@ -53,7 +53,7 @@ namespace file_watcher
 		/// Remove a directory watch. This is a brute force lazy search O(nlogn).
 		void erase_watch(const string & directory);
 
-		/// Remove a directory watch. This is a map lookup O(logn).
+		/// Remove a directory watch. This is a map_base lookup O(logn).
 		void erase_watch(atom watchid);
 
 		string watch_path(atom watchid);

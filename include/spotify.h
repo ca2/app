@@ -668,7 +668,7 @@ typedef struct sp_session_config {
   /**
    * Don't save metadata for local copies of playlists
    * Reduces disk space usage at the expense of needing
-   * to request metadata from Spotify backend when loading list
+   * to request metadata from Spotify backend when loading list_base
    */
   bool dont_save_metadata_for_playlists;
 
@@ -978,7 +978,7 @@ SP_LIBEXPORT(sp_playlistcontainer *) sp_session_playlistcontainer(sp_session *se
 SP_LIBEXPORT(sp_playlist *) sp_session_inbox_create(sp_session *session);
 
 /**
- * Returns the starred list for the current user
+ * Returns the starred list_base for the current user
  *
  * @param[in]  session        Session object
  *
@@ -989,7 +989,7 @@ SP_LIBEXPORT(sp_playlist *) sp_session_inbox_create(sp_session *session);
 SP_LIBEXPORT(sp_playlist *) sp_session_starred_create(sp_session *session);
 
 /**
- * Returns the starred list for a user
+ * Returns the starred list_base for a user
  *
  * @param[in]  session        Session object
  * @param[in]  canonical_username       Canonical username
@@ -1004,7 +1004,7 @@ SP_LIBEXPORT(sp_playlist *) sp_session_starred_for_user_create(sp_session *sessi
  * Return the published container for a given @a canonical_username,
  * or the currently logged in user if @a canonical_username is NULL.
  *
- * When done with the list you should call sp_playlistconatiner_release() to
+ * When done with the list_base you should call sp_playlistconatiner_release() to
  * decrese the object you own by having created it.
  *
  * @param[in]   session    Your session object.
@@ -2102,7 +2102,7 @@ SP_LIBEXPORT(sp_error) sp_albumbrowse_release(sp_albumbrowse *alb);
  * Artist browsing initiates the fetching of information for a certain artist.
  *
  * @note   There is currently no built-in functionality available for getting the albums belonging
- *         to an artist. For now, just iterate over all tracks and note the album to build a list of all albums.
+ *         to an artist. For now, just iterate over all tracks and note the album to build a list_base of all albums.
  *         This feature will be added in a future version of the library.
  *
  * @{
@@ -2722,7 +2722,7 @@ SP_LIBEXPORT(sp_error) sp_search_release(sp_search *search);
 /**
  * @defgroup playlist Playlist subsystem
  *
- * The playlist subsystem handles playlists and playlist containers (list of playlists).
+ * The playlist subsystem handles playlists and playlist containers (list_base of playlists).
  *
  * The playlist container functions are always valid, but your playlists are not
  * guaranteed to be loaded until the sp_session_callbacks#logged_in callback has
@@ -2869,7 +2869,7 @@ typedef struct sp_playlist_callbacks {
 
 
   /**
-   * Called when playlist subscribers changes (count or list of names)
+   * Called when playlist subscribers changes (count or list_base of names)
    *
    * @param[in]  pl         Playlist object
    * @param[in]  userdata   Userdata passed to sp_playlist_add_callbacks()
@@ -3030,7 +3030,7 @@ SP_LIBEXPORT(sp_user *) sp_playlist_owner(sp_playlist *playlist);
 /**
  * Return collaborative status for a playlist.
  *
- * A playlist in collaborative state can be modifed by all users, not only the user owning the list
+ * A playlist in collaborative state can be modifed by all users, not only the user owning the list_base
  *
  * @param[in]  playlist   Playlist object
  *
@@ -3041,7 +3041,7 @@ SP_LIBEXPORT(bool) sp_playlist_is_collaborative(sp_playlist *playlist);
 /**
  * Set collaborative status for a playlist.
  *
- * A playlist in collaborative state can be modified by all users, not only the user owning the list
+ * A playlist in collaborative state can be modified by all users, not only the user owning the list_base
  *
  * @param[in]  playlist       Playlist object
  * @param[in]  collaborative  True or false
@@ -3209,7 +3209,7 @@ SP_LIBEXPORT(sp_error) sp_playlist_update_subscribers(sp_session *session, sp_pl
  *
  * @note       When a playlist is no longer in RAM it will appear empty.
  *             However, libspotify will retain information about the
- *             list metadata  (owner, title, picture, etc) in RAM.
+ *             list_base metadata  (owner, title, picture, etc) in RAM.
  *             There is one caveat tough: If libspotify has never seen the
  *             playlist before this metadata will also be unset.
  *             In order for libspotify to get the metadata the playlist
@@ -3235,7 +3235,7 @@ SP_LIBEXPORT(bool) sp_playlist_is_in_ram(sp_session *session, sp_playlist *playl
  *
  * @param[in]  session        Session object
  * @param[in]  playlist       Playlist object
- * @param[in]  in_ram         Controls whether or not to keep the list in RAM
+ * @param[in]  in_ram         Controls whether or not to keep the list_base in RAM
  * @return                    One of the following errors, from ::sp_error
  *                            SP_ERROR_OK
  */
@@ -3323,7 +3323,7 @@ typedef struct sp_playlistcontainer_callbacks {
    *
    * @param[in]  pc         Playlist container
    * @param[in]  playlist   Playlist object.
-   * @param[in]  position   Position in list
+   * @param[in]  position   Position in list_base
    * @param[in]  userdata   Userdata as set in sp_playlistcontainer_add_callbacks()
    */
   void (SP_CALLCONV *playlist_added)(sp_playlistcontainer *pc, sp_playlist *playlist, int position, void *userdata);
@@ -3334,7 +3334,7 @@ typedef struct sp_playlistcontainer_callbacks {
    *
    * @param[in]  pc         Playlist container
    * @param[in]  playlist   Playlist object.
-   * @param[in]  position   Position in list
+   * @param[in]  position   Position in list_base
    * @param[in]  userdata   Userdata as set in sp_playlistcontainer_add_callbacks()
    */
   void (SP_CALLCONV *playlist_erased)(sp_playlistcontainer *pc, sp_playlist *playlist, int position, void *userdata);
@@ -3345,8 +3345,8 @@ typedef struct sp_playlistcontainer_callbacks {
    *
    * @param[in]  pc         Playlist container
    * @param[in]  playlist   Playlist object.
-   * @param[in]  position   Previous position in playlist container list
-   * @param[in]  new_position   New position in playlist container list
+   * @param[in]  position   Previous position in playlist container list_base
+   * @param[in]  new_position   New position in playlist container list_base
    * @param[in]  userdata   Userdata as set in sp_playlistcontainer_add_callbacks()
    */
   void (SP_CALLCONV *playlist_moved)(sp_playlistcontainer *pc, sp_playlist *playlist, int position, int new_position, void *userdata);
@@ -3534,7 +3534,7 @@ SP_LIBEXPORT(sp_error) sp_playlistcontainer_move_playlist(sp_playlistcontainer *
  * type SP_PLAYLIST_TYPE_START_FOLDER and immediately following a
  * SP_PLAYLIST_TYPE_END_FOLDER one.
  *
- * To erase a playlist folder both of these must be deleted or the list
+ * To erase a playlist folder both of these must be deleted or the list_base
  * will be left in an inconsistant state.
  *
  * There is no way to rename a playlist folder. Instead you need to erase

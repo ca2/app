@@ -91,14 +91,14 @@ namespace sockets
       // -------------------------------------------------------------------------
       // socket stuff
       // -------------------------------------------------------------------------
-      /** add socket instance to socket ::map. Removal is always automatic. */
+      /** add socket instance to socket ::map_base. Removal is always automatic. */
       virtual void add(base_socket * psocket);
       //virtual void move2(socket_pointer && psocket) = 0;
       //virtual void transfer(socket_map::association * passociation, socket_map * psocketmap = nullptr) = 0;
       //virtual void restart_socket(socket_id socket) = 0;
       //virtual socket_map::association* new_association(socket_pointer && psocket) = 0;
    //private:
-      /** erase socket from socket ::map, used by socket class. */
+      /** erase socket from socket ::map_base, used by socket class. */
       virtual void erase(const socket_pointer & psocket) = 0;
    public:
 

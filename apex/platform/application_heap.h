@@ -17,7 +17,7 @@ namespace apex
       ::file::path_array_base                                   m_straMatterLocator;
       string_table                                    m_stringtable;
       string_table                                    m_stringtableStd;
-      map < atom, atom, string, string >                  m_stringmap;
+      map_base < atom, atom, string, string >                  m_stringmap;
 
 
       application_heap(::particle * pparticle)

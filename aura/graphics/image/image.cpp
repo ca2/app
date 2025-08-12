@@ -399,7 +399,7 @@ bool image::host(::pixmap* ppixmap, ::windowing::window * pwindow)
 bool image::on_host_read_pixels(::pixmap* ppixmapHost) const
 {
 
-   //map();
+   //map_base();
 
    //::copy_image32(ppixmapHost, this);
 
@@ -484,7 +484,7 @@ void image::create_isotropic(::image::image* pimage)
    if (::parallelization::get_priority() == ::e_priority_idle)
    {
 
-      map();
+      map_base();
 
       C2PassScale < CBlackmanFilter > scale(1.0);
 
@@ -746,9 +746,9 @@ void image::_draw_raw(const ::int_rectangle& rectangleDstParam, ::image::image* 
 
    }
 
-   pimageDst->map();
+   pimageDst->map_base();
 
-   pimageSrc->map();
+   pimageSrc->map_base();
 
    ::int_rectangle rectangleTarget(rectangleDstParam);
 
@@ -869,9 +869,9 @@ void image::blend(const ::int_rectangle& rectangleDstParam, ::image::image* pima
 
    ::image::image* pimageDst = this;
 
-   pimageDst->map();
+   pimageDst->map_base();
 
-   pimageSrc->map();
+   pimageSrc->map_base();
 
    ::int_rectangle rectangleTarget(rectangleDstParam);
 
@@ -1000,9 +1000,9 @@ void image::blend2(const ::int_point& pointDstParam, ::image::image* pimageSrc, 
 
    ::image::image* pimageDst = this;
 
-   pimageDst->map();
+   pimageDst->map_base();
 
-   pimageSrc->map();
+   pimageSrc->map_base();
 
    ::int_point pointDst(pointDstParam);
 
@@ -1208,9 +1208,9 @@ void image::blend(const ::int_point& pointDstParam, ::image::image* pimageSrc, c
    ::int_size size(sizeParam);
 
 
-   pimageDst->map();
+   pimageDst->map_base();
 
-   pimageSrc->map();
+   pimageSrc->map_base();
 
    pointDst += m_point;
 
@@ -1545,9 +1545,9 @@ void image::precision_blend(const ::int_point& pointDstParam, ::image::image* pi
 
    ::int_size size(sizeParam);
 
-   pimageDst->map();
+   pimageDst->map_base();
 
-   pimageSrc->map();
+   pimageSrc->map_base();
 
    pointDst += m_point;
 
@@ -1744,9 +1744,9 @@ void image::fork_blend(const ::int_point& pointDstParam, ::image::image* pimageS
 
    ::int_size size(sizeParam);
 
-   pimageDst->map();
+   pimageDst->map_base();
 
-   pimageSrc->map();
+   pimageSrc->map_base();
 
    pointDst += m_point;
 
@@ -1822,11 +1822,11 @@ void image::fork_blend(const ::int_point& pointDstParam, ::image::image* pimageS
 
    unsigned char* psrc = &((unsigned char*)pimageSrc->image32())[scanSrc * pointSrc.y() + pointSrc.x() * sizeof(image32_t)];
 
-   //unsigned char * pdst5; // dst opacity map if available // opacity map does not make sense for images that machine
+   //unsigned char * pdst5; // dst opacity map_base if available // opacity map_base does not make sense for images that machine
 
-   unsigned char* psrcOpacity; // src opacity map if available
+   unsigned char* psrcOpacity; // src opacity map_base if available
 
-   unsigned char* psrcTransparency; // src transparency map if available
+   unsigned char* psrcTransparency; // src transparency map_base if available
 
    if (pimageSrc->m_memoryMap.size() == pimageSrc->area() * 2)
    {
@@ -2027,9 +2027,9 @@ void image::blend(const ::int_point& pointDstParam, ::image::image* pimageSrc, c
 
    ::image::image* pimageDst = this;
 
-   pimageDst->map();
-   pimageSrc->map();
-   pimageAlf->map();
+   pimageDst->map_base();
+   pimageSrc->map_base();
+   pimageAlf->map_base();
 
    ::int_point pointDst(pointDstParam);
 
@@ -2205,8 +2205,8 @@ void image::blend(const ::int_point & pointDst,::image::image *pimageSrc, const 
 
    ::image::image *pimageDst = this;
 
-   pimageDst->map();
-   pimageSrc->map();
+   pimageDst->map_base();
+   pimageSrc->map_base();
 
 
    if (pointSrc.x() < 0)
@@ -2492,7 +2492,7 @@ void image::set_rgb(int R, int G, int B)
 void image::flip_horizontally()
 {
 
-   map();
+   map_base();
 
    int half = -1;
 
@@ -2526,7 +2526,7 @@ void image::flip_horizontally()
 void image::flip_vertically()
 {
 
-   map();
+   map_base();
 
    int half = -1;
 
@@ -2708,7 +2708,7 @@ void image::mult_alpha(::image::image* pimage, bool bPreserveAlpha)
 #define byte_clip2(i) (i)
 void image::mult_alpha()
 {
-   map();
+   map_base();
 
    unsigned char* dst = (unsigned char*)data();
    long long size = scan_area();
@@ -2770,7 +2770,7 @@ void image::mult_alpha()
 
 void image::mult_alpha_fast()
 {
-   map();
+   map_base();
 
    unsigned char* dst = (unsigned char*)data();
    long long size = scan_area();
@@ -2808,7 +2808,7 @@ void image::mult_alpha(const ::int_point& pointDstParam, const ::int_size& sizeP
 
    ::image::image* pimageDst = this;
 
-   pimageDst->map();
+   pimageDst->map_base();
 
    if (pointDst.x() < 0)
    {
@@ -2919,7 +2919,7 @@ void image::create_thumbnail(const ::scoped_string & scopedstr)
 void image::div_alpha()
 {
 
-   map();
+   map_base();
 
    unsigned char* dst = (unsigned char*)data();
    long long size = scan_area();
@@ -2999,7 +2999,7 @@ void image::div_alpha(const ::int_point& pointDstParam, const ::int_size& sizePa
 
    ::image::image* pimageDst = this;
 
-   pimageDst->map();
+   pimageDst->map_base();
 
    if (pointDst.x() < 0)
    {
@@ -3190,9 +3190,9 @@ void image::BitBlt(::image::image* pimage, int op)
 void image::BitBlt(int cxParam, int cyParam, ::image::image* pimage, int op)
 {
 
-   map();
+   map_base();
 
-   pimage->map();
+   pimage->map_base();
 
    if (op == 1 && size() == pimage->size() && pimage->m_iScan == m_iScan) // op == 1 indicates can ignore cxParam and cyParam and perform full ::memory_copy
    {
@@ -3290,7 +3290,7 @@ void image::BitBlt(int cxParam, int cyParam, ::image::image* pimage, int op)
 void image::invert()
 {
 
-   map();
+   map_base();
 
    long long size = scan_area();
    unsigned char* pb = (unsigned char*)data();
@@ -3392,9 +3392,9 @@ void image::channel_multiply(::color::enum_channel echannel, ::image::image* pim
 
    //      long long size = area();
 
-   map();
+   map_base();
 
-   pimage->map();
+   pimage->map_base();
    if (!bIfAlphaIgnorePreDivPosMult && echannel == ::color::e_channel_opacity)
    {
       div_alpha();
@@ -3509,9 +3509,9 @@ void image::channel_lighten(::color::enum_channel echannel, ::image::image* pima
 void image::channel_from(::color::enum_channel echannel, ::image::image* pimage)
 {
 
-   map();
+   map_base();
 
-   pimage->map();
+   pimage->map_base();
 
    long long size = m_iScan * height() / sizeof(image32_t);
 
@@ -3682,9 +3682,9 @@ void image::channel_from(::color::enum_channel echannel, ::image::image* pimage)
 void image::channel_from(::color::enum_channel echannel, ::image::image* pimage, const ::int_rectangle& rectangleParam)
 {
 
-   map();
+   map_base();
 
-   pimage->map();
+   pimage->map_base();
 
    ::int_rectangle rectangle;
 
@@ -3758,9 +3758,9 @@ void image::channel_from(::color::enum_channel echannel, ::image::image* pimage,
 void image::channel_multiply(::color::enum_channel echannel, ::image::image* pimage, const ::int_rectangle& rectangleParam, bool bIfAlphaIgnorePreDivPosMult)
 {
 
-   map();
+   map_base();
 
-   pimage->map();
+   pimage->map_base();
 
    ::int_rectangle rectangle;
 
@@ -3944,9 +3944,9 @@ void image::fill_stippled_glass(int R, int G, int B)
 //   //pimage->defer_realize(pimage->get_graphics());
 //   //defer_realize(pimage->get_graphics());
 //
-//   map();
+//   map_base();
 //
-//   ((::image::image*)pimage)->map();
+//   ((::image::image*)pimage)->map_base();
 //   // If DibSize Wrong Re-create image_impl
 //   // do Paste
 //
@@ -4021,7 +4021,7 @@ void image::op(const ::scoped_string & scopedstr)
    if (scopedstr == "horz-__swap")
    {
 
-      map();
+      map_base();
 
       // half width
       int hx = width() / 2;
@@ -4130,9 +4130,9 @@ void image::Blend(::image::image* pDib, ::image::image* DibA)
       size() != DibA->size())
       throw ::exception(error_wrong_state);
 
-   map();
-   pDib->map();
-   DibA->map();
+   map_base();
+   pDib->map_base();
+   DibA->map_base();
 
    unsigned char* src = (unsigned char*)pDib->data();
    unsigned char* dst = (unsigned char*)data();
@@ -4471,7 +4471,7 @@ void image::fill_rectangle(const ::int_rectangle& rectangle, int R, int G, int B
 
    }
 
-   map();
+   map_base();
 
    image32_t* dst = data() + (py * width()) + px;
 
@@ -4949,7 +4949,7 @@ void image::horizontal_line(int y, ::color::color color, int x1, int x2)
 {
    if (width() == 0)
       return;
-   map();
+   map_base();
    if (x1 < 0)
       x1 = 0;
    if (x2 >= width())
@@ -4991,7 +4991,7 @@ void image::vertical_line(int x, ::color::color color, int y1, int y2)
 {
    if (height() == 0)
       return;
-   map();
+   map_base();
    if (y1 < 0)
       y1 = 0;
    if (y2 >= height())
@@ -5266,7 +5266,7 @@ void image::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, ::color::e
 ::color::color image::GetPixel(int x, int y)
 {
 
-   map();
+   map_base();
 
    unsigned int ui = (data() + x + line(y) * (m_iScan / sizeof(image32_t)))->m_ui;
 
@@ -5484,7 +5484,7 @@ void image::RadialFill(
       //return false;
       return;
 
-   map();
+   map_base();
    /*if(version == 0)
    {
 
@@ -5819,9 +5819,9 @@ void image::rotate(::image::image *pimage, const ::double_angle & angle, double 
 
          //}
 
-         map();
+         map_base();
 
-         pimage->map();
+         pimage->map_base();
 
          int cx = pimage->width();
 
@@ -5853,9 +5853,9 @@ void image::rotate(::image::image *pimage, const ::double_angle & angle, double 
 
          create(pimage->size());
 
-         map();
+         map_base();
 
-         pimage->map();
+         pimage->map_base();
 
          int cx = width();
 
@@ -5885,9 +5885,9 @@ void image::rotate(::image::image *pimage, const ::double_angle & angle, double 
 
          create({ pimage->height(), pimage->width() });
 
-         map();
+         map_base();
 
-         pimage->map();
+         pimage->map_base();
 
          int cx = pimage->width();
 
@@ -5936,9 +5936,9 @@ void image::rotate(::image::image *pimage, const ::double_angle & angle, double 
 
    create({ b, a });
 
-   map();
+   map_base();
 
-   pimage->map();
+   pimage->map_base();
 
    int wSource = pimage->width();
 
@@ -6025,9 +6025,9 @@ void image::rotate(::image::image *pimage, const ::double_angle & angle, double 
 
             //}
 
-            map();
+            map_base();
 
-            pimage->map();
+            pimage->map_base();
 
             int cx = width();
 
@@ -6060,9 +6060,9 @@ void image::rotate(::image::image *pimage, const ::double_angle & angle, double 
 
 
 
-         map();
+         map_base();
 
-         pimage->map();
+         pimage->map_base();
 
          int cx = width();
 
@@ -6091,9 +6091,9 @@ void image::rotate(::image::image *pimage, const ::double_angle & angle, double 
 
                auto pimage = ::particle::image()->create_image({ height(), width() });
 
-            map();
+            map_base();
 
-            pimage->map();
+            pimage->map_base();
 
             int cx = width();
 
@@ -6140,9 +6140,9 @@ void image::rotate(::image::image *pimage, const ::double_angle & angle, double 
 
    auto pimage = ::particle::image()->create_image({ b, a });
 
-   map();
+   map_base();
 
-   pimage->map();
+   pimage->map_base();
 
    int wSource = width();
 
@@ -6216,9 +6216,9 @@ void image::rotate(::image::image *pimage, const ::double_angle & angle, double 
 //::image::image_pointer image::rotated(const angle& angle, double dScale)
 //{
 //
-//   map();
+//   map_base();
 //
-//   pimage->map();
+//   pimage->map_base();
 //
 //   int wSource = pimage->width();
 //
@@ -6296,8 +6296,8 @@ void image::rotate(::image::image *pimage, const ::double_angle & angle, double 
 void image::Rotate034(::image::image* pimage, double dAngle, double dScale)
 {
 
-   map();
-   pimage->map();
+   map_base();
+   pimage->map_base();
 
    auto hdst = height();
    auto wdst = width();
@@ -6517,9 +6517,9 @@ void image::e_rotate_90_flip_horizontally(::image::image* pimage)
 
    create(pimage->size());
 
-   map();
+   map_base();
 
-   pimage->map();
+   pimage->map_base();
 
    int cx = pimage->width();
 
@@ -6549,9 +6549,9 @@ void image::e_rotate_180_flip_horizontally(::image::image* pimage)
 
    create(pimage->size());
    
-   map();
+   map_base();
 
-   pimage->map();
+   pimage->map_base();
 
    int cx = width();
 
@@ -6581,9 +6581,9 @@ void image::e_rotate_270_flip_horizontally(::image::image* pimage)
 
    create(pimage->size());
 
-   map();
+   map_base();
 
-   pimage->map();
+   pimage->map_base();
 
    int cx = pimage->width();
 
@@ -6799,7 +6799,7 @@ void image::clear_argb(int a, int r, int g, int b)
 ::color::color image::GetAverageColor()
 {
 
-   map();
+   map_base();
 
    long long iRLine;
 
@@ -6865,7 +6865,7 @@ void image::clear_argb(int a, int r, int g, int b)
 ::color::color image::GetAverageOpaqueColor()
 {
 
-   map();
+   map_base();
 
    double dR = 0.0;
    double dG = 0.0;
@@ -7379,7 +7379,7 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
          if (::parallelization::get_priority() == ::e_priority_idle)
          {
 
-            map();
+            map_base();
 
             C2PassScale < CBlackmanFilter > scale(1.0);
 
@@ -7458,7 +7458,7 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
             if (::parallelization::get_priority() == ::e_priority_idle)
             {
 
-               map();
+               map_base();
 
                C2PassScale < CBlackmanFilter > scale(1.0);
 
@@ -7820,7 +7820,7 @@ double image::pi() const
 
 void image::fill_channel(int intensity, ::color::enum_channel echannel)
 {
-   map();
+   map_base();
    int offset = ((int)echannel) % 4;
    long long size = scan_area();
 
@@ -7879,7 +7879,7 @@ void image::fill_channel(int intensity, ::color::enum_channel echannel)
 
 void image::white_fill_channel(int intensity, ::color::enum_channel echannel)
 {
-   map();
+   map_base();
    int offset = ((int)echannel) % 4;
    long long size = scan_area();
 
@@ -7944,7 +7944,7 @@ void image::white_fill_channel(int intensity, ::color::enum_channel echannel)
 void image::channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc)
 {
 
-   map();
+   map_base();
 
    echannelDst = (::color::enum_channel)(((int)echannelDst) % 4);
    echannelSrc = (::color::enum_channel)(((int)echannelSrc) % 4);
@@ -7998,7 +7998,7 @@ void image::channel_copy(::color::enum_channel echannelDst, ::color::enum_channe
 
    }
 
-   map();
+   map_base();
 
    if (image32() == nullptr)
    {
@@ -8009,7 +8009,7 @@ void image::channel_copy(::color::enum_channel echannelDst, ::color::enum_channe
 
    }
 
-   pimage->map();
+   pimage->map_base();
 
    if (pimage->image32() == nullptr)
    {
@@ -8064,7 +8064,7 @@ void image::all_channels_copy(::color::enum_channel echannelSrc, ::image::image 
 
    }
 
-   map();
+   map_base();
 
    if (image32() == nullptr)
    {
@@ -8075,7 +8075,7 @@ void image::all_channels_copy(::color::enum_channel echannelSrc, ::image::image 
 
    }
 
-   pimage->map();
+   pimage->map_base();
 
    if (pimage->image32() == nullptr)
    {
@@ -8132,7 +8132,7 @@ void image::tint(::image::image* pimage, ::color::color color)
 
    }*/
 
-   map();
+   map_base();
 
    unsigned char* src = (unsigned char*)pimage->image32();
    unsigned char* dst = (unsigned char*)image32();
@@ -8291,7 +8291,7 @@ void image::tint(::image::image* pimage, ::color::color color)
 void image::saturation(double dRate)
 {
 
-   map();
+   map_base();
 
    unsigned char* dst = (unsigned char*)image32();
 
@@ -8342,7 +8342,7 @@ void image::opacity(double dRate)
 
    int iA = as_byte(255. * dRate);
 
-   map();
+   map_base();
 
    try
    {
@@ -8371,7 +8371,7 @@ void image::opacity(double dRate)
 void image::set_rgb_pre_alpha(int R, int G, int B, int A)
 {
 
-   map();
+   map_base();
 
    unsigned char* dst = (unsigned char*)image32();
    long long size = scan_area();
@@ -8605,7 +8605,7 @@ long long image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const
 long long image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const ::int_rectangle &rect) const
 {
 
-   map();
+   map_base();
 
    if(::is_null(this->data()))
    {
@@ -8766,7 +8766,7 @@ void image::pixelate(int iSize)
 
    }
 
-   map();
+   map_base();
 
    int w = width();
    int h = height();
@@ -9060,7 +9060,7 @@ void image::pixelate(int iSize)
 void image::rate_rgb(int iMul, int iDiv)
 {
 
-   map();
+   map_base();
 
    try
    {
@@ -9085,7 +9085,7 @@ void image::rate_rgb(int iMul, int iDiv)
 }
 
 
-void image::map(bool bApplyAlphaTransform) const
+void image::map_base(bool bApplyAlphaTransform) const
 {
 
    if (!m_bMapped)
@@ -9096,7 +9096,7 @@ void image::map(bool bApplyAlphaTransform) const
 
       //{
 
-         pixmap::map();
+         pixmap::map_base();
 
          m_bMapped = true;
 
@@ -10021,7 +10021,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy,
    FT_Int  x_max = x + bitmap->width;
    FT_Int  y_max = y + bitmap->rows;
 
-   m_p->map();
+   m_p->map_base();
 
    for (i = x, point = 0; i < x_max; i++, int_point++)
    {
@@ -10051,7 +10051,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy,
    FT_Int  x_max = x + bitmap->width;
    FT_Int  y_max = y + bitmap->rows;
 
-   m_p->map();
+   m_p->map_base();
 
    for (i = x, point = 0; i < x_max; i++, int_point++)
    {
@@ -10104,7 +10104,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy,
    FT_Int  x_max = x + bitmap->width;
    FT_Int  y_max = y + bitmap->rows;
 
-   m_p->map();
+   m_p->map_base();
 
    for (i = x, point = 0; i < x_max; i++, int_point++)
    {
@@ -10134,7 +10134,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy,
    FT_Int  x_max = x + bitmap->width;
    FT_Int  y_max = y + bitmap->rows;
 
-   m_p->map();
+   m_p->map_base();
 
    for (i = x, point = 0; i < x_max; i++, int_point++)
    {
@@ -10198,7 +10198,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy,
 //   if (area() > 0)
 //   {
 //
-//      map();
+//      map_base();
 //
 //      stream.write(image32(), m_iScan * height());
 //
@@ -10369,7 +10369,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy,
 //
 //   //}
 //
-//   map();
+//   map_base();
 //
 //   if (iScan == m_iScan)
 //   {
@@ -10522,7 +10522,7 @@ void image::transform(enum_image eimage)
 void image::_map(bool bApplyAlphaTransform)
 {
 
-   pixmap::map(this->rectangle());
+   pixmap::map_base(this->rectangle());
 
    //return true;
 

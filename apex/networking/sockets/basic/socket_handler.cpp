@@ -685,8 +685,8 @@ namespace sockets
 //
 //        }
 //
-//        /// \no more todo rebuild fd_set's from active sockets list (m_socketmap) here
-//        /// done : http://jbmon.googlecode.com/svn/trunk/sockets/socket_idHandler.cpp : rebuild fd_set's from active sockets list (m_socketmap) here
+//        /// \no more todo rebuild fd_set's from active sockets list_base (m_socketmap) here
+//        /// done : http://jbmon.googlecode.com/svn/trunk/sockets/socket_idHandler.cpp : rebuild fd_set's from active sockets list_base (m_socketmap) here
 //        {
 //
 //           FD_ZERO(&rfds);
@@ -1906,10 +1906,10 @@ namespace sockets
    }
 
 
-//  void socket_handler::CheckList(socket_id_list & list, const string & listname)
+//  void socket_handler::CheckList(socket_id_list & list_base, const string & listname)
 //  {
 //
-//     auto p = list.begin();
+//     auto p = list_base.begin();
 //
 //     for(; (bool) p ; p++)
 //     {

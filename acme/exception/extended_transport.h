@@ -94,10 +94,10 @@
 //      }
 //
 //
-//      transport(const std::initializer_list < ::exception > &list)
+//      transport(const std::initializer_list < ::exception > &list_base)
 //      {
 //
-//         for (auto& e : list)
+//         for (auto& e : list_base)
 //         {
 //
 //            add(e);

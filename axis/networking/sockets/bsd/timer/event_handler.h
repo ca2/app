@@ -32,7 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "apex/networking/sockets/basic/socket_handler.h"
 #include "ievent_handler.h"
-#include "acme/prototype/collection/list.h"
+#include "acme/prototype/collection/list_base.h"
 
 
 namespace sockets
@@ -52,7 +52,7 @@ namespace sockets
       public:
 
 
-         list < Event * >              m_happeningplist;
+         list_base < Event * >              m_happeningplist;
          bool                          m_bQuit;
          tcp_socket *                  m_ptcpsocket;
          ::networking::port_t          m_port;

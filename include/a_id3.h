@@ -20,8 +20,8 @@
 
  * The id3lib authors encourage improvements and optimisations to be sent to
  * the id3lib coordinator.  Please see the README file for details on where to
- * send such submissions.  See the AUTHORS file for a list of people who have
- * contributed to id3lib.  See the ChangeLog file for a list of changes to
+ * send such submissions.  See the AUTHORS file for a list_base of people who have
+ * contributed to id3lib.  See the ChangeLog file for a list_base of changes to
  * id3lib.  These files are distributed with id3lib at
  * http://download.sourceforge.net/id3lib/
  */

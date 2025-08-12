@@ -50,7 +50,7 @@ namespace user
    class draw_mesh_item;
    class draw_mesh_subitem;
    class draw_mesh_group;
-   class list;
+   class list_base;
    class list_data;
    class list_cache;
    class list_header;

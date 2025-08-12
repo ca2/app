@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "list.h"
+#include "list_base.h"
 #include "list_column.h"
 #include "list_column_array.h"
 #include "list_header.h"
@@ -29,7 +29,7 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/user/user/scroll_bar.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "aura/graphics/image/list.h"
+#include "aura/graphics/image/list_base.h"
 #include "aura/user/user/scroll_state.h"
 #include "aura/message/user.h"
 #include "aura/windowing/window.h"
@@ -58,7 +58,7 @@ namespace user
    };
 
 
-   list::list()
+   list_base::list_base()
    {
 
       m_econtroltype = e_control_type_list;
@@ -106,7 +106,7 @@ namespace user
    }
 
 
-   list::~list()
+   list_base::~list_base()
    {
 
       //::acme::del(m_pdrawlistitem);
@@ -114,7 +114,7 @@ namespace user
    }
 
 
-   // ::core::application* list::get_app()
+   // ::core::application* list_base::get_app()
    // {
    //
    //    auto papplication = application();
@@ -124,7 +124,7 @@ namespace user
    // }
    //
    //
-   // ::core::session* list::get_session()
+   // ::core::session* list_base::get_session()
    // {
    //
    //    auto pacmesession = session();
@@ -134,7 +134,7 @@ namespace user
    // }
    //
    //
-   // ::core::system* list::get_system()
+   // ::core::system* list_base::get_system()
    // {
    //
    //    auto pacmesystem = system();
@@ -144,34 +144,34 @@ namespace user
    // }
 
 
-   void list::install_message_routing(::channel * pchannel)
+   void list_base::install_message_routing(::channel * pchannel)
    {
 
       ::user::mesh::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_size, pchannel, this, &list::on_message_size);
-      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &list::on_message_scroll_y);
-      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &list::on_message_scroll_x);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &list::on_message_mouse_leave);
+      MESSAGE_LINK(e_message_size, pchannel, this, &list_base::on_message_size);
+      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &list_base::on_message_scroll_y);
+      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &list_base::on_message_scroll_x);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &list_base::on_message_mouse_leave);
 
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list::on_message_left_button_up);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::on_message_left_button_double_click);
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list::on_message_right_button_down);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list_base::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list_base::on_message_left_button_up);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_base::on_message_left_button_double_click);
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list_base::on_message_right_button_down);
 
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list::on_message_mouse_move);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_base::on_message_mouse_move);
 
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &list::on_message_key_down);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &list_base::on_message_key_down);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
-      //      //MESSAGE_LINK(e_message_timer,           pchannel, this, &list::on_timer);
-      add_command_handler("list_impact_auto_arrange", { this,  &list::_001OnListImpactAutoArrange });
-      add_command_prober("list_impact_auto_arrange", { this,  &list::_001OnUpdateListImpactAutoArrange });
+      MESSAGE_LINK(e_message_create, pchannel, this, &list_base::on_message_create);
+      //      //MESSAGE_LINK(e_message_timer,           pchannel, this, &list_base::on_timer);
+      add_command_handler("list_impact_auto_arrange", { this,  &list_base::_001OnListImpactAutoArrange });
+      add_command_prober("list_impact_auto_arrange", { this,  &list_base::_001OnUpdateListImpactAutoArrange });
 
    }
 
 
-   bool list::CreateHeaderCtrl()
+   bool list_base::CreateHeaderCtrl()
    {
       if (m_plistheader != nullptr)
       {
@@ -203,7 +203,7 @@ namespace user
    }
 
 
-   void list::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
+   void list_base::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
    {
 
 //      return;
@@ -213,7 +213,7 @@ namespace user
    }
 
 
-   void list::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void list_base::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::mesh::_001OnNcDraw(pgraphics);
@@ -224,7 +224,7 @@ namespace user
    }
 
 
-   void list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void list_base::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_ppenFocused->create_solid(2, argb(255, 0, 255, 255));
@@ -480,8 +480,8 @@ namespace user
 
 
 
-   //void list::_001DrawGroups(draw_list_item * pdrawitem, ::collection::index iGroupFirst, ::collection::index iGroupLast, ::collection::index iItemFirst, ::collection::index iItemLast)
-      void list::_001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast)
+   //void list_base::_001DrawGroups(draw_list_item * pdrawitem, ::collection::index iGroupFirst, ::collection::index iGroupLast, ::collection::index iItemFirst, ::collection::index iItemLast)
+      void list_base::_001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast)
    {
 
       //__UNREFERENCED_PARAMETER(iItemFirst);
@@ -560,7 +560,7 @@ namespace user
    }
 
 
-   void list::_001DrawGroup(::draw2d::graphics_pointer & pgraphics, draw_list_group * pdrawgroup)
+   void list_base::_001DrawGroup(::draw2d::graphics_pointer & pgraphics, draw_list_group * pdrawgroup)
    {
 
       /*if(m_bGroupCustomDraw)
@@ -570,7 +570,7 @@ namespace user
          return;
       }*/
 
-      _001GetGroupElementRect(pdrawgroup, ::user::list::e_group_element_image);
+      _001GetGroupElementRect(pdrawgroup, ::user::list_base::e_group_element_image);
 
       if (pdrawgroup->m_bOk)
       {
@@ -584,7 +584,7 @@ namespace user
       for (pdrawgroup->m_iItem = 0; pdrawgroup->m_iItem < nItem; pdrawgroup->m_iItem++)
       {
 
-         _001GetGroupElementRect(pdrawgroup, ::user::list::e_group_element_item_text);
+         _001GetGroupElementRect(pdrawgroup, ::user::list_base::e_group_element_item_text);
 
          if (pdrawgroup->m_bOk)
          {
@@ -600,7 +600,7 @@ namespace user
    }
 
 
-   void list::_001DrawItems(::draw2d::graphics_pointer & pgraphics, ::collection::index iItemFirst, ::collection::index iItemLast)
+   void list_base::_001DrawItems(::draw2d::graphics_pointer & pgraphics, ::collection::index iItemFirst, ::collection::index iItemLast)
    {
 
       auto rectangleX = this->rectangle();
@@ -736,7 +736,7 @@ namespace user
    }
 
 
-   void list::_001DrawItem(::draw2d::graphics_pointer & pgraphics, draw_list_item * pdrawitem)
+   void list_base::_001DrawItem(::draw2d::graphics_pointer & pgraphics, draw_list_item * pdrawitem)
    {
 
       pdrawitem->m_iState = 0;
@@ -932,7 +932,7 @@ namespace user
    }
 
 
-   void list::_001DrawSubItem(::draw2d::graphics_pointer & pgraphics, draw_list_subitem * pdrawlistsubitem)
+   void list_base::_001DrawSubItem(::draw2d::graphics_pointer & pgraphics, draw_list_subitem * pdrawlistsubitem)
    {
 
       if (pdrawlistsubitem->m_pcolumn->m_bCustomDraw)
@@ -963,7 +963,7 @@ namespace user
 
       pdrawlistsubitem->m_bOk = false;
 
-      index_element_rectangle(pdrawlistsubitem, ::user::list::e_element_image);
+      index_element_rectangle(pdrawlistsubitem, ::user::list_base::e_element_image);
 
       if (pdrawlistsubitem->m_bOk)
       {
@@ -1017,7 +1017,7 @@ namespace user
    }
 
 
-   ::collection::count list::_001GetColumnCount()
+   ::collection::count list_base::_001GetColumnCount()
    {
 
       return m_pcolumna->get_visible_count();
@@ -1025,7 +1025,7 @@ namespace user
    }
 
 
-   void list::on_message_size(::message::message * pmessage)
+   void list_base::on_message_size(::message::message * pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -1033,7 +1033,7 @@ namespace user
    }
 
 
-   void list::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void list_base::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1134,7 +1134,7 @@ namespace user
    }
 
 
-   bool list::on_impact_update()
+   bool list_base::on_impact_update()
    {
 
       if (!::user::mesh::on_impact_update())
@@ -1151,7 +1151,7 @@ namespace user
    }
 
 
-   void list::on_update_item_count()
+   void list_base::on_update_item_count()
    {
 
       ::user::mesh::on_update_item_count();
@@ -1262,7 +1262,7 @@ namespace user
    }
 
 
-   void list::on_after_impact_update()
+   void list_base::on_after_impact_update()
    {
 
       //m_pointScroll.Null();
@@ -1276,7 +1276,7 @@ namespace user
    }
 
 
-   void list::on_change_scroll_state(::user::enum_layout elayout)
+   void list_base::on_change_scroll_state(::user::enum_layout elayout)
    {
 
       auto iItemCount = m_nItemCount;
@@ -1445,13 +1445,13 @@ namespace user
    }
 
 
-   void list::_001OnInitialize()
+   void list_base::_001OnInitialize()
    {
 
    }
 
 
-   ::pointer<mesh_item>& list::get_item(::collection::index iItem)
+   ::pointer<mesh_item>& list_base::get_item(::collection::index iItem)
    {
 
       auto & pitem = m_mapItem[iItem];
@@ -1484,7 +1484,7 @@ namespace user
    }
 
 
-   ::pointer<mesh_subitem>& list::get_subitem(mesh_item * pitem, ::collection::index iSubItem)
+   ::pointer<mesh_subitem>& list_base::get_subitem(mesh_item * pitem, ::collection::index iSubItem)
    {
       
       auto & psubitem = pitem->m_mapSubItem[iSubItem];
@@ -1511,7 +1511,7 @@ namespace user
    }
 
 
-   ::pointer<list_column>list::new_list_column()
+   ::pointer<list_column>list_base::new_list_column()
    {
 
       auto pcolumn = __allocate list_column();
@@ -1524,7 +1524,7 @@ namespace user
 
    }
 
-   ::pointer<list_column>list::new_list_column_with_control(::user::interaction * puserinteraction)
+   ::pointer<list_column>list_base::new_list_column_with_control(::user::interaction * puserinteraction)
    {
       
       auto pcolumn = new_list_column();
@@ -1538,7 +1538,7 @@ namespace user
    }
 
 
-   void list::_001OnAddColumn(list_column * pcolumn)
+   void list_base::_001OnAddColumn(list_column * pcolumn)
    {
 
    }
@@ -1575,13 +1575,13 @@ namespace user
    //}
 
 
-   void list::_thread_data_update_visible_subitem()
+   void list_base::_thread_data_update_visible_subitem()
    {
 
    }
 
 
-   int list::_001CalcItemHeight(::user::style * pstyle, int iBaseHeight)
+   int list_base::_001CalcItemHeight(::user::style * pstyle, int iBaseHeight)
    {
 
       return (int) (iBaseHeight * get_double(pstyle, ::user::e_double_list_item_height_rate, ::user::e_state_none, 1.0));
@@ -1589,7 +1589,7 @@ namespace user
    }
 
 
-   void list::on_column_update()
+   void list_base::on_column_update()
    {
 
       ::user::mesh::on_column_update();
@@ -1764,7 +1764,7 @@ namespace user
    }
 
 
-   bool list::_001SetColumnWidth(::collection::index iColumn, int iWidth)
+   bool list_base::_001SetColumnWidth(::collection::index iColumn, int iWidth)
    {
 
       if (iColumn < 0)
@@ -1796,7 +1796,7 @@ namespace user
    }
 
 
-   //int list::_001GetColumnWidth(::collection::index iColumn)
+   //int list_base::_001GetColumnWidth(::collection::index iColumn)
    //{
 
    //   auto  * pcolumn = m_pcolumna->get_visible(pitem->m_iColumn);
@@ -1817,7 +1817,7 @@ namespace user
    //}
 
 
-   ::collection::index list::sub_item_to_order(::collection::index iSubItem)
+   ::collection::index list_base::sub_item_to_order(::collection::index iSubItem)
    {
 
       return _001MapColumnToOrder(_001MapSubItemToColumn(iSubItem));
@@ -1825,7 +1825,7 @@ namespace user
    }
 
 
-   ::collection::index list::_001MapOrderToSubItem(::collection::index iOrder)
+   ::collection::index list_base::_001MapOrderToSubItem(::collection::index iOrder)
    {
 
       return _001MapColumnToSubItem(_001MapOrderToColumn(iOrder));
@@ -1833,7 +1833,7 @@ namespace user
    }
 
 
-   ::collection::index list::_001MapOrderToColumn(::collection::index iOrder)
+   ::collection::index list_base::_001MapOrderToColumn(::collection::index iOrder)
    {
 
       for (::collection::index iColumn = 0; iColumn < m_pcolumna->get_size(); iColumn++)
@@ -1865,7 +1865,7 @@ namespace user
    }
 
 
-   ::collection::index list::_001MapColumnToOrder(::collection::index iColumn)
+   ::collection::index list_base::_001MapColumnToOrder(::collection::index iColumn)
    {
 
       if (iColumn < 0)
@@ -1898,7 +1898,7 @@ namespace user
    }
 
 
-   ::collection::index list::_001MapSubItemToColumn(::collection::index iSubItem)
+   ::collection::index list_base::_001MapSubItemToColumn(::collection::index iSubItem)
    {
 
       return m_pcolumna->subitem_visible_index(iSubItem);
@@ -1906,7 +1906,7 @@ namespace user
    }
 
 
-   ::collection::index list::_001MapColumnToSubItem(::collection::index iColumn)
+   ::collection::index list_base::_001MapColumnToSubItem(::collection::index iColumn)
    {
 
       if (iColumn < 0 || iColumn >= m_pcolumna->get_visible_count())
@@ -1921,7 +1921,7 @@ namespace user
    }
 
 
-   void list::_001DeleteColumn(::collection::index iColumn)
+   void list_base::_001DeleteColumn(::collection::index iColumn)
    {
 
       ASSERT(iColumn >= 0);
@@ -1932,7 +1932,7 @@ namespace user
    }
 
 
-   ::collection::count list::_001GetItemCount()
+   ::collection::count list_base::_001GetItemCount()
    {
 
       if (m_pmeshdata.is_null())
@@ -1947,7 +1947,7 @@ namespace user
    }
 
 
-   ::collection::count list::_001GetGroupCount()
+   ::collection::count list_base::_001GetGroupCount()
    {
 
       if (m_pmeshdata.is_null())
@@ -1968,14 +1968,14 @@ namespace user
    // Old Name: _001GetTopIndex
    //
    // Purpose:
-   // Return the index of the first visible item in the list
+   // Return the index of the first visible item in the list_base
    //
    // Output:
-   // The index of the first visible item in the list
+   // The index of the first visible item in the list_base
    //
    //
    /////////////////////////////////////////////////////////////////
-   ::collection::index list::_001CalcDisplayTopIndex()
+   ::collection::index list_base::_001CalcDisplayTopIndex()
    {
 
       auto pointOffset = get_context_offset();
@@ -2017,7 +2017,7 @@ namespace user
    }
 
 
-   ::collection::count list::_001CalcDisplayItemCount()
+   ::collection::count list_base::_001CalcDisplayItemCount()
    {
 
       if (m_eview == impact_list)
@@ -2204,7 +2204,7 @@ namespace user
    }
 
 
-   bool list::_001HitTest_(const ::int_point & point, ::collection::index & iItem, ::collection::index & iSubItem, ::collection::index & iListItem, ::user::mesh::enum_element &eelement)
+   bool list_base::_001HitTest_(const ::int_point & point, ::collection::index & iItem, ::collection::index & iSubItem, ::collection::index & iListItem, ::user::mesh::enum_element &eelement)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -2218,7 +2218,7 @@ namespace user
    }
 
 
-   bool list::_001HitTest_(const ::int_point & point, ::collection::index & iItem, ::collection::index & iSubItem)
+   bool list_base::_001HitTest_(const ::int_point & point, ::collection::index & iItem, ::collection::index & iSubItem)
    {
 
       if (!_001DisplayHitTest(point, iItem, iSubItem))
@@ -2235,7 +2235,7 @@ namespace user
    }
 
 
-   bool list::_001HitTest_(const ::int_point & point, ::collection::index & iItem)
+   bool list_base::_001HitTest_(const ::int_point & point, ::collection::index & iItem)
    {
 
       if (!_001DisplayHitTest(point, iItem))
@@ -2252,7 +2252,7 @@ namespace user
    }
 
 
-   bool list::_001DisplayHitTest(const ::int_point & point, ::collection::index & iItem, ::collection::index & iSubItem, ::collection::index & iListItem, ::user::mesh::enum_element &eelement)
+   bool list_base::_001DisplayHitTest(const ::int_point & point, ::collection::index & iItem, ::collection::index & iSubItem, ::collection::index & iListItem, ::user::mesh::enum_element &eelement)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -2266,7 +2266,7 @@ namespace user
    }
 
 
-   bool list::_001DisplayHitTest(const ::int_point & point, ::collection::index & iItemParam, ::collection::index & iSubItemParam)
+   bool list_base::_001DisplayHitTest(const ::int_point & point, ::collection::index & iItemParam, ::collection::index & iSubItemParam)
    {
 
       ::collection::index iItem;
@@ -2364,7 +2364,7 @@ namespace user
    }
 
 
-   bool list::_001DisplayHitTest(const ::int_point & point, ::collection::index & iItemParam)
+   bool list_base::_001DisplayHitTest(const ::int_point & point, ::collection::index & iItemParam)
    {
 
 //      {
@@ -2625,7 +2625,7 @@ namespace user
    }
 
 
-   void list::_001GetGroupRect(::user::draw_list_group * pdrawlistgroup)
+   void list_base::_001GetGroupRect(::user::draw_list_group * pdrawlistgroup)
    {
 
       if (pdrawlistgroup->m_iGroup < 0)
@@ -2691,7 +2691,7 @@ namespace user
    }
 
 
-   void list::index_item_rectangle(::user::draw_mesh_item * pdrawitem)
+   void list_base::index_item_rectangle(::user::draw_mesh_item * pdrawitem)
    {
 
       if (pdrawitem->m_iDisplayItem < 0)
@@ -3008,7 +3008,7 @@ namespace user
    }
 
 
-   void list::_001GetSubItemRect(::user::draw_list_subitem * pdrawlistsubitem)
+   void list_base::_001GetSubItemRect(::user::draw_list_subitem * pdrawlistsubitem)
    {
 
       if (pdrawlistsubitem->m_pitem->m_iDisplayItem != pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_iRectangleDisplayItem)
@@ -3099,7 +3099,7 @@ namespace user
    }
 
 
-   ::user::interaction * list::get_subitem_control(::collection::index iSubItem)
+   ::user::interaction * list_base::get_subitem_control(::collection::index iSubItem)
    {
 
       auto pcolumn = m_pcolumna->get_by_subitem(iSubItem);
@@ -3125,7 +3125,7 @@ namespace user
    }
 
 
-   void list::index_element_rectangle(::user::draw_list_subitem * pdrawlistsubitem, ::user::mesh::enum_element eelement)
+   void list_base::index_element_rectangle(::user::draw_list_subitem * pdrawlistsubitem, ::user::mesh::enum_element eelement)
    {
 
       if (pdrawlistsubitem->m_pitem->m_iDisplayItem != pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_iRectangleDisplayItem)
@@ -3144,7 +3144,7 @@ namespace user
 
       }
 
-      if (eelement == ::user::list::e_element_item)
+      if (eelement == ::user::list_base::e_element_item)
       {
 
          return_(pdrawlistsubitem->m_bOk, true);
@@ -3154,7 +3154,7 @@ namespace user
       if (m_eview == impact_icon)
       {
 
-         if (eelement == ::user::list::e_element_image)
+         if (eelement == ::user::list_base::e_element_image)
          {
 
             auto sizeIcon = get_list_icon_size();
@@ -3225,7 +3225,7 @@ namespace user
                if (pdrawlistsubitem->m_bOk && pdrawlistsubitem->m_iImage >= 0)
                {
 
-                  if (eelement == ::user::list::e_element_image)
+                  if (eelement == ::user::list_base::e_element_image)
                   {
 
                      ::int_rectangle rectangleAlign(pdrawlistsubitem->m_rectangleSubItem);
@@ -3249,7 +3249,7 @@ namespace user
                   }
 
                }
-               else if (eelement == ::user::list::e_element_image)
+               else if (eelement == ::user::list_base::e_element_image)
                {
 
                   return_(pdrawlistsubitem->m_bOk, false);
@@ -3275,7 +3275,7 @@ namespace user
 
                   pdrawlistsubitem->m_pcolumn->m_pimagelist->get_image_info((int)pdrawlistsubitem->m_iImage, &ii);
 
-                  if (eelement == ::user::list::e_element_image)
+                  if (eelement == ::user::list_base::e_element_image)
                   {
 
                      ::int_rectangle rectangleAlign(pdrawlistsubitem->m_rectangleSubItem);
@@ -3310,7 +3310,7 @@ namespace user
                   }
 
                }
-               else if (eelement == ::user::list::e_element_image)
+               else if (eelement == ::user::list_base::e_element_image)
                {
 
                   return_(pdrawlistsubitem->m_bOk, false);
@@ -3320,7 +3320,7 @@ namespace user
             }
 
          }
-         else if (eelement == ::user::list::e_element_image)
+         else if (eelement == ::user::list_base::e_element_image)
          {
 
             return_(pdrawlistsubitem->m_bOk, false);
@@ -3346,10 +3346,10 @@ namespace user
    }
 
 
-   void list::_001GetGroupElementRect(::user::draw_list_group * pdrawlistgroup, ::user::mesh::enum_group_element egroupelement)
+   void list_base::_001GetGroupElementRect(::user::draw_list_group * pdrawlistgroup, ::user::mesh::enum_group_element egroupelement)
    {
 
-      if (m_bGroup && m_bLateralGroup && (egroupelement == ::user::list::e_group_element_image || egroupelement == ::user::list::e_group_element_item_text))
+      if (m_bGroup && m_bLateralGroup && (egroupelement == ::user::list_base::e_group_element_image || egroupelement == ::user::list_base::e_group_element_item_text))
       {
 
          int x = pdrawlistgroup->m_rectangleGroup.left();
@@ -3368,7 +3368,7 @@ namespace user
 
                m_pimagelistGroup->get_image_info((int)pdrawlistgroup->m_iImage, &ii);
 
-               if (egroupelement == ::user::list::e_group_element_image)
+               if (egroupelement == ::user::list_base::e_group_element_image)
                {
 
                   pdrawlistgroup->m_rectangleImage.left() = x;
@@ -3391,7 +3391,7 @@ namespace user
                }
 
             }
-            else if (egroupelement == ::user::list::e_group_element_image)
+            else if (egroupelement == ::user::list_base::e_group_element_image)
             {
 
                return_(pdrawlistgroup->m_bOk, false);
@@ -3399,14 +3399,14 @@ namespace user
             }
 
          }
-         else if (egroupelement == ::user::list::e_group_element_image)
+         else if (egroupelement == ::user::list_base::e_group_element_image)
          {
 
             return_(pdrawlistgroup->m_bOk, false);
 
          }
 
-         if (egroupelement == ::user::list::e_group_element_item_text)
+         if (egroupelement == ::user::list_base::e_group_element_item_text)
          {
 
             pdrawlistgroup->m_rectangleText.top() = (int)(pdrawlistgroup->m_rectangleGroup.top() + m_dItemHeight * pdrawlistgroup->m_iItem);
@@ -3439,7 +3439,7 @@ namespace user
    }
 
 
-   void list::LayoutHeaderCtrl()
+   void list_base::LayoutHeaderCtrl()
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -3475,7 +3475,7 @@ namespace user
    }
 
 
-   void list::on_message_key_down(::message::message * pmessage)
+   void list_base::on_message_key_down(::message::message * pmessage)
    {
 
       auto pkey = pmessage->m_union.m_pkey;
@@ -3577,7 +3577,7 @@ namespace user
    }
 
 
-   void list::on_hover_select_timer()
+   void list_base::on_hover_select_timer()
    {
 
       mesh::on_hover_select_timer();
@@ -3585,7 +3585,7 @@ namespace user
    }
 
 
-   void list::on_message_mouse_move(::message::message * pmessage)
+   void list_base::on_message_mouse_move(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -3780,7 +3780,7 @@ namespace user
 
 
 
-   void list::on_message_left_button_down(::message::message * pmessage)
+   void list_base::on_message_left_button_down(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -3853,7 +3853,7 @@ namespace user
 
       ::collection::index iItem;
 
-      if (dynamic_cast <list *>(this) == nullptr)
+      if (dynamic_cast <list_base *>(this) == nullptr)
       {
 
          auto tickNow = ::time::now();
@@ -4140,7 +4140,7 @@ namespace user
    }
 
 
-   void list::on_message_left_button_up(::message::message * pmessage)
+   void list_base::on_message_left_button_up(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -4350,7 +4350,7 @@ namespace user
    }
 
 
-   void list::on_message_right_button_down(::message::message * pmessage)
+   void list_base::on_message_right_button_down(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -4413,7 +4413,7 @@ namespace user
    }
 
 
-   bool list::on_click(::item * pitem, ::user::mouse * pmouse)
+   bool list_base::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       auto ptopic = create_topic(::id_list_clicked);
@@ -4446,7 +4446,7 @@ namespace user
    }
 
 
-   bool list::on_right_click(::item * pitem, ::user::mouse * pmouse)
+   bool list_base::on_right_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       __UNREFERENCED_PARAMETER(pitem);
@@ -4457,7 +4457,7 @@ namespace user
 
 
 
-   void list::get_selection(range &range)
+   void list_base::get_selection(range &range)
    {
 
       range = m_rangeSelection;
@@ -4465,7 +4465,7 @@ namespace user
    }
 
 
-   ::collection::index list::_001GetCurItem()
+   ::collection::index list_base::_001GetCurItem()
    {
 
       if (m_rangeSelection.get_item_count() != 1)
@@ -4480,7 +4480,7 @@ namespace user
    }
 
 
-   void list::_001SelectItem(::collection::index iItem)
+   void list_base::_001SelectItem(::collection::index iItem)
    {
 
       m_rangeSelection.clear();
@@ -4502,7 +4502,7 @@ namespace user
    }
 
 
-   void list::get_data_selection(const ::scoped_string & scopedstrDataKey, ::string_array_base & straSelection)
+   void list_base::get_data_selection(const ::scoped_string & scopedstrDataKey, ::string_array_base & straSelection)
    {
 
       if (!has_data_key(scopedstrDataKey))
@@ -4592,7 +4592,7 @@ namespace user
    //}
 
 
-   ::collection::count list::_001GetSelectedItemCount()
+   ::collection::count list_base::_001GetSelectedItemCount()
    {
 
       return m_rangeSelection.get_item_count();
@@ -4600,7 +4600,7 @@ namespace user
    }
 
 
-   ::collection::count list::_001GetSelectedItems(index_array & ia)
+   ::collection::count list_base::_001GetSelectedItems(index_array & ia)
    {
 
       return m_rangeSelection.get_items(ia);
@@ -4608,7 +4608,7 @@ namespace user
    }
 
 
-   string list::_001GetColumnText(::collection::index iColumn)
+   string list_base::_001GetColumnText(::collection::index iColumn)
    {
 
       list_column * pcolumn = m_pcolumna->get_visible(iColumn);
@@ -4625,7 +4625,7 @@ namespace user
    }
 
 
-   void list::on_message_left_button_double_click(::message::message * pmessage)
+   void list_base::on_message_left_button_double_click(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -4696,7 +4696,7 @@ namespace user
       }
    }
 
-   void list::HeaderCtrlLayout()
+   void list_base::HeaderCtrlLayout()
    {
 
       if (m_plistheader == nullptr)
@@ -4711,7 +4711,7 @@ namespace user
    }
 
 
-   ::collection::index list::HeaderCtrlMapColumnToOrder(::collection::index iColumn)
+   ::collection::index list_base::HeaderCtrlMapColumnToOrder(::collection::index iColumn)
    {
 
       if (m_plistheader == nullptr)
@@ -4726,7 +4726,7 @@ namespace user
    }
 
 
-   bool list::_001OnHeaderCtrlEndDrag(wparam wparam, lparam lparam)
+   bool list_base::_001OnHeaderCtrlEndDrag(wparam wparam, lparam lparam)
 
    {
 
@@ -4755,21 +4755,21 @@ namespace user
    }
 
 
-   /*LRESULT list::OnEndColumnHeaderDragMessage(wparam wparam, lparam lparam)
+   /*LRESULT list_base::OnEndColumnHeaderDragMessage(wparam wparam, lparam lparam)
 
    {
    HeaderCtrlOnEndDrag();
    return 0;
    }*/
 
-   /*LRESULT list::OnEndColumnHeaderTrackMessage(wparam wparam, lparam lparam)
+   /*LRESULT list_base::OnEndColumnHeaderTrackMessage(wparam wparam, lparam lparam)
 
    {
    HeaderCtrlOnEndTrack();
    return 0;
    }*/
 
-   /*LRESULT list::OnColumnHeaderTrackMessage(wparam wparam, lparam lparam)
+   /*LRESULT list_base::OnColumnHeaderTrackMessage(wparam wparam, lparam lparam)
 
    {
    HeaderCtrlOnTrack();
@@ -4777,7 +4777,7 @@ namespace user
    }*/
 
 
-   bool list::_001OnHeaderCtrlEndTrack(wparam wparam, lparam lparam)
+   bool list_base::_001OnHeaderCtrlEndTrack(wparam wparam, lparam lparam)
 
    {
 
@@ -4810,7 +4810,7 @@ namespace user
    }
 
 
-   bool list::_001OnHeaderCtrlTrack(wparam wparam, lparam lparam)
+   bool list_base::_001OnHeaderCtrlTrack(wparam wparam, lparam lparam)
 
    {
 
@@ -4834,7 +4834,7 @@ namespace user
    }
 
 
-   void list::_001ShowSubItem(::collection::index iSubItem, bool bShow)
+   void list_base::_001ShowSubItem(::collection::index iSubItem, bool bShow)
    {
 
       string str;
@@ -5107,7 +5107,7 @@ namespace user
       m_plist = nullptr;
    }
 
-   void list_column_array::Initialize(list * plist)
+   void list_column_array::Initialize(list_base * plist)
    {
       ASSERT(plist != nullptr);
       m_plist = plist;
@@ -5389,7 +5389,7 @@ namespace user
 
    //void list_column_array::VisibleToGlobalOrder()
    //{
-   //   list * plist = m_plist;
+   //   list_base * plist = m_plist;
    //   //detects change
    //   iptr iVisibleCount = get_visible_count();
    //   iptr iChangeCount = 0;
@@ -5532,21 +5532,21 @@ namespace user
    }
 
 
-   void list::DISaveOrder()
+   void list_base::DISaveOrder()
    {
 
       m_pcolumna->DISaveOrder();
 
    }
 
-   void list::DILoadOrder()
+   void list_base::DILoadOrder()
    {
       m_pcolumna->DILoadOrder();
       set_pending_column_layout();
    }
 
 
-   //void list::_001UpdateColumns()
+   //void list_base::_001UpdateColumns()
    //{
 
    //   _001RemoveAllColumns();
@@ -5564,14 +5564,14 @@ namespace user
    //}
 
 
-   void list::on_insert_columns()
+   void list_base::on_insert_columns()
    {
 
 
    }
 
 
-   void list::erase_columns()
+   void list_base::erase_columns()
    {
 
       {
@@ -5592,7 +5592,7 @@ namespace user
 
 
 
-   void list::PreSubClassWindow()
+   void list_base::PreSubClassWindow()
    {
 
       if (is_window_visible())
@@ -5605,7 +5605,7 @@ namespace user
    }
 
 
-   void list::on_message_create(::message::message * pmessage)
+   void list_base::on_message_create(::message::message * pmessage)
    {
 
       ::pointer<::message::create>pcreate(pmessage);
@@ -5669,7 +5669,7 @@ namespace user
    }
 
 
-   void list::_001CreateImageList(list_column * pcolumn)
+   void list_base::_001CreateImageList(list_column * pcolumn)
    {
 
       if (pcolumn == nullptr)
@@ -5708,7 +5708,7 @@ namespace user
    }
 
 
-   void list::on_timer(::timer * ptimer)
+   void list_base::on_timer(::timer * ptimer)
    {
 
       ::user::mesh::on_timer(ptimer);
@@ -5718,7 +5718,7 @@ namespace user
    }
 
 
-   bool list::_001IsItemVisible(::collection::index iItem)
+   bool list_base::_001IsItemVisible(::collection::index iItem)
    {
 
       draw_list_item item;
@@ -5743,7 +5743,7 @@ namespace user
    }
 
 
-   void list::_001SetHighlightRange(range & range)
+   void list_base::_001SetHighlightRange(range & range)
    {
 
       m_rangeHighlight = range;
@@ -5751,7 +5751,7 @@ namespace user
    }
 
 
-   bool list::DIDDXHeaderLayout(bool bSave)
+   bool list_base::DIDDXHeaderLayout(bool bSave)
    {
 
       if (m_plistheader == nullptr)
@@ -5766,7 +5766,7 @@ namespace user
    }
 
 
-   void list::_001SetTopText(const ::wide_character * pcwsz)
+   void list_base::_001SetTopText(const ::wide_character * pcwsz)
    {
 
       m_strTopText = pcwsz;
@@ -5782,7 +5782,7 @@ namespace user
    }
 
 
-   void list::_001LayoutTopText(::draw2d::graphics_pointer& pgraphics)
+   void list_base::_001LayoutTopText(::draw2d::graphics_pointer& pgraphics)
    {
 
       pgraphics->set_font(this, ::e_element_none);
@@ -5820,7 +5820,7 @@ namespace user
 
    }
 
-   void list::_001ShowTopText(bool bShow)
+   void list_base::_001ShowTopText(bool bShow)
    {
       m_bTopText = bShow;
    }
@@ -5828,7 +5828,7 @@ namespace user
 
 
 
-   void list::cache_hint()
+   void list_base::cache_hint()
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -5847,7 +5847,7 @@ namespace user
    }
 
 
-   void list::set_data_interface(::user::mesh_data * pmeshdata)
+   void list_base::set_data_interface(::user::mesh_data * pmeshdata)
    {
 
       mesh::set_data_interface(pmeshdata);
@@ -5857,7 +5857,7 @@ namespace user
    }
 
 
-   //bool list::_001InsertColumn(list_column * pcolumn)
+   //bool list_base::_001InsertColumn(list_column * pcolumn)
    //{
 
    //
@@ -5867,7 +5867,7 @@ namespace user
    //}
 
 
-   void list::_001SetSingleColumnMode(bool bHeaderCtrl)
+   void list_base::_001SetSingleColumnMode(bool bHeaderCtrl)
    {
 
       m_bSingleColumnMode = true;
@@ -5894,7 +5894,7 @@ namespace user
    }
 
 
-   //int list::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem)
+   //int list_base::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem)
    //{
 
    //   pgraphics->set_font(this, ::e_element_none);
@@ -5906,7 +5906,7 @@ namespace user
    //}
 
 
-   int list::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, ::collection::index iItem, ::collection::index iSubItem)
+   int list_base::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, ::collection::index iItem, ::collection::index iSubItem)
    {
 
       pgraphics->set(pfont);
@@ -5916,7 +5916,7 @@ namespace user
    }
 
 
-   int list::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem)
+   int list_base::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem)
    {
 
       ::image::image_list::info ii;
@@ -5975,7 +5975,7 @@ namespace user
    }
 
 
-   bool list::has_data_key(const ::scoped_string & scopedstrDataKey)
+   bool list_base::has_data_key(const ::scoped_string & scopedstrDataKey)
    {
 
       return data_key_to_column_key(scopedstrDataKey) >= 0;
@@ -5983,7 +5983,7 @@ namespace user
    }
 
 
-   ::collection::index list::data_key_to_sub_item(const ::scoped_string & scopedstrDataKey)
+   ::collection::index list_base::data_key_to_sub_item(const ::scoped_string & scopedstrDataKey)
    {
       list_column * column = m_pcolumna->get_by_config_id(scopedstrDataKey);
       if (column == nullptr)
@@ -5992,7 +5992,7 @@ namespace user
    }
 
 
-   ::collection::index list::config_id_index(const ::scoped_string & scopedstrDataKey)
+   ::collection::index list_base::config_id_index(const ::scoped_string & scopedstrDataKey)
    {
 
       return m_pcolumna->config_id_index(scopedstrDataKey);
@@ -6101,7 +6101,7 @@ namespace user
    //}
 
 
-   void list::ensure_item_visible(::collection::index iItem, ::e_align ealign, bool bRedraw)
+   void list_base::ensure_item_visible(::collection::index iItem, ::e_align ealign, bool bRedraw)
    {
 
       auto pointOffset = get_context_offset();
@@ -6162,7 +6162,7 @@ namespace user
    }
 
 
-   void list::scroll_to_item(::collection::index iItem, bool bRedraw)
+   void list_base::scroll_to_item(::collection::index iItem, bool bRedraw)
    {
 
       if (iItem < m_nItemCount)
@@ -6194,7 +6194,7 @@ namespace user
    }
 
 
-   void list::ensure_item_visible(::collection::index iItem, range & range)
+   void list_base::ensure_item_visible(::collection::index iItem, range & range)
    {
 
       auto pointOffset = get_context_offset();
@@ -6239,7 +6239,7 @@ namespace user
    }
 
 
-   void list::highlight_item(::collection::index iItem, bool bRedraw)
+   void list_base::highlight_item(::collection::index iItem, bool bRedraw)
    {
 
       ::user::mesh::highlight_item(iItem, bRedraw);
@@ -6256,7 +6256,7 @@ namespace user
    }
 
 
-   bool list::on_erase_item(::collection::index iItem)
+   bool list_base::on_erase_item(::collection::index iItem)
    {
 
       __UNREFERENCED_PARAMETER(iItem);
@@ -6266,7 +6266,7 @@ namespace user
    }
 
 
-   bool list::erase_item(::collection::index iItem, bool bRedraw)
+   bool list_base::erase_item(::collection::index iItem, bool bRedraw)
    {
 
       if (!on_erase_item(iItem))
@@ -6296,7 +6296,7 @@ namespace user
    //   m_iUpperBound += iOffset;
    //}
 
-   void list::erase_selection()
+   void list_base::erase_selection()
    {
       ::user::range range;
 
@@ -6315,7 +6315,7 @@ namespace user
    }
 
 
-   void list::select_item(::collection::index iItem, ::collection::index iSubItem)
+   void list_base::select_item(::collection::index iItem, ::collection::index iSubItem)
    {
 
       ::user::mesh::select_item(iItem, iSubItem);
@@ -6333,7 +6333,7 @@ namespace user
    }
 
 
-   ::collection::index list::strict_to_display(::collection::index iStrict)
+   ::collection::index list_base::strict_to_display(::collection::index iStrict)
    {
 
       __UNREFERENCED_PARAMETER(iStrict);
@@ -6343,7 +6343,7 @@ namespace user
    }
 
 
-   ::collection::index list::display_to_strict(::collection::index iDisplay)
+   ::collection::index list_base::display_to_strict(::collection::index iDisplay)
    {
 
       if (iDisplay < 0)
@@ -6378,7 +6378,7 @@ namespace user
       }
    }
 
-   void list::FilterBegin()
+   void list_base::FilterBegin()
    {
       m_efilterstate = FilterStateSetup;
 
@@ -6405,7 +6405,7 @@ namespace user
 
    }
 
-   void list::FilterApply()
+   void list_base::FilterApply()
    {
 
       //      ASSERT(m_efilterstate == FilterStateSetup);
@@ -6432,7 +6432,7 @@ namespace user
    }
 
 
-   void list::FilterClose()
+   void list_base::FilterClose()
    {
 
       m_bFilter1 = false;
@@ -6470,7 +6470,7 @@ namespace user
    }
 
 
-   void list::FilterExcludeAll()
+   void list_base::FilterExcludeAll()
    {
 
       if (m_eview == impact_icon)
@@ -6489,7 +6489,7 @@ namespace user
    }
 
 
-   void list::FilterInclude(::collection::index iItem)
+   void list_base::FilterInclude(::collection::index iItem)
    {
       ASSERT(m_efilterstate == FilterStateSetup);
       if (m_eview == impact_icon)
@@ -6502,7 +6502,7 @@ namespace user
       }
    }
 
-   void list::FilterInclude(::int_array_base & array)
+   void list_base::FilterInclude(::int_array_base & array)
    {
       ASSERT(m_efilterstate == FilterStateSetup);
       for (::collection::index i = 0; i < array.get_size(); i++)
@@ -6512,12 +6512,12 @@ namespace user
    }
 
 
-   bool list::Filter1Step()
+   bool list_base::Filter1Step()
    {
 
       auto tickIn = ::time::now();
 
-      informationf("list::Filter1Step");
+      informationf("list_base::Filter1Step");
 
       information() << "tickIn = " << tickIn.integral_millisecond();
 
@@ -6620,7 +6620,7 @@ namespace user
    }
 
 
-   void list::Filter1(const ::scoped_string & scopedstrFilter)
+   void list_base::Filter1(const ::scoped_string & scopedstrFilter)
    {
 
       if (m_eview == impact_icon)
@@ -6656,7 +6656,7 @@ namespace user
    }
 
 
-   void list::_001OnListHeaderItemClick(::collection::index iHeaderItem)
+   void list_base::_001OnListHeaderItemClick(::collection::index iHeaderItem)
    {
 
       if (!m_bSortEnable)
@@ -6671,7 +6671,7 @@ namespace user
    }
 
 
-   void list::_001OnListHeaderItemDblClk(::collection::index iHeaderItem)
+   void list_base::_001OnListHeaderItemDblClk(::collection::index iHeaderItem)
    {
 
       auto psystem = system();
@@ -6685,7 +6685,7 @@ namespace user
    }
 
 
-   void list::_001OnSort()
+   void list_base::_001OnSort()
    {
 
       if (!m_bSortEnable)
@@ -6698,14 +6698,14 @@ namespace user
       if (m_eview != impact_icon)
       {
 
-         ::generic::range::quick_sort(m_pmeshlayout->m_iaDisplayToStrict, this, &list::_001Compare);
+         ::generic::range::quick_sort(m_pmeshlayout->m_iaDisplayToStrict, this, &list_base::_001Compare);
 
       }
 
    }
 
 
-   void list::_001OnSort(::collection::index iSubItem)
+   void list_base::_001OnSort(::collection::index iSubItem)
    {
 
       ::collection::index iFound = -1;
@@ -6738,7 +6738,7 @@ namespace user
    }
 
 
-   ::std::strong_ordering list::_002Compare(::collection::index iItem1, ::collection::index iItem2, ::collection::index iSubItem)
+   ::std::strong_ordering list_base::_002Compare(::collection::index iItem1, ::collection::index iItem2, ::collection::index iSubItem)
    {
       //draw_list_item item1(this);
       //draw_list_item item2(this);
@@ -6770,7 +6770,7 @@ namespace user
    }
 
 
-   ::std::strong_ordering list::_001Compare(::collection::index iItem1, ::collection::index iItem2)
+   ::std::strong_ordering list_base::_001Compare(::collection::index iItem1, ::collection::index iItem2)
    {
 
       CSortInfoItem * pitem = nullptr;
@@ -6816,7 +6816,7 @@ namespace user
    }
 
 
-   ::std::strong_ordering list::_001DisplayCompare(::collection::index iDisplayItem1, ::collection::index iDisplayItem2)
+   ::std::strong_ordering list_base::_001DisplayCompare(::collection::index iDisplayItem1, ::collection::index iDisplayItem2)
    {
 
       return _001Compare(display_to_strict(iDisplayItem1), display_to_strict(iDisplayItem2));
@@ -6824,7 +6824,7 @@ namespace user
    }
 
 
-   int list::_001CalcListWidth(::draw2d::graphics_pointer & pgraphics)
+   int list_base::_001CalcListWidth(::draw2d::graphics_pointer & pgraphics)
    {
 
       ASSERT(false);
@@ -6834,7 +6834,7 @@ namespace user
    }
 
 
-   int list::_001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn)
+   int list_base::_001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn)
    {
 
       __UNREFERENCED_PARAMETER(iColumn);
@@ -6866,7 +6866,7 @@ namespace user
    }
 
 
-   void list::_001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn)
+   void list_base::_001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn)
    {
 
       _001SetColumnWidth(iColumn, _001CalcColumnWidth(pgraphics, iColumn));
@@ -6874,7 +6874,7 @@ namespace user
    }
 
 
-   void list::_OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void list_base::_OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -6882,7 +6882,7 @@ namespace user
    }
 
 
-   int list::get_wheel_scroll_delta()
+   int list_base::get_wheel_scroll_delta()
    {
 
       return (int) (3.* m_dItemHeight);
@@ -6890,9 +6890,9 @@ namespace user
    }
 
 
-   //void list::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
-   //void list::on_change_context_offset()
-   void list::on_change_context_offset(::user::enum_layout elayout)
+   //void list_base::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //void list_base::on_change_context_offset()
+   void list_base::on_change_context_offset(::user::enum_layout elayout)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -6974,28 +6974,28 @@ namespace user
    }
 
 
-   //::draw2d::pen * list::_001GetPenHighlight()
+   //::draw2d::pen * list_base::_001GetPenHighlight()
    //{
    //   return m_ppenHighlight;
    //}
 
-   //::draw2d::pen * list::_001GetPenFocused()
+   //::draw2d::pen * list_base::_001GetPenFocused()
    //{
    //   return m_ppenFocused;
 
    //}
 
-   //::write_text::font * list::_001GetFont()
+   //::write_text::font * list_base::_001GetFont()
    //{
    //   return m_pfont;
    //}
 
-   //::write_text::font * list::_001GetFontHover()
+   //::write_text::font * list_base::_001GetFontHover()
    //{
    //   return m_pfontHover;
    //}
 
-   void list::on_message_mouse_leave(::message::message * pmessage)
+   void list_base::on_message_mouse_leave(::message::message * pmessage)
    {
       //m_iDisplayItemHover = -1;
       //m_iSubItemHover = -1;
@@ -7004,8 +7004,8 @@ namespace user
    }
 
 
-   //::item_pointer list::update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder, bool bAvoidRedraw)
-   //::item_pointer list::update_hover(::user::mouse* pmouse, ::user::e_zorder ezorder)
+   //::item_pointer list_base::update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder, bool bAvoidRedraw)
+   //::item_pointer list_base::update_hover(::user::mouse* pmouse, ::user::e_zorder ezorder)
    //{
 
    //   auto pitemHitTest = __allocate ::item();
@@ -7064,7 +7064,7 @@ namespace user
    //}
 
 
-   void list::data_get_DisplayToStrict()
+   void list_base::data_get_DisplayToStrict()
    {
 
       if (m_eview == impact_icon)
@@ -7083,7 +7083,7 @@ namespace user
    }
 
 
-   void list::data_set_DisplayToStrict()
+   void list_base::data_set_DisplayToStrict()
    {
       if (m_eview == impact_icon)
       {
@@ -7095,12 +7095,12 @@ namespace user
       }
    }
 
-   atom list::data_get_current_sort_id()
+   atom list_base::data_get_current_sort_id()
    {
       return data_get_sort_id(m_eview);
    }
 
-   atom list::data_get_sort_id(EImpact eview)
+   atom list_base::data_get_sort_id(EImpact eview)
    {
 
       return ::user::mesh::data_get_sort_id(eview);
@@ -7115,7 +7115,7 @@ namespace user
       //   return "sort-report";
       //   break;
       //case impact_list:
-      //   return "sort-list";
+      //   return "sort-list_base";
       //   break;
       //case impact_icon:
       //   return "sort-icon";
@@ -7127,7 +7127,7 @@ namespace user
    }
 
 
-   list::EImpact list::_001GetImpact()
+   list_base::EImpact list_base::_001GetImpact()
    {
 
       return m_eview;
@@ -7135,18 +7135,18 @@ namespace user
    }
 
 
-   void list::_001OnAfterSort()
+   void list_base::_001OnAfterSort()
    {
       data_set_DisplayToStrict();
    }
 
-   bool list::_001IsEditing()
+   bool list_base::_001IsEditing()
    {
       return false;
    }
 
 
-   void list::on_message_scroll_y(::message::message * pmessage)
+   void list_base::on_message_scroll_y(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -7154,7 +7154,7 @@ namespace user
    }
 
 
-   void list::on_message_scroll_x(::message::message * pmessage)
+   void list_base::on_message_scroll_x(::message::message * pmessage)
    {
       //      ::pointer<::message::scroll>pscroll(pmessage);
 
@@ -7179,15 +7179,15 @@ namespace user
    }
 
 
-   atom list::data_get_current_list_layout_id()
+   atom list_base::data_get_current_list_layout_id()
    {
 
-      return "list";
+      return "list_base";
 
    }
 
 
-   bool list::query_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
+   bool list_base::query_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
    {
 
       if (iDisplayDrag < 0)
@@ -7232,7 +7232,7 @@ namespace user
    }
 
 
-   bool list::do_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
+   bool list_base::do_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
    {
 
       if (m_eview == impact_icon)
@@ -7336,7 +7336,7 @@ namespace user
    }
 
 
-   bool list::defer_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
+   bool list_base::defer_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
    {
 
       if (!query_drop(iDisplayDrop, iDisplayDrag))
@@ -7351,48 +7351,48 @@ namespace user
    }
 
 
-   //list::list_layout::list_layout()
+   //list_base::list_layout::list_layout()
    //{
    //}
 
-   //list::list_layout::~list_layout()
+   //list_base::list_layout::~list_layout()
    //{
    //}
 
-   //void list::list_layout::write(stream & ostream) const
+   //void list_base::list_layout::write(stream & ostream) const
    //{
    //   //ostream << m_iaDisplayToStrict;
    //   ostream << m_iWidth;
    //}
 
-   //void list::list_layout::read(stream & istream)
+   //void list_base::list_layout::read(stream & istream)
    //{
    //   //istream >> m_iaDisplayToStrict;
    //   istream >> m_iWidth;
    //}
 
-   //list::icon_layout::icon_layout()
+   //list_base::icon_layout::icon_layout()
    //{
    //}
 
-   //list::icon_layout::~icon_layout()
+   //list_base::icon_layout::~icon_layout()
    //{
    //}
 
-   //void list::icon_layout::write(stream & ostream) const
+   //void list_base::icon_layout::write(stream & ostream) const
    //{
    //   ostream << m_iaDisplayToStrict;
    //   ostream << m_iWidth;
    //}
 
-   //void list::icon_layout::read(stream & istream)
+   //void list_base::icon_layout::read(stream & istream)
    //{
    //   istream >> m_iaDisplayToStrict;
    //   istream >> m_iWidth;
    //}
 
 
-   ::int_size list::get_item_size()
+   ::int_size list_base::get_item_size()
    {
 
       if (m_eview == impact_icon)
@@ -7430,7 +7430,7 @@ namespace user
    }
 
 
-   ::int_size list::get_list_icon_item_size()
+   ::int_size list_base::get_list_icon_item_size()
    {
 
       ::int_size sizeIcon = get_list_icon_size();
@@ -7481,7 +7481,7 @@ namespace user
    }
 
 
-   ::int_size list::get_list_icon_size()
+   ::int_size list_base::get_list_icon_size()
    {
 
       ::int_size sizeIcon;
@@ -7495,7 +7495,7 @@ namespace user
    }
 
 
-   void list::auto_arrange(bool bAutoArrange)
+   void list_base::auto_arrange(bool bAutoArrange)
    {
       if (bAutoArrange)
       {
@@ -7520,25 +7520,25 @@ namespace user
    }
 
 
-   bool list::get_auto_arrange()
+   bool list_base::get_auto_arrange()
    {
       return m_flags.has(flag_auto_arrange);
    }
 
-   void list::_001OnListImpactAutoArrange(::message::message * pmessage)
+   void list_base::_001OnListImpactAutoArrange(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       auto_arrange(!get_auto_arrange());
    }
 
-   void list::_001OnUpdateListImpactAutoArrange(::message::message * pmessage)
+   void list_base::_001OnUpdateListImpactAutoArrange(::message::message * pmessage)
    {
       ::pointer<::message::command>pcommand(pmessage);
       pcommand->set_check(get_auto_arrange(), e_source_sync);
       pcommand->enable();
    }
 
-   bool list::is_valid_display_item(::collection::index iDisplayItem)
+   bool list_base::is_valid_display_item(::collection::index iDisplayItem)
    {
       if (iDisplayItem < 0)
          return false;
@@ -7547,7 +7547,7 @@ namespace user
       return true;
    }
 
-   bool list::is_valid_strict_item(::collection::index iStrictItem)
+   bool list_base::is_valid_strict_item(::collection::index iStrictItem)
    {
       if (iStrictItem < 0)
          return false;
@@ -7558,7 +7558,7 @@ namespace user
    }
 
 
-   bool list::keyboard_focus_is_focusable()
+   bool list_base::keyboard_focus_is_focusable()
    {
 
       return true;
@@ -7566,7 +7566,7 @@ namespace user
    }
 
 
-   //void list::on_selection_change()
+   //void list_base::on_selection_change()
    //{
 
    //   auto ptopic = create_topic(::id_after_change_cur_sel);
@@ -7582,7 +7582,7 @@ namespace user
    //}
 
 
-   void list::set_current_item(::item * pitem, const ::action_context & context)
+   void list_base::set_current_item(::item * pitem, const ::action_context & context)
    {
 
       auto iCurrentSelection = m_rangeSelection.get_current_item();
@@ -7623,7 +7623,7 @@ namespace user
    }
 
 
-   void list::set_current_item(const index_array & iaSel, const ::action_context & context)
+   void list_base::set_current_item(const index_array & iaSel, const ::action_context & context)
    {
 
       m_rangeSelection.clear();
@@ -7640,7 +7640,7 @@ namespace user
    }
 
 
-   ::item_pointer list::current_item()
+   ::item_pointer list_base::current_item()
    {
 
       if (m_rangeSelection.get_item_count() != 1)
@@ -7662,7 +7662,7 @@ namespace user
    }
 
 
-   void list::get_cur_sel(index_array & iaSel)
+   void list_base::get_cur_sel(index_array & iaSel)
    {
 
       for (::collection::index i = 0; i < m_rangeSelection.get_item_count(); i++)
@@ -7680,7 +7680,7 @@ namespace user
    }
 
 
-   ::collection::count list::_001GetGroupItemCount(::collection::index iGroup)
+   ::collection::count list_base::_001GetGroupItemCount(::collection::index iGroup)
    {
       
       __UNREFERENCED_PARAMETER(iGroup);
@@ -7690,7 +7690,7 @@ namespace user
    }
 
 
-   int list::_001GetGroupHeight(::collection::index iGroup)
+   int list_base::_001GetGroupHeight(::collection::index iGroup)
    {
 
       int iListHeight = (int)(_001GetGroupItemCount(iGroup) * m_dItemHeight);
@@ -7700,7 +7700,7 @@ namespace user
    }
 
    
-   ::collection::count list::_001GetGroupMetaItemCount(::collection::index iGroup)
+   ::collection::count list_base::_001GetGroupMetaItemCount(::collection::index iGroup)
    {
       if (m_pmeshdata != nullptr)
       {
@@ -7710,13 +7710,13 @@ namespace user
    }
 
 
-   void list::_001OnBeforeDeleteRange(range & range)
+   void list_base::_001OnBeforeDeleteRange(range & range)
    {
 
    }
 
 
-   void list::_001OnDeleteRange(range & range)
+   void list_base::_001OnDeleteRange(range & range)
    {
 
       if (m_pmeshdata != nullptr)
@@ -7729,7 +7729,7 @@ namespace user
    }
 
 
-   void list::_001DeleteRange(range & range)
+   void list_base::_001DeleteRange(range & range)
    {
 
       _001OnBeforeDeleteRange(range);
@@ -7739,7 +7739,7 @@ namespace user
    }
 
 
-   void list::defer_create_mesh_data()
+   void list_base::defer_create_mesh_data()
    {
 
       ::pointer<::user::list_data>plistdata = create_mesh_data();
@@ -7767,7 +7767,7 @@ namespace user
    }
 
 
-   //void list::on_create_draw_item()
+   //void list_base::on_create_draw_item()
    //{
 
    //   m_pdrawlistitem = ___new draw_list_item(this);
@@ -7779,13 +7779,13 @@ namespace user
    //}
 
 
-   //void list::on_context_offset(::draw2d::graphics_pointer & pgraphics)
+   //void list_base::on_context_offset(::draw2d::graphics_pointer & pgraphics)
    //{
 
    //}
 
 
-   void list::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   void list_base::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
 
       //return;
@@ -7819,7 +7819,7 @@ namespace user
 //         catch (...)
 //         {
 //
-//            informationf("Exception : ::list::_001OnClip");
+//            informationf("Exception : ::list_base::_001OnClip");
 //
 //         }
 //
@@ -7828,7 +7828,7 @@ namespace user
    }
 
 
-   ::e_align list::get_draw_text_align(EImpact eview)
+   ::e_align list_base::get_draw_text_align(EImpact eview)
    {
 
       //return m_pdrawmeshitem->m_ealign;
@@ -7838,7 +7838,7 @@ namespace user
    }
 
 
-   ::e_draw_text list::get_draw_text_flags(EImpact eview)
+   ::e_draw_text list_base::get_draw_text_flags(EImpact eview)
    {
 
       //return m_pdrawmeshitem->m_edrawtext;
@@ -7848,7 +7848,7 @@ namespace user
    }
 
 
-   //::collection::index list::item_index(::user::interaction * pinteractionControl)
+   //::collection::index list_base::item_index(::user::interaction * pinteractionControl)
    //{
 
    //   m_
@@ -7856,7 +7856,7 @@ namespace user
    //}
 
 
-   ::collection::index list::subitem_index(::user::interaction * pinteractionControl)
+   ::collection::index list_base::subitem_index(::user::interaction * pinteractionControl)
    {
 
       auto pcolumn = m_pcolumna->get_by_control(pinteractionControl);
@@ -7873,14 +7873,14 @@ namespace user
    }
 
 
-   //::collection::index list::list_item_index(::user::interaction * pinteractionControl)
+   //::collection::index list_base::list_item_index(::user::interaction * pinteractionControl)
    //{
 
 
    //}
 
 
-   ::collection::index list::column_index(::user::interaction * pinteractionControl) 
+   ::collection::index list_base::column_index(::user::interaction * pinteractionControl) 
    {
 
       auto pcolumn = m_pcolumna->get_by_control(pinteractionControl);
@@ -7897,7 +7897,7 @@ namespace user
    }
 
 
-   //bool list::this->rectangle(::int_rectangle * prectangle)
+   //bool list_base::this->rectangle(::int_rectangle * prectangle)
 
    //{
 
@@ -7927,7 +7927,7 @@ namespace user
 
 
 
-   void list::update_icon_list_impact_sort()
+   void list_base::update_icon_list_impact_sort()
    {
 
       if (m_eview != impact_icon)

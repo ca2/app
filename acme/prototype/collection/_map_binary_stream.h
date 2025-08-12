@@ -3,7 +3,7 @@
 
 
 template <  typename PAIR >
-inline binary_stream & operator <<(binary_stream & stream, const pair_map < PAIR > & m)
+inline binary_stream & operator <<(binary_stream & stream, const pair_map_base < PAIR > & m)
 {
 
 
@@ -32,7 +32,7 @@ inline binary_stream & operator <<(binary_stream & stream, const pair_map < PAIR
 
 
 template < typename PAIR >
-inline binary_stream & operator >>(binary_stream & stream, pair_map < PAIR > & m)
+inline binary_stream & operator >>(binary_stream & stream, pair_map_base < PAIR > & m)
 {
 
    ::collection::count c = 0;
@@ -46,8 +46,8 @@ inline binary_stream & operator >>(binary_stream & stream, pair_map < PAIR > & m
 
       i--;
 
-      typename pair_map < PAIR >::BASE_ITEM element1;
-      //typename map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_VALUE element2;
+      typename pair_map_base < PAIR >::BASE_ITEM element1;
+      //typename map_base < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_VALUE element2;
       
       stream >> element1;
 

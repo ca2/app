@@ -6,7 +6,7 @@ namespace generic
 {
 
 
-   namespace map
+   namespace map_base
    {
 
 
@@ -109,7 +109,7 @@ namespace generic
       //}
 
 
-   } // namespace map
+   } // namespace map_base
 
 
 

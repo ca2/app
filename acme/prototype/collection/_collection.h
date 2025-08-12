@@ -158,7 +158,7 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::
 
 #include "logic_array.h"
 
-#include "list.h"
+#include "list_base.h"
 #include "comparable_eq_list.h"
 #include "comparable_list.h"
 
@@ -169,7 +169,7 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::
 #include "set.h"
 
 
-#include "map.h"
+#include "map_base.h"
 
 
 #include "attrib_map.h"
@@ -190,20 +190,20 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::
 //matter
 
 // Lists
-class pointer_list;             // list of void *
-class object_list;              // list of matter*
+class pointer_list;             // list_base of void *
+class object_list;              // list_base of matter*
 
 //   // Maps (aka Dictionaries)
-//   class CMapWordToOb;         // map from unsigned short to matter*
-//   class CMapWordToPtr;        // map from unsigned short to void *
-//   class CMapPtrToWord;        // map from void * to unsigned short
-//   class map_ptr_to_ptr;         // map from void * to void *
+//   class CMapWordToOb;         // map_base from unsigned short to matter*
+//   class CMapWordToPtr;        // map_base from unsigned short to void *
+//   class CMapPtrToWord;        // map_base from void * to unsigned short
+//   class map_ptr_to_ptr;         // map_base from void * to void *
 //
 //   // Special string variants
-//   class string_list;          // list of Strings
-//   class CMapStringToPtr;      // map from string to void *
-//   class CMapStringToOb;       // map from string to matter*
-////   class string_to_string;   // map from string to string
+//   class string_list;          // list_base of Strings
+//   class CMapStringToPtr;      // map_base from string to void *
+//   class CMapStringToOb;       // map_base from string to matter*
+////   class string_to_string;   // map_base from string to string
 
 
 
@@ -211,17 +211,17 @@ class object_list;              // list of matter*
 #include "string_list.h"
 
 
-using map_u16_to_ptr = map < unsigned short, unsigned short, void *, void * >;
+using map_u16_to_ptr = map_base < unsigned short, unsigned short, void *, void * >;
 
-using map_ptr_to_unsigned_short = map < void *, void *, unsigned short, unsigned short >;
+using map_ptr_to_unsigned_short = map_base < void *, void *, unsigned short, unsigned short >;
 
-using map_ptr_to_ptr = map < void *, void *, void *, void * >;
+using map_ptr_to_ptr = map_base < void *, void *, void *, void * >;
 
-using map_word_to_ob = map < unsigned short, unsigned short, matter *, matter * >;
+using map_word_to_ob = map_base < unsigned short, unsigned short, matter *, matter * >;
 
-using map_string_to_ptr = map < string, const ::scoped_string & scopedstr, void *, void * >;
+using map_string_to_ptr = map_base < string, const ::scoped_string & scopedstr, void *, void * >;
 
-using map_string_to_ob = map < string, const ::scoped_string & scopedstr, matter *, matter * >;
+using map_string_to_ob = map_base < string, const ::scoped_string & scopedstr, matter *, matter * >;
 
 
 #include "string_to_string_map.h"

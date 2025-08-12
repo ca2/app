@@ -44,7 +44,7 @@ namespace graphics3d
 
       m_indices.clear();
 
-      ::map<::graphics3d::Vertex, uint32_t> uniqueVertices{};
+      ::map_base<::graphics3d::Vertex, uint32_t> uniqueVertices{};
 
       for (const auto& shape : shapes)
       {

@@ -1,11 +1,11 @@
 #pragma once
 
 
-#include "acme/prototype/collection/map.h"
+#include "acme/prototype/collection/map_base.h"
 
 
 template < class PAYLOAD, typename PAIR = pair < string, PAYLOAD > >
-using string_map = map < string, PAYLOAD, PAIR >;
+using string_map = map_base < string, PAYLOAD, PAIR >;
 
 using string_to_intptr = string_map < iptr > ;
 
@@ -13,13 +13,13 @@ using string_to_int =  string_map < int > ;
 
 using string_to_ptr =  string_map < void * > ;
 
-using int_ptr_to_string = map < iptr, string >;
+using int_ptr_to_string = map_base < iptr, string >;
 
-using int_ptr_to_int_ptr_to_string = map < iptr, int_ptr_to_string >;
+using int_ptr_to_int_ptr_to_string = map_base < iptr, int_ptr_to_string >;
 
-using index_string = map < ::collection::index, string >;
+using index_string = map_base < ::collection::index, string >;
 
-using index_to_index_to_string = map < ::collection::index, index_string >;
+using index_to_index_to_string = map_base < ::collection::index, index_string >;
 
 using base_string_to_string = string_map < string > ;
 

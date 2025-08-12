@@ -47,7 +47,7 @@ class manager;
 namespace handler
 {
 
-   using signal_map = ::atom_map < ::pointer < class signal > >;
+   using signal_map = ::atom_map_base < ::pointer < class signal > >;
 
 } // namespace handler
 

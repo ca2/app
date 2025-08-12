@@ -38,7 +38,7 @@ namespace media_library
 
    using item_array = pointer_array < item >;
 
-   using item_map = ::map < enum_media_library, item_array >;
+   using item_map = ::map_base < enum_media_library, item_array >;
 
    CLASS_DECL_ACME string media_library_protocol(enum_media_library emedialibrary);
 

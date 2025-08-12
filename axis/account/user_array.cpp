@@ -193,13 +193,13 @@ namespace account
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto map = m_map;
+      auto map_base = m_map;
 
       synchronouslock.unlock();
 
       auto psession = session();
 
-      for(auto & pair : map)
+      for(auto & pair : map_base)
       {
 
          if(!pair.element2()->is_authenticated())
@@ -288,11 +288,11 @@ namespace account
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         auto map = m_map;
+         auto map_base = m_map;
 
          synchronouslock.unlock();
 
-         for(auto & pair : map)
+         for(auto & pair : map_base)
          {
 
             pair.element2()->on_clock(etimer);

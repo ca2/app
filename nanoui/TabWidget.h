@@ -200,7 +200,7 @@ namespace nanoui
    {
    public:
 
-      ::index_map < Widget*>        m_widgets;
+      ::index_map_base < Widget*>        m_widgets;
       bool                          m_bEraseChildren = true;
 
 

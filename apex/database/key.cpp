@@ -24,12 +24,12 @@
 //   }
 //
 //
-////   key::key(const std::initializer_list < ::payload > & list)
+////   key::key(const std::initializer_list < ::payload > & list_base)
 ////   {
 ////
 ////      m_bLocalData = false;
 ////
-////      for (auto & payload : list)
+////      for (auto & payload : list_base)
 ////      {
 ////
 ////         if (payload.get_type() == e_type_bool)

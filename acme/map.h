@@ -5,15 +5,15 @@
 // {
 
 
-//    namespace map
+//    namespace map_base
 //    {
 
 
 //       template < typename MAP, typename PAYLOAD >
-//       inline bool contains_payload(const MAP & map, const PAYLOAD & payload);
+//       inline bool contains_payload(const MAP & map_base, const PAYLOAD & payload);
       
 
-//    } // namespace map
+//    } // namespace map_base
 
 
 // } // namespace acme
@@ -28,12 +28,12 @@
 
 
 
-//    namespace map
+//    namespace map_base
 //    {
 
 
 //       template < typename MAP, typename PAYLOAD >
-//       inline contains_payload(const MAP & map, const PAYLOAD & payload)
+//       inline contains_payload(const MAP & map_base, const PAYLOAD & payload)
 //       {
 
 //          if (&m != &attribmap)
@@ -59,7 +59,7 @@
 //       }
 
 
-//    } // namespace map
+//    } // namespace map_base
 
 
 // } // namespace acme

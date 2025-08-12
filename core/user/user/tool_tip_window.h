@@ -70,7 +70,7 @@ namespace user
       bool                       m_bTipEnable;     // set if the tip is enabled
 
       int_point                      m_point;             // coordinates fo the cursor position used to track changes in cursor position
-      CToolMap                   m_toolmap;        // map of tool index to tool pointers
+      CToolMap                   m_toolmap;        // map_base of tool index to tool pointers
 
       tool_tip_window();
       virtual ~tool_tip_window();

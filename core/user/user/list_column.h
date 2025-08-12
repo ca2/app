@@ -63,7 +63,7 @@ namespace user
       bool                                   m_bCustomDraw;
       ::image::image_pointer                        m_pimageHeader;
 
-      // form list attributes
+      // form list_base attributes
       bool                                   m_bEditOnSecondClick;
       //index                                m_iControl;
       ::string                               m_strDataKey;

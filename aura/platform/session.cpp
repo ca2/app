@@ -1588,7 +1588,7 @@ return m_psavings;
 //      if (m_pmapKeyPressed == nullptr)
 //      {
 //
-//         m_pmapKeyPressed = aaa_memory_new ::map < ::user::enum_key, bool >;
+//         m_pmapKeyPressed = aaa_memory_new ::map_base < ::user::enum_key, bool >;
 //
 //      }
 //
@@ -1663,7 +1663,7 @@ return m_psavings;
 //      if (m_pmapKeyPressed == nullptr)
 //      {
 //
-//         m_pmapKeyPressed = aaa_memory_new ::map < ::user::enum_key, bool >;
+//         m_pmapKeyPressed = aaa_memory_new ::map_base < ::user::enum_key, bool >;
 //
 //      }
 //

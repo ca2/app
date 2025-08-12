@@ -48,7 +48,7 @@ namespace imaging_freeimage
 
       int iLineSize = w * sizeof(color32_t);
 
-      pimage->map();
+      pimage->map_base();
 
 #if defined(__ANDROID__) && defined(ARM)
 

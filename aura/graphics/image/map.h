@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/prototype/collection/map.h"
+#include "acme/prototype/collection/map_base.h"
 #include "acme/prototype/prototype/concrete.h"
 //#include "acme/prototype/prototype/pointer.h"
 #include "acme/graphics/image/header.h"
@@ -38,7 +38,7 @@ namespace image
 
 
    class image_map :
-      virtual public map < enum_image, ::image::image_pointer >
+      virtual public map_base < enum_image, ::image::image_pointer >
    {
    public:
 
@@ -46,7 +46,7 @@ namespace image
 
 
    class CLASS_DECL_AURA size_image :
-      virtual public map < int_size, ::image::image_pointer >
+      virtual public map_base < int_size, ::image::image_pointer >
    {
    public:
 
@@ -58,7 +58,7 @@ namespace image
    };
 
 
-   using image_descriptor_map_base = map < image_header, ::image::image_pointer >;
+   using image_descriptor_map_base = map_base < image_header, ::image::image_pointer >;
 
 
    class CLASS_DECL_AURA image_descriptor_map :

@@ -430,7 +430,7 @@ namespace user
 //
 //      //if (dumpcontext.GetDepth() > 0)
 //      //{
-//      //   dumpcontext << "\ndocument list = {";
+//      //   dumpcontext << "\ndocument list_base = {";
 //      //   ::collection::count count = get_document_count();
 //      //   for (::collection::index index = 0; index < count; index++)
 //      //   {

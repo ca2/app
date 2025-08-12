@@ -1065,7 +1065,7 @@ namespace aura
    //   if (::is_set(pcolor))
    //   {
 
-   //      pimage->map();
+   //      pimage->map_base();
 
    //      copy_image32(pimage->data(), size.cx(), size.cy(), pimage->m_iScan, pcolor, iScan);
 

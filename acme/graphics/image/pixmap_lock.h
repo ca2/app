@@ -19,7 +19,7 @@ public:
       m_pbitmap(pmap)
    {
 
-      map(rectangle);
+      map_base(rectangle);
 
    }
 
@@ -38,7 +38,7 @@ public:
 
    }
 
-   bool map(::int_rectangle rectangleMap)
+   bool map_base(::int_rectangle rectangleMap)
    {
 
       if (m_bMapped)
@@ -50,7 +50,7 @@ public:
 
       m_rectanglePrevious = m_pbitmap->rectangle();
 
-      m_pbitmap->map(rectangleMap);
+      m_pbitmap->map_base(rectangleMap);
 
       m_bMapped = true;
 
@@ -69,7 +69,7 @@ public:
 
       }
 
-      m_pbitmap->map(m_rectanglePrevious);
+      m_pbitmap->map_base(m_rectanglePrevious);
 
       m_bMapped = false;
 

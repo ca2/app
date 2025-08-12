@@ -198,7 +198,7 @@ namespace gpu
                         //if (pixmap.is_ok())
                         //{
 
-                        //   //pimage->map();
+                        //   //pimage->map_base();
 
                         //   //pimage->fill_channel(255, ::color::e_channel_opacity);
 
@@ -320,7 +320,7 @@ namespace gpu
          //if (pixmap.is_ok())
          //{
 
-         //   //pimage->map();
+         //   //pimage->map_base();
 
          //   //pimage->fill_channel(255, ::color::e_channel_opacity);
 
@@ -389,7 +389,7 @@ namespace gpu
 
    m_pimageFromGpu->create(size);
 
-   m_pimageFromGpu->map();
+   m_pimageFromGpu->map_base();
 
    m_pimageFromGpu->copy(m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage);
 

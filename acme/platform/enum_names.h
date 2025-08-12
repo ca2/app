@@ -4,11 +4,11 @@
 
 template <class EENUM>
 class base_enum_names :
-   public map < EENUM, EENUM, string, string >
+   public map_base < EENUM, EENUM, string, string >
 {
 public:
 
-   typedef typename map < EENUM, EENUM, string, string >::pair AXIS_ENUM_PAIR;
+   typedef typename map_base < EENUM, EENUM, string, string >::pair AXIS_ENUM_PAIR;
 
    base_enum_names(AXIS_ENUM_PAIR pairs[]);
 };
@@ -16,7 +16,7 @@ public:
 
 template <class EENUM>
 base_enum_names < EENUM > ::base_enum_names(AXIS_ENUM_PAIR pairs[]) :
-   map < EENUM, EENUM, string, string >(pairs)
+   map_base < EENUM, EENUM, string, string >(pairs)
 {
 }
 

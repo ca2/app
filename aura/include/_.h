@@ -1067,7 +1067,7 @@ namespace aura
 ////class pair;
 ////
 ////template < class KEY, class ARG_KEY, class PAYLOAD, ARG_VALUE = argument_of < PAYLOAD >, class PAIR = pair < KEY, PAYLOAD, ARG_KEY, ARG_VALUE > >
-////class map;
+////class map_base;
 ////
 ////template < class ENUM >
 ////class flags;
@@ -1117,16 +1117,16 @@ namespace aura
 //////   class scroll_state;
 //////
 //////
-//////   //using color_map = map < e_color, e_color, ::color::color, ::color::color >;
-//////   //using font_map = map < e_font, e_font, ::write_text::font_pointer >;
+//////   //using color_map = map_base < e_color, e_color, ::color::color, ::color::color >;
+//////   //using font_map = map_base < e_font, e_font, ::write_text::font_pointer >;
 //////   using eflag = flags < enum_flag >;
-//////   //using flag_map = map < enum_flag, enum_flag, bool, bool >;
-//////   //using rect_map = ::map < e_rect, e_rect, style_rect >;
-//////   //using int_map = ::map < e_int, e_int, int, int >;
-//////   //using double_map = ::map < e_double, e_double, double, double >;
-//////   //using color_map = map < e_color, e_color, ::color::color, ::color::color >;
+//////   //using flag_map = map_base < enum_flag, enum_flag, bool, bool >;
+//////   //using rect_map = ::map_base < e_rect, e_rect, style_rect >;
+//////   //using int_map = ::map_base < e_int, e_int, int, int >;
+//////   //using double_map = ::map_base < e_double, e_double, double, double >;
+//////   //using color_map = map_base < e_color, e_color, ::color::color, ::color::color >;
 //////   //using eelement = base_enum < enum_element >;
-//////   //using translucency_map = ::map < enum_element, enum_element, enum_translucency, enum_translucency >;
+//////   //using translucency_map = ::map_base < enum_element, enum_element, enum_translucency, enum_translucency >;
 //////
 //////
 //////

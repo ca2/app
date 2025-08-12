@@ -12,14 +12,14 @@ public:
 
 
    ::collection::index               m_iFirstGlobalOrderKey;
-   list * m_plist;
+   list_base * m_plist;
    index_to_index       m_mapSubItemIndex;
 
 
    list_column_array();
 
 
-   void Initialize(list * plist);
+   void Initialize(list_base * plist);
    //index MapConfigIdToKey(const ::scoped_string & strDataKey);
 
    void clear_cache();

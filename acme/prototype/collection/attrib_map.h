@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "map.h"
+#include "map_base.h"
 #include "acme/prototype/prototype/atom.h"
 
 
@@ -9,7 +9,7 @@ namespace acme
 {
 
 
-   namespace map
+   namespace map_base
    {
 
 
@@ -36,14 +36,14 @@ namespace acme
       }
 
       
-   } // namespace map
+   } // namespace map_base
 
 
 } // namespace acme
 
 
 
-using procedure_map = ::atom_map < ::procedure_array >;
+using procedure_map = ::atom_map_base < ::procedure_array >;
 
 
 

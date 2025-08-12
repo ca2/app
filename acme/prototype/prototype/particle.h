@@ -827,7 +827,7 @@ public:
    // virtual ::core::user * coreuser();
 
 
-   virtual void process_owned_procedure_list(::procedure_list & procedurelist, bool & bHandled);
+   virtual void process_owned_procedure_list(::procedure_list_base & procedurelist, bool & bHandled);
 
 
    virtual memory_file_pointer create_memory_file();

@@ -16,7 +16,7 @@
 #include "application_flags.h"
 #include "acme/constant/gender.h"
 #include "acme/parallelization/_types.h"
-#include "acme/prototype/collection/map.h"
+#include "acme/prototype/collection/map_base.h"
 #include "acme/prototype/prototype/factory.h"
 
 
@@ -45,9 +45,9 @@ namespace platform
 
       //task_map                                           m_taskmap;
       //task_id_map                                        m_taskidmap;
-      //::map < ::task_index, ::task_index >   m_mapTaskOn;
+      //::map_base < ::task_index, ::task_index >   m_mapTaskOn;
 
-      ::map < ::task_index, ::thread_storage >  m_mapThreadStorage;
+      ::map_base < ::task_index, ::thread_storage >  m_mapThreadStorage;
 
       bool m_bApplicationStartFileOpenRequest = false;
       ::pointer<::request> m_prequestApplicationStartFileOpen;

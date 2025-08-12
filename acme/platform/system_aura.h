@@ -11,7 +11,7 @@
 #include "application_flags.h"
 #include "acme/constant/gender.h"
 #include "acme/parallelization/_types.h"
-#include "acme/prototype/collection/map.h"
+#include "acme/prototype/collection/map_base.h"
 #include "acme/prototype/prototype/factory.h"
 
 namespace platform
@@ -447,7 +447,7 @@ namespace platform
 
 
       //virtual int _001OnDebugReport(int i1, const ::scoped_string & scopedstr1,int i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3,va_list args) override;
-      //virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat, va_list list) override;
+      //virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat, va_list list_base) override;
       //virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
 
       //virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;

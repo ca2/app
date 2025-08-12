@@ -749,7 +749,7 @@ namespace draw2d_gpu
 ////      // Create a pbuffer for off-screen rendering. Notice that since we aren't
 ////      // going to be using the pbuffer for dynamic texturing (i.e., using the
 ////      // pbuffer containing our rendered scene as a texture) we don't need to
-////      // request for WGL_BIND_TO_TEXTURE_RGBA_ARB support in the attribute list.
+////      // request for WGL_BIND_TO_TEXTURE_RGBA_ARB support in the attribute list_base.
 ////
 ////      int attribList[] =
 ////      {

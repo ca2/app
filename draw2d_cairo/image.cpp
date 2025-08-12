@@ -166,7 +166,7 @@ namespace draw2d_cairo
       if(bPreserve)
       {
 
-         map();
+         map_base();
 
          if (::is_set(m_pimage32Raw))
          {
@@ -386,7 +386,7 @@ namespace draw2d_cairo
    //void image::set_rgb(int R, int G, int B)
    //{
 
-   //   map();
+   //   map_base();
 
    //   int size = scan*cy;
 
@@ -773,7 +773,7 @@ namespace draw2d_cairo
 //
 //      m_spgraphics->set_origin(0, 0);
 //
-//      map(true);
+//      map_base(true);
 //
 //      ::int_rectangle rectangle(rectangleWindow);
 //
@@ -902,7 +902,7 @@ namespace draw2d_cairo
 ////
 ////      m_spgraphics->set_origin(0, 0);
 ////
-////      map(true);
+////      map_base(true);
 ////
 ////      ::int_rectangle rectangle(rectangleWindow);
 ////
@@ -947,7 +947,7 @@ namespace draw2d_cairo
 //
 //      m_spgraphics->set_origin(0, 0);
 //
-//      map(false);
+//      map_base(false);
 //
 //      ::int_rectangle rectangle(rectangleWindow);
 //
@@ -973,9 +973,9 @@ namespace draw2d_cairo
 
       ::image::image *pimplDst = this;
 
-      pimplDst->map();
+      pimplDst->map_base();
 
-      pimplSrc->map();
+      pimplSrc->map_base();
 
       pointDst += m_point;
 
@@ -1291,9 +1291,9 @@ namespace draw2d_cairo
 //
 //      ::image::image* pimageDst = this;
 //
-//      pimageDst->map();
+//      pimageDst->map_base();
 //
-//      pimageSrc->map();
+//      pimageSrc->map_base();
 //
 //      ::int_point pointDst(pointDstParam);
 //
@@ -1488,9 +1488,9 @@ namespace draw2d_cairo
 //
 //      ::image::image *pimplDst = this;
 //
-//      pimplDst->map();
+//      pimplDst->map_base();
 //
-//      pimplSrc->map();
+//      pimplSrc->map_base();
 //
 //      pointDst += m_point;
 //

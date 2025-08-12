@@ -280,7 +280,7 @@ namespace geo
             ::payload payload;
 
             payload["nocache"] = true;
-            payload["url"] = "https://ca2.network/city-list.json";
+            payload["url"] = "https://ca2.network/city-list_base.json";
 
             DEBUGF_LINE("mnoxxd2");
 
@@ -401,7 +401,7 @@ namespace geo
 
             DEBUGF_LINE("pqrxxe3");
 
-            auto pmessagebox = __initialize_new::message_box("Unable to download \"https://ca2.network/city-list.json\"");
+            auto pmessagebox = __initialize_new::message_box("Unable to download \"https://ca2.network/city-list_base.json\"");
 
             DEBUGF_LINE("pqrxxe4");
 
@@ -931,7 +931,7 @@ namespace geo
       //
       //         stream os(file);
       //
-      //         ::file::map::write(os, m_countryLocalityTimeZone);
+      //         ::file::map_base::write(os, m_countryLocalityTimeZone);
       //
       //      }
       //

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "map.h"
+#include "map_base.h"
 #include "image.h"
 #include "acme/platform/system.h"
 
@@ -89,7 +89,7 @@ namespace image
    ::image::image_pointer & size_image::get(const ::int_size & size, bool & bExists)
    {
 
-      auto & pimage = ::map < ::int_size, ::image::image_pointer >::operator [](size);
+      auto & pimage = ::map_base < ::int_size, ::image::image_pointer >::operator [](size);
 
       if (pimage->is_null())
       {

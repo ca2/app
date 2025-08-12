@@ -55,7 +55,7 @@ namespace draw2d
    public:
 
 
-      ::map < e_change, ::index_map < ::pointer < holdee_group > > >   m_map;
+      ::map_base < e_change, ::index_map_base < ::pointer < holdee_group > > >   m_map;
 
       holdee();
       ~holdee() override;

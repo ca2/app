@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "mesh.h"
-#include "list.h"
+#include "list_base.h"
 #include "mesh_cache_interface.h"
 #include "list_data.h"
 #include "list_item.h"
@@ -22,7 +22,7 @@
 #include "apex/database/selection.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "aura/graphics/image/list.h"
+#include "aura/graphics/image/list_base.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics_extension.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -186,7 +186,7 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
       ::user::scroll_base::install_message_routing(pchannel);
 
-      bool bList = dynamic_cast <list *> (this) != nullptr;
+      bool bList = dynamic_cast <list_base *> (this) != nullptr;
 
       MESSAGE_LINK(e_message_size, pchannel, this,&mesh::on_message_size);
       MESSAGE_LINK(e_message_scroll_y, pchannel, this,&mesh::on_message_scroll_y);
@@ -3035,7 +3035,7 @@ namespace user
 
       host_to_client()(point);
 
-      if(dynamic_cast < list * >(this) == nullptr)
+      if(dynamic_cast < list_base * >(this) == nullptr)
       {
 
          auto tickNow = ::time::now();
@@ -6397,7 +6397,7 @@ namespace user
    }
 
 
-   //::pointer<::user::mesh_data>list::create_mesh_data()
+   //::pointer<::user::mesh_data>list_base::create_mesh_data()
    //{
 
    //   return __allocate mesh_data();

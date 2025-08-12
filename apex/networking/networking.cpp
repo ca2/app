@@ -955,7 +955,7 @@ namespace networking
 //#ifdef NO_GETADDRINFO
 //      if ((ai_flags & AI_NUMERICHOST) != 0 || isipv6(host))
 //      {
-//         //         list<string> vec;
+//         //         list_base<string> vec;
 //         index x = 0;
 //         for (::collection::index i = 0; i <= host.get_length(); i++)
 //         {
@@ -987,7 +987,7 @@ namespace networking
 //         index sz = vec.get_length(); // number of unsigned char pairs
 //         ::collection::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
 //         unsigned short addr16[8];
-//         for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
+//         for (list_base<string>::iterator it = vec.begin(); it != vec.end(); it++)
 //         {
 //            string bytepair = *it;
 //            if (bytepair.get_length())

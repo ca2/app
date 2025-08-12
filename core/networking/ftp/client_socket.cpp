@@ -147,7 +147,7 @@ namespace ftp
          m_setObserver.detach_observer(pObserver);
    }
 
-   /// Sets the file list parser which is used for parsing the results of the LIST command.
+   /// Sets the file list_base parser which is used for parsing the results of the LIST command.
    void client_socket::SetFileListParser(::pointer<ifile_list_parser>apFileListParser)
    {
       m_apFileListParser = apFileListParser;
@@ -484,8 +484,8 @@ namespace ftp
 
    /// Gets the directory listing of the FTP server. Sends the LIST command to
    /// the FTP server.
-   /// @lparam[in] scopedstrPath Starting path for the list command.
-   /// @lparam[out] vstrFileList Returns a simple list of the files and folders of the specified directory.
+   /// @lparam[in] scopedstrPath Starting path for the list_base command.
+   /// @lparam[out] vstrFileList Returns a simple list_base of the files and folders of the specified directory.
    /// @lparam[in] fPasv see documentation of client_socket::Passive
    bool client_socket::List(const ::scoped_string & scopedstrPath, string_array_base& vstrFileList, bool fPasv)
    {
@@ -504,8 +504,8 @@ namespace ftp
 
    /// Gets the directory listing of the FTP server. Sends the NLST command to
    /// the FTP server.
-   /// @lparam[in] scopedstrPath Starting path for the list command.
-   /// @lparam[out] vstrFileList Returns a simple list of the files and folders of the specified the directory.
+   /// @lparam[in] scopedstrPath Starting path for the list_base command.
+   /// @lparam[out] vstrFileList Returns a simple list_base of the files and folders of the specified the directory.
    /// @lparam[in] fPasv see documentation of client_socket::Passive
    bool client_socket::NameList(const ::scoped_string & scopedstrPath, string_array_base& vstrFileList, bool fPasv)
    {
@@ -524,8 +524,8 @@ namespace ftp
 
    /// Gets the directory listing of the FTP server. Sends the LIST command to
    /// the FTP server.
-   /// @lparam[in] scopedstrPath Starting path for the list command.
-   /// @lparam[out] vFileList Returns a detailed list of the files and folders of the specified directory.
+   /// @lparam[in] scopedstrPath Starting path for the list_base command.
+   /// @lparam[out] vFileList Returns a detailed list_base of the files and folders of the specified directory.
    ///                       vFileList contains file_status-Objects. These Objects provide a lot of
    ///                       information about the file/folder.
    /// @lparam[in] fPasv see documentation of client_socket::Passive
@@ -555,11 +555,11 @@ namespace ftp
 
    /// Gets the directory listing of the FTP server. Sends the NLST command to
    /// the FTP server.
-   /// @lparam[in] scopedstrPath Starting path for the list command.
-   /// @lparam[out] vFileList Returns a simple list of the files and folders of the specified directory.
+   /// @lparam[in] scopedstrPath Starting path for the list_base command.
+   /// @lparam[out] vFileList Returns a simple list_base of the files and folders of the specified directory.
    ///                       vFileList contains file_status-Objects. Normally these Objects provide
    ///                       a lot of information about the file/folder. But the NLST-command provide
-   ///                       only a simple list of the directory content (no specific information).
+   ///                       only a simple list_base of the directory content (no specific information).
    /// @lparam[in] fPasv see documentation of client_socket::Passive
    bool client_socket::NameList(const ::scoped_string & scopedstrPath, file_status_ptra& vFileList, bool fPasv)
    {
@@ -1982,9 +1982,9 @@ auto tickStart = ::time::now();
    /// operation in progress, or it may be sent between file transfers. In the
    /// latter case, the command may have an argument field.
    /// @lparam[in] scopedstrPath If the argument is a pathname, the command is analogous
-   ///                    to the "list" command except that data shall be transferred
+   ///                    to the "list_base" command except that data shall be transferred
    ///                    over the control connection. If a partial pathname is
-   ///                    given, the server may respond with a list of file names or
+   ///                    given, the server may respond with a list_base of file names or
    ///                    attributes associated with that specification. If no argument
    ///                    is given, the server should return general status information
    ///                    about the server FTP process. This should include current

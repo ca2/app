@@ -900,7 +900,7 @@ namespace browser
 
       //m_pimageBrowser->g()->fill_solid_rect_dim(0, 0, width, height, argb(155, 255, 255, 0)) ;
 
-      m_pimageBrowser->map();
+      m_pimageBrowser->map_base();
 
       ::copy_image32(m_pimageBrowser->m_pimpl, &p);
 

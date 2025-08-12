@@ -58,7 +58,7 @@ namespace user
 
       list_item();
 
-      void initialize_list_item(list * plist);
+      void initialize_list_item(list_base * plist);
 
 
    };
@@ -71,13 +71,13 @@ namespace user
    public:
 
 
-      index_map < ::pointer<draw_list_subitem >>     m_mapSubItem;
+      index_map_base < ::pointer<draw_list_subitem >>     m_mapSubItem;
 
 
       draw_list_item();
 
 
-      void initialize_draw_list_item(list * plist);
+      void initialize_draw_list_item(list_base * plist);
 
 
       void update_item_color(::draw2d::graphics_pointer & pgraphics);
@@ -96,7 +96,7 @@ namespace user
 
       list_group();
 
-      void initialize_list_group(list * plist);
+      void initialize_list_group(list_base * plist);
 
 
    };
@@ -109,13 +109,13 @@ namespace user
    public:
 
 
-      //index_map < ::pointer<draw_list_subitem >>     m_mapSubItem;
+      //index_map_base < ::pointer<draw_list_subitem >>     m_mapSubItem;
 
 
       draw_list_group();
 
 
-      void initialize_draw_list_group(list * plist);
+      void initialize_draw_list_group(list_base * plist);
 
 
       //::image::image_list_pointer get_image_list();

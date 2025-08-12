@@ -4,7 +4,7 @@
 #include "string_map.h"
 
 //template < class PAYLOAD, typename ARG_VALUE = typename argument_of < PAYLOAD >::type  >
-//using strid_map = atom_map < PAYLOAD,ARG_VALUE > ;
+//using strid_map = atom_map_base < PAYLOAD,ARG_VALUE > ;
 
 template < class T >
 class CLASS_DECL_ACME string_to_pointer :

@@ -98,7 +98,7 @@ char* cur;
 	if((!poplist)||pop3_error(poplist)){
 		return(nullptr); /* any suggestions ? */
 	}
-	if(!dotline(poplist)){/* if simple matter list */
+	if(!dotline(poplist)){/* if simple matter list_base */
 	/* you should't use this function for simple matter... */
 	/* you should better use listi2size() */
 		/* skip '+OK ': look for first mail int atom */
@@ -111,7 +111,7 @@ char* cur;
 		array[atom]=int_size;
 		return(array);
 	}
-	/* else this is a true list */
+	/* else this is a true list_base */
 	/* skip '+OK\r\n' :*/
 	for(cur=poplist;(*cur!='.')&&(*cur!='\n'); cur++);
 	cur ++; /* one more time to get behind '\n' */
@@ -231,7 +231,7 @@ char* cur;
 		array[i]=strdup(s);
 		return(array);
 	}
-	/* else this is a true uid list */
+	/* else this is a true uid list_base */
 	/* skip '+OK\r\n : look for first mail integer atom */
 	for(cur=resp;(*cur!='.')&&(*cur!='\n'); cur++);
 	cur ++; /* one more time to get behind '\n' */

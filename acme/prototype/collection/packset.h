@@ -3,12 +3,12 @@
 
 template < typename ID_TYPE, typename ITEM_TYPE, typename ARRAY = array < ITEM_TYPE > >
 class packset :
-   public map < ID_TYPE, ARRAY >
+   public map_base < ID_TYPE, ARRAY >
 {
 public:
    
 
-   using BASE_MAP = map < ID_TYPE, ARRAY >;
+   using BASE_MAP = map_base < ID_TYPE, ARRAY >;
    using ARG_ID_TYPE = typename BASE_MAP::ARG_ITEM;
    using ARG_ITEM_TYPE = typename BASE_MAP::PAYLOAD::BASE_ARG_TYPE;
    

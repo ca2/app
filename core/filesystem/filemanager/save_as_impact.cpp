@@ -88,7 +88,7 @@ namespace filemanager
                         str.formatf("file_list(%d,%d)", get_document()->m_iTemplate, get_document()->m_iDocument);
                         if(get_document()->m_bTransparentBackground)
                         {
-                        ::user::list::m_etranslucency = ::user::list::e_translucency_present;
+                        ::user::list_base::m_etranslucency = ::user::list_base::e_translucency_present;
                         }
                         DISetSection(str);
                         _001UpdateColumns();*/
@@ -135,7 +135,7 @@ namespace filemanager
       if (!m_pedit)
       {
 
-         output_error_message("Could not create file list ::user::impact");
+         output_error_message("Could not create file list_base ::user::impact");
 
       }
 

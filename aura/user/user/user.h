@@ -71,7 +71,7 @@ namespace user
       //
       // ::pointer < ::mutex >                                   m_pmutexRunnable;
       //
-      // ::list < ::pointer<::matter >>           m_listRunnable;
+      // ::list_base < ::pointer<::matter >>           m_listRunnable;
       //
       // ::pointer<::user::shell>               m_pshell;
       //

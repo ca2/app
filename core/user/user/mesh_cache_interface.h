@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class list;
+   class list_base;
 
 
    class CLASS_DECL_CORE mesh_cache_interface :

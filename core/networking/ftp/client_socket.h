@@ -109,7 +109,7 @@ namespace ftp
       bool                       m_fTransferInProgress;      ///< if true, a file transfer is in progress
       bool                       m_fAbortTransfer;           ///< indicates that a running filetransfer should be canceled
       bool                       m_fResumeIfPossible;        ///< try to resume download/upload if possible
-      observer_array             m_setObserver;              ///< list of observers, which are notified about particular actions
+      observer_array             m_setObserver;              ///< list_base of observers, which are notified about particular actions
       ::pointer<logon>          m_plogon;            ///< logon-info, which was used at the last call of login
 
       enum_state                    m_estate;

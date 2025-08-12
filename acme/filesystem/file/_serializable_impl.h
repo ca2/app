@@ -86,7 +86,7 @@ namespace file
 
    } // namespace array
 
-   namespace map
+   namespace map_base
    {
 
       //template < class type_map >
@@ -159,7 +159,7 @@ namespace file
 
       //}
 
-   } // namespace map
+   } // namespace map_base
 
 
 

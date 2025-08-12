@@ -4,7 +4,7 @@
 
 #include "bred/graphics3d/model.h"
 #include "bred/graphics3d/types.h"
-#include "acme/prototype/collection/map.h"
+#include "acme/prototype/collection/map_base.h"
 
 // libs
 #include <glm/gtc/matrix_transform.hpp>
@@ -43,7 +43,7 @@ namespace graphics3d
 
 		::graphics3d::model<Vertex> m_pmodel;
 
-		using map = index_map < ::pointer < scene_object > >;
+		using map_base = index_map_base < ::pointer < scene_object > >;
 
 		static interlocked_long_long s_interlockedll;
 

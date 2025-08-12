@@ -1,11 +1,11 @@
 #pragma once
 
 
-#include "core/user/user/list.h"
+#include "core/user/user/list_base.h"
 
 
 class CLASS_DECL_CORE simple_list_control :
-   virtual public ::user::list
+   virtual public ::user::list_base
 {
 public:
 

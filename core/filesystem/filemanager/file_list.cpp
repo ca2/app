@@ -19,7 +19,7 @@
 #include "apex/platform/node.h"
 //#include "apex/platform/os_context.h"
 
-#include "aura/graphics/image/list.h"
+#include "aura/graphics/image/list_base.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/copydesk.h"
@@ -64,7 +64,7 @@ namespace filemanager
    void file_list::initialize_impact(::user::document * pdocument)
    {
 
-      ::filemanager_show < ::userfs::list >::initialize_impact(pdocument);
+      ::filemanager_show < ::userfs::list_base >::initialize_impact(pdocument);
 
    }
 
@@ -76,7 +76,7 @@ namespace filemanager
 
       ::user::form_list::install_message_routing(pchannel);
 
-      ::userfs::list::install_message_routing(pchannel);
+      ::userfs::list_base::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_scroll_x, pchannel, this, &file_list::on_message_scroll_x);
       MESSAGE_LINK(e_message_scroll_y, pchannel, this, &file_list::on_message_scroll_y);
@@ -138,7 +138,7 @@ namespace filemanager
 
       }
 
-      return ::user::list::on_click(pitem, pmouse);
+      return ::user::list_base::on_click(pitem, pmouse);
 
    }
 
@@ -193,7 +193,7 @@ namespace filemanager
 
       auto point = pcontextmenu->m_pointHost;
 
-      ::user::list::host_to_client()(point);
+      ::user::list_base::host_to_client()(point);
 
       if (_001HitTest_(point, iItem))
       {
@@ -362,7 +362,7 @@ namespace filemanager
    void file_list::on_timer(::timer * ptimer)
    {
 
-      ::userfs::list::on_timer(ptimer);
+      ::userfs::list_base::on_timer(ptimer);
 
       if (ptimer->m_uTimer == 888888)
       {
@@ -1030,7 +1030,7 @@ namespace filemanager
    //::pointer<::fs::data>file_list::fs_data()
    //{
 
-   //   return ::userfs::list::fs_data();
+   //   return ::userfs::list_base::fs_data();
 
    //}
 
@@ -1508,11 +1508,11 @@ namespace filemanager
       if (m_bStatic)
       {
 
-         return ::user::list::_001GetSubItemText(psubitem);
+         return ::user::list_base::_001GetSubItemText(psubitem);
 
       }
 
-      return ::userfs::list::_001GetSubItemText(psubitem);
+      return ::userfs::list_base::_001GetSubItemText(psubitem);
 
    }
 
@@ -1520,7 +1520,7 @@ namespace filemanager
    void file_list::_001GetSubItemImage(::user::mesh_subitem * psubitem)
    {
 
-      return ::userfs::list::_001GetSubItemImage(psubitem);
+      return ::userfs::list_base::_001GetSubItemImage(psubitem);
 
    }
 
@@ -1991,7 +1991,7 @@ namespace filemanager
       else
       {
 
-         ::user::list::do_drop(iDisplayDrop, iDisplayDrag);
+         ::user::list_base::do_drop(iDisplayDrop, iDisplayDrag);
 
       }
 
@@ -2064,7 +2064,7 @@ namespace filemanager
 
       ::filemanager_impact_base::handle(ptopic, phandlercontext);
 
-      ::userfs::list::handle(ptopic, phandlercontext);
+      ::userfs::list_base::handle(ptopic, phandlercontext);
 
       auto papp = get_app();
 
@@ -2130,7 +2130,7 @@ namespace filemanager
          if (filemanager_data()->m_bPassBk)
          {
 
-            ::user::list::m_bBackgroundBypass = true;
+            ::user::list_base::m_bBackgroundBypass = true;
 
          }
 

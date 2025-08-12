@@ -12,7 +12,7 @@
 #include "acme/prototype/prototype/url.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "aura/graphics/image/list.h"
+#include "aura/graphics/image/list_base.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/lock.h"

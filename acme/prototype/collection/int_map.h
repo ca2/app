@@ -1,20 +1,20 @@
 #pragma once
 
 
-#include "map.h"
+#include "map_base.h"
 
 
 template < class PAYLOAD >
-using int_map = map < int, PAYLOAD >;
+using int_map = map_base < int, PAYLOAD >;
 
 template < class PAYLOAD >
-using i64_map = map < long long, PAYLOAD >;
+using i64_map = map_base < long long, PAYLOAD >;
 
 template < class PAYLOAD >
-using iptr_map = map < iptr, PAYLOAD >;
+using iptr_map = map_base < iptr, PAYLOAD >;
 
 template < class PAYLOAD >
-using index_map = map < ::collection::index, PAYLOAD >;
+using index_map_base = map_base < ::collection::index, PAYLOAD >;
 
 using int_to_int = int_map < int >;
 
@@ -28,9 +28,9 @@ using iptr_to_iptr = iptr_map < iptr >;
 
 using iptr_to_string =  iptr_map < string > ;
 
-using index_to_index = index_map < ::collection::index >;
+using index_to_index = index_map_base < ::collection::index >;
 
-using index_to_string = index_map < string >;
+using index_to_string = index_map_base < string >;
 
 
 

@@ -4,15 +4,15 @@
 
 
 #include "acme/handler/extended_topic.h"
-#include "acme/prototype/collection/map.h"
+#include "acme/prototype/collection/map_base.h"
 //#include "acmee/handler/context.h"
 
 
 class handler_context;
 
-using signal_handler_context = ::map < ::signal_handler, ::pointer < ::handler_context > >;
+using signal_handler_context = ::map_base < ::signal_handler, ::pointer < ::handler_context > >;
 
-using object_handler_context = ::map < ::object *, ::pointer < ::handler_context > >;
+using object_handler_context = ::map_base < ::object *, ::pointer < ::handler_context > >;
 
 
 namespace handler

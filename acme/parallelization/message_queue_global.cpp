@@ -7,7 +7,7 @@
 #include "acme/operating_system/message.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/mutex.h"
-#include "acme/prototype/collection/map.h"
+#include "acme/prototype/collection/map_base.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/task.h"
 

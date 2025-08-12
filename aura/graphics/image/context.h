@@ -37,7 +37,7 @@ namespace image
       string_map < ::image::image_pointer > m_mapPathImage;
       int         m_iImageSeed;
       ::particle_pointer         m_pparticleImageSynchronization;
-      map < int_size, ::pointer_array < ::image::image > > m_imagepool;
+      map_base < int_size, ::pointer_array < ::image::image > > m_imagepool;
 
 
 

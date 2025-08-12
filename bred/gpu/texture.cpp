@@ -99,7 +99,7 @@ namespace gpu
       if (imagea.size() != 6)
       {
 
-         throw ::exception(error_failed, "Cube map texture must have exactly 6 images");
+         throw ::exception(error_failed, "Cube map_base texture must have exactly 6 images");
 
       }
 
@@ -108,14 +108,14 @@ namespace gpu
       if (pimageFirst->is_empty())
       {
 
-         throw ::exception(error_failed, "Cube map texture cannot be empty");
+         throw ::exception(error_failed, "Cube map_base texture cannot be empty");
 
       }
 
       if (pimageFirst->width() != pimageFirst->height())
       {
 
-         throw ::exception(error_failed, "Cube map texture images must be square");
+         throw ::exception(error_failed, "Cube map_base texture images must be square");
 
       }
 
@@ -128,7 +128,7 @@ namespace gpu
             if (pimage->size() != pimageFirst->size())
             {
                
-               throw ::exception(error_failed, "Cube map texture images must have the same dimensions");
+               throw ::exception(error_failed, "Cube map_base texture images must have the same dimensions");
 
             }
 

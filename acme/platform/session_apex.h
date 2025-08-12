@@ -43,7 +43,7 @@ namespace platform
       // apex commented
       //::pointer<::user::keyboard>                        m_pkeyboard;
 
-      ::pointer < ::map < ::user::enum_key, bool > >        m_pmapKeyPressed;
+      ::pointer < ::map_base < ::user::enum_key, bool > >        m_pmapKeyPressed;
 
       bool                                                  m_bProgrammerMode;
 
@@ -94,7 +94,7 @@ namespace platform
 
 
       // apex commented
-      //atom_map < ::layered * >                      m_mapboundui;
+      //atom_map_base < ::layered * >                      m_mapboundui;
 
 
 

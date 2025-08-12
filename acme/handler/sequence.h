@@ -185,17 +185,17 @@ public:
 //template < typename SEQUENCE >
 //using sequence_step = ::function < void(SEQUENCE *) >;
 //
-//#include "acme/prototype/collection/list.h"
+//#include "acme/prototype/collection/list_base.h"
 
 //
 //class sequencer_payload :
-//   virtual public ::list < ::sequencer_step >
+//   virtual public ::list_base < ::sequencer_step >
 //{
 //public:
 //
 //
 //   ::payload                                    m_payload;
-//   ::list < ::sequencer_step >::iterator        m_iterator;
+//   ::list_base < ::sequencer_step >::iterator        m_iterator;
 //   ::sequencer & m_sequencer;
 //   //::pointer< ::particle >          m_pparticleLast;
 //   //::pointer< ::particle >          m_pparticle;
@@ -610,17 +610,17 @@ public:
 //template < typename SEQUENCE >
 //using sequence_step = ::function < void(SEQUENCE *) >;
 
-//#include "acme/prototype/collection/list.h"
+//#include "acme/prototype/collection/list_base.h"
 //
 //
 //class sequencer_payload :
-//   virtual public ::list < ::sequencer_step >
+//   virtual public ::list_base < ::sequencer_step >
 //{
 //public:
 //
 //
 //   ::payload                                    m_payload;
-//   ::list < ::sequencer_step >::iterator        m_iterator;
+//   ::list_base < ::sequencer_step >::iterator        m_iterator;
 //   ::sequencer &                                m_sequencer;
 //   //::pointer< ::particle >          m_pparticleLast;
 //   //::pointer< ::particle >          m_pparticle;

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "data.h"
-#include "list.h"
+#include "list_base.h"
 #include "document.h"
 #include "list_data.h"
 #include "list_item_array.h"
@@ -13,7 +13,7 @@
 #include "acme/prototype/data/listener.h"
 #include "apex/filesystem/fs/data.h"
 #include "apex/filesystem/fs/set.h"
-#include "aura/graphics/image/list.h"
+#include "aura/graphics/image/list_base.h"
 #include "aura/user/user/shell.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/user/user/frame_interaction.h"
@@ -27,7 +27,7 @@ namespace userfs
 {
 
 
-   list::list()
+   list_base::list_base()
    {
 
       m_iSelectionSubItem = -1;
@@ -46,27 +46,27 @@ namespace userfs
    }
 
 
-   list::~list()
+   list_base::~list_base()
    {
 
    }
 
 
-   void list::install_message_routing(::channel * pchannel)
+   void list_base::install_message_routing(::channel * pchannel)
    {
 
       ::user::form_list_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &list::on_message_scroll_x);
-      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &list::on_message_scroll_y);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &list::on_message_show_window);
-      MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::on_message_left_button_double_click);
+      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &list_base::on_message_scroll_x);
+      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &list_base::on_message_scroll_y);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &list_base::on_message_show_window);
+      MESSAGE_LINK(e_message_create, pchannel, this, &list_base::on_message_create);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_base::on_message_left_button_double_click);
 
    }
 
 
-   void list::initialize_impact(::user::document * pdocument)
+   void list_base::initialize_impact(::user::document * pdocument)
    {
 
       ::user::form_list_impact::initialize_impact(pdocument);
@@ -78,7 +78,7 @@ namespace userfs
    }
 
 
-   void list::on_message_create(::message::message * pmessage)
+   void list_base::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -106,7 +106,7 @@ namespace userfs
    }
 
 
-   void list::on_timer(::timer * ptimer)
+   void list_base::on_timer(::timer * ptimer)
    {
       //      __UNREFERENCED_PARAMETER(pmessage);
 
@@ -115,7 +115,7 @@ namespace userfs
    }
 
 
-   bool list::on_click(::item * pitem, ::user::mouse * pmouse)
+   bool list_base::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       ::user::range range;
@@ -171,7 +171,7 @@ namespace userfs
    }
 
 
-//   void list::assert_ok() const
+//   void list_base::assert_ok() const
 //   {
 //
 //      ::user::form_list_impact::assert_ok();
@@ -179,7 +179,7 @@ namespace userfs
 //   }
 //
 //
-//   void list::dump(dump_context & dumpcontext) const
+//   void list_base::dump(dump_context & dumpcontext) const
 //   {
 //
 //      ::user::form_list_impact::dump(dumpcontext);
@@ -187,7 +187,7 @@ namespace userfs
 //   }
 
 
-   void list::handle(::topic * ptopic, ::handler_context * phandlercontext)
+   void list_base::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == id_browse)
@@ -199,7 +199,7 @@ namespace userfs
 
          auto pfilemanagerdata = m_pdocument->filemanager_data();
 
-         information() << "::userfs::list handle id_browse";
+         information() << "::userfs::list_base handle id_browse";
 
          plistdata->update(pfilemanagerdata);
 
@@ -212,7 +212,7 @@ namespace userfs
 
    }
 
-   void list::on_message_left_button_double_click(::message::message * pmessage)
+   void list_base::on_message_left_button_double_click(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       //      auto pmouse = pmessage->m_union.m_pmouse;
@@ -226,7 +226,7 @@ namespace userfs
                   }*/
    }
 
-   void list::_001OnCancelMode(::message::message * pmessage)
+   void list_base::_001OnCancelMode(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       // trans   ::user::impact::OnCancelMode();
@@ -236,7 +236,7 @@ namespace userfs
    }
 
 
-   bool list::pre_create_window(::user::system * pusersystem)
+   bool list_base::pre_create_window(::user::system * pusersystem)
    {
 
 
@@ -249,7 +249,7 @@ namespace userfs
    }
 
 
-   void list::on_insert_columns()
+   void list_base::on_insert_columns()
    {
 
       {
@@ -288,15 +288,15 @@ namespace userfs
    }
 
 
-   void list::on_update_item_count()
+   void list_base::on_update_item_count()
    {
       
-      ::user::list::on_update_item_count();
+      ::user::list_base::on_update_item_count();
 
    }
 
 
-   void list::get_selected_user_path(::file::path_array_base & patha)
+   void list_base::get_selected_user_path(::file::path_array_base & patha)
    {
 
       patha.erase_all();
@@ -313,7 +313,7 @@ namespace userfs
    }
 
 
-   void list::get_selected_final_path(::file::path_array_base & patha)
+   void list_base::get_selected_final_path(::file::path_array_base & patha)
    {
 
       patha.erase_all();
@@ -330,7 +330,7 @@ namespace userfs
    }
 
 
-   void list::get_selected_items(::file::item_array & itema)
+   void list_base::get_selected_items(::file::item_array & itema)
    {
 
       ::user::range range;
@@ -360,7 +360,7 @@ namespace userfs
    }
 
 
-   ::file::path_array_base list::get_selected_user_path()
+   ::file::path_array_base list_base::get_selected_user_path()
    {
 
       ::file::path_array_base patha;
@@ -372,7 +372,7 @@ namespace userfs
    }
 
 
-   ::file::path_array_base list::get_selected_final_path()
+   ::file::path_array_base list_base::get_selected_final_path()
    {
 
       ::file::path_array_base patha;
@@ -384,7 +384,7 @@ namespace userfs
    }
 
 
-   ::file::item_array list::get_selected_items()
+   ::file::item_array list_base::get_selected_items()
    {
 
       ::file::item_array itema;
@@ -396,7 +396,7 @@ namespace userfs
    }
 
 
-   ::file::item * list::get_first_selected_item()
+   ::file::item * list_base::get_first_selected_item()
    {
 
       auto itema = get_selected_items();
@@ -413,7 +413,7 @@ namespace userfs
    }
 
 
-   void list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void list_base::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::form_list_impact::_001OnDraw(pgraphics);
@@ -421,13 +421,13 @@ namespace userfs
    }
 
 
-   //void list::StartAnimation()
+   //void list_base::StartAnimation()
    //{
    //   //         m_iAnimate = 1;
    //}
 
 
-   void list::_017OpenItem(::pointer<::file::item>pitem, bool bOpenFile, const ::action_context & action_context)
+   void list_base::_017OpenItem(::pointer<::file::item>pitem, bool bOpenFile, const ::action_context & action_context)
    {
 
       if (pitem->IsFolder())
@@ -450,7 +450,7 @@ namespace userfs
    }
 
 
-   bool list::_017OpenSelected(bool bOpenFile, const ::action_context & context)
+   bool list_base::_017OpenSelected(bool bOpenFile, const ::action_context & context)
    {
 
       auto itema = get_selected_items();
@@ -482,7 +482,7 @@ namespace userfs
    }
 
 
-   void list::_017OpenContextMenuSelected(const ::action_context & context)
+   void list_base::_017OpenContextMenuSelected(const ::action_context & context)
    {
 
       list_data * pdata = fs_list();
@@ -546,7 +546,7 @@ namespace userfs
    }
 
 
-   void list::_017OpenContextMenuFolder(::pointer<::file::item>item, const ::action_context & context)
+   void list_base::_017OpenContextMenuFolder(::pointer<::file::item>item, const ::action_context & context)
    {
 
       __UNREFERENCED_PARAMETER(item);
@@ -555,7 +555,7 @@ namespace userfs
    }
 
 
-   void list::_017OpenContextMenuFile(const ::file::item_array & itema, const ::action_context & context)
+   void list_base::_017OpenContextMenuFile(const ::file::item_array & itema, const ::action_context & context)
    {
 
       __UNREFERENCED_PARAMETER(itema);
@@ -564,7 +564,7 @@ namespace userfs
    }
 
 
-   void list::_017OpenContextMenu(const ::action_context & context)
+   void list_base::_017OpenContextMenu(const ::action_context & context)
    {
 
       __UNREFERENCED_PARAMETER(context);
@@ -572,7 +572,7 @@ namespace userfs
    }
 
 
-   //void list::_017OpenFolder(::pointer<::file::item>item, const ::action_context & context)
+   //void list_base::_017OpenFolder(::pointer<::file::item>item, const ::action_context & context)
    //{
 
    //   __UNREFERENCED_PARAMETER(item);
@@ -582,7 +582,7 @@ namespace userfs
    //}
 
 
-   //void list::_017OpenFolder(const ::userfs::list_item &item, const ::action_context & context)
+   //void list_base::_017OpenFolder(const ::userfs::list_item &item, const ::action_context & context)
    //{
 
    //   __UNREFERENCED_PARAMETER(item);
@@ -591,14 +591,14 @@ namespace userfs
 
    //}
 
-   void list::_017OpenFile(const ::file::item_array & itema, const ::action_context & context)
+   void list_base::_017OpenFile(const ::file::item_array & itema, const ::action_context & context)
    {
       __UNREFERENCED_PARAMETER(itema);
       __UNREFERENCED_PARAMETER(context);
       ASSERT(false);
    }
 
-   void list::_001OnInitializeForm(::user::interaction * pinteraction)
+   void list_base::_001OnInitializeForm(::user::interaction * pinteraction)
    {
       ASSERT(pinteraction != nullptr);
       if (pinteraction == nullptr)
@@ -614,7 +614,7 @@ namespace userfs
       } */
    }
 
-   void list::_001OnButtonAction(::user::interaction * pinteraction)
+   void list_base::_001OnButtonAction(::user::interaction * pinteraction)
    {
       __UNREFERENCED_PARAMETER(pinteraction);
       //      list_data * pdata = fslist();
@@ -640,7 +640,7 @@ namespace userfs
       } */
    }
 
-   //void list::GetSelected(::file::item_array &itema)
+   //void list_base::GetSelected(::file::item_array &itema)
    //{
    //   list_data * pdata = fslist();
    //   index iItemRange, iItem;
@@ -677,7 +677,7 @@ namespace userfs
    //   }
    //}
 
-   void list::on_message_scroll_y(::message::message * pmessage)
+   void list_base::on_message_scroll_y(::message::message * pmessage)
    {
       //      ::pointer<::message::scroll>pscroll(pmessage);
       //m_iCreateImageListStep = pscroll->m_nPos;
@@ -685,13 +685,13 @@ namespace userfs
       pmessage->m_bRet = false;
    }
 
-   void list::on_message_scroll_x(::message::message * pmessage)
+   void list_base::on_message_scroll_x(::message::message * pmessage)
    {
       pmessage->m_bRet = false;
    }
 
 
-   ::collection::count list::_001GetItemCount()
+   ::collection::count list_base::_001GetItemCount()
    {
 
       return fs_list()->m_pitema->get_count();
@@ -699,7 +699,7 @@ namespace userfs
    }
 
 
-   //void list::add_fs_item(::file::path pathUser, ::file::path pathFinal, const ::scoped_string & scopedstrName)
+   //void list_base::add_fs_item(::file::path pathUser, ::file::path pathFinal, const ::scoped_string & scopedstrName)
    //{
 
    //   list_item item;
@@ -724,7 +724,7 @@ namespace userfs
    //}
 
 
-   ::image::image_list * list::GetActionButtonImageList(::collection::index i)
+   ::image::image_list * list_base::GetActionButtonImageList(::collection::index i)
    {
 
       if (i == 0)
@@ -739,7 +739,7 @@ namespace userfs
    }
 
 
-   void list::_001OnFileRename(::message::message * pmessage)
+   void list_base::_001OnFileRename(::message::message * pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -762,7 +762,7 @@ namespace userfs
    }
 
 
-   void list::_001OnUpdateFileRename(::message::message * pmessage)
+   void list_base::_001OnUpdateFileRename(::message::message * pmessage)
    {
       ::pointer<::message::command>pcommand(pmessage);
       ::user::range range;
@@ -773,7 +773,7 @@ namespace userfs
       pmessage->m_bRet = true;
    }
 
-   void list::on_message_show_window(::message::message * pmessage)
+   void list_base::on_message_show_window(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       //      ::pointer<::message::show_window>pshow(pmessage);
@@ -799,7 +799,7 @@ namespace userfs
    }
 
 
-   void list::_001InitializeFormPreData()
+   void list_base::_001InitializeFormPreData()
    {
       /*      ::filemanager::data * pdata = get_filemanager_template()->get_filemanager_data();
       pdata->m_pcallback->OnFileManagerInitializeFormPreData(
@@ -809,7 +809,7 @@ namespace userfs
    }
 
 
-   //bool list::query_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
+   //bool list_base::query_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
    //{
 
    //   list_data * pdata = fs_list();
@@ -860,7 +860,7 @@ namespace userfs
    //}
 
 
-   //bool list::do_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
+   //bool list_base::do_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
    //{
 
    //   list_data * pdata = fs_list();
@@ -882,7 +882,7 @@ namespace userfs
    //   else
    //   {
 
-   //      ::user::list::do_drop(iDisplayDrop, iDisplayDrag);
+   //      ::user::list_base::do_drop(iDisplayDrop, iDisplayDrag);
 
    //   }
 
@@ -891,7 +891,7 @@ namespace userfs
    //}
 
 
-   //::color::color list::get_background_color()
+   //::color::color list_base::get_background_color()
    //{
 
    //   return rgb(255, 255, 255);
@@ -899,7 +899,7 @@ namespace userfs
    //}
 
 
-   list_data * list::fs_list()
+   list_data * list_base::fs_list()
    {
 
       return m_pmeshdata.cast < list_data >();
@@ -907,7 +907,7 @@ namespace userfs
    }
 
 
-   ::pointer<::user::mesh_data>list::create_mesh_data()
+   ::pointer<::user::mesh_data>list_base::create_mesh_data()
    {
 
       return __create_new < list_data >();
@@ -915,7 +915,7 @@ namespace userfs
    }
 
 
-   //::fs::data * list::fs_data()
+   //::fs::data * list_base::fs_data()
    //{
 
    //   return get_document()->fs_data();
@@ -923,7 +923,7 @@ namespace userfs
    //}
 
 
-   //::file::item * list::fs_list_item(::collection::index iIndex)
+   //::file::item * list_base::fs_list_item(::collection::index iIndex)
    //{
 
    //   return fs_list()->m_itema[iIndex];
@@ -931,7 +931,7 @@ namespace userfs
    //}
 
 
-   //::pointer<::userfs::document>list::get_document()
+   //::pointer<::userfs::document>list_base::get_document()
    //{
 
    //   return ::user::form_list_impact::get_document();
@@ -939,7 +939,7 @@ namespace userfs
    //}
 
 
-   void list::_001GetSubItemText(::user::mesh_subitem * psubitem)
+   void list_base::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
       return ::user::form_list_impact::_001GetSubItemText(psubitem);
@@ -947,7 +947,7 @@ namespace userfs
    }
 
 
-   void list::_001GetSubItemImage(::user::mesh_subitem * psubitem)
+   void list_base::_001GetSubItemImage(::user::mesh_subitem * psubitem)
    {
 
       if (psubitem->m_iSubItem == m_iSelectionSubItem || psubitem->m_iSubItem == m_iNameSubItem)
@@ -1079,7 +1079,7 @@ namespace userfs
    }
 
 
-   ::file::item * list::fs_list_item(::collection::index iIndex)
+   ::file::item * list_base::fs_list_item(::collection::index iIndex)
    {
 
       return (*fs_list()->m_pitema)[iIndex];

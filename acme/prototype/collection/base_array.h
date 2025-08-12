@@ -70,7 +70,7 @@ DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE)
 DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
 
 #define DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, CONTAINER, TYPE) \
-ARRAY(const ::std::initializer_list < ::pointer<TYPE >>& list) : CONTAINER(list) { } \
+ARRAY(const ::std::initializer_list < ::pointer<TYPE >>& list_base) : CONTAINER(list_base) { } \
 DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
 
 #define DECLARE_ARRAY_OF(ARRAY, ITEM, TYPE) \
@@ -1006,14 +1006,14 @@ public:
 
    template < typename CONTAINER >
    ::collection::count append_container(const CONTAINER & container);
-   ::collection::count append_initializer_list(const ::std::initializer_list < TYPE > & list);
+   ::collection::count append_initializer_list(const ::std::initializer_list < TYPE > & list_base);
    ::collection::count append(const TYPE * p, ::collection::count c);
    ::collection::count append(const base_array & src); // return old int_size
    ::collection::count rear_append(const TYPE * p, ::collection::count c);
    ::collection::count rear_append(const base_array & src); // return old int_size
    template < typename CONTAINER >
    void copy_container(const CONTAINER & container);
-   void copy_initializer_list(const ::std::initializer_list < TYPE > & list);
+   void copy_initializer_list(const ::std::initializer_list < TYPE > & list_base);
    void copy(const TYPE* p, ::collection::count c);
    void copy(const base_array & src);
 
@@ -1932,10 +1932,10 @@ template < typename CONTAINER >
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-::collection::count base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append_initializer_list(const ::std::initializer_list < TYPE >& list)
+::collection::count base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append_initializer_list(const ::std::initializer_list < TYPE >& list_base)
 {
 
-   return append_container(list);
+   return append_container(list_base);
 
 }
 
@@ -2005,10 +2005,10 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy_contai
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy_initializer_list(const ::std::initializer_list < TYPE >& list)
+void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy_initializer_list(const ::std::initializer_list < TYPE >& list_base)
 {
 
-   copy_container(list);
+   copy_container(list_base);
 
 }
 

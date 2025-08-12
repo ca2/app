@@ -411,7 +411,7 @@ public:
 
       }
 
-      throw "iterator is not part of list";
+      throw "iterator is not part of list_base";
 
    }
 

@@ -3,7 +3,7 @@
 
 #include "impact_base.h"
 #include "acme/handler/item.h"
-#include "core/filesystem/userfs/list.h"
+#include "core/filesystem/userfs/list_base.h"
 
 
 namespace filemanager
@@ -11,7 +11,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE file_list :
-      virtual public ::filemanager_show < ::userfs::list >
+      virtual public ::filemanager_show < ::userfs::list_base >
    {
    public:
 
@@ -24,7 +24,7 @@ namespace filemanager
       class ::time                          m_timeLastFileSizeGet;
 
 
-      //map < icon_key,const icon_key &,icon,icon & > m_iconmap;
+      //map_base < icon_key,const icon_key &,icon,icon & > m_iconmap;
 
 //#ifdef WINDOWS_DESKTOP
 //      IShellFolder *                   m_pshellfolder;

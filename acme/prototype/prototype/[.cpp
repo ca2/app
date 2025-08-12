@@ -268,10 +268,10 @@ payload::payload(::payload * ppayload)
 }
 
 
-pack::pack(const ::std::initializer_list < pack >& list)
+pack::pack(const ::std::initializer_list < pack >& list_base)
 {
 
-   for (auto& payload : list)
+   for (auto& payload : list_base)
    {
 
       if (payload.get_type() == e_type_property_set)

@@ -216,7 +216,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
       if (pnode == pnodeFree) // dbgsnp - debug snippet
       {
 
-         // already in free list
+         // already in free list_base
 
          if (is_debugger_attached())
          {

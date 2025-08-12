@@ -9,7 +9,7 @@
 #include "acme/parallelization/types.h"
 #include "acme/platform/library.h"
 #include "acme/platform/release_time_for_project.h"
-#include "acme/prototype/collection/atom_map.h"
+#include "acme/prototype/collection/atom_map_base.h"
 #include "acme/prototype/collection/string_map.h"
 #include "acme/user/user/activation.h"
 

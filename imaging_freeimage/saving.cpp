@@ -29,7 +29,7 @@ namespace imaging_freeimage
 
       }
 
-      pimage->map();
+      pimage->map_base();
 
       FIBITMAP * fi;
 

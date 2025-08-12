@@ -109,7 +109,7 @@
 //                  } *pTranslate;
 //
 //
-//                  // read the list of languages and code pages.
+//                  // read the list_base of languages and code pages.
 //
 //                  VerQueryValue(pdata,
 //
@@ -401,7 +401,7 @@
 //   {
 //#if (defined(SOLARIS8) || defined(SOLARIS))
 //      {
-//         static std::collection::map<string, char *> vmap;
+//         static std::collection::map_base<string, char *> vmap;
 //         if (vmap.find(payload) != vmap.end())
 //         {
 //            delete[] vmap[::payload];

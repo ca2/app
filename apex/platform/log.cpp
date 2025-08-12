@@ -247,7 +247,7 @@ namespace apex
 
 //   extern ::pointer<::apex::application>g_papp;
 
-   CLASS_DECL_APEX int SimpleDebugReport(int iReportType, const ::file::path & path,int iLine,const_char_pointer ,const_char_pointer pszFormat, va_list list)
+   CLASS_DECL_APEX int SimpleDebugReport(int iReportType, const ::file::path & path,int iLine,const_char_pointer ,const_char_pointer pszFormat, va_list list_base)
    {
 #ifdef WIN32
 
@@ -287,13 +287,13 @@ namespace apex
       {
 
          char buf[2048];
-         vsnprintf_s(buf, sizeof(buf), sizeof(buf), pszFormat, list);
+         vsnprintf_s(buf, sizeof(buf), sizeof(buf), pszFormat, list_base);
          informationf(buf);
 
       }
 
 #else
-      vprintf(pszFormat, list);
+      vprintf(pszFormat, list_base);
 #endif
       return 0;
    }

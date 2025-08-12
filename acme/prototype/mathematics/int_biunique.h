@@ -2,11 +2,11 @@
 
 
 //#include "acme/prototype/prototype/matter.h"
-#include "acme/prototype/collection/map.h"
+#include "acme/prototype/collection/map_base.h"
 #include "acme/prototype/collection/int_map.h"
 
 
-template < class T, class T_to_T = map < T, T > >
+template < class T, class T_to_T = map_base < T, T > >
 class biunique :
    virtual public ::matter
 {
@@ -641,10 +641,10 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 
 
 //template < class t1, class t2, class t3, class t4 >
-//void serialize_write(stream & ostream, map < t1, t2, t3, t4 > & m)
+//void serialize_write(stream & ostream, map_base < t1, t2, t3, t4 > & m)
 //{
 //   ::collection::count count = m.get_count();
-//   typename map < t1, t2, t3, t4 >::assoc * passoc = m.get_start();
+//   typename map_base < t1, t2, t3, t4 >::assoc * passoc = m.get_start();
 //   ostream << count;
 //   while(passoc != nullptr)
 //   {
@@ -655,12 +655,12 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 //}
 //
 //template < class t1, class t2, class t3, class t4 >
-//void serialize_read(stream & istream, map < t1, t2, t3, t4 > & m)
+//void serialize_read(stream & istream, map_base < t1, t2, t3, t4 > & m)
 //{
 //   try
 //   {
 //      t1 iCount;
-////      class map < t1, t2, t3, t4 >::assoc * passoc =
+////      class map_base < t1, t2, t3, t4 >::assoc * passoc =
 //      //       m.get_start();
 //      istream >> iCount;
 //      t1 key;

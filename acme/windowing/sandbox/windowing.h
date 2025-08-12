@@ -31,7 +31,7 @@ virtual public ::acme::windowing::windowing
 protected:
 
 
-   map < oswindow, ::pointer < ::acme::windowing::window> > m_oswindowmap;
+   map_base < oswindow, ::pointer < ::acme::windowing::window> > m_oswindowmap;
 
 
 public:
@@ -48,7 +48,7 @@ public:
 
    itask                                         m_itask;
    
-   ::procedure_list                                m_procedurelist;
+   ::procedure_list_base                                m_procedurelist;
    
    
    windowing();

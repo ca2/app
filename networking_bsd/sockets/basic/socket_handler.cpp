@@ -616,14 +616,14 @@ namespace sockets_bsd
 
       socket_pointer psocket = pbasesocket;
 
-      if (::generic::map::contains_payload(m_socketmap, psocket))
+      if (::generic::map_base::contains_payload(m_socketmap, psocket))
       {
 
          return true;
 
       }
 
-      if (::generic::map::contains_payload(m_socketmapAdd, psocket))
+      if (::generic::map_base::contains_payload(m_socketmapAdd, psocket))
       {
 
          return true;
@@ -1232,8 +1232,8 @@ end_processing_adding:
 
          }
 
-         /// \no more todo rebuild fd_set's from active networking_bsd list (m_socketmap) here
-         /// done : http://jbmon.googlecode.com/svn/trunk/networking_bsd/SocketHandler.cpp : rebuild fd_set's from active networking_bsd list (m_socketmap) here
+         /// \no more todo rebuild fd_set's from active networking_bsd list_base (m_socketmap) here
+         /// done : http://jbmon.googlecode.com/svn/trunk/networking_bsd/SocketHandler.cpp : rebuild fd_set's from active networking_bsd list_base (m_socketmap) here
          {
 
             //FD_ZERO(&rfds);
@@ -2505,10 +2505,10 @@ end_processing_adding:
    }
 
 
-   void socket_handler::CheckList(socket_id_list & list, const string & listname)
+   void socket_handler::CheckList(socket_id_list & list_base, const string & listname)
    {
 
-      auto p = list.begin();
+      auto p = list_base.begin();
 
       for(; p.is_ok() ; p++)
       {
@@ -2744,9 +2744,9 @@ end_processing_adding:
 
          data.SetSource(dynamic_cast < base_socket * > (m_trigger_src[atom].m_p));
 
-         auto & map = m_trigger_dst[atom];
+         auto & map_base = m_trigger_dst[atom];
 
-         for(auto & pair : map)
+         for(auto & pair : map_base)
          {
 
             if (this->Valid(pair.m_pbasesocket))

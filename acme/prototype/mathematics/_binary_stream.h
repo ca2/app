@@ -2,7 +2,7 @@
 #pragma once
 
 
-template < typename FILE, class T, class T_to_T = map < T, T, T, T > >
+template < typename FILE, class T, class T_to_T = map_base < T, T, T, T > >
 inline binary_stream & operator <<(binary_stream & ostream, const biunique< T, T_to_T > & b)
 {
    ostream << m_bBiunivoca;
@@ -25,7 +25,7 @@ inline binary_stream & operator <<(binary_stream & ostream, const biunique< T, T
 }
 
 
-template < typename FILE, class T, class T_to_T = map < T, T, T, T > >
+template < typename FILE, class T, class T_to_T = map_base < T, T, T, T > >
 binary_stream & operator >> (binary_stream & istream, biunique< T, T_to_T > & b)
 {
    try

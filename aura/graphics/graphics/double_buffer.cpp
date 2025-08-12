@@ -372,7 +372,7 @@ namespace graphics
       //
       //         }
       //
-      //         pimageScreen->map();
+      //         pimageScreen->map_base();
       //
       //         auto pdata = pimageScreen->get_data();
       //

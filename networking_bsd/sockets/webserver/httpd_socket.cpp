@@ -188,9 +188,9 @@ namespace sockets
    }
 
 
-   map < int, DH * > * g_pmapdh = nullptr;
+   map_base < int, DH * > * g_pmapdh = nullptr;
 
-   map < int, DH * > * dh_map()
+   map_base < int, DH * > * dh_map()
    {
 
       synchronous_lock synchronouslock(::globals_critical_section());
@@ -198,7 +198,7 @@ namespace sockets
       if (g_pmapdh == nullptr)
       {
 
-         g_pmapdh = ___new map < int, DH * > ();
+         g_pmapdh = ___new map_base < int, DH * > ();
 
       }
 

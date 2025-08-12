@@ -175,7 +175,7 @@ void user::init(){
 //
 //      factory()->add_factory_item <::user::show < ::user::plain_edit > >();
 //      factory()->add_factory_item <::user::show < ::user::tree > >();
-//      factory()->add_factory_item <::user::show < ::user::list > >();
+//      factory()->add_factory_item <::user::show < ::user::list_base > >();
 //
 //      factory()->add_factory_item <menu_document >();
 //      factory()->add_factory_item <menu_frame >();
@@ -455,7 +455,7 @@ void user::destroy()
 //
 //      //auto psequence = pbox->sequence();
 //
-//      //// todo add property set to list;
+//      //// todo add property set to list_base;
 //      //pbox->get_property_set().merge(propertyset);
 //
 //      ////r
@@ -1747,7 +1747,7 @@ void user::destroy()
 //   }
 //
 //
-//   ::pointer<::user::list_header>list::create_list_header()
+//   ::pointer<::user::list_header>list_base::create_list_header()
 //   {
 //
 //      auto pcontext = m_papplication;
@@ -1761,7 +1761,7 @@ void user::destroy()
 //   }
 //
 //
-//   ::pointer<::user::mesh_data>list::create_mesh_data()
+//   ::pointer<::user::mesh_data>list_base::create_mesh_data()
 //   {
 //
 //      auto pcontext = m_papplication;

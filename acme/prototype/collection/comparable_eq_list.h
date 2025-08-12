@@ -1,24 +1,25 @@
 #pragma once
 
 
-#include "list.h"
+#include "list_base.h"
 
 
-template < class TYPE, class ARG_TYPE  = const TYPE&, class LIST_TYPE = ::list < TYPE, ARG_TYPE > >
+template < class TYPE, class ARG_TYPE  = const TYPE&, class LIST_TYPE = ::list_base < TYPE, ARG_TYPE > >
 class comparable_eq_list :
    public LIST_TYPE
 {
 public:
 
 
-   using node = typename ::list < TYPE, ARG_TYPE >::NODE;
-   using base_list = LIST_TYPE;
-   using iterator = typename base_list::iterator;
-   using const_iterator = typename base_list::const_iterator;
+   using BASE_LIST = LIST_TYPE;
+   using node = typename BASE_LIST::NODE;
+   using iterator = typename BASE_LIST::iterator;
+   using const_iterator = typename BASE_LIST::const_iterator;
 
-
-   comparable_eq_list();
-   comparable_eq_list(const comparable_eq_list & array);
+   using BASE_LIST::BASE_LIST;
+   using BASE_LIST::operator =;
+   //comparable_eq_list();
+   //comparable_eq_list(const comparable_eq_list & array);
 
 
    iterator find_first_item(const TYPE &t, iterator start = nullptr, iterator end = nullptr) const;
@@ -57,21 +58,21 @@ public:
 };
 
 
-template < class TYPE, class ARG_TYPE, class LIST_TYPE>
-comparable_eq_list<  TYPE,  ARG_TYPE,  LIST_TYPE>::
-comparable_eq_list()
-{
+//template < class TYPE, class ARG_TYPE, class LIST_TYPE>
+//comparable_eq_list<  TYPE,  ARG_TYPE,  LIST_TYPE>::
+//comparable_eq_list()
+//{
+//
+//}
 
-}
 
-
-template < class TYPE, class ARG_TYPE, class LIST_TYPE>
-comparable_eq_list<  TYPE,  ARG_TYPE,  LIST_TYPE>::
-comparable_eq_list(const comparable_eq_list<  TYPE,  ARG_TYPE,  LIST_TYPE> & l) :
-LIST_TYPE(l)
-{
-
-}
+//template < class TYPE, class ARG_TYPE, class LIST_TYPE>
+//comparable_eq_list<  TYPE,  ARG_TYPE,  LIST_TYPE>::
+//comparable_eq_list(const comparable_eq_list<  TYPE,  ARG_TYPE,  LIST_TYPE> & l) :
+//LIST_TYPE(l)
+//{
+//
+//}
 
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>

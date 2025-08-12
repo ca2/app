@@ -3021,7 +3021,7 @@ retry_license:
    //  if (straMatterLocator.has_elements())
    //  {
 
-   //     stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map", "map"));
+   //     stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map_base", "map_base"));
 
    //  }
 
@@ -9628,7 +9628,7 @@ namespace aura
    ////         VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT,
    ////         VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT);
 
-   ////      uboBuffers[i]->map();
+   ////      uboBuffers[i]->map_base();
 
    ////   }
    ////   auto globalSetLayout = VkcDescriptorSetLayout::Builder(m_pvkcdevice)

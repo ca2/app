@@ -43,7 +43,7 @@ void trace_category_static_init(::platform::system * psystem)
       "cache",
       "stencil",
       "string",
-      "map",
+      "map_base",
       "util",
       "security",
       "synchronization",

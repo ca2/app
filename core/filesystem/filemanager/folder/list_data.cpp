@@ -5,7 +5,7 @@
 #include "acme/prototype/data/listener.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/platform/application.h"
-#include "core/user/user/list.h"
+#include "core/user/user/list_base.h"
 
 
 namespace filemanager
@@ -98,7 +98,7 @@ namespace filemanager
       }
 
 
-      void list_data::GetSel(::user::list * plist, string_array_base & stra)
+      void list_data::GetSel(::user::list_base * plist, string_array_base & stra)
       {
 
          synchronous_lock synchronouslock(this->synchronization());

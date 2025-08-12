@@ -363,7 +363,7 @@ namespace gpu_opengl
 //      if (pimage->is_ok())
 //      {
 //
-//         pimage->map();
+//         pimage->map_base();
 //
 //         glBindTexture(GL_TEXTURE_2D, m_gluTextureBitmap1);
 //

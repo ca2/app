@@ -47,7 +47,7 @@ namespace filemanager
       if(m_plistview == nullptr)
       {
 
-         output_error_message("Could not create transfer list ::user::impact");
+         output_error_message("Could not create transfer list_base ::user::impact");
 
       }
 

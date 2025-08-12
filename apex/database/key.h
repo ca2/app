@@ -20,7 +20,7 @@
 //
 //      key();
 //      key(const ::scoped_string & scopedstr);
-//      //key(const std::initializer_list < ::payload > & list);
+//      //key(const std::initializer_list < ::payload > & list_base);
 //      //key(const ::scoped_string & scopedstrDataKey, bool bLocalData = false);
 //      //key(const_char_pointer pszDataKey, bool bLocalData = false);
 //      //key(const atom & idDataKey, bool bLocalData = false);

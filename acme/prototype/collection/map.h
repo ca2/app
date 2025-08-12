@@ -6,15 +6,15 @@
 
 
 template < typename PAIR >
-class pair_map :
-   public ::node_set < ::make_pair < PAIR > >
+class pair_map_base :
+   public ::node_set_base < ::make_pair < PAIR > >
 {
 public:
 
 
    using ITEM = typename ::make_pair < PAIR >::TYPE1;
    using PAYLOAD = typename ::make_pair < PAIR >::TYPE2;
-   using BASE_SET = typename ::node_set < ::make_pair < PAIR > >;
+   using BASE_SET = typename ::node_set_base < ::make_pair < PAIR > >;
    using HASH_TABLE = typename BASE_SET::HASH_TABLE;
    using BASE_ITEM = typename ::make_pair < PAIR >::TYPE1;
    using BASE_PAYLOAD = typename ::make_pair < PAIR >::TYPE2;
@@ -41,7 +41,7 @@ public:
    //using const_iterator = BASE_SET::const_iterator;
    //sing make_iterator = BASE_SET::make_iterator;
 
-   //__declare_iterator_struct_ok(pair_map, iterator, m_pnode, ::is_set(this->m_pnode));
+   //__declare_iterator_struct_ok(pair_map_base, iterator, m_pnode, ::is_set(this->m_pnode));
 
 
 //   template < typename ITERATOR > 
@@ -225,11 +225,11 @@ public:
    //iterator              m_begin;
 
 
-   pair_map();
-   pair_map(const PAIR * ppair, ::collection::count c);
-   pair_map(const ::std::initializer_list < PAIR > & list);
-   pair_map(const pair_map & m);
-   ~pair_map();
+   pair_map_base();
+   pair_map_base(const PAIR * ppair, ::collection::count c);
+   pair_map_base(const ::std::initializer_list < PAIR > & list_base);
+   pair_map_base(const pair_map_base & m);
+   ~pair_map_base();
 
    void construct();
 
@@ -400,10 +400,10 @@ public:
    }*/
 
 
-   void set(pair_map & pair_map)
+   void set(pair_map_base & pair_map_base)
    {
       
-      for(auto & pair : pair_map)
+      for(auto & pair : pair_map_base)
       {
 
          set_at(pair.element1(), pair.element2());
@@ -416,7 +416,7 @@ public:
    //inline iterator find_item(ARG_ITEM item) const { return find_node(item); }
 
    //using BASE_SET::find_item;
-   //inline const_iterator find_item(ARG_ITEM item) const { return ((pair_map *) this)->find_item(item); }
+   //inline const_iterator find_item(ARG_ITEM item) const { return ((pair_map_base *) this)->find_item(item); }
 
 
    iterator new_node(ARG_ITEM item, unsigned int nHashBucket, unsigned int nHashValue);
@@ -428,8 +428,8 @@ public:
    inline iterator node_at(ARG_ITEM, unsigned int & nHashBucket, unsigned int & nHashValue) const;
    //inline const_iterator node_at(ARG_ITEM, unsigned int& nHashBucket, unsigned int& nHashValue) const;
 
-   void transfer(iterator iterator, pair_map * ppair_map = nullptr);
-   void transfer(pair_map* ppair_map, ARG_ITEM item);
+   void transfer(iterator iterator, pair_map_base * ppair_map = nullptr);
+   void transfer(pair_map_base* ppair_map, ARG_ITEM item);
 
    //// void assert_ok() const override;
    //// void dump(dump_context & dumpcontext) const override;
@@ -492,7 +492,7 @@ public:
    //}
 
    template < typename PRED >
-   typename pair_map < PAIR >::iterator predicate_find(PRED pred)
+   typename pair_map_base < PAIR >::iterator predicate_find(PRED pred)
    {
 
       auto p = this->begin();
@@ -515,7 +515,7 @@ public:
 
    }
 
-   pair_map & operator = (const pair_map & m);
+   pair_map_base & operator = (const pair_map_base & m);
 
 
    template < typename TYPE >
@@ -554,31 +554,31 @@ public:
 
 
 template < typename PAIR >
-inline ::collection::count pair_map < PAIR >::get_count() const
+inline ::collection::count pair_map_base < PAIR >::get_count() const
 {
    return this->m_nCount;
 }
 
 template < typename PAIR >
-inline ::collection::count pair_map < PAIR >::get_size() const
+inline ::collection::count pair_map_base < PAIR >::get_size() const
 {
    return this->m_nCount;
 }
 
 template < typename PAIR >
-inline ::collection::count pair_map < PAIR >::count() const
+inline ::collection::count pair_map_base < PAIR >::count() const
 {
    return this->m_nCount;
 }
 
 template < typename PAIR >
-inline ::collection::count pair_map < PAIR >::size() const
+inline ::collection::count pair_map_base < PAIR >::size() const
 {
    return this->m_nCount;
 }
 
 template < typename PAIR >
-pair_map < PAIR > & pair_map < PAIR >::operator = (const pair_map & m)
+pair_map_base < PAIR > & pair_map_base < PAIR >::operator = (const pair_map_base & m)
 {
    if(this != &m)
    {
@@ -598,7 +598,7 @@ pair_map < PAIR > & pair_map < PAIR >::operator = (const pair_map & m)
 
 
 template < typename PAIR >
-inline bool pair_map < PAIR >::is_empty() const
+inline bool pair_map_base < PAIR >::is_empty() const
 {
 
    return this->m_nCount == 0;
@@ -607,7 +607,7 @@ inline bool pair_map < PAIR >::is_empty() const
 
 
 template < typename PAIR >
-inline bool pair_map < PAIR >::empty() const
+inline bool pair_map_base < PAIR >::empty() const
 {
 
    return this->m_nCount == 0;
@@ -616,17 +616,17 @@ inline bool pair_map < PAIR >::empty() const
 
 
 //template < typename PAIR >
-//typename pair_map < PAIR >::iterator pair_map < PAIR >::set_at(ARG_ITEM item,ARG_PAYLOAD newValue)
+//typename pair_map_base < PAIR >::iterator pair_map_base < PAIR >::set_at(ARG_ITEM item,ARG_PAYLOAD newValue)
 
 
 //template < typename PAIR >
-//inline typename pair_map < PAIR >::iterator pair_map < PAIR >::get_start() const
+//inline typename pair_map_base < PAIR >::iterator pair_map_base < PAIR >::get_start() const
 //{
 //   return (this->m_nCount == 0) ? nullptr : BEFORE_START_POSITION;
 //}
 
 //template < typename PAIR >
-//inline const typename pair_map < PAIR >::iterator pair_map < PAIR >::get_start() const
+//inline const typename pair_map_base < PAIR >::iterator pair_map_base < PAIR >::get_start() const
 //{
 //
 //   return this->m_begin;
@@ -634,7 +634,7 @@ inline bool pair_map < PAIR >::empty() const
 //}
 //
 //template < typename PAIR >
-//typename pair_map < PAIR >::iterator pair_map < PAIR >::get_start()
+//typename pair_map_base < PAIR >::iterator pair_map_base < PAIR >::get_start()
 //{
 //
 //   return this->m_begin.get();
@@ -643,9 +643,9 @@ inline bool pair_map < PAIR >::empty() const
 
 
 /////////////////////////////////////////////////////////////////////////////
-// pair_map < PAIR > out-of-line functions
+// pair_map_base < PAIR > out-of-line functions
 template < typename PAIR >
-void pair_map < PAIR >::construct()
+void pair_map_base < PAIR >::construct()
 {
 
    this->m_nCount          = 0;
@@ -658,7 +658,7 @@ void pair_map < PAIR >::construct()
 
 
 template < typename PAIR >
-pair_map < PAIR >::pair_map()
+pair_map_base < PAIR >::pair_map_base()
 {
 
    construct();
@@ -667,12 +667,12 @@ pair_map < PAIR >::pair_map()
 
 
 template < typename PAIR >
-pair_map < PAIR >::pair_map(const ::std::initializer_list < PAIR > & list)
+pair_map_base < PAIR >::pair_map_base(const ::std::initializer_list < PAIR > & list_base)
 {
 
    construct();
 
-   for(auto & pair : list)
+   for(auto & pair : list_base)
    {
 
       set_at((ARG_ITEM) pair.element1(), (ARG_PAYLOAD) pair.element2());
@@ -682,7 +682,7 @@ pair_map < PAIR >::pair_map(const ::std::initializer_list < PAIR > & list)
 }
 
 template < typename PAIR >
-pair_map < PAIR >::pair_map(const PAIR * ppair, ::collection::count c)
+pair_map_base < PAIR >::pair_map_base(const PAIR * ppair, ::collection::count c)
 {
    construct();
    for(::collection::index i = 0; i < c; i++)
@@ -693,7 +693,7 @@ pair_map < PAIR >::pair_map(const PAIR * ppair, ::collection::count c)
 
 
 template < typename PAIR >
-pair_map < PAIR >::pair_map(const pair_map & m)
+pair_map_base < PAIR >::pair_map_base(const pair_map_base & m)
 {
    
    construct();
@@ -709,7 +709,7 @@ pair_map < PAIR >::pair_map(const pair_map & m)
 
 //
 //template < typename PAIR >
-//void pair_map < PAIR >::erase_all()
+//void pair_map_base < PAIR >::erase_all()
 //{
 //
 //   //ASSERT_VALID(this);
@@ -749,19 +749,19 @@ pair_map < PAIR >::pair_map(const pair_map & m)
 
 
 //template < typename PAIR >
-//inline void pair_map < PAIR >::clear()
+//inline void pair_map_base < PAIR >::clear()
 //{
 //   erase_all();
 //}
 //
 //template < typename PAIR >
-//inline void pair_map < PAIR >::Empty()
+//inline void pair_map_base < PAIR >::Empty()
 //{
 //   clear();
 //}
 
 template < typename PAIR >
-pair_map < PAIR >::~pair_map()
+pair_map_base < PAIR >::~pair_map_base()
 {
    this->erase_all();
    ASSERT(this->m_nCount == 0);
@@ -769,7 +769,7 @@ pair_map < PAIR >::~pair_map()
 
 
 template < typename PAIR >
-void pair_map < PAIR >::attach(iterator p, unsigned int nHashBucket, unsigned int nHashValue)
+void pair_map_base < PAIR >::attach(iterator p, unsigned int nHashBucket, unsigned int nHashValue)
 {
 
    hash(p, nHashBucket, nHashValue);
@@ -797,7 +797,7 @@ void pair_map < PAIR >::attach(iterator p, unsigned int nHashBucket, unsigned in
 
 
 template < typename PAIR >
-inline void pair_map < PAIR >::hash(iterator p, unsigned int nHashBucket, unsigned int nHashValue)
+inline void pair_map_base < PAIR >::hash(iterator p, unsigned int nHashBucket, unsigned int nHashValue)
 {
 
    // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
@@ -825,16 +825,16 @@ inline void pair_map < PAIR >::hash(iterator p, unsigned int nHashBucket, unsign
 
 
 template < typename PAIR >
-typename pair_map < PAIR >::iterator
-pair_map < PAIR >::new_node(ARG_ITEM item, unsigned int nHashBucket, unsigned int nHashValue)
+typename pair_map_base < PAIR >::iterator
+pair_map_base < PAIR >::new_node(ARG_ITEM item, unsigned int nHashBucket, unsigned int nHashValue)
 {
 
    //if(this->m_pnodeFree == nullptr)
    //{
    //   // add another block
-   //   //plex * newBlock = plex::create(m_pplex, m_nBlockSize, sizeof(pair_map::node));
-   //   //// chain them into free list
-   //   //pair_map::iterator iterator = (pair_map::iterator) newBlock->data();
+   //   //plex * newBlock = plex::create(m_pplex, m_nBlockSize, sizeof(pair_map_base::node));
+   //   //// chain them into free list_base
+   //   //pair_map_base::iterator iterator = (pair_map_base::iterator) newBlock->data();
    //   //// free in reverse order to make it easier to debug
    //   //::collection::index i = m_nBlockSize - 1;
    //   //for (iterator = &iterator[i]; i >= 0; i--, iterator--)
@@ -859,7 +859,7 @@ pair_map < PAIR >::new_node(ARG_ITEM item, unsigned int nHashBucket, unsigned in
 
 
 template < typename PAIR >
-bool pair_map < PAIR >::erase(iterator iterator)
+bool pair_map_base < PAIR >::erase(iterator iterator)
 {
 
    detach(iterator);
@@ -872,7 +872,7 @@ bool pair_map < PAIR >::erase(iterator iterator)
 
 
 template < typename PAIR >
-void pair_map < PAIR >::detach(iterator iterator)
+void pair_map_base < PAIR >::detach(iterator iterator)
 {
 
    this->unhash(iterator);
@@ -928,7 +928,7 @@ void pair_map < PAIR >::detach(iterator iterator)
 }
 
 template < typename PAIR >
-void pair_map < PAIR >::hash(unsigned int& nHashBucket, unsigned int& nHashValue, ARG_ITEM item) const
+void pair_map_base < PAIR >::hash(unsigned int& nHashBucket, unsigned int& nHashValue, ARG_ITEM item) const
 {
 
    nHashValue = ::as_hash32(item).m_u;
@@ -938,18 +938,18 @@ void pair_map < PAIR >::hash(unsigned int& nHashBucket, unsigned int& nHashValue
 }
 
 //template < typename PAIR >
-//inline typename pair_map < PAIR >::const_iterator
-//pair_map < PAIR >::node_at(ARG_ITEM item, unsigned int & nHashBucket, unsigned int & nHashValue) const
+//inline typename pair_map_base < PAIR >::const_iterator
+//pair_map_base < PAIR >::node_at(ARG_ITEM item, unsigned int & nHashBucket, unsigned int & nHashValue) const
 //{
 //
-//   return (const_iterator &) ((pair_map *)this)->node_at(item, nHashBucket, nHashValue);
+//   return (const_iterator &) ((pair_map_base *)this)->node_at(item, nHashBucket, nHashValue);
 //
 //}
 
 
 template < typename PAIR >
-inline typename pair_map < PAIR >::iterator
-pair_map < PAIR >::node_at(ARG_ITEM item, unsigned int& nHashBucket, unsigned int& nHashValue) const
+inline typename pair_map_base < PAIR >::iterator
+pair_map_base < PAIR >::node_at(ARG_ITEM item, unsigned int& nHashBucket, unsigned int& nHashValue) const
 {
 
    hash(nHashBucket, nHashValue, item);
@@ -978,7 +978,7 @@ pair_map < PAIR >::node_at(ARG_ITEM item, unsigned int& nHashBucket, unsigned in
 }
 
 template < typename PAIR >
-void pair_map < PAIR >::transfer(pair_map* ppair_map, ARG_ITEM item)
+void pair_map_base < PAIR >::transfer(pair_map_base* ppair_map, ARG_ITEM item)
 {
 
    unsigned int uHashBucket;
@@ -996,7 +996,7 @@ void pair_map < PAIR >::transfer(pair_map* ppair_map, ARG_ITEM item)
 
 
 template < typename PAIR >
-void pair_map < PAIR >::transfer(iterator iterator, pair_map * ppair_map)
+void pair_map_base < PAIR >::transfer(iterator iterator, pair_map_base * ppair_map)
 {
 
    if (ppair_map == this)
@@ -1025,7 +1025,7 @@ void pair_map < PAIR >::transfer(iterator iterator, pair_map * ppair_map)
 
 
 template < typename PAIR >
-bool pair_map < PAIR >::lookup(ARG_ITEM item, PAYLOAD& rValue) const
+bool pair_map_base < PAIR >::lookup(ARG_ITEM item, PAYLOAD& rValue) const
 {
    //ASSERT_VALID(this);
 
@@ -1036,7 +1036,7 @@ bool pair_map < PAIR >::lookup(ARG_ITEM item, PAYLOAD& rValue) const
    if (!p)
    {
 
-      return false;  // not in pair_map
+      return false;  // not in pair_map_base
 
    }
 
@@ -1048,20 +1048,20 @@ bool pair_map < PAIR >::lookup(ARG_ITEM item, PAYLOAD& rValue) const
 
 
 //template < typename PAIR >
-//typename pair_map < PAIR >::iterator pair_map < PAIR >::find (ARG_ITEM item)
+//typename pair_map_base < PAIR >::iterator pair_map_base < PAIR >::find (ARG_ITEM item)
 //{
 //   return iterator(plookup(item), this);
 //}
 //
 //template < typename PAIR >
-//typename pair_map < PAIR >::const_iterator pair_map < PAIR >::find (ARG_ITEM item) const
+//typename pair_map_base < PAIR >::const_iterator pair_map_base < PAIR >::find (ARG_ITEM item) const
 //{
-//   return const_iterator((iterator) plookup(item), (pair_map *) this);
+//   return const_iterator((iterator) plookup(item), (pair_map_base *) this);
 //}
 
 
 template < typename PAIR >
-typename pair_map < PAIR >::const_iterator pair_map < PAIR >::plookup(ARG_ITEM item) const
+typename pair_map_base < PAIR >::const_iterator pair_map_base < PAIR >::plookup(ARG_ITEM item) const
 {
 
    unsigned int nHashBucket, nHashValue;
@@ -1074,7 +1074,7 @@ typename pair_map < PAIR >::const_iterator pair_map < PAIR >::plookup(ARG_ITEM i
 
 
 template < typename PAIR >
-typename pair_map < PAIR >::iterator pair_map < PAIR >::plookup(ARG_ITEM item)
+typename pair_map_base < PAIR >::iterator pair_map_base < PAIR >::plookup(ARG_ITEM item)
 {
 
    unsigned int nHashBucket, nHashValue;
@@ -1087,7 +1087,7 @@ typename pair_map < PAIR >::iterator pair_map < PAIR >::plookup(ARG_ITEM item)
 
 
 template < typename PAIR >
-typename pair_map < PAIR >::PAYLOAD * pair_map < PAIR >::pget(ARG_ITEM item)
+typename pair_map_base < PAIR >::PAYLOAD * pair_map_base < PAIR >::pget(ARG_ITEM item)
 {
 
    auto p = plookup(item);
@@ -1105,7 +1105,7 @@ typename pair_map < PAIR >::PAYLOAD * pair_map < PAIR >::pget(ARG_ITEM item)
 
 
 //template < typename PAIR >
-//inline typename pair_map < PAIR >::iterator pair_map < PAIR >::find_key(ARG_ITEM item) const
+//inline typename pair_map_base < PAIR >::iterator pair_map_base < PAIR >::find_key(ARG_ITEM item) const
 //{
 //
 //   unsigned int nHashBucket, nHashValue;
@@ -1117,7 +1117,7 @@ typename pair_map < PAIR >::PAYLOAD * pair_map < PAIR >::pget(ARG_ITEM item)
 
 template < typename PAIR >
 template < typename PAYLOAD2 >
-inline typename pair_map < PAIR >::iterator pair_map < PAIR >::find_payload(const PAYLOAD2 & payload) const
+inline typename pair_map_base < PAIR >::iterator pair_map_base < PAIR >::find_payload(const PAYLOAD2 & payload) const
 {
 
    auto p = this->begin();
@@ -1140,7 +1140,7 @@ inline typename pair_map < PAIR >::iterator pair_map < PAIR >::find_payload(cons
 
 
 //template < typename PAIR >
-//inline typename pair_map < PAIR >::iterator pair_map < PAIR >::get_item(ARG_ITEM item)
+//inline typename pair_map_base < PAIR >::iterator pair_map_base < PAIR >::get_item(ARG_ITEM item)
 //{
 //
 //   unsigned int nHashBucket,nHashValue;
@@ -1160,7 +1160,7 @@ inline typename pair_map < PAIR >::iterator pair_map < PAIR >::find_payload(cons
 
 
 template < typename PAIR >
-inline typename pair_map < PAIR >::PAYLOAD & pair_map < PAIR >::operator[](ARG_ITEM item)
+inline typename pair_map_base < PAIR >::PAYLOAD & pair_map_base < PAIR >::operator[](ARG_ITEM item)
 {
 
    return this->get_item(item)->element2();
@@ -1169,7 +1169,7 @@ inline typename pair_map < PAIR >::PAYLOAD & pair_map < PAIR >::operator[](ARG_I
 
 
 template < typename PAIR >
-inline const typename pair_map < PAIR >::PAYLOAD & pair_map < PAIR >::operator[](ARG_ITEM item) const
+inline const typename pair_map_base < PAIR >::PAYLOAD & pair_map_base < PAIR >::operator[](ARG_ITEM item) const
 {
 
    auto p = this->find_item(item);
@@ -1187,7 +1187,7 @@ inline const typename pair_map < PAIR >::PAYLOAD & pair_map < PAIR >::operator[]
 
 //
 //template < typename PAIR >
-//inline bool pair_map < PAIR >::unhash(iterator iterator)
+//inline bool pair_map_base < PAIR >::unhash(iterator iterator)
 //// erase - return true if erased
 //{
 //
@@ -1206,7 +1206,7 @@ inline const typename pair_map < PAIR >::PAYLOAD & pair_map < PAIR >::operator[]
 
 
 template < typename PAIR >
-inline ::collection::count pair_map < PAIR >::count(const ITEM & item) const
+inline ::collection::count pair_map_base < PAIR >::count(const ITEM & item) const
 {
 
    return this->plookup(item) ? 1 : 0;
@@ -1215,7 +1215,7 @@ inline ::collection::count pair_map < PAIR >::count(const ITEM & item) const
 
 
 template < typename PAIR >
-bool pair_map < PAIR >::has(const ITEM & item) const
+bool pair_map_base < PAIR >::has(const ITEM & item) const
 {
 
    return this->plookup(item) ? 1 : 0;
@@ -1224,7 +1224,7 @@ bool pair_map < PAIR >::has(const ITEM & item) const
 
 
 template < typename PAIR >
-bool pair_map < PAIR >::contains(const ITEM & item) const
+bool pair_map_base < PAIR >::contains(const ITEM & item) const
 {
 
    return this->plookup(item) ? 1 : 0;
@@ -1233,7 +1233,7 @@ bool pair_map < PAIR >::contains(const ITEM & item) const
 
 
 //template < typename PAIR >
-//void pair_map < PAIR >::get_next(iterator & iterator,
+//void pair_map_base < PAIR >::get_next(iterator & iterator,
 //      ITEM& rKey, PAYLOAD& rValue) const
 //{
 //
@@ -1247,8 +1247,8 @@ bool pair_map < PAIR >::contains(const ITEM & item) const
 //
 //
 //template < typename PAIR >
-//inline const typename pair_map < PAIR >::iterator
-//pair_map < PAIR >::get_next(const iterator iterator) const
+//inline const typename pair_map_base < PAIR >::iterator
+//pair_map_base < PAIR >::get_next(const iterator iterator) const
 //{
 //
 //   return iterator->m_next;
@@ -1257,8 +1257,8 @@ bool pair_map < PAIR >::contains(const ITEM & item) const
 
 //
 //template < typename PAIR >
-//inline typename pair_map < PAIR >::iterator
-//pair_map < PAIR >::get_next(const iterator iterator)
+//inline typename pair_map_base < PAIR >::iterator
+//pair_map_base < PAIR >::get_next(const iterator iterator)
 //{
 //
 //   return iterator->m_next;
@@ -1267,7 +1267,7 @@ bool pair_map < PAIR >::contains(const ITEM & item) const
 
 
 template < typename PAIR >
-typename pair_map < PAIR >::PAYLOAD pair_map < PAIR > ::
+typename pair_map_base < PAIR >::PAYLOAD pair_map_base < PAIR > ::
 get(ARG_ITEM argkey, ARG_PAYLOAD valueDefault)
 {
 
@@ -1286,7 +1286,7 @@ get(ARG_ITEM argkey, ARG_PAYLOAD valueDefault)
 
 
 //template < typename PAIR >
-//void pair_map < PAIR >::assert_ok() const
+//void pair_map_base < PAIR >::assert_ok() const
 //{
 //
 //   ::matter::assert_ok();
@@ -1294,25 +1294,25 @@ get(ARG_ITEM argkey, ARG_PAYLOAD valueDefault)
 //   ASSERT(GetHashTableSize() > 0);
 //
 //   ASSERT(this->m_nCount == 0 || this->m_hashtable.m_ppHash != nullptr);
-//   // non-empty pair_map should have hash table
+//   // non-empty pair_map_base should have hash table
 //
 //}
 //
 
 
 template < class PAYLOAD >
-using double_map = map < double, PAYLOAD >;
+using double_map_base = map_base < double, PAYLOAD >;
 
 
-using double_to_double = double_map < double >;
-
-
-template < class PAYLOAD >
-using dword_map = map < unsigned int, PAYLOAD >;
+using double_to_double_base = double_map_base < double >;
 
 
 template < class PAYLOAD >
-using uptr_map = map < uptr, PAYLOAD >;
+using dword_map = map_base < unsigned int, PAYLOAD >;
+
+
+template < class PAYLOAD >
+using uptr_map = map_base < uptr, PAYLOAD >;
 
 
 template < typename ITEM_TYPE, typename PAYLOAD_TYPE >
@@ -1339,7 +1339,7 @@ public:
 
 
 //template < typename PAIR >
-//using pair_pair_map = pair_map <  typename PAIR::TYPE1, typename PAIR::TYPE2 >;
+//using pair_pair_map = pair_map_base <  typename PAIR::TYPE1, typename PAIR::TYPE2 >;
 
 
 #define __declare_key_value(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue) \
@@ -1375,7 +1375,7 @@ __declare_pair_map(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue);
 
 
 template < typename PAIR >
-void pair_map < PAIR >::InitHashTable(
+void pair_map_base < PAIR >::InitHashTable(
    unsigned int nHashSize, bool bAllocNow)
 //
 // Used to force allocation of a hash table or to override the default
@@ -1392,7 +1392,7 @@ void pair_map < PAIR >::InitHashTable(
 
 
 //template < typename PAIR >
-//void pair_map < PAIR >::dump(dump_context& dumpcontext) const
+//void pair_map_base < PAIR >::dump(dump_context& dumpcontext) const
 //{
 //
 //   ::matter::dump(dumpcontext);

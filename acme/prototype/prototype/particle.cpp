@@ -2396,7 +2396,7 @@ void particle::_main_post(const ::procedure & procedure)
 //}
 
 
-void particle::process_owned_procedure_list(::procedure_list & procedurelist, bool & bHandled)
+void particle::process_owned_procedure_list(::procedure_list_base & procedurelist, bool & bHandled)
 {
 
    _synchronous_lock synchronouslock(this->synchronization());

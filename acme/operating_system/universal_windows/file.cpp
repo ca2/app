@@ -232,7 +232,7 @@ string file_module_path_dup()
 //
 //void dll_processes(unsigned_int_array & dwa,string_array_base & straProcesses,const ::scoped_string & scopedstrDll)
 //{
-//   // Get the list of process identifiers.
+//   // Get the list_base of process identifiers.
 //
 //   unsigned int * aProcesses = ___new unsigned int[1024 * 8];
 //
@@ -488,7 +488,7 @@ string file_module_path_dup()
 // //       return;
 // //    }
 
-// //    // Get the list of all handles in the file_system
+// //    // Get the list_base of all handles in the file_system
 // //    PSYSTEM_HANDLE_INFORMATION pSysHandleInformation = ___new SYSTEM_HANDLE_INFORMATION();
 // //    unsigned int size = sizeof(SYSTEM_HANDLE_INFORMATION);
 // //    unsigned int needed = 0;
@@ -581,7 +581,7 @@ string file_module_path_dup()
 // //       return;
 // //    }
 
-// //    // Walk through the handle list
+// //    // Walk through the handle list_base
 // //    for(unsigned int i = 0; i < pSysHandleInformation->dwCount; i++)
 // //    {
 // //       SYSTEM_HANDLE& sh = pSysHandleInformation->Handles[i];

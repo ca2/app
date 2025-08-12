@@ -31,7 +31,7 @@ namespace sockets
       class http_client_socket;
       class http_session;
 
-      using in_link_map = map < link_out_socket *, link_in_socket * >;
+      using in_link_map = map_base < link_out_socket *, link_in_socket * >;
       
    //} // namespace sockets
 

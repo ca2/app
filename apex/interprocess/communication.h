@@ -4,7 +4,7 @@
 
 #include "acme/prototype/collection/string_map.h"
 //#include "acme/prototype/collection/string_array.h"
-#include "acme/prototype/collection/atom_map.h"
+#include "acme/prototype/collection/atom_map_base.h"
 #include "acme/prototype/collection/atom_array.h"
 ////#include "acme/prototype/prototype/object.h"
 
@@ -13,7 +13,7 @@ namespace interprocess
 {
 
 
-   using task_map = atom_map < ::pointer< task > >;
+   using task_map = atom_map_base < ::pointer< task > >;
 
 
    class CLASS_DECL_APEX communication :

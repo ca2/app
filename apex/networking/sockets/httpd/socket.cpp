@@ -230,9 +230,9 @@ namespace httpd
    }
 
 
-   //map < int, DH * > * g_pmapdh = nullptr;
+   //map_base < int, DH * > * g_pmapdh = nullptr;
 
-   //map < int, DH * > * dh_map()
+   //map_base < int, DH * > * dh_map()
    //{
 
    //   critical_section_lock synchronouslock(::globals_critical_section());
@@ -240,7 +240,7 @@ namespace httpd
    //   if (g_pmapdh == nullptr)
    //   {
 
-   //      g_pmapdh = ___new map < int, DH * > ();
+   //      g_pmapdh = ___new map_base < int, DH * > ();
 
    //   }
 

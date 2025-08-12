@@ -138,7 +138,7 @@ namespace net
    //
    //		extern const unsigned int UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION;  // defined in PortForwadEngine.cpp
    //
-   // 3. In your .cpp implementation file, add an entry to the message map as follows:
+   // 3. In your .cpp implementation file, add an entry to the message map_base as follows:
    //
    //		ON_REGISTERED_MESSAGE( UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, OnMappingThreadNotificationMeesage )
    //
@@ -299,7 +299,7 @@ namespace net
 	   string tempStr;
 	   tempStr.formatf( "UPnP has detected a machine in the number of port mappings for your router \n"
 		   "New number of mappings = %d \n"
-		   "It is recommended to update your list of mappings", lNewNumberOfEntries );
+		   "It is recommended to update your list_base of mappings", lNewNumberOfEntries );
 
       //auto psystem = system();
 
@@ -317,7 +317,7 @@ namespace net
 	   string tempStr;
 	   tempStr.formatf( "UPnP has detected a machine in your external IP address \n"
 		   "New IP address = %s \n"
-		   "It is recommended to update your list of mappings", ::string(scopedstrNewExternalIPAddress).c_str());
+		   "It is recommended to update your list_base of mappings", ::string(scopedstrNewExternalIPAddress).c_str());
 
       auto psystem = system();
 

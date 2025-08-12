@@ -3,7 +3,7 @@
 
 #include "networking_bsd/sockets/base/base_socket_handler.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
-#include "acme/prototype/collection/list.h"
+#include "acme/prototype/collection/list_base.h"
 #include "acme/prototype/collection/comparable_eq_list.h"
 #include "acme/prototype/collection/comparable_list.h"
 
@@ -31,11 +31,11 @@ namespace sockets_bsd
       int m_iMaxKeepAliveCount = 0;
       ::pointer<::apex::log>    m_splogger; ///< Registered log class, or nullptr
 
-      socket_map                 m_socketmap; ///< Active sockets map
-      socket_map                 m_socketmapAdd; ///< Sockets to be added to sockets map
+      socket_map                 m_socketmap; ///< Active sockets map_base
+      socket_map                 m_socketmapAdd; ///< Sockets to be added to sockets map_base
       socket_pointer_list        m_delete; ///< Sockets to be deleted (failed when add)
       bool                       m_b_use_mutex; ///< ::pointer < ::mutex > correctly initialized
-      //SOCKET                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list
+      //SOCKET                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list_base
       //::collection::count                    m_countR;
       //::collection::count                    m_countW;
       //::collection::count                    m_countE;
@@ -53,7 +53,7 @@ namespace sockets_bsd
       ::earth::time                 m_tlast; ///< timeout control
 
       // state lists
-      socket_id_list                m_socketlist; ///< Active file descriptor list
+      socket_id_list                m_socketlist; ///< Active file descriptor list_base
       socket_id_list                m_socketlistErase; ///< File descriptors that are to be erased from m_sockets
       socket_id_list                m_socketlistCallOnConnect; ///< checklist CallOnConnect
       socket_id_list                m_socketlistDetach; ///< checklist detach
@@ -94,7 +94,7 @@ namespace sockets_bsd
 
       //resolv_server * resolver();
 
-      /** add base_socket instance to base_socket map. Removal is always automatic. */
+      /** add base_socket instance to base_socket map_base. Removal is always automatic. */
       void restart_socket(SOCKET socket) override;
 
       //void add(const ::sockets::socket_pointer & psocket) override;
@@ -223,7 +223,7 @@ namespace sockets_bsd
 
 
       void CheckList(socket_id_list&,const string &); ///< Used by CheckSanity
-      /** erase base_socket from base_socket map, used by base_socket class. */
+      /** erase base_socket from base_socket map_base, used by base_socket class. */
       //void erase(::sockets::base_socket *) override;
 
 

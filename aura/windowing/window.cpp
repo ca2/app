@@ -13277,7 +13277,7 @@ namespace windowing
          if(pimageSource)
          {
 
-            pimageSource->map();
+            pimageSource->map_base();
 
             wSource = pimageSource->width();
 

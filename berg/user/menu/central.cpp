@@ -9,7 +9,7 @@
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
-#include "aura/graphics/image/list.h"
+#include "aura/graphics/image/list_base.h"
 #include "aura/graphics/image/imaging.h"
 #include "berg/platform/system.h"
 

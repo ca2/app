@@ -15,7 +15,7 @@
 namespace os
 {
 
-   map < oswindow, oswindow, simple_ui *, simple_ui * > m_windowmap;
+   map_base < oswindow, oswindow, simple_ui *, simple_ui * > m_windowmap;
 
    simple_ui::simple_ui(::pointer<base_application>papp) :
       ::object(pparticle),
@@ -633,7 +633,7 @@ namespace os
 
          draw(m_pimage->g());
 
-         //m_pimage->map();
+         //m_pimage->map_base();
 
          m_pimage->fill_channel(255, ::color::e_channel_opacity);
 
@@ -804,7 +804,7 @@ namespace os
 
 
 
-void wm_nodecorations(oswindow w, int map)
+void wm_nodecorations(oswindow w, int map_base)
 {
    Atom WM_HINTS;
    int set;
@@ -866,7 +866,7 @@ void wm_nodecorations(oswindow w, int map)
                       (unsigned char *)&NET_WMHints, 2);
    }
    XSetTransientForHint(dpy, window, rootw);
-   if(map)
+   if(map_base)
    {
       XUnmapWindow(dpy, window);
       XMapWindow(dpy, window);

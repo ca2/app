@@ -1117,10 +1117,10 @@ bool directory_system::defer_media_library_representative_file_name(::file::path
 
 
 
-bool directory_system::list(string_array_base & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
+bool directory_system::list_base(string_array_base & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
 {
 
-   return ::file::enumerator::list(stra, scopedstr, eflag);
+   return ::file::enumerator::list_base(stra, scopedstr, eflag);
 
 }
 

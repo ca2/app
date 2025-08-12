@@ -58,12 +58,12 @@
 //template < typename SEQUENCE >
 //using sequence_step = ::function < void(SEQUENCE *) >;
 
-#include "acme/prototype/collection/list.h"
+#include "acme/prototype/collection/list_base.h"
 
 //
 ////template < typename SEQUENCE >
 //class sequencer :
-//   virtual public ::list < ::pointer < step > >
+//   virtual public ::list_base < ::pointer < step > >
 //{
 //public:
 
@@ -92,7 +92,7 @@
 //void sequencer_payload::on_initialize_particle()
 //{
 //
-//   ::list < ::sequencer_step >::on_initialize_particle();
+//   ::list_base < ::sequencer_step >::on_initialize_particle();
 //
 //   defer_create_synchronization();
 //

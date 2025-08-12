@@ -371,7 +371,7 @@ namespace gpu_opengl
       if (pimage->is_ok())
       {
 
-         pimage->map();
+         pimage->map_base();
 
          glBindTexture(GL_TEXTURE_2D, m_gluTextureBitmap1);
 
@@ -862,7 +862,7 @@ namespace gpu_opengl
       else
       {
 
-         warning() << "Failed to map UBO";
+         warning() << "Failed to map_base UBO";
 
       }
 

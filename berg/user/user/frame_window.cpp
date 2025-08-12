@@ -82,7 +82,7 @@ namespace user
       m_bHelpMode = 0;    // not in Shift+F1 help mode
       m_dwPromptContext = 0;
 
-      m_pNextFrameWnd = nullptr;         // not in list yet
+      m_pNextFrameWnd = nullptr;         // not in list_base yet
 
       m_bInRecalcLayout = false;
       m_nShowDelay = -1;              // no delay pending
@@ -798,7 +798,7 @@ namespace user
       m_puiptraDisable->erase_all();
 
       /*
-      // disable all windows connected to this frame (and add them to the list)
+      // disable all windows connected to this frame (and add them to the list_base)
       ::pointer<::user::interaction>oswindow = psystem->get_desktop_window()->GetWindow(GW_CHILD);
 
       while (oswindow != nullptr)
@@ -2300,7 +2300,7 @@ namespace user
    //      else if (wParam != 0)
    //      {
 
-   //         // map SC_CLOSE to PREVIEW_CLOSE when in print thumbnail mode
+   //         // map_base SC_CLOSE to PREVIEW_CLOSE when in print thumbnail mode
    //         /*         if (wParam == __IDS_SCCLOSE && m_lpfnCloseProc != nullptr)
    //         wParam = __IDS_PREVIEW_CLOSE;*/
 
@@ -2875,7 +2875,7 @@ namespace user
       m_rectangleBorder.Null();
       m_dwPromptContext = 0;
 
-      m_pNextFrameWnd = nullptr;         // not in list yet
+      m_pNextFrameWnd = nullptr;         // not in list_base yet
 
       m_bInRecalcLayout = false;
       m_nShowDelay = -1;              // no delay pending

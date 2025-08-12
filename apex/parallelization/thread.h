@@ -527,7 +527,7 @@ protected:
 
 
 
-using id_thread_map = atom_map < ::pointer<thread > >;
+using id_thread_map = atom_map_base < ::pointer<thread > >;
 
 
 //CLASS_DECL_APEX void sleep(const time& time);

@@ -113,7 +113,7 @@ namespace prompt
       case CONTEXT_MENU_IMPACT:
       {
 
-         auto pdata = psession->filemanager("filemanager::list");
+         auto pdata = psession->filemanager("filemanager::list_base");
 
          pdata->m_puserinteractionParent = pimpactdata->m_pplaceholder;
          pdata->m_iIconSize = 16;
@@ -193,7 +193,7 @@ namespace prompt
       case impact_three_action_launch:
       {
 
-         auto pdata = psession->filemanager("filemanager::list");
+         auto pdata = psession->filemanager("filemanager::list_base");
 
          pdata->m_puserinteractionParent = pimpactdata->m_pplaceholder;
          pdata->m_iIconSize = 48;

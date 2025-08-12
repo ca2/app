@@ -49,12 +49,12 @@ namespace graphics3d
          {
 
          }
-         cube(::std::initializer_list < ::file::path > list)
+         cube(::std::initializer_list < ::file::path > list_base)
          {
 
             int i = 0;
 
-            for (auto& item : list)
+            for (auto& item : list_base)
             {
 
                this->element_at(i).m_path = item;

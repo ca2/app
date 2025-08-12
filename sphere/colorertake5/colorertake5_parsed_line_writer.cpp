@@ -9,13 +9,13 @@ namespace colorertake5
    @ingroup colorer_impacter
    */
 
-   /** Writes given line of text using list of passed line regions.
+   /** Writes given line of text using list_base of passed line regions.
    Formats output with class of each token, enclosed in
    \<span class='regionName'>...\</span>
    @param markupWriter writer, used for markup output
    @param textWriter writer, used for text output
    @param line Line of text
-   @param lineRegions Linked list of LineRegion structures.
+   @param lineRegions Linked list_base of LineRegion structures.
    Only region references are used there.
    */
    void ParsedLineWriter::tokenWrite(stream & markupWriter, stream & textWriter, string_to_string * docLinkHash, const char  *line, LineRegion *lineRegions)
@@ -60,7 +60,7 @@ namespace colorertake5
    }
 
 
-   /** write specified line of text using list of LineRegion's.
+   /** write specified line of text using list_base of LineRegion's.
    This method uses text fields of LineRegion class to enwrap each line
    region.
    It uses two Writers - @ca markupWriter and @ca textWriter.
@@ -69,7 +69,7 @@ namespace colorertake5
    @param markupWriter writer, used for markup output
    @param textWriter writer, used for text output
    @param line Line of text
-   @param lineRegions Linked list of LineRegion structures
+   @param lineRegions Linked list_base of LineRegion structures
    */
    void ParsedLineWriter::markupWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const ::string &line, LineRegion *lineRegions)
    {
@@ -122,14 +122,14 @@ namespace colorertake5
    }
 
 
-   /** write specified line of text using list of LineRegion's.
+   /** write specified line of text using list_base of LineRegion's.
    This method uses integer fields of LineRegion class
    to enwrap each line region with generated HTML markup.
    Each region is
    @param markupWriter writer, used for markup output
    @param textWriter writer, used for text output
    @param line Line of text
-   @param lineRegions Linked list of LineRegion structures
+   @param lineRegions Linked list_base of LineRegion structures
    */
    void ParsedLineWriter::htmlRGBWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const ::string &line, LineRegion *lineRegions)
    {

@@ -64,7 +64,7 @@ namespace acme
 
          //pointer_array < ::micro::button >             m_nanobuttona;
 
-         //map < const ::item *, ::user::item >      m_useritemmap;
+         //map_base < const ::item *, ::user::item >      m_useritemmap;
 
          bool                                               m_bPerformingEntireRepositionProcess;
          bool                                               m_bPerformingEntireResizingProcess;

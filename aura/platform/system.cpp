@@ -2436,13 +2436,13 @@ namespace aura
    //}
 
 
-//   int system::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFileName, int iLineNumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat,va_list list)
+//   int system::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFileName, int iLineNumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat,va_list list_base)
 //   {
 //
 //      if(!m_ptrace || !m_ptrace->m_bExtendedLog)
 //      {
 //
-//         return ::apex::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
+//         return ::apex::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list_base);
 //
 //      }
 //
@@ -2478,10 +2478,10 @@ namespace aura
 //      if(scopedstrFormat != nullptr)
 //      {
 //
-////         if(list != nullptr)
+////         if(list_base != nullptr)
 //         {
 //
-//            str2.format(scopedstrFormat,list);
+//            str2.format(scopedstrFormat,list_base);
 //
 //         }
 //         //     else
@@ -6078,7 +6078,7 @@ if(!m_pimaging)
 
    //   //}
 
-   //   //m_pbergedgemap = __allocate ::aura::session::map();
+   //   //m_pbergedgemap = __allocate ::aura::session::map_base();
 
 
    //   return true;

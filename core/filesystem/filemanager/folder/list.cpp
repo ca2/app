@@ -1,13 +1,13 @@
 #include "framework.h"
 ////#include "data.h"
-#include "list.h"
+#include "list_base.h"
 #include "acme/constant/message.h"
 #include "acme/filesystem/file/item.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/topic.h"
 #include "apex/platform/context.h"
-#include "aura/graphics/image/list.h"
+#include "aura/graphics/image/list_base.h"
 #include "aura/message/user.h"
 #include "core/filesystem/filemanager/data.h"
 #include "core/filesystem/filemanager/document.h"
@@ -284,7 +284,7 @@ namespace filemanager
       }
       else
       {
-         ::user::list::_001CreateImageList(pcolumn);
+         ::user::list_base::_001CreateImageList(pcolumn);
       }
    }
 
@@ -352,7 +352,7 @@ namespace filemanager
       else
       {
 
-         ::user::list::_001GetSubItemImage(psubitem);
+         ::user::list_base::_001GetSubItemImage(psubitem);
 
       }
 
@@ -433,7 +433,7 @@ namespace filemanager
          if (filemanager_data()->m_bPassBk)
          {
 
-            ::user::list::m_bBackgroundBypass = true;
+            ::user::list_base::m_bBackgroundBypass = true;
 
          }
 

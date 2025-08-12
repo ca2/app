@@ -87,9 +87,9 @@ DECLARE_ENUMERATION(e_happening, enum_happening);
 class locale;
 
 typedef pointer_array < ::matter > object_array;
-//typedef map < ::task_index, ::pointer<task >>task_map;
-//typedef map < task *, ::task_index > task_id_map;
-using procedure_list = ::list < procedure >;
+//typedef map_base < ::task_index, ::pointer<task >>task_map;
+//typedef map_base < task *, ::task_index > task_id_map;
+using procedure_list_base = ::list_base < procedure >;
 
 //::task_index task_index(itask itask);
 CLASS_DECL_ACME ::task_index current_task_index();
@@ -203,7 +203,7 @@ public:
 
    
    ::procedure_array                               m_procedurea2;
-   ::procedure_list                                m_procedurelistHandling;
+   ::procedure_list_base                           m_procedurelistHandling;
    
    ::pointer < ::locale >                          m_plocale;
 

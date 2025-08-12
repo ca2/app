@@ -44,7 +44,7 @@ namespace crypto_openssl
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
 
 
-   map < int, ::pointer < ::mutex >* >* g_pmapMutex = nullptr;
+   map_base < int, ::pointer < ::mutex >* >* g_pmapMutex = nullptr;
 
 
    ::pointer < ::mutex >* g_pmutexMap = nullptr;
@@ -60,7 +60,7 @@ namespace crypto_openssl
 
       m_rand_size = 1024;
 
-      g_pmapMutex = memory_new map < int, ::pointer < ::mutex >*>;
+      g_pmapMutex = memory_new map_base < int, ::pointer < ::mutex >*>;
 
       g_pmutexMap = ___new ::pointer < ::mutex > ();
 

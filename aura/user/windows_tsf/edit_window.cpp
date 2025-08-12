@@ -1559,7 +1559,7 @@ namespace tsf
                            wsz[cch] = 0;
                        }
                     
-                       //get the list of reconversion candidates
+                       //get the list_base of reconversion candidates
                        ITfCandidateList    *pCandList;
                        hr = pRecon->GetReconversion(pRange, &pCandList);
                        if(SUCCEEDED(hr))

@@ -9,7 +9,7 @@ namespace loosely
 {
 
 
-   namespace map
+   namespace map_base
    {
 
 
@@ -73,7 +73,7 @@ namespace loosely
       }
 
 
-   } // namespace map
+   } // namespace map_base
 
 
 } // namespace loosely

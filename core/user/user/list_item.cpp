@@ -1,4 +1,4 @@
-// From list.cpp by camilo on 2022-06-29 05:39 <3ThomasBorregaardSorensen!! 
+// From list_base.cpp by camilo on 2022-06-29 05:39 <3ThomasBorregaardSorensen!! 
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/user/_component.h"
@@ -6,11 +6,11 @@
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
-#include "aura/graphics/image/list.h"
+#include "aura/graphics/image/list_base.h"
 #include "aura/graphics/image/fastblur.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/brush.h"
-#include "list.h"
+#include "list_base.h"
 #include "list_item.h"
 #include "list_column.h"
 
@@ -76,7 +76,7 @@ namespace user
    }
 
 
-   void list_item::initialize_list_item(list * plist)
+   void list_item::initialize_list_item(list_base * plist)
    {
 
       initialize_mesh_item(plist);
@@ -110,7 +110,7 @@ namespace user
    }
 
 
-   void draw_list_item::initialize_draw_list_item(list * plist)
+   void draw_list_item::initialize_draw_list_item(list_base * plist)
    {
 
       initialize_list_item(plist);
@@ -509,7 +509,7 @@ namespace user
       if (m_bOk)
       {
 
-         if (m_pitem->m_pmesh->m_plist->m_eview == list::impact_icon && m_pitem->m_pmesh->m_plist->m_bEmboss && ((m_pitem->m_pmesh->m_plist->m_iTextBlurRadius > 0 && m_pitem->m_pmesh->m_plist->m_iTextBlur > 0) || m_pitem->m_pmesh->m_plist->m_iTextSpreadRadius > 0))
+         if (m_pitem->m_pmesh->m_plist->m_eview == list_base::impact_icon && m_pitem->m_pmesh->m_plist->m_bEmboss && ((m_pitem->m_pmesh->m_plist->m_iTextBlurRadius > 0 && m_pitem->m_pmesh->m_plist->m_iTextBlur > 0) || m_pitem->m_pmesh->m_plist->m_iTextSpreadRadius > 0))
          {
 
             if (m_strText.has_character())
@@ -612,7 +612,7 @@ namespace user
    }
 
 
-   void draw_list_group::initialize_draw_list_group(list * plist)
+   void draw_list_group::initialize_draw_list_group(list_base * plist)
    {
 
       initialize_draw_mesh_group(plist);

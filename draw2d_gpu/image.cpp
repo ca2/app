@@ -2567,7 +2567,7 @@ namespace draw2d_gpu
 ////
 ////         m_pgraphics->set_origin(0,0);
 ////
-////         map();
+////         map_base();
 ////
 ////         //pre_multiply_alpha((unsigned int *) get_data(),m_size.cx(),m_size.cy(),m_size.cx() * 4);
 ////
@@ -2752,7 +2752,7 @@ namespace draw2d_gpu
 
 
 
-   void image::map(bool bApplyTransform) const
+   void image::map_base(bool bApplyTransform) const
    {
 
       return;

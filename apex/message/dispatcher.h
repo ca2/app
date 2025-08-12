@@ -3,7 +3,7 @@
 
 #include "apex/message/predicate_handler.h"
 #include "acme/memory/chunk.h"
-#include "acme/prototype/collection/atom_map.h"
+#include "acme/prototype/collection/atom_map_base.h"
 //#include "acme/prototype/prototype/function.h"
 
 //#include "acme/prototype/prototype/pointer.h"
@@ -76,9 +76,9 @@ namespace message
    using dispatcher_array = ::array < dispatcher >;
 
 
-   using command_map = ::atom_map < dispatcher_array >;
+   using command_map = ::atom_map_base < dispatcher_array >;
 
-   using message_map = ::map < ::enum_message, dispatcher_array >;
+   using message_map = ::map_base < ::enum_message, dispatcher_array >;
 
    
 } // namespace message

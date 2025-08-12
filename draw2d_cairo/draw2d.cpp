@@ -644,9 +644,9 @@ return g_pdraw2dcairo;
 //   bool draw2d::channel_spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc, int iChannel, int iRadius, color32_t crSpreadSetColor)
 //   {
 //
-//      pimageDst->map();
+//      pimageDst->map_base();
 //
-//      pimageSrc->map();
+//      pimageSrc->map_base();
 //
 //      int iFilterW = iRadius * 2 + 1;
 //      int iFilterH = iRadius * 2 + 1;

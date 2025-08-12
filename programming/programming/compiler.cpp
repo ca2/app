@@ -550,19 +550,19 @@ namespace programming
       //   // Seperate values and variables
       //   CProcessEnvReader::SeparateVariablesAndValues(stra,arrEnvVarVal);
       //
-      //   string_to_string map;
+      //   string_to_string map_base;
       //
       //   for(auto pair : arrEnvVarVal)
       //   {
-      //      map[pair.element1()] = pair.element2();
+      //      map_base[pair.element1()] = pair.element2();
       //      SetEnvironmentVariable(pair.element1(),pair.element2());
       //   }
       //
       //
       //
-      //   //SetEnvironmentVariable("INCLUDE",map["INCLUDE"]);
-      //   //SetEnvironmentVariable("LIBPATH",map["LIBPATH"]);
-      //   //SetEnvironmentVariable("PATH",map["PATH"]);
+      //   //SetEnvironmentVariable("INCLUDE",map_base["INCLUDE"]);
+      //   //SetEnvironmentVariable("LIBPATH",map_base["LIBPATH"]);
+      //   //SetEnvironmentVariable("PATH",map_base["PATH"]);
       //
       //   // UpdateProcessMiscInfo( hProcess, pNMItemActivate->iItem);
       //   //CProcessEnvReader::ReleaseHandle(hProcess);

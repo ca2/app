@@ -47,14 +47,14 @@
 //CLASS_DECL_APEX void __tracef(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, ...)
 //{
 //
-//   va_list list;
+//   va_list list_base;
 //
-//   va_start(list, pszFormat);
+//   va_start(list_base, pszFormat);
 //
 //   try
 //   {
 //
-//      __tracev(pparticle, elevel, pszFunction, pszFile, iLine, pszFormat, list);
+//      __tracev(pparticle, elevel, pszFunction, pszFile, iLine, pszFormat, list_base);
 //
 //   }
 //   catch (...)
@@ -62,7 +62,7 @@
 //
 //   }
 //
-//   va_end(list);
+//   va_end(list_base);
 //
 //}
 //

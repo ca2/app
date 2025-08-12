@@ -174,11 +174,12 @@ namespace factory
    };
 
 
-   using factory_base = atom_map < ::pointer<factory_item_interface > >;
+   using factory_base = atom_map_base < ::pointer<factory_item_interface > >;
 
 
    class CLASS_DECL_ACME factory :
-      virtual public factory_base
+      virtual public ::particle,
+      public factory_base
    {
    public:
 

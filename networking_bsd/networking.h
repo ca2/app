@@ -145,7 +145,7 @@ namespace networking_bsd
 #endif
 
       ::pointer < ::mutex >                              m_pmutexPool;
-      ::sockets_bsd::socket_map                          m_pool; ///< Active sockets map
+      ::sockets_bsd::socket_map                          m_pool; ///< Active sockets map_base
 
 
       networking();

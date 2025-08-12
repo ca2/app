@@ -21,12 +21,12 @@ public:
 
    constexpr enumeration() { m_eenum = (ENUM) 0; }
    constexpr enumeration(enum_null) { m_eenum = (ENUM)0; }
-   constexpr enumeration(const ::std::initializer_list < ENUM > & list )
+   constexpr enumeration(const ::std::initializer_list < ENUM > & list_base )
    {
 
       m_eenum = (ENUM) 0; 
       
-      for (auto & e : list)
+      for (auto & e : list_base)
       {
 
          add(e);

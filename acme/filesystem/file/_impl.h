@@ -168,7 +168,7 @@
 //
 //
 //template < class STREAM, class KEY, class ARG_KEY, class PAYLOAD, class ARG_VALUE, class PAIR >
-//inline void __exchange(STREAM & s, map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m)
+//inline void __exchange(STREAM & s, map_base < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m)
 //{
 //
 //   if (s.is_storing())
@@ -205,8 +205,8 @@
 //      {
 //
 //         c--;
-//         typename map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_KEY element1;
-//         //typename map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_VALUE element2;
+//         typename map_base < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_KEY element1;
+//         //typename map_base < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_VALUE element2;
 //         s >> element1;
 //         //if (s.fail())
 //           // break;

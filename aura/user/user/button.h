@@ -43,7 +43,7 @@ namespace user
       };
 
 
-      class list :
+      class list_base :
          virtual public ::particle
       {
       public:
@@ -70,7 +70,7 @@ namespace user
       enum_stock_icon                     m_estockicon;
       ::int_rectangle                     m_rectangleCheckBox;
       ::pointer < bitmap >                m_pbitmap;
-      ::pointer < list >                  m_plist;
+      ::pointer < list_base >                  m_plist;
 
 
       button();

@@ -24,7 +24,7 @@ constexpr ::collection::count make_list_iterator < BASE_ITERATOR_TYPE >::operato
 
    }
 
-   throw_exception(error_failed, "iterators aren't from same list");
+   throw_exception(error_failed, "iterators aren't from same list_base");
 
    return -1;
 

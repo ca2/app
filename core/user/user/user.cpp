@@ -298,7 +298,7 @@ namespace core
 
       factory()->add_factory_item <::user::show < ::user::plain_edit > >();
       factory()->add_factory_item <::user::show < ::user::tree > >();
-      factory()->add_factory_item <::user::show < ::user::list > >();
+      factory()->add_factory_item <::user::show < ::user::list_base > >();
 
       factory()->add_factory_item <menu_document >();
       factory()->add_factory_item <menu_frame >();
@@ -575,7 +575,7 @@ namespace core
 
    //   //auto psequence = pbox->sequence();
 
-   //   //// todo add property set to list;
+   //   //// todo add property set to list_base;
    //   //pbox->get_property_set().merge(propertyset);
 
    //   ////r
@@ -1894,7 +1894,7 @@ namespace user
    }
 
 
-   ::pointer<::user::list_header>list::create_list_header()
+   ::pointer<::user::list_header>list_base::create_list_header()
    {
 
       return user()->default_create_list_header(this);
@@ -1902,7 +1902,7 @@ namespace user
    }
 
 
-   ::pointer<::user::mesh_data>list::create_mesh_data()
+   ::pointer<::user::mesh_data>list_base::create_mesh_data()
    {
 
       return user()->default_create_list_data(this);

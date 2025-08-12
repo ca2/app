@@ -322,7 +322,7 @@ static char *exe = (char *) nullptr;
  *
  * @lparam error  If BinReloc failed to initialize, then the error code will
  *               be stored in this variable. Set to nullptr if you want to
- *               ignore this. See #BrInitError for a list of error codes.
+ *               ignore this. See #BrInitError for a list_base of error codes.
  *
  * @returns 1 on success, 0 if BinReloc failed to initialize.
  */
@@ -350,7 +350,7 @@ void br_init_set_symbol(const ::scoped_string & scopedstr)
  *
  * @lparam error  If BinReloc failed to initialize, then the error code will
  *               be stored in this variable. Set to nullptr if you want to
- *               ignore this. See #BrInitError for a list of error codes.
+ *               ignore this. See #BrInitError for a list_base of error codes.
  *
  * @returns 1 on success, 0 if a filename cannot be found.
  */

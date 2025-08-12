@@ -83,12 +83,12 @@ payload_array_base::~payload_array_base()
 }
 
 
-::collection::index payload_array_base::append(const std::initializer_list < ::payload > & list)
+::collection::index payload_array_base::append(const std::initializer_list < ::payload > & list_base)
 {
 
    ::collection::index i = -1;
 
-   for(auto & payload : list)
+   for(auto & payload : list_base)
    {
 
       auto iItem = add(payload);

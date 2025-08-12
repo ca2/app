@@ -725,13 +725,13 @@ namespace file
 
       string strFormat;
 
-      va_list list;
+      va_list list_base;
 
-      va_start(list, format);
+      va_start(list_base, format);
 
-      strFormat.formatf(format, list);
+      strFormat.formatf(format, list_base);
 
-      va_end(list);
+      va_end(list_base);
 
       write(strFormat);
 

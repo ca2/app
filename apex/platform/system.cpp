@@ -2066,13 +2066,13 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   int system::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFileName, int iLineNumber, const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list)
+   int system::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFileName, int iLineNumber, const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list_base)
    {
 
       //if(!m_ptracelog || !m_ptracelog->m_bExtendedLog)
       //{
 
-      //   return ::apex::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
+      //   return ::apex::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list_base);
 
       //}
 
@@ -2108,10 +2108,10 @@ pdirectorysystem->create("/ca2core");
       if (pszFormat != nullptr)
       {
 
-         //         if(list != nullptr)
+         //         if(list_base != nullptr)
          {
 
-            str2.formatf(pszFormat, list);
+            str2.formatf(pszFormat, list_base);
 
          }
          //     else
@@ -5107,7 +5107,7 @@ namespace apex
 
    //}
 
-   // https://github.com/umpirsky/tld-list/blob/master/data/en/tld.txt
+   // https://github.com/umpirsky/tld-list_base/blob/master/data/en/tld.txt
 
 
    ::string system::fetch_public_internet_domain_extension_list_text()

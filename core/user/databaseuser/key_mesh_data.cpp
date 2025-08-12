@@ -3,7 +3,7 @@
 #include "acme/prototype/collection/_array_binary_stream.h"
 #include "acme/prototype/data/listener.h"
 #include "apex/database/_binary_stream.h"
-#include "core/user/user/list.h"
+#include "core/user/user/list_base.h"
 
 
 namespace databaseuser
@@ -50,7 +50,7 @@ namespace databaseuser
    }
 
 
-   void data_key_mesh_data::GetSel(::user::list * plist, string_array_base & stra)
+   void data_key_mesh_data::GetSel(::user::list_base * plist, string_array_base & stra)
    {
       
       string_array_base wstraTotal;

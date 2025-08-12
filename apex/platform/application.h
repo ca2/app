@@ -107,9 +107,9 @@ namespace apex
       //
       //       string_table                                 m_stringtable;
       //       string_table                                 m_stringtableStd;
-      //       atom_map < string >                            m_stringmap;
+      //       atom_map_base < string >                            m_stringmap;
       //
-      //       atom_map < ::pointer<::channel >>              m_mapNotify;
+      //       atom_map_base < ::pointer<::channel >>              m_mapNotify;
       //
       //       string                                       m_strLicense;
       //

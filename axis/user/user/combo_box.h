@@ -112,9 +112,9 @@ namespace user
 
       virtual void _on_reposition();
 
-      /// @return true if drop down list box was displayed
+      /// @return true if drop down list_base box was displayed
       virtual bool _001ShowDropDown(bool bShow = true);
-      /// @return  true if drop down list box was displayed 
+      /// @return  true if drop down list_base box was displayed 
       virtual bool _001ToggleDropDown();
 
 

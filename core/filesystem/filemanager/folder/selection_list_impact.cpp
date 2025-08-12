@@ -87,7 +87,7 @@ namespace filemanager
       if(m_plistview == nullptr)
       {
 
-         output_error_message("Could not create file list");
+         output_error_message("Could not create file list_base");
 
       }
 

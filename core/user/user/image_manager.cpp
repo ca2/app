@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "image_manager.h"
 #include "acme/exception/interface_only.h"
-#include "aura/graphics/image/list.h"
+#include "aura/graphics/image/list_base.h"
 
 
 namespace user

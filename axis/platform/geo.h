@@ -49,7 +49,7 @@ namespace geo
       ::pointer < ::mutex >                                               m_pmutexOpenweatherCity;
 
       ::pointer < ::mutex >                                               m_pmutexCityTimeZone;
-      index_map < ::datetime::time_zone >                   m_cityTimeZone;
+      index_map_base < ::datetime::time_zone >                   m_cityTimeZone;
       bool                                                  m_bLoadedCityTimeZoneFromFile;
       ::file::path                                          m_pathCityTimeZoneFile;
       task_pointer                                          m_ptaskSaveCityTimeZone;
@@ -66,7 +66,7 @@ namespace geo
 
 
       ::pointer < ::mutex >                                               m_pmutexCityWeather;
-      index_map < string_timeout >                          m_cityWeather;
+      index_map_base < string_timeout >                          m_cityWeather;
       bool                                                  m_bLoadedCityWeatherFromFile;
       ::file::path                                          m_pathCityWeatherFile;
       task_pointer                                          m_ptaskSaveCityWeather;

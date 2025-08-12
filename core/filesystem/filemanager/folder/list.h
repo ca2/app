@@ -2,7 +2,7 @@
 
 
 #include "core/filesystem/filemanager/impact_base.h"
-#include "core/user/user/list.h"
+#include "core/user/user/list_base.h"
 
 
 namespace filemanager
@@ -10,14 +10,14 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE folder_list :
-      virtual public ::filemanager_show < ::user::show < ::user::list > >
+      virtual public ::filemanager_show < ::user::show < ::user::list_base > >
    {
    public:
 
 
       enum EMode
       {
-         ModeNormal, // a bit ridiculous that folder list
+         ModeNormal, // a bit ridiculous that folder list_base
          ModeConfigurationItem,
       };
 
@@ -54,7 +54,7 @@ namespace filemanager
       };
 
       FolderArray                      m_foldera;
-      map < ::image::icon *, int >    m_iconmap;
+      map_base < ::image::icon *, int >    m_iconmap;
 
 
       folder_list ();

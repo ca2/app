@@ -352,7 +352,7 @@ namespace user
 
    if (iStart != -1)
    {
-   // a file based document template - add to filter list
+   // a file based document template - add to filter list_base
 
    // If you hit the following ASSERT, your document template
    // string is formatted incorrectly.  The department of your

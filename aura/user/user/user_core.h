@@ -20,9 +20,9 @@ namespace user
       //::user::multiple_document_template *         m_ptemplateProgress2;
 
 
-      //map < ::type, ::user::impact_system * >      m_mapTemplate;
+      //map_base < ::type, ::user::impact_system * >      m_mapTemplate;
 
-      //atom_map < ::user::impact_system * >           m_mapimpactsystem;
+      //atom_map_base < ::user::impact_system * >           m_mapimpactsystem;
 
 
       //::pointer<::userex::userex>             m_puserex;
@@ -45,7 +45,7 @@ namespace user
       //::pointer<::user::keyboard>             m_pkeyboard;
 
       //index                                      m_iEdge;
-      //::map < ::user::enum_key, ::user::enum_key, bool, bool > *  m_pmapKeyPressed;
+      //::map_base < ::user::enum_key, ::user::enum_key, bool, bool > *  m_pmapKeyPressed;
 
       //bool                                       m_bProgrammerMode;
 
@@ -97,7 +97,7 @@ namespace user
 
 
 
-      //atom_map < ::user::interaction * >                      m_mapboundui;
+      //atom_map_base < ::user::interaction * >                      m_mapboundui;
 
 
 

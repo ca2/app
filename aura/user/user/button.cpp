@@ -12,7 +12,7 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
-#include "aura/graphics/image/list.h"
+#include "aura/graphics/image/list_base.h"
 #include "aura/graphics/image/context.h"
 #include "aura/windowing/windowing.h"
 #include "aura/user/appearance/appearance.h"
@@ -1222,7 +1222,7 @@ namespace user
       else if(estyle == e_style_list)
       {
 
-         m_plist = ___new list();
+         m_plist = ___new list_base();
 
          //m_plist->m_pimagelistNormal         = nullptr;
          //m_plist->m_pimagelistItemHover      = nullptr;

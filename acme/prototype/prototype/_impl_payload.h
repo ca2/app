@@ -208,7 +208,7 @@ public:
 //
 //   template < typename TYPE >
 //   pack(const ::pointer<TYPE>& p) { set_pointer(p); }
-//   pack(const ::std::initializer_list < pack >& list);
+//   pack(const ::std::initializer_list < pack >& list_base);
 //
 //};
 

@@ -112,7 +112,7 @@ namespace user
    }
 
 
-   /// return selected language in the list
+   /// return selected language in the list_base
    ::collection::index language_map::get_language_list(string_array_base & stra)
    {
 
@@ -120,7 +120,7 @@ namespace user
 
    }
 
-/// return selected language in the list
+/// return selected language in the list_base
    ::collection::index language_map::get_text_list(string_array_base & stra, const ::scoped_string & scopedstrId, bool bFull)
    {
 

@@ -297,7 +297,7 @@ template < typename FUNCTION >
 class function;
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
-class list;
+class list_base;
 
 
 template < typename T >
@@ -309,11 +309,11 @@ struct make_single ;
 
 
 template < typename NODE >
-class node_set;
+class node_set_base;
 
 
 template < typename KEY, typename NODE = single < KEY > >
-using set = node_set < ::make_single < NODE > >;
+using set = node_set_base < ::make_single < NODE > >;
 
 
 template < typename T1, typename T2 >
@@ -321,11 +321,11 @@ class pair;
 
 
 template < typename PAIR >
-class pair_map;
+class pair_map_base;
 
 
 template < typename TYPE1, typename TYPE2, class PAIR = pair < TYPE1, TYPE2 > >
-using map = pair_map < PAIR >;
+using map_base = pair_map_base < PAIR >;
 
 
 template<class ENUM>
@@ -338,7 +338,7 @@ class base_enum;
 
 
 template < typename TYPE, typename PAIR = pair < ::atom, TYPE > >
-using atom_map = ::map < atom, TYPE, PAIR >;
+using atom_map_base = ::map_base < atom, TYPE, PAIR >;
 
 
 
@@ -469,9 +469,9 @@ using procedure = ::function < void() >;
 
 class procedure_array;
 
-using procedure_map = ::atom_map < ::procedure_array >;
+using procedure_map = ::atom_map_base < ::procedure_array >;
 
-using procedure_list_base = ::list < ::procedure >;
+using procedure_list_base = ::list_base < ::procedure >;
 
 
 
@@ -916,7 +916,7 @@ auto as_non_const(const T * p)
 
 
 template < typename TYPE >
-using index_map = map < ::collection::index, TYPE >;
+using index_map_base = map_base < ::collection::index, TYPE >;
 
 
 
@@ -1150,7 +1150,7 @@ namespace platform
 {
 
 
-   using session_map = ::index_map<::pointer<::platform::session>>;
+   using session_map = ::index_map_base<::pointer<::platform::session>>;
 
 
 } // namespace platform

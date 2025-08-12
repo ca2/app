@@ -117,7 +117,7 @@ AllocContributions (unsigned int uLineLength, unsigned int uWindowSize)
    // Init structure header
    res->WindowSize = uWindowSize;
    res->LineLength = uLineLength;
-   // Allocate list of contributions
+   // Allocate list_base of contributions
    res->ContribRow = __raw_new ContributionType[uLineLength];
    res->matrix = __raw_new double[uWindowSize * uLineLength];
    for (unsigned int u = 0 ; u < uLineLength ; u++)
@@ -139,7 +139,7 @@ FreeContributions (LineContribType * int_point)
    //   delete [] int_point->ContribRow[u].Weights;
    //}
    delete int_point->matrix;
-   delete [] int_point->ContribRow;    // Free list of pixels contribs
+   delete [] int_point->ContribRow;    // Free list_base of pixels contribs
    delete int_point;                   // Free contribs header
 }
 

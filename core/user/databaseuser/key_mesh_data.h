@@ -32,7 +32,7 @@ namespace databaseuser
       bool add_unique(const string_array_base & stra);
       bool erase(const string_array_base & stra);
 
-      void GetSel(::user::list * plist , string_array_base & stra);
+      void GetSel(::user::list_base * plist , string_array_base & stra);
 
 
    };

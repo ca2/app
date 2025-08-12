@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "list_header_control.h"
 #include "acme/constant/message.h"
-#include "core/user/user/list.h"
+#include "core/user/user/list_base.h"
 #include "aura/message/user.h"
 
 
@@ -56,7 +56,7 @@ void simple_list_header_control::_001OnEndTrack(::message::message * pmessage)
 
    ::pointer<::message::notify>pnotify(pmessage);
 
-   get_parent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERTRACK);
+   get_parent()->send_message(::user::list_base::MESSAGE_ENDCOLUMNHEADERTRACK);
 
    pnotify->m_bRet = false;
 
@@ -68,7 +68,7 @@ void simple_list_header_control::_001OnTrack(::message::message * pmessage)
 
    ::pointer<::message::notify>pnotify(pmessage);
 
-   get_parent()->send_message(::user::list::MESSAGE_COLUMNHEADERTRACK);
+   get_parent()->send_message(::user::list_base::MESSAGE_COLUMNHEADERTRACK);
 
    pnotify->m_bRet = false;
 
@@ -90,7 +90,7 @@ void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
 
    ::pointer<::message::notify>pnotify(pmessage);
 
-   get_parent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERDRAG);
+   get_parent()->send_message(::user::list_base::MESSAGE_ENDCOLUMNHEADERDRAG);
 
    pnotify->m_lresult = false;
 
@@ -109,7 +109,7 @@ void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
    ptwi = getp.m_pinterface;
    if(ptwi != nullptr)
    {
-      ::user::list * plist = dynamic_cast<::user::list *>(ptwi);
+      ::user::list_base * plist = dynamic_cast<::user::list_base *>(ptwi);
       if(plist != nullptr)
       {
          if(pdi->mask & HDI_TEXT

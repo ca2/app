@@ -123,7 +123,7 @@ namespace user
       ::collection::index                                     m_iItem;
       ::collection::index                                     m_iDisplayItem;
       //index                                     m_iSubItem;
-      ::index_map < ::pointer<mesh_subitem >>  m_mapSubItem;
+      ::index_map_base < ::pointer<mesh_subitem >>  m_mapSubItem;
 //      index                                   m_iListItem;
       int                                       m_iState;
       bool                                      m_bOk;
@@ -212,7 +212,7 @@ namespace user
       ::collection::index                                     m_iItem;
       //index                                     m_iDisplayItem;
       //index                                     m_iSubItem;
-      //::index_map < ::pointer<mesh_subitem >>  m_mapSubitem;
+      //::index_map_base < ::pointer<mesh_subitem >>  m_mapSubitem;
       //      index                                   m_iListItem;
       ::collection::index                                   m_iImage;
       int                                       m_iState;

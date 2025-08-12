@@ -149,7 +149,7 @@ namespace image
 
       virtual void hue_offset(double dRate);
 
-      virtual void map(bool bApplyAlphaTransform = true) const; // some implementations may requrire to map to m_pcolorref before manipulate it
+      virtual void map_base(bool bApplyAlphaTransform = true) const; // some implementations may requrire to map_base to m_pcolorref before manipulate it
       virtual void unmap() const; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
 
@@ -732,7 +732,7 @@ namespace image
       const ::image32_t * get_data() const
       {
 
-         map();
+         map_base();
 
          return image32();
 
@@ -742,7 +742,7 @@ namespace image
       ::image32_t * get_data()
       {
 
-         map();
+         map_base();
 
          return image32();
 

@@ -88,7 +88,7 @@ namespace apex
                unsigned short wCodePage;
             } *lpTranslate;
 
-            // read the list of languages and code pages.
+            // read the list_base of languages and code pages.
 
             VerQueryValue(lpdata,
                           TEXT("\\VarFileInfo\\Translation"),
@@ -282,7 +282,7 @@ namespace apex
 //   {
 //#if (defined(SOLARIS8) || defined(SOLARIS))
 //      {
-//         static std::map<string, char *> vmap;
+//         static std::map_base<string, char *> vmap;
 //         if (vmap.find(payload) != vmap.end())
 //         {
 //            delete[] vmap[::payload];

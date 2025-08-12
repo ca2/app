@@ -3,7 +3,7 @@
 #pragma once
 
 
-//#include "acme/prototype/collection/atom_map.h"
+//#include "acme/prototype/collection/atom_map_base.h"
 
 
 namespace interprocess

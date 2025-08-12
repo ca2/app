@@ -61,7 +61,7 @@
 //DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
 //
 //#define DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, CONTAINER, TYPE) \
-//ARRAY(const ::std::initializer_list < ::pointer<TYPE >>& list) : CONTAINER(list) { } \
+//ARRAY(const ::std::initializer_list < ::pointer<TYPE >>& list_base) : CONTAINER(list_base) { } \
 //DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
 //
 //#define DECLARE_ARRAY_OF(ARRAY, ITEM, TYPE) \

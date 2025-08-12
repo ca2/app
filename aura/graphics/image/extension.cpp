@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "extension.h"
 #include "frame_array.h"
-#include "map.h"
+#include "map_base.h"
 
 
 namespace image

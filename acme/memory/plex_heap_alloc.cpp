@@ -444,7 +444,7 @@ void Free_check_pointer_in_cpp(void * p)
 //      if (pnode == pnodeFree) // dbgsnp - debug snippet
 //      {
 //
-//         // already in free list
+//         // already in free list_base
 //
 //         if (is_debugger_attached())
 //         {

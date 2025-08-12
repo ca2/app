@@ -9,7 +9,7 @@
 #include "acme/prototype/time/frequency.h"
 #include "aura/message/user.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "aura/graphics/image/list.h"
+#include "aura/graphics/image/list_base.h"
 #include "aura/graphics/image/drawing.h"
 //#include "aura/user/user/primitive_impl.h"
 #include "aura/user/user/scroll_state.h"
@@ -143,7 +143,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   pcreate->error() << "Error creating image list at ::user::tree::on_message_create";
+      //   pcreate->error() << "Error creating image list_base at ::user::tree::on_message_create";
 
       //   return;
 
@@ -156,7 +156,7 @@ namespace user
       //if (!estatus)
       //{
 
-      //   pcreate->error() << "Error creating image list (2) at ::user::tree::on_message_create";
+      //   pcreate->error() << "Error creating image list_base (2) at ::user::tree::on_message_create";
 
       //   return;
 
@@ -166,8 +166,8 @@ namespace user
             fork([this]()
                {
 
-                  _001SetExpandImage("matter://list/expand.png");
-                  _001SetExpandImageDark("matter://list/expand_dark.png");
+                  _001SetExpandImage("matter://list_base/expand.png");
+                  _001SetExpandImageDark("matter://list_base/expand_dark.png");
 
                   task_set_name(::type(this).name() + "::Expand");
 
@@ -203,8 +203,8 @@ namespace user
       fork([this]()
          {
 
-            _001SetCollapseImage("matter://list/collapse.png");
-            _001SetCollapseImageDark("matter://list/collapse_dark.png");
+            _001SetCollapseImage("matter://list_base/collapse.png");
+            _001SetCollapseImageDark("matter://list_base/collapse_dark.png");
 
             task_set_name(::type(this).name() + "::Open");
 

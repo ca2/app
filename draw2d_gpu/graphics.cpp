@@ -3681,7 +3681,7 @@ void main() {
       //      if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
       //            nMapMode != MM_TEXT)
       //      {
-      //         // when using a constrained map mode, map against physical inch
+      //         // when using a constrained map_base mode, map_base against physical inch
       //         ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
       //         DPtoLP(LPSIZE32);
       //         ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
@@ -3716,7 +3716,7 @@ void main() {
       //      if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
       //            nMapMode != MM_TEXT)
       //      {
-      //         // when using a constrained map mode, map against physical inch
+      //         // when using a constrained map_base mode, map_base against physical inch
       //         ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
       //         LPtoDP(LPSIZE32);
       //         ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
@@ -3926,7 +3926,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
 //::draw2d::graphics * ::draw2d_gpu::graphics::from_handle(HDC hDC)
 //{
-//hdc_map* pMap = ::windows_definition::MapHDC(true); //create map if not exist
+//hdc_map* pMap = ::windows_definition::MapHDC(true); //create map_base if not exist
 //ASSERT(pMap != nullptr);
 //      ::draw2d::graphics * pgraphics = (::draw2d::graphics *)pMap->from_handle(hDC);
    //    ASSERT(pgraphics == nullptr || (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->m_hdc == hDC);
@@ -3974,7 +3974,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //   }
    //   // remember early to avoid leak
    //   set_handle1(hDC);
-   //   hdc_map* pMap = ::windows_definition::MapHDC(true); // create map if not exist
+   //   hdc_map* pMap = ::windows_definition::MapHDC(true); // create map_base if not exist
    //   ASSERT(pMap != nullptr);
    //   pMap->set_permanent(m_hdc, this);
 
@@ -6938,7 +6938,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 
    //   //   read_to_cpu_buffer();
 
-   //   //   m_pimage->map();
+   //   //   m_pimage->map_base();
 
    //   //   m_pimage->copy(&m_pgpucontextCompositor->m_pcpubuffer->m_pixmap);
 

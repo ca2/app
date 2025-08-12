@@ -88,7 +88,7 @@ namespace platform
    //    string                                                m_strTheme;
    //    string                                                m_strIconTheme;
    //
-   //    map < enum_character_set, ::string >                  m_mapCharacterSetDefaultSampleText;
+   //    map_base < enum_character_set, ::string >                  m_mapCharacterSetDefaultSampleText;
    //    string_map < enum_character_set >                     m_mapCharacterSetEnum;
    //
    //    ::os_theme_colors *                                   m_pthemecolors;

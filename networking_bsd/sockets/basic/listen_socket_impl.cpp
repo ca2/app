@@ -587,7 +587,7 @@ namespace sockets_bsd
       {
          // %! OnSSLAccept calls SSLNegotiate that can finish in this one call.
          // %! If that happens and negotiation fails, the 'tmp' instance is
-         // %! still added to the list of active networking_bsd in the sockethandler.
+         // %! still added to the list_base of active networking_bsd in the sockethandler.
          // %! See bugfix for this in socket_handler::Select - don't set rwx
          // %! flags if IsCloseAndDelete() flag is true.
          // %! An even better fugbix (see tcp_socket::OnSSLAccept) now avoids

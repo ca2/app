@@ -41,7 +41,7 @@
 //
 //template < typename ARG_TYPE >
 //class sort_map :
-//   virtual public atom_map < pointer< sort_data < ARG_TYPE > > >
+//   virtual public atom_map_base < pointer< sort_data < ARG_TYPE > > >
 //{
 //public:
 //
@@ -196,7 +196,7 @@
 //
 //         m_parray = a.m_parray;
 //
-//         ::acme::map::copy(m_map, a.m_map);
+//         ::acme::map_base::copy(m_map, a.m_map);
 //
 //      }
 //

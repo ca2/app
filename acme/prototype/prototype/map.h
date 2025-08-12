@@ -15,7 +15,7 @@
 
 
 #include "collection/set_node.h"
-#include "collection/map.h"
+#include "collection/map_base.h"
 #include "collection/string_map.h"
 #include "collection/int_map.h"
 #include "collection/string_to_string_map.h"
@@ -31,7 +31,7 @@ namespace acme
 {
 
    class CLASS_DECL_ACME session_map :
-      virtual public ::map < index, index, ::platform::session *, ::platform::session * >
+      virtual public ::map_base < index, index, ::platform::session *, ::platform::session * >
    {
 
 

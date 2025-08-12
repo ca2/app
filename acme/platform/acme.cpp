@@ -79,7 +79,7 @@ class plex_heap_alloc_array;
 
 #if OBJECT_TYPE_COUNTER
 
-extern map < const_char_pointer ,const_char_pointer ,long long, long long > * g_pmapObjTypCtr;
+extern map_base < const_char_pointer ,const_char_pointer ,long long, long long > * g_pmapObjTypCtr;
 
 #endif
 
@@ -122,7 +122,7 @@ extern double g_machtime_conversion_factor;
 extern CLASS_DECL_ACME ::array<matter *> * g_paAura;
 
 
-extern id_to_id * g_pmapRTL;
+extern id_to_id_base * g_pmapRTL;
 
 
 #if defined(WINDOWS)
@@ -357,7 +357,7 @@ namespace acme
 
 #if OBJECT_TYPE_COUNTER
 
-   map < const_char_pointer ,const_char_pointer ,long long, long long >* g_pmapObjTypCtr;
+   map_base < const_char_pointer ,const_char_pointer ,long long, long long >* g_pmapObjTypCtr;
 
 #endif
 
@@ -424,7 +424,7 @@ namespace acme
    ::array < matter* >* g_paAura;
 
 
-   //::map < ::atom, const ::atom&, ::atom, const ::atom& >* g_pmapRTL;
+   //::map_base < ::atom, const ::atom&, ::atom, const ::atom& >* g_pmapRTL;
 
    //plex_heap_alloc_array* g_pheap;
 
@@ -450,7 +450,7 @@ namespace acme
 #endif
 
 
-   //map < itask, itask, itask, itask > * g_pmapThreadOn;
+   //map_base < itask, itask, itask, itask > * g_pmapThreadOn;
 
 
 
@@ -930,7 +930,7 @@ namespace acme
 
 #if OBJECT_TYPE_COUNTER
 
-      g_pmapObjTypCtr = memory_new map < const_char_pointer ,const_char_pointer ,long long, long long >;
+      g_pmapObjTypCtr = memory_new map_base < const_char_pointer ,const_char_pointer ,long long, long long >;
 
       {
 
@@ -973,7 +973,7 @@ namespace acme
 
       //g_criticalsectionThreadOn = ___new ::critical_section ();
 
-      //g_pmapThreadOn = aaa_memory_new ::map < itask, itask, itask, itask >;
+      //g_pmapThreadOn = aaa_memory_new ::map_base < itask, itask, itask, itask >;
 
       //g_criticalsectionSystemHeap = ___new critical_section();
 
@@ -1002,7 +1002,7 @@ namespace acme
       //}
 
 
-      //g_pmapAura =aaa_memory_new ::map < void *,void *,::platform::application *,::platform::application * >;
+      //g_pmapAura =aaa_memory_new ::map_base < void *,void *,::platform::application *,::platform::application * >;
 
       //g_criticalsectionUiDestroyed = ___new ::critical_section ();
 

@@ -278,7 +278,7 @@ namespace gpu
 
    //   float g_z = 0.0f; // Assuming z is 0 for 2D rendering, adjust as needed
 
-   //   auto data = this->map < graphics3d::sequence3_color > ();
+   //   auto data = this->map_base < graphics3d::sequence3_color > ();
 
    //   //   // Triangle 1
    //   data[0] = { {points[0].x(), points[0].y(), g_z}, {fR, fG, fB, fA} };
@@ -524,7 +524,7 @@ namespace gpu
 
       //auto pcontext = this->context();
 
-      auto data = map <::graphics3d::sequence3_color >();
+      auto data = map_base <::graphics3d::sequence3_color >();
 
       data.assign(as_memory_block(lineVertices));
 
@@ -657,7 +657,7 @@ namespace gpu
 
       //auto pcontext = this->context();
 
-      auto data = map< ::graphics3d::sequence2_color>();
+      auto data = map_base< ::graphics3d::sequence2_color>();
 
       data.assign(as_memory_block(lineVertices));
 

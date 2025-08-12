@@ -1305,7 +1305,7 @@ namespace user
       tool_item_by_atom(atom)->m_str = scopedstr;
 
       //throw todo;
-//      // attempt to lookup string index in map
+//      // attempt to lookup string index in map_base
 //      iptr nString = -1;
 //      void * p;
 //      string wstrText(scopedstrText);
@@ -1313,24 +1313,24 @@ namespace user
 //      if (m_pStringMap != nullptr && m_pStringMap->lookup(wstrText, p))
 //         nString = (iptr)p;
 //
-//      // add ___new string if not already in map
+//      // add ___new string if not already in map_base
 //      if (nString == -1)
 //      {
-//         // initialize map if necessary
+//         // initialize map_base if necessary
 //         if (m_pStringMap == nullptr)
 //            m_pStringMap = ___new string_to_ptr();
 //
 //         string str;
 //         str = pszText;
 //
-//         // add ___new string to toolbar list
+//         // add ___new string to toolbar list_base
 //         string strTemp(str);
 //         throw ::interface_only();
 //         // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const ::string &)(const unichar *)strTemp);
 //         if (nString == -1)
 //            return false;
 //
-//         // cache string away in string map
+//         // cache string away in string map_base
 //         m_pStringMap->set_at(wstrText, (void *)nString);
 //
 //         ASSERT(m_pStringMap->lookup(wstrText, p));
@@ -1390,7 +1390,7 @@ namespace user
    //   //
    //   //         _GetButton(nIndex, &button);
    //   //
-   //   //         // look in map for matching iString
+   //   //         // look in map_base for matching iString
    //   //         POSITION pos = m_pStringMap->get_start_position();
    //   //
    //   //         string str;

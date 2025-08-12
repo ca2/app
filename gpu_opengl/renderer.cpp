@@ -833,7 +833,7 @@ namespace gpu_opengl
 
       }
 
-      //      //m_pixmap.map();
+      //      //m_pixmap.map_base();
       //
       //      auto cx = m_pixmap.m_size.cx();
       //

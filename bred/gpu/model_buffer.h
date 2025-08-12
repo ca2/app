@@ -220,7 +220,7 @@ namespace gpu
 
          }
 
-         m_pbufferVertex->_assign(p, sizeof(VERTEX) * iVertexCount);// data = map <VERTEX >();
+         m_pbufferVertex->_assign(p, sizeof(VERTEX) * iVertexCount);// data = map_base <VERTEX >();
 
       }
 
@@ -277,7 +277,7 @@ namespace gpu
          const ::double_size& size);
 
       template < typename VERTEX >
-      memory_map < memory_buffer, VERTEX > map()
+      memory_map < memory_buffer, VERTEX > map_base()
       {
 
          return { m_pbufferVertex.m_p, (VERTEX*)nullptr };

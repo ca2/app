@@ -34,7 +34,7 @@ void CLASS_DECL_NANOUI file_dialog_from_platform(
 
 //#include <nanoui/opengl.h>
 //#include <nanoui/metal.h>
-//#include <map>
+//#include <map_base>
 //#include <thread>
 //#include <chrono>
 //#include <mutex>
@@ -56,7 +56,7 @@ namespace nanoui
 
 
 
-//extern std::map<GLFWwindow *, Screen *> __nanoui_screens;
+//extern std::map_base<GLFWwindow *, Screen *> __nanoui_screens;
 
 #if defined(__APPLE__)
 extern void disable_saved_application_state_osx();

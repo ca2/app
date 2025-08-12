@@ -25,7 +25,7 @@ public:
    using property_holder_array_base::property_holder_array_base;
    using property_holder_array_base::operator =;
 
-   property_set_base(::std::initializer_list < ::payload > list);
+   property_set_base(::std::initializer_list < ::payload > list_base);
    // property_set() {}
    // property_set(const ::property_set & set);
    // property_set(::property_set && set);

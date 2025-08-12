@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "userfs.h"
-#include "list.h"
+#include "list_base.h"
 #include "list_item.h"
 #include "main_impact.h"
 #include "tree_data.h"
@@ -42,7 +42,7 @@ namespace userfs
 
       factory()->add_factory_item <::userfs::main_impact > ();
       factory()->add_factory_item <::userfs::tree_data > ();
-      factory()->add_factory_item <::userfs::list > ();
+      factory()->add_factory_item <::userfs::list_base > ();
       factory()->add_factory_item <::userfs::list_item > ();
 
       ::acme::department::init();

@@ -347,9 +347,9 @@ void reference_item_array::add_referer(::reference_referer * preferer, bool bInc
 
       }
 
-      output_debug_string("referer wasn't on list : \n" + strList);
+      output_debug_string("referer wasn't on list_base : \n" + strList);
 
-      throw ::exception(error_debug_warning, "referer wasn't on list (" + strList + ")");
+      throw ::exception(error_debug_warning, "referer wasn't on list_base (" + strList + ")");
 
    }
 

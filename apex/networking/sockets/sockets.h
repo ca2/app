@@ -50,7 +50,7 @@ namespace sockets
 //#endif
 //
 //      ::pointer < ::mutex >                          m_pmutexPool;
-//      socket_map                       m_pool; ///< Active sockets map
+//      socket_map                       m_pool; ///< Active sockets map_base
 //
 
       //sockets();

@@ -215,11 +215,11 @@ public:
    //iterator              m_begin;
 
 
-   node_set();
-   node_set(node singles[], int iCount);
-   node_set(const ::std::initializer_list < NODE > & list);
-   node_set(const node_set & m);
-   virtual ~node_set();
+   node_set_base();
+   node_set_base(node singles[], int iCount);
+   node_set_base(const ::std::initializer_list < NODE > & list_base);
+   node_set_base(const node_set_base & m);
+   ~node_set_base();
 
    void construct();
 
@@ -413,7 +413,7 @@ public:
    //}
 
 
-   void assign(node_set & set)
+   void assign(node_set_base & set)
    {
 
       auto it = set.begin();
@@ -503,7 +503,7 @@ public:
    //}
 
    template < typename PRED >
-   typename node_set < NODE >::iterator predicate_find(PRED pred)
+   typename node_set_base < NODE >::iterator predicate_find(PRED pred)
    {
 
       auto point = this->get_start();
@@ -526,7 +526,7 @@ public:
 
    }
 
-   node_set & operator = (const node_set & m);
+   node_set_base & operator = (const node_set_base & m);
 
 
    template < typename TYPE >
@@ -592,31 +592,31 @@ public:
 
 
 template < typename NODE >
-inline ::collection::count node_set < NODE >::get_count() const
+inline ::collection::count node_set_base < NODE >::get_count() const
 {
    return m_nCount;
 }
 
 template < typename NODE >
-inline ::collection::count node_set < NODE >::get_size() const
+inline ::collection::count node_set_base < NODE >::get_size() const
 {
    return m_nCount;
 }
 
 template < typename NODE >
-inline ::collection::count node_set < NODE >::count() const
+inline ::collection::count node_set_base < NODE >::count() const
 {
    return m_nCount;
 }
 
 template < typename NODE >
-inline ::collection::count node_set < NODE >::size() const
+inline ::collection::count node_set_base < NODE >::size() const
 {
    return m_nCount;
 }
 
 template < typename NODE >
-node_set < NODE > & node_set < NODE >::operator = (const node_set & m)
+node_set_base < NODE > & node_set_base < NODE >::operator = (const node_set_base & m)
 {
    if(this != &m)
    {
@@ -635,20 +635,20 @@ node_set < NODE > & node_set < NODE >::operator = (const node_set & m)
 }
 
 template < typename NODE >
-inline bool node_set < NODE >::is_empty() const
+inline bool node_set_base < NODE >::is_empty() const
 {
    return m_nCount == 0;
 }
 
 template < typename NODE >
-inline bool node_set < NODE >::empty() const
+inline bool node_set_base < NODE >::empty() const
 {
    return m_nCount == 0;
 }
 
 
 template < typename NODE >
-inline typename node_set < NODE >::iterator node_set < NODE >::set_at(ARG_ITEM item)
+inline typename node_set_base < NODE >::iterator node_set_base < NODE >::set_at(ARG_ITEM item)
 {
 
    iterator iterator = get_item(item);
@@ -661,13 +661,13 @@ inline typename node_set < NODE >::iterator node_set < NODE >::set_at(ARG_ITEM i
 
 
 //template < typename NODE >
-//inline typename node_set < NODE >::iterator node_set < NODE >::get_start() const
+//inline typename node_set_base < NODE >::iterator node_set_base < NODE >::get_start() const
 //{
 //   return (m_nCount == 0) ? nullptr : BEFORE_START_POSITION;
 //}
 
 //template < typename NODE >
-//const typename node_set < NODE >::iterator node_set < NODE >::get_start() const
+//const typename node_set_base < NODE >::iterator node_set_base < NODE >::get_start() const
 //{
 //
 //   return this->m_begin;
@@ -675,7 +675,7 @@ inline typename node_set < NODE >::iterator node_set < NODE >::set_at(ARG_ITEM i
 //}
 //
 //template < typename NODE >
-//typename node_set < NODE >::iterator node_set < NODE >::get_start()
+//typename node_set_base < NODE >::iterator node_set_base < NODE >::get_start()
 //{
 //
 //   return this->m_begin;
@@ -683,9 +683,9 @@ inline typename node_set < NODE >::iterator node_set < NODE >::set_at(ARG_ITEM i
 //}
 
 /////////////////////////////////////////////////////////////////////////////
-// node_set < NODE > out-of-line functions
+// node_set_base < NODE > out-of-line functions
 template < typename NODE >
-void node_set < NODE >::construct()
+void node_set_base < NODE >::construct()
 {
 
    m_nCount          = 0;
@@ -696,7 +696,7 @@ void node_set < NODE >::construct()
 
 
 template < typename NODE >
-node_set < NODE >::node_set()
+node_set_base < NODE >::node_set_base()
 {
 
    construct();
@@ -705,12 +705,12 @@ node_set < NODE >::node_set()
 
 
 template < typename NODE >
-node_set < NODE >::node_set(const ::std::initializer_list < NODE > & list)
+node_set_base < NODE >::node_set_base(const ::std::initializer_list < NODE > & list_base)
 {
 
    construct();
 
-   for(auto & pair_item : list)
+   for(auto & pair_item : list_base)
    {
 
       set_at(pair_item.item());
@@ -720,7 +720,7 @@ node_set < NODE >::node_set(const ::std::initializer_list < NODE > & list)
 }
 
 template < typename NODE >
-node_set < NODE >::node_set(node singles[], int iCount)
+node_set_base < NODE >::node_set_base(node singles[], int iCount)
 {
    construct();
    for(int i = 0; i < iCount; i++)
@@ -731,7 +731,7 @@ node_set < NODE >::node_set(node singles[], int iCount)
 
 
 template < typename NODE >
-node_set < NODE >::node_set(const node_set & m)
+node_set_base < NODE >::node_set_base(const node_set_base & m)
 {
    
    construct();
@@ -747,7 +747,7 @@ node_set < NODE >::node_set(const node_set & m)
 
 
 template < typename NODE >
-void node_set < NODE >::erase_all()
+void node_set_base < NODE >::erase_all()
 {
 
    //ASSERT_VALID(this);
@@ -789,34 +789,34 @@ void node_set < NODE >::erase_all()
 
 
 template < typename NODE >
-inline void node_set < NODE >::clear()
+inline void node_set_base < NODE >::clear()
 {
    erase_all();
 }
 
 template < typename NODE >
-inline void node_set < NODE >::Empty()
+inline void node_set_base < NODE >::Empty()
 {
    clear();
 }
 
 template < typename NODE >
-node_set < NODE >::~node_set()
+node_set_base < NODE >::~node_set_base()
 {
    erase_all();
    ASSERT(m_nCount == 0);
 }
 
 template < typename NODE >
-typename node_set < NODE >::iterator
-node_set < NODE >::new_node(ARG_ITEM item)
+typename node_set_base < NODE >::iterator
+node_set_base < NODE >::new_node(ARG_ITEM item)
 {
 
    //if(this->m_pnodeFree == nullptr)
    //{
    //   // add another block
    //   //plex * newBlock = plex::create(m_pplex, m_nBlockSize, sizeof(set::node));
-   //   //// chain them into free list
+   //   //// chain them into free list_base
    //   //set::iterator iterator = (set::iterator) newBlock->data();
    //   //// free in reverse order to make it easier to debug
    //   //::collection::index i = m_nBlockSize - 1;
@@ -832,7 +832,7 @@ node_set < NODE >::new_node(ARG_ITEM item)
 
    //ENSURE(this->m_pnodeFree != nullptr);  // we must have something
 
-   typename node_set < NODE >::iterator iterator = __raw_new node (item);
+   typename node_set_base < NODE >::iterator iterator = __raw_new node (item);
 
    //this->m_pnodeFree  = this->m_pnodeFree->m_next;
 
@@ -861,7 +861,7 @@ node_set < NODE >::new_node(ARG_ITEM item)
 
 
 template < typename NODE >
-void node_set < NODE >::free_node(iterator iterator)
+void node_set_base < NODE >::free_node(iterator iterator)
 {
 
    auto next = iterator->m_next;
@@ -918,8 +918,8 @@ void node_set < NODE >::free_node(iterator iterator)
 
 
 template < typename NODE >
-typename node_set < NODE >::iterator
-node_set < NODE >::find_item(ARG_ITEM item, unsigned int& nHashBucket, unsigned int& nHashValue) const
+typename node_set_base < NODE >::iterator
+node_set_base < NODE >::find_item(ARG_ITEM item, unsigned int& nHashBucket, unsigned int& nHashValue) const
 {
 
    nHashValue = ::as_hash32(item).m_u;
@@ -951,7 +951,7 @@ node_set < NODE >::find_item(ARG_ITEM item, unsigned int& nHashBucket, unsigned 
 
 
 template < typename NODE >
-bool node_set < NODE >::lookup(ARG_ITEM item, ITEM& rValue) const
+bool node_set_base < NODE >::lookup(ARG_ITEM item, ITEM& rValue) const
 {
 
    unsigned int nHashBucket, nHashValue;
@@ -973,20 +973,20 @@ bool node_set < NODE >::lookup(ARG_ITEM item, ITEM& rValue) const
 
 
 //template < typename NODE >
-//typename node_set < NODE >::iterator node_set < NODE >::find (ARG_ITEM item)
+//typename node_set_base < NODE >::iterator node_set_base < NODE >::find (ARG_ITEM item)
 //{
 //   return iterator(plookup(item), this);
 //}
 //
 //template < typename NODE >
-//typename node_set < NODE >::const_iterator node_set < NODE >::find (ARG_ITEM item) const
+//typename node_set_base < NODE >::const_iterator node_set_base < NODE >::find (ARG_ITEM item) const
 //{
 //   return const_iterator((iterator) plookup(item), (set *) this);
 //}
 
 
 template < typename NODE >
-typename node_set < NODE >::const_iterator node_set < NODE >::plookup(ARG_ITEM item) const
+typename node_set_base < NODE >::const_iterator node_set_base < NODE >::plookup(ARG_ITEM item) const
 {
 
    return find_item(item);
@@ -995,7 +995,7 @@ typename node_set < NODE >::const_iterator node_set < NODE >::plookup(ARG_ITEM i
 
 
 template < typename NODE >
-typename node_set < NODE >::iterator node_set < NODE >::plookup(ARG_ITEM item)
+typename node_set_base < NODE >::iterator node_set_base < NODE >::plookup(ARG_ITEM item)
 {
 
    unsigned int nHashBucket, nHashValue;
@@ -1008,7 +1008,7 @@ typename node_set < NODE >::iterator node_set < NODE >::plookup(ARG_ITEM item)
 
 
 template < typename NODE >
-typename node_set < NODE >::ITEM * node_set < NODE >::pget(ARG_ITEM item)
+typename node_set_base < NODE >::ITEM * node_set_base < NODE >::pget(ARG_ITEM item)
 {
 
    auto p = plookup(item);
@@ -1026,19 +1026,19 @@ typename node_set < NODE >::ITEM * node_set < NODE >::pget(ARG_ITEM item)
 
 
 template < typename NODE >
-inline typename node_set < NODE >::iterator node_set < NODE >::find_item(ARG_ITEM item) 
+inline typename node_set_base < NODE >::iterator node_set_base < NODE >::find_item(ARG_ITEM item) 
 {
 
    unsigned int nHashBucket, nHashValue;
 
-   return ((node_set *)this)->find_item(item, nHashBucket, nHashValue);
+   return ((node_set_base *)this)->find_item(item, nHashBucket, nHashValue);
 
 }
 
 
 
 template < typename NODE >
-inline typename node_set < NODE >::const_iterator node_set < NODE >::find_item(ARG_ITEM item) const
+inline typename node_set_base < NODE >::const_iterator node_set_base < NODE >::find_item(ARG_ITEM item) const
 {
 
    unsigned int nHashBucket, nHashValue;
@@ -1049,7 +1049,7 @@ inline typename node_set < NODE >::const_iterator node_set < NODE >::find_item(A
 
 
 template < typename NODE >
-typename node_set < NODE >::iterator node_set < NODE >::get_item(ARG_ITEM item)
+typename node_set_base < NODE >::iterator node_set_base < NODE >::get_item(ARG_ITEM item)
 {
 
    unsigned int nHashBucket, nHashValue;
@@ -1092,7 +1092,7 @@ typename node_set < NODE >::iterator node_set < NODE >::get_item(ARG_ITEM item)
 
 
 template < typename NODE >
-typename node_set < NODE >::ITEM & node_set < NODE >::operator[](ARG_ITEM item)
+typename node_set_base < NODE >::ITEM & node_set_base < NODE >::operator[](ARG_ITEM item)
 {
 
    return get_item(item)->item();
@@ -1101,7 +1101,7 @@ typename node_set < NODE >::ITEM & node_set < NODE >::operator[](ARG_ITEM item)
 
 
 template < typename NODE >
-const typename node_set < NODE >::ITEM & node_set < NODE >::operator[](ARG_ITEM item) const
+const typename node_set_base < NODE >::ITEM & node_set_base < NODE >::operator[](ARG_ITEM item) const
 {
 
    auto p = find_item(item);
@@ -1119,7 +1119,7 @@ const typename node_set < NODE >::ITEM & node_set < NODE >::operator[](ARG_ITEM 
 
 
 template < typename NODE >
-inline bool node_set < NODE >::erase(iterator iterator)
+inline bool node_set_base < NODE >::erase(iterator iterator)
 // erase - return true if erased
 {
 
@@ -1140,7 +1140,7 @@ inline bool node_set < NODE >::erase(iterator iterator)
 
 
 template < typename NODE >
-inline ::collection::count node_set < NODE >::count(const ITEM & item) const
+inline ::collection::count node_set_base < NODE >::count(const ITEM & item) const
 {
 
    return this->plookup(item) ? 1 : 0;
@@ -1149,7 +1149,7 @@ inline ::collection::count node_set < NODE >::count(const ITEM & item) const
 
 
 template < typename NODE >
-bool node_set < NODE >::has(const ITEM & item) const
+bool node_set_base < NODE >::has(const ITEM & item) const
 {
 
    return this->plookup(item) ? 1 : 0;
@@ -1158,7 +1158,7 @@ bool node_set < NODE >::has(const ITEM & item) const
 
 
 template < typename NODE >
-bool node_set < NODE >::contains(const ITEM & item) const
+bool node_set_base < NODE >::contains(const ITEM & item) const
 {
 
    return this->plookup(item) ? 1 : 0;
@@ -1167,7 +1167,7 @@ bool node_set < NODE >::contains(const ITEM & item) const
 
 
 //template < typename NODE >
-//void node_set < NODE >::get_next(iterator & iterator,
+//void node_set_base < NODE >::get_next(iterator & iterator,
 //      ITEM& rKey, ITEM& rValue) const
 //{
 //
@@ -1181,8 +1181,8 @@ bool node_set < NODE >::contains(const ITEM & item) const
 //
 //
 //template < typename NODE >
-//inline const typename node_set < NODE >::iterator
-//node_set < NODE >::get_next(const iterator iterator) const
+//inline const typename node_set_base < NODE >::iterator
+//node_set_base < NODE >::get_next(const iterator iterator) const
 //{
 //
 //   return iterator->m_next;
@@ -1191,8 +1191,8 @@ bool node_set < NODE >::contains(const ITEM & item) const
 //
 //
 //template < typename NODE >
-//inline typename node_set < NODE >::iterator
-//node_set < NODE >::get_next(const iterator iterator)
+//inline typename node_set_base < NODE >::iterator
+//node_set_base < NODE >::get_next(const iterator iterator)
 //{
 //
 //   return iterator->m_next;
@@ -1201,7 +1201,7 @@ bool node_set < NODE >::contains(const ITEM & item) const
 
 
 template < typename NODE >
-typename node_set < NODE >::ITEM node_set < NODE > ::
+typename node_set_base < NODE >::ITEM node_set_base < NODE > ::
 get(ARG_ITEM argkey, ARG_ITEM valueDefault)
 {
    
@@ -1220,7 +1220,7 @@ get(ARG_ITEM argkey, ARG_ITEM valueDefault)
 
 
 //template < typename NODE >
-//void node_set < NODE >::assert_ok() const
+//void node_set_base < NODE >::assert_ok() const
 //{
 //
 //   ::matter::assert_ok();
@@ -1259,7 +1259,7 @@ using uptr_set = set < ::uptr >;
 
 
 template < typename NODE >
-using key_set = node_set < NODE >;
+using key_set = node_set_base < NODE >;
 
 
 #define __declare_key(xkeytype, xkey) \
@@ -1308,7 +1308,7 @@ using string_set = set < string >;
 
 
 template < typename NODE >
-void node_set < NODE >::InitHashTable(
+void node_set_base < NODE >::InitHashTable(
    unsigned int nHashSize, bool bAllocNow)
 //
 // Used to force allocation of a hash table or to override the default
@@ -1325,7 +1325,7 @@ void node_set < NODE >::InitHashTable(
 
 
 //template < typename NODE >
-//void node_set < NODE >::dump(dump_context& dumpcontext) const
+//void node_set_base < NODE >::dump(dump_context& dumpcontext) const
 //{
 //
 //   ::matter::dump(dumpcontext);
@@ -1354,7 +1354,7 @@ void node_set < NODE >::InitHashTable(
 
 
 template < typename NODE >
-inline bool node_set < NODE >::unhash(iterator iterator)
+inline bool node_set_base < NODE >::unhash(iterator iterator)
 // erase - return true if erased
 {
 

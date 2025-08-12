@@ -11,7 +11,7 @@ namespace userfs
    class main_impact;
 
 
-   class CLASS_DECL_CORE list :
+   class CLASS_DECL_CORE list_base :
       virtual public ::user::form_list_impact
    {
    public:
@@ -30,8 +30,8 @@ namespace userfs
       //::fs::data *               m_pfsdata;
 
 
-      list();
-      ~list() override;
+      list_base();
+      ~list_base() override;
 
 
       void initialize_impact(::user::document * pdocument) override;

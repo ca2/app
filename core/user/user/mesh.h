@@ -139,10 +139,10 @@ namespace user
 
       //int_size                                   m_sizeTotal;
       ::int_size                                   m_sizePage;
-      ::user::list *                               m_plist; // should be set to this ::user::list if this is a list
+      ::user::list_base *                               m_plist; // should be set to this ::user::list_base if this is a list_base
 
       int                                          m_iDefaultColumnWidth;
-      index_map < int >                            m_mapColumnWidth;
+      index_map_base < int >                            m_mapColumnWidth;
 
       CSortInfo                                    m_sortinfo;
       ::int_size                                   m_sizeMaximumImage;
@@ -261,8 +261,8 @@ namespace user
       int                                          m_iLeftMargin;
       int                                          m_iTopMargin;
 
-      index_map < ::pointer<mesh_item >>          m_mapItem;
-      index_map < ::pointer<mesh_group >>         m_mapGroup;
+      index_map_base < ::pointer<mesh_item >>          m_mapItem;
+      index_map_base < ::pointer<mesh_group >>         m_mapGroup;
       ::task_pointer                               m_ptaskHoverSelect;
       class ::time                                   m_timeLastHoverSelect;
       bool                                         m_bPendingHoverSelect;

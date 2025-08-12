@@ -24,7 +24,7 @@ namespace gpu
       ::geometry2d::matrix                   m_m1;
       ::pointer < ::gpu::shader >               m_pshaderSourceRectangle;
       ::pointer < ::gpu::shader >               m_pshaderBlendRectangle;
-      map < ::draw2d::enum_model, ::pool <::gpu::model_buffer > >   m_mapModelBufferPool;
+      map_base < ::draw2d::enum_model, ::pool <::gpu::model_buffer > >   m_mapModelBufferPool;
       ::pointer < ::gpu::shader >         m_pgpushaderTextOut;
       ::pointer < ::gpu::model_buffer >         m_pmodelbufferTextOutDummy;
 

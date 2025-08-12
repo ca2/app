@@ -26,8 +26,8 @@ namespace user
       ::user::impact_creator *                  m_pviewcreator;
       bool                                      m_bCloseDocumentIfNoTabs;
       ::pointer<::user::impact>                 m_pimpactTopic;
-      atom_map < ::pointer<::form_document >>   m_mapformdocument;
-      atom_map < ::pointer<::user::handler_impact >>  m_maphandlerimpact;
+      atom_map_base < ::pointer<::form_document >>   m_mapformdocument;
+      atom_map_base < ::pointer<::user::handler_impact >>  m_maphandlerimpact;
       // ::pointer < options_impact >              m_poptionsimpact;
       ::pointer < options_impact_handler >      m_poptionsimpacthandlerContext;
 

@@ -46,7 +46,7 @@ void fixed_alloc_no_sync::NewBlock()
    // add another block
    auto pNewBlock = ::plex::create(m_pBlocks, m_nBlockSize, nAllocSize, m_pallocator);
 
-   // chain them into _free list
+   // chain them into _free list_base
    node* pNode = (node*)pNewBlock->data();
    // _free in reverse order to make it easier to debug
    (unsigned char*&)pNode += (nAllocSize * m_nBlockSize) - nAllocSize;

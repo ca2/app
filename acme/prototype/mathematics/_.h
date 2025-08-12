@@ -454,10 +454,10 @@ constexpr TYPE maximum(const TYPE & a, const TYPE & b)
 
 
 template< typename TYPE, typename COMPARE >
-constexpr TYPE compare_reduce(std::initializer_list<TYPE> list, COMPARE compare)
+constexpr TYPE compare_reduce(std::initializer_list<TYPE> list_base, COMPARE compare)
 {
 
-   auto p = list.begin();
+   auto p = list_base.begin();
 
    if (!p)
    {
@@ -470,7 +470,7 @@ constexpr TYPE compare_reduce(std::initializer_list<TYPE> list, COMPARE compare)
 
    p++;
 
-   while(p != list.end())
+   while(p != list_base.end())
    {
 
       if (compare(*p, t))
@@ -490,19 +490,19 @@ constexpr TYPE compare_reduce(std::initializer_list<TYPE> list, COMPARE compare)
 
 
 template< typename TYPE >
-constexpr TYPE maximum(std::initializer_list<TYPE> list)
+constexpr TYPE maximum(std::initializer_list<TYPE> list_base)
 {
 
-   return compare_reduce(list, [](auto a, auto b) {return a > b; });
+   return compare_reduce(list_base, [](auto a, auto b) {return a > b; });
 
 }
 
 
 template< typename TYPE >
-constexpr TYPE minimum(std::initializer_list<TYPE> list)
+constexpr TYPE minimum(std::initializer_list<TYPE> list_base)
 {
 
-   return compare_reduce(list, [](auto a, auto b) {return a < b; });
+   return compare_reduce(list_base, [](auto a, auto b) {return a < b; });
 
 }
 

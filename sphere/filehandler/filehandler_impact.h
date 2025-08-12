@@ -13,7 +13,7 @@ namespace filehandler
 
       
 
-      class list;
+      class list_base;
 
 
       class CLASS_DECL_SPHERE item :
@@ -33,18 +33,18 @@ namespace filehandler
 
          void parse(const ::scoped_string & scopedstrApp);
 
-         void draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics, list * plist);
+         void draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics, list_base * plist);
 
       };
 
-      class CLASS_DECL_SPHERE list :
+      class CLASS_DECL_SPHERE list_base :
          virtual public pointer_array < item >
       {
       public:
 
          int m_iItemHeight;
 
-         list(::particle * pparticle);
+         list_base(::particle * pparticle);
 
 
          void parse(::filehandler::handler * phandler, const ::scoped_string & scopedstrTopic);
@@ -56,8 +56,8 @@ namespace filehandler
 
 
       ::xml::document *         m_pxmldoc;
-      ::pointer<list>               m_plistWorking;
-      ::pointer<list>               m_plist;
+      ::pointer<list_base>               m_plistWorking;
+      ::pointer<list_base>               m_plist;
 
       ::write_text::font_pointer       m_pfont;
 
@@ -82,7 +82,7 @@ namespace filehandler
       void on_hit_test(::item & item);
 
 
-      void layout_list(list * plist);
+      void layout_list(list_base * plist);
 
       virtual bool get_font(::write_text::font_pointer & font);
 

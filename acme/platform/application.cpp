@@ -1369,7 +1369,7 @@ void application::start_application()
       if (straMatterLocator.has_elements())
       {
 
-         stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map", "map"));
+         stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map_base", "map_base"));
 
       }
 

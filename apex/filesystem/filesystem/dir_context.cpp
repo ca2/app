@@ -2105,7 +2105,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
          pathCache = psystem->m_pdirectorysystem->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
 
-         information() << "cache map path: " << pathCache;
+         information() << "cache map_base path: " << pathCache;
 
          path = file()->as_string(pathCache);
 

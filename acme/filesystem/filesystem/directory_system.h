@@ -12,7 +12,7 @@
 #include "acme/prototype/media_library/item.h"
 #include "enumerator.h"
 #include "acme/platform/department.h"
-#include "acme/prototype/collection/map.h"
+#include "acme/prototype/collection/map_base.h"
 #include "acme/prototype/collection/string_map.h"
 #include "acme/parallelization/mutex.h"
 
@@ -241,7 +241,7 @@ public:
          virtual bool defer_process_media_library_path(::file::path& path);
          virtual bool defer_media_library_representative_file_name(::file::path & path);
 
-         bool list(::string_array_base & stra, const ::scoped_string & path, ::file::e_flag eflag = ::file::e_flag_file_or_folder) override;
+         bool list_base(::string_array_base & stra, const ::scoped_string & path, ::file::e_flag eflag = ::file::e_flag_file_or_folder) override;
 
          virtual ::file::listing_base folders(const ::file::path & path) override;
          virtual ::file::listing_base files(const ::file::path& path) override;

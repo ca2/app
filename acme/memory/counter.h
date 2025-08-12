@@ -3,7 +3,7 @@
 
 
 #include "acme/platform/acme.h"
-#include "acme/prototype/collection/map.h"
+#include "acme/prototype/collection/map_base.h"
 
 
 namespace heap
@@ -34,7 +34,7 @@ namespace heap
 
       //int                                 m_iMemoryCountersStartable = 0;
 
-      ::map < TYPE, item >       m_mapCounter;
+      ::map_base < TYPE, item >       m_mapCounter;
 
 
       counter()

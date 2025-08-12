@@ -25,14 +25,14 @@ extern locale_t g_localeC;
 #endif
 
 
-property_set_base::property_set_base(::std::initializer_list < ::payload > list)
+property_set_base::property_set_base(::std::initializer_list < ::payload > list_base)
 {
 
    ::atom atom;
 
    ::collection::index i = 0;
 
-   for (auto & item : list)
+   for (auto & item : list_base)
    {
 
       if (i % 2 == 0)

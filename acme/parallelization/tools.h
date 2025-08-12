@@ -234,8 +234,8 @@ inline ::collection::count fork_count_end(::particle * pparticle, ::collection::
 
 
 
-using task_group_map = map < enum_priority, pointer_array < ::task_group > >;
-using task_tool_map = map < enum_task_tool, pointer_array < ::task_tool > >;
+using task_group_map = map_base < enum_priority, pointer_array < ::task_group > >;
+using task_tool_map = map_base < enum_task_tool, pointer_array < ::task_tool > >;
 
 
 

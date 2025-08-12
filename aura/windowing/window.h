@@ -12,7 +12,7 @@
 #include "aura/user/user/interaction_array.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/redraw.h"
-#include "acme/prototype/collection/list.h"
+#include "acme/prototype/collection/list_base.h"
 #include "acme/prototype/geometry2d/_collection.h"
 
 
@@ -130,7 +130,7 @@ namespace windowing
       //::int_rectangle                           m_rectangleUpdateBuffer;
       ::thread_pointer                          m_pthreadMouseLeave;
 
-      //::list < ::pointer<::message::message >> m_messagelist;
+      //::list_base < ::pointer<::message::message >> m_messagelist;
 
       ::int_point                               m_pointInside;
       //::user::interaction_base *                       m_pprimitiveFocus;

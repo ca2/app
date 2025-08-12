@@ -50,7 +50,7 @@ namespace colorertake5
       /**
       * Installs specified RegionMapper, which
       * maps HRC Regions into color data.
-      * @param rm RegionMapper object to map region values into colors.
+      * @param rm RegionMapper object to map_base region values into colors.
       */
       void setRegionMapper(RegionMapper *rm);
 

@@ -29,7 +29,7 @@ public:
 
    ::collection::index add(const ::payload & payload);
    ::collection::index append(const payload_array_base & payloada);
-   ::collection::index append(const std::initializer_list < ::payload > & list);
+   ::collection::index append(const std::initializer_list < ::payload > & list_base);
 
 //   inline ::collection::index add(const ::scoped_string & scopedstr) { return add((const ::payload &) str); }
    //inline ::collection::index add(const ::scoped_string & scopedstr) { return add((const payload &) scopedstr); }

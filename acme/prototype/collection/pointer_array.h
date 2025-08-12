@@ -75,10 +75,10 @@ public:
    }
 
 
-   // pointer_array_base(const std::initializer_list < ::pointer<T >>& list)
+   // pointer_array_base(const std::initializer_list < ::pointer<T >>& list_base)
    // {
    //
-   //    for(auto & p : list)
+   //    for(auto & p : list_base)
    //    {
    //
    //       add(p);

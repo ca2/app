@@ -4961,7 +4961,7 @@ namespace draw2d
          double dCircleX;
          double dCircleY;
 
-         pimage->map();
+         pimage->map_base();
 
          auto colorref = pimage->image32();
 

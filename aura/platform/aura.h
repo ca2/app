@@ -19,7 +19,7 @@
 //
 ////#if OBJECT_TYPE_COUNTER
 ////
-////   extern map < const_char_pointer ,const ::scoped_string & scopedstr, long long, long long >* g_pmapObjTypCtr;
+////   extern map_base < const_char_pointer ,const ::scoped_string & scopedstr, long long, long long >* g_pmapObjTypCtr;
 ////
 ////#endif
 //
@@ -105,7 +105,7 @@
 //   //extern CLASS_DECL_AURA array < matter* >* g_paAura;
 //
 //
-//   //extern ::map < ::atom, const ::atom&, ::atom, const ::atom& >* g_pmapRTL;
+//   //extern ::map_base < ::atom, const ::atom&, ::atom, const ::atom& >* g_pmapRTL;
 //
 //   //extern plex_heap_alloc_array* g_pheap;
 //
@@ -121,7 +121,7 @@
 ////
 ////#endif
 //
-//   //extern map < itask, itask, itask, itask > * g_pmapThreadOn;
+//   //extern map_base < itask, itask, itask, itask > * g_pmapThreadOn;
 //
 ////#ifdef WINDOWS
 ////

@@ -256,15 +256,15 @@ namespace gpu
    }
 
 
-   void* memory_buffer::map()
+   void* memory_buffer::map_base()
    {
 
-      return map(0, m_size);
+      return map_base(0, m_size);
 
    }
 
 
-   void* memory_buffer::map(memsize start, memsize count)
+   void* memory_buffer::map_base(memsize start, memsize count)
    {
 
       if (!count)

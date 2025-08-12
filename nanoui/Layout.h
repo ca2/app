@@ -425,7 +425,7 @@ namespace nanoui
       ::float_array m_row_stretch;
 
       /// The mapping of widgets to their specified anchor points.
-      ::map<Widget*, Anchor> m_anchor;
+      ::map_base<Widget*, Anchor> m_anchor;
 
       /// The margin around this AdvancedGridLayout.
       int m_iMargin;

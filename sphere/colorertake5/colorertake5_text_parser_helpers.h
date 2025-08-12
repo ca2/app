@@ -17,7 +17,7 @@ namespace colorertake5
 {
 
 
-   /** Dynamic parser's list of virtual entries.
+   /** Dynamic parser's list_base of virtual entries.
    @ingroup colorer_parsers
    */
    class VTList

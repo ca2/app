@@ -1056,7 +1056,7 @@ namespace zip
 
 //class interprocess_intercommunication;
 
-//using interprocess_task_map = atom_map < ::pointer<::interprocess::task >>;
+//using interprocess_task_map = atom_map_base < ::pointer<::interprocess::task >>;
 
 
 //#include "apex/platform/::interprocess::call.h"

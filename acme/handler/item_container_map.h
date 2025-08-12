@@ -13,7 +13,7 @@ class CLASS_DECL_ACME item_container_map :
 public:
 
 
-   ::index_map < ::pointer < ::item_container > > m_itemcontainermap;
+   ::index_map_base < ::pointer < ::item_container > > m_itemcontainermap;
 
 
    item_container_map();

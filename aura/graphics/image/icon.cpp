@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "icon.h"
-#include "map.h"
+#include "map_base.h"
 #include "image.h"
 #include "acme/platform/system.h"
 #include "aura/windowing/icon.h"

@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "acme/prototype/collection/map.h"
+#include "acme/prototype/collection/map_base.h"
 //#include "acme/prototype/prototype/pointer.h"
 
 
@@ -51,9 +51,9 @@ namespace sockets_bsd
    MAKE_PAIR(base_socket_bool, base_socket *, bool, m_pbasesocket, m_b);
 
 
-   using socket_flag_map = pair_map < base_socket_bool >;
-   using socket_socket_flag_map = map < socket_id, socket_flag_map >;
-   using socket_map = pair_map < socket_id_socket_pointer >;
+   using socket_flag_map = pair_map_base < base_socket_bool >;
+   using socket_socket_flag_map = map_base < socket_id, socket_flag_map >;
+   using socket_map = pair_map_base < socket_id_socket_pointer >;
 
 
 } // namespace sockets_bsd

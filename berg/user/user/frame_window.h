@@ -54,7 +54,7 @@ namespace user
 //#endif
       unsigned int                                          m_dwPromptContext;    // current help prompt action_context for message box
       bool                                         m_bHelpMode;           // if true, then Shift+F1 help mode is active
-      ::user::frame_window *                       m_pNextFrameWnd; // next frame_window in cast global list
+      ::user::frame_window *                       m_pNextFrameWnd; // next frame_window in cast global list_base
       ::int_rectangle                              m_rectangleBorder;         // for OLE border space negotiation
 
       int                                          m_nShowDelay;           // SW_ command for delay show/hide
@@ -78,7 +78,7 @@ namespace user
    unsigned int                                           m_nIdleFlags;          // set of bit flags for idle processing
 
       ::user::impact *                                m_pviewMain;
-      atom_map < ::pointer<::user::toolbar >>     m_mapToolbar;
+      atom_map_base < ::pointer<::user::toolbar >>     m_mapToolbar;
 
 
 
@@ -295,7 +295,7 @@ namespace user
       bool ProcessHelpMsg(MESSAGE & msg, unsigned int * pContext);
       ::oswindow SetHelpCapture(const ::int_point & point, bool * pbDescendant);
 
-      // frame_window list management
+      // frame_window list_base management
       void AddFrameWnd();
       void RemoveFrameWnd();
 

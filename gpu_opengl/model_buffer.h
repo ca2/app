@@ -79,7 +79,7 @@ namespace gpu_opengl
       //   const ::double_size& size);
 
  /*     template < typename VERTEX > 
-      memory_map < memory_buffer, VERTEX > map()
+      memory_map < memory_buffer, VERTEX > map_base()
       {
 
          return { m_pbufferVertex.m_p, (VERTEX*)nullptr };

@@ -31,10 +31,10 @@ namespace draw2d
       int m_xEnd;
       unsigned char * m_pdst2;
       unsigned char * m_psrc2;
-      unsigned char * m_pdstOpacity; // opacity map if available
-      unsigned char * m_psrcOpacity; // opacity map if available
-      unsigned char * m_pdstTransparency; // transparency map if available
-      unsigned char * m_psrcTransparency; // transparency map if available
+      unsigned char * m_pdstOpacity; // opacity map_base if available
+      unsigned char * m_psrcOpacity; // opacity map_base if available
+      unsigned char * m_pdstTransparency; // transparency map_base if available
+      unsigned char * m_psrcTransparency; // transparency map_base if available
       color_indexes m_indexes = common_system_image_color_indexes();
       int m_w;
       int m_h;

@@ -37,7 +37,7 @@ namespace networking_bsd
 //          IFACE_IP   = (1<<0) | (1<<1),
 //      };
 
-      struct ifaddrs *curr, *list = NULL;
+      struct ifaddrs *curr, *list_base = NULL;
 
 //      int result = 0;
 
@@ -50,7 +50,7 @@ namespace networking_bsd
 //         
 //      }
 
-       if (getifaddrs(&list) == -1)
+       if (getifaddrs(&list_base) == -1)
        {
 
           information() << "getifaddrs failed";
@@ -59,7 +59,7 @@ namespace networking_bsd
 
        }
 
-       for (curr = list; curr != NULL; curr = curr->ifa_next)
+       for (curr = list_base; curr != NULL; curr = curr->ifa_next)
        {
    //        if (!strcmp(name, curr->ifa_name)) {
    //            if (->sa_family == AF_INET)
@@ -101,7 +101,7 @@ namespace networking_bsd
 
       }
 
-      freeifaddrs(list);
+      freeifaddrs(list_base);
 
       //informationf(strLog);
 

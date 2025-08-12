@@ -1744,7 +1744,7 @@ namespace xml
 
    //========================================================
    // Name   : GetAttrs
-   // Desc   : find attributes with attr m_strName, return its list
+   // Desc   : find attributes with attr m_strName, return its list_base
    // Param  :
    // Return :
    //--------------------------------------------------------
@@ -1795,7 +1795,7 @@ namespace xml
 
    //========================================================
    // Name   : GetChilds
-   // Desc   : find m_nodea with m_strName and return m_nodea list
+   // Desc   : find m_nodea with m_strName and return m_nodea list_base
    // Param  :
    // Return :
    //--------------------------------------------------------
@@ -2394,7 +2394,7 @@ namespace xml
 
    //========================================================
    // Name   : get_attr
-   // Desc   : get attr with index in attr list
+   // Desc   : get attr with index in attr list_base
    // Param  :
    // Return :
    //--------------------------------------------------------
@@ -2485,7 +2485,7 @@ namespace xml
 
    //========================================================
    // Name   : detach_child
-   // Desc   : no delete object, just detach in list
+   // Desc   : no delete object, just detach in list_base
    // Param  :
    // Return :
    //--------------------------------------------------------
@@ -2505,7 +2505,7 @@ namespace xml
 
    //========================================================
    // Name   : detach_attr
-   // Desc   : no delete object, just detach in list
+   // Desc   : no delete object, just detach in list_base
    // Param  :
    // Return :
    //--------------------------------------------------------

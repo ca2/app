@@ -52,7 +52,7 @@ COMMAND_LINE_ARGUMENT_A args[] =
 	{ "f", COMMAND_LINE_VALUE_FLAG, nullptr, nullptr, nullptr, -1, nullptr, "Fullscreen mode" },
 	{ "bpp", COMMAND_LINE_VALUE_REQUIRED, "<depth>", "16", nullptr, -1, nullptr, "Session bpp (color depth)" },
 	{ "kbd", COMMAND_LINE_VALUE_REQUIRED, "0x<on_layout atom> or <on_layout name>", nullptr, nullptr, -1, nullptr, "Keyboard on_layout" },
-	{ "kbd-list", COMMAND_LINE_VALUE_FLAG | COMMAND_LINE_PRINT, nullptr, nullptr, nullptr, -1, nullptr, "List keyboard layouts" },
+	{ "kbd-list_base", COMMAND_LINE_VALUE_FLAG | COMMAND_LINE_PRINT, nullptr, nullptr, nullptr, -1, nullptr, "List keyboard layouts" },
 	{ "kbd-type", COMMAND_LINE_VALUE_REQUIRED, "<type atom>", nullptr, nullptr, -1, nullptr, "Keyboard type" },
 	{ "kbd-subtype", COMMAND_LINE_VALUE_REQUIRED, "<subtype atom>", nullptr, nullptr, -1, nullptr, "Keyboard subtype" },
 	{ "kbd-fn-key", COMMAND_LINE_VALUE_REQUIRED, "<function key count>", nullptr, nullptr, -1, nullptr, "Keyboard function key count" },
@@ -64,7 +64,7 @@ COMMAND_LINE_ARGUMENT_A args[] =
 	{ "span", COMMAND_LINE_VALUE_OPTIONAL, nullptr, nullptr, nullptr, -1, nullptr, "Span screen over multiple monitors" },
 	{ "workarea", COMMAND_LINE_VALUE_FLAG, nullptr, nullptr, nullptr, -1, nullptr, "Use available work area" },
 	{ "monitors", COMMAND_LINE_VALUE_REQUIRED, "<0,1,2...>", nullptr, nullptr, -1, nullptr, "Select monitors to use" },
-	{ "monitor-list", COMMAND_LINE_VALUE_FLAG | COMMAND_LINE_PRINT, nullptr, nullptr, nullptr, -1, nullptr, "List detected monitors" },
+	{ "monitor-list_base", COMMAND_LINE_VALUE_FLAG | COMMAND_LINE_PRINT, nullptr, nullptr, nullptr, -1, nullptr, "List detected monitors" },
 	{ "t", COMMAND_LINE_VALUE_REQUIRED, "<title>", nullptr, nullptr, -1, "title", "Window title" },
 	{ "decorations", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueTrue, nullptr, -1, nullptr, "Window decorations" },
 	{ "smart-sizing", COMMAND_LINE_VALUE_OPTIONAL, "<width>x<height>", nullptr, nullptr, -1, nullptr, "Scale remote desktop to window int_size" },
@@ -672,7 +672,7 @@ error_argv:
 	return -1;
 }
 
-static char** freerdp_command_line_parse_comma_separated_values(char* list, int* count)
+static char** freerdp_command_line_parse_comma_separated_values(char* list_base, int* count)
 {
 	char** p;
 	char* str;
@@ -685,18 +685,18 @@ static char** freerdp_command_line_parse_comma_separated_values(char* list, int*
 	assert(nullptr != count);
 
 	*count = 0;
-	if (!list)
+	if (!list_base)
 		return nullptr;
 
-	for (index = 0; list[index]; index++)
-		nCommas += (list[index] == ',') ? 1 : 0;
+	for (index = 0; list_base[index]; index++)
+		nCommas += (list_base[index] == ',') ? 1 : 0;
 
 	nArgs = nCommas + 1;
 	p = (char**) calloc((nArgs + 1UL), sizeof(char*));
 	if (!p)
 		return nullptr;
 
-	str = (char*) list;
+	str = (char*) list_base;
 
 	p[0] = str;
 
@@ -714,12 +714,12 @@ static char** freerdp_command_line_parse_comma_separated_values(char* list, int*
 	return p;
 }
 
-static char** freerdp_command_line_parse_comma_separated_values_offset(char* list, int* count)
+static char** freerdp_command_line_parse_comma_separated_values_offset(char* list_base, int* count)
 {
 	char** p;
 	char** t;
 
-	p = freerdp_command_line_parse_comma_separated_values(list, count);
+	p = freerdp_command_line_parse_comma_separated_values(list_base, count);
 
 	t = (char**) realloc(p, sizeof(char*) * (*count + 1));
 	if (!t)
@@ -1353,7 +1353,7 @@ int freerdp_client_settings_command_line_status_print(rdpSettings* settings, int
 	}
 	else if (status == COMMAND_LINE_STATUS_PRINT)
 	{
-		arg = CommandLineFindArgumentA(args, "kbd-list");
+		arg = CommandLineFindArgumentA(args, "kbd-list_base");
 
 		if (arg->Flags & COMMAND_LINE_VALUE_PRESENT)
 		{
@@ -1384,7 +1384,7 @@ int freerdp_client_settings_command_line_status_print(rdpSettings* settings, int
 			printf("\n");
 		}
 
-		arg = CommandLineFindArgumentA(args, "monitor-list");
+		arg = CommandLineFindArgumentA(args, "monitor-list_base");
 
 		if (arg->Flags & COMMAND_LINE_VALUE_PRESENT)
 		{
@@ -1592,7 +1592,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 				free(p);
 			}
 		}
-		CommandLineSwitchCase(arg, "monitor-list")
+		CommandLineSwitchCase(arg, "monitor-list_base")
 		{
 			settings->ListMonitors = true;
 		}
@@ -1665,7 +1665,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 				else if (atom == 0)
 				{
 					WLog_ERR(TAG, "Could not identify keyboard on_layout: %s", arg->Value);
-					WLog_ERR(TAG, "Use /kbd-list to list available layouts");
+					WLog_ERR(TAG, "Use /kbd-list_base to list_base available layouts");
 				}
 				if (atom <= 0)
 					return COMMAND_LINE_STATUS_PRINT;

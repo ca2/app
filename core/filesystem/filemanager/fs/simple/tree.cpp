@@ -3,7 +3,7 @@
 #include "impact.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/prototype/data/simple_item.h"
-#include "aura/graphics/image/list.h"
+#include "aura/graphics/image/list_base.h"
 #include "aura/graphics/image/drawing.h"
 #include "aqua/xml/document.h"
 #include "core/user/user/tree.h"

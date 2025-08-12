@@ -18,7 +18,7 @@ typedef array < rdp_event_item > rdp_event_itema;
 
 ::pointer< ::mutex > g_pmutexRdpEvent = nullptr;
 
-map < void *,void *,rdp_event_itema> g_eventmap;
+map_base < void *,void *,rdp_event_itema> g_eventmap;
 
 CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,unsigned int scancode,const ::atom & atom,::int_point pt);
 

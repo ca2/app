@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "networking_bsd/sockets/basic/stream_socket.h"
 #include "apex/networking/sockets/basic/tcp_socket.h"
 #include "networking_bsd/sockets/ssl/ticket_key.h"
-#include "acme/prototype/collection/list.h"
+#include "acme/prototype/collection/list_base.h"
 
 
 #define TCP_BUFSIZE_READ (16400)
@@ -74,7 +74,7 @@ namespace sockets_bsd
    //};
 
 
-   //typedef ::list < OUTPUT *> output_list;
+   //typedef ::list_base < OUTPUT *> output_list;
 
 
    /** socket implementation for TCP.
@@ -95,7 +95,7 @@ namespace sockets_bsd
       \ingroup internal */
       string m_strTlsHostName;
       
-      typedef list<::pointer<output >> output_list;
+      typedef list_base<::pointer<output >> output_list;
 
       ::file::circular_file m_ibuf; ///< Circular input buffer
       string m_strUrl;

@@ -856,7 +856,7 @@ namespace user
 
       //string strPathName;
       //Utf8ToAcp(strPathName, m_wstrPathName);
-      // add it to the file MRU list
+      // add it to the file MRU list_base
       /* xxx if (bAddToMRU)
       guserbase::get(this)->AddToRecentFileList(scopedstrPathName);*/
 

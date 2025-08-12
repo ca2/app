@@ -135,7 +135,7 @@ namespace image
       if (::is_set(pcolor))
       {
 
-         pimage->map();
+         pimage->map_base();
 
          pimage->data()->copy(size, pimage->m_iScan, pcolor, iScan);
 

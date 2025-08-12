@@ -309,7 +309,7 @@ namespace apex
 
       virtual int _debug_logging_report(int iReportType, const ::scoped_string& scopedstrFilename, int iLinenumber,
                                         const ::scoped_string& scopedstrModuleName, const_char_pointer pszFormat,
-                                        va_list list) override;
+                                        va_list list_base) override;
 
 
       virtual bool assert_failed_line(const ::scoped_string& scopedstrFileName, int iLine) override;

@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_BERG document_data_map:
-      virtual public map < ::atom, const ::atom &, ::pointer<::data::data >>
+      virtual public map_base < ::atom, const ::atom &, ::pointer<::data::data >>
    {
    public:
 

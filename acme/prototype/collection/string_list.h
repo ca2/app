@@ -11,7 +11,7 @@ class CLASS_DECL_ACME string_list :
 public:
 
 
-   using RANGE = typename ::list < ::string >::RANGE;
+   using RANGE = typename ::list_base < ::string >::RANGE;
 
 
    string_list();
@@ -40,11 +40,11 @@ public:
 
 
 //template < typename TYPE >
-//inline stream& operator <<(stream& stream, const string_list& list);
+//inline stream& operator <<(stream& stream, const string_list& list_base);
 //
 //
 //template < typename TYPE >
-//inline stream& operator >>(stream& stream, string_list& list);
+//inline stream& operator >>(stream& stream, string_list& list_base);
 
 
 

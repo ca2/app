@@ -85,9 +85,9 @@ namespace platform
 //      //::pointer < ::mutex >                                         m_pmutexStr;
 //      //string_table                                    m_stringtable;
 //      //string_table                                    m_stringtableStd;
-//      //map < atom, atom, string, string >                  m_stringmap;
+//      //map_base < atom, atom, string, string >                  m_stringmap;
 //
-//      //atom_map < ::pointer<::channel >>                m_mapNotify;
+//      //atom_map_base < ::pointer<::channel >>                m_mapNotify;
 //
 //      //::pointer<image_context>                       m_pimagecontext;
 //

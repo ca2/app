@@ -43,7 +43,7 @@ namespace data
 
          m_datamap.erase_item(pdata->id());
 
-         //::acme::map::erase_value(m_datamap, pdata);
+         //::acme::map_base::erase_value(m_datamap, pdata);
 
          return true;
 

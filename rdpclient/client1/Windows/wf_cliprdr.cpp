@@ -852,18 +852,18 @@ void wf_destroy_file_obj(IDataObject* instance);
 //static unsigned int get_local_format_id_by_name(wfClipboard* clipboard, void* format_name)
 //{
 //	int i;
-//	formatMapping* map;
+//	formatMapping* map_base;
 //
 //	for (i = 0; i < clipboard->map_size; i++)
 //	{
-//		map = &clipboard->format_mappings[i];
+//		map_base = &clipboard->format_mappings[i];
 //
 //		if ((clipboard->capabilities & CB_USE_LONG_FORMAT_NAMES) != 0)
 //		{
-//			if (map->name)
+//			if (map_base->name)
 //			{
-//				if (__memcmp(map->name, format_name, wcslen((const ::wide_character *) format_name)) == 0)
-//					return map->local_format_id;
+//				if (__memcmp(map_base->name, format_name, wcslen((const ::wide_character *) format_name)) == 0)
+//					return map_base->local_format_id;
 //			}
 //		}
 //	}
@@ -879,15 +879,15 @@ void wf_destroy_file_obj(IDataObject* instance);
 //static unsigned int get_remote_format_id(wfClipboard* clipboard, unsigned int local_format)
 //{
 //	int i;
-//	formatMapping* map;
+//	formatMapping* map_base;
 //
 //	for (i = 0; i < clipboard->map_size; i++)
 //	{
-//		map = &clipboard->format_mappings[i];
+//		map_base = &clipboard->format_mappings[i];
 //
-//		if (map->local_format_id == local_format)
+//		if (map_base->local_format_id == local_format)
 //		{
-//			return map->remote_format_id;
+//			return map_base->remote_format_id;
 //		}
 //	}
 //
@@ -914,18 +914,18 @@ void wf_destroy_file_obj(IDataObject* instance);
 //static void clear_format_map(wfClipboard* clipboard)
 //{
 //	int i;
-//	formatMapping* map;
+//	formatMapping* map_base;
 //
 //	if (clipboard->format_mappings)
 //	{
 //		for (i = 0; i < clipboard->map_capacity; i++)
 //		{
-//			map = &clipboard->format_mappings[i];
-//			map->remote_format_id = 0;
-//			map->local_format_id = 0;
+//			map_base = &clipboard->format_mappings[i];
+//			map_base->remote_format_id = 0;
+//			map_base->local_format_id = 0;
 //
-//			free(map->name);
-//			map->name = nullptr;
+//			free(map_base->name);
+//			map_base->name = nullptr;
 //		}
 //	}
 //

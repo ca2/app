@@ -2941,7 +2941,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       auto iterator = m_sessionmap.plookup(iEdge);
 
-      if (iterator.is_null())
+      if (!iterator)
       {
 
          return nullptr;
@@ -3002,9 +3002,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    void system::erase_session(::collection::index iEdge)
    {
 
-      auto psession = m_sessionmap[iEdge];
-
-      m_sessionmap.erase_item(iEdge);
+      auto psession = m_sessionmap.pop(iEdge);
 
       if (m_sessionmap.is_empty() && m_bFinalizeIfNoSession)
       {

@@ -752,7 +752,7 @@ namespace user
 //
 //         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
 //
-//         ASSERT_VALID(ptemplate);
+//         ASSERT_OK(ptemplate);
 //
 //      }
 //
@@ -851,7 +851,7 @@ namespace user
          if(pimpact != nullptr)
          {
             
-            ASSERT_VALID(pimpact);
+            ASSERT_OK(pimpact);
 
             while(auto pFrame = pimpact->parent_frame())
             {

@@ -144,7 +144,7 @@ public:
 
 
    class size_map :
-      public string_map < file_size_table::get_fs_size, file_size_table::get_fs_size >
+      public string_map_base < file_size_table::get_fs_size, file_size_table::get_fs_size >
    {
    public:
    };

@@ -14,7 +14,7 @@ FT_Library __ftlibrary();
 // {
 
 
-//    extern CLASS_DECL_AURA string_map < int_to_string > * g_pmapFontFaceName;
+//    extern CLASS_DECL_AURA string_map_base < int_to_string > * g_pmapFontFaceName;
 
 
 //    extern CLASS_DECL_AURA critical_section * g_pcsFont;

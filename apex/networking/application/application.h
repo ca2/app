@@ -17,7 +17,7 @@ namespace networking
    protected:
 
 
-      string_map < ::pointer<::networking::application_handler >>  m_maphandler;
+      string_map_base < ::pointer<::networking::application_handler >>  m_maphandler;
 
 
    public:

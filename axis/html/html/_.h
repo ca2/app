@@ -6,7 +6,7 @@
 
 //
 //
-//typedef string_map < status < ::color::color > > string_to_color;
+//typedef string_map_base < status < ::color::color > > string_to_color;
 //class LiteHTMLEntityResolver;
 //
 
@@ -14,7 +14,7 @@ namespace html
 {
 
 
-   //using string_to_color = string_map < status < ::color::color > >;
+   //using string_to_color = string_map_base < status < ::color::color > >;
 
 
 	//using named_color = string_to_color;

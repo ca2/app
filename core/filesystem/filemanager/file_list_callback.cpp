@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/graphics/draw2d/graphics.h"
-#include "aura/graphics/image/list_base.h"
+#include "aura/graphics/image/list.h"
 #include "aura/graphics/image/imaging.h"
 #include "aura/graphics/image/drawing.h"
 #include "file_list_callback.h"

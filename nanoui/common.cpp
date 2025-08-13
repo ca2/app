@@ -275,7 +275,7 @@ static float emscripten_refresh = 0;
 }
 
 int __nanoui_get_image(::nano2d::context  * pcontext, const ::scoped_string & name, uint8_t * data, uint32_t size) {
-   static string_map < int> icon_cache;
+   static string_map_base < int> icon_cache;
    auto it = icon_cache.plookup(name);
    if (it != icon_cache.end())
       return it->m_element2;

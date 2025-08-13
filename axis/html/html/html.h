@@ -24,7 +24,7 @@ namespace html
 {
 
 
-   using string_to_color = string_map < status < ::color::color > >;
+   using string_to_color = string_map_base < status < ::color::color > >;
 
 
    using named_color = string_to_color;

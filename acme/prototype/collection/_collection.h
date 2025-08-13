@@ -159,8 +159,8 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::
 #include "logic_array.h"
 
 #include "list_base.h"
-#include "comparable_eq_list.h"
-#include "comparable_list.h"
+#include "comparable_eq_list_base.h"
+#include "acme/prototype/collection/comparable_list.h"
 
 
 #include "set_node.h"
@@ -169,12 +169,12 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::
 #include "set.h"
 
 
-#include "map_base.h"
+#include "acme/prototype/collection/map.h"
 
 
 #include "attrib_map.h"
 #include "int_map.h"
-#include "string_map.h"
+#include "acme/prototype/collection/string_map.h"
 #include "strid_map.h"
 #include "map_to_smart_pointer.h"
 #include "fifo_map.h"
@@ -200,15 +200,15 @@ class object_list;              // list_base of matter*
 //   class map_ptr_to_ptr;         // map_base from void * to void *
 //
 //   // Special string variants
-//   class string_list;          // list_base of Strings
+//   class string_list_base;          // list_base of Strings
 //   class CMapStringToPtr;      // map_base from string to void *
 //   class CMapStringToOb;       // map_base from string to matter*
-////   class string_to_string;   // map_base from string to string
+////   class string_to_string_base;   // map_base from string to string
 
 
 
 
-#include "string_list.h"
+#include "acme/prototype/collection/string_list.h"
 
 
 using map_u16_to_ptr = map_base < unsigned short, unsigned short, void *, void * >;
@@ -267,7 +267,7 @@ typedef CLASS_DECL_ACME pointer_array < index_array > index_2darray;
 
 
 
-#include "string_list.h"
+#include "acme/prototype/collection/string_list.h"
 //#include "string_sort_array.h"
 //#include "string_array.h"
 

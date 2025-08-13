@@ -12,7 +12,7 @@
 #include "acme/prototype/media_library/item.h"
 #include "enumerator.h"
 #include "acme/platform/department.h"
-#include "acme/prototype/collection/map_base.h"
+#include "acme/prototype/collection/map.h"
 #include "acme/prototype/collection/string_map.h"
 #include "acme/parallelization/mutex.h"
 
@@ -280,7 +280,7 @@ public:
 
          //} // namespace dir
 
-   virtual string_to_string map_content(const ::file::path & path);
+   virtual string_to_string_base map_content(const ::file::path & path);
    virtual ::string_array_base enumerate_content(const ::file::path & path);
 
 

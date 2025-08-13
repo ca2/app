@@ -84,16 +84,16 @@ namespace user
 
       }
 
-      auto ppair = m_mapDrag.plookup(pitem->m_item);
+      auto pnode = m_mapDrag.plookup(pitem->m_item);
 
-      if (ppair.is_null())
+      if (!pnode)
       {
 
          return nullptr;
 
       }
 
-      return ppair->payload();
+      return pnode->payload();
 
    }
 

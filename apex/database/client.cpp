@@ -496,7 +496,7 @@ namespace database
    void client_array::erase_client(client *pclient)
    {
 
-      erase(pclient);
+      erase_item(pclient);
 
    }
 

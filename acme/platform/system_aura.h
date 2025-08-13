@@ -11,8 +11,9 @@
 #include "application_flags.h"
 #include "acme/constant/gender.h"
 #include "acme/parallelization/_types.h"
-#include "acme/prototype/collection/map_base.h"
+#include "acme/prototype/collection/map.h"
 #include "acme/prototype/prototype/factory.h"
+
 
 namespace platform
 {
@@ -47,7 +48,7 @@ namespace platform
       bool                                              m_bProdevianMouse;
 
 
-      string_map < ::image::image_pointer >             m_mapImage;
+      string_map_base < ::image::image_pointer >             m_mapImage;
 
       ::pointer<::hardware::devices>                    m_phardwaredevices;
 
@@ -795,7 +796,7 @@ virtual ::apex::session * session(::collection::index iEdge = 0) override;*/
 
       virtual void initialize_estamira();
 
-      virtual void _001AddPacks(string_to_string & base64map, string & str);
+      virtual void _001AddPacks(string_to_string_base & base64map, string & str);
 
       //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 

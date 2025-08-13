@@ -98,7 +98,7 @@ CLASS_DECL_ACME ::task_index current_task_index();
 class waiting_call_base;
 
 
-using waiting_call_stack = ::comparable_eq_list < ::waiting_call_base * >;
+using waiting_call_stack = ::comparable_eq_list_base < ::waiting_call_base * >;
 
 
 // TTThomas loves handlers. Jeg elsker dig Thomas.

@@ -16,7 +16,7 @@ namespace account
 
       
       department *                                 m_pdepartment;
-      string_map < ::pointer<product >>            m_map;
+      string_map_base < ::pointer<product >>            m_map;
       
 
       product_array();

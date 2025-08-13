@@ -58,7 +58,7 @@
 //template < typename SEQUENCE >
 //using sequence_step = ::function < void(SEQUENCE *) >;
 
-#include "acme/prototype/collection/list_base.h"
+#include "acme/prototype/collection/list.h"
 
 //
 ////template < typename SEQUENCE >

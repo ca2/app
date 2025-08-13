@@ -72,7 +72,7 @@ namespace platform
 //
 //      //enum_exclusive_instance                              m_eexclusiveinstance;
 //
-//      //string_map < ::pointer<::acme::exclusive >>    m_mapExclusive;
+//      //string_map_base < ::pointer<::acme::exclusive >>    m_mapExclusive;
 //
 //      //bool                                            m_bService;
 //
@@ -83,8 +83,8 @@ namespace platform
 //      ::pointer < ::mutex >                                           m_pmutexMatterLocator;
 //
 //      //::pointer < ::mutex >                                         m_pmutexStr;
-//      //string_table                                    m_stringtable;
-//      //string_table                                    m_stringtableStd;
+//      //string_table_base                                    m_stringtable;
+//      //string_table_base                                    m_stringtableStd;
 //      //map_base < atom, atom, string, string >                  m_stringmap;
 //
 //      //atom_map_base < ::pointer<::channel >>                m_mapNotify;
@@ -136,7 +136,7 @@ namespace platform
 //
 //
 //      //string_array_base                                    m_straAppInterest;
-//      //string_map < oswindow, oswindow >               m_mapAppInterest;
+//      //string_map_base < oswindow, oswindow >               m_mapAppInterest;
 //
 //      //int                                             m_iGcomBackgroundUpdateMillis;
 //

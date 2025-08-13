@@ -538,7 +538,7 @@ namespace user
 
          ::pointer<::user::impact>pimpact = m_impacta[index];
 
-         ASSERT_VALID(pimpact);
+         ASSERT_OK(pimpact);
 
          ASSERT_KINDOF(::user::impact, pimpact);
 
@@ -861,7 +861,7 @@ namespace user
       guserbase::get(this)->AddToRecentFileList(scopedstrPathName);*/
 
 
-      /*   ASSERT_VALID(this);
+      /*   ASSERT_OK(this);
       m_bNew = false;
 
 
@@ -869,14 +869,14 @@ namespace user
 
       ASSERT(!m_strPathName.is_empty());       // must be set to something
       m_bEmbedded = false;
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       // set the document_interface title based on path name
       string strTitle = file()->title_(m_strPathName);
       set_title(strTitle);
 
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       m_bNew = false;*/
    }
@@ -1625,7 +1625,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      //ASSERT_VALID(pframeParam);
+      //ASSERT_OK(pframeParam);
 
       //UNUSED(pframeParam);   // unused in release builds
 
@@ -1636,7 +1636,7 @@ namespace user
 
          ::pointer<::user::impact>pimpact = get_impact(index);
 
-         //ASSERT_VALID(pimpact);
+         //ASSERT_OK(pimpact);
 
          auto pframe = pimpact->parent_frame();
 
@@ -1645,7 +1645,7 @@ namespace user
          {
 
             // assumes 1 document_interface per frame
-            //ASSERT_VALID(pframe);
+            //ASSERT_OK(pframe);
 
             if (pframe->m_puserframewindow->m_nWindow > 0)
             {
@@ -1938,7 +1938,7 @@ namespace user
 
          ::user::impact * pimpact = get_impact(index);
 
-         //ASSERT_VALID(pimpact);
+         //ASSERT_OK(pimpact);
 
          if (pimpact->is_window_visible())
          {
@@ -1966,7 +1966,7 @@ namespace user
 
          ::user::impact * pimpact = get_impact(index);
 
-         //ASSERT_VALID(pimpact);
+         //ASSERT_OK(pimpact);
 
          if (pimpact->is_window_visible())
          {
@@ -1976,7 +1976,7 @@ namespace user
             if (pframe != nullptr && pframe->m_puserframewindow->m_nWindow == -1)
             {
 
-               //ASSERT_VALID(pframe);
+               //ASSERT_OK(pframe);
 
                // not yet counted (give it a 1 based number)
                pframe->m_puserframewindow->m_nWindow = ++nFrames;
@@ -1998,7 +1998,7 @@ namespace user
 
          ::user::impact * pimpact = get_impact(index);
 
-         //ASSERT_VALID(pimpact);
+         //ASSERT_OK(pimpact);
 
          if (pimpact->is_window_visible())   // Do not ::collection::count invisible windows.
          {
@@ -2008,7 +2008,7 @@ namespace user
             if (pframe != nullptr && pframe->m_puserframewindow->m_nWindow == iFrame)
             {
 
-               //ASSERT_VALID(pframe);
+               //ASSERT_OK(pframe);
 
                if (nFrames == 1)
                {
@@ -2067,7 +2067,7 @@ namespace user
       
          _synchronous_lock synchronouslock(this->synchronization());
          
-         //ASSERT_VALID(pimpact);
+         //ASSERT_OK(pimpact);
       
       //auto pszType = typeid(*pimpact).name();
 
@@ -2101,7 +2101,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      //ASSERT_VALID(pimpact);
+      //ASSERT_OK(pimpact);
 
       if(pimpact->get_document() != this)
       {

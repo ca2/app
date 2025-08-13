@@ -13,7 +13,7 @@ namespace simpledb
 
       file_pointer                 m_spfileMeta;
       ::xml::document               m_xmldocumentMeta;
-      string_map < table *, table * > m_mapTable;
+      string_map_base < table *, table * > m_mapTable;
       int                           m_iErrorCode;
 
 

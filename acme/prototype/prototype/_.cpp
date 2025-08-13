@@ -18,10 +18,10 @@ void _debug_debug_string_string()
 }
 
 
-void __assert_particle_ok(const ::particle * pOb, const_char_pointer pszFileName, int nLine)
+void __assert_particle_ok(const ::particle * p, const_char_pointer pszFileName, int nLine)
 {
 
-   if (pOb == nullptr)
+   if (p == nullptr)
    {
 
       if(!__assert_failed_line(pszFileName, nLine))
@@ -35,7 +35,7 @@ void __assert_particle_ok(const ::particle * pOb, const_char_pointer pszFileName
 
    }
 
-   if (!is_memory_segment_ok(pOb, sizeof(::particle)))
+   if (!is_memory_segment_ok(p, sizeof(::particle)))
    {
 
       if (__assert_failed_line(pszFileName, nLine))
@@ -49,7 +49,7 @@ void __assert_particle_ok(const ::particle * pOb, const_char_pointer pszFileName
 
    }
 
-   if (!is_memory_segment_ok(*(const void **)pOb, sizeof(void *)))
+   if (!is_memory_segment_ok(*(const void **)p, sizeof(void *)))
    {
 
       if (!__assert_failed_line(pszFileName, nLine))
@@ -63,7 +63,7 @@ void __assert_particle_ok(const ::particle * pOb, const_char_pointer pszFileName
 
    }
 
-   //pOb->assert_ok();
+   p->assert_particle_ok();
 
 }
 

@@ -18,7 +18,7 @@ namespace colorertake5
    @param lineRegions Linked list_base of LineRegion structures.
    Only region references are used there.
    */
-   void ParsedLineWriter::tokenWrite(stream & markupWriter, stream & textWriter, string_to_string * docLinkHash, const char  *line, LineRegion *lineRegions)
+   void ParsedLineWriter::tokenWrite(stream & markupWriter, stream & textWriter, string_to_string_base * docLinkHash, const char  *line, LineRegion *lineRegions)
    {
       __UNREFERENCED_PARAMETER(docLinkHash);
       ::collection::index pos = 0;
@@ -71,7 +71,7 @@ namespace colorertake5
    @param line Line of text
    @param lineRegions Linked list_base of LineRegion structures
    */
-   void ParsedLineWriter::markupWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const ::string &line, LineRegion *lineRegions)
+   void ParsedLineWriter::markupWrite(stream & markupWriter, stream & textWriter, string_to_string_base *docLinkHash, const ::string &line, LineRegion *lineRegions)
    {
       __UNREFERENCED_PARAMETER(docLinkHash);
 
@@ -131,7 +131,7 @@ namespace colorertake5
    @param line Line of text
    @param lineRegions Linked list_base of LineRegion structures
    */
-   void ParsedLineWriter::htmlRGBWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const ::string &line, LineRegion *lineRegions)
+   void ParsedLineWriter::htmlRGBWrite(stream & markupWriter, stream & textWriter, string_to_string_base *docLinkHash, const ::string &line, LineRegion *lineRegions)
    {
 
       ::collection::index pos = 0;
@@ -204,7 +204,7 @@ namespace colorertake5
       writer << "</span>";
    }
 
-   void ParsedLineWriter::writeHref(stream & writer, string_to_string *docLinkHash, const class scheme *scheme, const string &token, bool start)
+   void ParsedLineWriter::writeHref(stream & writer, string_to_string_base *docLinkHash, const class scheme *scheme, const string &token, bool start)
    {
       string url;
       if (scheme != nullptr)

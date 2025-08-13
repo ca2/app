@@ -42,7 +42,7 @@ namespace user
       ::int_size               m_sizeImage;  // current image int_size
       ::int_size               m_sizeButton; // current button int_size
       bool                 m_bSimpleLayout;
-//      string_to_ptr *      m_pStringMap;  // used as CMapStringTounsigned int
+//      string_to_ptr_base *      m_pStringMap;  // used as CMapStringTounsigned int
 //      //index                m_iButtonPressItem;
 
 

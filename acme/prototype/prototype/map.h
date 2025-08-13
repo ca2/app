@@ -16,16 +16,16 @@
 
 #include "collection/set_node.h"
 #include "collection/map_base.h"
-#include "collection/string_map.h"
+#include "collection/string_map_base.h"
 #include "collection/int_map.h"
 #include "collection/string_to_string_map.h"
 
 
 
 
-using string_to_int_to_string = string_map < int_to_string >;
+using string_to_int_to_string = string_map_base < int_to_string >;
 
-using string_to_string_to_int = string_map < string_to_int >;
+using string_to_string_to_int = string_map_base < string_to_int_base >;
 
 namespace acme
 {

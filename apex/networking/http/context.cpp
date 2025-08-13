@@ -650,7 +650,7 @@ namespace http
          {
             
             //            delete ppair->element2();
-            m_mapPac.erase_item(url);
+            m_mapPac.erase_key(url);
             
          }
 
@@ -719,7 +719,7 @@ namespace http
          {
             
             //            delete ppair->element2();
-            m_mapPac.erase_item(url);
+            m_mapPac.erase_key(url);
             
          }
 

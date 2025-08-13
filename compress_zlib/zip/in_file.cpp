@@ -360,7 +360,7 @@ namespace zip
    memsize in_file::read(void * pdata,memsize nCount)
 
    {
-      //   ASSERT_VALID(this);
+      //   ASSERT_OK(this);
       ASSERT(get_zip_file() != nullptr);
 
       if(nCount == 0)
@@ -383,7 +383,7 @@ namespace zip
       __UNREFERENCED_PARAMETER(pdata);
 
       __UNREFERENCED_PARAMETER(nCount);
-      //ASSERT_VALID(this);
+      //ASSERT_OK(this);
       ASSERT(get_zip_file() != nullptr);
 
       ASSERT(false);

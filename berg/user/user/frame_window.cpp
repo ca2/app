@@ -2210,7 +2210,7 @@ namespace user
    ::user::document * frame_window::get_active_document()
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       ::pointer<::user::impact>pimpact = get_active_impact();
 

@@ -2,7 +2,7 @@
 
 
 ////#include "acme/prototype/prototype/object.h"
-#include "acme/prototype/collection/atom_map_base.h"
+#include "acme/prototype/collection/atom_map.h"
 
 
 namespace user

@@ -6,7 +6,7 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/write_text/font.h"
-#include "aura/graphics/image/list_base.h"
+#include "aura/graphics/image/list.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/user/user/frame_interaction.h"

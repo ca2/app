@@ -207,7 +207,7 @@ namespace user
 
       }
 
-      ASSERT_VALID(pFrame);
+      ASSERT_OK(pFrame);
 
       if(prequest->m_pdata)
       {

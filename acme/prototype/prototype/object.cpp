@@ -11,7 +11,7 @@
 #include "acme/prototype/prototype/set_bit.h"
 //#include "acme/prototype/string/hex.h"
 #include "acme/prototype/text/text.h"
-#include "acme/prototype/collection/atom_map_base.h"
+#include "acme/prototype/collection/atom_map.h"
 #include "acme/parallelization/manual_reset_happening.h"
 #include "acme/parallelization/queue.h"
 #include "acme/parallelization/synchronously_keep_bit.h"
@@ -1477,7 +1477,7 @@ void object::on_notify(::particle * pparticle, enum_id eid)
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_particleaNotify.erase(pparticle);
+      m_particleaNotify.erase_item(pparticle);
 
    }
 

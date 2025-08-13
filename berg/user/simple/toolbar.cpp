@@ -10,7 +10,7 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/context.h"
-#include "aura/graphics/image/list_base.h"
+#include "aura/graphics/image/list.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/message/user.h"
@@ -141,7 +141,7 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 //bool simple_toolbar::create_toolbar(::user::interaction * puiParent, unsigned int dwCtrlStyle, unsigned int uStyle, atom nID)
 //{
 //
-//   ASSERT_VALID(puiParent);   // must have a parent
+//   ASSERT_OK(puiParent);   // must have a parent
 //   ASSERT(!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
 //
 //   //SetBorders(rectangleBorders);
@@ -206,7 +206,7 @@ int_size simple_toolbar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, 
 int_size simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
 {
 
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    ASSERT(is_window());
 
@@ -1148,7 +1148,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
 void simple_toolbar::SetSizes(const ::int_size & sizeButton, const ::int_size & sizeImage)
 {
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    // sizes must be non-zero and positive
    ASSERT(sizeButton.cx() > 0 && sizeButton.cy() > 0);
@@ -1185,7 +1185,7 @@ void simple_toolbar::SetSizes(const ::int_size & sizeButton, const ::int_size & 
 bool simple_toolbar::LoadBitmap(const ::scoped_string & scopedstrResourceName)
 
 {
-ASSERT_VALID(this);
+ASSERT_OK(this);
 ASSERT(scopedstrResourceName != nullptr);
 
 
@@ -2247,7 +2247,7 @@ int_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, unsi
 
    //}
 
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    if (!is_window())
    {

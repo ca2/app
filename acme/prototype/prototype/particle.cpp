@@ -2853,3 +2853,15 @@ string particle::as_string() const
    return ::system();
 
 }
+
+
+
+void particle::assert_particle_ok() const
+{
+
+
+
+}
+
+
+

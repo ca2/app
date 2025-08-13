@@ -80,7 +80,7 @@ void on_term_thread();
 ////   CLASS_DECL_APEX critical_section* g_pcsFont = nullptr;
 ////
 ////
-////   CLASS_DECL_APEX string_to_string * g_pmapFontFaceName = nullptr;
+////   CLASS_DECL_APEX string_to_string_base * g_pmapFontFaceName = nullptr;
 ////
 //
 ////   ::pointer< ::mutex > g_pmutexChildren;
@@ -425,7 +425,7 @@ void on_term_thread();
 //////
 //////      g_pcsFont = ___new critical_section();
 //////
-//////      g_pmapFontFaceName = ___new string_to_string();
+//////      g_pmapFontFaceName = ___new string_to_string_base();
 ////
 ////      //g_pmutexThreadDeferredCreation = aaa_memory_new ::pointer < ::mutex >;
 ////

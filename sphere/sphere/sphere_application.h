@@ -36,7 +36,7 @@ namespace sphere
 
       bool                                         m_bDrawCursor;
 
-      string_map < ::pointer<::experience::experience >> m_mapExperience;
+      string_map_base < ::pointer<::experience::experience >> m_mapExperience;
 
 
       application(::particle * pparticle);

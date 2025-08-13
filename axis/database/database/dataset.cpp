@@ -138,7 +138,7 @@ namespace database
       //   sql = pars.replace(fpattern,by_what);
       //}
 
-      //   string_list before_array, after_array;
+      //   string_list_base before_array, after_array;
       //   int tag = 0;
       //   bool eol_reached = false,
       //        was_changed = false,

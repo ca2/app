@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "map_base.h"
+#include "map.h"
 #include "image.h"
 #include "acme/platform/system.h"
 
@@ -8,7 +8,7 @@ namespace image
 {
 
 
-   ::image::image * image_descriptor_map::operator[](const image_header & key)
+   ::image::image_pointer & image_descriptor_map_base::operator[](const image_header & key)
    {
 
       while (get_count() > m_iLimitCount)
@@ -35,7 +35,7 @@ namespace image
 
 
 
-   void image_descriptor_map::erase_bigger()
+   void image_descriptor_map_base::erase_bigger()
    {
 
       image_header itemFind;
@@ -63,20 +63,20 @@ namespace image
       if (uAreaMax > 0)
       {
 
-         erase_item(itemFind);
+         erase_key(itemFind);
 
       }
       else
       {
 
-         erase_item(this->begin()->item());
+         erase_key(this->begin()->key());
 
       }
 
    }
 
 
-   ::image::image_pointer & size_image::operator[](const ::int_size & size)
+   ::image::image_pointer & size_image_base::operator[](const ::int_size & size)
    {
 
       bool bExists;
@@ -86,7 +86,7 @@ namespace image
    }
 
 
-   ::image::image_pointer & size_image::get(const ::int_size & size, bool & bExists)
+   ::image::image_pointer & size_image_base::get(const ::int_size & size, bool & bExists)
    {
 
       auto & pimage = ::map_base < ::int_size, ::image::image_pointer >::operator [](size);

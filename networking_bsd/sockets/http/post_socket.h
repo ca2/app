@@ -50,7 +50,7 @@ namespace sockets
       };
 
       string                  m_strOverrideBoundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends;
-      string_map < item >     m_map;
+      string_map_base < item >     m_map;
 
       //multipart(::particle * pparticle): ::object(pparticle) {}
       multipart(::object* pparticle) { initialize(pparticle); }

@@ -52,7 +52,7 @@ public:
    sockets::http_session *                   m_phttpsession;
 
 
-   string_map < db_long_set_item >           m_map;
+   string_map_base < db_long_set_item >           m_map;
    bool                                      m_bIndexed;
 
    ::mysql::database *                       m_pmysqldbUser;

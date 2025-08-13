@@ -1882,7 +1882,7 @@ namespace sort
 
 
 //template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-//void comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+//void comparable_list_base<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
 //quick_sort(bool bAscendent)
 //{
 //

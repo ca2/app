@@ -328,6 +328,13 @@ template < typename TYPE1, typename TYPE2, class PAIR = pair < TYPE1, TYPE2 > >
 using map_base = pair_map_base < PAIR >;
 
 
+template<typename MAP_BASE>
+class map_particle;
+
+
+template < typename TYPE1, typename TYPE2, class PAIR = pair < TYPE1, TYPE2 > >
+using map = map_particle < map_base < TYPE1, TYPE2, PAIR > >;
+
 template<class ENUM>
 class flags;
 
@@ -341,13 +348,19 @@ template < typename TYPE, typename PAIR = pair < ::atom, TYPE > >
 using atom_map_base = ::map_base < atom, TYPE, PAIR >;
 
 
+template < typename TYPE >
+class comparable_eq_array_particle;
+
+
+template < typename TYPE >
+class comparable_array_particle;
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array_base < TYPE, ARG_TYPE > >
 class comparable_eq_array_base;
 
 template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array_base < TYPE, ARG_TYPE > >
-using comparable_eq_array = ::array_particle< comparable_eq_array_base< TYPE, ARG_TYPE, ARRAY_TYPE > >;
+using comparable_eq_array = ::comparable_eq_array_particle< comparable_eq_array_base< TYPE, ARG_TYPE, ARRAY_TYPE > >;
 
 
 //template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = array_non_particle < TYPE, ARG_TYPE > >
@@ -359,7 +372,7 @@ class comparable_array_base;
 
 
 template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array_base < TYPE, ARG_TYPE > >
-using comparable_array = ::array_particle< comparable_array_base< TYPE, ARG_TYPE, ARRAY_TYPE > >;
+using comparable_array = ::comparable_array_particle< comparable_array_base< TYPE, ARG_TYPE, ARRAY_TYPE > >;
 
 
 //template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = non_particle_comparable_eq_array < TYPE, ARG_TYPE > >

@@ -151,7 +151,7 @@ inline sequence_continuation particle::async()
 
 
 
-   template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
 ::collection::count base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::_allocate(::collection::count nNewSize, bool bShrink, bool bRaw, const TYPE * ptype)
 {
 
@@ -536,3 +536,91 @@ inline sequence_continuation particle::async()
    return countOld;
 
 }
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
+void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_base_ok() const
+{
+
+   if (this->m_begin)
+   {
+
+      ASSERT(this->m_end);
+
+      ASSERT(this->m_countAllocation > 0);
+
+   }
+   else
+   {
+
+      ASSERT(!this->m_end);
+
+      ASSERT(this->m_earray & e_array_preallocated || this->m_countAllocation == 0);
+
+   }
+
+}
+
+
+
+template < class TYPE, class ARG_TYPE >
+void list_base < TYPE, ARG_TYPE >::list_base_ok() const
+{
+
+   if (this->m_begin)
+   {
+
+      ASSERT(this->m_end);
+
+      ASSERT(this->m_count > 0);
+
+   }
+   else
+   {
+
+      ASSERT(!this->m_end);
+
+      ASSERT(this->m_count == 0);
+
+   }
+
+}
+
+
+
+
+template < typename ITEM >
+void node_set_base < ITEM >::container_ok() const
+{
+
+   if (this->m_begin)
+   {
+
+      ASSERT(this->m_end);
+
+      ASSERT(this->m_count > 0);
+
+   }
+   else
+   {
+
+      ASSERT(!this->m_end);
+
+      ASSERT(this->m_count == 0);
+
+   }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

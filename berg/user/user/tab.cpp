@@ -16,7 +16,7 @@
 #include "acme/prototype/data/listener.h"
 #include "acme/platform/timer.h"
 #include "acme/user/user/drag.h"
-#include "aura/graphics/image/list_base.h"
+#include "aura/graphics/image/list.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/system.h"
 #include "aura/user/user/interaction_array.h"

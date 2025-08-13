@@ -37,7 +37,7 @@ namespace aura
       // bool                                              m_bProdevianMouse;
       //
       //
-      // string_map < ::image::image_pointer >             m_mapImage;
+      // string_map_base < ::image::image_pointer >             m_mapImage;
       //
       // ::pointer<::hardware::devices>                    m_phardwaredevices;
       //
@@ -790,7 +790,7 @@ namespace aura
 
       virtual void initialize_estamira() override;
 
-      virtual void _001AddPacks(string_to_string& base64map, string& str) override;
+      virtual void _001AddPacks(string_to_string_base& base64map, string& str) override;
 
       //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 

@@ -14,7 +14,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/fs/set.h"
 #include "apex/platform/context.h"
-#include "aura/graphics/image/list_base.h"
+#include "aura/graphics/image/list.h"
 #include "aura/user/user/shell.h"
 #include "aura/template/list_base.h"
 #include "berg/user/user/user.h"

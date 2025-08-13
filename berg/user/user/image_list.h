@@ -22,7 +22,7 @@ namespace user
       bool                                m_bLabel;
       int                               m_iLabelHeight;
       ::e_align                           m_ealign;
-      string_to_string                    m_mapName;
+      string_to_string_base                    m_mapName;
 
       ::pointer<::image::image_array>     m_pimagea;
       ::pointer<::image::image_array>     m_pimageaThumb;

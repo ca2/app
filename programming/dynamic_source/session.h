@@ -42,7 +42,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_APP_PROGRAMMING session_map :
-      virtual public string_map < ::pointer<session >>
+      virtual public string_map_base < ::pointer<session >>
    {
    public:
 

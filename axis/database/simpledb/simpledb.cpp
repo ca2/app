@@ -375,7 +375,7 @@ namespace simpledb
 
          }
 
-         string_map < class item >::iterator iterator{};
+         string_map_base < class item >::iterator iterator{};
 
          {
 

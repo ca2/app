@@ -80,6 +80,8 @@ public:
    auto & topic() { return this->m_p->topic(); }
    auto & topic() const { return this->m_p->topic(); }
 
+   auto & item() { return this->m_p->item(); }
+   auto & item() const { return this->m_p->item(); }
 
    auto & operator= (TYPE * p) { m_p = p; return *this; }
    auto & operator= (iterator p) { m_p = p.get(); return *this; }
@@ -91,12 +93,12 @@ public:
    auto transfer_topic() { return ::transfer(this->m_p->transfer_topic()); }
 
 
-   auto & operator *() { return *topic(); }
-   auto & operator *() const { return *topic(); }
+   auto & operator *() { return this->item(); }
+   auto & operator *() const { return this->item(); }
 
 
-   auto operator ->() { return topic(); }
-   auto operator ->() const { return topic(); }
+   auto operator ->() { return &this->item(); }
+   auto operator ->() const { return &this->item(); }
 
 
 };
@@ -140,18 +142,20 @@ public:
    auto & topic() { return this->m_p->topic(); }
    auto & topic() const { return this->m_p->topic(); }
 
+   auto & item() { return this->m_p->item(); }
+   auto & item() const { return this->m_p->item(); }
 
    auto & operator = (const ITEM_POINTER p) { m_p = p; return *this; }
    auto & operator = (const iterator & p) { m_p = p.get(); return *this; }
    auto & operator = (const const_iterator & p) { m_p = p.get(); return *this; }
 
 
-   auto & operator *() { return *topic(); }
-   auto & operator *() const { return *topic(); }
+   auto & operator *() { return this->item(); }
+   auto & operator *() const { return this->item(); }
 
 
-   auto operator ->() { return topic(); }
-   auto operator ->() const { return topic(); }
+   auto operator ->() { return &this->item(); }
+   auto operator ->() const { return &this->item(); }
 
 
 };

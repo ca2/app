@@ -257,7 +257,7 @@ namespace aura
 ////
 ////#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && !::__assert_failed_line(__FILE__, __LINE__) && (::debug_break(), 0)) || (!is_debugger_attached() && (throw_assert_exception(__FILE__, __LINE__), 0))))
 ////#define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
-////#define ASSERT_VALID(pOb)  ::__assert_particle_ok(pOb, __FILE__, __LINE__)
+////#define ASSERT_OK(p)  ::__assert_particle_ok(p, __FILE__, __LINE__)
 ////
 ////
 ////#else
@@ -266,13 +266,13 @@ namespace aura
 ////#define ASSERT(f)
 ////#define _ASSUME(cond)
 ////#if defined(__ANDROID__)
-////#define ASSERT_VALID(cond)
+////#define ASSERT_OK(cond)
 ////#elif defined(__APPLE__)
-////#define ASSERT_VALID(cond)
+////#define ASSERT_OK(cond)
 ////#elif defined(LINUX)
-////#define ASSERT_VALID(cond)
+////#define ASSERT_OK(cond)
 ////#else
-////#define ASSERT_VALID(cond) __noop;
+////#define ASSERT_OK(cond) __noop;
 ////#endif
 ////#endif
 ////

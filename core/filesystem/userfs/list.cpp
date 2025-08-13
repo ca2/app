@@ -13,7 +13,7 @@
 #include "acme/prototype/data/listener.h"
 #include "apex/filesystem/fs/data.h"
 #include "apex/filesystem/fs/set.h"
-#include "aura/graphics/image/list_base.h"
+#include "aura/graphics/image/list.h"
 #include "aura/user/user/shell.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/user/user/frame_interaction.h"

@@ -73,7 +73,7 @@ namespace geo
       bool                                                  m_bCityWeatherModified;
 
 
-      //string_map < time_zone >      m_countryTimeZone;
+      //string_map_base < time_zone >      m_countryTimeZone;
 
       string_array_base                                       m_straCityLo;
       string_array_base                                       m_straCity;
@@ -81,7 +81,7 @@ namespace geo
       double_array                                       m_daLon;
       double_array                                       m_daLat;
 
-      string_map < openweather_city* >                  m_mapCity;
+      string_map_base < openweather_city* >                  m_mapCity;
 
 
       geo();

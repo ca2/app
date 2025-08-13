@@ -3,7 +3,7 @@
 
 
 #include "acme/platform/acme.h"
-#include "acme/prototype/collection/map_base.h"
+#include "acme/prototype/collection/map.h"
 
 
 namespace heap

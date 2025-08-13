@@ -559,7 +559,7 @@ namespace colorertake5
             }
             else
             {
-               string_map<scheme_impl *>::pair * ppair = schemeHash.plookup(schemeName);
+               string_map_base<scheme_impl *>::pair * ppair = schemeHash.plookup(schemeName);
                if(ppair == nullptr)
                {
                   next->scheme = nullptr;
@@ -871,7 +871,7 @@ namespace colorertake5
       while(structureChanged)
       {
          structureChanged = false;
-         for(string_map<scheme_impl *>::pair * scheme = schemeHash.get_start(); scheme != nullptr; scheme = schemeHash.get_next(scheme))
+         for(string_map_base<scheme_impl *>::pair * scheme = schemeHash.get_start(); scheme != nullptr; scheme = schemeHash.get_next(scheme))
          {
 
             if (!scheme->element2()->fileType->loadDone) continue;
@@ -885,7 +885,7 @@ namespace colorertake5
                   string schemeName = qualifyForeignName(snode->schemeName, QNT_SCHEME, true);
                   if (schemeName.has_character())
                   {
-                     string_map<scheme_impl *>::pair * ppair = schemeHash.plookup(schemeName);
+                     string_map_base<scheme_impl *>::pair * ppair = schemeHash.plookup(schemeName);
                      if(ppair == nullptr)
                      {
                         snode->scheme = nullptr;
@@ -916,7 +916,7 @@ namespace colorertake5
                         string vsn = qualifyForeignName(vt->virtSchemeName, QNT_SCHEME, true);
                         if (vsn.has_character())
                         {
-                           string_map<scheme_impl *>::pair * ppair = schemeHash.plookup(vsn);
+                           string_map_base<scheme_impl *>::pair * ppair = schemeHash.plookup(vsn);
                            if(ppair == nullptr)
                            {
                               vt->virtScheme = nullptr;
@@ -941,7 +941,7 @@ namespace colorertake5
                         string vsn = qualifyForeignName(vt->substSchemeName, QNT_SCHEME, true);
                         if (vsn.has_character())
                         {
-                           string_map<scheme_impl *>::pair * ppair = schemeHash.plookup(vsn);
+                           string_map_base<scheme_impl *>::pair * ppair = schemeHash.plookup(vsn);
                            if(ppair == nullptr)
                            {
                               vt->substScheme = nullptr;

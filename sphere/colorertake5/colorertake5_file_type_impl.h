@@ -113,9 +113,9 @@ namespace colorertake5
       scheme_impl *baseScheme;
 
       address_array < FileTypeChooser * > chooserVector;
-      string_to_string paramDefaultHash;
-      string_to_string paramHash;
-      string_to_string paramDescriptionHash;
+      string_to_string_base paramDefaultHash;
+      string_to_string_base paramHash;
+      string_to_string_base paramDescriptionHash;
       string_array_base paramVector;
       string_array_base importVector;
       string    m_strSourceLocation;

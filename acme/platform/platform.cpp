@@ -821,7 +821,7 @@ g_bWindowingOutputDebugString = true;
 
       critical_section_lock cs(&m_criticalsection);
 
-      auto p = m_pfactory->find_item(atom);
+      auto p = m_pfactory->find_node(atom);
 
       if (!p)
       {

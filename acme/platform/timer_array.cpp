@@ -89,18 +89,18 @@ namespace acme
 
          _synchronous_lock synchronouslock(this->synchronization());
 
-         auto pair = m_timermap.plookup(uEvent);
+         auto pnode = m_timermap.plookup(uEvent);
 
-         if (pair.is_null())
+         if (!pnode)
          {
 
             return true;
 
          }
 
-         ptimer = pair->element2();
+         ptimer = pnode->element2();
 
-         m_timermap.erase_item(uEvent);
+         m_timermap.erase(pnode);
 
       }
 
@@ -121,21 +121,21 @@ namespace acme
 
          uptr uTimer = ptimer->m_uTimer;
 
-         auto pair = m_timermap.plookup(uTimer);
+         auto pnode = m_timermap.plookup(uTimer);
 
-         if (pair.is_null())
+         if (!pnode)
          {
 
             return;
 
          }
 
-         auto ptimerMapped = pair->element2();
+         auto ptimerMapped = pnode->element2();
 
          if(ptimerMapped == ptimer)
          {
 
-            m_timermap.erase_item(uTimer);
+            m_timermap.erase(pnode);
 
          }
 

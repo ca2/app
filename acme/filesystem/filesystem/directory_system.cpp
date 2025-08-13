@@ -1298,10 +1298,10 @@ void directory_system::erase_recursively(const ::file::path &path)
 }
 
 
-string_to_string directory_system::map_content(const ::file::path & path)
+string_to_string_base directory_system::map_content(const ::file::path & path)
 {
 
-   ::string_to_string stringmap;
+   ::string_to_string_base stringmap;
 
    ::file::listing_base listing;
 

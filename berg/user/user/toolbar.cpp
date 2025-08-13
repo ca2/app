@@ -224,7 +224,7 @@ namespace user
 //   bool toolbar::create_toolbar(::user::interaction * puiParent,unsigned int dwCtrlStyle,unsigned int uStyle, atom nID)
 //   {
 //
-//      ASSERT_VALID(puiParent);   // must have a parent
+//      ASSERT_OK(puiParent);   // must have a parent
 //      ASSERT (!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
 //
 //      //SetBorders(rectangleBorders);
@@ -258,7 +258,7 @@ namespace user
    void toolbar::set_owner(::user::interaction * pinteractionNewOwner)
    {
       //#ifdef WINDOWS_DESKTOP
-      //      ASSERT_VALID(this);
+      //      ASSERT_OK(this);
       //      ASSERT(is_window());
       //      default_window_procedure(TB_SETPARENT, (WPARAM)pOwnerWnd.m_p, 0);
       //#else
@@ -274,7 +274,7 @@ namespace user
    void toolbar::SetSizes(const ::int_size & sizeButton, const ::int_size & sizeImage)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       // sizes must be non-zero and positive
       ASSERT(sizeButton.cx() > 0 && sizeButton.cy() > 0);
@@ -309,7 +309,7 @@ namespace user
    void toolbar::SetHeight(::collection::index cyHeight)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       ::collection::index nHeight = cyHeight;
       if (m_dwStyle & CBRS_BORDER_TOP)
@@ -340,7 +340,7 @@ namespace user
    //
    //   bool toolbar::from(HBITMAP hbmImageWell)
    //   {
-   //      ASSERT_VALID(this);
+   //      ASSERT_OK(this);
    //      ASSERT(hbmImageWell != nullptr);
    //
    //      // the caller must manage changing system colors
@@ -398,7 +398,7 @@ namespace user
 
       //#ifdef WINDOWS_DESKTOP
       //
-      //      ASSERT_VALID(this);
+      //      ASSERT_OK(this);
       //
       //      ASSERT(nIDCount >= 1);  // must be at least one of them
       //
@@ -535,7 +535,7 @@ namespace user
    ////
    ////   index toolbar::CommandToIndex(unsigned int nIDFind)
    ////   {
-   ////      ASSERT_VALID(this);
+   ////      ASSERT_OK(this);
    ////      ASSERT(is_window());
    ////
    ////#ifdef WINDOWS_DESKTOP
@@ -548,7 +548,7 @@ namespace user
 
    //   unsigned int toolbar::GetItemID(index nIndex)
    //   {
-   //      ASSERT_VALID(this);
+   //      ASSERT_OK(this);
    //      ASSERT(is_window());
    //
    ////#ifdef WINDOWS_DESKTOP
@@ -564,7 +564,7 @@ namespace user
    //   void toolbar::GetItemRect(index nIndex, ::int_rectangle * prectangle)
    //
    //   {
-   //      ASSERT_VALID(this);
+   //      ASSERT_OK(this);
    //      ASSERT(is_window());
    //
    //      // handle any delayed on_layout
@@ -982,7 +982,7 @@ namespace user
    int_size toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, unsigned int dwMode, ::collection::index nLength)
    {
       //#ifdef WINDOWS_DESKTOP
-      //      ASSERT_VALID(this);
+      //      ASSERT_OK(this);
       //      ASSERT(is_window());
       //      if (dwMode & LM_HORZDOCK)
       //         ASSERT(dwMode & LM_HORZ);
@@ -1259,7 +1259,7 @@ namespace user
    ::collection::index toolbar::tool_item_image(const ::atom & atom)
    {
       //#ifdef WINDOWS_DESKTOP
-      //      ASSERT_VALID(this);
+      //      ASSERT_OK(this);
       //      ASSERT(is_window());
       //
       //      TBBUTTON button;
@@ -1277,7 +1277,7 @@ namespace user
 
    //   void toolbar::SetButtonInfo(const ::atom & atom, unsigned int nID, unsigned int nStyle, ::collection::index iImage)
    //   {
-   //      ASSERT_VALID(this);
+   //      ASSERT_OK(this);
    ////#ifdef WINDOWS_DESKTOP
    ////      TBBUTTON button;
    ////      _GetButton(nIndex, &button);
@@ -1318,7 +1318,7 @@ namespace user
 //      {
 //         // initialize map_base if necessary
 //         if (m_pStringMap == nullptr)
-//            m_pStringMap = ___new string_to_ptr();
+//            m_pStringMap = ___new string_to_ptr_base();
 //
 //         string str;
 //         str = pszText;
@@ -1781,7 +1781,7 @@ namespace user
    int_size toolbar::CalcSimpleLayout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       ASSERT(is_window());
 
       ::int_size sizeResult(0, 0);

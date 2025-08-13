@@ -2341,6 +2341,7 @@
     <ClInclude Include="prototype\string\_impl_string_base_allocation.h" />
     <ClInclude Include="prototype\time\__time.h" />
     <ClInclude Include="release\_.h" />
+    <ClInclude Include="template\list.h" />
     <ClInclude Include="user\menu\menu.h" />
     <ClInclude Include="user\menu\_.h" />
     <ClInclude Include="user\micro\aaa_brush.h" />

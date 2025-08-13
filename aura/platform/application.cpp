@@ -1014,7 +1014,7 @@ namespace aura
 
    //   string strString;
 
-   //   ::pointer<string_to_string>pmap;
+   //   ::pointer<string_to_string_base>pmap;
 
    //   auto pFind = 0;
 
@@ -4676,7 +4676,7 @@ retry_license:
 
    //   _synchronous_lock synchronouslock(m_pmutexStr);
 
-   //   ::pointer<string_to_string>pmap;
+   //   ::pointer<string_to_string_base>pmap;
 
    //   if (m_stringtableStd.lookup(strTable, pmap))
    //   {
@@ -6553,7 +6553,7 @@ namespace aura
    /*   void application::LoadStdProfileSettings(unsigned int nMaxMRU)
    {
    __UNREFERENCED_PARAMETER(nMaxMRU);
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    // 0 by default means not set
    m_nNumThumbnailPages = GetProfileInt(gen_ThumbnailSection, gen_ThumbnailEntry, 0);
@@ -6692,7 +6692,7 @@ namespace aura
 
    //void application::SaveStdProfileSettings()
    //{
-   //   ASSERT_VALID(this);
+   //   ASSERT_OK(this);
 
 
    //   //      if (m_nNumThumbnailPages != 0)
@@ -7804,7 +7804,7 @@ namespace aura
    //   //ASSERT(::windows_definition::CurrentInstanceHandle == m_hInstance);
 
    //   /*      if (m_pdocmanager != nullptr)
-   //   ASSERT_VALID(m_pdocmanager);*/
+   //   ASSERT_OK(m_pdocmanager);*/
    //}
 
    //   void application::dump(dump_context& dumpcontext) const

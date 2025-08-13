@@ -76,102 +76,8 @@ DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
 #define DECLARE_ARRAY_OF(ARRAY, ITEM, TYPE) \
 DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
 
-template < typename TYPE >
-class pointer_rear_iterator
-{
-public:
 
-
-   using ITEM = non_const < TYPE >;
-   using ITEM_POINTER = ITEM *;
-
-   using iterator = ::pointer_rear_iterator < ITEM >;
-   using const_iterator = ::pointer_rear_iterator < const ITEM >;
-
-
-   TYPE* m_p;
-
-
-   pointer_rear_iterator() { m_p = nullptr; }
-   pointer_rear_iterator(const ITEM * p) { m_p = (TYPE *) p; }
-   pointer_rear_iterator(const iterator & i) { m_p = (TYPE *)i.m_p; }
-   pointer_rear_iterator(const const_iterator & i) { m_p = (TYPE *)i.m_p; }
-
-
-   auto& operator *() { return *m_p; }
-   auto& operator *() const { return *m_p; }
-   auto operator ->() { return m_p; }
-   auto operator ->() const { return m_p; }
-
-   pointer_rear_iterator & operator ++()
-   {
-      m_p--;
-      return *this;
-
-   }
-   pointer_rear_iterator& operator --()
-   {
-      m_p++;
-      return *this;
-
-   }
-
-   pointer_rear_iterator operator ++(int)
-   {
-      auto p = *this;
-      m_p--;
-
-      return p;
-
-   }
-   pointer_rear_iterator operator --(int)
-   {
-      auto p = *this;
-      m_p++;
-
-      return p;
-
-   }
-   template < primitive_integral INTEGRAL >
-   pointer_rear_iterator operator +(INTEGRAL i)
-   {
-
-      return m_p - i;
-
-   }
-   template < primitive_integral INTEGRAL >
-   pointer_rear_iterator operator -(INTEGRAL i)
-   {
-
-      return m_p + i;
-
-   }
-
-   template < primitive_integral INTEGRAL >
-   pointer_rear_iterator & operator +=(INTEGRAL i)
-   {
-      m_p -= i;
-      return *this;
-
-   }
-   template < primitive_integral INTEGRAL >
-   pointer_rear_iterator & operator -=(INTEGRAL i)
-   {
-      m_p += i;
-      return *this;
-
-   }
-
-
-   bool operator ==(const pointer_rear_iterator& p) const { return m_p == p.m_p; }
-   bool operator ==(const TYPE * p) const { return m_p == p; }
-   ::std::strong_ordering operator <=>(const pointer_rear_iterator& p) const { return this->m_p <=> p.m_p; }
-
-   ::collection::count operator - (const pointer_rear_iterator& p) const { return this->m_p - p.m_p; }
-
-};
-
-
+#include "acme/prototype/collection/rear_iterator.h"
 
 enum enum_array : unsigned long long
 {
@@ -286,6 +192,116 @@ public:
    }
 
 
+   base_array & operator += (const TYPE & t)
+   {
+
+      this->add_item(t);
+
+      return *this;
+
+   }
+
+
+   base_array & operator += (const base_array & a)
+   {
+
+      if (this != &a)
+      {
+
+         auto i = this->size();
+
+         auto add = a.size();
+
+         auto c = i + add;
+
+         set_size(c);
+
+         auto ptarget = this->data() + i;
+
+         auto psource = a.data();
+
+         while(add > 0)
+         {
+
+            *ptarget = *psource;
+
+            ptarget++;
+
+            psource++;
+
+            add--;
+
+         }
+
+      }
+
+      return *this;
+
+   }
+
+
+   base_array & operator += (base_array && base_array)
+   {
+
+      if (this != &base_array)
+      {
+
+         auto i = this->size();
+
+         auto add = base_array.size();
+
+         transfer(i, add, ::transfer(base_array));
+
+      }
+
+      return *this;
+
+   }
+
+
+   template < primitive_array ARRAY >
+   base_array & operator += (const ARRAY & a)
+   {
+
+      auto i = this->size();
+
+      auto add = a.size();
+
+      auto c = i + add;
+
+      this->set_size(c);
+
+      ::collection::index j = 0;
+
+      auto p = a.data();
+
+       for (; i < c; i++, p++)
+       {
+
+          this->element_at(i) = *p;
+
+       }
+
+       return *this;
+
+   }
+
+
+   base_array & operator += (const std::initializer_list < TYPE > & initializer_list)
+   {
+
+      for (auto & item : initializer_list)
+      {
+
+         this->add(item);
+
+      }
+
+      return *this;
+
+   }
+
+
    base_array & operator = (const base_array & a)
    {
 
@@ -339,16 +355,16 @@ public:
    base_array & operator = (const ARRAY & a)
    {
 
-       this->set_size(a.size());
+      this->set_size(a.size());
 
-       for (::collection::index i = 0; i < this->size(); i++)
-       {
+      for (::collection::index i = 0; i < this->size(); i++)
+      {
 
-          this->element_at(i) = a[i];
+         this->element_at(i) = a[i];
 
-       }
+      }
 
-       return *this;
+      return *this;
 
    }
 
@@ -416,6 +432,30 @@ public:
          m_countAddUp = a.m_countAddUp;
 
          m_countAllocation = a.m_countAllocation;
+
+      }
+
+      return *this;
+
+   }
+
+
+   inline base_array & transfer(::collection::index i, ::collection::count add, base_array && a, collection::index j = 0)
+   {
+
+      if (this != &a)
+      {
+
+         auto c = i + add;
+
+         set_size(c);
+
+         for (; i < c; i++, j++)
+         {
+
+            this->element_at(i) = a[j];
+
+         }
 
       }
 
@@ -2205,7 +2245,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::collection::index nIndex, ::collection::count nCount)
 {
 
-   //ASSERT_VALID(this);
+   //ASSERT_OK(this);
 
    ::collection::index nUpperBound = nIndex + nCount;
 

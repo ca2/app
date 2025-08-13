@@ -1192,7 +1192,7 @@ namespace application_build_helper
    }
 
 
-   void application_build_helper::load_map(string_to_string & map_base, const ::scoped_string & scopedstrMap, const ::scoped_string & scopedstrRoot)
+   void application_build_helper::load_map(string_to_string_base & map_base, const ::scoped_string & scopedstrMap, const ::scoped_string & scopedstrRoot)
    {
 
       ::file::path pathMapBase;

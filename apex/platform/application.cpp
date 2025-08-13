@@ -686,7 +686,7 @@ namespace apex
       else
       {
 
-         m_particleaddressaEventHook.erase(pparticle);
+         m_particleaddressaEventHook.erase_item(pparticle);
 
       }
 
@@ -3853,7 +3853,7 @@ namespace apex
                   pathPreviousLocation))
                {
 
-                  pida.erase(pid);
+                  pida.erase_item(pid);
 
                   break;
 
@@ -5821,7 +5821,7 @@ namespace apex
 
    //   _synchronous_lock synchronouslock(m_pmutexStr);
 
-   //   ::pointer<string_to_string>pmap;
+   //   ::pointer<string_to_string_base>pmap;
 
    //   if (m_stringtableStd.lookup(strTable, pmap))
    //   {
@@ -8124,7 +8124,7 @@ namespace apex
    /*   void application::LoadStdProfileSettings(unsigned int nMaxMRU)
    {
    __UNREFERENCED_PARAMETER(nMaxMRU);
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    // 0 by default means not set
    m_nNumThumbnailPages = GetProfileInt(gen_ThumbnailSection, gen_ThumbnailEntry, 0);
@@ -8263,7 +8263,7 @@ namespace apex
    //
    //void application::SaveStdProfileSettings()
    //{
-   //ASSERT_VALID(this);
+   //ASSERT_OK(this);
    //
    //
    ////      if (m_nNumThumbnailPages != 0)
@@ -9378,7 +9378,7 @@ namespace apex
    //   //ASSERT(::windows_definition::CurrentInstanceHandle == m_hInstance);
 
    //   /*      if (m_pdocmanager != nullptr)
-   //   ASSERT_VALID(m_pdocmanager);*/
+   //   ASSERT_OK(m_pdocmanager);*/
    //}
 
    //   void application::dump(dump_context& dumpcontext) const

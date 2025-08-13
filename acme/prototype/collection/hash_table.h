@@ -5,24 +5,24 @@
 #include "set_node.h"
 
 
-template < typename PAYLOAD, const int DEFAULT_HASH_TABLE_SIZE = 17 >
+template < typename ITEM, const int DEFAULT_HASH_TABLE_SIZE = 17 >
 class set_dynamic_hash_table
 {
 public:
 
 
-   using node = set_node < PAYLOAD >;
+   using BASE_NODE = set_node < ITEM >;
 
-   using ITEM = node;
+   using BASE_ITEM = ITEM;
 
    using ITEM_POINTER = ITEM *;
 
    using iterator = ::list_iterator < ITEM_POINTER >;
 
 
-   iterator          m_pHashDefault[DEFAULT_HASH_TABLE_SIZE];
-   iterator *        m_ppHash;
-   unsigned int             m_nHashTableSize;
+   BASE_NODE *          m_pHashDefault[DEFAULT_HASH_TABLE_SIZE];
+   BASE_NODE **         m_ppHash;
+   unsigned int         m_nHashTableSize;
 
 
    set_dynamic_hash_table()
@@ -74,7 +74,7 @@ public:
          else
          {
 
-            m_ppHash = __raw_new iterator[nHashSize];
+            m_ppHash = __raw_new BASE_NODE *[nHashSize];
 
             ENSURE(m_ppHash != nullptr);
 

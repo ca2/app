@@ -1,18 +1,18 @@
 #include "framework.h"
-#include "string_list.h"
+#include "acme/prototype/collection/string_list.h"
 
 
-string_list::string_list()
-{
-}
+//string_list_base::string_list_base()
+//{
+//}
+//
+//
+//string_list_base::~string_list_base()
+//{
+//}
 
 
-string_list::~string_list()
-{
-}
-
-
-void string_list::implode(string & str, const ::scoped_string & scopedstrSeparator, ::collection::index start, ::collection::count count) const
+void string_list_base::implode(string & str, const ::scoped_string & scopedstrSeparator, ::collection::index start, ::collection::count count) const
 {
 
    str.empty();
@@ -62,7 +62,7 @@ void string_list::implode(string & str, const ::scoped_string & scopedstrSeparat
 }
 
 
-string string_list::implode(const ::scoped_string & scopedstrSeparator, ::collection::index iStart, ::collection::index iEnd) const
+string string_list_base::implode(const ::scoped_string & scopedstrSeparator, ::collection::index iStart, ::collection::index iEnd) const
 {
 
    string str;
@@ -74,7 +74,7 @@ string string_list::implode(const ::scoped_string & scopedstrSeparator, ::collec
 }
 
 
-void string_list::reverse_implode(string & str, const ::scoped_string & scopedstrSeparator, ::collection::index start, ::collection::count count) const
+void string_list_base::reverse_implode(string & str, const ::scoped_string & scopedstrSeparator, ::collection::index start, ::collection::count count) const
 
 {
 
@@ -125,7 +125,7 @@ void string_list::reverse_implode(string & str, const ::scoped_string & scopedst
 }
 
 
-string string_list::reverse_implode(const ::scoped_string & scopedstrSeparator, ::collection::index iStart, ::collection::index iEnd) const
+string string_list_base::reverse_implode(const ::scoped_string & scopedstrSeparator, ::collection::index iStart, ::collection::index iEnd) const
 {
 
    string str;
@@ -137,7 +137,7 @@ string string_list::reverse_implode(const ::scoped_string & scopedstrSeparator, 
 }
 
 
-void string_list::explode(const ::scoped_string & scopedstrSeparator, const ::scoped_string & scopedstr)
+void string_list_base::explode(const ::scoped_string & scopedstrSeparator, const ::scoped_string & scopedstr)
 {
 
    erase_all();
@@ -147,7 +147,7 @@ void string_list::explode(const ::scoped_string & scopedstrSeparator, const ::sc
 }
 
 
-void string_list::add_tail_tokens(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSeparator, bool bAddEmpty)
+void string_list_base::add_tail_tokens(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSeparator, bool bAddEmpty)
 {
    
    ::tokenizer tokenizer(scopedstr);

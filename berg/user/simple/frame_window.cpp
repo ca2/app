@@ -3555,7 +3555,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //
 //void simple_frame_window::NotifyFloatingWindows(unsigned int dwFlags)
 //{
-//   ASSERT_VALID(this);
+//   ASSERT_OK(this);
 //   // trans   ASSERT(get_handle() != nullptr);
 //
 //   // get top level parent frame u first unless this is a child u

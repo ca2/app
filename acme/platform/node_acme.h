@@ -81,7 +81,7 @@ namespace platform
       string m_strIconTheme;
 
       map_base<enum_character_set, ::string> m_mapCharacterSetDefaultSampleText;
-      string_map<enum_character_set> m_mapCharacterSetEnum;
+      string_map_base<enum_character_set> m_mapCharacterSetEnum;
 
       ::os_theme_colors* m_pthemecolors;
 
@@ -112,7 +112,7 @@ namespace platform
 
 
       enum_application_capability_array m_eapplicationcapabilitya;
-      string_map<::pointer<::acme::exclusive>> m_mapExclusive;
+      string_map_base<::pointer<::acme::exclusive>> m_mapExclusive;
 
 
    };

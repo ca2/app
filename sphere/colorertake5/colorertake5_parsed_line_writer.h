@@ -19,7 +19,7 @@ namespace colorertake5
       @param lineRegions Linked list_base of LineRegion structures.
       Only region references are used there.
       */
-      static void tokenWrite(stream & markupWriter, stream & textWriter, string_to_string * docLinkHash, const char  *line, LineRegion *lineRegions);
+      static void tokenWrite(stream & markupWriter, stream & textWriter, string_to_string_base * docLinkHash, const char  *line, LineRegion *lineRegions);
 
       /** write specified line of text using list_base of LineRegion's.
       This method uses text fields of LineRegion class to enwrap each line
@@ -32,7 +32,7 @@ namespace colorertake5
       @param line Line of text
       @param lineRegions Linked list_base of LineRegion structures
       */
-      static void markupWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const ::string &line, LineRegion *lineRegions);
+      static void markupWrite(stream & markupWriter, stream & textWriter, string_to_string_base *docLinkHash, const ::string &line, LineRegion *lineRegions);
 
 
       /** write specified line of text using list_base of LineRegion's.
@@ -44,7 +44,7 @@ namespace colorertake5
       @param line Line of text
       @param lineRegions Linked list_base of LineRegion structures
       */
-      static void htmlRGBWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const ::string &line, LineRegion *lineRegions);
+      static void htmlRGBWrite(stream & markupWriter, stream & textWriter, string_to_string_base *docLinkHash, const ::string &line, LineRegion *lineRegions);
 
       static void writeStyle(stream & writer, const StyledRegion *lr);
 
@@ -56,7 +56,7 @@ namespace colorertake5
       */
       static void writeEnd(stream & writer, const StyledRegion *lr);
 
-      static void writeHref(stream & writer, string_to_string *docLinkHash, const class scheme *scheme, const string &token, bool start);
+      static void writeHref(stream & writer, string_to_string_base *docLinkHash, const class scheme *scheme, const string &token, bool start);
 
    };
 

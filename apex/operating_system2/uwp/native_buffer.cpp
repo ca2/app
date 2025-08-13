@@ -262,7 +262,7 @@ namespace universal_windows
       m_file = nullptr;
       m_folder = nullptr;
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       ASSERT(is_string_ok(path));
       ASSERT(!(eopen & ::file::e_open_text));   // text mode not supported
 
@@ -548,7 +548,7 @@ namespace universal_windows
 
    //void native_buffer::Abort()
    //{
-   //   //ASSERT_VALID(this);
+   //   //ASSERT_OK(this);
    //   //if(m_hnative_buffer != (unsigned int)hnative_bufferNull)
    //   //{
    //   //   // close but ignore errors
@@ -560,7 +560,7 @@ namespace universal_windows
 
    void native_buffer::lock(filesize dwPos,filesize dwCount)
    {
-      //ASSERT_VALID(this);
+      //ASSERT_OK(this);
       //ASSERT(m_hnative_buffer != (unsigned int)hnative_bufferNull);
 
       ////      if (!::Locknative_buffer((HANDLE)m_hnative_buffer, lower_unsigned_int(dwPos), upper_unsigned_int(dwPos), lower_unsigned_int(dwCount), upper_unsigned_int(dwCount)))
@@ -569,7 +569,7 @@ namespace universal_windows
 
    void native_buffer::unlock(filesize dwPos,filesize dwCount)
    {
-      //ASSERT_VALID(this);
+      //ASSERT_OK(this);
       //ASSERT(m_hnative_buffer != (unsigned int)hnative_bufferNull);
 
       ////  if (!::Unlocknative_buffer((HANDLE)m_hnative_buffer,  lower_unsigned_int(dwPos), upper_unsigned_int(dwPos), lower_unsigned_int(dwCount), upper_unsigned_int(dwCount)))
@@ -578,7 +578,7 @@ namespace universal_windows
 
    void native_buffer::set_size(filesize dwNewLen)
    {
-      //ASSERT_VALID(this);
+      //ASSERT_OK(this);
       //ASSERT(m_hnative_buffer != (unsigned int)hnative_bufferNull);
 
       //seek((int)dwNewLen,(::enum_seek)::e_seek_set);
@@ -591,7 +591,7 @@ namespace universal_windows
    filesize native_buffer::get_size() const
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       filesize dwLen,dwCur;
 
@@ -653,7 +653,7 @@ namespace universal_windows
    //string native_buffer::GetFileName() const
    //{
 
-   //   ASSERT_VALID(this);
+   //   ASSERT_OK(this);
 
    //   ::file::file_status status;
 
@@ -671,7 +671,7 @@ namespace universal_windows
    //string native_buffer::GetFileTitle() const
    //{
 
-   //   ASSERT_VALID(this);
+   //   ASSERT_OK(this);
 
    //   ::file::file_status status;
 
@@ -697,7 +697,7 @@ namespace universal_windows
    bool native_buffer::get_status(::file::file_status& rStatus) const
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       rStatus.m_strFullName = m_path;
 
@@ -717,7 +717,7 @@ namespace universal_windows
    void native_buffer::set_file_path(const ::file::path & path)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       ASSERT(is_string_ok(path));
 

@@ -24,7 +24,7 @@ namespace fs
    }
 
 
-   string_map < ::pointer<::fs::data >>& set::fsmap()
+   string_map_base < ::pointer<::fs::data >>& set::fsmap()
    {
 
       return m_fsdatamap;

@@ -18,9 +18,9 @@ namespace http
 
 
       ::pointer < ::mutex >                  m_pmutexPac;
-      string_map < ::pointer<pac >>          m_mapPac;
+      string_map_base < ::pointer<pac >>          m_mapPac;
       ::pointer < ::mutex >                  m_pmutexProxy;
-      string_map < ::pointer<proxy >>        m_mapProxy;
+      string_map_base < ::pointer<proxy >>        m_mapProxy;
 
       // ::property_set                         m_setHttp;
       //

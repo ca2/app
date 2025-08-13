@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "map_base.h"
+#include "acme/prototype/collection/map.h"
 
 
 template < class PAYLOAD >

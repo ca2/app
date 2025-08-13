@@ -18,7 +18,7 @@ namespace xml
       //m_poptionDefault     = nullptr;
       //m_pparseinfoDefault  = nullptr;
 
-      m_pentitiesHashDefault = __allocate string_to_string();
+      m_pentitiesHashDefault = __allocate ::map_particle < string_to_string_base >();
 
       m_pentitiesHashDefault->set_at("lt", "<");
       m_pentitiesHashDefault->set_at("gt", ">");

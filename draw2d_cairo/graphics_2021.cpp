@@ -49,7 +49,7 @@ FcBool g_fcResult;
 
 FcConfig * g_fcConfig;
 
-string_to_string * g_pmapFontPath;
+string_to_string_base * g_pmapFontPath;
 
 //#elif defined(WINDOWS)
 //
@@ -132,13 +132,13 @@ string_to_string * g_pmapFontPath;
 
 #endif
 
-string_map<int_map<FT_Face> > * g_pmapFontFace = nullptr;
+string_map_base<int_map<FT_Face> > * g_pmapFontFace = nullptr;
 
-string_map<cairo_font_face_t *> * g_pmapCairoFontFace = nullptr;
+string_map_base<cairo_font_face_t *> * g_pmapCairoFontFace = nullptr;
 
-string_to_int * g_pmapFontError = nullptr;
+string_to_int_base * g_pmapFontError = nullptr;
 
-string_to_int * g_pmapFontError2 = nullptr;
+string_to_int_base * g_pmapFontError2 = nullptr;
 
 extern CLASS_DECL_AURA array<matter *> * g_paAura;
 

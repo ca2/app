@@ -62,7 +62,7 @@ namespace user
       //e_cursor                                              m_ecursor;
 
       //::pointer<::user::theme>                           m_ptheme;
-      //string_map < ::pointer<::user::theme >>            m_mapTheme;
+      //string_map_base < ::pointer<::user::theme >>            m_mapTheme;
 
       //::user::interaction *                                 m_puiCapture;
       //bool                                                  m_bDrawCursor;

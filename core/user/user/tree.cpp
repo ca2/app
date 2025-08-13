@@ -9,7 +9,7 @@
 #include "acme/prototype/time/frequency.h"
 #include "aura/message/user.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "aura/graphics/image/list_base.h"
+#include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
 //#include "aura/user/user/primitive_impl.h"
 #include "aura/user/user/scroll_state.h"

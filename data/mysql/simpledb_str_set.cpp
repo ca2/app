@@ -55,7 +55,7 @@ public:
    ::pointer < ::mutex >                                        m_pmutex;
    sockets::socket_handler                      m_handler;
    sockets::http_session *                      m_phttpsession;
-   string_map < db_str_set_item >               m_map;
+   string_map_base < db_str_set_item >               m_map;
    bool                                         m_bIndexed;
    ::mysql::database *                          m_pmysqldbUser;
    string                                       m_strUser;

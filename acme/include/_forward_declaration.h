@@ -23,7 +23,7 @@ template<class TYPE, TYPE t>
 struct integral_constant
 {
 
-   inline static constexpr TYPE value = t;
+   inline static constexpr TYPE payload = t;
 
 };
 
@@ -50,7 +50,7 @@ struct is_const_struct<const T> : true_type
 
 
 template<class T>
-inline constexpr bool is_const = is_const_struct<T>::value;
+inline constexpr bool is_const = is_const_struct<T>::payload;
 
 
 template<class T>
@@ -72,7 +72,7 @@ struct is_reference_struct<T &&> : true_type
 
 
 template<class T>
-inline constexpr bool is_reference = is_reference_struct<T>::value;
+inline constexpr bool is_reference = is_reference_struct<T>::payload;
 
 
 template<typename TYPE>
@@ -366,7 +366,7 @@ struct is_array_struct<T[N]> : true_type
 
 
 template<class T>
-inline constexpr bool is_array = is_array_struct<T>::value;
+inline constexpr bool is_array = is_array_struct<T>::payload;
 
 
 namespace inner_detail
@@ -532,7 +532,7 @@ struct is_function_struct : ::integral_constant<
 
 
 template<typename T>
-inline constexpr bool is_function = is_function_struct<T>::value;
+inline constexpr bool is_function = is_function_struct<T>::payload;
 
 
 //// primary template
@@ -2042,7 +2042,7 @@ namespace acme
    class library;
 
 
-   //   using library_map = string_map < ::pointer<::acme::library >>;
+   //   using library_map = string_map_base < ::pointer<::acme::library >>;
 
 } // namespace acme
 

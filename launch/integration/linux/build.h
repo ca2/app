@@ -26,7 +26,7 @@ namespace console_integration
          
 
          ::file::path                                    m_pathPrefixBase;
-         string_map < string_map < ::file::path > >      m_mappath;
+         string_map_base < string_map_base < ::file::path > >      m_mappath;
          
          ::string       m_strArch;
          ::string       m_strTargetting;

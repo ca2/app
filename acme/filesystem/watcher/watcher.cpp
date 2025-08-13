@@ -120,7 +120,7 @@ namespace file
 
       pwatch->m_pwatcher = this;
 
-      m_watchset.set_at(pwatch);
+      m_watchset.set_item(pwatch);
 
       //if (m_bCreateWatchThread)
       //{
@@ -137,7 +137,7 @@ namespace file
       if (!pwatch->open(pathFolder, bRecursive))
       {
 
-         m_watchset.erase_item(pwatch);
+         m_watchset.erase_key(pwatch);
 
          return nullptr;
 

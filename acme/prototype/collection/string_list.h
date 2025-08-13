@@ -1,12 +1,12 @@
 #pragma once
 
 
-#include "comparable_list.h"
+#include "acme/prototype/collection/comparable_list.h"
 
 
 
-class CLASS_DECL_ACME string_list :
-   public comparable_list < ::string >
+class CLASS_DECL_ACME string_list_base :
+   public comparable_list_base < ::string >
 {
 public:
 
@@ -14,8 +14,8 @@ public:
    using RANGE = typename ::list_base < ::string >::RANGE;
 
 
-   string_list();
-   ~string_list() override;
+   string_list_base();
+   ~string_list_base();
 
 
    void explode(const ::scoped_string & scopedstrSeparator, const ::scoped_string & scopedstr);
@@ -40,11 +40,11 @@ public:
 
 
 //template < typename TYPE >
-//inline stream& operator <<(stream& stream, const string_list& list_base);
+//inline stream& operator <<(stream& stream, const string_list_base& list_base);
 //
 //
 //template < typename TYPE >
-//inline stream& operator >>(stream& stream, string_list& list_base);
+//inline stream& operator >>(stream& stream, string_list_base& list_base);
 
 
 

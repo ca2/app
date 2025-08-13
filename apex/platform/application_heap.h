@@ -13,10 +13,10 @@ namespace apex
    public:
 
 
-      string_to_ptr                                   m_appmap;
+      string_to_ptr_base                                   m_appmap;
       ::file::path_array_base                                   m_straMatterLocator;
-      string_table                                    m_stringtable;
-      string_table                                    m_stringtableStd;
+      string_table_base                                    m_stringtable;
+      string_table_base                                    m_stringtableStd;
       map_base < atom, atom, string, string >                  m_stringmap;
 
 

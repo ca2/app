@@ -1905,7 +1905,7 @@ public:
 //base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::collection::index nIndex, ::collection::count nCount)
 //{
 //
-//   //ASSERT_VALID(this);
+//   //ASSERT_OK(this);
 //
 //   ::collection::index nUpperBound = nIndex + nCount;
 //

@@ -4,7 +4,7 @@
 
 //#include "acme/prototype/prototype/payload.h"
 #include "acme/prototype/collection/atom_array.h"
-#include "acme/prototype/collection/atom_map_base.h"
+#include "acme/prototype/collection/atom_map.h"
 #include "acme/parallelization/synchronization_array.h"
 
 

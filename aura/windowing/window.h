@@ -12,7 +12,7 @@
 #include "aura/user/user/interaction_array.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/redraw.h"
-#include "acme/prototype/collection/list_base.h"
+#include "acme/prototype/collection/list.h"
 #include "acme/prototype/geometry2d/_collection.h"
 
 

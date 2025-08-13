@@ -154,7 +154,7 @@ namespace user
    /*
    bool control_bar::AllocElements(int nElements, int cbElement)
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       ASSERT(nElements >= 0 && cbElement >= 0);
       ASSERT(m_pData != nullptr || m_nCount == 0);
 
@@ -180,7 +180,7 @@ namespace user
    control_bar::~control_bar()
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       if (m_pframewindowDockSite)
       {
@@ -299,7 +299,7 @@ namespace user
 
    void control_bar::pre_translate_message(::message::message * pmessage)
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       //trans   ASSERT(get_handle() != nullptr);
 
       // allow tooltip messages to be filtered
@@ -373,7 +373,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-//      ASSERT_VALID(this);
+//      ASSERT_OK(this);
 //
 //      lresult lResult;
 //
@@ -437,7 +437,7 @@ namespace user
    {
       __UNREFERENCED_PARAMETER(pmessage);
 //      ::pointer<::user::message>pmessage(pmessage);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
    }
 
@@ -918,8 +918,8 @@ namespace user
    void control_bar::DoPaint(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ASSERT_VALID(this);
-      //ASSERT_VALID(pgraphics);
+      ASSERT_OK(this);
+      //ASSERT_OK(pgraphics);
 
       // paint inside client area
       ::int_rectangle rectangle;
@@ -936,9 +936,9 @@ namespace user
    void control_bar::DrawBorders(::draw2d::graphics_pointer & pgraphics, ::int_rectangle& rectangle)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
-      ASSERT_VALID(pgraphics);
+      ASSERT_OK(pgraphics);
 
       unsigned int uStyle = m_dwStyle;
       if (!(uStyle & CBRS_BORDER_ANY))
@@ -1150,7 +1150,7 @@ namespace user
    // input int_rectangle should be client int_rectangle int_size
    void control_bar::CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::int_rectangle& rectangle, bool bHorz) const
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       unsigned int uStyle = m_dwStyle;
 
       if (uStyle & CBRS_BORDER_LEFT)

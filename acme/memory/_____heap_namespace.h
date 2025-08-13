@@ -14,7 +14,7 @@
 #include "acme/memory/typed_memory.h"
 
 
-#include "acme/prototype/collection/atom_map_base.h"
+#include "acme/prototype/collection/atom_map.h"
 #include "acme/exception/__string.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"

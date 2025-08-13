@@ -16,7 +16,7 @@
 #include "application_flags.h"
 #include "acme/constant/gender.h"
 #include "acme/parallelization/_types.h"
-#include "acme/prototype/collection/map_base.h"
+#include "acme/prototype/collection/map.h"
 #include "acme/prototype/prototype/factory.h"
 
 
@@ -119,11 +119,11 @@ namespace platform
 
       ::pointer < ::prototype::prototype >                                    m_pprototype;
       //::pointer < ::mutex >                                                 m_pmutexFactory;
-      //string_map < ::pointer<::factory::factory >>                          m_mapFactory;
-      //string_map < ::pointer<::factory::factory >>                          m_mapFactory;
+      //string_map_base < ::pointer<::factory::factory >>                          m_mapFactory;
+      //string_map_base < ::pointer<::factory::factory >>                          m_mapFactory;
 
 
-      pointer< string_map < ::pointer<::regular_expression::context >>>       m_pmapRegularExpressionContext;
+      pointer< ::map_particle < string_map_base < ::pointer<::regular_expression::context >> >>       m_pmapRegularExpressionContext;
 
 #ifdef __APPLE__
       void *                                                                  m_pmmos;
@@ -147,10 +147,10 @@ namespace platform
 
       class ::time                                                            m_timeFileListingCache;
       //critical_section                                                      m_csEnumText;
-      //string_map < i64_map < string > >                                     m_mapEnumToText;
-      //string_map < string_map < long long > >                                     m_mapTextToEnum;
+      //string_map_base < i64_map < string > >                                     m_mapEnumToText;
+      //string_map_base < string_map_base < long long > >                                     m_mapTextToEnum;
 
-      ::string_map < ::pointer < ::component > >                              m_mapComponent;
+      ::string_map_base < ::pointer < ::component > >                              m_mapComponent;
       ::pointer<::internet::internet>                                         m_pinternet;
       ::pointer<::url::url_context>                                           m_purlcontext;
 

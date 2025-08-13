@@ -6,7 +6,7 @@
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
-#include "aura/graphics/image/list_base.h"
+#include "aura/graphics/image/list.h"
 #include "aura/graphics/image/fastblur.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/brush.h"

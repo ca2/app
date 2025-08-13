@@ -9,7 +9,7 @@
 #include "acme/parallelization/types.h"
 #include "acme/platform/library.h"
 #include "acme/platform/release_time_for_project.h"
-#include "acme/prototype/collection/atom_map_base.h"
+#include "acme/prototype/collection/atom_map.h"
 #include "acme/prototype/collection/string_map.h"
 #include "acme/user/user/activation.h"
 
@@ -27,7 +27,7 @@ namespace acme
 {
 
 
-   using library_map = string_map < ::pointer < ::acme::library > >;
+   using library_map = string_map_base < ::pointer < ::acme::library > >;
 
    class acme;
 
@@ -38,8 +38,8 @@ namespace factory
 {
 
    using factory_pointer = ::pointer < ::factory::factory >;
-   using factory_map = ::string_map < factory_pointer >;
-   using component_factory_map = ::string_map < factory_map >;
+   using factory_map = ::string_map_base < factory_pointer >;
+   using component_factory_map = ::string_map_base < factory_map >;
 
 } // namespace factory
 

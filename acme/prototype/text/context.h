@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/prototype/collection/atom_map_base.h"
+#include "acme/prototype/collection/atom_map.h"
 //#include "acme/prototype/collection/pointer_array.h"
 #include "acme/prototype/text/international_locale_schema.h"
 
@@ -14,7 +14,7 @@ namespace text
 
 
    class schema :
-      public atom_map_base < string >
+      public map_particle < atom_map_base < string > >
    {
    public:
 
@@ -28,7 +28,7 @@ namespace text
    };
 
    class CLASS_DECL_ACME locale :
-      public atom_map_base < schema >
+      public map_particle < atom_map_base < schema > >
    {
    public:
 

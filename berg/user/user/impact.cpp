@@ -451,7 +451,7 @@ namespace user
 
    bool impact::IsSelected(const object* pDocItem) const
    {
-      ASSERT_VALID(pDocItem);
+      ASSERT_OK(pDocItem);
       //  UNUSED(pDocItem);    // unused in release builds
 
       return false;   // not implemented, so not selected
@@ -765,7 +765,7 @@ namespace user
    //void impact::OnPrepareDC(::draw2d::graphics_pointer & pgraphics, CPrintInfo* pInfo)
    //{
    //   __UNREFERENCED_PARAMETER(pInfo);
-   //   ASSERT_VALID(pgraphics);
+   //   ASSERT_OK(pgraphics);
    //   UNUSED(pgraphics); // unused in release builds
 
    //   // Default to one page printing if doc length not known
@@ -1230,7 +1230,7 @@ namespace user
 
    /*   bool impact::IsSelected(const object* pDocItem) const
    {
-   ASSERT_VALID(pDocItem);
+   ASSERT_OK(pDocItem);
    //      UNUSED(pDocItem);    // unused in release builds
 
    return false;   // not implemented, so not selected

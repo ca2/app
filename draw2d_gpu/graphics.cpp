@@ -3692,7 +3692,7 @@ void main() {
       //         double cxPerInch, cyPerInch;
       //         if (this != nullptr)
       //         {
-      //            ASSERT_VALID(this);
+      //            ASSERT_OK(this);
       //            // ASSERT(m_hdc != nullptr);  // no HDC attached or created?
       //            cxPerInch = GetDeviceCaps(LOGPIXELSX);
       //            cyPerInch = GetDeviceCaps(LOGPIXELSY);
@@ -3727,7 +3727,7 @@ void main() {
       //         double cxPerInch, cyPerInch;
       //         if (this != nullptr)
       //         {
-      //            ASSERT_VALID(this);
+      //            ASSERT_OK(this);
       //            // ASSERT(m_hdc != nullptr);  // no HDC attached or created?
       //            cxPerInch = GetDeviceCaps(LOGPIXELSX);
       //            cyPerInch = GetDeviceCaps(LOGPIXELSY);
@@ -5076,7 +5076,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    {
       return 1;
       //      ::draw2d::graphics * pgraphics = (::draw2d::graphics *)lParam;
-      //      ASSERT_VALID(pgraphics);
+      //      ASSERT_OK(pgraphics);
       //
       //      switch (pMetaRec->rdFunction)
       //      {

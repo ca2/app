@@ -111,7 +111,7 @@ namespace platform
 
          string                                    m_strStoreServerBaseUrl;
 
-         string_to_string                          m_mapCachedLatestBuild;
+         string_to_string_base                          m_mapCachedLatestBuild;
          //::pointer<::os_context>                 m_poscontext;
 
 

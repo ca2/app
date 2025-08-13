@@ -2,7 +2,7 @@
 
 
 //#include "acme/prototype/prototype/matter.h"
-#include "acme/prototype/collection/map_base.h"
+#include "acme/prototype/collection/map.h"
 #include "acme/prototype/collection/int_map.h"
 
 
@@ -128,9 +128,9 @@ T biunique < T, T_to_T > ::erase_a(T a)
 
       T b = get_b(a);
 
-      m_ba.erase_item(b);
+      m_ba.erase_key(b);
 
-      m_ab.erase_item(a);
+      m_ab.erase_key(a);
 
       m_iMaxA = calc_max_a();
 
@@ -172,9 +172,9 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
 
    }
 
-   m_ba.erase_item(bParam);
+   m_ba.erase_key(bParam);
 
-   m_ab.erase_item(aOld);
+   m_ab.erase_key(aOld);
 
    m_iMaxA = calc_max_a();
 
@@ -190,8 +190,8 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
    //      {
    //         break;
    //      }
-   //      m_ba.erase_item(b);
-   //      m_ab.erase_item(a + 1);
+   //      m_ba.erase_key(b);
+   //      m_ab.erase_key(a + 1);
    //      m_ba.set_at(b, a);
    //      m_ab.set_at(a, b);
    //      m_iMaxA = calc_max_a();
@@ -241,9 +241,9 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
          if (b != m_iEmptyB)
          {
 
-            m_ba.erase_item(b);
+            m_ba.erase_key(b);
 
-            m_ab.erase_item(a);
+            m_ab.erase_key(a);
 
             m_ba.set_at(b, a + 1);
 
@@ -280,9 +280,9 @@ T biunique < T, T_to_T > ::erase_b(T b)
 
       T a = get_a(b);
 
-      m_ab.erase_item(a);
+      m_ab.erase_key(a);
 
-      m_ba.erase_item(b);
+      m_ba.erase_key(b);
 
       m_iMaxA = calc_max_a();
 

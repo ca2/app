@@ -20,7 +20,7 @@ namespace app_shader
 
       string                                 m_strCurrentShaderPath;
       // map_base : shader path - render
-      string_map < ::pointer<render > >      m_maprender;
+      string_map_base < ::pointer<render > >      m_maprender;
       bool                                   m_bSaveFrame;
 
 

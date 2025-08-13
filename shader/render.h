@@ -27,7 +27,7 @@ namespace app_shader
       ::image::image_pointer                     m_pimageFromGpu;
       //int_rectangle                       m_rectangle;
       string                              m_strFont1;
-      string_map < ::image::image_pointer >      m_pimagemap;
+      string_map_base < ::image::image_pointer >      m_pimagemap;
       ::image::image_pointer                     m_pimage1;
       ::image::image_pointer                     m_pimage2;
       ::color::hls                        m_hlsText;

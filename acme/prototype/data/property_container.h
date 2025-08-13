@@ -18,10 +18,10 @@ namespace data
    public:
 
 
-      ::property_set                                        m_propertyset;
-      ::pointer_array < ::data::property_listener >         m_propertylistenera;
-      ::comparable_array < ::data::property_will_change >   m_propertywillchangea;
-      ::comparable_array < ::data::property_changed >       m_propertychangeda;
+      ::property_set                                              m_propertyset;
+      ::pointer_array < ::data::property_listener >               m_propertylistenera;
+      ::comparable_array < ::data::property_will_change >         m_propertywillchangea;
+      ::comparable_array < ::data::property_changed >             m_propertychangeda;
 
 
       property_container();

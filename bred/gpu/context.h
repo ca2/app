@@ -123,7 +123,7 @@ namespace gpu
       //int                                    m_iScanOffscreen;
       //::memory                               m_memoryOffscreen;
       ::pointer < ::gpu::swap_chain >          m_pgpuswapchain;
-      ::string_map < ::pointer < ::gpu::texture > > m_texturemap;
+      ::string_map_base < ::pointer < ::gpu::texture > > m_texturemap;
       ::pointer_array < ::gpu::shader >         m_shaderaRetire;
 
 

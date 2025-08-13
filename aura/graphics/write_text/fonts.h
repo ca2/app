@@ -15,8 +15,8 @@ namespace write_text
    public:
 
 
-      string_map < ::pointer<font_enumeration> >                  m_mapFontEnumeration;
-      string_map < ::write_text::font_enumeration_item_array >    m_mapFontEnumerationItemArray;
+      string_map_base < ::pointer<font_enumeration> >                  m_mapFontEnumeration;
+      string_map_base < ::write_text::font_enumeration_item_array >    m_mapFontEnumerationItemArray;
 
 
       fonts();

@@ -119,7 +119,7 @@ namespace user
    /*bool toolbar_control::LoadToolBar(const ::scoped_string & scopedstrResourceName)
 
    {
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
    ASSERT(scopedstrResourceName != nullptr);
 
 
@@ -167,7 +167,7 @@ namespace user
    bool toolbar_control::SetButtons(const unsigned int* pIDArray, int nIDCount)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       ASSERT(nIDCount >= 1);  // must be at least one of them
       ASSERT(pIDArray == nullptr ||
 

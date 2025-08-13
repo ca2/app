@@ -24,7 +24,7 @@ bool g_bDraw2dDisableReferencingDebugging = false;
 //{
 //
 //
-//   extern CLASS_DECL_AURA string_map < int_to_string > * g_pmapFontFaceName;
+//   extern CLASS_DECL_AURA string_map_base < int_to_string > * g_pmapFontFaceName;
 //
 //
 //   extern CLASS_DECL_AURA critical_section * g_pcsFont;
@@ -112,7 +112,7 @@ namespace draw2d
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
 
-      m_objecta.erase(pobject);
+      m_objecta.erase_item(pobject);
 
    }
 

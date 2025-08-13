@@ -886,7 +886,7 @@ namespace platform
    bool node::erase_exclusive(const ::scoped_string & scopedstrName)
    {
 
-      return m_mapExclusive.erase_item(scopedstrName);
+      return m_mapExclusive.erase_key(scopedstrName);
 
    }
 

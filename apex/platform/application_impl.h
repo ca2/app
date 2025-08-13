@@ -14,7 +14,7 @@
 //   public:
 //
 //
-//      string_map < ::pointer<::acme::exclusive >>   m_mapExclusive;
+//      string_map_base < ::pointer<::acme::exclusive >>   m_mapExclusive;
 //
 //
 //      virtual ::pointer<::acme::exclusive> get_exclusive(const ::scoped_string & scopedstr, const :: ARG_SEC_ATTRS_DEF);

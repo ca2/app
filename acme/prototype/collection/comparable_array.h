@@ -27,12 +27,13 @@ public:
    //using BASE_ARRAY::operator ==;
    //using BASE_ARRAY::operator !=;
 
-   using BASE_ARRAY::operator +=;
-
    //using comparable_range < ARRAY_TYPE >::comparable_range;
 
-   using ARRAY_TYPE::ARRAY_TYPE;
-   using ARRAY_TYPE::operator =;
+   using BASE_ARRAY::BASE_ARRAY;
+   using BASE_ARRAY::operator =;
+   using BASE_ARRAY::operator +=;
+   using BASE_ARRAY::operator -=;
+
 
    using iterator = typename BASE_ARRAY::iterator;
    using const_iterator = typename BASE_ARRAY::const_iterator;
@@ -128,14 +129,14 @@ public:
       // }
 
 
-      inline comparable_array_base & operator += (const TYPE & t)
-      {
-
-         this->add_item(t);
-
-         return *this;
-
-      }
+      // inline comparable_array_base & operator += (const TYPE & t)
+      // {
+      //
+      //    this->add_item(t);
+      //
+      //    return *this;
+      //
+      // }
 
 };
 

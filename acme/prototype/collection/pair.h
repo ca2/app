@@ -145,8 +145,11 @@ template < typename PAIR >
 class make_pair :
    public PAIR
 {
-public: 
-   
+public:
+
+
+   using RAW_NODE = PAIR;
+
 
    using TYPE1 = typename PAIR::TYPE1;
    using TYPE2 = typename PAIR::TYPE2;
@@ -154,29 +157,33 @@ public:
    using ARG_TYPE2 = typename PAIR::ARG_TYPE2;
 
 
-   using ITEM = TYPE1;
+   using ELEMENT1 = TYPE1;
+   using ELEMENT2 = TYPE2;
+
+
+   using ARG_ELEMENT1 = ARG_TYPE1;
+   using ARG_ELEMENT2 = ARG_TYPE2;
+
+
+   using KEY = TYPE1;
    using PAYLOAD = TYPE2;
 
 
-   using ARG_ITEM = ARG_TYPE1;
+   using ARG_KEY = ARG_TYPE1;
    using ARG_PAYLOAD = ARG_TYPE2;
 
 
-   using ELEMENT1 = TYPE1;
-   using ELEMENT2 = TYPE2;
-   
-
-   inline auto & item() { return this->element1(); }
+   inline auto & key() { return this->element1(); }
    inline auto & payload() { return this->element2(); }
    inline auto & topic() { return *this; }
 
 
-   inline auto & item() const { return this->element1(); }
+   inline auto & key() const { return this->element1(); }
    inline auto & payload() const { return this->element2(); }
    inline auto & topic() const { return *this; }
 
 
-   inline auto transfer_item() { return ::transfer(this->transfer_element1()); }
+   inline auto transfer_key() { return ::transfer(this->transfer_element1()); }
    inline auto transfer_payload() { return ::transfer(this->transfer_element2()); }
    inline auto transfer_topic() { return ::transfer(*this); }
 
@@ -186,6 +193,13 @@ public:
    make_pair(ARG_TYPE1 t1) : PAIR(t1) {}
    make_pair(ARG_TYPE1 t1, ARG_TYPE2 t2) : PAIR(t1, t2) {}
 
+
+   void defer_set_payload(ARG_PAYLOAD payload)
+   {
+
+      this->element2() = payload;
+
+   }
 
 };
 

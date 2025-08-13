@@ -17,10 +17,10 @@ namespace user
 
 
       ::int_sz *                                      m_pintstring;
-      string_map < ::pointer<::user::language >>      m_languagemap;
+      string_map_base < ::pointer<::user::language >>      m_languagemap;
       string_array_base                                    m_straLang;
       string                                          m_strLang;
-      string_to_string *                              m_pstringmap;
+      string_to_string_base *                              m_pstringmap;
       ::pointer<::user::language>                     m_planguage;
 
 

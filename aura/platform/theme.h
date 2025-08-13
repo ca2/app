@@ -55,7 +55,7 @@ namespace aura
       string_array_base                           m_straTheme;
       string                                 m_strTheme;
       ::file::path                           m_pathTheme;
-      string_map < ::pointer < colors > >    m_mapColors;
+      string_map_base < ::pointer < colors > >    m_mapColors;
       ::pointer < colors >                   m_pcolors;
       pointer_array < theme_listener >       m_listenera;
 

@@ -22,7 +22,7 @@
 #include "apex/database/selection.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "aura/graphics/image/list_base.h"
+#include "aura/graphics/image/list.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics_extension.h"
 #include "aura/graphics/draw2d/draw2d.h"

@@ -4,7 +4,7 @@
 
 
 #include "acme/handler/extended_topic.h"
-#include "acme/prototype/collection/map_base.h"
+#include "acme/prototype/collection/map.h"
 //#include "acmee/handler/context.h"
 
 

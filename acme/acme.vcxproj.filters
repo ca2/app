@@ -472,6 +472,9 @@
     <Filter Include="Source Files\operating_system\windows_common\com">
       <UniqueIdentifier>{c205b87d-5477-43d6-b6fc-2c9223af30a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\template">
+      <UniqueIdentifier>{82e900b5-be5f-43c0-b831-b555d49865a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -4226,6 +4229,9 @@
     </ClInclude>
     <ClInclude Include="prototype\collection\base_array.h">
       <Filter>Header Files\prototype\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="template\list.h">
+      <Filter>Header Files\template</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

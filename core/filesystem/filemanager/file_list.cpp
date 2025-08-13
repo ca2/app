@@ -19,7 +19,7 @@
 #include "apex/platform/node.h"
 //#include "apex/platform/os_context.h"
 
-#include "aura/graphics/image/list_base.h"
+#include "aura/graphics/image/list.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/copydesk.h"

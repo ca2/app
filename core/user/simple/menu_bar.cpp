@@ -663,7 +663,7 @@ bool simple_menu_bar::ReloadMenuBar()
 //bool simple_menu_bar::create_window_ex(::user::interaction * puiParent, unsigned int dwCtrlStyle, unsigned int uStyle, ::atom atom)
 //{
 //
-//   ASSERT_VALID(puiParent);   // must have a parent
+//   ASSERT_OK(puiParent);   // must have a parent
 //   ASSERT(!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
 //
 //   //SetBorders(rectangle);

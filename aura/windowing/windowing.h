@@ -6,7 +6,7 @@
 
 #include "acme/windowing/windowing.h"
 #include "acme/prototype/collection/int_map.h"
-#include "acme/prototype/collection/list_base.h"
+#include "acme/prototype/collection/list.h"
 
 
 //CLASS_DECL_AURA ::windowing::window * __interaction_impl(::windowing::window * pwindow);

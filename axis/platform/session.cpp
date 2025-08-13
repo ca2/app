@@ -48,9 +48,9 @@ void defer_term_ui();
 
 //bool is_verbose();
 
-//extern string_map < ::pointer<::acme::library >> g_pmapLibrary;
+//extern string_map_base < ::pointer<::acme::library >> g_pmapLibrary;
 //extern ::pointer< ::mutex > psystem->m_pmutexLibrary;
-//extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
+//extern string_map_base < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
 int_bool point_is_window_origin(::int_point ptHitTest, oswindow oswindowExclude, int iMargin);
 

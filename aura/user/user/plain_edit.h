@@ -292,7 +292,7 @@ namespace user
       bool                                m_bCustomFrameBefore;
       ::int_rectangle                              m_FullScreenWindowRect;
 
-      string_to_string                    m_base64map;
+      string_to_string_base                    m_base64map;
 
       bool                                m_bPassword;
       bool                                m_bEnterKeyOnPaste;

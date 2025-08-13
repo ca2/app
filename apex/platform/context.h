@@ -24,13 +24,13 @@ namespace apex
       //
       // string                              m_strStoreServerBaseUrl;
       //
-      // string_to_string                    m_mapCachedLatestBuild;
+      // string_to_string_base                    m_mapCachedLatestBuild;
       // //::pointer<::http::context>          m_phttpcontext;
       // //::pointer<::os_context>             m_poscontext;
       //
 
       bool                                                        m_bModifiedFsRawFolderProtocols;
-      ::string_map < ::pointer < ::fs::raw_folder_protocol > >    m_mapFsRawFolderProtocol;
+      ::string_map_base < ::pointer < ::fs::raw_folder_protocol > >    m_mapFsRawFolderProtocol;
 
 
 

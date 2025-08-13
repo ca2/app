@@ -329,7 +329,7 @@ namespace user
       ::int_array_base                               m_iaSubItemDisable;
 
       string                                    m_strClass;
-      string_to_string                          m_mapClassStyle;
+      string_to_string_base                          m_mapClassStyle;
       string                                    m_strStyle;
       ::property_set                            m_setStyle;
 

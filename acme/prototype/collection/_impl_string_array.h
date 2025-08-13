@@ -150,7 +150,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 string_base_array < Type, RawType, t_etypeContainer >::~string_base_array()
 {
 
-   // // ASSERT_VALID(this);
+   // // ASSERT_OK(this);
 
 }
 
@@ -170,7 +170,7 @@ string_base_array < Type, RawType, t_etypeContainer >::~string_base_array()
 //
 //   }
 //
-//    // ASSERT_VALID(this);
+//    // ASSERT_OK(this);
 //   ASSERT(this != &src);   // cannot append to itself
 //
 //   ::collection::count nOldSize = this->size();
@@ -221,7 +221,7 @@ void string_base_array < Type, RawType, t_etypeContainer >::copy(const string_ba
    if (this == &src)
       return;
 
-   // // ASSERT_VALID(this);
+   // // ASSERT_OK(this);
 
    auto nSrcSize = src.size();
 
@@ -252,7 +252,7 @@ void string_base_array < Type, RawType, t_etypeContainer >::copy(const ARRAY& sr
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 Type& string_base_array < Type, RawType, t_etypeContainer >::set_at_grow(::collection::index nIndex, const Type& newElement)
 {
-   // // ASSERT_VALID(this);
+   // // ASSERT_OK(this);
    ASSERT(nIndex >= 0);
 
    if (nIndex >= this->size())
@@ -465,7 +465,7 @@ RawType string_base_array < Type, RawType, t_etypeContainer >::_007GetLine(const
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 void string_base_array < Type, RawType, t_etypeContainer >::insert_empty(::collection::index nIndex, ::collection::count nCount)
 {
-   // // ASSERT_VALID(this);
+   // // ASSERT_OK(this);
    ASSERT(nIndex >= 0);    // will expand to meet need
    ASSERT(nCount > 0);     // zero or negative int_size not allowed
 
@@ -500,7 +500,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 Type& string_base_array < Type, RawType, t_etypeContainer >::insert_empty(::collection::index nIndex)
 {
 
-   //    // ASSERT_VALID(this);
+   //    // ASSERT_OK(this);
 
    ASSERT(nIndex >= 0);    // will expand to meet need
 
@@ -566,10 +566,10 @@ void string_base_array < Type, RawType, t_etypeContainer >::insert_at(::collecti
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 void string_base_array < Type, RawType, t_etypeContainer >::insert_at(::collection::index nStartIndex, const string_base_array < Type, RawType, t_etypeContainer >& NewArray)
 {
-   //    // ASSERT_VALID(this);
+   //    // ASSERT_OK(this);
    ASSERT(&NewArray != nullptr);
    //   ASSERT_KINDOF(string_base_array < Type, RawType, t_etypeContainer >, &NewArray);
-   //   ASSERT_VALID(&NewArray);
+   //   ASSERT_OK(&NewArray);
    ASSERT(nStartIndex >= 0);
 
    if (NewArray.get_size() > 0)

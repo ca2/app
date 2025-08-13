@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "acme/prototype/collection/list_base.h"
+#include "acme/prototype/collection/list.h"
 
 
 namespace user
@@ -18,7 +18,7 @@ namespace user
       ::pointer<::user::interaction_base>             m_pmousefocusRButtonDown;
       string_array_base                              m_straEscape;
       ::user::style_pointer                     m_puserstyle;
-      string_map < ::user::style_pointer >      m_mapUserStyle;
+      string_map_base < ::user::style_pointer >      m_mapUserStyle;
 
       ::pointer<::html::html>                m_phtml; // defined in upper level
 

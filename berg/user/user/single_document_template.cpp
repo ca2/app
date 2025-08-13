@@ -216,7 +216,7 @@ namespace user
 
          ASSERT_KINDOF(frame_window, pframe);
 
-         ASSERT_VALID(pframe);
+         ASSERT_OK(pframe);
 
       }
       else
@@ -284,7 +284,7 @@ namespace user
       //else
       //{
 
-      ASSERT_VALID(pframe);
+      ASSERT_OK(pframe);
 
       //if (! || !pusersystem->m_prequest)   // send initial update
       //{
@@ -449,7 +449,7 @@ namespace user
 //   void single_document_template::on_request_continuation(::user::document * pdocument, ::user::frame_window * pframewindow, ::request * prequest)
 //   {
 //
-//      ASSERT_VALID(pframewindow);
+//      ASSERT_OK(pframewindow);
 //
 //      //if (! || !pusersystem->m_prequest)   // send initial update
 //      //{

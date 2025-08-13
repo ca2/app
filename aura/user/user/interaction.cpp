@@ -4638,7 +4638,7 @@ namespace user
 
                   _synchronous_lock synchronouslock(pwindow->synchronization());
 
-                  pwindow->m_userinteractionaMouseHover.erase(this);
+                  pwindow->m_userinteractionaMouseHover.erase_item(this);
 
                   m_bTrackMouseLeave = false;
 

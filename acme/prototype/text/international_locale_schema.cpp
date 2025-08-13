@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/constant/id.h"
 #include "international_locale_schema.h"
-#include "acme/prototype/collection/atom_map_base.h"
+#include "acme/prototype/collection/atom_map.h"
 
 
 namespace text
@@ -12,13 +12,13 @@ namespace text
    {
 
 
-      string_to_string* g_pmapRTL;
+      string_to_string_base* g_pmapRTL;
 
 
       void create_rtl_map()
       {
 
-         g_pmapRTL = ___new string_to_string();
+         g_pmapRTL = ___new string_to_string_base();
 
       }
 
@@ -634,12 +634,12 @@ namespace text
       inline ::string rl_id(const ::scoped_string& scopedstrLocale)
       {
 
-         auto ppair = g_pmapRTL->plookup(scopedstrLocale);
+         auto pnode = g_pmapRTL->plookup(scopedstrLocale);
 
-         if (::is_ok(ppair))
+         if (pnode)
          {
 
-            return ppair->element2();
+            return pnode->element2();
 
          }
 

@@ -13,14 +13,18 @@ class array_base :
 public:
 
 
+   //using is_array_base = true_type;
+   using BASE_ARRAY = ::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
+
+
    using THIS_ARRAY = array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
+
 
 
    using BASE_TYPE = TYPE;
    using BASE_ARG_TYPE = ARG_TYPE;
 
 
-   using BASE_ARRAY = ::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
 
 
    using iterator = typename BASE_ARRAY::iterator;
@@ -33,6 +37,7 @@ public:
 
    using BASE_ARRAY::BASE_ARRAY;
    using BASE_ARRAY::operator =;
+   using BASE_ARRAY::operator +=;
 
    //using ::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array;
 
@@ -61,7 +66,14 @@ public:
    //    return *this;
    // }
 
+   void array_base_ok() const;
 
+   void container_ok() const
+   {
+
+      array_base_ok();
+
+   }
 
    inline const TYPE & get_at(::collection::index nIndex) const;
    inline TYPE & get_at(::collection::index nIndex);
@@ -192,8 +204,8 @@ public:
    //operator TYPE *() {return this->m_begin;}
    //operator const TYPE *() const {return this->m_begin;}
 
-   template < primitive_container CONTAINER >
-   inline array_base & operator += (const CONTAINER & container);
+   // template < primitive_container CONTAINER >
+   // inline array_base & operator += (const CONTAINER & container);
 
    template < typename... T >
    void fadd(T... a)
@@ -616,29 +628,29 @@ inline void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy
 
 
 
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-template < primitive_container CONTAINER >
-inline array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator += (const CONTAINER & container)
-{
-
-   if (&container == this)
-   {
-
-      array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > aCopy(container);
-
-      this->append_container(aCopy);
-
-   }
-   else
-   {
-
-      this->append_container(container);
-
-   }
-
-   return *this;
-
-}
+// template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+// template < primitive_container CONTAINER >
+// inline array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator += (const CONTAINER & container)
+// {
+//
+//    if (&container == this)
+//    {
+//
+//       array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > aCopy(container);
+//
+//       this->append_container(aCopy);
+//
+//    }
+//    else
+//    {
+//
+//       this->append_container(container);
+//
+//    }
+//
+//    return *this;
+//
+// }
 
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >

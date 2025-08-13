@@ -11,7 +11,7 @@ class CLASS_DECL_APEX api_client_base :
 public:
 
 
-   string_map < ::pointer < ::api > >     m_mapapi;
+   string_map_base < ::pointer < ::api > >     m_mapapi;
    //string                                 m_strImplementation; 
    //string                               m_strProfileStore;
    //string                               m_strApiClientConfig;

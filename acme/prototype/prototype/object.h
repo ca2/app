@@ -17,7 +17,7 @@ protected:
 
    ::pointer < ::object >                                               m_pobjectParentTask;
    ::pointer < ::pointer_array < ::particle > >                         m_pparticleaChildrenTask;
-   ::pointer < atom_map_base < ::pointer < ::parallelization::queue > > >    m_pqueuemap;
+   ::pointer < ::map_particle < atom_map_base < ::pointer < ::parallelization::queue > > > >    m_pqueuemap;
 
 
    ::procedure_array                                                    m_procedureaDestroying;

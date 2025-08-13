@@ -938,7 +938,7 @@ bool thread::handle_messages()
 void thread::run()
 {
 
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    m_eflagElement += e_flag_running;
 
@@ -3556,7 +3556,7 @@ void thread::send_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
 //   ::e_status estatus = ::success;
 //
 //   // else check for thread with message loop
-//   ASSERT_VALID(this);
+//   ASSERT_OK(this);
 //
 //   try
 //   {

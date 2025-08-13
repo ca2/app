@@ -4,7 +4,7 @@
 
 #include "acme/prototype/collection/string_map.h"
 //#include "acme/prototype/collection/string_array.h"
-#include "acme/prototype/collection/atom_map_base.h"
+#include "acme/prototype/collection/atom_map.h"
 #include "acme/prototype/collection/atom_array.h"
 ////#include "acme/prototype/prototype/object.h"
 
@@ -25,8 +25,8 @@ namespace interprocess
       interlocked_count                                        m_iTaskSeed;
       string                                                   m_strApp;
       ::atom                                                   m_atomApp;
-      string_map < ::pointer<::interprocess::caller > >        m_callermap;
-      string_map < ::pointer< ::mutex > >                      m_mapAppMutex;
+      string_map_base < ::pointer<::interprocess::caller > >        m_callermap;
+      string_map_base < ::pointer< ::mutex > >                      m_mapAppMutex;
       ::pointer<::interprocess::target>                        m_ptarget;
       string_array_base                                             m_straModule;
       ::pointer<::interprocess::handler>                       m_phandler;

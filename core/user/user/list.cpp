@@ -29,7 +29,7 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/user/user/scroll_bar.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "aura/graphics/image/list_base.h"
+#include "aura/graphics/image/list.h"
 #include "aura/user/user/scroll_state.h"
 #include "aura/message/user.h"
 #include "aura/windowing/window.h"

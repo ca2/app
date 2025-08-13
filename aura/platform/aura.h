@@ -26,7 +26,7 @@
 //
 //   //extern CLASS_DECL_AURA critical_section* g_pcsGlobal;
 //
-//   extern CLASS_DECL_AURA string_map < int_to_string > * g_pmapFontFaceName;
+//   extern CLASS_DECL_AURA string_map_base < int_to_string > * g_pmapFontFaceName;
 //
 //   extern CLASS_DECL_AURA critical_section* g_pcsFont;
 //
@@ -43,8 +43,8 @@
 //
 //   extern ::pointer< ::mutex > g_pmutexChildren;
 //   //extern ::pointer< ::mutex > g_pmutexThreadWaitClose;
-//   //extern string_map < ::pointer<::acme::library >> g_pmapLibrary;
-//   //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
+//   //extern string_map_base < ::pointer<::acme::library >> g_pmapLibrary;
+//   //extern string_map_base < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 //
 //
 //////#if !defined(WINDOWS)

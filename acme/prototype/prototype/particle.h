@@ -852,6 +852,9 @@ public:
    //inline ::particle * __call__add_referer(const ::reference_referer & referer) const;
 
 
+   virtual void assert_particle_ok() const;
+
+
 };
 
 

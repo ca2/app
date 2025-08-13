@@ -5385,7 +5385,7 @@ namespace windowing
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      return m_userinteractionaMouseHover.erase(pinterface) >= 0;
+      return m_userinteractionaMouseHover.erase_item(pinterface) >= 0;
 
    }
 

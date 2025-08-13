@@ -281,7 +281,7 @@ namespace handler
 
          _synchronous_lock synchronouslock(this->synchronization());
 
-         m_objecthandlercontext.erase_item(pobject);
+         m_objecthandlercontext.erase_key(pobject);
 
       }
 
@@ -310,11 +310,11 @@ namespace handler
    void signal::erase_handler(::object * pobject)
    {
 
-      pobject->notifya().erase(this);
+      pobject->notifya().erase_item(this);
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_objecthandlercontext.erase_item(pobject);
+      m_objecthandlercontext.erase_key(pobject);
 
    }
 
@@ -366,7 +366,7 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_signalhandlercontext.erase_item(signalhandler);
+      m_signalhandlercontext.erase_key(signalhandler);
 
    }
 
@@ -445,7 +445,7 @@ namespace handler
       for (auto & pair : m_objecthandlercontext)
       {
 
-         pair.m_element1->notifya().erase(this);
+         pair.m_element1->notifya().erase_item(this);
 
       }
 

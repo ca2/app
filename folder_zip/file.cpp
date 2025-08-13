@@ -194,7 +194,7 @@ memsize file::read(void * p, ::memsize s)
 
    _synchronous_lock synchronouslock(m_pfolder->synchronization());
 
-   //   ASSERT_VALID(this);
+   //   ASSERT_OK(this);
    ASSERT(m_pfolder->m_unzfile != nullptr);
 
    auto data = (unsigned char *) p;

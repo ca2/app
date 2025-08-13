@@ -7,7 +7,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/topic.h"
 #include "apex/platform/context.h"
-#include "aura/graphics/image/list_base.h"
+#include "aura/graphics/image/list.h"
 #include "aura/message/user.h"
 #include "core/filesystem/filemanager/data.h"
 #include "core/filesystem/filemanager/document.h"

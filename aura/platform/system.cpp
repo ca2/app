@@ -79,7 +79,7 @@ CLASS_DECL_AURA ::pointer<::user::interaction>create_system_message_window(::par
 #include <sys/time.h>
 #endif
 
-extern string_map < ::pointer<::acme::library >>* g_pmapLibrary;
+extern string_map_base < ::pointer<::acme::library >>* g_pmapLibrary;
 
 
 CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr);

@@ -372,10 +372,10 @@ namespace sockets
    class net;
    
    /* type, host, result */
-   typedef string_map < ::string_to_string >       resolv_cache_t;
+   typedef string_map_base < ::string_to_string_base >       resolv_cache_t;
 
    /* type, host, time */
-   typedef string_map < string_map < posix_time > >    resolv_timeout_t;
+   typedef string_map_base < string_map_base < posix_time > >    resolv_timeout_t;
 
 
 

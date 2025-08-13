@@ -52,7 +52,7 @@ public:
 
    using TYPE::TYPE;
    using TYPE::operator = ;
-
+   using TYPE::operator += ;
 
 
    void destroy() override
@@ -63,22 +63,57 @@ public:
    }
 
 
-   // virtual void write_to_stream(::binary_stream& stream)
-   // {
-   //
-   //    stream << (TYPE&)*this;
-   //
-   // }
-   //
-   //
-   // virtual void read_from_stream(::binary_stream& stream)
-   // {
-   //
-   //    stream >> (TYPE&)*this;
-   //
-   // }
+};
+
+
+template < typename TYPE >
+class comparable_eq_array_particle :
+   virtual public ::particle,
+   public TYPE
+{
+public:
+
+
+   using TYPE::TYPE;
+   using TYPE::operator = ;
+   using TYPE::operator += ;
+   using TYPE::operator -= ;
+
+
+   void destroy() override
+   {
+
+      TYPE::destroy();
+
+   }
 
 
 };
+
+
+template < typename TYPE >
+class comparable_array_particle :
+   virtual public ::particle,
+   public TYPE
+{
+public:
+
+
+   using TYPE::TYPE;
+   using TYPE::operator = ;
+   using TYPE::operator += ;
+   using TYPE::operator -= ;
+
+
+   void destroy() override
+   {
+
+      TYPE::destroy();
+
+   }
+
+
+};
+
 
 

@@ -835,7 +835,7 @@ namespace platform
    }
 
 
-   void aura_system_layer::_001AddPacks(string_to_string& base64map, string& str)
+   void aura_system_layer::_001AddPacks(string_to_string_base& base64map, string& str)
    {
    }
 

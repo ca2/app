@@ -4,7 +4,7 @@
 
 #include "bred/graphics3d/model.h"
 #include "bred/graphics3d/types.h"
-#include "acme/prototype/collection/map_base.h"
+#include "acme/prototype/collection/map.h"
 
 // libs
 #include <glm/gtc/matrix_transform.hpp>

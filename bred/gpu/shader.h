@@ -80,13 +80,13 @@ namespace gpu
          int m_i1FragmentShader = -1;
          int m_i2FragmentShader = -1;
       };
-      //::string_map<constant_buffer> m_mapConstantBuffer;
+      //::string_map_base<constant_buffer> m_mapConstantBuffer;
       //struct sampler_and_texture
       //{
 
       //   int m_i;
       //};
-      //::string_map<sampler_and_texture> m_mapSamplerAndTexture;
+      //::string_map_base<sampler_and_texture> m_mapSamplerAndTexture;
       bool                                m_bClearColor;
       ::color::color                      m_colorClear;
       ::gpu::enum_topology                m_etopology;
@@ -103,7 +103,7 @@ namespace gpu
 
       string                     m_strError;
 
-      //string_map < payload >     m_mapLayout;
+      //string_map_base < payload >     m_mapLayout;
 
       ::pointer < renderer >     m_pgpurenderer;
 

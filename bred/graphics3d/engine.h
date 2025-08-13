@@ -37,7 +37,7 @@ namespace graphics3d
 		//::pointer < ::gpu::context >					m_pgpucontext;
 		//::pointer < ::gpu::context >					m_pgpucontextGraphics3D;
 		::pointer < ::user::graphics3d >				m_pusergraphics3d;
-		::string_map < ::pointer < scene > >		m_mapScene;
+		::string_map_base < ::pointer < scene > >		m_mapScene;
 		::pointer < scene >								m_pscene;
 		::pointer < ::graphics3d::input >			m_pinput;
 		::pointer < ::graphics3d::camera >			m_pcamera;

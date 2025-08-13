@@ -19,7 +19,7 @@ namespace xml
    static const char chXMLEscape = '\\';   // for m_strValue field escape
 
 
-   document::document(parse_info * pparseinfo, string_to_string * pentitiesHash)
+   document::document(parse_info * pparseinfo, string_to_string_base * pentitiesHash)
       //m_pparseinfo(pparseinfo),
       //m_pentitiesHash
    {

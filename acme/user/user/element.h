@@ -767,7 +767,7 @@ namespace user
       pointer < T > get_typed_parent()
       {
 
-         ASSERT_VALID(this);
+         ASSERT_OK(this);
 
          pointer < T > p;
 

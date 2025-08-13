@@ -3,7 +3,7 @@
 
 #include "apex/message/predicate_handler.h"
 #include "acme/memory/chunk.h"
-#include "acme/prototype/collection/atom_map_base.h"
+#include "acme/prototype/collection/atom_map.h"
 //#include "acme/prototype/prototype/function.h"
 
 //#include "acme/prototype/prototype/pointer.h"

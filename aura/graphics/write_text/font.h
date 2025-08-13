@@ -80,7 +80,7 @@ namespace write_text
       bool                          m_bCacheLayout;
 
       //bool                          m_bTextMetric;
-      string_map < text >           m_mapFontText;
+      string_map_base < text >           m_mapFontText;
 
 
       font();

@@ -633,7 +633,7 @@ struct is_raw_pointer_struct
 
 
 template<typename T>
-inline constexpr bool is_raw_pointer = is_raw_pointer_struct < T >::value;
+inline constexpr bool is_raw_pointer = is_raw_pointer_struct < T >::payload;
 
 
 template < typename POINTER >
@@ -753,13 +753,37 @@ concept container_type = requires(CONTAINER container)
 
 
 template < typename ARRAY >
-concept primitive_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+concept primitive_array = requires (ARRAY & array, ::collection::count count)
 {
-   array.get_count();
-   array.element_at(i);
-   array.set_size(c);
-   { array.size() } -> ::std::convertible_to <::collection::count>;
+
+   array.array_base_ok();
+   { array.size() } -> ::same_as<::collection::count>;
+   array.set_size(count);
+
 };
+
+
+template < typename LIST >
+concept primitive_list = requires(LIST & list, ::collection::count count)
+{
+
+   list.list_base_ok();
+   { list.size() } -> ::same_as<::collection::count>;
+   list.pick_head();
+   list.pick_tail();
+
+};
+
+
+template < typename MAP >
+concept primitive_map = requires(MAP & map, ::collection::count count)
+{
+
+   map.pair_map_base_ok();
+   { map.size() } -> ::same_as<::collection::count>;
+
+};
+
 
 template < typename ARRAY >
 concept primitive_raw_type_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
@@ -798,7 +822,10 @@ concept primitive_object_array = requires(ARRAY array, ::collection::index i, ::
 
 
 template < typename CONTAINER >
-concept primitive_container = primitive_array < CONTAINER >;
+concept primitive_container =
+   primitive_array < CONTAINER >
+|| primitive_list < CONTAINER >
+|| primitive_map < CONTAINER >;
 
 template < typename CONTAINER >
 concept non_container = !primitive_container < CONTAINER >;

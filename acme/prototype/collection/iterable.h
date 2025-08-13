@@ -3907,7 +3907,7 @@ end:
    ITERABLE & copy_from(ITERABLE & iterable, ITERATOR & iterator, ITERATOR & limit)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       iterable.provision(iterator, limit);
 

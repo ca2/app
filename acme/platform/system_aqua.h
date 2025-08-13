@@ -11,7 +11,7 @@
 #include "application_flags.h"
 #include "acme/constant/gender.h"
 #include "acme/parallelization/_types.h"
-#include "acme/prototype/collection/map_base.h"
+#include "acme/prototype/collection/map.h"
 #include "acme/prototype/prototype/factory.h"
 
 namespace platform

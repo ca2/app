@@ -52,7 +52,7 @@ namespace aura
 {
 
 
-   void system::_001AddPacks(string_to_string & base64map, string & str)
+   void system::_001AddPacks(string_to_string_base & base64map, string & str)
    {
 
       auto iPack = base64map.get_count();

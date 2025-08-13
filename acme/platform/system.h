@@ -55,7 +55,7 @@ namespace platform
       //::pointer < ::platform::system  >      m_psystemComposite;
 
       ::pointer < ::particle >               m_pparticleHttpTextSynchronization;
-      ::string_map < ::string_to_string >    m_mapText;
+      ::string_map_base < ::string_to_string_base >    m_mapText;
       ::pointer < ::platform::application >  m_papplicationMain;
 
       system();
@@ -1427,7 +1427,7 @@ namespace platform
 //
 //       virtual void initialize_estamira();
 //
-//       virtual void _001AddPacks(string_to_string & base64map, string & str);
+//       virtual void _001AddPacks(string_to_string_base & base64map, string & str);
 //
 //       //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 //

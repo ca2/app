@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/prototype/collection/map_base.h"
+#include "acme/prototype/collection/map.h"
 
 
 #define DEBUG_LEVEL 0

@@ -3,7 +3,7 @@
 
 
 #include "message_queue.h"
-#include "acme/prototype/collection/map_base.h"
+#include "acme/prototype/collection/map.h"
 
 
 //using task_message_queue_map = ::map_base < ::task_index, ::pointer < message_queue > >;

@@ -33,7 +33,7 @@ namespace sockets_bsd
 
       socket_map                 m_socketmap; ///< Active sockets map_base
       socket_map                 m_socketmapAdd; ///< Sockets to be added to sockets map_base
-      socket_pointer_list        m_delete; ///< Sockets to be deleted (failed when add)
+      socket_pointer_list        m_socketlistDelete; ///< Sockets to be deleted (failed when add)
       bool                       m_b_use_mutex; ///< ::pointer < ::mutex > correctly initialized
       //SOCKET                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list_base
       //::collection::count                    m_countR;

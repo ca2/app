@@ -93,18 +93,17 @@ namespace dynamic_source
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto iterator = m_map.find(strName);
+      auto & pscript = m_map[strName];
 
-      if (::is_set(iterator)
-         && iterator->element2().is_set()
-         && iterator->element2()->m_strName == strName)
+      if (pscript.is_set()
+         && pscript->m_strName == strName)
       {
 
-         return iterator->element2();
+         return pscript;
 
       }
 
-      return iterator->payload() = create_new_ds_script(strName);
+      return pscript = create_new_ds_script(strName);
 
    }
 

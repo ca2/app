@@ -279,7 +279,7 @@ namespace sockets_bsd
          if (psocket->IsCloseAndDelete())
          {
 
-            m_delete.add_tail(psocket);
+            m_socketlistDelete.add_tail(psocket);
 
          }
 
@@ -630,7 +630,7 @@ namespace sockets_bsd
 
       }
 
-      if (m_delete.contains(psocket))
+      if (m_socketlistDelete.contains(psocket))
       {
 
          return true;
@@ -1975,18 +1975,20 @@ end_processing_adding:
 
          erase_socket(socket);
 
-         auto iteratorSocket = m_socketmap.find(socket);
+         auto p = m_socketmap.find(socket);
 
-         if (::is_set(iteratorSocket) && ::is_set(iteratorSocket->m_psocket))
+         if (::is_set(p) && ::is_set(p->m_psocket))
          {
 
-            iteratorSocket->m_psocket->SetSocketHandler(nullptr);
+            auto psocket = p->m_psocket;
+
+            psocket->SetSocketHandler(nullptr);
 
             //iteratorSocket->m_psocket->m_phandlerSlave.release();
 
-            m_socketmap.erase_key(socket);
+            m_socketmap.erase(p);
 
-            m_delete.add_tail(iteratorSocket->m_psocket);
+            m_socketlistDelete.add_tail(psocket);
 
             m_socketmapAdd.erase_key(socket);
 
@@ -2005,12 +2007,12 @@ end_processing_adding:
 //      }
 
       // erase add's that fizzed
-      while (m_delete.has_element())
+      while (m_socketlistDelete.has_element())
       {
 
-         auto socket = ::transfer(m_delete.pick_head());
+         //bool bReallyHasElementLetsCheck = m_socketlistDelete.has_element();
 
-         auto psocket = socket.m_p;
+         auto psocket = ::transfer(m_socketlistDelete.pick_head());
 
          psocket->OnDelete();
 
@@ -2127,7 +2129,7 @@ end_processing_adding:
 
       ::collection::count iAdd = m_socketmapAdd.get_size();
 
-      ::collection::count iDelete = m_delete.get_size();
+      ::collection::count iDelete = m_socketlistDelete.get_size();
 
       return iSockets + iAdd + iDelete;
 
@@ -2479,7 +2481,7 @@ end_processing_adding:
 
       }
 
-      if (m_delete.erase_item(psocketRemove))
+      if (m_socketlistDelete.erase_item(psocketRemove))
       {
 
          psocketRemove->warning() << "erase -3 socket destructor called while still in use";

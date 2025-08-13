@@ -3,7 +3,7 @@
 
 #include "impact_base.h"
 #include "acme/handler/item.h"
-#include "core/filesystem/userfs/list_base.h"
+#include "core/filesystem/userfs/list.h"
 
 
 namespace filemanager
@@ -11,7 +11,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE file_list :
-      virtual public ::filemanager_show < ::userfs::list_base >
+      virtual public ::filemanager_show < ::userfs::list >
    {
    public:
 

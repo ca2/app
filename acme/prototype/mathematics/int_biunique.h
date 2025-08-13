@@ -103,20 +103,18 @@ void biunique < T, T_to_T > ::biunivoca(bool b)
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::get_a (T b) const
 {
-   T a;
-   if(m_ba.lookup(b, a))
-      return a;
-   return m_iEmptyA;
+
+   return m_ba.defer_get(b, m_iEmptyA);
+
 }
 
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::get_b (T a) const
 {
-   T b;
-   if(m_ab.lookup(a, b))
-      return b;
-   return m_iEmptyB;
+
+   return m_ab.defer_get(a, m_iEmptyB);
+
 }
 
 template < class T, class T_to_T >
@@ -504,16 +502,14 @@ template < class T, class T_to_T >
 T biunique < T, T_to_T > ::add_unique(T b)
 {
 
-   T a;
-
-   if (m_ba.lookup(b, a))
+   if (auto iterator = m_ba.find(b))
    {
 
-      return a;
+      return iterator->element2();
 
    }
 
-   a = get_max_a() + 1;
+   auto a = get_max_a() + 1;
 
    set(a, b);
 
@@ -552,9 +548,7 @@ template < class T, class T_to_T >
 bool biunique < T, T_to_T > ::has_a(T a) const
 {
 
-   T b;
-
-   return m_ab.lookup(a, b) != false;
+   return m_ab.has_key(a);
 
 }
 
@@ -563,9 +557,7 @@ template < class T, class T_to_T >
 bool biunique < T, T_to_T > ::has_b(T b) const
 {
    
-   T a;
-
-   return m_ba.lookup(b, a) != false;
+   return m_ba.has_key(b);
 
 }
 

@@ -58,7 +58,7 @@ namespace user
 
       list_item();
 
-      void initialize_list_item(list_base * plist);
+      void initialize_list_item(list * plist);
 
 
    };
@@ -77,7 +77,7 @@ namespace user
       draw_list_item();
 
 
-      void initialize_draw_list_item(list_base * plist);
+      void initialize_draw_list_item(list * plist);
 
 
       void update_item_color(::draw2d::graphics_pointer & pgraphics);
@@ -96,7 +96,7 @@ namespace user
 
       list_group();
 
-      void initialize_list_group(list_base * plist);
+      void initialize_list_group(list * plist);
 
 
    };
@@ -115,7 +115,7 @@ namespace user
       draw_list_group();
 
 
-      void initialize_draw_list_group(list_base * plist);
+      void initialize_draw_list_group(list * plist);
 
 
       //::image::image_list_pointer get_image_list();

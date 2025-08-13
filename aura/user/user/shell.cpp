@@ -262,7 +262,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_imagemap.lookup(imagekey, iImage))
+      if (m_imagemap.find(imagekey, iImage))
       {
 
          return true;
@@ -707,7 +707,7 @@ namespace user
 
       int iImage;
 
-      if (m_imagemap.lookup(imagekey, iImage))
+      if (m_imagemap.find(imagekey, iImage))
       {
 
          if (iImage == 0x80000001)
@@ -788,7 +788,7 @@ namespace user
                if (pair.m_element2.is_empty())
                {
 
-                  m_mapInterest.erase_item(pair.m_element1);
+                  m_mapInterest.erase_key(pair.m_element1);
 
                   bErasedAnyAtForLoop = true;
 
@@ -1723,7 +1723,7 @@ namespace user
             if (m_pgetfileimage->m_iImage & I32_MINIMUM)
             {
 
-               m_imagemap.erase_item(m_pgetfileimage->m_imagekey);
+               m_imagemap.erase_key(m_pgetfileimage->m_imagekey);
 
             }
             else

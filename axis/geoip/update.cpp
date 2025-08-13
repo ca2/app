@@ -71,7 +71,7 @@ const_char_pointer GeoIP_get_error_message(int i) {
   case GEOIP_SANITY_INFO_FAIL:
     return "Sanity check database_info string failed";
   case GEOIP_SANITY_LOOKUP_FAIL:
-    return "Sanity check ip address lookup failed";
+    return "Sanity check ip address find failed";
   case GEOIP_RENAME_ERR:
     return "Rename error while installing db, check errno";
   case GEOIP_USER_ID_INVALID_ERR:
@@ -488,9 +488,9 @@ short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * 
 //   if (verbose == 1)
 //      GeoIP_printf(f,"PASS  ");
 //
-//   /* this performs an IP lookup test of a US IP address */
+//   /* this performs an IP find test of a US IP address */
 //   if (verbose == 1)
-//      GeoIP_printf(f,"lookup  ");
+//      GeoIP_printf(f,"find  ");
 //   if (strcmp(GeoIP_country_code_by_addr(gi,"24.24.24.24"), "US") != 0) {
 //      GeoIP_delete(gi);
 //      if (verbose == 1)
@@ -930,9 +930,9 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //         GeoIP_printf(f,"PASS  ");
 //   }
 //
-//   /* this performs an IP lookup test of a US IP address */
+//   /* this performs an IP find test of a US IP address */
 //   if (verbose == 1)
-//      GeoIP_printf(f,"lookup  ");
+//      GeoIP_printf(f,"find  ");
 //   if (dbtype == GEOIP_NETSPEED_EDITION) {
 //      int netspeed = GeoIP_id_by_name(gi,"24.24.24.24");
 //      lookupresult = 0;

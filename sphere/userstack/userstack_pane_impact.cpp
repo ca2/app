@@ -101,7 +101,7 @@ namespace userstack
 
          ::pointer<::aura::application>pappTab;
 
-         if(psession->appptra().lookup("application:" + strId, pappTab))
+         if(psession->appptra().find("application:" + strId, pappTab))
          {
             psession->m_pappCurrent = pappTab;
             //psession->m_pappCurrent = pappTab;
@@ -174,7 +174,7 @@ namespace userstack
 
          ::pointer<::aura::application>pappTab;
 
-         if(!psession->appptra().lookup("application:" + strId, pappTab))
+         if(!psession->appptra().find("application:" + strId, pappTab))
          {
 
             application_bias * pappbias = ___new application_bias();

@@ -8,7 +8,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_CORE list_base :
+   class CLASS_DECL_CORE list :
       virtual public mesh
    {
    public:
@@ -55,8 +55,8 @@ namespace user
       //::int_size                                   m_sizeIcon;
 
 
-      list_base();
-      ~list_base() override;
+      list();
+      ~list() override;
 
 
       // ::core::application* get_app();

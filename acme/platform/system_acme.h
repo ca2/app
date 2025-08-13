@@ -553,7 +553,7 @@ namespace platform
 //
 //      long long iValue;
 //
-//      if (m_mapTextToEnum[typeid(e).name()].lookup(scopedstr, iValue))
+//      if (m_mapTextToEnum[typeid(e).name()].find(scopedstr, iValue))
 //      {
 //
 //         e = (ENUM)iValue;

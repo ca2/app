@@ -116,7 +116,7 @@ namespace html
       if (pelement->m_pimpl->m_bHover)
       {
 
-         if (!pelement->m_pimpl->m_mapFont.lookup("hover", iFont))
+         if (!pelement->m_pimpl->m_mapFont.find("hover", iFont))
          {
 
             iFont = create_font(pelement);
@@ -126,7 +126,7 @@ namespace html
       }
       else if (pelement->m_pimpl->has_link())
       {
-         if (!pelement->m_pimpl->m_mapFont.lookup("link", iFont))
+         if (!pelement->m_pimpl->m_mapFont.find("link", iFont))
          {
             iFont = create_font(pelement);
             pelement->m_pimpl->m_mapFont.set_at("link", iFont);
@@ -135,7 +135,7 @@ namespace html
       }
       else
       {
-         if (!pelement->m_pimpl->m_mapFont.lookup("", iFont))
+         if (!pelement->m_pimpl->m_mapFont.find("", iFont))
          {
             iFont = create_font(pelement);
             pelement->m_pimpl->m_mapFont.set_at("", iFont);

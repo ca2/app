@@ -51,7 +51,7 @@ namespace universal_windows
 //
 //            synchronous_lock synchronouslock(this->synchronization());
 //
-//            if (m_pimagemap->lookup(imagekey, iImage))
+//            if (m_pimagemap->find(imagekey, iImage))
 //            {
 //
 //               return iImage;

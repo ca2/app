@@ -1595,56 +1595,56 @@ return m_psavings;
 //      bool bPressed = false;
 //      if (ekey == ::user::e_key_shift)
 //      {
-//         m_pmapKeyPressed->lookup(::user::e_key_shift, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_shift, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_left_shift, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_left_shift, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_right_shift, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_right_shift, bPressed);
 //         if (bPressed)
 //            goto ret;
 //      }
 //      else if (ekey == ::user::e_key_command)
 //      {
-//         m_pmapKeyPressed->lookup(::user::e_key_command, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_command, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_left_command, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_left_command, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_right_command, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_right_command, bPressed);
 //         if (bPressed)
 //            goto ret;
 //      }
 //      else if (ekey == ::user::e_key_control)
 //      {
-//         m_pmapKeyPressed->lookup(::user::e_key_control, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_control, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_left_control, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_left_control, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_right_control, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_right_control, bPressed);
 //         if (bPressed)
 //            goto ret;
 //      }
 //      else if (ekey == ::user::e_key_alt)
 //      {
-//         m_pmapKeyPressed->lookup(::user::e_key_alt, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_alt, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_left_alt, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_left_alt, bPressed);
 //         if (bPressed)
 //            goto ret;
-//         m_pmapKeyPressed->lookup(::user::e_key_right_alt, bPressed);
+//         m_pmapKeyPressed->find(::user::e_key_right_alt, bPressed);
 //         if (bPressed)
 //            goto ret;
 //      }
 //      else
 //      {
 //
-//         m_pmapKeyPressed->lookup(ekey, bPressed);
+//         m_pmapKeyPressed->find(ekey, bPressed);
 //
 //      }
 //
@@ -1683,16 +1683,16 @@ return m_psavings;
    ::user::interaction_base * session::get_bound_ui(::atom idImpact)
    {
 
-      auto p = m_mapboundui.plookup(idImpact);
+      auto iterator = m_mapboundui.find(idImpact);
 
-      if (!p)
+      if (!iterator)
       {
 
          return nullptr;
 
       }
 
-      return p->m_element2;
+      return iterator->m_element2;
 
    }
 
@@ -2451,7 +2451,7 @@ namespace aura
 
       ::pointer<::platform::application>papplication;
 
-      if (m_applicationa.lookup(scopedstrAppId, papplication) && papplication)
+      if (m_applicationa.find(scopedstrAppId, papplication) && papplication)
       {
 
          //::pointer<::bergedge::pane_impact>ppaneimpact = get_document()->get_typed_impact < ::bergedge::pane_impact >();

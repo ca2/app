@@ -135,7 +135,7 @@ typedef enum sp_error {
  * Convert a numeric libspotify error code to a text string. The error message is in
  * English. This function is useful for logging purposes.
  *
- * @param[in]   error   The error code to lookup
+ * @param[in]   error   The error code to find
  */
 SP_LIBEXPORT(const ::string &) sp_error_message(sp_error error);
 

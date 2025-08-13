@@ -2,7 +2,7 @@
 #include "list_cache.h"
 #include "mesh.h"
 #include "mesh_item.h"
-#include "list_base.h"
+#include "list.h"
 #include "list_column.h"
 #include "list_column_array.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -30,7 +30,7 @@ namespace user
 
       single_lock synchronouslock(synchronization(), false);
 
-      ::user::list_base * plist = pmesh->m_plist;
+      ::user::list * plist = pmesh->m_plist;
 
       if(iItemStart  < 0)
       {
@@ -108,7 +108,7 @@ namespace user
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto pmap = m_map.plookup(psubitem->m_pitem->m_iItem);
+      auto pmap = m_map.find(psubitem->m_pitem->m_iItem);
 
       if(!pmap)
       {
@@ -117,7 +117,7 @@ namespace user
 
       }
 
-      auto passoc = pmap->element2().plookup(psubitem->m_pitem->m_iItem);
+      auto passoc = pmap->element2().find(psubitem->m_pitem->m_iItem);
 
       if(!passoc)
       {

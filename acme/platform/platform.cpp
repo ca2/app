@@ -821,16 +821,16 @@ g_bWindowingOutputDebugString = true;
 
       critical_section_lock cs(&m_criticalsection);
 
-      auto p = m_pfactory->find_node(atom);
+      auto iterator = m_pfactory->find(atom);
 
-      if (!p)
+      if (!iterator)
       {
 
          return false;
 
       }
 
-      if (!p->element2())
+      if (!iterator->payload())
       {
 
          return false;

@@ -175,7 +175,7 @@ void user::init(){
 //
 //      factory()->add_factory_item <::user::show < ::user::plain_edit > >();
 //      factory()->add_factory_item <::user::show < ::user::tree > >();
-//      factory()->add_factory_item <::user::show < ::user::list_base > >();
+//      factory()->add_factory_item <::user::show < ::user::list > >();
 //
 //      factory()->add_factory_item <menu_document >();
 //      factory()->add_factory_item <menu_frame >();

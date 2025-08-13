@@ -108,7 +108,7 @@
           length variable cannot be set
           The postfix increment operator returns the current value, not the previous as it should.
           There is no prefix increment operator
-          Arrays are implemented as a linked list_base - hence a lookup time is O(n)
+          Arrays are implemented as a linked list_base - hence a find time is O(n)
 
     TODO:
           Utility va-args style function in TinyJS for executing a function directly

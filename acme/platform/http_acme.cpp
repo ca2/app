@@ -45,8 +45,8 @@ namespace platform
    }
 
 
-   //void http_sync(::nano::http::get * pget){}
-   //void http_async(::nano::http::get * pget, const ::function < void(::nano::http::get *) > & callback){}
+   //void http_sync(::nano::http::get * defer_get){}
+   //void http_async(::nano::http::get * defer_get, const ::function < void(::nano::http::get *) > & callback){}
 
 
    void acme_http_layer::download(const ::payload& payloadFile, const ::url::url& url,

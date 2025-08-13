@@ -200,7 +200,7 @@ namespace axis
 
    //   ::pointer<::apex::application>papp;
 
-   //   if (m_applicationa.lookup(scopedstrAppId, papp))
+   //   if (m_applicationa.find(scopedstrAppId, papp))
    //   {
 
    //      return papp;

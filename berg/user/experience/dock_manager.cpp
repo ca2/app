@@ -524,7 +524,7 @@ namespace experience
 
       }
 
-      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.erase(e_message_mouse_move);
+      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.erase_item(e_message_mouse_move);
 
       m_bDocking = false;
 

@@ -3446,17 +3446,17 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    }
 
-   auto pget = __øcreate < ::nano::http::get >();
+   auto defer_get = __øcreate < ::nano::http::get >();
 
-   pget->m_url = url;
+   defer_get->m_url = url;
 
-   pget->m_timeSyncTimeout = 5_hour;
+   defer_get->m_timeSyncTimeout = 5_hour;
 
    auto pmemoryfile = create_memory_file();
 
-   pget->want_memory_response(pmemoryfile->get_memory());
+   defer_get->want_memory_response(pmemoryfile->get_memory());
 
-   pget->call();
+   defer_get->call();
 
    const_char_pointer pszData = (const_char_pointer )pmemoryfile->get_memory()->data();
 
@@ -3466,7 +3466,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
   /// ::property_set & set = payloadFile["http_set"].property_set_reference();
 
-   pmemoryfile->payload("http_set") = ::transfer(pget->property_set());
+   pmemoryfile->payload("http_set") = ::transfer(defer_get->property_set());
    //{
 
    //   return ::error_failed;

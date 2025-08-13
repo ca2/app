@@ -89,7 +89,7 @@ namespace dynamic_source
       ::pointer < ::mutex >                                 m_pmutexInLink;
       ::pointer<::sockets::in_link_map>                     m_pmapInLink;
       ::pointer < ::mutex >                                 m_pmutexTunnel;
-      strmap(tunnel_map_item)                               m_mapTunnel;
+      ::string_map < tunnel_map_item >                      m_mapTunnel;
 
 
       ::pointer < ::mutex >                                 m_pmutexImageSize;

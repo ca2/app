@@ -53,7 +53,7 @@ namespace file_watcher
 		/// Remove a directory watch. This is a brute force lazy search O(nlogn).
 		void erase_watch(const string & directory);
 
-		/// Remove a directory watch. This is a map_base lookup O(logn).
+		/// Remove a directory watch. This is a map_base find O(logn).
 		void erase_watch(atom watchid);
 
 		string watch_path(atom watchid);

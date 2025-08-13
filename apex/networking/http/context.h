@@ -114,7 +114,7 @@ namespace http
       virtual void get(string & str, const ::url::url & url , ::property_set & set) override;
       virtual void get(memory_base * pmemory, const ::url::url & url, ::property_set & set) override;
       
-      virtual void perform(::nano::http::get * pget) override;
+      virtual void perform(::nano::http::get * defer_get) override;
 
       //virtual bool request(const ::scoped_string & scopedstrRequest, const ::url::url & url, ::property_set & set);
 

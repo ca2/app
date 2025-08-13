@@ -208,7 +208,7 @@ namespace filemanager
             //if (filemanager_data()->m_bPassBk)
             //{
 
-            //   ::user::list_base::m_bBackgroundBypass = true;
+            //   ::user::list::m_bBackgroundBypass = true;
 
             //}
 

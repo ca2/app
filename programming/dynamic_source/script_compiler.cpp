@@ -1454,7 +1454,7 @@ namespace dynamic_source
 
       single_lock slLibrary(m_pmutexLibrary, true);
 
-      auto p = m_mapLib.plookup(scopedstrLibrary);
+      auto p = m_mapLib.find(scopedstrLibrary);
 
       if (::is_ok(p))
       {

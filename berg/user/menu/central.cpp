@@ -123,7 +123,7 @@ namespace user
 
       int iImage;
 
-      if(!m_mapCommandImage.lookup(atom, iImage))
+      if(!m_mapCommandImage.find(atom, iImage))
       {
 
          return -1;
@@ -140,7 +140,7 @@ namespace user
 
       atom atom;
 
-      if(!m_mapImageCommand.lookup(iImage, atom))
+      if(!m_mapImageCommand.find(iImage, atom))
       {
 
          return ::atom();

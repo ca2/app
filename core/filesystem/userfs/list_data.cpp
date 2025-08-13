@@ -291,7 +291,7 @@ namespace userfs
       }
       //else if(m_bStatic)
       //{
-      // return ::user::list_base::_001GetItemText(str, iItem, iSubItem, iListItem);
+      // return ::user::list::_001GetItemText(str, iItem, iSubItem, iListItem);
       //}
       else
       {
@@ -372,7 +372,7 @@ namespace userfs
 
       __construct_new(m_pitema);
 
-      information() << "::userfs::list_base update";
+      information() << "::userfs::list update";
 
       auto & listingUser = puserfsdata->m_listingUser2;
 

@@ -14,7 +14,7 @@ namespace acme_posix
    public:
 
 
-      ::status < ::string > lookup(const ::scoped_string & scopedstrKey) override;
+      ::status < ::string > find(const ::scoped_string & scopedstrKey) override;
 
 
    };

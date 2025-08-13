@@ -94,7 +94,7 @@ namespace graphics3d
                };
             }
 
-            if (uniqueVertices.count(vertex) == 0)
+            if (uniqueVertices.key_count(vertex) == 0)
             {
 
                uniqueVertices[vertex] = static_cast<uint32_t>(m_vertices.size());

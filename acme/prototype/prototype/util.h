@@ -52,7 +52,7 @@ public:
    {
       if (!this->contains(p))
          return false;
-      this->erase(p);
+      this->erase_item(p);
       p->detach_observer(m_point2This);
       return true;
    }

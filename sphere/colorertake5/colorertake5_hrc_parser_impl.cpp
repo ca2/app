@@ -477,7 +477,7 @@ namespace colorertake5
          };
       };
       string baseSchemeName = qualifyOwnName(type->name);
-      if(baseSchemeName.has_character() && schemeHash.plookup(baseSchemeName) != nullptr)
+      if(baseSchemeName.has_character() && schemeHash.find(baseSchemeName) != nullptr)
       {
          type->baseScheme = schemeHash[baseSchemeName];
       }
@@ -501,7 +501,7 @@ namespace colorertake5
          if (errorHandler != nullptr) errorHandler->error(string("bad scheme name in type '")+parseType->getName()+"'");
          return;
       }
-      if (schemeHash.plookup(qSchemeName) != nullptr ||
+      if (schemeHash.find(qSchemeName) != nullptr ||
             disabledSchemes[qSchemeName] != 0)
       {
          if (errorHandler != nullptr) errorHandler->error(string("duplicate scheme name '")+qSchemeName+"'");
@@ -559,14 +559,14 @@ namespace colorertake5
             }
             else
             {
-               string_map_base<scheme_impl *>::pair * ppair = schemeHash.plookup(schemeName);
-               if(ppair == nullptr)
+               string_map_base<scheme_impl *>::pair * iterator = schemeHash.find(schemeName);
+               if(iterator == nullptr)
                {
                   next->scheme = nullptr;
                }
                else
                {
-                  next->scheme = ppair->element2();
+                  next->scheme = iterator->element2();
                }
             }
             if (schemeName.has_character())
@@ -885,14 +885,14 @@ namespace colorertake5
                   string schemeName = qualifyForeignName(snode->schemeName, QNT_SCHEME, true);
                   if (schemeName.has_character())
                   {
-                     string_map_base<scheme_impl *>::pair * ppair = schemeHash.plookup(schemeName);
-                     if(ppair == nullptr)
+                     string_map_base<scheme_impl *>::pair * iterator = schemeHash.find(schemeName);
+                     if(iterator == nullptr)
                      {
                         snode->scheme = nullptr;
                      }
                      else
                      {
-                        snode->scheme = ppair->element2();
+                        snode->scheme = iterator->element2();
                      }
                   }
                   else
@@ -916,14 +916,14 @@ namespace colorertake5
                         string vsn = qualifyForeignName(vt->virtSchemeName, QNT_SCHEME, true);
                         if (vsn.has_character())
                         {
-                           string_map_base<scheme_impl *>::pair * ppair = schemeHash.plookup(vsn);
-                           if(ppair == nullptr)
+                           string_map_base<scheme_impl *>::pair * iterator = schemeHash.find(vsn);
+                           if(iterator == nullptr)
                            {
                               vt->virtScheme = nullptr;
                            }
                            else
                            {
-                              vt->virtScheme = ppair->element2();
+                              vt->virtScheme = iterator->element2();
                            }
                         }
 
@@ -941,14 +941,14 @@ namespace colorertake5
                         string vsn = qualifyForeignName(vt->substSchemeName, QNT_SCHEME, true);
                         if (vsn.has_character())
                         {
-                           string_map_base<scheme_impl *>::pair * ppair = schemeHash.plookup(vsn);
-                           if(ppair == nullptr)
+                           string_map_base<scheme_impl *>::pair * iterator = schemeHash.find(vsn);
+                           if(iterator == nullptr)
                            {
                               vt->substScheme = nullptr;
                            }
                            else
                            {
-                              vt->substScheme = ppair->element2();
+                              vt->substScheme = iterator->element2();
                            }
                         }
                         else if (errorHandler != nullptr) errorHandler->error(string("cannot virtualize using subst-scheme scheme '")+vt->substSchemeName+"' in scheme '"+scheme->element2()->schemeName+"'");
@@ -1014,7 +1014,7 @@ namespace colorertake5
          }
          return false;
       }
-      else if (qntype == QNT_SCHEME && schemeHash.plookup(name) == nullptr)
+      else if (qntype == QNT_SCHEME && schemeHash.find(name) == nullptr)
       {
          if (logErrors)
          {

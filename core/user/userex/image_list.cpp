@@ -432,7 +432,7 @@ namespace userex
 
       strLower.make_lower();
 
-      if (m_mapName.lookup(strLower, strMap))
+      if (m_mapName.find(strLower, strMap))
       {
 
          str = strMap;

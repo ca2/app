@@ -5,13 +5,13 @@ template < class t1, class t2, class t3, class t4 >
 void serialize_write(stream & ostream, map_base < t1, t2, t3, t4 > & m)
 {
    ::collection::count count = m.get_count();
-   typename map_base < t1, t2, t3, t4 >::pair * ppair = m.get_start();
+   typename map_base < t1, t2, t3, t4 >::pair * iterator = m.get_start();
    ostream << count;
-   while (ppair != nullptr)
+   while (iterator != nullptr)
    {
-      ostream << ppair->element1();
-      ostream << ppair->element2();
-      ppair = m.get_next(ppair);
+      ostream << iterator->element1();
+      ostream << iterator->element2();
+      iterator = m.get_next(iterator);
    }
 }
 
@@ -21,7 +21,7 @@ void serialize_read(stream & istream, map_base < t1, t2, t3, t4 > & m)
    try
    {
       t1 iCount;
-      //      class map_base < t1, t2, t3, t4 >::pair * ppair =
+      //      class map_base < t1, t2, t3, t4 >::pair * iterator =
       //       m.get_start();
       istream >> iCount;
       t1 key;

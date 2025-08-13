@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "list_base.h"
+#include "list.h"
 #include "berg/user/user/margin.h"
 #include "berg/user/user/show.h"
 
@@ -11,12 +11,12 @@ namespace user
 
 
    class CLASS_DECL_CORE list_impact:
-      virtual public ::user::show < ::user::margin < ::user::list_base > >
+      virtual public ::user::show < ::user::margin < ::user::list > >
    {
    public:
 
 
-      using BASE_VIEW = ::user::show < ::user::margin < ::user::list_base > >;
+      using BASE_VIEW = ::user::show < ::user::margin < ::user::list > >;
 
 
       list_impact();

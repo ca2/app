@@ -195,7 +195,7 @@ namespace file
       //      {
       //
       //         PROCESS_INFO_t stInfo;
-      //         //if( !m_stProcessInfo.lookup( OpenedFileInfo.dwPID, stInfo))
+      //         //if( !m_stProcessInfo.find( OpenedFileInfo.dwPID, stInfo))
       //         {
       //            TCHAR tcFileName[MAX_PATH];
       //            string csModule;

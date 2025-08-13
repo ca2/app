@@ -12,8 +12,8 @@ public:
    using PACK_SET_AB = packset < TYPEA, TYPEB, ARRAYB >;
    using PACK_SET_BA = packset < TYPEB, TYPEA, ARRAYA >;
 
-   using ARG_TYPEA = typename PACK_SET_AB::ARG_ID_TYPE;
-   using ARG_TYPEB = typename PACK_SET_BA::ARG_ID_TYPE;
+   using ARG_TYPEA = typename PACK_SET_AB::ARG_ELEMENT1;
+   using ARG_TYPEB = typename PACK_SET_BA::ARG_ELEMENT1;
 
 
    PACK_SET_AB m_packsetAB;

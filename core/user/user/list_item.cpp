@@ -10,7 +10,7 @@
 #include "aura/graphics/image/fastblur.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/brush.h"
-#include "list_base.h"
+#include "list.h"
 #include "list_item.h"
 #include "list_column.h"
 
@@ -76,7 +76,7 @@ namespace user
    }
 
 
-   void list_item::initialize_list_item(list_base * plist)
+   void list_item::initialize_list_item(list * plist)
    {
 
       initialize_mesh_item(plist);
@@ -110,7 +110,7 @@ namespace user
    }
 
 
-   void draw_list_item::initialize_draw_list_item(list_base * plist)
+   void draw_list_item::initialize_draw_list_item(list * plist)
    {
 
       initialize_list_item(plist);
@@ -157,7 +157,7 @@ namespace user
 
          ::image::icon * picon;
 
-         if (m_pcolumn->m_mapIcon.lookup((int)m_iImage, picon))
+         if (m_pcolumn->m_mapIcon.find((int)m_iImage, picon))
          {
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -509,7 +509,7 @@ namespace user
       if (m_bOk)
       {
 
-         if (m_pitem->m_pmesh->m_plist->m_eview == list_base::impact_icon && m_pitem->m_pmesh->m_plist->m_bEmboss && ((m_pitem->m_pmesh->m_plist->m_iTextBlurRadius > 0 && m_pitem->m_pmesh->m_plist->m_iTextBlur > 0) || m_pitem->m_pmesh->m_plist->m_iTextSpreadRadius > 0))
+         if (m_pitem->m_pmesh->m_plist->m_eview == list::impact_icon && m_pitem->m_pmesh->m_plist->m_bEmboss && ((m_pitem->m_pmesh->m_plist->m_iTextBlurRadius > 0 && m_pitem->m_pmesh->m_plist->m_iTextBlur > 0) || m_pitem->m_pmesh->m_plist->m_iTextSpreadRadius > 0))
          {
 
             if (m_strText.has_character())
@@ -612,7 +612,7 @@ namespace user
    }
 
 
-   void draw_list_group::initialize_draw_list_group(list_base * plist)
+   void draw_list_group::initialize_draw_list_group(list * plist)
    {
 
       initialize_draw_mesh_group(plist);

@@ -15,7 +15,7 @@ typedef enum {
    GEOIP_SOCKET_READ_ERR         = -19, /* Error reading from socket, see errno */
    GEOIP_SANITY_OPEN_ERR         = -20, /* Sanity check GeoIP_open error */
    GEOIP_SANITY_INFO_FAIL        = -21, /* Sanity check database_info string failed */
-   GEOIP_SANITY_LOOKUP_FAIL      = -22, /* Sanity check ip address lookup failed */
+   GEOIP_SANITY_LOOKUP_FAIL      = -22, /* Sanity check ip address find failed */
    GEOIP_RENAME_ERR              = -23, /* Rename error while installing db, check errno */
    GEOIP_USER_ID_INVALID_ERR     = -24, /* Invalid userID */
    GEOIP_PRODUCT_ID_INVALID_ERR  = -25, /* Invalid product ID or subscription expired */

@@ -464,7 +464,7 @@ namespace nanoui
       const Anchor & anchor(Widget* pwidget) const 
       {
          
-         auto p = m_anchor.plookup(pwidget);
+         auto p = m_anchor.find(pwidget);
 
          if (m_anchor.is_end(p))
          {

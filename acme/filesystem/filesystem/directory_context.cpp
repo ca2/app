@@ -981,7 +981,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
 
    //         unsigned int dwLastError;
 
-            //if (!m_isdirmap.lookup(pcszPath, bHasSubFolder, dwLastError))
+            //if (!m_isdirmap.find(pcszPath, bHasSubFolder, dwLastError))
 
             //{
             //   return false;
@@ -1446,7 +1446,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 
       //      zip_context zip(this);
             //            unsigned int dwLastError;
-                        //if (m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
+                        //if (m_isdirmap.find(strPath, bHasSubFolder, dwLastError))
                         //   return bHasSubFolder;
         //    bHasSubFolder = zip.has_sub_folder(strPath);
             //m_isdirmap.set(strPath, bHasSubFolder, get_last_error());
@@ -1466,15 +1466,15 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      }
 //
 //
-//      bool directory_context::is_dir_map::lookup(const ::file::path & path, bool &bIsDir, unsigned int & dwLastError)
+//      bool directory_context::is_dir_map::find(const ::file::path & path, bool &bIsDir, unsigned int & dwLastError)
 //      {
 //
-//         return lookup(path, bIsDir, dwLastError, (int) path.length());
+//         return find(path, bIsDir, dwLastError, (int) path.length());
 //
 //      }
 //
 //
-//      bool directory_context::is_dir_map::lookup(const ::file::path & path, bool &bIsDir, unsigned int &dwLastError, int iLastChar)
+//      bool directory_context::is_dir_map::find(const ::file::path & path, bool &bIsDir, unsigned int &dwLastError, int iLastChar)
 //      {
 //
 //         if (path.get_length() <= 0)

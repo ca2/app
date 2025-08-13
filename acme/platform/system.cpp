@@ -508,16 +508,16 @@ namespace platform
    ::thread_storage* system::_thread_storage_unlocked(const ::task_index& taskindex)
    {
 
-      auto ppairThreadStorage = m_mapThreadStorage.plookup(taskindex);
+      auto iteratorThreadStorage = m_mapThreadStorage.find(taskindex);
 
-      if (!ppairThreadStorage)
+      if (!iteratorThreadStorage)
       {
 
          return nullptr;
 
       }
 
-      return &ppairThreadStorage->m_element2;
+      return &iteratorThreadStorage->m_element2;
 
    }
 
@@ -1392,7 +1392,7 @@ namespace platform
 
    //   itask itask;
 
-   //   if (!m_taskidmap.lookup((::task* const)ptask, itask))
+   //   if (!m_taskidmap.find((::task* const)ptask, itask))
    //   {
 
    //      return 0;
@@ -1443,23 +1443,23 @@ namespace platform
 
       critical_section_lock criticalsectionlock(&m_criticalsectionThreadStorage);
 
-      auto ppairThreadStorage = m_mapThreadStorage.plookup(ptask->m_taskindex);
+      auto iteratorThreadStorage = m_mapThreadStorage.find(ptask->m_taskindex);
 
-      if (!ppairThreadStorage->m_element2.m_ptask)
+      if (!iteratorThreadStorage->m_element2.m_ptask)
       {
 
          throw ::exception(error_wrong_state);
 
       }
 
-      if (ppairThreadStorage->m_element2.m_ptask != ptask)
+      if (iteratorThreadStorage->m_element2.m_ptask != ptask)
       {
 
          throw ::exception(error_wrong_state);
 
       }
 
-      m_mapThreadStorage.erase(ppairThreadStorage);
+      m_mapThreadStorage.erase(iteratorThreadStorage);
 
    }
 
@@ -1743,7 +1743,7 @@ namespace platform
 
       ::string str;
 
-      if (m_mapText[scopedstrPath].lookup(scopedstrKey, str))
+      if (m_mapText[scopedstrPath].find(scopedstrKey, str))
       {
 
          return str;
@@ -2939,7 +2939,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    ::platform::session* system::session(::collection::index iEdge)
    {
 
-      auto iterator = m_sessionmap.plookup(iEdge);
+      auto iterator = m_sessionmap.find(iEdge);
 
       if (!iterator)
       {

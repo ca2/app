@@ -8,7 +8,7 @@ namespace acme_posix
 {
 
 
-   ::status < ::string > environment::lookup(const ::scoped_string & scopedstrKey)
+   ::status < ::string > environment::find(const ::scoped_string & scopedstrKey)
    {
 
       // Special keys

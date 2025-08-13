@@ -124,11 +124,11 @@
 //   sort_data * get_sort(const ::atom & atom) const
 //   {
 //
-//      auto ppair = m_map.plookup(atom);
+//      auto iterator = m_map.find(atom);
 //
-//      if (!ppair) return nullptr;
+//      if (!iterator) return nullptr;
 //
-//      ((sort_array*)this)->m_psortdata = ppair->m_element2;
+//      ((sort_array*)this)->m_psortdata = iterator->m_element2;
 //
 //      return m_psortdata;
 //

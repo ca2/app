@@ -29971,7 +29971,7 @@ __check_refdbg;
    atom control_cmd_ui::GetControlCommand(atom atom)
    {
       ::atom idCommand;
-      if (m_mapControlCommand.lookup(atom, idCommand))
+      if (m_mapControlCommand.find(atom, idCommand))
       {
          return atom;
       }

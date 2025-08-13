@@ -62,15 +62,15 @@ namespace platform
    ::string http::get(const ::url::url & url, const class ::time & timeTimeout)
    {
 
-      auto pget = __create_new < ::nano::http::get >();
+      auto defer_get = __create_new < ::nano::http::get >();
 
-      pget->m_url = url;
+      defer_get->m_url = url;
 
-      pget->m_timeSyncTimeout = timeTimeout;
+      defer_get->m_timeSyncTimeout = timeTimeout;
 
-      pget->call();
+      defer_get->call();
 
-      ::string str = pget->get_memory_response()->as_utf8();
+      ::string str = defer_get->get_memory_response()->as_utf8();
 
       return str;
 
@@ -80,25 +80,25 @@ namespace platform
    ::string http::get(const ::url::url & url, ::property_set & set, const class ::time & timeTimeout)
    {
 
-      auto pget = __øcreate < ::nano::http::get >();
+      auto defer_get = __øcreate < ::nano::http::get >();
 
-      pget->m_url = url;
+      defer_get->m_url = url;
 
-      pget->property_set() = set;
+      defer_get->property_set() = set;
 
-      pget->m_timeSyncTimeout = timeTimeout;
+      defer_get->m_timeSyncTimeout = timeTimeout;
 
-      pget->want_memory_response();
+      defer_get->want_memory_response();
 
-      pget->call();
+      defer_get->call();
 
       ::string str;
       
-      auto pmemory = pget->get_memory_response();
+      auto pmemory = defer_get->get_memory_response();
 
       str = pmemory->as_utf8();
 
-      set = pget->property_set();
+      set = defer_get->property_set();
 
       return str;
 
@@ -118,15 +118,15 @@ namespace platform
 
       auto pfile = file_system()->get_writer(payloadFile);
 
-      auto pget = __create_new < ::nano::http::get >();
+      auto defer_get = __create_new < ::nano::http::get >();
 
-      pget->m_url = url;
+      defer_get->m_url = url;
 
-      pget->m_timeSyncTimeout =  timeTimeout;
+      defer_get->m_timeSyncTimeout =  timeTimeout;
 
-      pget->call();
+      defer_get->call();
 
-      pfile->write(*pget->get_memory_response());
+      pfile->write(*defer_get->get_memory_response());
 
       pfile->seek_to_begin();
 
@@ -138,21 +138,21 @@ namespace platform
 
       auto pfile = file_system()->get_writer(payloadFile, ::file::e_open_create);
 
-      auto pget = __øcreate < ::nano::http::get >();
+      auto defer_get = __øcreate < ::nano::http::get >();
 
-      pget->m_url = url;
+      defer_get->m_url = url;
 
-      pget->property_set() = set;
+      defer_get->property_set() = set;
 
-      pget->want_memory_response();
+      defer_get->want_memory_response();
 
-      pget->m_timeSyncTimeout =  timeTimeout;
+      defer_get->m_timeSyncTimeout =  timeTimeout;
 
-      pget->call();
+      defer_get->call();
 
-      set = pget->property_set();
+      set = defer_get->property_set();
 
-      pfile->write(*pget->get_memory_response());
+      pfile->write(*defer_get->get_memory_response());
 
       pfile->seek_to_begin();
 

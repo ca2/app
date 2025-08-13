@@ -255,11 +255,11 @@ bool DBFileSystemSizeSet::get_cache_fs_size(long long & i64Size, const ::scoped_
 
    m_table.m_puserinteraction->get_fs_size(i64Size, pszPath, bPending);
    file_size_table::get_fs_size size;
-   FileSystemSizeWnd::size_map::pair * ppair = m_table.m_puserinteraction->m_map.plookup(scopedstrPath);
-   if(ppair != nullptr)
+   FileSystemSizeWnd::size_map::pair * iterator = m_table.m_puserinteraction->m_map.find(scopedstrPath);
+   if(iterator != nullptr)
    {
-      i64Size     = ppair->element2().m_iSize;
-      bPending    = ppair->element2().m_bPending;
+      i64Size     = iterator->element2().m_iSize;
+      bPending    = iterator->element2().m_bPending;
       return true;
    }
    return  false;

@@ -1037,10 +1037,10 @@ namespace aura
 
    //   _synchronous_lock synchronouslock(m_pmutexStr);
 
-   //   if (m_stringtableStd.lookup(strTable, pmap))
+   //   if (m_stringtableStd.find(strTable, pmap))
    //   {
 
-   //      if (pmap->lookup(strString, str))
+   //      if (pmap->find(strString, str))
    //      {
 
    //         return true;
@@ -1048,10 +1048,10 @@ namespace aura
    //      }
 
    //   }
-   //   else if (m_stringtable.lookup(strTable, pmap))
+   //   else if (m_stringtable.find(strTable, pmap))
    //   {
 
-   //      if (pmap->lookup(strString, str))
+   //      if (pmap->find(strString, str))
    //      {
 
    //         return true;
@@ -4570,7 +4570,7 @@ retry_license:
 
    //   string str;
 
-   //   if (m_stringmap.lookup(atom, str))
+   //   if (m_stringmap.find(atom, str))
    //   {
 
    //      return str;
@@ -4678,10 +4678,10 @@ retry_license:
 
    //   ::pointer<string_to_string_base>pmap;
 
-   //   if (m_stringtableStd.lookup(strTable, pmap))
+   //   if (m_stringtableStd.find(strTable, pmap))
    //   {
 
-   //      if (pmap != nullptr && pmap->lookup(strString, str))
+   //      if (pmap != nullptr && pmap->find(strString, str))
    //      {
 
    //         return true;
@@ -4689,10 +4689,10 @@ retry_license:
    //      }
 
    //   }
-   //   else if (m_stringtable.lookup(strTable, pmap))
+   //   else if (m_stringtable.find(strTable, pmap))
    //   {
 
-   //      if (pmap != nullptr && pmap->lookup(strString, str))
+   //      if (pmap != nullptr && pmap->find(strString, str))
    //      {
 
    //         return true;
@@ -7605,7 +7605,7 @@ namespace aura
    ::property_set * application::existing_propset(object * pparticle)
    {
    single_lock synchronouslock(&m_mapObjectSet, true);
-   auto point = m_mapObjectSet.plookup(pparticle);
+   auto point = m_mapObjectSet.find(pparticle);
    if(point == nullptr)
    return nullptr;
    return &point->m_value;

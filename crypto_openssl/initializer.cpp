@@ -166,12 +166,12 @@ extern "C" void crypto_initializer_SSL_locking_function(int mode, int n, const_c
 
    ::pointer < ::mutex >* pmutex = nullptr;
 
-   if (::crypto::g_pmapMutex != nullptr && !::crypto::g_pmapMutex->lookup(n, pmutex))
+   if (::crypto::g_pmapMutex != nullptr && !::crypto::g_pmapMutex->find(n, pmutex))
    {
 
       ::crypto::g_pmapMutex->operator [](n) = ___new ::pointer < ::mutex > ();
 
-      if (!::crypto::g_pmapMutex->lookup(n, pmutex))
+      if (!::crypto::g_pmapMutex->find(n, pmutex))
       {
 
          return;

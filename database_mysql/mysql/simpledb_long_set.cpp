@@ -214,7 +214,7 @@ bool db_long_set::load(const ::string & lpKey, long long * plValue)
 
       db_long_set_item longitem;
 
-      if(m_pcore->m_map.lookup(lpKey,longitem) && longitem.m_timeTimeout > ::get_tick())
+      if(m_pcore->m_map.find(lpKey,longitem) && longitem.m_timeTimeout > ::get_tick())
       {
          *plValue = longitem.m_l;
          return true;

@@ -300,7 +300,7 @@ namespace platform
    }
 
 
-   void apex_http_layer::perform(::nano::http::get* pget)
+   void apex_http_layer::perform(::nano::http::get* defer_get)
    {
 
 

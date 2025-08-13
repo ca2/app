@@ -2664,16 +2664,16 @@ namespace aura
    //::apex::session * system::session(::collection::index iEdge)
    //{
 
-   //   auto ppair = m_sessionmap.plookup(iEdge);
+   //   auto iterator = m_sessionmap.find(iEdge);
 
-   //   if (!ppair)
+   //   if (!iterator)
    //   {
 
    //      return nullptr;
 
    //   }
 
-   //   return ppair->element2();
+   //   return iterator->element2();
 
    //}
 
@@ -4773,7 +4773,7 @@ namespace aura
 //
 //      itask itask = null_itask;
 //
-//      if (!m_threadidmap.lookup(pthread, itask))
+//      if (!m_threadidmap.find(pthread, itask))
 //      {
 //
 //         return 0;
@@ -6176,7 +6176,7 @@ if(!m_pimaging)
 
    //   }
 
-   //   if(!m_pbergedgemap->lookup(iEdge,pbergedge))
+   //   if(!m_pbergedgemap->find(iEdge,pbergedge))
    //   {
 
    //      return nullptr;
@@ -6385,7 +6385,7 @@ if(!m_pimaging)
 
    //   ::aura::session * pbergedge = nullptr;
 
-   //   while(m_pbergedgemap->lookup(iNewEdge,pbergedge))
+   //   while(m_pbergedgemap->find(iNewEdge,pbergedge))
    //   {
 
    //      iNewEdge++;

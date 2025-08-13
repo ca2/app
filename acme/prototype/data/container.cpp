@@ -109,9 +109,9 @@ namespace data
    data * data_container_base::get_data(const ::atom & atom)
    {
 
-      auto pnode = m_datamap.plookup(atom);
+      auto iterator = m_datamap.find(atom);
 
-      if (!pnode)
+      if (!iterator)
       {
 
          auto & pdata = m_datamap[atom];
@@ -132,11 +132,11 @@ namespace data
 
          }
 
-         pnode = m_datamap.plookup(atom);
+         iterator = m_datamap.find(atom);
 
       }
 
-      return pnode->element2();
+      return iterator->payload();
 
    }
 

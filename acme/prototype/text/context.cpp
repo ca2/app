@@ -446,7 +446,7 @@ namespace text
             const schema * pschema = plocale->get_schema(scopedstrLocale);
             if(pschema != nullptr)
             {
-               auto ptable = pschema->find_node(atom);
+               auto ptable = pschema->find(atom);
                if(ptable && ptable->element2().has_character())
                   return ptable->element2();
             }

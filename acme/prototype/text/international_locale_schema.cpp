@@ -634,12 +634,12 @@ namespace text
       inline ::string rl_id(const ::scoped_string& scopedstrLocale)
       {
 
-         auto pnode = g_pmapRTL->plookup(scopedstrLocale);
+         auto iterator = g_pmapRTL->find(scopedstrLocale);
 
-         if (pnode)
+         if (iterator)
          {
 
-            return pnode->element2();
+            return iterator->element2();
 
          }
 

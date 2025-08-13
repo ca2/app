@@ -1264,18 +1264,18 @@ namespace platform
    }
 
 
-   //void context::http_sync(::nano::http::get * pget)
+   //void context::http_sync(::nano::http::get * defer_get)
    //{
    //
-   //   nano()->http()->sync(pget);
+   //   nano()->http()->sync(defer_get);
    //
    //}
 
 
-   //void context::http_async(::nano::http::get * pget, const ::function < void(::nano::http::get *) > & callback)
+   //void context::http_async(::nano::http::get * defer_get, const ::function < void(::nano::http::get *) > & callback)
    //{
    //
-   //   nano()->http()->async(pget);
+   //   nano()->http()->async(defer_get);
    //
    //}
 

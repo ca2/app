@@ -615,7 +615,7 @@ namespace factory
 //
 //      critical_section_lock cs(&((factory*)this)->m_criticalsection);
 //
-//      auto iterator = this->plookup(atom);
+//      auto iterator = this->find(atom);
 //
 //      if (iterator.is_null())
 //      {

@@ -1,6 +1,6 @@
 #include "framework.h"
 ////#include "data.h"
-#include "list_base.h"
+#include "list.h"
 #include "acme/constant/message.h"
 #include "acme/filesystem/file/item.h"
 #include "acme/filesystem/filesystem/directory_context.h"
@@ -242,7 +242,7 @@ namespace filemanager
                0x00100000);
                if(hr == NOERROR)
                {
-               if(!m_iconmap.lookup(hicon, iImage))
+               if(!m_iconmap.find(hicon, iImage))
                {
                iImage = pil->add(hicon);
                m_iconmap.set_at(hicon, iImage);
@@ -264,7 +264,7 @@ namespace filemanager
                IMAGE_ICON,
                16, 16,
                LR_CREATEDIBSECTION);
-               if(!m_iconmap.lookup(hicon, iImage))
+               if(!m_iconmap.find(hicon, iImage))
                {
                iImage = pil->add(hicon);
                m_iconmap.set_at(hicon, iImage);
@@ -284,7 +284,7 @@ namespace filemanager
       }
       else
       {
-         ::user::list_base::_001CreateImageList(pcolumn);
+         ::user::list::_001CreateImageList(pcolumn);
       }
    }
 
@@ -352,7 +352,7 @@ namespace filemanager
       else
       {
 
-         ::user::list_base::_001GetSubItemImage(psubitem);
+         ::user::list::_001GetSubItemImage(psubitem);
 
       }
 
@@ -433,7 +433,7 @@ namespace filemanager
          if (filemanager_data()->m_bPassBk)
          {
 
-            ::user::list_base::m_bBackgroundBypass = true;
+            ::user::list::m_bBackgroundBypass = true;
 
          }
 

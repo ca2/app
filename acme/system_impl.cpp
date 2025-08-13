@@ -2255,7 +2255,7 @@ namespace platform
    ::platform::session * system::session(::collection::index iEdge)
    {
 
-      auto iterator = m_sessionmap.plookup(iEdge);
+      auto iterator = m_sessionmap.find(iEdge);
 
       if (iterator.is_null())
       {

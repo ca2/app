@@ -37,8 +37,8 @@ namespace file
          is_dir_map(::particle * pparticle);
 
 
-         bool lookup(const ::file::path & strPath, bool &bIsDir, unsigned int & dwLastError);
-         bool lookup(const ::file::path & strPath, bool &bIsDir, unsigned int & dwLastError, int iLast);
+         bool find(const ::file::path & strPath, bool &bIsDir, unsigned int & dwLastError);
+         bool find(const ::file::path & strPath, bool &bIsDir, unsigned int & dwLastError, int iLast);
          void set(const ::file::path & strPath, bool bIsDir, unsigned int dwLastError);
 
 

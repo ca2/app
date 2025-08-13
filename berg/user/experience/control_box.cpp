@@ -680,9 +680,9 @@ namespace experience
    control_box::item * control_box::get_item(enum_button ebutton, bool bCreate)
    {
 
-      auto ppair = m_itemmap.plookup(ebutton);
+      auto iterator = m_itemmap.find(ebutton);
 
-      if (!ppair)
+      if (!iterator)
       {
 
          return nullptr;
@@ -692,11 +692,11 @@ namespace experience
       if (bCreate)
       {
 
-         __defer_construct_new(ppair->m_element2);
+         __defer_construct_new(iterator->m_element2);
 
       }
 
-      return ppair->m_element2;
+      return iterator->m_element2;
 
    }
 

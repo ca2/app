@@ -49,8 +49,8 @@ namespace platform
       virtual ::url::url get_effective_url(const ::url::url& url) override;
 
 
-      //virtual void http_sync(::nano::http::get * pget);
-      //virtual void http_async(::nano::http::get * pget, const ::function < void(::nano::http::get *) > & callback);
+      //virtual void http_sync(::nano::http::get * defer_get);
+      //virtual void http_async(::nano::http::get * defer_get, const ::function < void(::nano::http::get *) > & callback);
 
 
       virtual void download(const ::payload& payloadFile, const ::url::url& url, const class ::time& timeTimeout = 5_h) override;

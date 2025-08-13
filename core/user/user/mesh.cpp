@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "mesh.h"
-#include "list_base.h"
+#include "list.h"
 #include "mesh_cache_interface.h"
 #include "list_data.h"
 #include "list_item.h"
@@ -186,7 +186,7 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
       ::user::scroll_base::install_message_routing(pchannel);
 
-      bool bList = dynamic_cast <list_base *> (this) != nullptr;
+      bool bList = dynamic_cast <::user::list *> (this) != nullptr;
 
       MESSAGE_LINK(e_message_size, pchannel, this,&mesh::on_message_size);
       MESSAGE_LINK(e_message_scroll_y, pchannel, this,&mesh::on_message_scroll_y);
@@ -1455,7 +1455,7 @@ namespace user
 
    //   int iWidth;
 
-   //   if(!m_mapColumnWidth.lookup((::collection::index) pitem->m_iColumn,iWidth))
+   //   if(!m_mapColumnWidth.find((::collection::index) pitem->m_iColumn,iWidth))
    //   {
 
    //      iWidth = m_iDefaultColumnWidth;
@@ -3035,7 +3035,7 @@ namespace user
 
       host_to_client()(point);
 
-      if(dynamic_cast < list_base * >(this) == nullptr)
+      if(dynamic_cast < ::user::list * >(this) == nullptr)
       {
 
          auto tickNow = ::time::now();
@@ -6155,7 +6155,7 @@ namespace user
    //   //if(m_pcolumn->m_bIcon)
    //   //{
    //   //   ::image::icon * picon;
-   //   //   if(m_pcolumn->m_mapIcon.lookup((int)m_iImage,picon))
+   //   //   if(m_pcolumn->m_mapIcon.find((int)m_iImage,picon))
    //   //   {
    //   //      m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //   //      return m_pgraphics->DrawIcon(m_rectangleImage.top_left(),picon) != false;

@@ -84,16 +84,16 @@ namespace user
 
       }
 
-      auto pnode = m_mapDrag.plookup(pitem->m_item);
+      auto iterator = m_mapDrag.find(pitem->m_item);
 
-      if (!pnode)
+      if (!iterator)
       {
 
          return nullptr;
 
       }
 
-      return pnode->payload();
+      return iterator->payload();
 
    }
 

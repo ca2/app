@@ -1,21 +1,21 @@
 #pragma once
 
 
-template < typename ID_TYPE, typename ITEM_TYPE, typename ARRAY = array < ITEM_TYPE > >
+template < typename ELEMENT1, typename ELEMENT2, typename ARRAY = array < ELEMENT2 > >
 class packset :
-   public map_base < ID_TYPE, ARRAY >
+   public map_base < ELEMENT1, ARRAY >
 {
 public:
    
 
-   using BASE_MAP = map_base < ID_TYPE, ARRAY >;
-   using ARG_ID_TYPE = typename BASE_MAP::ARG_ITEM;
-   using ARG_ITEM_TYPE = typename BASE_MAP::PAYLOAD::BASE_ARG_TYPE;
+   using BASE_MAP = map_base < ELEMENT1, ARRAY >;
+   using ARG_ELEMENT1 = typename BASE_MAP::ARG_KEY;
+   using ARG_ELEMENT2 = typename BASE_MAP::PAYLOAD::BASE_ARG_TYPE;
    
    packset();
    
    
-   void pack(ARG_ID_TYPE atom, ARG_ITEM_TYPE item);
+   void pack(ARG_ELEMENT1 atom, ARG_ELEMENT2 item);
 
 
    ::collection::count get_pack_count();
@@ -25,15 +25,15 @@ public:
 };
 
 
-template < typename ID_TYPE, typename ITEM_TYPE, typename ARRAY >
-packset < ID_TYPE, ITEM_TYPE, ARRAY > ::packset()
+template < typename ELEMENT1, typename ELEMENT2, typename ARRAY >
+packset < ELEMENT1, ELEMENT2, ARRAY > ::packset()
 {
 
 }
 
 
-template < typename ID_TYPE, typename ITEM_TYPE, typename ARRAY >
-void packset < ID_TYPE, ITEM_TYPE, ARRAY > ::pack(ARG_ID_TYPE atom, ARG_ITEM_TYPE item)
+template < typename ELEMENT1, typename ELEMENT2, typename ARRAY >
+void packset < ELEMENT1, ELEMENT2, ARRAY > ::pack(ARG_ELEMENT1 atom, ARG_ELEMENT2 item)
 {
    
    this->operator[](atom).add(item);
@@ -41,8 +41,8 @@ void packset < ID_TYPE, ITEM_TYPE, ARRAY > ::pack(ARG_ID_TYPE atom, ARG_ITEM_TYP
 }
 
 
-template < typename ID_TYPE, typename ITEM_TYPE, typename ARRAY >
-::collection::count packset < ID_TYPE, ITEM_TYPE, ARRAY > ::get_pack_count()
+template < typename ELEMENT1, typename ELEMENT2, typename ARRAY >
+::collection::count packset < ELEMENT1, ELEMENT2, ARRAY > ::get_pack_count()
 {
    
    return this->get_size();
@@ -50,20 +50,20 @@ template < typename ID_TYPE, typename ITEM_TYPE, typename ARRAY >
 }
 
 
-template < typename ID_TYPE, typename ITEM_TYPE, typename ARRAY >
-::collection::count packset < ID_TYPE, ITEM_TYPE, ARRAY > ::get_item_count()
+template < typename ELEMENT1, typename ELEMENT2, typename ARRAY >
+::collection::count packset < ELEMENT1, ELEMENT2, ARRAY > ::get_item_count()
 {
    
    ::collection::count count = 0;
 
-   auto ppair = this->get_start();
+   auto iterator = this->get_start();
    
-   while(ppair != nullptr)
+   while(iterator != nullptr)
    {
       
-      count += ppair->element2().get_count();
+      count += iterator->element2().get_count();
 
-      this->get_next(ppair);
+      this->get_next(iterator);
 
    }
 

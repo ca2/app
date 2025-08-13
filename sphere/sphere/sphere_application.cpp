@@ -728,7 +728,7 @@ namespace sphere
 
       ::pointer<::aura::application>papp;
 
-      if (appptra().lookup(scopedstrAppId, papp))
+      if (appptra().find(scopedstrAppId, papp))
       {
 
          return papp;
@@ -815,7 +815,7 @@ namespace sphere
 
       ::pointer<::aura::application>papp;
 
-      if (appptra().lookup(string(scopedstrType) + ":" + string(scopedstrAppId), papp) && papp.is_set())
+      if (appptra().find(string(scopedstrType) + ":" + string(scopedstrAppId), papp) && papp.is_set())
       {
 
          //::pointer<pane_impact>ppaneimpact = m_ppaneimpact;

@@ -40,7 +40,7 @@ namespace universal_windows
          }
 
 
-         void http::perform(::nano::http::get * pget)
+         void http::perform(::nano::http::get * defer_get)
          {
 
 

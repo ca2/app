@@ -422,7 +422,7 @@ namespace user
 
       pimpactsystem->close_all_documents(false);
 
-      m_mapImpactSystem.erase_item(atom);
+      m_mapImpactSystem.erase_key(atom);
 
       //if (c <= 0)
       //{

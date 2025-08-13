@@ -4952,25 +4952,25 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    ::file::path node::get_font_path_from_name(const ::scoped_string& scopedstrName)
    {
 
-      auto p = m_mapFont.plookup(scopedstrName);
+      auto iterator = m_mapFont.find(scopedstrName);
 
-      if (!p)
+      if (!iterator)
       {
 
          m_mapFont[scopedstrName].m_path = _get_font_path_from_name(scopedstrName);
 
-         p = m_mapFont.plookup(scopedstrName);
+         iterator = m_mapFont.find(scopedstrName);
 
       }
 
-      if (!p)
+      if (!iterator)
       {
       
          return {};
 
       }
 
-      return p->m_element2.m_path;
+      return iterator->m_element2.m_path;
 
    }
 

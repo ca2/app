@@ -2,7 +2,7 @@
 
 
 #include "core/filesystem/filemanager/impact_base.h"
-#include "core/user/user/list_base.h"
+#include "core/user/user/list.h"
 
 
 namespace filemanager
@@ -10,7 +10,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE folder_list :
-      virtual public ::filemanager_show < ::user::show < ::user::list_base > >
+      virtual public ::filemanager_show < ::user::show < ::user::list > >
    {
    public:
 

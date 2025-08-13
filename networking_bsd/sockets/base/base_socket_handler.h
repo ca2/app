@@ -187,7 +187,7 @@ namespace sockets_bsd
       \lparam port Port number will be echoed in socket::OnResolved callback */
       //virtual int Resolve(base_socket *,const ::scoped_string & scopedstrHost,port_t port) = 0;
       //virtual int Resolve6(base_socket *,const ::scoped_string & scopedstrHost,port_t port) = 0;
-      /** Do a reverse dns lookup. */
+      /** Do a reverse dns find. */
       //virtual int Resolve(base_socket *,in_addr a) = 0;
       //virtual int Resolve(base_socket *,in6_addr& a) = 0;
       /** get listen port of asynchronous dns server. */

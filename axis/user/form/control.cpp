@@ -765,7 +765,7 @@ namespace user
 
       ASSERT(pinteraction->get_control_type() == e_control_type_simple_list);
 
-      /*      ::user::list_base * plist = dynamic_cast<::user::list_base *>(get_child_by_id(pinteraction->id()));
+      /*      ::user::list * plist = dynamic_cast<::user::list *>(get_child_by_id(pinteraction->id()));
 
       if(typeid(plist->GetDataInterface()) == ::type < ::user::simple_mesh_data >())
       {
@@ -1204,11 +1204,11 @@ namespace user
       //      if(descriptor.m_pcontrol != nullptr)
       //      {
       //         //               ::type ti = typeid(descriptor.m_pcontrol);
-      //         /*               if(ti == ::type < ::user::list_base >())
+      //         /*               if(ti == ::type < ::user::list >())
       //         {
       //         if(descriptor.m_etype == e_control_type_simple_list)
       //         {
-      //         ::user::list_base * plist = dynamic_cast <::user::list_base *>(descriptor.m_pcontrol);
+      //         ::user::list * plist = dynamic_cast <::user::list *>(descriptor.m_pcontrol);
       //         plist->m_dataid = descriptor.m_atomPrivateDataSection;
       //         plist->_001SetSingleColumnMode(false);
       //         }

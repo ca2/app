@@ -1070,7 +1070,7 @@ namespace axis
 
       //   style_pointer pstyle;
 
-      //   if (m_map.lookup(eschema, pstyle))
+      //   if (m_map.find(eschema, pstyle))
       //   {
 
       //      return pstyle;
@@ -1644,7 +1644,7 @@ namespace axis
 
    //   style_pointer pstyle;
 
-   //   if (m_map.lookup(eschema, pstyle))
+   //   if (m_map.find(eschema, pstyle))
    //   {
 
    //      return pstyle;

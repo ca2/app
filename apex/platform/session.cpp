@@ -714,7 +714,7 @@ class ::fs::data * session::fs()
 
    //   ::pointer<::apex::application>papp;
 
-   //   if (m_applicationa.lookup(scopedstrAppId, papp))
+   //   if (m_applicationa.find(scopedstrAppId, papp))
    //   {
 
    //      return papp;
@@ -959,13 +959,13 @@ class ::fs::data * session::fs()
       if (ekey == ::user::e_key_shift)
       {
 
-         m_pmapKeyPressed->lookup(::user::e_key_shift, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_shift, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_left_shift, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_left_shift, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_right_shift, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_right_shift, bPressed);
          if (bPressed)
             goto ret;
       }
@@ -975,13 +975,13 @@ class ::fs::data * session::fs()
 #endif
          )
       {
-         m_pmapKeyPressed->lookup(::user::e_key_command, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_command, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_left_command, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_left_command, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_right_command, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_right_command, bPressed);
          if (bPressed)
             goto ret;
       }
@@ -991,32 +991,32 @@ class ::fs::data * session::fs()
 #endif
          )
       {
-         m_pmapKeyPressed->lookup(::user::e_key_control, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_control, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_left_control, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_left_control, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_right_control, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_right_control, bPressed);
          if (bPressed)
             goto ret;
       }
       else if (ekey == ::user::e_key_alt)
       {
-         m_pmapKeyPressed->lookup(::user::e_key_alt, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_alt, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_left_alt, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_left_alt, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_right_alt, bPressed);
+         m_pmapKeyPressed->find(::user::e_key_right_alt, bPressed);
          if (bPressed)
             goto ret;
       }
       else
       {
 
-         m_pmapKeyPressed->lookup(ekey, bPressed);
+         m_pmapKeyPressed->find(ekey, bPressed);
 
       }
 
@@ -1661,7 +1661,7 @@ namespace apex
 
       ::pointer<::platform::application>papplication;
 
-      if (m_applicationa.lookup(scopedstrAppId, papplication) && papplication)
+      if (m_applicationa.find(scopedstrAppId, papplication) && papplication)
       {
 
          //::pointer<::bergedge::pane_impact>ppaneimpact = get_document()->get_typed_impact < ::bergedge::pane_impact >();
@@ -1790,7 +1790,7 @@ namespace apex
    //   if(psystem->m_pbergedgemap == nullptr)
    //      return nullptr;
 
-   //   if(!psystem->m_pbergedgemap->lookup(0,psession))
+   //   if(!psystem->m_pbergedgemap->find(0,psession))
    //   {
    //      return nullptr;
    //   }

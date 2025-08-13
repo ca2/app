@@ -286,7 +286,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
 
       db_str_set_item stritem;
 
-      if(m_pcore->m_map.lookup(lpKey,stritem) && stritem.m_timeTimeout > ::get_tick())
+      if(m_pcore->m_map.find(lpKey,stritem) && stritem.m_timeTimeout > ::get_tick())
       {
          strValue = stritem.m_str;
          return true;

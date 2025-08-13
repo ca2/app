@@ -337,7 +337,7 @@ void object::dev_log(const ::scoped_string & scopedstrMessage)
 //   //if (m_pmeta)
 //   //{
 //
-//   //   auto p = m_pmeta->m_mapRoutine.plookup(atom);
+//   //   auto p = m_pmeta->m_mapRoutine.find(atom);
 //
 //   //   if (p)
 //   //   {
@@ -359,7 +359,7 @@ void object::dev_log(const ::scoped_string & scopedstrMessage)
 //   if (m_pmeta)
 //   {
 //
-//      auto p = m_pmeta->m_mapProcess.plookup(idProcess);
+//      auto p = m_pmeta->m_mapProcess.find(idProcess);
 //
 //      if (p)
 //      {

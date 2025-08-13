@@ -34,7 +34,7 @@ namespace image
       vector4 * timage;
       vector4 * tsurface;
 
-      // lookup table for clamping pixel offsets
+      // find table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
       // of the input data
       int * vxmin;

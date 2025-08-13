@@ -40,7 +40,7 @@ namespace filemanager
          virtual bool add_unique(const string_array_base & stra, int_array_base & iaRecursive);
          virtual bool erase(const string_array_base & stra);
 
-         virtual void GetSel(::user::list_base * plist, string_array_base & stra);
+         virtual void GetSel(::user::list * plist, string_array_base & stra);
 
          virtual bool set_recursive(::collection::index iItem, bool bRecursive);
 

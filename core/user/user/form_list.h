@@ -2,7 +2,7 @@
 
 
 #include "form_mesh.h"
-#include "list_base.h"
+#include "list.h"
 
 
 namespace user
@@ -11,7 +11,7 @@ namespace user
 
    class CLASS_DECL_CORE form_list:
       virtual public ::user::form_mesh,
-      virtual public ::user::list_base
+      virtual public ::user::list
    {
    public:
 
@@ -30,7 +30,7 @@ namespace user
 
       void _001DrawSubItem(::draw2d::graphics_pointer & pgraphics, draw_list_subitem * psubitem) override;
 
-      using ::user::list_base::_001HitTest_;
+      using ::user::list::_001HitTest_;
       bool _001HitTest_(const ::int_point & point, ::collection::index&iItem, ::collection::index&iSubItem) override;
 
 
@@ -68,7 +68,7 @@ namespace user
       bool on_right_click(::item * pitem, ::user::mouse * pmouse) override;
       void on_timer(::timer * ptimer) override;
 
-      using list_base::get_selection;
+      using list::get_selection;
       void get_selection(const ::scoped_string & scopedstrDataKey,::string_array_base & stra) override;
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
 

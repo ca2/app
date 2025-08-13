@@ -47,10 +47,10 @@ namespace curl
          //   }
 
 
-         void http::async(::nano::http::get * pget)
+         void http::async(::nano::http::get * defer_get)
          {
 
-            auto pgetHold = ::as_pointer(pget);
+            auto pgetHold = ::as_pointer(defer_get);
 
             //      pasynchronoushttpresponse->m_function = [](::pointer < ::nano::asynchronous_http_response > pasynchronoushttpresponse)
             //      {                                s_http_response(pasynchronoushttpresponse);

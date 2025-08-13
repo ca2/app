@@ -1282,7 +1282,7 @@ namespace dynamic_source
 
       _synchronous_lock synchronouslock(m_pmutexSession);
 
-      auto p = m_mapSession.plookup(scopedstrId);
+      auto p = m_mapSession.find(scopedstrId);
 
       if (p)
       {
@@ -1479,7 +1479,7 @@ namespace dynamic_source
 
       _synchronous_lock synchronouslock(m_pmutexOutLink);
 
-      auto p = m_mapOutLink.plookup(scopedstrServer);
+      auto p = m_mapOutLink.find(scopedstrServer);
 
       ::sockets::link_out_socket* psocket = nullptr;
 
@@ -1528,7 +1528,7 @@ namespace dynamic_source
 
       single_lock sl2(m_pmutexInLink, true);
 
-      auto ppair = m_pmapInLink->plookup(poutsocket);
+      auto iterator = m_pmapInLink->find(poutsocket);
 
       {
 
@@ -1543,10 +1543,10 @@ namespace dynamic_source
 
       }
 
-      if (::is_ok(ppair))
+      if (::is_ok(iterator))
          return nullptr;
 
-      ::sockets::link_in_socket* pinsocket = ppair->element2();
+      ::sockets::link_in_socket* pinsocket = iterator->element2();
 
       m_pmapInLink->erase_item(poutsocket);
 
@@ -1560,7 +1560,7 @@ namespace dynamic_source
 
       _synchronous_lock synchronouslock(m_pmutexTunnel);
 
-      auto p = m_mapTunnel.plookup(scopedstrServer);
+      auto p = m_mapTunnel.find(scopedstrServer);
 
       if (::is_end(p))
       {
@@ -1625,7 +1625,7 @@ namespace dynamic_source
 
       ::int_size size;
 
-      if (m_mapImageSize.lookup(strFile, size))
+      if (m_mapImageSize.find(strFile, size))
          return size;
 
       synchronouslock.unlock();
@@ -1833,7 +1833,7 @@ namespace dynamic_source
 
       ::logic::boolean bShouldBuild = false;
 
-      if (!m_mapShouldBuild2.lookup(strScriptPath, bShouldBuild))
+      if (!m_mapShouldBuild2.find(strScriptPath, bShouldBuild))
          return false;
 
       return bShouldBuild;

@@ -1257,10 +1257,10 @@ namespace apex
 //   }
 
    //
-   // void context::perform(::nano::http::get * pget)
+   // void context::perform(::nano::http::get * defer_get)
    // {
    //
-   //    http()->perform(pget);
+   //    http()->perform(defer_get);
    //
    // }
 

@@ -5627,7 +5627,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
       if (m_etype == e_type_property_set)
       {
 
-         auto pproperty = m_ppropertyset->lookup(atom);
+         auto pproperty = m_ppropertyset->find(atom);
 
          if (pproperty)
          {
@@ -5647,7 +5647,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
       if (casts_to(e_type_property_set))
       {
 
-         auto pproperty = property_set_reference().lookup(atom);
+         auto pproperty = property_set_reference().find(atom);
 
          if (pproperty)
          {

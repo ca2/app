@@ -116,14 +116,14 @@ namespace http
    }
 
 
-   void context::perform(::nano::http::get * pget)
+   void context::perform(::nano::http::get * defer_get)
    {
 
-      ::property_set set(pget->property_set());
+      ::property_set set(defer_get->property_set());
       
-      get(pget->get_memory_response(), pget->url(), set);
+      get(defer_get->get_memory_response(), defer_get->url(), set);
       
-      pget->property_set() = set;
+      defer_get->property_set() = set;
    
    }
 
@@ -641,15 +641,15 @@ namespace http
 
       single_lock synchronouslock(m_pmutexPac, true);
 
-      auto ppair = m_mapPac.plookup(url);
+      auto iterator = m_mapPac.find(url);
 
-      if (!ppair || ppair->element2()->m_timeLastChecked.elapsed() > 120_s)
+      if (!iterator || iterator->element2()->m_timeLastChecked.elapsed() > 120_s)
       {
          
-         if (ppair)
+         if (iterator)
          {
             
-            //            delete ppair->element2();
+            //            delete iterator->element2();
             m_mapPac.erase_key(url);
             
          }
@@ -681,9 +681,9 @@ namespace http
          //registerJavascriptFunctions(ppac->m_pjs);
          //ppac->m_pjs->execute(ppac->m_strAutoConfigScript);
 
-         ppair = m_mapPac.plookup(url);
+         iterator = m_mapPac.find(url);
 
-         if (!ppair)
+         if (!iterator)
          {
             
             return nullptr;
@@ -692,14 +692,14 @@ namespace http
 
       }
 
-      if (ppair->element2()->m_strAutoConfigScript.is_empty())
+      if (iterator->element2()->m_strAutoConfigScript.is_empty())
       {
 
          return nullptr;
 
       }
 
-      return ppair->element2();
+      return iterator->element2();
 
    }
 
@@ -710,15 +710,15 @@ namespace http
 
       single_lock synchronouslock(m_pmutexProxy, true);
 
-      auto ppair = m_mapProxy.plookup(url);
+      auto iterator = m_mapProxy.find(url);
 
-      if (!ppair || ppair->element2()->m_timeLastChecked.elapsed() > 120_s)
+      if (!iterator || iterator->element2()->m_timeLastChecked.elapsed() > 120_s)
       {
          
-         if (ppair)
+         if (iterator)
          {
             
-            //            delete ppair->element2();
+            //            delete iterator->element2();
             m_mapPac.erase_key(url);
             
          }
@@ -737,7 +737,7 @@ namespace http
 
       }
 
-      return ppair->element2();
+      return iterator->element2();
 
    }
 

@@ -233,7 +233,7 @@ namespace networking_bsd
 
       ::pointer<::networking::address> create_address(const ::scoped_string & scopedstrAddress, ::networking::enum_address_type eaddresstypePreferred = ::networking::e_address_type_none, ::networking::port_t port = 0) override;
 
-      bool lookup(::networking_bsd::address * paddress, ::networking::enum_address_type eaddresstypePreferred, const ::scoped_string & scopedstrAddress);
+      bool find(::networking_bsd::address * paddress, ::networking::enum_address_type eaddresstypePreferred, const ::scoped_string & scopedstrAddress);
 
       bool lookup_ipv4(::networking_bsd::address * paddress, const ::scoped_string & scopedstrAddress);
 

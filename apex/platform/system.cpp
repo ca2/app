@@ -4611,7 +4611,7 @@ namespace apex
 
    //   ::apex::session * pbergedge = nullptr;
 
-   //   while(m_pbergedgemap->lookup(iNewEdge,pbergedge))
+   //   while(m_pbergedgemap->find(iNewEdge,pbergedge))
    //   {
 
    //      iNewEdge++;

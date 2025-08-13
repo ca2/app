@@ -41,14 +41,14 @@
 
 //             m.erase_all();
 
-//             const typename MAP::pair * ppair = attribmap.get_start();
+//             const typename MAP::pair * iterator = attribmap.get_start();
 
-//             while (ppair != nullptr)
+//             while (iterator != nullptr)
 //             {
 
-//                m.set_at(ppair->element1(), ppair->element2());
+//                m.set_at(iterator->element1(), iterator->element2());
 
-//                ppair = attribmap.get_next(ppair);
+//                iterator = attribmap.get_next(iterator);
 
 //             }
 

@@ -323,7 +323,7 @@ namespace gpu
    //::gpu::payload * shader::get_payload(const ::scoped_string & scopedstrPayload)
    //{
 
-   //   auto p = m_mapLayout.plookup(scopedstrPayload);
+   //   auto p = m_mapLayout.find(scopedstrPayload);
 
    //   if (!p)
    //   {
@@ -446,7 +446,7 @@ namespace gpu
    void shader::set_vec4(const ::scoped_string& scopedstrName, const glm::vec4& a)
    {
 
-      //auto p = m_mapConstantBuffer.plookup(scopedstrName);
+      //auto p = m_mapConstantBuffer.find(scopedstrName);
 
       //if (p)
       //{
@@ -493,7 +493,7 @@ namespace gpu
    void shader::set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a)
    {
 
-      //auto p = m_mapConstantBuffer.plookup(scopedstrName);
+      //auto p = m_mapConstantBuffer.find(scopedstrName);
 
       //if (p)
       //{

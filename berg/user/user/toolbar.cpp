@@ -1305,12 +1305,12 @@ namespace user
       tool_item_by_atom(atom)->m_str = scopedstr;
 
       //throw todo;
-//      // attempt to lookup string index in map_base
+//      // attempt to find string index in map_base
 //      iptr nString = -1;
 //      void * p;
 //      string wstrText(scopedstrText);
 //
-//      if (m_pStringMap != nullptr && m_pStringMap->lookup(wstrText, p))
+//      if (m_pStringMap != nullptr && m_pStringMap->find(wstrText, p))
 //         nString = (iptr)p;
 //
 //      // add ___new string if not already in map_base
@@ -1333,7 +1333,7 @@ namespace user
 //         // cache string away in string map_base
 //         m_pStringMap->set_at(wstrText, (void *)nString);
 //
-//         ASSERT(m_pStringMap->lookup(wstrText, p));
+//         ASSERT(m_pStringMap->find(wstrText, p));
 //
 //      }
 

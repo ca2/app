@@ -29,7 +29,7 @@ namespace platform
 
       ::platform::application * find_running_defer_try_quit_damaged(const ::scoped_string & scopedstrAppid);
 
-      bool lookup(const ::scoped_string & scopedstrAppId, ::pointer<::platform::application>& papp);
+      bool find(const ::scoped_string & scopedstrAppId, ::pointer<::platform::application>& papp);
 
 
    };

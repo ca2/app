@@ -906,7 +906,7 @@ namespace factory
    //
    //      critical_section_lock cs(::factory_critical_section());
    //
-   //      auto p = m_mapFactory.plookup(atomSource);
+   //      auto p = m_mapFactory.find(atomSource);
    //
    //      if (!p)
    //      {
@@ -915,7 +915,7 @@ namespace factory
    //
    //      }
    //
-   //      auto p1 = p->m_element2.plookup(atomSource);
+   //      auto p1 = p->m_element2.find(atomSource);
    //
    //      if (!p1)
    //      {
@@ -1073,9 +1073,9 @@ namespace factory
 
       critical_section_lock cs(&((factory*)this)->m_criticalsection);
 
-      auto p = this->plookup(atom);
+      auto iterator = this->find(atom);
 
-      if (!p)
+      if (!iterator)
       {
 
          error() << "factory::get_factory_item FAILED!! the following atom wasn't found : \"" << atom.as_string() << "\"";
@@ -1084,7 +1084,7 @@ namespace factory
 
       }
 
-      return p->payload();
+      return iterator->payload();
 
    }
 
@@ -1094,16 +1094,16 @@ namespace factory
 
       critical_section_lock cs(&((factory*)this)->m_criticalsection);
 
-      auto p = this->plookup(atom);
+      auto iterator = this->find(atom);
 
-      if (!p)
+      if (!iterator)
       {
 
          return false;
 
       }
 
-      return p->payload() != nullptr;
+      return iterator->payload() != nullptr;
 
    }
 

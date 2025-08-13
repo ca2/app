@@ -184,7 +184,7 @@ namespace image
 
       int iImage = -1;
 
-      if (!m_mapPathInt.lookup(path, iImage))
+      if (!m_mapPathInt.find(path, iImage))
       {
 
          iImage = m_iImageSeed;

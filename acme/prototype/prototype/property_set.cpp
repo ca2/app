@@ -443,7 +443,7 @@ bool property_set_base::erase_first_string(const ::scoped_string & scopedstr, ::
 bool property_set_base::is_new(const ::atom & atom) const
 {
 
-   auto pproperty = lookup(atom);
+   auto pproperty = find(atom);
 
    if (::is_null(pproperty))
    {
@@ -460,7 +460,7 @@ bool property_set_base::is_new(const ::atom & atom) const
 bool property_set_base::is_null(const ::atom & atom) const
 {
 
-   auto pproperty = lookup(atom);
+   auto pproperty = find(atom);
 
    if (::is_null(pproperty))
    {
@@ -477,7 +477,7 @@ bool property_set_base::is_null(const ::atom & atom) const
 bool property_set_base::is_new_or_null(const ::atom & atom) const
 {
 
-   auto pproperty = lookup(atom);
+   auto pproperty = find(atom);
 
    if (::is_null(pproperty))
    {
@@ -494,7 +494,7 @@ bool property_set_base::is_new_or_null(const ::atom & atom) const
 bool property_set_base::is_empty(const ::atom & atom) const
 {
 
-   auto pproperty = lookup(atom);
+   auto pproperty = find(atom);
 
    if (::is_null(pproperty))
    {
@@ -1574,7 +1574,7 @@ string property_set_base::implode(const ::scoped_string & scopedstrGlue) const
 //::property & property_set_base::property(const ::atom& atom)
 //{
 //
-//   auto pproperty = lookup(atom);
+//   auto pproperty = find(atom);
 //
 //   if (!pproperty)
 //   {
@@ -1982,7 +1982,7 @@ bool property_set_base::contains(const ::property_set_base & set) const
    for (auto & pproperty : set)
    {
 
-      auto ppropertyHere = lookup(pproperty->name());
+      auto ppropertyHere = find(pproperty->name());
 
       if (::is_null(ppropertyHere))
       {
@@ -2179,7 +2179,7 @@ string property_set_base::get_command_line(const string_array_base & straKeys) c
    for (auto & strKey : straKeys)
    {
 
-      auto pproperty = lookup(strKey);
+      auto pproperty = find(strKey);
 
       if (::is_null(pproperty))
       {
@@ -2378,7 +2378,7 @@ void property_set_base::parse_environment_variable(const string_array_base & str
 bool property_set_base::get_bool(const atom & atom, bool bDefault) const
 {
 
-   auto pproperty = lookup(atom);
+   auto pproperty = find(atom);
 
    if (::is_null(pproperty))
    {
@@ -2402,7 +2402,7 @@ bool property_set_base::get_bool(const atom & atom, bool bDefault) const
 int property_set_base::get_int(const atom & atom, int iDefault) const
 {
 
-   auto pproperty = lookup(atom);
+   auto pproperty = find(atom);
 
    if (::is_null(pproperty))
    {
@@ -2426,7 +2426,7 @@ int property_set_base::get_int(const atom & atom, int iDefault) const
 unsigned int property_set_base::get_unsigned_int(const atom & atom, unsigned int uDefault) const
 {
 
-   auto pproperty = lookup(atom);
+   auto pproperty = find(atom);
 
    if (::is_null(pproperty))
    {
@@ -2451,7 +2451,7 @@ unsigned int property_set_base::get_unsigned_int(const atom & atom, unsigned int
 ::string property_set_base::get_string(const atom & atom, const ::scoped_string & scopedstrDefault) const
 {
 
-   auto pproperty = lookup(atom);
+   auto pproperty = find(atom);
 
    if (::is_null(pproperty))
    {
@@ -2468,7 +2468,7 @@ unsigned int property_set_base::get_unsigned_int(const atom & atom, unsigned int
 ::file::path property_set_base::get_file_path(const atom & atom, const ::file::path & pathDefault) const
 {
 
-   auto pproperty = lookup(atom);
+   auto pproperty = find(atom);
 
    if (::is_null(pproperty))
    {
@@ -2544,7 +2544,7 @@ string property_set_base::as_string(const ::scoped_string& scopedstrSeparator1, 
 }
 
 
-::property * property_set_base::lookup(const ::atom & atom, ::collection::index iStart) const
+::property * property_set_base::find(const ::atom & atom, ::collection::index iStart) const
 {
 
    auto iIndex = index_of(atom, iStart);
@@ -2842,7 +2842,7 @@ bool property_set_base::has_property(const atom & atom) const
 
    }
 
-   auto pproperty = lookup(atom);
+   auto pproperty = find(atom);
 
    return ::is_set(pproperty) && 
       !(pproperty->is_new_or_null() || pproperty->get_type() == e_type_not_found);
@@ -2853,7 +2853,7 @@ bool property_set_base::has_property(const atom & atom) const
 bool property_set_base::is_true(const atom & atom) const
 {
 
-   auto pproperty = lookup(atom);
+   auto pproperty = find(atom);
 
    if (::is_null(pproperty))
    {
@@ -2870,7 +2870,7 @@ bool property_set_base::is_true(const atom & atom) const
 bool property_set_base::is_true_or_empty(const atom & atom) const
 {
 
-   auto pproperty = lookup(atom);
+   auto pproperty = find(atom);
 
    if (::is_null(pproperty))
    {
@@ -2887,7 +2887,7 @@ bool property_set_base::is_true_or_empty(const atom & atom) const
 //::payload property_set_base::value(const ::atom & atom) const
 //{
 //
-//   auto pproperty = lookup(atom);
+//   auto pproperty = find(atom);
 //
 //   if (::is_null(pproperty))
 //   {

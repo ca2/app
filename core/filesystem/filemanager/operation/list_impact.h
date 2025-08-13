@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "core/user/user/list_base.h"
+#include "core/user/user/list.h"
 #include "berg/user/user/show.h"
 
 
@@ -10,12 +10,12 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE operation_list_impact:
-      virtual public ::user::show < ::user::list_base >
+      virtual public ::user::show < ::user::list >
    {
    public:
 
 
-      typedef ::user::show < ::user::list_base > BASE;
+      typedef ::user::show < ::user::list > BASE;
 
 
       ::pointer<::user::list_cache>      m_puserlistcache;

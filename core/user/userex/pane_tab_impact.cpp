@@ -587,7 +587,7 @@ namespace userex
 
       auto psystem = system();
 
-//      if(pimpactdata->id().is_text() && psystem->m_idmapCreateImpactLibrary.lookup(pimpactdata->id(),plibrary) && plibrary != nullptr)
+//      if(pimpactdata->id().is_text() && psystem->m_idmapCreateImpactLibrary.find(pimpactdata->id(),plibrary) && plibrary != nullptr)
 //      {
 //
 //

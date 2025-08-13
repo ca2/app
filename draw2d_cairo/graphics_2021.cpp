@@ -6648,7 +6648,7 @@ namespace draw2d_cairo
 //
 //    string strPath;
 //
-//    if (!g_pmapFontPath->lookup(str, strPath))
+//    if (!g_pmapFontPath->find(str, strPath))
 //    {
 //
 //        string_array_base straPath;

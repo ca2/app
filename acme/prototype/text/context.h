@@ -38,17 +38,8 @@ namespace text
       inline const schema * get_schema(const ::atom & idSchema) const
       {
          
-         auto p = plookup(idSchema);
-         
-         if (!p)
-         {
-            
-            return nullptr;
-            
-         }
-         
-         return &p->element2();
-         
+         return this->defer_get(idSchema);
+
       }
 
 
@@ -76,16 +67,7 @@ namespace text
       inline const locale * get_locale(const ::atom & idLocale) const
       {
          
-         auto p = m_map.plookup(idLocale);
-
-         if (!p)
-         {
-
-            return nullptr;
-
-         }
-
-         return &p->element2();
+         return m_map.defer_get(idLocale);
 
       }
 

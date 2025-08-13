@@ -924,30 +924,30 @@ namespace user
    void impact_host::hide_all_except(const atom_array & ida)
    {
 
-      auto ppair = m_impactdatamap.begin();
+      auto iterator = m_impactdatamap.begin();
 
-      while(ppair)
+      while(iterator)
       {
 
-         if(!ida.contains(ppair->element1()))
+         if(!ida.contains(iterator->element1()))
          {
 
             try
             {
 
-               if (ppair->element2())
+               if (iterator->element2())
                {
 
-                  if (ppair->element2()->m_pplaceholder != nullptr)
+                  if (iterator->element2()->m_pplaceholder != nullptr)
                   {
 
-                     ppair->element2()->m_pplaceholder->hide();
+                     iterator->element2()->m_pplaceholder->hide();
 
                   }
-                  else if (ppair->element2()->m_puserinteraction != nullptr)
+                  else if (iterator->element2()->m_puserinteraction != nullptr)
                   {
 
-                     ppair->element2()->m_puserinteraction->hide();
+                     iterator->element2()->m_puserinteraction->hide();
 
                   }
 
@@ -961,7 +961,7 @@ namespace user
 
          }
 
-         ppair++;
+         iterator++;
 
       }
 

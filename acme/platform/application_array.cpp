@@ -161,7 +161,7 @@ namespace platform
    }
 
 
-   bool application_array::lookup(const ::scoped_string & scopedstrAppId, ::pointer<::platform::application>& papp)
+   bool application_array::find(const ::scoped_string & scopedstrAppId, ::pointer<::platform::application>& papp)
    {
 
       papp = find_running_defer_try_quit_damaged(scopedstrAppId);

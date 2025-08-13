@@ -70,7 +70,7 @@ namespace tinyexpr
       union {double value; const double * bound; te_function function;};
       te_expr *context;
       
-      const te_variable *lookup;
+      const te_variable *find;
       int lookup_len;
       
       state(){}
@@ -213,9 +213,9 @@ namespace tinyexpr
    static const te_variable *find_lookup(const state *s, const_char_pointer name, int len) {
       int iters;
       const te_variable *var;
-      if (!s->lookup) return 0;
+      if (!s->find) return 0;
       
-      for (var = s->lookup, iters = s->lookup_len; iters; ++var, --iters) {
+      for (var = s->find, iters = s->lookup_len; iters; ++var, --iters) {
          if (strncmp(name, var->name, len) == 0 && var->name[len] == '\0') {
             return var;
          }
@@ -596,7 +596,7 @@ namespace tinyexpr
    te_expr *te_compile(const_char_pointer expression, const te_variable *variables, int var_count, int *error) {
       state s;
       s.start = s.next = expression;
-      s.lookup = variables;
+      s.find = variables;
       s.lookup_len = var_count;
       
       next_token(&s);

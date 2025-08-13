@@ -340,7 +340,7 @@ namespace experience
 
       m_bMoving = false;
 
-      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.erase(e_message_mouse_move);
+      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.erase_item(e_message_mouse_move);
 
       m_pframewindow->defer_release_mouse_capture();
 

@@ -139,7 +139,7 @@ namespace user
 
       //int_size                                   m_sizeTotal;
       ::int_size                                   m_sizePage;
-      ::user::list_base *                               m_plist; // should be set to this ::user::list_base if this is a list_base
+      ::user::list *                               m_plist; // should be set to this ::user::list if this is a list_base
 
       int                                          m_iDefaultColumnWidth;
       index_map_base < int >                            m_mapColumnWidth;

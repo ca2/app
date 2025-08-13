@@ -396,7 +396,7 @@ bool LiteHTMLElemAttr::isNamedColorValue(::lite_html_reader * preader) const
    if((m_strValue.length()) && (::character_isalpha(m_strValue[0])))
    {
 
-      if (preader->m_phtml->m_namedcolor.contains(m_strValue.lowered()))
+      if (preader->m_phtml->m_namedcolor.contains_key(m_strValue.lowered()))
       {
 
           return true;
@@ -421,7 +421,7 @@ bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
 
       strKey.make_lower();
 
-      if (preader->m_phtml->m_namedcolor.lookup(strKey, color))
+      if (preader->m_phtml->m_namedcolor.find(strKey, color))
       {
 
          return color.m_estatus == ::success_color_index;
@@ -479,7 +479,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
 
       strKey.make_lower();
 
-      if(preader->m_phtml->m_namedcolor.lookup(strKey, color))
+      if(preader->m_phtml->m_namedcolor.find(strKey, color))
       {
 
          // is this a system named color value?

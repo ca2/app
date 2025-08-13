@@ -856,7 +856,7 @@ namespace gpu_opengl
    //::gpu::payload * shader::get_payload(const ::scoped_string & scopedstrUniform)
    //{
    //   
-   //   auto p = m_mapLayout.plookup(scopedstrUniform);
+   //   auto p = m_mapLayout.find(scopedstrUniform);
 
    //   if (!p)
    //   {
@@ -867,7 +867,7 @@ namespace gpu_opengl
 
    //      m_mapLayout.set_at(scopedstrUniform, payload);
    //      
-   //      auto p = m_mapLayout.plookup(scopedstrUniform);
+   //      auto p = m_mapLayout.find(scopedstrUniform);
 
    //   }
 

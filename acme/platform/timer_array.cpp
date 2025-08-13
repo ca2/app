@@ -89,18 +89,18 @@ namespace acme
 
          _synchronous_lock synchronouslock(this->synchronization());
 
-         auto pnode = m_timermap.plookup(uEvent);
+         auto iterator = m_timermap.find(uEvent);
 
-         if (!pnode)
+         if (!iterator)
          {
 
             return true;
 
          }
 
-         ptimer = pnode->element2();
+         ptimer = iterator->payload();
 
-         m_timermap.erase(pnode);
+         m_timermap.erase(iterator);
 
       }
 
@@ -121,21 +121,21 @@ namespace acme
 
          uptr uTimer = ptimer->m_uTimer;
 
-         auto pnode = m_timermap.plookup(uTimer);
+         auto iterator = m_timermap.find(uTimer);
 
-         if (!pnode)
+         if (!iterator)
          {
 
             return;
 
          }
 
-         auto ptimerMapped = pnode->element2();
+         auto ptimerMapped = iterator->payload();
 
          if(ptimerMapped == ptimer)
          {
 
-            m_timermap.erase(pnode);
+            m_timermap.erase(iterator);
 
          }
 

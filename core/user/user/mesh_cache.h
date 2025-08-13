@@ -84,12 +84,12 @@ namespace user
 
       {
 
-         auto passoc = m_map.plookup(psubitem->m_pitem->m_iItem);
+         auto passoc = m_map.find(psubitem->m_pitem->m_iItem);
 
          if(passoc != nullptr)
          {
 
-            auto passoc2 = passoc->element2().plookup(psubitem->m_pcolumn->m_iColumn);
+            auto passoc2 = passoc->element2().find(psubitem->m_pcolumn->m_iColumn);
 
             if(passoc2 != nullptr)
             {
@@ -110,12 +110,12 @@ namespace user
 
       //{
 
-      //   auto passoc = m_map.plookup(pitem->m_item.m_iItem);
+      //   auto passoc = m_map.find(pitem->m_item.m_iItem);
 
       //   if(passoc != nullptr)
       //   {
 
-      //      auto passoc2 = passoc->element2().plookup(pitem->m_item.m_iItem);
+      //      auto passoc2 = passoc->element2().find(pitem->m_item.m_iItem);
 
       //      if(passoc2 != nullptr)
       //      {

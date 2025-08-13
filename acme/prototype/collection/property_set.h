@@ -51,7 +51,7 @@ public:
    //::property* find_by_text(const ::scoped_string & scopedstr, ::collection::index iStart = 0) const;
 
    ::collection::index index_of(const ::atom& atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i)
-   ::property * lookup(const ::atom & atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i)
+   ::property * find(const ::atom & atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i)
    ::property & property(const ::atom & atom); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
    const ::property& property(const ::atom& atom) const
    {
@@ -62,7 +62,7 @@ public:
 
 
    //::collection::index find(const ::atom_array_base& atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
-   ::property * lookup(const ::atom_array_base & atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
+   ::property * find(const ::atom_array_base & atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
    ::property & property(const ::atom_array_base & atoma); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
    const ::property& property(const ::atom_array_base& atoma) const
    {
@@ -200,9 +200,9 @@ public:
 
    bool is_true_or_empty(const ::atom & atom) const;
 
-   bool is_false(const ::atom & atom) const { auto p = lookup(atom); return !p || p->is_false(); }
+   bool is_false(const ::atom & atom) const { auto p = find(atom); return !p || p->is_false(); }
 
-   bool is_set_false(const ::atom & atom) const { auto p = lookup(atom); return p && p->is_set_false(); }
+   bool is_set_false(const ::atom & atom) const { auto p = find(atom); return p && p->is_set_false(); }
 
    bool is_set_empty(::collection::count countMinimum = 1) const;
 
@@ -344,7 +344,7 @@ public:
    bool _get(const ::atom & atom, TYPE & t)
    {
 
-      auto pproperty = lookup(atom);
+      auto pproperty = find(atom);
 
       if (!pproperty)
       {
@@ -481,7 +481,7 @@ CLASS_DECL_ACME void property_set_skip_network_payload(::ansi_range & range);
 inline bool ::property_set_base::_get_string(string & strResult, const ::atom & atom) const
 {
 
-   auto pproperty = lookup(atom);
+   auto pproperty = find(atom);
 
    if (::is_null(pproperty))
    {

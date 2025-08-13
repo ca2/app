@@ -736,7 +736,7 @@ virtual string GetSocks4Host();
 //      \lparam port port number passed to Resolve */
 //      //virtual void OnResolved(int atom, ::networking::address * addr);
 //      //virtual void OnResolved(int atom, in6_addr & a, ::networking::port_t port);
-//      /** Request asynchronous reverse dns lookup.
+//      /** Request asynchronous reverse dns find.
 //      \lparam a in_addr to be translated */
 //      //int Resolve(in_addr a);
 //      //int Resolve(in6_addr& a);
@@ -744,7 +744,7 @@ virtual string GetSocks4Host();
 //      \lparam atom Resolve ID
 //      \lparam name Resolved hostname */
 //      //virtual void OnReverseResolved(int atom,const string & name);
-//      /** Callback indicating failed dns lookup.
+//      /** Callback indicating failed dns find.
 //      \lparam atom Resolve ID */
 //      //virtual void OnResolveFailed(int atom);
 //      //@}

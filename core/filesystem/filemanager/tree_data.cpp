@@ -16,7 +16,7 @@
 #include "apex/platform/context.h"
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/shell.h"
-#include "aura/template/list_base.h"
+#include "aura/template/list.h"
 #include "berg/user/user/user.h"
 #include "aura/message/user.h"
 #include "aura/windowing/window.h"
@@ -1258,7 +1258,7 @@ return;
 //   {
 //      IShellFolder * psf;
 //
-//      if(m_mapFolder.lookup(efolder, psf))
+//      if(m_mapFolder.find(efolder, psf))
 //      {
 //         return psf;
 //      }

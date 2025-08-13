@@ -135,7 +135,7 @@ bool flags < ENUM > ::add(ENUM eenum)
 template < class ENUM >
 bool flags < ENUM > ::erase(ENUM eenum)
 {
-   return m_ia.erase((long long)eenum);
+   return m_ia.erase_item((long long)eenum);
 }
 
 

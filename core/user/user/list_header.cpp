@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "list_base.h"
+#include "list.h"
 #include "list_header.h"
 #include "list_column.h"
 #include "list_column_array.h"
@@ -36,10 +36,14 @@ namespace user
 
    }
 
-   void list_header::SetBaseListCtrlInterface(list_base *pinterface)
+
+   void list_header::SetBaseListCtrlInterface(::user::list *pinterface)
    {
+
       m_plist = pinterface;
+
    }
+
 
    void list_header::DrawItem(::draw2d::item * pdrawitem)
    {
@@ -50,7 +54,7 @@ namespace user
 
       int iColumn = pdrawitem->itemID;
 
-      list_base * plist = m_plist;
+      ::user::list * plist = m_plist;
 
       if (plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->is_set() && plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->area() > 0)
       {
@@ -158,7 +162,7 @@ namespace user
 
       }
 
-      list_base * plist = m_plist;
+      ::user::list * plist = m_plist;
 
       if (iItem >= plist->_001GetColumnCount())
       {
@@ -249,7 +253,7 @@ namespace user
 
       }
 
-      list_base * plist = m_plist;
+      ::user::list * plist = m_plist;
 
       if (iItem >= plist->_001GetColumnCount())
       {
@@ -360,7 +364,7 @@ namespace user
 
    bool list_header::hit_test(const ::int_point & point, enum_element & eelement, ::collection::index & iItemParam)
    {
-      list_base * plist = m_plist;
+      ::user::list * plist = m_plist;
       ::int_rectangle rectangle;
       for(int iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
@@ -388,7 +392,7 @@ namespace user
 
    bool list_header::hit_test(const ::int_point & point, enum_element eelementLButtonDown, ::collection::index iItemLButtonDown, enum_element & eelement, ::collection::index & iItemParam)
    {
-      list_base * plist = m_plist;
+      ::user::list * plist = m_plist;
       ::int_rectangle rectangle;
       for(int iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
@@ -418,7 +422,7 @@ namespace user
    ::collection::index list_header::ItemToColumnKey(::collection::index iItem)
    {
 
-      list_base * plist = m_plist;
+      ::user::list * plist = m_plist;
 
       return plist->_001MapColumnToOrder(iItem);
 
@@ -532,7 +536,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      list_base * plist = m_plist;
+      ::user::list * plist = m_plist;
 
       auto pointCursor = pmouse->m_pointHost;
 
@@ -615,7 +619,7 @@ namespace user
 
       host_to_client()(pointCursor);
 
-      list_base * plist = m_plist;
+      ::user::list * plist = m_plist;
 
       enum_element eelement;
 
@@ -709,7 +713,7 @@ namespace user
 
       host_to_client()(pointCursor);
 
-      list_base * plist = m_plist;
+      ::user::list * plist = m_plist;
 
       enum_element eelement;
 
@@ -853,7 +857,7 @@ namespace user
 
       ////         if (i == 1)
       ////         {
-      ////            // guess list_base client int_rectangle doesn't include header?
+      ////            // guess ::user::list client int_rectangle doesn't include header?
       ////            pinteraction->::user::interaction::this->rectangle(rectangleFocus);
 
       ////         }
@@ -930,7 +934,7 @@ namespace user
 
       ::draw2d::item drawitem;
       drawitem.m_pgraphics = pgraphics;
-      list_base * plist = m_plist;
+      ::user::list * plist = m_plist;
       ::int_rectangle rectangleDivider;
       auto ppen = __øcreate < ::draw2d::pen > ();
 

@@ -209,7 +209,7 @@ namespace account
 
             synchronouslock.lock();
 
-            m_map.erase_item(pair.element1());
+            m_map.erase_key(pair.element1());
 
             synchronouslock.unlock();
 

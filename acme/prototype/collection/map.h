@@ -70,7 +70,7 @@ public:
 //
 //
 //    pair_map_base();
-//    pair_map_base(const PAIR * ppair, ::collection::count c);
+//    pair_map_base(const PAIR * iterator, ::collection::count c);
 //    pair_map_base(const ::std::initializer_list < PAIR > & list_base);
 //    pair_map_base(const pair_map_base & m);
 //    ~pair_map_base();
@@ -87,13 +87,13 @@ public:
 //
 //
 //
-//    //lookup
-//    //bool lookup(ARG_KEY key, PAYLOAD& rValue) const;
-//    //const_iterator plookup(ARG_KEY key) const;
-//    //iterator plookup(ARG_KEY key);
+//    //find
+//    //bool find(ARG_KEY key, PAYLOAD& rValue) const;
+//    //const_iterator find(ARG_KEY key) const;
+//    //iterator find(ARG_KEY key);
 //
 //
-//    //PAYLOAD * pget(ARG_KEY key);
+//    //PAYLOAD * defer_get(ARG_KEY key);
 //
 //
 //    //inline typename pair_map_base < PAIR >::iterator get_item(ARG_KEY key);
@@ -112,7 +112,7 @@ public:
 //    }
 //
 //    //Operations
-//    //lookup and add if not there
+//    //find and add if not there
 //    inline PAYLOAD & operator[](ARG_KEY key);
 //    inline const PAYLOAD & operator[](ARG_KEY key) const;
 //
@@ -218,8 +218,8 @@ public:
 //    //inline iterator node_at(ARG_KEY, unsigned int & nHashBucket, unsigned int & nHashValue) const;
 //    //inline const_iterator node_at(ARG_KEY, unsigned int& nHashBucket, unsigned int& nHashValue) const;
 //
-//    // void transfer(iterator iterator, pair_map_base * ppair_map = nullptr);
-//    // void transfer(pair_map_base* ppair_map, ARG_KEY key);
+//    // void transfer(iterator iterator, pair_map_base * iterator_map = nullptr);
+//    // void transfer(pair_map_base* iterator_map, ARG_KEY key);
 //
 //    //// void assert_ok() const override;
 //    //// void dump(dump_context & dumpcontext) const override;
@@ -449,12 +449,12 @@ public:
 // }
 //
 // template < typename PAIR >
-// pair_map_base < PAIR >::pair_map_base(const PAIR * ppair, ::collection::count c)
+// pair_map_base < PAIR >::pair_map_base(const PAIR * iterator, ::collection::count c)
 // {
 //    construct();
 //    for(::collection::index i = 0; i < c; i++)
 //    {
-//       set_at((ARG_KEY) ppair[i].element1(), (ARG_PAYLOAD) ppair[i].element2());
+//       set_at((ARG_KEY) iterator[i].element1(), (ARG_PAYLOAD) iterator[i].element2());
 //    }
 // }
 //
@@ -704,16 +704,16 @@ public:
 // }
 //
 // template < typename PAIR >
-// void pair_map_base < PAIR >::transfer(pair_map_base* ppair_map, ARG_KEY key)
+// void pair_map_base < PAIR >::transfer(pair_map_base* iterator_map, ARG_KEY key)
 // {
 //
 //    unsigned int uHashBucket;
 //
 //    unsigned int uHashValue;
 //
-//    auto iterator = ppair_map->node_at(key, uHashBucket, uHashValue);
+//    auto iterator = iterator_map->node_at(key, uHashBucket, uHashValue);
 //
-//    ppair_map->detach(iterator);
+//    iterator_map->detach(iterator);
 //
 //    attach(iterator, uHashBucket, uHashValue);
 //
@@ -722,20 +722,20 @@ public:
 //
 //
 // template < typename PAIR >
-// void pair_map_base < PAIR >::transfer(iterator iterator, pair_map_base * ppair_map)
+// void pair_map_base < PAIR >::transfer(iterator iterator, pair_map_base * iterator_map)
 // {
 //
-//    if (ppair_map == this)
+//    if (iterator_map == this)
 //    {
 //
 //       return;
 //
 //    }
 //
-//    if (::is_set(ppair_map))
+//    if (::is_set(iterator_map))
 //    {
 //
-//       ppair_map->detach(iterator);
+//       iterator_map->detach(iterator);
 //
 //    }
 //
@@ -751,7 +751,7 @@ public:
 //
 //
 // template < typename PAIR >
-// bool pair_map_base < PAIR >::lookup(ARG_KEY key, PAYLOAD& rValue) const
+// bool pair_map_base < PAIR >::find(ARG_KEY key, PAYLOAD& rValue) const
 // {
 //
 //    auto pnode = this->find_node(key);
@@ -847,7 +847,7 @@ public:
 // inline ::collection::count pair_map_base < PAIR >::key_count(ARG_KEY key) const
 // {
 //
-//    return this->plookup(key) ? 1 : 0;
+//    return this->find(key) ? 1 : 0;
 //
 // }
 //
@@ -856,7 +856,7 @@ public:
 // bool pair_map_base < PAIR >::has_key(ARG_KEY key) const
 // {
 //
-//    return this->plookup(key) ? 1 : 0;
+//    return this->find(key) ? 1 : 0;
 //
 // }
 //
@@ -865,7 +865,7 @@ public:
 // bool pair_map_base < PAIR >::contains_key(ARG_KEY key) const
 // {
 //
-//    return this->plookup(key) ? 1 : 0;
+//    return this->find(key) ? 1 : 0;
 //
 // }
 //
@@ -909,7 +909,7 @@ public:
 // get(ARG_KEY argkey, ARG_PAYLOAD valueDefault)
 // {
 //
-//    auto p = plookup(argkey);
+//    auto p = find(argkey);
 //
 //    if(!p)
 //    {

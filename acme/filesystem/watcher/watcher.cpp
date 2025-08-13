@@ -181,9 +181,9 @@ namespace file
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto ppair = m_watchset.plookup(pwatch);
+      auto iterator = m_watchset.find(pwatch);
 
-      if (!ppair)
+      if (!iterator)
       {
 
          return;

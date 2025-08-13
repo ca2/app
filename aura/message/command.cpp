@@ -382,7 +382,7 @@
 //
 //      }
 //
-//      auto passoc = m_idroute.plookup(pcommand->m_atomCommand);
+//      auto passoc = m_idroute.find(pcommand->m_atomCommand);
 //
 //      if (::is_null(passoc))
 //      {

@@ -158,7 +158,7 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::
 
 #include "logic_array.h"
 
-#include "list_base.h"
+#include "list.h"
 #include "comparable_eq_list_base.h"
 #include "acme/prototype/collection/comparable_list.h"
 

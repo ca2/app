@@ -1953,7 +1953,7 @@ namespace platform
    //    ::platform::session* system::session(::collection::index iEdge)
    //    {
    //
-   //       auto iterator = m_sessionmap.plookup(iEdge);
+   //       auto iterator = m_sessionmap.find(iEdge);
    //
    //       if (iterator.is_null())
    //       {
@@ -4549,7 +4549,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    //
    //      long long iValue{}
    //
-   //      if (m_mapTextToEnum[typeid(e).name()].lookup(scopedstr, iValue))
+   //      if (m_mapTextToEnum[typeid(e).name()].find(scopedstr, iValue))
    //      {
    //
    //         e = (ENUM)iValue{}

@@ -103,14 +103,14 @@ string ca2_module_folder_dup();
 //
 //         critical_section_lock synchronouslock(get_pid_cs());
 //
-//         auto ppair = g_ppid->plookup(iPid);
+//         auto iterator = g_ppid->find(iPid);
 //
-//         if(ppair != nullptr)
+//         if(iterator != nullptr)
 //         {
 //
-//            ppair->element2().m_bRet = true;
+//            iterator->element2().m_bRet = true;
 //
-//            ppair->element2().m_iExitCode = iExitCode;
+//            iterator->element2().m_iExitCode = iExitCode;
 //
 //         }
 //

@@ -141,7 +141,7 @@ namespace filemanager
          str.formatf("file_list(%d,%d)", get_document()->m_iTemplate, get_document()->m_iDocument);
          if(get_document()->m_bTransparentBackground)
          {
-         ::user::list_base::m_etranslucency = ::user::list_base::e_translucency_present;
+         ::user::list::m_etranslucency = ::user::list::e_translucency_present;
          }
          DISetSection(str);
          _001UpdateColumns();*/

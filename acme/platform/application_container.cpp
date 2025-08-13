@@ -582,7 +582,7 @@ namespace platform
 
       ::pointer<::platform::application>papplication;
 
-      if (m_applicationa.lookup(scopedstrAppId, papplication))
+      if (m_applicationa.find(scopedstrAppId, papplication))
       {
 
          return papplication;

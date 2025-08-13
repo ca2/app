@@ -247,7 +247,7 @@ namespace platform
    //      using acme::handler_context::http_get{}
    //::pointer < ::nano::http::response > http_get(const ::scoped_string& scopedstrUrl, const ::property_set & set) override{}
 
-   //void apex_context_layer::perform(::nano::http::get * pget){}
+   //void apex_context_layer::perform(::nano::http::get * defer_get){}
 
 
    bool apex_context_layer::defer_process_fs_raw_folder_protocol_path(::file::path & path)

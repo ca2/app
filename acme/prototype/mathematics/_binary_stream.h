@@ -39,11 +39,11 @@ binary_stream & operator >> (binary_stream & istream, biunique< T, T_to_T > & b)
       {
          T_to_T ab;
          istream >> ab;
-         typename T_to_T::pair * ppair = ab.get_start();
-         while (ppair != nullptr)
+         typename T_to_T::pair * iterator = ab.get_start();
+         while (iterator != nullptr)
          {
-            set(ppair->element1(), ppair->element2());
-            ppair = ab.get_next(ppair);
+            set(iterator->element1(), iterator->element2());
+            iterator = ab.get_next(iterator);
          }
       }
       else

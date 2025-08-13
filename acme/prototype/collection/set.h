@@ -54,7 +54,7 @@ public:
 
    //
    // pair_map_base();
-   // pair_map_base(const PAIR * ppair, ::collection::count c);
+   // pair_map_base(const PAIR * iterator, ::collection::count c);
    // pair_map_base(const ::std::initializer_list < PAIR > & list_base);
    // pair_map_base(const pair_map_base & m);
    // ~pair_map_base();
@@ -70,11 +70,13 @@ public:
    bool is_empty() const;
    bool empty() const;
 
+   bool find(ARG_KEY key, PAYLOAD & payload) const;
 
-   bool lookup(ARG_KEY key, PAYLOAD& payload) const;
-   const_iterator plookup(ARG_KEY key) const;
-   iterator plookup(ARG_KEY key);
+   const_iterator find(ARG_KEY key) const;
 
+   iterator get(ARG_KEY key);
+
+   PAYLOAD * defer_get(ARG_KEY key) const;
 
    bool should_set(ARG_KEY key)
    { 
@@ -93,13 +95,13 @@ public:
    }
 
 
-   PAYLOAD * pget(ARG_KEY key);
-   const PAYLOAD * pget(ARG_KEY key) const
-   {
-
-      return ((node_set_base *)this)->pget(key);
-
-   }
+   // PAYLOAD * payload(ARG_KEY key);
+   // const PAYLOAD * payload(ARG_KEY key) const
+   // {
+   //
+   //    return ((node_set_base *)this)->defer_get(key);
+   //
+   // }
 
 
    template < typename TKEY >
@@ -115,12 +117,12 @@ public:
    }
 
    //Operations
-   //lookup and add if not there
+   //find and add if not there
    PAYLOAD & operator[](ARG_KEY key);
    const PAYLOAD & operator[](ARG_KEY key) const;
 
-   iterator find_node(ARG_KEY key);
-   const_iterator find_node(ARG_KEY key) const;
+   //iterator find_iterator(ARG_KEY key);
+   //const_iterator find_iterator(ARG_KEY key) const;
 
    inline iterator set_key(ARG_KEY key);
 
@@ -136,7 +138,7 @@ public:
    bool toggle(ARG_KEY key)
    {
 
-      auto pnode = this->find_node(key);
+      auto pnode = this->find(key);
 
       if (pnode)
       {
@@ -157,7 +159,7 @@ public:
 
    }
 
-   inline bool erase_key(ARG_KEY key) { auto p = this->find_node(key);  return p ? this->erase(p) : false; }
+   inline bool erase_key(ARG_KEY key) { auto p = this->find(key);  return p ? this->erase(p) : false; }
 
    template < typename iterator >
    inline void erase_range(const iterator & begin, const iterator & last)
@@ -196,7 +198,7 @@ public:
    void InitHashTable(unsigned int hashSize,bool bAllocNow = true);
 
 
-   PAYLOAD get(ARG_KEY argkey, ARG_PAYLOAD valueDefault);
+   PAYLOAD defer_get(ARG_KEY argkey, ARG_PAYLOAD valueDefault) const;
 
 
    void assign(node_set_base & set)
@@ -217,10 +219,10 @@ public:
    
 
 
-   iterator new_node(ARG_KEY key);
-   void free_node(iterator pnode);
-   iterator find_node(ARG_KEY key, unsigned int&, unsigned int&) const;
-   iterator get_node(ARG_KEY key);
+   iterator _new(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash);
+   void _free(iterator pnode);
+   iterator _find(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash) const;
+   //iterator _get(ARG_KEY key);
 
 
    template < primitive_container CONTAINER >
@@ -348,13 +350,13 @@ public:
    //
 
 
-   //lookup
-   //bool lookup(ARG_KEY key, PAYLOAD& rValue) const;
-   //const_iterator plookup(ARG_KEY key) const;
-   //iterator plookup(ARG_KEY key);
+   //find
+   //bool find(ARG_KEY key, PAYLOAD& rValue) const;
+   //const_iterator find(ARG_KEY key) const;
+   //iterator find(ARG_KEY key);
 
 
-   //PAYLOAD * pget(ARG_KEY key);
+   //PAYLOAD * defer_get(ARG_KEY key);
 
 
    //inline typename pair_map_base < PAIR >::iterator get_item(ARG_KEY key);
@@ -373,17 +375,17 @@ public:
    // }
    //
    // // //Operations
-   // //lookup and add if not there
+   // //find and add if not there
    // inline PAYLOAD & operator[](ARG_KEY key);
    // inline const PAYLOAD & operator[](ARG_KEY key) const;
 
    template < typename PAYLOAD2 >
-   iterator find_payload(const PAYLOAD2 & payload) const;
+   iterator search_payload(const PAYLOAD2 & payload) const;
 
    iterator set_at(ARG_KEY key, ARG_PAYLOAD payload)
    {
 
-      auto p = this->get_node(key);
+      auto p = this->get(key);
 
       p->defer_set_payload(payload);
 
@@ -460,17 +462,17 @@ public:
    //inline const_iterator find_item(ARG_KEY key) const { return ((pair_map_base *) this)->find_item(key); }
 
 
-   //BASE_NODE * new_node(ARG_KEY key, unsigned int nHashBucket, unsigned int nHashValue);
-   inline void hash(iterator iterator, unsigned int nHashBucket, unsigned int nHashValue);
-   void attach(iterator iterator, unsigned int nHashBucket, unsigned int nHashValue);
+   //BASE_NODE * new_node(ARG_KEY key, unsigned int uiPack, unsigned int uiHash);
+   inline void hash(iterator iterator, unsigned int uiPack, unsigned int uiHash);
+   void attach(iterator iterator, unsigned int uiPack, unsigned int uiHash);
    //bool erase(iterator iterator);
    void detach(iterator iterator);
-   void hash(unsigned int& nHashBucket, unsigned int& nHashValue, ARG_KEY) const;
-   //inline iterator node_at(ARG_KEY, unsigned int & nHashBucket, unsigned int & nHashValue) const;
-   //inline const_iterator node_at(ARG_KEY, unsigned int& nHashBucket, unsigned int& nHashValue) const;
+   void hash(unsigned int& uiPack, unsigned int& uiHash, ARG_KEY) const;
+   //inline iterator node_at(ARG_KEY, unsigned int & uiPack, unsigned int & uiHash) const;
+   //inline const_iterator node_at(ARG_KEY, unsigned int& uiPack, unsigned int& uiHash) const;
 
-   // void transfer(iterator iterator, pair_map_base * ppair_map = nullptr);
-   // void transfer(pair_map_base* ppair_map, ARG_KEY key);
+   // void transfer(iterator iterator, pair_map_base * iterator_map = nullptr);
+   // void transfer(pair_map_base* iterator_map, ARG_KEY key);
 
    //// void assert_ok() const override;
    //// void dump(dump_context & dumpcontext) const override;
@@ -661,7 +663,7 @@ inline typename node_set_base < NODE >::iterator
 node_set_base < NODE >::set_key(ARG_KEY key)
 {
 
-   auto iterator = get_node(key);
+   auto iterator = get(key);
 
    return iterator;
 
@@ -799,21 +801,44 @@ node_set_base < NODE >::~node_set_base()
 
 
 template < typename NODE >
-typename node_set_base < NODE >::iterator node_set_base < NODE >::new_node(ARG_KEY key)
+typename node_set_base < NODE >::iterator node_set_base < NODE >::_new(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash)
 {
 
-   auto pnode = __raw_new BASE_NODE (key);
+   // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
+   if (::is_null(m_hashtable.m_ppHash))
+   {
+
+      InitHashTable(m_hashtable.GetHashTableSize());
+
+   }
+
+   ENSURE(m_hashtable.m_ppHash);
+
+   auto p = __raw_new BASE_NODE (key);
 
    if(this->m_begin)
    {
 
-      this->m_begin.m_p->m_back   = pnode;
+      this->m_begin.m_p->m_back = p;
 
    }
 
-   pnode->m_next              = this->m_begin.get();
+   if(m_hashtable.m_ppHash[uiPack])
+   {
 
-   this->m_begin              = pnode;
+      m_hashtable.m_ppHash[uiPack]->m_pbackHash = &p->m_nextHash;
+
+   }
+
+   p->m_nextHash        = m_hashtable.m_ppHash[uiPack];
+
+   m_hashtable.m_ppHash[uiPack] = p;
+
+   p->m_pbackHash       = &m_hashtable.m_ppHash[uiPack];
+
+   p->m_next            = this->m_begin.get();
+
+   this->m_begin              = p;
 
    this->m_begin.m_p->m_back  = nullptr;
 
@@ -821,13 +846,13 @@ typename node_set_base < NODE >::iterator node_set_base < NODE >::new_node(ARG_K
 
    ASSERT(m_count > 0);  // make sure we don't overflow
 
-   return pnode;
+   return p;
 
 }
 
 
 template < typename NODE >
-void node_set_base < NODE >::free_node(iterator iterator)
+void node_set_base < NODE >::_free(iterator iterator)
 {
 
    auto pnode = iterator.m_p;
@@ -887,12 +912,12 @@ void node_set_base < NODE >::free_node(iterator iterator)
 
 template < typename NODE >
 typename node_set_base < NODE >::iterator
-node_set_base < NODE >::find_node(ARG_KEY key, unsigned int& nHashBucket, unsigned int& nHashValue) const
+node_set_base < NODE >::_find(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash) const
 {
 
-   nHashValue = ::as_hash32(key).m_u;
+   uiHash = ::as_hash32(key).m_u;
 
-   nHashBucket = nHashValue % m_hashtable.GetHashTableSize();
+   uiPack = uiHash % m_hashtable.GetHashTableSize();
 
    if (is_empty())
    {
@@ -901,7 +926,7 @@ node_set_base < NODE >::find_node(ARG_KEY key, unsigned int& nHashBucket, unsign
 
    }
 
-   for(auto p = m_hashtable.m_ppHash[nHashBucket]; p; p = p->m_nextHash)
+   for(auto p = m_hashtable.m_ppHash[uiPack]; p; p = p->m_nextHash)
    {
 
       if (EqualElements<ARG_KEY>(p->key(), key))
@@ -918,139 +943,146 @@ node_set_base < NODE >::find_node(ARG_KEY key, unsigned int& nHashBucket, unsign
 }
 
 
+// template < typename NODE >
+// bool node_set_base < NODE >::find(ARG_KEY key, PAYLOAD & payload) const
+// {
+//
+//    unsigned int uiPack, uiHash;
+//
+//    auto p = find_node(key, uiPack, uiHash);
+//
+//    if (!p)
+//    {
+//
+//       return false;  // not in set
+//
+//    }
+//
+//    payload = p->payload();
+//
+//    return true;
+//
+// }
+
+//
+// //template < typename NODE >
+//
+//
+// template < typename NODE >
+// typename node_set_base < NODE >::const_iterator
+// node_set_base < NODE >::find(ARG_KEY key) const
+// {
+//
+//    return ((node_set_base *)this)->find(key);
+//
+// }
+
+
 template < typename NODE >
-bool node_set_base < NODE >::lookup(ARG_KEY key, PAYLOAD & payload) const
+typename node_set_base < NODE >::const_iterator
+node_set_base < NODE >::find(ARG_KEY key) const
 {
 
-   unsigned int nHashBucket, nHashValue;
+   unsigned int uiPack;
 
-   auto p = find_node(key, nHashBucket, nHashValue);
+   unsigned int uiHash;
 
-   if (!p)
+   auto pnode = _find(key, uiPack, uiHash);
+
+   return pnode;
+
+}
+
+
+template < typename NODE >
+bool node_set_base < NODE >::find(ARG_KEY key, PAYLOAD & payload) const
+{
+
+   auto iterator = find(key);
+
+   if (!iterator)
    {
 
-      return false;  // not in set
+      return false;
 
    }
 
-   payload = p->payload();
+   payload = iterator->payload();
 
    return true;
 
 }
 
 
-//template < typename NODE >
-
-template < typename NODE >
-typename node_set_base < NODE >::const_iterator
-node_set_base < NODE >::plookup(ARG_KEY key) const
-{
-
-   return ((node_set_base *)this)->plookup(key);
-
-}
-
-
-template < typename NODE >
-typename node_set_base < NODE >::iterator
-node_set_base < NODE >::plookup(ARG_KEY key)
-{
-
-   auto pnode = find_node(key);
-
-   return pnode;
-
-}
-
-
 template < typename NODE >
 typename node_set_base < NODE >::PAYLOAD *
-node_set_base < NODE >::pget(ARG_KEY key)
+node_set_base < NODE >::defer_get(ARG_KEY key) const
 {
 
-   auto p = plookup(key);
+   auto iterator = find(key);
 
-   if (!p)
+   if (!iterator)
    {
 
       return nullptr;
 
    }
-      
-   return &p->payload();
+
+   return &iterator->payload();
 
 }
 
 
-template < typename NODE >
-inline typename node_set_base < NODE >::iterator
-node_set_base < NODE >::find_node(ARG_KEY key)
-{
+// template < typename NODE >
+// inline typename node_set_base < NODE >::iterator
+// node_set_base < NODE >::find(ARG_KEY key)
+// {
+//
+//    unsigned int nCluster, nHash;
+//
+//    auto iterator = ((node_set_base *)this)->_find(key, nCluster, nHash);
+//
+//    return iterator;
+//
+// }
 
-   unsigned int nHashBucket, nHashValue;
 
-   auto iterator = ((node_set_base *)this)->find_node(key, nHashBucket, nHashValue);
-
-   return iterator;
-
-}
-
-
-template < typename NODE >
-inline typename node_set_base < NODE >::const_iterator
-node_set_base < NODE >::find_node(ARG_KEY key) const
-{
-
-   return ((node_set_base *)this)->find_node(key);
-
-}
+// template < typename NODE >
+// inline typename node_set_base < NODE >::const_iterator
+// node_set_base < NODE >::find(ARG_KEY key) const
+// {
+//
+//    return ((node_set_base *)this)->find(key);
+//
+// }
+//
+// template < typename NODE >
+// typename node_set_base < NODE >::const_iterator
+// node_set_base < NODE >::get(ARG_KEY key) const
+// {
+//
+//    return ((node_set_base*)this)->get(key);
+//
+// }
 
 
 template < typename NODE >
 typename node_set_base < NODE >::iterator
-node_set_base < NODE >::get_node(ARG_KEY key)
+node_set_base < NODE >::get(ARG_KEY key)
 {
 
-   unsigned int nHashBucket, nHashValue;
+   unsigned int uiPack, uiHash;
 
-   auto iterator = find_node(key, nHashBucket, nHashValue);
+   auto iterator = _find(key, uiPack, uiHash);
 
-   auto pnode = iterator.m_p;
-
-   if(!pnode)
+   if(!iterator)
    {
 
-      // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
-      if (::is_null(m_hashtable.m_ppHash))
-      {
-
-         InitHashTable(m_hashtable.GetHashTableSize());
-
-      }
-
-      ENSURE(m_hashtable.m_ppHash);
-
-      auto iteratorNew = new_node(key);
-
-      pnode = iteratorNew.m_p;
-
-      if(m_hashtable.m_ppHash[nHashBucket])
-      {
-
-         m_hashtable.m_ppHash[nHashBucket]->m_pbackHash = &pnode->m_nextHash;
-
-      }
-
-      pnode->m_nextHash        = m_hashtable.m_ppHash[nHashBucket];
-
-      m_hashtable.m_ppHash[nHashBucket] = pnode;
-
-      pnode->m_pbackHash       = &m_hashtable.m_ppHash[nHashBucket];
+      iterator = _new(key, uiPack, uiHash);
 
    }
 
-   return pnode;
+   return iterator;
 
 }
 
@@ -1059,7 +1091,7 @@ template < typename NODE >
 typename node_set_base < NODE >::PAYLOAD & node_set_base < NODE >::operator[](ARG_KEY key)
 {
 
-   return get_node(key)->payload();
+   return get(key)->payload();
 
 }
 
@@ -1068,16 +1100,16 @@ template < typename NODE >
 const typename node_set_base < NODE >::PAYLOAD & node_set_base < NODE >::operator[](ARG_KEY key) const
 {
 
-   auto p = find_node(key);
+   auto iterator = find(key);
 
-   if (!p)
+   if (!iterator)
    {
 
       throw_exception(error_key_not_found);
 
    }
 
-   return p->payload();
+   return iterator->payload();
 
 }
 
@@ -1095,7 +1127,7 @@ inline bool node_set_base < NODE >::erase(iterator iterator)
 
    *iterator.m_p->m_pbackHash = iterator.m_p->m_nextHash;
 
-   free_node(iterator.m_p);
+   _free(iterator);
 
    return true;
 
@@ -1103,28 +1135,28 @@ inline bool node_set_base < NODE >::erase(iterator iterator)
 
 
 template < typename NODE >
-inline ::collection::count node_set_base < NODE >::key_count(ARG_KEY KEY) const
+inline ::collection::count node_set_base < NODE >::key_count(ARG_KEY key) const
 {
 
-   return this->plookup(KEY) ? 1 : 0;
+   return this->find(key) ? 1 : 0;
 
 }
 
 
 template < typename NODE >
-bool node_set_base < NODE >::has_key(ARG_KEY KEY) const
+bool node_set_base < NODE >::has_key(ARG_KEY key) const
 {
 
-   return this->plookup(KEY) ? 1 : 0;
+   return this->key_count(key) > 0;
 
 }
 
 
 template < typename NODE >
-bool node_set_base < NODE >::contains_key(ARG_KEY KEY) const
+bool node_set_base < NODE >::contains_key(ARG_KEY key) const
 {
 
-   return this->plookup(KEY) ? 1 : 0;
+   return this->has_key(key);
 
 }
 
@@ -1164,19 +1196,19 @@ bool node_set_base < NODE >::contains_key(ARG_KEY KEY) const
 
 
 template < typename NODE >
-typename node_set_base < NODE >::PAYLOAD node_set_base < NODE > ::get(ARG_KEY key, ARG_PAYLOAD payloadDefault)
+typename node_set_base < NODE >::PAYLOAD node_set_base < NODE > ::defer_get(ARG_KEY key, ARG_PAYLOAD payloadDefault) const
 {
    
-   auto p = plookup(key);
+   auto iterator = find(key);
 
-   if (!p)
+   if (!iterator)
    {
 
       return payloadDefault;
 
    }
 
-   return p->payload();
+   return iterator->payload();
 
 }
 
@@ -1214,8 +1246,8 @@ using uptr_set = set < ::uptr >;
 //   // Contract
 //   // KEY & KEY();
 //   // KEY & KEY();
-//   // ARG_KEY KEY() const;
-//   // ARG_KEY KEY() const;
+//   // ARG_KEY key() const;
+//   // ARG_KEY key() const;
 //
 //};
 
@@ -1230,7 +1262,7 @@ struct xkeytype : public ::KEY < xkeytype > \
 \
    PAIR_DEFAULT_IMPL(xkeytype, KEY, ARG_KEY, xkey); \
    KEY & KEY() { return xkey; } \
-   ARG_KEY KEY() const { return xkey; } \
+   ARG_KEY key() const { return xkey; } \
 }
 
 
@@ -1309,18 +1341,18 @@ template < typename ITEM >
 void node_set_base < ITEM >::transfer(node_set_base* pnodesetbase, ARG_KEY key)
 {
 
-   unsigned int uHashBucket;
+   unsigned int uiPack;
 
-   unsigned int uHashValue;
+   unsigned int uiHash;
 
-   auto pnode = pnodesetbase->find_node(key, uHashBucket, uHashValue);
+   auto pnode = pnodesetbase->_find(key, uiPack, uiHash);
 
    if (pnode)
    {
 
       pnodesetbase->detach(pnode);
 
-      attach(pnode, uHashBucket, uHashValue);
+      attach(pnode, uiPack, uiHash);
 
    }
 
@@ -1345,23 +1377,23 @@ void node_set_base < ITEM >::transfer(iterator iterator, node_set_base * pnodese
 
    }
 
-   unsigned int nHashBucket;
+   unsigned int uiPack;
 
-   unsigned int nHashValue;
+   unsigned int uiHash;
 
-   hash(nHashBucket, nHashValue, iterator->key());
+   hash(uiPack, uiHash, iterator->key());
 
-   attach(iterator, nHashBucket, nHashValue);
+   attach(iterator, uiPack, uiHash);
 
 }
 
 
 
 template < typename ITEM >
-void node_set_base < ITEM >::attach(iterator iterator, unsigned int nHashBucket, unsigned int nHashValue)
+void node_set_base < ITEM >::attach(iterator iterator, unsigned int uiPack, unsigned int uiHash)
 {
 
-   hash(iterator, nHashBucket, nHashValue);
+   hash(iterator, uiPack, uiHash);
 
    auto pnode = iterator.m_p;
 
@@ -1386,7 +1418,7 @@ void node_set_base < ITEM >::attach(iterator iterator, unsigned int nHashBucket,
 
 
 template < typename ITEM >
-void node_set_base < ITEM >::hash(iterator iterator, unsigned int nHashBucket, unsigned int nHashValue)
+void node_set_base < ITEM >::hash(iterator iterator, unsigned int uiPack, unsigned int uiHash)
 {
 
    auto pnode = iterator.m_p;
@@ -1399,29 +1431,29 @@ void node_set_base < ITEM >::hash(iterator iterator, unsigned int nHashBucket, u
 
    }
 
-   if (::is_set(this->m_hashtable.m_ppHash[nHashBucket]))
+   if (::is_set(this->m_hashtable.m_ppHash[uiPack]))
    {
 
-      this->m_hashtable.m_ppHash[nHashBucket]->m_pbackHash = &pnode->m_nextHash;
+      this->m_hashtable.m_ppHash[uiPack]->m_pbackHash = &pnode->m_nextHash;
 
    }
 
-   pnode->m_nextHash = this->m_hashtable.m_ppHash[nHashBucket];
+   pnode->m_nextHash = this->m_hashtable.m_ppHash[uiPack];
 
-   this->m_hashtable.m_ppHash[nHashBucket] = pnode;
+   this->m_hashtable.m_ppHash[uiPack] = pnode;
 
-   pnode->m_pbackHash = &this->m_hashtable.m_ppHash[nHashBucket];
+   pnode->m_pbackHash = &this->m_hashtable.m_ppHash[uiPack];
 
 }
 
 
 template < typename ITEM >
-void node_set_base < ITEM >::hash(unsigned int& nHashBucket, unsigned int& nHashValue, ARG_KEY key) const
+void node_set_base < ITEM >::hash(unsigned int& uiPack, unsigned int& uiHash, ARG_KEY key) const
 {
 
-   nHashValue = ::as_hash32(key).m_u;
+   uiHash = ::as_hash32(key).m_u;
 
-   nHashBucket = nHashValue % this->m_hashtable.GetHashTableSize();
+   uiPack = uiHash % this->m_hashtable.GetHashTableSize();
 
 }
 

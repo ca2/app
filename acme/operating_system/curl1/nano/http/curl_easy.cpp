@@ -26,11 +26,11 @@ curl_easy::~curl_easy()
 size_t curl_easy::s_write_function(void *contents, size_t size, size_t nmemb, void *userp)
 {
 
-   auto pget = dynamic_cast< ::nano::http::get *>((::subparticle *)userp);
+   auto defer_get = dynamic_cast< ::nano::http::get *>((::subparticle *)userp);
 
    size_t realsize = size * nmemb;
 
-   pget->m_memory.append(contents, realsize);
+   defer_get->m_memory.append(contents, realsize);
 
    // return the size of content that is copied.
    return realsize;
@@ -38,11 +38,11 @@ size_t curl_easy::s_write_function(void *contents, size_t size, size_t nmemb, vo
 }
 
 
-void curl_easy::get(::nano::http::get * pget)
+void curl_easy::get(::nano::http::get * defer_get)
 {
 
 
-   ::string strUrl(pget->m_strUrl);
+   ::string strUrl(defer_get->m_strUrl);
 
 
    //auto pfile = create_memory_file();
@@ -51,7 +51,7 @@ void curl_easy::get(::nano::http::get * pget)
    curl_easy_setopt(m_pcurl, CURLOPT_URL, strUrl.c_str());
    curl_easy_setopt(m_pcurl, CURLOPT_FOLLOWLOCATION, 1);
    curl_easy_setopt(m_pcurl, CURLOPT_WRITEFUNCTION, &curl_easy::s_write_function);
-   curl_easy_setopt(m_pcurl, CURLOPT_WRITEDATA, (void *)(::nano::http::get*)pget);
+   curl_easy_setopt(m_pcurl, CURLOPT_WRITEDATA, (void *)(::nano::http::get*)defer_get);
    curl_easy_setopt(m_pcurl, CURLOPT_USERAGENT, "nano_http");
    curl_easy_setopt(m_pcurl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 
@@ -62,7 +62,7 @@ void curl_easy::get(::nano::http::get * pget)
    if(curl_code != CURLE_ABORTED_BY_CALLBACK)
    {
 
-      curl_easy_getinfo (m_pcurl, CURLINFO_RESPONSE_CODE, pget->m_setOut["http_status_code"].raw_pointer<long>());
+      curl_easy_getinfo (m_pcurl, CURLINFO_RESPONSE_CODE, defer_get->m_setOut["http_status_code"].raw_pointer<long>());
 
    }
    else

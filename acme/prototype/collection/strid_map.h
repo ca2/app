@@ -26,24 +26,24 @@ public:
    };
 
 
-   bool lookup(string key, T * & rValue) const
+   bool find(string key, T * & rValue) const
    {
-      return string_to_ptr_base::lookup(key, rValue);
+      return string_to_ptr_base::find(key, rValue);
    }
-   const pair *plookup(string key) const
+   const pair *find(string key) const
    {
-      return reinterpret_cast < const string_to_pointer::pair * > (string_to_ptr_base::plookup(key));
+      return reinterpret_cast < const string_to_pointer::pair * > (string_to_ptr_base::find(key));
    }
-   pair *plookup(string key)
+   pair *find(string key)
    {
-      return reinterpret_cast < string_to_pointer::pair * > (string_to_ptr_base::plookup(key));
+      return reinterpret_cast < string_to_pointer::pair * > (string_to_ptr_base::find(key));
    }
 
 
-   T ** pget(string key)
+   T ** defer_get(string key)
    {
       
-      return (T**) string_to_ptr_base::pget(key);
+      return (T**) string_to_ptr_base::defer_get(key);
 
    }
 
@@ -51,7 +51,7 @@ public:
    T * get(string key)
    {
 
-      T ** p = (T **) string_to_ptr_base::pget(key);
+      T ** p = (T **) string_to_ptr_base::defer_get(key);
 
       if (p == nullptr)
       {
@@ -70,7 +70,7 @@ public:
 
 
    
-   // lookup and add if not there
+   // find and add if not there
    T * & operator[](string key)
    {
       return (T * &) string_to_ptr_base::operator[](key);

@@ -150,14 +150,14 @@ namespace simpledb
       if (!pserver->m_bRemote)
       {
 
-         auto ppair = pstorage->m_map.plookup(strKey);
+         auto iterator = pstorage->m_map.find(strKey);
 
-         if (ppair)
+         if (iterator)
          {
 
-            getmemory.get(ppair->element2().m_memory);
+            getmemory.get(iterator->element2().m_memory);
 
-            return ppair->m_element2.m_bData;
+            return iterator->m_element2.m_bData;
 
          }
 
@@ -216,14 +216,14 @@ namespace simpledb
 
          synchronouslock._lock();
 
-         auto ppair = pstorage->m_map.plookup(strKey);
+         auto iterator = pstorage->m_map.find(strKey);
 
-         if (ppair && ppair->element2().m_tick.elapsed() < m_timeRemoteTimeout)
+         if (iterator && iterator->element2().m_tick.elapsed() < m_timeRemoteTimeout)
          {
 
-            getmemory.get(ppair->element2().m_memory);
+            getmemory.get(iterator->element2().m_memory);
 
-            return ppair->m_element2.m_bData;
+            return iterator->m_element2.m_bData;
 
          }
 
@@ -381,7 +381,7 @@ namespace simpledb
 
             _synchronous_lock synchronouslock(this->synchronization());
 
-            iterator = pstorage->m_map.plookup(strKey);
+            iterator = pstorage->m_map.find(strKey);
 
          }
 

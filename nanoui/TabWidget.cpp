@@ -757,7 +757,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       }
 
-      auto p = m_widgets.plookup(selected_id());
+      auto p = m_widgets.find(selected_id());
 
       if (::is_set(p))
       {

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "main_impact.h"
-#include "list_base.h"
+#include "list.h"
 #include "tree_data.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
@@ -54,7 +54,7 @@ namespace userfs
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeatomNewImpact = ::type < list_base >();
-      puserinteraction = create_impact(::type < list_base >(),get_document(), get_pane_holder(1),101);
+      puserinteraction = create_impact(::type < ::userfs::list >(),get_document(), get_pane_holder(1),101);
 //      list_base * plist = dynamic_cast < list_base * > (puserinteraction);
       SetPane(1, puserinteraction, false);
       set_need_layout();

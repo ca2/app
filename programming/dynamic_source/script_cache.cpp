@@ -93,7 +93,7 @@ namespace dynamic_source
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto passoc = m_map.get_item(strName);
+      auto passoc = m_map.get_node(strName);
 
       if (::is_set(passoc)
          && passoc->element2().is_set()
@@ -122,12 +122,12 @@ namespace dynamic_source
 
       single_lock synchronouslock(synchronization(), true);
 
-      auto ppair = m_map.find_item(strName);
+      auto iterator = m_map.find_item(strName);
 
-      if(ppair)
+      if(iterator)
       {
 
-         ppair->payload() = pscript;
+         iterator->payload() = pscript;
 
          return pscript;
 

@@ -260,7 +260,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
       }
 
       // is this a known entity object?
-      if (m_CharEntityRefs.lookup(strKey, chTemp))
+      if (m_CharEntityRefs.find(strKey, chTemp))
       {
          union
          {

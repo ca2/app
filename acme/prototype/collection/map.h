@@ -12,7 +12,7 @@ class pair_map_base :
 public:
    //
    //
-   // using BASE_PAIR_MAP = ::node_set_base < ::make_pair < PAIR > >;
+   using BASE_PAIR_MAP = ::node_set_base < ::make_pair < PAIR > >;
    //
    //
    // using HASH_TABLE = typename BASE_PAIR_MAP::HASH_TABLE;
@@ -25,7 +25,7 @@ public:
    // using BASE_NODE = typename BASE_PAIR_MAP::BASE_NODE;
    // using ITEM = typename BASE_PAIR_MAP::ITEM;
    //
-   // using iterator = typename BASE_PAIR_MAP::iterator;
+   using iterator = typename BASE_PAIR_MAP::iterator;
    // using const_iterator = typename BASE_PAIR_MAP::const_iterator;
    //
    // using item_iterator = ::element1_list_iterator < BASE_NODE * >;
@@ -64,6 +64,32 @@ public:
       pair_map_base_ok();
 
    }
+
+
+   template < typename STRING >
+   iterator case_insensitive_find_key_containing(const STRING & str) const
+   {
+
+      auto iterator = this->begin();
+
+      while (iterator)
+      {
+
+         if (iterator->element1().case_insensitive_contains(str))
+         {
+
+            return iterator;
+
+         }
+
+         ++iterator;
+
+      }
+
+      return nullptr;
+
+   }
+
 
 
 //    void assert_container_ok() const;

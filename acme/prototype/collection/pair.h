@@ -126,6 +126,59 @@ public: \
 }
 
 
+
+#define MAKE_PAIR2(PAIR, T1, T2, MEMBER1, MEMBER2, member1, member2) \
+class PAIR : \
+public memory_quantum\
+{  \
+public: \
+\
+\
+using TYPE1 = T1;                               \
+using TYPE2 = T2;                               \
+using CONST_TYPE1 = ::const_of < TYPE1 >;       \
+using CONST_TYPE2 = ::const_of < TYPE2 >;       \
+using ARG_TYPE1 = ::argument_of < TYPE1 >;\
+using ARG_TYPE2 = ::argument_of < TYPE2 >;\
+\
+\
+T1       MEMBER1;\
+T2       MEMBER2;\
+\
+\
+inline T1 & element1() { return MEMBER1; } \
+inline T2 & element2() { return MEMBER2; } \
+inline T1 & member1() { return MEMBER1; } \
+inline T2 & member2() { return MEMBER2; } \
+inline CONST_TYPE1 & element1() const { return (CONST_TYPE1 &) MEMBER1; } \
+inline CONST_TYPE2 & element2() const { return (CONST_TYPE2 &) MEMBER2; } \
+inline CONST_TYPE1 & member1() const { return (CONST_TYPE1 &) MEMBER1; } \
+inline CONST_TYPE2 & member2() const { return (CONST_TYPE2 &) MEMBER2; } \
+inline T1 && transfer_element1() { return ::transfer(MEMBER1); } \
+inline T2 && transfer_element2() { return ::transfer(MEMBER2); } \
+inline T1 && transfer_##member1() { return ::transfer(MEMBER1); } \
+inline T2 && transfer_##member2() { return ::transfer(MEMBER2); } \
+inline CONST_TYPE1 && transfer_element1() const { return (CONST_TYPE1 &&) ::transfer(MEMBER1); } \
+inline CONST_TYPE2 && transfer_element2() const { return (CONST_TYPE2 &&) ::transfer(MEMBER2); } \
+inline CONST_TYPE1 && transfer_##member1() const { return (CONST_TYPE1 &&) ::transfer(MEMBER1); } \
+inline CONST_TYPE2 && transfer_##member2() const { return (CONST_TYPE2 &&) ::transfer(MEMBER2); } \
+inline T1 & key() { return MEMBER1; } \
+inline T2 & value() { return MEMBER2; } \
+inline CONST_TYPE1 & key() const { return (CONST_TYPE1 &) MEMBER1; } \
+inline CONST_TYPE2 & value() const { return (CONST_TYPE2 &) MEMBER2; } \
+inline T1 && transfer_key() { return ::transfer(MEMBER1); } \
+inline T2 && transfer_value() { return ::transfer(MEMBER2); } \
+inline CONST_TYPE1 && transfer_key() const { return (CONST_TYPE1 &&) ::transfer(MEMBER1); } \
+inline CONST_TYPE2 && transfer_value() const { return (CONST_TYPE2 &&) ::transfer(MEMBER2); } \
+\
+\
+PAIR() {} \
+PAIR(ARG_TYPE1 t1) : MEMBER1(t1) {} \
+PAIR(ARG_TYPE1 t1, ARG_TYPE2 t2) : MEMBER1(t1), MEMBER2(t2) {}   \
+\
+\
+}
+
 //#define MAKE_PAIR(PAIR, T1, T2, MEMBER1, MEMBER2) \
 //_MAKE_PAIR(PAIR, T1, T2, MEMBER1, MEMBER2) \
 //PAIR_TUPLE(PAIR, T1, T2, MEMBER1, MEMBER2)

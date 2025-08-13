@@ -2,11 +2,11 @@
 #include "acme/prototype/collection/string_list.h"
 
 
-//string_list_base::string_list_base()
-//{
-//}
-//
-//
+string_list_base::string_list_base()
+{
+}
+
+
 string_list_base::~string_list_base()
 {
 }

@@ -18,7 +18,7 @@ namespace image
 
       }
 
-      auto & pimage = image_descriptor_map_base::operator [](key);
+      auto & pimage = BASE_PAIR_MAP::operator [](key);
 
       if (pimage->is_null())
       {

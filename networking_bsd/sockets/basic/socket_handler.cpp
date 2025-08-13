@@ -2461,7 +2461,7 @@ end_processing_adding:
 
       }
 
-      if(m_socketmap.erase_payload(psocketRemove))
+      if(m_socketmap.erase_first_payload(psocketRemove))
       {
 
          psocketRemove->warning() << "erase -1 socket destructor called while still in use";
@@ -2470,7 +2470,7 @@ end_processing_adding:
 
       }
 
-      if (m_socketmapAdd.erase_payload(psocketRemove))
+      if (m_socketmapAdd.erase_first_payload(psocketRemove))
       {
 
          psocketRemove->warning() << "erase -2 socket destructor called while still in use";

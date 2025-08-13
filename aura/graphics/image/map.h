@@ -104,6 +104,9 @@ namespace image
    public:
 
 
+      using BASE_PAIR_MAP = map_base < image_header, ::image::image_pointer >;
+
+
       int m_iLimitCount;
 
 

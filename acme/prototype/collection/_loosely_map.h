@@ -2,80 +2,81 @@
 #pragma once
 
 
-#include "acme/prototype/collection/_loosely.h"
-
-
-namespace loosely
-{
-
-
-   namespace map_base
-   {
-
-
-      template < typename MAP >
-      typename MAP::assoc* get(MAP& m, typename MAP::BASE_ARG_ITEM key)
-      {
-
-         for (auto& assoc : m)
-         {
-
-            if (contains(assoc.element1(), key))
-            {
-
-               return &assoc;
-
-            }
-
-         }
-
-         return nullptr;
-
-      }
-
-
-      template < typename MAP >
-      typename MAP::BASE_PAYLOAD * pvalue(MAP& m, typename MAP::ARG_ITEM item)
-      {
-
-         for (auto& assoc : m)
-         {
-
-            if (contains(assoc.element1(), item))
-            {
-
-               return &assoc.element2();
-
-            }
-
-         }
-
-         return nullptr;
-
-      }
-
-
-      template < typename MAP >
-      typename MAP::BASE_PAYLOAD value(MAP& m, typename MAP::ARG_ITEM item, typename MAP::BASE_PAYLOAD default_payload = ::loosely::default_payload < typename MAP::BASE_PAYLOAD >())
-      {
-
-         auto pval = pvalue(m, item);
-
-         if (pval == nullptr)
-         {
-
-            return default_payload;
-
-         }
-
-         return *pval;
-
-      }
-
-
-   } // namespace map_base
-
-
-} // namespace loosely
-
-
+// #include "acme/prototype/collection/_loosely.h"
+//
+// // maybe use and enhance string_map_base::case_insensitive_find_key_containing
+// // instead of this loosely::map_base
+// namespace loosely
+// {
+//
+//
+//    namespace map_base
+//    {
+//
+//
+//       template < typename MAP >
+//       typename MAP::BASE_NODE * get(MAP& m, typename MAP::ARG_PAYLOAD key)
+//       {
+//
+//          for (auto& item : m)
+//          {
+//
+//             if (contains(item.element1(), key))
+//             {
+//
+//                return item.m_p;
+//
+//             }
+//
+//          }
+//
+//          return nullptr;
+//
+//       }
+//
+//
+//       template < typename MAP >
+//       typename MAP::iterator find(MAP& m, typename MAP::ARG_PAYLOAD item)
+//       {
+//
+//          for (auto& item : m)
+//          {
+//
+//             if (contains(item.element1(), item))
+//             {
+//
+//                return item;
+//
+//             }
+//
+//          }
+//
+//          return nullptr;
+//
+//       }
+//
+//
+//       template < typename MAP >
+//       typename MAP::PAYLOAD defer_get(MAP& m, typename MAP::ARG_PAYLOAD item, typename MAP::PAYLOAD default_payload = ::loosely::default_payload < typename MAP::PAYLOAD >())
+//       {
+//
+//          auto iterator = find(m, item);
+//
+//          if (!iterator)
+//          {
+//
+//             return default_payload;
+//
+//          }
+//
+//          return iterator->payload();
+//
+//       }
+//
+//
+//    } // namespace map_base
+//
+//
+// } // namespace loosely
+//
+//

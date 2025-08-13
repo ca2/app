@@ -5,7 +5,22 @@
 
 
 template < class PAYLOAD, typename PAIR = pair < string, PAYLOAD > >
-using string_map_base = map_base < string, PAYLOAD, PAIR >;
+class string_map_base :
+   public map_base < string, PAYLOAD, PAIR >
+{
+public:
+
+   using BASE_PAIR_MAP = map_base < string, PAYLOAD, PAIR >;
+
+   using BASE_PAIR_MAP::BASE_PAIR_MAP;
+   using BASE_PAIR_MAP::operator = ;
+
+   using iterator = typename BASE_PAIR_MAP::iterator;
+
+
+
+};
+
 
 template < class PAYLOAD, typename PAIR = pair < string, PAYLOAD > >
 using string_map = map_particle < string_map_base < PAYLOAD, PAIR > >;

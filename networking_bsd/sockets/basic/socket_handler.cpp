@@ -356,17 +356,17 @@ namespace sockets_bsd
    void socket_handler::restart_socket(SOCKET socket)
    {
 
-      auto passociation = m_socketmap.find_item(socket);
+      auto iterator = m_socketmap.find(socket);
 
-      if (passociation->m_psocket->is_connecting())
+      if (iterator->m_psocket->is_connecting())
       {
          
-         ::pointer < ::sockets_bsd::base_socket > psocketImpl = passociation->m_psocket;
+         ::pointer < ::sockets_bsd::base_socket > psocketImpl = iterator->m_psocket;
 
          if (psocketImpl->m_timeConnectionMaximum > 0_s)
          {
 
-            socket_id_list_add(passociation->m_psocket->GetSocketId(), e_list_timeout);
+            socket_id_list_add(iterator->m_psocket->GetSocketId(), e_list_timeout);
 
          }
 
@@ -374,12 +374,12 @@ namespace sockets_bsd
       else
       {
 
-         ::pointer < ::sockets_bsd::base_socket > psocketImpl = passociation->m_psocket;
+         ::pointer < ::sockets_bsd::base_socket > psocketImpl = iterator->m_psocket;
 
          if (psocketImpl->m_timeKeepConnectionAfterLastIO > 0_s)
          {
 
-            ::pointer < ::sockets_bsd::base_socket > psocket2 = passociation->m_psocket;
+            ::pointer < ::sockets_bsd::base_socket > psocket2 = iterator->m_psocket;
 
             socket_id_list_add(psocket2->GetSocketId(), e_list_timeout);
 
@@ -387,11 +387,11 @@ namespace sockets_bsd
 
       }
 
-      passociation->m_psocket->m_estatus = ::success;
+      iterator->m_psocket->m_estatus = ::success;
 
-      m_socketmapAdd[passociation->element1()] = passociation->element2();
+      m_socketmapAdd[iterator->element1()] = iterator->element2();
 
-      auto xxx = m_socketmapAdd[passociation->element1()];
+      auto xxx = m_socketmapAdd[iterator->element1()];
 
    }
 
@@ -802,7 +802,7 @@ start_processing_adding:
 
          auto psocket = passociationAdd->m_psocket;
 
-         if (m_socketmap.has(socket))
+         if (m_socketmap.has_key(socket))
          {
 
             psocket->warning() << "add" << (int)psocket->GetSocketId() << "Attempt to add socket already in controlled queue";
@@ -868,7 +868,7 @@ start_processing_adding:
 
          m_socketmap[socket] = psocket;
 
-         m_socketmapAdd.erase_item(socket);
+         m_socketmapAdd.erase_key(socket);
 
          if (m_bSlave && psocket->IsDetach())
          {
@@ -1611,7 +1611,7 @@ end_processing_adding:
 
                   }
 
-                  m_socketmap.erase_item(socket);
+                  m_socketmap.erase_key(socket);
 
                   check_max_fd = true;
 
@@ -1984,11 +1984,11 @@ end_processing_adding:
 
             //iteratorSocket->m_psocket->m_phandlerSlave.release();
 
-            m_socketmap.erase_item(socket);
+            m_socketmap.erase_key(socket);
 
-            m_delete.add_item(iteratorSocket->m_psocket);
+            m_delete.add_tail(iteratorSocket->m_psocket);
 
-            m_socketmapAdd.erase_item(socket);
+            m_socketmapAdd.erase_key(socket);
 
          }
 
@@ -2053,9 +2053,9 @@ end_processing_adding:
 
                      }
 
-                     m_trigger_src.erase_item(p->m_socketid);
+                     m_trigger_src.erase_key(p->m_socketid);
 
-                     m_trigger_dst.erase_item(p->m_socketid);
+                     m_trigger_dst.erase_key(p->m_socketid);
 
                      again = true;
 
@@ -2413,7 +2413,7 @@ end_processing_adding:
                   psocket->GetClientRemoteAddress() == ad)
             {
 
-               pnetworking2->m_pool.erase_item(p->m_socketid);
+               pnetworking2->m_pool.erase_key(p->m_socketid);
 
                psocket->SetRetain(); // avoid close in socket destructor
 
@@ -2513,14 +2513,14 @@ end_processing_adding:
       for(; p.is_ok() ; p++)
       {
 
-         if (m_socketmap.has(*p))
+         if (m_socketmap.has_key(*p))
          {
 
             continue;
 
          }
 
-         if (m_socketmapAdd.has(*p))
+         if (m_socketmapAdd.has_key(*p))
          {
 
             continue;
@@ -2718,7 +2718,7 @@ end_processing_adding:
          if (m_trigger_dst[atom].find(psocketDst2))
          {
 
-            m_trigger_dst[atom].erase_item(psocketDst2);
+            m_trigger_dst[atom].erase_key(psocketDst2);
 
             return true;
 
@@ -2739,7 +2739,7 @@ end_processing_adding:
    void socket_handler::Trigger(int atom, socket::trigger_data& data, bool bErase)
    {
 
-      if (m_trigger_src.contains(atom))
+      if (m_trigger_src.contains_key(atom))
       {
 
          data.SetSource(dynamic_cast < base_socket * > (m_trigger_src[atom].m_p));
@@ -2761,9 +2761,9 @@ end_processing_adding:
          if (bErase)
          {
 
-            m_trigger_src.erase_item(atom);
+            m_trigger_src.erase_key(atom);
 
-            m_trigger_dst.erase_item(atom);
+            m_trigger_dst.erase_key(atom);
 
          }
 

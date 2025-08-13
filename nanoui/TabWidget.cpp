@@ -828,7 +828,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       Widget* pwidget = m_widgets[iId];
 
-      m_widgets.erase_item(iId);
+      m_widgets.erase_key(iId);
 
       if (m_bEraseChildren)
       {

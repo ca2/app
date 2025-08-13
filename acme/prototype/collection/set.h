@@ -379,8 +379,6 @@ public:
    // inline PAYLOAD & operator[](ARG_KEY key);
    // inline const PAYLOAD & operator[](ARG_KEY key) const;
 
-   template < typename PAYLOAD2 >
-   iterator search_payload(const PAYLOAD2 & payload) const;
 
    iterator set_at(ARG_KEY key, ARG_PAYLOAD payload)
    {
@@ -399,8 +397,29 @@ public:
    //removing existing (key, ?) node
    //inline bool erase_item(ARG_KEY key) { auto p = this->find_item(key);  return p ? this->erase(p) : false; }
 
+
    template < typename PAYLOAD2 >
-   inline bool erase_payload(const PAYLOAD2 payload) { auto p = find_payload(payload);  return p ? erase(p) : false; }
+   iterator find_first_payload(const PAYLOAD2 & payload) const;
+
+
+   template < typename PAYLOAD2 >
+   inline bool erase_first_payload(const PAYLOAD2 payload)
+   {
+
+      auto iterator = this->find_first_payload(payload);
+
+      if (!iterator)
+      {
+
+         return false;
+
+      }
+
+      this->erase(iterator);
+
+      return true;
+
+   }
 
 
 
@@ -1515,5 +1534,36 @@ void node_set_base < ITEM >::detach(iterator iterator)
    }
 
 }
+
+
+
+
+
+template < typename ITEM >
+template < typename PAYLOAD2 >
+inline typename node_set_base < ITEM >::iterator
+node_set_base < ITEM >::find_first_payload(const PAYLOAD2 & payload) const
+{
+
+   auto p = this->begin();
+
+   while(p)
+   {
+
+      if(p->payload() == payload)
+      {
+
+         return p;
+
+      }
+
+      p++;
+
+   }
+
+   return nullptr;
+
+}
+
 
 

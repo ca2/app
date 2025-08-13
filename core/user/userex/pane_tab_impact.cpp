@@ -1090,7 +1090,7 @@ namespace userex
 
       ::user::tab_impact::_001OnRemoveTab(ptab);
 
-      m_impactdatamap.erase_item(ptab->id());
+      m_impactdatamap.erase_key(ptab->id());
 
    }
 

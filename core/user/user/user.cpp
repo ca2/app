@@ -1894,7 +1894,7 @@ namespace user
    }
 
 
-   ::pointer<::user::list_header>list_base::create_list_header()
+   ::pointer<::user::list_header>list::create_list_header()
    {
 
       return user()->default_create_list_header(this);
@@ -1902,7 +1902,7 @@ namespace user
    }
 
 
-   ::pointer<::user::mesh_data>list_base::create_mesh_data()
+   ::pointer<::user::mesh_data>list::create_mesh_data()
    {
 
       return user()->default_create_list_data(this);

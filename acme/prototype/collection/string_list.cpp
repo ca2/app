@@ -7,9 +7,9 @@
 //}
 //
 //
-//string_list_base::~string_list_base()
-//{
-//}
+string_list_base::~string_list_base()
+{
+}
 
 
 void string_list_base::implode(string & str, const ::scoped_string & scopedstrSeparator, ::collection::index start, ::collection::count count) const

@@ -10,7 +10,7 @@ namespace user
 {
 
 
-   class list_base;
+   class list;
 
 
    class CLASS_DECL_CORE mesh_data :

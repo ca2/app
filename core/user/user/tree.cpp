@@ -166,8 +166,8 @@ namespace user
             fork([this]()
                {
 
-                  _001SetExpandImage("matter://list_base/expand.png");
-                  _001SetExpandImageDark("matter://list_base/expand_dark.png");
+                  _001SetExpandImage("matter://list/expand.png");
+                  _001SetExpandImageDark("matter://list/expand_dark.png");
 
                   task_set_name(::type(this).name() + "::Expand");
 
@@ -203,8 +203,8 @@ namespace user
       fork([this]()
          {
 
-            _001SetCollapseImage("matter://list_base/collapse.png");
-            _001SetCollapseImageDark("matter://list_base/collapse_dark.png");
+            _001SetCollapseImage("matter://list/collapse.png");
+            _001SetCollapseImageDark("matter://list/collapse_dark.png");
 
             task_set_name(::type(this).name() + "::Open");
 
@@ -1542,7 +1542,16 @@ namespace user
    void tree::_001SetExpandImage(const ::scoped_string & scopedstrMatter)
    {
 
-      m_iImageExpand = m_pimagelist->add(::image::image_payload(this, scopedstrMatter));
+      auto imagepayloadExpand = ::image::image_payload(this, scopedstrMatter);
+
+      if (!imagepayloadExpand.ok())
+      {
+
+         throw ::exception(error_failed, "failed to load expand image");
+
+      }
+
+      m_iImageExpand = m_pimagelist->add(imagepayloadExpand);
 
    }
 
@@ -1550,7 +1559,16 @@ namespace user
    void tree::_001SetCollapseImage(const ::scoped_string & scopedstrMatter)
    {
 
-      m_iImageCollapse = m_pimagelist->add(::image::image_payload(this, scopedstrMatter));
+      auto imagepayloadCollapse = ::image::image_payload(this, scopedstrMatter);
+
+      if (!imagepayloadCollapse.ok())
+      {
+
+         throw ::exception(error_failed, "failed to load collapse image");
+
+      }
+
+      m_iImageCollapse = m_pimagelist->add(imagepayloadCollapse);
 
    }
 

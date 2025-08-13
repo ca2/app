@@ -1921,6 +1921,30 @@ namespace user
    }
 
 
+   void interaction::set_need_perform_layout()
+   {
+
+      m_bNeedPerformLayout = true;
+
+      for_user_interaction_children(puserinteraction, this)
+      {
+
+         try
+         {
+
+            puserinteraction->set_need_perform_layout();
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+   }
+
+
    void interaction::set_need_layout()
    {
 

@@ -527,7 +527,7 @@ namespace user
       if (getfileimage.m_pathProcessed.is_empty())
       {
 
-         ::file::path pathProcessed = m_papplication->defer_process_matter_path(getfileimage.m_imagekey.m_strPath);
+         ::file::path pathProcessed = m_papplication->defer_process_path(getfileimage.m_imagekey.m_strPath);
 
          getfileimage.m_pathProcessed = pathProcessed;
 
@@ -1707,6 +1707,19 @@ namespace user
             auto strPath = m_pgetfileimage->m_imagekey.m_strPath;
 
             auto eicon = m_pgetfileimage->m_imagekey.m_eicon;
+
+            if (strPath == "C:/Users/camilo/OneDrive/Pictures/_")
+            {
+
+               information() << "Ok... let's debug " << strPath;
+
+            }
+            else if (strPath == "image://_")
+            {
+
+               information() << "Ok... let's debug (4)" << strPath;
+
+            }
 
             _get_file_image(*m_pgetfileimage);
 

@@ -129,6 +129,14 @@ namespace image
       }
 
 
+      bool ok() const
+      {
+
+         return ::is_ok(m_pimagesource);
+
+      }
+
+
    };
 
 

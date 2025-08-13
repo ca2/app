@@ -113,7 +113,22 @@ namespace userfs
 
       auto pshell = puser->shell();
 
-      auto iImage = pshell->get_file_image(user_path(), efileattribute, eicon);
+      ::string strPath = user_path();
+
+      if (strPath == "C:/Users/camilo/OneDrive/Pictures/_")
+      {
+
+         information() << "Ok... let's debug (2) " << strPath;
+
+      }
+      else if (strPath == "image://_")
+      {
+
+         information() << "Ok... let's debug (3) " << strPath;
+
+      }
+
+      auto iImage = pshell->get_file_image(strPath, efileattribute, eicon);
 
       if (iImage >= 0)
       {

@@ -1528,6 +1528,14 @@ namespace user
          // send initial update to all views (and other controls) in the frame
          send_message_to_descendants(e_message_system_update, id_initial_update, (lparam)0, true, true);
 
+         m_bNeedPerformLayout = true;
+
+         set_need_layout();
+
+         set_need_redraw();
+
+         post_redraw();
+
          // give ::user::impact a chance to save the focus (CFormImpact needs this)
          if (pimpact != nullptr)
          {
@@ -1963,7 +1971,7 @@ namespace user
 
       // m_bNeedRepositionBars = true;
 
-      m_bNeedPerformLayout = true;
+      set_need_perform_layout();
 
       set_need_layout();
 

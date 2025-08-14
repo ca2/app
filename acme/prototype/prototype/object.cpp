@@ -1477,7 +1477,7 @@ void object::on_notify(::particle * pparticle, enum_id eid)
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_particleaNotify.erase_item(pparticle);
+      m_particleaNotify.erase(pparticle);
 
    }
 

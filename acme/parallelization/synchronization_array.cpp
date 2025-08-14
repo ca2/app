@@ -162,7 +162,7 @@ void synchronization_array::erase(::subparticle * psubparticle)
    if (handle != nullptr)
    {
 
-      auto iIndex = m_hsynchronizationa.erase_item(handle);
+      auto iIndex = m_hsynchronizationa.erase(handle);
 
       ::memory_transfer(&m_uaIndexes[iIndex], &m_uaIndexes[iIndex + 1], m_hsynchronizationa.get_count() - 1);
 

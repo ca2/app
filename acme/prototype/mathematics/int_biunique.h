@@ -126,9 +126,9 @@ T biunique < T, T_to_T > ::erase_a(T a)
 
       T b = get_b(a);
 
-      m_ba.erase_key(b);
+      m_ba.erase(b);
 
-      m_ab.erase_key(a);
+      m_ab.erase(a);
 
       m_iMaxA = calc_max_a();
 
@@ -170,9 +170,9 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
 
    }
 
-   m_ba.erase_key(bParam);
+   m_ba.erase(bParam);
 
-   m_ab.erase_key(aOld);
+   m_ab.erase(aOld);
 
    m_iMaxA = calc_max_a();
 
@@ -239,9 +239,9 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
          if (b != m_iEmptyB)
          {
 
-            m_ba.erase_key(b);
+            m_ba.erase(b);
 
-            m_ab.erase_key(a);
+            m_ab.erase(a);
 
             m_ba.set_at(b, a + 1);
 
@@ -278,9 +278,9 @@ T biunique < T, T_to_T > ::erase_b(T b)
 
       T a = get_a(b);
 
-      m_ab.erase_key(a);
+      m_ab.erase(a);
 
-      m_ba.erase_key(b);
+      m_ba.erase(b);
 
       m_iMaxA = calc_max_a();
 
@@ -548,7 +548,7 @@ template < class T, class T_to_T >
 bool biunique < T, T_to_T > ::has_a(T a) const
 {
 
-   return m_ab.has_key(a);
+   return m_ab.has(a);
 
 }
 
@@ -557,7 +557,7 @@ template < class T, class T_to_T >
 bool biunique < T, T_to_T > ::has_b(T b) const
 {
    
-   return m_ba.has_key(b);
+   return m_ba.has(b);
 
 }
 

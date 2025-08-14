@@ -9085,7 +9085,7 @@ void image::rate_rgb(int iMul, int iDiv)
 }
 
 
-void image::map_base(bool bApplyAlphaTransform) const
+void image::map(bool bApplyAlphaTransform) const
 {
 
    if (!m_bMapped)

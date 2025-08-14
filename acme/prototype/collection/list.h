@@ -313,7 +313,11 @@ public:
 
    //inline iterator get_start() const { return m_begin; }
 
-   bool erase(iterator iterator);
+   void erase(iterator iterator);
+
+   void erase_defer_next(iterator & iterator);
+
+   void erase_defer_back(iterator & iterator);
 
    //bool erase_item(ARG_ITEM item);
 
@@ -1557,25 +1561,47 @@ void list_base<TYPE, ARG_TYPE>::erase_at(::collection::index i)
 
 
 template<class TYPE, class ARG_TYPE>
-bool list_base<TYPE, ARG_TYPE>::erase(iterator pErase)
+void list_base<TYPE, ARG_TYPE>::erase(iterator pErase)
 {
 
    ASSERT_OK(this);
 
    auto p = detach(pErase);
 
-   if(!p)
-   {
-
-      return false;
-
-   }
-
    delete p.get();
 
-   return true;
+}
+
+
+template<class TYPE, class ARG_TYPE>
+void list_base<TYPE, ARG_TYPE>::erase_defer_next(iterator& p)
+{
+
+   ASSERT_OK(this);
+
+   auto pNext = p.next();
+
+   this->erase(p);
+
+   p = pNext;
 
 }
+
+
+template<class TYPE, class ARG_TYPE>
+void list_base<TYPE, ARG_TYPE>::erase_defer_back(iterator& p)
+{
+
+   ASSERT_OK(this);
+
+   auto pBack = p.back();
+
+   this->erase(p);
+
+   p = pBack;
+
+}
+
 
 
 template < class TYPE, class ARG_TYPE >
@@ -1633,10 +1659,6 @@ typename list_base < TYPE, ARG_TYPE >::iterator list_base<TYPE, ARG_TYPE>::detac
       p.next().back() = p.back();
 
    }
-
-   p.back() = nullptr;
-
-   p.next() = nullptr;
 
    this->m_count--;
 

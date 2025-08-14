@@ -177,7 +177,8 @@ public:
 
    Type & insert_at(::collection::index nIndex, const Type & strElement);
    void insert_at(::collection::index nIndex, const Type & strElement, ::collection::count nCount);
-   void insert_at(::collection::index nStartIndex, const string_base_array & NewArray);
+   template < primitive_container CONTAINER >
+   void insert_at(::collection::index nStartIndex, const CONTAINER & container);
 
 
    string_base_array slice(::collection::index iStart, ::collection::count iCount = -1) const;
@@ -429,8 +430,11 @@ public:
    ::collection::count erase(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1);
 
 
-   ::collection::count case_insensitive_erase(const string_base_array & stra);
-   ::collection::count erase(const string_base_array & stra);
+   template < primitive_container CONTAINER >
+   ::collection::count case_insensitive_erase(const CONTAINER & container);
+
+   template < primitive_container CONTAINER >
+   ::collection::count erase(const CONTAINER & container);
 
    string_base_array & explode(const SCOPED_STRING & strSeparator, const SCOPED_STRING & str, bool bAddEmpty = true);
 

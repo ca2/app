@@ -564,19 +564,31 @@ void string_base_array < Type, RawType, t_etypeContainer >::insert_at(::collecti
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_base_array < Type, RawType, t_etypeContainer >::insert_at(::collection::index nStartIndex, const string_base_array < Type, RawType, t_etypeContainer >& NewArray)
+template < primitive_container CONTAINER >
+void string_base_array < Type, RawType, t_etypeContainer >::insert_at(::collection::index nStartIndex, const CONTAINER & container)
 {
    //    // ASSERT_OK(this);
-   ASSERT(&NewArray != nullptr);
+   ASSERT(&container != nullptr);
    //   ASSERT_KINDOF(string_base_array < Type, RawType, t_etypeContainer >, &NewArray);
    //   ASSERT_OK(&NewArray);
    ASSERT(nStartIndex >= 0);
 
-   if (NewArray.get_size() > 0)
+   if (container.size() > 0)
    {
-      insert_at(nStartIndex, NewArray.get_at(0), NewArray.get_size());
-      for (::collection::index i = 0; i < NewArray.get_size(); i++)
-         set_at(nStartIndex + i, NewArray.get_at(i));
+      ::collection::index i = 0;
+      for (auto& item : container)
+      {
+
+         if (i == 0)
+         {
+            this->insert_at(nStartIndex, item, container.size());
+         }
+         else
+         {
+            set_at(nStartIndex + i, item);
+         }
+         i++;
+      }
    }
 }
 
@@ -2158,15 +2170,16 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_erase(const string_base_array& stra)
+template < primitive_container CONTAINER >
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_erase(const CONTAINER & container)
 {
 
    ::collection::count count = 0;
 
-   for (::collection::index i = 0; i < stra.get_size(); i++)
+   for (auto & item : container)
    {
 
-      count += case_insensitive_erase(stra[i]);
+      count += this->case_insensitive_erase_item(item);
 
    }
 
@@ -2176,15 +2189,16 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_base_array < Type, RawType, t_etypeContainer > ::erase(const string_base_array& stra)
+template < primitive_container CONTAINER >
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::erase(const CONTAINER & container)
 {
 
    ::collection::count count = 0;
 
-   for (::collection::index i = 0; i < stra.get_size(); i++)
+   for (auto& item : container)
    {
 
-      count += erase(stra[i]);
+      count += this->erase_item(item);
 
    }
 

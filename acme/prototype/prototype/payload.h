@@ -16,7 +16,7 @@
 //#include "acme/prototype/datetime/file_time.h"
 #include "acme/prototype/string/sz.h"
 #include "acme/prototype/prototype/make_particle.h"
-#include "acme/prototype/string/primitive_character_range.h"
+#include "acme/prototype/string/_character_range.h"
 
 inline payload & copy(payload & payload, const class time & time);
 

@@ -7,7 +7,7 @@
 
 #include "acme/prototype/prototype/property.h"
 #include "acme/prototype/collection/atom_array.h"
-#include "acme/prototype/string/primitive_character_range.h"
+#include "acme/prototype/string/_character_range.h"
 //#include "payload_reference.h"
 
 

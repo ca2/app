@@ -1,6 +1,10 @@
 // From string_range.h by camilo on 2023-02-20 20:24 <3ThomasBorregaardSorensen!!
 #pragma once
 
+
+#include "acme/prototype/string/character_range.h"
+
+
 #include <algorithm>
 
 
@@ -76,7 +80,7 @@ template<typename ITERATOR_TYPE>
 class const_string_range :
    //public ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >
    //public ::array_range < ::range < ITERATOR_TYPE > > >
-   public ::range<ITERATOR_TYPE> {
+   public ::character_range<ITERATOR_TYPE> {
 public:
 
 

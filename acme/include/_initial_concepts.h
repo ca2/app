@@ -905,4 +905,9 @@ constexpr _Ty&& land(_Ty&& t, non_reference < _Ty>&& _Arg) noexcept
 }
 
 
+template < typename T >
+concept container_range =
+::std::is_base_of_v < ::range< typename T::this_iterator >, T >
+&& !::std::is_base_of_v < ::const_string_range< typename T::this_iterator >, T >;
+
 

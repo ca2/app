@@ -2,13 +2,13 @@
 #pragma once
 
 
-//#include "string_range.h"
+#include "acme/prototype/string/character_range.h"
 
 
 template < primitive_character CHARACTER, character_count m_sizeMaximumLength >
 class inline_string :
    //public ::range < CHARACTER * >
-   public ::range < const CHARACTER * >
+   public ::character_range < const CHARACTER * >
 {
 public:
 

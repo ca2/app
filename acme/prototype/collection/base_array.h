@@ -108,6 +108,7 @@ auto distance(const A * pa, const B * pb) { return (pa < pb) ? (pb - pa) : (pa -
 struct pre_allocate_t {};
 struct zeroe_on_allocation_t {};
 struct null_terminated_t {};
+struct range_t {};
 
 // raw_array is an array that does not call constructors or destructor in elements
 // array is an array that call only copy constructor and destructor in elements
@@ -165,11 +166,16 @@ public:
    base_array(::collection::count c, const TYPE* p);
    template < typename RANGE >
    base_array(const RANGE & range) requires
-      (primitive_range<RANGE> 
-         && ::std::is_convertible<RANGE::ITEM, TYPE >::value
+      (container_range<RANGE> 
+         && ::std::is_convertible<typename RANGE::ITEM, TYPE >::value
          && !::std::is_convertible<RANGE, base_array >::value) :
       base_array(range.begin(), range.end())
    { }
+   template < typename RANGE >
+   base_array(range_t, const RANGE& range)  :
+      base_array(range.begin(), range.end())
+   {
+   }
    template < typename CONTAINER >
    base_array(const CONTAINER& container) requires
       (primitive_container<CONTAINER>
@@ -1015,6 +1021,7 @@ public:
 
 
    ::collection::index erase_at(::collection::index nIndex, ::collection::count nCount = 1);
+   
 
    template < typename EQUAL_TYPE >
    ::collection::index erase_at(const EQUAL_TYPE *p, ::collection::count nCount = 1)
@@ -1725,16 +1732,6 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::defer_erase
    this->m_countAllocationOffset = 0;
 
 }
-
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-::collection::index base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_item(TYPE * p)
-{
-
-   return erase_at(p - this->m_begin);
-
-}
-
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >

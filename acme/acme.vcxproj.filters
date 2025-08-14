@@ -4233,6 +4233,12 @@
     <ClInclude Include="template\list.h">
       <Filter>Header Files\template</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\string\character_range.h">
+      <Filter>Header Files\prototype\string</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\_character_range.h">
+      <Filter>Header Files\prototype\string</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

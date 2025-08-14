@@ -686,7 +686,7 @@ namespace apex
       else
       {
 
-         m_particleaddressaEventHook.erase_item(pparticle);
+         m_particleaddressaEventHook.erase(pparticle);
 
       }
 
@@ -3853,7 +3853,7 @@ namespace apex
                   pathPreviousLocation))
                {
 
-                  pida.erase_item(pid);
+                  pida.erase(pid);
 
                   break;
 

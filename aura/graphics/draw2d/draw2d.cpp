@@ -112,7 +112,7 @@ namespace draw2d
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
 
-      m_objecta.erase_item(pobject);
+      m_objecta.erase(pobject);
 
    }
 

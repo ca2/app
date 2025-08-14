@@ -5,6 +5,27 @@
 #include "list_node.h"
 #include "acme/platform/auto_pointer.h"
 
+template < primitive_container CONTAINER, typename TYPE >
+bool contains(const CONTAINER & container, const TYPE & t)
+   requires(::std::is_convertible<TYPE, typename CONTAINER::BASE_ITEM >::value)
+{
+
+   for (auto & item : container)
+   {
+
+      if (item == t)
+      {
+
+         return true;
+
+      }
+
+   }
+
+   return false;
+
+}
+
 
 template < class TYPE, class ARG_TYPE >
 class list_base :
@@ -1613,7 +1634,7 @@ typename list_base < TYPE, ARG_TYPE >::iterator list_base<TYPE, ARG_TYPE>::detac
    if (!p)
    {
 
-      return nullptr;
+      throw ::error_failed;
 
    }
 

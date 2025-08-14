@@ -1015,7 +1015,9 @@ public:
 
 
    ::collection::index erase_at(::collection::index nIndex, ::collection::count nCount = 1);
-   ::collection::index erase_at(TYPE* p, ::collection::count nCount = 1);
+   ::collection::index erase_at(const TYPE *p, ::collection::count nCount = 1);
+
+
 
    //::collection::index allocate_at(::collection::index nIndex, ::collection::count nCount = 1);
 

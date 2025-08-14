@@ -694,7 +694,7 @@ inline atom & atom::operator = (const atom & atom)
 }
 
 
-template < character_range RANGE >
+template < primitive_character_range RANGE >
 inline bool atom::operator == (const RANGE & range) const
 {
 
@@ -804,7 +804,7 @@ inline bool atom::operator == (CHARACTER_POINTER p) const
 }
 
 
-template < character_range RANGE >
+template < primitive_character_range RANGE >
 inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 {
 

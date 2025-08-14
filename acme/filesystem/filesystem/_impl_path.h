@@ -1574,7 +1574,7 @@ inline const_ansi_range path::get_count_parts_from_beginning(::collection::count
 
 
 
-template < character_range RANGE1, character_range RANGE2 >
+template < primitive_character_range RANGE1, primitive_character_range RANGE2 >
 ::file::path operator / (const RANGE1& range1, const RANGE2& range2)
 {
 
@@ -1584,7 +1584,7 @@ template < character_range RANGE1, character_range RANGE2 >
 
 
 
-template < character_pointer CHARACTER_POINTER, character_range RANGE >
+template < character_pointer CHARACTER_POINTER, primitive_character_range RANGE >
 ::file::path operator / (CHARACTER_POINTER p, const RANGE& range)
 {
 
@@ -1595,7 +1595,7 @@ template < character_pointer CHARACTER_POINTER, character_range RANGE >
 
 
 
-template < character_range RANGE, character_count n >
+template < primitive_character_range RANGE, character_count n >
 ::file::path operator / (const typename RANGE::CHARACTER(&sz)[n], const RANGE& range)
 {
 
@@ -1605,7 +1605,7 @@ template < character_range RANGE, character_count n >
 
 
 
-//template < primitive_character ITERATOR_TYPE2, int t_size, character_range RANGE >
+//template < primitive_character ITERATOR_TYPE2, int t_size, primitive_character_range RANGE >
 //::file::path operator / (const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a, const RANGE& range)
 //{
 //
@@ -1614,7 +1614,7 @@ template < character_range RANGE, character_count n >
 //}
 
 
-template < character_range RANGE, character_pointer CHARACTER_POINTER >
+template < primitive_character_range RANGE, character_pointer CHARACTER_POINTER >
 ::file::path operator / (const RANGE& range, CHARACTER_POINTER p)
 {
 
@@ -1623,7 +1623,7 @@ template < character_range RANGE, character_pointer CHARACTER_POINTER >
 }
 
 
-//template < character_range RANGE, typename ITERATOR_TYPE2, int t_size >
+//template < primitive_character_range RANGE, typename ITERATOR_TYPE2, int t_size >
 //::file::path operator / (const RANGE& range, const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
 //{
 //

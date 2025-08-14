@@ -998,9 +998,13 @@ public:
 
 
    ::collection::index erase_at(::collection::index nIndex, ::collection::count nCount = 1);
-   ::collection::index erase_at(const TYPE *p, ::collection::count nCount = 1);
 
-
+   template < typename EQUAL_TYPE >
+   ::collection::index erase_at(const EQUAL_TYPE *p, ::collection::count nCount = 1)
+      requires(::is_same < EQUAL_TYPE, TYPE >)  {
+      return this->erase_at(index_of(p), nCount);  
+   }
+      
 
    //::collection::index allocate_at(::collection::index nIndex, ::collection::count nCount = 1);
 

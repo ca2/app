@@ -2833,7 +2833,7 @@ void range<ITERATOR_TYPE>::__utf_concatenate_to(CHARACTER *& p, character_count 
 
 
 
-template < character_range RANGE, typed_character_pointer < typename RANGE::CHARACTER > CHARACTER_POINTER >
+template < primitive_character_range RANGE, typed_character_pointer < typename RANGE::CHARACTER > CHARACTER_POINTER >
 ::string_base < typename RANGE::const_iterator > operator + (const RANGE& range, CHARACTER_POINTER psz)
 {
 

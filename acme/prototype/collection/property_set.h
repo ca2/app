@@ -7,7 +7,7 @@
 
 #include "acme/prototype/prototype/property.h"
 #include "acme/prototype/collection/atom_array.h"
-#include "acme/prototype/string/character_range.h"
+#include "acme/prototype/string/primitive_character_range.h"
 //#include "payload_reference.h"
 
 
@@ -108,9 +108,9 @@ public:
 
 
 
-   //template < character_range RANGE >
+   //template < primitive_character_range RANGE >
    //inline ::property & operator[](const RANGE & range) { return property(range); }
-   //template < character_range RANGE >
+   //template < primitive_character_range RANGE >
    //inline const ::property & operator[](const RANGE & range) const { return property(range); }
 
    //template < has_get_string HAS_GET_STRING >

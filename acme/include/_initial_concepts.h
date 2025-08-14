@@ -222,7 +222,7 @@ concept other_character_pointer =
 
 
 template < typename CHARACTER_RANGE >
-concept character_range =
+concept primitive_character_range =
 (::std::is_base_of_v < ::range< const typename CHARACTER_RANGE::CHARACTER* >, CHARACTER_RANGE >
 && primitive_character < typename CHARACTER_RANGE::CHARACTER > )||
 (::std::is_same_v < ::range< const typename CHARACTER_RANGE::ITEM* >, CHARACTER_RANGE > &&
@@ -426,11 +426,11 @@ concept primitive_scoped_string = ::std::is_same < typename SCOPED_STRING::PRIMI
 
 
 template < typename T >
-concept character_range_not_string = character_range<T> && !primitive_string<T>;
+concept character_range_not_string = primitive_character_range<T> && !primitive_string<T>;
 
 
 template < typename T >
-concept character_range_not_string_neither_scoped_string = character_range<T> && !primitive_string<T> && !primitive_scoped_string<T>;
+concept character_range_not_string_neither_scoped_string = primitive_character_range<T> && !primitive_string<T> && !primitive_scoped_string<T>;
 
 
 

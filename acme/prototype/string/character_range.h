@@ -8,11 +8,11 @@
 
 
 //template < typename T >
-//concept character_range_not_string = character_range<T> && !primitive_string<T>;
+//concept character_range_not_string = primitive_character_range<T> && !primitive_string<T>;
 //
 //
 //template < typename T >
-//concept character_range_not_string_neither_scoped_string = character_range<T> && !primitive_string<T> && !primitive_scoped_string<T>;
+//concept character_range_not_string_neither_scoped_string = primitive_character_range<T> && !primitive_string<T> && !primitive_scoped_string<T>;
 
 
 //template < primitive_character CHARACTER, character_count n, typed_character_range < CHARACTER > TYPED_CHARACTER_RANGE >
@@ -29,7 +29,7 @@
 
 
 
-template < character_range RANGE, typed_character_range < typename RANGE::CHARACTER > TYPED_RANGE >
+template < primitive_character_range RANGE, typed_character_range < typename RANGE::CHARACTER > TYPED_RANGE >
 ::string_base < typename RANGE::const_iterator > operator + (const RANGE& range, const TYPED_RANGE& typedrange)
 {
 
@@ -38,9 +38,9 @@ template < character_range RANGE, typed_character_range < typename RANGE::CHARAC
 }
 
 
-template < character_range RANGE, has_as_string HAS_AS_STRING >
+template < primitive_character_range RANGE, has_as_string HAS_AS_STRING >
 ::string_base < typename RANGE::const_iterator > operator + (const RANGE& range, const HAS_AS_STRING& has_as_string)
-requires (!character_range < HAS_AS_STRING >)
+requires (!primitive_character_range < HAS_AS_STRING >)
 {
 
    return ::transfer(::string_base < typename RANGE::const_iterator >(range) + has_as_string.as_string());
@@ -63,7 +63,7 @@ requires (!character_range < HAS_AS_STRING >)
 
 
 
-//template < character_range RANGE, int t_size >
+//template < primitive_character_range RANGE, int t_size >
 //const_string_range_static_array < typename RANGE::const_iterator, t_size + 1 > operator + (const const_string_range_static_array < typename RANGE::const_iterator, t_size >& a, const RANGE& range)
 //{
 //
@@ -71,7 +71,7 @@ requires (!character_range < HAS_AS_STRING >)
 //
 //}
 
-template < character_range RANGE, primitive_character CHARACTER >
+template < primitive_character_range RANGE, primitive_character CHARACTER >
 ::string_base < typename RANGE::const_iterator > operator + (const RANGE& range, const typename RANGE::CHARACTER ch)
 {
 
@@ -80,7 +80,7 @@ template < character_range RANGE, primitive_character CHARACTER >
 }
 
 
-template < character_range RANGE >
+template < primitive_character_range RANGE >
 inline ::string_base < const typename RANGE::CHARACTER * > operator +(const typename RANGE::CHARACTER & ch, const RANGE & range)
 {
 
@@ -96,7 +96,7 @@ inline ::string_base < const typename RANGE::CHARACTER * > operator +(const type
 }
 
 
-template < character_range RANGE >
+template < primitive_character_range RANGE >
 inline string& operator <<(string& str, const RANGE& r)
 {
 
@@ -120,7 +120,7 @@ inline string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::surrounded(
 
 
 
-template < primitive_payload PAYLOAD, character_range RANGE >
+template < primitive_payload PAYLOAD, primitive_character_range RANGE >
 ::string operator + (const PAYLOAD& payload, const RANGE& range)
 {
 
@@ -129,7 +129,7 @@ template < primitive_payload PAYLOAD, character_range RANGE >
 }
 
 
-template < primitive_payload PAYLOAD, character_range RANGE >
+template < primitive_payload PAYLOAD, primitive_character_range RANGE >
 PAYLOAD& operator += (PAYLOAD& payload, const RANGE& range)
 {
 
@@ -144,7 +144,7 @@ PAYLOAD& operator += (PAYLOAD& payload, const RANGE& range)
 
 
 
-template < character_range RANGE >
+template < primitive_character_range RANGE >
 atom::atom(const RANGE& range) :
    m_str(range)
 {

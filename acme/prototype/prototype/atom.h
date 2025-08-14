@@ -378,7 +378,7 @@ public:
    //atom(const_ansi_range && range);
    //atom(const const_ansi_range && range);
    //atom(const type & type);
-   template < character_range RANGE >
+   template < primitive_character_range RANGE >
    atom(const RANGE & range);
    //template < has_as_string_not_payload HAS_AS_STRING_NOT_PAYLOAD >
    //atom(const HAS_AS_STRING_NOT_PAYLOAD& has_as_string_not_payload);
@@ -509,9 +509,9 @@ public:
    inline bool operator == (const atom& atom) const;
    inline ::std::strong_ordering operator <=> (const atom & atom) const;
 
-   template < character_range RANGE >
+   template < primitive_character_range RANGE >
    inline bool operator == (const RANGE & str) const;
-   template < character_range RANGE >
+   template < primitive_character_range RANGE >
    inline ::std::strong_ordering operator <=> (const RANGE & str) const;
 
    template < character_pointer CHARACTER_POINTER >

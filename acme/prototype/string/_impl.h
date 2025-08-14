@@ -317,7 +317,7 @@ namespace file
 {
 
 
-   //template < character_range CHARACTER_RANGE >
+   //template < primitive_character_range CHARACTER_RANGE >
    // inline path::path(const CHARACTER_RANGE & range, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
    //         path(::ansi_string(range), epath, etype, bNormalizePath, iSize)
    // {

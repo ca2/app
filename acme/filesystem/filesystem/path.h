@@ -6,7 +6,7 @@
 //#include "acme/prototype/datetime/file_time.h"
 #include  "acme/prototype/prototype/particle.h"
 //#include "acme/prototype/prototype/pointer.h"
-#include "acme/prototype/string/character_range.h"
+#include "acme/prototype/string/primitive_character_range.h"
 
 
 class windows_path;
@@ -67,13 +67,13 @@ namespace file
       path(const path & path) : string(path), path_meta(path) {}
       //template < typename ITERATOR_TYPE, int t_size >
       //path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
-      //template < character_range RANGE >
+      //template < primitive_character_range RANGE >
       //path(const RANGE & range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
       // 
       // 
       // 
       
-      template < character_range RANGE >
+      template < primitive_character_range RANGE >
       inline path(const RANGE& range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalizePath = true, long long iSize = -1)
          requires
          (!(::std::is_base_of_v < path, RANGE >
@@ -131,7 +131,7 @@ namespace file
       //path(const_char_pointer pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
       //path(const ::wd16_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
       //path(const ::wd32_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
-      //template < character_range CHARACTER_RANGE >
+      //template < primitive_character_range CHARACTER_RANGE >
       //path(const CHARACTER_RANGE & range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
 
       //template<typed_range<::ansi_character *> RANGE>

@@ -5,6 +5,27 @@
 #include "list_node.h"
 #include "acme/platform/auto_pointer.h"
 
+template < primitive_container CONTAINER, typename TYPE >
+bool contains(const CONTAINER & container, const TYPE & t)
+   requires(::std::is_convertible<TYPE, typename CONTAINER::BASE_ITEM >::value)
+{
+
+   for (auto & item : container)
+   {
+
+      if (item == t)
+      {
+
+         return true;
+
+      }
+
+   }
+
+   return false;
+
+}
+
 
 template < class TYPE, class ARG_TYPE >
 class list_base :
@@ -313,9 +334,13 @@ public:
 
    //inline iterator get_start() const { return m_begin; }
 
-   bool erase(iterator iterator);
+   void erase(iterator iterator);
 
    //bool erase_item(ARG_ITEM item);
+
+   void erase_defer_next(iterator & iterator);
+
+   void erase_defer_back(iterator & iterator);
 
    iterator detach(iterator iterator);
 
@@ -1557,28 +1582,21 @@ void list_base<TYPE, ARG_TYPE>::erase_at(::collection::index i)
 
 
 template<class TYPE, class ARG_TYPE>
-bool list_base<TYPE, ARG_TYPE>::erase(iterator pErase)
+void list_base<TYPE, ARG_TYPE>::erase(iterator pErase)
 {
 
    ASSERT_OK(this);
 
    auto p = detach(pErase);
 
-   if(!p)
-   {
-
-      return false;
-
-   }
-
    delete p.get();
-
-   return true;
 
 }
 
 
-template < class TYPE, class ARG_TYPE >
+
+
+template<class TYPE, class ARG_TYPE>
 typename list_base < TYPE, ARG_TYPE >::iterator list_base<TYPE, ARG_TYPE>::detach(iterator p)
 {
 
@@ -1587,7 +1605,7 @@ typename list_base < TYPE, ARG_TYPE >::iterator list_base<TYPE, ARG_TYPE>::detac
    if (!p)
    {
 
-      return nullptr;
+      throw ::error_failed;
 
    }
 

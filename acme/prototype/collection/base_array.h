@@ -998,6 +998,9 @@ public:
 
 
    ::collection::index erase_at(::collection::index nIndex, ::collection::count nCount = 1);
+   ::collection::index erase_at(const TYPE *p, ::collection::count nCount = 1);
+
+
 
    //::collection::index allocate_at(::collection::index nIndex, ::collection::count nCount = 1);
 
@@ -1007,8 +1010,6 @@ public:
    TYPE pick_last(::collection::index nIndex = -1) { return ::transfer(pick_at(this->size() + nIndex)); }
    base_array pick_at(::collection::index nIndex, ::collection::count nCount);
 
-
-   ::collection::index erase_item(TYPE * p);
 
    ::collection::index index_of(const TYPE * p) const { auto i = p - this->m_begin; return i >= 0 && i < this->size() ? i : -1; }
 

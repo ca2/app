@@ -1478,8 +1478,7 @@ void notify_lock_notifier::add_notify_lock(::notify_lock * pnotifylock)
 void notify_lock_notifier::erase_notify_lock(::notify_lock * pnotifylock)
 {
 
-
-   m_notifylocka.erase_item(pnotifylock);
+   m_notifylocka.erase(pnotifylock);
 
    pnotifylock->erase(this);
 

@@ -81,7 +81,7 @@ public:
    bool should_set(ARG_KEY key)
    { 
       
-      if (has_key(key))
+      if (has(key))
       {
 
          return false;
@@ -105,14 +105,16 @@ public:
 
 
    template < typename TKEY >
-   auto pop(const TKEY & KEY)
+   auto pop(const TKEY & key)
    {
 
-      auto value = operator[](KEY);
+      auto p = this->find(key);
 
-      erase_key(KEY);
+      auto payload = p->payload();
 
-      return value;
+      this->erase(p);
+
+      return payload;
 
    }
 
@@ -159,7 +161,25 @@ public:
 
    }
 
-   inline bool erase_key(ARG_KEY key) { auto p = this->find(key);  return p ? this->erase(p) : false; }
+
+   inline bool erase(ARG_KEY key)
+   { 
+      
+      auto p = this->find(key);  
+
+      if (!p)
+      {
+
+         return false;
+
+      }
+      
+      this->erase(p);
+
+      return true;
+   
+   }
+
 
    template < typename iterator >
    inline void erase_range(const iterator & begin, const iterator & last)
@@ -179,12 +199,12 @@ public:
 
    void erase_all();
    void clear();
-   void Empty();
+   //void Empty();
 
 
-   ::collection::count key_count(ARG_KEY key) const;
-   bool has_key(ARG_KEY key) const;
-   bool contains_key(ARG_KEY key) const;
+   ::collection::count count(ARG_KEY key) const;
+   bool has(ARG_KEY key) const;
+   bool contains(ARG_KEY key) const;
 
 
    unsigned int GetHashTableSize() const
@@ -805,11 +825,11 @@ inline void node_set_base < NODE >::clear()
    erase_all();
 }
 
-template < typename NODE >
-inline void node_set_base < NODE >::Empty()
-{
-   clear();
-}
+//template < typename NODE >
+//inline void node_set_base < NODE >::Empty()
+//{
+//   clear();
+//}
 
 template < typename NODE >
 node_set_base < NODE >::~node_set_base()
@@ -1154,7 +1174,7 @@ inline bool node_set_base < NODE >::erase(iterator iterator)
 
 
 template < typename NODE >
-inline ::collection::count node_set_base < NODE >::key_count(ARG_KEY key) const
+inline ::collection::count node_set_base < NODE >::count(ARG_KEY key) const
 {
 
    return this->find(key) ? 1 : 0;
@@ -1163,19 +1183,19 @@ inline ::collection::count node_set_base < NODE >::key_count(ARG_KEY key) const
 
 
 template < typename NODE >
-bool node_set_base < NODE >::has_key(ARG_KEY key) const
+bool node_set_base < NODE >::has(ARG_KEY key) const
 {
 
-   return this->key_count(key) > 0;
+   return this->count(key) > 0;
 
 }
 
 
 template < typename NODE >
-bool node_set_base < NODE >::contains_key(ARG_KEY key) const
+bool node_set_base < NODE >::contains(ARG_KEY key) const
 {
 
-   return this->has_key(key);
+   return this->has(key);
 
 }
 

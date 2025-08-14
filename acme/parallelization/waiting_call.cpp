@@ -65,7 +65,7 @@ void waiting_call_base::on_end_or_timeout_call(::e_status estatus)
 
          _synchronous_lock synchronous_lock(m_ptask->synchronization());
 
-         m_ptask->m_waitingcallstack.erase_item(this);
+         m_ptask->m_waitingcallstack.erase(this);
 
       }
 

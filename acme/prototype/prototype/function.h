@@ -1139,6 +1139,12 @@ public:
 };
 
 
+template <typename F, typename... Args>
+concept LambdaWithVoidAndArgs =
+   requires(F f, Args... args) {
+      { f(args...) } -> std::same_as<void>;
+};
+
 template < typename... TYPES >
 class function < void(TYPES...) > :
    public base_function_4 < TYPES... >
@@ -1157,6 +1163,7 @@ public:
    //pointer < base >     m_pbase;
 
    function() { }
+   function(nullptr_t) {}
    template < typename T2 >
    function(transfer_t, T2 * p) :base_function_4 < TYPES... > (place_t{}, p) {}
    template < typename T2 >
@@ -1170,38 +1177,31 @@ public:
 
    template < typename PREDICATE >
    function(PREDICATE predicate, const class ::time & timeTimeout = 0_s) 
+      requires (::std::is_convertible_v<PREDICATE, base* >)
    {
 
-      if constexpr(::std::is_same_v<PREDICATE, nullptr_t>)
-      {
+      this->construct(predicate, timeTimeout);
+
+   }
 
 
-      }
-      else if constexpr (::std::is_convertible_v<PREDICATE, base * >)
-      {
+   template < typename PREDICATE >
+   function(PREDICATE predicate, const class ::time& timeTimeout = 0_s)
+      requires (::std::is_same_v<::std::decay_t<PREDICATE>, payload >
+   || ::std::is_same_v<::std::decay_t <PREDICATE>, property>)
+   {
 
-         this->construct(predicate, timeTimeout);
+      this->construct(dynamic_cast <base*>(as_subparticle(predicate)), timeTimeout);
 
-      }
-      else if constexpr(::std::is_same_v<::std::decay_t<PREDICATE>, payload >
-         || ::std::is_same_v<::std::decay_t <PREDICATE> , property>)
-      {
+   }
 
-         this->construct(dynamic_cast < base * >(as_subparticle(predicate)), timeTimeout);
 
-      }
-      else if constexpr(::std::is_same_v<PREDICATE, const function & >)
-      {
-
-         this->construct(predicate.m_pbase, timeTimeout);
-
-      }
-      else
-      {
-
-         this->m_pbase = __allocate function_4_implementation< PREDICATE, TYPES... >(predicate, timeTimeout);
-
-      }
+   template < typename PREDICATE >
+   function(PREDICATE predicate, const class ::time& timeTimeout = 0_s)
+      requires (LambdaWithVoidAndArgs< PREDICATE, TYPES... >)
+   {
+   
+      this->m_pbase = __allocate function_4_implementation< PREDICATE, TYPES... >(predicate, timeTimeout);
 
    }
 

@@ -47,7 +47,7 @@ namespace file
             try
             {
 
-               listener.m_watcha.erase_item(this);
+               listener.m_watcha.erase(this);
 
             }
             catch (...)
@@ -98,7 +98,7 @@ namespace file
    void watch::erase_listener(const listener & listener)
    {
 
-      m_listenera.erase_item(listener);
+      m_listenera.erase(listener);
 
       if (m_listenera.is_empty())
       {

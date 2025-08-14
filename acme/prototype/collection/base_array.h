@@ -154,15 +154,32 @@ public:
    base_array(std::initializer_list < TYPE > initializer_list);
    base_array(const base_array & a);
    base_array(base_array && a) noexcept;
-   template < primitive_array ARRAY >
-   base_array(const ARRAY & a) : base_array() {
-      this->set_size(a.size());
-      for (::collection::index i = 0; i < this->size(); i++) this->element_at(i) = a.element_at(i);
-   }
+   //template < primitive_array ARRAY >
+   //base_array(const ARRAY & a) : base_array() {
+   //   this->set_size(a.size());
+   //   for (::collection::index i = 0; i < this->size(); i++) this->element_at(i) = a.element_at(i);
+   //}
    base_array(pre_allocate_t, ::collection::count n) : base_array() { this->m_countAddUp = n; }
    base_array(zeroe_on_allocation_t, ::collection::count n) : base_array() { this->m_earray |= e_array_zeroe_on_allocation; this->m_countAddUp = n; }
-   base_array(const TYPE * p, ::collection::count c);
-   base_array(::range < const_iterator > constrange) : base_array(constrange.begin(), constrange.end()) {}
+   base_array(::collection::count c);
+   base_array(::collection::count c, const TYPE* p);
+   template < typename RANGE >
+   base_array(const RANGE & range) requires
+      (primitive_range<RANGE> 
+         && ::std::is_convertible<RANGE::ITEM, TYPE >::value
+         && !::std::is_convertible<RANGE, base_array >::value) :
+      base_array(range.begin(), range.end())
+   { }
+   template < typename CONTAINER >
+   base_array(const CONTAINER& container) requires
+      (primitive_container<CONTAINER>
+         && !primitive_range<CONTAINER>) :
+      base_array()
+   {
+      this->set_size(container.size());
+      ::collection::index i = 0;
+      for (auto& item : container) this->element_at(i++) = item;
+   }
    template < primitive_integral INTEGRAL >
    base_array(const_iterator begin, INTEGRAL count) : base_array(begin, begin + count) {}
    base_array(const_iterator begin, const_iterator end)
@@ -3593,14 +3610,21 @@ inline TYPE base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::take
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(const TYPE * p, ::collection::count c)
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(::collection::count c) :
+   base_array()
 {
 
-   m_countAddUp = 0;
-   this->m_begin = nullptr;
-   this->m_end = nullptr;
-   m_countAllocation = 0;
+   set_size(c);
+
+}
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
+base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(::collection::count c, const TYPE * p) :
+   base_array()
+{
 
    set_size(c);
 

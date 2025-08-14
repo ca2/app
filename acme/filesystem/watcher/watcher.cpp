@@ -137,7 +137,7 @@ namespace file
       if (!pwatch->open(pathFolder, bRecursive))
       {
 
-         m_watchset.erase_key(pwatch);
+         m_watchset.erase(pwatch);
 
          return nullptr;
 

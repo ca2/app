@@ -71,10 +71,10 @@ public:
    ::collection::index erase_last(ARG_TYPE t);
    ::collection::index erase_first(ARG_TYPE t);
    ::collection::index erase_first(ARG_TYPE t, ::collection::index find, ::collection::index last = -1);
-   ::collection::count erase_item(ARG_TYPE t);
-   ::collection::count erase_item(ARG_TYPE t, ::collection::index find, ::collection::index last = -1, ::collection::count countMin = 0, ::collection::count countMax = -1);
+   ::collection::count erase(ARG_TYPE t);
+   ::collection::count erase(ARG_TYPE t, ::collection::index find, ::collection::index last = -1, ::collection::count countMin = 0, ::collection::count countMax = -1);
    template < primitive_container CONTAINER>
-   ::collection::count erase_container(const CONTAINER & container);
+   ::collection::count erase(const CONTAINER & container);
 
 
    bool add_unique(ARG_TYPE t);
@@ -94,7 +94,7 @@ public:
    comparable_eq_array_base & operator -= (const TYPE & t)
    {
 
-      this->erase_item(t);
+      this->erase(t);
 
       return *this;
 
@@ -108,7 +108,7 @@ public:
       for (auto & item : range)
       {
 
-         this->erase_item(item);
+         this->erase(item);
 
       }
 
@@ -123,7 +123,7 @@ public:
       for (auto & item : initializer_list)
       {
 
-         this->erase_item(item);
+         this->erase(item);
 
       }
 
@@ -392,7 +392,7 @@ template <class TYPE,class ARG_TYPE, class ARRAY_TYPE >
    if (bAdd)
       return this->add_unique(t) ? 1 : 0;
    else
-      return this->erase_item(t);
+      return this->erase(t);
 }
 
 template <class TYPE,class ARG_TYPE, class ARRAY_TYPE >
@@ -579,7 +579,7 @@ erase_first(ARG_TYPE t, ::collection::index find, ::collection::index last)
 
 template <class TYPE,class ARG_TYPE, class ARRAY_TYPE >
 ::collection::count comparable_eq_array_base < TYPE, ARG_TYPE, ARRAY_TYPE >::
-erase_item(ARG_TYPE t, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax)
+erase(ARG_TYPE t, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
@@ -603,7 +603,7 @@ erase_item(ARG_TYPE t, ::collection::index find, ::collection::index last, ::col
 
 template <class TYPE,class ARG_TYPE, class ARRAY_TYPE >
 ::collection::count comparable_eq_array_base < TYPE,ARG_TYPE, ARRAY_TYPE >::
-erase_item(ARG_TYPE t)
+erase(ARG_TYPE t)
 {
 
    ::collection::count count = 0;
@@ -645,7 +645,7 @@ erase_item(ARG_TYPE t)
 template <class TYPE,class ARG_TYPE, class ARRAY_TYPE >
 template < primitive_container CONTAINER>
 ::collection::index comparable_eq_array_base < TYPE, ARG_TYPE, ARRAY_TYPE >::
-erase_container(const CONTAINER & container)
+erase(const CONTAINER & container)
 {
 
    ::collection::count count = 0;

@@ -1657,7 +1657,7 @@ end_processing_adding:
 
                      warning() << "socket_handler " << (int)socket << " Did not find expected socket using file descriptor(f)";
 
-                     m_socketlistTimeout.erase_item(socket);
+                     m_socketlistTimeout.erase(socket);
 
                      goto restartSocketListTimeout;
 

@@ -42,6 +42,14 @@ namespace gpu
 
 	};
 
+	struct quad_texcoords_textColor
+	{
+
+		glm::vec4 quad;
+		glm::vec4 texcoords;
+		glm::vec4 textColor;  // r, g, b, a
+
+	};
 
 
 } // namespace gpu
@@ -54,4 +62,14 @@ GPU_PROPERTY("quad", ::gpu::e_type_seq4)
 GPU_PROPERTY("texcoords", ::gpu::e_type_seq4)
 GPU_PROPERTY("textColor", ::gpu::e_type_seq4)
 END_GPU_PROPERTIES()
+
+
+
+BEGIN_GPU_PROPERTIES(::gpu::quad_texcoords_textColor)
+GPU_PROPERTY("quad", ::gpu::e_type_seq4)
+GPU_PROPERTY("texcoords", ::gpu::e_type_seq4)
+GPU_PROPERTY("textColor", ::gpu::e_type_seq4)
+END_GPU_PROPERTIES()
+
+
 

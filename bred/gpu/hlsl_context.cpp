@@ -19,18 +19,53 @@ namespace gpu
    }
 
 
-
    ::memory hlsl_context::rectangle_shader_vert()
    {
-      throw ::error_not_implemented;
-      return {};
+
+      const char proto_vert[] = R"vert(
+// Vertex input structure
+struct VSInput {
+    float2 inPos   : POSITION; // matches location=0 in GLSL
+    float4 inColor : COLOR0;   // matches location=1 in GLSL
+};
+
+// Vertex output structure
+struct VSOutput {
+    float4 pos     : SV_Position; // required for position in HLSL
+    float4 color   : COLOR0;      // passed to pixel shader
+};
+
+// Vertex shader
+VSOutput main(VSInput input) {
+    VSOutput output;
+    output.pos   = float4(input.inPos, 0.0, 1.0); // clip-space position
+    output.color = input.inColor;
+    return output;
+}
+
+)vert";
+
+      return ::as_memory_block(proto_vert);
+
    }
 
 
    ::memory hlsl_context::rectangle_shader_frag()
    {
-      throw ::error_not_implemented;
-      return {};
+
+      const char proto_frag[] = R"frag(
+struct PSInput {
+   float4 pos   : SV_Position; // required for position in HLSL
+   float4 color : COLOR0; // Matches VS output COLOR0
+};
+
+float4 main(PSInput input) : SV_Target {
+    return input.color;
+}
+
+)frag";
+
+      return ::as_memory_block(proto_frag);
 
    }
 
@@ -41,7 +76,6 @@ namespace gpu
       auto pvertexshader = R"vertexshader(
 cbuffer PushConstants : register(b1)
 {
-    float4x4 projection;
     float4 quad;        // l, t, r, b
     float4 texcoords;   // l, t, r, b
     float4 textColor;   // (not used here but available for pixel shader)
@@ -73,7 +107,7 @@ VSOut main(uint id : SV_VertexID)
         float2(texcoords.z, texcoords.w)
     };
 
-    output.pos = mul(projection, float4(positions[id], 0.0f, 1.0f));
+    output.pos = float4(positions[id], 0.0f, 1.0f);
     output.uv = uvs[id];
     return output;
 }
@@ -92,7 +126,6 @@ SamplerState textSampler : register(s0);
 
 cbuffer TextColorBuffer : register(b1)
 {
-    float4x4 projection;
     float4 quad;        // l, t, r, b
     float4 texcoords;   // l, t, r, b
     float4 textColor;   // (not used here but available for pixel shader)

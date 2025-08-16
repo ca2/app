@@ -308,7 +308,14 @@ template < typename SINGLE >
 struct make_single ;
 
 
-template < typename NODE >
+enum enum_allocate
+{
+   e_allocate_normal,
+   e_allocate_malloc,
+};
+
+
+template < typename ITEM, enum_allocate t_eallocate = e_allocate_normal >
 class node_set_base;
 
 
@@ -320,12 +327,15 @@ template < typename T1, typename T2 >
 class pair;
 
 
-template < typename PAIR >
+template < typename PAIR, enum_allocate t_eallocate = e_allocate_normal >
 class pair_map_base;
 
 
-template < typename TYPE1, typename TYPE2, class PAIR = pair < TYPE1, TYPE2 > >
-using map_base = pair_map_base < PAIR >;
+template < typename TYPE1, typename TYPE2, class PAIR = pair < TYPE1, TYPE2 >, enum_allocate t_eallocate = e_allocate_normal >
+using map_base = pair_map_base < PAIR, t_eallocate >;
+
+template < typename TYPE1, typename TYPE2, enum_allocate t_eallocate = e_allocate_normal, class PAIR = pair < TYPE1, TYPE2 > >
+using map_base2 = pair_map_base < PAIR, t_eallocate >;
 
 
 template<typename MAP_BASE>

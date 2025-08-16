@@ -4720,7 +4720,7 @@ namespace draw2d_cairo
                         65535
                     );
 
-      internal_draw_text(block, rectangle, e_null, e_null);
+      internal_draw_text(block, rectangle, {}, {});
 
       //return true;
 

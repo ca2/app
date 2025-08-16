@@ -478,17 +478,17 @@ namespace user
       auto pmap = __create_new < ::graphics3d::key_map>();
       using namespace ::graphics3d;
 
-      pmap->map_base(e_key_moveLeft, ::user::e_key_a);
-      pmap->map_base(e_key_moveRight, ::user::e_key_d);
-      pmap->map_base(e_key_moveForward, ::user::e_key_w);
-      pmap->map_base(e_key_moveBackward, ::user::e_key_s);
-      pmap->map_base(e_key_moveUp, ::user::e_key_e);
-      pmap->map_base(e_key_moveDown, ::user::e_key_q);
-      pmap->map_base(e_key_lookLeft, ::user::e_key_left);
-      pmap->map_base(e_key_lookRight, ::user::e_key_right);
-      pmap->map_base(e_key_lookUp, ::user::e_key_up);
-      pmap->map_base(e_key_lookDown, ::user::e_key_down);
-      pmap->map_base(e_key_Exit, ::user::e_key_escape);
+      pmap->map(e_key_moveLeft, ::user::e_key_a);
+      pmap->map(e_key_moveRight, ::user::e_key_d);
+      pmap->map(e_key_moveForward, ::user::e_key_w);
+      pmap->map(e_key_moveBackward, ::user::e_key_s);
+      pmap->map(e_key_moveUp, ::user::e_key_e);
+      pmap->map(e_key_moveDown, ::user::e_key_q);
+      pmap->map(e_key_lookLeft, ::user::e_key_left);
+      pmap->map(e_key_lookRight, ::user::e_key_right);
+      pmap->map(e_key_lookUp, ::user::e_key_up);
+      pmap->map(e_key_lookDown, ::user::e_key_down);
+      pmap->map(e_key_Exit, ::user::e_key_escape);
 
       return pmap;
 

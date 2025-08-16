@@ -1,12 +1,6 @@
 #pragma once
 
 
-using atom_array = ::comparable_array < atom >;
-
-
-using atom_array_base = ::comparable_array_base < atom >;
-
-
 namespace data
 {
 

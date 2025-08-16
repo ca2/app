@@ -1042,6 +1042,14 @@ public:
 
    }
 
+   function_base_4(function_base_4&& functionbase4) :
+      ::quantum(::transfer(functionbase4)),
+      ::subparticle(::transfer(functionbase4))
+   {
+
+
+   }
+
 
    ~function_base_4() override
    {

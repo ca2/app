@@ -68,8 +68,8 @@ namespace gpu
       virtual void _assign(const void* pData, memsize size);
       virtual void _assign(const ::block& block);
 
-      virtual void* map_base();
-      virtual void* map_base(memsize start, memsize count);
+      virtual void* map();
+      virtual void* map(memsize start, memsize count);
       virtual void unmap();
       virtual void* _map(memsize start, memsize count);
       virtual void _unmap();
@@ -96,7 +96,7 @@ namespace gpu
          m_pMapper(pmapper)
       {
 
-         m_p = (TYPE*)m_pMapper->map_base(0, -1);
+         m_p = (TYPE*)m_pMapper->map(0, -1);
 
       }
 

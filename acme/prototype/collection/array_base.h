@@ -8,14 +8,14 @@
 
 template < class TYPE, class ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 class array_base :
-   public ::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
+   public base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 {
 public:
 
 
    //using is_array_base = true_type;
-   using BASE_ARRAY = ::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
-
+   using BASE_ARRAY = base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
+   using RAW_BASE_ARRAY = typename BASE_ARRAY::RAW_BASE_ARRAY;
 
    using THIS_ARRAY = array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
 
@@ -25,12 +25,15 @@ public:
    using BASE_ARG_TYPE = ARG_TYPE;
 
 
+   using BASE_RAW_RANGE = typename BASE_ARRAY::BASE_RAW_RANGE;
 
 
    using iterator = typename BASE_ARRAY::iterator;
    using const_iterator = typename BASE_ARRAY::const_iterator;
 
-   using ITERATOR_RANGE = typename BASE_ARRAY::array_range;
+   using this_iterator = typename BASE_ARRAY::this_iterator;
+
+   using ITERATOR_RANGE = typename BASE_ARRAY::ARRAY_RANGE;
 
    using CONST_RANGE = typename BASE_ARRAY::CONST_RANGE;
    using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
@@ -38,6 +41,8 @@ public:
    using BASE_ARRAY::BASE_ARRAY;
    using BASE_ARRAY::operator =;
    using BASE_ARRAY::operator +=;
+
+   array_base(const RAW_BASE_ARRAY & a) : BASE_ARRAY(a) { }
 
    //using ::base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array;
 
@@ -66,14 +71,6 @@ public:
    //    return *this;
    // }
 
-   void array_base_ok() const;
-
-   void container_ok() const
-   {
-
-      array_base_ok();
-
-   }
 
    inline const TYPE & get_at(::collection::index nIndex) const;
    inline TYPE & get_at(::collection::index nIndex);

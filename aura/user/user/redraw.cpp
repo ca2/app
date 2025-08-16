@@ -135,7 +135,7 @@ namespace user
    }
 
 
-   void redraw::set_need_redraw(const ::int_rectangle_array & rectanglea)
+   void redraw::set_need_redraw(const ::int_rectangle_array_base & rectanglea)
    {
 
       if (m_rectangleaNeedRedraw.has_element())

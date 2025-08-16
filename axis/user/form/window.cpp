@@ -499,7 +499,7 @@ namespace user
             else
             {
 
-               ia.erase_item(pinteraction->m_iDataValue);
+               ia.erase(pinteraction->m_iDataValue);
 
             }
 

@@ -106,7 +106,7 @@ namespace user
 //   }
 //
 //
-//   void interaction_base::RedrawOptimize(int_rectangle_array &array)
+//   void interaction_base::RedrawOptimize(int_rectangle_array_base &array)
 //   {
 //
 //      ::int_rectangle rectangle;
@@ -372,7 +372,7 @@ namespace user
    }
 
 
-   //bool interaction_base::Redraw(int_rectangle_array & recta)
+   //bool interaction_base::Redraw(int_rectangle_array_base & recta)
    //{
 
    //   bool bOk = true;

@@ -261,6 +261,9 @@
     <ClInclude Include="gpu\debug_scope.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\frame_storage.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -412,6 +415,9 @@
     </ClCompile>
     <ClCompile Include="graphics3d\mesh.cpp">
       <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\frame_storage.cpp">
+      <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

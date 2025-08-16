@@ -9628,7 +9628,7 @@ namespace aura
    ////         VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT,
    ////         VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT);
 
-   ////      uboBuffers[i]->map_base();
+   ////      uboBuffers[i]->map();
 
    ////   }
    ////   auto globalSetLayout = VkcDescriptorSetLayout::Builder(m_pvkcdevice)

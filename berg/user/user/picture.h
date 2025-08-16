@@ -106,7 +106,7 @@ namespace user
       virtual ::draw2d::region_pointer get_region() const;
 
       virtual double_rectangle drawing_bounds() const;
-      virtual double_point_array & drawing_polygon() const;
+      virtual double_point_array_base & drawing_polygon() const;
 
       virtual void update_drawing_rect(::double_size sizePage, ::double_size sizeClient);
       virtual void update_screen_rect(::double_size sizePage, ::double_size sizeClient);

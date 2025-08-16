@@ -7,8 +7,7 @@
 #include "single.h"
 
 
-
-template < typename ITEM >
+template < typename ITEM, enum_allocate t_eallocate >
 class node_set_base :
    public ::range < ::list_iterator < ::set_node < ITEM > * > >
 {
@@ -238,6 +237,8 @@ public:
    }
    
 
+   BASE_NODE* __new_node(ARG_KEY key);
+   void __delete_node(BASE_NODE* pnode);
 
    iterator _new(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash);
    void _free(iterator pnode);
@@ -632,32 +633,32 @@ public:
 };
 
 
-template < typename NODE >
-inline ::collection::count node_set_base < NODE >::get_count() const
+template < typename NODE, enum_allocate t_eallocate >
+inline ::collection::count node_set_base < NODE, t_eallocate >::get_count() const
 {
    return m_count;
 }
 
-template < typename NODE >
-inline ::collection::count node_set_base < NODE >::get_size() const
+template < typename NODE, enum_allocate t_eallocate >
+inline ::collection::count node_set_base < NODE, t_eallocate >::get_size() const
 {
    return m_count;
 }
 
-template < typename NODE >
-inline ::collection::count node_set_base < NODE >::count() const
+template < typename NODE, enum_allocate t_eallocate >
+inline ::collection::count node_set_base < NODE, t_eallocate >::count() const
 {
    return m_count;
 }
 
-template < typename NODE >
-inline ::collection::count node_set_base < NODE >::size() const
+template < typename NODE, enum_allocate t_eallocate >
+inline ::collection::count node_set_base < NODE, t_eallocate >::size() const
 {
    return m_count;
 }
 
-template < typename NODE >
-node_set_base < NODE > & node_set_base < NODE >::operator = (const node_set_base & m)
+template < typename NODE, enum_allocate t_eallocate >
+node_set_base < NODE, t_eallocate > & node_set_base < NODE, t_eallocate >::operator = (const node_set_base & m)
 {
 
    if(this != &m)
@@ -679,8 +680,8 @@ node_set_base < NODE > & node_set_base < NODE >::operator = (const node_set_base
 }
 
 
-template < typename NODE >
-inline bool node_set_base < NODE >::is_empty() const
+template < typename NODE, enum_allocate t_eallocate >
+inline bool node_set_base < NODE, t_eallocate >::is_empty() const
 {
 
    return m_count == 0;
@@ -688,8 +689,8 @@ inline bool node_set_base < NODE >::is_empty() const
 }
 
 
-template < typename NODE >
-inline bool node_set_base < NODE >::empty() const
+template < typename NODE, enum_allocate t_eallocate >
+inline bool node_set_base < NODE, t_eallocate >::empty() const
 {
 
    return m_count == 0;
@@ -697,9 +698,9 @@ inline bool node_set_base < NODE >::empty() const
 }
 
 
-template < typename NODE >
-inline typename node_set_base < NODE >::iterator
-node_set_base < NODE >::set_key(ARG_KEY key)
+template < typename NODE, enum_allocate t_eallocate >
+inline typename node_set_base < NODE, t_eallocate >::iterator
+node_set_base < NODE, t_eallocate >::set_key(ARG_KEY key)
 {
 
    auto iterator = get(key);
@@ -709,8 +710,8 @@ node_set_base < NODE >::set_key(ARG_KEY key)
 }
 
 
-template < typename NODE >
-void node_set_base < NODE >::construct()
+template < typename NODE, enum_allocate t_eallocate >
+void node_set_base < NODE, t_eallocate >::construct()
 {
 
    m_count          = 0;
@@ -720,8 +721,8 @@ void node_set_base < NODE >::construct()
 }
 
 
-template < typename NODE >
-node_set_base < NODE >::node_set_base()
+template < typename NODE, enum_allocate t_eallocate >
+node_set_base < NODE, t_eallocate >::node_set_base()
 {
 
    construct();
@@ -729,8 +730,8 @@ node_set_base < NODE >::node_set_base()
 }
 
 
-template < typename NODE >
-node_set_base < NODE >::node_set_base(const ::std::initializer_list < BASE_ITEM > & items)
+template < typename NODE, enum_allocate t_eallocate >
+node_set_base < NODE, t_eallocate >::node_set_base(const ::std::initializer_list < BASE_ITEM > & items)
 {
 
    construct();
@@ -745,8 +746,8 @@ node_set_base < NODE >::node_set_base(const ::std::initializer_list < BASE_ITEM 
 }
 
 
-template < typename NODE >
-node_set_base < NODE >::node_set_base(BASE_ITEM * pitem, int iCount)
+template < typename NODE, enum_allocate t_eallocate >
+node_set_base < NODE, t_eallocate >::node_set_base(BASE_ITEM * pitem, int iCount)
 {
 
    construct();
@@ -761,8 +762,8 @@ node_set_base < NODE >::node_set_base(BASE_ITEM * pitem, int iCount)
 }
 
 
-template < typename NODE >
-node_set_base < NODE >::node_set_base(const node_set_base & m)
+template < typename NODE, enum_allocate t_eallocate >
+node_set_base < NODE, t_eallocate >::node_set_base(const node_set_base & m)
 {
    
    construct();
@@ -777,8 +778,8 @@ node_set_base < NODE >::node_set_base(const node_set_base & m)
 }
 
 
-template < typename NODE >
-void node_set_base < NODE >::erase_all()
+template < typename NODE, enum_allocate t_eallocate >
+void node_set_base < NODE, t_eallocate >::erase_all()
 {
 
    //ASSERT_OK(this);
@@ -819,28 +820,76 @@ void node_set_base < NODE >::erase_all()
 }
 
 
-template < typename NODE >
-inline void node_set_base < NODE >::clear()
+template < typename NODE, enum_allocate t_eallocate >
+inline void node_set_base < NODE, t_eallocate >::clear()
 {
    erase_all();
 }
 
-//template < typename NODE >
-//inline void node_set_base < NODE >::Empty()
+//template < typename NODE, enum_allocate t_eallocate >
+//inline void node_set_base < NODE, t_eallocate >::Empty()
 //{
 //   clear();
 //}
 
-template < typename NODE >
-node_set_base < NODE >::~node_set_base()
+template < typename NODE, enum_allocate t_eallocate >
+node_set_base < NODE, t_eallocate >::~node_set_base()
 {
    erase_all();
    ASSERT(m_count == 0);
 }
 
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::BASE_NODE* 
+node_set_base < NODE, t_eallocate >::__new_node(ARG_KEY key)
+{
+   
+   if constexpr(t_eallocate == e_allocate_malloc)
+   {
 
-template < typename NODE >
-typename node_set_base < NODE >::iterator node_set_base < NODE >::_new(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash)
+      auto pnode = (BASE_NODE*)::malloc(sizeof(BASE_NODE));
+
+      ::new (pnode) BASE_NODE(key);
+
+      return pnode;
+
+   }
+   else
+   {
+      
+      auto pnode = __raw_new BASE_NODE(key);
+
+      return pnode;
+
+   }
+   
+}
+
+
+template < typename NODE, enum_allocate t_eallocate >
+void node_set_base < NODE, t_eallocate >::__delete_node(BASE_NODE* pnode)
+{
+
+   if constexpr (t_eallocate == e_allocate_malloc)
+   {
+
+      pnode->~BASE_NODE();
+
+      ::free(pnode);
+
+   }
+   else
+   {
+
+      delete pnode;
+
+   }
+
+}
+
+
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::iterator node_set_base < NODE, t_eallocate >::_new(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash)
 {
 
    // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
@@ -853,7 +902,7 @@ typename node_set_base < NODE >::iterator node_set_base < NODE >::_new(ARG_KEY k
 
    ENSURE(m_hashtable.m_ppHash);
 
-   auto p = __raw_new BASE_NODE (key);
+   auto p = this->__new_node(key);
 
    if(this->m_begin)
    {
@@ -890,8 +939,8 @@ typename node_set_base < NODE >::iterator node_set_base < NODE >::_new(ARG_KEY k
 }
 
 
-template < typename NODE >
-void node_set_base < NODE >::_free(iterator iterator)
+template < typename NODE, enum_allocate t_eallocate >
+void node_set_base < NODE, t_eallocate >::_free(iterator iterator)
 {
 
    auto pnode = iterator.m_p;
@@ -928,7 +977,7 @@ void node_set_base < NODE >::_free(iterator iterator)
 
    //__delete(iterator.get());
 
-   delete pnode;
+   this->__delete_node(pnode);
 
    //iterator->m_next = this->m_pnodeFree;
 
@@ -949,9 +998,9 @@ void node_set_base < NODE >::_free(iterator iterator)
 }
 
 
-template < typename NODE >
-typename node_set_base < NODE >::iterator
-node_set_base < NODE >::_find(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash) const
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::iterator
+node_set_base < NODE, t_eallocate >::_find(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash) const
 {
 
    uiHash = ::as_hash32(key).m_u;
@@ -982,8 +1031,8 @@ node_set_base < NODE >::_find(ARG_KEY key, unsigned int& uiPack, unsigned int& u
 }
 
 
-// template < typename NODE >
-// bool node_set_base < NODE >::find(ARG_KEY key, PAYLOAD & payload) const
+// template < typename NODE, enum_allocate t_eallocate >
+// bool node_set_base < NODE, t_eallocate >::find(ARG_KEY key, PAYLOAD & payload) const
 // {
 //
 //    unsigned int uiPack, uiHash;
@@ -1004,12 +1053,12 @@ node_set_base < NODE >::_find(ARG_KEY key, unsigned int& uiPack, unsigned int& u
 // }
 
 //
-// //template < typename NODE >
+// //template < typename NODE, enum_allocate t_eallocate >
 //
 //
-// template < typename NODE >
-// typename node_set_base < NODE >::const_iterator
-// node_set_base < NODE >::find(ARG_KEY key) const
+// template < typename NODE, enum_allocate t_eallocate >
+// typename node_set_base < NODE, t_eallocate >::const_iterator
+// node_set_base < NODE, t_eallocate >::find(ARG_KEY key) const
 // {
 //
 //    return ((node_set_base *)this)->find(key);
@@ -1017,9 +1066,9 @@ node_set_base < NODE >::_find(ARG_KEY key, unsigned int& uiPack, unsigned int& u
 // }
 
 
-template < typename NODE >
-typename node_set_base < NODE >::const_iterator
-node_set_base < NODE >::find(ARG_KEY key) const
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::const_iterator
+node_set_base < NODE, t_eallocate >::find(ARG_KEY key) const
 {
 
    unsigned int uiPack;
@@ -1033,8 +1082,8 @@ node_set_base < NODE >::find(ARG_KEY key) const
 }
 
 
-template < typename NODE >
-bool node_set_base < NODE >::find(ARG_KEY key, PAYLOAD & payload) const
+template < typename NODE, enum_allocate t_eallocate >
+bool node_set_base < NODE, t_eallocate >::find(ARG_KEY key, PAYLOAD & payload) const
 {
 
    auto iterator = find(key);
@@ -1053,9 +1102,9 @@ bool node_set_base < NODE >::find(ARG_KEY key, PAYLOAD & payload) const
 }
 
 
-template < typename NODE >
-typename node_set_base < NODE >::PAYLOAD *
-node_set_base < NODE >::defer_get(ARG_KEY key) const
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::PAYLOAD *
+node_set_base < NODE, t_eallocate >::defer_get(ARG_KEY key) const
 {
 
    auto iterator = find(key);
@@ -1072,9 +1121,9 @@ node_set_base < NODE >::defer_get(ARG_KEY key) const
 }
 
 
-// template < typename NODE >
-// inline typename node_set_base < NODE >::iterator
-// node_set_base < NODE >::find(ARG_KEY key)
+// template < typename NODE, enum_allocate t_eallocate >
+// inline typename node_set_base < NODE, t_eallocate >::iterator
+// node_set_base < NODE, t_eallocate >::find(ARG_KEY key)
 // {
 //
 //    unsigned int nCluster, nHash;
@@ -1086,18 +1135,18 @@ node_set_base < NODE >::defer_get(ARG_KEY key) const
 // }
 
 
-// template < typename NODE >
-// inline typename node_set_base < NODE >::const_iterator
-// node_set_base < NODE >::find(ARG_KEY key) const
+// template < typename NODE, enum_allocate t_eallocate >
+// inline typename node_set_base < NODE, t_eallocate >::const_iterator
+// node_set_base < NODE, t_eallocate >::find(ARG_KEY key) const
 // {
 //
 //    return ((node_set_base *)this)->find(key);
 //
 // }
 //
-// template < typename NODE >
-// typename node_set_base < NODE >::const_iterator
-// node_set_base < NODE >::get(ARG_KEY key) const
+// template < typename NODE, enum_allocate t_eallocate >
+// typename node_set_base < NODE, t_eallocate >::const_iterator
+// node_set_base < NODE, t_eallocate >::get(ARG_KEY key) const
 // {
 //
 //    return ((node_set_base*)this)->get(key);
@@ -1105,9 +1154,9 @@ node_set_base < NODE >::defer_get(ARG_KEY key) const
 // }
 
 
-template < typename NODE >
-typename node_set_base < NODE >::iterator
-node_set_base < NODE >::get(ARG_KEY key)
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::iterator
+node_set_base < NODE, t_eallocate >::get(ARG_KEY key)
 {
 
    unsigned int uiPack, uiHash;
@@ -1126,8 +1175,8 @@ node_set_base < NODE >::get(ARG_KEY key)
 }
 
 
-template < typename NODE >
-typename node_set_base < NODE >::PAYLOAD & node_set_base < NODE >::operator[](ARG_KEY key)
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::PAYLOAD & node_set_base < NODE, t_eallocate >::operator[](ARG_KEY key)
 {
 
    return get(key)->payload();
@@ -1135,8 +1184,8 @@ typename node_set_base < NODE >::PAYLOAD & node_set_base < NODE >::operator[](AR
 }
 
 
-template < typename NODE >
-const typename node_set_base < NODE >::PAYLOAD & node_set_base < NODE >::operator[](ARG_KEY key) const
+template < typename NODE, enum_allocate t_eallocate >
+const typename node_set_base < NODE, t_eallocate >::PAYLOAD & node_set_base < NODE, t_eallocate >::operator[](ARG_KEY key) const
 {
 
    auto iterator = find(key);
@@ -1153,8 +1202,8 @@ const typename node_set_base < NODE >::PAYLOAD & node_set_base < NODE >::operato
 }
 
 
-template < typename NODE >
-inline bool node_set_base < NODE >::erase(iterator iterator)
+template < typename NODE, enum_allocate t_eallocate >
+inline bool node_set_base < NODE, t_eallocate >::erase(iterator iterator)
 {
 
    if(iterator.m_p->m_nextHash != nullptr)
@@ -1173,8 +1222,8 @@ inline bool node_set_base < NODE >::erase(iterator iterator)
 }
 
 
-template < typename NODE >
-inline ::collection::count node_set_base < NODE >::count(ARG_KEY key) const
+template < typename NODE, enum_allocate t_eallocate >
+inline ::collection::count node_set_base < NODE, t_eallocate >::count(ARG_KEY key) const
 {
 
    return this->find(key) ? 1 : 0;
@@ -1182,8 +1231,8 @@ inline ::collection::count node_set_base < NODE >::count(ARG_KEY key) const
 }
 
 
-template < typename NODE >
-bool node_set_base < NODE >::has(ARG_KEY key) const
+template < typename NODE, enum_allocate t_eallocate >
+bool node_set_base < NODE, t_eallocate >::has(ARG_KEY key) const
 {
 
    return this->count(key) > 0;
@@ -1191,8 +1240,8 @@ bool node_set_base < NODE >::has(ARG_KEY key) const
 }
 
 
-template < typename NODE >
-bool node_set_base < NODE >::contains(ARG_KEY key) const
+template < typename NODE, enum_allocate t_eallocate >
+bool node_set_base < NODE, t_eallocate >::contains(ARG_KEY key) const
 {
 
    return this->has(key);
@@ -1200,8 +1249,8 @@ bool node_set_base < NODE >::contains(ARG_KEY key) const
 }
 
 
-//template < typename NODE >
-//void node_set_base < NODE >::get_next(iterator & iterator,
+//template < typename NODE, enum_allocate t_eallocate >
+//void node_set_base < NODE, t_eallocate >::get_next(iterator & iterator,
 //      KEY& rKey, KEY& payload) const
 //{
 //
@@ -1214,9 +1263,9 @@ bool node_set_base < NODE >::contains(ARG_KEY key) const
 //}
 //
 //
-//template < typename NODE >
-//inline const typename node_set_base < NODE >::iterator
-//node_set_base < NODE >::get_next(const iterator iterator) const
+//template < typename NODE, enum_allocate t_eallocate >
+//inline const typename node_set_base < NODE, t_eallocate >::iterator
+//node_set_base < NODE, t_eallocate >::get_next(const iterator iterator) const
 //{
 //
 //   return iterator->m_next;
@@ -1224,9 +1273,9 @@ bool node_set_base < NODE >::contains(ARG_KEY key) const
 //}
 //
 //
-//template < typename NODE >
-//inline typename node_set_base < NODE >::iterator
-//node_set_base < NODE >::get_next(const iterator iterator)
+//template < typename NODE, enum_allocate t_eallocate >
+//inline typename node_set_base < NODE, t_eallocate >::iterator
+//node_set_base < NODE, t_eallocate >::get_next(const iterator iterator)
 //{
 //
 //   return iterator->m_next;
@@ -1234,8 +1283,8 @@ bool node_set_base < NODE >::contains(ARG_KEY key) const
 //}
 
 
-template < typename NODE >
-typename node_set_base < NODE >::PAYLOAD node_set_base < NODE > ::defer_get(ARG_KEY key, ARG_PAYLOAD payloadDefault) const
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::PAYLOAD node_set_base < NODE, t_eallocate > ::defer_get(ARG_KEY key, ARG_PAYLOAD payloadDefault) const
 {
    
    auto iterator = find(key);
@@ -1252,8 +1301,8 @@ typename node_set_base < NODE >::PAYLOAD node_set_base < NODE > ::defer_get(ARG_
 }
 
 
-//template < typename NODE >
-//void node_set_base < NODE >::assert_ok() const
+//template < typename NODE, enum_allocate t_eallocate >
+//void node_set_base < NODE, t_eallocate >::assert_ok() const
 //{
 //
 //   ::matter::assert_ok();
@@ -1291,8 +1340,8 @@ using uptr_set = set < ::uptr >;
 //};
 
 
-template < typename NODE >
-using key_set = node_set_base < NODE >;
+template < typename NODE, enum_allocate t_eallocate >
+using key_set = node_set_base < NODE, t_eallocate >;
 
 
 #define __declare_key(xkeytype, xkey) \
@@ -1340,8 +1389,8 @@ using string_set = set < string >;
 //#pragma once
 
 
-template < typename NODE >
-void node_set_base < NODE >::InitHashTable(
+template < typename NODE, enum_allocate t_eallocate >
+void node_set_base < NODE, t_eallocate >::InitHashTable(
    unsigned int nHashSize, bool bAllocNow)
 //
 // Used to force allocation of a hash table or to override the default
@@ -1357,8 +1406,8 @@ void node_set_base < NODE >::InitHashTable(
 }
 
 
-template < typename NODE >
-inline bool node_set_base < NODE >::unhash(iterator iterator)
+template < typename NODE, enum_allocate t_eallocate >
+inline bool node_set_base < NODE, t_eallocate >::unhash(iterator iterator)
 // erase - return true if erased
 {
 
@@ -1376,8 +1425,8 @@ inline bool node_set_base < NODE >::unhash(iterator iterator)
 }
 
 
-template < typename ITEM >
-void node_set_base < ITEM >::transfer(node_set_base* pnodesetbase, ARG_KEY key)
+template < typename ITEM, enum_allocate t_eallocate >
+void node_set_base < ITEM, t_eallocate >::transfer(node_set_base* pnodesetbase, ARG_KEY key)
 {
 
    unsigned int uiPack;
@@ -1398,8 +1447,8 @@ void node_set_base < ITEM >::transfer(node_set_base* pnodesetbase, ARG_KEY key)
 }
 
 
-template < typename ITEM >
-void node_set_base < ITEM >::transfer(iterator iterator, node_set_base * pnodesetbase)
+template < typename ITEM, enum_allocate t_eallocate >
+void node_set_base < ITEM, t_eallocate >::transfer(iterator iterator, node_set_base * pnodesetbase)
 {
 
    if (pnodesetbase == this)
@@ -1428,8 +1477,8 @@ void node_set_base < ITEM >::transfer(iterator iterator, node_set_base * pnodese
 
 
 
-template < typename ITEM >
-void node_set_base < ITEM >::attach(iterator iterator, unsigned int uiPack, unsigned int uiHash)
+template < typename ITEM, enum_allocate t_eallocate >
+void node_set_base < ITEM, t_eallocate >::attach(iterator iterator, unsigned int uiPack, unsigned int uiHash)
 {
 
    hash(iterator, uiPack, uiHash);
@@ -1456,8 +1505,8 @@ void node_set_base < ITEM >::attach(iterator iterator, unsigned int uiPack, unsi
 }
 
 
-template < typename ITEM >
-void node_set_base < ITEM >::hash(iterator iterator, unsigned int uiPack, unsigned int uiHash)
+template < typename ITEM, enum_allocate t_eallocate >
+void node_set_base < ITEM, t_eallocate >::hash(iterator iterator, unsigned int uiPack, unsigned int uiHash)
 {
 
    auto pnode = iterator.m_p;
@@ -1486,8 +1535,8 @@ void node_set_base < ITEM >::hash(iterator iterator, unsigned int uiPack, unsign
 }
 
 
-template < typename ITEM >
-void node_set_base < ITEM >::hash(unsigned int& uiPack, unsigned int& uiHash, ARG_KEY key) const
+template < typename ITEM, enum_allocate t_eallocate >
+void node_set_base < ITEM, t_eallocate >::hash(unsigned int& uiPack, unsigned int& uiHash, ARG_KEY key) const
 {
 
    uiHash = ::as_hash32(key).m_u;
@@ -1497,8 +1546,8 @@ void node_set_base < ITEM >::hash(unsigned int& uiPack, unsigned int& uiHash, AR
 }
 
 
-template < typename ITEM >
-void node_set_base < ITEM >::detach(iterator iterator)
+template < typename ITEM, enum_allocate t_eallocate >
+void node_set_base < ITEM, t_eallocate >::detach(iterator iterator)
 {
 
    auto pnode = iterator.m_p;
@@ -1559,10 +1608,10 @@ void node_set_base < ITEM >::detach(iterator iterator)
 
 
 
-template < typename ITEM >
+template < typename ITEM, enum_allocate t_eallocate >
 template < typename PAYLOAD2 >
-inline typename node_set_base < ITEM >::iterator
-node_set_base < ITEM >::find_first_payload(const PAYLOAD2 & payload) const
+inline typename node_set_base < ITEM, t_eallocate >::iterator
+node_set_base < ITEM, t_eallocate >::find_first_payload(const PAYLOAD2 & payload) const
 {
 
    auto p = this->begin();

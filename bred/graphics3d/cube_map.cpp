@@ -172,7 +172,7 @@ namespace graphics3d
     
       //auto pimageCubeMap = image()->create_image({ m_sizeSquare.width() * 6, m_sizeSquare.height()});
 
-      //pimageCubeMap->map_base();
+      //pimageCubeMap->map();
 
       auto sizeItem = m_sizeSquare;
 

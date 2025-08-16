@@ -297,7 +297,7 @@ namespace user
    }
 
 
-   //bool element::Redraw(int_rectangle_array & recta)
+   //bool element::Redraw(int_rectangle_array_base & recta)
    //{
 
    //   bool bOk = true;
@@ -4738,7 +4738,7 @@ namespace user
 
 
    void element::set_need_redraw(
-      const ::int_rectangle_array & rectangleaNeedRedraw,
+      const ::int_rectangle_array_base & rectangleaNeedRedraw,
       ::draw2d::graphics * pgraphics,
       function<void()> function, 
       bool bAscendants)

@@ -14,18 +14,24 @@ public:
 
    //using BASE_RANGE = comparable_eq_range < ARRAY_TYPE >;
    using BASE_ARRAY = ARRAY_TYPE;
+   using RAW_BASE_ARRAY = typename BASE_ARRAY::RAW_BASE_ARRAY;
 
-   using BASE_RANGE = ARRAY_TYPE;
+   using BASE_RANGE = typename BASE_ARRAY::BASE_RAW_RANGE;
 
    using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
 
    using iterator = typename ARRAY_TYPE::iterator;
    using const_iterator = typename ARRAY_TYPE::const_iterator;
+   
+   using this_iterator = typename BASE_ARRAY::this_iterator;
+
 
 
    using BASE_ARRAY::BASE_ARRAY;
    using BASE_ARRAY::operator =;
    using BASE_ARRAY::operator +=;
+
+   comparable_eq_array_base(const RAW_BASE_ARRAY& a) : BASE_ARRAY(a) {}
 
    // comparable_eq_array_base(no_initialize_t):BASE_RANGE(no_initialize_t{}){}
    // comparable_eq_array_base(nullptr_t):BASE_RANGE(nullptr){}

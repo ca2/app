@@ -64,7 +64,7 @@ inline binary_stream & operator >>(binary_stream & stream, pair_map_base < PAIR 
       if (stream.nok())
       {
 
-         m.erase_key(key);
+         m.erase(key);
 
          break;
 

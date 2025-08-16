@@ -3120,6 +3120,8 @@ namespace user
       if(pstyle)
       {
 
+         ::get_task()->payload("debug") = 123;
+
          if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
          {
 

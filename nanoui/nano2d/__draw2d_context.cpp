@@ -1030,7 +1030,7 @@ namespace nano2d
 
       auto pimage = image()->integer_image(image);
 
-      pimage->map_base();
+      pimage->map();
 
       copy_image32(pimage->get_data(), pimage->width(), pimage->height(), pimage->m_iScan, (const color32_t *)data);
 

@@ -1310,7 +1310,7 @@ namespace aura
       else if (strImplementationName == "directx12")
       {
 
-         strImplementationName = "direct2d";
+         //strImplementationName = "direct2d";
 
       }
 
@@ -1656,7 +1656,7 @@ namespace aura
       else if (strImplementationName == "directx12")
       {
 
-         strImplementationName = "direct2d";
+         //strImplementationName = "direct2d";
 
       }
 
@@ -6078,7 +6078,7 @@ if(!m_pimaging)
 
    //   //}
 
-   //   //m_pbergedgemap = __allocate ::aura::session::map_base();
+   //   //m_pbergedgemap = __allocate ::aura::session::map();
 
 
    //   return true;

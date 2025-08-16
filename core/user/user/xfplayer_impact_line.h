@@ -172,7 +172,7 @@ public:
 
    void SetAnimateType(int iAnimateType);
 
-   void OnTimerAnimate(::draw2d::graphics_pointer & pgraphics, int_rectangle_array &   rectaModified);
+   void OnTimerAnimate(::draw2d::graphics_pointer & pgraphics, int_rectangle_array_base &   rectaModified);
 
    void Show(bool bShow = true);
    virtual xfplayer_impact_line & operator = (const xfplayer_impact_line & src);
@@ -194,9 +194,9 @@ public:
 
    void add_char(::wide_character wch, character_count &index, ::write_text::font * pFont);
 
-   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array & rectaModified, bool bRecalcLayout);
+   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array_base & rectaModified, bool bRecalcLayout);
 
-   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array & rectaModified, character_count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen);
+   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array_base & rectaModified, character_count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen);
 
 
    DECLARE_MESSAGE_HANDLER(OnMouseMove);

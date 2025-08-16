@@ -633,7 +633,7 @@ namespace os
 
          draw(m_pimage->g());
 
-         //m_pimage->map_base();
+         //m_pimage->map();
 
          m_pimage->fill_channel(255, ::color::e_channel_opacity);
 

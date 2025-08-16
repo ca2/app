@@ -524,7 +524,7 @@ namespace gpu
 
       //auto pcontext = this->context();
 
-      auto data = map_base <::graphics3d::sequence3_color >();
+      auto data = map <::graphics3d::sequence3_color >();
 
       data.assign(as_memory_block(lineVertices));
 
@@ -657,7 +657,7 @@ namespace gpu
 
       //auto pcontext = this->context();
 
-      auto data = map_base< ::graphics3d::sequence2_color>();
+      auto data = map< ::graphics3d::sequence2_color>();
 
       data.assign(as_memory_block(lineVertices));
 

@@ -364,7 +364,7 @@ namespace user
 
       }
 
-      m_impactdatamap.erase_key(idTab);
+      m_impactdatamap.erase(idTab);
 
       ::user::tab::_001OnRemoveTab(ptabpane);
 

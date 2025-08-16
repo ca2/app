@@ -21,7 +21,7 @@ namespace file
    //   ::file::e_open        m_eopen;
 
 
-   exception(const ::e_status & estatus, const ::error_code & errorcode, const ::file::path & path, ::file::e_open eopen = e_null, const ::scoped_string & strMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr);
+      exception(const ::e_status& estatus, const ::error_code& errorcode, const ::file::path& path, ::file::e_open eopen = {}, const ::scoped_string& strMessage = nullptr, const ::scoped_string& scopedstrDetails = nullptr);
    exception(const ::file::exception& exception);
    ~exception() override;
 

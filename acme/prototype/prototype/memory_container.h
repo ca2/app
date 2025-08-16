@@ -35,7 +35,7 @@ public:
    memory_container(const ::pointer < memory_base > & pmemory);
    memory_container(::pointer < memory_base >&& pmemory);
    template < typename MEMORY>
-   memory_container(const ::pointer<MEMORY> pmemory, ::file::e_open eopen = e_null) : memory_container((MEMORY*)pmemory.get(), eopen) {}
+   memory_container(const ::pointer<MEMORY> pmemory, ::file::e_open eopen = {}) : memory_container((MEMORY*)pmemory.get(), eopen) {}
    virtual ~memory_container();
 
    virtual void create_default_memory();

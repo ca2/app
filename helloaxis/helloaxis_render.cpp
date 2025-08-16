@@ -348,7 +348,7 @@ namespace helloaxis
 //
 //                  m_pimage->g()->text_out((m_cxCache1 - int_size->cx()) / 2, (m_cyCache1 - int_size->cy()) / 2, strHelloAXIS);
 //
-//                  m_pimage->map_base();
+//                  m_pimage->map();
 //
 /*                  psystem->imaging().spread(m_pimage->g(), ::int_point(), m_pimage->get_size(), m_pimage->g(), ::int_point(), int (m_dMaxRadius));
 //

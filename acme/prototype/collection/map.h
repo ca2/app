@@ -5,14 +5,14 @@
 #include "acme/prototype/comparison/equals.h"
 
 
-template < typename PAIR >
+template < typename PAIR, enum_allocate t_eallocate >
 class pair_map_base :
-   public ::node_set_base < ::make_pair < PAIR > >
+   public ::node_set_base < ::make_pair < PAIR >, t_eallocate >
 {
 public:
    //
    //
-   using BASE_PAIR_MAP = ::node_set_base < ::make_pair < PAIR > >;
+   using BASE_PAIR_MAP = ::node_set_base < ::make_pair < PAIR >, t_eallocate >;
    //
    //
    // using HASH_TABLE = typename BASE_PAIR_MAP::HASH_TABLE;
@@ -44,7 +44,7 @@ public:
    //__declare_iterator_struct_ok(pair_map_base, iterator, m_pnode, ::is_set(this->m_pnode));
 
 
-   using BASE_PAIR_MAP = ::node_set_base < ::make_pair < PAIR > >;
+   //using BASE_PAIR_MAP = ::node_set_base < ::make_pair < PAIR > >;
 
    using BASE_PAIR_MAP::BASE_PAIR_MAP;
    using BASE_PAIR_MAP::operator =;

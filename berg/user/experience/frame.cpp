@@ -20,10 +20,10 @@
 #include "berg/platform/session.h"
 
 
-CLASS_DECL_BERG ::int_rectangle_array get_borders(const ::int_rectangle & rectangleOuter, const ::int_rectangle & rectangleInner)
+CLASS_DECL_BERG ::int_rectangle_array_base get_borders(const ::int_rectangle & rectangleOuter, const ::int_rectangle & rectangleInner)
 {
 
-   int_rectangle_array rectanglea;
+   int_rectangle_array_base rectanglea;
 
    ::int_rectangle rectangle;
    

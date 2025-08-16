@@ -10,6 +10,7 @@
 #include "acme/prototype/datetime/system_time.h"
 #include "acme/prototype/datetime/earth_gregorian_time.h"
 ////#include "acme/prototype/datetime/earth_time.h"
+#include "acme/prototype/collection/string_array.h"
 #include "acme/prototype/prototype/memory.h"
 //#include "acme/prototype/string/_conv.h"
 #include "acme/prototype/string/from_integer.h"

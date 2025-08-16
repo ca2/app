@@ -257,7 +257,7 @@ namespace graphics3d
 
 BEGIN_GPU_PROPERTIES(::graphics3d::shape_factory::Vertex)
 GPU_PROPERTY("position", ::gpu::e_type_seq3)
-GPU_PROPERTY("normal", ::gpu::e_type_seq3)
+GPU_PROPERTY("color", ::gpu::e_type_seq3)
 GPU_PROPERTY("uv", ::gpu::e_type_seq2)
 END_GPU_PROPERTIES()
 

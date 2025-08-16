@@ -340,7 +340,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,unsigned int* destination)
 
       //}
 
-      pimage->map_base();
+      pimage->map();
 
       bool b = false;
 

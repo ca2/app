@@ -97,7 +97,7 @@ namespace file
 inline ::file::e_flag & fix_file_listing_flag(::file::e_flag & eflag)
 {
 
-   if ((eflag & ::file::e_flag_file_or_folder) == 0)
+   if (!(eflag & ::file::e_flag_file_or_folder))
    {
 
       eflag |= ::file::e_flag_file_or_folder;

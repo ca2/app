@@ -50,7 +50,7 @@ public:
 
       m_rectanglePrevious = m_pbitmap->rectangle();
 
-      m_pbitmap->map_base(rectangleMap);
+      m_pbitmap->map(rectangleMap);
 
       m_bMapped = true;
 
@@ -69,7 +69,7 @@ public:
 
       }
 
-      m_pbitmap->map_base(m_rectanglePrevious);
+      m_pbitmap->map(m_rectanglePrevious);
 
       m_bMapped = false;
 

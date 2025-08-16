@@ -68,6 +68,15 @@ public:
 
    }
 #endif
+#if REFERENCING_DEBUGGING
+   subparticle(::subparticle&& subparticle);
+#else
+   subparticle(::subparticle&& subparticle) :
+      ::quantum(::transfer(subparticle)),
+      m_countReference(::transfer(subparticle.m_countReference))
+   {
+   }
+#endif
 
    ~subparticle() override;
 

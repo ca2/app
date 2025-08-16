@@ -4,13 +4,13 @@
 #include "acme/prototype/collection/map.h"
 
 
-template < class PAYLOAD, typename PAIR = pair < string, PAYLOAD > >
+template < class PAYLOAD, typename PAIR = pair < string, PAYLOAD >, enum_allocate t_eallocate = e_allocate_normal >
 class string_map_base :
-   public map_base < string, PAYLOAD, PAIR >
+   public map_base < string, PAYLOAD, PAIR, t_eallocate >
 {
 public:
 
-   using BASE_PAIR_MAP = map_base < string, PAYLOAD, PAIR >;
+   using BASE_PAIR_MAP = map_base < string, PAYLOAD, PAIR, t_eallocate >;
 
    using BASE_PAIR_MAP::BASE_PAIR_MAP;
    using BASE_PAIR_MAP::operator = ;

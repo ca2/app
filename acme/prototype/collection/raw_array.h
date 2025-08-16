@@ -16,10 +16,11 @@ class raw_array_base :
 public:
 
 
-   typedef TYPE BASE_TYPE;
-   typedef ARG_TYPE BASE_ARG_TYPE;
+   using BASE_TYPE = TYPE;
+   using BASE_ARG_TYPE = ARG_TYPE;
    using BASE_ARRAY = array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
-   using ARRAY_BASE = base_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >;
+   using ARRAY_BASE = base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
+   using BASE_RAW_RANGE = typename BASE_ARRAY::BASE_RAW_RANGE;
    using iterator = typename ARRAY_BASE::iterator;
    using const_iterator = typename ARRAY_BASE::const_iterator;
 

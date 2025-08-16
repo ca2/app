@@ -173,6 +173,8 @@ namespace gpu
 
       ptextureSource->m_bRenderTarget = true;
 
+      ptextureSource->m_bTransferSrc = true;
+
       auto rectangle = m_pgpurenderer->m_pgpucontext->rectangle();
 
       auto escene = m_pgpurenderer->m_pgpucontext->m_escene;

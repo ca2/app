@@ -7,6 +7,7 @@
 #include "acme/memory/operation.h"
 #include "acme/prototype/prototype/particle.h"
 
+
 template < typename TYPE >
 const TYPE * find_first_non_null(const TYPE * p)
 {
@@ -53,7 +54,7 @@ TYPE * get_last_ ## ITEM() const { return CONTAINER.get_last_pointer(); } \
 CONTAINER_TYPE CONTAINER
 
 #define DECLARE_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE) \
-DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
+DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, pointer_array_base < TYPE >)
 
 #define DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
 ::collection::index add_ ## ITEM(TYPE * p) { return CONTAINER.add_item(p); }      \
@@ -67,11 +68,11 @@ void ITEM ## a_slice(ARRAY & a, ::collection::index iStart = 0, ::collection::co
 DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE)
 
 #define HAVE_ARRAY_OF(ITEM, CONTAINER, TYPE) \
-DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
+DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, pointer_array_base < TYPE >)
 
 #define DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, CONTAINER, TYPE) \
 ARRAY(const ::std::initializer_list < ::pointer<TYPE >>& list_base) : CONTAINER(list_base) { } \
-DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
+DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, pointer_array_base < TYPE >)
 
 #define DECLARE_ARRAY_OF(ARRAY, ITEM, TYPE) \
 DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
@@ -79,18 +80,18 @@ DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
 
 #include "acme/prototype/collection/rear_iterator.h"
 
-enum enum_array : unsigned long long
-{
+//enum enum_array : unsigned long long
+//{
+//
+//   e_array_none = 0,
+//   e_array_zeroe_on_allocation = 1,
+//   e_range_array_allocate = 2,
+//   e_array_carriage_return = 4,
+//   //e_array_disable_referencing_debugging = 1ll << 52,
+//
+//};
 
-   e_array_none = 0,
-   e_array_zeroe_on_allocation = 1,
-   e_array_preallocated = 2,
-   e_array_carriage_return = 4,
-   //e_array_disable_referencing_debugging = 1ll << 52,
-
-};
-
-DECLARE_ENUMERATION(e_array, enum_array);
+//DECLARE_ENUMERATION(e_array, enum_array);
 
 
 template < typename A, typename B >
@@ -104,11 +105,12 @@ auto distance(const A * pa, const B * pb) { return (pa < pb) ? (pb - pa) : (pa -
 //
 // };
 
-
-struct pre_allocate_t {};
-struct zeroe_on_allocation_t {};
+//struct array_flags_t {};
+//struct pre_allocate_t {};
+//struct zeroe_on_allocation_t {};
 struct null_terminated_t {};
-struct range_t {};
+//struct range_t {};
+//struct set_size_t {};
 
 // raw_array is an array that does not call constructors or destructor in elements
 // array is an array that call only copy constructor and destructor in elements
@@ -122,12 +124,16 @@ class base_array :
 public:
 
 
+   using THIS_ARRAY = base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
+   using RAW_BASE_ARRAY = THIS_ARRAY;
+
    using rear_iterator = ::pointer_rear_iterator<TYPE>;
    using const_rear_iterator = ::pointer_rear_iterator<const TYPE>;
 
    //using ARRAY_RANGE = ::array_range < ::range < TYPE * > >;
    using ARRAY_RANGE = ::range < TYPE * >;
-   using array_range = ::range < TYPE * >;
+   using BASE_RAW_RANGE = ::range < TYPE * >;
+   //using array_range = ::range < TYPE * >;
 
    using PRIMITIVE_CONTAINER_TAG = PRIMITIVE_CONTAINER_TAG_TYPE;
 
@@ -139,10 +145,10 @@ public:
    using const_iterator = typename ARRAY_RANGE::const_iterator;
 
 
+   //e_array                 m_earray;
    ::collection::count     m_countAllocation;
    ::collection::count     m_countAddUp;
    ::collection::count     m_countAllocationOffset;
-   e_array                 m_earray;
 
 
    //using ::range < TYPE * >::range;
@@ -150,42 +156,58 @@ public:
    
    //base_array(const ::e_array & earray = e_array_none, const ::e_flag & eflag = e_flag_none, const ::e_status & estatus = undefined);
    base_array();
-   base_array(const ::e_array & earray);
    base_array(nullptr_t) : base_array() {}
-   base_array(std::initializer_list < TYPE > initializer_list);
-   base_array(const base_array & a);
-   base_array(base_array && a) noexcept;
+   //base_array(array_flags_t, const ::e_array& earray);
+   
+   
+   /// Use Cases:
+   ///
+   ///    - base_array(e_range_array_allocate, size);
+   ///    - base_array(e_range_array_clear_on_allocate, size);
+   ///
+   base_array(const ::enum_range & erange, ::collection::count c);
+   
+   
+   //base_array(pre_allocate_t, ::collection::count n) : base_array() { this->m_countAddUp = n; }
+   //base_array(zeroe_on_allocation_t, ::collection::count n) : base_array() { this->m_erange |= e_array_zeroe_on_allocation; this->m_countAddUp = n; }
+
+   //base_array(const ::e_array& earray, ::collection::count c);
+   base_array(const std::initializer_list < TYPE > & initializer_list);
+   base_array(const base_array< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array);
+   base_array(base_array< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > && array) noexcept;
    //template < primitive_array ARRAY >
    //base_array(const ARRAY & a) : base_array() {
    //   this->set_size(a.size());
    //   for (::collection::index i = 0; i < this->size(); i++) this->element_at(i) = a.element_at(i);
    //}
-   base_array(pre_allocate_t, ::collection::count n) : base_array() { this->m_countAddUp = n; }
-   base_array(zeroe_on_allocation_t, ::collection::count n) : base_array() { this->m_earray |= e_array_zeroe_on_allocation; this->m_countAddUp = n; }
-   base_array(::collection::count c);
-   base_array(::collection::count c, const TYPE* p);
-   template < typename RANGE >
-   base_array(const RANGE & range) requires
-      (container_range<RANGE> 
-         && ::std::is_convertible<typename RANGE::ITEM, TYPE >::value
-         && !::std::is_convertible<RANGE, base_array >::value) :
-      base_array(range.begin(), range.end())
-   { }
-   template < typename RANGE >
-   base_array(range_t, const RANGE& range)  :
-      base_array(range.begin(), range.end())
-   {
-   }
-   template < typename CONTAINER >
-   base_array(const CONTAINER& container) requires
-      (primitive_container<CONTAINER>
-         && !primitive_range<CONTAINER>) :
-      base_array()
-   {
-      this->set_size(container.size());
-      ::collection::index i = 0;
-      for (auto& item : container) this->element_at(i++) = item;
-   }
+   base_array(::collection::count c) : base_array() { this->set_size(c); }
+   template < typename OTHER_TYPE >
+   base_array(::collection::count c, const OTHER_TYPE * p)
+      requires (::std::is_convertible_v < OTHER_TYPE, CONTAINER_ITEM_TYPE >);
+   //template < typename OTHER_RANGE >
+   //base_array(range_t, const OTHER_RANGE& range)  :
+   //   base_array(range.begin(), range.end())
+   //{
+   //}
+
+   //template < typename OTHER_CONTAINER >
+   //base_array(const OTHER_CONTAINER& container) requires
+   //   (primitive_container < OTHER_CONTAINER >
+   //      && !::std::is_base_of_v<base_array, ::std::remove_cvref_t < OTHER_CONTAINER > >) :
+   //   base_array()
+   //{
+   //   this->set_size(container.size());
+   //   ::collection::index i = 0;
+   //   for (auto& item : container) this->element_at(i++) = item;
+   //}
+
+   template < typename OTHER_RANGE >
+   base_array(const OTHER_RANGE & range) requires
+      (container_range < OTHER_RANGE >
+         && !::std::is_base_of_v < base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >, ::std::remove_cvref_t < OTHER_RANGE > >);
+   //   : base_array(range.begin(), range.end())
+   //{ }
+
    template < primitive_integral INTEGRAL >
    base_array(const_iterator begin, INTEGRAL count) : base_array(begin, begin + count) {}
    base_array(const_iterator begin, const_iterator end)
@@ -198,6 +220,17 @@ public:
    {
    }
    ~base_array();
+
+
+   void array_base_ok() const;
+
+   void container_ok() const
+   {
+
+      array_base_ok();
+
+   }
+
 
 
    void defer_erase_allocation_offset();
@@ -900,6 +933,7 @@ public:
 
    inline void set_at_grow(::collection::index nIndex, ARG_TYPE newElement);
    inline TYPE & element_at_grow(::collection::index nIndex);
+   inline TYPE & ø(::collection::index nIndex) { return this->element_at_grow(nIndex); }
 
    inline void set_each(ARG_TYPE element, ::collection::index iStart = 0, ::collection::count c = -1);
 
@@ -1025,7 +1059,7 @@ public:
 
    template < typename EQUAL_TYPE >
    ::collection::index erase_at(const EQUAL_TYPE *p, ::collection::count nCount = 1)
-      requires(::is_same < EQUAL_TYPE, TYPE >)  {
+      requires(::std::is_same < EQUAL_TYPE, TYPE >::value)  {
       return this->erase_at(index_of(p), nCount);  
    }
       
@@ -1572,36 +1606,36 @@ base_array<TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer>::base_array() :
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
 //base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(const ::e_array & earray, const ::e_flag & eflag, const ::e_status & estatus) :
-base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(const ::e_array & earray) :
-//::particle(eflag, estatus),
-m_earray(earray),
-ARRAY_RANGE()
+//base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(array_flags_t, const ::e_array & earray) :
+base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(const ::enum_range & erange, ::collection::count c) :
+   BASE_RAW_RANGE(nullptr, nullptr, erange)
 {
 
-   m_countAddUp = 0;
+   m_countAddUp = c;
    m_countAllocation = 0;
    m_countAllocationOffset = 0;
 
 }
 
+
+//template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
+//base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(base_array && array) noexcept :
+//   ARRAY_RANGE(array)
+//{
+//
+//   this->m_countAddUp = array.m_countAddUp;
+//   this->m_countAllocation = array.m_countAllocation;
+//   this->m_countAllocationOffset = array.m_countAllocationOffset;
+//
+//   array.m_begin = nullptr;
+//   array.m_end = 0;
+//   array.m_countAllocation = 0;
+//
+//}
+
+
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(base_array && array) noexcept :
-   ARRAY_RANGE(array)
-{
-
-   this->m_countAddUp = array.m_countAddUp;
-   this->m_countAllocation = array.m_countAllocation;
-   this->m_countAllocationOffset = array.m_countAllocationOffset;
-
-   array.m_begin = nullptr;
-   array.m_end = 0;
-   array.m_countAllocation = 0;
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(std::initializer_list<TYPE > initializer_list) :
+base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(const std::initializer_list < TYPE > & initializer_list) :
    base_array()
 {
 
@@ -1615,25 +1649,25 @@ base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(std::
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(const base_array & array)
-{
-
-   m_countAddUp = 0;
-   this->m_begin = nullptr;
-   this->m_end = nullptr;
-   m_countAllocation = 0;
-   m_countAllocationOffset = 0;
-   set_size(array.get_size());
-
-   for (::collection::index i = 0; i < array.get_size(); i++)
-   {
-
-      element_at(i) = array[i];
-
-   }
-
-}
+//template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
+//base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(const base_array & array)
+//{
+//
+//   m_countAddUp = 0;
+//   this->m_begin = nullptr;
+//   this->m_end = nullptr;
+//   m_countAllocation = 0;
+//   m_countAllocationOffset = 0;
+//   set_size(array.get_size());
+//
+//   for (::collection::index i = 0; i < array.get_size(); i++)
+//   {
+//
+//      element_at(i) = array[i];
+//
+//   }
+//
+//}
 
 
 
@@ -1742,7 +1776,7 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::free_extra(
 
    auto sizeNew = size;
 
-   if(!(this->m_earray & e_array_preallocated))
+   if(!(this->m_erange & e_range_array_allocate))
    {
       
       if(sizeNew != m_countAllocation)
@@ -1847,7 +1881,7 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::destroy()
 
       TYPED::destruct_count(this->m_begin, size);
       
-      if(!(this->m_earray & e_array_preallocated))
+      if(!(this->m_erange & e_range_array_allocate))
       {
          
          MEMORY::free(this->m_begin + this->m_countAllocationOffset);
@@ -2652,13 +2686,13 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::reserve(::c
       ::safe_memory_copy2(pNewData, (size_t)newAllocationSize, this->m_begin, (size_t) this->size());
 
       // get rid of old stuff (note: no destructors called)
-      if(!(this->m_earray & e_array_preallocated))
+      if(!(this->m_erange & e_range_array_allocate))
       {
          MEMORY::free(this->m_begin);
       }
       else
       {
-         this->m_earray -= e_array_preallocated;
+         this->m_erange = (::enum_range) (this->m_erange & ~e_range_array_allocate);
       }
 
       this->m_begin = pNewData;
@@ -3607,19 +3641,20 @@ inline TYPE base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::take
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(::collection::count c) :
-   base_array()
-{
-
-   set_size(c);
-
-}
-
+//template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+//base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(set_size_t, ::collection::count c) :
+//   base_array()
+//{
+//
+//   set_size(c);
+//
+//}
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(::collection::count c, const TYPE * p) :
+template < typename OTHER_TYPE >
+base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(::collection::count c, const OTHER_TYPE * p) 
+   requires (::std::is_convertible_v < OTHER_TYPE, CONTAINER_ITEM_TYPE >) :
    base_array()
 {
 
@@ -3672,7 +3707,7 @@ public:
    preallocated_array_base()
    {
       
-      this->m_earray |= e_array_preallocated;
+      this->m_erange = (::enum_range)(this->m_erange | e_range_array_allocate);
       this->m_begin = m_elementaPreallocated;
       this->m_end = m_elementaPreallocated;
       this->m_countAllocation = t_preallocated_array_size;

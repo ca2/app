@@ -1169,7 +1169,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
 
       auto pimage = ::particle::image()->integer_image(image);
 
-      pimage->map_base();
+      pimage->map();
 
       pimage->get_data()->copy(pimage->size(), pimage->m_iScan, (const image32_t *)data);
 

@@ -174,7 +174,7 @@ namespace windowing
 
       ::int_size                                m_sizeDrawnBuffer;
 
-      //      ::int_rectangle_array                     m_rectangleaNeedRedraw;
+      //      ::int_rectangle_array_base                     m_rectangleaNeedRedraw;
       ::pointer_array < ::user::redraw_item > m_redrawitema;
 
       ::pointer < ::user::interaction >         m_puiLastLButtonDown;
@@ -535,7 +535,7 @@ namespace windowing
       virtual void _window_show_change_visibility(::e_display edisplay, const ::user::activation & useractivation);
 
 
-      virtual void non_top_most_upper_window_rects(::int_rectangle_array & recta);
+      virtual void non_top_most_upper_window_rects(::int_rectangle_array_base & recta);
 
       void default_message_handler(::message::message * pmessage) override;
 
@@ -1335,7 +1335,7 @@ namespace windowing
 
       //virtual void on_visual_applied();
 
-      virtual void set_need_redraw(const ::int_rectangle_array & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr, bool bAscendants = true);
+      virtual void set_need_redraw(const ::int_rectangle_array_base & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr, bool bAscendants = true);
       //virtual bool needs_to_draw(const ::int_rectangle& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);
       void post_redraw(bool bAscendants = true) override;
 
@@ -1359,12 +1359,12 @@ namespace windowing
       virtual long long _001GetRectTopLeftWeightedArea(const ::int_rectangle & rect);
 
       virtual long long opaque_area(const ::int_rectangle & rect);
-      virtual void approximate_occlusion_rects(int_rectangle_array & raTest);
+      virtual void approximate_occlusion_rects(int_rectangle_array_base & raTest);
 
       virtual long long opaque_area();
 
       /// from top to bottom
-      //virtual void non_top_most_upper_window_rects(::int_rectangle_array & recta);
+      //virtual void non_top_most_upper_window_rects(::int_rectangle_array_base & recta);
 
 
       virtual void android_fill_plasma(const void * pixels, int width, int height, int stride, long long time_ms);
@@ -1621,7 +1621,7 @@ namespace windowing
       virtual ::user::interaction * get_child_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1) override;
 
 
-      //virtual void set_need_redraw(const ::int_rectangle_array & rectangleaNeedRedraw = {}, function<void()> function = nullptr, bool bAscendants = true);
+      //virtual void set_need_redraw(const ::int_rectangle_array_base & rectangleaNeedRedraw = {}, function<void()> function = nullptr, bool bAscendants = true);
 
 
       //virtual bool RedrawWindow(const ::int_rectangle & rectangleUpdate = {}, ::draw2d::region * prgnUpdate = nullptr, unsigned int flags = 0);

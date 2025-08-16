@@ -189,7 +189,7 @@ namespace graphics
    void colors_with_shades_of_grey(::image::image *pimage)
    {
 
-      pimage->map_base();
+      pimage->map();
 
       ::collection::count w = pimage->width();
 
@@ -232,7 +232,7 @@ namespace graphics
    void shades_of_luminance(::image::image *pimage, double dH, double dS)
    {
 
-      pimage->map_base();
+      pimage->map();
 
       ::collection::count w = pimage->width();
 

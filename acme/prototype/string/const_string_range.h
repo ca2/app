@@ -84,10 +84,11 @@ class const_string_range :
 public:
 
 
+   using BASE_RANGE = ::character_range<ITERATOR_TYPE>;
+   using RAW_CHARACTER_RANGE = typename BASE_RANGE::RAW_CHARACTER_RANGE;
+
+
    //using BASE_RANGE = ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >;
-
-
-   using BASE_RANGE = ::range<ITERATOR_TYPE>;
 
    using THIS_RANGE = ::const_string_range<ITERATOR_TYPE>;
 
@@ -161,17 +162,19 @@ public:
 
    const_string_range() {}
 
-   template<typed_range<iterator> RANGE>
-   const_string_range(const RANGE& range) : BASE_RANGE(range) {}
+   template < typed_range < iterator > TYPED_RANGE >
+   constexpr const_string_range(const TYPED_RANGE & range) 
+      requires(!::std::is_same_v < TYPED_RANGE, THIS_RANGE >) :
+      BASE_RANGE(range.m_begin, range.m_end, range.m_erange) { }
 
-   template<typed_range<const_iterator> RANGE>
-   const_string_range(const RANGE& range) : BASE_RANGE(range) {}
+   constexpr const_string_range(const const_string_range & range) :
+      BASE_RANGE(range.m_begin, range.m_end, range.m_erange) { }
 
-   const_string_range(const THIS_RANGE& range) : BASE_RANGE(range) {}
+   constexpr const_string_range(const_string_range && range) :
+      BASE_RANGE(::transfer(range)) { }
 
-   const_string_range(THIS_RANGE&& range) : BASE_RANGE(::transfer(range)) {}
-
-   constexpr const_string_range(this_iterator begin, this_iterator end, enum_range erange = e_range_none) : BASE_RANGE(begin, end, erange) {}
+   constexpr const_string_range(this_iterator begin, this_iterator end, enum_range erange = e_range_none) :
+      BASE_RANGE(begin, end, erange) { }
 
    //explicit const_string_range(const ::atom& atom);
 

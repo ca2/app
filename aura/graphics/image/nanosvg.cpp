@@ -116,7 +116,7 @@ namespace image
       try
       {
 
-         map_base();
+         map();
 
          imaging()->nanosvg(this, psvgimage, m_iRedLower);
 
@@ -163,7 +163,7 @@ namespace image
 
          create({ (int)psvgimage->width, (int)psvgimage->height });
 
-         map_base();
+         map();
 
          imaging()->nanosvg(this, psvgimage, m_iRedLower);
 

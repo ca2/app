@@ -5,19 +5,22 @@
 
 
 template < primitive_number NUMBER >
-class size_base_array :
-public ::array < ::size_type < NUMBER > >
+class size_array_base :
+public ::array_base < ::size_type < NUMBER > >
 {
 public:
 
+   using BASE_ARRAY = ::array_base < ::size_type < NUMBER > >;
    //using SIZE_TYPE = _SIZE_TYPE;
    //using SIZE_BASE_TYPE = SIZE_TYPE;
    using UNIT_TYPE = NUMBER;
    //using POINT_TYPE = typename SIZE_TYPE::POINT_TYPE;
 
+   using BASE_ARRAY::BASE_ARRAY;
+   using BASE_ARRAY::operator =;
 
-   size_base_array() { }
-   ~size_base_array() override { }
+   //size_array_base() { }
+   ///~size_array_base() override { }
 
 
    using array < ::size_type < NUMBER > >::add;
@@ -32,10 +35,10 @@ public:
 };
 
 
-using int_size_array = size_base_array < int >;
-using long_long_size_array = size_base_array < long long >;
-using float_size_array = size_base_array < float >;
-using double_size_array = size_base_array < double >;
+//using int_size_array = size_array_base < int >;
+//using long_long_size_array = size_array_base < long long >;
+//using float_size_array = size_array_base < float >;
+//using double_size_array = size_array_base < double >;
 
 
 

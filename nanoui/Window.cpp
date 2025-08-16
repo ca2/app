@@ -331,7 +331,7 @@ void Window::on_destroy_window()
                         rectangleOld.right(),
                         rectangleOld.bottom());
             
-            ::int_rectangle_array rectanglea;
+            ::int_rectangle_array_base rectanglea;
             
             rectanglea.add(rectangleOld);
 

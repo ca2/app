@@ -462,7 +462,7 @@ namespace user
 
 //      ::int_rectangle rectangle;
 
-      int_rectangle_array raMenu;
+      int_rectangle_array_base raMenu;
 
       int iPos = 0;
 

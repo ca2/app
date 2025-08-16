@@ -1658,7 +1658,7 @@ namespace user
    ::user::e_flag interaction::get_draw_flags(::user::style * pstyle)
    {
 
-      return e_null;
+      return {};
 
    }
 
@@ -2000,7 +2000,7 @@ namespace user
 
 
    void interaction::set_need_redraw(
-      const ::int_rectangle_array & rectangleaNeedRedraw,
+      const ::int_rectangle_array_base & rectangleaNeedRedraw,
       ::draw2d::graphics * pgraphics,
       function<void()> function,
       bool bAscendants)
@@ -4662,7 +4662,7 @@ namespace user
 
                   _synchronous_lock synchronouslock(pwindow->synchronization());
 
-                  pwindow->m_userinteractionaMouseHover.erase_item(this);
+                  pwindow->m_userinteractionaMouseHover.erase(this);
 
                   m_bTrackMouseLeave = false;
 
@@ -9493,7 +9493,7 @@ if(get_parent())
 
    //   auto rectangle = layout().sketch().raw_rectangle();
 
-   //   ::int_rectangle_array rectanglea;
+   //   ::int_rectangle_array_base rectanglea;
 
    //   if (rectangle.right() > rectanglePrevious.right())
    //   {
@@ -13853,6 +13853,17 @@ if(get_parent())
    void interaction::layout_children_zorder()
    {
 
+      ::string strType = ::type(this).name();
+
+      ::string strId = this->m_atomMatterId;
+
+      if (strId == "::user::line_layout(1)")
+      {
+
+         information() << "::user::line_layout(1)";
+
+      }
+
       //information() << "interaction::layout_children_zorder";
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
@@ -13874,13 +13885,10 @@ if(get_parent())
 
       auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
-      ::string strType = ::type(this).name();
-
       for (auto & pacmeuserinteractionChild  : *pacmeuserinteractionaChildren)
       {
 
          ::cast < ::user::interaction> pchild = pacmeuserinteractionChild;
-
          pchild->layout().sketch()._patch_order(iZOrder);
 
          pchild->layout().sketch().zorder().clear_request();
@@ -20822,7 +20830,7 @@ if(get_parent())
 
       }
 
-      ::int_rectangle_array rectangleaCertainlyDamaged;
+      ::int_rectangle_array_base rectangleaCertainlyDamaged;
 
       ::int_rectangle rectangleBefore;
 
@@ -27889,7 +27897,7 @@ __check_refdbg;
 
          }
 
-         ::int_rectangle_array rectanglea;
+         ::int_rectangle_array_base rectanglea;
 
          if (::is_item_set(pitemOldHover))
          {

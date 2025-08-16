@@ -89,7 +89,7 @@ namespace image
          if (m_iFrame <= 0)
          {
 
-            //pimageCompose->map_base();
+            //pimageCompose->map();
 
             //pimageCompose->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -99,7 +99,7 @@ namespace image
          else
          {
 
-            //pimageCompose->map_base();
+            //pimageCompose->map();
 
             //pimageCompose->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

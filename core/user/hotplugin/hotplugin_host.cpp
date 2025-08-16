@@ -571,7 +571,7 @@ namespace hotplugin
 
       }
 
-      m_pimage->map_base();
+      m_pimage->map();
 
       ::memory_copy(m_pimage->image32(), m_memorymapBitmap.get_data(), (size_t) (m_pimage->area() * sizeof(color32_t)));
 

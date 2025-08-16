@@ -352,6 +352,7 @@
     <ClInclude Include="gpu\device.h" />
     <ClInclude Include="gpu\draw2d.h" />
     <ClInclude Include="gpu\frame.h" />
+    <ClInclude Include="gpu\frame_storage.h" />
     <ClInclude Include="gpu\graphics.h" />
     <ClInclude Include="gpu\guard.h" />
     <ClInclude Include="gpu\context_lock.h" />
@@ -445,6 +446,7 @@
     <ClCompile Include="gpu\device.cpp" />
     <ClCompile Include="gpu\draw2d.cpp" />
     <ClCompile Include="gpu\frame.cpp" />
+    <ClCompile Include="gpu\frame_storage.cpp" />
     <ClCompile Include="gpu\graphics.cpp" />
     <ClCompile Include="gpu\guard.cpp" />
     <ClCompile Include="gpu\context_lock.cpp" />

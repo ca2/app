@@ -2129,7 +2129,7 @@ namespace windowing
    }
 
 
-   //void window::non_top_most_upper_window_rects(::int_rectangle_array & recta)
+   //void window::non_top_most_upper_window_rects(::int_rectangle_array_base & recta)
    //{
 
    //   throw ::interface_only();
@@ -5385,7 +5385,7 @@ namespace windowing
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      return m_userinteractionaMouseHover.erase_item(pinterface) >= 0;
+      return m_userinteractionaMouseHover.erase(pinterface) >= 0;
 
    }
 
@@ -7940,7 +7940,7 @@ namespace windowing
 
 
    void
-      window::set_need_redraw(const ::int_rectangle_array& rectangleaHostNeedRedraw, function<void()> function,
+      window::set_need_redraw(const ::int_rectangle_array_base& rectangleaHostNeedRedraw, function<void()> function,
          bool bAscendants)
    {
 
@@ -7989,7 +7989,7 @@ namespace windowing
 
          bool bContainsAll = true;
 
-         //int_rectangle_array rectangleaUnion;
+         //int_rectangle_array_base rectangleaUnion;
 
          for (auto& rectangle : rectangleaHostNeedRedraw)
          {
@@ -12654,7 +12654,7 @@ namespace windowing
    }
 
 
-   void window::non_top_most_upper_window_rects(::int_rectangle_array& recta)
+   void window::non_top_most_upper_window_rects(::int_rectangle_array_base& recta)
    {
 
       //non_top_most_upper_window_rects(recta);
@@ -12665,7 +12665,7 @@ namespace windowing
    bool window::is_occluded()
    {
 
-      ::int_rectangle_array recta;
+      ::int_rectangle_array_base recta;
 
       non_top_most_upper_window_rects(recta);
 
@@ -12692,12 +12692,12 @@ namespace windowing
    }
 
 
-   void window::approximate_occlusion_rects(int_rectangle_array& raTest)
+   void window::approximate_occlusion_rects(int_rectangle_array_base& raTest)
    {
 
       raTest.erase_all();
 
-      ::int_rectangle_array ra;
+      ::int_rectangle_array_base ra;
 
       non_top_most_upper_window_rects(ra);
 
@@ -12813,7 +12813,7 @@ namespace windowing
    long long window::approximate_occlusion_area()
    {
 
-      int_rectangle_array ra;
+      int_rectangle_array_base ra;
 
       approximate_occlusion_rects(ra);
 
@@ -12920,7 +12920,7 @@ namespace windowing
    long long window::approximate_occlusion_area_except_self_transparent()
    {
 
-      int_rectangle_array ra;
+      int_rectangle_array_base ra;
 
       approximate_occlusion_rects(ra);
 
@@ -12949,7 +12949,7 @@ namespace windowing
    long long window::_001GetTopLeftWeightedOccludedOpaqueArea()
    {
 
-      int_rectangle_array ra;
+      int_rectangle_array_base ra;
 
       approximate_occlusion_rects(ra);
 
@@ -13277,7 +13277,7 @@ namespace windowing
          if(pimageSource)
          {
 
-            pimageSource->map_base();
+            pimageSource->map();
 
             wSource = pimageSource->width();
 
@@ -14822,7 +14822,7 @@ namespace windowing
    }
 
 
-   //void window::set_need_redraw(const ::int_rectangle_array & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
+   //void window::set_need_redraw(const ::int_rectangle_array_base & rectangleaNeedRedraw, function<void()> function, bool bAscendants)
    //{
 
 

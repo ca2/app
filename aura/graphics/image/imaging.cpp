@@ -3409,9 +3409,9 @@ void imaging::channel_alpha_gray_blur_32CC(::image::image *pimageDst, ::image::i
          || cy != pimageSrc->height())
       throw ::exception(error_wrong_state);
 
-   pimageDst->map_base();
+   pimageDst->map();
 
-   pimageSrc->map_base();
+   pimageSrc->map();
 
    unsigned char * pDst = (unsigned char *)pimageDst->get_data();
 
@@ -5132,9 +5132,9 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
    int x2;
    int y2;
 
-   pimageDst->map_base();
+   pimageDst->map();
 
-   pimageSrc->map_base();
+   pimageSrc->map();
 
    //if(!pimageDst || !pimageSrc)
    //{
@@ -6867,7 +6867,7 @@ int iAlpha)
 void imaging::HueVRCP(::image::image *pimage,::color::color crHue,double dCompress)
 {
 
-   pimage->map_base();
+   pimage->map();
 
    /*if(pimage->get_data() == nullptr)
    {

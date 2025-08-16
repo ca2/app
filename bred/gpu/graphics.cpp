@@ -8,6 +8,8 @@
 #include "texture.h"
 #include "acme/platform/application.h"
 #include "aura/user/user/interaction.h"
+#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/windowing/window.h"
 #include "bred/gpu/_model.h"
@@ -571,6 +573,7 @@ namespace gpu
             m_pshaderSourceRectangle->m_bDisableDepthTest = true;
             //m_pshaderRectangle->m_iColorAttachmentCount = 2;
             m_pshaderSourceRectangle->m_bEnableBlend = false;
+            m_pshaderSourceRectangle->m_ecullmode = ::gpu::e_cull_mode_none;
             //m_pshaderRectangle->m_bAccumulationEnable = true;
 
             pcontext->initialize_rectangle_shader(m_pshaderSourceRectangle);
@@ -676,7 +679,7 @@ namespace gpu
 
       }
 
-      ::preallocated_array_base < double_point_array, 4 > quad;
+      ::preallocated_array_base < double_point_array_base, 4 > quad;
 
       quad.add(points[0]);
       quad.add(points[1]);
@@ -964,6 +967,105 @@ namespace gpu
 
    }
 
+
+
+   void graphics::line(double x1, double y1, double x2, double y2, ::draw2d::pen* ppen)
+   {
+
+      auto pcontext = gpu_context();
+
+      auto prenderer = pcontext->m_pgpurenderer;
+
+      ::gpu::context_lock contextlock(pcontext);
+
+      //__USES_TRANSFORM(pcontext);
+
+      auto pshader = rectangle_shader();
+
+      float g_z = 0.0f; // Assuming z is 0 for 2D rendering, adjust as needed
+
+      ::double_point points1[2];
+
+      points1[0].x() = x1;
+      points1[0].y() = y1;
+      points1[1].x() = x2;
+      points1[1].y() = y2;
+
+      __transform(points1[0]);
+      __transform(points1[1]);
+
+      auto size = pcontext->m_rectangle.size();
+
+      //::geometry2d::matrix m;
+      //m.translate(0.5, -0.5);
+      //m.scale(2.0 / size.cx(), 2.0 / size.cy());
+      //m.translate(-1.0, -1.0);
+
+      ::double_point_array pointa;
+
+      ::double_point pointPen(ppen->m_dWidth, ppen->m_dWidth);
+
+      ::draw2d::make_line_triangles_cap_butt_square(
+         pointa,
+         points1[0],
+         points1[1],
+         pointPen);
+
+      context_matrix().transform(pointa);
+
+      auto color = m_ppen->m_color;
+
+      float fA = color.f32_opacity();
+      float fR = color.f32_red() * fA;
+      float fG = color.f32_green() * fA;
+      float fB = color.f32_blue() * fA;
+
+      ::array<::graphics3d::sequence2_color> quadVertices;
+      for (auto& point : pointa)
+         quadVertices.add({ {(float)point.x(), (float)point.y()}, {fR, fG, fB, fA} });
+
+      auto pmodelbuffer = model_buffer(::draw2d::e_model_line);
+
+      if (pmodelbuffer->is_new())
+      {
+
+         pmodelbuffer->create_vertex_array< ::graphics3d::sequence2_color>(6);
+
+      }
+
+      pmodelbuffer->set_vertices(quadVertices);
+
+
+      ::gpu::debug_scope debugscopeLine(
+         m_pgpucontextCompositor2,
+         "ødebug line:" + pmodelbuffer->m_strDebugString,
+         false
+      );
+
+      if (pmodelbuffer->m_strDebugString.has_character())
+      {
+
+         debugscopeLine.start();
+
+      }
+
+      auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+
+      pcontext->defer_bind(pshader);
+
+      pmodelbuffer->bind(pcommandbuffer);
+
+      pmodelbuffer->draw(pcommandbuffer);
+
+      pmodelbuffer->unbind(pcommandbuffer);
+
+      pcontext->defer_unbind(pshader);
+
+      m_point.x() = x2;
+      m_point.y() = y2;
+   }
+
+
    
    double_size graphics::get_text_extent(const ::scoped_string& scopedstr)
    {
@@ -1154,6 +1256,7 @@ namespace gpu
          m_pgpushaderTextOut->m_bindingSampler.m_strUniform = "text";
          m_pgpushaderTextOut->m_etopology = ::gpu::e_topology_triangle_strip;
          m_pgpushaderTextOut->m_ecullmode = ::gpu::e_cull_mode_none;
+         m_pgpushaderTextOut->m_bindingSampler.set();
          
          //pcontext->white_to_color_sampler_shader_setup(m_pgpushaderTextOut);
 
@@ -1161,9 +1264,9 @@ namespace gpu
             pcontext->m_pgpurenderer,
             pcontext->white_to_color_sampler_vert(),
             pcontext->white_to_color_sampler_frag(),
+            { ::gpu::shader::e_descriptor_set_slot_local },
             {},
-            {},
-            ::gpu_properties <::gpu::projection_quad_texcoords_textColor >() //,
+            ::gpu_properties <::gpu::quad_texcoords_textColor >() //,
             //pcontext->input_layout<::graphics3d::sequence2_uv>()
          );
 
@@ -1314,7 +1417,7 @@ namespace gpu
 
             }
 
-            pshader->set_mat4("projection", projection);
+            //pshader->set_mat4("projection", projection);
 
             {
 

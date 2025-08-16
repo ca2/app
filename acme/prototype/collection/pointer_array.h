@@ -257,8 +257,25 @@ public:
 
 
    /// consumes a referer
-   bool add_unique(T * p)
+   template < typename T2 >
+   bool add_unique(const T2 * p2)
    {
+
+      if (::is_null(p2))
+      {
+
+         return false;
+
+      }
+
+      auto p = dynamic_cast <T*> ((T2*)p2);
+
+      if (::is_null(p))
+      {
+
+         return false;
+
+      }
 
       if (contains(p))
       {
@@ -270,6 +287,39 @@ public:
       this->add_item(p);
 
       return true;
+
+   }
+
+
+   /// consumes a referer
+   template < typename T2 >
+   bool add_unique(const ::pointer < T2 > & p2)
+   {
+
+      return this->add_unique(p2.m_p);
+
+   }
+
+
+   template < typename T2 >
+   ::collection::count add_unique(const pointer_array_base < T2 > & a)
+   {
+
+      ::collection::count c = 0;
+
+      for(auto & p : a)
+      {
+
+         if (this->add_unique(p))
+         {
+          
+            c++;
+
+         }
+
+      }
+
+      return c;
 
    }
 
@@ -313,22 +363,6 @@ public:
 
    }
 
-   ::collection::count add_unique(const pointer_array_base & a)
-   {
-
-      ::collection::count c = 0;
-
-      for (::collection::index i = 0; i < a.get_count(); i++)
-      {
-
-         if (add_unique((T *) a[i]))
-            c++;
-
-      }
-
-      return c;
-
-   }
 
    bool contains(const T * p, ::collection::index iStart = 0, ::collection::count nCount = -1) const
    {

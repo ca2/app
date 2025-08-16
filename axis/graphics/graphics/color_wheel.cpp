@@ -129,7 +129,7 @@ namespace graphics
 
             m_pimageCircle->create({ diamRound, diamRound });
 
-            m_pimageCircle->map_base();
+            m_pimageCircle->map();
 
             m_pimageCircle->fill_byte(0);
 

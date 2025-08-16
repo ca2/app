@@ -2555,7 +2555,7 @@ void window::set_mouse_cursor(::windowing::cursor* pcursor)
 //}
 
 
-//   void window::upper_window_rects(int_rectangle_array & ra)
+//   void window::upper_window_rects(int_rectangle_array_base & ra)
 //   {
 //
 //      synchronous_lock synchronouslock(user_synchronization());

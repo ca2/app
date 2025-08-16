@@ -124,7 +124,7 @@ namespace gpu
       ::pointer < input_layout > m_pinputlayout;
       class ::time               m_timeRetire;
       //bool m_bTextureAndSampler;
-
+      int                        m_iPushConstants = -1;
 
       shader();
       ~shader() override;

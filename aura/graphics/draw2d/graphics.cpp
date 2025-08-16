@@ -2414,20 +2414,64 @@ namespace draw2d
    }
 
 
-   void graphics::draw(::draw2d::path * ppath)
+
+   void graphics::draw(::draw2d::path* ppath)
    {
 
-      //return false;
+      draw(ppath, m_ppen);
+      //m_pgraphics->SetSmoothingMode(plusplus::SmoothingModeAntiAlias);
+      //m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
+
+
+      //return m_pgraphics->DrawPath(gl2d_pen(),(dynamic_cast < ::draw2d_opengl::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
+      //return true;
 
    }
 
 
-   void graphics::draw(::draw2d::path * ppath, ::draw2d::pen * ppen)
+   void graphics::draw(::draw2d::path* ppath, ::draw2d::pen* ppen)
    {
+      bool bLastPoint = false;
+      ::double_point pointLast;
+      for (int i = 0; i < ppath->m_itema.size(); i++)
+      {
+         auto& pitem = ppath->m_itema[i];
 
-      //return false;
+         auto etype = pitem->type();
+
+         switch (etype)
+         {
+         case  ::draw2d::e_item_line:
+         {
+
+            ::cast< ::geometry2d::line_item> plineitem = pitem;
+            this->line(plineitem->m_item.m_p1, plineitem->m_item.m_p2, ppen);
+            //if (!bLastPoint || !pointLast.is_same_by(0.00001, plineitem->m_item.m_p1))
+            //{
+            //   glVertex3f(
+            //      (float)plineitem->m_item.m_p1.x(),
+            //      (float)plineitem->m_item.m_p1.y(),
+            //      0.0f);
+            //}
+            //glVertex3f(
+            //   (float)plineitem->m_item.m_p2.x(),
+            //   (float)plineitem->m_item.m_p2.y(),
+            //   0.0f);
+            pointLast = plineitem->m_item.m_p2;
+         }
+         break;
+         default:
+            break;
+
+         }
+
+      }
+      //return m_pgraphics->DrawPath((::plusplus::Pen *) ppen->get_os_data(),(dynamic_cast < ::draw2d_opengl::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
+
+      //return true;
 
    }
+
 
 
    void graphics::fill(::draw2d::path * ppath)
@@ -5763,7 +5807,7 @@ namespace draw2d
          double dCircleX;
          double dCircleY;
 
-         pimage->map_base();
+         pimage->map();
 
          auto pimage32 = pimage->image32();
 

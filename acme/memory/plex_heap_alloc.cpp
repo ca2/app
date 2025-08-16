@@ -131,8 +131,10 @@ void plex_heap_alloc::pre_finalize()
 #endif
 #endif
 
+
 void Alloc_check_pointer_in_cpp(void * p)
 {
+
 
    if ((uptr)p < QUOTED_KERNEL_SPACE)
    {

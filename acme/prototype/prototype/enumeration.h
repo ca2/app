@@ -4,6 +4,9 @@
 //template < typename ENUM >
 //inline bool __enum_is_failed(const ENUM & e) { return !(long long)e; }
 
+template < typename INTEGRAL >
+concept primitive_integral = std::is_integral_v < ::decay < INTEGRAL > >;
+
 
 template < typename ENUM >
 class enumeration
@@ -20,7 +23,6 @@ public:
 
 
    constexpr enumeration() { m_eenum = (ENUM) 0; }
-   constexpr enumeration(enum_null) { m_eenum = (ENUM)0; }
    constexpr enumeration(const ::std::initializer_list < ENUM > & list_base )
    {
 
@@ -34,7 +36,11 @@ public:
       }
    
    }
-   constexpr enumeration(ENUM e) { m_eenum = e; }
+   template < typename THE_ENUM >
+   constexpr enumeration(THE_ENUM e)
+   requires (::std::is_same_v < THE_ENUM,  ENUM >
+      && !primitive_integral<THE_ENUM>)
+   { m_eenum = (ENUM) e; }
    //template < primitive_integral INTEGRAL >
    //enumeration(INTEGRAL i) { m_eenum = (ENUM) i; }
    constexpr enumeration(const enumeration & e) { m_eenum = e.m_eenum; }

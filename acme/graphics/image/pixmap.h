@@ -82,7 +82,7 @@ struct pixmap
 
       m_point.Null();
 
-      map_base();
+      map();
 
    }
 
@@ -153,22 +153,22 @@ struct pixmap
    inline ::color::color get_pixel(const ::int_point & point) const { return get_pixel(point.x(), point.y()); }
 
    inline pixmap & operator =(const pixmap & pixmap);
-   inline pixmap & operator =(const ::int_rectangle & rectangle) { map_base(rectangle);  return *this; }
+   inline pixmap & operator =(const ::int_rectangle & rectangle) { map(rectangle);  return *this; }
 
    void reference(const pixmap& pixmap);
 
-   void map_base(const ::int_rectangle & rectangle)
+   void map(const ::int_rectangle & rectangle)
    {
 
       m_point = rectangle.origin();
 
       m_size = rectangle.size();
 
-      map_base();
+      map();
 
    }
 
-   void map_base() const
+   void map() const
    {
 
       if (::is_set(m_pimage32Raw))

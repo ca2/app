@@ -155,7 +155,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 ::collection::count base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::_allocate(::collection::count nNewSize, bool bShrink, bool bRaw, const TYPE * ptype)
 {
 
-   if (this->m_earray & e_array_preallocated)
+   if (this->m_erange & e_range_array_allocate)
    {
 
       if (nNewSize > this->m_countAllocation)
@@ -209,7 +209,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
          if(bShrink)
          {
             
-            if(!(this->m_earray & e_array_preallocated))
+            if(!(this->m_erange & e_range_array_allocate))
             {
                
                MEMORY::free(this->m_begin + this->m_countAllocationOffset);
@@ -232,7 +232,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
          else
          {
 
-            if (this->m_earray & e_array_zeroe_on_allocation)
+            if (this->m_erange & e_range_array_clear_on_allocate)
             {
 
                memset(this->m_begin, 0, maximum(0, countOld) * sizeof(TYPE));
@@ -309,7 +309,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
 #endif
 
-      if (this->m_earray & e_array_zeroe_on_allocation)
+      if (this->m_erange & e_range_array_clear_on_allocate)
       {
 
          memset(this->m_begin, 0, nAllocSize * sizeof(TYPE));
@@ -369,7 +369,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
             TYPED::destruct_count(this->m_begin + nNewSize, countOld - nNewSize);
 
-            if (this->m_earray & e_array_zeroe_on_allocation)
+            if (this->m_erange & e_range_array_clear_on_allocate)
             {
 
                memset(this->m_begin + nNewSize, 0, (countOld - nNewSize) * sizeof(TYPE));
@@ -476,7 +476,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
       // copy ___new data from old
       ::safe_memory_copy2(pNewData, (size_t)countNewAllocation, this->m_begin, (size_t) countOld);
 
-      if (this->m_earray & e_array_zeroe_on_allocation)
+      if (this->m_erange & e_range_array_clear_on_allocate)
       {
 
          memset(this->m_begin + countOld, 0, (countNewAllocation - countOld) * sizeof(TYPE));
@@ -509,7 +509,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
          
       }
       
-      if(!(this->m_earray & e_array_preallocated))
+      if(!(this->m_erange & e_range_array_allocate))
       {
          
          // get rid of old stuff (note: no destructors called)
@@ -519,7 +519,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
       else
       {
          
-         this->m_earray -= e_array_preallocated;
+         this->m_erange = (::enum_range) (this->m_erange & ~e_range_array_allocate);
          
       }
 
@@ -539,7 +539,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_base_ok() const
+void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_base_ok() const
 {
 
    if (this->m_begin)
@@ -555,7 +555,7 @@ void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_base_
 
       ASSERT(!this->m_end);
 
-      ASSERT(this->m_earray & e_array_preallocated || this->m_countAllocation == 0);
+      ASSERT(this->m_erange & e_range_array_allocate || this->m_countAllocation == 0);
 
    }
 
@@ -587,10 +587,8 @@ void list_base < TYPE, ARG_TYPE >::list_base_ok() const
 }
 
 
-
-
-template < typename ITEM >
-void node_set_base < ITEM >::container_ok() const
+template < typename ITEM, enum_allocate t_eallocate >
+void node_set_base < ITEM, t_eallocate >::container_ok() const
 {
 
    if (this->m_begin)
@@ -613,14 +611,68 @@ void node_set_base < ITEM >::container_ok() const
 }
 
 
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(const base_array< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array)
+{
+
+   this->m_begin = nullptr;
+   this->m_end = nullptr;
+   this->m_erange = e_range_none;
+   //this->m_erange = e_array_none;
+   m_countAddUp = 0;
+   m_countAllocation = 0;
+   m_countAllocationOffset = 0;
+   set_size(array.get_size());
+
+   for (::collection::index i = 0; i < array.get_size(); i++)
+   {
+
+      element_at(i) = array[i];
+
+   }
+
+}
 
 
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(base_array< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > && array) noexcept :
+   ARRAY_RANGE(no_initialize_t{})
+{
+
+   this->m_begin = array.m_begin;
+   this->m_end = array.m_end;
+   this->m_erange = array.m_erange;
+   this->m_countAddUp = array.m_countAddUp;
+   this->m_countAllocation = array.m_countAllocation;
+   this->m_countAllocationOffset = array.m_countAllocationOffset;
+
+   array.m_begin = nullptr;
+   array.m_end = nullptr;
+   array.m_erange = e_range_none;
+   array.m_countAllocation = 0;
+   array.m_countAllocation = 0;
+   array.m_countAllocationOffset = 0;
+
+}
 
 
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+template < typename OTHER_RANGE >
+base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::
+base_array(const OTHER_RANGE & range) requires
+(container_range < OTHER_RANGE >
+   && !::std::is_base_of_v < base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >, ::std::remove_cvref_t < OTHER_RANGE > >) :
+   base_array()
+{ 
 
+   for (auto p = range.begin(); range.iterator_ok(p); p++)
+   {
 
+      this->add(*p);
 
+   }
 
+}
 
 
 

@@ -17,7 +17,7 @@ enum enum_range : int
    /// literal.
    /// A simple char sz[20]= "stackstring"
    /// matches template<> const char (&s)[n];
-   e_range_string_literal = 4, 
+   e_range_string_literal = 4,
    /// scoped ownership seems also not usable
    /// once a ownership is done, reference
    /// count is incremented and then it should
@@ -29,6 +29,12 @@ enum enum_range : int
    //e_range_read_only = 4,
    //e_range_read_only_and_null_terminated = 5,
    //e_range_scoped_string_allocation = 2,
+   e_range_array_allocate = 128,
+   e_range_array_carriage_return = 256,
+   e_range_array_clear_on_allocate = 512,
+
+   //e_range_node_malloc = 1024,
+
 
 };
 
@@ -237,18 +243,17 @@ public:
    {
    }
 
-   constexpr range(nullptr_t) : range(nullptr, nullptr, e_range_none)
+   constexpr range(nullptr_t) :
+      range(nullptr, nullptr, e_range_none)
    {
 
    };
 
-   constexpr range() : range(nullptr, nullptr, e_range_none)
+   constexpr range() : 
+      range(nullptr, nullptr, e_range_none)
    {
    }
 
-   constexpr range(range & range)
-      : m_begin(range.m_begin), m_end(range.m_end), m_erange(range.m_erange) {}
-   constexpr range(range&& range) : m_begin(range.m_begin), m_end(range.m_end), m_erange(range.m_erange) { range.m_begin = nullptr; range.m_end = nullptr; range.m_erange = e_range_none; }
 
    template<::collection::count count>
    constexpr range(const ITEM(&array)[count], enum_range erange = e_range_none) 
@@ -287,19 +292,47 @@ public:
    //}
 
 
-   template<typed_range<iterator> RANGE>
-   constexpr range(const RANGE & range) : m_begin((this_iterator)range.begin()), m_end((this_iterator)range.end()), m_erange(range.m_erange)
+   template<typed_range<iterator> TYPED_RANGE>
+   constexpr range(const TYPED_RANGE& range) 
+      requires(!::std::is_same_v < TYPED_RANGE, THIS_RANGE >) :
+      m_begin((this_iterator)range.begin()), 
+      m_end((this_iterator)range.end()), 
+      m_erange(range.m_erange)
    {
+
+
    }
 
-   template<typed_range<const_iterator> RANGE>
-   constexpr range(const RANGE & range) : m_begin((this_iterator)range.m_begin), m_end((this_iterator)range.m_end), m_erange(e_range_none)
+
+   constexpr range(const range & range) :
+      m_begin(range.m_begin),
+      m_end(range.m_end),
+      m_erange(range.m_erange)
    {
+
    }
+
+
+   constexpr range(range && range) :
+      m_begin(range.m_begin),
+      m_end(range.m_end),
+      m_erange(range.m_erange)
+   {
+
+      range.m_begin = nullptr;
+      range.m_end = nullptr;
+      range.m_erange = e_range_none;
+
+   }
+
 
    template<typename TYPE>
-   constexpr range(TYPE *& p) : m_begin((this_iterator)p), m_end((this_iterator)find_first_null_character(p)),m_erange(e_range_null_terminated)
+   constexpr range(TYPE *& p) : 
+      m_begin((this_iterator)p), 
+      m_end((this_iterator)find_first_null_character(p)),
+      m_erange(e_range_null_terminated)
    {
+
    }
 
 
@@ -459,12 +492,12 @@ public:
 
    const_iterator begin() const
    {
-      return m_begin;
+      return (const_iterator) m_begin;
    }
 
    const_iterator end() const
    {
-      return m_end;
+      return (const_iterator) m_end;
    }
 
    this_iterator & begin(this_iterator begin)

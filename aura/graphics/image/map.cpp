@@ -63,13 +63,13 @@ namespace image
       if (uAreaMax > 0)
       {
 
-         erase_key(itemFind);
+         erase(itemFind);
 
       }
       else
       {
 
-         erase_key(this->begin()->key());
+         erase(this->begin()->key());
 
       }
 

@@ -50,7 +50,7 @@ namespace image
    //
    //   }
    //
-   //   pframe->m_pimage->map_base();
+   //   pframe->m_pimage->map();
    //
    //   //::color::color crBack = 0;
    //

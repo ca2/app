@@ -117,6 +117,12 @@ namespace gpu
    void memory_buffer::on_set_memory_buffer(const void* dataStatic, memsize sizeStatic)
    {
 
+      auto p = map(0, sizeStatic);
+
+      memcpy(p, dataStatic, sizeStatic);
+
+      unmap();
+
 
    }
 
@@ -256,15 +262,15 @@ namespace gpu
    }
 
 
-   void* memory_buffer::map_base()
+   void* memory_buffer::map()
    {
 
-      return map_base(0, m_size);
+      return map(0, m_size);
 
    }
 
 
-   void* memory_buffer::map_base(memsize start, memsize count)
+   void* memory_buffer::map(memsize start, memsize count)
    {
 
       if (!count)

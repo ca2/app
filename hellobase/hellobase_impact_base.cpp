@@ -302,7 +302,7 @@ pdirectorysystem->system() / "obs.png");
 
             }
 
-/*            pimage->map_base();
+/*            pimage->map();
 
             int h = (s.cy() / 3) * 3;
 

@@ -27,8 +27,6 @@ template < typename BLOCK >
 concept primitive_block = ::std::is_same<typename BLOCK::PRIMITIVE_BLOCK_TAG, PRIMITIVE_BLOCK_TAG_TYPE >::value;
 
 
-template < typename INTEGRAL >
-concept primitive_integral = std::is_integral_v < ::decay < INTEGRAL > >;
 
 //template < typename T >
 //concept primitive_integral_up_to_32_bit =
@@ -82,7 +80,9 @@ concept primitive_range = ::std::is_base_of_v < ::range< typename T::this_iterat
 
 
 template < typename T, typename ITERATOR_TYPE >
-concept typed_range = ::std::is_base_of_v < ::range< ITERATOR_TYPE >, T >;
+concept typed_range = 
+primitive_range < T >
+|| ::std::is_same_v < non_const < ITERATOR_TYPE >, non_const < typename T::this_iterator > >;
 
 
 template < typename FROM, typename TO >
@@ -753,34 +753,28 @@ concept container_type = requires(CONTAINER container)
 
 
 template < typename ARRAY >
-concept primitive_array = requires (ARRAY & array, ::collection::count count)
+concept primitive_array = requires (const ARRAY & array)
 {
 
    array.array_base_ok();
-   { array.size() } -> ::same_as<::collection::count>;
-   array.set_size(count);
 
 };
 
 
 template < typename LIST >
-concept primitive_list = requires(LIST & list, ::collection::count count)
+concept primitive_list = requires(const LIST & list)
 {
 
    list.list_base_ok();
-   { list.size() } -> ::same_as<::collection::count>;
-   list.pick_head();
-   list.pick_tail();
 
 };
 
 
 template < typename MAP >
-concept primitive_map = requires(MAP & map, ::collection::count count)
+concept primitive_map = requires(const MAP & map)
 {
 
    map.pair_map_base_ok();
-   { map.size() } -> ::same_as<::collection::count>;
 
 };
 
@@ -837,6 +831,10 @@ inline long long as_long_long(const ENUM & e) { return (long long)(::raw_enum_of
 
 
 template<typename ITERATOR_TYPE>
+class character_range;
+
+
+template<typename ITERATOR_TYPE>
 class const_string_range;
 
 
@@ -877,8 +875,8 @@ using string_array_base = string_base_array < string, string, e_type_string_arra
 using wstring_array_base = string_base_array < wstring, wstring >;
 
 
-using string_array = ::array_particle < string_array_base >;
-using wstring_array = ::array_particle < wstring_array_base >;
+using string_array = ::comparable_array_particle < string_array_base >;
+using wstring_array = ::comparable_array_particle < wstring_array_base >;
 
 
 template < typename POINTER_BUT_NO_INTEGRAL, typename TYPE >
@@ -904,10 +902,25 @@ constexpr _Ty&& land(_Ty&& t, non_reference < _Ty>&& _Arg) noexcept
    return t = static_cast<_Ty&&>(_Arg);
 }
 
+template < typename T >
+concept generic_range = requires(const T & t)
+{
+
+   t.begin();
+   t.end();
+
+};
+
+
+//template < typename T >
+//concept container_range =
+//::std::is_base_of_v < ::range< typename T::this_iterator >, T >
+//&& !::std::is_base_of_v < ::character_range< typename T::this_iterator >, T >;
+
+
 
 template < typename T >
 concept container_range =
-::std::is_base_of_v < ::range< typename T::this_iterator >, T >
-&& !::std::is_base_of_v < ::const_string_range< typename T::this_iterator >, T >;
-
+generic_range < T >
+&& !::std::is_base_of_v < ::character_range< typename T::this_iterator >, T >;
 

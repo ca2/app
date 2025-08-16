@@ -319,7 +319,7 @@ namespace platform
       // //virtual ::collection::count get_desk_monitor_count();
       // //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::int_rectangle * prectangle);
 
-      // virtual void  get_monitor(int_rectangle_array & rectaMonitor, int_rectangle_array & rectaIntersect, const ::int_rectangle & rectangle);
+      // virtual void  get_monitor(int_rectangle_array_base & rectaMonitor, int_rectangle_array_base & rectaIntersect, const ::int_rectangle & rectangle);
 
       // // apex commented
       // //virtual ::collection::index initial_frame_position(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bMove, ::user::interaction * pinteraction);

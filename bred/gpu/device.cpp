@@ -3,6 +3,7 @@
 #include "context.h"
 #include "device.h"
 #include "cpu_buffer.h"
+#include "frame_storage.h"
 #include "layer.h"
 #include "render.h"
 #include "renderer.h"
@@ -925,6 +926,21 @@ namespace gpu
 
       m_iCurrentFrame2 = (m_iCurrentFrame2 + 1) % iFrameCount;
 
+      auto& pframestorage = m_framestoragea.ø(m_iCurrentFrame2);
+
+      if (!pframestorage)
+      {
+
+         __øconstruct(pframestorage);
+
+         pframestorage->initialize_gpu_frame_storage(this);
+
+      }
+
+      pframestorage->m_iBuffer = 0;
+
+      pframestorage->m_iBufferOffset = 0;
+
    }
 
 
@@ -1343,6 +1359,15 @@ namespace gpu
       return player;
 
    }
+
+
+   frame_storage* device::current_frame_storage()
+   {
+
+      return m_framestoragea.ø(m_iCurrentFrame2);
+
+   }
+
 
 
 } // namespace gpu

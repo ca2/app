@@ -19,9 +19,13 @@ public:
 //
 //   };
 
+
+   using BASE_RANGE = ::const_string_range < ITERATOR_TYPE >;
+   using RAW_CHARACTER_RANGE = typename BASE_RANGE::RAW_CHARACTER_RANGE;
+
+
    using PRIMITIVE_SCOPED_STRING_TAG = PRIMITIVE_SCOPED_STRING_TAG_TYPE;
 
-   using BASE_RANGE = const_string_range < ITERATOR_TYPE >;
    using ITEM_POINTER = get_type_item_pointer< ITERATOR_TYPE>;
    using ITEM = dereference < ITEM_POINTER >;
    using CHARACTER = ITEM;

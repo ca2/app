@@ -922,7 +922,7 @@ void string_base_array < Type, RawType, t_etypeContainer > ::_001AddTokens(const
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_base_array < Type, RawType, t_etypeContainer > ::add_smallest_tokens(const SCOPED_STRING& str, const RawStringArray& straSeparator, bool bAddEmpty, bool bWithSeparator)
+void string_base_array < Type, RawType, t_etypeContainer > ::add_smallest_tokens(const SCOPED_STRING& str, const BASE_RAW_STRING_ARRAY & straSeparator, bool bAddEmpty, bool bWithSeparator)
 {
 
    ::tokenizer strTokenizer(str);
@@ -1390,7 +1390,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 ::collection::index string_base_array < Type, RawType, t_etypeContainer > ::_066Find(const SCOPED_STRING& strParam) const
 {
 
-   RawString str(strParam);
+   BASE_RAW_STRING str(strParam);
 
    ::collection::index iSel = this->find_first(str);
 
@@ -2198,7 +2198,7 @@ template < primitive_container CONTAINER >
    for (auto& item : container)
    {
 
-      count += this->erase_item(item);
+      count += this->erase(item);
 
    }
 
@@ -2653,11 +2653,8 @@ string_base_array < Type, RawType, t_etypeContainer >& string_base_array < Type,
 }
 
 
-
-
-
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_base_array < Type, RawType, t_etypeContainer > ::operator == (const typename string_base_array < Type, RawType, t_etypeContainer >::RawStringArray& a) const
+bool string_base_array < Type, RawType, t_etypeContainer > ::operator == (const typename string_base_array < Type, RawType, t_etypeContainer >::BASE_RAW_STRING_ARRAY & a) const
 {
 
    if (a.get_size() != get_size())
@@ -2685,7 +2682,7 @@ bool string_base_array < Type, RawType, t_etypeContainer > ::operator == (const 
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_base_array < Type, RawType, t_etypeContainer > ::operator != (const typename string_base_array < Type, RawType, t_etypeContainer >::RawStringArray& a) const
+bool string_base_array < Type, RawType, t_etypeContainer > ::operator != (const typename string_base_array < Type, RawType, t_etypeContainer >::BASE_RAW_STRING_ARRAY & a) const
 {
 
    return !operator == (a);
@@ -4048,10 +4045,10 @@ Type string_base_array < Type, RawType, t_etypeContainer > ::_008IfImplode(const
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::array < const ::ansi_character* > string_base_array < Type, RawType, t_etypeContainer > ::c_ansi_get(bool bMemoryAlloc) const
+::array_base < const ::ansi_character* > string_base_array < Type, RawType, t_etypeContainer > ::c_ansi_get(bool bMemoryAlloc) const
 {
 
-   ::array < const ::ansi_character* > psza;
+   ::array_base < const ::ansi_character* > psza;
 
    for (::collection::index i = 0; i < get_size(); i++)
    {

@@ -27,6 +27,7 @@ namespace gpu
       map_base < ::draw2d::enum_model, ::pool <::gpu::model_buffer > >   m_mapModelBufferPool;
       ::pointer < ::gpu::shader >         m_pgpushaderTextOut;
       ::pointer < ::gpu::model_buffer >         m_pmodelbufferTextOutDummy;
+      //::pointer < ::gpu::shader >                 m_pshaderLine;
 
       pool_group* m_ppoolgroupFrame;
 
@@ -154,6 +155,8 @@ namespace gpu
 
       void fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color) override;
 
+      using ::draw2d::graphics::line;
+      void line(double x1, double y1, double x2, double y2, ::draw2d::pen* ppen) override;
 
       using ::draw2d::graphics::get_text_extent;
       double_size get_text_extent(const ::scoped_string& scopedstr) override;

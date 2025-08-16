@@ -24,10 +24,10 @@ public:
    using ARG_PAYLOAD = typename BASE_ITEM::ARG_PAYLOAD;
 
 
-   BASE_NODE *          m_back;
-   BASE_NODE *          m_next;
-   BASE_NODE *          m_nextHash;
-   BASE_NODE **         m_pbackHash;
+   BASE_NODE *          m_back = nullptr;
+   BASE_NODE *          m_next = nullptr;
+   BASE_NODE *          m_nextHash = nullptr;
+   BASE_NODE **         m_pbackHash = nullptr;
 
 
    using BASE_ITEM::BASE_ITEM;

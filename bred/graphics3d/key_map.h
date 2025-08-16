@@ -33,7 +33,7 @@ namespace graphics3d
 
       ::user::e_key m_ekeya[e_key_count];
 
-      void map_base(::graphics3d::enum_key ekeyCube, ::user::e_key ekey)
+      void map(::graphics3d::enum_key ekeyCube, ::user::e_key ekey)
       {
 
          m_ekeya[ekeyCube] = ekey;

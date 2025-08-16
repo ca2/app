@@ -18,6 +18,9 @@ namespace gpu
 {
 
 
+   class frame_storage;
+
+
    enum enum_device_target
    {
 
@@ -78,6 +81,9 @@ namespace gpu
       ::pointer_array < pool_group >            m_poolgroupaFrame;
       ::array < ::pointer_array < ::particle > >m_particleaFrame;
 
+      ::pointer_array < ::gpu::frame_storage >  m_framestoragea;
+
+
       
 
       device();
@@ -110,7 +116,7 @@ namespace gpu
       virtual bool is_starting_frame()const;
 
 
-
+      virtual ::gpu::frame_storage* current_frame_storage();
 
 
       virtual ::file::path shader_path(const ::file::path& pathShader);

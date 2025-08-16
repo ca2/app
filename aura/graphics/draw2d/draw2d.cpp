@@ -985,9 +985,9 @@ void draw2d::emboss_predicate(
    bool draw2d::channel_spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc, int iChannel, int iRadius, const ::color::color & colorSpreadSetColor)
    {
 
-      pimageDst->map_base();
+      pimageDst->map();
 
-      pimageSrc->map_base();
+      pimageSrc->map();
 
       int iFilterW = iRadius * 2 + 1;
       int iFilterH = iRadius * 2 + 1;

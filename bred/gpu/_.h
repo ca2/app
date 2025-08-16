@@ -10,6 +10,7 @@ namespace gpu
    class cpu_buffer;
    class context;
    class shader;
+   class frame_storage;
    //class program;
 
    enum enum_type

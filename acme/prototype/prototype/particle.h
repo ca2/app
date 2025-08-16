@@ -127,7 +127,16 @@ public:
 
 
    }
-   
+
+   particle(::particle&& particle) :
+      ::quantum(::transfer(particle)),
+      ::subparticle(::transfer(particle)),
+      ::signal_handler::base(::transfer(particle))
+   {
+
+
+   }
+
    
 //#else
 //   particle() : m_countReference(1) {}

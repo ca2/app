@@ -6938,7 +6938,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 
    //   //   read_to_cpu_buffer();
 
-   //   //   m_pimage->map_base();
+   //   //   m_pimage->map();
 
    //   //   m_pimage->copy(&m_pgpucontextCompositor->m_pcpubuffer->m_pixmap);
 

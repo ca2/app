@@ -733,7 +733,7 @@ namespace experience_core
                      if (__defer_construct(ppen))
                      {
 
-                        ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
+                        ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_item_border));
 
                      }
 
@@ -1545,7 +1545,23 @@ namespace experience_core
          else if (econtroltype == ::user::e_control_type_tab)
          {
 
-            if (eelement == ::e_element_item_text)
+            if (eelement == ::e_element_item_border)
+            {
+               if (is_dark_mode())
+               {
+
+                  return argb(255, 255, 255,  255);
+
+               }
+               else
+               {
+
+                  return argb(255, 25, 25, 25);
+
+               }
+
+            }
+            else if (eelement == ::e_element_item_text)
             {
 
                if (estate & ::user::e_state_hover)

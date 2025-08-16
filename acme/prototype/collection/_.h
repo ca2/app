@@ -5,4 +5,7 @@
 #include "_generic_map.h"
 
 
+class atom_array_base;
+
+
 

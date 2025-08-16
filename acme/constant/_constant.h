@@ -925,16 +925,6 @@ enum enum_raw
 };
 
 
-enum enum_null
-{
-
-
-   e_null
-
-
-};
-
-
 enum enum_empty
 {
 

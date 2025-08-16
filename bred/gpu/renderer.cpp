@@ -555,7 +555,7 @@ namespace gpu
                         //if (pixmap.is_ok())
                         //{
 
-                        //   //pimage->map_base();
+                        //   //pimage->map();
 
                         //   //pimage->fill_channel(255, ::color::e_channel_opacity);
 
@@ -696,7 +696,7 @@ namespace gpu
          //if (pixmap.is_ok())
          //{
 
-         //   //pimage->map_base();
+         //   //pimage->map();
 
          //   //pimage->fill_channel(255, ::color::e_channel_opacity);
 
@@ -765,7 +765,7 @@ namespace gpu
    //
    //   m_pimageFromGpu->create(size);
    //
-   //   m_pimageFromGpu->map_base();
+   //   m_pimageFromGpu->map();
    //
    //   m_pimageFromGpu->copy(&m_pgpucontext->m_pcpubuffer->m_pixmap);
    //
@@ -1611,7 +1611,7 @@ namespace gpu
 
       ////   throw ::exception(error_not_implemented, "renderer::endDraw() not implemented for e_output_cpu_buffer");
 
-      ////   /*m_pimage->map_base();
+      ////   /*m_pimage->map();
 
       ////   m_pimage->copy(&m_pgpucontext->m_pcpubuffer->m_pixmap);*/
 

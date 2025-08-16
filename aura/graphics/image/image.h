@@ -732,7 +732,7 @@ namespace image
       const ::image32_t * get_data() const
       {
 
-         map_base();
+         map();
 
          return image32();
 
@@ -742,7 +742,7 @@ namespace image
       ::image32_t * get_data()
       {
 
-         map_base();
+         map();
 
          return image32();
 

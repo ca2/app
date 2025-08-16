@@ -34,7 +34,7 @@ namespace user
    struct set_need_redraw
    {
 
-      ::int_rectangle_array      m_rectangleaNeedRedraw;
+      ::int_rectangle_array_base      m_rectangleaNeedRedraw;
       function<void()>           m_function;
       bool                       m_bAscendants;
 
@@ -935,7 +935,7 @@ namespace user
       virtual void set_need_layout();
       virtual void set_recalculate_clip_rectangle();
       //void set_need_layout() { m_bNeedLayout = true; }
-      void set_need_redraw(const ::int_rectangle_array& rectangleNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;
+      void set_need_redraw(const ::int_rectangle_array_base& rectangleNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;
       virtual bool needs_to_draw(::draw2d::graphics * pgraphics, const ::int_rectangle& rectangleNeedsToDraw = {});
       virtual void set_need_load_form_data() override;
       virtual void set_need_save_form_data() override;

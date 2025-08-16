@@ -70,7 +70,7 @@ namespace hardware
    void devices::erase_device_group(device_group * pdevicegroup)
    {
 
-      m_mapdevicegroup.erase_key(pdevicegroup->m_edevice);
+      m_mapdevicegroup.erase(pdevicegroup->m_edevice);
 
       if (m_mapdevicegroup.is_empty())
       {

@@ -682,7 +682,8 @@ namespace user
 
    }
 
-   double_point_array & picture::drawing_polygon() const
+
+   double_point_array_base & picture::drawing_polygon() const
    {
 
       double_rectangle rectangle(0.0, 0.0, 0.0, 0.0);

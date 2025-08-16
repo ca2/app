@@ -483,7 +483,7 @@ namespace gpu
 
          end_debug_happening();
 
-      //   m_pshaderBound->unbind();
+         m_pshaderBound->unbind();
 
       }
       start_debug_happening("shader changing");

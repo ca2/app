@@ -37,7 +37,7 @@ namespace gpu
 
       bool m_bDummy;
       
-
+      ::string m_strDebugString;
 
 
 
@@ -277,7 +277,7 @@ namespace gpu
          const ::double_size& size);
 
       template < typename VERTEX >
-      memory_map < memory_buffer, VERTEX > map_base()
+      memory_map < memory_buffer, VERTEX > map()
       {
 
          return { m_pbufferVertex.m_p, (VERTEX*)nullptr };

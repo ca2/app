@@ -193,18 +193,6 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::
 class pointer_list;             // list_base of void *
 class object_list;              // list_base of matter*
 
-//   // Maps (aka Dictionaries)
-//   class CMapWordToOb;         // map_base from unsigned short to matter*
-//   class CMapWordToPtr;        // map_base from unsigned short to void *
-//   class CMapPtrToWord;        // map_base from void * to unsigned short
-//   class map_ptr_to_ptr;         // map_base from void * to void *
-//
-//   // Special string variants
-//   class string_list_base;          // list_base of Strings
-//   class CMapStringToPtr;      // map_base from string to void *
-//   class CMapStringToOb;       // map_base from string to matter*
-////   class string_to_string_base;   // map_base from string to string
-
 
 
 

@@ -57,7 +57,7 @@ void ftpfs::initialize_ftpfs(::particle * pparticle, const ::scoped_string & sco
 //void ftpfs::initialize(::particle * pparticle)
 //{
 //
-//   auto estatus = __construct_new(this, m_pftpnet);
+//   auto estatus = øconstruct_new(this, m_pftpnet);
 //
 //   return estatus;
 //

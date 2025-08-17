@@ -185,7 +185,7 @@ namespace acme
 
       status_pointer <::string> pstring;
 
-      __construct_new(pstring);
+      øconstruct_new(pstring);
 
       trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
          {
@@ -235,7 +235,7 @@ namespace acme
 
       status_pointer <::string> pstring;
 
-      __construct_new(pstring);
+      øconstruct_new(pstring);
 
       trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
          {
@@ -279,7 +279,7 @@ namespace acme
 
       status_pointer <::string> pstring;
 
-      __construct_new(pstring);
+      øconstruct_new(pstring);
 
       trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
          {
@@ -590,7 +590,7 @@ namespace acme
 
    //   status_pointer <::string> pstring;
 
-   //   __construct_new(pstring);
+   //   øconstruct_new(pstring);
 
    //   trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
    //      {

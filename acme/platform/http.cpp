@@ -62,7 +62,7 @@ namespace platform
    ::string http::get(const ::url::url & url, const class ::time & timeTimeout)
    {
 
-      auto defer_get = __create_new < ::nano::http::get >();
+      auto defer_get = øcreate_new < ::nano::http::get >();
 
       defer_get->m_url = url;
 
@@ -80,7 +80,7 @@ namespace platform
    ::string http::get(const ::url::url & url, ::property_set & set, const class ::time & timeTimeout)
    {
 
-      auto defer_get = __øcreate < ::nano::http::get >();
+      auto defer_get = øcreate < ::nano::http::get >();
 
       defer_get->m_url = url;
 
@@ -118,7 +118,7 @@ namespace platform
 
       auto pfile = file_system()->get_writer(payloadFile);
 
-      auto defer_get = __create_new < ::nano::http::get >();
+      auto defer_get = øcreate_new < ::nano::http::get >();
 
       defer_get->m_url = url;
 
@@ -138,7 +138,7 @@ namespace platform
 
       auto pfile = file_system()->get_writer(payloadFile, ::file::e_open_create);
 
-      auto defer_get = __øcreate < ::nano::http::get >();
+      auto defer_get = øcreate < ::nano::http::get >();
 
       defer_get->m_url = url;
 

@@ -72,7 +72,7 @@ namespace bred
    //::pointer<progress_control>application::show_progress(::user::interaction* puiParent, const ::scoped_string & scopedstrTitle, ::collection::count iProgressCount)
    //{
 
-   //   auto pprogresscontrol = __create_new <  ::userex::progress_control >();
+   //   auto pprogresscontrol = øcreate_new <  ::userex::progress_control >();
 
    //   pprogresscontrol->defer_show(puiParent, pszTitle, iProgressCount);
 
@@ -92,7 +92,7 @@ namespace bred
    //::pointer < ::graphics3d::application > application::start_graphics3d_aplication()
    //{
 
-   //   auto p3dapplication = __øcreate < graphics3d::application>();
+   //   auto p3dapplication = øcreate < graphics3d::application>();
 
    //   return p3dapplication;
 
@@ -256,7 +256,7 @@ namespace bred
 
       //auto estatus =
 
-      pfactoryGpu->__øconstruct(this, m_pgpuapproach);
+      pfactoryGpu->øconstruct(this, m_pgpuapproach);
 
 
       m_pgpuapproach->initialize_gpu_approach();

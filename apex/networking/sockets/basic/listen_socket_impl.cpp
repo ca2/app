@@ -461,7 +461,7 @@ namespace sockets
 
       socket::initialize(pparticle);
 
-      __øconstruct(m_plistensocketImpl);
+      øconstruct(m_plistensocketImpl);
 
       //m_p2 = m_plistensocketImpl->m_p2;
 
@@ -508,7 +508,7 @@ namespace sockets
    ::pointer<listen_socket_impl>listen_socket_impl::create_listen_socket_impl()
    {
 
-      return __øcreate < listen_socket_impl >();
+      return øcreate < listen_socket_impl >();
 
    }
 
@@ -520,7 +520,7 @@ namespace sockets
 
       return nullptr;
 
-      //return __øcreate < listen_socket_impl >();
+      //return øcreate < listen_socket_impl >();
 
    }
 

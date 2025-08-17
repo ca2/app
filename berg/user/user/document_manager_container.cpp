@@ -57,7 +57,7 @@ namespace user
       if (!m_pdocmanager)
       {
 
-         __construct_new(m_pdocmanager);
+         øconstruct_new(m_pdocmanager);
 
       }
 
@@ -106,7 +106,7 @@ namespace user
       if (!m_pdocmanager)
       {
 
-         __construct_new(m_pdocmanager);
+         øconstruct_new(m_pdocmanager);
 
       }
 

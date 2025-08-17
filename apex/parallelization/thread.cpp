@@ -695,7 +695,7 @@ void thread::on_ping()
 ::task_pool* thread::taskpool()
 {
 
-   __defer_construct_new(m_ptaskpool);
+   ødefer_construct_new(m_ptaskpool);
 
    return m_ptaskpool;
 
@@ -4918,7 +4918,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
       if (m_pmutexThreadUiPtra == nullptr)
       {
 
-         __øconstruct(m_pmutexThreadUiPtra);
+         øconstruct(m_pmutexThreadUiPtra);
 
       }
 
@@ -5054,7 +5054,7 @@ thread_ptra::~thread_ptra()
 //   if (::is_null(pthread))
 //   {
 //
-//      auto pthreadNew = __object(pparticle)->__create_new < ::thread > ();
+//      auto pthreadNew = __object(pparticle)->øcreate_new < ::thread > ();
 //
 //      pthreadNew->increment_reference_count(REFERENCING_DEBUGGING_P_NOTE(pparticle, nullptr));
 //
@@ -5083,7 +5083,7 @@ void thread::add_waiting_happening(happening * phappening)
 
    _synchronous_lock synchronouslock(this->synchronization());
 
-   __defer_construct_new(m_phappeningaWait);
+   ødefer_construct_new(m_phappeningaWait);
 
    m_phappeningaWait->add(phappening);
 

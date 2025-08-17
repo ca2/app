@@ -78,7 +78,7 @@ namespace hotplugin
 
       }
 
-      auto pbrush = pgraphics->__øcreate < ::draw2d::brush >();
+      auto pbrush = pgraphics->øcreate < ::draw2d::brush >();
 
       pbrush->create_solid(argb(190, 49, 50, 49));
 
@@ -87,7 +87,7 @@ namespace hotplugin
       if (!bStatic)
       {
 
-         auto pbrushGreen = pgraphics->__øcreate < ::draw2d::brush > ();
+         auto pbrushGreen = pgraphics->øcreate < ::draw2d::brush > ();
 
          pbrushGreen->create_solid(argb(190, 80, 190, 123));
 
@@ -118,7 +118,7 @@ namespace hotplugin
 
       }
 
-      auto ppen = pgraphics->__øcreate < ::draw2d::pen > ();
+      auto ppen = pgraphics->øcreate < ::draw2d::pen > ();
 
       ppen->create_solid(1.0f, argb(149, 150, 149, 142));
 

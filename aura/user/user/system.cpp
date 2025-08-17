@@ -225,7 +225,7 @@ namespace user
          __check_refdbg
 
          //estatus =
-         pparticle->__id_construct(pinteraction, m_typeatomNewImpact);
+         pparticle->øid_construct(pinteraction, m_typeatomNewImpact);
 
          __check_refdbg
 

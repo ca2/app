@@ -351,7 +351,7 @@ namespace folder_zip
    ::file_pointer folder::get_file()
    {
 
-      auto pfile = __create_new < ::folder_zip::file >();
+      auto pfile = øcreate_new < ::folder_zip::file >();
 
       pfile->m_pfolder = this;
 

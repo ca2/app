@@ -816,7 +816,7 @@ namespace axis
    //   //   return estatus;
 
    //   //}
-   //   auto estatus = __øconstruct(m_puser);
+   //   auto estatus = øconstruct(m_puser);
 
    //   if (!estatus || !m_puser)
    //   {
@@ -873,7 +873,7 @@ namespace axis
 
 
 
-   //   auto estatus = __construct_new(m_puserex);
+   //   auto estatus = øconstruct_new(m_puserex);
 
    //   if (!estatus)
    //   {
@@ -1202,7 +1202,7 @@ namespace axis
 
       auto puser = pcredentials->m_puser;
 
-      //auto pdialog = ::__create_new<::account::dialog>();
+      //auto pdialog = ::øcreate_new<::account::dialog>();
 
       //pdialog->initialize_account_dialog(pcredentials);
 

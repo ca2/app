@@ -79,11 +79,11 @@ namespace filemanager
 
             //auto estatus = 
             
-            __construct_new(m_puserlistcache);
+            øconstruct_new(m_puserlistcache);
 
             set_cache_interface(m_puserlistcache);
 
-            m_pimagelist = __create_new< ::image::image_list>();
+            m_pimagelist = øcreate_new< ::image::image_list>();
 
             m_pimagelist->create(16, 16, 0, 0, 0);
 
@@ -757,7 +757,7 @@ namespace filemanager
 
             update_impact();
 
-            auto pxmldocument = __create_new < xml::document >();
+            auto pxmldocument = øcreate_new < xml::document >();
 
             pxmldocument->load(scopedstrXml);
 

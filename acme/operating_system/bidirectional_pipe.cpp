@@ -22,9 +22,9 @@ namespace operating_system
    bool bidirectional_pipe::create(bool bBlock,bool bInherit)
    {
 
-      system()->__øconstruct(m_ppipeIn);
+      system()->øconstruct(m_ppipeIn);
 
-      system()->__øconstruct(m_ppipeOut);
+      system()->øconstruct(m_ppipeOut);
 
       if(!m_ppipeIn->create(bBlock,bInherit))
       {

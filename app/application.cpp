@@ -46,7 +46,7 @@ namespace app_app
    void application::on_request(::request * prequest)
    {
 
-      auto pmainwindow = __create_new < ::app_app::main_window >();
+      auto pmainwindow = øcreate_new < ::app_app::main_window >();
 
       pmainwindow->display(e_display_normal);
 

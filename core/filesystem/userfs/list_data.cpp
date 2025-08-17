@@ -122,7 +122,7 @@ namespace userfs
 
       ::user::list_data::initialize(pparticle);
 
-      __construct_new(m_pitema);
+      øconstruct_new(m_pitema);
 
    }
 
@@ -360,7 +360,7 @@ namespace userfs
 
       //   listingFolderFinal.defer_add(pathFolderFinal);
 
-      //   auto plistitem = __create_new<list_item>();
+      //   auto plistitem = øcreate_new<list_item>();
 
       //   plistitem->m_pathFinal = pathFinal;
 
@@ -370,7 +370,7 @@ namespace userfs
 
       //}
 
-      __construct_new(m_pitema);
+      øconstruct_new(m_pitema);
 
       information() << "::userfs::list update";
 
@@ -385,7 +385,7 @@ namespace userfs
 
          ::file::path & pathUser = listingUser[i];
 
-         auto plistitem = __create_new<list_item>();
+         auto plistitem = øcreate_new<list_item>();
 
          plistitem->final_path_reference() = pathFinal;
 

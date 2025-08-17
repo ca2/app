@@ -573,7 +573,7 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
       }
 
-      auto plink = __create_new < ::file::link >();
+      auto plink = øcreate_new < ::file::link >();
 
       string strLink = stra[0];
 
@@ -671,7 +671,7 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
 #else
 
-      auto plink = __create_new < ::file::link >();
+      auto plink = øcreate_new < ::file::link >();
       
       string strLink;
 

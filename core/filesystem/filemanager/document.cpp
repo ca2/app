@@ -282,7 +282,7 @@ namespace filemanager
       else if(itema.has_element())
       {
 
-         auto prequest = __create_new <::request>();
+         auto prequest = øcreate_new <::request>();
 
          prequest->m_payloadFile = itema[0]->user_path();
          
@@ -894,7 +894,7 @@ namespace filemanager
    void document::_001OnNewManager(::message::message * pmessage)
    {
 
-      //auto prequest = __create_new <::request>();
+      //auto prequest = øcreate_new <::request>();
 
       //prequest->finish_initialization();
 

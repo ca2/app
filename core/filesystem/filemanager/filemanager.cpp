@@ -261,7 +261,7 @@ namespace filemanager
       //factory()->add_factory_item <fs::simple::list_impact >();
       //factory()->add_factory_item <fs::simple::tree >();
 
-      //__construct_new(this, m_pmap);
+      //øconstruct_new(this, m_pmap);
 
       //auto& user = User;
 
@@ -282,7 +282,7 @@ namespace filemanager
          ::type < form_child_frame >(),
          ::type < form >()));
 
-      //__øconstruct(m_pimpactsystemForm, pmulti);
+      //øconstruct(m_pimpactsystemForm, pmulti);
 
     /*  
 
@@ -295,7 +295,7 @@ namespace filemanager
          ::type < operation_child_frame >(),
          ::type < operation_impact >()));
 
-      //__øconstruct(m_pimpactsystemOperation, psingle);
+      //øconstruct(m_pimpactsystemOperation, psingle);
 
       //psession->add_document_template(psingle);
 
@@ -360,7 +360,7 @@ namespace filemanager
 
    //   }
 
-   //   auto pdata = __create_new<data>();
+   //   auto pdata = øcreate_new<data>();
 
    //   pdata->initialize_filemanager_data(this);
 
@@ -433,7 +433,7 @@ namespace filemanager
 
       //}
 
-      auto pdata = __create_new<data>();
+      auto pdata = øcreate_new<data>();
 
       pdata->initialize_filemanager_data(this);
 

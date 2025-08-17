@@ -86,7 +86,7 @@ namespace filemanager
 
             initialize_split_layout();
 
-            __construct_new(m_ptree);
+            øconstruct_new(m_ptree);
 
             m_ptree->m_pserver = this;
 
@@ -159,7 +159,7 @@ namespace filemanager
 
                   // auto pcontext = get_context();
 
-               auto phttpmessage = __create_new < ::http::message >();
+               auto phttpmessage = øcreate_new < ::http::message >();
 
                phttpmessage->payload("request") = "";
 

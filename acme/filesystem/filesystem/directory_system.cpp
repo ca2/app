@@ -1575,7 +1575,7 @@ void directory_system::init_system()
 
    }
 
-   //__øconstruct(m_pfilewatcher);
+   //øconstruct(m_pfilewatcher);
 
    pdirectorysystem->create(this->bookmark());
 

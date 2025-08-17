@@ -275,7 +275,7 @@ namespace platform
       if (!m_papplicationMain)
       {
 
-         __raw_construct(m_papplicationMain);
+         øraw_construct(m_papplicationMain);
 
          application_main(m_papplicationMain);
 
@@ -532,13 +532,13 @@ namespace platform
 
       //::output_debug_string("Going to create simple log\n");
 
-      //m_plogger = __create_new < ::simple_log >();
+      //m_plogger = øcreate_new < ::simple_log >();
 
-      __øconstruct(m_plogger);
+      øconstruct(m_plogger);
 
-      //__øconstruct(m_pmutexTask);
+      //øconstruct(m_pmutexTask);
 
-      //__øconstruct(m_pmutexTaskOn);
+      //øconstruct(m_pmutexTaskOn);
 
       //::output_debug_string("output_debug_string : simple log created\n");
 
@@ -619,9 +619,9 @@ namespace platform
       //m_pdirectorysystem = nullptr;
       //m_ppathsystem = nullptr;
 
-      __defer_construct_new(m_pmathematics);
+      ødefer_construct_new(m_pmathematics);
 
-      __defer_construct_new(m_pprototype);
+      ødefer_construct_new(m_pprototype);
 
       //::plane_system::on_initialize_particle();
 
@@ -689,7 +689,7 @@ namespace platform
 
       //information() << "initialize_system create nano";
 
-      //__øconstruct(m_pnano);
+      //øconstruct(m_pnano);
 
       //m_psystemimpl = ___new system_impl();
 
@@ -878,7 +878,7 @@ namespace platform
       if (!m_psystemfactory)
       {
 
-         __construct_new(m_psystemfactory);
+         øconstruct_new(m_psystemfactory);
 
       }
 
@@ -932,7 +932,7 @@ namespace platform
 
 #if !defined(WINDOWS)
 
-      __øconstruct(m_pexceptiontranslator);
+      øconstruct(m_pexceptiontranslator);
 
       m_pexceptiontranslator->attach();
 
@@ -940,7 +940,7 @@ namespace platform
 
       //information() << "create_os_node going to create node";
 
-      papplication->__øconstruct(m_pnode);
+      papplication->øconstruct(m_pnode);
 
       m_pnode = m_pnode;
 
@@ -951,9 +951,9 @@ namespace platform
       //
       // }
 
-      //__øconstruct(m_pmutexTask);
+      //øconstruct(m_pmutexTask);
 
-      __øconstruct(m_pmutexHttpDownload);
+      øconstruct(m_pmutexHttpDownload);
 
       //if(!estatus)
       //{
@@ -1022,18 +1022,18 @@ namespace platform
 
 #endif
 
-      __construct_new(m_purlcontext);
+      øconstruct_new(m_purlcontext);
 
       //::acme::idpool::init(this);
 
       //      /// Create/Replace logger
 
-      __construct_new(m_pdatetime);
+      øconstruct_new(m_pdatetime);
 
 
       m_pnode->m_htaskSystem = m_htask;
 
-      //auto estatus = __defer_construct_new(m_pfactorysquare);
+      //auto estatus = ødefer_construct_new(m_pfactorysquare);
 
       //if (!estatus)
       //{
@@ -1051,7 +1051,7 @@ namespace platform
 
       // }
 
-      //estatus = __øconstruct(m_pnode);
+      //estatus = øconstruct(m_pnode);
 
       //if (!m_pnode)
       //{
@@ -1060,9 +1060,9 @@ namespace platform
 
       //}
 
-      //auto estatus = __raw_construct(m_pdirectorysystem);
+      //auto estatus = øraw_construct(m_pdirectorysystem);
 
-      __raw_construct(m_pdirectorysystem);
+      øraw_construct(m_pdirectorysystem);
 
       /*if (!estatus)
        {
@@ -1075,9 +1075,9 @@ namespace platform
 
        //    m_pdirectorysystem->increment_reference_count();
 
-       //estatus = __raw_construct(m_pfilesystem);
+       //estatus = øraw_construct(m_pfilesystem);
 
-      __raw_construct(m_pfilesystem);
+      øraw_construct(m_pfilesystem);
 
       //if (!estatus)
       //{
@@ -1086,9 +1086,9 @@ namespace platform
 
       //}
 
-      //estatus = __raw_construct(m_ppathsystem);
+      //estatus = øraw_construct(m_ppathsystem);
 
-      __raw_construct(m_ppathsystem);
+      øraw_construct(m_ppathsystem);
 
       //if (!estatus)
       //{
@@ -1162,7 +1162,7 @@ namespace platform
       ////}
       ////estatus =
 
-      //__øconstruct(m_pfilesystem);
+      //øconstruct(m_pfilesystem);
 
       ////if(!estatus)
       ////{
@@ -1177,7 +1177,7 @@ namespace platform
 
       ////::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
-      //__øconstruct(m_pdirectorysystem);
+      //øconstruct(m_pdirectorysystem);
 
       //if (!estatus)
       //{
@@ -2227,7 +2227,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       if (!payloadFile.is_empty())
       {
 
-         auto prequest = __create_new<::request>();
+         auto prequest = øcreate_new<::request>();
 
          prequest->m_ecommand = e_command_file_open;
 
@@ -2262,7 +2262,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          //initialize_nano_window(factory());
 
-         __construct_new(m_pnano);
+         øconstruct_new(m_pnano);
 
       }
 
@@ -2290,7 +2290,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          }
 
-         __øconstruct(pcomponent);
+         øconstruct(pcomponent);
 
          pcomponent->m_strComponent = scopedstrComponent;
 
@@ -2344,7 +2344,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //
    //      initialize_nano_http(factory());
    //
-   //      __øconstruct(m_pnanohttp);
+   //      øconstruct(m_pnanohttp);
    //
    //   }
    //
@@ -2361,7 +2361,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //
    //         initialize_nano_http(factory());
    //
-   //         __øconstruct(m_pnanohttp);
+   //         øconstruct(m_pnanohttp);
    //
    //      }
    //
@@ -2654,7 +2654,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //
    //      plibrary->initialize_matter(this);
    //
-   //      __construct_new(plibrary->m_pfactory);
+   //      øconstruct_new(plibrary->m_pfactory);
    //
    //      plibrary->m_pfactory->initialize_matter(this);
    //
@@ -2698,7 +2698,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //
    //      }
    //
-   //      __construct_new(pfactory);
+   //      øconstruct_new(pfactory);
    //
    //      plibrary->m_pfactory->initialize_matter(this);
    //
@@ -2749,7 +2749,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      __defer_construct_new(m_pmapRegularExpressionContext);
+      ødefer_construct_new(m_pmapRegularExpressionContext);
 
       auto& pcontext = (*m_pmapRegularExpressionContext)[scopedstrStyle];
 
@@ -2765,7 +2765,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          }
 
-         pfactory->__øconstruct(this, pcontext);
+         pfactory->øconstruct(this, pcontext);
 
       }
 
@@ -2905,7 +2905,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       ::pointer<::platform::session> psession;
 
       //auto estatus =
-      __raw_construct(psession);
+      øraw_construct(psession);
 
       //psession->set_platform();
 
@@ -3097,7 +3097,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    void system::post_application_start()
    {
 
-      auto prequest = __create_new<::request>();
+      auto prequest = øcreate_new<::request>();
 
       prequest->m_ecommand = e_command_application_start;
 
@@ -3119,12 +3119,12 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    //      m_bPostedInitialRequest = true;
 
-   //      auto prequest = __create_new<::request>();
+   //      auto prequest = øcreate_new<::request>();
 
    //      post_request(prequest);
 
 
-   //      auto prequest = __create_new<::request>();
+   //      auto prequest = øcreate_new<::request>();
 
    //      auto strCommandLine = this->m_strCommandLine;
 
@@ -3258,7 +3258,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    void system::post_application_started()
    {
 
-      auto prequest = __create_new<::request>();
+      auto prequest = øcreate_new<::request>();
       
       prequest->m_ecommand = e_command_application_started;
       prequest->m_strAppId = m_papplication->m_strAppId;
@@ -4105,7 +4105,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          if (strAppId.is_empty() || this->is_console())
          {
 
-            papp = __øcreate<::platform::application>();
+            papp = øcreate<::platform::application>();
 
             papp->increment_reference_count();
 
@@ -4183,7 +4183,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
             if (pfactory)
             {
 
-               papp = __øcreate<::platform::application>(pfactory);
+               papp = øcreate<::platform::application>(pfactory);
 
                if (!papp)
                {
@@ -4881,7 +4881,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       if (!m_pmicrouser)
       {
 
-         __construct_new(m_pmicrouser);
+         øconstruct_new(m_pmicrouser);
 
       }
 
@@ -4898,7 +4898,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          do_graphics_and_windowing_factory();
 
-         __øconstruct(m_pacmewindowing);
+         øconstruct(m_pacmewindowing);
 
       }
 
@@ -5034,7 +5034,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    //      do_graphics_and_windowing_system_factory();
 
-   //      __øconstruct(m_pwindowingbase);
+   //      øconstruct(m_pwindowingbase);
 
    //   }
 

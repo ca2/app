@@ -502,7 +502,7 @@ namespace file
    //::pointer < ::data::tree_item > edit_file::create_tree_item()
    //{
 
-   //   return __create_new < ::data::tree_item < ::file::edit_item_base > >();
+   //   return øcreate_new < ::data::tree_item < ::file::edit_item_base > >();
 
    //}
 

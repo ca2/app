@@ -94,7 +94,7 @@ namespace core
 
       //auto estatus = 
       
-      __øconstruct(m_puserfs);
+      øconstruct(m_puserfs);
 
       //if (!estatus)
       //{

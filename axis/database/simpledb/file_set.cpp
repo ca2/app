@@ -46,11 +46,11 @@ namespace simpledb
 
       ::pointer<::file::path_array>ppatha;
 
-      __construct_new(ppatha);
+      øconstruct_new(ppatha);
 
       ::pointer<bool_array>pbaRecursive;
 
-      __construct_new(pbaRecursive);
+      øconstruct_new(pbaRecursive);
 
       if (!datastream()->get(::atom(), *ppatha))
       {
@@ -88,9 +88,9 @@ namespace simpledb
       if(!m_ppathaSearch || (i = m_ppathaSearch->case_insensitive_find_first(pathSearchFolder)) < 0)
       {
 
-         __defer_construct_new(m_ppathaSearch);
+         ødefer_construct_new(m_ppathaSearch);
 
-         __defer_construct_new(m_pbaRecursive);
+         ødefer_construct_new(m_pbaRecursive);
 
          m_ppathaSearch->add(pathSearchFolder);
 

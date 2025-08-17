@@ -62,7 +62,7 @@ namespace windowing
    void windowing::on_create_window_object(::acme::user::interaction * puserinteraction)
    {
 
-      puserinteraction->__øconstruct(puserinteraction->m_pacmewindowingwindow);
+      puserinteraction->øconstruct(puserinteraction->m_pacmewindowingwindow);
 
       puserinteraction->m_pacmewindowingwindow->initialize_window(puserinteraction);
 
@@ -191,7 +191,7 @@ namespace windowing
 
          __check_refdbg
 
-         __construct_new(m_pcursormanager);
+         øconstruct_new(m_pcursormanager);
 
          __check_refdbg
 
@@ -225,7 +225,7 @@ namespace windowing
 
       synchronouslock.unlock();
 
-      __defer_construct_new(m_pcursormanager);
+      ødefer_construct_new(m_pcursormanager);
 
       m_pcursormanager->m_pwindowing = this;
 
@@ -653,7 +653,7 @@ namespace windowing
    ::pointer < ::acme::windowing::window > windowing::get_new_window()
    {
       
-      auto pwindow = __øcreate < ::windowing::window >();
+      auto pwindow = øcreate < ::windowing::window >();
 
       return pwindow;
 
@@ -799,7 +799,7 @@ namespace windowing
       if (!m_pkeyboard)
       {
 
-         __øconstruct(m_pkeyboard);
+         øconstruct(m_pkeyboard);
 
          initialize_keyboard(m_pkeyboard);
 

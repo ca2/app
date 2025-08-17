@@ -115,7 +115,7 @@ namespace userex
          if (m_pathFolder.has_character())
          {
 
-            __defer_construct_new(m_plisting);
+            ødefer_construct_new(m_plisting);
 
             m_plisting->erase_all();
 

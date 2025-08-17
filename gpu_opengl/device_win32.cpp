@@ -24,7 +24,7 @@ namespace gpu_opengl
    //::pointer < ::gpu::context > allocate_system_context(::particle* pparticle)
    //{
 
-   //   return pparticle->__create_new <context_win32>();
+   //   return pparticle->øcreate_new <context_win32>();
 
    //}
 
@@ -775,7 +775,7 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
 
       ::pointer < ::gpu::context > pgpucontext;
 
-      __øconstruct(pgpucontext);
+      øconstruct(pgpucontext);
 
       return pgpucontext;
 

@@ -76,7 +76,7 @@ namespace user
    ::subparticle_pointer combo_box::clone()
    {
 
-      auto pcomboboxClone = m_papplication->__create_new < combo_box >();
+      auto pcomboboxClone = m_papplication->øcreate_new < combo_box >();
 
       pcomboboxClone->m_estyle = m_estyle;
 
@@ -256,7 +256,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      auto pbrush = __øcreate < ::draw2d::brush > ();
+      auto pbrush = øcreate < ::draw2d::brush > ();
 
       //if(m_bEdit)
       {
@@ -375,7 +375,7 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleDropIn);
 
-      auto ppath = __øcreate < ::draw2d::path > ();
+      auto ppath = øcreate < ::draw2d::path > ();
 
       double_point_array pointa;
 
@@ -965,7 +965,7 @@ namespace user
       if(!m_plistbox)
       {
 
-         auto plistbox = __id_create(m_typeatomListBox);
+         auto plistbox = øid_create(m_typeatomListBox);
 
          m_plistbox = plistbox;
 

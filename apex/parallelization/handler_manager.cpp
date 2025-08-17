@@ -31,7 +31,7 @@ void handler_manager::initialize_handler_manager(::particle * pparticle, const :
 
    m_iAliveCount = iAliveCount;
 
-   __construct_new(m_pevTaskOnQueue);
+   øconstruct_new(m_pevTaskOnQueue);
 
    m_iAlive = 0;
 
@@ -115,7 +115,7 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
 
       auto phandlermanager = as_pointer(this);
 
-      phandlermanager->m_pthread = __create_new < ::task >();
+      phandlermanager->m_pthread = øcreate_new < ::task >();
 
       phandlermanager->m_pthread->m_procedure = [phandlermanager]()
          {

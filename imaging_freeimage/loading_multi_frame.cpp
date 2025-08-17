@@ -56,7 +56,7 @@ namespace imaging_freeimage
 
                   pframea->add(pframe);
 
-                  __øconstruct(pframe->m_pimage);
+                  øconstruct(pframe->m_pimage);
 
                   pframe->m_iFrame = iFrame;
 
@@ -278,7 +278,7 @@ namespace imaging_freeimage
 
       //auto estatus = 
       
-      pimageCompose->__øconstruct(pimageFrame);
+      pimageCompose->øconstruct(pimageFrame);
 
       //if (!estatus || !pimageFrame)
       if (!pimageFrame)

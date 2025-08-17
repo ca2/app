@@ -16,11 +16,11 @@
 //void init_cairo_mutex()
 //{
 //
-//   ::platform::get()->__raw_construct(s_pmutex);
+//   ::platform::get()->øraw_construct(s_pmutex);
 //
 //#ifdef LINUX
 //
-//   ::platform::get()->__raw_construct(g_pmutexFc);
+//   ::platform::get()->øraw_construct(g_pmutexFc);
 //
 //   g_pmapFontPath = ___new string_to_string_base();
 //

@@ -1171,7 +1171,7 @@ namespace user
          && pframe->notify_icon())
       {
 
-         __defer_construct_new(pmenu->m_pmenuitem);
+         ødefer_construct_new(pmenu->m_pmenuitem);
 
          user()->from_application_menu(
             pmenu->m_pmenuitem,
@@ -1199,7 +1199,7 @@ namespace user
 
          //   }
 
-         //   auto pmenuitem = __create_new < ::menu::item >();
+         //   auto pmenuitem = øcreate_new < ::menu::item >();
 
          //   pmenuitem->m_pmenu = pmenu;
 

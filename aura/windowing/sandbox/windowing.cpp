@@ -67,7 +67,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 //      else
 //      {
 //
-//         pwindow = pimpl->__øcreate < ::windowing::window >();
+//         pwindow = pimpl->øcreate < ::windowing::window >();
 //
 //      }
 //
@@ -115,12 +115,12 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 
       initialize_windowing();
 
-      //auto pdisplay = __øcreate < ::windowing::display >();
+      //auto pdisplay = øcreate < ::windowing::display >();
 
       ////      if(!pdisplay)
       ////      {
       ////
-      ////         informationf("\nFailed to __øcreate < ::windowing::display > at windowing_x11::windowing::initialize");
+      ////         informationf("\nFailed to øcreate < ::windowing::display > at windowing_x11::windowing::initialize");
       ////
       ////         return ::error_no_factory;
       ////
@@ -178,9 +178,9 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 //
 //      }
 //
-//      //__construct_new(m_phostinteraction);
+//      //øconstruct_new(m_phostinteraction);
 //      
-//      __øconstruct(m_phostinteraction);
+//      øconstruct(m_phostinteraction);
 //
 //      //m_phostinteraction->place(*lpcrect);
 //
@@ -204,7 +204,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
          
       }
       
-      __øconstruct(m_phostinteraction);
+      øconstruct(m_phostinteraction);
       
       ::cast < ::sandbox_windowing::host_interaction > phostinteraction = m_phostinteraction;
       
@@ -376,7 +376,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
          //auto estatus =
          //
          //
-         __construct_new(m_pcursormanager);
+         øconstruct_new(m_pcursormanager);
 
          //         if (!estatus)
          //         {
@@ -468,7 +468,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 
       //auto cursor = XCreateFontCursor(m_pdisplay->Display(), iCursor);
 
-      //auto pcursorX11 = __øcreate < ::windowing_x11::cursor >();
+      //auto pcursorX11 = øcreate < ::windowing_x11::cursor >();
 
       //pcursor = pcursorX11;
 

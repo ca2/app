@@ -1015,7 +1015,7 @@ namespace acme
 
       }
 
-      __defer_construct_new(m_pfactory);
+      ødefer_construct_new(m_pfactory);
 
       m_pfnFactory(m_pfactory);
 

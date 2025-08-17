@@ -780,7 +780,7 @@ namespace html
             //pgraphics->SetBkMode(TRANSPARENT);
          }
 
-         auto pbrushText = __øcreate < ::draw2d::brush > ();
+         auto pbrushText = øcreate < ::draw2d::brush > ();
 
          if(m_bHover && m_pelemental->m_pstyle->get_color("color", "hover", pdata, m_pelemental, color32))
          {
@@ -849,7 +849,7 @@ namespace html
          string strExtent3;
          character_count lim = 0;
 
-         auto pbrushBackground = __øcreate < ::draw2d::brush > ();
+         auto pbrushBackground = øcreate < ::draw2d::brush > ();
 
          if(!pdata->m_pcoredata->m_bEdit)
          {

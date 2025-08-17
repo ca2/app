@@ -91,7 +91,7 @@ namespace user
 
       strMessage.case_insensitive_replace_with(" \n", "<br>");
 
-      __construct_new(m_pstill);
+      øconstruct_new(m_pstill);
 
       m_pstill->set_window_text(strMessage);
 
@@ -359,7 +359,7 @@ namespace user
 
       ::draw2d::graphics_pointer pgraphics;
 
-      __øconstruct(pgraphics);
+      øconstruct(pgraphics);
 
       pgraphics->create_memory_graphics();
 

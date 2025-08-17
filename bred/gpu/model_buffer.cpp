@@ -857,6 +857,13 @@ namespace gpu
 
    //}
 
+   ::gpu::command_buffer* model_buffer::_defer_get_loading_command_buffer()
+   {
+
+      return nullptr;
+
+   }
+
 
    void model_buffer::initialize_dummy_model(::gpu::context* pgpucontext, int iVertexCount)
    {
@@ -879,7 +886,7 @@ namespace gpu
 
       auto size = iTypeSize * iVertexCount;
 
-      __defer_construct(m_pbufferVertex);
+      ødefer_construct(m_pbufferVertex);
 
       m_pbufferVertex->static_initialize_memory_buffer_with_model_buffer(
          this,
@@ -899,7 +906,7 @@ namespace gpu
 
       auto size = iIndexCount * m_iIndexTypeSize;
 
-      __defer_construct(m_pbufferIndex);
+      ødefer_construct(m_pbufferIndex);
 
       m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(
          this,
@@ -919,7 +926,7 @@ namespace gpu
 
       m_iVertexByteSize = (int) blockVertices.size();
 
-      __defer_construct(m_pbufferVertex);
+      ødefer_construct(m_pbufferVertex);
 
       m_pbufferVertex->static_initialize_memory_buffer_with_model_buffer(
          this,
@@ -941,7 +948,7 @@ namespace gpu
 
       m_iIndexByteSize = (int)blockIndices.size();
 
-      __defer_construct(m_pbufferIndex);
+      ødefer_construct(m_pbufferIndex);
 
       m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(
          this,

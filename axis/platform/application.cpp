@@ -70,7 +70,7 @@ namespace axis
    ::pointer < ::geo::geo > application::create_geo()
    {
 
-      return __create_new < ::geo::geo >();;
+      return øcreate_new < ::geo::geo >();;
 
    }
 
@@ -714,7 +714,7 @@ namespace axis
       if (m_psimpledb.is_null())
       {
 
-         __construct_new(m_psimpledb);
+         øconstruct_new(m_psimpledb);
 
       }
 

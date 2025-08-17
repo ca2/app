@@ -114,13 +114,13 @@ namespace sockets
       if (m_typeSocketHandler.is_empty())
       {
 
-         return __øcreate < ::sockets::socket_handler >(m_pfactorySocketHandler);
+         return øcreate < ::sockets::socket_handler >(m_pfactorySocketHandler);
 
       }
       else
       {
 
-         return __id_create(m_typeSocketHandler, m_pfactorySocketHandler);
+         return øid_create(m_typeSocketHandler, m_pfactorySocketHandler);
 
       }
 

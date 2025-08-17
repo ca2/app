@@ -72,7 +72,7 @@ namespace user
             if (bCreate)
             {
 
-               __construct_new(m_prichtextformattool);
+               øconstruct_new(m_prichtextformattool);
 
                m_prichtextformattool->m_procedureOnAfterCreate = [this]()
                   {

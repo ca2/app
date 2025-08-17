@@ -249,7 +249,7 @@ namespace console_integration
 
          pathBuildSln = pathPrefix / "x265.sln";
 
-         auto pvisualstudio = __create_new <::microsoft::visual_studio>();
+         auto pvisualstudio = øcreate_new <::microsoft::visual_studio>();
 
          auto pathVSInstallLocation = pvisualstudio->get_an_existing_visual_studio_2022_install_location();
 

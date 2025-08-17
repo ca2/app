@@ -41,7 +41,7 @@ namespace datetime
 
       //estatus = 
       
-      __construct_new(m_pscanner);
+      øconstruct_new(m_pscanner);
 
       //if (!estatus)
       //{

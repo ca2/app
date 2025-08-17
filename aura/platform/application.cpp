@@ -269,7 +269,7 @@ namespace aura
 
       //estatus =
       
-      __construct_new(m_puserinteractiona);
+      øconstruct_new(m_puserinteractiona);
 
       //if (!estatus)
       //{
@@ -280,7 +280,7 @@ namespace aura
 
       //estatus = 
       
-      __construct_new(m_puserinteractionaFrame);
+      øconstruct_new(m_puserinteractionaFrame);
 
       //if (!estatus)
       //{
@@ -2043,7 +2043,7 @@ namespace aura
 
 #ifdef WINDOWS_DESKTOP
       
-      __øconstruct(m_pshellopen);
+      øconstruct(m_pshellopen);
 
       //if (!estatus)
       //{
@@ -2480,7 +2480,7 @@ retry_license:
       //{
 
       //   //estatus = 
-      //   __øconstruct(m_pimagecontext);
+      //   øconstruct(m_pimagecontext);
 
       //   //if (!estatus)
       //   //{
@@ -2504,7 +2504,7 @@ retry_license:
 
       //    //estatus = 
          
-      //    __construct_new(m_pimagecontext);
+      //    øconstruct_new(m_pimagecontext);
 
       //    //if (!estatus)
       //    //{
@@ -5110,7 +5110,7 @@ retry_license:
    void application::update_appmatter( ::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative)
    {
 
-      auto plocaleschema = __create_new < ::text::international::locale_schema >();
+      auto plocaleschema = øcreate_new < ::text::international::locale_schema >();
 
       //psession->fill_locale_schema(localeschema);
 
@@ -8576,7 +8576,7 @@ namespace aura
 
       //auto estatus =
 
-      __construct_new(m_ptheme);
+      øconstruct_new(m_ptheme);
 
       //if (!estatus)
       //{
@@ -9299,7 +9299,7 @@ namespace aura
    //
    //      }
    //
-   //      auto picon = __create_new < ::image::icon >();
+   //      auto picon = øcreate_new < ::image::icon >();
    //
    //      if (!picon)
    //      {
@@ -9377,7 +9377,7 @@ namespace aura
    void application::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine)
    {
 
-      auto prequest = __create_new<::request >();
+      auto prequest = øcreate_new<::request >();
 
       prequest->_001ParseCommandLine(scopedstrCommandLine);
 
@@ -9585,11 +9585,11 @@ namespace aura
    ////   ::pointer < ::graphics::application> papp = m_papplication;
 
 
-   ////   __construct_new(m_pvkcdevice);
+   ////   øconstruct_new(m_pvkcdevice);
 
    ////   m_pvkcdevice->initialize_device(m_pvkcontainer);
 
-   ////   __construct_new(m_prenderer);
+   ////   øconstruct_new(m_prenderer);
 
    ////   m_prenderer->initialize_renderer(m_pvkcontainer, m_pvkcdevice);
 

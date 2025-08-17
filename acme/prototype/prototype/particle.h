@@ -614,7 +614,7 @@ public:
    ::pointer < T > create_clone(const T * pSource)
    {
 
-      auto p = this->__øcreate< T >();
+      auto p = this->øcreate< T >();
 
       if (!p)
       {
@@ -645,7 +645,7 @@ public:
    ::pointer < T > __call__create_new_clone(const T * pSource)
    {
 
-      auto p = this->__create_new< T >();
+      auto p = this->øcreate_new< T >();
 
       if (!p)
       {

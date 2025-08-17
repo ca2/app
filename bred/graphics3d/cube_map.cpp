@@ -54,7 +54,7 @@ namespace graphics3d
       m_pmodelCube.initialize_model(pengine->gpu_context()->m_pgpurenderer, modeldataCube);
 
       // Initialize skybox shader
-      __defer_construct(m_pshader);
+      ødefer_construct(m_pshader);
 
       m_pshader->m_bDisableDepthTest = false;
       m_pshader->m_bDepthTestButNoDepthWrite = true;
@@ -199,7 +199,7 @@ namespace graphics3d
 
       }
 
-      __defer_construct(m_ptextureCubeMap);
+      ødefer_construct(m_ptextureCubeMap);
 
       m_ptextureCubeMap->m_bTransferDst = true;
 

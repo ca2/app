@@ -266,7 +266,7 @@ namespace user
          if(!m_pusersystem)
          {
 
-            __construct_new(m_pusersystem);
+            øconstruct_new(m_pusersystem);
 
          }
 

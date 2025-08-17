@@ -102,7 +102,7 @@ public:
 
       pointer < T > & p = BASE_ARRAY::add_new();
 
-      pparticle->__øconstruct(p);
+      pparticle->øconstruct(p);
 
       return p;
 
@@ -1865,7 +1865,7 @@ template < typename OBJECT >
    for (; i < c; i++)
    {
 
-      pparticle->__øconstruct(this->element_at(i));
+      pparticle->øconstruct(this->element_at(i));
 
    }
 

@@ -11,6 +11,7 @@ namespace gpu
    class context;
    class shader;
    class frame_storage;
+   class frame_ephemeral;
    //class program;
 
    enum enum_type

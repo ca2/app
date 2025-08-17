@@ -139,7 +139,7 @@ namespace userex
 
       m_atomaHandledCommands.add(id());
 
-      __construct_new(m_pbuttonMenu);
+      øconstruct_new(m_pbuttonMenu);
 
       m_pbuttonMenu->create_control(this, id());
 

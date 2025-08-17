@@ -195,7 +195,7 @@ void task::on_initialize_particle()
 //::manual_reset_happening * task::new_procedure_posted()
 //{
 //
-//   __defer_construct_new(m_pmanualresethappeningNewProcedurePosted);
+//   ødefer_construct_new(m_pmanualresethappeningNewProcedurePosted);
 //
 //   return m_pmanualresethappeningNewProcedurePosted;
 //
@@ -205,7 +205,7 @@ void task::on_initialize_particle()
 //::manual_reset_happening* task::new_happening()
 //{
 //
-//   __defer_construct_new(m_pmanualresethappeningHappening);
+//   ødefer_construct_new(m_pmanualresethappeningHappening);
 //
 //   return m_pmanualresethappeningHappening;
 //
@@ -1162,7 +1162,7 @@ void task::stop_task()
    //
    //m_procedureTaskEnded = procedure;
 
-   //__defer_construct_new(m_phappeningFinished2);
+   //ødefer_construct_new(m_phappeningFinished2);
 
    //auto phappeningFinished = m_phappeningFinished2;
 
@@ -1378,7 +1378,7 @@ void task::__task_init()
 
       REFDBG_THIS(this);
 
-      __defer_construct(m_pexceptiontranslator);
+      ødefer_construct(m_pexceptiontranslator);
 
       m_pexceptiontranslator->attach();
 
@@ -1840,7 +1840,7 @@ void task::_send(const ::procedure & procedure)
    if (psequence)
    {
 
-      __defer_construct_new(psequence->m_pmanualresethappeningOnEndOfSequence);
+      ødefer_construct_new(psequence->m_pmanualresethappeningOnEndOfSequence);
 
       pmanualresethappeningOnEndOfSequence = psequence->m_pmanualresethappeningOnEndOfSequence;
 
@@ -1848,7 +1848,7 @@ void task::_send(const ::procedure & procedure)
    else
    {
 
-      __construct_new(pmanualresethappeningOnEndOfSequence);
+      øconstruct_new(pmanualresethappeningOnEndOfSequence);
 
       pmanualresethappeningOnEndOfSequenceToSetInProcedure = pmanualresethappeningOnEndOfSequence;
 
@@ -3183,7 +3183,7 @@ void task::synchronous_procedure(bool bAtAnotherThread, const procedure & proced
 
    }
 
-   auto pmanualresethappening = __create_new < manual_reset_happening >();
+   auto pmanualresethappening = øcreate_new < manual_reset_happening >();
 
    post([this, procedure, pmanualresethappening]()
       {

@@ -89,7 +89,7 @@
 //
 //      auto& psortmap = m_map[atom];
 //
-//      __defer_construct_new(psortmap);
+//      ødefer_construct_new(psortmap);
 //
 //      psortmap->m_pless = __allocate less_predicate < ARG_TYPE, PRED > (predLess);
 //

@@ -76,7 +76,7 @@ html_document::~html_document()
 //void html_document::create_html_data()
 //{
 //
-//   auto estatus = __construct_new(m_phtmldata);
+//   auto estatus = øconstruct_new(m_phtmldata);
 //
 //   if (!estatus)
 //   {

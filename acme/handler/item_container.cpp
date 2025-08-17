@@ -102,7 +102,7 @@ void item_container::indexed_add_item(::item * pitem)
    if (!m_pitema)
    {
 
-      __defer_construct_new(m_pitema);
+      ødefer_construct_new(m_pitema);
 
    }
 
@@ -146,7 +146,7 @@ void item_container::indexed_add_item(::item * pitem)
 //   if (!puseritem)
 //   {
 //
-//      __construct_new(puseritem);
+//      øconstruct_new(puseritem);
 //
 //   }
 //

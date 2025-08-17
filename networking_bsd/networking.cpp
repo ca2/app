@@ -160,7 +160,7 @@ namespace networking_bsd
 
       //return estatus;
 
-      //auto paddressdepartment = pparticle->__create_new<class ::networking::address_department>();
+      //auto paddressdepartment = pparticle->øcreate_new<class ::networking::address_department>();
 
       //paddressdepartment->increment_reference_count();
 
@@ -168,13 +168,13 @@ namespace networking_bsd
 
       mathematics()->random(m_baTicketKey);
 
-      m_psslinit = __create_new<::sockets_bsd::SSLInitializer>();
+      m_psslinit = øcreate_new<::sockets_bsd::SSLInitializer>();
 
-      __øconstruct(m_pmutexCert);
+      øconstruct(m_pmutexCert);
 
-      //estatus = __construct_new(m_pnet);
+      //estatus = øconstruct_new(m_pnet);
 
-      //__construct_new(m_pnet);
+      //øconstruct_new(m_pnet);
 
       //if (!m_pnet)
       //{
@@ -206,7 +206,7 @@ namespace networking_bsd
    //      {
    //
    //#ifdef WINDOWS
-   //         __øconstruct(m_pportforward);
+   //         øconstruct(m_pportforward);
    //#endif
    //
    //      }
@@ -1266,7 +1266,7 @@ namespace networking_bsd
 
          ::pointer<reverse_cache_item > pitemWait;
 
-         __construct_new(pitemWait);
+         øconstruct_new(pitemWait);
 
          pitemWait->m_paddress = paddress;
 
@@ -1286,7 +1286,7 @@ namespace networking_bsd
 
          ::pointer<reverse_cache_item > pitemNew;
 
-         __construct_new(pitemNew);
+         øconstruct_new(pitemNew);
 
          pitemNew->m_paddress = paddress;
 
@@ -3349,7 +3349,7 @@ namespace networking_bsd
 //
 //   //}
 //
-//   auto paddressdepartment = pparticle->__create_new<class ::networking::address_department>();
+//   auto paddressdepartment = pparticle->øcreate_new<class ::networking::address_department>();
 //
 //   paddressdepartment->increment_reference_count();
 //
@@ -3357,11 +3357,11 @@ namespace networking_bsd
 //
 //   generate_random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
 //
-//   m_psslinit = __create_new<::networking_bsd::SSLInitializer>();
+//   m_psslinit = øcreate_new<::networking_bsd::SSLInitializer>();
 //
-//   //estatus = __construct_new(m_pnet);
+//   //estatus = øconstruct_new(m_pnet);
 //
-//   __construct_new(m_pnet);
+//   øconstruct_new(m_pnet);
 //
 //   if (!m_pnet)
 //   {
@@ -3393,7 +3393,7 @@ namespace networking_bsd
 ////      {
 ////
 ////#ifdef WINDOWS
-////         __øconstruct(m_pportforward);
+////         øconstruct(m_pportforward);
 ////#endif
 ////
 ////      }
@@ -3881,7 +3881,7 @@ cert::~cert()
 
       }
 
-      __construct_new(pcert);
+      øconstruct_new(pcert);
 
       string strCert;
 

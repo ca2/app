@@ -665,12 +665,12 @@ namespace experience_core
 
       ::color::color color = m_colorMoveableBorderDkShadow;
 
-      __defer_construct(m_ppenHollow0);
-      __defer_construct(m_ppenHollow1);
-      __defer_construct(m_ppenHollow2);
-      __defer_construct(m_ppenHollow3);
-      __defer_construct(m_ppenHollow4);
-      __defer_construct(m_ppenHollow5);
+      ødefer_construct(m_ppenHollow0);
+      ødefer_construct(m_ppenHollow1);
+      ødefer_construct(m_ppenHollow2);
+      ødefer_construct(m_ppenHollow3);
+      ødefer_construct(m_ppenHollow4);
+      ødefer_construct(m_ppenHollow5);
 
       color.m_uchOpacity = 8;
 

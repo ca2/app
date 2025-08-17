@@ -194,7 +194,7 @@ namespace aura
 
    //   }
 
-   //   __construct_new(m_puserstyle);
+   //   øconstruct_new(m_puserstyle);
 
    //   m_puserstyle->default_style_construct();
 
@@ -259,7 +259,7 @@ namespace aura
       //}
 
 
-      //estatus = __construct_new(m_ptextcontext);
+      //estatus = øconstruct_new(m_ptextcontext);
 
       //if (!estatus)
       //{
@@ -336,7 +336,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
    //bool session::open_by_file_extension(const ::scoped_string & scopedstrPathName, ::request * prequest)
    //{
 
-   //   auto pcreateNew = __create_new < ::create >();
+   //   auto pcreateNew = øcreate_new < ::create >();
 
    //   pcreateNew->m_payloadFile = pszPathName;
 
@@ -1740,7 +1740,7 @@ return m_psavings;
 
       //}
 
-      //auto estatus = __construct_new(m_pfs);
+      //auto estatus = øconstruct_new(m_pfs);
 
       //if (!estatus)
       //{
@@ -1759,7 +1759,7 @@ return m_psavings;
       //if (!m_pifs)
       //{
 
-      //   estatus = __øconstruct(m_pifs, __allocate ifs(""));
+      //   estatus = øconstruct(m_pifs, __allocate ifs(""));
 
       //   if (!estatus)
       //   {
@@ -1775,7 +1775,7 @@ return m_psavings;
       //if (!m_premotefs)
       //{
 
-      //   estatus = __øconstruct(m_premotefs, __allocate ::fs::remote_native(""));
+      //   estatus = øconstruct(m_premotefs, __allocate ::fs::remote_native(""));
 
       //   if (!estatus)
       //   {
@@ -1791,17 +1791,17 @@ return m_psavings;
       //if (!m_pfsdata)
       //{
 
-      //   auto pset = __create_new<::fs::set>();
+      //   auto pset = øcreate_new<::fs::set>();
 
-      //   auto plink = __create_new < ::fs::link>();
+      //   auto plink = øcreate_new < ::fs::link>();
 
       //   plink->fill_os_user();
 
       //   pset->m_spafsdata.add(plink);
 
-      //   pset->m_spafsdata.add(__create_new < ::fs::native>());
+      //   pset->m_spafsdata.add(øcreate_new < ::fs::native>());
 
-      //   estatus = __øconstruct(m_pfsdata, pset);
+      //   estatus = øconstruct(m_pfsdata, pset);
 
       //   if (!estatus)
       //   {
@@ -1948,7 +1948,7 @@ return m_psavings;
 
       //estatus = 
       
-      __construct_new(m_psavings);
+      øconstruct_new(m_psavings);
 
       //return estatus;
 
@@ -1971,7 +1971,7 @@ return m_psavings;
       //   if (m_pfsdata.is_null())
       //   {
 
-      //      __øconstruct(m_pfsdata, __allocate ::fs::set());
+      //      øconstruct(m_pfsdata, __allocate ::fs::set());
 
       //   }
 
@@ -2025,7 +2025,7 @@ return m_psavings;
 
    //   m_bUiInit = true;
 
-   //   __construct_new(m_puserstyleDefault);
+   //   øconstruct_new(m_puserstyleDefault);
 
    //   m_puserstyleDefault->default_style_construct();
 
@@ -2264,12 +2264,12 @@ namespace aura
          //if (psetup)
          //{
 
-         //   estatus = __øconstruct(m_puser, psetup->create_new_object());
+         //   estatus = øconstruct(m_puser, psetup->create_new_object());
 
          //   if(!estatus)
          //   {
 
-         //      informationf("\nFailed to __øconstruct(m_puser)");
+         //      informationf("\nFailed to øconstruct(m_puser)");
 
          //   }
 
@@ -2280,7 +2280,7 @@ namespace aura
 
          //estatus =
 
-         __øconstruct(m_puser);
+         øconstruct(m_puser);
 
          information() << "aura::session user type : " << ::type(m_puser).name();
 
@@ -2289,7 +2289,7 @@ namespace aura
          if (!m_puser)
          {
 
-            warningf("Failed to __construct_new(m_puser)");
+            warningf("Failed to øconstruct_new(m_puser)");
 
             error() << ".4";
 

@@ -360,7 +360,7 @@ namespace console_integration
             
          }
          
-         //__construct_new(m_px264);
+         //øconstruct_new(m_px264);
          
          //m_px264->m_papplication->m_pathPrefix = m_papplication->m_pathPrefix;
          
@@ -408,7 +408,7 @@ namespace console_integration
             
          }
          
-         //__construct_new(m_px264);
+         //øconstruct_new(m_px264);
          
          //m_px264->m_papplication->m_pathPrefix = m_papplication->m_pathPrefix;
          

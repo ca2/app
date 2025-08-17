@@ -49,7 +49,7 @@ task_group::task_group(::matter * pmatter, ::enum_priority epriority)
 
       auto & ptooltask = m_taska[iThread];
 
-      ptooltask = system()->__create_new < ::tool_task >();
+      ptooltask = system()->øcreate_new < ::tool_task >();
 
       ptooltask->initialize_tool_task(this);
 
@@ -443,7 +443,7 @@ void task_group::select_tool(task_tool* ptool)
 
       auto & pitem = ptool->item_at(i);
 
-      pitem = system()->__id_create(ptool->id());
+      pitem = system()->øid_create(ptool->id());
 
       pitem->m_ptask = ptask;
 

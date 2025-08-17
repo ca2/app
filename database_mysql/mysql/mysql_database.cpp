@@ -709,7 +709,7 @@ namespace mysql
 
       long long iNumRows = _mysql_num_rows(pres);
 
-      __defer_construct_new(pvara);
+      ødefer_construct_new(pvara);
 
       pvara->set_size(iNumRows);
 
@@ -772,7 +772,7 @@ namespace mysql
 
       long long iNumFields = _mysql_num_fields(pres);
 
-      __defer_construct_new(prow);
+      ødefer_construct_new(prow);
 
       prow->set_size(iNumFields);
 

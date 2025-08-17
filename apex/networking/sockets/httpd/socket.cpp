@@ -95,13 +95,13 @@ namespace httpd
       if (m_typeSocketThread.is_empty())
       {
 
-         return __øcreate < ::sockets::socket_thread >(m_pfactorySocketThread);
+         return øcreate < ::sockets::socket_thread >(m_pfactorySocketThread);
 
       }
       else
       {
 
-         return __id_create(m_typeSocketThread, m_pfactorySocketThread);
+         return øid_create(m_typeSocketThread, m_pfactorySocketThread);
 
       }
 

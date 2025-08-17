@@ -105,7 +105,7 @@ namespace gpu
       for (auto& pcommandbufferLayer : m_commandbufferaLayer)
       {
 
-         __defer_construct(pcommandbufferLayer);
+         ødefer_construct(pcommandbufferLayer);
 
          pcommandbufferLayer->initialize_command_buffer(
             m_pgpurenderer->m_pgpurendertarget,
@@ -147,7 +147,7 @@ namespace gpu
 
       auto & ptexture = m_texturea.element_at_grow(iFrameIndex);
 
-      m_pgpurenderer->__defer_construct(ptexture);
+      m_pgpurenderer->ødefer_construct(ptexture);
 
       ptexture->m_bRenderTarget = true;
 
@@ -169,7 +169,7 @@ namespace gpu
 
       auto& ptextureSource = m_textureaSource.element_at_grow(iFrameIndex);
 
-      m_pgpurenderer->__defer_construct(ptextureSource);
+      m_pgpurenderer->ødefer_construct(ptextureSource);
 
       ptextureSource->m_bRenderTarget = true;
 
@@ -195,7 +195,7 @@ namespace gpu
    //   
    //   auto & ptextureTarget = m_gputextureaTarget[iTargetFrameIndex];
 
-   //   m_pgpurendererTarget->__defer_construct(ptextureTarget);
+   //   m_pgpurendererTarget->ødefer_construct(ptextureTarget);
 
    //   auto rectangleTarget = m_pgpurendererTarget->m_pgpucontext->rectangle();
 

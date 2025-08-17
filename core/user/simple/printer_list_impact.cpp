@@ -99,7 +99,7 @@ bool simple_printer_list_impact::on_click(::item * pitem, ::user::mouse * pmouse
 
    ::pointer<::user::print_task>pprinttask;
 
-   __øconstruct(pprinttask);
+   øconstruct(pprinttask);
 
    pprinttask->increment_reference_count();
 

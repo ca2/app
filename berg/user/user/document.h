@@ -226,7 +226,7 @@ namespace user
       ::pointer<DATA>__create_data()
       {
 
-         auto pdata = __create_new<DATA>();
+         auto pdata = øcreate_new<DATA>();
 
          if (!pdata)
          {

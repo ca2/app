@@ -197,8 +197,8 @@ namespace user
 
       }
 
-      __construct_new(m_pimagea);
-      __construct_new(m_pimageaThumb);
+      øconstruct_new(m_pimagea);
+      øconstruct_new(m_pimageaThumb);
 
 
    }
@@ -463,7 +463,7 @@ namespace user
          {
 
             continue;
-            //pitem = __create_new<item>();
+            //pitem = øcreate_new<item>();
 
             //pitem->m_item.m_iItem = iImage;
 
@@ -503,7 +503,7 @@ namespace user
             if (pimageSrc.ok())
             {
 
-               __defer_construct_new(m_pimageaThumb);
+               ødefer_construct_new(m_pimageaThumb);
 
                if (m_pimageaThumb->image_count() < m_pimagea->image_count())
                {
@@ -515,7 +515,7 @@ namespace user
                if (m_pimageaThumb->image_at(iImage)->is_null())
                {
 
-                  __øconstruct(m_pimageaThumb->image_at(iImage));
+                  øconstruct(m_pimageaThumb->image_at(iImage));
 
                }
 
@@ -731,7 +731,7 @@ namespace user
 
       ::int_rectangle rectangleTotal;
 
-      __defer_construct_new(main_content().m_pitema);
+      ødefer_construct_new(main_content().m_pitema);
 
       for (::collection::index iImage = 0; iImage < m_pimagea->image_count(); iImage++)
       {
@@ -741,7 +741,7 @@ namespace user
          if (pitem == nullptr)
          {
 
-            pitem = __create_new<::item>();
+            pitem = øcreate_new<::item>();
 
             pitem->m_item.m_iItem = iImage;
 

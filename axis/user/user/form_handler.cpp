@@ -25,7 +25,7 @@ namespace axis
    ::pointer < ::user::line_layout > form_handler::create_line_layout(::user::interaction * puserinteractionParent, enum_orientation eorientation)
    {
 
-      auto plinelayout = __create_new < ::user::line_layout >();
+      auto plinelayout = øcreate_new < ::user::line_layout >();
 
       plinelayout->create_line_layout(puserinteractionParent, eorientation);
 

@@ -289,7 +289,7 @@ namespace micro
    void elemental::resize_to_fit()
    {
 
-      auto pdevice = __øcreate<::nano::graphics::device>();
+      auto pdevice = øcreate<::nano::graphics::device>();
 
       auto size = pdevice->get_text_extents(m_strText, micro_theme()->m_pfont);
 
@@ -775,7 +775,7 @@ namespace micro
 
       pelementalChild->m_pacmeuserinteractionParent = this;
 
-      __defer_construct_new(m_pacmeuserinteractionaChildren);
+      ødefer_construct_new(m_pacmeuserinteractionaChildren);
 
       __refdbg_add_referer
 
@@ -2140,7 +2140,7 @@ namespace micro
 
    //      }
 
-   //      __øconstruct(acme_windowing_window());
+   //      øconstruct(acme_windowing_window());
 
    //   }
 

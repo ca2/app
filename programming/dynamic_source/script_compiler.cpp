@@ -91,7 +91,7 @@ namespace dynamic_source
 
       //node()->integration_factory();
 
-      //__øconstruct(m_pintegrationcontext);
+      //øconstruct(m_pintegrationcontext);
 
       //m_pintegrationcontext->m_strPlatform = "x64";
 
@@ -2722,7 +2722,7 @@ namespace dynamic_source
       if (pinstance)
       {
 
-         auto pmain = __øcreate < script_main >();
+         auto pmain = øcreate < script_main >();
 
          pmain->m_pmanager2 = m_pmanager;
 
@@ -2886,7 +2886,7 @@ namespace dynamic_source
 
       single_lock slLibrary(m_pmutex, true);
 
-      __øconstruct(m_plibraryLib);
+      øconstruct(m_plibraryLib);
 
       m_plibraryLib->open(m_strLibraryPath);
       // return;

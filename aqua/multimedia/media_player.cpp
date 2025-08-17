@@ -290,7 +290,7 @@ media_player::~media_player()
 
 //   }
 
-//   auto estatus = __øconstruct(m_pwaveout);
+//   auto estatus = øconstruct(m_pwaveout);
 
 //   if (!estatus)
 //   {

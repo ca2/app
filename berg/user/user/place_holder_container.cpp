@@ -39,7 +39,7 @@ namespace user
    ::user::place_holder * place_holder_container::get_new_place_holder(const ::int_rectangle & rectangleCreate)
    {
 
-      auto pplaceholder = __create_new < ::user::place_holder >();
+      auto pplaceholder = øcreate_new < ::user::place_holder >();
 
       if (!pplaceholder)
       {

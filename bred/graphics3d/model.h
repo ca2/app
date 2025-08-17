@@ -43,7 +43,7 @@ namespace graphics3d
       //   ::gpu::renderer* prenderer)
       //{
 
-      //   auto pmodel = prenderer->__øcreate < ::graphics3d::model >();
+      //   auto pmodel = prenderer->øcreate < ::graphics3d::model >();
 
       //   pmodel->initialize_model(
       //      prenderer,
@@ -157,7 +157,7 @@ namespace graphics3d
       //   const model_data<VERTEX>& data)
       //{
 
-      //   prenderer->__defer_construct(m_pmodelbase);
+      //   prenderer->ødefer_construct(m_pmodelbase);
 
       //   m_pmodelbase->initialize_model(
       //      prenderer,
@@ -169,7 +169,7 @@ namespace graphics3d
       //virtual void initialize_dummy_model(::gpu::renderer* prenderer, int iVertices)
       //{
 
-      //   prenderer->__defer_construct(m_pmodelbase);
+      //   prenderer->ødefer_construct(m_pmodelbase);
 
       //   m_pmodelbase->initialize_dummy_model(
       //      prenderer,
@@ -206,7 +206,7 @@ namespace graphics3d
    //virtual void initialize_dummy_model(::gpu::renderer* prenderer, int iVertices)
    //{
 
-   //   prenderer->__defer_construct(m_pmodelbase);
+   //   prenderer->ødefer_construct(m_pmodelbase);
 
    //   m_pmodelbase->initialize_dummy_model(
    //      prenderer,
@@ -243,7 +243,7 @@ namespace graphics3d
    void model<VERTEX>::initialize_model(::gpu::renderer* pgpurenderer, const model_data<VERTEX >& modeldata)
    {
 
-      pgpurenderer->__defer_construct(*this);
+      pgpurenderer->ødefer_construct(*this);
       
       m_p->initialize_gpu_context_object(pgpurenderer->m_pgpucontext);
 
@@ -262,7 +262,7 @@ namespace graphics3d
    void model<VERTEX>::initialize_dummy_model(::gpu::renderer* pgpurenderer, int iVertices)
    {
 
-      pgpurenderer->__defer_construct(*this);
+      pgpurenderer->ødefer_construct(*this);
 
       m_p->initialize_gpu_context_object(pgpurenderer->m_pgpucontext);
 
@@ -270,7 +270,7 @@ namespace graphics3d
 
       m_p->m_bDummy = true;
 
-      m_p->__defer_construct(m_p->m_pbufferVertex);
+      m_p->ødefer_construct(m_p->m_pbufferVertex);
 
       m_p->m_pbufferVertex->initialize_memory_buffer_with_model_buffer(m_p, 0, ::gpu::memory_buffer::e_type_none);
       

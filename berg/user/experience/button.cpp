@@ -152,7 +152,7 @@ namespace experience
 //         if(!m_pshapeaClip)
 //         {
 //
-//            __construct_new(m_pshapeaClip);
+//            øconstruct_new(m_pshapeaClip);
 //
 //            ::user::interaction * pinteraction = this;
 //

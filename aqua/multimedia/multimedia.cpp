@@ -38,7 +38,7 @@ namespace aqua
 
 //#ifdef WINDOWS
 //
-//      estatus = __construct_new(m_pmediafoundation);
+//      estatus = øconstruct_new(m_pmediafoundation);
 //
 //      if (!estatus)
 //      {
@@ -125,7 +125,7 @@ namespace aqua
 //      if (!m_pmediafoundation)
 //      {
 //
-//         auto estatus = __øconstruct(m_pmediafoundation);
+//         auto estatus = øconstruct(m_pmediafoundation);
 //
 //         if (!estatus)
 //         {

@@ -166,7 +166,7 @@ namespace axis
 
       //estatus = 
       
-      __construct_new(m_pemaildepartment);
+      øconstruct_new(m_pemaildepartment);
 
       //if (!estatus)
       //{
@@ -228,7 +228,7 @@ namespace axis
       //if (!pfactorySimpledb)
       //{
 
-      //   estatus = __construct_new(pfactorySimpledb);
+      //   estatus = øconstruct_new(pfactorySimpledb);
 
       //   if (!estatus)
       //   {

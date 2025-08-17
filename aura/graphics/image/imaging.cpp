@@ -69,7 +69,7 @@ void imaging::initialize(::particle * pparticle)
 
    //return estatus;
 
-   __construct_new(m_pimageaWork);
+   øconstruct_new(m_pimageaWork);
 
 }
 
@@ -1549,7 +1549,7 @@ void imaging::BitmapDivBlend(
    ::image::image_pointer pimage;
 
    //auto estatus = 
-   __øconstruct(pimage);
+   øconstruct(pimage);
 
    /*if (!estatus)
    {
@@ -5154,7 +5154,7 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
    auto & pmemory = pdraw2d->m_alpha_spread__32CC_filterMap[iRadius];
 
-   system()->__construct_new(pmemory);
+   system()->øconstruct_new(pmemory);
 
    if (pmemory->size() != iFilterArea)
    {
@@ -6960,7 +6960,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,int left,int top, const
 
    }
 
-   auto pbrushText = __øcreate < ::draw2d::brush > ();
+   auto pbrushText = øcreate < ::draw2d::brush > ();
 
    if(dBlend >= 1.0)
    {

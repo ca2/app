@@ -282,7 +282,7 @@ namespace draw2d_cairo
 
       //auto pnode = psystem->node();
 
-      __øconstruct(m_pfont);
+      øconstruct(m_pfont);
 
       m_pfont->m_pfontfamily = e_font_sans;
 
@@ -6731,7 +6731,7 @@ namespace draw2d_cairo
 ////
 ////   ::pointer<ttf_util>putil;
 ////
-////   ::e_status estatus = __construct_new(putil);
+////   ::e_status estatus = øconstruct_new(putil);
 ////
 ////   for (auto& path : listing)
 ////   {

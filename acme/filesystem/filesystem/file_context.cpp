@@ -664,7 +664,7 @@ bool file_context::try_create_file(const ::file::path & path, bool bTryDelete)
 
    ::pointer<::file::file>pfile;
 
-   __øconstruct(pfile);
+   øconstruct(pfile);
 
    if (!m_estatus)
    {
@@ -1462,7 +1462,7 @@ void file_context::calculate_main_resource_memory()
 
       auto pfile = __allocate::memory_file(pmemory);
 
-      system()->folder_factory()->__øconstruct(m_papplication, m_pfolderResource);
+      system()->folder_factory()->øconstruct(m_papplication, m_pfolderResource);
 
       m_pfolderResource->initialize(this);
 
@@ -2685,7 +2685,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //
 //   ::pointer<::file::file>pfile2;
 //
-//   __øconstruct(pfile2);
+//   øconstruct(pfile2);
 //
 //   memsize iBufSize = 1024 * 1024;
 //
@@ -2755,7 +2755,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //   long long iLen;
 //   MD5_CTX ctx;
 //
-//   auto pfile2 = __øcreate < ::file::file >();
+//   auto pfile2 = øcreate < ::file::file >();
 //
 //   memsize uRead;
 //
@@ -3169,7 +3169,7 @@ file_pointer file_context::file_get_file(::file::path path, ::file::e_open eopen
 
    file_pointer pfile;
 
-   __øconstruct(pfile);
+   øconstruct(pfile);
 
    pfile->open(path, eopen);
 
@@ -3283,7 +3283,7 @@ folder_pointer file_context::get_folder(::file::file * pfile, const ::scoped_str
 
    }
 
-   auto pfolder = __øcreate < ::folder >(pfactory);
+   auto pfolder = øcreate < ::folder >(pfactory);
 
    if (!pfolder)
    {
@@ -3337,7 +3337,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    }
 
-   auto pdomain = __create_new < ::url_domain >();
+   auto pdomain = øcreate_new < ::url_domain >();
 
    pdomain->create(url.connect().host());
 
@@ -3446,7 +3446,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    }
 
-   auto defer_get = __øcreate < ::nano::http::get >();
+   auto defer_get = øcreate < ::nano::http::get >();
 
    defer_get->m_url = url;
 
@@ -3736,7 +3736,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
       if (eopen & ::file::e_open_no_exception_on_open)
       {
 
-         __construct_new(pfile);
+         øconstruct_new(pfile);
 
          pfile->m_estatus = error_file_not_found;
 
@@ -3841,7 +3841,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 
    ::file_pointer pfile;
 
-   __øconstruct(pfile);
+   øconstruct(pfile);
 
    pfile->open(path, eopen, pfileexception);
 

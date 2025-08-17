@@ -103,7 +103,7 @@ namespace sockets
 
       base_socket_handler::initialize(pparticle);
 
-      __øconstruct(m_pcomposite);
+      øconstruct(m_pcomposite);
 
 
    }

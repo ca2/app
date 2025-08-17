@@ -67,7 +67,7 @@ namespace filemanager
 
       auto pfilemanagerdocument = filemanager_document();
 
-      auto ptreedata = pfilemanagerdocument->__create_new < ::filemanager::tree_data >();
+      auto ptreedata = pfilemanagerdocument->øcreate_new < ::filemanager::tree_data >();
       
       ptreedata->m_puserfsdocument = pfilemanagerdocument;
 

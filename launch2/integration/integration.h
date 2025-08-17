@@ -219,7 +219,7 @@
 //
 //      //      //}
 //
-//      //      auto pffmpeg = __create_new < ffmpeg >();
+//      //      auto pffmpeg = øcreate_new < ffmpeg >();
 //
 //      //      pffmpeg->m_papplication->m_strPlatform = strPlatform;
 //
@@ -245,7 +245,7 @@
 //      //   else if (strArgument.case_insensitive_equals("openssl"))
 //      //   {
 //
-//      //      auto popenssl = __create_new < openssl >();
+//      //      auto popenssl = øcreate_new < openssl >();
 //
 //      //      popenssl->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
 //
@@ -257,7 +257,7 @@
 //      //   else if (strArgument.case_insensitive_equals("x264"))
 //      //   {
 //
-//      //      auto px264 = __create_new < x264 >();
+//      //      auto px264 = øcreate_new < x264 >();
 //
 //      //      px264->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
 //
@@ -271,7 +271,7 @@
 //      //   else if (strArgument.case_insensitive_equals("x265"))
 //      //   {
 //
-//      //      auto px264 = __create_new < x265 >();
+//      //      auto px264 = øcreate_new < x265 >();
 //
 //      //      px264->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
 //

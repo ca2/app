@@ -258,7 +258,7 @@ namespace platform
    void context::initialize_context()
    {
 
-      __construct_new(m_ptexttranslator);
+      øconstruct_new(m_ptexttranslator);
 
 
       //auto estatus =
@@ -272,7 +272,7 @@ namespace platform
       //}
 
       /*estatus = */
-      __øconstruct(m_pfilecontext);
+      øconstruct(m_pfilecontext);
 
       //if (!estatus)
       //{
@@ -282,7 +282,7 @@ namespace platform
       //}
 
       //estatus =
-      __øconstruct(m_pdirectorycontext);
+      øconstruct(m_pdirectorycontext);
 
       //if (!estatus)
       //{
@@ -654,7 +654,7 @@ namespace platform
    //   file_pointer context::get_file(const ::payload& payloadFile, ::file::e_open eopen)
    //   {
    //
-   //      auto pfile = __øcreate < ::file::file >();
+   //      auto pfile = øcreate < ::file::file >();
    //
    //      auto path = payloadFile.file_path();
    //

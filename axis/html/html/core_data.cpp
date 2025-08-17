@@ -264,7 +264,7 @@ namespace html
 
       delete_contents();
 
-      auto phtmlreader = __create_new < lite_html_reader >();
+      auto phtmlreader = øcreate_new < lite_html_reader >();
 
       ::html::reader reader;
 
@@ -663,7 +663,7 @@ namespace html
       if (strPath.begins_eat("ext://"))
       {
 
-         auto phyperlink =__create_new < hyperlink>();
+         auto phyperlink =øcreate_new < hyperlink>();
 
          phyperlink->m_strLink = strPath;
 
@@ -926,7 +926,7 @@ namespace html
 
       //auto estatus = 
       
-      __øconstruct(pimage);
+      øconstruct(pimage);
       
       //if (!estatus)
       //{
@@ -977,7 +977,7 @@ namespace html
 
       //auto estatus = 
       
-      __øconstruct(pimage);
+      øconstruct(pimage);
 
       //if (!estatus)
       //{
@@ -1019,7 +1019,7 @@ namespace html
 
       //auto estatus = 
       
-      __øconstruct(pimage);
+      øconstruct(pimage);
       
       //if (!estatus)
       //{

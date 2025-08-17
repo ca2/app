@@ -44,7 +44,7 @@ namespace micro
          if (!m_pfont)
          {
 
-            __øconstruct(m_pfont);
+            øconstruct(m_pfont);
 
             m_pfont->m_iFontSize = m_iFontSize;
 

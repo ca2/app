@@ -101,13 +101,13 @@ namespace experience
       else
       {
 
-         auto pbrush = __øcreate < ::draw2d::brush >();
+         auto pbrush = øcreate < ::draw2d::brush >();
 
          pbrush->create_solid(crText);
 
          pgraphics->set(pbrush);
 
-         auto ppen = __øcreate < ::draw2d::pen > ();
+         auto ppen = øcreate < ::draw2d::pen > ();
 
          ppen->m_dWidth = 1.0;
 
@@ -239,7 +239,7 @@ namespace experience
 
       rectangleX = ::user::interaction::rectangle();
 
-      __defer_construct(m_pregion);
+      ødefer_construct(m_pregion);
       
       ::double_ellipse ellipse;
       

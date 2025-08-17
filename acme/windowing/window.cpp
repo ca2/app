@@ -157,7 +157,7 @@ namespace acme
 
          //m_ebias = calculate_bias();
 
-         //__øconstruct(m_pacmeuserinteraction);
+         //øconstruct(m_pacmeuserinteraction);
 
          //m_pacmeuserinteraction->m_pacmeuserinteraction = this;
 
@@ -1529,7 +1529,7 @@ namespace acme
       //    //
       //    // }
       //    //
-      //    // //   auto pmessagebox = pparticle->__create_new < message_box >();
+      //    // //   auto pmessagebox = pparticle->øcreate_new < message_box >();
       //    // //
       //    // //   atom idResult;
       //    // //

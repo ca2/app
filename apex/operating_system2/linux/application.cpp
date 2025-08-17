@@ -470,7 +470,7 @@ namespace apex
 //      try
 //      {
 //
-//         auto pfile = __create_new < ::linux::desktop_file >();
+//         auto pfile = øcreate_new < ::linux::desktop_file >();
 //
 //         pfile->create();
 //

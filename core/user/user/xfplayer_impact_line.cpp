@@ -68,7 +68,7 @@ void xfplayer_impact_line::initialize_xfplayer_impact_line(xfplayer_impact_linea
    //   
    //}
    
-   __øconstruct(m_pfont);
+   øconstruct(m_pfont);
 
    m_pContainer = pContainer;
    m_bEnhancedEmboss = true;
@@ -509,7 +509,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
       strFinal = m_str;
       pgraphics->set(sppen);
 
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
       pbrushText->create_solid(
 
@@ -559,7 +559,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
       iLeftOffset = iLeftDiff - (int)m_dAnimateProgress;
 
       pgraphics->set(sppen);
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
       pbrushText->create_solid(crColor);
 
@@ -839,7 +839,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    if (m_bColonPrefix)
    {
 
-      __øconstruct(m_pfontPrefix);
+      øconstruct(m_pfontPrefix);
 
       *m_pfontPrefix = *m_pfont;
 
@@ -1432,7 +1432,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
       ::draw2d::pen_pointer ppen;
 
-      __øconstruct(ppen);
+      øconstruct(ppen);
 
       ppen->create_solid(iWidth * 2, crOutline);
 
@@ -1440,7 +1440,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
       pgraphics->stroke_path();
 
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
       pbrushText->create_solid(color32);
 
@@ -2046,7 +2046,7 @@ void xfplayer_impact_line::OnLButtonUp(::message::message * pmessage)
 
          ASSERT(m_puserinteraction->is_window());
 
-         auto phyperlink = __create_new < ::hyperlink >();
+         auto phyperlink = øcreate_new < ::hyperlink >();
 
          phyperlink->m_strLink = str;
 

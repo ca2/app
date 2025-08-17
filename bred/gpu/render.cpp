@@ -383,7 +383,7 @@ namespace gpu
 #endif
 
 
-   __defer_construct(m_pimageFromGpu);
+   ødefer_construct(m_pimageFromGpu);
 
    auto size = m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage->m_size;
 

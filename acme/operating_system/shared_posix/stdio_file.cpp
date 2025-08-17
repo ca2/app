@@ -451,7 +451,7 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 ::pointer <stdio_file> stdio_open(::particle * pparticle, const ::file::path & pathParam, const ::scoped_string & scopedstrAttrs, int iShare)
 {
 
-   auto pfile = pparticle->application()->__create_new < ::stdio_file >();
+   auto pfile = pparticle->application()->øcreate_new < ::stdio_file >();
 
    if (!pfile)
    {
@@ -473,7 +473,7 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 memory file_system::as_memory(const ::file::path & pathParam, character_count iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
-   auto pfile = m_papplication->__create_new < stdio_file >();
+   auto pfile = m_papplication->øcreate_new < stdio_file >();
 
    if (bNoExceptionIfNotFound)
    {
@@ -540,7 +540,7 @@ memory file_system::as_memory(const ::file::path & pathParam, character_count iR
 memory file_system::safe_get_memory(const ::file::path & pathParam, character_count iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
-   auto pfile = m_papplication->__create_new < stdio_file >();
+   auto pfile = m_papplication->øcreate_new < stdio_file >();
 
    pfile->m_eopen |= ::file::e_open_no_exception_if_not_found;
 

@@ -6476,7 +6476,7 @@ namespace draw2d_cairo
 ////
 ////   ::pointer<ttf_util>putil;
 ////
-////   ::e_status estatus = __construct_new(putil);
+////   ::e_status estatus = øconstruct_new(putil);
 ////
 ////   for (auto& path : listing)
 ////   {

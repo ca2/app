@@ -265,7 +265,7 @@ namespace account
 
       //estatus = 
       
-      __construct_new(m_ptaskpool);
+      øconstruct_new(m_ptaskpool);
 
       //if (!estatus)
       //{
@@ -289,7 +289,7 @@ namespace account
 
       //}
 
-      m_pauthenticator = __create_new< network_authenticator >();
+      m_pauthenticator = øcreate_new< network_authenticator >();
 
       auto pusera = __allocate user_array();
       

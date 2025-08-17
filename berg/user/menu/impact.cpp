@@ -182,10 +182,10 @@ namespace user
 
       payload(FONTSEL_IMPACT) = true;
 
-      __øconstruct(m_pbrushBkSel);
-      __øconstruct(m_pbrushBkHoverSel);
-      __øconstruct(m_ppenBkSel);
-      __øconstruct(m_ppen);
+      øconstruct(m_pbrushBkSel);
+      øconstruct(m_pbrushBkHoverSel);
+      øconstruct(m_ppenBkSel);
+      øconstruct(m_ppen);
 
 
       m_pbrushBkHoverSel->create_solid(argb(255, 230, 230, 230));
@@ -203,7 +203,7 @@ namespace user
 
       //auto estatus = 
       
-      //__construct_new(m_pxmldoc);
+      //øconstruct_new(m_pxmldoc);
 
       //if (!estatus)
       //{
@@ -228,11 +228,11 @@ namespace user
 
       m_pimageLogo = image()->load_image("matter://main/logo.png", { .cache = false });
 
-      __øconstruct(m_pfontTitle);
+      øconstruct(m_pfontTitle);
 
       m_pfontTitle->create_font(e_font_sans_ui, 14_pt, 800);
 
-      __øconstruct(m_pfont);
+      øconstruct(m_pfont);
 
       m_pfont->create_font(e_font_sans_ui, 14_pt, 400);
 
@@ -418,7 +418,7 @@ namespace user
 
       ::image::image_pointer pimage1;
 
-      __defer_construct(m_pimageMem);
+      ødefer_construct(m_pimageMem);
 
       pimage1 = m_pimageMem;
 
@@ -458,7 +458,7 @@ namespace user
 
       pgraphics->draw(imagedrawing);
 
-      //__construct_new(m_pitema);
+      //øconstruct_new(m_pitema);
 
 //      ::int_rectangle rectangle;
 
@@ -726,7 +726,7 @@ namespace user
 
       string strXml = file()->as_string(payloadFile);
 
-      auto pxmldoc = __create_new < ::xml::document >();
+      auto pxmldoc = øcreate_new < ::xml::document >();
 
       try
       {
@@ -766,7 +766,7 @@ namespace user
 
       //m_iaPopup.erase_all();
 
-      auto pmenuitemParent = __create_new < ::menu::item >();
+      auto pmenuitemParent = øcreate_new < ::menu::item >();
 
       m_pmenuitem = pmenuitemParent;
 
@@ -775,7 +775,7 @@ namespace user
 
          xml::node * pnode = pnodeMain->get_child_at("menubar", iMenu, 1);
 
-         auto pmenuitemMenuBar = __create_new < ::menu::item >();
+         auto pmenuitemMenuBar = øcreate_new < ::menu::item >();
 
          pmenuitemMenuBar->m_pmenuitema = __allocate ::menu::item_ptra(pmenuitemMenuBar);
 
@@ -794,7 +794,7 @@ namespace user
 
             auto pnodeChild = pnode->child_at(iCommand);
 
-            auto pmenuitemCommand = __create_new < ::menu::item >();
+            auto pmenuitemCommand = øcreate_new < ::menu::item >();
 
             //statusrectangle = get_menu_item_rectangle(iPos);
 
@@ -938,7 +938,7 @@ namespace user
 
       pgraphics->fill_polygon(pta);
 
-      auto ppath = __øcreate<::draw2d::path>();
+      auto ppath = øcreate<::draw2d::path>();
 
       ppath->set_current_point(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
       
@@ -980,7 +980,7 @@ namespace user
 
       pgraphics->fill_polygon(pta);
 
-      auto ppath = __øcreate<::draw2d::path>();
+      auto ppath = øcreate<::draw2d::path>();
 
       ppath->set_current_point(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
 

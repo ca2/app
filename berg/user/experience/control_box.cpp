@@ -349,14 +349,14 @@ namespace experience
 
       auto_hide_on_message_create(pmessage);
 
-      __øconstruct(m_pbrushButtonBack);
-      __øconstruct(m_pbrushButtonBackSel);
-      __øconstruct(m_pbrushButtonBackFocus);
-      __øconstruct(m_pbrushButtonBackDisabled);
-      __øconstruct(m_ppenButtonBack);
-      __øconstruct(m_ppenButtonBackSel);
-      __øconstruct(m_ppenButtonBackFocus);
-      __øconstruct(m_ppenButtonBackDisabled);
+      øconstruct(m_pbrushButtonBack);
+      øconstruct(m_pbrushButtonBackSel);
+      øconstruct(m_pbrushButtonBackFocus);
+      øconstruct(m_pbrushButtonBackDisabled);
+      øconstruct(m_ppenButtonBack);
+      øconstruct(m_ppenButtonBackSel);
+      øconstruct(m_ppenButtonBackFocus);
+      øconstruct(m_ppenButtonBackDisabled);
 
 
       pmessage->previous();
@@ -371,7 +371,7 @@ namespace experience
       if (!m_pfontMarlett)
       {
 
-         __øconstruct(m_pfontMarlett);
+         øconstruct(m_pfontMarlett);
 
          m_pfontMarlett->create_font("Marlett", 16_px);
 
@@ -692,7 +692,7 @@ namespace experience
       if (bCreate)
       {
 
-         __defer_construct_new(iterator->m_element2);
+         ødefer_construct_new(iterator->m_element2);
 
       }
 
@@ -717,7 +717,7 @@ namespace experience
 
       auto pfactory = m_pframewindow->m_pframe->m_pexperience->m_pfactory;
 
-      pfactory->__defer_construct(this, pbutton);
+      pfactory->ødefer_construct(this, pbutton);
 
       pbutton->display(e_display_none);
 
@@ -912,7 +912,7 @@ namespace experience
 
       //auto estatus =
 
-      __defer_construct_new(pitem);
+      ødefer_construct_new(pitem);
 
       //if (!estatus)
       //{
@@ -1273,7 +1273,7 @@ namespace experience
 //         if(!m_pshapeaClip)
 //         {
 //
-//            __construct_new(m_pshapeaClip);
+//            øconstruct_new(m_pshapeaClip);
 //
 //            ::user::interaction * pinteraction = this;
 //

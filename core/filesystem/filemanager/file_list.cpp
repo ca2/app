@@ -510,7 +510,7 @@ namespace filemanager
       if (straCommand.get_size() > 0)
       {
 
-         auto pmenu = __create_new < ::user::menu >();
+         auto pmenu = øcreate_new < ::user::menu >();
 
          if (pmenu->create_menu(straCommand, straCommandTitle))
          {
@@ -720,7 +720,7 @@ namespace filemanager
          for (int i = 0; i < iCount; i++)
          {
 
-            auto pmenuitem = __create_new < ::menu::item > ();
+            auto pmenuitem = øcreate_new < ::menu::item > ();
 
             pmenuitem->id() = "open with" + stra[i];
 
@@ -1139,7 +1139,7 @@ namespace filemanager
 
       ::pointer<icon_layout>piconlayout;
 
-      __construct_new(piconlayout);
+      øconstruct_new(piconlayout);
 
 //      papp->datastream()->get(data_get_current_sort_id() + "." + data_get_current_list_layout_id(), piconlayout);
 
@@ -1357,7 +1357,7 @@ namespace filemanager
 
          {
 
-            auto pinteraction = __create_new <  user::button > ();
+            auto pinteraction = øcreate_new <  user::button > ();
             pinteraction->m_bTransparent = true;
             //pinteraction->set_control_type(user::e_control_type_button);
             //pinteraction->m_type = ::type < ::user::button >();
@@ -1421,7 +1421,7 @@ namespace filemanager
          if (bRenameEdit)
          {
 
-            auto pinteraction = __create_new <  user::plain_edit > ();
+            auto pinteraction = øcreate_new <  user::plain_edit > ();
             //pinteraction->set_control_type(user::e_control_type_edit_plain_text);
             pinteraction->m_strDataKey20 = "FILE_MANAGER_ID_FILE_NAME";
             //pinteraction->id() = _vms::FILE_MANAGER_ID_FILE_NAME;

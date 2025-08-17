@@ -138,7 +138,7 @@ namespace application_build_helper
 
          //}
 
-         auto pffmpeg = __create_new < ::console_integration::windows::ffmpeg >();
+         auto pffmpeg = øcreate_new < ::console_integration::windows::ffmpeg >();
 
          pffmpeg->m_papplication->m_bOnlyInstall = bOnlyInstall;
 
@@ -209,7 +209,7 @@ namespace application_build_helper
          try
          {
 
-            auto popenssl = __create_new < ::console_integration::windows::openssl >();
+            auto popenssl = øcreate_new < ::console_integration::windows::openssl >();
 
             popenssl->m_papplication->m_bOnlyInstall = bOnlyInstall;
 
@@ -236,7 +236,7 @@ namespace application_build_helper
          try
          {
 
-            auto px264 = __create_new < ::console_integration::windows::x264 > ();
+            auto px264 = øcreate_new < ::console_integration::windows::x264 > ();
 
             px264->m_papplication->m_bOnlyInstall = bOnlyInstall;
 
@@ -263,7 +263,7 @@ namespace application_build_helper
          try
          {
 
-            auto px265 = __create_new < ::console_integration::windows::x265 >();
+            auto px265 = øcreate_new < ::console_integration::windows::x265 >();
 
             px265->m_papplication->m_pathFolder = m_pathFolder;
 
@@ -308,7 +308,7 @@ namespace application_build_helper
       //   try
       //   {
 
-      //      auto pfdkaac = __create_new < ::console_integration::windows::fdk_aac >();
+      //      auto pfdkaac = øcreate_new < ::console_integration::windows::fdk_aac >();
 
 
       //      pfdkaac->m_papplication->m_pathFolder = m_pathFolder;
@@ -352,7 +352,7 @@ namespace application_build_helper
       //   try
       //   {
 
-      //      auto plame = __create_new < ::console_integration::macos::lame >();
+      //      auto plame = øcreate_new < ::console_integration::macos::lame >();
 
 
       //      plame->m_papplication->m_pathFolder = m_pathFolder;
@@ -396,7 +396,7 @@ namespace application_build_helper
       //   try
       //   {
 
-      //      auto pfreetype = __create_new < ::console_integration::macos::freetype >();
+      //      auto pfreetype = øcreate_new < ::console_integration::macos::freetype >();
 
 
       //      pfreetype->m_papplication->m_pathFolder = m_pathFolder;
@@ -439,7 +439,7 @@ namespace application_build_helper
 
          try
          {
-            //         auto pthirdwinrt = __create_new < macos::third >();
+            //         auto pthirdwinrt = øcreate_new < macos::third >();
 
             //pthirdwinrt->m_papplication->m_pathFolder = m_pathFolder;
 

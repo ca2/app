@@ -104,7 +104,7 @@ namespace image
    ::image::image_pointer image_context::create_image()
    {
 
-      auto pimage = __øcreate < ::image::image >();
+      auto pimage = øcreate < ::image::image >();
 
       if (!pimage)
       {
@@ -121,7 +121,7 @@ namespace image
    ::image::image_pointer image_context::create_image(const ::int_size& size, const image32_t* pcolor, int iScan, ::enum_flag eflagCreate)
    {
 
-      auto pimage = m_papplication->__øcreate < ::image::image >();
+      auto pimage = m_papplication->øcreate < ::image::image >();
 
       if (!pimage)
       {
@@ -301,7 +301,7 @@ namespace image
 
       ::image::icon_pointer picon;
 
-      __øconstruct(picon);
+      øconstruct(picon);
 
       _get_icon(picon, payloadFile);
 
@@ -315,7 +315,7 @@ namespace image
 
       ::image::image_pointer pimage;
 
-      __øconstruct(pimage);
+      øconstruct(pimage);
 
       _get_image(pimage, payloadFile, loadoptions);
 
@@ -343,7 +343,7 @@ namespace image
 
       }
 
-      __defer_construct(pimage);
+      ødefer_construct(pimage);
 
       _matter_image(pimage, scopedstrMatter, loadoptions);
 
@@ -371,7 +371,7 @@ namespace image
 
       }
 
-      __defer_construct(pimage);
+      ødefer_construct(pimage);
 
       if (loadoptions.pparticleSync)
       {
@@ -408,7 +408,7 @@ namespace image
 
       //auto estatus = 
 
-      __defer_construct(pimage);
+      ødefer_construct(pimage);
 
       //if (!estatus)
       //{
@@ -440,7 +440,7 @@ namespace image
 
       //auto estatus = 
 
-      __øconstruct(pimage);
+      øconstruct(pimage);
 
       /*if (!estatus)
       {
@@ -472,7 +472,7 @@ namespace image
 
       //auto estatus = 
 
-      __øconstruct(pimage);
+      øconstruct(pimage);
 
       //if (!estatus)
       //{
@@ -504,7 +504,7 @@ namespace image
 
       //auto estatus = 
 
-      __øconstruct(pimage);
+      øconstruct(pimage);
 
       //if (!estatus)
       //{
@@ -535,7 +535,7 @@ namespace image
       ::image::image_pointer pimage;
 
       //auto estatus = 
-      __øconstruct(pimage);
+      øconstruct(pimage);
 
       //if (!estatus)
       //{
@@ -570,7 +570,7 @@ namespace image
    void image_context::_load_icon(::image::icon* picon, const ::payload& payloadFile)
    {
 
-      auto pwindowingicon = __øcreate < ::windowing::icon >();
+      auto pwindowingicon = øcreate < ::windowing::icon >();
 
       pwindowingicon->load_file(payloadFile);
 
@@ -925,7 +925,7 @@ namespace image
    //
    //   ::pointer<image_frame_array>pframea;
    //
-   //   __construct_new(pframea);
+   //   øconstruct_new(pframea);
    //
    //   pframea->m_pimage = this;
    //
@@ -991,13 +991,13 @@ namespace image
 
       ::pointer<image_frame_array>pframea;
 
-      __construct_new(pframea);
+      øconstruct_new(pframea);
 
       pframea->m_pimage = this;
 
       ::image::image_pointer pimageCompose;
 
-      pimage->__øconstruct(pimageCompose);
+      pimage->øconstruct(pimageCompose);
 
       pimageCompose->set_ok_flag();
 
@@ -1243,7 +1243,7 @@ namespace image
       if (!pimage)
       {
 
-         pimage = __øcreate<::image::image>();
+         pimage = øcreate<::image::image>();
 
          pimage->set_nok();
 

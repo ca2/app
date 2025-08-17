@@ -118,7 +118,7 @@ namespace gpu
 
    //   }
 
-   //   __defer_construct_new(m_ptexturea);
+   //   ødefer_construct_new(m_ptexturea);
 
    //   m_ptexturea->set_size(m_pgpurenderer->m_iDefaultFrameCount);
 
@@ -129,7 +129,7 @@ namespace gpu
 
    //      auto& ptexture = m_ptexturea->element_at(i);
 
-   //      __defer_construct(ptexture);
+   //      ødefer_construct(ptexture);
 
    //      ptexture->initialize_image_texture(
    //         m_pgpurenderer,
@@ -235,7 +235,7 @@ namespace gpu
 
       auto iFrameCount = m_pgpurenderer->m_iDefaultFrameCount;
 
-      __defer_construct_new(m_ptexturea);
+      ødefer_construct_new(m_ptexturea);
 
       m_ptexturea->set_size(iFrameCount);
 
@@ -244,7 +244,7 @@ namespace gpu
       for (auto& ptexture : texturea)
       {
 
-         __defer_construct(ptexture);
+         ødefer_construct(ptexture);
 
          if (ptexture->size() != m_size && !m_size.is_empty())
          {

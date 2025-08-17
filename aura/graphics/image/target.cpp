@@ -29,7 +29,7 @@ namespace image
 
       m_pparticleSynchronization = node()->create_mutex();
 
-      __øconstruct(m_pimage);
+      øconstruct(m_pimage);
 
    }
 

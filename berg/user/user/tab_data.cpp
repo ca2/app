@@ -42,10 +42,10 @@ namespace user
 
       //}
 
-      __øconstruct(m_ppen);
-      __øconstruct(m_pbrushCloseHover);
-      __øconstruct(m_pbrushCloseSel);
-      __øconstruct(m_pbrushClose);
+      øconstruct(m_ppen);
+      øconstruct(m_pbrushCloseHover);
+      øconstruct(m_pbrushCloseSel);
+      øconstruct(m_pbrushClose);
          //m_pbrushTextHover(e_create),
          //m_pbrushTextSel(e_create),
          //m_pbrushText(e_create),

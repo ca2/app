@@ -92,7 +92,7 @@ namespace image
 
       system()->draw2d();
 
-      __defer_construct(m_pimage);
+      ødefer_construct(m_pimage);
 
       if (m_iSize > 0)
       {
@@ -384,7 +384,7 @@ namespace image
    //
    //   auto rectangleTarget = ::double_rectangle(pointDst, sizeDst);
    //
-   //   auto pdraw2dicon = __øcreate < ::image::icon >();
+   //   auto pdraw2dicon = øcreate < ::image::icon >();
    //
    //   pdraw2dicon->initialize_with_windowing_icon(picon);
    //
@@ -398,7 +398,7 @@ namespace image
    //int image_list::add_icon(::payload payloadFile, int iItem)
    //{
    //
-   //   auto picon = __øcreate < ::windowing::icon >();
+   //   auto picon = øcreate < ::windowing::icon >();
    //
    //   if (!picon)
    //   {
@@ -729,7 +729,7 @@ namespace image
 
       pinfo->m_pimage = m_pimage;
 
-      //auto estatus = ((image_list*)this)->__øconstruct(pinfo->m_pimage);
+      //auto estatus = ((image_list*)this)->øconstruct(pinfo->m_pimage);
 
       //pinfo->m_pimage->copy_from(m_pimage);
 

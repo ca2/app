@@ -600,7 +600,7 @@ class ::fs::data * session::fs()
    bool session::open_by_file_extension(const ::scoped_string & scopedstrPathName, ::request * prequest)
    {
 
-      auto prequestNew = __create_new < ::request >();
+      auto prequestNew = øcreate_new < ::request >();
 
       prequestNew->m_payloadFile = scopedstrPathName;
 
@@ -950,7 +950,7 @@ class ::fs::data * session::fs()
       if (!m_pmapKeyPressed)
       {
 
-         __construct_new(m_pmapKeyPressed);
+         øconstruct_new(m_pmapKeyPressed);
 
       }
 
@@ -1035,7 +1035,7 @@ ret:
       if (!m_pmapKeyPressed)
       {
 
-         __construct_new(m_pmapKeyPressed);
+         øconstruct_new(m_pmapKeyPressed);
 
       }
 
@@ -1064,7 +1064,7 @@ ret:
       //}
 
       //estatus = 
-      __construct_new(m_pfs);
+      øconstruct_new(m_pfs);
 
 
       __check_refdbg
@@ -1073,7 +1073,7 @@ ret:
       //if (!estatus)
       //{
 
-      //   informationf("\nFailed to __construct_new(m_pfs)");
+      //   informationf("\nFailed to øconstruct_new(m_pfs)");
 
       //   m_result.add(estatus);
 
@@ -1096,7 +1096,7 @@ ret:
 
       //}
 
-      //estatus = __construct_new(m_puserpresence);
+      //estatus = øconstruct_new(m_puserpresence);
 
       //if (!estatus)
       //{
@@ -1166,7 +1166,7 @@ ret:
 
       //   }
 
-      //   __øconstruct(m_pftpfs, pftpfs);
+      //   øconstruct(m_pftpfs, pftpfs);
 
       //}
 
@@ -1175,11 +1175,11 @@ ret:
 
          __check_refdbg
 
-         auto pset = __create_new<::fs::set>();
+         auto pset = øcreate_new<::fs::set>();
 
          __check_refdbg
 
-         auto plink = __create_new < ::fs::link>();
+         auto plink = øcreate_new < ::fs::link>();
 
          __check_refdbg
 
@@ -1195,7 +1195,7 @@ ret:
 
          __check_refdbg
 
-         ::pointer < ::fs::data > pfsdataNative = __create_new < ::fs::native>();
+         ::pointer < ::fs::data > pfsdataNative = øcreate_new < ::fs::native>();
 
          __check_refdbg
 
@@ -1249,7 +1249,7 @@ ret:
          //if (!m_paccount)
          //{
 
-         //   estatus = __construct_new(m_paccount);
+         //   estatus = øconstruct_new(m_paccount);
 
          //   if (!estatus)
          //   {
@@ -1881,7 +1881,7 @@ namespace apex
 //
 //      auto puser = pcredentials->m_puser;
 //
-//      //auto pdialog = ::__create_new<::account::dialog>();
+//      //auto pdialog = ::øcreate_new<::account::dialog>();
 //
 //      //pdialog->initialize_account_dialog(pcredentials);
 //

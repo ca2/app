@@ -167,7 +167,7 @@ namespace user
    ::application_menu * notify_icon_listener::menu()
    {
 
-      __defer_construct_new(m_papplicationmenu);
+      ødefer_construct_new(m_papplicationmenu);
 
       return m_papplicationmenu;
 

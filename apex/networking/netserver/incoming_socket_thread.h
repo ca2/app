@@ -64,7 +64,7 @@ namespace netserver
    //   virtual ::pointer<::sockets::listen_socket_base > new_listen_socket() override
    //   {
 
-   //      auto psocket = __id_create(m_typeatomSocket);
+   //      auto psocket = øid_create(m_typeatomSocket);
 
    //      //psocket->increment_reference_count();
 

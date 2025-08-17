@@ -37,7 +37,7 @@ namespace gpu
    void cpu_buffer::set_size(const ::int_size & size)
    {
 
-      __defer_construct_new(m_pimagetarget);
+      ødefer_construct_new(m_pimagetarget);
 
       m_pimagetarget->set_size(size);
 
@@ -57,7 +57,7 @@ namespace gpu
       if (!m_pimagetarget)
       {
 
-         __defer_construct_new(m_pimagetarget);
+         ødefer_construct_new(m_pimagetarget);
 
       }
 

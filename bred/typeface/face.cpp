@@ -81,7 +81,7 @@ namespace typeface
    //::gpu::model_buffer* face::box_model_buffer()
    //{
 
-   //   if (__defer_construct(m_pmodelbufferBox))
+   //   if (ødefer_construct(m_pmodelbufferBox))
    //   {
 
    //      m_pmodelbufferBox->initialize_gpu_context_object(m_pgpurenderer->m_pgpucontext);

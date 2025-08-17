@@ -216,7 +216,7 @@ namespace aura
 
       enable_trace_category(e_trace_category_graphics_thread, false);
     
-      //__øconstruct(g_pmutexImage);
+      //øconstruct(g_pmutexImage);
 
       m_bProdevianMouse = false;
 
@@ -346,7 +346,7 @@ namespace aura
 
       }
 
-      __øconstruct(m_phardwaredevices);
+      øconstruct(m_phardwaredevices);
 
    }
 
@@ -403,12 +403,12 @@ namespace aura
 //      if (plibrary.is_null())
 //      {
 //
-//         __øconstruct(plibrary, on_get_library(strLibrary));
+//         øconstruct(plibrary, on_get_library(strLibrary));
 //
 //         if (plibrary.is_null())
 //         {
 //
-//            __construct_new(plibrary);
+//            øconstruct_new(plibrary);
 //
 //            if (!plibrary->open(strLibrary))
 //            {
@@ -855,7 +855,7 @@ namespace aura
 //
 //      }
 
-      //estatus = __construct_new(m_pxml);
+      //estatus = øconstruct_new(m_pxml);
 
       //if (!estatus)
       //{
@@ -972,7 +972,7 @@ namespace aura
 //
 //#ifndef APPLE_IOS
 //
-//         auto estatus = __construct_new(m_pmachinehappeningcentral);
+//         auto estatus = øconstruct_new(m_pmachinehappeningcentral);
 //
 //         if (!estatus)
 //         {
@@ -999,7 +999,7 @@ namespace aura
 //
 //      }
 
-      //if(!__øconstruct(m_pfilesystem))
+      //if(!øconstruct(m_pfilesystem))
       //{
 
       //   error() <<"failed to initialize file-system";
@@ -1008,7 +1008,7 @@ namespace aura
 
       //}
 
-      //if(!__øconstruct(m_pdirectorysystem))
+      //if(!øconstruct(m_pdirectorysystem))
       //{
 
       //   error() <<"failed to initialize dir-system";
@@ -1062,7 +1062,7 @@ namespace aura
       ////informationf("Common App Data (matter) : " + directory()->commonappdata() + "\n");
       ////informationf("common app data (matter) : " + directory()->commonappdata() + "\n");
 
-      //__construct_new(m_pcrypto);
+      //øconstruct_new(m_pcrypto);
 
       //if (!::is_set(m_pcrypto))
       //{
@@ -1182,7 +1182,7 @@ namespace aura
 
       ///estatus = 
       
-      __øconstruct(m_pdraw2d);
+      øconstruct(m_pdraw2d);
 
       //if (!estatus)
       //{
@@ -1906,7 +1906,7 @@ namespace aura
 //
 //#endif
 
-      //auto estatus = __construct_new(m_puserstr);
+      //auto estatus = øconstruct_new(m_puserstr);
 
       //if (!m_puserstr || !estatus)
       //{
@@ -1939,7 +1939,7 @@ namespace aura
 
       //throw ::exception(todo("filehandler"));
 
-      //estatus = __construct_new(m_pfilehandler);
+      //estatus = øconstruct_new(m_pfilehandler);
 
       //if (!estatus)
       //{
@@ -2712,7 +2712,7 @@ namespace aura
 
    //   }
 
-   //   auto estatus = __construct_new(m_ptrace);
+   //   auto estatus = øconstruct_new(m_ptrace);
 
    //   if (!estatus)
    //   {
@@ -2810,7 +2810,7 @@ namespace aura
 //
 //#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__APPLE__)
 //
-//            auto plauncher = __create_new<::apex::shell_launcher>();
+//            auto plauncher = øcreate_new<::apex::shell_launcher>();
 //
 //            // auto pcontext = get_context();
 //            
@@ -2846,7 +2846,7 @@ namespace aura
 //            throw ::exception(todo);
 //
 //#else
-//            auto plauncher = __create_new<::apex::shell_launcher>();
+//            auto plauncher = øcreate_new<::apex::shell_launcher>();
 //
 //            // auto pcontext = get_context();
 //
@@ -2888,7 +2888,7 @@ namespace aura
 //
 //#else
 //
-//            auto plauncher = __create_new<::apex::shell_launcher>();
+//            auto plauncher = øcreate_new<::apex::shell_launcher>();
 //
 //            // auto pcontext = get_context();
 //
@@ -2924,7 +2924,7 @@ namespace aura
 //
 //#else
 //
-//            auto plauncher = __create_new<::apex::shell_launcher>();
+//            auto plauncher = øcreate_new<::apex::shell_launcher>();
 //
 //            // auto pcontext = get_context();
 //
@@ -4803,7 +4803,7 @@ namespace aura
 //      if (!m_pestamira)
 //      {
 //
-//         __construct_new(m_pestamira);
+//         øconstruct_new(m_pestamira);
 //
 //         m_pestamira->init_instance();
 //
@@ -4868,7 +4868,7 @@ namespace aura
 //
 //      //auto estatus =
 //      
-//      pfactoryGpu->__øconstruct(this, m_pgpu);
+//      pfactoryGpu->øconstruct(this, m_pgpu);
 //
 //      //if (!estatus)
 //      //{
@@ -5519,7 +5519,7 @@ namespace aura
   //      m_ppatch = ___new aura::patch ();
   //      g_pszCooperativeLevel = "aura";
   //
-  //      estatus = __øconstruct(m_puserset, __allocate ::account::user_set(this));
+  //      estatus = øconstruct(m_puserset, __allocate ::account::user_set(this));
   //
   //      if (!estatus)
   //      {
@@ -5628,7 +5628,7 @@ namespace aura
 
    //   }
 
-   //   auto estatus = __construct_new(m_pxml);
+   //   auto estatus = øconstruct_new(m_pxml);
 
    //   if (!estatus)
    //   {
@@ -5692,7 +5692,7 @@ namespace aura
       if (!m_phistory)
       {
 
-         __construct_new(m_phistory);
+         øconstruct_new(m_phistory);
 
       }
 
@@ -5717,7 +5717,7 @@ if(!m_pimaging)
    if (application()->m_bImaging)
    {
 
-      __construct_new(m_pimaging);
+      øconstruct_new(m_pimaging);
 
    }
 }
@@ -5746,7 +5746,7 @@ if(!m_pimaging)
    //    if (application()->m_bImaging)
    //    {
    //
-   //       __construct_new(m_pimaging);
+   //       øconstruct_new(m_pimaging);
    //
    //    }
    //    /*/if (!estatus)
@@ -6200,7 +6200,7 @@ if(!m_pimaging)
    //void system::set_history(::apex::history* phistory)
    //{
 
-   //   auto estatus = __øconstruct(m_phistory, phistory);
+   //   auto estatus = øconstruct(m_phistory, phistory);
 
    //   if (!estatus)
    //   {
@@ -6710,11 +6710,11 @@ if(!m_pimaging)
        //}
 
        //auto estatus =
-       pfactory->__øconstruct(this, m_pestamira);
+       pfactory->øconstruct(this, m_pestamira);
 
       //auto estatus = 
       
-//      __øconstruct(m_pestamira, pfactory->create < ::aqua::estamira > ());
+//      øconstruct(m_pestamira, pfactory->create < ::aqua::estamira > ());
 
       //if (!estatus)
       //{

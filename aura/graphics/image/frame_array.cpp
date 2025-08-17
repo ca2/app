@@ -167,7 +167,7 @@ namespace image
 
          auto & pframeHost = this->element_at(iFrame);
 
-         __construct_new(pframeHost);
+         øconstruct_new(pframeHost);
 
          pframeHost->create(pframeSource, imagedrawing, this);
 

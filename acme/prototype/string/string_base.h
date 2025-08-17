@@ -2051,7 +2051,7 @@ public:
    string_base & append_formatf_arguments(const CHARACTER * pszFormat, va_list args);
 
    
-#if defined(__STD_FORMAT__)
+//#if defined(__STD_FORMAT__)
 
    template<typename... Ts>
    string_base & format(const ::std::format_string<Ts...> fmt, Ts&&... args)
@@ -2070,7 +2070,7 @@ public:
    }
 
    
-#endif
+//#endif
 
    //void FormatMessage(const CHARACTER * pszFormat, ...);
 
@@ -2842,5 +2842,14 @@ template < primitive_character_range RANGE, typed_character_pointer < typename R
 }
 
 
+// variadic formatting function
+template <typename... Args>
+::string format(::std::string_view fmt, Args&&... args)
+{
+   
+   auto s = std::vformat(fmt, std::make_format_args(args...));
 
+   return ::string(s.c_str(),s.size());
+
+}
 

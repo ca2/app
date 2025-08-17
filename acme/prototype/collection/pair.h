@@ -278,3 +278,24 @@ template < typename A, typename B > make_pair(A, B) -> make_pair < pair< A, B > 
 //#include <tuple>
 
 
+template < typename T1, typename T2 >
+::hash32 as_hash32(const ::pair < T1, T2 >& pair) 
+{
+
+   return hash32(hash32(pair.element1()) + hash32(pair.transfer_element1()));
+
+}
+
+
+template < typename T1, typename T2, typename T3, typename T4 >
+bool operator ==(const ::pair < T1, T2 >& pair1, const ::pair < T3, T4 >& pair2)
+{
+   
+   return pair1.element1() == pair2.element1()
+      && pair1.element2() == pair2.element2();
+   
+
+}
+
+
+

@@ -1,6 +1,6 @@
 // Created by camilo on 2025-04-17 09:37 <3ThomasBorregaardSorensen!!
 #pragma once
-
+#include <format>
 
 #include "acme/prototype/collection/range.h"
 
@@ -50,6 +50,20 @@ public:
       return *this;
    }
 
+};
+
+
+
+
+template <typename ITERATOR_TYPE>
+struct std::formatter<character_range<ITERATOR_TYPE>> : std::formatter<std::string_view>
+{
+   template <typename FormatContext>
+   auto format(const character_range<ITERATOR_TYPE>& s, FormatContext& ctx) const
+   {
+      return std::formatter<std::string_view>::format(
+         std::string_view(s.begin(), s.size()), ctx);
+   }
 };
 
 

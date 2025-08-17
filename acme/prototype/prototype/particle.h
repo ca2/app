@@ -405,7 +405,7 @@ public:
    virtual void fatalf(const_char_pointer pszFormat, ...) const;
 
 
-#if defined(__STD_FORMAT__)
+//#if defined(__STD_FORMAT__)
    
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
    template<typename... Ts>
@@ -446,7 +446,7 @@ public:
    }
 
 
-#endif
+//#endif
    
 
    void trace(enum_trace_level etracelevel, const ::scoped_string & scopedstr) const;
@@ -1323,6 +1323,33 @@ CLASS_DECL_ACME void information(const ::scoped_string& scopedstr);
 CLASS_DECL_ACME void warning(const ::scoped_string& scopedstr);
 CLASS_DECL_ACME void error(const ::scoped_string& scopedstr);
 CLASS_DECL_ACME void fatal(const ::scoped_string& scopedstr);
+
+
+template <typename... Args>
+void debug(std::string_view fmt, Args&&... args)
+{
+   ::debug(format(fmt, std::make_format_args(args...)));
+}
+template <typename... Args>
+void information(std::string_view fmt, Args&&... args)
+{
+   ::information(format(fmt, std::make_format_args(args...)));
+}
+template <typename... Args>
+void warning(std::string_view fmt, Args&&... args)
+{
+   ::warning(format(fmt, std::make_format_args(args...)));
+}
+template <typename... Args>
+void error(std::string_view fmt, Args&&... args)
+{
+   ::error(format(fmt, std::make_format_args(args...)));
+}
+template <typename... Args>
+void fatal(std::string_view fmt, Args&&... args)
+{
+   ::fatal(format(fmt, std::make_format_args(args...)));
+}
 
 
 CLASS_DECL_ACME void debugf(const ::ansi_character* pszFormat, ...);

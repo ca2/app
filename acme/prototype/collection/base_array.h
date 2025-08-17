@@ -1120,7 +1120,11 @@ public:
    void copy(const TYPE* p, ::collection::count c);
    void copy(const base_array & src);
 
+   void assign(::collection::count c, const TYPE & t)
+   {
+      this->copy(&t, c);
 
+   }
    
 
 

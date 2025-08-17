@@ -67,7 +67,7 @@ public:
 
    void formatf_output_arguments(const_char_pointer psz, va_list & arguments);
 
-   #if defined(__STD_FORMAT__)
+   ///#if defined(__STD_FORMAT__)
    
    template<typename... Ts>
    void format_output(const std::format_string<Ts...> fmt, Ts&&... args)
@@ -90,7 +90,7 @@ public:
       return format_output(fmt, ::std::forward < Ts >(args)...);
 
    }
-   #endif
+   //#endif
    
    
    //void format_output_arguments(const_char_pointer psz, va_list & arguments)

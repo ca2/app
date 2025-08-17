@@ -234,7 +234,7 @@ namespace dynamic_source
 
       single_lock synchronouslock(synchronization(), true);
 
-      m_map.erase_key(pscript->m_strName);
+      m_map.erase(pscript->m_strName);
 
    }
 

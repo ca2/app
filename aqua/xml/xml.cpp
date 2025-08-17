@@ -60,7 +60,7 @@ namespace xml
       //}
 
       //auto estatus = 
-      __construct_new(m_pentities);
+      øconstruct_new(m_pentities);
 
       //if (!estatus)
       //{
@@ -104,7 +104,7 @@ namespace xml
    //::pointer<::xml::document>xml::create_document()
    //{ 
    //   
-   //   auto pxmldocument = __create_new < ::xml::document >(); 
+   //   auto pxmldocument = øcreate_new < ::xml::document >(); 
 
    //   return ::transfer(pxmldocument);
 

@@ -1237,7 +1237,7 @@ namespace user
 
    ///*   ::pointer<object>pparticle;
 
-   //   __id_construct(pparticle, pdescriptor->m_type);
+   //   øid_construct(pparticle, pdescriptor->m_type);
 
    //   if(!pparticle)
    //   {

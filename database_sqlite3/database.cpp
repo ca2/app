@@ -924,9 +924,9 @@ int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char*
 
    auto & prowa = presultset->m_prowa;
 
-   presultset->__defer_construct_new(pfielda);
+   presultset->ødefer_construct_new(pfielda);
 
-   presultset->__defer_construct_new(prowa);
+   presultset->ødefer_construct_new(prowa);
 
    if (pfielda->is_empty())
    {
@@ -936,7 +936,7 @@ int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char*
       for (::collection::index i = 0; i < ncol; i++)
       {
 
-         presultset->__defer_construct_new(pfielda->element_at(i));
+         presultset->ødefer_construct_new(pfielda->element_at(i));
 
          pfielda->element_at(i)->m_strName = cols[i];
 

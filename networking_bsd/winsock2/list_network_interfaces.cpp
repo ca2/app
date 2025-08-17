@@ -27,7 +27,7 @@ namespace networking_bsd
 
       ::pointer < ::item_array > pitema;
 
-      __defer_construct_new(pitema);
+      ødefer_construct_new(pitema);
 
       /* Declare and initialize variables */
 
@@ -118,7 +118,7 @@ namespace networking_bsd
             if (pUnicast != NULL) {
                for (i = 0; pUnicast != NULL; i++)
                {
-                  auto paddress = __create_new<::networking_bsd::address>();
+                  auto paddress = øcreate_new<::networking_bsd::address>();
 
                   auto address = (sockaddr *)pUnicast->Address.lpSockaddr;
 

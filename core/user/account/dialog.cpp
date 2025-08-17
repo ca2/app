@@ -70,7 +70,7 @@ namespace account
 
       //estatus = 
       
-      __construct_new(m_plogin);
+      øconstruct_new(m_plogin);
 
       //if (!estatus)
       //{
@@ -329,7 +329,7 @@ namespace account
          if(papp != nullptr)
          {
 
-            auto phyperlink = __create_new < ::hyperlink >();
+            auto phyperlink = øcreate_new < ::hyperlink >();
 
             phyperlink->m_strLink = "ca2account:this";
 
@@ -341,7 +341,7 @@ namespace account
          else
          {
 
-            auto phyperlink = __create_new < ::hyperlink >();
+            auto phyperlink = øcreate_new < ::hyperlink >();
 
             phyperlink->m_strLink = "ca2account:this";
 

@@ -58,7 +58,7 @@ namespace gpu
 
          auto size = m_iVertexTypeSize * m_iVertexCount;
 
-         __defer_construct(m_pbufferVertex);
+         ødefer_construct(m_pbufferVertex);
 
          m_pbufferVertex->initialize_memory_buffer_with_model_buffer(
             this,
@@ -107,6 +107,8 @@ namespace gpu
       }
 
 
+      virtual ::gpu::command_buffer* _defer_get_loading_command_buffer();
+
       virtual void initialize_dummy_model(::gpu::context* pcontext, int iVertexCount);
 
       virtual void static_initialize_vertex_buffer(const void* data, memsize iTypeSize, ::collection::count iVertexCount);
@@ -125,7 +127,7 @@ namespace gpu
 
          auto size = m_iIndexTypeSize * m_iIndexCount;
 
-         __defer_construct(m_pbufferIndex);
+         ødefer_construct(m_pbufferIndex);
 
          m_pbufferIndex->initialize_memory_buffer_with_model_buffer(
             this,
@@ -145,7 +147,7 @@ namespace gpu
 
          //auto size = indexa.get_size_in_bytes();
 
-         //__defer_construct(m_pbufferIndex);
+         //ødefer_construct(m_pbufferIndex);
 
          //m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(
          //   this,
@@ -171,6 +173,10 @@ namespace gpu
             throw ::exception(error_wrong_state);
 
          }
+
+         m_iVertexCount = vertexa.size();
+
+         m_iVertexByteSize = m_iVertexTypeSize * m_iVertexCount;
 
          m_pbufferVertex->on_set_memory_buffer(vertexa.data(), vertexa.get_size_in_bytes());
 

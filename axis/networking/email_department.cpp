@@ -23,9 +23,9 @@ namespace networking
    bool email_department::utf8_mail(class ::networking::email * pemail)
    {
 
-      auto phandler = __øcreate < ::sockets::socket_handler >();
+      auto phandler = øcreate < ::sockets::socket_handler >();
 
-      auto psocket = __create_new < ::sockets::smtp_socket >();
+      auto psocket = øcreate_new < ::sockets::smtp_socket >();
 
       string strHost = file()->as_string(directory()->home() / ".sensitive/sensitive/seed/default_sendmail_host.txt");
 

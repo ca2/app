@@ -121,7 +121,7 @@ namespace app_integration
 
       //auto estatus = 
 
-      //__construct_new(m_prender);
+      //øconstruct_new(m_prender);
 
       //if(!estatus)
       //{
@@ -212,7 +212,7 @@ namespace app_integration
       for (auto & str : m_straName)
       {
 
-         __construct_new(m_straaOutput.add_new());
+         øconstruct_new(m_straaOutput.add_new());
 
       }
 

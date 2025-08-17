@@ -47,7 +47,7 @@ namespace filemanager
 
             //}
 
-            __construct_new(m_pimagelist);
+            øconstruct_new(m_pimagelist);
 
             m_pimagelist->create(16, 16);
 
@@ -94,7 +94,7 @@ namespace filemanager
 
             string str;
 
-            auto pxmldocument = __create_new < ::xml::document >();
+            auto pxmldocument = øcreate_new < ::xml::document >();
 
             pxmldocument->load(scopedstrSource);
 
@@ -144,7 +144,7 @@ namespace filemanager
                if (iNewItem < 0)
                {
 
-                  pfolder = __create_new<folder>();
+                  pfolder = øcreate_new<folder>();
 
                   m_foldera.add(pfolder);
 

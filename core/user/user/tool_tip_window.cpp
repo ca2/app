@@ -512,7 +512,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::update_drawing_objects()
    {
-      __øconstruct(m_pfont);
+      øconstruct(m_pfont);
 
       /*::draw2d::region rgn;
       auto rectangleX = this->rectangle();

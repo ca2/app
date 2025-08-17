@@ -49,7 +49,7 @@ namespace userfs
 
       //estatus = 
       
-      //__construct_new(m_pfsset);
+      //øconstruct_new(m_pfsset);
 
       //if (!estatus)
       //{
@@ -355,7 +355,7 @@ namespace userfs
 
       pathItemUserPath = pitem->user_path();
 
-      //__construct_new(m_puserfslistdata);
+      //øconstruct_new(m_puserfslistdata);
 
       if(pathItemUserPath.is_empty())
       {
@@ -533,7 +533,7 @@ namespace userfs
 
          information() << "folder user : " << pathFolderUser;
 
-         //auto plistitem = __create_new<list_item>();
+         //auto plistitem = øcreate_new<list_item>();
 
          //plistitem->m_pathFinal = pathFinal;
 
@@ -620,7 +620,7 @@ namespace userfs
    ::fs::set * data::fs_data()
    {
 
-      if (__defer_construct_new(m_pfsset))
+      if (ødefer_construct_new(m_pfsset))
       {
 
 

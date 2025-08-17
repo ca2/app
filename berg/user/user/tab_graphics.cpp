@@ -118,9 +118,9 @@ namespace user
 
       ::collection::index iIndex = 0;
 
-      auto pbrushText = __øcreate < ::draw2d::brush >();
+      auto pbrushText = øcreate < ::draw2d::brush >();
 
-      auto ppenBorder = __øcreate < ::draw2d::pen >();
+      auto ppenBorder = øcreate < ::draw2d::pen >();
 
       for (; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
       {
@@ -192,7 +192,7 @@ namespace user
 
             }
 
-            auto ppath = __øcreate < ::draw2d::path >();
+            auto ppath = øcreate < ::draw2d::path >();
 
             if (true)
             {
@@ -303,7 +303,7 @@ namespace user
             if (true)
             {
 
-               auto ppath = __øcreate < ::draw2d::path >();
+               auto ppath = øcreate < ::draw2d::path >();
 
                if (get_data()->m_idaSel.contains(ppane->id()))
                {
@@ -467,7 +467,7 @@ namespace user
 
       ::collection::index iVisiblePane = 0;
 
-      auto pbrushText = __øcreate < ::draw2d::brush >();
+      auto pbrushText = øcreate < ::draw2d::brush >();
 
       for (int iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
       {
@@ -519,13 +519,13 @@ namespace user
             if (get_data()->m_idaSel.contains(iIndex))
             {
 
-               auto ppen = __øcreate < ::draw2d::pen >();
+               auto ppen = øcreate < ::draw2d::pen >();
 
                ppen->create_solid(1.0, argb(255, 0, 0, 0));
 
                pgraphics->set(ppen);
 
-               auto ppath = __øcreate<::draw2d::path>();
+               auto ppath = øcreate<::draw2d::path>();
 
                ppath->set_current_point(rectangleBorder.right(), rectangleBorder.bottom());
                ppath->add_line(rectangleBorder.left() + 1, rectangleBorder.bottom());
@@ -545,13 +545,13 @@ namespace user
             else
             {
 
-               auto ppen = __øcreate < ::draw2d::pen >();
+               auto ppen = øcreate < ::draw2d::pen >();
 
                ppen->create_solid(1.0, argb(255, 0, 0, 0));
 
                pgraphics->set(ppen);
 
-               auto ppath = __øcreate<::draw2d::path>();
+               auto ppath = øcreate<::draw2d::path>();
 
                ppath->set_current_point(rectangleBorder.right(), rectangleBorder.bottom());
                ppath->add_line(rectangleBorder.left() + 1, rectangleBorder.bottom());
@@ -610,13 +610,13 @@ namespace user
             if (get_data()->m_idaSel.contains(ppane->id()))
             {
 
-               auto ppen = __øcreate < ::draw2d::pen >();
+               auto ppen = øcreate < ::draw2d::pen >();
 
                ppen->create_solid(1.0, argb(255, 0, 0, 0));
 
                pgraphics->set(ppen);
 
-               auto ppath = __øcreate<::draw2d::path >();
+               auto ppath = øcreate<::draw2d::path >();
 
                ppath->set_current_point(rectangleBorder.left(), rectangleX.bottom());
                ppath->add_line(rectangleBorder.left(), rectangleBorder.top());
@@ -636,13 +636,13 @@ namespace user
             else
             {
 
-               auto ppen = __øcreate < ::draw2d::pen >();
+               auto ppen = øcreate < ::draw2d::pen >();
 
                ppen->create_solid(1.0, argb(255, 0, 0, 0));
 
                pgraphics->set(ppen);
 
-               auto ppath = __øcreate<::draw2d::path >();
+               auto ppath = øcreate<::draw2d::path >();
 
                ppath->set_current_point(rectangleBorder.left(), rectangleX.bottom());
                ppath->add_line(rectangleBorder.left(), rectangleBorder.top());

@@ -124,7 +124,7 @@ namespace apex
          if (!m_pservicehandler)
          {
 
-            __øconstruct(m_pservicehandler);
+            øconstruct(m_pservicehandler);
 
             service_handler()->defer_service();
 

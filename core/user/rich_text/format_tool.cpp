@@ -57,7 +57,7 @@ namespace user
 
          //estatus = 
 
-         //__defer_construct_new(m_pformathost);
+         //ødefer_construct_new(m_pformathost);
 
          //if (!estatus)
          //{
@@ -66,7 +66,7 @@ namespace user
 
          //}
 
-         //auto pformat = __create_new < ::user::rich_text::format >();
+         //auto pformat = øcreate_new < ::user::rich_text::format >();
 
          //if (!pformat)
          //{
@@ -125,31 +125,31 @@ namespace user
 
          }
          int iControl = 0;
-         __øconstruct(m_pbuttonBold);
+         øconstruct(m_pbuttonBold);
          iControl++;
-         __øconstruct(m_pbuttonItalic);
+         øconstruct(m_pbuttonItalic);
          iControl++;
-         __øconstruct(m_pbuttonUnderline);
+         øconstruct(m_pbuttonUnderline);
          iControl++;
-         __øconstruct(m_pcomboFamily);
+         øconstruct(m_pcomboFamily);
          iControl++;
-         __øconstruct(m_pcomboSize);
+         øconstruct(m_pcomboSize);
          iControl++;
-         __øconstruct(m_pbuttonForeground);
+         øconstruct(m_pbuttonForeground);
          iControl++;
-         __øconstruct(m_pbuttonBackground);
+         øconstruct(m_pbuttonBackground);
          iControl++;
-         __øconstruct(m_pbuttonSubscript);
+         øconstruct(m_pbuttonSubscript);
          iControl++;
-         __øconstruct(m_pbuttonSuperscript);
+         øconstruct(m_pbuttonSuperscript);
          iControl++;
-         __øconstruct(m_pbuttonLineHeight);
+         øconstruct(m_pbuttonLineHeight);
          iControl++;
-         __øconstruct(m_pbuttonAlignLeft);
+         øconstruct(m_pbuttonAlignLeft);
          iControl++;
-         __øconstruct(m_pbuttonAlignCenter);
+         øconstruct(m_pbuttonAlignCenter);
          iControl++;
-         __øconstruct(m_pbuttonAlignRight);
+         øconstruct(m_pbuttonAlignRight);
          iControl++;
 
          m_pbuttonBold->create_control(this, "font_bold");
@@ -266,7 +266,7 @@ namespace user
       void format_tool::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         auto pbrushBk = __øcreate < ::draw2d::brush >();
+         auto pbrushBk = øcreate < ::draw2d::brush >();
 
          auto rectangleX = this->rectangle();
 
@@ -535,7 +535,7 @@ namespace user
                      if (!m_pcolorselectorpopupForeground)
                      {
 
-                        m_pcolorselectorpopupForeground = __create_new < ::user::color_selector_popup >();
+                        m_pcolorselectorpopupForeground = øcreate_new < ::user::color_selector_popup >();
 
                         m_pcolorselectorpopupForeground->m_bCompact = true;
 

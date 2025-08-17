@@ -96,7 +96,7 @@ namespace user
 
       //estatus = 
 
-      __defer_construct_new(m_pdata);
+      ødefer_construct_new(m_pdata);
 
       //if (estatus == ::success)
       //{
@@ -228,7 +228,7 @@ namespace user
 
       auto & ppane = get_data()->m_tabpanea.add_new();
 
-      __construct_new(ppane);
+      øconstruct_new(ppane);
 
       ppane->initialize_tab_pane(this);
 
@@ -275,7 +275,7 @@ namespace user
 
       auto & ppane = get_data()->m_tabpanea.add_new();
 
-      __construct_new(ppane);
+      øconstruct_new(ppane);
 
       ppane->initialize_tab_pane(this);
 
@@ -1581,7 +1581,7 @@ namespace user
 
       set_default_mouse_cursor(pcursor);
 
-      __construct_new(get_data()->m_pimagelist);
+      øconstruct_new(get_data()->m_pimagelist);
 
       get_data()->m_pimagelist->create(16, 16, 0, 0, 16);
 

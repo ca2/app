@@ -111,7 +111,7 @@ namespace core
    ::pointer<progress::real>application::show_progress(::user::interaction * puiParent, const ::scoped_string & scopedstrTitle, ::collection::count iProgressCount)
    {
 
-      auto pprogresscontrol = __create_new <  ::userex::progress_control >();
+      auto pprogresscontrol = øcreate_new <  ::userex::progress_control >();
 
       pprogresscontrol->defer_show(puiParent, scopedstrTitle, iProgressCount);
 
@@ -248,7 +248,7 @@ namespace core
       if (!pfilemanager)
       {
 
-         ((application *)this)->__construct_new(pfilemanager);
+         ((application *)this)->øconstruct_new(pfilemanager);
 
          pfilemanager->initialize_filemanager_component(((application *)this));
 

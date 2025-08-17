@@ -201,7 +201,7 @@ namespace gpu
    //   if (!m_pgpucontextCompositorOutput)
    //   {
 
-   //      __øconstruct(m_pgpucontextCompositorOutput);
+   //      øconstruct(m_pgpucontextCompositorOutput);
 
    //      m_pgpucontextCompositorOutput = m_papplication->get_gpu()->get_device()->start_swap_chain_context(this, pwindow);
 
@@ -566,7 +566,7 @@ namespace gpu
             //pshadervertexinput->m_attribs.add({ .location = 0, .binding = 0, .format = VK_FORMAT_R32G32B32_SFLOAT, .offset = offsetof(RectangleVertex, pos) });
             //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
 
-            auto pshaderRectangle = __øcreate<::gpu::shader>();
+            auto pshaderRectangle = øcreate<::gpu::shader>();
 
             m_pshaderSourceRectangle = pshaderRectangle;
             //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
@@ -601,7 +601,7 @@ namespace gpu
             //pshadervertexinput->m_attribs.add({ .location = 0, .binding = 0, .format = VK_FORMAT_R32G32B32_SFLOAT, .offset = offsetof(RectangleVertex, pos) });
             //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
 
-            auto pshaderRectangle = __øcreate<::gpu::shader>();
+            auto pshaderRectangle = øcreate<::gpu::shader>();
 
             m_pshaderBlendRectangle = pshaderRectangle;
             //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
@@ -799,7 +799,7 @@ namespace gpu
        //      //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
 
 
-       //      auto pshaderRectangle = __øcreate<::gpu::shader>();
+       //      auto pshaderRectangle = øcreate<::gpu::shader>();
 
        //      m_pshaderSourceRectangle = pshaderRectangle;
        //      //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
@@ -843,7 +843,7 @@ namespace gpu
        //      //pshadervertexinput->m_attribs.add({ .location = 0, .binding = 0, .format = VK_FORMAT_R32G32B32_SFLOAT, .offset = offsetof(RectangleVertex, pos) });
        //      //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
 
-       //      auto pshaderRectangle = __øcreate<::gpu::shader>();
+       //      auto pshaderRectangle = øcreate<::gpu::shader>();
 
        //      m_pshaderBlendRectangle = pshaderRectangle;
        //      //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
@@ -1246,7 +1246,7 @@ namespace gpu
       if (::nok(m_pgpushaderTextOut))
       {
 
-         __øconstruct(m_pgpushaderTextOut);
+         øconstruct(m_pgpushaderTextOut);
 
          auto pcontext = gpu_context();
 
@@ -1256,7 +1256,8 @@ namespace gpu
          m_pgpushaderTextOut->m_bindingSampler.m_strUniform = "text";
          m_pgpushaderTextOut->m_etopology = ::gpu::e_topology_triangle_strip;
          m_pgpushaderTextOut->m_ecullmode = ::gpu::e_cull_mode_none;
-         m_pgpushaderTextOut->m_bindingSampler.set();
+         m_pgpushaderTextOut->m_bindingSampler.set(0);
+         m_pgpushaderTextOut->m_iPushConstants = 1;
          
          //pcontext->white_to_color_sampler_shader_setup(m_pgpushaderTextOut);
 
@@ -1321,7 +1322,7 @@ namespace gpu
       if (!m_pmodelbufferTextOutDummy)
       {
 
-         m_pmodelbufferTextOutDummy = __øcreate < ::gpu::model_buffer >();
+         m_pmodelbufferTextOutDummy = øcreate < ::gpu::model_buffer >();
 
          m_pmodelbufferTextOutDummy->initialize_dummy_model(pcontext, 4);
 
@@ -1476,7 +1477,7 @@ namespace gpu
 
             auto h = ppixmap->m_rectangle.height();
 
-            strMessage.formatf("char bound '%s' (%d, %d)", strChar.c_str(), w, h);
+            strMessage.formatf("char bound '%s' (%d, %d)%s", strChar.c_str(), w, h, pshader->m_strPushConstantsDebugging.c_str());
 
             ::gpu::debug_scope debugscope(pcontext, strMessage);
 

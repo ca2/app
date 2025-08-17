@@ -45,7 +45,7 @@ namespace platform
 
             }
 
-            __øconstruct(p);
+            øconstruct(p);
 
          }
 

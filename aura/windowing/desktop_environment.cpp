@@ -49,7 +49,7 @@ namespace windowing
 //
 //       ::pointer < ::graphics::graphics > pgraphicsgraphics;
 //
-//       __raw_construct(pgraphicsgraphics);
+//       øraw_construct(pgraphicsgraphics);
 //
 //       return pgraphicsgraphics;
 //

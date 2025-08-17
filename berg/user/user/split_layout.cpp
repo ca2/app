@@ -159,7 +159,7 @@ namespace user
 
             //auto estatus = 
             
-            __øconstruct(m_splitbara[i]);
+            øconstruct(m_splitbara[i]);
 
             //if (!estatus)
             {
@@ -195,7 +195,7 @@ namespace user
 
             //auto estatus =
             
-            __construct_new(ppane);
+            øconstruct_new(ppane);
 
             ////if (!estatus)
             //{
@@ -231,7 +231,7 @@ namespace user
       for(::collection::index i = 0; i < m_panea.get_count(); i++)
       {
 
-         __construct_new(m_panea[i]);
+         øconstruct_new(m_panea[i]);
 
          if(m_panea[i]->m_pplaceholder.is_null())
          {
@@ -534,7 +534,7 @@ namespace user
          if (!m_splitbara.element_at(i))
          {
 
-            __construct_new(m_splitbara.element_at(i));
+            øconstruct_new(m_splitbara.element_at(i));
 
          }
 
@@ -947,7 +947,7 @@ namespace user
    bool split_layout::InsertPaneAt(::collection::index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, ::atom atom)
    {
 
-      auto  pbar =__create_new<split_bar>();
+      auto  pbar =øcreate_new<split_bar>();
 
       m_splitbara.insert_at(iIndex, pbar);
 
@@ -957,7 +957,7 @@ namespace user
 
       auto & ppane = m_panea.add_new_at(iIndex);
 
-      __construct_new(ppane);
+      øconstruct_new(ppane);
 
       ppane->m_pplaceholder = place_hold(puserinteraction, ppane->m_rectangleHosting);
 
@@ -999,7 +999,7 @@ namespace user
 
          auto & psplitbar = m_splitbara.add_new();
          
-         __øconstruct(psplitbar);
+         øconstruct(psplitbar);
 
          psplitbar->m_iIndex = i;
 

@@ -2088,7 +2088,7 @@ inline pointer < T >& pointer < T > ::operator = (pointer < T2 > && t)
 
 
 //template < typename TYPE >
-//inline void __construct_new(::subparticle* pparticle, ::pointer<TYPE>& p)
+//inline void øconstruct_new(::subparticle* pparticle, ::pointer<TYPE>& p)
 //{
 //
 //   p = __allocate TYPE();

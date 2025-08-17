@@ -139,7 +139,7 @@ namespace dynamic_source
 
       //}
 
-      //estatus = __construct_new(m_pmessagequeue);
+      //estatus = øconstruct_new(m_pmessagequeue);
       //
       //if(!estatus)
       //{
@@ -248,7 +248,7 @@ namespace dynamic_source
 
          //auto estatus = 
 
-         __construct_new(m_pcache);
+         øconstruct_new(m_pcache);
 
          //if (!estatus)
          //{
@@ -400,7 +400,7 @@ namespace dynamic_source
 
       }
 
-      auto pmain = __øcreate < script_main >();
+      auto pmain = øcreate < script_main >();
 
       pmain->m_pscript2 = pinstance->m_pscript2;
 
@@ -711,7 +711,7 @@ namespace dynamic_source
 
                   pimpl = pmain;
 
-                  //pimpl = ::__øcreate < script_interface >();
+                  //pimpl = ::øcreate < script_interface >();
 
                   //pimpl->m_strNote = "impl://" + pinstance->m_strNote;
 

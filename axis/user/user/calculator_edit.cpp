@@ -107,7 +107,7 @@ namespace calculator
 
             strExp = as_text();
 
-            auto pparser = __create_new< parser >();
+            auto pparser = øcreate_new< parser >();
 
             ::pointer < ::user::plain_edit_error > perror;
 
@@ -275,7 +275,7 @@ namespace calculator
             catch (const ::exception & exception)
             {
 
-               perror = __create_new < ::user::plain_edit_error >();
+               perror = øcreate_new < ::user::plain_edit_error >();
                
                perror->m_strMessage = exception.get_message();
                perror->m_iStart = 0;
@@ -369,7 +369,7 @@ namespace calculator
                {
                   if (!perror)
                   {
-                     perror = __create_new < ::user::plain_edit_error >();
+                     perror = øcreate_new < ::user::plain_edit_error >();
 
                   }
                   perror->m_strMessage = "(unknown conversion)";
@@ -389,7 +389,7 @@ namespace calculator
                if (!perror)
                {
 
-                  perror = __create_new < ::user::plain_edit_error >();
+                  perror = øcreate_new < ::user::plain_edit_error >();
 
                }
                perror->m_iStart = ::string(strExp + string(" ")).length();

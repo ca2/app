@@ -452,7 +452,7 @@ namespace core
 
          m_pimageLuminance = image()->create_image({ 100,  100 });
 
-         if (__defer_construct(m_pfontOk))
+         if (ødefer_construct(m_pfontOk))
          {
 
             m_pfontOk->create_font(e_font_sans_ui, 16_pt, e_font_weight_light);
@@ -502,7 +502,7 @@ namespace core
 
       //   //m_pimageBeam->fill(0);
 
-      //   //auto ppen = __øcreate < ::draw2d::pen > ();
+      //   //auto ppen = øcreate < ::draw2d::pen > ();
 
       //   //ppen->create_solid(1.0, argb(255, 255, 255, 255));
 
@@ -781,7 +781,7 @@ namespace core
 
          rectangleInner.deflate(sizeBeam.cx() / 4.0, sizeBeam.cy() / 4.0);
 
-         auto pbrush = __øcreate < ::draw2d::brush >();
+         auto pbrush = øcreate < ::draw2d::brush >();
 
          pbrush->create_solid(argb(255, 0, 0, 0));
 
@@ -853,7 +853,7 @@ namespace core
 
          rectangleOuter.inflate(dSize / 2.0, dSize / 2.0);
 
-         auto pbrush = __øcreate < ::draw2d::brush >();
+         auto pbrush = øcreate < ::draw2d::brush >();
 
          pbrush->create_solid(argb(255, 0, 0, 0));
 
@@ -1135,7 +1135,7 @@ namespace core
 
          m_rectangleColors = rectangleColors;
 
-         __defer_construct(m_pimage);
+         ødefer_construct(m_pimage);
 
          auto sizeImage = ::int_size(m_rectangleColors.width() / 2, m_rectangleColors.height());
 

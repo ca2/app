@@ -182,9 +182,9 @@ namespace experience_tranquillum
 
       }
 
-      __øconstruct(m_ppen);
+      øconstruct(m_ppen);
       
-      __øconstruct(m_pbrush);
+      øconstruct(m_pbrush);
 
    }
 
@@ -214,9 +214,9 @@ namespace experience_tranquillum
 
       ::experience::button::on_layout(pgraphics);
 
-      //__øconstruct(m_spregion);
-      //__øconstruct(m_ppen);
-      //__øconstruct(m_pbrush);
+      //øconstruct(m_spregion);
+      //øconstruct(m_ppen);
+      //øconstruct(m_pbrush);
       //   
       //auto rectangleX = this->rectangle();
       //

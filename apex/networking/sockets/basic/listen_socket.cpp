@@ -450,7 +450,7 @@ namespace sockets
 
    ::pointer < ::sockets::socket > listen_socket::create_attend_socket()
    {
-      return __id_create(m_typeAttendSocket, m_pfactory);
+      return øid_create(m_typeAttendSocket, m_pfactory);
    }
 
    //void listen_socket::OnOptions(int,int,int,socket_id)
@@ -464,7 +464,7 @@ namespace sockets
 
       socket::initialize(pparticle);
 
-      __øconstruct(m_plistensocketImpl);
+      øconstruct(m_plistensocketImpl);
 
       //m_p2 = m_plistensocketImpl->m_p2;
 
@@ -511,7 +511,7 @@ namespace sockets
    ::pointer<listen_socket_impl>listen_socket::create_listen_socket_impl()
    {
 
-      return __øcreate < listen_socket_impl >();
+      return øcreate < listen_socket_impl >();
 
    }
 

@@ -83,7 +83,7 @@ namespace api_ca2
 
       strUrl += "&appstate=" + ::url::encode(m_strState);
 
-      m_phyperlinkPreLoginScreen = __create_new <::hyperlink >();
+      m_phyperlinkPreLoginScreen = øcreate_new <::hyperlink >();
 
       m_phyperlinkPreLoginScreen->m_strLink = strUrl;
 

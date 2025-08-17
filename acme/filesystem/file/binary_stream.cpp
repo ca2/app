@@ -825,7 +825,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 
    auto atom = text_to_factory_id(scopedstrText);
 
-   return __id_create(atom);
+   return øid_create(atom);
 
 }
 
@@ -837,7 +837,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 
    *this >> typeatom;
 
-   auto pparticle = __id_create(typeatom);
+   auto pparticle = øid_create(typeatom);
 
    pparticle->read_from_stream(*this);
 

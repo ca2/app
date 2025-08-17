@@ -228,7 +228,7 @@ namespace networking
    //::sockets::listen_socket * networking::new_listen_socket(const ::type_atom& type)
    //{
 
-   //   auto plistensocket = __øcreate< ::sockets::listen_socket >();
+   //   auto plistensocket = øcreate< ::sockets::listen_socket >();
 
    //   plistensocket->initialize_listen_socket(type);
 

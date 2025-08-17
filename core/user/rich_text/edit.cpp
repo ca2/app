@@ -147,7 +147,7 @@ namespace user
 
          }
 
-         __construct_new(m_plinea);
+         øconstruct_new(m_plinea);
 
          
 
@@ -543,7 +543,7 @@ namespace user
 
                defer_add_line();
 
-               __construct_new(pline);
+               øconstruct_new(pline);
 
                //pline = __allocate line();
 
@@ -1155,7 +1155,7 @@ namespace user
 
             ::image::image_pointer pimage;
 
-            __øconstruct(pimage);
+            øconstruct(pimage);
 
             pimage->create(m_ppictureimpl->m_rectangleDrawing.size());
 
@@ -1291,7 +1291,7 @@ namespace user
          if (!m_prichtextdataOwned)
          {
 
-            __construct_new(m_prichtextdataOwned);
+            øconstruct_new(m_prichtextdataOwned);
 
             m_prichtextdataOwned->initialize_data();
 
@@ -2410,14 +2410,14 @@ namespace user
                if (m_ppictureimpl != nullptr && m_ppictureimpl->m_bOutline)
                {
 
-                  auto ppath = __øcreate < ::draw2d::path >();
+                  auto ppath = øcreate < ::draw2d::path >();
 
                   //ppath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
                   ppath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
 
-                  auto ppen = __øcreate < ::draw2d::pen >();
+                  auto ppen = øcreate < ::draw2d::pen >();
 
-                  auto pbrush = __øcreate < ::draw2d::brush >();
+                  auto pbrush = øcreate < ::draw2d::brush >();
 
                   ppen->create_solid(m_ppictureimpl->m_iOutlineWidth, ::color::color(m_ppictureimpl->m_hlsOutline));
 

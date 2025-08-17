@@ -362,7 +362,7 @@ namespace acme
 
             system()->do_graphics_and_windowing_factory();
 
-            __øconstruct(m_pacmedisplay);
+            øconstruct(m_pacmedisplay);
 
             m_pacmedisplay->open_display();
 
@@ -431,7 +431,7 @@ namespace acme
       void windowing::on_create_window_object(::acme::user::interaction* puserinteraction)
       {
 
-         puserinteraction->__defer_construct(puserinteraction->m_pacmewindowingwindow);
+         puserinteraction->ødefer_construct(puserinteraction->m_pacmewindowingwindow);
 
       }
 

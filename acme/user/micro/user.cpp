@@ -233,7 +233,7 @@ namespace micro
 
       //      system()->do_graphics_and_windowing_system_factory();
 
-      //      __øconstruct(m_pdisplaybase);
+      //      øconstruct(m_pdisplaybase);
 
       //      m_pdisplaybase->open_display();
 
@@ -486,7 +486,7 @@ namespace micro
       void user::update_micro_theme()
       {
 
-         __defer_construct_new(m_pmicrotheme);
+         ødefer_construct_new(m_pmicrotheme);
 
          m_pmicrotheme->update_drawing_objects();
 
@@ -529,13 +529,13 @@ namespace micro
          if (pmessageboxRealizable->m_bDetails)
          {
 
-            pmessageboxReified = __create_new < ::micro::details_window >();
+            pmessageboxReified = øcreate_new < ::micro::details_window >();
 
          }
          else
          {
 
-            pmessageboxReified = __create_new < ::micro::message_box >();
+            pmessageboxReified = øcreate_new < ::micro::message_box >();
 
          }
 

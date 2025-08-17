@@ -5,17 +5,41 @@
 namespace gpu
 {
 
+   enum enum_resource
+   {
+
+      e_resource_upload_buffer,
+
+   };
+
 
    class CLASS_DECL_BRED frame_storage :
       virtual public ::particle
    {
    public:
 
+
+      class object :
+         virtual public ::particle
+      {
+      public:
+
+
+         virtual void on_end_frame();
+
+
+      };
+
       ::pointer < ::gpu::device > m_pgpudevice;
+
+      map < particle*, map < enum_resource, object* > > m_mapObject;
 
       int m_iBuffer;
       int m_iBufferSize = 1_MiB;
       int m_iBufferOffset;
+
+      
+      pointer_array < memory_buffer > m_buffera;
 
 
       frame_storage();
@@ -26,6 +50,7 @@ namespace gpu
 
       virtual void map_allocate(::gpu::memory_buffer * pbuffer, int size);
 
+      virtual void on_end_frame();
 
    };
 

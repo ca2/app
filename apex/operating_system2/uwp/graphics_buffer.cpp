@@ -87,7 +87,7 @@ namespace universal_windows
 
       }
 
-      __defer_construct(m_pdraw2dgraphics);
+      ødefer_construct(m_pdraw2dgraphics);
 
       m_pdraw2dgraphics->attach(pdevicecontext);
 

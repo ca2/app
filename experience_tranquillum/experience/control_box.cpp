@@ -86,7 +86,7 @@ namespace experience_tranquillum
    void control_box::on_message_create(::message::message * pmessage)
    {
          
-      __øconstruct(m_pfontMarlett);
+      øconstruct(m_pfontMarlett);
 
       //m_pfontMarlett->create_point_font("Marlett", 20);
 

@@ -37,7 +37,7 @@ namespace crypto
    void crypto::defer_initialize()
    {
 
-      /*auto estatus = */ __defer_construct(m_pinitializer);
+      /*auto estatus = */ ødefer_construct(m_pinitializer);
 
       //if (!estatus)
       //{
@@ -63,7 +63,7 @@ namespace crypto
 
       //}
 
-      auto palgorithm = __øcreate < ::crypto::hasher_algorithm >(system()->m_pfactoryCrypto);
+      auto palgorithm = øcreate < ::crypto::hasher_algorithm >(system()->m_pfactoryCrypto);
 
       if (!palgorithm)
       {

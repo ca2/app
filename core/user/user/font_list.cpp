@@ -103,7 +103,7 @@ namespace user
          if (m_pfontlist.is_null() || m_pfontlist->get_font_list_type() != ::write_text::e_font_list_wide)
          {
 
-            __defer_construct_new(m_pfontlist);
+            ødefer_construct_new(m_pfontlist);
 
             m_pfontlist->m_puserinteraction = this;
 
@@ -127,7 +127,7 @@ namespace user
    void font_list::set_font_branch(const ::scoped_string & scopedstrFontBranch)
    {
 
-      __defer_construct_new(m_pfontlist);
+      ødefer_construct_new(m_pfontlist);
 
       m_pfontlist->set_font_branch(scopedstrFontBranch);
 

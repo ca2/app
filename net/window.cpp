@@ -47,7 +47,7 @@ namespace app_net
 
       ::user::interaction * p = this;
 
-      __øconstruct(m_pfont);
+      øconstruct(m_pfont);
 
       auto psystem = system();
 

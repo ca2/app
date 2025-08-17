@@ -38,7 +38,7 @@ sequence_continuation & sequence_continuation::operator << (const ::procedure & 
    if (!m_psequence)
    {
 
-      m_pparticleTarget->__construct_new(m_psequence);
+      m_pparticleTarget->øconstruct_new(m_psequence);
       
       __refdbg_add_referer
       

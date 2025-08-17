@@ -70,11 +70,11 @@ namespace draw2d
 
       //}
 
-      __construct_new(m_pimagea);
+      øconstruct_new(m_pimagea);
 
       //estatus = 
 
-      __construct_new(m_papi);
+      øconstruct_new(m_papi);
 
       //if (!estatus)
       //{
@@ -421,7 +421,7 @@ namespace draw2d
    ::draw2d::graphics_pointer draw2d::create_graphics(::draw2d::host * pdraw2dhost)
    {
 
-      auto pgraphics = pdraw2dhost->__øcreate< ::draw2d::graphics>();
+      auto pgraphics = pdraw2dhost->øcreate< ::draw2d::graphics>();
 
       pgraphics->m_pdraw2dhost = pdraw2dhost;
 
@@ -447,7 +447,7 @@ namespace draw2d
 
       ::draw2d::brush_pointer pbrush;
 
-      __øconstruct(pbrush);
+      øconstruct(pbrush);
 
       pbrush->create_solid(color);
 
@@ -528,7 +528,7 @@ namespace draw2d
 
       auto opacity = colorfilter.opacity();
 
-      auto pbrushText = __øcreate < ::draw2d::brush >();
+      auto pbrushText = øcreate < ::draw2d::brush >();
 
       pbrushText->create_solid(colorText & opacity);
 
@@ -590,7 +590,7 @@ void draw2d::emboss_predicate(
 
       //auto estatus =
 
-      __øconstruct(pimage);
+      øconstruct(pimage);
 
       //if (!estatus)
       //{
@@ -612,7 +612,7 @@ void draw2d::emboss_predicate(
 
       pimage->fill_byte(0);
 
-      auto pbrushText = __øcreate < ::draw2d::brush >();
+      auto pbrushText = øcreate < ::draw2d::brush >();
 
       pbrushText->create_solid(argb(255, 255, 255, 255));
       pimage->get_graphics()->set(pbrushText);
@@ -1330,7 +1330,7 @@ void draw2d::emboss_predicate(
 
       //estatus = 
 
-      __øconstruct(m_pwritetext);
+      øconstruct(m_pwritetext);
 
       //if (!estatus)
       //{

@@ -19,6 +19,7 @@
 #include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/pixmap.h"
+#include "bred/gpu/frame_ephemeral.h"
 
 
 #if defined(WINDOWS_DESKTOP)
@@ -72,7 +73,7 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
 
 
    pfactory->add_factory_item < ::gpu_opengl::memory_buffer, ::gpu::memory_buffer >();
-
+   pfactory->add_factory_item < ::gpu::frame_ephemeral >();
 
 }
 

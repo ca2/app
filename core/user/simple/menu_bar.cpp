@@ -21,7 +21,7 @@
 simple_menu_bar::simple_menu_bar()
 {
 
-   __construct_new(m_pmenu);
+   øconstruct_new(m_pmenu);
 
    m_bTracking = false;
    m_iTopMenuCount = 0;

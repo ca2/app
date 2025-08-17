@@ -381,7 +381,7 @@ namespace user
 //   lresult frame_window::send_create_message()
 //   {
 //      
-//      auto pcreate = __create_new < ::message::create >();
+//      auto pcreate = øcreate_new < ::message::create >();
 //      
 //      pcreate->id() = e_message_create;
 //      
@@ -579,7 +579,7 @@ namespace user
 
                   //auto estatus = 
                   
-                  __øconstruct(pimage2);
+                  øconstruct(pimage2);
 
                   //if (!estatus)
                   //{
@@ -2086,7 +2086,7 @@ namespace user
    ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type_atom & typeatom)
    {
 
-      ::pointer < toolbar> ptoolbar = __id_create (typeatom);
+      ::pointer < toolbar> ptoolbar = øid_create (typeatom);
 
       ptoolbar->m_dwStyle = uStyle;
 

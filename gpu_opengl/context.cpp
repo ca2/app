@@ -480,7 +480,7 @@ namespace gpu_opengl
 
       }
 
-      __defer_construct(m_pframebuffer);
+      ødefer_construct(m_pframebuffer);
 
       if (size.area() > 0)
       {
@@ -586,7 +586,7 @@ namespace gpu_opengl
 
    //   }
 
-   //   ::e_status estatus = __øconstruct(m_pbuffer);
+   //   ::e_status estatus = øconstruct(m_pbuffer);
 
    //   if (!estatus)
    //   {
@@ -914,7 +914,7 @@ namespace gpu_opengl
       if (!m_pshaderCopy)
       {
 
-         __construct_new(m_pshaderCopy);
+         øconstruct_new(m_pshaderCopy);
 
          // Vertex shader
          const_char_pointer vertexShaderSource = R"(
@@ -1051,7 +1051,7 @@ void main() {
       if (!m_pmodelbufferDummy)
       {
 
-         __defer_construct(m_pmodelbufferDummy);
+         ødefer_construct(m_pmodelbufferDummy);
 
          m_pmodelbufferDummy->initialize_gpu_context_object(this);
 
@@ -1101,7 +1101,7 @@ void main() {
 }
 )frag";
 
-            __defer_construct_new(m_pshaderBlend3);
+            ødefer_construct_new(m_pshaderBlend3);
 
             m_pshaderBlend3->m_bEnableBlend = true;
             m_pshaderBlend3->m_bindingSampler.set();

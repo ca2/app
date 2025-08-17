@@ -45,7 +45,7 @@ namespace app_message_box
 
       //::app_app::main_window::on_create_user_interaction();
 
-      __øconstruct(m_pbuttonShowMessageBox);
+      øconstruct(m_pbuttonShowMessageBox);
 
       m_pbuttonShowMessageBox->create_child(this);
 

@@ -71,7 +71,7 @@ namespace netserver
    ::pointer <::sockets::socket_handler > incoming_socket_thread::create_socket_handler()
    {
 
-      return __øcreate< ::sockets::socket_handler >();
+      return øcreate< ::sockets::socket_handler >();
 
    }
 
@@ -79,7 +79,7 @@ namespace netserver
    //::pointer < ::sockets::listen_socket > socket_thread::create_listen_socket()
    //{
 
-   //   return __id_create(m_typeatomSocket);
+   //   return øid_create(m_typeatomSocket);
 
    //}
 

@@ -94,8 +94,8 @@ namespace nano2d
 
       pstate->initialize(m_pgraphics);
 
-      m_pgraphics->__øconstruct(pstate->m_ppen);
-      m_pgraphics->__øconstruct(pstate->m_pbrush);
+      m_pgraphics->øconstruct(pstate->m_ppen);
+      m_pgraphics->øconstruct(pstate->m_pbrush);
 
       pstate->m_ppen->m_epen = ::draw2d::e_pen_solid;
       pstate->m_ppen->m_dWidth = 1.0;
@@ -148,7 +148,7 @@ namespace nano2d
       if (pstateOld->m_ppath)
       {
 
-         m_pgraphics->__øconstruct(pstateNew->m_ppath);
+         m_pgraphics->øconstruct(pstateNew->m_ppath);
 
          *pstateNew->m_ppath = *pstateOld->m_ppath;
 
@@ -176,7 +176,7 @@ namespace nano2d
       
       ::pointer < draw2d_state > pstate = m_pstate;
 
-      m_pgraphics->__øconstruct(pstate->m_ppath);
+      m_pgraphics->øconstruct(pstate->m_ppath);
       
       pstate->m_ppath->begin_figure();
    
@@ -361,7 +361,7 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      m_pgraphics->__øconstruct(paintimage.m_pbrush);
+      m_pgraphics->øconstruct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateLinearGradientBrush(
          ::double_point(sx, sy),
@@ -385,7 +385,7 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      m_pgraphics->__øconstruct(paintimage.m_pbrush);
+      m_pgraphics->øconstruct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateBoxGradientBrush(
          ::double_point(x, y),
@@ -409,7 +409,7 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      m_pgraphics->__øconstruct(paintimage.m_pbrush);
+      m_pgraphics->øconstruct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateRadialGradientBrush(
          ::double_point(cx - inr, cy - outr),

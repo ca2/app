@@ -183,7 +183,7 @@ namespace user
 
       {
 
-         auto pimpactkit = __create_new < ::user::impact_kit >();
+         auto pimpactkit = øcreate_new < ::user::impact_kit >();
 
          add_impact_kit2(pimpactkit);
 

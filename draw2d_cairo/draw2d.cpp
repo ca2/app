@@ -314,7 +314,7 @@ return g_pdraw2dcairo;
 //
 //      auto bA = colorfilter.opacity().get_alpha();
 //
-//      auto pbrushText = __øcreate < ::draw2d::brush > ();
+//      auto pbrushText = øcreate < ::draw2d::brush > ();
 //      pbrushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
 //      pgraphics->set(pbrushText);
 //      pgraphics->set(pfont);
@@ -952,7 +952,7 @@ return g_pdraw2dcairo;
 //
 //      ::pointer<ttf_util>putil;
 //
-//      ::e_status estatus = __construct_new(putil);
+//      ::e_status estatus = øconstruct_new(putil);
 //
 //      if (pdoc->load(strSystemFonts))
 //      {
@@ -1228,7 +1228,7 @@ return g_pdraw2dcairo;
 //
 //      synchronous_lock synchronouslock(psystem->m_pmutexLibrary);
 //
-//      estatus = __øconstruct(m_pwritetext);
+//      estatus = øconstruct(m_pwritetext);
 //
 //      if (!estatus)
 //      {

@@ -159,7 +159,7 @@ namespace lite
 
             }
 
-            auto ppath = __øcreate < ::draw2d::path > ();
+            auto ppath = øcreate < ::draw2d::path > ();
 
             if(true)
             {
@@ -286,7 +286,7 @@ namespace lite
             if(true)
             {
 
-               auto ppath = __øcreate < ::draw2d::path > ();
+               auto ppath = øcreate < ::draw2d::path > ();
 
                if(ptab->get_data()->m_idaSel.contains(pane.id()))
                {
@@ -985,10 +985,10 @@ namespace lite
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
 
-                  auto ppen = __øcreate < ::draw2d::pen > ();
+                  auto ppen = øcreate < ::draw2d::pen > ();
 
                   ppen->create_solid(1, argb(184, 92, 184, 92));
-                  auto pbrush = __øcreate < ::draw2d::brush >();
+                  auto pbrush = øcreate < ::draw2d::brush >();
 
                   pbrush->create_solid(argb(123, 177, 184, 255));
                   ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
@@ -1030,10 +1030,10 @@ namespace lite
             if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               auto ppen = __øcreate < ::draw2d::pen > ();
+               auto ppen = øcreate < ::draw2d::pen > ();
 
                ppen->create_solid(1, argb(255, 92, 92, 92));
-               auto pbrush = __øcreate < ::draw2d::brush >();
+               auto pbrush = øcreate < ::draw2d::brush >();
 
                pbrush->create_solid(argb(255, 255, 255, 255));
                ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
@@ -1120,7 +1120,7 @@ namespace lite
 
          ::int_rectangle rectangleText;
 
-         auto pbrushText = __øcreate < ::draw2d::brush > ();
+         auto pbrushText = øcreate < ::draw2d::brush > ();
 
          if ((nStyle & e_tool_item_style_disabled) == 0)
          {
@@ -1292,10 +1292,10 @@ namespace lite
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
 
-                  auto ppen = __øcreate < ::draw2d::pen > ();
+                  auto ppen = øcreate < ::draw2d::pen > ();
 
                   ppen->create_solid(1, ptoolbar->_001GetColor(::user::color_button_background_hover));
-                  auto pbrush = __øcreate < ::draw2d::brush >();
+                  auto pbrush = øcreate < ::draw2d::brush >();
 
                   pbrush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_hover));
                   ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
@@ -1337,10 +1337,10 @@ namespace lite
             if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               auto ppen = __øcreate < ::draw2d::pen > ();
+               auto ppen = øcreate < ::draw2d::pen > ();
 
                ppen->create_solid(1, ptoolbar->_001GetColor(::user::color_button_background_press));
-               auto pbrush = __øcreate < ::draw2d::brush >();
+               auto pbrush = øcreate < ::draw2d::brush >();
 
                pbrush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_press));
                ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
@@ -1391,13 +1391,13 @@ namespace lite
             if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               auto ppen = __øcreate < ::draw2d::pen > ();
+               auto ppen = øcreate < ::draw2d::pen > ();
 
                ppen->create_solid(1, ptoolbar->_001GetColor(
                                  (nStyle & e_tool_item_style_disabled) == 0 ?
                                  ::user::color_button_background :
                                  ::user::color_button_background_disabled));
-               auto pbrush = __øcreate < ::draw2d::brush >();
+               auto pbrush = øcreate < ::draw2d::brush >();
 
                pbrush->create_solid(ptoolbar->_001GetColor(
                                    (nStyle & e_tool_item_style_disabled) == 0 ?
@@ -1450,7 +1450,7 @@ namespace lite
 
          ::int_rectangle rectangleText;
 
-         auto pbrushText = __øcreate < ::draw2d::brush > ();
+         auto pbrushText = øcreate < ::draw2d::brush > ();
 
          if ((nStyle & e_tool_item_style_disabled) == 0)
          {

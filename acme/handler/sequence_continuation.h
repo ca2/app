@@ -99,7 +99,7 @@ class sequence;
 //////   if (!m_pfuture)
 //////   {
 //////
-//////      system()->__construct_new(m_pfuture);
+//////      system()->øconstruct_new(m_pfuture);
 //////       
 //////      m_pfuture->system() = system();
 //////
@@ -115,7 +115,7 @@ class sequence;
 ////
 ////
 //////template < typename TYPE >
-//////inline ::pointer<TYPE>property_object::__create_new()
+//////inline ::pointer<TYPE>property_object::øcreate_new()
 //////{
 //////
 //////   auto p = __allocate TYPE();

@@ -548,7 +548,7 @@ void Window::on_destroy_window()
    //void Window::_nanoui_to_user(::user::interaction * puserinteraction)
    //{
    //
-   //   //puserinteraction->__øconstruct(m_pbox);
+   //   //puserinteraction->øconstruct(m_pbox);
    //
    //   //m_pbox->create_control(puserinteraction, (iptr)(void*) this);
    //

@@ -783,7 +783,7 @@ namespace user
       //   if (!m_pshapeaClip)
       //   {
 
-      //      __construct_new(m_pshapeaClip);
+      //      øconstruct_new(m_pshapeaClip);
 
       //      ::int_rectangle rectangleIntersect;
 
@@ -842,7 +842,7 @@ namespace user
       ////   if(!m_pshapeaClip)
       ////   {
 
-      ////      __construct_new(m_pshapeaClip);
+      ////      øconstruct_new(m_pshapeaClip);
       ////      
       ////      ::user::interaction * pinteraction = this;
 
@@ -936,7 +936,7 @@ namespace user
       drawitem.m_pgraphics = pgraphics;
       ::user::list * plist = m_plist;
       ::int_rectangle rectangleDivider;
-      auto ppen = __øcreate < ::draw2d::pen > ();
+      auto ppen = øcreate < ::draw2d::pen > ();
 
       auto color = get_color(pstyle, ::e_element_separator);
 

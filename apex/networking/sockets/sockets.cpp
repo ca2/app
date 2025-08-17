@@ -62,7 +62,7 @@ namespace sockets
 
       //}
 
-//      auto paddressdepartment = pparticle->__øcreate<class ::networking::networking>();
+//      auto paddressdepartment = pparticle->øcreate<class ::networking::networking>();
 //
 //      paddressdepartment->increment_reference_count();
 //
@@ -70,11 +70,11 @@ namespace sockets
 //
 //      generate_random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
 //
-      //m_psslinit = __øcreate<::sockets::SSLInitializer>();
+      //m_psslinit = øcreate<::sockets::SSLInitializer>();
 //
-//      //estatus = __construct_new(m_pnet);
+//      //estatus = øconstruct_new(m_pnet);
 //
-//      __construct_new(m_pnet);
+//      øconstruct_new(m_pnet);
 //
 //      if (!m_pnet)
 //      {
@@ -106,7 +106,7 @@ namespace sockets
 ////      {
 ////
 ////#ifdef WINDOWS
-////         __øconstruct(m_pportforward);
+////         øconstruct(m_pportforward);
 ////#endif
 ////
 ////      }

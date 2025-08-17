@@ -53,7 +53,7 @@ namespace user
    void frame_interaction::create_window()
    {
 
-      //__øconstruct(windowing_window());
+      //øconstruct(windowing_window());
 
       //windowing_window()->create_window();
 
@@ -164,7 +164,7 @@ namespace user
 
           //auto estatus =
 
-         //__øconstruct(windowing_window());
+         //øconstruct(windowing_window());
 
          information() << "interaction::create_host(5)";
 
@@ -214,7 +214,7 @@ namespace user
          //else
          //{
 
-         //   pprimitiveimplNew = __create_new < ::user::interaction_child >();
+         //   pprimitiveimplNew = øcreate_new < ::user::interaction_child >();
 
          //   //m_pdescriptor.defer_create(this);
 
@@ -539,7 +539,7 @@ namespace user
    ::task_pool * frame_interaction::taskpool()
    {
 
-      __defer_construct_new(m_ptaskpool);
+      ødefer_construct_new(m_ptaskpool);
 
       return m_ptaskpool;
 
@@ -758,7 +758,7 @@ namespace user
 
       ///auto estatus = 
       
-      __øconstruct(m_pdrawicon);
+      øconstruct(m_pdrawicon);
 
       //if (!estatus)
       //{
@@ -1148,7 +1148,7 @@ namespace user
       if (puserinteractionParent == nullptr)
       {
 
-         auto pwindowNew = __øcreate<::windowing::window>();
+         auto pwindowNew = øcreate<::windowing::window>();
 
          auto strName = get_window_text();
 
@@ -1183,7 +1183,7 @@ namespace user
 
          on_set_parent(puserinteractionParent);
 
-         //auto pprimitiveimplNew = __create_new<::user::interaction_child>();
+         //auto pprimitiveimplNew = øcreate_new<::user::interaction_child>();
 
          //pprimitiveimplNew->m_puserinteraction = this;
 

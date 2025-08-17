@@ -1143,7 +1143,7 @@ namespace experience
          if (!m_pcontrolbox)
          {
 
-            m_pcontrolbox = __øcreate < ::experience::control_box >(m_pexperience->m_pfactory);
+            m_pcontrolbox = øcreate < ::experience::control_box >(m_pexperience->m_pfactory);
 
             //m_pcontrolbox->initialize(this);
 

@@ -21,7 +21,7 @@ namespace gpu_opengl
    //::pointer <::gpu::context > allocate_egl_context(::particle * pparticle)
    //{
 
-     // return pparticle->__create_new < device_egl >();
+     // return pparticle->øcreate_new < device_egl >();
 
    //}
 

@@ -60,7 +60,7 @@ namespace curl
             fork([this,pgetHold]()
             {
 
-               auto pcurleasy = __create_new < curl_easy >();
+               auto pcurleasy = øcreate_new < curl_easy >();
 
                pcurleasy->get(pgetHold);
 

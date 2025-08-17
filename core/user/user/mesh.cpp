@@ -64,9 +64,9 @@ namespace user
 
       m_econtroltype = ::user::e_control_type_mesh;
 
-      __construct_new(m_piconlayout);
+      øconstruct_new(m_piconlayout);
 
-      __construct_new(m_pmeshlayout);
+      øconstruct_new(m_pmeshlayout);
 
       m_piconlayout->m_iaDisplayToStrict.set_empty_a(-1);
       m_piconlayout->m_iaDisplayToStrict.set_empty_b(-1);
@@ -244,7 +244,7 @@ namespace user
 
          auto pstyle = get_style(pgraphics);
 
-         auto pbrushText = __øcreate < ::draw2d::brush > ();
+         auto pbrushText = øcreate < ::draw2d::brush > ();
 
          pbrushText->create_solid(get_color(pstyle, ::e_element_text));
 
@@ -2980,7 +2980,7 @@ namespace user
 
          auto pointCursor = host_mouse_cursor_position();
 
-         auto pmouse = __create_new < ::message::mouse >();
+         auto pmouse = øcreate_new < ::message::mouse >();
 
          pmouse->m_pointHost = pointCursor;
 
@@ -3317,7 +3317,7 @@ namespace user
                   else
                   {
 
-                      auto pmessage = __create_new < ::message::mouse >();
+                      auto pmessage = øcreate_new < ::message::mouse >();
 
                       pmessage->m_oswindow = oswindow();
 
@@ -3662,8 +3662,8 @@ namespace user
    {
 
 
-      __øconstruct(m_ppenFocused);
-      __øconstruct(m_ppenHighlight);
+      øconstruct(m_ppenFocused);
+      øconstruct(m_ppenHighlight);
 
       ::pointer<::message::create>pcreate(pmessage);
 
@@ -3672,7 +3672,7 @@ namespace user
       on_enable_hover_select();
 
 
-      __defer_construct_new(m_pgraphicsextension);
+      ødefer_construct_new(m_pgraphicsextension);
 
       //m_pgraphicsextension->initialize(this);
 
@@ -5385,7 +5385,7 @@ namespace user
 
       auto pointCursor = host_mouse_cursor_position();
 
-      auto pmouse = __create_new < ::message::mouse >();
+      auto pmouse = øcreate_new < ::message::mouse >();
 
       pmouse->m_pointHost = pointCursor;
 
@@ -6204,7 +6204,7 @@ namespace user
    void draw_mesh_subitem::set_text_color()
    {
       
-      //auto pbrushText = m_pmesh->__øcreate < ::draw2d::brush > ();
+      //auto pbrushText = m_pmesh->øcreate < ::draw2d::brush > ();
 
       //pbrushText->create_solid(m_colorText);
 
@@ -6230,7 +6230,7 @@ namespace user
             ::image::image_pointer pimage1;
             pimage1 = m_pitem->m_pmesh->image()->create_image(size);
             pimage1->clear(::color::transparent);
-            auto pbrushText = m_pitem->m_pmesh->__øcreate < ::draw2d::brush > ();
+            auto pbrushText = m_pitem->m_pmesh->øcreate < ::draw2d::brush > ();
             pbrushText->create_solid(argb(255,255,255,255));
             pimage1->get_graphics()->set(pbrushText);
             ::image::image_pointer pimage2;
@@ -6278,7 +6278,7 @@ namespace user
          else
          {
 
-            auto pbrushText = m_pitem->m_pmesh->__øcreate < ::draw2d::brush > ();
+            auto pbrushText = m_pitem->m_pmesh->øcreate < ::draw2d::brush > ();
 
             pbrushText->create_solid(m_colorText);
 

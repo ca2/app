@@ -238,7 +238,7 @@ namespace graphics3d
 
          //VkcCamera camera(glm::vec3(0.0f, 2.0f, -10.0f), .0f, 0.0f);
 
-         //auto viewerObject = __øcreate <::graphics3d::scene_object>();
+         //auto viewerObject = øcreate <::graphics3d::scene_object>();
          //papp->m_pimpact->m_bLastMouse = true;
          //viewerObject->m_transform.translation.z = -2.5f;
          //m_transform.translation.z = -2.5f;
@@ -844,7 +844,7 @@ namespace graphics3d
             //   ////m_pcamera->m_pimpact
 
             //   ////m_pglcapplication = m_pimpact->start_opengl_application();
-            //   ////__øconstruct(m_pgpucontextCompositor);
+            //   ////øconstruct(m_pgpucontextCompositor);
 
             //   //if (!m_papplication->m_bUseSwapChainWindow)
             //   //{
@@ -909,7 +909,7 @@ namespace graphics3d
       //if (!m_prenderer)
       //{
 
-      //   __øconstruct(m_prenderer);
+      //   øconstruct(m_prenderer);
 
       //   //::graphics3d::engine::m_prenderer = m_prenderer;
 
@@ -1002,7 +1002,7 @@ namespace graphics3d
       //         ////m_pcamera->m_pimpact
       //
       //         ////m_pglcapplication = m_pimpact->start_opengl_application();
-      //         ////__øconstruct(m_pgpucontextCompositor);
+      //         ////øconstruct(m_pgpucontextCompositor);
       //
       //         //if (!m_papplication->m_bUseSwapChainWindow)
       //         //{

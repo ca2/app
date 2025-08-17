@@ -149,7 +149,7 @@ namespace user
 
       //auto estatus = 
       
-      papp->__id_construct(pdocument, m_typeatomDocument);
+      papp->øid_construct(pdocument, m_typeatomDocument);
 
       if (!pdocument)
       {
@@ -232,7 +232,7 @@ namespace user
 
       //auto estatus =
       
-      papp->__id_construct(pframe, m_typeatomFrame);
+      papp->øid_construct(pframe, m_typeatomFrame);
 
       if (!pframe)
       {

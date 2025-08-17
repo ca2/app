@@ -972,7 +972,7 @@ namespace html
          if (m_atomTagName == "html_link" && get_tag()->get_attr_value("rel").case_insensitive_order("stylesheet") == 0)
          {
 
-            ::pointer<style_sheet>pstylesheet(__create_new < style_sheet > ());
+            ::pointer<style_sheet>pstylesheet(øcreate_new < style_sheet > ());
 
             string strUrl(get_tag()->get_attr_value("href"));
 
@@ -1037,7 +1037,7 @@ namespace html
          if (m_atomTagName == "html_style")
          {
             
-            ::pointer<style_sheet>pstylesheet(__create_new < style_sheet >());
+            ::pointer<style_sheet>pstylesheet(øcreate_new < style_sheet >());
 
             ::string str(pvalue->get_value());
 
@@ -1052,7 +1052,7 @@ namespace html
                   && m_pparent->get_tag()->get_attr_value("rel").case_insensitive_order("stylesheet") == 0)
          {
             
-            ::pointer<style_sheet>pstylesheet(__create_new < style_sheet > ());
+            ::pointer<style_sheet>pstylesheet(øcreate_new < style_sheet > ());
 
             // auto pcontext = get_context();
 
@@ -1591,7 +1591,7 @@ namespace html
 
       //}
 
-      m_pstyle = __create_new < ::html::style > ();
+      m_pstyle = øcreate_new < ::html::style > ();
 
       m_pparent = pparent;
       m_pimpl = nullptr;

@@ -38,7 +38,7 @@ namespace filehandler
 
       //estatus =
       
-      __construct_new(m_ptree);
+      øconstruct_new(m_ptree);
 
       //if (!estatus)
       //{

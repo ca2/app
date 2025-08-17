@@ -74,7 +74,7 @@ namespace user
    ::subparticle_pointer multiple_option::clone()
    {
 
-      auto pmultipleoptionClone = m_papplication->__create_new < multiple_option >();
+      auto pmultipleoptionClone = m_papplication->øcreate_new < multiple_option >();
 
       return pmultipleoptionClone;
 
@@ -592,7 +592,7 @@ namespace user
 
          }
          
-         auto pitem = __create_new<::item>();
+         auto pitem = øcreate_new<::item>();
 
          pitem->m_item.m_iItem = i;
 

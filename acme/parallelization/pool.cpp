@@ -25,7 +25,7 @@ task_pool::~task_pool()
 
    auto & ptask = task(atom);
 
-   __defer_construct_new(ptask);
+   ødefer_construct_new(ptask);
 
    if (ptask->has_flag(e_flag_running))
    {

@@ -225,7 +225,7 @@ namespace user
       if (m_pmenuitem.is_null())
       {
 
-         m_pmenuitem = __øcreate <  ::menu::item  >();
+         m_pmenuitem = øcreate <  ::menu::item  >();
 
       }
 
@@ -363,7 +363,7 @@ namespace user
       if (m_pmenuitem.is_null())
       {
 
-         m_pmenuitem = __øcreate <  ::menu::item  >();
+         m_pmenuitem = øcreate <  ::menu::item  >();
 
       }
 
@@ -399,7 +399,7 @@ namespace user
 
       system()->_xml();
 
-      auto pxmldocument = __create_new < ::xml::document >();
+      auto pxmldocument = øcreate_new < ::xml::document >();
 
       try
       {
@@ -595,7 +595,7 @@ namespace user
       if (m_pmenuitem.is_null())
       {
 
-         m_pmenuitem = __øcreate <  ::menu::item  >();
+         m_pmenuitem = øcreate <  ::menu::item  >();
 
       }
 
@@ -1954,7 +1954,7 @@ namespace user
 
       }
 
-      auto pmenucommand = __create_new< ::menu::command>();
+      auto pmenucommand = øcreate_new< ::menu::command>();
 
       pmenucommand->m_pitema = pitemParent->m_pmenuitema;
 

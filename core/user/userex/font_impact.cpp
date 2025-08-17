@@ -103,7 +103,7 @@ namespace userex
 
                m_ptopimpact->m_peditimpact->set_text(strText, ::e_source_sync);
 
-               __defer_construct(m_ptopimpact->m_peditimpact->m_pfont);
+               ødefer_construct(m_ptopimpact->m_peditimpact->m_pfont);
 
                m_ptopimpact->m_peditimpact->m_pfont->set_family_name(strText);
 
@@ -196,7 +196,7 @@ namespace userex
 
          m_ptopimpact->m_peditimpact->set_text(scopedstr, ::e_source_sync);
 
-         __defer_construct(m_ptopimpact->m_peditimpact->m_pfont);
+         ødefer_construct(m_ptopimpact->m_peditimpact->m_pfont);
 
          m_ptopimpact->m_peditimpact->m_pfont->set_family_name(scopedstr);
 

@@ -24,7 +24,7 @@ namespace gpu_opengl
    //::pointer < ::gpu::context > allocate_system_context(::particle* pparticle)
    //{
 
-   //   return pparticle->__create_new <context_win32>();
+   //   return pparticle->øcreate_new <context_win32>();
 
    //}
 

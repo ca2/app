@@ -867,7 +867,7 @@ namespace windowing
    void window::create_graphics_thread()
    {
 
-      //__øconstruct(m_pgraphicsthread);
+      //øconstruct(m_pgraphicsthread);
 
       m_pgraphicsthread->branch_synchronously();
 
@@ -930,7 +930,7 @@ namespace windowing
    class placement_log* window::placement_log()
    {
 
-      __defer_construct_new(m_pplacementlog);
+      ødefer_construct_new(m_pplacementlog);
 
       return m_pplacementlog;
 
@@ -1002,7 +1002,7 @@ namespace windowing
       if (!m_pcopydesk)
       {
 
-         __raw_construct(m_pcopydesk);
+         øraw_construct(m_pcopydesk);
 
          if (m_pcopydesk)
          {
@@ -1371,7 +1371,7 @@ namespace windowing
 
         // m_pointWindow = p;
 
-      auto preposition = __create_new<::message::reposition>();
+      auto preposition = øcreate_new<::message::reposition>();
 
       preposition->m_oswindow = this->oswindow();
 
@@ -1424,7 +1424,7 @@ namespace windowing
    void window::_on_size(int cx, int cy)
    {
 
-      auto psize = __create_new<::message::size>();
+      auto psize = øcreate_new<::message::size>();
 
       psize->m_oswindow = this->oswindow();
 
@@ -2015,7 +2015,7 @@ namespace windowing
    ::pointer<::windowing::icon> window::load_icon(const ::payload& payloadFile)
    {
 
-      auto picon = __øcreate<icon>();
+      auto picon = øcreate<icon>();
 
       if (!picon)
       {
@@ -3705,7 +3705,7 @@ namespace windowing
 
 #endif
 
-         __øconstruct(m_pmutexDraw);
+         øconstruct(m_pmutexDraw);
 
       }
 
@@ -4074,7 +4074,7 @@ namespace windowing
       //
       //         //auto estatus =
       //
-      //         __øconstruct(m_pwindow);
+      //         øconstruct(m_pwindow);
       //
       //         //if (!estatus)
       //         //{
@@ -4283,7 +4283,7 @@ namespace windowing
       //
       //         //auto estatus =
       //
-      //         __øconstruct(m_pwindow);
+      //         øconstruct(m_pwindow);
       //
       //         //if (!estatus)
       //         //{
@@ -4525,7 +4525,7 @@ namespace windowing
    //       if (bNewOwnThread)
    //       {
    //
-   //          puserthread = __create_new<::user::thread>();
+   //          puserthread = øcreate_new<::user::thread>();
    //
    //          m_puserthread = puserthread;
    //
@@ -4561,7 +4561,7 @@ namespace windowing
    //       if (bProdevianThread && user_interaction()->is_graphical())
    //       {
    //
-   //          pgraphicsthread = __create_new<::user::graphics_thread>();
+   //          pgraphicsthread = øcreate_new<::user::graphics_thread>();
    //
    //          m_pgraphicsthread = pgraphicsthread;
    //
@@ -8094,7 +8094,7 @@ namespace windowing
          if (m_redrawitema.is_empty())
          {
 
-            auto predrawitem = __create_new<::user::redraw_item>();
+            auto predrawitem = øcreate_new<::user::redraw_item>();
 
             if (function)
             {
@@ -8133,7 +8133,7 @@ namespace windowing
 
       }
 
-      auto predrawitem = __create_new<::user::redraw_item>();
+      auto predrawitem = øcreate_new<::user::redraw_item>();
 
       predrawitem->m_rectanglea.append(rectangleaHostNeedRedraw);
 
@@ -9154,7 +9154,7 @@ namespace windowing
 
          }
 
-         //auto psequencer = __create_new < sequencer<sequence<window>>>();
+         //auto psequencer = øcreate_new < sequencer<sequence<window>>>();
 
          if (m_uOnHide)
          {
@@ -9449,7 +9449,7 @@ namespace windowing
 
                   //   _synchronous_lock synchronouslock(synchronization());
 
-                  //   pgraphics->__construct_new(pgraphics->m_puserredraw);
+                  //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
 
                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 
@@ -9489,7 +9489,7 @@ namespace windowing
 
                      _synchronous_lock synchronouslock(synchronization());
 
-                     if (pgraphics->__defer_construct_new(pgraphics->m_puserredraw))
+                     if (pgraphics->ødefer_construct_new(pgraphics->m_puserredraw))
                      {
 
                         if (system()->draw2d()->graphics_context_does_full_redraw())
@@ -9769,7 +9769,7 @@ namespace windowing
 
                   //   _synchronous_lock synchronouslock(synchronization());
 
-                  //   pgraphics->__construct_new(pgraphics->m_puserredraw);
+                  //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
 
                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 
@@ -9808,7 +9808,7 @@ namespace windowing
 
                   //   _synchronous_lock synchronouslock(synchronization());
 
-                  //   pgraphics->__construct_new(pgraphics->m_puserredraw);
+                  //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
 
                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 
@@ -10270,7 +10270,7 @@ namespace windowing
       if (m_pgraphicsgraphics.is_null())
       {
 
-         __øconstruct(m_pgraphicsgraphics);
+         øconstruct(m_pgraphicsgraphics);
 
          if (m_pgraphicsgraphics)
          {
@@ -11360,7 +11360,7 @@ namespace windowing
       if (m_pmutexRedraw == nullptr)
       {
 
-         __øconstruct(m_pmutexRedraw);
+         øconstruct(m_pmutexRedraw);
 
       }
 
@@ -14196,7 +14196,7 @@ namespace windowing
 
 
 #define _NEW_MESSAGE(TYPE) \
-   auto pmessage = __create_new<TYPE>(); \
+   auto pmessage = øcreate_new<TYPE>(); \
    pmessage->m_pchannel = this; \
    pmessage->m_oswindow = oswindow; \
    pmessage->m_pwindow = pwindow; \
@@ -14207,7 +14207,7 @@ namespace windowing
 
 
    //#define _NEW_MESSAGE(TYPE) \
-   //   auto pmessage = __create_new<TYPE>(); \
+   //   auto pmessage = øcreate_new<TYPE>(); \
    //   pmessage->m_pchannel = this; \
    //   pmessage->m_emessage = atom; \
    //   pmessage->m_wparam = wparam; \
@@ -15570,7 +15570,7 @@ namespace windowing
    //   if (m_ptimerarray.is_null())
    //   {
 
-   //      __construct_new(m_ptimerarray);
+   //      øconstruct_new(m_ptimerarray);
 
    //      m_ptimerarray->m_pcallback = user_interaction();
 

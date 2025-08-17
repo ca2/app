@@ -87,7 +87,7 @@ namespace filemanager
       //   return estatus;
       m_typeatomFileList = ::type < file_list >();
       //}
-      __øconstruct(m_pfont);
+      øconstruct(m_pfont);
 
       m_pfont->create_font("Verdana", 14_px);
 

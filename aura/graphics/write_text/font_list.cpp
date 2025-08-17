@@ -553,7 +553,7 @@ namespace write_text
 
          string str = pitem->m_strName;
 
-         __øconstruct(pbox->m_pfont);
+         øconstruct(pbox->m_pfont);
 
          if (str.case_insensitive_order("GOUDY STOUT") == 0)
          {
@@ -1001,7 +1001,7 @@ namespace write_text
       if (pfontlistdata == nullptr)
       {
 
-         pfontlistdata = __create_new < font_list_data >();
+         pfontlistdata = øcreate_new < font_list_data >();
 
          pfontlistdata->m_iSerial = 0;
 
@@ -1009,7 +1009,7 @@ namespace write_text
 
          auto countFont = m_pfontenumerationitema->get_count();
 
-         __defer_construct_new(pfontlistdata->m_pitema);
+         ødefer_construct_new(pfontlistdata->m_pitema);
 
          pfontlistdata->m_pitema->set_size(countFont);
 

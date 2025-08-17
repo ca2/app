@@ -162,9 +162,9 @@ namespace apex
 
       ::platform::context::initialize_context();
 
-      ///__øconstruct(m_phttp);
+      ///øconstruct(m_phttp);
 
-      //__øconstruct(m_poscontext);
+      //øconstruct(m_poscontext);
 
 
 
@@ -182,7 +182,7 @@ namespace apex
    void context::initialize_http()
    {
 
-      __øconstruct(m_phttp);
+      øconstruct(m_phttp);
 
    }
 
@@ -1172,7 +1172,7 @@ namespace apex
    //::task_pool* context::taskpool()
    //{
 
-   //   __defer_construct_new(m_ptaskpool);
+   //   ødefer_construct_new(m_ptaskpool);
 
    //   return m_ptaskpool;
 

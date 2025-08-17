@@ -8,7 +8,7 @@
 ////inline ::image::image_pointer object::create_image()
 ////{
 ////
-////   return __øcreate < ::image::image >();
+////   return øcreate < ::image::image >();
 ////
 ////}
 ////
@@ -18,7 +18,7 @@
 ////
 ////   ::image::image_pointer pimage;
 ////
-////   auto estatus = __øconstruct(pimage);
+////   auto estatus = øconstruct(pimage);
 ////
 ////   if (!estatus)
 ////   {
@@ -41,21 +41,21 @@
 ////}
 ////
 ////
-////inline void object::__øconstruct(::pointer<::image::image>& pimage)
+////inline void object::øconstruct(::pointer<::image::image>& pimage)
 ////{
 ////
-////   return __øconstruct < ::image::image >(pimage);
+////   return øconstruct < ::image::image >(pimage);
 ////
 ////}
 ////
 ////
-////inline void object::__øconstruct(::pointer<::image::image>& pimage, ::image::image *pimageSource)
+////inline void object::øconstruct(::pointer<::image::image>& pimage, ::image::image *pimageSource)
 ////{
 ////
 ////   if (pimageSource)
 ////   {
 ////
-////      __øconstruct < ::image::image >(pimage, pimageSource);
+////      øconstruct < ::image::image >(pimage, pimageSource);
 ////
 ////   }
 ////
@@ -64,10 +64,10 @@
 ////}
 //
 //
-////inline void object::__øconstruct(::pointer<::image::image>& pimage, const ::int_size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+////inline void object::øconstruct(::pointer<::image::image>& pimage, const ::int_size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 ////{
 ////
-////   __øconstruct(pimage);
+////   øconstruct(pimage);
 ////
 ////   if (pimage)
 ////   {
@@ -84,12 +84,12 @@
 ////inline void object::__internal_preserve_ownership(::pointer<::image::image>& pimage, const ::int_size & size, ::eobject eobjectCreate, int iGoodStride)
 ////{
 ////
-////   return __øconstruct(pimage, size, uidCreate, iGoodStride, true);
+////   return øconstruct(pimage, size, uidCreate, iGoodStride, true);
 ////
 ////}
 //
 //
-////inline void object::__øconstruct(::image::image_pointer & pimage)
+////inline void object::øconstruct(::image::image_pointer & pimage)
 ////{
 ////
 ////   m_estatus = ::success;
@@ -97,7 +97,7 @@
 ////   if (!pimage)
 ////   {
 ////
-////      pimage = __øcreate < ::image::image >();
+////      pimage = øcreate < ::image::image >();
 ////
 ////      if (!pimage)
 ////      {
@@ -120,10 +120,10 @@
 ////
 //
 ////template < typename IMAGE_SOURCE >
-////inline void object::__øconstruct(::image::image_pointer & pimage, IMAGE_SOURCE pimageSource)
+////inline void object::øconstruct(::image::image_pointer & pimage, IMAGE_SOURCE pimageSource)
 ////{
 ////
-////   m_estatus = __øconstruct(pimage);
+////   m_estatus = øconstruct(pimage);
 ////
 ////   if (m_estatus)
 ////   {
@@ -142,15 +142,15 @@
 ////}
 //
 //
-////inline void object::__øconstruct(::image::image_pointer & pimage, const ::int_size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+////inline void object::øconstruct(::image::image_pointer & pimage, const ::int_size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 ////{
 ////
-////   // DIFFERENT __øconstruct behaviour (for image)
+////   // DIFFERENT øconstruct behaviour (for image)
 ////   // DEFERRED.....
 ////   if (!pimage)
 ////   {
 ////
-////      __øconstruct(pimage);
+////      øconstruct(pimage);
 ////
 ////   }
 ////
@@ -170,7 +170,7 @@
 ////inline void object::__preserve(::image::image_pointer & pimage, const ::int_size & size, ::eobject eobjectCreate, int iGoodStride)
 ////{
 ////
-////   return __øconstruct(pimage, size, eobjectCreate, iGoodStride, true);
+////   return øconstruct(pimage, size, eobjectCreate, iGoodStride, true);
 ////
 ////}
 //
@@ -180,7 +180,7 @@
 ////inline ::image::image_pointer create_image(const ::int_size & size, ::eobject eobjectFlag = IMAGE_OBJECT_OK)
 ////{
 ////
-////   auto ptype = __øcreate < ::image::image >();
+////   auto ptype = øcreate < ::image::image >();
 ////
 ////   if (!ptype)
 ////   {
@@ -231,7 +231,7 @@
 //
 //
 //// template < typename COMPOSER >
-//// inline void __øconstruct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage)
+//// inline void øconstruct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage)
 //// {
 //
 ////    //if (((uptr)&pimage) < (uptr)pcomposer || ((uptr)&pimage) >= ((uptr)pcomposer) + sizeof(COMPOSER))
@@ -241,26 +241,26 @@
 //
 ////    //}
 //
-////    return pcomposer->__øconstruct(pimage);
+////    return pcomposer->øconstruct(pimage);
 //
 //// }
 //
 //
 //// template < typename COMPOSER >
-//// inline void __øconstruct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, ::image::image *pimageSource)
+//// inline void øconstruct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, ::image::image *pimageSource)
 //// {
 //
-////    return pcomposer->__øconstruct(pimage, pimageSource);
+////    return pcomposer->øconstruct(pimage, pimageSource);
 //
 //// }
 //
 //
 //
 //// template < typename COMPOSER >
-//// inline void __øconstruct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, const ::int_size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//// inline void øconstruct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, const ::int_size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //// {
 //
-////    auto estatus = __øconstruct(pcomposer, pimage);
+////    auto estatus = øconstruct(pcomposer, pimage);
 //
 ////    if (!estatus)
 ////    {
@@ -292,18 +292,18 @@
 //
 ////    //}
 //
-////    return pcomposer->__øconstruct(pimage, size, uidCreate, iGoodStride, true);
+////    return pcomposer->øconstruct(pimage, size, uidCreate, iGoodStride, true);
 //
 //// }
 //
 //
-////inline void __øconstruct(::image::image_pointer & pimage)
+////inline void øconstruct(::image::image_pointer & pimage)
 ////{
 ////
 ////   if (!pimage)
 ////   {
 ////
-////      return __øconstruct < ::image::image >(pimage);
+////      return øconstruct < ::image::image >(pimage);
 ////
 ////   }
 ////
@@ -312,10 +312,10 @@
 ////}
 //
 ////
-////inline void __øconstruct(::image::image_pointer & pimage, ::image::image *pimageSource)
+////inline void øconstruct(::image::image_pointer & pimage, ::image::image *pimageSource)
 ////{
 ////
-////   auto estatus = __øconstruct(pimage);
+////   auto estatus = øconstruct(pimage);
 ////
 ////   if(estatus.succeeded())
 ////   {
@@ -334,10 +334,10 @@
 ////}
 ////
 ////
-////inline ::image::image_pointer & __øconstruct(::image::image_pointer & pimage, ::object * pobjectSource)
+////inline ::image::image_pointer & øconstruct(::image::image_pointer & pimage, ::object * pobjectSource)
 ////{
 ////
-////   __øconstruct(pimage);
+////   øconstruct(pimage);
 ////
 ////   pimage->initialize(pobjectSource);
 ////
@@ -346,10 +346,10 @@
 ////}
 //
 ////
-////inline void __øconstruct(::image::image_pointer & pimage, const ::int_size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+////inline void øconstruct(::image::image_pointer & pimage, const ::int_size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 ////{
 ////
-////   auto estatus = __øconstruct(pimage);
+////   auto estatus = øconstruct(pimage);
 ////
 ////   if (!estatus)
 ////   {
@@ -373,7 +373,7 @@
 ////inline void __preserve_construct(::image::image_pointer & pimage, const ::int_size & size, ::eobject eobjectCreate, int iGoodStride)
 ////{
 ////
-////   return __øconstruct(pimage, size, eobjectCreate, iGoodStride, true);
+////   return øconstruct(pimage, size, eobjectCreate, iGoodStride, true);
 ////
 ////}
 //

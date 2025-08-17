@@ -168,7 +168,7 @@ namespace gpu
 
             }
 
-            __defer_construct(m_pcpubuffer);
+            ødefer_construct(m_pcpubuffer);
 
             m_pcpubuffer->initialize_cpu_buffer(this);
 
@@ -295,7 +295,7 @@ namespace gpu
    }
 
 
-   void context::øconstruct(::pointer < ::gpu::shader >& pgpushader)
+   void context::construct(::pointer < ::gpu::shader >& pgpushader)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -319,7 +319,7 @@ namespace gpu
 
       }
 
-      __øconstruct(pgpushader);
+      øconstruct(pgpushader);
 
    }
 
@@ -392,7 +392,7 @@ namespace gpu
    void context::load_texture(::pointer < ::gpu::texture >& ptexture, const ::file::path& path)
    {
 
-      if (__defer_construct(ptexture))
+      if (ødefer_construct(ptexture))
       {
 
          ptexture->initialize_image_texture(m_pgpurenderer, path);
@@ -412,13 +412,25 @@ namespace gpu
    ::pointer < ::gpu::command_buffer >context::beginSingleTimeCommands(::gpu::enum_command_buffer ecommandbuffer)
    {
 
-      return {};
+      ::pointer < command_buffer > pcommandbuffer;
+
+      ødefer_construct(pcommandbuffer);
+
+      pcommandbuffer->initialize_command_buffer(m_pgpurenderer->m_pgpurendertarget, ecommandbuffer);
+
+      pcommandbuffer->begin_command_buffer(true);
+
+      return pcommandbuffer;
 
    }
 
 
    void context::endSingleTimeCommands(::gpu::command_buffer *pcommandbuffer)
    {
+
+      pcommandbuffer->submit_command_buffer(nullptr);
+
+      pcommandbuffer->wait_commands_to_execute();
 
    }
 
@@ -524,7 +536,7 @@ namespace gpu
    //bool context::defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size, memory_buffer::enum_type etype)
    //{
 
-   //   if (__defer_construct(pmemorybuffer))
+   //   if (ødefer_construct(pmemorybuffer))
    //   {
 
    //      pmemorybuffer->initialize_memory_buffer_with_conext(this, size, etype);
@@ -824,7 +836,7 @@ namespace gpu
    ::pointer < ::gpu::input_layout > context::input_layout(const ::gpu::properties & properties)
    {
 
-      auto pinputlayout = __øcreate<::gpu::input_layout>();
+      auto pinputlayout = øcreate<::gpu::input_layout>();
 
       pinputlayout->initialize_input_layout(this, properties);
 
@@ -986,7 +998,7 @@ namespace gpu
          || (!(ppixmap = m_textureaAtlas.last()->create_gpu_pixmap(size))))
       {
 
-         auto ptextureNewAtlas = __øcreate<::gpu::texture >();
+         auto ptextureNewAtlas = øcreate<::gpu::texture >();
 
          ptextureNewAtlas->initialize_image_texture(m_pgpurenderer, 
             { 0, 0, 4096, 4096 }, false);
@@ -1026,7 +1038,7 @@ namespace gpu
       if (!m_pgpuswapchain)
       {
 
-         __defer_construct(m_pgpuswapchain);
+         ødefer_construct(m_pgpuswapchain);
 
          ///m_pswapchain->initialize_gpu_swap_chain(this, m_pwindow);
 
@@ -1043,7 +1055,7 @@ namespace gpu
    void context::top_send_on_context(::gpu::context* pcontextInnerStart, bool bForDrawing, const ::procedure& procedure)
    {
 
-      if (bForDrawing)
+      if (!bForDrawing)
       {
 
          m_pgpudevice->on_new_frame();
@@ -1238,7 +1250,7 @@ namespace gpu
       if (!m_pgpurenderer)
       {
 
-         __øconstruct(m_pgpurenderer);
+         øconstruct(m_pgpurenderer);
 
          m_pgpurenderer->initialize_gpu_renderer(this);
 
@@ -1257,7 +1269,7 @@ namespace gpu
    //   if (!m_pgpurendererBackBuffer)
    //   {
 
-   //      __øconstruct(m_pgpurendererBackBuffer);
+   //      øconstruct(m_pgpurendererBackBuffer);
 
    //      m_pgpurendererBackBuffer->initialize_gpu_renderer(this);
 
@@ -1282,7 +1294,7 @@ namespace gpu
 
    //      ::gpu::enum_scene escene = m_escene;
 
-   //      __øconstruct(m_pgpucontextDraw2d->m_pgpurenderer);
+   //      øconstruct(m_pgpucontextDraw2d->m_pgpurenderer);
 
    //      auto eoutputDraw2d = m_papplication->m_gpu.m_eoutputDraw2d;
 
@@ -1307,7 +1319,7 @@ namespace gpu
 
    //      ::gpu::enum_scene escene = m_escene;
 
-   //      __øconstruct(m_pgpurendererEngine);
+   //      øconstruct(m_pgpurendererEngine);
 
    //      auto eoutputEngine = m_papplication->m_gpu.m_eoutputEngine;
 
@@ -1333,7 +1345,7 @@ namespace gpu
 
    //   ::gpu::enum_scene escene = m_escene;
 
-   //   __øconstruct(pgpurendererDraw2d);
+   //   øconstruct(pgpurendererDraw2d);
 
    //   //auto eoutputDraw2d = m_papplication->m_gpu.m_eoutputDraw2d;
 
@@ -1851,7 +1863,7 @@ namespace gpu
       if (!m_pmodelbufferFullscreenQuad)
       {
 
-         __defer_construct(m_pmodelbufferFullscreenQuad);
+         ødefer_construct(m_pmodelbufferFullscreenQuad);
 
          m_pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(pgpuframe);
 

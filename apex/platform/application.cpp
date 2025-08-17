@@ -604,7 +604,7 @@ namespace apex
 
       }
 
-      pfsfoldersync = pfactory->__øcreate < ::fs::folder_sync >(this);
+      pfsfoldersync = pfactory->øcreate < ::fs::folder_sync >(this);
 
       return pfsfoldersync;
 
@@ -1132,7 +1132,7 @@ namespace apex
       //   /*        if (m_pfsdata.is_null())
       //           {
 
-      //              __øconstruct(m_pfsdata, __allocate ::fs::set());
+      //              øconstruct(m_pfsdata, __allocate ::fs::set());
 
       //           }*/
 
@@ -1153,7 +1153,7 @@ namespace apex
 
       //pfsset->root_ones();
 
-      auto pnativefs = __create_new < ::fs::native>();
+      auto pnativefs = øcreate_new < ::fs::native>();
 
       pfsset->m_spafsdata.add(pnativefs);
 
@@ -3138,7 +3138,7 @@ namespace apex
       //if (m_psimpledb.is_null())
       //{
 
-      //   __construct_new(m_psimpledb);
+      //   øconstruct_new(m_psimpledb);
 
       //}
 
@@ -4421,7 +4421,7 @@ namespace apex
    void application::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine)
    {
 
-      auto prequest = __create_new < ::request >();
+      auto prequest = øcreate_new < ::request >();
 
       prequest->initialize_command_line2(scopedstrCommandLine);
 
@@ -6272,7 +6272,7 @@ namespace apex
    //   if (m_psimpledb.is_null())
    //   {
 
-   //      __construct_new(m_psimpledb);
+   //      øconstruct_new(m_psimpledb);
 
    //   }
 
@@ -6692,7 +6692,7 @@ namespace apex
 
       auto psystem = system();
 
-      auto plocaleschema = __create_new < ::text::international::locale_schema >();
+      auto plocaleschema = øcreate_new < ::text::international::locale_schema >();
 
       //psession->fill_locale_schema(localeschema);
 
@@ -10259,7 +10259,7 @@ namespace apex
    void application::create_networking_application(const ::scoped_string & scopedstrHostName, ::networking::application_handler * papplicationhandlerCreateNetworkApplication)
    {
 
-      __defer_construct(m_pnetworkingapplication);
+      ødefer_construct(m_pnetworkingapplication);
 
       if (::is_set(papplicationhandlerCreateNetworkApplication))
       {
@@ -10419,7 +10419,7 @@ namespace apex
          
          system()->defer_innate_ui();
          
-         auto pdialog = __øcreate < ::innate_ui::dialog>();
+         auto pdialog = øcreate < ::innate_ui::dialog>();
          
          pdialog->create();
          
@@ -10435,7 +10435,7 @@ namespace apex
          
          int y = 30;
          
-         auto pstillIcon = __øcreate < ::innate_ui::still>();
+         auto pstillIcon = øcreate < ::innate_ui::still>();
          
          pstillIcon->create_icon_still(pdialog);
          
@@ -10450,7 +10450,7 @@ namespace apex
          for (auto str : stra)
          {
             
-            auto pstill = __øcreate < ::innate_ui::still>();
+            auto pstill = øcreate < ::innate_ui::still>();
             
             pstill->create_child(pdialog);
             
@@ -10466,7 +10466,7 @@ namespace apex
          
          y += 30;
          
-         auto pbutton = __øcreate < ::innate_ui::button>();
+         auto pbutton = øcreate < ::innate_ui::button>();
          
          pbutton->create_child(pdialog);
          

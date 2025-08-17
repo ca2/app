@@ -101,7 +101,7 @@ namespace app_integration
 
       {
 
-         auto pbutton = __create_new < ::user::button >();
+         auto pbutton = øcreate_new < ::user::button >();
          pbutton->create_control(this, "openssl");
          pbutton->add_handler(this);
          pbutton->set_position({ 100, 100 });
@@ -113,7 +113,7 @@ namespace app_integration
 
       {
 
-         auto pbutton = __create_new < ::user::button >();
+         auto pbutton = øcreate_new < ::user::button >();
          pbutton->create_control(this, "ffmpeg");
          pbutton->add_handler(this);
          pbutton->set_position({ 100, 200 });
@@ -141,7 +141,7 @@ namespace app_integration
 
       ////auto estatus = 
       //
-      //__construct_new(m_prender);
+      //øconstruct_new(m_prender);
 
       //if(!estatus)
       //{

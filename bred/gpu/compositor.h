@@ -15,7 +15,9 @@ namespace gpu
 
       ::pointer <::gpu::context> m_pgpucontextCompositor2;
 
-
+#ifdef WINDOWS
+      bool m_bDraw2dNeedsD3D11onD12 = false;
+#endif
 
 
       compositor();

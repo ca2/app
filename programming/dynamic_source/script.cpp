@@ -71,7 +71,7 @@ namespace dynamic_source
 
       //}
 
-      __construct_new(m_pfileError);
+      øconstruct_new(m_pfileError);
 
       m_textstreamError.m_pfile = m_pfileError;
 
@@ -408,7 +408,7 @@ namespace dynamic_source
       if (m_plibrary.is_null() || m_plibrary->is_closed())
       {
 
-         __øconstruct(m_plibrary);
+         øconstruct(m_plibrary);
 
          string strStagePath = m_pmanager->get_full_stage_path(m_strScriptPath);
 

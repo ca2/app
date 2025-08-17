@@ -59,7 +59,7 @@ namespace user
    ::subparticle_pointer check_box::clone()
    {
 
-      auto pcheckbox = m_papplication->__create_new <::user::check_box>();
+      auto pcheckbox = m_papplication->øcreate_new <::user::check_box>();
 
       return pcheckbox;
 
@@ -411,7 +411,7 @@ namespace user
 
       ppath->close_figure();
 
-      auto ppen = __øcreate < ::draw2d::pen > ();
+      auto ppen = øcreate < ::draw2d::pen > ();
 
       ::draw2d::pen_pointer p0(e_create, this);
 
@@ -449,7 +449,7 @@ namespace user
 
          auto color = argb(255, 255, 255, 255);
 
-         auto pbrush = __øcreate < ::draw2d::brush > ();
+         auto pbrush = øcreate < ::draw2d::brush > ();
 
          auto pmathematics = mathematics();
 
@@ -512,7 +512,7 @@ namespace user
 
             rectangleEllipse.rate(0.6);
 
-            auto pbrush = __øcreate < ::draw2d::brush > ();
+            auto pbrush = øcreate < ::draw2d::brush > ();
 
             pbrush->create_solid(argb(255, 0, 0, 0));
 
@@ -542,7 +542,7 @@ namespace user
 
             rectangleEllipse.rate(0.6);
 
-            auto pbrush = __øcreate < ::draw2d::brush > ();
+            auto pbrush = øcreate < ::draw2d::brush > ();
 
             pbrush->create_solid(argb(255, 255, 255, 255));
 
@@ -592,13 +592,13 @@ namespace user
 
       }
 
-      auto ppen = __øcreate < ::draw2d::pen > ();
+      auto ppen = øcreate < ::draw2d::pen > ();
 
       ppen->create_solid(1.0, crPen);
 
       pgraphics->set(ppen);
 
-      auto pbrush = __øcreate < ::draw2d::brush >();
+      auto pbrush = øcreate < ::draw2d::brush >();
 
       pbrush->create_solid(crBrush);
 
@@ -609,7 +609,7 @@ namespace user
       //   if (m_echeck == e_check_tristate
       //      || m_echeck == e_check_checked)
       //   {
-      //      auto ppen = __øcreate < ::draw2d::pen > ();
+      //      auto ppen = øcreate < ::draw2d::pen > ();
       //      ppen->create_solid(1, m_echeck == e_check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
       //      pgraphics->set(ppen);
       //      pgraphics->set_current_point(2, 8);

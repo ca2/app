@@ -144,7 +144,7 @@ namespace gpu
       void _send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;
 
-      virtual void øconstruct(::pointer < ::gpu::shader >& pgpushader);
+      virtual void construct(::pointer < ::gpu::shader >& pgpushader);
 
       virtual ::gpu::texture* texture(const ::file::path& path);
 

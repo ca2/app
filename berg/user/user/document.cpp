@@ -1049,7 +1049,7 @@ namespace user
       if (m_pimpactsystem->m_typeatomData.has_character())
       {
 
-         auto pNew = __id_create((const ::atom &) m_pimpactsystem->m_typeatomData);
+         auto pNew = øid_create((const ::atom &) m_pimpactsystem->m_typeatomData);
 
          ::pointer < ::data::data > pdataNew = pNew;
 
@@ -1127,7 +1127,7 @@ namespace user
          //if (m_pimpactsystem->m_typeatomData.has_character())
       {
 
-         // auto pNew = __id_create((const ::atom &)m_pimpactsystem->m_typeatomData);
+         // auto pNew = øid_create((const ::atom &)m_pimpactsystem->m_typeatomData);
 
          //auto pdata = create_data(0);
 
@@ -1200,7 +1200,7 @@ namespace user
          //if (m_pimpactsystem->m_typeatomData.has_character())
          {
 
-           // auto pNew = __id_create((const ::atom &)m_pimpactsystem->m_typeatomData);
+           // auto pNew = øid_create((const ::atom &)m_pimpactsystem->m_typeatomData);
 
             auto pdata = create_data(0);
             
@@ -1339,7 +1339,7 @@ namespace user
 
          }
 
-         auto pdataNew = __id_create(typeatomData);
+         auto pdataNew = øid_create(typeatomData);
 
          if (!pdataNew)
          {

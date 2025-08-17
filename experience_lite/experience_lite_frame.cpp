@@ -670,7 +670,7 @@
 
                   pframewindow->get_window_text(wstrWindowText);
 
-                  auto pbrushText = __øcreate < ::draw2d::brush > ();
+                  auto pbrushText = øcreate < ::draw2d::brush > ();
 
                   pbrushText->create_solid(m_colorCaptionText);
 

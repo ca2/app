@@ -43,7 +43,7 @@ namespace experience
 
       }
 
-      auto pexperience = __øcreate <::experience::experience>(pfactory);
+      auto pexperience = øcreate <::experience::experience>(pfactory);
 
       if(pexperience == nullptr)
       {
@@ -273,7 +273,7 @@ namespace berg
 
       //auto estatus = 
       
-      __construct_new(m_pexperience);
+      øconstruct_new(m_pexperience);
 
       //if (!estatus)
       //{

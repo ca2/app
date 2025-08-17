@@ -21,7 +21,7 @@ namespace opengl
    ::pointer <::gpu::context > allocate_cgl_context(::particle * pparticle)
    {
 
-      return pparticle->__create_new < context_cgl >();
+      return pparticle->øcreate_new < context_cgl >();
 
    }
 

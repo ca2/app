@@ -264,6 +264,9 @@
     <ClInclude Include="gpu\frame_storage.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\frame_ephemeral.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -417,6 +420,9 @@
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="gpu\frame_storage.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\frame_ephemeral.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>

@@ -144,7 +144,7 @@ namespace aqua
    bool application::load_cached_string(string& str, const ::atom& atom, bool bLoadStringTable)
    {
 
-      auto pxmldocument = __create_new < ::xml::document >();
+      auto pxmldocument = øcreate_new < ::xml::document >();
 
       try
       {
@@ -207,7 +207,7 @@ namespace aqua
    void application::did_pick_media_item(::aqua::media_item * pmediaitem)
    {
       
-      auto prequest = __create_new <::request>();
+      auto prequest = øcreate_new <::request>();
       
       prequest->m_payloadFile._set_element(pmediaitem);
       

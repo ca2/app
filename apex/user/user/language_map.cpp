@@ -80,7 +80,7 @@ namespace user
          {
 
             //estatus =
-            __construct_new(planguage);
+            øconstruct_new(planguage);
 
          }
 
@@ -233,7 +233,7 @@ namespace user
       {
 
          //estatus = 
-         __construct_new(planguage);
+         øconstruct_new(planguage);
 
          planguage->m_strLanguageCode = scopedstrLang;
 

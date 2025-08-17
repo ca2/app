@@ -155,7 +155,7 @@ namespace http
    void context::_get(const ::url::url & url, ::property_set & set)
    {
 
-      auto pmessage = __create_new < ::http::message >();
+      auto pmessage = øcreate_new < ::http::message >();
 
       pmessage->m_ppropertyset = &set;
 
@@ -654,7 +654,7 @@ namespace http
             
          }
 
-         auto ppac = __create_new < class pac >();
+         auto ppac = øcreate_new < class pac >();
 
          ppac->m_timeLastChecked= ::time::now();
 
@@ -723,7 +723,7 @@ namespace http
             
          }
 
-         auto pproxy = __create_new < class ::http::proxy >();
+         auto pproxy = øcreate_new < class ::http::proxy >();
 
          pproxy->m_timeLastChecked= ::time::now();
 
@@ -1934,7 +1934,7 @@ namespace http
 
          //bPut = true;
 
-         auto psocketPut = pobjectCreator->__create_new < ::sockets::http_put_socket>();
+         auto psocketPut = pobjectCreator->øcreate_new < ::sockets::http_put_socket>();
 
          psocketPut->initialize_http_put_socket(url);
 
@@ -1952,7 +1952,7 @@ namespace http
 
          //bPut = false;
 
-         auto psocketPost = pobjectCreator->__create_new < ::sockets::http_post_socket >();
+         auto psocketPost = pobjectCreator->øcreate_new < ::sockets::http_post_socket >();
 
          psocketPost->initialize_http_post_socket(url);
 
@@ -1977,7 +1977,7 @@ namespace http
 
          //bPut = false;
 
-         auto psocketGet = pobjectCreator->__create_new < ::http::get_socket>();
+         auto psocketGet = pobjectCreator->øcreate_new < ::http::get_socket>();
 
          psocketGet->initialize_get_socket(url);
 
@@ -1992,7 +1992,7 @@ namespace http
       if (!psockethandler)
       {
 
-         psockethandler = __øcreate < ::sockets::socket_handler >();
+         psockethandler = øcreate < ::sockets::socket_handler >();
 
          //psocket->SetSocketHandler(psockethandler);
 
@@ -2664,7 +2664,7 @@ namespace http
 
       //::pointer<message>pmessage(pmessage);
 
-      auto pdomain = __create_new < ::url_domain >();
+      auto pdomain = øcreate_new < ::url_domain >();
 
       pdomain->create(pmessageMessage->m_url.connect().host());
 
@@ -2692,7 +2692,7 @@ namespace http
 
       process_set(*pmessage->m_ppropertyset, pmessageMessage->m_url);
 
-      //auto phandler = __øcreate< ::sockets::socket_handler >();
+      //auto phandler = øcreate< ::sockets::socket_handler >();
 
       ::property_set & set = pmessage->property_set();
 
@@ -2781,7 +2781,7 @@ namespace http
    bool context::download(const ::url::url & url, ::payload payloadFile, ::property_set & set)
    {
 
-      auto phandler = __øcreate < ::sockets::socket_handler >();
+      auto phandler = øcreate < ::sockets::socket_handler >();
 
       ::pointer<::sockets::http_client_socket>psocket;
 
@@ -2854,7 +2854,7 @@ namespace http
 
          synchronouslock.unlock();
 
-         auto phandler = __øcreate < ::sockets::socket_handler >();
+         auto phandler = øcreate < ::sockets::socket_handler >();
 
          set["only_headers"] = true;
 

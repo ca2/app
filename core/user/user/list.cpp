@@ -271,7 +271,7 @@ namespace user
       if (m_bTopText)
       {
 
-         auto pbrushText = __øcreate < ::draw2d::brush > ();
+         auto pbrushText = øcreate < ::draw2d::brush > ();
 
          auto pstyle = get_style(pgraphics);
 
@@ -4292,7 +4292,7 @@ namespace user
                   else
                   {
 
-                      auto pmessage = __create_new < ::message::mouse >();
+                      auto pmessage = øcreate_new < ::message::mouse >();
 
                       pmessage->m_oswindow = oswindow();
 
@@ -5621,7 +5621,7 @@ namespace user
 
       }
 
-      __defer_construct_new(m_pcolumna);
+      ødefer_construct_new(m_pcolumna);
 
       m_pcolumna->Initialize(this);
 
@@ -6959,7 +6959,7 @@ namespace user
 
       auto pointCursor = host_mouse_cursor_position();
 
-      auto pmouse = __create_new < ::message::mouse >();
+      auto pmouse = øcreate_new < ::message::mouse >();
 
       pmouse->m_pointHost = pointCursor;
 

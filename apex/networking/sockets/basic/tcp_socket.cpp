@@ -98,7 +98,7 @@ namespace sockets
       if (!m_ptcpsocketImpl)
       {
 
-         __øconstruct(m_ptcpsocketImpl);
+         øconstruct(m_ptcpsocketImpl);
 
          m_ptcpsocketImpl->m_ptcpsocketInterface = this;
 

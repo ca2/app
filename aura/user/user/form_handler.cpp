@@ -34,7 +34,7 @@ namespace user
       if (!m_pfontTitle1)
       {
 
-         __øconstruct(m_pfontTitle1);
+         øconstruct(m_pfontTitle1);
 
          m_pfontTitle1->create_font(e_font_sans_ui, 36.0_pt, e_font_weight_bold);
 
@@ -51,7 +51,7 @@ namespace user
       if (!m_pfontTitle2)
       {
 
-         __øconstruct(m_pfontTitle2);
+         øconstruct(m_pfontTitle2);
 
          m_pfontTitle2->create_font(e_font_sans_ui, 24.0_pt, e_font_weight_bold);
 

@@ -114,7 +114,7 @@ namespace filemanager
 
       //auto estatus = 
       
-      __defer_construct_new(m_puserlistcache);
+      ødefer_construct_new(m_puserlistcache);
 
       m_pmeshcache = m_puserlistcache;
 

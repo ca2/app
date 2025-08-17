@@ -154,7 +154,7 @@ namespace user
 
          m_pkeymap->m_pimpact = this;
 
-         __øconstruct(m_pengine);
+         øconstruct(m_pengine);
 
          m_pengine->initialize_engine(this);
 
@@ -475,7 +475,7 @@ namespace user
    ::pointer < ::graphics3d::key_map > graphics3d::get_default_key_map()
    {
 
-      auto pmap = __create_new < ::graphics3d::key_map>();
+      auto pmap = øcreate_new < ::graphics3d::key_map>();
       using namespace ::graphics3d;
 
       pmap->map(e_key_moveLeft, ::user::e_key_a);

@@ -50,7 +50,7 @@ namespace user
    void tooltip::on_message_create(::message::message * pmessage)
    {
 
-      __øconstruct(m_pfont);
+      øconstruct(m_pfont);
 
       pmessage->previous();
 
@@ -99,7 +99,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      auto ppath = __øcreate < ::draw2d::path > ();
+      auto ppath = øcreate < ::draw2d::path > ();
 
       ppath->set_current_point(rectangleX.left(), rectangleX.bottom());
 
@@ -125,7 +125,7 @@ namespace user
 
       pgraphics->fill(ppath);
 
-      auto ppen = __øcreate < ::draw2d::pen > ();
+      auto ppen = øcreate < ::draw2d::pen > ();
 
       pgraphics->set(ppen);
 

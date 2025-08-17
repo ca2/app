@@ -168,7 +168,7 @@ namespace user
 
          //auto estatus = 
 
-         if (__defer_construct_new(m_puserstyle))
+         if (ødefer_construct_new(m_puserstyle))
          {
 
             //if (!estatus)
@@ -760,9 +760,9 @@ namespace user
       if (!m_pshell)
       {
 
-         //estatus = __øconstruct(m_pshell, __allocate ::windows::shell());
+         //estatus = øconstruct(m_pshell, __allocate ::windows::shell());
          //estatus =
-         __øconstruct(m_pshell);
+         øconstruct(m_pshell);
 
          //if (!estatus)
          //{
@@ -980,7 +980,7 @@ namespace user
    CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::user::interaction * pinteractionParent)
    {
 
-      auto pinteraction = pparticle->__create_new < ::user::interaction >();
+      auto pinteraction = pparticle->øcreate_new < ::user::interaction >();
 
       pinteraction->create_child(pinteractionParent);
 
@@ -1157,7 +1157,7 @@ namespace aura
       if (m_pfontlistSingleColumn.is_null())
       {
 
-         m_pfontlistSingleColumn = __create_new < ::write_text::font_list > ();
+         m_pfontlistSingleColumn = øcreate_new < ::write_text::font_list > ();
 
          m_pfontlistSingleColumn->set_font_list_type(::write_text::e_font_list_single_column);
 
@@ -1591,7 +1591,7 @@ namespace user
 
    //      desktop_environment()->windowing() = windowing();
 
-   //      //__øconstruct(windowing());
+   //      //øconstruct(windowing());
 
    //      //m_pdesktopenvironment->windowing() = windowing();
 
@@ -1666,7 +1666,7 @@ namespace user
    //
    //    //   system()->do_graphics_and_windowing_system_factory();
    //
-   //    //   __øconstruct(windowing());
+   //    //   øconstruct(windowing());
    //
    //    //   windowing()->initialize_windowing(this);
    //
@@ -1699,7 +1699,7 @@ namespace user
    //    if (!m_pdesktopenvironment)
    //    {
    //
-   //       __øconstruct(m_pdesktopenvironment);
+   //       øconstruct(m_pdesktopenvironment);
    //
    //
    //    }

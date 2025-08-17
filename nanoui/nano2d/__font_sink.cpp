@@ -32,7 +32,7 @@ namespace nano2d
        else
        {
        
-          pfontShared = __øcreate < ::write_text::font >();
+          pfontShared = øcreate < ::write_text::font >();
           
           pfontShared->m_fontdescriptor = fontdescriptor;
           

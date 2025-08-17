@@ -176,13 +176,13 @@ namespace fs
       //if (eopen & ::file::e_open_text)
       //{
 
-      //   pfile = __create_new<::stdio_file>();
+      //   pfile = øcreate_new<::stdio_file>();
 
       //}
       //else
       //{
 
-         __øconstruct(pfile);
+         øconstruct(pfile);
 
 //      }
 

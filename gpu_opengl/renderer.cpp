@@ -204,7 +204,7 @@ namespace gpu_opengl
       //if (!m_pgpurendertarget->m_pgpuframe)
       //{
 
-      //   __øconstruct(m_pgpurendertarget->m_pgpuframe);/* = __create_new < ::gpu_opengl::frame >()*/;
+      //   øconstruct(m_pgpurendertarget->m_pgpuframe);/* = øcreate_new < ::gpu_opengl::frame >()*/;
 
       //}
 
@@ -723,7 +723,7 @@ namespace gpu_opengl
    //   ////         paccumulationrendertargetview->m_formatAlphaAccumulation = VK_FORMAT_R32_SFLOAT;
    //   ////         m_prendertargetview = paccumulationrendertargetview;
    //   ////
-   //   ////         //__construct_new(m_prendererResolve);
+   //   ////         //øconstruct_new(m_prendererResolve);
    //   ////
    //   ////         //m_prendererResolve->initialize_renderer(m_pgpucontext, ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers);
    //   ////
@@ -1160,7 +1160,7 @@ namespace gpu_opengl
 ////}
 ////)frag";
 ////
-////                     m_pshaderCopyTextureOnEndDraw = __create_new < ::gpu_opengl::shader >();
+////                     m_pshaderCopyTextureOnEndDraw = øcreate_new < ::gpu_opengl::shader >();
 ////
 ////                     m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
 ////                        this,
@@ -1329,7 +1329,7 @@ namespace gpu_opengl
       if (!m_pshaderBlend)
       {
 
-         __øconstruct(m_pshaderBlend);
+         øconstruct(m_pshaderBlend);
 
          const_char_pointer quad_vertex_shader = "#version 330 core\n"
             "layout(location = 0) in vec2 pos;\n"
@@ -1482,7 +1482,7 @@ namespace gpu_opengl
       if (!m_pshaderBlend2)
       {
 
-         __construct_new(m_pshaderBlend2);
+         øconstruct_new(m_pshaderBlend2);
 
          m_pshaderBlend2->initialize_shader_with_block(
             this,
@@ -1641,7 +1641,7 @@ namespace gpu_opengl
       if (!m_pshaderBlend2)
       {
 
-         __construct_new(m_pshaderBlend2);
+         øconstruct_new(m_pshaderBlend2);
 
          m_pshaderBlend2->initialize_shader_with_block(
             this,
@@ -1845,7 +1845,7 @@ namespace gpu_opengl
       if (!m_pshaderBlend2)
       {
 
-         __construct_new(m_pshaderBlend2);
+         øconstruct_new(m_pshaderBlend2);
 
          m_pshaderBlend2->initialize_shader_with_block(
             this,

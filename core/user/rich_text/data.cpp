@@ -113,7 +113,7 @@ namespace user
 
          //estatus = 
 
-         //__construct_new(m_pformathost);
+         //øconstruct_new(m_pformathost);
 
          //if (!estatus)
          //{
@@ -976,7 +976,7 @@ namespace user
       void data::__initialize(::pointer<::user::rich_text::format> & pformat)
       {
 
-         __defer_construct(pformat);
+         ødefer_construct(pformat);
 
          //auto estatus = 
 
@@ -1049,7 +1049,7 @@ namespace user
 
             //auto pfactory = system()->factory("text_format", "rtf");
 
-            //auto ptextformat = __øcreate< ::user::rich_text::text_format >(pfactory);
+            //auto ptextformat = øcreate< ::user::rich_text::text_format >(pfactory);
 
             //ptextformat->text_format_read(this, bin);
 
@@ -1075,7 +1075,7 @@ namespace user
 
             //auto pfactory = system()->factory("text_format", "rtf");
 
-            //auto ptextformat = __øcreate< ::user::rich_text::text_format >(pfactory);
+            //auto ptextformat = øcreate< ::user::rich_text::text_format >(pfactory);
 
             //ptextformat->text_format_save(pfile, this);
 
@@ -1091,7 +1091,7 @@ namespace user
 
          auto pfactory = system()->factory("text_format", "rtf");
 
-         auto ptextformat = __øcreate< ::user::rich_text::text_format >(pfactory);
+         auto ptextformat = øcreate< ::user::rich_text::text_format >(pfactory);
 
          ptextformat->text_format_read(this, binarystream);
 
@@ -1103,7 +1103,7 @@ namespace user
 
          auto pfactory = system()->factory("text_format", "rtf");
 
-         auto ptextformat = __øcreate< ::user::rich_text::text_format >(pfactory);
+         auto ptextformat = øcreate< ::user::rich_text::text_format >(pfactory);
 
          ptextformat->text_format_write(binarystream, this);
 

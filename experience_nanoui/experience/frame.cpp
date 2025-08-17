@@ -41,11 +41,11 @@ namespace experience_nanoui
    void frame::on_initialize_experience_frame()
    {
 
-      __øconstruct(m_ppenText1);
-         __øconstruct(m_ppenFace1);
-         __øconstruct(m_ppenHilight1);
-         __øconstruct(m_ppenShadow1);
-         __øconstruct(m_ppenDkShadow1);
+      øconstruct(m_ppenText1);
+         øconstruct(m_ppenFace1);
+         øconstruct(m_ppenHilight1);
+         øconstruct(m_ppenShadow1);
+         øconstruct(m_ppenDkShadow1);
 
 
 /*               auto estyle = translate_style(m_strStyle);
@@ -564,7 +564,7 @@ namespace experience_nanoui
       if(eborder & e_border_top || eborder & e_border_left)
       {
 
-         __øconstruct(ppen);
+         øconstruct(ppen);
 
          ppen->create_solid(1.0, colorTopLeft);
 
@@ -589,7 +589,7 @@ namespace experience_nanoui
       if((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != colorBottomRight))
       {
 
-         __øconstruct(ppen);
+         øconstruct(ppen);
 
          ppen->create_solid(1.0,colorBottomRight);
 

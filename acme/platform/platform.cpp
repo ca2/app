@@ -617,7 +617,7 @@ namespace platform
       if (!pfactory)
       {
 
-         ::system()->__construct_new(pfactory);
+         ::system()->øconstruct_new(pfactory);
 
       }
 
@@ -748,7 +748,7 @@ namespace platform
       // if (!m_psystem)
       // {
       //
-      //    factory()->__raw_construct(m_psystem);
+      //    factory()->øraw_construct(m_psystem);
       //
       //    m_psystem->set_platform();
       //
@@ -910,7 +910,7 @@ g_bWindowingOutputDebugString = true;
 
          }
 
-         plibrary = system()->__create_new < ::acme::library >();
+         plibrary = system()->øcreate_new < ::acme::library >();
 
          plibrary->m_strName = strLibrary;
 
@@ -962,7 +962,7 @@ g_bWindowingOutputDebugString = true;
       //    if(strComponent == "nano_http")
       //    {
       //
-      //       pfactory = system()->__create_new < ::factory::factory >();
+      //       pfactory = system()->øcreate_new < ::factory::factory >();
       //
       //       initialize_nano_http(pfactory);
       //
@@ -972,7 +972,7 @@ g_bWindowingOutputDebugString = true;
       //    else if(strComponent == "nano_user")
       //    {
       //
-      //       pfactory = system()->__create_new < ::factory::factory >();
+      //       pfactory = system()->øcreate_new < ::factory::factory >();
       //
       //       initialize_nano_user(pfactory);
       //
@@ -1010,7 +1010,7 @@ g_bWindowingOutputDebugString = true;
       //   if (pfnFactory)
       //   {
 
-      //      pfactory = system()->__create_new < ::factory::factory >();
+      //      pfactory = system()->øcreate_new < ::factory::factory >();
 
       //      pfnFactory(pfactory);
 
@@ -1083,7 +1083,7 @@ g_bWindowingOutputDebugString = true;
       //    if(strComponent == "nano_http")
       //    {
       //
-      //       pfactory = system()->__create_new < ::factory::factory >();
+      //       pfactory = system()->øcreate_new < ::factory::factory >();
       //
       //       initialize_nano_http(pfactory);
       //
@@ -1093,7 +1093,7 @@ g_bWindowingOutputDebugString = true;
       //    else if(strComponent == "nano_user")
       //    {
       //
-      //       pfactory = system()->__create_new < ::factory::factory >();
+      //       pfactory = system()->øcreate_new < ::factory::factory >();
       //
       //       initialize_nano_user(pfactory);
       //
@@ -1131,7 +1131,7 @@ g_bWindowingOutputDebugString = true;
          if (pfnFactory)
          {
 
-            pfactory = system()->__create_new < ::factory::factory >();
+            pfactory = system()->øcreate_new < ::factory::factory >();
 
             pfnFactory(pfactory);
 
@@ -1194,7 +1194,7 @@ g_bWindowingOutputDebugString = true;
    ////
    ////      }
    ////
-   ////      plibrary = system()->__create_new < ::acme::library >();
+   ////      plibrary = system()->øcreate_new < ::acme::library >();
    ////
    ////      plibrary->m_strName = strLibrary;
    ////
@@ -1273,7 +1273,7 @@ g_bWindowingOutputDebugString = true;
 
       //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
-      auto plibrary = __create_new < ::acme::library >();
+      auto plibrary = øcreate_new < ::acme::library >();
 
       __check_refdbg
       //plibrary->initialize_matter(this);
@@ -1329,7 +1329,7 @@ g_bWindowingOutputDebugString = true;
 
       }
 
-      auto plibrary = __create_new < ::acme::library >();
+      auto plibrary = øcreate_new < ::acme::library >();
 
       plibrary->m_strName = scopedstrLibrary;
 

@@ -164,12 +164,12 @@ namespace user
 
       }
 
-      __øconstruct(m_pfontMenu);
+      øconstruct(m_pfontMenu);
 
-      __construct_new(m_pimagelist);
-      __construct_new(m_pimagelistHue);
-      __construct_new(m_pimagelistBlend);
-      __construct_new(m_pimagelistHueLight);
+      øconstruct_new(m_pimagelist);
+      øconstruct_new(m_pimagelistHue);
+      øconstruct_new(m_pimagelistBlend);
+      øconstruct_new(m_pimagelistHueLight);
 
       VERIFY(m_pfontMenu->create_font(e_font_sans, 11_pt));
 

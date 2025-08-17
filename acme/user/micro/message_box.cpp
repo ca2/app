@@ -203,7 +203,7 @@ namespace micro
       //       return;
       //
       //    }
-      //    __construct_new(m_pstillIcon);
+      //    øconstruct_new(m_pstillIcon);
       //
       //    m_pstillIcon->set_icon(picon);
 
@@ -594,7 +594,7 @@ namespace micro
       if (payload == "details")
       {
 
-         //auto psequencer = __create_new < ::sequencer < ::conversation > >();
+         //auto psequencer = øcreate_new < ::sequencer < ::conversation > >();
 
          auto pmessageboxDetails = __initialize_new::message_box(
             m_prealizable->m_strDetails,
@@ -660,7 +660,7 @@ namespace micro
    void message_box::on_context_menu(::user::mouse* pmouse)
    {
 
-      auto ppopupbutton = __create_new<popup_button>();
+      auto ppopupbutton = øcreate_new<popup_button>();
 
       //auto pwindowParent = this->acme_windowing_window();
 
@@ -737,7 +737,7 @@ namespace micro
 //                                                        scopedstrDetails, picon);
 //      
 //      return psequencer;
-////      auto pmessagebox = ::platform::get()->__øcreate < ::operating_system::message_box >();
+////      auto pmessagebox = ::platform::get()->øcreate < ::operating_system::message_box >();
 ////
 ////      return pmessagebox->create_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
 //
@@ -757,9 +757,9 @@ namespace micro
 //   if(pparticle->::system()->m_bConsole || !is_ui_possible())
 //   {
 //
-//      auto psequencer = pparticle->__create_new < ::sequencer < ::conversation > >();
+//      auto psequencer = pparticle->øcreate_new < ::sequencer < ::conversation > >();
 //
-//      auto pmessagebox = pparticle->__create_new < ::operating_system::console_message_box >();
+//      auto pmessagebox = pparticle->øcreate_new < ::operating_system::console_message_box >();
 //
 //      psequencer->m_psequence = pmessagebox;
 //
@@ -802,7 +802,7 @@ namespace micro
 ////
 ////   pmanualresethappening->wait();
 ////
-//////   auto pmessagebox = pparticle->__create_new < message_box >();
+//////   auto pmessagebox = pparticle->øcreate_new < message_box >();
 //////
 //////   atom idResult;
 //////
@@ -904,7 +904,7 @@ namespace micro
 ////
 ////   pmanualresethappening->wait();
 ////
-//////   auto pmessagebox = pparticle->__create_new < message_box >();
+//////   auto pmessagebox = pparticle->øcreate_new < message_box >();
 //////
 //////   atom idResult;
 //////
@@ -987,7 +987,7 @@ namespace micro
 //   //main_asynchronous([ pmessagebox, pparticle ]()
 //   //{
 //
-//      auto pmicromessagebox = pparticle->__create_new < ::micro::message_box >();
+//      auto pmicromessagebox = pparticle->øcreate_new < ::micro::message_box >();
 //   
 //      ::payload idResult;
 //   

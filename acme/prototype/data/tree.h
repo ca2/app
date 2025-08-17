@@ -570,7 +570,7 @@ return;
    ::pointer < ::data::tree_item <  ITEM > > tree <  ITEM >::create_tree_item()
    {
 
-      return __create_new < ::data::tree_item <  ITEM > >();
+      return øcreate_new < ::data::tree_item <  ITEM > >();
 
    }
 

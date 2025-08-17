@@ -78,7 +78,7 @@ namespace user
    void tree::user_tree_common_construct()
    {
 
-      __construct_new(m_ptreeitemptraSelected);
+      øconstruct_new(m_ptreeitemptraSelected);
 
       m_bHover = false;
       m_iHoverAlphaInit = 0;
@@ -138,7 +138,7 @@ namespace user
 
       //estatus = 
 
-      __construct_new(m_pimagelist);
+      øconstruct_new(m_pimagelist);
 
       //if (!estatus)
       //{
@@ -1055,10 +1055,10 @@ namespace user
 
       m_colorTreeBackground = get_color(pstyle, ::e_element_background);
 
-      __defer_construct(m_pbrushTextSelectedHighlight);
-      __defer_construct(m_pbrushTextSelected);
-      __defer_construct(m_pbrushTextHighlight);
-      __defer_construct(m_pbrushText);
+      ødefer_construct(m_pbrushTextSelectedHighlight);
+      ødefer_construct(m_pbrushTextSelected);
+      ødefer_construct(m_pbrushTextHighlight);
+      ødefer_construct(m_pbrushText);
 
       m_pbrushTextSelectedHighlight->create_solid(get_color(pstyle, ::e_element_hilite_text, ::user::e_state_selected));
       m_pbrushTextSelected->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
@@ -1387,7 +1387,7 @@ namespace user
       //
       //      auto pointCursor = pwindowing->get_cursor_position();
       //
-      //      auto pmouse = __create_new < ::user::mouse >();
+      //      auto pmouse = øcreate_new < ::user::mouse >();
       //
       //      pmouse->m_point = pointCursor;
       //
@@ -1778,7 +1778,7 @@ namespace user
 
       //pgraphics->CreateCompatibleDC(nullptr);
 
-      //auto pfont = __øcreate < ::write_text::font > ();
+      //auto pfont = øcreate < ::write_text::font > ();
       //pfont->operator=(*pdraw2d->fonts().GetListCtrlFont());
       //pfont->set_bold();
       //g->set_font(font);

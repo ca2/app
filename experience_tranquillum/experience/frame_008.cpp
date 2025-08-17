@@ -424,11 +424,11 @@ namespace experience_tranquillum
          void frame_008::_on_style_change(::draw2d::graphics_pointer & pgraphics)
          {
 
-            __øconstruct(m_ppenHollow1);
-            __øconstruct(m_ppenHollow2);
-            __øconstruct(m_ppenHollow3);
-            __øconstruct(m_ppenHollow4);
-            __øconstruct(m_ppenHollow5);
+            øconstruct(m_ppenHollow1);
+            øconstruct(m_ppenHollow2);
+            øconstruct(m_ppenHollow3);
+            øconstruct(m_ppenHollow4);
+            øconstruct(m_ppenHollow5);
 
 
             on_style_change_001_and_002(pgraphics);

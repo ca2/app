@@ -60,7 +60,7 @@ namespace app_message_box
       if (!m_pmainwindow)
       {
 
-         __construct_new(m_pmainwindow);
+         øconstruct_new(m_pmainwindow);
 
          m_pmainwindow->display(e_display_normal);
 

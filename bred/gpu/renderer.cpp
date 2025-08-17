@@ -79,7 +79,7 @@ namespace gpu
 
       m_pgpucontext = pgpucontext;
 
-      __defer_construct_new(m_prenderstate);
+      ødefer_construct_new(m_prenderstate);
 
       //m_pgpucontext->m_prenderer = this;
 
@@ -145,7 +145,7 @@ namespace gpu
       //         paccumulationrendertargetview->m_formatAlphaAccumulation = VK_FORMAT_R32_SFLOAT;
       //         m_prendertargetview = paccumulationrendertargetview;
       //
-      //         //__construct_new(m_prendererResolve);
+      //         //øconstruct_new(m_prendererResolve);
       //
       //         //m_prendererResolve->initialize_renderer(m_pgpucontext, ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers);
       //
@@ -215,7 +215,7 @@ namespace gpu
    ::pointer < texture> renderer::create_image_texture(const ::int_size& size, bool bWithDepth)
    {
 
-      auto ptexture = __øcreate< texture>();
+      auto ptexture = øcreate< texture>();
 
       ptexture->initialize_image_texture(this, size, bWithDepth);
 
@@ -237,7 +237,7 @@ namespace gpu
       ::gpu::shader::enum_flag eflag)
    {
 
-      auto pshader = __øcreate < ::gpu::shader >();
+      auto pshader = øcreate < ::gpu::shader >();
       pshader->initialize_shader(this,
          pathVert, pathFrag, eslota,
          pLocalDescriptorSet, ppropertiesPush, pinputlayout, eflag);
@@ -422,7 +422,7 @@ namespace gpu
 
          auto& pcommandbuffer = m_commandbuffera[i];
 
-         __defer_construct(pcommandbuffer);
+         ødefer_construct(pcommandbuffer);
 
          pcommandbuffer->initialize_command_buffer(m_pgpurendertarget,
             e_command_buffer_graphics);
@@ -759,7 +759,7 @@ namespace gpu
    //#endif
    //
    //
-   //   __defer_construct(m_pimageFromGpu);
+   //   ødefer_construct(m_pimageFromGpu);
    //
    //   auto size = m_pgpucontext->m_pcpubuffer->m_pixmap.m_size;
    //
@@ -878,7 +878,17 @@ namespace gpu
       if (!bLayerStarted)
       {
 
-         _on_begin_render(pframe);
+         auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+
+         auto etypeGpuContext = m_pgpucontext->m_etype;
+
+         if (!bUseSwapChain
+            || etypeGpuContext != ::gpu::context::e_type_window)
+         {
+
+            _on_begin_render(pframe);
+
+         }
 
       }
 
@@ -1090,7 +1100,7 @@ namespace gpu
    ::pointer < render_target > renderer::on_create_render_target()
    {
 
-      auto prendertarget = __øcreate<render_target>();
+      auto prendertarget = øcreate<render_target>();
 
       prendertarget->m_bAdvancedPipelineSynchronization = true;
 
@@ -1102,7 +1112,7 @@ namespace gpu
    ::pointer < swap_chain > renderer::on_create_swap_chain()
    {
 
-      return __øcreate<swap_chain>();
+      return øcreate<swap_chain>();
 
    }
 
@@ -1252,13 +1262,15 @@ namespace gpu
       if (!bForDrawing)
       {
 
+         frame_prefix();
+
          on_frame(::gpu::current_frame());
 
          return;
 
       }
 
-      frame_prefix();
+//      frame_prefix();
 
       on_frame(::gpu::current_frame());
 
@@ -1375,7 +1387,7 @@ namespace gpu
 
       auto pgpudevice = pcontext->m_pgpudevice;
 
-      auto pgpuframe = __øcreate < ::gpu::frame >();
+      auto pgpuframe = øcreate < ::gpu::frame >();
 
       ::gpu::set_current_frame(pgpuframe);
 
@@ -1426,8 +1438,12 @@ namespace gpu
 
       m_pgpurendertarget->m_pgpuframe = pgpuframe;
 
-      if (!m_papplication->m_gpu.m_bUseSwapChainWindow
-         || m_pgpucontext->m_etype != ::gpu::context::e_type_window)
+      auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+
+      auto etypeGpuContext = m_pgpucontext->m_etype;
+
+      if (!bUseSwapChain
+         || etypeGpuContext != ::gpu::context::e_type_window)
       {
 
          wait_command_buffer_ready();
@@ -1543,7 +1559,7 @@ namespace gpu
       //   ////if (!m_pgpucontextOutput)
       //   ////{
 
-      //   ////   __øconstruct(m_pgpucontextOutput);
+      //   ////   øconstruct(m_pgpucontextOutput);
 
       //   ////   m_pgpucontextOutput = m_papplication->get_gpu()->get_device(pwindow, pwindow->get_window_rectangle())->start_swap_chain_context(this, pwindow);
 

@@ -444,7 +444,7 @@ namespace platform
    //
    // #if !defined(WINDOWS)
    //
-   //       __øconstruct(m_pexceptiontranslator);
+   //       øconstruct(m_pexceptiontranslator);
    //
    //       m_pexceptiontranslator->attach();
    //
@@ -452,7 +452,7 @@ namespace platform
    //
    //       //information() << "create_os_node going to create node";
    //
-   //       __øconstruct(m_pnode);
+   //       øconstruct(m_pnode);
    //
    //       m_pnode = m_pnode;
    //
@@ -541,19 +541,19 @@ namespace platform
    //
    // #endif
    //
-   //       __construct_new(m_purlcontext);
+   //       øconstruct_new(m_purlcontext);
    //
    //       //::acme::idpool::init(this);
    //
    // //      /// Create/Replace logger
    //
-   //       __construct_new(m_pdatetime);
+   //       øconstruct_new(m_pdatetime);
    //
    //
    //
    //       m_pnode->m_htaskSystem = m_htask;
    //
-   //       //auto estatus = __defer_construct_new(m_pfactorysquare);
+   //       //auto estatus = ødefer_construct_new(m_pfactorysquare);
    //
    //       //if (!estatus)
    //       //{
@@ -571,7 +571,7 @@ namespace platform
    //
    //       // }
    //
-   //       //estatus = __øconstruct(m_pnode);
+   //       //estatus = øconstruct(m_pnode);
    //
    //       //if (!m_pnode)
    //       //{
@@ -580,9 +580,9 @@ namespace platform
    //
    //       //}
    //
-   //       //auto estatus = __raw_construct(m_pdirectorysystem);
+   //       //auto estatus = øraw_construct(m_pdirectorysystem);
    //
-   //       __raw_construct(m_pdirectorysystem);
+   //       øraw_construct(m_pdirectorysystem);
    //
    //       /*if (!estatus)
    //        {
@@ -595,9 +595,9 @@ namespace platform
    //
    //        //    m_pdirectorysystem->increment_reference_count();
    //
-   //        //estatus = __raw_construct(m_pfilesystem);
+   //        //estatus = øraw_construct(m_pfilesystem);
    //
-   //       __raw_construct(m_pfilesystem);
+   //       øraw_construct(m_pfilesystem);
    //
    //       //if (!estatus)
    //       //{
@@ -606,9 +606,9 @@ namespace platform
    //
    //       //}
    //
-   //       //estatus = __raw_construct(m_ppathsystem);
+   //       //estatus = øraw_construct(m_ppathsystem);
    //
-   //       __raw_construct(m_ppathsystem);
+   //       øraw_construct(m_ppathsystem);
    //
    //       //if (!estatus)
    //       //{
@@ -683,7 +683,7 @@ namespace platform
    //       //}
    //       //estatus =
    //
-   //       __øconstruct(m_pfilesystem);
+   //       øconstruct(m_pfilesystem);
    //
    //       //if(!estatus)
    //       //{
@@ -698,7 +698,7 @@ namespace platform
    //
    //       //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
    //
-   //       __øconstruct(m_pdirectorysystem);
+   //       øconstruct(m_pdirectorysystem);
    //
    //       //if (!estatus)
    //       //{
@@ -1313,7 +1313,7 @@ namespace platform
    //
    //          //initialize_nano_window(factory());
    //
-   //          __construct_new(m_pnano);
+   //          øconstruct_new(m_pnano);
    //
    //       }
    //
@@ -1353,7 +1353,7 @@ namespace platform
    //    //
    //    //      initialize_nano_http(factory());
    //    //
-   //    //      __øconstruct(m_pnanohttp);
+   //    //      øconstruct(m_pnanohttp);
    //    //
    //    //   }
    //    //
@@ -1370,7 +1370,7 @@ namespace platform
    //    //
    //    //         initialize_nano_http(factory());
    //    //
-   //    //         __øconstruct(m_pnanohttp);
+   //    //         øconstruct(m_pnanohttp);
    //    //
    //    //      }
    //    //
@@ -1667,7 +1667,7 @@ namespace platform
    //    //
    //    //      plibrary->initialize_matter(this);
    //    //
-   //    //      __construct_new(plibrary->m_pfactory);
+   //    //      øconstruct_new(plibrary->m_pfactory);
    //    //
    //    //      plibrary->m_pfactory->initialize_matter(this);
    //    //
@@ -1711,7 +1711,7 @@ namespace platform
    //    //
    //    //      }
    //    //
-   //    //      __construct_new(pfactory);
+   //    //      øconstruct_new(pfactory);
    //    //
    //    //      plibrary->m_pfactory->initialize_matter(this);
    //    //
@@ -1762,7 +1762,7 @@ namespace platform
    //
    //       _synchronous_lock synchronouslock(this->synchronization());
    //
-   //       __defer_construct_new(m_pmapRegularExpressionContext);
+   //       ødefer_construct_new(m_pmapRegularExpressionContext);
    //
    //       auto& pcontext = (*m_pmapRegularExpressionContext)[pszStyle];
    //
@@ -1778,7 +1778,7 @@ namespace platform
    //
    //          }
    //
-   //          pfactory->__øconstruct(this, pcontext);
+   //          pfactory->øconstruct(this, pcontext);
    //
    //       }
    //
@@ -1919,7 +1919,7 @@ namespace platform
    //       ::pointer<::platform::session>psession;
    //
    //       //auto estatus =
-   //       __raw_construct(psession);
+   //       øraw_construct(psession);
    //
    //       //psession->set_platform();
    //
@@ -2118,7 +2118,7 @@ namespace platform
    //
    //          m_bPostedInitialRequest = true;
    //
-   //          auto prequest = __create_new< ::request>();
+   //          auto prequest = øcreate_new< ::request>();
    //
    //          auto strCommandLine = this->m_strCommandLine;
    //
@@ -2986,7 +2986,7 @@ namespace platform
    //          if (strAppId.is_empty() || this->is_console())
    //          {
    //
-   //             papp = __øcreate < ::platform::application >();
+   //             papp = øcreate < ::platform::application >();
    //
    //             papp->increment_reference_count();
    //
@@ -3062,7 +3062,7 @@ namespace platform
    //             if (pfactory)
    //             {
    //
-   //                papp = __øcreate < ::platform::application >(pfactory);
+   //                papp = øcreate < ::platform::application >(pfactory);
    //
    //                if (!papp)
    //                {
@@ -3707,7 +3707,7 @@ namespace platform
    //       if (!m_pmicrouser)
    //       {
    //
-   //          __construct_new(m_pmicrouser);
+   //          øconstruct_new(m_pmicrouser);
    //
    //       }
    //
@@ -3724,7 +3724,7 @@ namespace platform
    //
    //          do_graphics_and_windowing_system_factory();
    //
-   //          __øconstruct(m_pacmewindowing);
+   //          øconstruct(m_pacmewindowing);
    //
    //       }
    //
@@ -3841,7 +3841,7 @@ namespace platform
    //
    //    //      do_graphics_and_windowing_system_factory();
    //
-   //    //      __øconstruct(m_pwindowingbase);
+   //    //      øconstruct(m_pwindowingbase);
    //
    //    //   }
    //

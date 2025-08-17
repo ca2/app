@@ -353,14 +353,14 @@ namespace xml
                }
                if(entity_value.has_character())
                {
-                  //::__øconstruct(m_pdocument, m_pdocument->m_pentitiesHash);
-                  //::__defer_construct(m_pdocument, m_pdocument->m_pentitiesHash);
-                  m_pdocument->__defer_construct(m_pdocument->m_pentitiesHash);
+                  //::øconstruct(m_pdocument, m_pdocument->m_pentitiesHash);
+                  //::ødefer_construct(m_pdocument, m_pdocument->m_pentitiesHash);
+                  m_pdocument->ødefer_construct(m_pdocument->m_pentitiesHash);
                   m_pdocument->m_pentitiesHash->set_at(entity_name, entity_value);
                }
                if(ext_entity_value.has_character())
                {
-                  m_pdocument->__defer_construct(m_pdocument->m_pentitiesExtHash);
+                  m_pdocument->ødefer_construct(m_pdocument->m_pentitiesExtHash);
                   m_pdocument->m_pentitiesExtHash->set_at(entity_name, ext_entity_value);
                }
             }

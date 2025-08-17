@@ -383,7 +383,7 @@ namespace user
       if (_has_image())
       {
 
-         m_pwindow->__øconstruct(pimage);
+         m_pwindow->øconstruct(pimage);
 
          if (_desk_to_image(pimage))
          {
@@ -432,7 +432,7 @@ namespace user
                //
                //auto estatus = 
             
-            __øconstruct(pimage);
+            øconstruct(pimage);
 
                //if(estatus.succeeded())
                //{
@@ -453,7 +453,7 @@ namespace user
                      if (s.area() > 0.)
                      {
 
-                         __øconstruct(pimage);
+                         øconstruct(pimage);
 
                         //if(estatus.succeeded())
                         {

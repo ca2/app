@@ -125,6 +125,7 @@ namespace gpu
       class ::time               m_timeRetire;
       //bool m_bTextureAndSampler;
       int                        m_iPushConstants = -1;
+      ::string                   m_strPushConstantsDebugging;
 
       shader();
       ~shader() override;

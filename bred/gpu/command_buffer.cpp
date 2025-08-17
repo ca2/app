@@ -49,7 +49,7 @@ namespace gpu
 
    //   ::pointer <command_buffer > pcommandbuffer;
 
-   //   __defer_construct_new(pcommandbuffer);
+   //   ødefer_construct_new(pcommandbuffer);
 
    //   ::cast < device > pdevice= m_pgpucontext->m_pgpudevice;
 

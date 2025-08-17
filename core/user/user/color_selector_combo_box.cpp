@@ -233,7 +233,7 @@ namespace user
    void color_combo_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto pbrush = __øcreate < ::draw2d::brush > ();
+      auto pbrush = øcreate < ::draw2d::brush > ();
 
       //::user::e_::color::color colorDropDown = color_button_background_disabled;
 
@@ -413,7 +413,7 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleDropIn);
 
-      auto ppath = __øcreate < ::draw2d::path > ();
+      auto ppath = øcreate < ::draw2d::path > ();
 
       double_point_array pointa;
 

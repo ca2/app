@@ -911,7 +911,7 @@ namespace user
 
          __check_refdbg
 
-         pusersystem = __create_new < ::user::system >();
+         pusersystem = øcreate_new < ::user::system >();
 
          __check_refdbg
          
@@ -930,7 +930,7 @@ namespace user
 
          __check_refdbg
 
-         __construct_new(pusersystem->m_prequest);
+         øconstruct_new(pusersystem->m_prequest);
 
          __check_refdbg
 

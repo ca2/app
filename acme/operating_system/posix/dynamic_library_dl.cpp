@@ -155,7 +155,7 @@ namespace dl
    ::file::path dynamic_library::module_path(library_t* plibrary)
    {
 
-      auto pquery = __create_new<modules_query>();
+      auto pquery = øcreate_new<modules_query>();
 
       pquery->query_by_address(plibrary);
 
@@ -167,7 +167,7 @@ namespace dl
    ::library_t* dynamic_library::module_by_name(const ::scoped_string& scopedstrName)
    {
 
-      auto pquery = __create_new<modules_query>();
+      auto pquery = øcreate_new<modules_query>();
 
       pquery->query_by_name(scopedstrName);
 
@@ -179,7 +179,7 @@ namespace dl
    ::library_t* dynamic_library::module_by_path(const ::file::path& path)
    {
 
-      auto pquery = __create_new<modules_query>();
+      auto pquery = øcreate_new<modules_query>();
 
       pquery->query_by_path(path);
 

@@ -46,7 +46,7 @@ app_factory::app_factory(PFN_factory pfnFactory)
 
    g_pfnFactoryApp(pfactory);
 
-   auto papp = pparticle->__øcreate<::platform::application>(pfactory);
+   auto papp = pparticle->øcreate<::platform::application>(pfactory);
 
    return papp;
 

@@ -66,7 +66,7 @@ namespace write_text
 
          //auto estatus = 
          
-         __øconstruct(m_pfonts);
+         øconstruct(m_pfonts);
 
          //if (!estatus)
          //{
@@ -146,7 +146,7 @@ namespace write_text
    font_pointer write_text::font(const font_family_pointer & pfontfamily, const font_size & fontsize, int iFontWeight)
    {
 
-      auto pfont = __øcreate < class font >();
+      auto pfont = øcreate < class font >();
 
       pfont->create_font(pfontfamily, fontsize, iFontWeight);
 
@@ -158,7 +158,7 @@ namespace write_text
    font_pointer write_text::create_font()
    {
 
-      return __øcreate < class font > ();
+      return øcreate < class font > ();
       
    }
 
@@ -175,7 +175,7 @@ namespace write_text
 
       }
 
-      __construct_new(pmemory);
+      øconstruct_new(pmemory);
 
       *pmemory = file()->as_memory(path);
 
@@ -225,7 +225,7 @@ namespace write_text
 
    //   ::pointer<true_type_font_utilities>ptruetypefontutilities;
 
-   //   __construct_new(ptruetypefontutilities);
+   //   øconstruct_new(ptruetypefontutilities);
 
    //   if (pdoc->load(strSystemFonts))
    //   {
@@ -442,7 +442,7 @@ namespace write_text
 
    }
 
-   __øconstruct(pinternalfont);
+   øconstruct(pinternalfont);
 
    auto pmemory = get_file_memory(pcontext, path);
 

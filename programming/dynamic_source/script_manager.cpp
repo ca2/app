@@ -971,7 +971,7 @@ namespace dynamic_source
          try
          {
 
-            m_mapIncludeMatchesFileExists2.erase_key(path);
+            m_mapIncludeMatchesFileExists2.erase(path);
 
          }
          catch (...)
@@ -982,7 +982,7 @@ namespace dynamic_source
          try
          {
 
-            m_mapIncludeMatchesIsDir2.erase_key(path);
+            m_mapIncludeMatchesIsDir2.erase(path);
 
          }
          catch (...)
@@ -1001,7 +1001,7 @@ namespace dynamic_source
 
          _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5);
 
-         m_mapIncludeExpandMd5.erase_key(path);
+         m_mapIncludeExpandMd5.erase(path);
 
       }
       catch (...)
@@ -1512,7 +1512,7 @@ namespace dynamic_source
 
          }
 
-         m_mapOutLink.erase_key(scopedstrServer);
+         m_mapOutLink.erase(scopedstrServer);
 
       }
 
@@ -1548,7 +1548,7 @@ namespace dynamic_source
 
       ::sockets::link_in_socket* pinsocket = iterator->element2();
 
-      m_pmapInLink->erase_key(poutsocket);
+      m_pmapInLink->erase(poutsocket);
 
       return pinsocket;
 

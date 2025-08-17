@@ -31,6 +31,13 @@ namespace gpu
    }
 
 
+   void frame_storage::object::on_end_frame()
+   {
+
+
+   }
+
+
    void frame_storage::map_allocate(::gpu::memory_buffer* pgpumemorybuffer, int size)
    {
 
@@ -125,12 +132,6 @@ namespace gpu
 
    }
 
-
-   void frame_storage::object::on_end_frame()
-   {
-
-
-   }
 
 
 

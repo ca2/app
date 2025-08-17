@@ -1233,6 +1233,14 @@ namespace gpu
 
          });
 
+         if (bForDrawing)
+         {
+
+            m_pgpudevice->on_end_frame();
+
+         }
+
+
    }
 
 

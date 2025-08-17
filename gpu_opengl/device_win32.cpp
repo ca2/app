@@ -775,7 +775,7 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
 
       ::pointer < ::gpu::context > pgpucontext;
 
-      __øconstruct(pgpucontext);
+      øconstruct(pgpucontext);
 
       return pgpucontext;
 

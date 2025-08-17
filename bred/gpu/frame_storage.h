@@ -19,7 +19,7 @@ namespace gpu
    public:
 
 
-      class object :
+      class CLASS_DECL_BRED object :
          virtual public ::particle
       {
       public:
@@ -32,10 +32,10 @@ namespace gpu
 
       ::pointer < ::gpu::device > m_pgpudevice;
 
-      map < particle*, map < enum_resource, object* > > m_mapObject;
+      map < particle*, map < enum_resource, ::pointer < object > > > m_mapObject;
 
       int m_iBuffer;
-      int m_iBufferSize = 1_MiB;
+      int m_iBufferSize = (int) 1_MiB;
       int m_iBufferOffset;
 
       

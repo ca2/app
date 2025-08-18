@@ -345,6 +345,17 @@ payload::payload(int * pi) :
 }
 
 
+
+payload::payload(float* pf) :
+   m_etype(e_type_pfloat)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   , m_pf(pf)
+{
+
+}
+
 payload::payload(unsigned int * pu) :
    m_etype(e_type_punsigned_int)
 #if REFERENCING_DEBUGGING
@@ -356,15 +367,27 @@ payload::payload(unsigned int * pu) :
 }
 
 
-payload::payload(long long * phi):
+payload::payload(long long * pll):
    m_etype(e_type_plong_long)
 #if REFERENCING_DEBUGGING
    , m_preferer(nullptr)
 #endif
-   ,m_phi(phi)
+   ,m_pll(pll)
 {
 
 }
+
+
+payload::payload(double* pd) :
+   m_etype(e_type_pdouble)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+   , m_pd(pd)
+{
+
+}
+
 
 
 payload::payload(unsigned long long * phn) :

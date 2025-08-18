@@ -87,8 +87,8 @@ public:
       unsigned short * m_push;
       int * m_pi;
       unsigned int * m_pui;
-      long long * m_phi;
-      unsigned long long * m_phn;
+      long long * m_pll;
+      unsigned long long * m_pull;
       ::string * m_pstr;
       float                                  m_f;
       float * m_pf;
@@ -202,8 +202,10 @@ public:
 #endif
 #endif
    payload(int * pi);
+   payload(float * pf);
    payload(unsigned int * pu);
    payload(long long * pi);
+   payload(double * pd);
    payload(unsigned long long * pu);
    payload(bool * pb);
    payload(::string * pstr);
@@ -1113,11 +1115,11 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    payload & assign_pointer(short * pi) { return assign_pi16(pi); }
    payload & assign_pointer(unsigned short * pu) { return assign_pu16(pu); }
    payload & assign_pointer(int * pi) { return assign_pi32(pi); }
+   payload & assign_pointer(float* pf) { return assign_pf32(pf); }
    payload & assign_pointer(unsigned int * pu) { return assign_pu32(pu); }
    payload & assign_pointer(long long * pi) { return assign_pi64(pi); }
+   payload & assign_pointer(double* pd) { return assign_pf64(pd); }
    payload & assign_pointer(unsigned long long * pu) { return assign_pu64(pu); }
-   payload & assign_pointer(float * pf) { return assign_pf32(pf); }
-   payload & assign_pointer(double * pf) { return assign_pf64(pf); }
 
 #ifdef WINDOWS
    payload & operator = (long l);
@@ -1148,9 +1150,9 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //}
    payload & operator = (const ::payload & payload);
    payload & operator = (const ::int_array_base & ia);
-   payload& operator = (const ::long_long_array_base& ia);
-   payload& operator = (const ::float_array_base& ia);
-   payload& operator = (const ::double_array_base& ia);
+   payload& operator = (const ::long_long_array_base& longlonga);
+   payload& operator = (const ::float_array_base& floata);
+   payload& operator = (const ::double_array_base& doublea);
    payload & operator = (const ::string_array_base & stra);
    payload & operator = (const ::memory & memory);
    payload & operator = (const ::payload_array & payloada);

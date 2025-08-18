@@ -771,6 +771,46 @@ public:
 
    }
 
+
+   static constexpr bool
+      _initialize_partial_order(::std::partial_ordering& partialorder, const THIS_RAW_RANGE& range, const THIS_RAW_RANGE& rangeBlock)
+   {
+
+      if (range.is_empty())
+      {
+
+         if (rangeBlock.is_empty())
+         {
+
+            order = ::std::partial_ordering::equivalent;
+
+            return true;
+
+         }
+         else
+         {
+
+            order = ::std::partial_ordering::greater;
+
+            return true;
+
+         }
+
+      }
+      else if (rangeBlock.is_empty())
+      {
+
+         order = ::std::partial_ordering::less;
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
    template<::comparison::ordering<ITEM> ORDERING>
    static constexpr auto _static_order(THIS_RAW_RANGE range, THIS_RAW_RANGE rangeBlock, ORDERING ordering)
    {
@@ -798,6 +838,32 @@ public:
    }
 
 
+   template<::comparison::partial_ordering<ITEM> PARTIAL_ORDERING>
+   static constexpr auto _static_partial_order(THIS_RAW_RANGE range, THIS_RAW_RANGE rangeBlock, PARTIAL_ORDERING partialordering)
+   {
+
+      do
+      {
+
+         auto partialorder = partialordering.partial_order(*range.begin(), *rangeBlock.begin());
+
+         if (partialorder != 0)
+         {
+
+            return order;
+
+         }
+
+         range.begin()++;
+
+         rangeBlock.begin()++;
+
+      } while (!range.is_end(range.begin()) && !rangeBlock.is_end(rangeBlock.begin()));
+
+      return range.size() <=> rangeBlock.size();
+
+   }
+
    template<::comparison::ordering<ITEM> ORDERING>
    static constexpr ::std::strong_ordering
       static_order(const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock, ORDERING ordering)
@@ -813,6 +879,25 @@ public:
       }
 
       return _static_order(range, rangeBlock, ordering);
+
+   }
+
+
+   template<::comparison::partial_ordering<ITEM> PARTIAL_ORDERING>
+   static constexpr ::std::partial_ordering
+      static_partial_order(const THIS_RAW_RANGE& range, const THIS_RAW_RANGE& rangeBlock, PARTIAL_ORDERING partialordering)
+   {
+
+      std::partial_ordering order(::std::partial_ordering::less);
+
+      if (_initialize_partial_order(order, range, rangeBlock))
+      {
+
+         return order;
+
+      }
+
+      return _static_partial_order(range, rangeBlock, partialordering);
 
    }
 
@@ -838,7 +923,7 @@ public:
    constexpr ::std::partial_ordering partial_order(const THIS_RAW_RANGE& rangeBlock, PARTIAL_ORDERING partialordering) const
    {
 
-      return static_order(*this, rangeBlock, partialordering);
+      return static_partial_order(*this, rangeBlock, partialordering);
 
    }
 

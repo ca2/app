@@ -279,13 +279,13 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
       stream << *payload.m_pi;
       break;
    case e_type_plong_long:
-      stream << *payload.m_phi;
+      stream << *payload.m_pll;
       break;
    case e_type_punsigned_int:
       stream << *payload.m_pui;
       break;
    case e_type_punsigned_long_long:
-      stream << *payload.m_phn;
+      stream << *payload.m_pull;
       break;
    case e_type_double:
       stream << payload.m_d;

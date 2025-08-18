@@ -390,12 +390,12 @@ payload::payload(double* pd) :
 
 
 
-payload::payload(unsigned long long * phn) :
+payload::payload(unsigned long long * pull) :
    m_etype(e_type_punsigned_long_long)
 #if REFERENCING_DEBUGGING
    , m_preferer(nullptr)
 #endif
-   ,m_phn(phn)
+   ,m_pull(pull)
 {
 
 }
@@ -1209,7 +1209,7 @@ class ::payload & payload::operator = (para_return & eret)
 //
 //    set_type(e_type_plong_long, false);
 //
-//   m_phi = pi;
+//   m_pll = pi;
 //
 //   return *this;
 //
@@ -1221,7 +1221,7 @@ class ::payload & payload::operator = (para_return & eret)
 //
 //    set_type(e_type_punsigned_long_long, false);
 //
-//   m_phn = pinteraction;
+//   m_pull = pinteraction;
 //
 //   return *this;
 //
@@ -1286,7 +1286,7 @@ class ::payload & payload::operator = (const ::color::hls & hls)
 //{
 //   if(get_type() == e_type_plong_long)
 //   {
-//      *m_phi = i;
+//      *m_pll = i;
 //   }
 //   else if(get_type() == e_type_payload_pointer)
 //   {
@@ -1309,7 +1309,7 @@ class ::payload & payload::operator = (const ::color::hls & hls)
 //{
 //   if(get_type() == e_type_punsigned_long_long)
 //   {
-//      *m_phn = u;
+//      *m_pull = u;
 //   }
 //   else if(get_type() == e_type_payload_pointer)
 //   {
@@ -1419,7 +1419,7 @@ class ::payload & payload::operator = (long l)
 //   else if (m_etype == e_type_plong_long)
 //   {
 //
-//      *m_phi = (long long)float;
+//      *m_pll = (long long)float;
 //
 //   }
 //   else
@@ -1489,7 +1489,7 @@ class ::payload & payload::operator = (long l)
 //   else if (m_etype == e_type_plong_long)
 //   {
 //
-//      *m_phi = (long long)d;
+//      *m_pll = (long long)d;
 //
 //   }
 //   else
@@ -1808,10 +1808,10 @@ class ::payload & payload::operator = (const class ::payload & payload)
             m_pui = payload.m_pui;
             break;
          case e_type_plong_long:
-            m_phi = payload.m_phi;
+            m_pll = payload.m_pll;
             break;
          case e_type_punsigned_long_long:
-            m_phn = payload.m_phn;
+            m_pull = payload.m_pull;
             break;
          case e_type_float:
             m_f = payload.m_f;
@@ -2749,7 +2749,7 @@ bool payload::is_new_or_null() const
       if (payload.has_reference_of_type(::e_type_double_array))
       {
 
-         return double_array_reference() <=> payload.double_array_reference();
+         return double_array_reference().order(payload.double_array_reference());
 
       }
       else
@@ -3806,7 +3806,7 @@ int payload::as_int(int iDefault) const
    case e_type_pint:
       return (int)*m_pi;
    case e_type_plong_long:
-      return (int)*m_phi;
+      return (int)*m_pll;
    case e_type_punsigned_char:
       return (int)*m_puch;
    case e_type_punsigned_short:
@@ -3814,7 +3814,7 @@ int payload::as_int(int iDefault) const
    case e_type_punsigned_int:
       return (int)*m_pui;
    case e_type_punsigned_long_long:
-      return (int)*m_phn;
+      return (int)*m_pull;
    case e_type_char:
       return (int) m_ch;
    case e_type_short:
@@ -3988,29 +3988,29 @@ long long payload::as_long_long(long long iDefault) const
       case e_type_atom:
          return m_atomPayload.as_long_long();
       case e_type_pchar:
-         if (::is_null(m_p)) return iDefault;
+         if (::is_null(m_pch)) return iDefault;
          return *m_pch;
       case e_type_punsigned_char:
-         if (::is_null(m_p)) return iDefault;
+         if (::is_null(m_puch)) return iDefault;
          return *m_puch;
       case e_type_pshort:
-         if (::is_null(m_p)) return iDefault;
+         if (::is_null(m_psh)) return iDefault;
          return *m_psh;
       case e_type_punsigned_short:
-         if (::is_null(m_p)) return iDefault;
+         if (::is_null(m_push)) return iDefault;
          return *m_push;
       case e_type_pint:
-         if (::is_null(m_p)) return iDefault;
+         if (::is_null(m_pi)) return iDefault;
          return *m_pi;
       case e_type_punsigned_int:
-         if (::is_null(m_p)) return iDefault;
+         if (::is_null(m_pui)) return iDefault;
          return *m_pui;
       case e_type_plong_long:
-         if (::is_null(m_p)) return iDefault;
-         return *m_phi;
+         if (::is_null(m_pll)) return iDefault;
+         return *m_pll;
       case e_type_punsigned_long_long:
-         if (::is_null(m_p)) return iDefault;
-         return *m_phn;
+         if (::is_null(m_pull)) return iDefault;
+         return *m_pull;
       case e_type_element:
       case e_type_path:
          return iDefault;
@@ -7557,7 +7557,7 @@ bool payload::has_string_reference() const
 //   else if (m_etype == e_type_long_long || m_etype == e_type_unsigned_long_long)
 //   {
 //
-//      return m_phi != nullptr && *m_phi != 0;
+//      return m_pll != nullptr && *m_pll != 0;
 //
 //   }
 //   else if(m_etype == e_type_string)
@@ -8679,8 +8679,6 @@ bool payload::is_numeric() const
    case e_type_patom:
       return false; // m_patom->is_number(); // may be improved MBI
 
-   case e_type_long_long_array:
-      return false;
    //case e_type_routine:
    //   return false;
 //   case e_type_process:
@@ -9502,11 +9500,11 @@ bool payload::is_false() const
    case e_type_long_long:
       return !m_hi;
    case e_type_plong_long:
-      return !m_phi || !*m_phi;
+      return !m_pll || !*m_pll;
    case e_type_unsigned_long_long:
       return !m_hn;
    case e_type_punsigned_long_long:
-      return !m_phn || !*m_phn;
+      return !m_pull || !*m_pull;
 
    // floating int_point
    case e_type_pfloat:
@@ -9695,11 +9693,11 @@ bool payload::is_set_false() const
    case e_type_long_long:
       return !m_hi;
    case e_type_plong_long:
-      return !m_phi || !*m_phi;
+      return !m_pll || !*m_pll;
    case e_type_unsigned_long_long:
       return !m_hn;
    case e_type_punsigned_long_long:
-      return !m_phn || !*m_phn;
+      return !m_pull || !*m_pull;
    // floating int_point
    case e_type_pfloat:
       return !*m_pf;
@@ -10362,7 +10360,7 @@ long & payload::long_reference()
    else if(m_etype == e_type_plong_long)
    {
       
-      return (long &)*m_phi;
+      return (long &)*m_pll;
       
    }
    else
@@ -10389,7 +10387,7 @@ unsigned long & payload::unsigned_long_reference()
    else if(m_etype == e_type_punsigned_long_long)
    {
       
-      return (unsigned long &)*m_phn;
+      return (unsigned long &)*m_pull;
       
    }
    else
@@ -11951,10 +11949,10 @@ payload & payload::add(const ::payload & payload)
                *m_pi += payload.as_int();
                break;
             case e_type_punsigned_long_long:
-               *m_phn += payload.as_unsigned_long_long();
+               *m_pull += payload.as_unsigned_long_long();
                break;
             case e_type_plong_long:
-               *m_phi += payload.as_long_long();
+               *m_pll += payload.as_long_long();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -12000,10 +11998,10 @@ payload & payload::add(const ::payload & payload)
                *m_pi += payload.as_int();
                break;
             case e_type_punsigned_long_long:
-               *m_phn += payload.as_unsigned_long_long();
+               *m_pull += payload.as_unsigned_long_long();
                break;
             case e_type_plong_long:
-               *m_phi += payload.as_long_long();
+               *m_pll += payload.as_long_long();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -12234,10 +12232,10 @@ payload & payload::subtract(const ::payload & payload)
                *m_pi -= payload.as_int();
                break;
             case e_type_punsigned_long_long:
-               *m_phn -= payload.as_unsigned_long_long();
+               *m_pull -= payload.as_unsigned_long_long();
                break;
             case e_type_plong_long:
-               *m_phi -= payload.as_long_long();
+               *m_pll -= payload.as_long_long();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -12283,10 +12281,10 @@ payload & payload::subtract(const ::payload & payload)
                *m_pi -= payload.as_int();
                break;
             case e_type_punsigned_long_long:
-               *m_phn -= payload.as_unsigned_long_long();
+               *m_pull -= payload.as_unsigned_long_long();
                break;
             case e_type_plong_long:
-               *m_phi -= payload.as_long_long();
+               *m_pll -= payload.as_long_long();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -12510,10 +12508,10 @@ payload &  payload::multiply(const ::payload & payload)
                *m_pi *= payload.as_int();
                break;
             case e_type_punsigned_long_long:
-               *m_phn *= payload.as_unsigned_long_long();
+               *m_pull *= payload.as_unsigned_long_long();
                break;
             case e_type_plong_long:
-               *m_phi *= payload.as_long_long();
+               *m_pll *= payload.as_long_long();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -12559,10 +12557,10 @@ payload &  payload::multiply(const ::payload & payload)
                *m_pi *= payload.as_int();
                break;
             case e_type_punsigned_long_long:
-               *m_phn *= payload.as_unsigned_long_long();
+               *m_pull *= payload.as_unsigned_long_long();
                break;
             case e_type_plong_long:
-               *m_phi *= payload.as_long_long();
+               *m_pll *= payload.as_long_long();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -12790,10 +12788,10 @@ payload &  payload::divide(const ::payload & payload)
                *m_pi /= payload.as_int();
                break;
             case e_type_punsigned_long_long:
-               *m_phn /= payload.as_unsigned_long_long();
+               *m_pull /= payload.as_unsigned_long_long();
                break;
             case e_type_plong_long:
-               *m_phi /= payload.as_long_long();
+               *m_pll /= payload.as_long_long();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");
@@ -12839,10 +12837,10 @@ payload &  payload::divide(const ::payload & payload)
                *m_pi /= payload.as_int();
                break;
             case e_type_punsigned_long_long:
-               *m_phn /= payload.as_unsigned_long_long();
+               *m_pull /= payload.as_unsigned_long_long();
                break;
             case e_type_plong_long:
-               *m_phi /= payload.as_long_long();
+               *m_pll /= payload.as_long_long();
                break;
             default:
                throw ::exception(error_unexpected, "unexpected result from cast/promotion");

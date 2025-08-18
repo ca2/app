@@ -85,6 +85,15 @@ public:
          return BASE_RANGE::order(range, ::comparison::comparison < TYPE >());
    
       }
+
+
+      constexpr ::std::partial_ordering partial_order(const BASE_RAW_RANGE& range) const
+      {
+
+         return BASE_RANGE::partial_order(range, ::comparison::comparison < TYPE >());
+
+      }
+
    
       constexpr ::std::strong_ordering operator<=>(const comparable_array_base & array) const
       {

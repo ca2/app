@@ -834,6 +834,13 @@ public:
 
    }
 
+   template<::comparison::partial_ordering<ITEM> PARTIAL_ORDERING>
+   constexpr ::std::partial_ordering partial_order(const THIS_RAW_RANGE& rangeBlock, PARTIAL_ORDERING partialordering) const
+   {
+
+      return static_order(*this, rangeBlock, partialordering);
+
+   }
 
    //   template<::comparison::ordering<ITEM> ORDERING>
    //   constexpr ::std::strong_ordering

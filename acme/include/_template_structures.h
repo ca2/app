@@ -60,6 +60,7 @@ public:
 
       constexpr bool equals(TYPE a, TYPE b) const { return a == b; }
       constexpr ::std::strong_ordering order(TYPE a, TYPE b) const { return a <=> b; }
+      constexpr ::std::partial_ordering partial_order(TYPE a, TYPE b) const { return a <=> b; }
 
 
    };

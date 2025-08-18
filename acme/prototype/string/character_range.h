@@ -72,7 +72,7 @@ public:
 
 // Formatter for MyString<CharT>
 template <typename CharT>
-struct std::formatter<::range<CharT>, CharT> {
+struct std::formatter<::character_range<const CharT *>, CharT> {
    // Reuse the existing string_view formatter
    std::formatter<std::basic_string_view<CharT>, CharT> formatter;
 
@@ -82,7 +82,7 @@ struct std::formatter<::range<CharT>, CharT> {
    }
 
    template <typename FormatContext>
-   auto format(const range<CharT>& s, FormatContext& ctx) {
+   auto format(const ::character_range<const CharT *>& s, FormatContext& ctx) {
       // Wrap in string_view and forward
       return formatter.format(
          std::basic_string_view<CharT>(s.data(), s.size()), ctx);

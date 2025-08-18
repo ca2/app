@@ -2749,7 +2749,7 @@ bool payload::is_new_or_null() const
       if (payload.has_reference_of_type(::e_type_double_array))
       {
 
-         return double_array_reference().order(payload.double_array_reference());
+         return to_strong_ordering(double_array_reference().partial_order(payload.double_array_reference()));
 
       }
       else

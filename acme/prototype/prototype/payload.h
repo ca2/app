@@ -1959,3 +1959,22 @@ inline ::file::path operator / (
 }
 
 
+
+
+inline constexpr std::strong_ordering to_strong_ordering(std::partial_ordering po) {
+   if (po == std::partial_ordering::less) {
+      return std::strong_ordering::less;
+   }
+   else if (po == std::partial_ordering::equivalent) {
+      return std::strong_ordering::equal; // Note: equivalent maps to equal for strong_ordering
+   }
+   else if (po == std::partial_ordering::greater) {
+      return std::strong_ordering::greater;
+   }
+   // Handle the 'unordered' case if it's possible and needs specific handling,
+   // otherwise, this indicates an invalid state for strong_ordering.
+   // For example, you might throw an exception or return a default strong_ordering value
+   // if 'unordered' is not expected.
+   // throw std::runtime_error("Cannot convert unordered partial_ordering to strong_ordering");
+   return std::strong_ordering::equal; // Or some other appropriate default/error handling
+}

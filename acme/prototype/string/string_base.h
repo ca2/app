@@ -571,7 +571,7 @@ public:
    //inline operator const CONST_STRING_RANGE & () const noexcept { return this->data(); }
 
 //#if defined(UNIVERSAL_WINDOWS)
-   //inline operator String ^ () const { return ref __allocate< String(wd16_string >(*this)); }
+   //inline operator String ^ () const { return ref øallocate< String(wd16_string >(*this)); }
 //#endif
 
    string_base to_string_base() const { return *this; }

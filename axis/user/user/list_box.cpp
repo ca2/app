@@ -1040,13 +1040,13 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_down)
       {
 
-         m_pcombo->m_pitemHover = __allocate ::item(e_element_item, minimum(m_pcombo->m_pitemHover->m_item.m_iItem + 1, m_pcombo->_001GetListCount() - 1));
+         m_pcombo->m_pitemHover = øallocate ::item(e_element_item, minimum(m_pcombo->m_pitemHover->m_item.m_iItem + 1, m_pcombo->_001GetListCount() - 1));
 
       }
       else if (pkey->m_ekey == ::user::e_key_up)
       {
 
-         m_pcombo->m_pitemHover = __allocate ::item(e_element_item, maximum(m_pcombo->m_pitemHover->m_item.m_iItem - 1, 0));
+         m_pcombo->m_pitemHover = øallocate ::item(e_element_item, maximum(m_pcombo->m_pitemHover->m_item.m_iItem - 1, 0));
 
       }
       else if (pkey->m_ekey == ::user::e_key_return)
@@ -1242,11 +1242,11 @@ namespace user
       if (rectangleItem.contains(point))
       {
 
-         return __allocate ::item(e_element_search_edit);
+         return øallocate ::item(e_element_search_edit);
 
       }
 
-      auto pitemNone = __allocate ::item(e_element_none);
+      auto pitemNone = øallocate ::item(e_element_none);
 
       return pitemNone;
 
@@ -1364,7 +1364,7 @@ namespace user
       if (!::is_set(m_pcombo->m_pitemHover))
       {
 
-         m_pcombo->m_pitemHover = __allocate ::item(::e_element_item, 0);
+         m_pcombo->m_pitemHover = øallocate ::item(::e_element_item, 0);
 
       }
 
@@ -1540,7 +1540,7 @@ namespace user
 
       }
 
-      set_current_item(__allocate ::item(::e_element_item, iSel), context);
+      set_current_item(øallocate ::item(::e_element_item, iSel), context);
 
    }
 
@@ -1557,7 +1557,7 @@ namespace user
 
       }
 
-      set_current_item(__allocate ::item(::e_element_item, iSel), context);
+      set_current_item(øallocate ::item(::e_element_item, iSel), context);
 
    }
 
@@ -1571,7 +1571,7 @@ namespace user
 
       }
 
-      set_current_item(__allocate ::item(::e_element_item, iIndex), context);
+      set_current_item(øallocate ::item(::e_element_item, iIndex), context);
 
    }
 

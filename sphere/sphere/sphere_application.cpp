@@ -452,7 +452,7 @@ namespace sphere
       if (m_pconsole.is_null())
       {
 
-         m_pconsole = __allocate ::console::department(this);
+         m_pconsole = øallocate ::console::department(this);
 
          MESSAGE_LINK(WM_APP + 3243, this, m_pconsole.m_p, &console::department::_001OnImpact);
 
@@ -470,7 +470,7 @@ namespace sphere
       if (m_pprompt.is_null())
       {
 
-         m_pprompt = __allocate ::prompt::department(this);
+         m_pprompt = øallocate ::prompt::department(this);
 
       }
 
@@ -485,7 +485,7 @@ namespace sphere
       if (m_pfilehandler.is_null())
       {
 
-         m_pfilehandler = __allocate ::filehandler::department(this);
+         m_pfilehandler = øallocate ::filehandler::department(this);
 
       }
 
@@ -500,7 +500,7 @@ namespace sphere
       if (m_pcalculator.is_null())
       {
 
-         m_pcalculator = __allocate ::calculator::department(this);
+         m_pcalculator = øallocate ::calculator::department(this);
 
       }
 

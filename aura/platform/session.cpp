@@ -1759,7 +1759,7 @@ return m_psavings;
       //if (!m_pifs)
       //{
 
-      //   estatus = øconstruct(m_pifs, __allocate ifs(""));
+      //   estatus = øconstruct(m_pifs, øallocate ifs(""));
 
       //   if (!estatus)
       //   {
@@ -1775,7 +1775,7 @@ return m_psavings;
       //if (!m_premotefs)
       //{
 
-      //   estatus = øconstruct(m_premotefs, __allocate ::fs::remote_native(""));
+      //   estatus = øconstruct(m_premotefs, øallocate ::fs::remote_native(""));
 
       //   if (!estatus)
       //   {
@@ -1881,7 +1881,7 @@ return m_psavings;
 ////
 ////      }
 //
-//      auto pcs = __allocate ::user::system(0, nullptr, nullptr, WS_VISIBLE, rectangleScreen);
+//      auto pcs = øallocate ::user::system(0, nullptr, nullptr, WS_VISIBLE, rectangleScreen);
 //
 //      auto puserinteractionHost = __user_interaction(m_puserinteractionHost);
 //
@@ -1971,7 +1971,7 @@ return m_psavings;
       //   if (m_pfsdata.is_null())
       //   {
 
-      //      øconstruct(m_pfsdata, __allocate ::fs::set());
+      //      øconstruct(m_pfsdata, øallocate ::fs::set());
 
       //   }
 

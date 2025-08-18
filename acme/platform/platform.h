@@ -328,7 +328,7 @@ namespace platform
       void add_factory_item(const ::atom & atom)
       {
 
-         set_factory(atom, __allocate ::factory::factory_item < TYPE, BASE > ());
+         set_factory(atom, øallocate ::factory::factory_item < TYPE, BASE > ());
 
       }
 
@@ -431,7 +431,7 @@ namespace platform
 
 
 
-      //pass_through_function &  __call__allocate_pass_through_function() { return m_passthroughfunction; }
+      //pass_through_function &  __calløallocate_pass_through_function() { return m_passthroughfunction; }
 
 
       //platform * __call__add_referer2(const ::reference_referer & referer) const;

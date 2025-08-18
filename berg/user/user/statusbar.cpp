@@ -187,7 +187,7 @@ namespace user
       {
    #pragma push_macro("___new")
    
-         __allocate<  >( &pSBP->strText ) string;
+         øallocate<  >( &pSBP->strText ) string;
    #pragma pop_macro("___new")
          ++pSBP;
       }*/

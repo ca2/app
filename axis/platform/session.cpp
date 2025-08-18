@@ -364,7 +364,7 @@ namespace axis
 //                  else
 //                  {
 //
-//                     plibrary = __allocate ::acme::library();
+//                     plibrary = øallocate ::acme::library();
 //
 //                     plibrary->initialize_aura_library(pparticle, 0, nullptr);
 //
@@ -515,8 +515,8 @@ namespace axis
 //      if (!papp->is_serviceable() || papp->is_user_service())
 //      {
 //
-//         psystem->m_spmutexUserAppData = __allocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
-//         psystem->m_spmutexSystemAppData = __allocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
+//         psystem->m_spmutexUserAppData = øallocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
+//         psystem->m_spmutexSystemAppData = øallocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
 //
 //      }
 //

@@ -78,7 +78,7 @@ namespace platform
 //      void main()
 //      {
 //         
-//         auto pfactoryitem = __allocate ::factory::factory_item < APPLICATION, ::platform::application >;
+//         auto pfactoryitem = øallocate ::factory::factory_item < APPLICATION, ::platform::application >;
 //
 //         this->application_main(pfactoryitem);
 //         

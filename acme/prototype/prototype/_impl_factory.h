@@ -31,7 +31,7 @@ namespace factory
 
        }
 
-       return factory_item < TYPE, ORIGIN_TYPE >::__call__allocate();
+       return factory_item < TYPE, ORIGIN_TYPE >::__calløallocate();
 
     }
 
@@ -77,7 +77,7 @@ namespace factory
 
        critical_section_lock lock(&m_criticalsection);
 
-       auto pfactory = __allocate ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
+       auto pfactory = øallocate ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
 
        this->get_factory_item < ORIGIN_TYPE >() = pfactory;
 

@@ -459,7 +459,7 @@ void interchange::add_child(::micro::child * pchild)
 void interchange::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
 {
    
-   auto pbutton = __allocate ::micro::button();
+   auto pbutton = øallocate ::micro::button();
    
    pbutton->m_strText = scopedstrText;
    pbutton->id() = edialogresult;
@@ -838,7 +838,7 @@ void interchange::_run_modal_loop()
 
        message_loop();
 
-       auto pmanualresethappening = __allocate manual_reset_happening();
+       auto pmanualresethappening = øallocate manual_reset_happening();
 
        m_psequencer->then([ pmanualresethappening](auto psequencer)
        {

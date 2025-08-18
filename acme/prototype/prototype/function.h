@@ -239,7 +239,7 @@ public:
 
       }
 
-      m_pbase = __allocate composite(p, timeTimeout);
+      m_pbase = øallocate composite(p, timeTimeout);
 
    }
 
@@ -252,7 +252,7 @@ public:
       if (!pbase)
       {
 
-         m_pbase = __allocate composite(m_pbase, timeTimeout);
+         m_pbase = øallocate composite(m_pbase, timeTimeout);
 
       }
       else
@@ -501,7 +501,7 @@ public:
       else
       {
 
-         this->m_pbase = __allocate implementation (predicate, timeTimeout);
+         this->m_pbase = øallocate implementation (predicate, timeTimeout);
 
       }
 
@@ -687,7 +687,7 @@ public:
       else
       {
 
-         this->m_pbase = __allocate implementation<PREDICATE >(predicate, timeTimeout);
+         this->m_pbase = øallocate implementation<PREDICATE >(predicate, timeTimeout);
 
       }
 
@@ -915,7 +915,7 @@ public:
       else
       {
 
-         this->m_pbase = __allocate implementation <PREDICATE > (predicate, timeTimeout);
+         this->m_pbase = øallocate implementation <PREDICATE > (predicate, timeTimeout);
 
       }
 
@@ -1209,7 +1209,7 @@ public:
       requires (LambdaWithVoidAndArgs< PREDICATE, TYPES... >)
    {
    
-      this->m_pbase = __allocate function_4_implementation< PREDICATE, TYPES... >(predicate, timeTimeout);
+      this->m_pbase = øallocate function_4_implementation< PREDICATE, TYPES... >(predicate, timeTimeout);
 
    }
 

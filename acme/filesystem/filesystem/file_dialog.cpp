@@ -218,7 +218,7 @@ namespace file
       //
       //      };
       //
-            //auto pdialog = __allocate < ::operating_system_file_dialog >(this,
+            //auto pdialog = øallocate < ::operating_system_file_dialog >(this,
 
       m_puserelement = puserelement;
       m_filedialogfilter.copy(filedialogfilter);

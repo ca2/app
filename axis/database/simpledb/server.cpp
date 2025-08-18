@@ -169,7 +169,7 @@ namespace simpledb
 
       //}
 
-      //m_pstorage = __allocate storage(this);
+      //m_pstorage = øallocate storage(this);
 
       m_bWorking = true;
 

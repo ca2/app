@@ -79,7 +79,7 @@
 //inline ::pointer<TYPE>property_object::__create_new()
 //{
 //
-//   auto p = __allocate TYPE();
+//   auto p = øallocate TYPE();
 //
 //   p->initialize_matter(this);
 //

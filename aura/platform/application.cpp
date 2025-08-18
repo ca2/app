@@ -176,7 +176,7 @@ namespace aura
       //m_pimaging = nullptr;
 
 
-      //m_phandler = __allocate ::handler(this);
+      //m_phandler = øallocate ::handler(this);
 
 
       //m_bAuraProcessInitialize = false;
@@ -329,7 +329,7 @@ namespace aura
    //   if(m_pappmenu.is_null())
    //   {
 
-   //      m_pappmenu = __allocate application_menu();
+   //      m_pappmenu = øallocate application_menu();
 
    //   }
 
@@ -2447,7 +2447,7 @@ retry_license:
    //   try
    //   {
 
-   //      return __allocate ::interprocess::communication(m_strAppName);
+   //      return øallocate ::interprocess::communication(m_strAppName);
 
    //   }
    //   catch (...)
@@ -4126,7 +4126,7 @@ retry_license:
 
    //   }
 
-   //   auto pusermessage = __allocate ::user::message();
+   //   auto pusermessage = øallocate ::user::message();
 
    //   if (!pusermessage)
    //   {
@@ -4614,7 +4614,7 @@ retry_license:
 
    //   //throw ::exception(todo("xml"));
 
-   //   //auto pdocument = __allocate ::xml::document();
+   //   //auto pdocument = øallocate ::xml::document();
 
    //   //if (!pdocument->load(atom) || !*pdocument)
    //   //{
@@ -5750,7 +5750,7 @@ retry_license:
       //::html::html * application::create_html()
       //{
 
-      //   return __allocate< ::html::html(get_app >());
+      //   return øallocate< ::html::html(get_app >());
 
       //}
 
@@ -8429,7 +8429,7 @@ namespace aura
    //   ::pointer<::apex::application>application::create_platform(::apex::session* psession)
    //   {
    //
-   //      return __allocate ::aura::session();
+   //      return øallocate ::aura::session();
    //
    //   }
 
@@ -8974,7 +8974,7 @@ namespace aura
 
       }
 
-      pinteraction = __allocate ::account::simple_ui(this,strRequestUrl);
+      pinteraction = øallocate ::account::simple_ui(this,strRequestUrl);
 
       pinteraction->m_login.m_peditUser->set_window_text(strUsername);
 
@@ -8994,7 +8994,7 @@ namespace aura
    //::pointer<::user::user>application::create_user()
    //{
 
-   //   return __allocate ::user::user();
+   //   return øallocate ::user::user();
 
    //}
 
@@ -9593,7 +9593,7 @@ namespace aura
 
    ////   m_prenderer->initialize_renderer(m_pvkcontainer, m_pvkcdevice);
 
-   ////   auto pglobalpoolbuilder = __allocate VkcDescriptorPool::Builder();
+   ////   auto pglobalpoolbuilder = øallocate VkcDescriptorPool::Builder();
 
    ////   pglobalpoolbuilder->initialize_builder(m_pvkcdevice);
    ////   pglobalpoolbuilder->setMaxSets(VkcRenderPass::MAX_FRAMES_IN_FLIGHT);
@@ -9603,14 +9603,14 @@ namespace aura
 
    ////   //m_pglobalpool->initialize_pool(m_pvkcdevice);
 
-   ////   //= __allocate
+   ////   //= øallocate
    ////   //   VkcDescriptorPool::Builder(m_pvkcdevice)
    ////   //   .setMaxSets(VkcSwapChain::MAX_FRAMES_IN_FLIGHT)
    ////   //   .addPoolSize(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VkcSwapChain::MAX_FRAMES_IN_FLIGHT)
    ////   //   .build();
    ////   loadGameObjects();
 
-   ////   //m_pvkcdevice = __allocate VkcDevice(m_pvulkandevice);
+   ////   //m_pvkcdevice = øallocate VkcDevice(m_pvulkandevice);
 
    ////   ::pointer_array<buffer> uboBuffers;
 
@@ -9619,7 +9619,7 @@ namespace aura
    ////   for (int i = 0; i < uboBuffers.size(); i++)
    ////   {
 
-   ////      uboBuffers[i] = __allocate buffer();
+   ////      uboBuffers[i] = øallocate buffer();
 
    ////      uboBuffers[i]->initialize_buffer(
    ////         m_pvkcdevice,

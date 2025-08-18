@@ -195,7 +195,7 @@ namespace geometry2d
       for (::collection::index i = 0; i < nCount; i++)
       {
 
-         pitem->m_polypolygon[i] = __allocate array_particle< double_polygon >();
+         pitem->m_polypolygon[i] = øallocate array_particle< double_polygon >();
 
          pitem->m_polypolygon[i]->set_size(ppolycounts[i]);
 
@@ -241,7 +241,7 @@ namespace geometry2d
       for (::collection::index i = 0; i < nCount; i++)
       {
 
-         pitem->m_polypolygon[i] = __allocate double_polygon();
+         pitem->m_polypolygon[i] = øallocate double_polygon();
 
          pitem->m_polypolygon[i]->set_size(ppolycounts[i]);
 

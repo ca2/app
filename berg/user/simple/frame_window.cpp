@@ -3668,7 +3668,7 @@ void simple_frame_window::handle(::topic * ptopic, ::handler_context * phandlerc
          //auto puser = user();
          
          
-         auto ptrackpopup  = __allocate  ::menu::track_popup (
+         auto ptrackpopup  = øallocate  ::menu::track_popup (
                                                            pmenu,
                                                            this,
                                                            m_pnotifyicon,

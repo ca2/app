@@ -147,7 +147,7 @@ namespace platform
 
       __check_refdbg
 
-      m_ptexttranslator = __allocate ::text::translator();
+      m_ptexttranslator = øallocate ::text::translator();
 
       __check_refdbg
 
@@ -847,14 +847,14 @@ namespace platform
 
       ::collection::count cScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
-      auto pcounter = __allocate ::parallelization::counter(cScan, procedureCompletion);
+      auto pcounter = øallocate ::parallelization::counter(cScan, procedureCompletion);
 
       auto ptask = ::get_task();
 
       for (::collection::index iOrder = 0; iOrder < cScan; iOrder++)
       {
 
-         auto ppredtask = __allocate forking_count_task(this, iOrder, iOrder + iStart, cScan, iCount, function);
+         auto ppredtask = øallocate forking_count_task(this, iOrder, iOrder + iStart, cScan, iCount, function);
 
          //if (::is_set(ptask))
          //{

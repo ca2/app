@@ -133,7 +133,7 @@ namespace data
 
    //   m_bFill = false;
 
-   //   //m_proot = __allocate tree_item();
+   //   //m_proot = øallocate tree_item();
 
    //   //if (m_proot == nullptr)
    //   //{
@@ -148,7 +148,7 @@ namespace data
 
    //   this->m_ptree = this;
 
-   //   this->m_pparent = __allocate tree_item();
+   //   this->m_pparent = øallocate tree_item();
 
    //}
 
@@ -508,7 +508,7 @@ namespace data
 
    //   }
 
-   //   ::pointer<::data::tree_item>pitemNew = __allocate tree_item();
+   //   ::pointer<::data::tree_item>pitemNew = øallocate tree_item();
 
    //   if (pitemNew == nullptr)
    //      return nullptr;

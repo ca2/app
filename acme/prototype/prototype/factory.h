@@ -411,7 +411,7 @@ namespace factory
 
       critical_section_lock lock(&m_criticalsection);
 
-      auto pfactoryitem = __allocate ::factory::factory_item< ORIGIN_TYPE, ORIGIN_TYPE > ();
+      auto pfactoryitem = øallocate ::factory::factory_item< ORIGIN_TYPE, ORIGIN_TYPE > ();
 
       set_at(atom, pfactoryitem);
 
@@ -442,7 +442,7 @@ namespace factory
 //
 //      critical_section_lock lock(&m_criticalsection);
 //
-//      auto pfactoryitem = __allocate ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
+//      auto pfactoryitem = øallocate ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
 //
 //      get_factory_item < ORIGIN_TYPE >(atomSource) = pfactoryitem;
 //
@@ -457,7 +457,7 @@ namespace factory
 
    //   critical_section_lock lock(&m_criticalsection);
 
-   //   auto pfactory = __allocate ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
+   //   auto pfactory = øallocate ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
 
    //   factory_item < ORIGIN_TYPE >() = pfactory;
 
@@ -472,7 +472,7 @@ namespace factory
 //
 //      critical_section_lock lock(&m_criticalsection);
 //
-//      auto pfactory = __allocate ::factory::reusable_factory_item< TYPE, ORIGIN_TYPE > ();
+//      auto pfactory = øallocate ::factory::reusable_factory_item< TYPE, ORIGIN_TYPE > ();
 //
 //      factory_item < TYPE, ORIGIN_TYPE >() = pfactory;
 //
@@ -555,7 +555,7 @@ namespace factory
 //
 //      critical_section_lock lock(&m_criticalsection);
 //
-//      auto pfactory = __allocate ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
+//      auto pfactory = øallocate ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
 //
 //      this->get_factory_item < ORIGIN_TYPE >() = pfactory;
 //

@@ -18,7 +18,7 @@ namespace xml
       //m_poptionDefault     = nullptr;
       //m_pparseinfoDefault  = nullptr;
 
-      m_pentitiesHashDefault = __allocate ::map_particle < string_to_string_base >();
+      m_pentitiesHashDefault = øallocate ::map_particle < string_to_string_base >();
 
       m_pentitiesHashDefault->set_at("lt", "<");
       m_pentitiesHashDefault->set_at("gt", ">");
@@ -75,9 +75,9 @@ namespace xml
       m_pentities->add_entity('<', "&lt;");
       m_pentities->add_entity('>', "&gt;");
 
-      m_poptionDefault     = __allocate disp_option(m_pentities);
+      m_poptionDefault     = øallocate disp_option(m_pentities);
 
-      m_pparseinfoDefault  = __allocate parse_info(m_pentities);
+      m_pparseinfoDefault  = øallocate parse_info(m_pentities);
 
       //return true;
 
@@ -190,7 +190,7 @@ namespace xml
 
 //    ::xml::output_tree o(pparticle);
 
-//    o.m_pdocument = __allocate ::xml::document(pparticle);
+//    o.m_pdocument = øallocate ::xml::document(pparticle);
 
 //    o.m_pnode = o.m_pdocument->get_root();
 
@@ -206,7 +206,7 @@ namespace xml
 
 //    ::xml::input_tree i(pparticle);
 
-//    i.m_pdocument = __allocate xml::document(pparticle);
+//    i.m_pdocument = øallocate xml::document(pparticle);
 
 //    if (i.m_pdocument->load(strXml))
 //    {

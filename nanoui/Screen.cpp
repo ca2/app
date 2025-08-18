@@ -578,7 +578,7 @@ namespace nanoui
 
       m_pfontsink = m_puserinteraction->øcreate_new < ::nano2d::font_sink >();
 
-      set_theme(__allocate Theme());
+      set_theme(øallocate Theme());
 
    }
 

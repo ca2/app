@@ -1153,7 +1153,7 @@ ret:
       //if (!m_pftpfs)
       //{
 
-      //   auto pftpfs = __allocate ftpfs();
+      //   auto pftpfs = øallocate ftpfs();
 
       //   auto estatus = pftpfs->initialize_ftpfs(this, "");
 

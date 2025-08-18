@@ -123,7 +123,7 @@ bool __os_term_thread()
 //
 //   ::pointer<object>prunnable = pobjectRunnable;
 //
-//   auto pevent = __allocate manual_reset_happening();
+//   auto pevent = øallocate manual_reset_happening();
 //
 //   auto pnode = Node;
 //

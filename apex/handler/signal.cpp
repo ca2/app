@@ -146,7 +146,7 @@ namespace handler
          if (!pcontext)
          {
 
-            pcontext = __allocate ::handler_context();
+            pcontext = øallocate ::handler_context();
 
          }
 
@@ -179,7 +179,7 @@ namespace handler
          if (!pcontext)
          {
 
-            pcontext = __allocate ::handler_context();
+            pcontext = øallocate ::handler_context();
 
          }
 
@@ -215,7 +215,7 @@ namespace handler
       if (!pcontext)
       {
 
-         pcontext = __allocate ::handler_context();
+         pcontext = øallocate ::handler_context();
 
       }
 
@@ -300,7 +300,7 @@ namespace handler
       if (!pcontext)
       {
 
-         pcontext = __allocate ::handler_context();
+         pcontext = øallocate ::handler_context();
 
       }
 
@@ -350,7 +350,7 @@ namespace handler
       if (!pcontext)
       {
 
-         pcontext = __allocate ::handler_context();
+         pcontext = øallocate ::handler_context();
 
       }
 

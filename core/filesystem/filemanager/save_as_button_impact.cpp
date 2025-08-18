@@ -188,7 +188,7 @@ namespace filemanager
 
          //ptopic->id() = id_topic_saved;
 
-         //pupdate->m_pfileitem = __allocate ::file::item(path, path);
+         //pupdate->m_pfileitem = øallocate ::file::item(path, path);
 
       }
       else

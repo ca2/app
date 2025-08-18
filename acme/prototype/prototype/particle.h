@@ -570,11 +570,11 @@ public:
    inline ::pointer<TYPE> __call__create_new_clone(TYPE * p);
 
    template < typename T, typename ...Args >
-   ::pointer < T > __call__allocate_and_initialize(Args &&... args)
+   ::pointer < T > __calløallocate_and_initialize(Args &&... args)
    {
 
       auto p = ::transfer(
-         ::platform::allocator::__call__allocate< T >(
+         ::platform::allocator::__calløallocate< T >(
             ::std::forward<Args>(args)...));
 
       p->initialize(this);
@@ -855,7 +855,7 @@ public:
 
 
    //template < typename T, typename ...Args >
-   //inline ::pointer < T > __call__allocate(Args &&... args);
+   //inline ::pointer < T > __calløallocate(Args &&... args);
 
 
    //inline ::particle * __call__add_referer(const ::reference_referer & referer) const;

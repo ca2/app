@@ -385,7 +385,7 @@ namespace micro
 
          }
 
-         auto ptopic = __allocate ::topic(id_application_dark_mode_change);
+         auto ptopic = øallocate ::topic(id_application_dark_mode_change);
 
          auto microwindowingwindowa = system()->acme_windowing()->m_windowa;
 

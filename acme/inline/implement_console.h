@@ -214,7 +214,7 @@ int main(int argc, char ** argv, char ** envp)
 //
 //   //set_argc_argv_envp(argc, argv, envp);
 //
-//   ::pointer<APPLICATION_CLASS>papp(__allocate APPLICATION_CLASS());
+//   ::pointer<APPLICATION_CLASS>papp(øallocate APPLICATION_CLASS());
 //
 //#ifdef NO_NETWORKING
 //

@@ -401,7 +401,7 @@ void on_term_thread();
 //////
 //////#endif
 ////
-////      //::channel::s_pmutexChannel = __allocate mutex();
+////      //::channel::s_pmutexChannel = øallocate mutex();
 ////
 ////      //g_papexstrpool = ___new apex_str_pool();
 ////

@@ -6695,7 +6695,7 @@ namespace draw2d_cairo
 //    for (int i = 0; i < n_families; i++)
 //    {
 //
-//        item = __allocate ::write_text::font_enumeration_item();
+//        item = øallocate ::write_text::font_enumeration_item();
 //
 //        PangoFontFamily * pfamily = families[i];
 //
@@ -6736,7 +6736,7 @@ namespace draw2d_cairo
 ////   for (auto& path : listing)
 ////   {
 ////
-////      pitem = __allocate ::write_text::font_enumeration_item();
+////      pitem = øallocate ::write_text::font_enumeration_item();
 ////
 ////      pitem->m_strFile = path;
 ////
@@ -6802,7 +6802,7 @@ namespace draw2d_cairo
 ////   for (i = 0; fs && i < fs->nfont; i++)
 ////   {
 ////
-////      pitem = __allocate ::write_text::font_enumeration_item();
+////      pitem = øallocate ::write_text::font_enumeration_item();
 ////
 ////      FcPattern * font = fs->fonts[i];//FcFontSetFont(fs, i);
 ////

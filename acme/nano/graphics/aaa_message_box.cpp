@@ -93,7 +93,7 @@ void message_box::defer_create_details_still()
    if (m_strDetails.has_character())
    {
 
-      m_pstillDetails = __allocate ::micro::still();
+      m_pstillDetails = øallocate ::micro::still();
 
       m_pstillDetails->id() = "details";
 
@@ -353,7 +353,7 @@ void message_box::on_create_window()
 //pointer< ::sequence < ::conversation > > message_box::display(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
 //{
 //
-//   auto psequence = __allocate ::sequence <::conversation > ();
+//   auto psequence = øallocate ::sequence <::conversation > ();
 //
 //   psequence->m_p = this;
 //
@@ -557,7 +557,7 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
    
    //auto atomResult = pmessagebox->sync();
    
-//   auto pmanualresethappening = __allocate manual_reset_happening();
+//   auto pmanualresethappening = øallocate manual_reset_happening();
 //
 //   atom atomResult;
 //
@@ -657,7 +657,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
    
    auto atomResult = pmessagebox->sync();
    
-//   auto pmanualresethappening = __allocate manual_reset_happening();
+//   auto pmanualresethappening = øallocate manual_reset_happening();
 //
 //   atom atomResult;
 //
@@ -714,7 +714,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
-   auto pmessagebox = __allocate ::micro::message_box_conversation_message();
+   auto pmessagebox = øallocate ::micro::message_box_conversation_message();
 
    pmessagebox->m_pobject = pparticle;
    pmessagebox->initialize_conversation(scopedstrMessage,scopedstrTitle, emessagebox, scopedstrDetails, picon);

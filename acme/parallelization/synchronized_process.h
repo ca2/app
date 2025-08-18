@@ -17,7 +17,7 @@
 //   sync_future()
 //   {
 //
-//      m_phappeningCompletion = __allocate manual_reset_happening();
+//      m_phappeningCompletion = øallocate manual_reset_happening();
 //
 //   }
 //public:
@@ -54,7 +54,7 @@
 //inline ::pointer<sync_future>__sync_future()
 //{
 //
-//   return __allocate sync_future();
+//   return øallocate sync_future();
 //
 //}
 //

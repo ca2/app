@@ -489,7 +489,7 @@ namespace platform
 
       //m_bOnInitializeWindowObject = false;
 
-      //m_pcleanuptask = __allocate ::parallelization::cleanup_task();
+      //m_pcleanuptask = øallocate ::parallelization::cleanup_task();
 
       //m_pcleanuptask->begin();
       //factory()->add_factory_item<::acme::idpool>();
@@ -1424,13 +1424,13 @@ namespace platform
    //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
    //{
 
-   //   auto psequence = __allocate ::sequence < ::conversation > ();
+   //   auto psequence = øallocate ::sequence < ::conversation > ();
 
    //   psequence->set_status(error_interface_only);
 
    //   //return presult;
 
-   //   //auto pprocess = __allocate status < enum_dialog_result > ();
+   //   //auto pprocess = øallocate status < enum_dialog_result > ();
 
    //   //pprocess->set_result(message_box_for_console(scopedstrText, pszTitle, emessagebox));
 
@@ -1873,7 +1873,7 @@ namespace platform
    //   if (!plibrary)
    //   {
 
-   //      plibrary = __allocate ::acme::library();
+   //      plibrary = øallocate ::acme::library();
 
    //      plibrary->initialize_matter(this);
 
@@ -1965,7 +1965,7 @@ namespace platform
    //
    //      }
    //
-   //      plibrary = __allocate ::acme::library();
+   //      plibrary = øallocate ::acme::library();
    //
    //      plibrary->initialize_matter(this);
    //
@@ -3516,7 +3516,7 @@ namespace platform
    //   void system::windowing_send(const ::procedure & procedure)
    //   {
    //
-   //      auto pmanualresethappening = __allocate manual_reset_happening();
+   //      auto pmanualresethappening = øallocate manual_reset_happening();
    //
    //      windowing_post([pmanualresethappening, procedure]()
    //                     {
@@ -3862,7 +3862,7 @@ namespace platform
    void system::on_application_dark_mode_change()
    {
 
-      auto ptopic = __allocate::topic(id_application_dark_mode_change);
+      auto ptopic = øallocate::topic(id_application_dark_mode_change);
 
       application()->handle(ptopic, nullptr);
 

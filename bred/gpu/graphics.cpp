@@ -554,7 +554,7 @@ namespace gpu
          if (!m_pshaderSourceRectangle)
          {
 
-            //auto pshadervertexinput = __allocate::gpu_vulkan::shader_vertex_input();
+            //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
 
             //pshadervertexinput->m_bindings.add(
             //   {
@@ -589,7 +589,7 @@ namespace gpu
          if (!m_pshaderBlendRectangle)
          {
 
-            //auto pshadervertexinput = __allocate::gpu_vulkan::shader_vertex_input();
+            //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
 
             //pshadervertexinput->m_bindings.add(
             //   {
@@ -749,7 +749,7 @@ namespace gpu
        //      .addBinding(0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
        //      .build();
 
-       //   auto pdescriptorpoolbuilder = __allocate::gpu_vulkan::descriptor_pool::Builder();
+       //   auto pdescriptorpoolbuilder = øallocate::gpu_vulkan::descriptor_pool::Builder();
 
        //   pdescriptorpoolbuilder->initialize_builder(m_pgpucontextCompositor);
        //   pdescriptorpoolbuilder->setMaxSets(iFrameCount * 10);
@@ -769,7 +769,7 @@ namespace gpu
        //      .addBinding(0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
        //      .build();
 
-       //   auto pdescriptorpoolbuilder = __allocate::gpu_vulkan::descriptor_pool::Builder();
+       //   auto pdescriptorpoolbuilder = øallocate::gpu_vulkan::descriptor_pool::Builder();
 
        //   pdescriptorpoolbuilder->initialize_builder(m_pgpucontextCompositor);
        //   pdescriptorpoolbuilder->setMaxSets(iFrameCount * 10);
@@ -786,7 +786,7 @@ namespace gpu
        //   if (!m_pshaderSourceRectangle)
        //   {
 
-       //      //auto pshadervertexinput = __allocate::gpu_vulkan::shader_vertex_input();
+       //      //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
 
        //      //pshadervertexinput->m_bindings.add(
        //      //   {
@@ -831,7 +831,7 @@ namespace gpu
        //   if (!m_pshaderBlendRectangle)
        //   {
 
-       //      //auto pshadervertexinput = __allocate::gpu_vulkan::shader_vertex_input();
+       //      //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
 
        //      //pshadervertexinput->m_bindings.add(
        //      //   {

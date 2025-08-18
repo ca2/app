@@ -131,7 +131,7 @@ exception::~exception()
 ::pointer < ::subparticle > exception::clone()
 {
 
-   auto pexception = __allocate::exception(*this);
+   auto pexception = øallocate::exception(*this);
 
    return pexception;
 

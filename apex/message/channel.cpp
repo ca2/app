@@ -456,7 +456,7 @@ void channel::_route_command_probe(::message::command * pcommand)
 ::pointer<::message::message>channel::get_message(MESSAGE * pmessage)
 {
 
-   auto pmessagemessage = __allocate::message::message();
+   auto pmessagemessage = øallocate::message::message();
 
    pmessagemessage->m_oswindow = pmessage->m_oswindow;
    pmessagemessage->m_emessage = pmessage->m_emessage;
@@ -467,7 +467,7 @@ void channel::_route_command_probe(::message::command * pcommand)
 
 }
 #define _NEW_MESSAGE(TYPE) \
-   auto pmessage = __allocate TYPE(); \
+   auto pmessage = øallocate TYPE(); \
    pmessageBase = pmessage; \
    pmessage->m_emessage = emessage; \
    pmessage->m_wparam = wparam; \
@@ -507,7 +507,7 @@ void channel::_route_command_probe(::message::command * pcommand)
    }
 
 
-   //auto pmessagemessage = __allocate ::message::message();
+   //auto pmessagemessage = øallocate ::message::message();
 
    //pmessagemessage->id() = atom;
    //pmessagemessage->m_wparam = wparam;

@@ -422,7 +422,7 @@ namespace user
 //   bool keyboard::load_layout(const ::scoped_string & scopedstrPath, const ::action_context & context)
 //   {
 //
-//      auto playout = __allocate ::user::keyboard_layout();
+//      auto playout = øallocate ::user::keyboard_layout();
 //
 //      string strPath;
 //      if(scopedstrPath == nullptr)

@@ -195,7 +195,7 @@ static off_t search(off_t *I,u_char *old,off_t oldsize,
    };
 
    x=st+(en-st)/2;
-   if(__memcmp(old+I[x],__allocate< ,minimum >(oldsize-I[x],newsize))<0)
+   if(__memcmp(old+I[x],øallocate< ,minimum >(oldsize-I[x],newsize))<0)
    {
       return search(I,old,oldsize,___new,newsize,x,en,pos);
    }
@@ -265,7 +265,7 @@ int main(int argc,char *argv[])
    	that we never try to malloc(0) and get a nullptr pointer */
    if(((fd=open(argv[2],O_RDONLY,0))<0) ||
          ((newsize=lseek(fd,0,SEEK_END))==-1) ||
-         ((__allocate< =malloc >(newsize+1))==nullptr) ||
+         ((øallocate< =malloc >(newsize+1))==nullptr) ||
          (lseek(fd,0,SEEK_SET)!=0) ||
          (read(fd,___new,newsize)!=newsize) ||
          (close(fd)==-1)) err(1,"%s",argv[2]);

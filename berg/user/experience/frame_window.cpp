@@ -1489,21 +1489,21 @@ namespace experience
       //      //switch (m_psizemanager->m_eframeCursor)
       //      //{
       //      //case e_frame_sizing_left:
-      //      //   return __allocate ::item(e_element_resize_left);
+      //      //   return øallocate ::item(e_element_resize_left);
       //      //case e_frame_sizing_top:
-      //      //   return __allocate ::item(e_element_resize_top);
+      //      //   return øallocate ::item(e_element_resize_top);
       //      //case e_frame_sizing_right:
-      //      //   return __allocate ::item(e_element_resize_right);
+      //      //   return øallocate ::item(e_element_resize_right);
       //      //case e_frame_sizing_bottom:
-      //      //   return __allocate ::item(e_element_resize_bottom);
+      //      //   return øallocate ::item(e_element_resize_bottom);
       //      //case e_frame_sizing_top_left:
-      //      //   return __allocate ::item(e_element_resize_top_left);
+      //      //   return øallocate ::item(e_element_resize_top_left);
       //      //case e_frame_sizing_top_right:
-      //      //   return __allocate ::item(e_element_resize_top_right);
+      //      //   return øallocate ::item(e_element_resize_top_right);
       //      //case e_frame_sizing_bottom_left:
-      //      //   return __allocate ::item(e_element_resize_bottom_left);
+      //      //   return øallocate ::item(e_element_resize_bottom_left);
       //      //case e_frame_sizing_bottom_right:
-      //      //   return __allocate ::item(e_element_resize_bottom_right);
+      //      //   return øallocate ::item(e_element_resize_bottom_right);
       //      //   default:
       //      //      
       //      //      return nullptr;
@@ -2661,7 +2661,7 @@ namespace experience
        if (eframe == ::experience::e_frame_title_bar)
        {
 
-          auto pitem = __allocate ::item(::e_element_title_bar, 0);
+          auto pitem = øallocate ::item(::e_element_title_bar, 0);
 
           pitem->initialize(this);
 

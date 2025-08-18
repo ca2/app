@@ -38,7 +38,7 @@ namespace filehandler
    void impact::refresh()
    {
 
-      m_plistWorking = __allocate list_base(this);
+      m_plistWorking = øallocate list_base(this);
 
       m_plistWorking->parse(psystem->filehandler(), ::file::path(m_strName).extension());
 
@@ -100,7 +100,7 @@ namespace filehandler
       {
          item.parse(straApp[i]);
          item.m_iIndex = i;
-         add(__allocate class item (item));
+         add(øallocate class item (item));
       }
 
    }

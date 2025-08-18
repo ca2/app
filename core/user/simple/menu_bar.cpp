@@ -168,7 +168,7 @@ bool simple_menu_bar::_track_popup_menu(::collection::index iItem)
    information() << "simple_menu_bar::_track_popup_menu" << iItem;
    
    m_iTracking = iItem;
-   m_pitemPressed = __allocate ::item(::e_element_item, iItem);
+   m_pitemPressed = øallocate ::item(::e_element_item, iItem);
    set_need_redraw();
    auto statusrectangle = index_element_rectangle(iItem, ::e_element_item, ::user::e_state_none);
    client_to_screen()(statusrectangle);

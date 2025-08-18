@@ -1458,9 +1458,9 @@ void file_context::calculate_main_resource_memory()
 
       }
 
-      auto pmemory = __allocate read_only_memory(block);
+      auto pmemory = øallocate read_only_memory(block);
 
-      auto pfile = __allocate::memory_file(pmemory);
+      auto pfile = øallocate::memory_file(pmemory);
 
       system()->folder_factory()->øconstruct(m_papplication, m_pfolderResource);
 
@@ -3240,7 +3240,7 @@ file_pointer file_context::data_get_file(const ::scoped_string & scopedstrData, 
          if (strEncoding.case_insensitive_order("base64") == 0)
          {
 
-            ::pointer<memory_file>pmemoryfile = __allocate memory_file();
+            ::pointer<memory_file>pmemoryfile = øallocate memory_file();
 
             auto psystem = system();
 
@@ -3656,7 +3656,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
          if (eopen & ::file::e_open_no_exception_on_open)
          {
 
-            pfile = __allocate::file::file();
+            pfile = øallocate::file::file();
 
             pfile->m_estatus = error_not_a_file;
 

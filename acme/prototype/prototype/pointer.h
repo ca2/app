@@ -540,7 +540,7 @@ public:
    //pointer & merge(const CONTAINER & pcontainer, const OBJECT & pparticle, const ATTRIBUTE & attribute)
    //{
 
-   //   auto pModified = __allocate TYPE(*m_p);
+   //   auto pModified = øallocate TYPE(*m_p);
 
    //   pModified->apply(pparticle, attribute);
 
@@ -796,7 +796,7 @@ inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pS
 
 
 //template < typename T, typename ...Args >
-//::pointer < T > __allocate(Args &&... args)
+//::pointer < T > øallocate(Args &&... args)
 //{
 //
 //   ::pointer < T > p{ transfer_t{}, ::new T(::std::forward<Args>(args)...) };
@@ -1547,16 +1547,13 @@ public:
 
 #define __preferernew_transfer_as_pointer __pointer_site(__refdbg_function_file_line__preferernew) <<
 
-#define __allocate __transfer_as_pointer new
+#define øallocate __transfer_as_pointer new
 
 #define __preferernew_allocate __preferernew_transfer_as_pointer new
 
 #define __as_pointer __pointer_site(__refdbg_function_file_line__) +=
 
 #define __retain __as_pointer
-
-
-
 
 //#endif
 
@@ -1700,3 +1697,18 @@ static inline __site __;
 //    TYPE * operator->() {return m_p;}
 //
 // };
+
+
+
+
+
+template < typename TYPE, typename ...Args>
+::pointer < TYPE > øcreate_pointer(Args &&... args)
+{
+
+   return  { transfer_t{}, new TYPE(::std::forward<Args>(args)...) };
+
+}
+
+
+

@@ -222,7 +222,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -243,7 +243,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -284,7 +284,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -313,7 +313,7 @@ namespace draw2d
 //
 //      //pitem->m_rectangle = rectangle;
 //
-//      //auto parc = __allocate arc_double_shape< path > ();
+//      //auto parc = øallocate arc_double_shape< path > ();
 //
 //      auto & arc = pitem->m_item;
 //
@@ -341,7 +341,7 @@ namespace draw2d
 //      //if (!m_pshapea)
 //      //{
 //
-//      //   m_pshapea = __allocate shape_array < path> ();
+//      //   m_pshapea = øallocate shape_array < path> ();
 //
 //      //}
 //
@@ -400,7 +400,7 @@ namespace draw2d
 //      //if (!m_pshapea)
 //      //{
 //
-//      //   m_pshapea = __allocate shape_array < path> ();
+//      //   m_pshapea = øallocate shape_array < path> ();
 //
 //      //}
 //
@@ -446,7 +446,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -473,7 +473,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -496,7 +496,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -517,7 +517,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -548,7 +548,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -581,7 +581,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -619,7 +619,7 @@ namespace draw2d
    bool path::add_line(const double_point & point)
    {
 
-      //auto pline = __allocate double_line_shape < path > ();
+      //auto pline = øallocate double_line_shape < path > ();
 
       auto pitem = øcreate_new < ::geometry2d::line_item >();
 
@@ -634,7 +634,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -666,7 +666,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -682,7 +682,7 @@ namespace draw2d
    bool path::add_lines(const ::double_point * ppoint, ::collection::count nCount)
    {
 
-      //auto plines = __allocate lines_double_shape < path > ();
+      //auto plines = øallocate lines_double_shape < path > ();
 
       auto pitem = øcreate_new < ::geometry2d::lines_item >();
 
@@ -695,7 +695,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -1901,7 +1901,7 @@ namespace draw2d
          //if(!m_pshapea)
          //{
 
-         //   m_pshapea = __allocate shape_array <class path> ();
+         //   m_pshapea = øallocate shape_array <class path> ();
 
          //}
 

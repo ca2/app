@@ -1587,7 +1587,7 @@ namespace core
    //::pointer<::user::user>application::create_userex()
    //{
 
-   //   return __allocate ::user::user();
+   //   return øallocate ::user::user();
 
    //}
 

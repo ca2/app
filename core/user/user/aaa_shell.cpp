@@ -130,7 +130,7 @@ namespace user
          m_iActiveThreadCount = 0;
          m_iMaxThreadCount = 1;
 
-         m_pevNewImageKey = __allocate manual_reset_happening();
+         m_pevNewImageKey = øallocate manual_reset_happening();
 
          m_pevNewImageKey->m_eobject += e_object_alertable_wait;
 
@@ -191,7 +191,7 @@ namespace user
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         auto pthread  = __allocate thread(this);
+         auto pthread  = øallocate thread(this);
 
          add_composite(pthread);
 
@@ -355,7 +355,7 @@ namespace user
             if (m_pimagelist[iSize].is_null())
             {
 
-               m_pimagelist[iSize] = __allocate ::image::image_list();
+               m_pimagelist[iSize] = øallocate ::image::image_list();
                m_pimagelist[iSize]->create(iSize, iSize, 0, 10, 10);
 
             }
@@ -369,7 +369,7 @@ namespace user
             if (m_pimagelistHover[iSize].is_null())
             {
 
-               m_pimagelistHover[iSize] = __allocate ::image::image_list();
+               m_pimagelistHover[iSize] = øallocate ::image::image_list();
                m_pimagelistHover[iSize]->create(iSize, iSize, 0, 10, 10);
 
             }

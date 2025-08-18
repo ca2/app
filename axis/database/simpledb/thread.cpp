@@ -192,7 +192,7 @@ namespace simpledb
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto pitem = __allocate queue_item();
+      auto pitem = øallocate queue_item();
 
       pitem->m_strKey = scopedstrKey;
 

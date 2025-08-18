@@ -545,7 +545,7 @@ namespace berg
    ::pointer<::user::menu_interaction>user::create_menu_button(::user::style * pstyle, ::menu::item * pmenuitem)
    {
 
-      auto pmenubutton = __allocate::user::menu_button();
+      auto pmenubutton = øallocate::user::menu_button();
 
       pmenubutton->initialize_menu_interaction(pmenuitem);
 
@@ -599,7 +599,7 @@ namespace berg
       __UNREFERENCED_PARAMETER(hInstance);
       __UNREFERENCED_PARAMETER(pParam);
 
-      auto pinteraction = __allocate::user::interaction();
+      auto pinteraction = øallocate::user::interaction();
 
       pinteraction->create_child(puiParent);
 
@@ -1815,7 +1815,7 @@ namespace berg
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return __allocate::user::show < ::calculator::edit >();
+      return øallocate::user::show < ::calculator::edit >();
 
    }
 
@@ -1838,7 +1838,7 @@ namespace berg
 
          add_impact_system(
             atom,
-            __allocate::user::multiple_document_template(
+            øallocate::user::multiple_document_template(
                "system/form",
                ::type < form_document >(),
                get_simple_child_frame_type_info(),
@@ -1882,7 +1882,7 @@ namespace berg
    ::pointer < ::user::interaction > user::create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pgraphics, ::menu::item * pmenuitem)
    {
 
-      auto pmenubutton = __allocate::user::menu_button();
+      auto pmenubutton = øallocate::user::menu_button();
 
       pmenubutton->initialize_menu_interaction(pmenuitem);
 

@@ -777,7 +777,7 @@
 //         }
 //         if (j == bla.get_size())
 //         {
-//            bla.add(__allocate memblock());
+//            bla.add(øallocate memblock());
 //            auto & pbl = bla[bla.get_upper_bound()];
 //            pbl->m_iUse = piUse[i];
 //            pbl->m_strFile = pszFile[i];
@@ -937,7 +937,7 @@
 //void memdleak_init()
 //{
 //
-//   g_pmutgen = __allocate ::critical_section();
+//   g_pmutgen = øallocate ::critical_section();
 //
 //}
 //

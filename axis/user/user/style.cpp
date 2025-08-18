@@ -667,7 +667,7 @@ namespace axis
    //   if (userstyle()->m_mapColor.is_null())
    //   {
 
-   //      userstyle()->m_mapColor = __allocate color_map();
+   //      userstyle()->m_mapColor = øallocate color_map();
 
    //   }
 
@@ -684,7 +684,7 @@ namespace axis
   //    if (userstyle()->m_mapFont.is_null())
   //    {
 
-  //       userstyle()->m_mapFont = __allocate font_map();
+  //       userstyle()->m_mapFont = øallocate font_map();
 
   //    }
 
@@ -770,7 +770,7 @@ namespace axis
    //   if (userstyle()->m_mapTranslucency.is_null())
    //   {
 
-   //      userstyle()->m_mapTranslucency = __allocate translucency_map();
+   //      userstyle()->m_mapTranslucency = øallocate translucency_map();
 
    //   }
 
@@ -787,7 +787,7 @@ namespace axis
    //   if (userstyle()->m_mapFlag.is_null())
    //   {
 
-   //      userstyle()->m_mapFlag = __allocate translucency_map();
+   //      userstyle()->m_mapFlag = øallocate translucency_map();
 
    //   }
 
@@ -852,7 +852,7 @@ namespace axis
    //   if (userstyle()->m_mapRect.is_null())
    //   {
 
-   //      userstyle()->m_mapRect = __allocate rect_map();
+   //      userstyle()->m_mapRect = øallocate rect_map();
 
    //   }
 
@@ -885,7 +885,7 @@ namespace axis
    //   if (userstyle()->m_mapInt.is_null())
    //   {
 
-   //      userstyle()->m_mapInt = __allocate ::user::int_map();
+   //      userstyle()->m_mapInt = øallocate ::user::int_map();
 
    //   }
 
@@ -902,7 +902,7 @@ namespace axis
    //   if (userstyle()->m_mapDouble.is_null())
    //   {
 
-   //      userstyle()->m_mapDouble = __allocate ::user::double_map();
+   //      userstyle()->m_mapDouble = øallocate ::user::double_map();
 
    //   }
 
@@ -996,7 +996,7 @@ namespace axis
       //      if (spuserstyle.is_null())
       //      {
 
-      //         spuserstyle = __allocate style(this);
+      //         spuserstyle = øallocate style(this);
 
       //      }
 
@@ -1278,7 +1278,7 @@ namespace axis
    //   if (userstyle()->m_mapColor.is_null())
    //   {
 
-   //      userstyle()->m_mapColor = __allocate color_map();
+   //      userstyle()->m_mapColor = øallocate color_map();
 
    //   }
 
@@ -1295,7 +1295,7 @@ namespace axis
   //    if (userstyle()->m_mapFont.is_null())
   //    {
 
-  //       userstyle()->m_mapFont = __allocate font_map();
+  //       userstyle()->m_mapFont = øallocate font_map();
 
   //    }
 
@@ -1381,7 +1381,7 @@ namespace axis
    //   if (userstyle()->m_mapTranslucency.is_null())
    //   {
 
-   //      userstyle()->m_mapTranslucency = __allocate translucency_map();
+   //      userstyle()->m_mapTranslucency = øallocate translucency_map();
 
    //   }
 
@@ -1398,7 +1398,7 @@ namespace axis
    //   if (userstyle()->m_mapFlag.is_null())
    //   {
 
-   //      userstyle()->m_mapFlag = __allocate translucency_map();
+   //      userstyle()->m_mapFlag = øallocate translucency_map();
 
    //   }
 
@@ -1463,7 +1463,7 @@ namespace axis
    //   if (userstyle()->m_mapRect.is_null())
    //   {
 
-   //      userstyle()->m_mapRect = __allocate rect_map();
+   //      userstyle()->m_mapRect = øallocate rect_map();
 
    //   }
 
@@ -1496,7 +1496,7 @@ namespace axis
    //   if (userstyle()->m_mapInt.is_null())
    //   {
 
-   //      userstyle()->m_mapInt = __allocate ::user::int_map();
+   //      userstyle()->m_mapInt = øallocate ::user::int_map();
 
    //   }
 
@@ -1513,7 +1513,7 @@ namespace axis
    //   if (userstyle()->m_mapDouble.is_null())
    //   {
 
-   //      userstyle()->m_mapDouble = __allocate ::user::double_map();
+   //      userstyle()->m_mapDouble = øallocate ::user::double_map();
 
    //   }
 
@@ -1570,7 +1570,7 @@ namespace axis
    //      if (spuserstyle.is_null())
    //      {
 
-   //         spuserstyle = __allocate style(this);
+   //         spuserstyle = øallocate style(this);
 
    //      }
 

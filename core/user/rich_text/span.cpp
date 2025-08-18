@@ -146,7 +146,7 @@ namespace user
 
          synchronous_lock synchronouslock(m_pdata->synchronization());
          
-         auto pspan = __allocate class span (m_pdata);
+         auto pspan = øallocate class span (m_pdata);
          
          pspan->m_pformat = m_pdata->add_format();
 
@@ -174,7 +174,7 @@ namespace user
       ::pointer<format>span::fork_format()
       {
 
-         return __allocate class format (*m_pformat);
+         return øallocate class format (*m_pformat);
 
       }
 

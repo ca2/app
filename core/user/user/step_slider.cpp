@@ -102,7 +102,7 @@ namespace user
 
       set_timer(1, 200_ms, nullptr);
 
-      m_pitemHover = __allocate ::item(::e_element_client);
+      m_pitemHover = øallocate ::item(::e_element_client);
 
       //update_hover();
 
@@ -218,7 +218,7 @@ namespace user
       if (rectangleX.width() == 0)
       {
 
-         auto pitemNone = __allocate ::item(e_element_none);
+         auto pitemNone = øallocate ::item(e_element_none);
 
          return pitemNone;
 
@@ -230,7 +230,7 @@ namespace user
 
       iMax = m_scalar.maximum().get_long_long();
 
-      return __allocate ::item(e_element_item, (::collection::index) (iMin + (((point.x() - rectangleX.left()) * (iMax - iMin)) / rectangleX.width())));
+      return øallocate ::item(e_element_item, (::collection::index) (iMin + (((point.x() - rectangleX.left()) * (iMax - iMin)) / rectangleX.width())));
 
    }
 
@@ -253,7 +253,7 @@ namespace user
 //      if (rectangleX.contains(pointCursor))
 //      {
 //
-//         m_pitemHover = __allocate ::item(e_element_client);
+//         m_pitemHover = øallocate ::item(e_element_client);
 //
 //      }
 //      else

@@ -103,7 +103,7 @@ namespace graphics3d
    //   std::string vertShaderPath = "matter://Shaders/SpirV/point_light.vert.spv";
    //   std::string fragShaderPath = "matter://Shaders/SpirV/point_light.frag.spv";
 
-   //   m_ppipeline = __allocate pipeline();
+   //   m_ppipeline = øallocate pipeline();
 
    //   m_ppipeline->initialize_pipeline(
    //      m_pgpucontext,

@@ -3,7 +3,7 @@
 int WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, int nCmdShow)
 {
 
-   auto psystem = __allocate ::aura::system();
+   auto psystem = øallocate ::aura::system();
 
    psystem->application_initialize();
 

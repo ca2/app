@@ -48,6 +48,6 @@
 //inline ::pointer<::handle::ini>operator ""_pini(const char * psz, size_t s)
 //{
 //
-//   return __allocate ::handle::ini(string(scopedstr, s));
+//   return øallocate ::handle::ini(string(scopedstr, s));
 //
 //}

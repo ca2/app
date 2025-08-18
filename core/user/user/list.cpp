@@ -390,13 +390,13 @@ namespace user
                if (pcolumn->m_pimagelist)
                {
 
-                  slaImageList.add(__allocate now_a_particle < _synchronous_lock > (pcolumn->m_pimagelist));
+                  slaImageList.add(øallocate now_a_particle < _synchronous_lock > (pcolumn->m_pimagelist));
 
                }
                if (pcolumn->m_pimagelistHover)
                {
 
-                  slaImageList.add(__allocate now_a_particle < _synchronous_lock > (pcolumn->m_pimagelist));
+                  slaImageList.add(øallocate now_a_particle < _synchronous_lock > (pcolumn->m_pimagelist));
 
                }
 
@@ -505,7 +505,7 @@ namespace user
          if (!pgroup)
          {
 
-            auto pdrawgroup = __allocate draw_list_group();
+            auto pdrawgroup = øallocate draw_list_group();
 
             pdrawgroup->initialize_draw_list_group(this);
 
@@ -1459,7 +1459,7 @@ namespace user
       if (!pitem)
       {
 
-         auto pdrawlistitem = __allocate draw_list_item();
+         auto pdrawlistitem = øallocate draw_list_item();
 
          pdrawlistitem->initialize_draw_list_item(this);
 
@@ -1492,7 +1492,7 @@ namespace user
       if (!psubitem)
       {
 
-         auto pdrawlistsubitem = __allocate draw_list_subitem();
+         auto pdrawlistsubitem = øallocate draw_list_subitem();
 
          pdrawlistsubitem->initialize_draw_list_subitem(*pitem);
 
@@ -1514,7 +1514,7 @@ namespace user
    ::pointer<list_column>list::new_list_column()
    {
 
-      auto pcolumn = __allocate list_column();
+      auto pcolumn = øallocate list_column();
 
       m_pcolumna->add(pcolumn);
 
@@ -5689,7 +5689,7 @@ namespace user
       if (pcolumn->m_pimagelist == nullptr)
       {
 
-         pcolumn->m_pimagelist = __allocate ::image::image_list();
+         pcolumn->m_pimagelist = øallocate ::image::image_list();
 
       }
 
@@ -7008,7 +7008,7 @@ namespace user
    //::item_pointer list::update_hover(::user::mouse* pmouse, ::user::e_zorder ezorder)
    //{
 
-   //   auto pitemHitTest = __allocate ::item();
+   //   auto pitemHitTest = øallocate ::item();
    //   
    //   auto pointClient = screen_to_client().get(pmouse->m_point);
 

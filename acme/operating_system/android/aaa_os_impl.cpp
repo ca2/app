@@ -179,7 +179,7 @@ int SetMainScreenRect(LPCRECT32 lpcrect);
 //
 //   auto plocal = g_poslocal;
 //
-//   auto psystem = __allocate ::platform::system();
+//   auto psystem = øallocate ::platform::system();
 //
 //   psystem->m_pathCacheDir = premote->getCacheDir();
 //

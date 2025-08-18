@@ -267,7 +267,7 @@ namespace networking_bsd
    ::pointer<::networking::address>networking_bsd::create_address(const ::scoped_string & scopedstrHostname)
    {
 
-      return __allocate address(strHostname);
+      return øallocate address(strHostname);
 
    }
 

@@ -1461,7 +1461,7 @@ namespace dynamic_source
          return *p->element2();
       }
 
-      m_mapLib[scopedstrLibrary] = __allocate library(this);
+      m_mapLib[scopedstrLibrary] = øallocate library(this);
 
       library& l = *m_mapLib[scopedstrLibrary];
 

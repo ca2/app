@@ -245,7 +245,7 @@ namespace apex
       //m_pimaging = nullptr;
 
 
-      //m_phandler = __allocate ::handler(this);
+      //m_phandler = øallocate ::handler(this);
 
 
       //m_bAuraProcessInitialize = false;
@@ -1132,7 +1132,7 @@ namespace apex
       //   /*        if (m_pfsdata.is_null())
       //           {
 
-      //              øconstruct(m_pfsdata, __allocate ::fs::set());
+      //              øconstruct(m_pfsdata, øallocate ::fs::set());
 
       //           }*/
 
@@ -3350,7 +3350,7 @@ namespace apex
    //   try
    //   {
 
-   //      return __allocate ::interprocess::channel();
+   //      return øallocate ::interprocess::channel();
 
    //   }
    //   catch (...)
@@ -3381,7 +3381,7 @@ namespace apex
       auto psystem = system();
 
       //estatus =
-      m_puserlanguagemap = __allocate ::user::language_map();
+      m_puserlanguagemap = øallocate ::user::language_map();
 
       //REFDBG(m_puserlanguagemap.add_reference_item({ this, __FUNCTION_FILE_LINE__ }));
 
@@ -5759,7 +5759,7 @@ namespace apex
 
       //throw ::exception(todo("xml"));
 
-      //auto pdocument = __allocate ::xml::document();
+      //auto pdocument = øallocate ::xml::document();
 
       //if (!pdocument->load(atom) || !*pdocument)
       //{
@@ -5966,7 +5966,7 @@ namespace apex
       //
       //::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(
       //::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-      //ref __allocate< ::winrt::Windows::UI::Core::DispatchedHandler([this] >()
+      //ref øallocate< ::winrt::Windows::UI::Core::DispatchedHandler([this] >()
       //{
       //::winrt::Windows::UI::ImpactManagement::ApplicationImpact::GetForCurrentImpact()->TryConsolidateAsync();
       //}));
@@ -7360,7 +7360,7 @@ namespace apex
    //::html::html * application::create_html()
    //{
 
-   //   return __allocate< ::html::html(get_app >());
+   //   return øallocate< ::html::html(get_app >());
 
    //}
 
@@ -9994,7 +9994,7 @@ namespace apex
    //::pointer<::apex::application>application::create_platform(::apex::session* psession)
    //{
    //
-   //   return __allocate ::apex::session();
+   //   return øallocate ::apex::session();
    //
    //}
 

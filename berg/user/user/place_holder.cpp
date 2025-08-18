@@ -425,7 +425,7 @@ namespace user
    ::pointer<place_holder>place_holder::create_shadow_clone()
    {
 
-      ::pointer<place_holder>pholder = __allocate place_holder();
+      ::pointer<place_holder>pholder = øallocate place_holder();
 
       if(pholder.is_null())
       {

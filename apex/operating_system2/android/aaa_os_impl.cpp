@@ -179,7 +179,7 @@ void android_apex_main()
 
    auto plocal = g_poslocal;
 
-   auto psystem = __allocate ::apex::system();
+   auto psystem = øallocate ::apex::system();
 
    psystem->m_pathCacheDir = premote->getCacheDir();
 

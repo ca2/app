@@ -153,7 +153,7 @@ namespace extended
     //   if (m_pexceptiona.is_null())
     //   {
 
-    //      m_pexceptiona = __allocate ::array < ::exception > ();
+    //      m_pexceptiona = øallocate ::array < ::exception > ();
 
     //   }
 

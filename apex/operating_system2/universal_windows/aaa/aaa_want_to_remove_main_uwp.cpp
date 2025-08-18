@@ -17,7 +17,7 @@ CLASS_DECL_APEX int main_uwp(Array < String^ >^ stra, const ::scoped_string & sc
    //mainstruct.m_bUserEx = true;
    //mainstruct.m_bShowApplicationInformation = false;
 
-   auto psystem = __allocate ::apex::system();
+   auto psystem = øallocate ::apex::system();
 
    psystem->construct_system(stra);
 

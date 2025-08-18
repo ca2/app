@@ -11,7 +11,7 @@
 //   {
 //
 //
-//      m_plocaleschema = __allocate ::text::international::locale_schema();
+//      m_plocaleschema = øallocate ::text::international::locale_schema();
 //
 //
 //      m_pstr = nullptr;

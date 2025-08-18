@@ -1586,7 +1586,7 @@ mutex::~mutex()
 //
 //   }
 //
-//   auto pmutex  = __allocate mutex(e_create_new, lpszName, h);
+//   auto pmutex  = øallocate mutex(e_create_new, lpszName, h);
 //
 //   return pmutex;
 //
@@ -1619,7 +1619,7 @@ mutex::~mutex()
 //
 //   }
 //
-//   auto pmutex = __allocate mutex(strName, psem, isCreator);
+//   auto pmutex = øallocate mutex(strName, psem, isCreator);
 //
 //   return pmutex;
 //
@@ -1686,7 +1686,7 @@ mutex::~mutex()
 //
 //   //pthread_mutex_init(m_pmutex, &attr);
 //
-//   auto pmutex = __allocate mutex(e_create_new, lpszName, iFd, false);
+//   auto pmutex = øallocate mutex(e_create_new, lpszName, iFd, false);
 //
 //   return pmutex;
 //
@@ -1712,7 +1712,7 @@ mutex::~mutex()
 //
 //   }
 //
-//   auto pmutex = __allocate mutex(strName, key, semid);
+//   auto pmutex = øallocate mutex(strName, key, semid);
 //
 //   return pmutex;
 //
@@ -1724,7 +1724,7 @@ mutex::~mutex()
 //void wait_until_mutex_does_not_exist(::particle * pparticle,  const_char_pointer lpszName)
 //{
 //
-//   ::pointer<mutex>pmutex = __allocate mutex(pparticle, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+//   ::pointer<mutex>pmutex = øallocate mutex(pparticle, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
 //
 //   if(::get_last_status() == ::error_already_exists)
 //   {
@@ -1736,7 +1736,7 @@ mutex::~mutex()
 //
 //         preempt(200_ms);
 //
-//         pmutex = __allocate mutex(pparticle, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+//         pmutex = øallocate mutex(pparticle, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
 //
 //      }
 //

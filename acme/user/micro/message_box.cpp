@@ -153,7 +153,7 @@ namespace micro
       if (m_prealizable->m_strDetails.has_character())
       {
 
-         m_pstillDetails = __allocate::micro::still();
+         m_pstillDetails = øallocate::micro::still();
 
          m_pstillDetails->id() = "details";
 
@@ -491,7 +491,7 @@ namespace micro
          if (!m_prealizable->m_psequence->m_timeLocked.is_null())
          {
 
-            m_pstillTimeout = __allocate::micro::still();
+            m_pstillTimeout = øallocate::micro::still();
 
             m_pstillTimeout->id() = "timeout";
 
@@ -524,7 +524,7 @@ namespace micro
    //pointer< ::sequence < ::conversation > > message_box::display(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
    //{
    //
-   //   auto psequence = __allocate ::sequence <::conversation > ();
+   //   auto psequence = øallocate ::sequence <::conversation > ();
    //
    //   psequence->m_p = this;
    //
@@ -787,7 +787,7 @@ namespace micro
 //   
 //   //auto atomResult = pmessagebox->sync();
 //   
-////   auto pmanualresethappening = __allocate manual_reset_happening();
+////   auto pmanualresethappening = øallocate manual_reset_happening();
 ////
 ////   atom atomResult;
 ////
@@ -889,7 +889,7 @@ namespace micro
 //   
 //   auto atomResult = pmessagebox->sync();
 //   
-////   auto pmanualresethappening = __allocate manual_reset_happening();
+////   auto pmanualresethappening = øallocate manual_reset_happening();
 ////
 ////   atom atomResult;
 ////
@@ -946,7 +946,7 @@ namespace micro
 //CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //{
 //
-//   auto pmessagebox = __allocate ::micro::message_box_conversation_message();
+//   auto pmessagebox = øallocate ::micro::message_box_conversation_message();
 //
 //   pmessagebox->m_pobject = pparticle;
 //   pmessagebox->initialize_conversation(scopedstrMessage,scopedstrTitle, emessagebox, scopedstrDetails, picon);

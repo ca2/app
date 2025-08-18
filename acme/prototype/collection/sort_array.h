@@ -70,7 +70,7 @@
 //   ::pointer<sort_data>         m_psortdata; // from last get_sort call
 //
 //
-//   sort_array() { m_parray = __allocate BASE_ARRAY_TYPE(); }
+//   sort_array() { m_parray = øallocate BASE_ARRAY_TYPE(); }
 //
 //
 //   sort_array(BASE_ARRAY_TYPE * parray) : m_parray(parray) { }
@@ -91,7 +91,7 @@
 //
 //      ødefer_construct_new(psortmap);
 //
-//      psortmap->m_pless = __allocate less_predicate < ARG_TYPE, PRED > (predLess);
+//      psortmap->m_pless = øallocate less_predicate < ARG_TYPE, PRED > (predLess);
 //
 //   }
 //

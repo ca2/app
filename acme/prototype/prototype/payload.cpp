@@ -483,7 +483,7 @@ payload::payload(const class ::payload & payload) :
 //#if REFERENCING_DEBUGGING
 //   , m_preferer(nullptr)
 //#endif
-//   ,m_pproperty(__allocate< ::property_particle>(property))
+//   ,m_pproperty(øallocate< ::property_particle>(property))
 //{
 //
 //}
@@ -1539,7 +1539,7 @@ class ::payload & payload::operator = (const ::property & property)
 //
 //      set_type(e_type_property, false);
 //
-//      m_pproperty = __allocate ::property_particle ();
+//      m_pproperty = øallocate ::property_particle ();
 //
 //      m_pproperty->object() = *pproperty;
 //

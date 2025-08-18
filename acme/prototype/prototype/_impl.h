@@ -402,7 +402,7 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 //inline void matter::__raw_construct_new(::pointer<TYPE>& p)
 //{
 //
-//   auto ptypeNew = __allocate TYPE();
+//   auto ptypeNew = øallocate TYPE();
 //
 //   if (!ptypeNew)
 //   {
@@ -469,7 +469,7 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 //
 //#endif
 //
-//   auto ptypeNew = __allocate TYPE();
+//   auto ptypeNew = øallocate TYPE();
 //
 //   if (!ptypeNew)
 //   {
@@ -1089,7 +1089,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //inline void future::pred(PRED pred)
 //{
 //
-//   m_pparticle = __allocate predicate_future < PRED >  (pred);
+//   m_pparticle = øallocate predicate_future < PRED >  (pred);
 //
 //}
 //
@@ -1158,7 +1158,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //   for (::collection::index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
-//      ::pointer<predicate_holder_base>p = __allocate forking_count_predicate < PRED >  (iOrder, iOrder + iStart, iScan, iCount, pred);
+//      ::pointer<predicate_holder_base>p = øallocate forking_count_predicate < PRED >  (iOrder, iOrder + iStart, iScan, iCount, pred);
 //
 //      if (!pgroup->add_predicate(p))
 //      {
@@ -1198,11 +1198,11 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 
 
 //template < typename PRED >
-//method::method(PRED pred) : function(__allocate< predicate_method < PRED > >(pred)) { }
+//method::method(PRED pred) : function(øallocate< predicate_method < PRED > >(pred)) { }
 //
 //
 //template < typename PRED >
-//future::future(PRED pred) : function(__allocate< predicate_future < PRED > >(pred)) { }
+//future::future(PRED pred) : function(øallocate< predicate_future < PRED > >(pred)) { }
 
 
 
@@ -1457,7 +1457,7 @@ void reference_count_debug_release(TYPE * & p)
 //inline void object::__raw_construct_new(::pointer<TYPE> p)
 //{
 //
-//   auto ptypeNew = __allocate TYPE();
+//   auto ptypeNew = øallocate TYPE();
 //
 //   if (!ptypeNew)
 //   {
@@ -1488,7 +1488,7 @@ void reference_count_debug_release(TYPE * & p)
 //inline void object::øconstruct_new(::pointer<TYPE> p)
 //{
 //
-//   auto ptypeNew = __allocate TYPE();
+//   auto ptypeNew = øallocate TYPE();
 //
 //   if (!ptypeNew)
 //   {
@@ -1796,11 +1796,11 @@ constexpr long long posix_time::days() const { return m_iSecond / (24 * 60 * 60)
 
 
 //template < typename T, typename ...Args >
-//inline ::pointer < T > particle::__call__allocate(Args &&... args)
+//inline ::pointer < T > particle::__calløallocate(Args &&... args)
 //{
 //
 //   auto p = ::transfer(
-//      ::platform::allocator::__call__allocate< T >(
+//      ::platform::allocator::__calløallocate< T >(
 //         ::std::forward<Args>(args)...));
 //
 //   return ::transfer(p);

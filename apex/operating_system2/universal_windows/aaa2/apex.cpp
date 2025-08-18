@@ -16,10 +16,10 @@
 // {
 
 
-//    ::wait(::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref __allocate< ::winrt::Windows::UI::Core::DispatchedHandler ([=] >()
+//    ::wait(::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref øallocate< ::winrt::Windows::UI::Core::DispatchedHandler ([=] >()
 //    {
 
-//       ::winrt::Windows::UI::Popups::MessageDialog ^ msg = ref __allocate< ::winrt::Windows::UI::Popups::MessageDialog(wstring(scopedstrMessage), wstring >(scopedstrTitle));
+//       ::winrt::Windows::UI::Popups::MessageDialog ^ msg = ref øallocate< ::winrt::Windows::UI::Popups::MessageDialog(wstring(scopedstrMessage), wstring >(scopedstrTitle));
 
 // //UICommand^ continueCommand = ref ___new UICommand(
 //       //      "Try again",

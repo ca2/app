@@ -804,7 +804,7 @@ namespace networking
          {
             struct sockaddr_in *point = (struct sockaddr_in *)sa;
             ::sockets::address_pointer addr;
-            addr(__allocate< ::sockets::ipv4_address(get_app >(), *int_point));
+            addr(øallocate< ::sockets::ipv4_address(get_app >(), *int_point));
             return addr;
          }
          break;
@@ -813,7 +813,7 @@ namespace networking
          {
             struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
             ::sockets::address_pointer addr;
-            addr(__allocate< ::sockets::ipv6_address(get_app >(), *int_point));
+            addr(øallocate< ::sockets::ipv6_address(get_app >(), *int_point));
             return addr;
          }
          break;
@@ -1163,7 +1163,7 @@ namespace networking
 
       //}
 
-      //pitem = __allocate reverse_cache_item();
+      //pitem = øallocate reverse_cache_item();
 
       //pitem->m_address = address;
 

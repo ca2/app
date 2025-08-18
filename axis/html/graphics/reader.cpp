@@ -62,7 +62,7 @@ namespace html
       {
          for(int i = 0; i < pTag->getAttributes()->getCount(); i++)
          {
-            m_ptag->attra().add(__allocate attribute());
+            m_ptag->attra().add(øallocate attribute());
             attribute * pattr = m_ptag->attra().last_pointer();
             pattr->set_name(pTag->getAttributes()->getAttribute(i).getName().make_lower());
             pattr->set_value(pTag->getAttributes()->getAttribute(i).getValue());

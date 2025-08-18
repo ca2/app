@@ -779,7 +779,7 @@ g_bWindowingOutputDebugString = true;
 
       //__raw_construct_new(m_pcomponentfactorymap);
 
-      //m_pfactory = __allocate ::factory::factory();
+      //m_pfactory = øallocate ::factory::factory();
 
       m_pfactory->InitHashTable(16189);
 

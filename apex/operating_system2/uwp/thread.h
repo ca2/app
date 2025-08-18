@@ -17,7 +17,7 @@ void defer_main_thread(PRED pred)
       ::wait(
       ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
       ::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-      ref __allocate< ::winrt::Windows::UI::Core::DispatchedHandler([&pred] >()
+      ref øallocate< ::winrt::Windows::UI::Core::DispatchedHandler([&pred] >()
       {
 
          pred();

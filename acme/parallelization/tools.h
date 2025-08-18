@@ -186,7 +186,7 @@ public:
 
          throw ::exception(todo);
 
-//         ::pointer<predicate_holder_base>pusermessage = __allocate forking_count_predicate < PRED > (pparticle, iOrder, iOrder + iStart, iScan, iCount, pred);
+//         ::pointer<predicate_holder_base>pusermessage = øallocate forking_count_predicate < PRED > (pparticle, iOrder, iOrder + iStart, iScan, iCount, pred);
 //
 //         if (!add_predicate(pusermessage))
 //         {

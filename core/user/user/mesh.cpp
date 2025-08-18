@@ -388,7 +388,7 @@ namespace user
          if (!pgroup)
          {
 
-            auto pdrawgroup = __allocate draw_mesh_group();
+            auto pdrawgroup = øallocate draw_mesh_group();
 
             pdrawgroup->initialize_draw_mesh_group(this);
 
@@ -812,7 +812,7 @@ namespace user
       if (!pitem)
       {
 
-         auto pdrawmeshitem = __allocate draw_mesh_item();
+         auto pdrawmeshitem = øallocate draw_mesh_item();
 
          pdrawmeshitem->initialize_draw_mesh_item(this);
 
@@ -845,7 +845,7 @@ namespace user
       if (!psubitem)
       {
 
-         psubitem = __allocate draw_mesh_subitem();
+         psubitem = øallocate draw_mesh_subitem();
 
          psubitem->m_pitem = pitem;
 
@@ -3311,7 +3311,7 @@ namespace user
                   if(m_iClick == 1)
                   {
 
-                     on_click(__allocate ::item(::e_element_item, iDisplayItemLButtonUp), pmouse);
+                     on_click(øallocate ::item(::e_element_item, iDisplayItemLButtonUp), pmouse);
 
                   }
                   else
@@ -5438,7 +5438,7 @@ namespace user
    //::item_pointer mesh::update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder)
    //{
 
-   //   ::item_pointer pitemHitTest = __allocate ::item();
+   //   ::item_pointer pitemHitTest = øallocate ::item();
    //   
    //   auto pointClient = screen_to_client().get(pmouse->m_point);
 
@@ -5482,7 +5482,7 @@ namespace user
    ::item_pointer mesh::on_hit_test(const ::int_point& point, e_zorder ezorder)
    {
 
-      ::item_pointer pitemHitTest = __allocate ::item();
+      ::item_pointer pitemHitTest = øallocate ::item();
 
       //auto pointClient = screen_to_client().get(pmouse->m_point);
 
@@ -6400,7 +6400,7 @@ namespace user
    //::pointer<::user::mesh_data>list_base::create_mesh_data()
    //{
 
-   //   return __allocate mesh_data();
+   //   return øallocate mesh_data();
 
    //}
 

@@ -678,7 +678,7 @@ namespace gpu_opengl
    //   //   || eoutput == ::gpu::e_output_gpu_buffer)
    //   //{
 
-   //   //   auto poffscreenrendertargetview = __allocate offscreen_render_target();
+   //   //   auto poffscreenrendertargetview = øallocate offscreen_render_target();
    //   //   //#ifdef WINDOWS_DESKTOP
    //   //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   //   //#else
@@ -690,7 +690,7 @@ namespace gpu_opengl
    //   //}
    //   //else if (eoutput == ::gpu::e_output_swap_chain)
    //   //{
-   //   //   auto poffscreenrendertargetview = __allocate offscreen_render_target();
+   //   //   auto poffscreenrendertargetview = øallocate offscreen_render_target();
    //   //   //#ifdef WINDOWS_DESKTOP
    //   //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   //   //#else
@@ -698,14 +698,14 @@ namespace gpu_opengl
    //   //   //#endif
    //   //   m_pgpurendertarget = poffscreenrendertargetview;
 
-   //   //   //m_prendertargetview = __allocate swap_chain_render_target(this, size, m_prendertargetview);
+   //   //   //m_prendertargetview = øallocate swap_chain_render_target(this, size, m_prendertargetview);
    //   //   //m_prendererResolve.release();
 
    //   //}
    //   ////      else if (eoutput == ::gpu::e_output_gpu_buffer)
    //   ////      {
    //   ////
-   //   ////         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+   //   ////         auto poffscreenrendertargetview = øallocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
    //   ////#ifdef WINDOWS_DESKTOP
    //   ////         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   ////#else
@@ -718,7 +718,7 @@ namespace gpu_opengl
    //   ////      else if (eoutput == ::gpu::e_output_color_and_alpha_accumulation_buffers)
    //   ////      {
    //   ////
-   //   ////         auto paccumulationrendertargetview = __allocate accumulation_render_target(this, m_extentRenderer, m_prendertargetview);
+   //   ////         auto paccumulationrendertargetview = øallocate accumulation_render_target(this, m_extentRenderer, m_prendertargetview);
    //   ////         paccumulationrendertargetview->m_formatImage = VK_FORMAT_R32G32B32A32_SFLOAT;
    //   ////         paccumulationrendertargetview->m_formatAlphaAccumulation = VK_FORMAT_R32_SFLOAT;
    //   ////         m_prendertargetview = paccumulationrendertargetview;
@@ -729,7 +729,7 @@ namespace gpu_opengl
    //   ////
    //   ////         //m_prendererResolve->set_placement(m_pgpucontext->rectangle);
    //   ////         //
-   //   ////         //            auto poffscreenrendertargetview = __allocate offscreen_render_target(m_pgpucontext, m_extentRenderer, m_prendertargetviewResolve);
+   //   ////         //            auto poffscreenrendertargetview = øallocate offscreen_render_target(m_pgpucontext, m_extentRenderer, m_prendertargetviewResolve);
    //   ////         //#ifdef WINDOWS_DESKTOP
    //   ////         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   ////         //#else
@@ -740,7 +740,7 @@ namespace gpu_opengl
    //   ////      else if (eoutput == ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers)
    //   ////      {
    //   ////
-   //   ////         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+   //   ////         auto poffscreenrendertargetview = øallocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
    //   ////#ifdef WINDOWS_DESKTOP
    //   ////         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   ////#else
@@ -776,7 +776,7 @@ namespace gpu_opengl
    //::pointer < ::gpu::render_target > renderer::allocate_offscreen_render_target()
    //{
 
-   //   auto poffscreenrendertarget = __allocate offscreen_render_target();
+   //   auto poffscreenrendertarget = øallocate offscreen_render_target();
 
    //   return poffscreenrendertarget;
 
@@ -790,7 +790,7 @@ namespace gpu_opengl
    //      || eoutput == ::gpu::e_output_gpu_buffer)
    //   {
 
-   //      auto poffscreenrendertarget = __allocate offscreen_render_target();
+   //      auto poffscreenrendertarget = øallocate offscreen_render_target();
 
    //      m_pgpurendertarget = poffscreenrendertarget;
 

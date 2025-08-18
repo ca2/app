@@ -185,7 +185,7 @@ namespace user
                  //
                  //#else
 
-                 //auto pusersystem = __allocate ::user::system(uExStyle, uStyle, rectangle, pcreate);
+                 //auto pusersystem = øallocate ::user::system(uExStyle, uStyle, rectangle, pcreate);
 
                  //#endif
 
@@ -1167,7 +1167,7 @@ namespace user
 
          //auto rectangleRequest = this->screen_rectangle(::user::e_layout_sketch);
 
-         //auto pusersystem = __allocate ::user::system();
+         //auto pusersystem = øallocate ::user::system();
 
          //pusersystem->add_visible(is_visible(layout().sketch().display()));
 

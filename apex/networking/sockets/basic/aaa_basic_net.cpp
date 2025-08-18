@@ -889,7 +889,7 @@ int net::in6_addr_compare(in6_addr a,in6_addr b)
 //
 //   }
 //
-//   pitem = __allocate reverse_cache_item();
+//   pitem = øallocate reverse_cache_item();
 //
 //   pitem->m_address = address;
 //

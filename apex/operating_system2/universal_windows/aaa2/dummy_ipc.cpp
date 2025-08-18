@@ -215,7 +215,7 @@
 //
 //         m_pp->result = m_pp->folderTopic->CreateFileQuery();
 //
-//         m_pp->result->ContentsChanged += ref __allocate< TypedEventHandler < ::winrt::Windows::Storage::Search::IStorageQueryResultBase ^,Object ^ >([this] >(::winrt::Windows::Storage::Search::IStorageQueryResultBase ^ result,Object ^ o)
+//         m_pp->result->ContentsChanged += ref øallocate< TypedEventHandler < ::winrt::Windows::Storage::Search::IStorageQueryResultBase ^,Object ^ >([this] >(::winrt::Windows::Storage::Search::IStorageQueryResultBase ^ result,Object ^ o)
 //         {
 //
 //            ::winrt::Windows::Storage::StorageFile ^ f = ::wait(result->Folder->GetFileAsync(wstring("apex.topic")));

@@ -542,7 +542,7 @@ namespace ftp
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
       {
-         ::pointer<file_status>spFtpFileStatus(__allocate file_status());
+         ::pointer<file_status>spFtpFileStatus(øallocate file_status());
          if (m_apFileListParser->Parse(*spFtpFileStatus, strLine))
          {
             spFtpFileStatus->m_strPath = scopedstrPath;
@@ -572,7 +572,7 @@ namespace ftp
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
       {
-         ::pointer<file_status>spFtpFileStatus(__allocate file_status());
+         ::pointer<file_status>spFtpFileStatus(øallocate file_status());
          spFtpFileStatus->m_strPath = scopedstrPath;
          spFtpFileStatus->m_strName = strLine;
          vFileList.add(spFtpFileStatus);
@@ -1815,7 +1815,7 @@ auto tickStart = ::time::now();
       if (iRet == FTP_OK)
       {
          if (m_apCurrentRepresentation.is_null())
-            m_apCurrentRepresentation = __allocate ::ftp::representation(representation);
+            m_apCurrentRepresentation = øallocate ::ftp::representation(representation);
          else
             *m_apCurrentRepresentation = representation;
       }

@@ -760,7 +760,7 @@ namespace user
       if (!m_pshell)
       {
 
-         //estatus = øconstruct(m_pshell, __allocate ::windows::shell());
+         //estatus = øconstruct(m_pshell, øallocate ::windows::shell());
          //estatus =
          øconstruct(m_pshell);
 
@@ -1720,7 +1720,7 @@ namespace user
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return __allocate ::user::plain_edit();
+      return øallocate ::user::plain_edit();
 
    }
 

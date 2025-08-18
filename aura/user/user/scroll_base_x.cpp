@@ -15,11 +15,11 @@ namespace user
    scroll_base_x::scroll_base_x()
    {
 
-      //m_pscrollstateHorizontal = __allocate scroll_state();
+      //m_pscrollstateHorizontal = øallocate scroll_state();
 
       //m_pscrollstateHorizontal->m_bShowScroll = false;
 
-      m_pscrolllayoutX = __allocate scroll_layout();
+      m_pscrolllayoutX = øallocate scroll_layout();
 
       m_pscrolllayoutX->m_scrollstatea[::user::e_layout_sketch].m_bHasScroll = false;
       m_pscrolllayoutX->m_scrollstatea[::user::e_layout_sketch].m_dPage = 0;
@@ -439,7 +439,7 @@ namespace user
    void scroll_base_x::send_scroll_x_message(enum_scroll_command ecommand, double dPosition)
    {
 
-      auto pscroll = __allocate ::message::scroll();
+      auto pscroll = øallocate ::message::scroll();
 
       pscroll->m_ecommand = ecommand;
 

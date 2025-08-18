@@ -16,7 +16,7 @@
 //
 //#define __END_PROPERTIES2(xxx) }; \
 //xxx ## _properties & properties() {return *m_pobjectproperties;} \
-//inline void create_object_properties() { m_pobjectproperties = m_ppropertyset = __allocate(xxx ## _properties(this));} \
+//inline void create_object_properties() { m_pobjectproperties = m_ppropertyset = øallocate(xxx ## _properties(this));} \
 //__pointer(xxx ## _properties) m_pobjectproperties
 //
 //

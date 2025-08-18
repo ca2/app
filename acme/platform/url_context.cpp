@@ -59,7 +59,7 @@ namespace url
       //if (!urlparts.request().arguments())
       //{
 
-      //   urlparts.m_request.m_psetArguments = __allocate ::property_set ();
+      //   urlparts.m_request.m_psetArguments = øallocate ::property_set ();
 
       //}
 

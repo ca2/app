@@ -283,7 +283,7 @@ namespace file
 
    //   watchref->m_bRecursive     = bRecursive;
 
-   //   auto pwatch = __allocate os_watch();
+   //   auto pwatch = øallocate os_watch();
 
    //   pwatch->id()               = watchid;
 

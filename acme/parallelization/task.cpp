@@ -1881,7 +1881,7 @@ void task::_send(const ::procedure & procedure)
                catch (...)
                {
 
-                  pexception = __allocate::exception(error_catch_all_exception);
+                  pexception = øallocate::exception(error_catch_all_exception);
 
                }
 
@@ -1918,7 +1918,7 @@ void task::_send(const ::procedure & procedure)
       catch (...)
       {
 
-         pexception = __allocate::exception(error_catch_all_exception);
+         pexception = øallocate::exception(error_catch_all_exception);
 
       }
 
@@ -2754,7 +2754,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
    //if (bSynchInitialization)
    {
 
-      m_phappeningInitialization = __allocate manual_reset_happening();
+      m_phappeningInitialization = øallocate manual_reset_happening();
 
    }
 
@@ -3100,7 +3100,7 @@ bool task::task_sleep(const class time & timeWait)
 //void task::branch(::particle * pparticle, ::enum_priority epriority, unsigned int nStackSize, unsigned int uCreateFlags ARG_SEC_ATTRS)
 //{
 //
-//   auto ptask = __allocate task();
+//   auto ptask = øallocate task();
 //
 //   ptask->branch(pelement, epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
@@ -3262,7 +3262,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = __allocate manual_reset_happening();
+            ptask->m_pevSleep = øallocate manual_reset_happening();
 
             ptask->m_pevSleep->reset_happening();
 

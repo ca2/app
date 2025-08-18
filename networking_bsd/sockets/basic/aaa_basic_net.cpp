@@ -889,7 +889,7 @@
 ////
 ////   }
 ////
-////   pitem = __allocate reverse_cache_item();
+////   pitem = øallocate reverse_cache_item();
 ////
 ////   pitem->m_address = address;
 ////

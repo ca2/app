@@ -910,7 +910,7 @@ namespace acme
 
          //   do_asynchronously();
 
-         //   auto pmanualresethappening = __allocate manual_reset_happening();
+         //   auto pmanualresethappening = øallocate manual_reset_happening();
 
          //   if (m_psequencer)
          //   {
@@ -1043,7 +1043,7 @@ namespace acme
          //void interaction::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
          //{
 
-         //   auto pbutton = __allocate ::micro::button();
+         //   auto pbutton = øallocate ::micro::button();
 
          //   pbutton->m_strText = scopedstrText;
          //   pbutton->id() = edialogresult;

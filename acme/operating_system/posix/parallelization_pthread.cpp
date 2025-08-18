@@ -184,7 +184,7 @@ t_phappeningNotifyLock;
          t_phappeningNotifyLock->reset_happening();
          
       }
-      //auto pnotifylock = __allocate notify_lock(t_phappeningNotifyLock);
+      //auto pnotifylock = øallocate notify_lock(t_phappeningNotifyLock);
       notify_lock notifylock(t_phappeningNotifyLock);
 
          if (::is_set(pmq))

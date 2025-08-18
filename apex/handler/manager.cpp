@@ -109,7 +109,7 @@ class ::handler::signal * manager::signal(const ::atom & atom, const ::action_co
    if (!m_psignalmap)
    {
 
-      m_psignalmap = __allocate ::handler::signal_map();
+      m_psignalmap = øallocate ::handler::signal_map();
 
    }
 
@@ -120,7 +120,7 @@ class ::handler::signal * manager::signal(const ::atom & atom, const ::action_co
    if (!psignal)
    {
 
-      psignal = __allocate class ::handler::signal (atom, this);
+      psignal = øallocate class ::handler::signal (atom, this);
 
       psignal->initialize(this);
 

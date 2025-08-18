@@ -864,7 +864,7 @@ thread_local payload t_payloada[e_task_payload_count];
 //CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
 //{
 //
-//   auto phappening = __allocate manual_reset_happening();
+//   auto phappening = øallocate manual_reset_happening();
 //
 //   main_asynchronous([ function, &phappening ]
 //   {

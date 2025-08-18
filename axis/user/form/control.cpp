@@ -70,7 +70,7 @@ namespace user
    //::pointer<class control_descriptor> form_control::new_form_control()
    //{
 
-   //   auto pdescriptor = __allocate ::user::control_descriptor();
+   //   auto pdescriptor = øallocate ::user::control_descriptor();
 
    //   m_controldescriptorset.add(pdescriptor);
 
@@ -1709,7 +1709,7 @@ namespace user
       if(m_pcallback != nullptr)
       {
          
-         auto pextendedtopic = __allocate ::extended_topic(id_timer);
+         auto pextendedtopic = øallocate ::extended_topic(id_timer);
          
          pextendedtopic->m_puserelement = this;
          

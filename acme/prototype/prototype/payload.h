@@ -1255,7 +1255,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
       if (!p)
       {
 
-         p = __allocate T();
+         p = øallocate T();
 
          operator =(p);
 

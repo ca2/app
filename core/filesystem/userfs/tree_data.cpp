@@ -455,7 +455,7 @@ namespace userfs
    void tree_data::_001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & context)
    {
 
-      auto pitem = __allocate ::file::item(*dynamic_cast < ::userfs::item*>(ptreeitembase->_item()));
+      auto pitem = øallocate ::file::item(*dynamic_cast < ::userfs::item*>(ptreeitembase->_item()));
 
       m_puserfsdocument->browse(pitem, context);
 

@@ -41,7 +41,7 @@ CLASS_DECL_APEX void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //   int nReturnCode = 0;
 //
 //
-//   auto pcommand  = __allocate ::universal_windows::command();
+//   auto pcommand  = øallocate ::universal_windows::command();
 //
 //   //    pcommand->m_hInstance               = nullptr;
 //   //    pcommand->m_hPrevInstance           = nullptr;

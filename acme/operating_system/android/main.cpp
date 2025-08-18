@@ -26,7 +26,7 @@ void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppoin
 //   int nReturnCode = 0;
 //
 //
-//   ::android::main_init_data * pinitmaindata  = __allocate ::android::main_init_data();
+//   ::android::main_init_data * pinitmaindata  = øallocate ::android::main_init_data();
 //
 //
 //   pinitmaindata->m_hInstance             = nullptr;
@@ -86,7 +86,7 @@ void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppoin
 //
 //      int nReturnCode = 0;
 //
-//      ::android::main_init_data * pinitmaindata  = __allocate ::android::main_init_data();
+//      ::android::main_init_data * pinitmaindata  = øallocate ::android::main_init_data();
 //
 //      pinitmaindata->m_hInstance             = hInstance;
 //      pinitmaindata->m_hPrevInstance         = hPrevInstance;

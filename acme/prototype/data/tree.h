@@ -144,7 +144,7 @@ namespace data
 
       m_bFill = false;
 
-      //m_proot = __allocate tree_item <  ITEM >();
+      //m_proot = øallocate tree_item <  ITEM >();
 
       //if (m_proot == nullptr)
       //{
@@ -159,7 +159,7 @@ namespace data
 
       this->m_ptree = this;
 
-      this->m_ptreeitemParent = __allocate tree_item <  ITEM >();
+      this->m_ptreeitemParent = øallocate tree_item <  ITEM >();
 
       this->m_ptreeitemParent->insert(e_relative_first_child, this);
 
@@ -543,7 +543,7 @@ return;
 
       }
 
-      auto ptreeitemNew = __allocate tree_item <  ITEM >();
+      auto ptreeitemNew = øallocate tree_item <  ITEM >();
 
       if (!ptreeitemNew)
       {

@@ -810,7 +810,7 @@ namespace platform
    }
 
 
-   //__allocate < ::pointer < ::mutex > >(this, false, "Local\\ca2-appmatter")
+   //øallocate < ::pointer < ::mutex > >(this, false, "Local\\ca2-appmatter")
 
    ::pointer < ::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
    {
@@ -851,7 +851,7 @@ namespace platform
 
       return open_global_named_mutex(pparticleContext, strName);
 
-   //__allocate< ::install::pointer < ::mutex > >(this, process_platform_name()
+   //øallocate< ::install::pointer < ::mutex > >(this, process_platform_name()
 
    }
 
@@ -1430,7 +1430,7 @@ namespace platform
 
       }
 
-      auto phappening = __allocate manual_reset_happening();
+      auto phappening = øallocate manual_reset_happening();
 
       user_post([ procedure, phappening ]
       {
@@ -3088,7 +3088,7 @@ bool node::defer_component_factory(const ::scoped_string & scopedstrComponent)
    if (scopedstrComponent == "nano_http")
    {
 
-      auto pfactory = __allocate::factory::factory();
+      auto pfactory = øallocate::factory::factory();
 
       nano_http_wininet_factory(pfactory);
 
@@ -3100,7 +3100,7 @@ bool node::defer_component_factory(const ::scoped_string & scopedstrComponent)
       else if (scopedstrComponent == "nano_compress")
       {
 
-         auto pfactory = __allocate::factory::factory();
+         auto pfactory = øallocate::factory::factory();
 
          nano_compress_windows_factory(pfactory);
 

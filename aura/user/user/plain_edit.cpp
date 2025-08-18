@@ -1150,7 +1150,7 @@ namespace user
 
          set_root(this, true);
 
-         m_ptree->m_pfile = __allocate::memory_file();
+         m_ptree->m_pfile = øallocate::memory_file();
 
          m_ptree->m_peditfile->SetFile(m_ptree->m_pfile);
 
@@ -1238,7 +1238,7 @@ namespace user
 
          auto pmenu = user()->menu_from_xml(this, "matter://plain_edit_context_menu.menu");
 
-         m_ptrackpopupContextMenu = __allocate::menu::track_popup(pmenu,
+         m_ptrackpopupContextMenu = øallocate::menu::track_popup(pmenu,
                                                           this,
                                                           this,
                                                                   pointCursor);
@@ -2534,7 +2534,7 @@ namespace user
       if (!m_pitemHover || m_pitemHover->m_item.m_eelement != e_element_none)
       {
 
-         m_pitemHover = __allocate::item(e_element_none);
+         m_pitemHover = øallocate::item(e_element_none);
 
          set_need_redraw();
 
@@ -6075,7 +6075,7 @@ namespace user
 
             MacroBegin();
 
-            MacroRecord(__allocate plain_text_file_command());
+            MacroRecord(øallocate plain_text_file_command());
 
             MacroEnd();
 
@@ -6143,7 +6143,7 @@ namespace user
 
             MacroBegin();
 
-            MacroRecord(__allocate plain_text_file_command());
+            MacroRecord(øallocate plain_text_file_command());
 
             MacroEnd();
 
@@ -6448,7 +6448,7 @@ namespace user
 
 
 
-      /*auto psetsel = __allocate plain_text_set_sel_command();
+      /*auto psetsel = øallocate plain_text_set_sel_command();
 
       psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -6483,7 +6483,7 @@ namespace user
 
       //psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
 
-      MacroRecord(__allocate plain_text_file_command());
+      MacroRecord(øallocate plain_text_file_command());
 
 
       // this i1, i1 is on purpose, deleted from i1 to i2, 
@@ -6491,7 +6491,7 @@ namespace user
       if (i1 != iSelBegOld || i1 != iSelEndOld)
       {
 
-         auto psetsel = __allocate plain_text_set_sel_command();
+         auto psetsel = øallocate plain_text_set_sel_command();
 
          psetsel->m_iPreviousSelBeg = iSelBegOld;
 
@@ -6542,7 +6542,7 @@ namespace user
 
       //MacroRecord(psetsel);
 
-      //MacroRecord(__allocate plain_text_file_command());
+      //MacroRecord(øallocate plain_text_file_command());
 
 
       //}
@@ -6666,7 +6666,7 @@ namespace user
 
       //}
 
-      //MacroRecord(__allocate plain_text_file_command());
+      //MacroRecord(øallocate plain_text_file_command());
 
       //MacroEnd();
 
@@ -6777,7 +6777,7 @@ namespace user
 
             //}
 
-            //auto psetsel = __allocate plain_text_set_sel_command();
+            //auto psetsel = øallocate plain_text_set_sel_command();
 
             //psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -6986,7 +6986,7 @@ namespace user
 
             }*/
 
-            /*MacroRecord(__allocate plain_text_file_command());*/
+            /*MacroRecord(øallocate plain_text_file_command());*/
 
             //MacroEnd();
 
@@ -7018,7 +7018,7 @@ namespace user
 
             }
 
-            //MacroRecord(__allocate plain_text_file_command());
+            //MacroRecord(øallocate plain_text_file_command());
 
 
             //// this i1, i1 is on purpose, deleted from i1 to i2, 
@@ -7026,7 +7026,7 @@ namespace user
             //if (i1 != iSelBegOld || i1 != iSelEndOld)
             //{
 
-            //   auto psetsel = __allocate plain_text_set_sel_command();
+            //   auto psetsel = øallocate plain_text_set_sel_command();
 
             //   psetsel->m_iPreviousSelBeg = iSelBegOld;
 
@@ -7149,7 +7149,7 @@ namespace user
 
    //   on_before_change_text();
 
-   //   auto psetsel = __allocate plain_text_set_sel_command();
+   //   auto psetsel = øallocate plain_text_set_sel_command();
 
    //   psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -7188,7 +7188,7 @@ namespace user
 
    //   MacroRecord(psetsel);
 
-   //   MacroRecord(__allocate plain_text_file_command());
+   //   MacroRecord(øallocate plain_text_file_command());
 
    //   MacroEnd();
 
@@ -7254,7 +7254,7 @@ namespace user
 
       on_before_change_text();
 
-      auto psetsel = __allocate plain_text_set_sel_command();
+      auto psetsel = øallocate plain_text_set_sel_command();
 
       psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -7306,7 +7306,7 @@ namespace user
 
       MacroRecord(psetsel);
 
-      MacroRecord(__allocate plain_text_file_command());
+      MacroRecord(øallocate plain_text_file_command());
 
       MacroEnd();
 
@@ -8056,7 +8056,7 @@ namespace user
 
                      //   on_before_change_text();
 
-                     //   auto psetsel = __allocate plain_text_set_sel_command();
+                     //   auto psetsel = øallocate plain_text_set_sel_command();
 
                      //   psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -8131,7 +8131,7 @@ namespace user
                      //   psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
                      //   MacroBegin();
                      //   MacroRecord(psetsel);
-                     //   MacroRecord(__allocate plain_text_file_command());
+                     //   MacroRecord(øallocate plain_text_file_command());
                      //   MacroEnd();
 
                      //   _001SetSelEnd(m_ptree->m_iSelEnd);
@@ -9207,7 +9207,7 @@ namespace user
             m_ptree->m_peditfile->MacroEnd();
 
             MacroBegin();
-            MacroRecord(__allocate plain_text_file_command());
+            MacroRecord(øallocate plain_text_file_command());
             MacroEnd();
 
          });
@@ -9230,7 +9230,7 @@ namespace user
 
       character_count iAnsiEnd = wd16_to_ansi_len(wstrText, iEnd);
 
-      auto psetsel = __allocate plain_text_set_sel_command();
+      auto psetsel = øallocate plain_text_set_sel_command();
 
       psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -9735,7 +9735,7 @@ namespace user
 
    void plain_edit::MacroBegin()
    {
-      ::pointer<::user::plain_text_group_command>pgroupcommand = __allocate plain_text_group_command();
+      ::pointer<::user::plain_text_group_command>pgroupcommand = øallocate plain_text_group_command();
       pgroupcommand->m_pparent = m_ptree->m_pgroupcommand;
       m_ptree->m_pgroupcommand = pgroupcommand;
    }
@@ -10598,7 +10598,7 @@ namespace user
    ::pointer<::item>plain_edit::on_allocate_item()
    {
 
-      return __allocate plain_text_command();
+      return øallocate plain_text_command();
 
    }
 
@@ -11151,7 +11151,7 @@ namespace user
 
          //straLines.add_lines(strText);
 
-         m_ppropertysetsel = __allocate plain_text_set_sel_command();
+         m_ppropertysetsel = øallocate plain_text_set_sel_command();
 
          m_ppropertysetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -11257,7 +11257,7 @@ namespace user
          m_ptree->m_iSelEnd = i2;
 
          MacroBegin();
-         MacroRecord(__allocate plain_text_file_command());
+         MacroRecord(øallocate plain_text_file_command());
          MacroRecord(m_ppropertysetsel);
          MacroEnd();
 
@@ -11270,7 +11270,7 @@ namespace user
       //m_ptree->m_peditfile->MacroEnd();
 
 
-      //auto psetsel = __allocate plain_text_set_sel_command();
+      //auto psetsel = øallocate plain_text_set_sel_command();
 
       //psetsel->m_iPreviousSelBeg = iSelBegOld;
 
@@ -11467,7 +11467,7 @@ namespace user
 //   if (m_psimpleimm.is_null())
 //   {
 //
-//      m_psimpleimm = __allocate simple_imm(this);
+//      m_psimpleimm = øallocate simple_imm(this);
 //
 //   }
 //

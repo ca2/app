@@ -52,7 +52,7 @@ namespace imaging_freeimage
                for (::collection::index iFrame = 0; iFrame < cFrame; iFrame++)
                {
 
-                  auto pframe = __allocate ::image::image_frame();
+                  auto pframe = øallocate ::image::image_frame();
 
                   pframea->add(pframe);
 

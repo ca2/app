@@ -266,7 +266,7 @@ namespace filemanager
    //   }
 
    //   throw ::exception(todo("core"));
-   //   //auto pdata = __allocate data();
+   //   //auto pdata = øallocate data();
 
    //   //pdata->initialize_filemanager_data(this);
 
@@ -629,7 +629,7 @@ pdirectorysystem->localconfig() / "user.component";
       //if (pcreate == nullptr)
       //{
 
-      //   pcreate = __allocate ::create(papp->handler(), payloadFile, true);
+      //   pcreate = øallocate ::create(papp->handler(), payloadFile, true);
 
       //}
 
@@ -785,7 +785,7 @@ pdirectorysystem->localconfig() / "user.component";
 //   if (pcreate == nullptr)
 //   {
 
-//      pcreate = __allocate ::create(pappOnBehalfOf->handler());
+//      pcreate = øallocate ::create(pappOnBehalfOf->handler());
 
 //   }
 //   else
@@ -916,7 +916,7 @@ pdirectorysystem->localconfig() / "user.component";
 //   if (pcreate.is_null())
 //   {
 
-//      pcreate = __allocate ::create(pappOnBehalfOf->handler());
+//      pcreate = øallocate ::create(pappOnBehalfOf->handler());
 
 //   }
 //   else
@@ -1037,7 +1037,7 @@ pdirectorysystem->localconfig() / "user.component";
 //   if (pfilemanagerdata == nullptr)
 //   {
 
-//      pfilemanagerdata = __allocate ::filemanager::data(this);
+//      pfilemanagerdata = øallocate ::filemanager::data(this);
 
 //   }
 
@@ -1091,7 +1091,7 @@ pdirectorysystem->localconfig() / "user.component";
 //   if (pfilemanagerdata == nullptr)
 //   {
 
-//      pfilemanagerdata = __allocate ::filemanager::data(this);
+//      pfilemanagerdata = øallocate ::filemanager::data(this);
 
 //   }
 
@@ -1149,7 +1149,7 @@ pdirectorysystem->localconfig() / "user.component";
 //   if (pfilemanagerdata == nullptr)
 //   {
 
-//      pfilemanagerdata = __allocate ::filemanager::data(this);
+//      pfilemanagerdata = øallocate ::filemanager::data(this);
 
 //   }
 

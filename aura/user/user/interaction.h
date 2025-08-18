@@ -863,7 +863,7 @@ namespace user
       //void window_move(int x, int y) override;
 
 
-      //auto fps_interest() { return __allocate ::fps_interest(this); }
+      //auto fps_interest() { return øallocate ::fps_interest(this); }
 
       virtual bool should_save_window_rectangle();
       

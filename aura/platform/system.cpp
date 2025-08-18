@@ -2562,11 +2562,11 @@ namespace aura
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
-//         m_spmutexOpenweatherCity = __allocate ::pointer < ::mutex > ();
+//         m_spmutexOpenweatherCity = øallocate ::pointer < ::mutex > ();
 //
 //#else
 //
-//         m_spmutexOpenweatherCity = __allocate ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
+//         m_spmutexOpenweatherCity = øallocate ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
 //
 //#endif
 //
@@ -4269,7 +4269,7 @@ namespace aura
 //         string * pstrNew = ___new string(strUrl);
 //
 //         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-//            ref __allocate< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
+//            ref øallocate< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
 //               {
 //
 //                  ::winrt::Windows::Foundation::Uri ^ uri = ref ___new ::winrt::Windows::Foundation::Uri (*pstrNew);
@@ -4921,7 +4921,7 @@ namespace aura
    //   if (threadgroupa.is_empty())
    //   {
 
-   //      auto pgroup = __allocate ::task_group(this, epriority);
+   //      auto pgroup = øallocate ::task_group(this, epriority);
 
    //      threadgroupa.add(pgroup);
 
@@ -4942,7 +4942,7 @@ namespace aura
    //   if (threadtoola.is_empty())
    //   {
 
-   //      auto ptool = __allocate ::task_tool();
+   //      auto ptool = øallocate ::task_tool();
 
    //      ptool->id() = etool;
 
@@ -5145,7 +5145,7 @@ namespace aura
    //::pointer<::aura::session>system::on_create_session()
    //{
 
-   //   return __allocate ::axis::session();
+   //   return øallocate ::axis::session();
 
    //}
 
@@ -5519,7 +5519,7 @@ namespace aura
   //      m_ppatch = ___new aura::patch ();
   //      g_pszCooperativeLevel = "aura";
   //
-  //      estatus = øconstruct(m_puserset, __allocate ::account::user_set(this));
+  //      estatus = øconstruct(m_puserset, øallocate ::account::user_set(this));
   //
   //      if (!estatus)
   //      {
@@ -5931,7 +5931,7 @@ if(!m_pimaging)
 //   void system::init1()
 //   {
 //
-//      m_pfilehandler = __allocate ::filehandler::handler(this);
+//      m_pfilehandler = øallocate ::filehandler::handler(this);
 //
 //      //if (!::aura::application::init1())
 //      //{
@@ -6044,7 +6044,7 @@ if(!m_pimaging)
 
    //   if(m_phistory == nullptr)
    //   {
-   //      m_phistory = __allocate os_history(this);
+   //      m_phistory = øallocate os_history(this);
    //   }
 
    //   return true;
@@ -6078,7 +6078,7 @@ if(!m_pimaging)
 
    //   //}
 
-   //   //m_pbergedgemap = __allocate ::aura::session::map();
+   //   //m_pbergedgemap = øallocate ::aura::session::map();
 
 
    //   return true;
@@ -6159,7 +6159,7 @@ if(!m_pimaging)
    //::pointer<::aura::session>system::on_create_session()
    //{
 
-   //   return __allocate ::aura::session();
+   //   return øallocate ::aura::session();
 
    //}
 

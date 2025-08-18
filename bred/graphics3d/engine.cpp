@@ -67,7 +67,7 @@ namespace graphics3d
 
       //m_papproach = m_papplication->get_gpu_approach();
 
-      m_pinput = __allocate::graphics3d::input();
+      m_pinput = øallocate::graphics3d::input();
       m_pinput->m_pusergraphics3d = m_pusergraphics3d;
       m_pinput->m_pengine = this;
       m_pinput->m_pkeymap = m_pusergraphics3d->m_pkeymap;
@@ -835,11 +835,11 @@ namespace graphics3d
             //   //return;
 
 
-            //   //m_pinput = __allocate::graphics3d::input();
+            //   //m_pinput = øallocate::graphics3d::input();
 
             //   //m_pinput->m_pimpact = m_pimpact;
 
-            //   //m_pcamera = __allocate::graphics3d::camera(glm::vec3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
+            //   //m_pcamera = øallocate::graphics3d::camera(glm::vec3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
 
             //   ////m_pcamera->m_pimpact
 
@@ -853,7 +853,7 @@ namespace graphics3d
 
             //   //}
 
-            //   //m_prenderer = __allocate::graphics3d_opengl::renderer();
+            //   //m_prenderer = øallocate::graphics3d_opengl::renderer();
 
             //   ////return;
             //   //// Initialize the game logic and scene data
@@ -921,13 +921,13 @@ namespace graphics3d
       //m_prenderer->on_context_resize();
       //m_pglobalpool->initialize_pool(pgpucontext);
 
-      //= __allocate
+      //= øallocate
       //   descriptor_pool::Builder(pgpucontext)
       //   .setMaxSets(swap_chain_render_pass::MAX_FRAMES_IN_FLIGHT)
       //   .addPoolSize(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, swap_chain_render_pass::MAX_FRAMES_IN_FLIGHT)
       //   .build();
 
-      //pgpucontext = __allocate context(m_pvulkandevice);
+      //pgpucontext = øallocate context(m_pvulkandevice);
 
       //          m_prenderer->getRenderPass(),
         //        globalSetLayout->getDescriptorSetLayout()
@@ -993,11 +993,11 @@ namespace graphics3d
       //         //return;
       //
       //
-      //         //m_pinput = __allocate::graphics3d::input();
+      //         //m_pinput = øallocate::graphics3d::input();
       //
       //         //m_pinput->m_pimpact = m_pimpact;
       //
-      //         //m_pcamera = __allocate::graphics3d::camera(glm::vec3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
+      //         //m_pcamera = øallocate::graphics3d::camera(glm::vec3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
       //
       //         ////m_pcamera->m_pimpact
       //
@@ -1011,7 +1011,7 @@ namespace graphics3d
       //
       //         //}
       //
-      //         //m_prenderer = __allocate::graphics3d_opengl::renderer();
+      //         //m_prenderer = øallocate::graphics3d_opengl::renderer();
       //
       //         ////return;
       //         //// Initialize the game logic and scene data

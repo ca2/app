@@ -406,7 +406,7 @@
 //         {
 //            delete[] vmap[::payload];
 //         }
-//         vmap[::payload] = __allocate< char[payload.get_length() + 1 + value.get_length >() + 1];
+//         vmap[::payload] = øallocate< char[payload.get_length() + 1 + value.get_length >() + 1];
 //         sprintf(vmap[::payload], "%s=%s", payload, value);
 //         putenv( vmap[::payload] );
 //      }

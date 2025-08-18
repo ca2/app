@@ -44,7 +44,7 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 //   int nReturnCode = 0;
 //
 //
-//   auto pcommand  = __allocate ::universal_windows::command();
+//   auto pcommand  = øallocate ::universal_windows::command();
 //
 //   //    pcommand->m_hInstance               = nullptr;
 //   //    pcommand->m_hPrevInstance           = nullptr;

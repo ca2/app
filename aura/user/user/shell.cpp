@@ -136,7 +136,7 @@ namespace user
       m_iActiveThreadCount = 0;
       m_iMaxThreadCount = 1;
 
-      m_pevNewImageKey = __allocate manual_reset_happening();
+      m_pevNewImageKey = øallocate manual_reset_happening();
 
       m_pevNewImageKey->m_eflagElement += e_flag_alertable_wait;
 

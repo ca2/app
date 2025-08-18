@@ -357,7 +357,7 @@ namespace colorertak5
    protected:
      int line, pos;
      ::pointer<::xml::node>ocumentElement;
-     Document() : xml::node(xml::node::DOCUMENT_NODE, __allocate< string("#document")), documentElement >(nullptr) {};
+     Document() : xml::node(xml::node::DOCUMENT_NODE, øallocate< string("#document")), documentElement >(nullptr) {};
      friend class DocumentBuilder;
    };
 
@@ -464,7 +464,7 @@ namespace colorertak5
 
      const string *data;
 
-     CharacterData(int type, const string *_data): xml::node(type, __allocate< string("#cdata")), data >(_data) {};
+     CharacterData(int type, const string *_data): xml::node(type, øallocate< string("#cdata")), data >(_data) {};
      ~CharacterData(){ delete data; };
      friend class Document;
    };

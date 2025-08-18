@@ -508,11 +508,11 @@ pmessagebox->sync();
 
    //set_object(get_context_system());
 
-   auto pcreate = __allocate ::create(get_context_system());
+   auto pcreate = øallocate ::create(get_context_system());
 
    pcreate->m_strAppId = strAppId;
 
-   pcreate->m_pcommandline = __allocate command_line(get_context_system(), strCommandLine);
+   pcreate->m_pcommandline = øallocate command_line(get_context_system(), strCommandLine);
 
    //::auraacmesystem()->get_command()->add_create(pcreate);
 
@@ -615,7 +615,7 @@ pdirectorysystem->ca2roaming() / "program";
 //
 //         string strLibrary = ::process::app_id_to_app_name(strAppId);
 //
-//         m_plibrary = __allocate ::acme::library();
+//         m_plibrary = øallocate ::acme::library();
 //
 //         m_plibrary->initialize(get_context_system());
 //
@@ -929,7 +929,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //      aura_main_struct.m_bUser = true;
 //      aura_main_struct.m_bUserEx = true;
 //
-//      auto psystem = __allocate ::aura::system();
+//      auto psystem = øallocate ::aura::system();
 //
 //      psystem->system_construct(argc, argv);
 //
@@ -947,7 +947,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //CLASS_DECL_AURA long aura_prefix(::aura::system * psystem)
 //{
 //
-//   //pmaindata->m_pappcore = __allocate app_core(pmaindata);
+//   //pmaindata->m_pappcore = øallocate app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -971,7 +971,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //CLASS_DECL_AURA long aura_fork(::aura::system * psystem, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication)
 //{
 //
-//   //pmaindata->m_pappcore = __allocate app_core(pmaindata);
+//   //pmaindata->m_pappcore = øallocate app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -1903,7 +1903,7 @@ bool app_core::has_aura_application_factory() const
          else
          {
 
-            //plibrary = __allocate ::acme::library();
+            //plibrary = øallocate ::acme::library();
 
             //plibrary->initialize_aura_library(pparticle, 0, nullptr);
 
@@ -2056,8 +2056,8 @@ bool app_core::has_aura_application_factory() const
    if (!papp->is_serviceable() || papp->is_user_service())
    {
 
-      ::auraacmesystem()->m_spmutexUserAppData = __allocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
-      ::auraacmesystem()->m_spmutexSystemAppData = __allocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
+      ::auraacmesystem()->m_spmutexUserAppData = øallocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
+      ::auraacmesystem()->m_spmutexSystemAppData = øallocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
 
    }
 

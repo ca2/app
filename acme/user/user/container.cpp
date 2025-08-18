@@ -207,7 +207,7 @@ namespace user
          if (!puseritembase)
          {
 
-            puseritembase = __allocate ::simple_item_base < ::item>();
+            puseritembase = øallocate ::simple_item_base < ::item>();
 
          }
 
@@ -325,7 +325,7 @@ namespace user
    //::item_pointer acme_container::add_item(const ::item_t & item)
    //{
 
-   //   auto pitem = __allocate ::item(item);
+   //   auto pitem = øallocate ::item(item);
 
    //   pitem->initialize(this);
 
@@ -737,7 +737,7 @@ namespace user
    ::item_pointer acme_container::on_create_stock_item(enum_element eelement)
    {
 
-      auto pitem = __allocate::item(eelement);
+      auto pitem = øallocate::item(eelement);
 
       tool().add_item(pitem);
 

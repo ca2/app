@@ -366,7 +366,7 @@ menu::~menu()
 //         if (m_pitemClose.is_null())
 //         {
 //
-//            m_pitemClose = __allocate ::menu::item();
+//            m_pitemClose = øallocate ::menu::item();
 //
 //            m_pitemClose->id() = "close_menu";
 //
@@ -502,7 +502,7 @@ menu::~menu()
 //         //}
 //
 //#else
-//         //auto pusersystem = __allocate ::user::system(iStyleEx, nullptr, nullptr, 0, nullptr, pcreate);
+//         //auto pusersystem = øallocate ::user::system(iStyleEx, nullptr, nullptr, 0, nullptr, pcreate);
 //
 //         //if (!create_window_ex(pusersystem, puiParent))
 //         //if (!create_host())
@@ -1010,7 +1010,7 @@ menu::~menu()
 //      ////
 //      ////                           m_pmenuitemSub = pitem;
 //      ////
-//      ////                           m_psubmenu = __allocate menu(pitem);
+//      ////                           m_psubmenu = øallocate menu(pitem);
 //      ////
 //      ////                           m_psubmenu->initialize(this);
 //      ////
@@ -1188,7 +1188,7 @@ menu::~menu()
 //
 //      hide_sub_menu();
 //
-//      m_pmenuSubMenu = __initialize(__allocate ::user::menu(pmenuitem));
+//      m_pmenuSubMenu = __initialize(øallocate ::user::menu(pmenuitem));
 //
 //      ::int_rectangle rectangle;
 //
@@ -1340,7 +1340,7 @@ menu::~menu()
 //
 //            //   m_atomSubMenu = m_atomTimerMenu;
 //
-//            //   m_psubmenu = __allocate menu(pmenuitema->find(m_atomTimerMenu));
+//            //   m_psubmenu = øallocate menu(pmenuitema->find(m_atomTimerMenu));
 //
 //            //   m_psubmenu->initialize(this);
 //

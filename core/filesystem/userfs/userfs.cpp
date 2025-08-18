@@ -78,7 +78,7 @@ namespace core
    //::pointer<::userfs::userfs>user::create_userfs()
    //{
 
-   //  auto puserfs  = __allocate ::userfs::userfs(this);
+   //  auto puserfs  = øallocate ::userfs::userfs(this);
 
    //  return puserfs;
 

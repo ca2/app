@@ -1081,7 +1081,7 @@ auto tick2 = ::time::now();
       // find table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
       // of the input data
-      //int* const vmin = __allocate< int[maximum >(w,h)];
+      //int* const vmin = øallocate< int[maximum >(w,h)];
 
       // calculate divisor for pulling an output from the kernel
       //   the kernel is pyramid shaped.

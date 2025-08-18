@@ -1969,7 +1969,7 @@ memsize memory_base::length() const
 ::subparticle_pointer memory_base::clone()
 {
 
-   auto pmemory = __allocate ::memory ();
+   auto pmemory = øallocate ::memory ();
 
    pmemory->copy_from(this);
 
@@ -2339,7 +2339,7 @@ namespace acme
 //   if (memcontainer.get_memory() == nullptr)
 //   {
 //
-//      memcontainer.set_memory(__allocate memory(&memcontainer));
+//      memcontainer.set_memory(øallocate memory(&memcontainer));
 //
 //   }
 //
@@ -2357,7 +2357,7 @@ namespace acme
 //   if (memcontainer.get_memory() == nullptr)
 //   {
 //
-//      memcontainer.set_memory(__allocate memory(&memcontainer));
+//      memcontainer.set_memory(øallocate memory(&memcontainer));
 //
 //   }
 //

@@ -50,7 +50,7 @@
 //         if (t_preferencea.operator pointer_array<object> * () == nullptr)
 //         {
 //
-//            t_preferencea = __allocate pointer_array < ::object > ();
+//            t_preferencea = øallocate pointer_array < ::object > ();
 //
 //         }
 //
@@ -96,7 +96,7 @@
 ////{
 ////public:
 ////
-////   inline operator T *() { if (get() == nullptr) { set(__allocate< T()); } return (T *)get >(); }
+////   inline operator T *() { if (get() == nullptr) { set(øallocate< T()); } return (T *)get >(); }
 ////   inline T * operator ->() { return operator T *(); }
 ////
 ////};

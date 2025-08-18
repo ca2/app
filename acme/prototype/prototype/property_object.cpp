@@ -191,7 +191,7 @@ CLASS_DECL_ACME void debug_debug_reference()
 //   if (!m_ptraits)
 //   {
 //
-//      m_ptraits = __allocate traits();
+//      m_ptraits = øallocate traits();
 //
 //   }
 //
@@ -581,7 +581,7 @@ void property_object::write_configuration_to_ini(const ::payload & payloadFile)
 //   if (!parray)
 //   {
 //
-//      parray = __allocate pointer_array < ::property_set > ();
+//      parray = øallocate pointer_array < ::property_set > ();
 //
 //      *pproperty = parray;
 //

@@ -712,7 +712,7 @@ void draw2d::emboss_predicate(
       else
       {
 
-         filter = __allocate memory();
+         filter = øallocate memory();
 
          filter->set_size(iFilterArea);
 
@@ -1027,7 +1027,7 @@ void draw2d::emboss_predicate(
       }
       else
       {
-         filter = __allocate memory();
+         filter = øallocate memory();
          filter->set_size(iFilterArea);
          pFilter = filter->begin();
          for (y = 0; y < iFilterH; y++)

@@ -1810,7 +1810,7 @@ namespace user
 
    //   arguments.insert_at(0, this);
 
-   //   auto pdescriptor = __allocate control_descriptor(arguments);
+   //   auto pdescriptor = øallocate control_descriptor(arguments);
 
    //   //if (::is_null(pdescriptor->m_puserinteractionParent))
    //   //{
@@ -1830,7 +1830,7 @@ namespace user
 
    //   }
 
-   //   //auto pdescriptor = __allocate control_descriptor();
+   //   //auto pdescriptor = øallocate control_descriptor();
 
 
    //   //pdescriptor->id() = atom;
@@ -2774,7 +2774,7 @@ namespace user
 
          //auto rectangleRequest = this->screen_rectangle(::user::e_layout_sketch);
 
-         //auto pusersystem = __allocate ::user::system();
+         //auto pusersystem = øallocate ::user::system();
 
          //pusersystem->add_visible(is_visible(layout().sketch().display()));
 
@@ -4726,7 +4726,7 @@ namespace user
 
             //_synchronous_lock synchronouslock(puserinteractionParent->synchronization());
 
-            //auto puserinteractionpointeraChild = __allocate(
+            //auto puserinteractionpointeraChild = øallocate(
             //   ::user::interaction_array(*puserinteractionParent->m_puserinteractionpointeraChild));
 
             //if (puserinteractionParent->m_bUserElementOk)
@@ -5281,7 +5281,7 @@ namespace user
 
          //      hostToClient(rectangleNeedRedraw);
 
-         //      auto prectangle = __allocate ::draw2d::clip_rectangle();
+         //      auto prectangle = øallocate ::draw2d::clip_rectangle();
 
          //      prectangle->m_item = rectangleNeedRedraw;
 
@@ -6955,7 +6955,7 @@ namespace user
 
       __check_refdbg
 
-         m_pgraphicscalla->add(__allocate::draw2d::graphics_call(function));
+         m_pgraphicscalla->add(øallocate::draw2d::graphics_call(function));
 
       __check_refdbg
 
@@ -7688,7 +7688,7 @@ if(get_parent())
 
          ødefer_construct_new(m_pusersystem);
 
-         m_pusersystem->add(__allocate::graphics::output_purpose(pparticle, epurpose));
+         m_pusersystem->add(øallocate::graphics::output_purpose(pparticle, epurpose));
 
          return;
 
@@ -8201,7 +8201,7 @@ if(get_parent())
 
       //__matter_send_procedure(this, this, &interaction::interaction_post, procedure);
 
-      auto phappening = __allocate manual_reset_happening();
+      auto phappening = øallocate manual_reset_happening();
 
       host_post([procedure, phappening]
                 {
@@ -8253,7 +8253,7 @@ if(get_parent())
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      //m_pitemClient = __allocate ::item(e_element_client);
+      //m_pitemClient = øallocate ::item(e_element_client);
 
       if (m_bEnableDragClient || m_bDefaultClickHandling)
       {
@@ -10075,7 +10075,7 @@ if(get_parent())
 
       auto a = emessage;
 
-      auto pLresult = __allocate particle_primitive < ::lresult >();
+      auto pLresult = øallocate particle_primitive < ::lresult >();
 
       pLresult->m_t = 0;
 
@@ -13870,7 +13870,7 @@ if(get_parent())
 
       //auto preferenceitemaA1 = m_pacmeuserinteractionaChildren->m_preferenceitema;
 
-      auto puiptraChildNew = __allocate ::pointer_array < ::acme::user::interaction >(*m_pacmeuserinteractionaChildren);
+      auto puiptraChildNew = øallocate ::pointer_array < ::acme::user::interaction >(*m_pacmeuserinteractionaChildren);
 
       //auto preferenceitemaA2 = m_pacmeuserinteractionaChildren->m_preferenceitema;
 
@@ -16377,7 +16377,7 @@ if(get_parent())
 
       // }
 
-      // this->interaction_post(__allocate call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
+      // this->interaction_post(øallocate call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
 
       //auto pmessage
 
@@ -16408,7 +16408,7 @@ if(get_parent())
 
       // }
 
-      // this->interaction_post(__allocate call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
+      // this->interaction_post(øallocate call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
 
       //auto pmessage
 
@@ -18156,7 +18156,7 @@ if(get_parent())
 
 
             _synchronous_lock synchronouslock(m_puserinteractionParent->window()->m_pparticleChildrenSynchronization);
-            //auto puiptraChildNew = __allocate(
+            //auto puiptraChildNew = øallocate(
 //                    ::user::interaction_array(*m_puserinteractionParent->m_puserinteractionpointeraChild));
             m_puserinteractionParent->m_pacmeuserinteractionaChildren->erase(this);
             //m_puserinteractionParent->m_puserinteractionpointeraChild = puiptraChildNew;
@@ -18236,7 +18236,7 @@ if(get_parent())
       // if (::is_set(m_puserinteractionpointeraChild))
       // {
 
-      //    puserinteractionpointeraChildNew = __allocate ::user::interaction_array(*m_puserinteractionpointeraChild);
+      //    puserinteractionpointeraChildNew = øallocate ::user::interaction_array(*m_puserinteractionpointeraChild);
 
       // }
       // else
@@ -22311,7 +22311,7 @@ if(get_parent())
             catch (...)
             {
 
-               pexception = __allocate::exception(::error_catch_all_exception, "Failed to create window");
+               pexception = øallocate::exception(::error_catch_all_exception, "Failed to create window");
 
             }
 
@@ -23868,7 +23868,7 @@ if(get_parent())
       //      if (m_ptooltip.is_null())
       //      {
       //
-      //         m_ptooltip = __allocate tooltip(this);
+      //         m_ptooltip = øallocate tooltip(this);
       //
       //
       //         m_ptooltip->create_window_ex(pusersystem);
@@ -24306,7 +24306,7 @@ if(get_parent())
 
    //               m_bMouseHover = true;
 
-   //               auto pmouse = __allocate message::mouse();
+   //               auto pmouse = øallocate message::mouse();
 
    //               pmouse->m_eflagMessage += ::message::flag_synthesized;
 
@@ -27618,7 +27618,7 @@ __check_refdbg;
 
       }
 
-      auto pcontextmenu = __allocate::message::context_menu();
+      auto pcontextmenu = øallocate::message::context_menu();
 
       pcontextmenu->m_oswindow = oswindow();
       pcontextmenu->m_pwindow = window();

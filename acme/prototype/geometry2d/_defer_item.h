@@ -45,7 +45,7 @@ namespace geometry2d
       ::subparticle_pointer clone() override
       {
 
-         auto pitem = __allocate item_type();
+         auto pitem = øallocate item_type();
 
          pitem->m_item = m_item;
 

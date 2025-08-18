@@ -2696,7 +2696,7 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 //   if (m_pstartup.is_null())
 //   {
 //
-//      m_pstartup = __allocate thread_startup();
+//      m_pstartup = øallocate thread_startup();
 //
 //   }
 //
@@ -3411,7 +3411,7 @@ void thread::send_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
 
    //}
 
-   auto pmessage = __allocate ::send_thread_message(this);
+   auto pmessage = øallocate ::send_thread_message(this);
 
    pmessage->m_message.m_emessage = emessage;
 
@@ -4404,7 +4404,7 @@ bool thread::initialize_message_queue()
    //if(m_spuiptra.is_null())
    //{
 
-   //   m_spuiptra = __allocate ref_array < ::user::interaction_base > ();
+   //   m_spuiptra = øallocate ref_array < ::user::interaction_base > ();
 
    //}
 
@@ -5115,7 +5115,7 @@ thread::file_info* thread::get_file_info()
 
    }
 
-   m_pfileinfo = __allocate file_info();
+   m_pfileinfo = øallocate file_info();
 
    return m_pfileinfo;
 

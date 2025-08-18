@@ -303,7 +303,7 @@ string object::as_string() const
 ::extended_topic_pointer object::create_extended_topic(const ::atom & atom)
 {
 
-   auto pextendedtopic = __allocate ::extended_topic(atom);
+   auto pextendedtopic = øallocate ::extended_topic(atom);
 
    pextendedtopic->initialize(this);
 
@@ -2166,7 +2166,7 @@ void object::sleep(const class time & time)
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = __allocate manual_reset_happening();
+            ptask->m_pevSleep = øallocate manual_reset_happening();
 
             ptask->m_pevSleep->reset_happening();
 
@@ -2486,7 +2486,7 @@ void object::_001OnUpdate(::message::message* pmessage)
 //::pointer<::handle::ini>object::appini()
 //{
 //
-//   return __allocate ::handle::ini (         auto psystem = system();
+//   return øallocate ::handle::ini (         auto psystem = system();
 
 //         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
@@ -2528,9 +2528,9 @@ struct context_object_test_struct :
 //void debug_context_object(::object* pparticle)
 //{
 //
-//   auto p1 = __allocate struct context_object_test_struct (pparticle);
+//   auto p1 = øallocate struct context_object_test_struct (pparticle);
 //
-//   auto p2 = __allocate struct context_object_test_struct (pparticle);
+//   auto p2 = øallocate struct context_object_test_struct (pparticle);
 //
 //   p2 = p1;
 //
@@ -3873,7 +3873,7 @@ bool object::IsSerializable() const
 //   }
 //
 //
-//    //ptask = __allocate predicate_task < PRED > (pparticle, pred);
+//    //ptask = øallocate predicate_task < PRED > (pparticle, pred);
 ////
 ////   ptask->branch();
 ////

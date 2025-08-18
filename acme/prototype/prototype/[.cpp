@@ -6819,7 +6819,7 @@ void payload::null()
    else
    {
 
-      auto ppath = __allocate< ::file::path_object(get_file_path >());
+      auto ppath = øallocate< ::file::path_object(get_file_path >());
 
       *ppath |= eflag;
 

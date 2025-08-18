@@ -10479,11 +10479,11 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy,
 http://www.sparkhound.com/blog/detect-image-file-types-through-unsigned char-arrays
 ::payload bmp = Encoding.ASCII.GetBytes("BM"); // BMP
 ::payload gif = Encoding.ASCII.GetBytes("GIF"); // GIF
-::payload png = __allocate_array< unsigned char >(){ 137, 80, 78, 71 }; // PNG
-::payload tiff = __allocate_array< unsigned char >(){ 73, 73, 42 }; // TIFF
-::payload tiff2 = __allocate_array< unsigned char >(){ 77, 80, 42 }; // TIFF
-::payload jpeg = __allocate_array< unsigned char >(){ 255, 216, 255, 224 }; // jpeg
-::payload jpeg2 = __allocate_array< unsigned char >(){ 255, 216, 255, 225 }; // jpeg canon
+::payload png = øallocate_array< unsigned char >(){ 137, 80, 78, 71 }; // PNG
+::payload tiff = øallocate_array< unsigned char >(){ 73, 73, 42 }; // TIFF
+::payload tiff2 = øallocate_array< unsigned char >(){ 77, 80, 42 }; // TIFF
+::payload jpeg = øallocate_array< unsigned char >(){ 255, 216, 255, 224 }; // jpeg
+::payload jpeg2 = øallocate_array< unsigned char >(){ 255, 216, 255, 225 }; // jpeg canon
 */
 
 

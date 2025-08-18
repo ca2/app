@@ -377,7 +377,7 @@ namespace user
 
    //   m_pfont->create_point_font(pnode->font_name(e_font_sans), 10.0);
 
-   //   auto pusersystem = __allocate ::user::system();
+   //   auto pusersystem = øallocate ::user::system();
 
    //   return create_window_ex(pusersystem, nullptr, atom) != 0;
 

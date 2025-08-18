@@ -841,7 +841,7 @@ namespace windowing
       //catch (...)
       //{
 
-      //   pexception = __allocate::exception(error_catch_all_exception);
+      //   pexception = øallocate::exception(error_catch_all_exception);
 
       //}
 
@@ -4119,7 +4119,7 @@ namespace windowing
          else
          {
 
-            pusersystem = __allocate::user::system();
+            pusersystem = øallocate::user::system();
 
          }
 
@@ -4325,7 +4325,7 @@ namespace windowing
       else
       {
 
-         pusersystem = __allocate::user::system();
+         pusersystem = øallocate::user::system();
 
       }
 
@@ -4514,7 +4514,7 @@ namespace windowing
    //       //                      pusersystem->m_createstruct.cx(),
    //       //                      pusersystem->m_createstruct.cy()));
    //
-   //       //auto psynca = __allocate synchronization_array();
+   //       //auto psynca = øallocate synchronization_array();
    //
    //       //::pointer<manual_reset_happening>phappeningStartedUser;
    //
@@ -4542,7 +4542,7 @@ namespace windowing
    //
    //          m_puserthread = m_puserthread;
    //
-   //          //phappeningStartedUser = __allocate manual_reset_happening();
+   //          //phappeningStartedUser = øallocate manual_reset_happening();
    //
    //          //m_puserthread->m_phappeningStarted = phappeningStartedUser;
    //
@@ -4790,7 +4790,7 @@ namespace windowing
 //      //ASSERT(puiParent != nullptr);
 //      //ASSERT((uStyle & WS_POPUP) == 0);
 //
-//      //auto pusersystem = __allocate ::user::system();
+//      //auto pusersystem = øallocate ::user::system();
 //
 //      //pusersystem->m_createstruct.dwExStyle = 0;
 //
@@ -5167,7 +5167,7 @@ namespace windowing
 
       }
 
-      auto poutputpurpose = __allocate::graphics::output_purpose(pparticleGraphicalOutputPurposeOriginator, epurpose);
+      auto poutputpurpose = øallocate::graphics::output_purpose(pparticleGraphicalOutputPurposeOriginator, epurpose);
 
       bool bHadGraphicalOutputPurpose = user_interaction()->has_graphical_output_purpose();
 
@@ -8942,7 +8942,7 @@ namespace windowing
       if (::is_null(user_interaction()->m_pinteractionScaler))
       {
 
-         user_interaction()->m_pinteractionScaler = __allocate::user::interaction_scaler();
+         user_interaction()->m_pinteractionScaler = øallocate::user::interaction_scaler();
 
       }
 
@@ -15377,7 +15377,7 @@ namespace windowing
 
       // }
 
-      // user_interaction()->interaction_post(__allocate call_message_handler_task(user_interaction(), emessage, wparam, lparam));
+      // user_interaction()->interaction_post(øallocate call_message_handler_task(user_interaction(), emessage, wparam, lparam));
 
       //auto pmessage
 
@@ -15856,7 +15856,7 @@ namespace windowing
 
       // }
 
-      // user_interaction()->interaction_post(__allocate call_message_handler_task(user_interaction(), emessage, wparam, lparam));
+      // user_interaction()->interaction_post(øallocate call_message_handler_task(user_interaction(), emessage, wparam, lparam));
 
       //auto pmessage
 

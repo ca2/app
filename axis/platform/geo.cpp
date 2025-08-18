@@ -128,7 +128,7 @@ namespace geo
 
             DEBUGF_LINE("abcxxx3");
 
-            auto pfile = __allocate memory_file(memory);
+            auto pfile = øallocate memory_file(memory);
 
             DEBUGF_LINE("abcxxx4");
 

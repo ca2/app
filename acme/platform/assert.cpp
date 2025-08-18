@@ -102,7 +102,7 @@ namespace acme
 ////void message_box_synchronous(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::future & future)
 ////{
 ////
-////   auto posmessagebox = __allocate ::acme::auto pmessagebox = __initialize_new ::message_box(scopedstrText, pszTitle, emessagebox);
+////   auto posmessagebox = øallocate ::acme::auto pmessagebox = __initialize_new ::message_box(scopedstrText, pszTitle, emessagebox);
 
 //pmessagebox->sync();
 ////

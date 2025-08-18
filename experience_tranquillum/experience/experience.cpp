@@ -90,43 +90,43 @@ namespace experience_tranquillum
       if(strSchema == "001")
       {
 
-         return  __allocate frame_001();
+         return  øallocate frame_001();
 
       }
       else if(strSchema == "002")
       {
 
-         return  __allocate frame_002();
+         return  øallocate frame_002();
 
       }
       else if(strSchema == "005")
       {
 
-         return  __allocate frame_005();
+         return  øallocate frame_005();
 
       }
       else if(strSchema == "008")
       {
 
-         return  __allocate frame_008();
+         return  øallocate frame_008();
 
       }
       else if(strSchema == "011")
       {
 
-         return  __allocate frame_011();
+         return  øallocate frame_011();
 
       }
       else if(strSchema == "022")
       {
 
-         return  __allocate frame_022();
+         return  øallocate frame_022();
 
       }
       else if(strSchema == "Minimal001")
       {
 
-         return  __allocate frame_Minimal001();
+         return  øallocate frame_Minimal001();
 
       }
 

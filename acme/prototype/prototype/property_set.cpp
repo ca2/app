@@ -2113,7 +2113,7 @@ string & property_set_base::get_network_arguments(string & strNetworkArguments) 
 //   if (::is_null(pFind))
 //   {
 //
-//      auto pproperty = __allocate property(nullptr);
+//      auto pproperty = øallocate property(nullptr);
 //
 //      this->add(pproperty);
 //
@@ -2700,7 +2700,7 @@ property & property_set_base::property(const ::atom_array_base & atoma)
 //   while (i >= this->size())
 //   {
 //
-//      auto pproperty = __allocate< property(::as_string(this->size >()));
+//      auto pproperty = øallocate< property(::as_string(this->size >()));
 //
 //      add_item(pproperty);
 //

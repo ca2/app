@@ -915,7 +915,7 @@ using enum_application_capability_array = ::comparable_array < enum_application_
 ////::matter_pointer __handle_function(PREDICATE predicate)
 ////{
 ////
-////   return __allocate han<PREDICATE> (predicate);
+////   return øallocate han<PREDICATE> (predicate);
 ////
 ////}
 
@@ -959,14 +959,14 @@ using dereference = typename dereference_struct < T >::type;
 
 //
 //template < typename T, typename ...Args >
-//inline T * __call__allocate(Args &&... args);
+//inline T * __calløallocate(Args &&... args);
 //
 //template < typename T >
 //inline void __call__delete(T * p);
 //
 //
 //template < typename T >
-//inline T * __allocate_array(::collection::count c);
+//inline T * øallocate_array(::collection::count c);
 
 
 //#if REFERENCING_DEBUGGING
@@ -1101,7 +1101,7 @@ inline ::pointer<T> pointer_transfer(T *p);
 
 
 template<typename T, typename... Args>
-inline ::pointer<T> __call__allocate(Args &&...args);
+inline ::pointer<T> __calløallocate(Args &&...args);
 
 
 using manager_pointer = ::pointer<manager>;

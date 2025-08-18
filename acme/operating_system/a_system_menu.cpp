@@ -64,7 +64,7 @@ namespace operating_system
    void a_system_menu::add_item(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAtom)
    {
 
-      ::pointer_array < a_system_menu_item >::add_item(__allocate a_system_menu_item(scopedstrName, scopedstrAtom));
+      ::pointer_array < a_system_menu_item >::add_item(øallocate a_system_menu_item(scopedstrName, scopedstrAtom));
 
    }
 

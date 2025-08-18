@@ -579,7 +579,7 @@ namespace acme
 
          }
 
-         auto ptopic = __allocate ::topic(id_application_dark_mode_change);
+         auto ptopic = øallocate ::topic(id_application_dark_mode_change);
 
          for (auto& pwindow: m_windowa)
          {

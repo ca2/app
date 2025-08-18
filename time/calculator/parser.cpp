@@ -69,7 +69,7 @@ namespace datetime
    element * parser::new_node()
    {
 
-      auto pelement = __allocate ::datetime::element();
+      auto pelement = øallocate ::datetime::element();
       
       m_elementa.add(pelement);
 

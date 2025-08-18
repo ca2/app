@@ -2852,7 +2852,7 @@ bool base_socket::SetSoKeepalive(bool x)
          for (; i < n && LineProtocol(); i++)
          {
             auto pNextLine = strpbrk(buf + i, "\r\n");
-            if (pNextLine) i = pNextLine - buf;
+            if (pNextLine) i = (int)(pNextLine - buf);
             while ((buf[i] == 13 || buf[i] == 10) && LineProtocol())
             {
                char c = buf[i];

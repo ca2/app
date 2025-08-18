@@ -36,9 +36,9 @@ CLASS_DECL_ACME void __what__(int i);
 //#ifdef   _STDIO_H_
 //#error "already included?!?! WHAT?!?! (After including acme/prototype/string/string_base.h(C))"_ansi
 //#endif
-#if defined(__STD_FORMAT)
+//#if defined(__STD_FORMAT)
 #include <format>
-#endif
+//#endif
 //#ifdef   _STDIO_H_
 //#error "already included?!?! WHAT?!?! (After including <format>)"_ansi
 //#endif
@@ -2060,7 +2060,9 @@ public:
    string_base & format(const ::std::format_string<Ts...> fmt, Ts&&... args)
    {
 
-      return operator=(std::format(fmt, std::forward<Ts>(args)...));
+      auto s = std::format(fmt, std::forward<Ts>(args)...);
+
+      return this->assign(s.c_str(), s.size());
 
    }
 
@@ -2555,14 +2557,16 @@ using a_string_function = ::function < ::string(void) >;
 //    }
 // };
 
-//template < >
-//struct std::formatter<::string > :
-//   public ::std::formatter< ::std::string_view >
-//{
-//   auto format(const ::string & str, std::format_context& ctx) const {
-//      return ::std::formatter<::std::string_view>::format(::std::string_view{ str.begin(), str.end() }, ctx);
-//   }
-//};
+template < >
+struct std::formatter<::string > :
+   public ::std::formatter< ::std::string_view >
+{
+   auto format(const ::string & str, std::format_context& ctx) const 
+   {
+      return ::std::formatter<::std::string_view>::format(
+         ::std::string_view{ str.begin(), str.end() }, ctx);
+   }
+};
 
 
 template<typename ...Args>

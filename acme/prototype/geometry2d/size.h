@@ -42,7 +42,7 @@ public:
    size_type(C c)
    {
    
-      this->set_all(c);
+      this->set_all((NUMBER)c);
       
    }
 

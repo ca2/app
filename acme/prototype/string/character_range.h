@@ -54,17 +54,37 @@ public:
 
 
 
+//
+//template <typename ITERATOR_TYPE>
+//struct std::formatter<character_range<ITERATOR_TYPE>> : std::formatter<std::string_view>
+//{
+//   template <typename FormatContext>
+//   auto format(const character_range<ITERATOR_TYPE>& s, FormatContext& ctx) const
+//   {
+//      return std::formatter<std::string_view>::format(
+//         std::string_view(s.begin(), s.size()), ctx);
+//   }
+//};
+//
+//
+//
 
-template <typename ITERATOR_TYPE>
-struct std::formatter<character_range<ITERATOR_TYPE>> : std::formatter<std::string_view>
-{
+
+// Formatter for MyString<CharT>
+template <typename CharT>
+struct std::formatter<::range<CharT>, CharT> {
+   // Reuse the existing string_view formatter
+   std::formatter<std::basic_string_view<CharT>, CharT> formatter;
+
+   constexpr auto parse(std::basic_format_parse_context<CharT>& ctx) {
+      // Delegate parsing to string_view's formatter
+      return formatter.parse(ctx);
+   }
+
    template <typename FormatContext>
-   auto format(const character_range<ITERATOR_TYPE>& s, FormatContext& ctx) const
-   {
-      return std::formatter<std::string_view>::format(
-         std::string_view(s.begin(), s.size()), ctx);
+   auto format(const range<CharT>& s, FormatContext& ctx) {
+      // Wrap in string_view and forward
+      return formatter.format(
+         std::basic_string_view<CharT>(s.data(), s.size()), ctx);
    }
 };
-
-
-

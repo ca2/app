@@ -879,3 +879,14 @@ inline bool EqualElements(const ::scoped_string_base < const wchar_t * >& elemen
 }
 
 
+template < >
+struct std::formatter<::scoped_string > :
+   public ::std::formatter< ::std::string_view >
+{
+   auto format(const ::scoped_string& scopedstr, std::format_context& ctx) const {
+      return ::std::formatter<::std::string_view>::format(::std::string_view{ scopedstr.begin(), scopedstr.end() }, ctx);
+   }
+};
+
+
+

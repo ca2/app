@@ -2053,6 +2053,9 @@ public:
    
 //#if defined(__STD_FORMAT__)
 
+
+
+
    template<typename... Ts>
    string_base & format(const ::std::format_string<Ts...> fmt, Ts&&... args)
    {
@@ -2524,9 +2527,8 @@ using a_string_function = ::function < ::string(void) >;
 //#include <format>
 
 
-
 //template <> 
-//struct std::formatter<::string> :
+//struct std::formatter<::string > :
 //   public std::formatter<std::string>
 //{
 //
@@ -2534,13 +2536,13 @@ using a_string_function = ::function < ::string(void) >;
 //   auto format(const ::string& s, Context& ctx) const
 //   {
 //
-//      return std::formatter<string>::format(std::format("{}"_ansi, s.c_str()), ctx);
+//      return std::formatter<string>::format(std::format("{}", s.c_str()), ctx);
 //   }
-//
+
 //};
 
 
-#if defined(__STD_FORMAT__)
+//#if defined(__STD_FORMAT__)
 
 // Simple specialization for strings in the Ca2 framework.
 // This just uses ::string::c_str() to format.
@@ -2553,14 +2555,14 @@ using a_string_function = ::function < ::string(void) >;
 //    }
 // };
 
-template < >
-struct std::formatter<::string > :
-   public ::std::formatter< ::std::string_view >
-{
-   auto format(const ::scoped_string & scopedstr, std::format_context& ctx) const {
-      return ::std::formatter<::std::string_view>::format(::std::string_view{ str.begin(), str.end() }, ctx);
-   }
-};
+//template < >
+//struct std::formatter<::string > :
+//   public ::std::formatter< ::std::string_view >
+//{
+//   auto format(const ::string & str, std::format_context& ctx) const {
+//      return ::std::formatter<::std::string_view>::format(::std::string_view{ str.begin(), str.end() }, ctx);
+//   }
+//};
 
 
 template<typename ...Args>
@@ -2573,7 +2575,7 @@ format(const std::format_string<Args...> fmt, Args&&... args) noexcept
 }
 
 
-#endif
+//#endif
 
 
 [[nodiscard]] inline ::string formatf(const_char_pointer pszFormat, ...) noexcept
@@ -2841,15 +2843,15 @@ template < primitive_character_range RANGE, typed_character_pointer < typename R
 
 }
 
-
-// variadic formatting function
-template <typename... Args>
-::string format(::std::string_view fmt, Args&&... args)
-{
-   
-   auto s = std::vformat(fmt, std::make_format_args(args...));
-
-   return ::string(s.c_str(),s.size());
-
-}
-
+//
+//// variadic formatting function
+//template <typename... Args>
+//::string format(::std::string_view fmt, Args&&... args)
+//{
+//   
+//   auto s = std::vformat(fmt, std::make_format_args(args...));
+//
+//   return ::string(s.c_str(),s.size());
+//
+//}
+//

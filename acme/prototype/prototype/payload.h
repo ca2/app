@@ -982,8 +982,8 @@ payload & assign_## NUMBER_NAME (NUMBER_TYPE NUMBER_SHORT_NAME) { return __assig
    payload & assign_pu16   (unsigned short * pu)   { return __assign_primitive_pointer(m_push   , e_type_punsigned_short  , pu); }
    payload & assign_pi32   (int * pi)   { return __assign_primitive_pointer(m_pi   , e_type_pint  , pi); }
    payload & assign_pu32   (unsigned int * pu)   { return __assign_primitive_pointer(m_pui   , e_type_punsigned_int  , pu); }
-   payload & assign_pi64   (long long * pi)   { return __assign_primitive_pointer(m_phi   , e_type_plong_long  , pi); }
-   payload & assign_pu64   (unsigned long long * pu)   { return __assign_primitive_pointer(m_phn   , e_type_punsigned_long_long  , pu); }
+   payload & assign_pi64   (long long * pi)   { return __assign_primitive_pointer(m_pll   , e_type_plong_long  , pi); }
+   payload & assign_pu64   (unsigned long long * pu)   { return __assign_primitive_pointer(m_pull   , e_type_punsigned_long_long  , pu); }
    payload & assign_pf32   (float * pf)   { return __assign_primitive_pointer(m_pf   , e_type_pfloat  , pf); }
    payload & assign_pf64   (double * pf)   { return __assign_primitive_pointer(m_pd   , e_type_pdouble  , pf); }
 
@@ -1039,13 +1039,13 @@ protected:
       else if(get_type() == e_type_punsigned_long_long)
       {
 
-         *m_phn = (unsigned long long) primitive;
+         *m_pull = (unsigned long long) primitive;
 
       }
       else if(get_type() == e_type_plong_long)
       {
 
-         *m_phi = (long long) primitive;
+         *m_pll = (long long) primitive;
 
       }
       else if(get_type() == e_type_pfloat)

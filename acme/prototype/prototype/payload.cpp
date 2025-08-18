@@ -5256,7 +5256,7 @@ long_long_array_base payload::as_long_long_array() const
             for (::collection::index i = 0; i < c; i++)
             {
 
-               floata.add(at(i).as_int());
+               floata.add(at(i).as_float());
 
             }
 

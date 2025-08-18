@@ -803,3 +803,17 @@ template < primitive_character CHARACTER >
 
 
 
+
+
+template < >
+struct std::formatter<::file::path > :
+   public ::std::formatter< ::std::string_view >
+{
+   auto format(const ::file::path& path, std::format_context& ctx) const
+   {
+      return ::std::formatter<::std::string_view>::format(
+         ::std::string_view{ path.begin(), path.end() }, ctx);
+   }
+};
+
+

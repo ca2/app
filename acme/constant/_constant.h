@@ -247,6 +247,8 @@ enum enum_type
    e_type_long_long_array,
    e_type_memory,
    e_type_path,
+   e_type_float_array,
+   e_type_double_array,
    e_type_last_element,
 
    // enum

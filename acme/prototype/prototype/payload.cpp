@@ -420,6 +420,26 @@ payload::payload(const ::int_array_base & ia) :
 
 }
 
+payload::payload(const ::long_long_array_base& longlonga) :
+   m_etype(e_type_long_long_array),
+   m_plonglonga(__new__prefix(&m_preferer) new ::long_long_array(longlonga))
+{
+
+}
+
+payload::payload(const ::float_array_base& floata) :
+   m_etype(e_type_float_array),
+   m_pfloata(__new__prefix(&m_preferer) new ::float_array(floata))
+{
+
+}
+
+payload::payload(const ::double_array_base& doublea) :
+   m_etype(e_type_double_array),
+   m_pdoublea(__new__prefix(&m_preferer) new ::double_array(doublea))
+{
+
+}
 
 payload::payload(const payload_array & payloada) :
    m_etype(e_type_payload_array),
@@ -694,6 +714,9 @@ class ::payload & payload::operator ++(int)
    case e_type_null:
    case e_type_string_array:
    case e_type_int_array:
+   case e_type_long_long_array:
+   case e_type_float_array:
+   case e_type_double_array:
    case e_type_empty:
    case e_type_element:
    case e_type_path:
@@ -1564,6 +1587,9 @@ void payload::payload_increment_reference_count()
       case e_type_int_array:
          if (m_pia) m_pia->increment_reference_count();
          break;
+      case e_type_float_array:
+         if (m_pfloata) m_pfloata->increment_reference_count();
+         break;
       case e_type_payload_array:
          if (m_ppayloada) m_ppayloada->increment_reference_count();
          break;
@@ -1571,7 +1597,10 @@ void payload::payload_increment_reference_count()
          if (m_ppropertyset) m_ppropertyset->increment_reference_count();
          break;
       case e_type_long_long_array:
-         if (m_p) m_p->increment_reference_count();
+         if (m_plonglonga) m_plonglonga->increment_reference_count();
+         break;
+      case e_type_double_array:
+         if (m_pdoublea) m_pdoublea->increment_reference_count();
          break;
       case e_type_memory:
          if (m_pmemory) m_pmemory->increment_reference_count();
@@ -1659,6 +1688,18 @@ class ::payload & payload::operator = (const class ::payload & payload)
       {
 
          m_plonglonga = __new__prefix(&m_preferer) new ::long_long_array(*payload.m_plonglonga);
+
+      }
+      else if (etypeSource == e_type_float_array)
+      {
+
+         m_pfloata = __new__prefix(&m_preferer) new ::float_array(*payload.m_pfloata);
+
+      }
+      else if (etypeSource == e_type_double_array)
+      {
+
+         m_pdoublea = __new__prefix(&m_preferer) new ::double_array(*payload.m_pdoublea);
 
       }
       else if (etypeSource == e_type_payload_array)
@@ -1819,6 +1860,187 @@ class ::payload & payload::operator = (const ::int_array_base & ia)
 
 }
 
+
+class ::payload& payload::operator = (const ::long_long_array_base& longlonga)
+{
+
+   //if (m_etype == e_type_payload_pointer)
+   //{
+
+   //   m_ppayload->operator = (ia);
+
+   //}
+   //else if (m_etype == e_type_property)
+   //{
+
+   //   m_pproperty->object() = ia; 
+
+   //}
+   //else
+   {
+
+      if (m_etype != e_type_long_long_array)
+      {
+
+         set_type(e_type_long_long_array, false);
+
+      }
+
+      if (::is_null(m_plonglonga))
+      {
+
+         m_plonglonga = ___new long_long_array(longlonga);
+
+      }
+      else
+      {
+
+         *m_plonglonga = longlonga;
+
+      }
+
+   }
+
+   return *this;
+
+}
+
+
+class ::payload& payload::operator = (const ::float_array_base& floata)
+{
+
+   //if (m_etype == e_type_payload_pointer)
+   //{
+
+   //   m_ppayload->operator = (ia);
+
+   //}
+   //else if (m_etype == e_type_property)
+   //{
+
+   //   m_pproperty->object() = ia; 
+
+   //}
+   //else
+   {
+
+      if (m_etype != e_type_float_array)
+      {
+
+         set_type(e_type_float_array, false);
+
+      }
+
+      if (::is_null(m_pfloata))
+      {
+
+         m_pfloata = ___new float_array(floata);
+
+      }
+      else
+      {
+
+         *m_pfloata = floata;
+
+      }
+
+   }
+
+   return *this;
+
+}
+
+
+
+
+class ::payload& payload::operator = (const ::double_array_base& doublea)
+{
+
+   //if (m_etype == e_type_payload_pointer)
+   //{
+
+   //   m_ppayload->operator = (ia);
+
+   //}
+   //else if (m_etype == e_type_property)
+   //{
+
+   //   m_pproperty->object() = ia; 
+
+   //}
+   //else
+   {
+
+      if (m_etype != e_type_double_array)
+      {
+
+         set_type(e_type_double_array, false);
+
+      }
+
+      if (::is_null(m_pdoublea))
+      {
+
+         m_pdoublea = ___new double_array(doublea);
+
+      }
+      else
+      {
+
+         *m_pdoublea = doublea;
+
+      }
+
+   }
+
+   return *this;
+
+}
+
+
+//class ::payload& payload::operator = (const ::float_array_base& floata)
+//{
+//
+//   //if (m_etype == e_type_payload_pointer)
+//   //{
+//
+//   //   m_ppayload->operator = (ia);
+//
+//   //}
+//   //else if (m_etype == e_type_property)
+//   //{
+//
+//   //   m_pproperty->object() = ia; 
+//
+//   //}
+//   //else
+//   {
+//
+//      if (m_etype != e_type_float_array)
+//      {
+//
+//         set_type(e_type_float_array, false);
+//
+//      }
+//
+//      if (::is_null(m_pfloata))
+//      {
+//
+//         m_pfloata = ___new float_array(floata);
+//
+//      }
+//      else
+//      {
+//
+//         *m_pfloata = floata;
+//
+//      }
+//
+//   }
+//
+//   return *this;
+//
+//}
 
 class ::payload & payload::operator = (const class memory & memory)
 {
@@ -2314,12 +2536,16 @@ bool payload::is_empty() const
       return ::is_null(m_pstra) || m_pstra->is_empty();
    case e_type_int_array:
       return ::is_null(m_pia) || m_pia->is_empty();
+   case e_type_float_array:
+      return ::is_null(m_pfloata) || m_pfloata->is_empty();
    case e_type_payload_array:
       return ::is_null(m_ppayloada) || m_ppayloada->is_empty();
    case e_type_property_set:
       return ::is_null(m_ppropertyset) || m_ppropertyset->is_empty();
    case e_type_long_long_array:
       return ::is_null(m_plonglonga) || m_plonglonga->is_empty();
+   case e_type_double_array:
+      return ::is_null(m_pdoublea) || m_pdoublea->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case e_type_path:
@@ -2372,12 +2598,16 @@ bool payload::has_character() const
       return ::is_set(m_pstra) && m_pstra->has_element();
    case e_type_int_array:
       return ::is_set(m_pia) && m_pia->has_element();
+   case e_type_float_array:
+      return ::is_set(m_pfloata) && m_pfloata->has_element();
    case e_type_payload_array:
       return ::is_set(m_ppayloada) && m_ppayloada->has_element();
    case e_type_property_set:
       return ::is_set(m_ppropertyset) && m_ppropertyset->has_property();
    case e_type_long_long_array:
       return ::is_set(m_plonglonga) && m_plonglonga->has_element();
+   case e_type_double_array:
+      return ::is_set(m_pdoublea) && m_pdoublea->has_element();
    case e_type_memory:
       return ::is_set(m_pmemory) && !m_pmemory->is_empty();
    case e_type_path:
@@ -2446,6 +2676,57 @@ bool payload::is_new_or_null() const
       {
 
          return int_array_reference() <=> payload.int_array_reference();
+
+      }
+      else
+      {
+
+         return as_string_array() <=> payload.as_string_array();
+
+      }
+
+   }
+   else if (has_reference_of_type(::e_type_long_long_array))
+   {
+
+      if (payload.has_reference_of_type(::e_type_long_long_array))
+      {
+
+         return long_long_array_reference() <=> payload.long_long_array_reference();
+
+      }
+      else
+      {
+
+         return as_string_array() <=> payload.as_string_array();
+
+      }
+
+   }
+   else if (has_reference_of_type(::e_type_float_array))
+   {
+
+      if (payload.has_reference_of_type(::e_type_float_array))
+      {
+
+         return float_array_reference() <=> payload.float_array_reference();
+
+      }
+      else
+      {
+
+         return as_string_array() <=> payload.as_string_array();
+
+      }
+
+   }
+   else if (has_reference_of_type(::e_type_double_array))
+   {
+
+      if (payload.has_reference_of_type(::e_type_double_array))
+      {
+
+         return double_array_reference() <=> payload.double_array_reference();
 
       }
       else
@@ -2562,6 +2843,57 @@ bool payload::case_insensitive_equals(const payload & payload) const
       {
 
          return int_array_reference() <=> payload.int_array_reference();
+
+      }
+      else
+      {
+
+         return as_string_array() <=> payload.as_string_array();
+
+      }
+
+   }
+   else if (has_reference_of_type(::e_type_long_long_array))
+   {
+
+      if (payload.has_reference_of_type(::e_type_long_long_array))
+      {
+
+         return long_long_array_reference() <=> payload.long_long_array_reference();
+
+      }
+      else
+      {
+
+         return as_string_array() <=> payload.as_string_array();
+
+      }
+
+   }
+   else if (has_reference_of_type(::e_type_float_array))
+   {
+
+      if (payload.has_reference_of_type(::e_type_float_array))
+      {
+
+         return float_array_reference() <=> payload.float_array_reference();
+
+      }
+      else
+      {
+
+         return as_string_array() <=> payload.as_string_array();
+
+      }
+
+   }
+   else if (has_reference_of_type(::e_type_double_array))
+   {
+
+      if (payload.has_reference_of_type(::e_type_double_array))
+      {
+
+         return double_array_reference() <=> payload.double_array_reference();
 
       }
       else
@@ -4873,6 +5205,224 @@ long_long_array_base payload::as_long_long_array() const
 }
 
 
+::float_array_base payload::as_float_array() const
+{
+
+   /*   if (m_etype == e_type_payload_pointer)
+      {
+
+         return ::transfer(m_ppayload->as_int_array());
+
+      }
+      else if (m_etype == e_type_property)
+      {
+
+         return ::transfer(m_pproperty->as_int_array());
+
+      }
+      else*/ if (m_etype != e_type_float_array)
+      {
+
+         ::float_array_base floata;
+
+         try
+         {
+
+            auto c = array_get_count();
+
+            for (::collection::index i = 0; i < c; i++)
+            {
+
+               floata.add(at(i).as_int());
+
+            }
+
+         }
+         catch (...)
+         {
+
+         }
+
+         return ::transfer(floata);
+
+      }
+      else if (::is_null(m_pfloata))
+      {
+
+         return {};
+
+      }
+
+      return *m_pfloata;
+
+}
+
+
+float_array_base& payload::float_array_reference()
+{
+
+   /*   if (m_etype == e_type_payload_pointer)
+      {
+
+         return m_ppayload->int_array_reference();
+
+      }
+      else if (m_etype == e_type_property)
+      {
+
+         return m_pproperty->int_array_reference();
+
+      }
+      else*/ if (m_etype != e_type_float_array)
+      {
+
+         auto pfloata = __new__prefix(&m_preferer) new ::float_array();
+
+         try
+         {
+
+            auto c = array_get_count();
+
+            for (::collection::index i = 0; i < c; i++)
+            {
+
+               pfloata->add(at(i).as_float());
+
+            }
+
+         }
+         catch (...)
+         {
+
+         }
+
+         set_type(e_type_float_array, false);
+
+         m_pfloata = pfloata;
+
+      }
+      else if (::is_null(m_pfloata))
+      {
+
+         m_pfloata = __new__prefix(&m_preferer) new ::float_array();
+
+      }
+
+      return *m_pfloata;
+
+}
+
+
+
+::double_array_base payload::as_double_array() const
+{
+
+   /*   if (m_etype == e_type_payload_pointer)
+      {
+
+         return ::transfer(m_ppayload->as_int_array());
+
+      }
+      else if (m_etype == e_type_property)
+      {
+
+         return ::transfer(m_pproperty->as_int_array());
+
+      }
+      else*/ if (m_etype != e_type_double_array)
+      {
+
+         ::double_array_base doublea;
+
+         try
+         {
+
+            auto c = array_get_count();
+
+            for (::collection::index i = 0; i < c; i++)
+            {
+
+               doublea.add(at(i).as_double());
+
+            }
+
+         }
+         catch (...)
+         {
+
+         }
+
+         return ::transfer(doublea);
+
+      }
+      else if (::is_null(m_pdoublea))
+      {
+
+         return {};
+
+      }
+
+      return *m_pdoublea;
+
+}
+
+
+double_array_base& payload::double_array_reference()
+{
+
+   /*   if (m_etype == e_type_payload_pointer)
+      {
+
+         return m_ppayload->int_array_reference();
+
+      }
+      else if (m_etype == e_type_property)
+      {
+
+         return m_pproperty->int_array_reference();
+
+      }
+      else*/ if (m_etype != e_type_double_array)
+      {
+
+         auto pdoublea = __new__prefix(&m_preferer) new ::double_array();
+
+         try
+         {
+
+            auto c = array_get_count();
+
+            for (::collection::index i = 0; i < c; i++)
+            {
+
+               pdoublea->add(at(i).as_double());
+
+            }
+
+         }
+         catch (...)
+         {
+
+         }
+
+         set_type(e_type_double_array, false);
+
+         m_pdoublea = pdoublea;
+
+      }
+      else if (::is_null(m_pdoublea))
+      {
+
+         m_pdoublea = __new__prefix(&m_preferer) new ::double_array();
+
+      }
+
+      return *m_pdoublea;
+
+}
+
+
+
 class ::time payload::as_time() const
 {
 
@@ -5856,6 +6406,12 @@ property & payload::get_property(const ::atom & atom)
    {
    case e_type_int_array:
       return &m_pia->element_at(i);
+   case e_type_float_array:
+      return &m_pfloata->element_at(i);
+   case e_type_long_long_array:
+      return &m_plonglonga->element_at(i);
+   case e_type_double_array:
+      return &m_pdoublea->element_at(i);
    case e_type_string_array:
       return &m_pstra->element_at(i);
    case e_type_payload_array:
@@ -8082,6 +8638,9 @@ bool payload::is_numeric() const
 
    case e_type_string_array:
    case e_type_int_array:
+   case e_type_float_array:
+   case e_type_long_long_array:
+   case e_type_double_array:
    case e_type_payload_array:
    case e_type_property_set:
    case e_type_memory:
@@ -8242,6 +8801,67 @@ const ::long_long_array_base & payload::long_long_array_reference() const
 
 }
 
+
+const ::float_array_base& payload::float_array_reference() const
+{
+
+   if (m_etype == e_type_float_array)
+   {
+
+      return *m_pfloata;
+
+   }
+   //else if(m_etype == e_type_payload_pointer)
+   //{
+
+   //   return m_ppayload->int_array_reference();
+
+   //}
+   //else if(m_etype == e_type_property)
+   //{
+
+   //   return m_pproperty->int_array_reference();
+
+   //}
+   //else
+   {
+
+      throw ::exception(error_unexpected);
+
+   }
+
+}
+
+
+const ::double_array_base& payload::double_array_reference() const
+{
+
+   if (m_etype == e_type_double_array)
+   {
+
+      return *m_pdoublea;
+
+   }
+   //else if(m_etype == e_type_payload_pointer)
+   //{
+
+   //   return m_ppayload->long_long_array_reference();
+
+   //}
+   //else if(m_etype == e_type_property)
+   //{
+
+   //   return m_pproperty->long_long_array_reference();
+
+   //}
+   //else
+   {
+
+      throw ::exception(error_unexpected);
+
+   }
+
+}
 
 const ::payload_array & payload::payload_array_reference() const
 {
@@ -8589,6 +9209,18 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
       return ::get_network_payload(str, *m_plonglonga, bNewLine);
 
    }
+   else if (get_type() == ::e_type_float_array)
+   {
+
+      return ::get_network_payload(str, *m_pfloata, bNewLine);
+
+   }
+   else if (get_type() == ::e_type_double_array)
+   {
+
+      return ::get_network_payload(str, *m_pdoublea, bNewLine);
+
+   }
    else if (get_type() == ::e_type_payload_array)
    {
 
@@ -8898,12 +9530,16 @@ bool payload::is_false() const
       return ::is_null(m_pstra) || m_pstra->is_empty();
    case e_type_int_array:
       return ::is_null(m_pia) || m_pia->is_empty();
+   case e_type_float_array:
+      return ::is_null(m_pfloata) || m_pfloata->is_empty();
    case e_type_payload_array:
       return ::is_null(m_ppayloada) || m_ppayloada->is_empty();
    case e_type_property_set:
       return ::is_null(m_ppropertyset) || m_ppropertyset->is_empty();
    case e_type_long_long_array:
       return ::is_null(m_plonglonga) || m_plonglonga->is_empty();
+   case e_type_double_array:
+      return ::is_null(m_pdoublea) || m_pdoublea->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case e_type_path:
@@ -9085,12 +9721,16 @@ bool payload::is_set_false() const
       return ::is_null(m_pstra) || m_pstra->is_empty();
    case e_type_int_array:
       return ::is_null(m_pia) || m_pia->is_empty();
+   case e_type_float_array:
+      return ::is_null(m_pfloata) || m_pfloata->is_empty();
    case e_type_payload_array:
       return ::is_null(m_ppayloada) || m_ppayloada->is_empty();
    case e_type_property_set:
       return ::is_null(m_ppropertyset) || m_ppropertyset->is_empty();
    case e_type_long_long_array:
       return ::is_null(m_plonglonga) || m_plonglonga->is_empty();
+   case e_type_double_array:
+      return ::is_null(m_pdoublea) || m_pdoublea->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case e_type_path:
@@ -9777,12 +10417,16 @@ case e_type_string_array:
 return m_pstra;
 case e_type_int_array:
 return m_pia;
+case e_type_float_array:
+   return m_pfloata;
 case e_type_payload_array:
 return m_ppayloada;
 case e_type_property_set:
 return m_ppropertyset;
 case e_type_long_long_array:
 return m_plonglonga;
+case e_type_double_array:
+   return m_pdoublea;
 case e_type_memory:
 return m_pmemory;
 case e_type_path:
@@ -9994,6 +10638,12 @@ CLASS_DECL_ACME unsigned long long & copy(unsigned long long & u, const payload 
          return 1;
       case e_type_int_array:
          return ::is_null(m_pia) ? 0 : m_pia->get_count();
+      case e_type_float_array:
+         return ::is_null(m_pfloata) ? 0 : m_pfloata->get_count();
+      case e_type_long_long_array:
+         return ::is_null(m_plonglonga) ? 0 : m_plonglonga->get_count();
+      case e_type_double_array:
+         return ::is_null(m_pdoublea) ? 0 : m_pdoublea->get_count();
       case e_type_string_array:
          return ::is_null(m_pstra) ? 0 : m_pstra->get_count();
       case e_type_payload_array:
@@ -10051,6 +10701,9 @@ bool payload::is_array() const
 
    if (m_etype == e_type_string_array
        || m_etype == e_type_int_array
+      || m_etype == e_type_long_long_array
+      || m_etype == e_type_float_array
+      || m_etype == e_type_double_array
        || m_etype == e_type_payload_array
        || m_etype == e_type_property_set)
    {
@@ -10659,6 +11312,9 @@ enum_type payload::integer_type() const
       case e_type_null:
       case e_type_string_array:
       case e_type_int_array:
+      case e_type_long_long_array:
+      case e_type_float_array:
+      case e_type_double_array:
       case e_type_empty:
       case e_type_element:
       case e_type_path:
@@ -10724,6 +11380,9 @@ enum_type payload::left_hand_integer_type() const
       case e_type_null:
       case e_type_string_array:
       case e_type_int_array:
+      case e_type_float_array:
+      case e_type_long_long_array:
+      case e_type_double_array:
       case e_type_empty:
       case e_type_element:
       case e_type_path:
@@ -10789,6 +11448,9 @@ enum_type payload::floating_type() const
       case e_type_null:
       case e_type_string_array:
       case e_type_int_array:
+      case e_type_float_array:
+      case e_type_long_long_array:
+      case e_type_double_array:
       case e_type_empty:
       case e_type_element:
       case e_type_path:
@@ -10855,6 +11517,9 @@ enum_type payload::left_hand_floating_type() const
       case e_type_null:
       case e_type_string_array:
       case e_type_int_array:
+      case e_type_float_array:
+      case e_type_long_long_array:
+      case e_type_double_array:
       case e_type_empty:
       case e_type_element:
       case e_type_path:
@@ -10927,7 +11592,19 @@ payload & payload::add(const ::payload & payload)
       else if(payload.get_type() == e_type_long_long_array)
       {
 
-         ::generic::container::append(int_array_reference(), payload.long_long_array_reference());
+         int_array_reference().append(payload.long_long_array_reference());
+
+      }
+      else if (payload.get_type() == e_type_float_array)
+      {
+
+         int_array_reference().append(payload.float_array_reference());
+
+      }
+      else if (payload.get_type() == e_type_double_array)
+      {
+
+         int_array_reference().append(payload.double_array_reference());
 
       }
       else
@@ -10951,7 +11628,19 @@ payload & payload::add(const ::payload & payload)
       else if(payload.get_type() == e_type_int_array)
       {
 
-         ::generic::container::append(long_long_array_reference(), payload.int_array_reference());
+         long_long_array_reference().add(payload.int_array_reference());
+
+      }
+      else if (payload.get_type() == e_type_double_array)
+      {
+
+         long_long_array_reference().add(payload.double_array_reference());
+
+      }
+      else if (payload.get_type() == e_type_float_array)
+      {
+
+         long_long_array_reference().add(payload.float_array_reference());
 
       }
       else
@@ -10959,6 +11648,78 @@ payload & payload::add(const ::payload & payload)
 
          // simple implementation
          long_long_array_reference().add(payload.as_long_long());
+
+      }
+
+   }
+   else if (get_type() == e_type_float_array)
+   {
+
+      if (payload.get_type() == e_type_int_array)
+      {
+
+         float_array_reference().append(payload.int_array_reference());
+
+      }
+      else if (payload.get_type() == e_type_long_long_array)
+      {
+
+         float_array_reference().append(payload.long_long_array_reference());
+
+      }
+      else if (payload.get_type() == e_type_float_array)
+      {
+
+         float_array_reference().append(payload.float_array_reference());
+
+      }
+      else if (payload.get_type() == e_type_double_array)
+      {
+
+         float_array_reference().append(payload.double_array_reference());
+
+      }
+      else
+      {
+
+         // simple implementation
+         float_array_reference().add(payload.as_float());
+
+      }
+
+   }
+   else if (get_type() == e_type_double_array)
+   {
+
+      if (payload.get_type() == e_type_long_long_array)
+      {
+
+         double_array_reference().add(payload.long_long_array_reference());
+
+      }
+      else if (payload.get_type() == e_type_int_array)
+      {
+
+         double_array_reference().add(payload.int_array_reference());
+
+      }
+      else if (payload.get_type() == e_type_double_array)
+      {
+
+         double_array_reference().add(payload.double_array_reference());
+
+      }
+      else if (payload.get_type() == e_type_float_array)
+      {
+
+         double_array_reference().add(payload.float_array_reference());
+
+      }
+      else
+      {
+
+         // simple implementation
+         double_array_reference().add(payload.as_double());
 
       }
 
@@ -10982,6 +11743,18 @@ payload & payload::add(const ::payload & payload)
       {
 
           ::generic::container::append(string_array_reference(), payload.long_long_array_reference());
+
+      }
+      else if (payload.get_type() == e_type_float_array)
+      {
+
+         ::generic::container::append(string_array_reference(), payload.float_array_reference());
+
+      }
+      else if (payload.get_type() == e_type_double_array)
+      {
+
+         ::generic::container::append(string_array_reference(), payload.double_array_reference());
 
       }
       else if(payload.get_type() == e_type_payload_array)
@@ -11018,6 +11791,18 @@ payload & payload::add(const ::payload & payload)
       {
 
           ::generic::container::append(payload_array_reference(), payload.long_long_array_reference());
+
+      }
+      else if (payload.get_type() == e_type_float_array)
+      {
+
+         ::generic::container::append(payload_array_reference(), payload.float_array_reference());
+
+      }
+      else if (payload.get_type() == e_type_double_array)
+      {
+
+         ::generic::container::append(payload_array_reference(), payload.double_array_reference());
 
       }
       else if(payload.get_type() == e_type_string_array)

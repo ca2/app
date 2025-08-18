@@ -782,7 +782,7 @@ public:
          if (rangeBlock.is_empty())
          {
 
-            order = ::std::partial_ordering::equivalent;
+            partialorder = ::std::partial_ordering::equivalent;
 
             return true;
 
@@ -790,7 +790,7 @@ public:
          else
          {
 
-            order = ::std::partial_ordering::greater;
+            partialorder = ::std::partial_ordering::greater;
 
             return true;
 
@@ -800,7 +800,7 @@ public:
       else if (rangeBlock.is_empty())
       {
 
-         order = ::std::partial_ordering::less;
+         partialorder = ::std::partial_ordering::less;
 
          return true;
 
@@ -812,7 +812,7 @@ public:
 
 
    template<::comparison::ordering<ITEM> ORDERING>
-   static constexpr auto _static_order(THIS_RAW_RANGE range, THIS_RAW_RANGE rangeBlock, ORDERING ordering)
+   static constexpr ::std::strong_ordering _static_order(THIS_RAW_RANGE range, THIS_RAW_RANGE rangeBlock, ORDERING ordering)
    {
 
       do
@@ -839,7 +839,7 @@ public:
 
 
    template<::comparison::partial_ordering<ITEM> PARTIAL_ORDERING>
-   static constexpr auto _static_partial_order(THIS_RAW_RANGE range, THIS_RAW_RANGE rangeBlock, PARTIAL_ORDERING partialordering)
+   static constexpr ::std::partial_ordering _static_partial_order(THIS_RAW_RANGE range, THIS_RAW_RANGE rangeBlock, PARTIAL_ORDERING partialordering)
    {
 
       do
@@ -850,7 +850,7 @@ public:
          if (partialorder != 0)
          {
 
-            return order;
+            return partialorder;
 
          }
 

@@ -174,7 +174,7 @@ namespace gpu
 
          }
 
-         m_iVertexCount = vertexa.size();
+         m_iVertexCount = (int) vertexa.size();
 
          m_iVertexByteSize = m_iVertexTypeSize * m_iVertexCount;
 

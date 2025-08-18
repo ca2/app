@@ -11,24 +11,24 @@ namespace draw2d
       POINT p1, POINT p2, POINT2 thickness)
    {
 
-      float dx = p2.x() - p1.x();
-      float dy = p2.y() - p1.y();
+      float dx = (float) (p2.x() - p1.x());
+      float dy = (float) (p2.y() - p1.y());
       float len = sqrtf(dx * dx + dy * dy);
       if (len == 0.0f) len = 1.0f;
       dx /= len;
       dy /= len;
 
       // Extend the line endpoints by half thickness (square caps)
-      float capx = thickness.x() * 0.5f;
-      float capy = thickness.y() * 0.5f;
+      float capx = (float) (thickness.x() * 0.5f);
+      float capy = (float) (thickness.y() * 0.5f);
       p1.x() -= dx * capx;
       p1.y() -= dy * capy;
       p2.x() += dx * capx;
       p2.y() += dy * capy;
 
       // Perpendicular offset
-      float px = -dy * thickness.x() * 0.5f;
-      float py = dx * thickness.y() * 0.5f;
+      float px = (float)( - dy * thickness.x() * 0.5f);
+      float py = (float) ( dx * thickness.y() * 0.5f);
 
       // Rectangle corners (with extended ends)
       double_point v0 = { p1.x() + px, p1.y() + py };

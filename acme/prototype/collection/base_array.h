@@ -3702,12 +3702,17 @@ class preallocated_array_base :
 {
 public:
    
+
+   using BASE_ARRAY = ARRAY_BASE;
    
    using CONTAINER_ITEM_TYPE = typename ARRAY_BASE::CONTAINER_ITEM_TYPE;
    
    
    CONTAINER_ITEM_TYPE  m_elementaPreallocated[t_preallocated_array_size];
-   
+
+
+   using BASE_ARRAY::operator =;
+
    preallocated_array_base()
    {
       

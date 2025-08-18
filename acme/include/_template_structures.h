@@ -36,10 +36,12 @@ public:
 
    using EQUALITY = for_type < bool >;
    using ORDERING = for_type < bool >;
+   using PARTIAL_ORDERING = for_type < bool >;
 
 
    constexpr bool equals(bool a, bool b) const { return get_bool_int(a) == get_bool_int(b); }
    constexpr ::std::strong_ordering order(bool a, bool b) const { return get_bool_int(a) <=> get_bool_int(b); }
+   constexpr ::std::partial_ordering partial_order(bool a, bool b) const { return get_bool_int(a) <=> get_bool_int(b); }
    
 
 };
@@ -53,6 +55,7 @@ public:
 
       using EQUALITY = for_type < TYPE >;
       using ORDERING = for_type < TYPE >;
+      using PARTIAL_ORDERING = for_type < TYPE >;
 
 
       constexpr bool equals(TYPE a, TYPE b) const { return a == b; }

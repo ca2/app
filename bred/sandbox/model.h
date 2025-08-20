@@ -1,9 +1,9 @@
 #pragma once
-//#include "SceneFoundry/sandbox_interfaces/renderer_i.h"
+//#include "SceneFoundry/sandbox/renderer_i.h"
 ///#include <vulkan/vulkan.h>
 ///
 ///
-namespace sandbox_interfaces
+namespace sandbox
 {
 
     struct IModel :
@@ -40,7 +40,7 @@ namespace sandbox_interfaces
     };
 
 
-} // namespace sandbox_interfaces
+} // namespace sandbox
 
 
 

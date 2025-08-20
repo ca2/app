@@ -118,6 +118,7 @@ list(APPEND library_source
         platform/session.h
         platform/system.cpp
         platform/system.h
+        sandbox/model.h
         typeface/_.h
         typeface/character.h
         typeface/face.cpp
@@ -153,8 +154,7 @@ list(APPEND library_references
         berg)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-        sandbox_interfaces/model.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

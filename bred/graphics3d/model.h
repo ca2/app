@@ -35,8 +35,8 @@ namespace graphics3d
    {
    public:
 
-      ::array<VERTEX> m_vertices;
-      ::array<unsigned int > m_indices;
+      ::array<VERTEX> m_vertexes;
+      ::array<unsigned int > m_indexes;
 
 
       //::pointer <::graphics3d::model> create_model(
@@ -47,8 +47,8 @@ namespace graphics3d
 
       //   pmodel->initialize_model(
       //      prenderer,
-      //      m_vertices.as_block(),
-      //      m_indices.as_block());
+      //      m_vertexes.as_block(),
+      //      m_indexes.as_block());
 
       //   auto pgpucontext = prenderer->m_pgpucontext;
 
@@ -75,15 +75,15 @@ namespace graphics3d
 
       //struct Builder
       //{
-      //   ::array<VERTEX> vertices{};
-      //   ::array<uint32_t> indices{};
+      //   ::array<VERTEX> vertexes{};
+      //   ::array<uint32_t> indexes{};
 
       //};
 
 
       //::pointer < ::gpu::renderer >        m_pgpurenderer;
       //bool m_bDummy = false;
-      //int m_iVertices = 0;
+      //int m_ivertexes = 0;
       //::pointer < ::gpu::command_buffer > m_pcommandbufferLoading;
 
       //static ::pointer<model> createModelFromFile(::graphics3d::context * pgpucontext, const ::file::path & path);
@@ -94,7 +94,7 @@ namespace graphics3d
 
 
       virtual void initialize_model(::gpu::renderer * prenderer, const model_data < VERTEX > & modeldata);
-      virtual void initialize_dummy_model(::gpu::renderer* prenderer, int iVertices);
+      virtual void initialize_dummy_model(::gpu::renderer* prenderer, int ivertexes);
 
       //virtual void draw(::gpu::context* pgpucontext);
       //virtual void bind(::gpu::context* pgpucontext);
@@ -104,8 +104,8 @@ namespace graphics3d
       //virtual void unbind();
 
    //private:
-   //   void createVertexBuffers(const ::array<Vertex>& vertices);
-   //   void createIndexBuffers(const ::array<uint32_t>& indices);
+   //   void createVertexBuffers(const ::array<Vertex>& vertexes);
+   //   void createIndexBuffers(const ::array<uint32_t>& indexes);
 
    //   bool hasIndexBuffer = false;
    //   ::pointer < context > m_pgpucontext;
@@ -135,7 +135,7 @@ namespace graphics3d
 
    //   //::pointer < ::gpu::renderer >        m_pgpurenderer;
    //   //bool m_bDummy = false;
-   //   //int m_iVertices = 0;
+   //   //int m_ivertexes = 0;
    //   //::pointer < ::gpu::command_buffer > m_pcommandbufferLoading;
 
    //   //static ::pointer<model> createModelFromFile(::graphics3d::context * pgpucontext, const ::file::path & path);
@@ -161,19 +161,19 @@ namespace graphics3d
 
       //   m_pmodelbase->initialize_model(
       //      prenderer,
-      //      data.m_vertices.as_block(),
-      //      data.m_indices.as_block());
+      //      data.m_vertexes.as_block(),
+      //      data.m_indexes.as_block());
 
       //}
 
-      //virtual void initialize_dummy_model(::gpu::renderer* prenderer, int iVertices)
+      //virtual void initialize_dummy_model(::gpu::renderer* prenderer, int ivertexes)
       //{
 
       //   prenderer->ødefer_construct(m_pmodelbase);
 
       //   m_pmodelbase->initialize_dummy_model(
       //      prenderer,
-      //      iVertices);
+      //      ivertexes);
 
       //}
 
@@ -185,8 +185,8 @@ namespace graphics3d
       //virtual void unbind() { m_pmodelbase->unbind(); }
 
       //private:
-      //   void createVertexBuffers(const ::array<Vertex>& vertices);
-      //   void createIndexBuffers(const ::array<uint32_t>& indices);
+      //   void createVertexBuffers(const ::array<Vertex>& vertexes);
+      //   void createIndexBuffers(const ::array<uint32_t>& indexes);
 
       //   bool hasIndexBuffer = false;
       //   ::pointer < context > m_pgpucontext;
@@ -203,14 +203,14 @@ namespace graphics3d
 
 
 
-   //virtual void initialize_dummy_model(::gpu::renderer* prenderer, int iVertices)
+   //virtual void initialize_dummy_model(::gpu::renderer* prenderer, int ivertexes)
    //{
 
    //   prenderer->ødefer_construct(m_pmodelbase);
 
    //   m_pmodelbase->initialize_dummy_model(
    //      prenderer,
-   //      iVertices);
+   //      ivertexes);
 
    //}
 
@@ -249,9 +249,9 @@ namespace graphics3d
 
       m_p->bind(pgpurenderer->getLoadAssetsCommandBuffer());
 
-      m_p->static_initialize_vertices(modeldata.m_vertices);
+      m_p->static_initialize_vertexes(modeldata.m_vertexes);
 
-      m_p->static_initialize_indices(modeldata.m_indices);
+      m_p->static_initialize_indexes(modeldata.m_indexes);
 
       m_p->unbind(pgpurenderer->getLoadAssetsCommandBuffer());
 
@@ -259,7 +259,7 @@ namespace graphics3d
 
 
    template < typename VERTEX >
-   void model<VERTEX>::initialize_dummy_model(::gpu::renderer* pgpurenderer, int iVertices)
+   void model<VERTEX>::initialize_dummy_model(::gpu::renderer* pgpurenderer, int ivertexes)
    {
 
       pgpurenderer->ødefer_construct(*this);
@@ -274,7 +274,7 @@ namespace graphics3d
 
       m_p->m_pbufferVertex->initialize_memory_buffer_with_model_buffer(m_p, 0, ::gpu::memory_buffer::e_type_none);
       
-      m_p->m_iVertexCount = iVertices;
+      m_p->m_iVertexCount = ivertexes;
 
    }
 

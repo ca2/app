@@ -61,6 +61,7 @@ struct PSInput {
 
 float4 main(PSInput input) : SV_Target {
     return input.color;
+//return float4(0.5*0.35,0.5*0.75,0.5*0.95,0.5);
 }
 
 )frag";
@@ -141,9 +142,11 @@ float4 main(PSInput input) : SV_TARGET
 {
     float4 sampled = text.Sample(textSampler, input.texcoord);
     float4 c = textColor * sampled;
-    return c;
+  return c;
+//return float4(0.5*0.35,0.5*0.75,0.5*0.95,0.5);
     // For gamma correction (optional):
     // return float4(sqrt(c.rgb), c.a);
+
 }
 )fragmentshader";
 

@@ -1,8 +1,46 @@
-//
-// Created by camilo on 2025-08-19.
-//
+#pragma once
+//#include "SceneFoundry/sandbox_interfaces/renderer_i.h"
+///#include <vulkan/vulkan.h>
+///
+///
+namespace sandbox_interfaces
+{
 
-#ifndef MODEL_H
-#define MODEL_H
+    struct IModel :
+        virtual public ::particle
+    {
+    public:
+        //virtual ~IModel() = default;
+        // virtual void bind(VkCommandBuffer cmd) {};
+        //
+        //
+        // virtual void draw(VkCommandBuffer cmd) {};
+        virtual void bind(::gpu::command_buffer * pcommandbuffer) {};
 
-#endif //MODEL_H
+
+        virtual void draw(::gpu::command_buffer * pcommandbuffer) {};
+
+        // virtual void gltfDraw(
+        // 	VkCommandBuffer cmd,
+        // 	uint32_t renderFlags = 0,
+        // 	VkPipelineLayout pipelineLayout = VK_NULL_HANDLE,
+        // 	uint32_t bindImageSet = 1
+        // ) {}
+
+
+        // virtual void gltfDraw(
+        // 	VkCommandBuffer cmd,
+        // 	uint32_t renderFlags = 0,
+        // 	VkPipelineLayout pipelineLayout = VK_NULL_HANDLE,
+        // 	uint32_t bindImageSet = 1
+        // ) {}
+
+
+
+    };
+
+
+} // namespace sandbox_interfaces
+
+
+

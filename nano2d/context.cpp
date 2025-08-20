@@ -1637,7 +1637,7 @@ void TransformSkewX(float* t, float a)
 	//
 	//	if (w > 0.0f) iw = 1.0f / w;
 	//
-	//	// Calculate which joins needs extra vertices to append, and gather vertex count.
+	//	// Calculate which joins needs extra vertexes to append, and gather vertex count.
 	//	for (i = 0; i < m_ppathcache->npaths; i++) {
 	//		::nano2d::path * path = &m_ppathcache->paths[i];
 	//		NVGpoint * pts = &m_ppathcache->points[path->first];
@@ -1861,7 +1861,7 @@ void TransformSkewX(float* t, float a)
 	//		float rw, lw, woff;
 	//		float ru, lu;
 	//
-	//		// Calculate shape vertices.
+	//		// Calculate shape vertexes.
 	//		woff = 0.5f * aa;
 	//		dst = verts;
 	//		path->fill = dst;

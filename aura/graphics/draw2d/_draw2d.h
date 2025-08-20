@@ -36,7 +36,7 @@ namespace draw2d
       double_point v2 = { p2.x() + px, p2.y() + py };
       double_point v3 = { p2.x() - px, p2.y() - py };
 
-      // Two triangles (6 vertices)
+      // Two triangles (6 vertexes)
       pointa.add({ v0.x(), v0.y() });
       pointa.add({ v1.x(), v1.y() });
       pointa.add({ v2.x(), v2.y() });
@@ -60,9 +60,9 @@ namespace draw2d
       //::double_point p2 = { x + w,   y + h };          // top-right
       //::double_point p3 = { x,     y + h };          // top-left
 
-      // Each side will have 6 vertices (2 triangles), 12 floats
+      // Each side will have 6 vertexes (2 triangles), 12 floats
       // Total = 4 sides * 12 floats = 48 floats
-      //float* v = out_vertices;
+      //float* v = out_vertexes;
 
       // Bottom edge
       make_line_triangles_cap_butt_square(

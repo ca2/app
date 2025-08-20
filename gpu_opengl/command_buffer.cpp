@@ -91,7 +91,7 @@ namespace gpu_opengl
    }
 
    
-   void command_buffer::draw_vertices(int iVertexCount)
+   void command_buffer::draw_vertexes(int iVertexCount)
    {
 
       GLenum mode = GL_TRIANGLES;
@@ -113,7 +113,7 @@ namespace gpu_opengl
    }
 
 
-   void command_buffer::draw_indices(int iIndexCount)
+   void command_buffer::draw_indexes(int iIndexCount)
    {
 
       GLenum mode = GL_TRIANGLES;

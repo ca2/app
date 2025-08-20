@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "payload.h"
 #include "acme/exception/parsing.h"
 ////#include "acme/exception/exception.h"
 //#include "acme/filesystem/file/file.h"
@@ -7,7 +6,7 @@
 #include "acme/platform/acme.h"
 #include "acme/platform/platform.h"
 #include "acme/platform/system.h"
-//#include "acme/prototype/prototype/payload.h"
+#include "acme/prototype/prototype/payload.h"
 #include "acme/prototype/string/command_line.h"
 #include "acme/prototype/string/str.h"
 
@@ -3082,3 +3081,76 @@ CLASS_DECL_ACME ::pointer < ::property_set > create_network_arguments_property_s
    return ppropertysetNetworkArguments;
 
 }
+
+
+#undef __IMPLEMENT_GET
+#define __IMPLEMENT_GET(payloadDefault, as_getter) \
+auto iIndexOfPayloadInPropertySet = this->index_of_payload(atom); \
+                                       \
+if (iIndexOfPayloadInPropertySet < 0)                                       \
+{                                       \
+                                       \
+   return payloadDefault;                                       \
+                                       \
+}                                       \
+                                       \
+return ::transfer(this->element_at(iIndexOfPayloadInPropertySet)->as_getter());
+
+
+::float_array_base property_set_base::get(const ::atom& atom, const ::float_array_base& floata) const
+{
+
+   __IMPLEMENT_GET(floata, as_float_array);
+
+}
+
+
+::double_array_base property_set_base::get(const ::atom& atom, const ::double_array_base& doublea) const
+{
+
+   __IMPLEMENT_GET(doublea, as_double_array);
+
+}
+
+
+::string property_set_base::get(const ::atom& atom, const ::scoped_string & scopedstr) const
+{
+
+   __IMPLEMENT_GET(scopedstr, as_string);
+
+}
+
+
+int property_set_base::get(const ::atom& atom, const int& i) const
+{
+
+   __IMPLEMENT_GET(i, as_int);
+
+}
+
+
+long long property_set_base::get(const ::atom& atom, const long long& ll) const
+{
+
+   __IMPLEMENT_GET(ll, as_long_long);
+
+}
+
+
+float property_set_base::get(const ::atom& atom, const float& f) const
+{
+
+   __IMPLEMENT_GET(f, as_float);
+
+}
+
+
+double property_set_base::get(const ::atom& atom, const double& d) const
+{
+
+   __IMPLEMENT_GET(d, as_double);
+
+}
+
+
+

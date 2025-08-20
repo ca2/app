@@ -409,13 +409,13 @@ namespace gpu
    //   //
    //   //      }
    //   //      //glGenBuffers(1, &VAO);
-   //   ////      float vertices[] = {
+   //   ////      float vertexes[] = {
    //   //         // positions         // colors
    //   //  //        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
    //   //    //     -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
    //   //      //    0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top
    //   //      //};
-   //   //      float vertices[] = {
+   //   //      float vertexes[] = {
    //   //         // first triangle
    //   //          1.f,  1.f, 0.0f,  // top right
    //   //          1.f, -1.f, 0.0f,  // bottom right
@@ -432,7 +432,7 @@ namespace gpu
    //         //glBindVertexArray(m_VAO);
 
    //         //glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-   //         //glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+   //         //glBufferData(GL_ARRAY_BUFFER, sizeof(vertexes), vertexes, GL_STATIC_DRAW);
 
    //         //// position attribute
    //         //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);

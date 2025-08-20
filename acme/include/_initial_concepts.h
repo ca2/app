@@ -262,10 +262,6 @@ namespace comparison
    template < typename ORDERING, typename TYPE >
    concept ordering = ::std::is_same<typename ORDERING::ORDERING, for_type < TYPE > >::value;
 
-   template < typename PARTIAL_ORDERING, typename TYPE >
-   concept partial_ordering = ::std::is_same<typename PARTIAL_ORDERING::PARTIAL_ORDERING, for_type < TYPE > >::value;
-
-
    template < typename EQUALITY, typename TYPE >
    concept equality = ::std::is_same<typename EQUALITY::EQUALITY, for_type < TYPE > >::value;
 

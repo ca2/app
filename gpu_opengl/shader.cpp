@@ -42,6 +42,7 @@ namespace gpu_opengl
    shader::shader()
    {
 
+      m_ecullmode = ::gpu::e_cull_mode_none;
 
    }
 
@@ -281,6 +282,13 @@ namespace gpu_opengl
 
    void shader::_bind()
    {
+
+      auto pgpucontext = m_pgpurenderer->m_pgpucontext;
+
+      pgpucontext->set_cull_face(m_ecullmode);
+
+      //glFrontFace(GL_CCW); // counter-clockwise is front face (default)
+      ///glFrontFace(GL_CW); // counter-clockwise is front face (default)
 
       if (m_bEnableBlend)
       {

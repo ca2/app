@@ -3118,7 +3118,7 @@ SP_LIBEXPORT(sp_error) sp_playlist_add_tracks(sp_playlist *playlist, sp_track *c
  * Remove tracks from a playlist
  *
  * @param[in]  playlist       Playlist object
- * @param[in]  tracks         Array of pointer to track indices.
+ * @param[in]  tracks         Array of pointer to track indexes.
  *                            A certain track index should be present at most once, e.g. [0, 1, 2] is valid indata,
  *                            whereas [0, 1, 1] is invalid.
  * @param[in]  num_tracks     Length of \p tracks array
@@ -3133,7 +3133,7 @@ SP_LIBEXPORT(sp_error) sp_playlist_erase_tracks(sp_playlist *playlist, const int
  * Move tracks in playlist
  *
  * @param[in]  playlist       Playlist object
- * @param[in]  tracks         Array of pointer to track indices to be moved.
+ * @param[in]  tracks         Array of pointer to track indexes to be moved.
  *                            A certain track index should be present at most once, e.g. [0, 1, 2] is valid indata,
  *                            whereas [0, 1, 1] is invalid.
  * @param[in]  num_tracks     Length of \p tracks array

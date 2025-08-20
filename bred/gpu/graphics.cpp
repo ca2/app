@@ -237,14 +237,14 @@ namespace gpu
    }
 
 
-   ::geometry2d::matrix graphics::context_matrix()
+   ::geometry2d::matrix graphics::context_matrix(enum_transform_context etransformcontext)
    {
 
       auto pcontext = gpu_context();
       
       ::geometry2d::matrix contextmatrix;
 
-      contextmatrix.translate(0.5, -0.5);
+      //contextmatrix.translate(0.5, -0.5);
 
       contextmatrix.append(context_scale_matrix());
 
@@ -333,14 +333,18 @@ namespace gpu
 
       
       //end_gpu_layer();
+      if (m_egraphics == e_graphics_draw)
+      {
 
-      auto pcontext = gpu_context();
+         auto pcontext = gpu_context();
 
-      ::gpu::context_lock contextlock(pcontext);
+         ::gpu::context_lock contextlock(pcontext);
 
-      pcontext->defer_unbind_shader();
+         pcontext->defer_unbind_shader();
 
-      pcontext->on_end_draw_detach(this);
+         pcontext->on_end_draw_detach(this);
+
+      }
 
    }
 
@@ -522,6 +526,14 @@ namespace gpu
       pcontext->__defer_soft_unbind_draw2d_compositor(this, player);
 
    }
+   //
+   //
+   // void graphics::context_transform(::double_point & p, enum_transform_context etransformcontext)
+   // {
+   //
+   //    context_matrix().transform(p);
+   //
+   // }
 
 
    ::double_size graphics::total_size()
@@ -573,6 +585,7 @@ namespace gpu
             m_pshaderSourceRectangle->m_bDisableDepthTest = true;
             //m_pshaderRectangle->m_iColorAttachmentCount = 2;
             m_pshaderSourceRectangle->m_bEnableBlend = false;
+            m_pshaderSourceRectangle->m_etopology = ::gpu::e_topology_triangle_list;
             m_pshaderSourceRectangle->m_ecullmode = ::gpu::e_cull_mode_none;
             //m_pshaderRectangle->m_bAccumulationEnable = true;
 
@@ -609,6 +622,7 @@ namespace gpu
             //m_pshaderRectangle->m_iColorAttachmentCount = 2;
             m_pshaderBlendRectangle->m_bEnableBlend = true;
             //m_pshaderRectangle->m_bAccumulationEnable = true;
+            m_pshaderBlendRectangle->m_etopology = ::gpu::e_topology_triangle_list;
             m_pshaderBlendRectangle->m_ecullmode = ::gpu::e_cull_mode_none;
             ///auto pcontext = gpu_context();
 
@@ -688,7 +702,7 @@ namespace gpu
 
       __transform(quad);
 
-      context_matrix().transform(quad);
+      context_matrix(e_transform_context_geometry).transform(quad);
 
       pmodelbufferRectangle->sequence2_color_set_rectangle(
          quad.data(),
@@ -708,7 +722,7 @@ namespace gpu
 
       pmodelbufferRectangle->unbind(pcommandbuffer);
 
-      //vkCmdDraw(pcommandbuffer->m_vkcommandbuffer, 6, 1, 0, 0); // 6 vertices for two triangles
+      //vkCmdDraw(pcommandbuffer->m_vkcommandbuffer, 6, 1, 0, 0); // 6 vertexes for two triangles
       //vkCmdEndRenderPass(cmd);
 
 
@@ -903,12 +917,16 @@ namespace gpu
 
 
        ////}
+       ///
+       auto r = rectangle;
+      //r.bottom()--;
+      //r.right()--;
 
       double_point points[4] = {
-   {rectangle.top_left()},
-   {rectangle.top_right()},
-   {rectangle.bottom_right()},
-   {rectangle.bottom_left()}
+   {r.top_left()},
+   {r.top_right()},
+   {r.bottom_right()},
+   {r.bottom_left()}
       };
 
       _fill_quad(points, color);
@@ -951,7 +969,7 @@ namespace gpu
 
       //pmodelbufferRectangle->draw(pcommandbuffer);
 
-      ////vkCmdDraw(pcommandbuffer->m_vkcommandbuffer, 6, 1, 0, 0); // 6 vertices for two triangles
+      ////vkCmdDraw(pcommandbuffer->m_vkcommandbuffer, 6, 1, 0, 0); // 6 vertexes for two triangles
       ////vkCmdEndRenderPass(cmd);
 
 
@@ -1011,7 +1029,7 @@ namespace gpu
          points1[1],
          pointPen);
 
-      context_matrix().transform(pointa);
+      context_matrix(e_transform_context_geometry).transform(pointa);
 
       auto color = m_ppen->m_color;
 
@@ -1033,7 +1051,7 @@ namespace gpu
 
       }
 
-      pmodelbuffer->set_vertices(quadVertices);
+      pmodelbuffer->set_vertexes(quadVertices);
 
 
       ::gpu::debug_scope debugscopeLine(
@@ -1113,7 +1131,7 @@ namespace gpu
          // render glyph texture over quad
          if (ch.m_ppixmap)
          {
-            /* ::graphics3d::sequence2_uv vertices[6] = {
+            /* ::graphics3d::sequence2_uv vertexes[6] = {
                  {{xpos,     ypos + h},  { 0.0f, 0.0f } },
              { {xpos,     ypos    },     {  0.0f, 1.0f }},
                  {{xpos + w, ypos    },  {     1.0f, 1.0f }},
@@ -1131,12 +1149,12 @@ namespace gpu
 
              }
 
-             pmodelbuffer->sequence2_uv_set_vertex(vertices, 6)*/
+             pmodelbuffer->sequence2_uv_set_vertex(vertexes, 6)*/
 
              //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
           //// update content of VBO memory
           //glBindBuffer(GL_ARRAY_BUFFER, pfont->m_VBO);
-          //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+          //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
 
           //auto pcommandbuffer = gpu_context()->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
@@ -1292,12 +1310,12 @@ namespace gpu
       // glUniform3f(glGetUniformLocation(shader.ID, "textColor"), color.x, color.y, color.z);
       //pshader->setup_sampler_and_texture("text", 0);
       //auto pcontext = gpu_context();
-      auto size = pcontext->m_rectangle.size();
-      glm::mat4 projection = glm::ortho(
-         0.0f,
-         static_cast<float>(size.width()),
-         static_cast<float>(size.height()),
-         0.0f);
+      // auto size = pcontext->m_rectangle.size();
+      // glm::mat4 projection = glm::ortho(
+      //    0.0f,
+      //    static_cast<float>(size.width()),
+      //    static_cast<float>(size.height()),
+      //    0.0f);
       //pshader->push_properties();
       set(m_pfont);
 
@@ -1356,15 +1374,14 @@ namespace gpu
 
       ::int_point point(x, y);
       int Δx = 0;
-      __transform(point);
-
       //auto pcontext = gpu_context();
 
-      point.y() = pcontext->m_rectangle.height() - point.y() - pface->m_iPixelSize;
+      //point.y() = pcontext->m_rectangle.height() - point.y() - pface->m_iPixelSize;
 
-      pcontext->set_cull_face();
+      //pcontext->set_cull_face(::gpu::e_cull_mode_back);
+      pcontext->set_cull_face(::gpu::e_cull_mode_none);
 
-      ::gpu::texture* pgputexture = nullptr;
+      //::gpu::texture* pgputexture = nullptr;
       ::gpu::pixmap* ppixmap = nullptr;
 
       //auto pcommandbuffer = gpu_context()->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
@@ -1381,7 +1398,8 @@ namespace gpu
          auto& ch = pface->get_character(strChar);
          float h2 = (float)(ch.Size.y - ch.Bearing.y);
          float xpos = (float) (point.x() + Δx + ch.Bearing.x);
-         float ypos = (float) (point.y() + h2);
+         //float ypos = (float) (point.y() + h2);
+         float ypos = (float) (point.y());
 
          float w = (float) ch.Size.x;
          float h = (float) ch.Size.y;
@@ -1398,7 +1416,7 @@ namespace gpu
 
             //   pmodelbuffer->bind(pcommandbuffer);
 
-            //   pmodelbuffer->create_vertices < ::graphics3d::sequence2_uv>(6, true);
+            //   pmodelbuffer->create_vertexes < ::graphics3d::sequence2_uv>(6, true);
 
             //   pmodelbuffer->unbind(pcommandbuffer);
 
@@ -1406,28 +1424,39 @@ namespace gpu
 
             //}
 
-            //pmodelbuffer->set_vertex_array(vertices, 6);
+            //pmodelbuffer->set_vertex_array(vertexes, 6);
             ppixmap = ch.m_ppixmap;
 
-            if (pgputexture != ppixmap->m_pgputexture)
-            {
+            //if (pshader->m_pgputextureBound != ppixmap->m_pgputexture)
+            //{
 
-               pgputexture = ppixmap->m_pgputexture;
+              // pgputexture = ppixmap->m_pgputexture;
 
                pshader->bind_source(ppixmap);
 
-            }
+            //}
 
             //pshader->set_mat4("projection", projection);
 
             {
 
-               float l = xpos;
-               float t = ypos;
-               float r = xpos + w;
-               float b = ypos + h;
+               double l = (double) (xpos);
+               double t = (double) (ypos);
+               double r = (double) (xpos + w);
+               double b = (double) (ypos + h);
 
-               ::glm::vec4 quad(l, t, r, b);
+               double_point p1(l, t);
+               double_point p2(r, b);
+
+               __transform(p1);
+               __transform(p2);
+
+               context_matrix(e_transform_context_text).transform(p1);
+               context_matrix(e_transform_context_text).transform(p2);
+
+               ::glm::vec4 quad(p1.x(), p1.y(), p2.x(), p2.y()
+                  );
+
 
                pshader->set_vec4("quad", quad);
 
@@ -1461,7 +1490,7 @@ namespace gpu
             //int iVbo = pface->m_FaceVBO;
             //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
             //GLCheckError("");
-            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
             //GLCheckError("");
             //glBindBuffer(GL_ARRAY_BUFFER, 0);
             //GLCheckError("");
@@ -1487,7 +1516,7 @@ namespace gpu
 
 
 
-           /* ::array < ::graphics3d::sequence2_uv > vertices = {
+           /* ::array < ::graphics3d::sequence2_uv > vertexes = {
              {{xpos,     ypos + h},{   l, t }},
              {{xpos,     ypos   }, {   l, b }},
              {{xpos + w, ypos   }, {   r, b }},
@@ -1497,9 +1526,9 @@ namespace gpu
             };*/
 
 
-            //pmodelbuffer->_set_vertices(vertices);
+            //pmodelbuffer->_set_vertexes(vertexes);
 
-
+            m_pmodelbufferTextOutDummy->m_bNew = false;
             m_pmodelbufferTextOutDummy->draw(pcommandbuffer);
 
             //pmodelbuffer->unbind(pcommandbuffer);
@@ -1535,7 +1564,7 @@ namespace gpu
       //glDisable(GL_CULL_FACE);
       //GLCheckError("");
 
-      pcontext->set_cull_face(false);
+      pcontext->set_cull_face(::gpu::e_cull_mode_none);
       pcontext->defer_unbind(m_pgpushaderTextOut);
    }
 

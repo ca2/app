@@ -2732,7 +2732,7 @@ bool payload::is_new_or_null() const
       if (payload.has_reference_of_type(::e_type_float_array))
       {
 
-         return float_array_reference() <=> payload.float_array_reference();
+         return to_strong_ordering(float_array_reference().order(payload.float_array_reference()));
 
       }
       else
@@ -2749,7 +2749,7 @@ bool payload::is_new_or_null() const
       if (payload.has_reference_of_type(::e_type_double_array))
       {
 
-         return to_strong_ordering(double_array_reference().partial_order(payload.double_array_reference()));
+         return to_strong_ordering(double_array_reference().order(payload.double_array_reference()));
 
       }
       else
@@ -2899,7 +2899,7 @@ bool payload::case_insensitive_equals(const payload & payload) const
       if (payload.has_reference_of_type(::e_type_float_array))
       {
 
-         return float_array_reference() <=> payload.float_array_reference();
+         return ::to_strong_ordering(float_array_reference() <=> payload.float_array_reference());
 
       }
       else
@@ -2916,7 +2916,7 @@ bool payload::case_insensitive_equals(const payload & payload) const
       if (payload.has_reference_of_type(::e_type_double_array))
       {
 
-         return double_array_reference() <=> payload.double_array_reference();
+         return ::to_strong_ordering(double_array_reference() <=> payload.double_array_reference());
 
       }
       else

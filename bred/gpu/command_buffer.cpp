@@ -127,14 +127,14 @@ namespace gpu
    }
 
 
-   void command_buffer::draw_vertices(int iVertexCount)
+   void command_buffer::draw_vertexes(int iVertexCount)
    {
 
 
    }
 
 
-   void command_buffer::draw_indices(int iIndexCount)
+   void command_buffer::draw_indexes(int iIndexCount)
    {
 
 

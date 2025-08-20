@@ -88,7 +88,7 @@ namespace typeface
 
    //      m_pmodelbufferBox->bind(m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
 
-   //      m_pmodelbufferBox->create_vertices<::graphics3d::sequence2_uv>(6);
+   //      m_pmodelbufferBox->create_vertexes<::graphics3d::sequence2_uv>(6);
    //      /* glGenVertexArrays(1, &m_VAO);
    //       glGenBuffers(1, &m_VBO);
    //       glBindVertexArray(m_VAO);

@@ -227,9 +227,15 @@ public:
 
    ::payload get_payload(const ::atom & atom);
 
-   const ::payload & payload(const ::atom & atom) const;
+   const ::payload & get(const ::atom & atom) const;
 
-   ::payload & payload(const ::atom & atom, const ::payload & payloadDefault) const;
+   ::float_array_base get(const ::atom & atom, const ::float_array_base & floata) const;
+   ::double_array_base get(const ::atom& atom, const ::double_array_base& doublea) const;
+   ::string get(const ::atom& atom, const ::scoped_string & scopedstr) const;
+   int get(const ::atom& atom, const int & i) const;
+   long long get(const ::atom& atom, const long long & ll) const;
+   float get(const ::atom& atom, const float & f) const;
+   double get(const ::atom& atom, const double & d) const;
 
    bool get_bool(const ::atom & atom, bool bDefault = false) const;
    int get_int(const ::atom & atom, int iDefault = 0) const;
@@ -518,7 +524,6 @@ public:
 
 
 CLASS_DECL_ACME ::pointer < ::property_set > create_network_arguments_property_set(const ::scoped_string& scopedstrNetworkArguments);
-
 
 
 

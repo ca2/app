@@ -40,11 +40,11 @@ namespace graphics3d
 
       }
 
-      m_vertices.clear();
+      m_vertexes.clear();
 
-      m_indices.clear();
+      m_indexes.clear();
 
-      ::map_base<::graphics3d::Vertex, uint32_t> uniqueVertices{};
+      ::map_base<::graphics3d::Vertex, uint32_t> uniquevertexes{};
 
       for (const auto& shape : shapes)
       {
@@ -94,15 +94,15 @@ namespace graphics3d
                };
             }
 
-            if (uniqueVertices.count(vertex) == 0)
+            if (uniquevertexes.count(vertex) == 0)
             {
 
-               uniqueVertices[vertex] = static_cast<uint32_t>(m_vertices.size());
-               m_vertices.add(vertex);
+               uniquevertexes[vertex] = static_cast<uint32_t>(m_vertexes.size());
+               m_vertexes.add(vertex);
 
             }
 
-            m_indices.add(uniqueVertices[vertex]);
+            m_indexes.add(uniquevertexes[vertex]);
 
          }
 

@@ -1328,7 +1328,7 @@ void main() {
 
       pmodelbufferRectangle->draw(pcommandbuffer);
 
-      //vkCmdDraw(pcommandbuffer->m_vkcommandbuffer, 6, 1, 0, 0); // 6 vertices for two triangles
+      //vkCmdDraw(pcommandbuffer->m_vkcommandbuffer, 6, 1, 0, 0); // 6 vertexes for two triangles
       //vkCmdEndRenderPass(cmd);
 
 
@@ -5423,7 +5423,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
          float h = ch.Size.y;
          y = maximum(h, y);
          //// update VBO for each character
-         //float vertices[6][4] = {
+         //float vertexes[6][4] = {
          //    { xpos,     ypos + h,   0.0f, 0.0f },
          //    { xpos,     ypos,       0.0f, 1.0f },
          //    { xpos + w, ypos,       1.0f, 1.0f },
@@ -5438,7 +5438,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
             //// update content of VBO memory
             //glBindBuffer(GL_ARRAY_BUFFER, pfont->m_VBO);
-            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
 
             //glBindBuffer(GL_ARRAY_BUFFER, 0);
             //// render quad
@@ -5918,7 +5918,7 @@ color = vec4(c.r,c.g, c.b, c.a);
          float w = ch.Size.x;
          float h = ch.Size.y;
          // update VBO for each character
-         array< ::graphics3d::sequence2_uv> vertices = {
+         array< ::graphics3d::sequence2_uv> vertexes = {
              {{ xpos,     ypos + h},{   0.0f, 0.0f} },
              {{ xpos,     ypos},{       0.0f, 1.0f} },
              {{ xpos + w, ypos},{       1.0f, 1.0f} },
@@ -5935,11 +5935,11 @@ color = vec4(c.r,c.g, c.b, c.a);
             if (pmodelbuffer->is_null())
             {
 
-               pmodelbuffer->create_vertices < ::graphics3d::sequence2_uv>(6);
+               pmodelbuffer->create_vertexes < ::graphics3d::sequence2_uv>(6);
 
             }
 
-            pmodelbuffer->set_vertices(vertices);
+            pmodelbuffer->set_vertexes(vertexes);
 
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
             //GLCheckError("");
@@ -5947,7 +5947,7 @@ color = vec4(c.r,c.g, c.b, c.a);
             //int iVbo = pface->m_FaceVBO;
             //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
             //GLCheckError("");
-            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
             //GLCheckError("");
             //glBindBuffer(GL_ARRAY_BUFFER, 0);
             //GLCheckError("");
@@ -5964,7 +5964,7 @@ color = vec4(c.r,c.g, c.b, c.a);
             //int iVbo = pface->m_FaceVBO;
             //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
             //GLCheckError("");
-            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
             //GLCheckError("");
             //glBindBuffer(GL_ARRAY_BUFFER, 0);
             //GLCheckError("");

@@ -18,17 +18,17 @@ namespace gpu_opengl
    public:
 
 
-      ::gpu::element             m_vao_vertices;
+      ::gpu::element             m_vao_vertexes;
       ::gpu::element             m_vao_normals;
 
-      ::gpu::element             m_vbo_vertices;
+      ::gpu::element             m_vbo_vertexes;
       ::gpu::element             m_vbo_normals;
       ::gpu::element             m_vbo_uvs;
 
       ::gpu::element             m_ibo_elements;
 
-      ::array<unsigned short>    m_indices;
-      ::array<::glm::vec3>       m_vertices;
+      ::array<unsigned short>    m_indexes;
+      ::array<::glm::vec3>       m_vertexes;
       ::array<::glm::vec2>       m_uvs;
       ::array<::glm::vec3>       m_normals;
 

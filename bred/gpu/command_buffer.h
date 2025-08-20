@@ -53,8 +53,8 @@ namespace gpu
 
       virtual void draw(int a);
 
-      virtual void draw_vertices(int iVertexCount);
-      virtual void draw_indices(int iIndexCount);
+      virtual void draw_vertexes(int iVertexCount);
+      virtual void draw_indexes(int iIndexCount);
 
 
       virtual void draw(::gpu::pixmap * ppixmap);

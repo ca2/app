@@ -49,7 +49,7 @@ namespace gpu
 
 
       template < typename VERTEX >
-      void create_vertices(int iVertexCount, bool bDynamic = false)
+      void create_vertexes(int iVertexCount, bool bDynamic = false)
       {
 
          m_iVertexCount = iVertexCount;
@@ -82,7 +82,7 @@ namespace gpu
 
          bind(pcommandbuffer);
 
-         this->create_vertices<::graphics3d::sequence2_color >(iCount);
+         this->create_vertexes<::graphics3d::sequence2_color >(iCount);
 
          unbind(pcommandbuffer);
 
@@ -94,7 +94,7 @@ namespace gpu
 
 
       template < typename VERTEX >
-      void static_initialize_vertices(const ::array<VERTEX> & vertexa)
+      void static_initialize_vertexes(const ::array_base<VERTEX> & vertexa)
       {
 
          static_initialize_vertex_buffer(
@@ -114,11 +114,11 @@ namespace gpu
       virtual void static_initialize_vertex_buffer(const void* data, memsize iTypeSize, ::collection::count iVertexCount);
       virtual void static_initialize_index_buffer(const void* data, memsize iTypeSize, ::collection::count iIndexCount);
 
-      virtual void static_initialize_vertices_block(const ::block& blockVertices);
-      virtual void static_initialize_indices_block(const ::block& blockIndices);
+      virtual void static_initialize_vertexes_block(const ::block& blockvertexes);
+      virtual void static_initialize_indexes_block(const ::block& blockindexes);
 
       template < typename INDEX >
-      void create_indices(::collection::count iIndexCount)
+      void create_indexes(::collection::count iIndexCount)
       {
 
          m_iIndexCount = (int) iIndexCount;
@@ -138,7 +138,7 @@ namespace gpu
 
       
       template < typename INDEX >
-      void static_initialize_indices(const ::array<INDEX>& indexa)
+      void static_initialize_indexes(const ::array_base<INDEX>& indexes)
       {
 
          //m_iIndexCount = (int)indexa.count();
@@ -156,15 +156,15 @@ namespace gpu
          //   memory_buffer::e_type_index_buffer);
 
          static_initialize_index_buffer(
-            indexa.data(),
+            indexes.data(),
             sizeof(INDEX),
-            indexa.size());
+            indexes.size());
 
       }
 
 
       template < typename VERTEX >
-      void set_vertices(const ::array < VERTEX > & vertexa)
+      void set_vertexes(const ::array < VERTEX > & vertexa)
       {
 
          if (sizeof(VERTEX) != m_iVertexTypeSize)
@@ -184,7 +184,7 @@ namespace gpu
 
 
       template < typename VERTEX >
-      void _set_vertices(const ::array < VERTEX >& vertexa)
+      void _set_vertexes(const ::array < VERTEX >& vertexa)
       {
 
          if (sizeof(VERTEX) != m_iVertexTypeSize)
@@ -291,7 +291,7 @@ namespace gpu
       }
 
       template < typename INDEX >
-      memory_map < memory_buffer, INDEX > map_indices()
+      memory_map < memory_buffer, INDEX > map_indexes()
       {
 
          return { m_pbufferIndex.m_p, (INDEX*)nullptr };

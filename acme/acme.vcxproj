@@ -3214,6 +3214,7 @@
     <ClCompile Include="platform\_main_hold_base.cpp" />
     <ClCompile Include="platform\_synchronization.cpp" />
     <ClCompile Include="prototype\collection\procedure_array.cpp" />
+    <ClCompile Include="prototype\collection\property_set.cpp" />
     <ClCompile Include="prototype\collection\strdup_array.cpp" />
     <ClCompile Include="prototype\collection\string_array.cpp" />
     <ClCompile Include="prototype\collection\string_list.cpp" />
@@ -4319,7 +4320,6 @@
     <ClCompile Include="prototype\prototype\memory_base.cpp" />
     <ClCompile Include="prototype\prototype\memory_container.cpp" />
     <ClCompile Include="prototype\prototype\property.cpp" />
-    <ClCompile Include="prototype\prototype\property_set.cpp" />
     <ClCompile Include="prototype\prototype\type.cpp" />
     <ClCompile Include="prototype\prototype\var_element.cpp" />
     <ClCompile Include="prototype\prototype\paged_memory.cpp" />

@@ -69,7 +69,7 @@ public:
 
       using BASE_RANGE::_order;
    
-      constexpr ::std::strong_ordering _order(const BASE_RAW_RANGE & range) const
+      constexpr auto _order(const BASE_RAW_RANGE & range) const
       {
    
          return _order(range, ::comparison::comparison < TYPE >());
@@ -79,7 +79,7 @@ public:
    
       using BASE_RANGE::order;
    
-      constexpr ::std::strong_ordering order(const BASE_RAW_RANGE & range) const
+      constexpr auto order(const BASE_RAW_RANGE & range) const
       {
    
          return BASE_RANGE::order(range, ::comparison::comparison < TYPE >());
@@ -87,15 +87,9 @@ public:
       }
 
 
-      constexpr ::std::partial_ordering partial_order(const BASE_RAW_RANGE& range) const
-      {
-
-         return BASE_RANGE::partial_order(range, ::comparison::comparison < TYPE >());
-
-      }
 
    
-      constexpr ::std::strong_ordering operator<=>(const comparable_array_base & array) const
+      constexpr auto operator<=>(const comparable_array_base & array) const
       {
    
          return this->order(array);

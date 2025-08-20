@@ -259,14 +259,14 @@ template < typename ITERATOR_TYPE >
 inline ::std::strong_ordering range_collate(::scoped_string_base <  ITERATOR_TYPE > scopedstrA, ::scoped_string_base <  ITERATOR_TYPE > scopedstrB) noexcept
 {
 
-   ::std::strong_ordering order(::std::strong_ordering::less);
+   //::std::strong_ordering order(::std::strong_ordering::less);
 
-   if (scopedstrA._initialize_order(order, scopedstrA, scopedstrB))
-   {
+   //if (scopedstrA._initialize_order(order, scopedstrA, scopedstrB))
+   //{
 
-      return order;
+   //   return order;
 
-   }
+   //}
 
    return _string_collate(::string_base < ITERATOR_TYPE >(scopedstrA).c_str(), ::string_base < ITERATOR_TYPE >(scopedstrB).c_str());
 
@@ -277,14 +277,14 @@ template < typename ITERATOR_TYPE >
 inline ::std::strong_ordering case_insensitive_range_collate(::scoped_string_base <  ITERATOR_TYPE > scopedstrA, ::scoped_string_base <  ITERATOR_TYPE > scopedstrB) noexcept
 {
 
-   ::std::strong_ordering order(::std::strong_ordering::less);
+   //::std::strong_ordering order(::std::strong_ordering::less);
 
-   if (scopedstrA._initialize_order(order, scopedstrA, scopedstrB))
-   {
+   //if (scopedstrA._initialize_order(order, scopedstrA, scopedstrB))
+   //{
 
-      return order;
+   //   return order;
 
-   }
+   //}
 
    return _case_insensitive_string_collate(::string_base < ITERATOR_TYPE >(scopedstrA).c_str(), ::string_base < ITERATOR_TYPE >(scopedstrB).c_str());
 

@@ -182,6 +182,7 @@ namespace gpu
    void shader::unbind()
    {
 
+      m_pgputextureBound = nullptr;
 
    }
 
@@ -313,6 +314,14 @@ namespace gpu
 
 
    void shader::push_properties()
+   {
+
+      set_push_properties(m_propertiesPush.m_block);
+
+   }
+
+
+   void shader::set_push_properties(const ::block& block)
    {
 
 

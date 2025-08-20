@@ -417,10 +417,10 @@
 //		//createInfo.imageArrayLayers = 1;
 //		//createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 //
-//		//directx11::QueueFamilyIndices indices = m_pgpucontext->m_pgpudevice->m_pphysicaldevice->findQueueFamilies();
-//		//uint32_t queueFamilyIndices[] = { indices.graphicsFamily, indices.presentFamily };
+//		//directx11::QueueFamilyIndices indexes = m_pgpucontext->m_pgpudevice->m_pphysicaldevice->findQueueFamilies();
+//		//uint32_t queueFamilyIndices[] = { indexes.graphicsFamily, indexes.presentFamily };
 //
-//		//if (indices.graphicsFamily != indices.presentFamily) {
+//		//if (indexes.graphicsFamily != indexes.presentFamily) {
 //		//	createInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
 //		//	createInfo.queueFamilyIndexCount = 2;
 //		//	createInfo.pQueueFamilyIndices = queueFamilyIndices;

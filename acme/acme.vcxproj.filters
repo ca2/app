@@ -6032,9 +6032,6 @@
     <ClCompile Include="handler\handler_context.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\prototype\property_set.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="prototype\prototype\pool.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
@@ -6055,6 +6052,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\com\hresult_exception.cpp">
       <Filter>Source Files\operating_system\windows_common\com</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\collection\property_set.cpp">
+      <Filter>Source Files\prototype\collection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

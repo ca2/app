@@ -22,7 +22,7 @@ namespace draw3d
 
       double dA = bA / 255.0;
 
-      auto locationa = pbox->vertices();
+      auto locationa = pbox->vertexes();
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -236,7 +236,7 @@ namespace draw3d
 
       double dA = bA / 255.0;
 
-      auto locationa = pbox->vertices();
+      auto locationa = pbox->vertexes();
       array < ::int_array_base > f = pbox->faces();
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);

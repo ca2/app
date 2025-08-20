@@ -31,6 +31,10 @@ list(APPEND library_source
         gpu/draw2d.h
         gpu/frame.cpp
         gpu/frame.h
+        gpu/frame_ephemeral.cpp
+        gpu/frame_ephemeral.h
+        gpu/frame_storage.cpp
+        gpu/frame_storage.h
         gpu/graphics.cpp
         gpu/graphics.h
         gpu/guard.cpp
@@ -149,7 +153,8 @@ list(APPEND library_references
         berg)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+        sandbox_interfaces/model.h)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

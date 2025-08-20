@@ -127,6 +127,10 @@ namespace gpu
       int                        m_iPushConstants = -1;
       ::string                   m_strPushConstantsDebugging;
 
+      ::gpu::texture *           m_pgputextureBound = nullptr;
+
+
+
       shader();
       ~shader() override;
 
@@ -205,6 +209,8 @@ namespace gpu
 
 
       virtual void push_properties();
+
+      virtual void set_push_properties(const ::block& block);
 
 
       //virtual void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value);

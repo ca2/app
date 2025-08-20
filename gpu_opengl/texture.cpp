@@ -301,6 +301,13 @@ namespace gpu_opengl
       if (!m_gluFbo)
       {
 
+         create_render_target();
+
+      }
+
+      if (!m_gluFbo)
+      {
+
          throw ::exception(error_wrong_state);
 
       }

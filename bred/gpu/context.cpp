@@ -892,10 +892,10 @@ namespace gpu
    //}
 
 
-   void context::set_cull_face(bool bSet)
+   void context::set_cull_face(::gpu::enum_cull_mode ecullmode)
    {
 
-      m_bCullFace = bSet;
+      m_ecullmode = ecullmode;
 
    }
 
@@ -1055,13 +1055,6 @@ namespace gpu
    void context::top_send_on_context(::gpu::context* pcontextInnerStart, bool bForDrawing, const ::procedure& procedure)
    {
 
-      if (!bForDrawing)
-      {
-
-         m_pgpudevice->on_new_frame();
-
-      }
-
       auto etype = this->m_etype;
 
       auto eoutput = this->m_eoutput;
@@ -1075,9 +1068,16 @@ namespace gpu
 
       }
 
-      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device();
+      if (!bForDrawing)
+      {
 
-      pgpudevice->start_stacking_layers();
+         m_pgpudevice->on_new_frame();
+
+         //auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device();
+
+         m_pgpudevice->start_stacking_layers();
+
+      }
 
       send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
          {

@@ -91,7 +91,7 @@ public:
 
 
    ::collection::count add_unique_range(const ::point_type < NUMBER > & pBeg, const ::point_type < NUMBER > & pointEnd, const ::size_type < NUMBER > & s = e_unit_size);
-   //https://www.geeksforgeeks.org/area-of-a-int_polygon-with-given-n-ordered-vertices/
+   //https://www.geeksforgeeks.org/area-of-a-int_polygon-with-given-n-ordered-vertexes/
       // (X[i], Y[i]) are coordinates of i'th point.
 
    UNIT_TYPE polygon_area()

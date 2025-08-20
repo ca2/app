@@ -55,7 +55,7 @@
                    Added object counting a proper tree structure
                        (Allowing pass by object)
                    Allowed JSON output to output IDs, not strings
-                   Added get/set for array indices
+                   Added get/set for array indexes
                    Changed Callbacks to include user data pointer
                    Added some support for objects
                    Added more Java-esque builtin functions

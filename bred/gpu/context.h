@@ -81,7 +81,8 @@ namespace gpu
 
 
       //int                                    m_iTopicTexture = -1;
-      bool                                   m_bCullFace = false;
+      //bool                                   m_bCullFace = false;
+      ::gpu::enum_cull_mode                  m_ecullmode;
       //bool m_bOffscreen = true;
       int                                    m_iOverrideFrame = -1;
       enum_type                              m_etype;
@@ -232,7 +233,7 @@ namespace gpu
 
       //virtual ::gpu::renderer* new_draw2d_renderer();
       //virtual void set_topic_texture(int iIndex);
-      virtual void set_cull_face(bool bSet = true);
+      virtual void set_cull_face(::gpu::enum_cull_mode ecullmode);
 
       virtual ::int_rectangle rectangle();
       virtual void set_placement(const ::int_rectangle & rectanglePlacement);

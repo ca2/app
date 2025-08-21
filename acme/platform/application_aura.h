@@ -157,7 +157,7 @@ namespace platform
 
       virtual void enumerate_composite(matter_array& a);
 
-      ::aura::game* game();
+      virtual ::aura::game* game();
 
 
       //virtual void _001CloseApplication() override;

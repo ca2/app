@@ -9978,6 +9978,20 @@ namespace aura
    }
 
 
+      //::aura::game *application::game() { 
+      //   
+      //   ::cast<::aura::game> pauragame = m_paquagame;
+      //   
+      //   if (!pauragame)
+      //   {
+
+      //      return nullptr;
+      //   }
+      //   return pauragame; 
+      //
+      //}
+
+
 } // namespace aura
 
 

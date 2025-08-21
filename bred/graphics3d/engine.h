@@ -37,12 +37,12 @@ namespace graphics3d
 		//::pointer < ::gpu::context >					m_pgpucontext;
 		//::pointer < ::gpu::context >					m_pgpucontextGraphics3D;
 		::pointer < ::user::graphics3d >				m_pusergraphics3d;
-		::string_map_base < ::pointer < scene > >		m_mapScene;
-		::pointer < scene >								m_pscene;
+		::string_map_base < ::pointer < ::graphics3d::scene > >		m_mapScene;
+		::pointer < ::graphics3d::scene >								m_pscene;
 		::pointer < ::graphics3d::input >			m_pinput;
 		::pointer < ::graphics3d::camera >			m_pcamera;
 
-		TransformComponent								m_transform;
+		::graphics3d::TransformComponent					m_transform;
 		float													m_fFrameTime;
 
 		bool													m_bWireframeMode = false;
@@ -92,8 +92,8 @@ namespace graphics3d
 
 		float dt() { return m_fFrameTime; }
 
-		virtual glm::mat4 model_matrix(TransformComponent& transformcomponent);
-		virtual glm::mat4 normal_matrix(TransformComponent& transformcomponent);
+		virtual glm::mat4 model_matrix(::graphics3d::TransformComponent& transformcomponent);
+		virtual glm::mat4 normal_matrix(::graphics3d::TransformComponent& transformcomponent);
 
 		//void on_begin_frame() override;
 		virtual void run_cpu_buffer();

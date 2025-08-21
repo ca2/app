@@ -1,66 +1,85 @@
-// From V0idsEmbrace@Twich continuum project
-// by camilo on 2025-05-18 04:03 <3ThomasBorregaardSorensen!!
 #pragma once
-
-
-#include "apex/platform/app_consumer.h"
-#include "bred/gpu/properties.h"
-#include "bred/graphics3d/scene_object.h"
+#include "bred/graphics3d/window_input.h"
+#include "bred/graphics3d/scene.h"
+#include "bred/graphics3d/entity.h"
+#include "bred/prodevian/player.h"
+#include "bred/graphics3d/asset_manager.h"
+#include "bred/prodevian/game_object.h"
+//#include <memory>
+//#include <vector>
+//////#include <stdexcept>
+//#include <fstream>
+//#include <optional>
 
 
 namespace graphics3d
 {
 
 
-   class CLASS_DECL_BRED scene :
-      virtual public ::app_consumer < ::aura::application >
-   {
-   public:
+	class scene :
+		virtual public ::particle
+	{
+	public:
 
 
-      ::pointer < ::graphics3d::engine >     m_pengine;
-      ::pointer < ::user::graphics3d >       m_pusergraphics3d;
-      ::string                               m_strName;
-      scene_object::map_base				            m_mapObjects;
-      bool                                   m_bInitialized;
-      bool                                   m_bLoadedScene;
-      ::gpu::properties                      m_propertiesGlobalUbo;
+	   ::interlocked_count                                         m_interlockedcountSceneObject;
 
 
-      scene();
-      ~scene() override;
+		//::pointer<::graphics3d::IWindowInput>							      m_pwindowinput;
+		::pointer < ::sandbox_engine::asset_manager >				   m_passetmanager;
+
+		         ::pointer_array_base<player>								m_playera;
+		::map<unsigned int, ::pointer<::graphics3d::scene_object>>		m_mapSceneObject;
+		glm::vec3													            m_initialCameraPosition{ 0.f };
+		glm::vec3													            m_initialCameraRotation{ 0.f };
+
+		int															            m_iSkyboxId = -1;
+		::pointer<::graphics3d::scene_object>							      m_psceneobjectSkybox;
+		::string													               m_strSkyboxCubemapName;
 
 
-      virtual void on_initialize_scene();
-      virtual void initialize_scene(::graphics3d::engine * pengine);
+		scene();
+		~scene() override;
+
+		// pass input so your Player can read it
+		void initialize_scene(::graphics3d::IWindowInput * input, ::graphics3d::IAssetProvider * passetprovider) override;
 
 
-      virtual ::gpu::properties & global_ubo();
+		void init() override;                 // load models, spawn entities
+		void update(float dt) override;        // advance all entities
+
+		void loadSceneFile(const ::scoped_string& fileName);
+
+		::graphics3d::scene_object_map & getGameObjects() override ;
 
 
-      virtual ::pointer < ::graphics3d::camera > get_default_camera();
+		::pair<glm::mat4, glm::mat4> getMainCameraMatrices()const;
 
-      virtual void defer_load_scene(::gpu::context* pgpucontext);
+		void setSkyboxObject(::graphics3d::scene_object * pobject);
 
-      virtual void on_load_scene(::gpu::context* pgpucontext);
+		camera& getCamera();
 
+		void addGameObject(uint32_t id, ::graphics3d::scene_object * obj);
+		void removeGameObject(uint32_t id);
 
-      //virtual void handle_mouse_move(int x, int y);
+		::graphics3d::IGameObject * getSkyboxObject() override;
 
-      //virtual ::pointer<model> createModelFromFile(::graphics3d::context* pgpucontext, const ::file::path& path);
+		//::graphics3d::sandbox_game_object>>
+		//	getSkyboxObject();
 
-      virtual void on_update_global_ubo(::gpu::context* pgpucontext);
+		::string getSkyboxCubemapName();
 
-      virtual void on_render(::gpu::context * pgpucontext);
-
-
-      virtual ::graphics3d::model<::graphics3d::Vertex> create_tinyobjloader_model(const ::file::path& path);
-      virtual scene_object & tinyobjloader_object(const ::file::path& path);
-
-      virtual void add_object(::graphics3d::scene_object* pobject);
+	   ::pointer<::graphics3d::scene_object> create_scene_object();
 
 
-   };
+	   ::pointer<::graphics3d::scene_object> create_skybox_object();
+
+
+		::pointer<::graphics3d::scene_object> create_point_light(float intensity = 10.f, float radius = 0.1f, glm::vec3 color = glm::vec3(1.f));
+
+
+
+	};
 
 
 } // namespace graphics3d

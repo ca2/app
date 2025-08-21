@@ -118,7 +118,45 @@ list(APPEND library_source
         platform/session.h
         platform/system.cpp
         platform/system.h
-        sandbox/model.h
+   graphics3d/render_systems/object_render_system.cpp
+   graphics3d/render_systems/object_render_system.h
+   graphics3d/render_systems/point_light_render_system.cpp
+   graphics3d/render_systems/point_light_render_system.h
+   graphics3d/render_systems/skybox_ibl_render_system.cpp
+   graphics3d/render_systems/skybox_ibl_render_system.h
+        graphics3d/_.h
+        graphics3d/_constant.h
+        graphics3d/_sandbox_interfaces.h
+        graphics3d/_types.h
+        graphics3d/aaa_frame_info.h
+        graphics3d/aaa_model.h
+        graphics3d/aaa_transform_component.h
+        graphics3d/asset_provider.h
+        graphics3d/camera.h
+        graphics3d/class_set.h
+        graphics3d/class_set1.h
+        graphics3d/entity.h
+        graphics3d/frame.h
+        graphics3d/framework.h
+        graphics3d/game_layer.h
+        graphics3d/game_object.h
+        graphics3d/model.h
+        graphics3d/provider.h
+        graphics3d/render_system.h
+        graphics3d/renderer.h
+        graphics3d/resource.h
+        graphics3d/scene.h
+        graphics3d/scene_object.cpp
+        graphics3d/scene_object.h
+        graphics3d/window_input.h
+
+   graphics3d/skybox.cpp
+   graphics3d/skybox.h
+   graphics3d/point_light.cpp
+   graphics3d/point_light.h
+
+   graphics3d/render_system.cpp
+   graphics3d/scene.cpp
         typeface/_.h
         typeface/character.h
         typeface/face.cpp

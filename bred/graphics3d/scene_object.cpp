@@ -7,7 +7,7 @@
 namespace graphics3d
 {
 
-	interlocked_long_long scene_object::s_interlockedll;
+	//interlocked_long_long scene_object::s_interlockedll;
 
 	//glm::mat4 TransformComponent::mat4()
 	//{
@@ -48,20 +48,20 @@ namespace graphics3d
 	//point_light(float intensity = 10.f, float radius = 0.1f, glm::vec3 color = glm::vec3(1.f));
 	//
 
-	point_light::point_light(float intensity, float radius, glm::vec3 color)
-	{
-		m_color = color;
-		m_transform.scale.x = radius;
-		m_pointlightcomponent.lightIntensity = intensity;
-		//return gameObj;
-	}
-
-	point_light::~point_light()
-	{
-
-
-	}
-
+	// point_light::point_light(float intensity, float radius, glm::vec3 color)
+	// {
+	// 	m_color = color;
+	// 	m_transform.scale.x = radius;
+	// 	m_fLightIntensity = intensity;
+	// 	//return gameObj;
+	// }
+	//
+	// point_light::~point_light()
+	// {
+	//
+	//
+	// }
+	//
 
 } // namespace graphics3d
 

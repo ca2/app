@@ -10,8 +10,8 @@
 
 // When generating projects with CMake the CEF_USE_SANDBOX value will be defined
 // automatically if using the required compiler version. Pass -DUSE_SANDBOX=OFF
-// to the CMake command-line to disable use of the sandbox.
-// Uncomment this line to manually enable sandbox support.
+// to the CMake command-line to disable use of the graphics3d.
+// Uncomment this line to manually enable graphics3d support.
 // #define CEF_USE_SANDBOX 1
 
 #if defined(CEF_USE_SANDBOX)
@@ -41,8 +41,8 @@ int APIENTRY app_browser_deferred_run(HINSTANCE hInstance,
    void* sandbox_info = nullptr;
 
 #if defined(CEF_USE_SANDBOX)
-   // Manage the life span of the sandbox information object. This is necessary
-   // for sandbox support on Windows. See cef_sandbox_win.h for complete details.
+   // Manage the life span of the graphics3d information object. This is necessary
+   // for graphics3d support on Windows. See cef_sandbox_win.h for complete details.
    CefScopedSandboxInfo scoped_sandbox;
    sandbox_info = scoped_sandbox.sandbox_info();
 #endif
@@ -61,8 +61,8 @@ int APIENTRY app_browser_deferred_run(HINSTANCE hInstance,
 
 // When generating projects with CMake the CEF_USE_SANDBOX value will be defined
 // automatically if using the required compiler version. Pass -DUSE_SANDBOX=OFF
-// to the CMake command-line to disable use of the sandbox.
-// Uncomment this line to manually enable sandbox support.
+// to the CMake command-line to disable use of the graphics3d.
+// Uncomment this line to manually enable graphics3d support.
 // #define CEF_USE_SANDBOX 1
 
 #if defined(CEF_USE_SANDBOX)
@@ -88,8 +88,8 @@ int cef_main(HINSTANCE hInstance, HWND hwnd, ::int_rectangle int_rectangle)
 //   void* sandbox_info = nullptr;
 //
 //#if defined(CEF_USE_SANDBOX)
-//   // Manage the life span of the sandbox information object. This is necessary
-//   // for sandbox support on Windows. See cef_sandbox_win.h for complete details.
+//   // Manage the life span of the graphics3d information object. This is necessary
+//   // for graphics3d support on Windows. See cef_sandbox_win.h for complete details.
 //   CefScopedSandboxInfo scoped_sandbox;
 //   sandbox_info = scoped_sandbox.sandbox_info();
 //#endif

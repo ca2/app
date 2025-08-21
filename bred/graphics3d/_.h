@@ -37,21 +37,21 @@ namespace graphics3d
    //class context;
 
    class scene;
-   class scene_object;
+  // class scene_object;
 
    class input;
    class camera;
 
    //class shader;
 
-   class simple_render_system;
-   class point_light_system;
+   //class simple_render_system;
+   //class point_light_system;
 
    //class renderer;
 
 
    class frame;
-   class sky_box;
+   //class sky_box;
 
 
 

@@ -9,7 +9,8 @@
 #include "bred/gpu/context_object.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/memory_buffer.h"
-
+#include "bred/graphics3d/model.h"
+#include "bred/graphics3d/model.h"
 
 
 namespace gpu
@@ -18,7 +19,8 @@ namespace gpu
 
    class CLASS_DECL_BRED model_buffer :
       virtual public context_object,
-      virtual public poolable < model_buffer >
+      virtual public poolable < model_buffer >,
+      virtual public ::graphics3d::model
    {
    public:
 
@@ -301,9 +303,9 @@ namespace gpu
       //virtual void* _map(memsize start, memsize count);
       //virtual void unmap();
 
-      virtual void bind(::gpu::command_buffer* pcommandbuffer);
+      void bind(::gpu::command_buffer* pcommandbuffer) override;
 
-      virtual void draw(::gpu::command_buffer* pcommandbuffer);
+      void draw(::gpu::command_buffer* pcommandbuffer) override;
 
       virtual void draw_lines(::gpu::command_buffer* pcommandbuffer);
 

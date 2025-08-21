@@ -38,6 +38,7 @@ public:
    scoped_string_base(no_initialize_t) :BASE_RANGE(no_initialize_t{}) {}
    scoped_string_base():BASE_RANGE(nullptr) {}
    scoped_string_base(nullptr_t) :BASE_RANGE(nullptr) {}
+   scoped_string_base(const BASE_RAW_RANGE & nullptr_t) : BASE_RANGE(nullptr) {}
    scoped_string_base(const range < const CHARACTER * > & range) : BASE_RANGE(range) { }
    template < other_primitive_character <CHARACTER> OTHER_CHARACTER >
    scoped_string_base(const range < const OTHER_CHARACTER* >& range) : BASE_RANGE(no_initialize_t{}) { this->construct_str(range); }

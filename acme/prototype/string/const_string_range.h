@@ -83,6 +83,8 @@ class const_string_range :
    public ::character_range<ITERATOR_TYPE> {
 public:
 
+   using BASE_RANGE = ::character_range<ITERATOR_TYPE>;
+   using RAW_CHARACTER_RANGE = typename BASE_RANGE::RAW_CHARACTER_RANGE;
 
    using BASE_RANGE = ::character_range<ITERATOR_TYPE>;
    using RAW_CHARACTER_RANGE = typename BASE_RANGE::RAW_CHARACTER_RANGE;

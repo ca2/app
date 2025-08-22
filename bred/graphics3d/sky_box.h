@@ -76,7 +76,7 @@ namespace graphics3d
       cube                                m_cube;
       //::pointer<::gpu::shader>            m_pshader;
 
-
+      ::string          m_strCubemapTextureName;
 
       sky_box();
       ~sky_box();

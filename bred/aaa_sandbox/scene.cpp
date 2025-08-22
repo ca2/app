@@ -1,5 +1,5 @@
 //
-// From V0idsEmbrace.sandbox_renderer by camilo on 2025-08-21 19:08 <3ThomasBorregaardSorensen!!
+// From V0idsEmbrace.graphics3d by camilo on 2025-08-21 19:08 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
 #include "scene.h"
@@ -28,11 +28,11 @@ namespace graphics3d
    }
 
 
-   void scene::initialize_scene(::graphics3d::IWindowInput * pwindowinput, ::graphics3d::IAssetProvider * passetprovider)
+   void scene::initialize_scene(::graphics3d::IWindowInput * pwindowinput, ::graphics3d::IAssetProvider * passetmanager)
    {
 
       m_pwindowinput = pwindowinput;
-      m_passetmanager = passetprovider;
+      m_passetmanager = passetmanager;
 
    }
 
@@ -330,7 +330,7 @@ namespace graphics3d
 
    ::pointer<::graphics3d::scene_object> game_layer::makePointLight(float intensity, float radius, glm::vec3 color)
    {
-      auto ppointlight = øallocate ::sandbox_renderer::point_light_scene_object;
+      auto ppointlight = øallocate ::graphics3d::point_light_scene_object;
       this->add_scene_object(ppointlight);
       ppointlight->m_color = color;
       ppointlight->m_transform.scale.x = radius;
@@ -345,7 +345,7 @@ namespace graphics3d
 
 
       // pass input so your Player can read it
-      void scene::initialize_scene(::graphics3d::IWindowInput * input, ::graphics3d::IAssetProvider * passetprovider)
+      void scene::initialize_scene(::graphics3d::IWindowInput * input, ::graphics3d::IAssetProvider * passetmanager)
       {
 
 

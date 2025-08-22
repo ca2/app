@@ -38,7 +38,7 @@ namespace graphics3d
    };
 
 
-   // point_light_render_system::point_light_render_system(sandbox_renderer::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
+   // point_light_render_system::point_light_render_system(graphics3d::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
    //     : m_pgpudevice(pdevice), m_globalSetLayout(globalSetLayout)
    // {
    //
@@ -50,10 +50,10 @@ namespace graphics3d
 
 
    // void point_light_render_system::init(
-   //    sandbox_renderer::device * pgpudevice,
+   //    graphics3d::device * pgpudevice,
    //     VkRenderPass renderPass,
    //     VkDescriptorSetLayout globalSetLayout,
-   //    sandbox_renderer::sandbox_descriptor_pool& descriptorPool,
+   //    graphics3d::sandbox_descriptor_pool& descriptorPool,
    //     size_t frameCount)
    // {
    //     // Optional: ASSERT pdevice consistency
@@ -92,8 +92,8 @@ namespace graphics3d
    // void point_light_render_system::createPipeline(VkRenderPass renderPass) {
    //     ASSERT(m_pipelineLayout != VK_NULL_HANDLE && "Cannot create pipeline before pipeline layout");
    //
-   //     //sandbox_renderer::pipeline_configuration_information pipelineConfig{};
-   //     //sandbox_renderer::pipeline::defaultPipelineConfigInfo(pipelineConfig);
+   //     //graphics3d::pipeline_configuration_information pipelineConfig{};
+   //     //graphics3d::pipeline::defaultPipelineConfigInfo(pipelineConfig);
    //     //pipelineConfig.bindingDescriptions.clear();
    //     //pipelineConfig.attributeDescriptions.clear();
    //     //pipelineConfig.renderPass = renderPass;
@@ -102,7 +102,7 @@ namespace graphics3d
    //     ::string vertShaderPath = "matter://shaders/spirV/point_light.vert.spv";
    //     ::string fragShaderPath = "matter://shaders/spirV/point_light.frag.spv";
    //
-   //     //m_ppipeline = øallocate sandbox_renderer::pipeline(
+   //     //m_ppipeline = øallocate graphics3d::pipeline(
    //     //    m_pgpudevice,
    //     //    vertShaderPath.c_str(),
    //     //    fragShaderPath.c_str(),
@@ -114,23 +114,24 @@ namespace graphics3d
    //     );
    // }
 
-   void point_light_render_system::on_render(::graphics3d::IFrame *pframe)
+   void point_light_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene * pscene)
    {
-      ::map<float, uint32_t> sorted;
+      //::map<float, uint32_t> sorted;
 
-      auto pgameobjects = pframe->game_objects();
+      auto & pointlighta = pscene->m_pointlighta;
 
-      for (auto &[id, pobject]: *pgameobjects)
-      {
-         ::cast<point_light> ppointlight = pobject;
-         if (!ppointlight)
-            continue;
-         glm::vec3 offset = pframe->camera()->getPosition() - pobject->transform().translation;
-         // need to implement getPosition because ICamera has no defintion
-         float distanceSquared = glm::dot(offset, offset);
-         sorted[distanceSquared] = pobject->getId();
-      }
+      // for (auto ppointlight: pointlighta)
+      // {
+      //    glm::vec3 offset = pframe->camera()->getPosition() - pobject->transform().translation;
+      //    // need to implement getPosition because ICamera has no defintion
+      //    float distanceSquared = glm::dot(offset, offset);
+      //    sorted[distanceSquared] = pobject->getId();
+      // }
+      //
+      //
       m_pshader->bind();
+
+      auto pframe = ::gpu::current_frame();
 
       // vkCmdBindDescriptorSets(
       //     frame.m_pcommandbuffer,
@@ -143,18 +144,18 @@ namespace graphics3d
       //     nullptr
       // );
 
-      for (auto it = sorted.begin(); it != sorted.end(); ++it)
+      for (auto ppointlight : pointlighta)
       {
-         auto pobject = (*pframe->scene_objects())[it->element2()];
-         ::cast<point_light> ppointlight = pobject;
+         //auto pobject = (*pframe->scene_objects())[it->element2()];
+         //::cast<point_light> ppointlight = pobject;
          PointLightPushConstants push{};
-         push.position = glm::vec4(ppointlight->transform().translation, 1.0f);
+         push.position = glm::vec4(ppointlight->transform().m_vec3Translation, 1.0f);
          push.color = glm::vec4(
             ppointlight->color().f32_red(),
             ppointlight->color().f32_green(),
             ppointlight->color().f32_blue(),
             ppointlight->m_fLightIntensity);
-         push.radius = ppointlight->transform().scale.x;
+         push.radius = ppointlight->transform().m_vec3Scale.x;
 
          m_pshader->set_push_properties(::as_memory_block(push));
 
@@ -166,19 +167,19 @@ namespace graphics3d
          //     sizeof(PointLightPushConstants),
          //     &push
          // );
-         pframe->getCommandBuffer()->draw_vertexes(6);
+         pframe->m_pgpucommandbuffer->draw_vertexes(6);
          //vkCmdDraw(frame.m_pcommandbuffer, 6, 1, 0, 0);
       }
 
    }
 
 
-   void point_light_render_system::on_update(::graphics3d::IFrame *pframe)
+   void point_light_render_system::on_update(::gpu::context* pgpucontext, ::graphics3d::scene * pscene)
    {
 
       auto dt = m_pengine->dt();
 
-      auto pscene = m_pengine->m_pscene;
+      //auto pscene = m_pengine->m_pscene;
 
       auto& globalubo = pscene->global_ubo();
 
@@ -186,26 +187,23 @@ namespace graphics3d
 
       int lightIndex = 0;
 
-      for (auto& kv : pscene->m_mapObjects)
+      auto & pointlighta = pscene->m_pointlighta;
+
+      for (auto ppointlight : pointlighta)
       {
 
-         auto& obj = kv.element2();
-
-         ::cast < ::graphics3d::point_light > ppointlight = obj;
-
-         if (ppointlight == nullptr) continue;
-
-         assert(lightIndex < point_light::MAX_LIGHTS && "Point lights exceed maximum specified");
-
          // update light position
-         ppointlight->m_transform.translation =
-            glm::vec3(rotateLight * glm::vec4(ppointlight->m_transform.translation, 1.f));
+         ppointlight->m_transform.m_vec3Translation =
+            glm::vec3(rotateLight * glm::vec4(ppointlight->m_transform.m_vec3Translation, 1.f));
 
          // copy light to ubo
          globalubo["pointLights"][lightIndex]["position"] =
-            glm::vec4(ppointlight->m_transform.translation, 1.f);
+            glm::vec4(ppointlight->m_transform.m_vec3Translation, 1.f);
          globalubo["pointLights"][lightIndex]["color"] =
-            glm::vec4(obj->m_color, ppointlight->m_pointlightcomponent.lightIntensity);
+            glm::vec4(ppointlight->m_color.f32_red(),
+            ppointlight->m_color.f32_green(),
+            ppointlight->m_color.f32_blue(),
+                ppointlight->m_fLightIntensity);
 
          lightIndex += 1;
 

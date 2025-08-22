@@ -5,8 +5,8 @@
 namespace graphics3d
 {
 
-	class TransformComponent {
-		//TransformComponent() = default;
+	class ::graphics3d::transform {
+		//::graphics3d::transform() = default;
 		glm::vec3 translation{};
 		glm::vec3 scale{ 1.f };
 		glm::vec3 rotation{};

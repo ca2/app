@@ -123,7 +123,7 @@ namespace graphics3d
          if (ppointlight == nullptr) continue;
 
          // calculate distance
-         auto offset = m_pgpucontext->m_pimpact->m_pengine->m_pcamera->GetPosition() - obj->m_transform.translation;
+         auto offset = m_pgpucontext->m_pimpact->m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->GetPosition() - obj->m_transform.translation;
          float disSquared = glm::dot(offset, offset);
          sorted[disSquared] = obj->m_iId;
       }

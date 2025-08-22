@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "cube_map.h"
+#include "sky_box.h"
 #include "engine.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
@@ -10,6 +10,8 @@
 #include "aura/platform/application.h"
 #include <stb/stb_image.h>
 #include <iostream>
+
+#include "gpu/command_buffer.h"
 
 
 namespace graphics3d
@@ -46,31 +48,14 @@ namespace graphics3d
 
       m_cube = cube;
 
-      m_pengine = pengine;
+      //m_pengine = pengine;
 
 
       auto modeldataCube = ::graphics3d::shape_factory::create_cube(32.0f);
 
       m_pmodelCube.initialize_model(pengine->gpu_context()->m_pgpurenderer, modeldataCube);
 
-      // Initialize skybox shader
-      ødefer_construct(m_pshader);
 
-      m_pshader->m_bDisableDepthTest = false;
-      m_pshader->m_bDepthTestButNoDepthWrite = true;
-      m_pshader->m_bLequalDepth = true;
-      m_pshader->m_bEnableBlend = true;
-      m_pshader->m_ecullmode = ::gpu::e_cull_mode_none;
-      m_pshader->m_bindingCubeSampler.set();
-
-      m_pshader->initialize_shader(pengine->gpu_context()->m_pgpurenderer,
-         "matter://shaders/skybox.vert",
-         "matter://shaders/skybox.frag",
-         {::gpu::shader::e_descriptor_set_slot_global},
-         nullptr,
-         nullptr,
-         pengine->gpu_context()->input_layout<::graphics3d::shape_factory::Vertex>()
-      );
       
       initialize(pengine->gpu_context());
       
@@ -240,21 +225,14 @@ namespace graphics3d
    void sky_box::bind(::gpu::command_buffer* pgpucommandbuffer)
    {
 
-      // Set uniforms in the shader
-      auto iFrameSerial = m_pengine->gpu_context()->m_pgpudevice->m_iFrameSerial2;
 
-      auto ptextureDst = m_pengine->gpu_context()->m_pgpurenderer->current_render_target_texture(::gpu::current_frame());
-      
-      m_pshader->m_bindingCubeSampler.m_strUniform = "skybox";
-
-      m_pshader->bind(ptextureDst, m_ptextureCubeMap); // Make sure to bind the shader first
-      //auto view = m_pengine->m_pcamera->getView();
+      //auto view = m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->getView();
       //glm::mat4 skyboxView = glm::mat4(glm::mat3(view)); // <-- drop translation
       //m_pshader->set_mat4("view", skyboxView);
-      //auto projection = m_pengine->m_pcamera->getProjection();
+      //auto projection = m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->getProjection();
       //m_pshader->set_mat4("projection", projection);
       //m_pshader->bind_source(m_ptextureCubeMap);
-      m_pmodelCube->bind(pgpucommandbuffer);
+      m_prenderable->bind(pgpucommandbuffer);
 
    }
 
@@ -271,21 +249,21 @@ namespace graphics3d
    {
 
       m_pmodelCube->unbind(pgpucommandbuffer);
-      m_pshader->unbind();
+      //m_pshader->unbind();
 
    }
 
-
-   void sky_box::on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
-   {
-
-      auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
-
-      bind(pcommandbuffer);
-      draw(pcommandbuffer);
-      unbind(pcommandbuffer);
-
-   }
+   //
+   // void sky_box::on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
+   // {
+   //
+   //    auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+   //
+   //    bind(pcommandbuffer);
+   //    draw(pcommandbuffer);
+   //    unbind(pcommandbuffer);
+   //
+   // }
 
 
 } // namespace graphics3d

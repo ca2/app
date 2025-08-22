@@ -4,7 +4,7 @@
 #include "bred/user/user/graphics3d.h"
 
 
-namespace sandbox_renderer
+namespace graphics3d
 {
 
 
@@ -51,6 +51,6 @@ namespace sandbox_renderer
    // 3XINT PADDING
 
 
-} // namespace sandbox_renderer
+} // namespace graphics3d
 
 

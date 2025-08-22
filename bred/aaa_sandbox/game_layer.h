@@ -14,7 +14,7 @@ namespace graphics3d
 
 		virtual void onInit() = 0;
 		virtual void onUpdate(float deltaTime) = 0;
-		virtual void on_render(::graphics3d::IFrame & frame) {};
+		virtual void on_render(::gpu::frame & frame) {};
 		virtual IScene& getSceneInterface() = 0;
 		//virtual ~IGameLayer() = default;
 

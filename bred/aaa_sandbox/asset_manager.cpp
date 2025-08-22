@@ -1,4 +1,4 @@
-#include "../../../SceneFoundry/sandbox_engine/framework.h"
+#include "../../../SceneFoundry/graphics3d/framework.h"
 // asset_manager.cpp
 #include "acme/filesystem/filesystem/file_context.h"
 #include "asset_manager.h"
@@ -11,10 +11,10 @@
 
 //using json = nlohmann::json;
 
-namespace sandbox_engine
+namespace graphics3d
 {
 
-   // asset_manager::asset_manager(sandbox_renderer::device* pdevice) :
+   // asset_manager::asset_manager(graphics3d::device* pdevice) :
    //    m_pgpudevice(pdevice), m_transferQueue(m_pgpudevice->graphicsQueue()) {
    //
    // }
@@ -30,7 +30,7 @@ namespace sandbox_engine
    }
 
 
-   sandbox_renderer::object_model *asset_manager::getOBJModel(const ::scoped_string &name)
+   graphics3d::object_model *asset_manager::getOBJModel(const ::scoped_string &name)
    {
       auto p = m_mapObjectModel.find(name);
       if (!p)
@@ -249,9 +249,9 @@ namespace sandbox_engine
 
       // Create BRDF LUT, irradianceCube, prefilteredCube structures (these should allocate their own images)
       // Note: remove any line that reassigns environmentCube to an empty texture (that was the bug)
-      lutBrdf = øcreate_pointer<sandbox_renderer::texture>(&m_pgpudevice);
-      irradianceCube = øcreate_pointer<sandbox_renderer::texture>(&m_pgpudevice);
-      prefilteredCube = øcreate_pointer<sandbox_renderer::texture>(&m_pgpudevice);
+      lutBrdf = øcreate_pointer<graphics3d::texture>(&m_pgpudevice);
+      irradianceCube = øcreate_pointer<graphics3d::texture>(&m_pgpudevice);
+      prefilteredCube = øcreate_pointer<graphics3d::texture>(&m_pgpudevice);
 
       // Generate BRDF LUT first (your existing function)
       generateBRDFlut();
@@ -372,4 +372,4 @@ namespace sandbox_engine
    }
 
 
-} // namespace sandbox_engine
+} // namespace graphics3d

@@ -1,4 +1,4 @@
-// sandbox_renderer/include/IRenderSystem.h
+// graphics3d/include/IRenderSystem.h
 #pragma once
 
 namespace graphics3d

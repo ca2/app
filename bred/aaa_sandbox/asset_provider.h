@@ -2,7 +2,7 @@
 //#include <vulkan/vulkan.h>
 //////#include <stdexcept>
 //#include <memory>
-//#include "SceneFoundry/sandbox_renderer/gltf.h"
+//#include "SceneFoundry/graphics3d/gltf.h"
 
 namespace graphics3d
 {

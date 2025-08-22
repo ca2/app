@@ -31,7 +31,7 @@ namespace sandbox_game
    }
 
 
-   ::graphics3d::TransformComponent &game_object::transform()
+   ::graphics3d::transform &game_object::transform()
    {
       return m_transform;
    }

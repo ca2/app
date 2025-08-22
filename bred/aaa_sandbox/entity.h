@@ -14,7 +14,7 @@ namespace graphics3d
 		virtual void onInit() {};
 		virtual void onUpdate(float dt) {};
 		virtual void onRender(IFrame * pframe) {};
-		virtual TransformComponent& getTransform() = 0;
+		virtual ::graphics3d::transform& getTransform() = 0;
 		//virtual ~IEntity() = default;
 	};
 

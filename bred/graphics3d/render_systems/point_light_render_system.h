@@ -1,8 +1,8 @@
 #pragma once
 // #include "bred/graphics3d/render_system.h"
 //
-// //#include "SceneFoundry/sandbox_renderer/device.h"
-// //#include "SceneFoundry/sandbox_renderer/pipeline.h"
+// //#include "SceneFoundry/graphics3d/device.h"
+// //#include "SceneFoundry/graphics3d/pipeline.h"
 //
 // //#include <vulkan/vulkan.h>
 //
@@ -37,18 +37,18 @@ namespace graphics3d
    public:
 
 
-      //::pointer<::sandbox_renderer::device> m_pgpudevice;
+      //::pointer<::graphics3d::device> m_pgpudevice;
 
       //VkDescriptorSetLayout m_globalSetLayout;
       //::pointer<::gpu::shader> m_pshader;
-      //::pointer<sandbox_renderer::pipeline> m_ppipeline;
+      //::pointer<graphics3d::pipeline> m_ppipeline;
       //VkPipelineLayout m_pipelineLayout;
 
       float m_rotationSpeed = 0.2f;
       // point_light_render_system(const point_light_render_system&) = delete;
       // point_light_render_system& operator=(const point_light_render_system&) = delete;
 
-      //point_light_render_system(sandbox_renderer::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout);
+      //point_light_render_system(graphics3d::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout);
       point_light_render_system();
 
 
@@ -56,19 +56,25 @@ namespace graphics3d
 
 
       // void init(
-      // 	::sandbox_renderer::device * pdevice,
+      // 	::graphics3d::device * pdevice,
       // 	VkRenderPass            renderPass,
       // 	VkDescriptorSetLayout   globalSetLayout,
-      // 	sandbox_renderer::sandbox_descriptor_pool& descriptorPool,
+      // 	graphics3d::sandbox_descriptor_pool& descriptorPool,
       // 	size_t frameCount)override;
+      //
+      // void on_prepare() override;
+      //
+      //
+      // void on_update(::gpu::frame *pframe) override;
+      //
+      //
+      // void on_render(::gpu::frame *pframe) override;
 
-      void on_prepare() override;
+      void initialize_render_system(::graphics3d::engine * pengine);
 
-
-      void on_update(::graphics3d::IFrame *pframe) override;
-
-
-      void on_render(::graphics3d::IFrame *pframe) override;
+      void on_prepare(::gpu::context* pgpucontext) override;
+      void on_update(::gpu::context* pgpucontext, ::graphics3d::scene * pscene) override;
+      void on_render(::gpu::context* pgpucontext, ::graphics3d::scene * pscene) override;
 
 
       //private:

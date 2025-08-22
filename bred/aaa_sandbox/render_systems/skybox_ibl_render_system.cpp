@@ -10,7 +10,7 @@
 
 namespace graphics3d
 {
-	//skybox_ibl_render_system::skybox_ibl_render_system(::sandbox_renderer::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
+	//skybox_ibl_render_system::skybox_ibl_render_system(::graphics3d::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
 	//	: m_pgpudevice{ pdevice }, m_pipelineLayout{ VK_NULL_HANDLE }, m_skyboxDescriptorSet(VK_NULL_HANDLE), m_bHasCubemap(false)
 //	{
 //	}
@@ -29,10 +29,10 @@ namespace graphics3d
 	//
 	//
 	// void skybox_ibl_render_system::init(
-	// 	sandbox_renderer::device * pdevice,
+	// 	graphics3d::device * pdevice,
 	// 	VkRenderPass renderPass,
 	// 	VkDescriptorSetLayout globalSetLayout,
-	// 	sandbox_renderer::sandbox_descriptor_pool& descriptorPool,
+	// 	graphics3d::sandbox_descriptor_pool& descriptorPool,
 	// 	size_t frameCount)
 	// {
 	// 	ASSERT(pdevice == m_pgpudevice);
@@ -49,7 +49,7 @@ namespace graphics3d
 	// }
 
 	void skybox_ibl_render_system::createSkyboxDescriptorSetLayout() {
-		// m_skyboxSetLayout = sandbox_renderer::sandbox_descriptor_set_layout::Builder(m_pgpudevice)
+		// m_skyboxSetLayout = graphics3d::sandbox_descriptor_set_layout::Builder(m_pgpudevice)
 		// 	.addBinding(
 		// 		0,
 		// 		VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
@@ -64,7 +64,7 @@ namespace graphics3d
 		// ASSERT(m_descriptorPool && "Descriptor pool must be set before allocating descriptors");
 		// ASSERT(m_skyboxSetLayout && "Descriptor set layout must be created before allocating");
 		//
-		// sandbox_renderer::sandbox_descriptor_writer writer(*m_skyboxSetLayout, *m_descriptorPool);
+		// graphics3d::sandbox_descriptor_writer writer(*m_skyboxSetLayout, *m_descriptorPool);
 		// writer.writeImage(0, &m_skyboxImageInfo);
 		// bool success = writer.build(m_skyboxDescriptorSet);
 		// ASSERT(success && "Failed to build skybox descriptor set");
@@ -93,7 +93,7 @@ namespace graphics3d
 	// 	}
 	// }
 
-	void skybox_ibl_render_system::on_render(::graphics3d::IFrame * pframe)
+	void skybox_ibl_render_system::on_render(::gpu::frame * pframe)
 	{
 
 		if (!m_bHasCubemap) return;
@@ -140,13 +140,13 @@ namespace graphics3d
 	// void skybox_ibl_render_system::createPipeline(VkRenderPass renderPass) {
 	// 	ASSERT(m_pipelineLayout != VK_NULL_HANDLE && "Pipeline layout must be created before pipeline");
 	//
-	// 	// sandbox_renderer::pipeline_configuration_information config{};
-	// 	// sandbox_renderer::pipeline::defaultPipelineConfigInfo(config);
+	// 	// graphics3d::pipeline_configuration_information config{};
+	// 	// graphics3d::pipeline::defaultPipelineConfigInfo(config);
 	// 	//
 	// 	// ::array_base<VkVertexInputBindingDescription>   bindings = {
 	// 	// 	vkinit::vertexInputBindingDescription(
 	// 	// 		0,
-	// 	// 		sizeof(sandbox_renderer::gltf::Vertex),
+	// 	// 		sizeof(graphics3d::gltf::Vertex),
 	// 	// 		VK_VERTEX_INPUT_RATE_VERTEX)
 	// 	// };
 	// 	// ::array_base<VkVertexInputAttributeDescription> attributes = {
@@ -154,7 +154,7 @@ namespace graphics3d
 	// 	// 		/*binding=*/0,
 	// 	// 		/*location=*/0,
 	// 	// 		/*format=*/VK_FORMAT_R32G32B32_SFLOAT,
-	// 	// 		/*offset=*/offsetof(sandbox_renderer::gltf::Vertex, pos))
+	// 	// 		/*offset=*/offsetof(graphics3d::gltf::Vertex, pos))
 	// 	// };
 	// 	//
 	// 	// config.bindingDescriptions = bindings;
@@ -169,7 +169,7 @@ namespace graphics3d
 	// 	::string vertPath = "matter://shaders/spirV/skybox_ibl.vert.spv";
 	// 	::string fragPath = "matter://shaders/spirV/skybox_ibl.frag.spv";
 	//
-	// 	m_ppipeline = øcreate_pointer<sandbox_renderer::pipeline>(
+	// 	m_ppipeline = øcreate_pointer<graphics3d::pipeline>(
 	// 		m_pgpudevice,
 	// 		vertPath.c_str(),
 	// 		fragPath.c_str()

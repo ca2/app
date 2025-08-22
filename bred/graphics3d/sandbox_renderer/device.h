@@ -4,10 +4,10 @@
 ////#include <vector>
 
 //#include "app-graphics3d/gpu_vulkan/_gpu_vulkan.h"
-//#include "SceneFoundry/sandbox_renderer/include/window.h"
+//#include "SceneFoundry/graphics3d/include/window.h"
 //#include "instance.h"
 
-namespace sandbox_renderer
+namespace graphics3d
 {
 
    //
@@ -29,7 +29,7 @@ namespace sandbox_renderer
    //
 
 
-   class CLASS_DECL_SANDBOX_RENDERER device :
+   class CLASS_DECL_BRED device :
       virtual public ::particle
    {
    public:
@@ -138,7 +138,7 @@ namespace sandbox_renderer
       //    void* data = nullptr);
 
       
-      // virtual ::pointer < ::sandbox_renderer::pipeline > create_pipeline_from_file(
+      // virtual ::pointer < ::graphics3d::pipeline > create_pipeline_from_file(
       //    const ::scoped_string scopedstrVertexPath,
       //    const ::scoped_string scopedstrFragmentPath
       // );
@@ -183,7 +183,7 @@ namespace sandbox_renderer
 
 
 
-} // namespace sandbox_renderer
+} // namespace graphics3d
 
 
 

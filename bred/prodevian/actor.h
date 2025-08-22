@@ -15,7 +15,7 @@ namespace prodevian
 {
 
 
-   class player :
+   class actor :
       virtual public ::graphics3d::scene_object
    {
    public:
@@ -25,16 +25,19 @@ namespace prodevian
       //::pointer<::graphics3d::IWindowInput>       m_pInput;
       //::graphics3d::transform m_transform;
       //camera m_camera;
+      ::pointer < ::graphics3d::camera >           m_pcamera;
       //mnk_controller m_controller;
 
       // Configuration
       float m_mouseSensitivity = 0.0025f;
       float m_moveSpeed = 30.0f;
 
-      player();
 
 
-      //void initialize_scene_object(::graphics3d::IWindowInput * pinput);
+      actor();
+
+
+      void initialize_prodevian_actor(::graphics3d::scene * pscene);
 
       //void onInit() override;
       void on_update(float deltaTime) override;

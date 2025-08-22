@@ -1,5 +1,5 @@
 //
-// From V0idsEmbrace.sandbox_renderer by camilo on 2025-08-21 18:32 <3ThomasBorregaardSorensen
+// From V0idsEmbrace.graphics3d by camilo on 2025-08-21 18:32 <3ThomasBorregaardSorensen
 //
 #pragma once
 #include "bred/graphics3d/scene_object.h"

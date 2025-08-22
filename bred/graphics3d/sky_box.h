@@ -5,8 +5,9 @@
 //#include <vector>
 #include "acme/prototype/collection/static_array.h"
 #include "bred/graphics3d/model.h"
-#include "bred/graphics3d/scene_system.h"
+//#include "bred/graphics3d/render_system.h"
 #include "bred/graphics3d/shape_factory.h"
+#include "bred/graphics3d/scene_object.h"
 #include "bred/graphics3d/types.h"
 
 
@@ -15,7 +16,7 @@ namespace graphics3d
 
 
    class CLASS_DECL_BRED sky_box :
-   virtual public ::graphics3d::scene_system 
+   virtual public ::graphics3d::scene_object
    
    {
    public:
@@ -93,7 +94,9 @@ namespace graphics3d
       virtual void draw(::gpu::command_buffer* pgpucommandbuffer);
       virtual void unbind(::gpu::command_buffer* pgpucommandbuffer);
 
-      void on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene) override;
+      //void draw(::gpu::context* pgpucontext, ::graphics3d::scene* pscene) override;
+
+      //void draw(::gpu::command_buffer * pcommandbuffer) override;
 
 
 

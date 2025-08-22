@@ -1,7 +1,7 @@
 #pragma once
 //#include <vulkan/vulkan.h>
 //////#include <stdexcept>
-//#include "SceneFoundry/sandbox_renderer/texture.h"
+//#include "SceneFoundry/graphics3d/texture.h"
 //#include <optional>
 
 namespace graphics3d

@@ -9,7 +9,7 @@ list(APPEND library_source
         game_layer.cpp
         player_input.cpp
         player_input.h
-        player.h
+   actor.h
         player.cpp
         game_object.cpp
         game_object.cpp

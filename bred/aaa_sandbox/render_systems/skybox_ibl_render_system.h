@@ -3,8 +3,8 @@
 #include "bred/graphics3d/render_system.h"
 //#include "SceneFoundry/graphics3d/asset_provider.h"
 //#include "device.h"
-//#include "SceneFoundry/sandbox_renderer/pipeline.h"
-//#include "SceneFoundry/sandbox_renderer/descriptor.h"
+//#include "SceneFoundry/graphics3d/pipeline.h"
+//#include "SceneFoundry/graphics3d/descriptor.h"
 //#include "gltf.h"
 //#include <vulkan/vulkan.h>
 
@@ -29,14 +29,14 @@ namespace graphics3d
         //::pointer<::gpu_vulkan::pipeline> m_ppipeline;
         //VkPipelineLayout m_pipelineLayout;
         //VkDescriptorImageInfo m_skyboxImageInfo{};
-        //::pointer<sandbox_renderer::sandbox_descriptor_set_layout> m_skyboxSetLayout;
+        //::pointer<graphics3d::sandbox_descriptor_set_layout> m_skyboxSetLayout;
         //VkDescriptorSet m_skyboxDescriptorSet;
 
-        //sandbox_renderer::sandbox_descriptor_pool* m_descriptorPool = nullptr;
+        //graphics3d::sandbox_descriptor_pool* m_descriptorPool = nullptr;
         bool m_bHasCubemap = false;
 
 
-        //skybox_ibl_render_system(sandbox_renderer::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout);
+        //skybox_ibl_render_system(graphics3d::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout);
         skybox_ibl_render_system();
         ~skybox_ibl_render_system();
 
@@ -44,14 +44,14 @@ namespace graphics3d
         // skybox_ibl_render_system& operator=(const skybox_ibl_render_system&) = delete;
 
         // void init(
-        //    sandbox_renderer::device * pdevice,
+        //    graphics3d::device * pdevice,
         //     VkRenderPass            renderPass,
         //     VkDescriptorSetLayout   globalSetLayout,
-        //    sandbox_renderer::sandbox_descriptor_pool& descriptorPool,
+        //    graphics3d::sandbox_descriptor_pool& descriptorPool,
         //     size_t frameCount)override;
 
         // Call this inside your scene render loop, after global descriptors are bound
-        void on_render(::graphics3d::IFrame * pframe) override;
+        void on_render(::gpu::frame * pframe) override;
 
         //
         // inline void setCubemapTexture(const VkDescriptorImageInfo& info) {

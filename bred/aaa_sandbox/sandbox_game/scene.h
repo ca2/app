@@ -3,7 +3,7 @@
 #include "bred/graphics3d/scene.h"
 #include "bred/graphics3d/entity.h"
 #include "SceneFoundry/sandbox_game/player.h"
-#include "SceneFoundry/sandbox_engine/asset_manager.h"
+#include "SceneFoundry/graphics3d/asset_manager.h"
 #include "SceneFoundry/sandbox_game/game_object.h"
 //#include <memory>
 //#include <vector>
@@ -26,7 +26,7 @@ namespace sandbox_game
 
 
 		::pointer<::graphics3d::IWindowInput>							      m_pwindowinput;
-		::pointer < ::sandbox_engine::asset_manager >				   m_passetmanager;
+		::pointer < ::graphics3d::asset_manager >				   m_passetmanager;
 
 		         ::pointer_array_base<player>								m_playera;
 		::map<unsigned int, ::pointer<::graphics3d::scene_object>>		m_mapSceneObject;
@@ -42,7 +42,7 @@ namespace sandbox_game
 		~scene() override;
 
 		// pass input so your Player can read it
-		void initialize_scene(::graphics3d::IWindowInput * input, ::graphics3d::IAssetProvider * passetprovider) override;
+		void initialize_scene(::graphics3d::IWindowInput * input, ::graphics3d::IAssetProvider * passetmanager) override;
 
 
 		void init() override;                 // load models, spawn entities

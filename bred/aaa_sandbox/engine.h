@@ -2,33 +2,33 @@
 //#include <memory>
 //#include "window.h"
 #include "bred/graphics3d/engine.h"
-#include "sandbox_renderer/device.h"
-//#include "sandbox_renderer/instance.h"
-#include "sandbox_renderer/renderer.h"
+#include "graphics3d/device.h"
+//#include "graphics3d/instance.h"
+#include "graphics3d/renderer.h"
 #include "SceneFoundry/sandbox_game/game_layer.h"
 #include "SceneFoundry/sandbox_game/camera.h"
 #include "bred/graphics3d/window_input.h"
-#include "sandbox_engine/glfw_input.h"
+#include "graphics3d/glfw_input.h"
 #include "asset_manager.h"
 
-namespace sandbox_engine
+namespace graphics3d
 {
 
-   class sandbox_engine :
+   class graphics3d :
    virtual public ::graphics3d::engine
    {
    public:
 
       //   private:
       //    SandboxWindow                       m_window{ WIDTH, HEIGHT, "A vulkan place" };
-      //::pointer < ::sandbox_renderer::sandbox_window> m_pwindow;
-      ::pointer < ::sandbox_renderer::sandbox_instance >                   m_pinstance;
-      //::sandbox_renderer::device                     m_device{ m_vkinstance, m_window };
-      ::pointer < ::sandbox_renderer::device >                     m_pgpudevice;
+      //::pointer < ::graphics3d::sandbox_window> m_pwindow;
+      ::pointer < ::graphics3d::sandbox_instance >                   m_pinstance;
+      //::graphics3d::device                     m_device{ m_vkinstance, m_window };
+      ::pointer < ::graphics3d::device >                     m_pgpudevice;
       //::pointer < asset_manager >                        m_passetManager{ m_device };
       ::pointer < asset_manager >                        m_passetManager;
-      //::sandbox_renderer::sandbox_renderer                   m_renderer{ m_device, m_window };
-      ::pointer < ::sandbox_renderer::sandbox_renderer >                   m_prenderer;
+      //::graphics3d::graphics3d                   m_renderer{ m_device, m_window };
+      ::pointer < ::graphics3d::graphics3d >                   m_prenderer;
 
       //VkSurfaceKHR                        m_surface = VK_NULL_HANDLE;
       //VkInstance                          m_vkinstance_handle = VK_NULL_HANDLE;
@@ -38,8 +38,8 @@ namespace sandbox_engine
       // static constexpr uint32_t WIDTH = 1440;
       // static constexpr uint32_t HEIGHT = 810;
 
-      sandbox_engine();
-      ~sandbox_engine() override;
+      graphics3d();
+      ~graphics3d() override;
 
       void initialize();
 
@@ -65,6 +65,6 @@ namespace sandbox_engine
 
 
 
-} // namespace sandbox_engine
+} // namespace graphics3d
 
 

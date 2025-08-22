@@ -50,5 +50,35 @@ enum class KeyAction {
     REPEAT
 };
 
+   enum enum_mouse
+   {
+      e_mouse_none = 0,
+      e_mouse_updateLook
+   };
+   enum enum_keyboard
+   {
+      e_keyboard_none = 0,
+      e_keyboard_updateMovement,
+      e_keyboard_spaceExplorer
+   };
 
 } // namespace graphics3d
+
+
+
+namespace user
+{
+
+
+   enum enum_key_state
+   {
+
+      e_key_state_none,
+      e_key_state_pressed = 1,
+
+   };
+
+
+
+
+} // namespace user

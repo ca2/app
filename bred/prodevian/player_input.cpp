@@ -19,7 +19,7 @@ namespace sandbox_game
    void mnk_controller::update(
       float dt,
       ::graphics3d::IWindowInput * pinput,
-      ::graphics3d::TransformComponent& transform)
+      ::graphics3d::transform& transform)
    {
 
       // 1) Smooth raw mouse delta into m_smoothDelta

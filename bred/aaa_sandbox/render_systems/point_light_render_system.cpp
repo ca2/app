@@ -38,7 +38,7 @@ namespace graphics3d
    };
 
 
-   // point_light_render_system::point_light_render_system(sandbox_renderer::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
+   // point_light_render_system::point_light_render_system(graphics3d::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
    //     : m_pgpudevice(pdevice), m_globalSetLayout(globalSetLayout)
    // {
    //
@@ -50,10 +50,10 @@ namespace graphics3d
 
 
    // void point_light_render_system::init(
-   //    sandbox_renderer::device * pgpudevice,
+   //    graphics3d::device * pgpudevice,
    //     VkRenderPass renderPass,
    //     VkDescriptorSetLayout globalSetLayout,
-   //    sandbox_renderer::sandbox_descriptor_pool& descriptorPool,
+   //    graphics3d::sandbox_descriptor_pool& descriptorPool,
    //     size_t frameCount)
    // {
    //     // Optional: ASSERT pdevice consistency
@@ -92,8 +92,8 @@ namespace graphics3d
    // void point_light_render_system::createPipeline(VkRenderPass renderPass) {
    //     ASSERT(m_pipelineLayout != VK_NULL_HANDLE && "Cannot create pipeline before pipeline layout");
    //
-   //     //sandbox_renderer::pipeline_configuration_information pipelineConfig{};
-   //     //sandbox_renderer::pipeline::defaultPipelineConfigInfo(pipelineConfig);
+   //     //graphics3d::pipeline_configuration_information pipelineConfig{};
+   //     //graphics3d::pipeline::defaultPipelineConfigInfo(pipelineConfig);
    //     //pipelineConfig.bindingDescriptions.clear();
    //     //pipelineConfig.attributeDescriptions.clear();
    //     //pipelineConfig.renderPass = renderPass;
@@ -102,7 +102,7 @@ namespace graphics3d
    //     ::string vertShaderPath = "matter://shaders/spirV/point_light.vert.spv";
    //     ::string fragShaderPath = "matter://shaders/spirV/point_light.frag.spv";
    //
-   //     //m_ppipeline = øallocate sandbox_renderer::pipeline(
+   //     //m_ppipeline = øallocate graphics3d::pipeline(
    //     //    m_pgpudevice,
    //     //    vertShaderPath.c_str(),
    //     //    fragShaderPath.c_str(),
@@ -114,7 +114,7 @@ namespace graphics3d
    //     );
    // }
 
-   void point_light_render_system::on_render(::graphics3d::IFrame *pframe)
+   void point_light_render_system::on_render(::gpu::frame *pframe)
    {
       ::map<float, uint32_t> sorted;
 
@@ -173,7 +173,7 @@ namespace graphics3d
    }
 
 
-   void point_light_render_system::on_update(::graphics3d::IFrame *pframe)
+   void point_light_render_system::on_update(::gpu::frame *pframe)
    {
 
       auto dt = m_pengine->dt();

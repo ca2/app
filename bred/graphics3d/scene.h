@@ -2,7 +2,7 @@
 #include "bred/graphics3d/window_input.h"
 #include "bred/graphics3d/scene.h"
 #include "bred/graphics3d/entity.h"
-#include "bred/prodevian/player.h"
+#include "bred/prodevian/actor.h"
 #include "bred/graphics3d/asset_manager.h"
 #include "bred/prodevian/game_object.h"
 //#include <memory>
@@ -23,61 +23,92 @@ namespace graphics3d
 
 
 	   ::interlocked_count                                         m_interlockedcountSceneObject;
-
-
+      ::pointer < ::graphics3d::engine >                          m_pengine;
 		//::pointer<::graphics3d::IWindowInput>							      m_pwindowinput;
-		::pointer < ::sandbox_engine::asset_manager >				   m_passetmanager;
-
-		         ::pointer_array_base<player>								m_playera;
-		::map<unsigned int, ::pointer<::graphics3d::scene_object>>		m_mapSceneObject;
+		::pointer < ::graphics3d::asset_manager >				         m_passetmanager;
+      ::pointer < ::graphics3d::camera >                          m_pcameraCurrent;
+	   ::pointer < ::graphics3d::camera >                          m_pcameraDefault;
+	   ::pointer < ::graphics3d::camera >                          m_pcameraScene;
+      ::pointer_array_base<::prodevian::actor>				         m_prodevianactora;
+	   ::pointer_array_base<::graphics3d::point_light>				   m_pointlighta;
+		::graphics3d::scene_object_map                           	m_mapSceneObject;
 		glm::vec3													            m_initialCameraPosition{ 0.f };
 		glm::vec3													            m_initialCameraRotation{ 0.f };
 
-		int															            m_iSkyboxId = -1;
-		::pointer<::graphics3d::scene_object>							      m_psceneobjectSkybox;
+		//int															            m_iSkyboxId = -1;
+		::pointer<::graphics3d::sky_box>							         m_pskyboxCurrent;
 		::string													               m_strSkyboxCubemapName;
-
+      ::gpu::properties                                           m_gpupropertiesGlobalUbo;
 
 		scene();
 		~scene() override;
 
+
+
+
 		// pass input so your Player can read it
-		void initialize_scene(::graphics3d::IWindowInput * input, ::graphics3d::IAssetProvider * passetprovider) override;
+		//void initialize_scene(::graphics3d::IWindowInput * input, ::graphics3d::IAssetProvider * passetmanager) override;
+
+	   void initialize_scene(::graphics3d::engine * pengine);
 
 
-		void init() override;                 // load models, spawn entities
-		void update(float dt) override;        // advance all entities
-
+		virtual void on_initialize_scene();                 // load models, spawn entities
+		virtual void update(float dt);        // advance all entities
 		void loadSceneFile(const ::scoped_string& fileName);
 
-		::graphics3d::scene_object_map & getGameObjects() override ;
+	   virtual ::gpu::properties & global_ubo();
 
 
-		::pair<glm::mat4, glm::mat4> getMainCameraMatrices()const;
 
-		void setSkyboxObject(::graphics3d::scene_object * pobject);
+		virtual ::graphics3d::scene_object_map & scene_objects();
 
-		camera& getCamera();
+		virtual ::pair<glm::mat4, glm::mat4> getMainCameraMatrices()const;
 
-		void addGameObject(uint32_t id, ::graphics3d::scene_object * obj);
-		void removeGameObject(uint32_t id);
+		virtual void set_sky_box(::graphics3d::sky_box * pskybox);
 
-		::graphics3d::IGameObject * getSkyboxObject() override;
+		virtual class camera *camera();
+
+	   virtual void set_default_camera(::graphics3d::camera * pgpucamera);
+	   virtual ::graphics3d::camera * get_default_camera();
+
+
+		//virtual void addGameObject(uint32_t id, ::graphics3d::scene_object * obj);
+		//virtual void removeGameObject(uint32_t id);
+
+		virtual ::graphics3d::sky_box * current_sky_box();
 
 		//::graphics3d::sandbox_game_object>>
 		//	getSkyboxObject();
 
 		::string getSkyboxCubemapName();
 
+	   ::pointer < ::graphics3d::renderable > create_tinyobj_renderable(const ::file::path& path);
+
 	   ::pointer<::graphics3d::scene_object> create_scene_object();
 
 
-	   ::pointer<::graphics3d::scene_object> create_skybox_object();
+	   ::pointer<::graphics3d::sky_box> create_sky_box();
 
 
-		::pointer<::graphics3d::scene_object> create_point_light(float intensity = 10.f, float radius = 0.1f, glm::vec3 color = glm::vec3(1.f));
+		::pointer<::graphics3d::point_light> create_point_light(
+		   float intensity = 10.f,
+		   float radius = 0.1f,
+		   const ::color::color & color = ::color::white);
+
+	   virtual void on_load_scene(::gpu::context* pgpucontext);
+	   virtual void on_update_global_ubo(::gpu::context* pgpucontext);
+	   virtual void on_render(::gpu::context * pgpucontext);
 
 
+	   scene_object * create_tinyobj(const ::file::path& path);
+	   scene_object * get_tinyobj(const ::file::path& path);
+
+	   inline scene_object & tinyobj(const ::file::path& path)
+	   {
+
+	      return *get_tinyobj(path);
+
+	   }
 
 	};
 

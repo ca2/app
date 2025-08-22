@@ -7,7 +7,7 @@
 //#include <iostream>
 //#include <set>
 //#include <unordered_set>
-namespace sandbox_renderer
+namespace graphics3d
 {
 
 
@@ -151,13 +151,13 @@ namespace sandbox_renderer
    // }
    //
 
-   // ::pointer < ::sandbox_renderer::pipeline > device::create_pipeline_from_file(
+   // ::pointer < ::graphics3d::pipeline > device::create_pipeline_from_file(
    //    const ::scoped_string scopedstrVertexPath,
    //    const ::scoped_string scopedstrFragmentPath
    // )
    // {
    //
-   //    ::pointer < ::sandbox_renderer::pipeline> ppipeline;
+   //    ::pointer < ::graphics3d::pipeline> ppipeline;
    //
    //    øconstruct(ppipeline);
    //
@@ -662,6 +662,6 @@ namespace sandbox_renderer
    // }
    //
 
-} // namespace sandbox_renderer
+} // namespace graphics3d
 
 

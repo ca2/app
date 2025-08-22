@@ -1,8 +1,8 @@
 #pragma once
 #include "bred/graphics3d/render_system.h"
 
-//#include "SceneFoundry/sandbox_renderer/device.h"
-//#include "SceneFoundry/sandbox_renderer/pipeline.h"
+//#include "SceneFoundry/graphics3d/device.h"
+//#include "SceneFoundry/graphics3d/pipeline.h"
 //#include <vulkan/vulkan.h>
 
 // STD
@@ -19,7 +19,7 @@ namespace graphics3d
 	public:
 
 
-		//::pointer < ::sandbox_renderer::device > m_pgpudevice;
+		//::pointer < ::graphics3d::device > m_pgpudevice;
 
 		//VkDescriptorSetLayout m_globalSetLayout;
 
@@ -27,7 +27,7 @@ namespace graphics3d
 		//::pointer < ::gpu::shader > m_pshader;
 		///	VkPipelineLayout m_pipelineLayout;
 
-		//object_render_system(::sandbox_renderer::device *pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout);
+		//object_render_system(::graphics3d::device *pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout);
 		object_render_system();
 		~object_render_system();
 
@@ -35,13 +35,13 @@ namespace graphics3d
 		//object_render_system& operator=(const object_render_system&) = delete;
 
 		// void init(
-		// 	::sandbox_renderer::device * pdevice,
+		// 	::graphics3d::device * pdevice,
 		// 	VkRenderPass            renderPass,
 		// 	VkDescriptorSetLayout   globalSetLayout,
-		// 	::sandbox_renderer::sandbox_descriptor_pool& descriptorPool,
+		// 	::graphics3d::sandbox_descriptor_pool& descriptorPool,
 		// 	size_t frameCount)override;
 
-		void on_render(::graphics3d::IFrame * pframe) override;
+		void on_render(::gpu::frame * pframe) override;
 		//private:
 		//void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
 		//void createPipeline(VkRenderPass renderPass);

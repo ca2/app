@@ -15,7 +15,7 @@ namespace sandbox_game
    public:
       mnk_controller(float moveSpeed = 7.f, float mouseSensitivity = 0.08f);
 
-      void update(float dt, ::graphics3d::IWindowInput * input, ::graphics3d::TransformComponent& transform);
+      void update(float dt, ::graphics3d::IWindowInput * input, ::graphics3d::transform& transform);
       void mouseCallback(glm::vec2 delta);
       float getYaw() const { return m_yaw; }
       float getPitch() const { return m_pitch; }

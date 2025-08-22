@@ -1,7 +1,12 @@
 #include "framework.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "point_light.h"
+#include "sky_box.h"
+#include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/scene.h"
-#include "SceneFoundry/scene_foundry/player.h"
+#include "bred/prodevian/actor.h"
+#include "openssl/ct.h"
+///#include "SceneFoundry/scene_foundry/player.h"
 //#include "SceneFoundry/sandbox_game/game_object.h"
 
 //#include <json.hpp>
@@ -32,35 +37,40 @@ namespace graphics3d
    }
 
 
-   void scene::initialize_scene(::graphics3d::IWindowInput * pwindowinput, ::graphics3d::IAssetProvider * passetprovider)
+   // void scene::initialize_scene(::graphics3d::IWindowInput * pwindowinput, ::graphics3d::IAssetProvider * passetmanager)
+   // {
+   //
+   //    m_pwindowinput = pwindowinput;
+   //    m_passetmanager = passetmanager;
+   //
+   // }
+
+
+   void scene::initialize_scene(::graphics3d::engine * pengine)
    {
 
-      m_pwindowinput = pwindowinput;
-      m_passetmanager = passetprovider;
+      ::graphics3d::scene::initialize_scene(pengine);
+
+      auto pprodevianactor = øcreate_new<::prodevian::actor>();
+
+      pprodevianactor->initialize_prodevian_actor(this);
+
+      pprodevianactor->transform().m_vec3Translation = m_initialCameraPosition;
+      pprodevianactor->transform().m_vec3Rotation = m_initialCameraRotation;
+      //pprodevianactor->onInit();
+
+      m_prodevianactora.add(pprodevianactor);
+
+      on_initialize_scene();
 
    }
 
 
-   void scene::init()
+   void scene::set_sky_box(::graphics3d::sky_box *pskybox)
    {
+      //m_iSkyboxId = pobject->getId();
+      m_pskyboxCurrent = pskybox ;
 
-      auto pplayer = øcreate_new<player>();
-
-      pplayer->initialize_sandbox_player(m_pwindowinput);
-
-      pplayer->transform().translation = m_initialCameraPosition;
-      pplayer->transform().rotation = m_initialCameraRotation;
-      pplayer->onInit();
-
-      m_playera.add(pplayer);
-
-   }
-
-
-   void scene::setSkyboxObject(::graphics3d::scene_object * pobject)
-   {
-      m_iSkyboxId = pobject->getId();
-      m_psceneobjectSkybox = pobject;
    }
 
 
@@ -75,14 +85,14 @@ namespace graphics3d
    void scene::update(float dt)
    {
 
-      for (auto& player : m_playera)
+      for (auto &pprodevianactor: m_prodevianactora)
       {
 
-         player->on_update(dt);
+         pprodevianactor->on_update(dt);
 
       }
 
-      for (auto& [id, pobject] : m_mapSceneObject)
+      for (auto &[id, pobject]: m_mapSceneObject)
       {
 
          pobject->on_update(dt);
@@ -92,7 +102,7 @@ namespace graphics3d
    }
 
 
-   void scene::loadSceneFile(const ::scoped_string& fileName)
+   void scene::loadSceneFile(const ::scoped_string &fileName)
    {
 
       ::file::path path = "matter://scenes/" + fileName + ".json";
@@ -124,28 +134,28 @@ namespace graphics3d
       if (sceneJson.has_property("camera"))
       {
 
-         auto& camJson = sceneJson["camera"].property_set_reference();
+         auto &camJson = sceneJson["camera"].property_set_reference();
 
          auto pos = camJson.get("position", ::float_array_base{0.f, 0.f, 0.f});
          auto rot = camJson.get("rotation", ::float_array_base{0.f, 0.f, 0.f});
 
-         m_initialCameraPosition = { pos[0], pos[1], pos[2] };
+         m_initialCameraPosition = {pos[0], pos[1], pos[2]};
          m_initialCameraRotation = {
-             glm::radians(rot[0]),
-             glm::radians(rot[1]),
-             glm::radians(rot[2])
+            glm::radians(rot[0]),
+            glm::radians(rot[1]),
+            glm::radians(rot[2])
          };
 
          information("Camera position: ({}, {}, {}), rotation (deg): ({}, {}, {})",
-            pos[0], pos[1], pos[2], rot[0], rot[1], rot[2]);
+                     pos[0], pos[1], pos[2], rot[0], rot[1], rot[2]);
       }
 
       auto objects = sceneJson["objects"].payload_array_reference();
 
-      for (auto& item : objects) 
+      for (auto &item: objects)
       {
 
-         auto & objJson = item.property_set_reference();
+         auto &objJson = item.property_set_reference();
 
          if (objJson.get("special", "") == "lights")
          {
@@ -153,169 +163,241 @@ namespace graphics3d
             auto radius = objJson.get("radius", 4.8f);
             auto height = objJson.get("height", -2.5f);
             auto intensity = objJson.get("intensity", 15.8f);
-            const auto& colorsJson = objJson["colors"];
+            const auto &colorsJson = objJson["colors"];
 
-            for (int i = 0; i < count; ++i) {
-               float angle = i * glm::two_pi<float>() / count;
+            for (int i = 0; i < count; ++i)
+            {
+ float angle = i * glm::two_pi<float>() / count;
+
                glm::vec3 pos = {
-                   radius * std::cos(angle),
-                   height,
-                   radius * std::sin(angle)
+                  radius * std::cos(angle),
+                  height,
+                  radius * std::sin(angle)
                };
 
                auto colorArray = colorsJson[i % colorsJson.array_get_count()];
-               glm::vec3 color = {
-                   colorArray[0],
-                   colorArray[1],
-                   colorArray[2]
-               };
+               auto color = ::argb(
+                  1.0f,
+                  colorArray[0].as_float(),
+                  colorArray[1].as_float(),
+                  colorArray[2].as_float());
 
-               auto ppointlight = this->makePointLight(intensity, 0.1f, color);
+               auto ppointlight = this->create_point_light(intensity, 0.1f, color);
+
                ppointlight->transform().translation = pos;
 
                information("Placed point light at ({}, {}, {})", pos.x, pos.y, pos.z);
 
                m_mapSceneObject.set_at(ppointlight->getId(), std::move(ppointlight));
+
             }
 
             continue; // Skip normal parsing for this object
          }
 
+         ::string strModelName;
 
-         ::pointer < ::graphics3d::scene_object > psceneobject;
+         strModelName = objJson["model"].as_string();
 
-         if (objJson.get_bool("skybox", false)
+         auto prenderable = m_passetmanager->get_renderable(strModelName);
+
+         if (!prenderable)
          {
 
-            psceneobject = createSkyBoxObject();
+            throw ::exception(error_not_found, "Model not found in cache: " + strModelName);
+
+         }
+
+         ::pointer<::graphics3d::scene_object> psceneobject;
+
+         bool bSkybox = objJson["skybox"].is_true();
+
+         if (bSkybox)
+         {
+
+            psceneobject = this->create_sky_box();
+
+            ::cast<sky_box> pskybox = psceneobject;
+
+            pskybox->m_strCubemapTextureName = objJson["cubemap"].as_string();
+
+            // Store or fallback cubemap texture name on scene-wide variable
+            //if (isSkybox) {
+            if (pskybox->m_strCubemapTextureName.has_character())
+            {
+
+               if (m_strSkyboxCubemapName.is_empty())
+               {
+                  m_strSkyboxCubemapName = pskybox->m_cubemapTextureName;
+               }
+            }
+
+            set_sky_box(pskybox);
+
+            information("GameObject '{}' marked as skybox with cubemap '{}'",
+                        strModelName,
+                        pskybox->m_strCubemapTextureName);
+
 
          }
          else
          {
 
-            psceneobject = this->createSceneObject();
+            psceneobject = this->create_scene_object();
+
+            m_mapSceneObject.set_at(psceneobject->getId(), psceneobject);
 
          }
+         //
+         //
+         // auto isSkybox =
+         // gameObject->m_bIsSkybox = isSkybox;
 
-
-         auto isSkybox =
-         gameObject->m_bIsSkybox = isSkybox;
-
-
-         if (auto it = objJson.find("model"); it)
-         {
-            const ::string modelName = it->as_string();
-
-            // try OBJ first
-            if (auto objModel = m_passetmanager->getOBJModel(modelName)) {
-               gameObject->set_model(objModel);
-            }
-            // then try GLTF
-            else if (auto gltfModel = m_passetmanager->getGLTFmodel(modelName)) {
-               gameObject->set_model(gltfModel);
-            }
-            else {
-               throw std::runtime_error("Model not found in cache: " + modelName);
-            }
-         }
-
+         psceneobject->set_renderable(prenderable);
 
          auto pos = objJson.get("position", ::float_array_base{0.f, 0.f, 0.f});
          auto rot = objJson.get("rotation", ::float_array_base{0.f, 0.f, 0.f});
          auto scl = objJson.get("scale", ::float_array_base{1.f, 1.f, 1.f});
 
-         gameObject->transform().translation = { pos[0], pos[1], pos[2] };
-         gameObject->transform().rotation = { rot[0], rot[1], rot[2] };
-         gameObject->transform().scale = { scl[0], scl[1], scl[2] };
+         psceneobject->transform().translation = {pos[0], pos[1], pos[2]};
+         psceneobject->transform().rotation = {rot[0], rot[1], rot[2]};
+         psceneobject->transform().scale = {scl[0], scl[1], scl[2]};
 
          information("Loaded GameObject '{}' - Pos: ({}, {}, {}), Rot: ({}, {}, {}), Scale: ({}, {}, {})",
-            objJson.get("name", "unnamed"),
-            pos[0], pos[1], pos[2],
-            rot[0], rot[1], rot[2],
-            scl[0], scl[1], scl[2]);
+                     objJson.get("name", "unnamed"),
+                     pos[0], pos[1], pos[2],
+                     rot[0], rot[1], rot[2],
+                     scl[0], scl[1], scl[2]);
 
 
+         //
+         // if (objJson.has_property("cubemap")) {
+         //
+         //
+         // }
 
-
-
-         if (objJson.has_property("cubemap")) {
-
-            gameObject->m_cubemapTextureName = objJson["cubemap"].as_string();
-         }
-
-         // Store or fallback cubemap texture name on scene-wide variable
-         if (isSkybox) {
-            if (gameObject->m_cubemapTextureName.has_character()) 
-            {
-               m_skyboxCubemapName = gameObject->m_cubemapTextureName;
-            }
-            setSkyboxObject(gameObject);
-            information("GameObject '{}' marked as skybox with cubemap '{}'", objJson.get("name", "unnamed"), m_skyboxCubemapName);
-         }
 
          // Store in map
-         m_gameObjects.set_at(gameObject->getId(), gameObject);
+
       }
 
-      information("Scene '{}' loaded. Total objects: {}", fileName, m_gameObjects.size());
-   }
-
-   std::optional<std::reference_wrapper<sandbox_game_object>> scene::getSkyboxObject() {
-      if (!m_skyboxId) return std::nullopt;
-      auto it = m_gameObjects.find(*m_skyboxId);
-      if (it) {
-         // cast back from IGameObject→sandbox_game_object
-         return std::reference_wrapper(
-            static_cast<sandbox_game_object&>(*it->element2()));
-      }
-      return std::nullopt;
-   }
-
-   // Implements the IScene interface:
-   std::optional<std::reference_wrapper<IGameObject>>
-      scene::getSkyboxObject() const {
-      if (!m_skyboxId) {
-         return std::nullopt;
-      }
-      auto it = m_gameObjects.find(*m_skyboxId);
-      if (it == m_gameObjects.end()) {
-         return std::nullopt;
-      }
-      // we know it really is a sandbox_game_object, but expose it as IGameObject
-      return std::make_optional<std::reference_wrapper<IGameObject>>(
-         *it->element2()
-      );
-   }
-
-   sandbox_camera& scene::getCamera() {
-      if (m_players.empty()) {
-         throw std::runtime_error("no players available to get camera from");
-      }
-
-      auto* player = dynamic_cast<sandbox_player*>(m_players[0].get());
-      if (!player) {
-         throw std::runtime_error("first player is not a sandbox_player");
-      }
-
-      return player->getCamera();
-   }
-
-   ::graphics3d::scene_object::map * scene::getGameObjects()
-   {
-      return m_gameObjects;
+      information("Scene '{}' loaded. Total objects: {}", fileName, m_mapSceneObject.size());
 
    }
 
 
 
-   ::pointer<::graphics3d::scene_object> scene::createGameObject()
+   ::graphics3d::sky_box *scene::current_sky_box()
    {
 
-      auto pgameobject = øcreate_new <game_object >();
+      return m_pskyboxCurrent;
 
-      auto idGameObject = m_interlockedcountGameObject++;
+      // if (m_iSkyboxId <= 0)
+      // {
+      //
+      //    return nullptr;
+      //
+      // }
+      // auto it = m_gameObjects.find(*m_skyboxId);
+      // if (it) {
+      //    // cast back from IGameObject→sandbox_game_object
+      //    return std::reference_wrapper(
+      //       static_cast<sandbox_game_object&>(*it->element2()));
+      // }
+      // return std::nullopt;
+   }
+   //
+   //
+   // // Implements the IScene interface:
+   // std::optional<std::reference_wrapper<IGameObject>>
+   // scene::getSkyboxObject() const
+   // {
+   //    if (!m_skyboxId)
+   //    {
+   //       return std::nullopt;
+   //    }
+   //    auto it = m_gameObjects.find(*m_skyboxId);
+   //    if (it == m_gameObjects.end())
+   //    {
+   //       return std::nullopt;
+   //    }
+   //    // we know it really is a sandbox_game_object, but expose it as IGameObject
+   //    return std::make_optional<std::reference_wrapper<IGameObject>>(
+   //       *it->element2()
+   //       );
+   // }
 
-      pgameobject->initialize_game_object(idGameObject);
+
+   void scene::set_default_camera(::graphics3d::camera * pgpucamera)
+   {
+
+      m_pcameraDefault = pgpucamera;
+
+   }
+
+
+
+   ::graphics3d::camera * scene::get_default_camera()
+   {
+
+      return m_pcameraDefault;
+
+   }
+
+
+   camera  * scene::camera()
+   {
+
+      return m_pcameraCurrent;
+      // if (m_p.empty())
+      // {
+      //    throw std::runtime_error("no players available to get camera from");
+      // }
+      //
+      // auto *player = dynamic_cast<sandbox_player *>(m_players[0].get());
+      // if (!player)
+      // {
+      //    throw std::runtime_error("first player is not a sandbox_player");
+      // }
+      //
+      // return player->getCamera();
+   }
+
+
+   ::gpu::properties & scene::global_ubo()
+   {
+
+      return m_gpupropertiesGlobalUbo;
+
+   }
+
+
+   ::graphics3d::scene_object_map & scene::scene_objects()
+   {
+
+      return m_mapSceneObject;
+
+   }
+
+
+   ::pointer<::graphics3d::scene_object> scene::create_scene_object()
+   {
+
+      auto pgameobject = øcreate_new<scene_object>();
+
+      pgameobject->initialize_scene_object(this);
+
+      return pgameobject;
+
+   }
+
+
+   ::pointer<::graphics3d::sky_box> scene::create_sky_box()
+   {
+
+      auto pgameobject = øcreate_new<sky_box>();
+
+      pgameobject->initialize_scene_object(this);
 
       return pgameobject;
 
@@ -323,21 +405,71 @@ namespace graphics3d
 
 
 
-   ::pointer<::graphics3d::scene_object> game_layer::makePointLight(float intensity, float radius, glm::vec3 color)
+   ::pointer<::graphics3d::point_light> scene::create_point_light(
+      float intensity,
+      float radius,
+      const ::color::color & color)
    {
-      auto ppointlight = øallocate ::sandbox_renderer::point_light_scene_object;
-      this->add_scene_object(ppointlight);
+      auto ppointlight = øallocate ::graphics3d::point_light;
+      m_pointlighta.add(ppointlight);
       ppointlight->m_color = color;
       ppointlight->m_transform.scale.x = radius;
       //gameObj->m_pointLight =
-      ppointlight->m_pointLight->lightIntensity = intensity;
+      ppointlight->m_fLightIntensity = intensity;
       return ppointlight;
+   }
+
+   void scene::on_load_scene(::gpu::context* pgpucontext)
+   {
+
+
+
+   }
+
+
+   void scene::on_update_global_ubo(::gpu::context* pgpucontext)
+   {
+
+
    }
 
 
 
+   void scene::on_render(::gpu::context * pgpucontext)
+   {
+
+
+
+   }
+
+
+   ::pointer < ::graphics3d::renderable> scene::create_tinyobj_renderable(const ::file::path& path)
+   {
+
+      auto pmodel = m_pengine->create_tinyobjloader_model(path);
+
+      return pmodel;
+
+   }
+
+
+
+   scene_object * scene::create_tinyobj(const ::file::path& path)
+   {
+
+      auto pmodel = create_tinyobjloader_model(path);
+
+      auto pobject = øcreate < ::graphics3d::scene_object>();
+
+      add_object(pobject);
+
+      pobject->m_pmodel = pmodel;
+
+      pobject->m_strPath = path;
+
+      return *pobject;
+
+   }
+
 
 } // namespace graphics3d
-
-
-

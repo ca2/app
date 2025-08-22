@@ -32,11 +32,11 @@ namespace sandbox_game
    }
 
 
-   void scene::initialize_scene(::graphics3d::IWindowInput * pwindowinput, ::graphics3d::IAssetProvider * passetprovider)
+   void scene::initialize_scene(::graphics3d::IWindowInput * pwindowinput, ::graphics3d::IAssetProvider * passetmanager)
    {
 
       m_pwindowinput = pwindowinput;
-      m_passetmanager = passetprovider;
+      m_passetmanager = passetmanager;
 
    }
 
@@ -325,7 +325,7 @@ namespace sandbox_game
 
    ::pointer<::graphics3d::scene_object> game_layer::makePointLight(float intensity, float radius, glm::vec3 color)
    {
-      auto ppointlight = øallocate ::sandbox_renderer::point_light_scene_object;
+      auto ppointlight = øallocate ::graphics3d::point_light_scene_object;
       this->add_scene_object(ppointlight);
       ppointlight->m_color = color;
       ppointlight->m_transform.scale.x = radius;

@@ -28,7 +28,7 @@ namespace graphics3d
 		//int textureIndex;
 	};
 
-	// object_render_system::object_render_system(sandbox_renderer::device *pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
+	// object_render_system::object_render_system(graphics3d::device *pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
 	// 	: m_pgpudevice(pdevice)//, m_globalSetLayout(globalSetLayout)
 	// {
 	//
@@ -40,10 +40,10 @@ namespace graphics3d
 	}
 
 	// void object_render_system::init(
-	// 	sandbox_renderer::device * pdevice,
+	// 	graphics3d::device * pdevice,
 	// 	VkRenderPass renderPass,
 	// 	VkDescriptorSetLayout globalSetLayout,
-	// 	sandbox_renderer::sandbox_descriptor_pool& descriptorPool,
+	// 	graphics3d::sandbox_descriptor_pool& descriptorPool,
 	// 	size_t frameCount)
 	// {
 	// 	ASSERT(pdevice == m_pgpudevice);
@@ -58,7 +58,7 @@ namespace graphics3d
 	}
 
 
-	void object_render_system::on_render(::graphics3d::IFrame * pframe)
+	void object_render_system::on_render(::gpu::frame * pframe)
 	{
 		//m_ppipeline->bind(frame.m_pcommandbuffer);
 		//m_pshader->bind(pframe->getCommandBuffer());
@@ -144,8 +144,8 @@ namespace graphics3d
 	// {
 	// 	ASSERT(m_pipelineLayout != nullptr && "Cannot create pipeline before pipeline layout");
 	//
-	// 	//sandbox_renderer::pipeline_configuration_information pipelineConfig{};
-	// 	//sandbox_renderer::pipeline::defaultPipelineConfigInfo(pipelineConfig);
+	// 	//graphics3d::pipeline_configuration_information pipelineConfig{};
+	// 	//graphics3d::pipeline::defaultPipelineConfigInfo(pipelineConfig);
 	//
 	// 	//pipelineConfig.renderPass = renderPass;
 	// 	//pipelineConfig.pipelineLayout = m_pipelineLayout;
@@ -153,7 +153,7 @@ namespace graphics3d
 	// 	::string vertShaderPath = "matter://shaders/spirV/vert.vert.spv";
 	// 	::string fragShaderPath = "matter://shaders/spirV/frag.frag.spv";
 	//
-	// 	//m_ppipeline = øallocate sandbox_renderer::pipeline(
+	// 	//m_ppipeline = øallocate graphics3d::pipeline(
 	// 	//	m_pgpudevice,
 	// 	//	vertShaderPath.c_str(),
 	// 	//	fragShaderPath.c_str(),

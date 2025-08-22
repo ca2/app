@@ -5,7 +5,7 @@
 #ifndef SKYBOX_H
 #define SKYBOX_H
 
-namespace sandbox_renderer {
+namespace graphics3d {
 
 class skybox :
    {
@@ -14,6 +14,6 @@ public:
 
 };
 
-} // sandbox_renderer
+} // graphics3d
 
 #endif //SKYBOX_H

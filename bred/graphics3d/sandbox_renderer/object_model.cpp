@@ -14,8 +14,8 @@
 //namespace std
 //{
     //template <>
-    //struct hash<::sandbox_renderer::object_model::Vertex> {
-    //    size_t operator()(::sandbox_renderer::object_model::Vertex const& vertex) const
+    //struct hash<::graphics3d::object_model::Vertex> {
+    //    size_t operator()(::graphics3d::object_model::Vertex const& vertex) const
     //    {
     //        size_t seed = 0;
     //        tools::hashCombine(seed, vertex.position, vertex.color, vertex.normal, vertex.uv);
@@ -24,7 +24,7 @@
     //};
 //}
 
-namespace sandbox_renderer
+namespace graphics3d
 {
 
    // object_model::object_model(device * pdevice, const Builder& builder)
@@ -58,7 +58,7 @@ namespace sandbox_renderer
 
 
    // ::pointer<object_model> object_model::createModelFromFile(
-   //    ::sandbox_renderer::device * pdevice, const ::scoped_string& filepath, bool isSkybox)
+   //    ::graphics3d::device * pdevice, const ::scoped_string& filepath, bool isSkybox)
    // {
    //    Builder builder{};
    //    builder.loadModel(filepath, isSkybox);
@@ -268,7 +268,7 @@ namespace sandbox_renderer
 
 
 
-} // namespace sandbox_renderer
+} // namespace graphics3d
 
 
 

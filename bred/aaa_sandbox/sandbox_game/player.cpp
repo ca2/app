@@ -56,7 +56,7 @@ namespace sandbox_game
    }
 
 
-   ::graphics3d::TransformComponent &player::transform()
+   ::graphics3d::transform &player::transform()
    {
       return m_transform;
    }

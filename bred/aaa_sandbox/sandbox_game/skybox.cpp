@@ -4,5 +4,5 @@
 
 #include "skybox.h"
 
-namespace sandbox_renderer {
-} // sandbox_renderer
+namespace graphics3d {
+} // graphics3d

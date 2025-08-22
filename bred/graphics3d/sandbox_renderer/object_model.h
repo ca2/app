@@ -23,11 +23,11 @@
 //#include <unordered_map>
 //#include <unordered_set>
 
-namespace sandbox_renderer
+namespace graphics3d
 {
 
 
-   class CLASS_DECL_SANDBOX_RENDERER object_model :
+   class CLASS_DECL_BRED object_model :
       virtual public ::graphics3d::IModel
    {
    public:
@@ -84,7 +84,7 @@ namespace sandbox_renderer
       };
 
       // static ::pointer<sandbox_object_model> createModelFromFile(
-      //    ::sandbox_renderer::device * pdevice, const  ::scoped_string& filepath, bool isSkybox = false);
+      //    ::graphics3d::device * pdevice, const  ::scoped_string& filepath, bool isSkybox = false);
 
       object_model();
       ~object_model();
@@ -110,11 +110,11 @@ namespace sandbox_renderer
    };
 
 
-} // namespace sandbox_renderer
+} // namespace graphics3d
 
 
 template < >
-inline ::hash32 as_hash32<::sandbox_renderer::object_model::Vertex>(const ::sandbox_renderer::object_model::Vertex& vertex)
+inline ::hash32 as_hash32<::graphics3d::object_model::Vertex>(const ::graphics3d::object_model::Vertex& vertex)
 {
 
    hash32 seed{};

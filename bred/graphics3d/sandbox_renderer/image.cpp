@@ -2,7 +2,7 @@
 //#include "image.h"
 //
 // //#include <stdexcept>
-// namespace sandbox_renderer
+// namespace graphics3d
 // {
 //
 //
@@ -82,6 +82,6 @@
 //    }
 //
 //
-// } // namespace sandbox_renderer
+// } // namespace graphics3d
 //
 //

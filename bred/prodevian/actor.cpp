@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "SceneFoundry/sandbox_game/player.h"
+#include "SceneFoundry/sandbox_game/actor.h"
 #include <glm/gtc/matrix_transform.hpp>
 //#include "SceneFoundry/graphics3d/key_codes.h"
 ////#include <spdlog/spdlog.h>
@@ -9,23 +9,25 @@ namespace sandbox_game
 {
 
 
-   // player::player(::pointer<::graphics3d::IWindowInput> input)
+   // actor::actor(::pointer<::graphics3d::IWindowInput> input)
    //    : m_pInput(std::move(input))
    //    , m_camera(glm::vec3(0.f, 0.f, 3.f))
    // {
    // }
-   player::player()
+   actor::actor()
    {
    }
 
 
-   void player::onInit()
+   void actor::onInit()
    {
 
    }
 
 
-   void player::on_update(float dt)
+   void actor::
+
+   void actor::on_update(float dt)
    {
       if (!m_pInput)
          return;
@@ -47,28 +49,28 @@ namespace sandbox_game
       }
       catch (const ::exception &e)
       {
-         error("Exception in player::onUpdate(): {}", e.get_message());
+         error("Exception in actor::onUpdate(): {}", e.get_message());
       }
       catch (...)
       {
-         error("Unknown exception in player::onUpdate()");
+         error("Unknown exception in actor::onUpdate()");
       }
    }
 
 
-   ::graphics3d::TransformComponent &player::transform()
+   ::graphics3d::transform &actor::transform()
    {
       return m_transform;
    }
 
 
-   ::graphics3d::IModel *player::model()
+   ::graphics3d::IModel *actor::model()
    {
       return nullptr;
    }
 
 
-   camera &player::getCamera()
+   camera &actor::getCamera()
    {
       return m_camera;
    }

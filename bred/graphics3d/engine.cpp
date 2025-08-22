@@ -29,6 +29,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
+
+#include "game_layer.h"
 // Function to flip a mat4 along the Z-axis
 glm::mat4 flipZMat4(const glm::mat4& mat) {
    // Create a rotation matrix that flips along the Y-axis (180 degrees)
@@ -111,16 +113,18 @@ namespace graphics3d
 
          {
 
-            _synchronous_lock synchronouslock(m_pscene->synchronization());
+            auto pscene = m_pgamelayer->m_pscene;
 
-            if (m_pscene->global_ubo().size() > 0)
+            _synchronous_lock synchronouslock(pscene->synchronization());
+
+            if (pscene->global_ubo().size() > 0)
             {
 
                update_global_ubo(gpu_context());
 
             }
 
-            m_pscene->on_render(gpu_context());
+            pscene->on_render(gpu_context());
 
          }
 
@@ -147,7 +151,7 @@ namespace graphics3d
    void engine::create_global_ubo(::gpu::context* pgpucontext)
    {
 
-      auto iGlobalUboSize = m_pscene->global_ubo().size();
+      auto iGlobalUboSize = m_pgamelayer->m_pscene->global_ubo().size();
 
       if (iGlobalUboSize > 0)
       {
@@ -225,16 +229,18 @@ namespace graphics3d
    void engine::on_update_frame()
    {
 
-      if (!m_pcamera)
+      auto &pcameraScene = m_pgamelayer->m_pscene->m_pcameraScene;
+
+      if (!pcameraScene)
       {
 
-         m_pcamera = m_pscene->get_default_camera();
+         pcameraScene = m_pgamelayer->m_pscene->get_default_camera();
 
-         m_transform.translation = m_pcamera->m_locationPosition;
+         m_transform.m_vec3Translation = pcameraScene->m_locationPosition;
 
-         m_transform.rotation.x = m_pcamera->m_fPitch;
+         m_transform.m_vec3Rotation.x = pcameraScene->m_fPitch;
 
-         m_transform.rotation.y = m_pcamera->m_fYaw;
+         m_transform.m_vec3Rotation.y = pcameraScene->m_fYaw;
 
          //VkcCamera camera(glm::vec3(0.0f, 2.0f, -10.0f), .0f, 0.0f);
 
@@ -273,9 +279,9 @@ namespace graphics3d
 
       float aspect = m_pusergraphics3d->getAspectRatio();
 
-      m_pcamera->setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 100.f);
+      pcameraScene->setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 100.f);
 
-      m_pcamera->UpdateCameraVectors();
+      pcameraScene->UpdateCameraVectors();
 
       //if (m_fYScale < 0)
       //{
@@ -291,9 +297,9 @@ namespace graphics3d
       glm::mat4 matrixImpact;
           if (m_fYScale < 0)
           {
-             matrixImpact=glm::lookAtRH(m_pcamera->m_locationPosition,
-                m_pcamera->m_locationPosition + m_pcamera->m_poleFront,
-                m_pcamera->m_poleWorldUp);
+             matrixImpact=glm::lookAtRH(pcameraScene->m_locationPosition,
+                pcameraScene->m_locationPosition + pcameraScene->m_poleFront,
+                pcameraScene->m_poleWorldUp);
              //matrixImpact[2][0] = -matrixImpact[2][0];
              //matrixImpact[2][1] = -matrixImpact[2][1];
              //matrixImpact[2][2] = -matrixImpact[2][2];
@@ -301,26 +307,26 @@ namespace graphics3d
           }
           else
           {
-             matrixImpact=glm::lookAtRH(m_pcamera->m_locationPosition,
-                m_pcamera->m_locationPosition + m_pcamera->m_poleFront,
-                m_pcamera->m_poleWorldUp);
+             matrixImpact=glm::lookAtRH(pcameraScene->m_locationPosition,
+                pcameraScene->m_locationPosition + pcameraScene->m_poleFront,
+                pcameraScene->m_poleWorldUp);
 
 
           }
-             m_pcamera->m_matrixImpact = matrixImpact;
+             pcameraScene->m_matrixImpact = matrixImpact;
       //}
 
-      m_pcamera->m_matrixAntImpact = glm::inverse(m_pcamera->m_matrixImpact);
+      pcameraScene->m_matrixAntImpact = glm::inverse(pcameraScene->m_matrixImpact);
 
    }
 
 
-   glm::mat4 engine::model_matrix(TransformComponent& transformcomponent)
+   glm::mat4 engine::model_matrix(::graphics3d::transform& transform)
    {
 
-      auto translation = transformcomponent.translation;
-      auto rotation = transformcomponent.rotation;
-      auto scale = transformcomponent.scale;
+      auto translation = transform.m_vec3Translation;
+      auto rotation = transform.m_vec3Rotation;
+      auto scale = transform.m_vec3Scale;
 
       scale.z = scale.z * m_fYScale;
       //glm::mat4 makeViewMatrix(glm::vec3 translation, glm::vec3 rotationEulerDegrees, )
@@ -385,7 +391,7 @@ namespace graphics3d
    }
 
    
-   glm::mat4 engine::normal_matrix(TransformComponent& transformcomponent)
+   glm::mat4 engine::normal_matrix(::graphics3d::transform& transformcomponent)
    {
 
       auto m = model_matrix(transformcomponent);
@@ -497,7 +503,7 @@ namespace graphics3d
 
                pdatabaseclient->datastream()->set("input", m_pinput->as_block());
                pdatabaseclient->datastream()->set("transform", as_memory_block(m_transform));
-               pdatabaseclient->datastream()->set("camera", m_pcamera->as_block());
+               pdatabaseclient->datastream()->set("camera", pcameraScene->as_block());
 
             }
 
@@ -682,6 +688,13 @@ namespace graphics3d
 
    }
 
+
+    ::graphics3d::scene * engine::current_scene()
+   {
+
+return m_pscene;
+
+   }
 
    void engine::do_frame_step(::gpu::context* pcontextParam)
    {

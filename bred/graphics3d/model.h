@@ -10,19 +10,19 @@
 #include "bred/graphics3d/utilities.h"
 #include "bred/graphics3d/types.h"
 
-
-
-#define GLM_FORCE_RADIANS	
-#define GLM_FORCE_DEPTH_ZERO_TO_ONE
-#include <glm/glm.hpp>
-#include <glm/vec3.hpp>
-#include <glm/vec2.hpp>
-#include <functional>
-
-//#include <memory>
-//#include <vector>
-//#include <unordered_map>
 //
+//
+// #define GLM_FORCE_RADIANS
+// #define GLM_FORCE_DEPTH_ZERO_TO_ONE
+// #include <glm/glm.hpp>
+// #include <glm/vec3.hpp>
+// #include <glm/vec2.hpp>
+// #include <functional>
+//
+// //#include <memory>
+// //#include <vector>
+// //#include <unordered_map>
+// //
 
 
 namespace graphics3d

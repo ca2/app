@@ -2,6 +2,19 @@
 #pragma once
 
 
+#include "_constant.h"
+
+
+#define GLM_ENABLE_EXPERIMENTAL
+#define GLM_FORCE_RADIANS
+#define GLM_FORCE_DEPTH_ZERO_TO_ONE
+#include <glm/glm.hpp>
+#include <glm/gtx/hash.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/hash.hpp>
+
+
+
 namespace gpu
 {
 
@@ -13,22 +26,6 @@ namespace gpu
    class frame_storage;
    class frame_ephemeral;
    //class program;
-
-   enum enum_type
-   {
-
-      e_type_none = 0,
-      e_type_int = 1,
-      e_type_float = 2,
-      e_type_seq2 = 3,
-      e_type_seq3 = 4,
-      e_type_seq4 = 5,
-      e_type_mat2 = 6,
-      e_type_mat3 = 7,
-      e_type_mat4 = 8,
-      e_type_properties_array = 0,
-
-   };
 
 
 
@@ -82,43 +79,6 @@ namespace gpu
    class texture;
 
 
-
-   enum enum_state
-   {
-
-      e_state_initial,
-      e_state_new_frame,
-      e_state_began_frame,
-      e_state_began_render,
-      e_state_ended_render,
-      e_state_ended_frame,
-      e_state_no_frame = 256,
-      e_state_single_frame = 1024,
-
-   };
-
-
-   enum enum_happening
-   {
-
-      e_happening_reset_frame_counter,
-      //e_happening_new_frame,
-      e_happening_begin_frame,
-      e_happening_begin_render,
-      e_happening_end_render,
-      e_happening_end_frame,
-
-   };
-
-
-   enum enum_render_mode
-   {
-
-      e_render_mode_none,
-      e_render_mode_multiple_frame_states,
-      e_render_mode_single_frame_state,
-
-   };
 
    class command_buffer;
 

@@ -2,22 +2,14 @@
 #pragma once
 
 
+#include "_constant.h"
+
+
+
 namespace graphics3d
 {
 
 
-   enum enum_mouse
-   {
-      e_mouse_none = 0,
-      e_mouse_updateLook
-   };
-   enum enum_keyboard
-   {
-      e_keyboard_none = 0,
-      e_keyboard_updateMovement,
-      e_keyboard_spaceExplorer
-   };
-   
    class container;
 
 
@@ -37,25 +29,36 @@ namespace graphics3d
    //class context;
 
    class scene;
-  // class scene_object;
+   class scene_object;
 
    class input;
    class camera;
 
+   class render_system;
    //class shader;
 
    //class simple_render_system;
    //class point_light_system;
 
    //class renderer;
+   class asset_manager;
 
-
+   class scene;
    class frame;
-   //class sky_box;
+   class sky_box;
+   class renderable;
 
+   class game_layer;
+class point_light;
+
+
+   using scene_object_map = map_base < long long, ::pointer < scene_object > >;
 
 
 } // namespace graphics3d
+
+
+#include "_types.h"
 
 
 

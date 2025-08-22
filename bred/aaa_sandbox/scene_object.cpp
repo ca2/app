@@ -25,10 +25,10 @@ namespace graphics3d
    }
 
 
-   ::graphics3d::TransformComponent &scene_object::transform()
+   ::graphics3d::transform &scene_object::transform()
    {
 
-         return m_transformcomponent;
+         return m_transform;
 
    }
 

@@ -1,128 +1,67 @@
-// From V0idsEmbrace@Twich continuum project
-// by camilo on 2025-05-17 03:54 <3ThomasBorregaardSorensen!!
+//
+// Created by camilo on 2025-08-20.
+//
+// IGameObject.h
 #pragma once
-
-#include "bred/graphics3d/model.h"
-#include "bred/graphics3d/types.h"
-#include "acme/prototype/collection/map.h"
-
-// libs
-#include <glm/gtc/matrix_transform.hpp>
-
-// std
-#include <memory>
-#include <unordered_map>
-
-#include "bred/graphics3d/scene_object.h"
+// #include "SceneFoundry/graphics3d/_types.h"
+// #include "bred/graphics3d/scene_object.h"
+// //#include "SceneFoundry/graphics3d/renderer_i.h"
+// //#include "SceneFoundry/graphics3d/model_i.h"
+// //#include <memory>
+// #include <optional>
+//#include <glm/glm.hpp>
+#include "bred/graphics3d/renderable.h"
 
 
 namespace graphics3d
 {
 
-	//
-	//
-	// struct CLASS_DECL_BRED PointLightComponent
-	// {
-	// 	float lightIntensity = 1.0f;
-	// };
 
-	//
-	// class CLASS_DECL_BRED scene_object :
-	// 	virtual public ::graphics3d::scene_objects
-	// {
-	// public:
-	//
-	//
-	// 	using Vertex = ::graphics3d::Vertex;
-	//
-	// 	::string m_strPath;
-	//
-	// 	//::collection::index m_iId;
-	//
-	// 	//TransformComponent m_transform;
-	//
-	// 	//glm::vec3 m_color;
-	//
-	// 	//::graphics3d::model<Vertex> m_pmodel;
-	//
-	// 	//using map_base = index_map_base < ::pointer < scene_object > >;
-	//
-	// 	//static interlocked_long_long s_interlockedll;
-	//
-	//
-	// 	scene_object() :
-	// 		m_iId{ s_interlockedll++ }
-	// 	{
-	//
-	// 	}
-	//
-	// 	scene_object& translate(const glm::vec3& locationOffset)
-	// 	{
-	//
-	// 		m_transform.translation += locationOffset;
-	//
-	// 		return *this;
-	//
-	// 	}
-	//
-	// 	scene_object& scale(const glm::vec3& poleScaling)
-	// 	{
-	//
-	// 		m_transform.scale *= poleScaling;
-	//
-	// 		return *this;
-	//
-	// 	}
-	// };
+   class CLASS_DECL_BRED scene_object :
+      virtual public ::graphics3d::renderable
+   {
+   public:
 
-	//
-	// class CLASS_DECL_BRED point_light :
-	// 	virtual public scene_object
-	// {
-	// public:
-	//
-	//
-	// 	//
-	// 	//    struct point_light_component
-	// 	//    {
-	// 	//
-	// 	        float m_fLightIntensity = 1.0f;
-	// 	//
-	// 	//    };
-	// 	//
-	//
-	// 	point_light(float intensity = 10.f, float radius = 0.1f, glm::vec3 color = glm::vec3(1.f));
-	// 	~point_light() override;
-	//
-	// };
+
+      ::pointer < ::graphics3d::scene >      m_pscene;
+      ::graphics3d::transform                m_transform;
+      long long                              m_llId;
+      ::pointer<::graphics3d::renderable>    m_prenderable;
+      ::color::color                         m_color;
+      //bool m_bIsOBJ{ false };
+      //      ::graphics3d::point_light_component m_pointlight;
+
+      ::string m_cubemapTextureName;
+      //long long m_llId;
+      bool m_bIsSkybox = false;
+
+
+      scene_object();
+      ~scene_object() override;
+
+
+      virtual void initialize_scene_object(::graphics3d::scene * pscene);
+
+
+      virtual ::graphics3d::transform &transform();
+
+
+      virtual ::graphics3d::renderable *renderable();
+
+      virtual void set_renderable(::graphics3d::renderable * prenderable);
+
+
+      virtual void on_update(float deltaTime);
+
+      virtual ::color::color color();
+      virtual long long getId();
+
+
+      virtual void translate(const glm::vec3 & vec3);
+      virtual void scale(const glm::vec3 & vec3);
+
+
+   };
 
 
 } // namespace graphics3d
-
-
-
-
-
-
-//
-//struct alignas(16) PointLight {
-//	DirectX::XMFLOAT4 position;
-//	DirectX::XMFLOAT4 color;
-//};
-//
-//struct alignas(16) GlobalUbo {
-//	DirectX::XMMATRIX projection;
-//	DirectX::XMMATRIX view;
-//	DirectX::XMMATRIX invView;
-//	DirectX::XMFLOAT4 ambientLightColor;
-//	PointLight pointLights[10];
-//	int numLights;
-//	int padding1;
-//	int padding2;
-//	int padding3;
-//};
-//
-//struct alignas(16) ObjectMatrices {
-//	DirectX::XMMATRIX modelMatrix;
-//	DirectX::XMMATRIX normalMatrix;
-//};

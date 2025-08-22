@@ -77,8 +77,8 @@ list(APPEND library_source
         #graphics3d/aaa_renderer.h
         graphics3d/camera.cpp
         graphics3d/camera.h
-        graphics3d/cube_map.cpp
-        graphics3d/cube_map.h
+   graphics3d/sky_box.cpp
+   graphics3d/sky_box.h
         graphics3d/engine.cpp
         graphics3d/engine.h
         graphics3d/frame.cpp
@@ -93,8 +93,8 @@ list(APPEND library_source
         graphics3d/scene.h
         graphics3d/scene_object.cpp
         graphics3d/scene_object.h
-        graphics3d/scene_system.cpp
-        graphics3d/scene_system.h
+        #graphics3d/scene_system.cpp
+        #graphics3d/scene_system.h
         graphics3d/types.h
         graphics3d/utilities.h
         include/_.h
@@ -150,11 +150,13 @@ list(APPEND library_source
         graphics3d/scene_object.h
         graphics3d/window_input.h
 
-   graphics3d/skybox.cpp
-   graphics3d/skybox.h
+   graphics3d/sky_box.cpp
+   graphics3d/sky_box.h
    graphics3d/point_light.cpp
    graphics3d/point_light.h
 
+   graphics3d/renderable.cpp
+   graphics3d/renderable.h
    graphics3d/render_system.cpp
    graphics3d/scene.cpp
         typeface/_.h

@@ -4,7 +4,7 @@
 // #include "device.h"
 //
 //
-// namespace sandbox_renderer
+// namespace graphics3d
 // {
 //
 //
@@ -51,6 +51,6 @@
 //    };
 //
 //
-// } // namespace sandbox_renderer
+// } // namespace graphics3d
 //
 //

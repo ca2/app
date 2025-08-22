@@ -1,14 +1,14 @@
 #include "framework.h"
 // game_layer.cpp
 #include "SceneFoundry/sandbox_game/game_layer.h"
-#include "SceneFoundry/sandbox_renderer/render_systems/point_light_render_system.h"
+#include "SceneFoundry/graphics3d/render_systems/point_light_render_system.h"
 //#include <spdlog/spdlog.h>
 
 namespace sandbox_game
 {
 
 
-   // game_layer::game_layer(::pointer<IWindowInput> input, ::sandbox_engine::asset_manager * Passets)
+   // game_layer::game_layer(::pointer<IWindowInput> input, ::graphics3d::asset_manager * Passets)
    //    : m_windowInput(std::move(input))
    //    , m_assetManager(assets)
    // {

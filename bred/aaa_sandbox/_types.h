@@ -18,9 +18,9 @@ namespace graphics3d
  //
  //    };
  //
-	struct CLASS_DECL_BRED TransformComponent
+	struct CLASS_DECL_BRED ::graphics3d::transform
 	{
-		//TransformComponent() = default;
+		//::graphics3d::transform() = default;
 		glm::vec3 translation{};
 		glm::vec3 scale{ 1.f };
 		glm::vec3 rotation{};

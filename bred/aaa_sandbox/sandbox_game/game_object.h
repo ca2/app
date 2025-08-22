@@ -4,7 +4,7 @@
 #include "bred/graphics3d/model.h"
 #include "bred/graphics3d/entity.h"
 #include "bred/graphics3d/game_object.h"
-#include "SceneFoundry/sandbox_renderer/object_model.h"
+#include "SceneFoundry/graphics3d/object_model.h"
 #include <glm/gtc/matrix_transform.hpp>
 
 // std
@@ -22,7 +22,7 @@
 //    public:
 //
 //
-//       //::graphics3d::TransformComponent m_transform;
+//       //::graphics3d::transform m_transform;
 //       //::pointer<::graphics3d::IModel> m_pmodel;
 //       glm::vec3 m_color{};
 //       bool m_bIsOBJ{ false };
@@ -52,7 +52,7 @@
 //       //    return &m_pointlight;
 //       // }
 //
-//       ::graphics3d::TransformComponent& transform() override;
+//       ::graphics3d::transform& transform() override;
 //
 //       ::graphics3d::IModel * model() override;
 //

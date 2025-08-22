@@ -22,7 +22,7 @@ namespace graphics3d
    public:
 
 
-      ::graphics3d::TransformComponent       m_transformcomponent;
+      ::graphics3d::transform       m_transform;
       long long                           m_llId;
       ::pointer<::graphics3d::IModel>        m_pmodel;
       ::color::color                      m_color;
@@ -37,7 +37,7 @@ namespace graphics3d
       scene_object();
       ~scene_object() override;
 
-      virtual ::graphics3d::TransformComponent &transform();
+      virtual ::graphics3d::transform &transform();
 
 
       virtual IModel *model();

@@ -4,6 +4,7 @@
 
 
 #include "apex/platform/app_consumer.h"
+#include "bred/platform/application.h"
 #include "bred/graphics3d/camera.h"
 #include "bred/graphics3d/scene_object.h"
 #include "bred/gpu/properties.h"
@@ -26,34 +27,33 @@ namespace graphics3d
 
 
 	class CLASS_DECL_BRED engine :
-		virtual public ::app_consumer < ::aura::application, ::object, ::gpu::compositor >
+		virtual public ::app_consumer < ::bred::application, ::object, ::gpu::compositor >
 	{
 	public:
 
 
 
-		float m_fYScale;
-		//::pointer < ::gpu::approach >					m_papproach;
-		//::pointer < ::gpu::context >					m_pgpucontext;
-		//::pointer < ::gpu::context >					m_pgpucontextGraphics3D;
-		::pointer < ::user::graphics3d >				m_pusergraphics3d;
-		::string_map_base < ::pointer < ::graphics3d::scene > >		m_mapScene;
-		::pointer < ::graphics3d::scene >								m_pscene;
-		::pointer < ::graphics3d::input >			m_pinput;
-		::pointer < ::graphics3d::camera >			m_pcamera;
+		float                                              m_fYScale;
+		//::pointer < ::gpu::approach >					      m_papproach;
+		//::pointer < ::gpu::context >					      m_pgpucontext;
+		//::pointer < ::gpu::context >					      m_pgpucontextGraphics3D;
+		::pointer < ::user::graphics3d >				         m_pusergraphics3d;
 
-		::graphics3d::TransformComponent					m_transform;
-		float													m_fFrameTime;
+	   ::pointer < ::graphics3d::game_layer >             m_pgamelayer;
+	   ::pointer < ::graphics3d::input >			         m_pinput;
 
-		bool													m_bWireframeMode = false;
+		::graphics3d::transform					               m_transform;
+		float													         m_fFrameTime;
+
+		bool													         m_bWireframeMode = false;
 
 		::std::chrono::high_resolution_clock::time_point	m_stdtimepoint;
-		bool	m_bCreatedGlobalUbo;
-		::int_rectangle									m_rectanglePlacementNew;
-		::int_rectangle									m_rectanglePlacement;
-		bool													m_bEngineOnFrameContextInitialization = false;
+		bool	                                             m_bCreatedGlobalUbo;
+		::int_rectangle									         m_rectanglePlacementNew;
+		::int_rectangle									         m_rectanglePlacement;
+		bool													         m_bEngineOnFrameContextInitialization = false;
 
-		bool m_bLoadedEngine = false;
+		bool                                               m_bLoadedEngine = false;
 
 		//::image32_callback                        m_callbackImage32CpuBuffer;
 
@@ -92,8 +92,8 @@ namespace graphics3d
 
 		float dt() { return m_fFrameTime; }
 
-		virtual glm::mat4 model_matrix(::graphics3d::TransformComponent& transformcomponent);
-		virtual glm::mat4 normal_matrix(::graphics3d::TransformComponent& transformcomponent);
+		virtual glm::mat4 model_matrix(::graphics3d::transform& transformcomponent);
+		virtual glm::mat4 normal_matrix(::graphics3d::transform& transformcomponent);
 
 		//void on_begin_frame() override;
 		virtual void run_cpu_buffer();
@@ -102,6 +102,8 @@ namespace graphics3d
 
 		
       virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics);
+
+      virtual ::graphics3d::scene * current_scene();
 
 
 		virtual void do_frame_step(::gpu::context * pgpucontextUpper);

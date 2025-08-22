@@ -1,4 +1,4 @@
-#include "../../../SceneFoundry/sandbox_engine/framework.h"
+#include "../../../SceneFoundry/graphics3d/framework.h"
 #include "engine.h"
 #include "SceneFoundry/graphics3d/key_codes.h"
 //#include "spdlog/spdlog.h"
@@ -8,15 +8,15 @@
 
 //#include <cassert>
 
-namespace sandbox_engine
+namespace graphics3d
 {
 
 
-	sandbox_engine::sandbox_engine() {
+	graphics3d::graphics3d() {
 		m_assetManager.preloadGlobalAssets();
 		initialize();
 	}
-	void sandbox_engine::initialize() {
+	void graphics3d::initialize() {
 		m_windowInput = øcreate_pointer<GLFWWindowInput>(m_window.getGLFWwindow());
 		if (auto* userData = static_cast<WindowUserData*>(glfwGetWindowUserPointer(m_window.getGLFWwindow()))) {
 			userData->input = m_windowInput.get();
@@ -25,7 +25,7 @@ namespace sandbox_engine
 		setupInputCallbacks();
 		information("Engine initialized");
 	}
-	void sandbox_engine::initLayer(IGameLayer* game) {
+	void graphics3d::initLayer(IGameLayer* game) {
 
 
 		game->onInit();
@@ -34,7 +34,7 @@ namespace sandbox_engine
 		information("Game initialized");
 	}
 
-	void sandbox_engine::run(::pointer<IGameLayer> game) {
+	void graphics3d::run(::pointer<IGameLayer> game) {
 		using clock = std::chrono::high_resolution_clock;
 		using duration_t = std::chrono::duration<double>;
 
@@ -105,12 +105,12 @@ namespace sandbox_engine
 
 	}
 
-	void sandbox_engine::toggleCursorLock() {
+	void graphics3d::toggleCursorLock() {
 		m_cursorLocked = !m_cursorLocked;
 		m_windowInput->lockCursor(m_cursorLocked);
 	}
 
-	void sandbox_engine::setupInputCallbacks() {
+	void graphics3d::setupInputCallbacks() {
 		m_windowInput->setKeyCallback([this](SandboxKey key, int scancode, KeyAction action, int mods) {
 			if (key == SandboxKey::LEFT_ALT && action == KeyAction::PRESS) {
 				toggleCursorLock();
@@ -118,7 +118,7 @@ namespace sandbox_engine
 			});
 	}
 
-	void sandbox_engine::processInput() {
+	void graphics3d::processInput() {
 
 		if (m_windowInput && m_windowInput->isKeyPressed(SandboxKey::ESCAPE)) {
 			m_windowInput->requestWindowClose();
@@ -127,6 +127,6 @@ namespace sandbox_engine
 
 
 
-} // namespace sandbox_engine
+} // namespace graphics3d
 
 

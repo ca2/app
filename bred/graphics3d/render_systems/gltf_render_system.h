@@ -7,10 +7,10 @@
 
 //#include "device.h"
 //#include "pipeline.h"
-//#include "SceneFoundry/sandbox_renderer/descriptor.h"
+//#include "SceneFoundry/graphics3d/descriptor.h"
 
 //#include "gltf.h"
-//#include "SceneFoundry/sandbox_renderer/renderer.h"
+//#include "SceneFoundry/graphics3d/renderer.h"
 
 // STD
 //#include <memory>
@@ -29,28 +29,28 @@ namespace graphics3d
 	public:
 
 
-		//s::pointer <::sandbox_renderer::device > m_pgpudevice;
+		//s::pointer <::graphics3d::device > m_pgpudevice;
 
 		// VkDescriptorSetLayout m_globalSetLayout;
 		// VkDescriptorSetLayout m_iblSetLayout;
 		// VkDescriptorSet m_iblDescriptorSet;
 
-		//::pointer<::sandbox_renderer::pipeline> m_opaquePipeline;
-		//::pointer<::sandbox_renderer::pipeline> m_maskPipeline;
-		//::pointer<::sandbox_renderer::pipeline> m_blendPipeline;
+		//::pointer<::graphics3d::pipeline> m_opaquePipeline;
+		//::pointer<::graphics3d::pipeline> m_maskPipeline;
+		//::pointer<::graphics3d::pipeline> m_blendPipeline;
 		///VkPipelineLayout m_pipelineLayout;
 		::pointer < ::gpu::shader > m_pshaderOpaque;
 		::pointer < ::gpu::shader > m_pshaderMask;
 		::pointer < ::gpu::shader > m_pshaderBlend;
 		///
 
-		::pointer <::graphics3d::IAssetProvider > m_passetprovider;
+		::pointer <::graphics3d::IAssetProvider > m_passetmanager;
 
-		//::pointer<::sandbox_renderer::sandbox_descriptor_set_layout> m_iblLayout;
+		//::pointer<::graphics3d::sandbox_descriptor_set_layout> m_iblLayout;
 		//::array_base<VkDescriptorSet>				  m_iblDescriptorSets;
 
 
-		//gltf_render_system(::sandbox_renderer::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout, IAssetProvider& assets);
+		//gltf_render_system(::graphics3d::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout, IAssetProvider& assets);
 		gltf_render_system();
 		~gltf_render_system();
 
@@ -58,13 +58,13 @@ namespace graphics3d
 		// gltf_render_system& operator=(const gltf_render_system&) = delete;
 
 		// void init(
-		// 	sandbox_renderer::device * pdevice,
+		// 	graphics3d::device * pdevice,
 		// 	VkRenderPass            renderPass,
 		// 	VkDescriptorSetLayout   globalSetLayout,
-		// 	sandbox_renderer::sandbox_descriptor_pool& descriptorPool,
+		// 	graphics3d::sandbox_descriptor_pool& descriptorPool,
 		// 	size_t frameCount)override;
 
-		void render(::graphics3d::IFrame * pframe) override;
+		void render(::gpu::frame * pframe) override;
 	//private:
 		//void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
 		//void createPipeline(VkRenderPass renderPass);

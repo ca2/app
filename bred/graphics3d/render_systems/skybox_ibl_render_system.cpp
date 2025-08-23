@@ -207,7 +207,7 @@ namespace graphics3d
 	// 	ASSERT(m_pipelineLayout != VK_NULL_HANDLE && "Pipeline layout must be created before pipeline");
 	//
 	// 	// graphics3d::pipeline_configuration_information config{};
-	// 	// graphics3d::pipeline::defaultPipelineConfigInfo(config);
+	// 	// graphics3d::pipeline::default_pipeline_configuration(config);
 	// 	//
 	// 	// ::array_base<VkVertexInputBindingDescription>   bindings = {
 	// 	// 	vkinit::vertexInputBindingDescription(

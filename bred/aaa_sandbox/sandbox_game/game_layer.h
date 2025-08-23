@@ -1,6 +1,6 @@
 #pragma once
 #include "graphics3d/device.h"
-#include "bred/graphics3d/game_layer.h"
+#include "bred/graphics3d/immersion_layer.h"
 #include "bred/graphics3d/window_input.h"
 #include "bred/graphics3d/renderer.h"
 #include "SceneFoundry/sandbox_game/player.h"
@@ -12,7 +12,7 @@ namespace sandbox_game
 {
 
 
-   class game_layer :
+   class immersion_layer :
       virtual public ::graphics3d::IGameLayer
    {
    public:
@@ -23,7 +23,7 @@ namespace sandbox_game
       ::pointer < graphics3d::asset_manager > m_passetmanager;
 
 
-      game_layer();
+      immersion_layer();
 
 
       void initialize_game_layer(::graphics3d::IWindowInput * pinput, ::graphics3d::asset_manager & assets);

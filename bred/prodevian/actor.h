@@ -39,13 +39,14 @@ namespace prodevian
 
       void initialize_prodevian_actor(::graphics3d::scene * pscene);
 
-      //void onInit() override;
+      virtual void on_initialize_actor();
+
       void on_update(float deltaTime) override;
 
       //::graphics3d::transform& transform() override;
 
       //::graphics3d::IModel * model()  override;
-      //camera& getCamera();
+      ::graphics3d::camera * camera();
 
 
 

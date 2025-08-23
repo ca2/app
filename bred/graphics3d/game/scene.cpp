@@ -323,7 +323,7 @@ namespace sandbox_game
 
 
 
-   ::pointer<::graphics3d::scene_object> game_layer::makePointLight(float intensity, float radius, glm::vec3 color)
+   ::pointer<::graphics3d::scene_object> immersion_layer::makePointLight(float intensity, float radius, glm::vec3 color)
    {
       auto ppointlight = øallocate ::graphics3d::point_light_scene_object;
       this->add_scene_object(ppointlight);

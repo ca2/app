@@ -1,16 +1,32 @@
 //
-// Created by camilo on 2025-08-22.
+// Created by camilo on 2025-08-22 09:34 <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef QUEUE_H
-#define QUEUE_H
 
-namespace gpu {
+namespace gpu
+{
 
-class queue {
+   class CLASS_DECL_BRED queue :
+      virtual public ::particle
+   {
+   public:
 
-};
 
-} // gpu
+      ::pointer < ::gpu::context >        m_pgpucontext;
 
-#endif //QUEUE_H
+
+      queue();
+      ~queue() override;
+
+
+      virtual void initialize_gpu_queue(::gpu::context * pgpucontext);
+
+
+   };
+
+
+} // namespace gpu
+
+
+

@@ -144,11 +144,11 @@ namespace graphics3d
 	// {
 	// 	ASSERT(m_pipelineLayout != nullptr && "Cannot create pipeline before pipeline layout");
 	//
-	// 	//graphics3d::pipeline_configuration_information pipelineConfig{};
-	// 	//graphics3d::pipeline::defaultPipelineConfigInfo(pipelineConfig);
+	// 	//graphics3d::pipeline_configuration_information pipelineconfiguration{};
+	// 	//graphics3d::pipeline::default_pipeline_configuration(pipelineconfiguration);
 	//
-	// 	//pipelineConfig.renderPass = renderPass;
-	// 	//pipelineConfig.pipelineLayout = m_pipelineLayout;
+	// 	//pipelineconfiguration.renderPass = renderPass;
+	// 	//pipelineconfiguration.pipelineLayout = m_pipelineLayout;
 	//
 	// 	::string vertShaderPath = "matter://shaders/spirV/vert.vert.spv";
 	// 	::string fragShaderPath = "matter://shaders/spirV/frag.frag.spv";
@@ -157,7 +157,7 @@ namespace graphics3d
 	// 	//	m_pgpudevice,
 	// 	//	vertShaderPath.c_str(),
 	// 	//	fragShaderPath.c_str(),
-	// 	//	pipelineConfig
+	// 	//	pipelineconfiguration
 	// 	//);
 	// }
 } // namespace graphics3d

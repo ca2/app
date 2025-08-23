@@ -8,7 +8,7 @@
 #include "bred/graphics3d/model.h"
 #include "bred/graphics3d/scene_object.h"
 #include "bred/graphics3d/frame.h"
-#include "graphics3d/game_layer.h"
+#include "graphics3d/immersion_layer.h"
 #include "graphics3d/scene.h"
 // // External
 // #define GLM_FORCE_RADIANS
@@ -151,11 +151,11 @@ namespace graphics3d
 	// {
 	// 	ASSERT(m_pipelineLayout != nullptr && "Cannot create pipeline before pipeline layout");
 	//
-	// 	//graphics3d::pipeline_configuration_information pipelineConfig{};
-	// 	//graphics3d::pipeline::defaultPipelineConfigInfo(pipelineConfig);
+	// 	//graphics3d::pipeline_configuration_information pipelineconfiguration{};
+	// 	//graphics3d::pipeline::default_pipeline_configuration(pipelineconfiguration);
 	//
-	// 	//pipelineConfig.renderPass = renderPass;
-	// 	//pipelineConfig.pipelineLayout = m_pipelineLayout;
+	// 	//pipelineconfiguration.renderPass = renderPass;
+	// 	//pipelineconfiguration.pipelineLayout = m_pipelineLayout;
 	//
 	// 	::string vertShaderPath = "matter://shaders/spirV/vert.vert.spv";
 	// 	::string fragShaderPath = "matter://shaders/spirV/frag.frag.spv";
@@ -164,7 +164,7 @@ namespace graphics3d
 	// 	//	m_pgpudevice,
 	// 	//	vertShaderPath.c_str(),
 	// 	//	fragShaderPath.c_str(),
-	// 	//	pipelineConfig
+	// 	//	pipelineconfiguration
 	// 	//);
 	// }
 
@@ -211,7 +211,7 @@ namespace graphics3d
 
 		m_pshader->bind(pgpucontext->current_target_texture(::gpu::current_frame()));
 
-	   auto pgamelayer = m_pengine->m_pgamelayer;
+	   auto pgamelayer = m_pengine->m_pimmersionlayer;
 
 		for (auto& kv : pscene->scene_objects())
 		{

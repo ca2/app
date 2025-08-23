@@ -118,7 +118,7 @@ namespace graphics3d
     //
     //     // OPAQUE
     //     // graphics3d::pipeline_configuration_information opaqueConfig{};
-    //     // graphics3d::pipeline::defaultPipelineConfigInfo(opaqueConfig);
+    //     // graphics3d::pipeline::default_pipeline_configuration(opaqueConfig);
     //     // opaqueConfig.pipelineLayout = m_pipelineLayout;
     //     // opaqueConfig.renderPass = renderPass;
     //     // opaqueConfig.bindingDescriptions = bindings;
@@ -130,7 +130,7 @@ namespace graphics3d
     //
     //     // MASK
     //     // graphics3d::pipeline_configuration_information maskConfig{};
-    //     // graphics3d::pipeline::defaultPipelineConfigInfo(maskConfig);
+    //     // graphics3d::pipeline::default_pipeline_configuration(maskConfig);
     //     // maskConfig.pipelineLayout = m_pipelineLayout;
     //     // maskConfig.renderPass = renderPass;
     //     // maskConfig.bindingDescriptions = bindings;
@@ -157,7 +157,7 @@ namespace graphics3d
     //
     //     // // BLEND
     //     // graphics3d::pipeline_configuration_information blendConfig{};
-    //     // graphics3d::pipeline::defaultPipelineConfigInfo(blendConfig);
+    //     // graphics3d::pipeline::default_pipeline_configuration(blendConfig);
     //     // blendConfig.pipelineLayout = m_pipelineLayout;
     //     // blendConfig.renderPass = renderPass;
     //     // blendConfig.bindingDescriptions = bindings;

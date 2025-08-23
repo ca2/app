@@ -10,11 +10,9 @@ namespace graphics3d
 
 
    class point_light :
-   virtual public scene_object
+      virtual public scene_object
    {
    public:
-
-      inline static const int MAX_LIGHTS = 10;
 
       float m_fLightIntensity = 1.0f;
 

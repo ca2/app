@@ -30,7 +30,7 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
 
-#include "game_layer.h"
+#include "immersion_layer.h"
 // Function to flip a mat4 along the Z-axis
 glm::mat4 flipZMat4(const glm::mat4& mat) {
    // Create a rotation matrix that flips along the Y-axis (180 degrees)
@@ -113,7 +113,7 @@ namespace graphics3d
 
          {
 
-            auto pscene = m_pgamelayer->m_pscene;
+            auto pscene = m_pimmersionlayer->m_pscene;
 
             _synchronous_lock synchronouslock(pscene->synchronization());
 
@@ -151,7 +151,7 @@ namespace graphics3d
    void engine::create_global_ubo(::gpu::context* pgpucontext)
    {
 
-      auto iGlobalUboSize = m_pgamelayer->m_pscene->global_ubo().size();
+      auto iGlobalUboSize = m_pimmersionlayer->m_pscene->global_ubo().size();
 
       if (iGlobalUboSize > 0)
       {
@@ -229,26 +229,11 @@ namespace graphics3d
    void engine::on_update_frame()
    {
 
-      auto &pcameraScene = m_pgamelayer->m_pscene->m_pcameraScene;
+      auto &pcameraScene = m_pimmersionlayer->m_pscene->m_pcameraScene;
 
       if (!pcameraScene)
       {
-
-         pcameraScene = m_pgamelayer->m_pscene->get_default_camera();
-
-         m_transform.m_vec3Translation = pcameraScene->m_locationPosition;
-
-         m_transform.m_vec3Rotation.x = pcameraScene->m_fPitch;
-
-         m_transform.m_vec3Rotation.y = pcameraScene->m_fYaw;
-
-         //VkcCamera camera(glm::vec3(0.0f, 2.0f, -10.0f), .0f, 0.0f);
-
-         //auto viewerObject = øcreate <::graphics3d::scene_object>();
-         //papp->m_pimpact->m_bLastMouse = true;
-         //viewerObject->m_transform.translation.z = -2.5f;
-         //m_transform.translation.z = -2.5f;
-
+         pcameraScene = m_pimmersionlayer->m_pscene->get_default_camera();
          ::pointer <::database::client> pdatabaseclient = m_papplication;
 
          if (pdatabaseclient)
@@ -261,6 +246,21 @@ namespace graphics3d
          }
 
       }
+
+      m_transform.m_vec3Translation = pcameraScene->m_locationPosition;
+
+      m_transform.m_vec3Rotation.x = pcameraScene->m_fPitch;
+
+      m_transform.m_vec3Rotation.y = pcameraScene->m_fYaw;
+
+         //VkcCamera camera(glm::vec3(0.0f, 2.0f, -10.0f), .0f, 0.0f);
+
+         //auto viewerObject = øcreate <::graphics3d::scene_object>();
+         //papp->m_pimpact->m_bLastMouse = true;
+         //viewerObject->m_transform.translation.z = -2.5f;
+         //m_transform.translation.z = -2.5f;
+
+
 
       //m_fFrameTime = fFrameTime;
 
@@ -500,7 +500,7 @@ namespace graphics3d
 
             if (pdatabaseclient)
             {
-
+               auto &pcameraScene = m_pimmersionlayer->m_pscene->m_pcameraScene;
                pdatabaseclient->datastream()->set("input", m_pinput->as_block());
                pdatabaseclient->datastream()->set("transform", as_memory_block(m_transform));
                pdatabaseclient->datastream()->set("camera", pcameraScene->as_block());
@@ -630,14 +630,16 @@ namespace graphics3d
    void engine::update_global_ubo(::gpu::context* pgpucontext)
    {
 
-      if (m_pscene->global_ubo().size() > 0)
+      auto pscene = m_pimmersionlayer->m_pscene;
+
+      if (pscene->global_ubo().size() > 0)
       {
 
-         m_pscene->on_update_global_ubo(pgpucontext);
+         pscene->on_update_global_ubo(pgpucontext);
          
          auto pcontext = gpu_context();
 
-         pcontext->update_global_ubo(m_pscene->global_ubo().m_block);
+         pcontext->update_global_ubo(pscene->global_ubo().m_block);
 
       }
 
@@ -689,12 +691,13 @@ namespace graphics3d
    }
 
 
-    ::graphics3d::scene * engine::current_scene()
+   ::graphics3d::scene * engine::current_scene()
    {
 
-return m_pscene;
+      return m_pimmersionlayer->m_pscene;
 
    }
+
 
    void engine::do_frame_step(::gpu::context* pcontextParam)
    {
@@ -948,16 +951,18 @@ return m_pscene;
 
       auto pcontext = gpu_context();
 
-      m_pscene->defer_load_scene(pcontext);
+      auto pscene = m_pimmersionlayer->m_pscene;
 
-      engine_on_after_load_scene(m_pscene);
+      pscene->defer_load_scene(pcontext);
+
+      engine_on_after_load_scene(pscene);
 
       if (!m_bCreatedGlobalUbo)
       {
 
          m_bCreatedGlobalUbo = true;
 
-         auto iGlobalUboSize = m_pscene->global_ubo().size();
+         auto iGlobalUboSize = pscene->global_ubo().size();
 
          if (iGlobalUboSize > 0)
          {
@@ -1057,7 +1062,7 @@ return m_pscene;
    }
 
 
-   model<::graphics3d::Vertex> engine::create_tinyobjloader_model(const ::file::path& path)
+   model<::graphics3d::Vertex> engine::_load_wavefront_obj_renderable(const ::file::path& path)
    {
 
       tinyobjloader_Builder builder{};
@@ -1076,21 +1081,21 @@ return m_pscene;
 
 
 
-
-   void engine::add_scene(::graphics3d::scene* pscene)
-   {
-
-      m_mapScene[pscene->m_strName] = pscene;
-
-   }
-
-
-   void engine::set_current_scene(::graphics3d::scene* pscene)
-   {
-
-      m_pscene = pscene;
-
-   }
+   //
+   // void engine::add_scene(::graphics3d::scene* pscene)
+   // {
+   //
+   //    m_mapScene[pscene->m_strName] = pscene;
+   //
+   // }
+   //
+   //
+   // void engine::set_current_scene(::graphics3d::scene* pscene)
+   // {
+   //
+   //    m_pscene = pscene;
+   //
+   // }
 
 
 } // namespace graphics3d

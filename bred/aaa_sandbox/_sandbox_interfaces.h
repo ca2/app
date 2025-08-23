@@ -7,7 +7,7 @@
 #include "SceneFoundry/graphics3d/asset_provider.h"
 #include "SceneFoundry/graphics3d/camera.h"
 #include "SceneFoundry/graphics3d/entity.h"
-#include "SceneFoundry/graphics3d/game_layer.h"
+#include "SceneFoundry/graphics3d/immersion_layer.h"
 #include "SceneFoundry/graphics3d/game_object.h"
 #include "SceneFoundry/graphics3d/modeL.h"
 #include "SceneFoundry/graphics3d/provider.h"

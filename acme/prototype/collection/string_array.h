@@ -64,13 +64,19 @@ public:
    using this_iterator = typename BASE_ARRAY::this_iterator;
 
    using BASE_ARRAY::BASE_ARRAY;
-   using BASE_ARRAY::operator =;
+   //using BASE_ARRAY::operator =;
 
 
    string_base_array(const RAW_BASE_ARRAY& a) : BASE_ARRAY(a) {}
    string_base_array(CHARACTER * const * ppsz, ::collection::count c);
    ~string_base_array();
 
+   template < primitive_container CONTAINER >
+   string_base_array & operator = (const CONTAINER & container)
+   {
+      this->assign_a_container(container);
+      return *this;
+   }
 
    ::collection::count get_size() const;
    ::collection::count get_count() const;

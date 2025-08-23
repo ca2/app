@@ -165,7 +165,7 @@ namespace user
    }
 
 
-   ::pointer < ::graphics3d::scene > graphics3d::create_main_scene()
+   ::pointer < ::prodevian::immersion > graphics3d::create_immersion()
    {
 
       throw ::interface_only();
@@ -181,9 +181,13 @@ namespace user
       m_pengine->m_pinput->m_fMoveSpeed = 3.f;
       m_pengine->m_pinput->m_fLookSpeed =  1.5f;
 
-      auto psceneMain = create_main_scene();
+      create_immersion();
 
-      m_pengine->set_current_scene(psceneMain);
+      //auto pimmersion = create_immersion();
+
+      // auto psceneMain = create_main_scene();
+      //
+      // m_pengine->m_pimmersionlayer->set_current_scene(psceneMain);
 
 
 

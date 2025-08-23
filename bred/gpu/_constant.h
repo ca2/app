@@ -49,6 +49,7 @@ namespace gpu
       e_command_buffer_graphics,
       e_command_buffer_copy,
       e_command_buffer_present,
+      e_command_buffer_transfer,
 
    };
 
@@ -102,6 +103,26 @@ namespace gpu
       e_render_mode_single_frame_state,
 
    };
+
+
+   enum enum_renderable_type
+   {
+
+      e_renderable_type_none,
+      e_renderable_type_wavefront_obj,
+      e_renderable_type_gltf
+
+   };
+
+
+   enum enum_renderable_usage
+   {
+
+      e_renderable_usage_default,
+      e_renderable_usage_skybox
+
+   };
+
 
 } // namespace gpu
 

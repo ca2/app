@@ -92,12 +92,12 @@ namespace graphics3d
    // void point_light_render_system::createPipeline(VkRenderPass renderPass) {
    //     ASSERT(m_pipelineLayout != VK_NULL_HANDLE && "Cannot create pipeline before pipeline layout");
    //
-   //     //graphics3d::pipeline_configuration_information pipelineConfig{};
-   //     //graphics3d::pipeline::defaultPipelineConfigInfo(pipelineConfig);
-   //     //pipelineConfig.bindingDescriptions.clear();
-   //     //pipelineConfig.attributeDescriptions.clear();
-   //     //pipelineConfig.renderPass = renderPass;
-   //     //pipelineConfig.pipelineLayout = m_pipelineLayout;
+   //     //graphics3d::pipeline_configuration_information pipelineconfiguration{};
+   //     //graphics3d::pipeline::default_pipeline_configuration(pipelineconfiguration);
+   //     //pipelineconfiguration.bindingDescriptions.clear();
+   //     //pipelineconfiguration.attributeDescriptions.clear();
+   //     //pipelineconfiguration.renderPass = renderPass;
+   //     //pipelineconfiguration.pipelineLayout = m_pipelineLayout;
    //
    //     ::string vertShaderPath = "matter://shaders/spirV/point_light.vert.spv";
    //     ::string fragShaderPath = "matter://shaders/spirV/point_light.frag.spv";
@@ -106,7 +106,7 @@ namespace graphics3d
    //     //    m_pgpudevice,
    //     //    vertShaderPath.c_str(),
    //     //    fragShaderPath.c_str(),
-   //     //    pipelineConfig
+   //     //    pipelineconfiguration
    //     //);
    //     m_ppipeline = m_pgpudevice->create_pipeline_from_file(
    //        vertShaderPath.c_str(),

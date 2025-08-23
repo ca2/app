@@ -92,12 +92,12 @@ namespace graphics3d
    //void point_light_system::createPipeline(VkRenderPass renderPass) {
    //   assert(pipelineLayout != nullptr && "Cannot create pipeline before pipeline layout");
 
-   //   PipelineConfigInfo pipelineConfig{};
-   //   pipeline::defaultPipelineConfigInfo(pipelineConfig);
-   //   pipelineConfig.attributeDescriptions.clear();
-   //   pipelineConfig.bindingDescriptions.clear();
-   //   pipelineConfig.renderPass = renderPass;
-   //   pipelineConfig.pipelineLayout = pipelineLayout;
+   //   pipeline_configuration pipelineconfiguration{};
+   //   pipeline::default_pipeline_configuration(pipelineconfiguration);
+   //   pipelineconfiguration.attributeDescriptions.clear();
+   //   pipelineconfiguration.bindingDescriptions.clear();
+   //   pipelineconfiguration.renderPass = renderPass;
+   //   pipelineconfiguration.pipelineLayout = pipelineLayout;
 
    //   // Construct paths using PROJECT_ROOT_DIR
    //   std::string vertShaderPath = "matter://Shaders/SpirV/point_light.vert.spv";
@@ -109,7 +109,7 @@ namespace graphics3d
    //      m_pgpucontext,
    //      vertShaderPath.c_str(),
    //      fragShaderPath.c_str(),
-   //      pipelineConfig
+   //      pipelineconfiguration
    //   );
    //}
    void point_light_system::render(::graphics3d::scene* pscene)
@@ -123,7 +123,7 @@ namespace graphics3d
          if (ppointlight == nullptr) continue;
 
          // calculate distance
-         auto offset = m_pgpucontext->m_pimpact->m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->GetPosition() - obj->m_transform.translation;
+         auto offset = m_pgpucontext->m_pimpact->m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->GetPosition() - obj->m_transform.translation;
          float disSquared = glm::dot(offset, offset);
          sorted[disSquared] = obj->m_iId;
       }

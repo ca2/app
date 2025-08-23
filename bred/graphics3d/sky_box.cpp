@@ -226,10 +226,10 @@ namespace graphics3d
    {
 
 
-      //auto view = m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->getView();
+      //auto view = m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->getView();
       //glm::mat4 skyboxView = glm::mat4(glm::mat3(view)); // <-- drop translation
       //m_pshader->set_mat4("view", skyboxView);
-      //auto projection = m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->getProjection();
+      //auto projection = m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->getProjection();
       //m_pshader->set_mat4("projection", projection);
       //m_pshader->bind_source(m_ptextureCubeMap);
       m_prenderable->bind(pgpucommandbuffer);

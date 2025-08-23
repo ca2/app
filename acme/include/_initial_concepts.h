@@ -77,6 +77,13 @@ class range;
 template < typename T >
 concept primitive_range = ::std::is_base_of_v < ::range< typename T::this_iterator >, T >;
 
+template < typename T >
+concept std_range = requires(const T &t)
+{
+t.begin();
+   t.end();
+
+};
 
 
 template < typename T, typename ITERATOR_TYPE >

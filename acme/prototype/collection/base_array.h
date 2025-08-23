@@ -407,16 +407,24 @@ public:
    }
 
 
-   template < primitive_array ARRAY >
-   base_array & operator = (const ARRAY & a)
+   template < primitive_container CONTAINER >
+   base_array & assign_a_container(const CONTAINER & container)
    {
 
-      this->set_size(a.size());
+      this->set_size(container.size());
 
-      for (::collection::index i = 0; i < this->size(); i++)
+      auto p = container.begin();
+
+      ::collection::index i = 0;
+
+      while (!container.is_end(p))
       {
 
-         this->element_at(i) = a[i];
+         this->element_at(i) = *p;
+
+         i++;
+
+         p++;
 
       }
 
@@ -425,12 +433,13 @@ public:
    }
 
 
-   base_array & operator = (const std::initializer_list < TYPE > & initializer_list)
+   template < std_range STDRANGE >
+   base_array & assign_a_std_range (const STDRANGE & range)
    {
 
       this->clear();
 
-      for (auto & item : initializer_list)
+      for (auto & item : range)
       {
 
          this->add(item);
@@ -438,6 +447,35 @@ public:
       }
 
       return *this;
+
+   }
+
+
+   template < primitive_container CONTAINER >
+   base_array & operator = (const CONTAINER & container)
+   requires (!::std::is_base_of<base_array, CONTAINER >::value)
+   {
+
+      return this->assign_a_container(container);
+
+   }
+
+
+   template < std_range STDRANGE >
+   base_array & operator = (const STDRANGE & range)
+   requires (!::std::is_base_of<base_array, STDRANGE >::value
+      && !primitive_container<STDRANGE>)
+   {
+
+      return this->assign_a_std_range(range);
+
+   }
+
+
+   base_array & operator = (const std::initializer_list<TYPE> & initializerlist)
+   {
+
+      return this->assign_a_std_range(initializerlist);
 
    }
 

@@ -16,12 +16,16 @@ namespace graphics3d
 {
 
 
-	class scene :
+	class CLASS_DECL_BRED scene :
 		virtual public ::particle
 	{
 	public:
 
 
+	   ::string                                                    m_strSceneName;
+
+	   bool                                                        m_bInitialized;
+	   bool                                                        m_bLoadedScene;
 	   ::interlocked_count                                         m_interlockedcountSceneObject;
       ::pointer < ::graphics3d::engine >                          m_pengine;
 		//::pointer<::graphics3d::IWindowInput>							      m_pwindowinput;
@@ -37,6 +41,7 @@ namespace graphics3d
 
 		//int															            m_iSkyboxId = -1;
 		::pointer<::graphics3d::sky_box>							         m_pskyboxCurrent;
+	   string_map < ::pointer < ::graphics3d::sky_box > >          m_mapSkybox;
 		::string													               m_strSkyboxCubemapName;
       ::gpu::properties                                           m_gpupropertiesGlobalUbo;
 
@@ -49,7 +54,7 @@ namespace graphics3d
 		// pass input so your Player can read it
 		//void initialize_scene(::graphics3d::IWindowInput * input, ::graphics3d::IAssetProvider * passetmanager) override;
 
-	   void initialize_scene(::graphics3d::engine * pengine);
+	   virtual void initialize_scene(::graphics3d::engine * pengine);
 
 
 		virtual void on_initialize_scene();                 // load models, spawn entities
@@ -58,11 +63,13 @@ namespace graphics3d
 
 	   virtual ::gpu::properties & global_ubo();
 
+	   virtual ::graphics3d::scene_object & scene_object(const ::scoped_string & scopedstr, const ::file::path & path = {});
 
+	   virtual ::pointer < ::graphics3d::scene_object > _scene_object(const ::scoped_string & scopedstr, const ::file::path & path);
 
 		virtual ::graphics3d::scene_object_map & scene_objects();
 
-		virtual ::pair<glm::mat4, glm::mat4> getMainCameraMatrices()const;
+		//virtual ::pair<glm::mat4, glm::mat4> getMainCameraMatrices()const;
 
 		virtual void set_sky_box(::graphics3d::sky_box * pskybox);
 
@@ -95,20 +102,20 @@ namespace graphics3d
 		   float radius = 0.1f,
 		   const ::color::color & color = ::color::white);
 
+
+	   virtual void defer_load_scene(::gpu::context* pgpucontext);
+
+
 	   virtual void on_load_scene(::gpu::context* pgpucontext);
 	   virtual void on_update_global_ubo(::gpu::context* pgpucontext);
 	   virtual void on_render(::gpu::context * pgpucontext);
 
 
-	   scene_object * create_tinyobj(const ::file::path& path);
-	   scene_object * get_tinyobj(const ::file::path& path);
+	   //virtual ::pointer < ::graphics3d::renderable> create_tinyobj_scene_object(const ::file::path& path);
 
-	   inline scene_object & tinyobj(const ::file::path& path)
-	   {
 
-	      return *get_tinyobj(path);
+	   //virtual ::graphics3d::object_render_system * object_render_system();
 
-	   }
 
 	};
 

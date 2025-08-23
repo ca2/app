@@ -39,7 +39,7 @@ namespace graphics3d
 		//::pointer < ::gpu::context >					      m_pgpucontextGraphics3D;
 		::pointer < ::user::graphics3d >				         m_pusergraphics3d;
 
-	   ::pointer < ::graphics3d::game_layer >             m_pgamelayer;
+	   ::pointer < ::graphics3d::immersion_layer >        m_pimmersionlayer;
 	   ::pointer < ::graphics3d::input >			         m_pinput;
 
 		::graphics3d::transform					               m_transform;
@@ -126,11 +126,8 @@ namespace graphics3d
 
 		virtual void on_update_frame();
 
-		virtual ::graphics3d::model < ::graphics3d::Vertex > create_tinyobjloader_model(const ::file::path& path);
+		virtual ::graphics3d::model < ::graphics3d::Vertex > _load_wavefront_obj_renderable(const ::file::path& path);
 
-		virtual void add_scene(::graphics3d::scene* pscene);
-
-		virtual void set_current_scene(::graphics3d::scene* pscene);
 
 		//virtual void on_offscreen_frame_pixels(const ::image32_t* pimage32, int w, int h, int stride);
 

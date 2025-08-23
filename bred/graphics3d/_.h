@@ -5,7 +5,6 @@
 #include "_constant.h"
 
 
-
 namespace graphics3d
 {
 
@@ -17,14 +16,14 @@ namespace graphics3d
 
    class engine;
 
-   template < typename TYPE >
+   template<typename TYPE>
    class model;
 
 
-   template < typename VERTEX >
+   template<typename VERTEX>
    class model_data;
 
-   template < typename VERTEX >
+   template<typename VERTEX>
    class model_instance;
    //class context;
 
@@ -48,17 +47,20 @@ namespace graphics3d
    class sky_box;
    class renderable;
 
-   class game_layer;
-class point_light;
+   class immersion_layer;
+   class point_light;
 
 
-   using scene_object_map = map_base < long long, ::pointer < scene_object > >;
+   using scene_object_map = ::string_map<::pointer<scene_object>>;
+
+
+   class object_render_system;
+   class point_light_render_system;
+   class skybox_ibl_render_system;
+   class skybox_render_system;
 
 
 } // namespace graphics3d
 
 
 #include "_types.h"
-
-
-

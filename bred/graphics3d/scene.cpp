@@ -24,6 +24,8 @@ namespace graphics3d
    scene::scene()
    {
 
+      m_bInitialized = false;
+      m_bLoadedScene = false;
       m_strSkyboxCubemapName = "skybox_hdr";
       m_interlockedcountSceneObject = 1;
 
@@ -46,10 +48,13 @@ namespace graphics3d
    // }
 
 
+
+
    void scene::initialize_scene(::graphics3d::engine * pengine)
    {
 
-      ::graphics3d::scene::initialize_scene(pengine);
+      m_pengine = pengine;
+      //::graphics3d::scene::initialize_scene(pengine);
 
       auto pprodevianactor = øcreate_new<::prodevian::actor>();
 
@@ -62,6 +67,13 @@ namespace graphics3d
       m_prodevianactora.add(pprodevianactor);
 
       on_initialize_scene();
+
+   }
+
+
+   void scene::on_initialize_scene()
+   {
+
 
    }
 
@@ -184,11 +196,11 @@ namespace graphics3d
 
                auto ppointlight = this->create_point_light(intensity, 0.1f, color);
 
-               ppointlight->transform().translation = pos;
+               ppointlight->transform().m_vec3Translation = pos;
 
                information("Placed point light at ({}, {}, {})", pos.x, pos.y, pos.z);
 
-               m_mapSceneObject.set_at(ppointlight->getId(), std::move(ppointlight));
+               //m_mapSceneObject.set_at(ppointlight->m_strName, std::move(ppointlight));
 
             }
 
@@ -245,7 +257,7 @@ namespace graphics3d
 
             psceneobject = this->create_scene_object();
 
-            m_mapSceneObject.set_at(psceneobject->getId(), psceneobject);
+            m_mapSceneObject.set_at(psceneobject->m_strName, psceneobject);
 
          }
          //
@@ -259,9 +271,9 @@ namespace graphics3d
          auto rot = objJson.get("rotation", ::float_array_base{0.f, 0.f, 0.f});
          auto scl = objJson.get("scale", ::float_array_base{1.f, 1.f, 1.f});
 
-         psceneobject->transform().translation = {pos[0], pos[1], pos[2]};
-         psceneobject->transform().rotation = {rot[0], rot[1], rot[2]};
-         psceneobject->transform().scale = {scl[0], scl[1], scl[2]};
+         psceneobject->transform().m_vec3Translation = {pos[0], pos[1], pos[2]};
+         psceneobject->transform().m_vec3Rotation = {rot[0], rot[1], rot[2]};
+         psceneobject->transform().m_vec3Scale = {scl[0], scl[1], scl[2]};
 
          information("Loaded GameObject '{}' - Pos: ({}, {}, {}), Rot: ({}, {}, {}), Scale: ({}, {}, {})",
                      objJson.get("name", "unnamed"),
@@ -372,6 +384,65 @@ namespace graphics3d
    }
 
 
+   ::graphics3d::scene_object & scene::scene_object(const ::scoped_string & scopedstr, const ::file::path & pathParameter)
+   {
+
+      auto & psceneobject = this->scene_objects()[scopedstr];
+
+      if (!psceneobject)
+      {
+
+         ::file::path path;
+
+         if (pathParameter.has_character())
+         {
+
+            path = pathParameter;
+
+         }
+
+         psceneobject = _scene_object(scopedstr, path);
+
+      }
+
+      return *psceneobject;
+
+   }
+
+
+   ::pointer < ::graphics3d::scene_object > scene::_scene_object(const ::scoped_string & scopedstr, const ::file::path & path)
+   {
+
+      auto pgpucontext = m_pengine->gpu_context();
+
+      ::gpu::renderable_t model;
+
+      model.m_strName = scopedstr;
+
+      model.m_path = path;
+
+      if (path.case_insensitive_ends(".obj"))
+      {
+
+         model.set_type("obj");
+
+      }
+
+      auto prenderable = pgpucontext->load_model(model);
+
+      auto psceneobject = øcreate < ::graphics3d::scene_object>();
+
+      psceneobject->initialize_scene_object(this);
+
+      psceneobject->m_strRenderablePath = path;
+
+      psceneobject->m_prenderable = prenderable;
+
+      return psceneobject;
+
+   }
+
+
    ::graphics3d::scene_object_map & scene::scene_objects()
    {
 
@@ -383,7 +454,7 @@ namespace graphics3d
    ::pointer<::graphics3d::scene_object> scene::create_scene_object()
    {
 
-      auto pgameobject = øcreate_new<scene_object>();
+      auto pgameobject = øcreate_new<::graphics3d::scene_object>();
 
       pgameobject->initialize_scene_object(this);
 
@@ -413,11 +484,39 @@ namespace graphics3d
       auto ppointlight = øallocate ::graphics3d::point_light;
       m_pointlighta.add(ppointlight);
       ppointlight->m_color = color;
-      ppointlight->m_transform.scale.x = radius;
+      ppointlight->m_transform.m_vec3Scale.x = radius;
       //gameObj->m_pointLight =
       ppointlight->m_fLightIntensity = intensity;
       return ppointlight;
    }
+
+
+   void scene::defer_load_scene(::gpu::context* pgpucontext)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      if (!m_bInitialized)
+      {
+
+         m_bInitialized = true;
+
+         initialize_scene(pgpucontext->m_pengine);
+
+      }
+
+      if (!m_bLoadedScene)
+      {
+
+         on_load_scene(pgpucontext);
+
+         m_bLoadedScene = true;
+
+      }
+
+   }
+
+
 
    void scene::on_load_scene(::gpu::context* pgpucontext)
    {
@@ -442,34 +541,60 @@ namespace graphics3d
 
    }
 
+   //
+   // ::pointer < ::graphics3d::renderable> scene::create_tinyobj_renderable(const ::file::path& path)
+   // {
+   //
+   //    auto pmodel = m_pengine->create_tinyobjloader_model(path);
+   //
+   //    return pmodel;
+   //
+   // }
+   //
+   //
+   //
+   // scene_object * scene::create_tinyobj(const ::file::path& path)
+   // {
+   //
+   //    auto prenderable = create_tinyobj_renderable(path);
+   //
+   //    auto psceneobject = øcreate < ::graphics3d::scene_object>();
+   //
+   //    psceneobject->initialize_scene_object(this);
+   //
+   //    psceneobject->m_strRenderablePath = path;
+   //
+   //    psceneobject->m_prenderable = prenderable;
+   //
+   //    m_mapSceneObject.set_at(psceneobject->getId(), psceneobject);
+   //
+   //    return psceneobject;
+   //
+   // }
 
-   ::pointer < ::graphics3d::renderable> scene::create_tinyobj_renderable(const ::file::path& path)
-   {
+   // ::pointer < ::graphics3d::renderable> scene::create_tinyobj_scene_object(const ::file::path& path)
+   // {
+   //
+   //    auto pengine = m_pengine;
+   //
+   //    auto pgpucontext = pengine->gpu_context();
+   //
+   //    auto prenderable = pgpucontext->create_tinyobj_renderable(path);
+   //
+   //    auto psceneobject = øcreate < ::graphics3d::scene_object>();
+   //
+   //    psceneobject->initialize_scene_object(this);
+   //
+   //    psceneobject->m_strRenderablePath = path;
+   //
+   //    psceneobject->m_prenderable = prenderable;
+   //
+   //    m_mapSceneObject.set_at(psceneobject->getId(), psceneobject);
+   //
+   //    return psceneobject;
+   //
+   // }
 
-      auto pmodel = m_pengine->create_tinyobjloader_model(path);
-
-      return pmodel;
-
-   }
-
-
-
-   scene_object * scene::create_tinyobj(const ::file::path& path)
-   {
-
-      auto pmodel = create_tinyobjloader_model(path);
-
-      auto pobject = øcreate < ::graphics3d::scene_object>();
-
-      add_object(pobject);
-
-      pobject->m_pmodel = pmodel;
-
-      pobject->m_strPath = path;
-
-      return *pobject;
-
-   }
 
 
 } // namespace graphics3d

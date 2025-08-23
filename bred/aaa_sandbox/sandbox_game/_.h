@@ -29,7 +29,7 @@ namespace app_graphics3d_continuum
    class game_object;
 
 
-   class game_layer;
+   class immersion_layer;
 
    class GlobalUbo;
 

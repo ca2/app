@@ -1,8 +1,13 @@
-#include "../../../SceneFoundry/graphics3d/framework.h"
+#include "framework.h"
 // asset_manager.cpp
 #include "acme/filesystem/filesystem/file_context.h"
 #include "asset_manager.h"
+#include "renderable.h"
+#include "bred/gpu/renderable.h"
 #include <chrono>
+
+#include "engine.h"
+
 //#include "acme/exception/r"
 //#include <json.hpp>
 ////#include <fstream>
@@ -29,10 +34,96 @@ namespace graphics3d
 
    }
 
+void asset_manager::initialize_asset_manager(graphics3d::engine *pengine)
+{
+   m_pengine=pengine;
+}
 
-   graphics3d::object_model *asset_manager::getOBJModel(const ::scoped_string &name)
+//    ::pointer<::graphics3d::renderable> asset_manager::æloadObjModel(
+//      const ::scoped_string &name,
+//      const ::scoped_string &filepath,
+//      bool isSkybox
+//      )
+//    {
+//
+//       auto & p = m_mapRenderable[name];
+//
+//       if (p)
+//       {
+//
+// retu
+//
+//       }
+//
+//       auto pgpucontext = m_pengine->gpu_context();
+//
+//       // 2) load
+//       auto model = pgpucontext->loadObjModel(name, filepath, isSkybox);
+//
+//       // 3) cache & return
+//       m_mapObjectModel[name] = model;
+//       return model;
+//    }
+//
+//
+//    ::pointer<::graphics3d::renderable> asset_manager::æloadGLTFmodel(
+//       const ::scoped_string &name,
+//       const ::scoped_string &filepath,
+//       uint32_t gltfFlags,
+//       float scale
+//       )
+//    {
+//
+//
+//    }
+
+
+
+
+   // ::pointer<graphics3d::renderable> asset_manager::load_model(const ::scoped_string& name, const ::scoped_string& filepath, bool isSkybox)
+   // {
+   //
+   //    auto pgpucontext = m_pengine->gpu_context();
+   //
+   //    return pgpucontext->load_model(name, filepath, isSkybox);
+   //
+   // }
+
+
+   void asset_manager::generateBRDFlut()
    {
-      auto p = m_mapObjectModel.find(name);
+
+      auto pgpucontext = m_pengine->gpu_context();
+
+      m_ptextureLuBrdf = pgpucontext->generateBRDFlut();
+
+
+   }
+
+
+   void asset_manager::generateIrradianceMap()
+   {
+
+      auto pgpucontext = m_pengine->gpu_context();
+
+      m_ptextureIrradianceCube = pgpucontext->generateIrradianceMap(
+         m_ptextureEnvironmentCube,
+         m_pgpumodelbufferSkybox);
+
+   }
+
+
+   void asset_manager::generatePrefilteredEnvMap()
+   {
+
+
+   }
+
+
+
+   graphics3d::renderable *asset_manager::get_renderable(const ::scoped_string &name)
+   {
+      auto p = m_mapRenderable.find(name);
       if (!p)
       {
          return nullptr;
@@ -43,17 +134,17 @@ namespace graphics3d
    }
 
 
-   graphics3d::IModel *asset_manager::getGLTFmodel(const ::scoped_string &name)
-   {
-      auto p = m_mapGltfModel.find(name);
-      if (!p)
-      {
-         return nullptr;
-      }
-
-      return p->element2();
-      //return (it != m_mapGltfModel.end()) ? it->element2() : nullptr;
-   }
+   // graphics3d::IModel *asset_manager::getGLTFmodel(const ::scoped_string &name)
+   // {
+   //    auto p = m_mapGltfModel.find(name);
+   //    if (!p)
+   //    {
+   //       return nullptr;
+   //    }
+   //
+   //    return p->element2();
+   //    //return (it != m_mapGltfModel.end()) ? it->element2() : nullptr;
+   // }
 
 
    ::gpu::texture *asset_manager::getTexture(const ::scoped_string &name)
@@ -100,9 +191,9 @@ namespace graphics3d
    }
 
 
-   graphics3d::IModel *asset_manager::getSkyboxModel()
+   graphics3d::renderable *asset_manager::getSkyboxModel()
    {
-      return m_pmodelSkybox;
+      return m_prenderableSkybox;
    } // make this override if necessary
 
 
@@ -111,7 +202,7 @@ namespace graphics3d
       ::string_array_base straKeys;
       //keys.reserve(m_textures.size());
       //keys.m_countAddUp = m_mapTexture.size();
-      straKeys =  m_mapTexture.keys();
+      straKeys =  m_mapTexture.items();
         // keys.add(n);
       return straKeys;
    }
@@ -125,6 +216,8 @@ namespace graphics3d
       //    throw std::runtime_error("Failed to open model list JSON.");
       //}
 
+      auto pgpucontext = m_pengine->gpu_context();
+
       //::property_set modelJson;
       //modelJson.parse_network_payload()
 
@@ -133,40 +226,91 @@ namespace graphics3d
       auto &payloada = modelJson["models"].payload_array_reference();
       for (const auto &element: payloada)
       {
-
          auto &entry = element.property_set_reference();
-         const ::string name = entry["name"];
-         const ::string type = entry.get("type", "obj");
-         const ::string path = "matter://models/" + entry["path"].as_file_path();
 
-         try
+         const ::string name = entry["name"];
+
+
+         auto prenderable = get_renderable(name);
+
+         if (!prenderable)
          {
-            if (type == "obj")
+
+            try
             {
-               auto model = loadObjModel(name, path, false);
-               information("[asset_manager] Successfully loaded OBJ model '{}' from '{}'", name, path);
-            }
-            else if (type == "gltf")
-            {
-               uint32_t flags = entry.get("flags", 0); // Optional flags
-               float scale = entry.get("scale", 1.0f); // Optional scale
-               auto pmodel = loadGLTFmodel(name, path, flags, scale);
-               if (entry.get("usage", "") == "skybox" || name == "cube")
+
+               prenderable = pgpucontext->load_model(entry);
+
+               if (prenderable->renderable_type() == ::gpu::e_renderable_type_wavefront_obj)
                {
-                  m_pmodelSkybox = pmodel;
+                  //auto model = loadObjModel(name, path, false);
+                  information("[asset_manager] Successfully loaded OBJ model '{}' from '{}'",
+                     prenderable->m_strName, prenderable->m_path);
                }
-               information("[asset_manager] Successfully loaded glTF model '{}' from '{}'", name, path);
+               else if (prenderable->renderable_type() == ::gpu::e_renderable_type_gltf)
+               {
+                  // uint32_t flags = entry.get("flags", 0); // Optional flags
+                  // float scale = entry.get("scale", 1.0f); // Optional scale
+                  // auto pmodel = loadGLTFmodel(name, path, flags, scale);
+                  // if (entry.get("usage", "") == "skybox" || name == "cube")
+                  // {
+                  //    m_pmodelSkybox = pmodel;
+                  // }
+                  if (prenderable->renderable_usage() == ::gpu::e_renderable_usage_skybox)
+                  {
+
+                     m_prenderableSkybox=prenderable;
+                  }
+                  information("[asset_manager] Successfully loaded glTF model '{}' from '{}'",
+                     prenderable->m_strName, prenderable->m_path);
+               }
+               else
+               {
+
+                  warning("[asset_manager] Unknown model type '{}' for asset '{}'",
+                     prenderable->m_strRenderableType1, prenderable->m_path);
+
+               }
+
             }
-            else
+            catch (const ::exception &e)
             {
-               warning("[asset_manager] Unknown model type '{}' for asset '{}'", type, name);
+               error("[asset_manager] Failed to load model '{}': {}", name, e.get_message());
             }
-         }
-         catch (const ::exception &e)
-         {
-            error("[asset_manager] Failed to load model '{}': {}", name, e.get_message());
          }
       }
+
+      //    const ::string type = entry.get("type", "obj");
+      //    const ::string path = "matter://models/" + entry["path"].as_file_path();
+      //
+      //    try
+      //    {
+      //       if (type == "obj")
+      //       {
+      //          auto model = loadObjModel(name, path, false);
+      //          information("[asset_manager] Successfully loaded OBJ model '{}' from '{}'", name, path);
+      //       }
+      //       else if (type == "gltf")
+      //       {
+      //          uint32_t flags = entry.get("flags", 0); // Optional flags
+      //          float scale = entry.get("scale", 1.0f); // Optional scale
+      //          auto pmodel = loadGLTFmodel(name, path, flags, scale);
+      //          if (entry.get("usage", "") == "skybox" || name == "cube")
+      //          {
+      //             m_pmodelSkybox = pmodel;
+      //          }
+      //          information("[asset_manager] Successfully loaded glTF model '{}' from '{}'", name, path);
+      //       }
+      //       else
+      //       {
+      //          warning("[asset_manager] Unknown model type '{}' for asset '{}'", type, name);
+      //       }
+      //    }
+      //    catch (const ::exception &e)
+      //    {
+      //       error("[asset_manager] Failed to load model '{}': {}", name, e.get_message());
+      //    }
+      // }
 
       // 2) Load cubemaps *before* generating BRDF / irradiance / prefiltered maps
       // Keep track of whether we loaded the environment cubemap used for IBL
@@ -190,7 +334,7 @@ namespace graphics3d
          try
          {
             // loadCubemap() must return ::pointer<texture>
-            auto cubemap = loadCubemap(
+            auto cubemap = pgpucontext->load_cube_map(
                name,
                path //,
                //format
@@ -206,7 +350,7 @@ namespace graphics3d
             }
 
             // Register into your caches (optional helper)
-            registerTextureIfNeeded(name, cubemap, m_textures, m_textureIndexMap, m_textureList);
+            //registerTextureIfNeeded(name, cubemap, m_textures, m_textureIndexMap, m_textureList);
 
             information("[asset_manager] Successfully loaded cubemap '{}' from '{}'", name, path);
 
@@ -228,10 +372,10 @@ namespace graphics3d
       // If your JSON didn't mark which cubemap is the environment, we fallback to looking up "skybox_hdr"
       if (!loadedEnvironmentCubemap)
       {
-         auto it = m_textures.find("skybox_hdr");
-         if (it)
+         auto p = m_mapTexture.find("skybox_hdr");
+         if (p)
          {
-            loadedEnvironmentCubemap = it->element2();
+            loadedEnvironmentCubemap = p->element2();
          }
       }
 
@@ -244,20 +388,20 @@ namespace graphics3d
       }
       else
       {
-         environmentCube = loadedEnvironmentCubemap;
+         m_ptextureEnvironmentCube = loadedEnvironmentCubemap;
       }
 
       // Create BRDF LUT, irradianceCube, prefilteredCube structures (these should allocate their own images)
       // Note: remove any line that reassigns environmentCube to an empty texture (that was the bug)
-      lutBrdf = øcreate_pointer<graphics3d::texture>(&m_pgpudevice);
-      irradianceCube = øcreate_pointer<graphics3d::texture>(&m_pgpudevice);
-      prefilteredCube = øcreate_pointer<graphics3d::texture>(&m_pgpudevice);
+      // lutBrdf = øcreate_pointer<graphics3d::texture>(&m_pgpudevice);
+      // irradianceCube = øcreate_pointer<graphics3d::texture>(&m_pgpudevice);
+      // prefilteredCube = øcreate_pointer<graphics3d::texture>(&m_pgpudevice);
 
       // Generate BRDF LUT first (your existing function)
       generateBRDFlut();
 
       // Now generate irradiance and prefiltered maps using environmentCube (must be valid)
-      if (!environmentCube)
+      if (!m_ptextureEnvironmentCube)
       {
          error("[asset_manager] environmentCube is null - aborting IBL generation to avoid descriptor errors.");
       }
@@ -276,100 +420,112 @@ namespace graphics3d
       }
 
       information("Assets loaded");
-   }
-
-
-   void asset_manager::generatePrefilteredEnvMap()
-   {
 
    }
 
+   //
+   // void asset_manager::generatePrefilteredEnvMap()
+   // {
+   //
+   // }
 
-   ::pointer<sandbox_object_model> asset_manager::loadObjModel(
-      const ::scoped_string &name,
-      const ::scoped_string &filepath,
-      bool isSkybox
-      )
-   {
-      // 1) cache check
-      if (auto it = m_mapObjectModel.find(name); it != m_mapObjectModel.end())
-         return it->element2();
+//
+//    ::graphics3d::renderable * asset_manager::get_renderable(
+//    const ::scoped_string &name
+//    )
+//    {
+//
+// return nullptr;
+//
+//    }
+//
 
-      // 2) load
-      auto model = sandbox_object_model::createModelFromFile(m_pgpudevice, filepath, isSkybox);
+   //
+   // ::pointer<sandbox_object_model> asset_manager::loadObjModel(
+   //    const ::scoped_string &name,
+   //    const ::scoped_string &filepath,
+   //    bool isSkybox
+   //    )
+   // {
+   //    // 1) cache check
+   //    if (auto it = m_mapObjectModel.find(name); it != m_mapObjectModel.end())
+   //       return it->element2();
+   //
+   //    // 2) load
+   //    auto model = sandbox_object_model::createModelFromFile(m_pgpudevice, filepath, isSkybox);
+   //
+   //    // 3) cache & return
+   //    m_mapObjectModel[name] = model;
+   //    return model;
+   // }
 
-      // 3) cache & return
-      m_mapObjectModel[name] = model;
-      return model;
-   }
+   //
+   // ::pointer<gltf::Model> asset_manager::loadGLTFmodel(
+   //    const ::scoped_string &name,
+   //    const ::scoped_string &filepath,
+   //    uint32_t gltfFlags,
+   //    float scale
+   //    )
+   // {
+   //    if (auto it = m_mapGltfModel.find(name); it != m_mapGltfModel.end())
+   //       return it->element2();
+   //
+   //    auto model = øcreate_pointer<gltf::Model>();
+   //    model->loadFromFile(filepath, &m_pgpudevice, m_pgpudevice->graphicsQueue(), gltfFlags, scale);
+   //
+   //    m_mapGltfModel[name] = model;
+   //    return model;
+   // }
+
+   //
+   // ::pointer<texture> asset_manager::loadCubemap(
+   //    const ::scoped_string &name,
+   //    const ::scoped_string &ktxFilename,
+   //    VkFormat format,
+   //    VkImageUsageFlags usageFlags,
+   //    VkImageLayout initialLayout)
+   // {
+   //    if (auto it = m_textures.find(name); it != m_textures.end())
+   //       return it->element2();
+   //
+   //    auto tex = øcreate_pointer<texture>();
+   //    tex->m_pDevice = &m_pgpudevice;
+   //    try
+   //    {
+   //       tex->KtxLoadCubemapFromFile(
+   //          name,
+   //          ktxFilename,
+   //          format,
+   //          &m_pgpudevice,
+   //          m_pgpudevice->graphicsQueue(),
+   //          usageFlags,
+   //          initialLayout
+   //          );
+   //    }
+   //    catch (const ::exception &e)
+   //    {
+   //       throw std::runtime_error("Failed to load HDR cubemap '" + name + "': " + e.what());
+   //    }
+   //
+   //    registerTextureIfNeeded(name, tex, m_textures, m_textureIndexMap, m_textureList);
+   //    return tex;
+   // }
 
 
-   ::pointer<gltf::Model> asset_manager::loadGLTFmodel(
-      const ::scoped_string &name,
-      const ::scoped_string &filepath,
-      uint32_t gltfFlags,
-      float scale
-      )
-   {
-      if (auto it = m_mapGltfModel.find(name); it != m_mapGltfModel.end())
-         return it->element2();
-
-      auto model = øcreate_pointer<gltf::Model>();
-      model->loadFromFile(filepath, &m_pgpudevice, m_pgpudevice->graphicsQueue(), gltfFlags, scale);
-
-      m_mapGltfModel[name] = model;
-      return model;
-   }
-
-
-   ::pointer<texture> asset_manager::loadCubemap(
-      const ::scoped_string &name,
-      const ::scoped_string &ktxFilename,
-      VkFormat format,
-      VkImageUsageFlags usageFlags,
-      VkImageLayout initialLayout)
-   {
-      if (auto it = m_textures.find(name); it != m_textures.end())
-         return it->element2();
-
-      auto tex = øcreate_pointer<texture>();
-      tex->m_pDevice = &m_pgpudevice;
-      try
-      {
-         tex->KtxLoadCubemapFromFile(
-            name,
-            ktxFilename,
-            format,
-            &m_pgpudevice,
-            m_pgpudevice->graphicsQueue(),
-            usageFlags,
-            initialLayout
-            );
-      }
-      catch (const ::exception &e)
-      {
-         throw std::runtime_error("Failed to load HDR cubemap '" + name + "': " + e.what());
-      }
-
-      registerTextureIfNeeded(name, tex, m_textures, m_textureIndexMap, m_textureList);
-      return tex;
-   }
-
-
-   void asset_manager::registerTextureIfNeeded(
-      const ::scoped_string &name,
-      const ::pointer<texture> &tex,
-      ::string_map<::pointer<texture>> &textures,
-      ::string_map<size_t> &textureIndexMap,
-      ::pointer_array_base<texture>> &textureList)
-   {
-      if (textures.find(name) == textures.end())
-      {
-         textures[name] = tex;
-         m_texture.add(tex);
-         textureIndexMap[name] = textureList.size() - 1;
-      }
-   }
+   // void asset_manager::registerTextureIfNeeded(
+   //    const ::scoped_string &name,
+   //    const ::pointer<::gpu::texture> &tex,
+   //    ::string_map<::pointer<::gpu::texture>> &textures,
+   //    ::string_map<size_t> &textureIndexMap,
+   //    ::pointer_array_base<::gpu::texture> &textureList)
+   // {
+   //    if (textures.find(name) == textures.end())
+   //    {
+   //       textures[name] = tex;
+   //       m_texture.add(tex);
+   //       textureIndexMap[name] = textureList.size() - 1;
+   //    }
+   // }
 
 
 } // namespace graphics3d

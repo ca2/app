@@ -1,16 +1,117 @@
-//
-// Created by camilo on 2025-08-23.
-//
+#pragma once
 
-#ifndef SKYBOX_RENDER_SYSTEM_H
-#define SKYBOX_RENDER_SYSTEM_H
+//#include <glad/glad.h>
+//#include <string>
+//#include <vector>
+#include "acme/prototype/collection/static_array.h"
+#include "bred/graphics3d/model.h"
+#include "bred/graphics3d/render_system.h"
+#include "bred/graphics3d/shape_factory.h"
+#include "bred/graphics3d/types.h"
 
-namespace graphics3d {
 
-class skybox_render_system {
+namespace graphics3d
+{
 
-};
 
-} // graphics3d
+   class CLASS_DECL_BRED skybox_render_system :
+   virtual public ::graphics3d::render_system
 
-#endif //SKYBOX_RENDER_SYSTEM_H
+   {
+   public:
+
+      using Vertex = ::graphics3d::shape_factory::Vertex;
+
+      struct cube_face
+      {
+
+         ::file::path               m_path;
+         ::image::image_pointer     m_pimage;
+
+
+         cube_face() {}
+         cube_face(const ::file::path& path) :
+            m_path(path)
+         {
+
+
+         }
+
+      };
+
+
+      struct cube :
+         public ::preallocated_array_base < ::array < cube_face >, 6 >
+      {
+      public:
+
+         cube()
+         {
+
+         }
+         cube(::std::initializer_list < ::file::path > list)
+         {
+
+            int i = 0;
+
+            for (auto& item : list)
+            {
+
+               this->element_at(i).m_path = item;
+
+               i++;
+
+            }
+
+         }
+
+      };
+      //::particle* pparticle, const ::string_array_base& faces
+
+      //::pointer < engine >                m_pengine;
+      ::graphics3d::model < Vertex >      m_pmodelCube;
+      ::pointer < ::gpu::texture >        m_ptextureCubeMap;
+      ::int_size                          m_sizeSquare;
+
+      cube                                m_cube;
+      //::pointer<::gpu::shader>            m_pshader;
+
+
+
+      skybox_render_system();
+      ~skybox_render_system();
+
+
+      virtual void initialize_skybox_render_system(engine * pengine, const ::scoped_string & scopedstrName);
+
+      virtual void SetupSkybox();
+
+      virtual void load_cube_map_images();
+      virtual void load_cube_map_textures();
+
+      virtual void bind(::gpu::command_buffer* pgpucommandbuffer);
+      virtual void draw(::gpu::command_buffer* pgpucommandbuffer);
+      virtual void unbind(::gpu::command_buffer* pgpucommandbuffer);
+
+      void on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene) override;
+
+
+
+   //private:
+
+
+
+
+      //unsigned int skyboxVAO, skyboxVBO, skyboxEBO;
+      //unsigned int cubemapTexture;
+      //::string_array_base facesCubemap;
+
+
+   };
+
+
+
+} // namespace graphics3d_opengl
+
+
+

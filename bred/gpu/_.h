@@ -50,6 +50,13 @@ namespace gpu
    };
    using element = int;
 
+   struct renderable_t;
+
+//   class renderable;
+
+   class device;
+
+   class compositor;
 
 
    class draw2d;
@@ -64,9 +71,7 @@ namespace gpu
    class property;
    class properties;
 
-   class device;
-
-   class compositor;
+   class queue;
 
    class swap_chain;
 

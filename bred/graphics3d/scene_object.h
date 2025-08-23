@@ -34,6 +34,7 @@ namespace graphics3d
       ::string m_cubemapTextureName;
       //long long m_llId;
       bool m_bIsSkybox = false;
+      ::string m_strRenderablePath;
 
 
       scene_object();

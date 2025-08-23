@@ -12,7 +12,7 @@
 #include "bred/user/user/graphics3d.h"
 #include <limits>
 
-#include "game_layer.h"
+#include "immersion_layer.h"
 #include "scene.h"
 
 
@@ -158,8 +158,8 @@ namespace graphics3d
       yOffset *= m_f_001UpdateLookSensitivity;
 
       // limit pitch values between about +/- 85ish degrees
-      _yaw = m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->m_fYaw;
-      _pitch = m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->m_fPitch;
+      _yaw = m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->m_fYaw;
+      _pitch = m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->m_fPitch;
 
       if (_yaw > glm::two_pi<float>()) _yaw -= glm::two_pi<float>();
       if (_yaw < 0.0f) _yaw += glm::two_pi<float>();
@@ -189,8 +189,8 @@ namespace graphics3d
       _pitch = glm::clamp(_pitch, -1.5f, 1.5f);
 
 
-      m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->m_fPitch = _pitch;
-      m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->m_fYaw = _yaw;
+      m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->m_fPitch = _pitch;
+      m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->m_fYaw = _yaw;
 
    }
 
@@ -224,7 +224,7 @@ namespace graphics3d
 
       //auto& transform = m_pengine->m_transform;
 
-      float yaw = m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->m_fYaw;
+      float yaw = m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->m_fYaw;
       const glm::vec3 forwardDir{ cos(yaw), 0.f, sin(yaw) };
       const glm::vec3 rightDir{ forwardDir.z, 0.f, -forwardDir.x };
       const glm::vec3 upDir{ 0.f, -1.f, 0.f };
@@ -244,7 +244,7 @@ namespace graphics3d
          if (glm::dot(moveDir, moveDir) > std::numeric_limits<float>::epsilon())
          {
 
-            m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->m_locationPosition += m_fMoveSpeed * m_pengine->dt() * glm::normalize(moveDir);
+            m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->m_locationPosition += m_fMoveSpeed * m_pengine->dt() * glm::normalize(moveDir);
 
          }
 
@@ -299,12 +299,12 @@ namespace graphics3d
       if (key(e_key_moveForward) == ::user::e_key_state_pressed)
       {
 
-         m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveForward, m_pengine->dt());
+         m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveForward, m_pengine->dt());
 
          if (IsKeyPressed(::user::e_key_left_shift))
          {
 
-            m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->TeleportInDirection(e_key_moveForward);
+            m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->TeleportInDirection(e_key_moveForward);
 
          }
 
@@ -313,12 +313,12 @@ namespace graphics3d
       if (key(e_key_moveBackward) == ::user::e_key_state_pressed)
       {
 
-         m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveBackward, m_pengine->dt());
+         m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveBackward, m_pengine->dt());
 
          if (IsKeyPressed(::user::e_key_left_shift))
          {
 
-            m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->TeleportInDirection(e_key_moveBackward);
+            m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->TeleportInDirection(e_key_moveBackward);
 
          }
 
@@ -327,12 +327,12 @@ namespace graphics3d
       if (key(e_key_moveLeft) == ::user::e_key_state_pressed)
       {
 
-         m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveLeft, m_pengine->dt());
+         m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveLeft, m_pengine->dt());
 
          if (IsKeyPressed(::user::e_key_left_shift))
          {
 
-            m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->TeleportInDirection(e_key_moveLeft);
+            m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->TeleportInDirection(e_key_moveLeft);
 
          }
 
@@ -341,12 +341,12 @@ namespace graphics3d
       if (key(e_key_moveRight) == ::user::e_key_state_pressed)
       {
 
-         m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveRight, m_pengine->dt());
+         m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->ProcessKeyboardInput(e_key_moveRight, m_pengine->dt());
 
          if (IsKeyPressed(::user::e_key_left_shift))
          {
 
-            m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->TeleportInDirection(e_key_moveRight);
+            m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->TeleportInDirection(e_key_moveRight);
 
          }
       }
@@ -367,13 +367,13 @@ namespace graphics3d
       if (IsKeyPressed(::user::e_key_space))
       {
          float jumpHeight = 0.20f;  // Define how high the jump should be
-         m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->Jump(jumpHeight);
+         m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->Jump(jumpHeight);
       }
       //// Teleport down (Left Control key)
       //if (IsKeyPressed(::user::e_key_left_shift))
       //{
       //   float teleportDistance = 0.1081f;  // Define the downward distance
-      //   m_pengine->m_pgamelayer->m_pscene->m_pcameraCurrent->TeleportDownward(teleportDistance);
+      //   m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->TeleportDownward(teleportDistance);
       //}
 
       // Idle movement

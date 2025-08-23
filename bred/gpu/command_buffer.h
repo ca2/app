@@ -25,6 +25,7 @@ namespace gpu
       enum_state                          m_estate = e_state_none;
       enum_command_buffer                 m_ecommandbuffer;
       ::pointer < ::gpu::render_target >  m_pgpurendertarget;
+      ::pointer < ::gpu::queue >          m_pgpuqueue;
       bool                                m_bLoadingCommandBuffer;
       ::collection::index                 m_iFrameIndex;
       ::string                            m_strAnnotation;

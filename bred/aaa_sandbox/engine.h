@@ -5,7 +5,7 @@
 #include "graphics3d/device.h"
 //#include "graphics3d/instance.h"
 #include "graphics3d/renderer.h"
-#include "SceneFoundry/sandbox_game/game_layer.h"
+#include "SceneFoundry/sandbox_game/immersion_layer.h"
 #include "SceneFoundry/sandbox_game/camera.h"
 #include "bred/graphics3d/window_input.h"
 #include "graphics3d/glfw_input.h"

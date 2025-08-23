@@ -3,6 +3,7 @@
 
 #include "aura/user/user/box.h"
 #include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/immersion_layer.h"
 #include "bred/graphics3d/key_map.h"
 #include "bred/graphics3d/types.h"
 #include "apex/platform/app_consumer.h"
@@ -115,29 +116,11 @@ namespace user
 
       virtual void defer_initialize_engine(const ::int_rectangle & rectangle);
 
-
-      virtual ::pointer < ::graphics3d::scene > create_main_scene();
+      virtual ::pointer < ::prodevian::immersion > create_immersion();
 
       virtual void on_load_engine();
 
 
-      template < typename SCENE >
-      ::pointer < SCENE> create_scene(const ::scoped_string& scopedstrName)
-      {
-
-         auto pscene = øcreate_new < SCENE>();
-
-         pscene->m_strName = scopedstrName;
-
-         //pscene->initialize_scene(m_pengine);
-
-         pscene->m_pengine = m_pengine;
-
-         m_pengine->add_scene(pscene);
-
-         return pscene;
-
-      }
 
 
       virtual ::pointer < ::graphics3d::key_map > get_default_key_map();

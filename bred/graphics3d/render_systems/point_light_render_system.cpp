@@ -69,6 +69,21 @@ namespace graphics3d
    }
 
 
+   void point_light_render_system::initialize_render_system(graphics3d::engine *pengine)
+   {
+
+      ::graphics3d::render_system::initialize_render_system(pengine);
+
+   }
+
+
+   void point_light_render_system::on_prepare(::gpu::context * pgpucontext)
+   {
+
+
+   }
+
+
    // void point_light_render_system::createPipelineLayout(VkDescriptorSetLayout globalSetLayout) {
    //     // VkPushConstantRange pushConstantRange{};
    //     // pushConstantRange.stageFlags = VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT;
@@ -92,12 +107,12 @@ namespace graphics3d
    // void point_light_render_system::createPipeline(VkRenderPass renderPass) {
    //     ASSERT(m_pipelineLayout != VK_NULL_HANDLE && "Cannot create pipeline before pipeline layout");
    //
-   //     //graphics3d::pipeline_configuration_information pipelineConfig{};
-   //     //graphics3d::pipeline::defaultPipelineConfigInfo(pipelineConfig);
-   //     //pipelineConfig.bindingDescriptions.clear();
-   //     //pipelineConfig.attributeDescriptions.clear();
-   //     //pipelineConfig.renderPass = renderPass;
-   //     //pipelineConfig.pipelineLayout = m_pipelineLayout;
+   //     //graphics3d::pipeline_configuration_information pipelineconfiguration{};
+   //     //graphics3d::pipeline::default_pipeline_configuration(pipelineconfiguration);
+   //     //pipelineconfiguration.bindingDescriptions.clear();
+   //     //pipelineconfiguration.attributeDescriptions.clear();
+   //     //pipelineconfiguration.renderPass = renderPass;
+   //     //pipelineconfiguration.pipelineLayout = m_pipelineLayout;
    //
    //     ::string vertShaderPath = "matter://shaders/spirV/point_light.vert.spv";
    //     ::string fragShaderPath = "matter://shaders/spirV/point_light.frag.spv";
@@ -106,7 +121,7 @@ namespace graphics3d
    //     //    m_pgpudevice,
    //     //    vertShaderPath.c_str(),
    //     //    fragShaderPath.c_str(),
-   //     //    pipelineConfig
+   //     //    pipelineconfiguration
    //     //);
    //     m_ppipeline = m_pgpudevice->create_pipeline_from_file(
    //        vertShaderPath.c_str(),

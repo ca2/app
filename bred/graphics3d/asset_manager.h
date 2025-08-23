@@ -11,13 +11,14 @@
 //#include "SceneFoundry/graphics3d/pipeline.h"
 
 #include "bred/graphics3d/asset_provider.h"
+#include "bred/gpu/model_buffer.h"
 
 
 namespace graphics3d
 {
 
 
-   class asset_manager :
+   class CLASS_DECL_BRED asset_manager :
       public ::particle
    {
    public:
@@ -25,15 +26,15 @@ namespace graphics3d
       //::string_map < OBJmodelHandle> m_objModelCache;
       //::string_map < GLTFmodelHandle> m_gltfModelCache;
       ::string_map < ::pointer < ::graphics3d::renderable>>             m_mapRenderable;
-      //::string_map < ::pointer < ::graphics3d::renderable>>             m_mapGltfModel;
+      //::string_map < ::pointer < ::graphics3d::renderable>>             m_mapGltf;
 
-
+      ::pointer < ::gpu::model_buffer >                                 m_pgpumodelbufferSkybox;
 
       ::string_map < ::pointer<::gpu::texture>>                         m_mapTexture; // name → texture
       ::string_map < size_t>                                            m_mapTextureIndex; // name → index
       ::pointer_array_base<::gpu::texture>                              m_texturea; // index → texture
 
-      ::pointer < graphics3d::engine >		                              m_pengines;
+      ::pointer < graphics3d::engine >		                              m_pengine;
       //VkQueue						m_transferQueue;
 
       // caches
@@ -53,7 +54,30 @@ namespace graphics3d
 
 
       void preloadGlobalAssets();
-      ::pointer<graphics3d::renderable> load_model(const ::scoped_string& name, const ::scoped_string& filepath, bool isSkybox = false);
+
+   // private:
+   //
+   //
+   //    ::pointer<::graphics3d::renderable> æloadObjModel(
+   //      const ::scoped_string &name,
+   //      const ::scoped_string &filepath,
+   //      bool isSkybox
+   //      );
+   //
+   //
+   //    ::pointer<::graphics3d::renderable> æloadGLTFmodel(
+   //       const ::scoped_string &name,
+   //       const ::scoped_string &filepath,
+   //       uint32_t gltfFlags,
+   //       float scale
+   //       );
+
+
+   //public:
+
+      //::pointer<::graphics3d::renderable> load_model(const ::gpu::load_model_t & loadmodel);
+
+      //::pointer<graphics3d::renderable> load_model(const ::scoped_string& name, const ::scoped_string& filepath, bool isSkybox = false);
       ///::pointer<graphics3d::renderable> loadGLTFmodel(const ::scoped_string& name, const ::scoped_string& filepath, uint32_t gltfFlags = 0u, float scale = 1.f);
       ::pointer<gpu::texture> load_cubemap(
          const ::scoped_string& name,
@@ -64,9 +88,9 @@ namespace graphics3d
          // VkImageLayout initialLayout
       );
 
-      void generateBRDFlut();
-      void generateIrradianceMap();
-      void generatePrefilteredEnvMap();
+      virtual void generateBRDFlut();
+      virtual void generateIrradianceMap();
+      virtual void generatePrefilteredEnvMap();
 
       //using OBJmodelHandle = ::pointer<graphics3d::sandbox_object_model>;
       //using GLTFmodelHandle = ::pointer<graphics3d::gltf::Model>;
@@ -107,13 +131,13 @@ namespace graphics3d
       // }
 
    //private:
-      virtual void registerTextureIfNeeded(
-         const ::scoped_string& name,
-         const ::pointer<gpu::texture>& tex,
-         ::string_map< ::pointer<gpu::texture>>& textures,
-         ::string_map< size_t>& textureIndexMap,
-         ::pointer_array_base<gpu::texture>& textureList);
-
+      // virtual void registerTextureIfNeeded(
+      //    const ::scoped_string& name,
+      //    const ::pointer<gpu::texture>& tex,
+      //    ::string_map< ::pointer<gpu::texture>>& textures,
+      //    ::string_map< size_t>& textureIndexMap,
+      //    ::pointer_array_base<gpu::texture>& textureList);
+      //
 
 
    };

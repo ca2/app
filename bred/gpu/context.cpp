@@ -9,6 +9,7 @@
 #include "input_layout.h"
 #include "memory_buffer.h"
 #include "model_buffer.h"
+#include "queue.h"
 #include "render.h"
 #include "renderable.h"
 #include "renderer.h"
@@ -24,14 +25,12 @@
 #include "aura/platform/system.h"
 #include "aura/graphics/image/image.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "aura/platform/system.h"
 #include "aura/windowing/window.h"
 #include "aura/graphics/image/context.h"
-#include "input_layout.h"
-#include "queue.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/graphics.h"
 #include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/model.h"
 #include "bred/graphics3d/renderable.h"
 #include "bred/graphics3d/types.h"
 
@@ -419,7 +418,10 @@ namespace gpu
 
       ødefer_construct(pcommandbuffer);
 
-      pcommandbuffer->initialize_command_buffer(m_pgpurenderer->m_pgpurendertarget, ecommandbuffer);
+      pcommandbuffer->initialize_command_buffer(
+         m_pgpurenderer->m_pgpurendertarget, 
+         pqueue,
+         ecommandbuffer);
 
       pcommandbuffer->begin_command_buffer(true);
 

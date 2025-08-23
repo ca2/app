@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "sky_box.h"
+#include "skybox.h"
 #include "engine.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
@@ -53,7 +53,9 @@ namespace graphics3d
 
       auto modeldataCube = ::graphics3d::shape_factory::create_cube(32.0f);
 
-      m_pmodelCube.initialize_model(pengine->gpu_context()->m_pgpurenderer, modeldataCube);
+      øconstruct_new(m_pmodelCube);
+
+      m_pmodelCube->initialize_model(pengine->gpu_context()->m_pgpurenderer, modeldataCube);
 
 
       

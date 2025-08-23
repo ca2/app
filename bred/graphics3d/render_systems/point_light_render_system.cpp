@@ -74,12 +74,34 @@ namespace graphics3d
 
       ::graphics3d::render_system::initialize_render_system(pengine);
 
+
+      ødefer_construct_new(m_pmodelDummy);
+
+      // ::graphics3d::model::Builder builderDummy;
+
+      m_pmodelDummy->initialize_dummy_model(
+         pengine->m_pgpucontextCompositor2->m_pgpurenderer,
+         6);
+
+
    }
 
 
    void point_light_render_system::on_prepare(::gpu::context * pgpucontext)
    {
 
+      auto prenderer = pgpucontext->m_pgpurenderer;
+
+      m_pshader = prenderer->create_shader(
+         "matter://shaders/point_light.vert",
+         "matter://shaders/point_light.frag",
+         { ::gpu::shader::e_descriptor_set_slot_global,
+         ::gpu::shader::e_descriptor_set_slot_local },
+         nullptr,
+         ::gpu_properties<::gpu::point_light>(),
+         pgpucontext->input_layout<::graphics3d::Vertex>(),
+         ::gpu::shader::e_flag_clear_default_bindings_and_attributes_descriptions
+      );
 
    }
 

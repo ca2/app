@@ -7,6 +7,7 @@
 #include "device.h"
 #include "frame.h"
 #include "layer.h"
+#include "queue.h"
 #include "texture.h"
 #include "renderer.h"
 #include "render_state.h"
@@ -424,7 +425,9 @@ namespace gpu
 
          ødefer_construct(pcommandbuffer);
 
-         pcommandbuffer->initialize_command_buffer(m_pgpurendertarget,
+         pcommandbuffer->initialize_command_buffer(
+            m_pgpurendertarget,
+            m_pgpucontext->graphics_queue(),
             e_command_buffer_graphics);
 
       }

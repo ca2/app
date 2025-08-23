@@ -66,7 +66,7 @@ namespace graphics3d
 
    template < typename VERTEX >
    class model :
-      public ::pointer < ::gpu::model_buffer >
+      virtual public ::gpu::model_buffer
    {
    public:
 
@@ -243,17 +243,17 @@ namespace graphics3d
    void model<VERTEX>::initialize_model(::gpu::renderer* pgpurenderer, const model_data<VERTEX >& modeldata)
    {
 
-      pgpurenderer->ødefer_construct(*this);
+      initialize(pgpurenderer);
       
-      m_p->initialize_gpu_context_object(pgpurenderer->m_pgpucontext);
+      initialize_gpu_context_object(pgpurenderer->m_pgpucontext);
 
-      m_p->bind(pgpurenderer->getLoadAssetsCommandBuffer());
+      bind(pgpurenderer->getLoadAssetsCommandBuffer());
 
-      m_p->static_initialize_vertexes(modeldata.m_vertexes);
+      static_initialize_vertexes(modeldata.m_vertexes);
 
-      m_p->static_initialize_indexes(modeldata.m_indexes);
+      static_initialize_indexes(modeldata.m_indexes);
 
-      m_p->unbind(pgpurenderer->getLoadAssetsCommandBuffer());
+      unbind(pgpurenderer->getLoadAssetsCommandBuffer());
 
    }
 
@@ -262,19 +262,19 @@ namespace graphics3d
    void model<VERTEX>::initialize_dummy_model(::gpu::renderer* pgpurenderer, int ivertexes)
    {
 
-      pgpurenderer->ødefer_construct(*this);
+      initialize(pgpurenderer);
 
-      m_p->initialize_gpu_context_object(pgpurenderer->m_pgpucontext);
+      initialize_gpu_context_object(pgpurenderer->m_pgpucontext);
 
-      //m_p->m_pgpurenderer = pgpurenderer;
+      //m_pgpurenderer = pgpurenderer;
 
-      m_p->m_bDummy = true;
+      m_bDummy = true;
 
-      m_p->ødefer_construct(m_p->m_pbufferVertex);
+      ødefer_construct(m_pbufferVertex);
 
-      m_p->m_pbufferVertex->initialize_memory_buffer_with_model_buffer(m_p, 0, ::gpu::memory_buffer::e_type_none);
+      m_pbufferVertex->initialize_memory_buffer_with_model_buffer(this, 0, ::gpu::memory_buffer::e_type_none);
       
-      m_p->m_iVertexCount = ivertexes;
+      m_iVertexCount = ivertexes;
 
    }
 

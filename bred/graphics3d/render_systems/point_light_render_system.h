@@ -44,6 +44,8 @@ namespace graphics3d
       //::pointer<graphics3d::pipeline> m_ppipeline;
       //VkPipelineLayout m_pipelineLayout;
 
+      ::pointer < ::graphics3d::model<::graphics3d::Vertex> > m_pmodelDummy;
+
       float m_rotationSpeed = 0.2f;
       // point_light_render_system(const point_light_render_system&) = delete;
       // point_light_render_system& operator=(const point_light_render_system&) = delete;

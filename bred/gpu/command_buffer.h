@@ -36,7 +36,7 @@ namespace gpu
       ~command_buffer() override;
 
 
-      virtual void initialize_command_buffer(::gpu::render_target* pgpurendertarget, enum_command_buffer ecommandbuffer);
+      virtual void initialize_command_buffer(::gpu::render_target* pgpurendertarget, ::gpu::queue * pqueue, enum_command_buffer ecommandbuffer);
 
       virtual void begin_command_buffer(bool bOneTime);
 

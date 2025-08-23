@@ -109,6 +109,7 @@ namespace gpu
 
          pcommandbufferLayer->initialize_command_buffer(
             m_pgpurenderer->m_pgpurendertarget,
+            m_pgpurenderer->m_pgpucontext->graphics_queue(),
             ::gpu::e_command_buffer_graphics);
 
       }

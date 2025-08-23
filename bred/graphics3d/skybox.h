@@ -70,9 +70,9 @@ namespace graphics3d
       //::particle* pparticle, const ::string_array_base& faces
 
       //::pointer < engine >                m_pengine;
-      ::graphics3d::model < Vertex >      m_pmodelCube;
-      ::pointer < ::gpu::texture >        m_ptextureCubeMap;
-      ::int_size                          m_sizeSquare;
+      ::pointer < ::graphics3d::model < Vertex > >    m_pmodelCube;
+      ::pointer < ::gpu::texture >                    m_ptextureCubeMap;
+      ::int_size                                      m_sizeSquare;
 
       cube                                m_cube;
       //::pointer<::gpu::shader>            m_pshader;

@@ -157,9 +157,17 @@ namespace graphics3d
       xOffset *= m_f_001UpdateLookSensitivity;
       yOffset *= m_f_001UpdateLookSensitivity;
 
+      auto pengine = m_pengine;
+
+      auto pimmersionlayer = pengine->m_pimmersionlayer;
+
+      auto pscene = pimmersionlayer->m_pscene;
+
+      auto pcamera = pscene->m_pcameraCurrent;
+
       // limit pitch values between about +/- 85ish degrees
-      _yaw = m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->m_fYaw;
-      _pitch = m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->m_fPitch;
+      _yaw = pcamera->m_fYaw;
+      _pitch = pcamera->m_fPitch;
 
       if (_yaw > glm::two_pi<float>()) _yaw -= glm::two_pi<float>();
       if (_yaw < 0.0f) _yaw += glm::two_pi<float>();

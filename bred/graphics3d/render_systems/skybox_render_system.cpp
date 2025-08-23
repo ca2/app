@@ -53,7 +53,9 @@ namespace graphics3d
 
       auto modeldataCube = ::graphics3d::shape_factory::create_cube(32.0f);
 
-      m_pmodelCube.initialize_model(pengine->gpu_context()->m_pgpurenderer, modeldataCube);
+      ødefer_construct_new(m_pmodelCube);
+
+      m_pmodelCube->initialize_model(pengine->gpu_context()->m_pgpurenderer, modeldataCube);
 
       // Initialize skybox shader
       ødefer_construct(m_pshader);

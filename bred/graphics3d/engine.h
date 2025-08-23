@@ -126,7 +126,7 @@ namespace graphics3d
 
 		virtual void on_update_frame();
 
-		virtual ::graphics3d::model < ::graphics3d::Vertex > _load_wavefront_obj_renderable(const ::file::path& path);
+		virtual ::pointer < ::graphics3d::model < ::graphics3d::Vertex > > _load_wavefront_obj_renderable(const ::file::path& path);
 
 
 		//virtual void on_offscreen_frame_pixels(const ::image32_t* pimage32, int w, int h, int stride);

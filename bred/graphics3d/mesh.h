@@ -21,7 +21,7 @@ namespace graphics3d
 
       ::pointer_array<::gpu::texture>                 m_texturea;
       ::graphics3d::model_data<Vertex>                m_modeldata;
-      ::graphics3d::model < Vertex >                  m_pmodel;
+      ::pointer < ::graphics3d::model < Vertex > >    m_pmodel;
       //unsigned int m_VAO, m_VBO, m_EBO;
       unsigned int m_IndexOffset;
       unsigned int m_IndexCount;

@@ -173,7 +173,7 @@ namespace graphics3d
 	void object_render_system::initialize_render_system(::graphics3d::engine* pengine)
 	{
 
-		initialize_render_system(pengine);
+		::graphics3d::render_system::initialize_render_system(pengine);
 
 	}
 

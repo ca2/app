@@ -59,5 +59,16 @@ namespace graphics3d
    }
 
 
+   ::pointer < ::graphics3d::scene > immersion_layer::create_main_scene()
+   {
+
+      return {};
+
+
+   }
+
 
 } // namespace graphics3d
+
+
+

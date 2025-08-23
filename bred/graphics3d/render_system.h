@@ -32,15 +32,15 @@ namespace graphics3d
       // virtual void on_render();
 
 
+      virtual void prepare(::gpu::context* pgpucontext);
+      virtual void on_prepare(::gpu::context* pgpucontext);
+
+
       virtual void update(::gpu::context* pgpucontext, ::graphics3d::scene* pscene);
       virtual void on_update(::gpu::context* pgpucontext, ::graphics3d::scene* pscene);
 
       //void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
       //void createPipeline(VkRenderPass renderPass);
-
-      virtual void prepare(::gpu::context* pgpucontext);
-      virtual void on_prepare(::gpu::context* pgpucontext);
-
 
       virtual void render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene);
       virtual void on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene);

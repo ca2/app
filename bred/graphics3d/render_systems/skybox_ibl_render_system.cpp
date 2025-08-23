@@ -10,7 +10,7 @@
 #include "bred/graphics3d/frame.h"
 #include "bred/graphics3d/scene.h"
 #include "bred/graphics3d/shape_factory.h"
-#include "graphics3d/sky_box.h"
+#include "bred/graphics3d/skybox.h"
 
 
 namespace graphics3d

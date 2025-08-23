@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "point_light.h"
-#include "sky_box.h"
+#include "skybox.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/scene.h"
 #include "bred/prodevian/actor.h"
@@ -398,6 +398,12 @@ namespace graphics3d
          {
 
             path = pathParameter;
+
+         }
+         else
+         {
+
+            path = scopedstr;
 
          }
 

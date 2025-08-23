@@ -41,7 +41,7 @@ namespace prodevian
 
       //::graphics3d::IScene& getSceneInterface() override;
 
-      virtual ::pointer < ::graphics3d::scene > create_main_scene();
+      ::pointer < ::graphics3d::scene > create_main_scene() override;
 
       template < typename SCENE >
       ::pointer < SCENE> create_scene(const ::scoped_string& scopedstrName)

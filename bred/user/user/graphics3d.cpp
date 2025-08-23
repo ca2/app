@@ -22,6 +22,7 @@
 #include "aura/platform/application.h"
 #include "bred/gpu/graphics.h"
 #include "bred/gpu/renderer.h"
+#include "bred/prodevian/immersion.h"
 
 
 namespace user
@@ -181,7 +182,13 @@ namespace user
       m_pengine->m_pinput->m_fMoveSpeed = 3.f;
       m_pengine->m_pinput->m_fLookSpeed =  1.5f;
 
-      create_immersion();
+      m_pengine->m_pimmersionlayer = create_immersion();
+
+      m_pengine->m_pimmersionlayer->m_pengine = m_pengine;
+
+      auto psceneMain = m_pengine->m_pimmersionlayer->create_main_scene();
+
+      m_pengine->m_pimmersionlayer->m_pscene = psceneMain;
 
       //auto pimmersion = create_immersion();
 

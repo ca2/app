@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "command_buffer.h"
 #include "frame.h"
+#include "queue.h"
 #include "render_target.h"
 
 
@@ -60,10 +61,12 @@ namespace gpu
    //}
 
 
-   void command_buffer::initialize_command_buffer(::gpu::render_target* pgpurendertarget, enum_command_buffer ecommandbuffer)
+   void command_buffer::initialize_command_buffer(::gpu::render_target* pgpurendertarget, ::gpu::queue * pqueue, enum_command_buffer ecommandbuffer)
    {
 
       m_pgpurendertarget = pgpurendertarget;
+
+      m_pgpuqueue = pqueue;
 
       m_ecommandbuffer = ecommandbuffer;
 

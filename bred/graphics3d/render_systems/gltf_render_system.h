@@ -44,7 +44,7 @@ namespace graphics3d
 		::pointer < ::gpu::shader > m_pshaderBlend;
 		///
 
-		::pointer <::graphics3d::IAssetProvider > m_passetmanager;
+		::pointer <::graphics3d::asset_manager > m_passetmanager;
 
 		//::pointer<::graphics3d::sandbox_descriptor_set_layout> m_iblLayout;
 		//::array_base<VkDescriptorSet>				  m_iblDescriptorSets;
@@ -64,7 +64,8 @@ namespace graphics3d
 		// 	graphics3d::sandbox_descriptor_pool& descriptorPool,
 		// 	size_t frameCount)override;
 
-		void render(::gpu::frame * pframe) override;
+		//void render(::gpu::frame * pframe) override;
+		void on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene) override;
 	//private:
 		//void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
 		//void createPipeline(VkRenderPass renderPass);

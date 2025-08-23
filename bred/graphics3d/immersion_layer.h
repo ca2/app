@@ -31,7 +31,7 @@ namespace graphics3d
 
 	   virtual void set_current_scene(::graphics3d::scene* pscene);
 
-
+		virtual ::pointer < ::graphics3d::scene > create_main_scene();
 		// virtual void onUpdate(float deltaTime);
 		// virtual void on_render(::gpu::frame & frame);
 		//virtual IScene& getSceneInterface() = 0;

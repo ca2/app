@@ -247,6 +247,16 @@ namespace graphics3d
 
       }
 
+      if (!m_pimmersionlayer->m_pscene->m_pcameraCurrent)
+      {
+
+         m_pimmersionlayer->m_pscene->m_pcameraCurrent
+            = m_pimmersionlayer->m_pscene->m_pcameraScene;
+
+
+      }
+
+        
       m_transform.m_vec3Translation = pcameraScene->m_locationPosition;
 
       m_transform.m_vec3Rotation.x = pcameraScene->m_fPitch;
@@ -1062,7 +1072,7 @@ namespace graphics3d
    }
 
 
-   model<::graphics3d::Vertex> engine::_load_wavefront_obj_renderable(const ::file::path& path)
+   ::pointer < model<::graphics3d::Vertex> > engine::_load_wavefront_obj_renderable(const ::file::path& path)
    {
 
       tinyobjloader_Builder builder{};
@@ -1071,9 +1081,11 @@ namespace graphics3d
 
       builder.loadModel(pcontext, path);
 
-      model<::graphics3d::Vertex> pmodel;
+      ::pointer < model<::graphics3d::Vertex> > pmodel;
 
-      pmodel.initialize_model(pcontext->m_pgpurenderer, builder);
+      øconstruct_new(pmodel);
+
+      pmodel->initialize_model(pcontext->m_pgpurenderer, builder);
 
       return pmodel;
 

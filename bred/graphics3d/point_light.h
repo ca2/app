@@ -8,11 +8,7 @@
 #include "bred/graphics3d/scene_object.h"
 
 
-
-BEGIN_GPU_PROPERTIES(::gpu::point_light)
-GPU_PROPERTY("position", ::gpu::e_type_seq4)
-GPU_PROPERTY("color", ::gpu::e_type_seq4)
-END_GPU_PROPERTIES()
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::point_light)
 
 
 namespace graphics3d

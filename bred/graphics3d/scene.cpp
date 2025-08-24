@@ -78,7 +78,7 @@ namespace graphics3d
    }
 
 
-   void scene::set_sky_box(::graphics3d::sky_box *pskybox)
+   void scene::set_sky_box(::graphics3d::skybox *pskybox)
    {
       //m_iSkyboxId = pobject->getId();
       m_pskyboxCurrent = pskybox ;
@@ -229,7 +229,7 @@ namespace graphics3d
 
             psceneobject = this->create_sky_box();
 
-            ::cast<sky_box> pskybox = psceneobject;
+            ::cast<skybox> pskybox = psceneobject;
 
             pskybox->m_strCubemapTextureName = objJson["cubemap"].as_string();
 
@@ -299,7 +299,7 @@ namespace graphics3d
 
 
 
-   ::graphics3d::sky_box *scene::current_sky_box()
+   ::graphics3d::skybox *scene::current_sky_box()
    {
 
       return m_pskyboxCurrent;
@@ -469,10 +469,10 @@ namespace graphics3d
    }
 
 
-   ::pointer<::graphics3d::sky_box> scene::create_sky_box()
+   ::pointer<::graphics3d::skybox> scene::create_sky_box()
    {
 
-      auto pgameobject = øcreate_new<sky_box>();
+      auto pgameobject = øcreate_new<skybox>();
 
       pgameobject->initialize_scene_object(this);
 
@@ -532,7 +532,7 @@ namespace graphics3d
    }
 
 
-   void scene::on_update_global_ubo(::gpu::context* pgpucontext)
+   void scene::on_update(::gpu::context* pgpucontext)
    {
 
 

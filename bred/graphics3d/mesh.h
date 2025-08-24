@@ -20,8 +20,8 @@ namespace graphics3d
       
 
       ::pointer_array<::gpu::texture>                 m_texturea;
-      ::graphics3d::model_data<Vertex>                m_modeldata;
-      ::pointer < ::graphics3d::model < Vertex > >    m_pmodel;
+      ::gpu::model_data<Vertex>                       m_modeldata;
+      ::pointer < ::gpu::model_buffer >               m_pmodel;
       //unsigned int m_VAO, m_VBO, m_EBO;
       unsigned int m_IndexOffset;
       unsigned int m_IndexCount;
@@ -36,7 +36,7 @@ namespace graphics3d
       ~mesh() override;
 
 
-      virtual void initialize_mesh(const model_data<Vertex>& data);
+      void initialize_mesh(const ::gpu::model_data<Vertex>& data);
 
       //void initialize_mesh(
       //   const model_data<Vertex>& data,

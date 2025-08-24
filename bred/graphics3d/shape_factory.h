@@ -2,6 +2,7 @@
 
 
 #include "acme/prototype/mathematics/mathematics.h"
+#include "bred/gpu/model_buffer.h"
 #include "bred/graphics3d/model.h"
 
 
@@ -37,7 +38,7 @@ namespace graphics3d
 
       };
 
-      using shape = ::graphics3d::model_data < Vertex >;
+      using shape = ::gpu::model_data < Vertex >;
       //struct shape {
       //   ::array<float> vertexes;  // Positions, colors, texture coordinates, and normals
       //   ::array<unsigned int> indexes;
@@ -255,11 +256,7 @@ namespace graphics3d
 } // namespace graphics3d
 
 
-BEGIN_GPU_PROPERTIES(::graphics3d::shape_factory::Vertex)
-GPU_PROPERTY("position", ::gpu::e_type_seq3)
-GPU_PROPERTY("color", ::gpu::e_type_seq3)
-GPU_PROPERTY("uv", ::gpu::e_type_seq2)
-END_GPU_PROPERTIES()
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::graphics3d::shape_factory::Vertex)
 
 
 

@@ -6,3 +6,11 @@
 
 namespace graphics3d {
 } // graphics3d
+
+
+
+
+BEGIN_GPU_PROPERTIES(::gpu::point_light)
+GPU_PROPERTY("position", ::gpu::e_type_seq4)
+GPU_PROPERTY("color", ::gpu::e_type_seq4)
+END_GPU_PROPERTIES()

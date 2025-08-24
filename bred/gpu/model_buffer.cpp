@@ -959,6 +959,46 @@ namespace gpu
    }
 
 
+   void model_buffer::bind_load_assets_command_buffer(::gpu::context *pcontext)
+   {
+
+      auto pgpurenderer = pcontext->m_pgpurenderer;
+
+      bind(pgpurenderer->getLoadAssetsCommandBuffer());
+
+   }
+
+
+   void model_buffer::unbind_load_assets_command_buffer(::gpu::context *pcontext)
+   {
+
+      auto pgpurenderer = pcontext->m_pgpurenderer;
+
+      unbind(pgpurenderer->getLoadAssetsCommandBuffer());
+
+   }
+
+
+   void model_buffer::initialize_dummy_model(::gpu::renderer *pgpurenderer, int ivertexes)
+   {
+
+      initialize(pgpurenderer);
+
+      initialize_gpu_context_object(pgpurenderer->m_pgpucontext);
+
+      // m_pgpurenderer = pgpurenderer;
+
+      m_bDummy = true;
+
+      ødefer_construct(m_pbufferVertex);
+
+      m_pbufferVertex->initialize_memory_buffer_with_model_buffer(this, 0, ::gpu::memory_buffer::e_type_none);
+
+      m_iVertexCount = ivertexes;
+   }
+
+
+
 
 } // namespace gpu
 

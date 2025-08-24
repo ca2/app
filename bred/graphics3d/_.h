@@ -16,12 +16,10 @@ namespace graphics3d
 
    class engine;
 
-   template<typename TYPE>
-   class model;
+   //template<typename TYPE>
+   //class model;
 
 
-   template<typename VERTEX>
-   class model_data;
 
    template<typename VERTEX>
    class model_instance;
@@ -44,7 +42,7 @@ namespace graphics3d
 
    class scene;
    class frame;
-   class sky_box;
+   class skybox;
    class renderable;
 
    class immersion_layer;

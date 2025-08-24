@@ -30,94 +30,61 @@ namespace graphics3d
 
 
 
-   template < typename VERTEX >
-   class model_data
-   {
-   public:
 
-      ::array<VERTEX> m_vertexes;
-      ::array<unsigned int > m_indexes;
-
-
-      //::pointer <::graphics3d::model> create_model(
-      //   ::gpu::renderer* prenderer)
-      //{
-
-      //   auto pmodel = prenderer->øcreate < ::graphics3d::model >();
-
-      //   pmodel->initialize_model(
-      //      prenderer,
-      //      m_vertexes.as_block(),
-      //      m_indexes.as_block());
-
-      //   auto pgpucontext = prenderer->m_pgpucontext;
-
-      //   auto pinputlayout = pgpucontext->input_layout(::gpu_properties< VERTEX >());
-
-      //   pmodel->defer_set_input_layout(pinputlayout);
-
-      //   return pmodel;
-
-      //}
+   //template < typename VERTEX >
+   //class model :
+   //   virtual public ::gpu::model_buffer
+   //{
+   //public:
 
 
-   };
+   //   //
+
+   //   //struct Builder
+   //   //{
+   //   //   ::array<VERTEX> vertexes{};
+   //   //   ::array<uint32_t> indexes{};
+
+   //   //};
 
 
-   template < typename VERTEX >
-   class model :
-      virtual public ::gpu::model_buffer
-   {
-   public:
+   //   //::pointer < ::gpu::renderer >        m_pgpurenderer;
+   //   //bool m_bDummy = false;
+   //   //int m_ivertexes = 0;
+   //   //::pointer < ::gpu::command_buffer > m_pcommandbufferLoading;
+
+   //   //static ::pointer<model> createModelFromFile(::graphics3d::context * pgpucontext, const ::file::path & path);
 
 
-      //
-
-      //struct Builder
-      //{
-      //   ::array<VERTEX> vertexes{};
-      //   ::array<uint32_t> indexes{};
-
-      //};
+   //   model();
+   //   ~model();
 
 
-      //::pointer < ::gpu::renderer >        m_pgpurenderer;
-      //bool m_bDummy = false;
-      //int m_ivertexes = 0;
-      //::pointer < ::gpu::command_buffer > m_pcommandbufferLoading;
+   //   virtual void initialize_model(::gpu::renderer * prenderer, const model_data < VERTEX > & modeldata);
+   //   virtual void initialize_dummy_model(::gpu::renderer* prenderer, int ivertexes);
 
-      //static ::pointer<model> createModelFromFile(::graphics3d::context * pgpucontext, const ::file::path & path);
+   //   //virtual void draw(::gpu::context* pgpucontext);
+   //   //virtual void bind(::gpu::context* pgpucontext);
+   //   //virtual void unbind(::gpu::context* pgpucontext);
+   //   //virtual void draw();
+   //   //virtual void bind();
+   //   //virtual void unbind();
 
+   ////private:
+   ////   void createVertexBuffers(const ::array<Vertex>& vertexes);
+   ////   void createIndexBuffers(const ::array<uint32_t>& indexes);
 
-      model();
-      ~model();
-
-
-      virtual void initialize_model(::gpu::renderer * prenderer, const model_data < VERTEX > & modeldata);
-      virtual void initialize_dummy_model(::gpu::renderer* prenderer, int ivertexes);
-
-      //virtual void draw(::gpu::context* pgpucontext);
-      //virtual void bind(::gpu::context* pgpucontext);
-      //virtual void unbind(::gpu::context* pgpucontext);
-      //virtual void draw();
-      //virtual void bind();
-      //virtual void unbind();
-
-   //private:
-   //   void createVertexBuffers(const ::array<Vertex>& vertexes);
-   //   void createIndexBuffers(const ::array<uint32_t>& indexes);
-
-   //   bool hasIndexBuffer = false;
-   //   ::pointer < context > m_pgpucontext;
+   ////   bool hasIndexBuffer = false;
+   ////   ::pointer < context > m_pgpucontext;
 
 
-   //   ::pointer<buffer> vertexBuffer;
-   //   uint32_t vertexCount;
+   ////   ::pointer<buffer> vertexBuffer;
+   ////   uint32_t vertexCount;
 
-   //   ::pointer<buffer> indexBuffer;
-   //   uint32_t indexCount;
+   ////   ::pointer<buffer> indexBuffer;
+   ////   uint32_t indexCount;
 
-   };
+   //};
 
 
    //using model_pointer = ::pointer < ::model >;
@@ -214,8 +181,8 @@ namespace graphics3d
 
    //}
 
-   struct CLASS_DECL_BRED tinyobjloader_Builder :
-      public model_data<::graphics3d::Vertex>
+   struct CLASS_DECL_BRED tinyobjloader_Builder : 
+      public ::gpu::model_data<::graphics3d::Vertex>
    {
 
       void loadModel(::gpu::context* pgpucontext, const ::file::path& path);
@@ -223,60 +190,60 @@ namespace graphics3d
    };
 
 
-   template < typename VERTEX >
-   model<VERTEX>::model()
-   {
+   //template < typename VERTEX >
+   //model<VERTEX>::model()
+   //{
 
 
-   }
+   //}
 
 
-   template < typename VERTEX >
-   model<VERTEX>::~model()
-   {
+   //template < typename VERTEX >
+   //model<VERTEX>::~model()
+   //{
 
 
-   }
+   //}
 
 
-   template < typename VERTEX >
-   void model<VERTEX>::initialize_model(::gpu::renderer* pgpurenderer, const model_data<VERTEX >& modeldata)
-   {
+   //template < typename VERTEX >
+   //void model<VERTEX>::initialize_model(::gpu::renderer* pgpurenderer, const model_data<VERTEX >& modeldata)
+   //{
 
-      initialize(pgpurenderer);
-      
-      initialize_gpu_context_object(pgpurenderer->m_pgpucontext);
+   //   initialize(pgpurenderer);
+   //   
+   //   initialize_gpu_context_object(pgpurenderer->m_pgpucontext);
 
-      bind(pgpurenderer->getLoadAssetsCommandBuffer());
+   //   bind(pgpurenderer->getLoadAssetsCommandBuffer());
 
-      static_initialize_vertexes(modeldata.m_vertexes);
+   //   static_initialize_vertexes(modeldata.m_vertexes);
 
-      static_initialize_indexes(modeldata.m_indexes);
+   //   static_initialize_indexes(modeldata.m_indexes);
 
-      unbind(pgpurenderer->getLoadAssetsCommandBuffer());
+   //   unbind(pgpurenderer->getLoadAssetsCommandBuffer());
 
-   }
+   //}
 
 
-   template < typename VERTEX >
-   void model<VERTEX>::initialize_dummy_model(::gpu::renderer* pgpurenderer, int ivertexes)
-   {
+   //template < typename VERTEX >
+   //void model<VERTEX>::initialize_dummy_model(::gpu::renderer* pgpurenderer, int ivertexes)
+   //{
 
-      initialize(pgpurenderer);
+   //   initialize(pgpurenderer);
 
-      initialize_gpu_context_object(pgpurenderer->m_pgpucontext);
+   //   initialize_gpu_context_object(pgpurenderer->m_pgpucontext);
 
-      //m_pgpurenderer = pgpurenderer;
+   //   //m_pgpurenderer = pgpurenderer;
 
-      m_bDummy = true;
+   //   m_bDummy = true;
 
-      ødefer_construct(m_pbufferVertex);
+   //   ødefer_construct(m_pbufferVertex);
 
-      m_pbufferVertex->initialize_memory_buffer_with_model_buffer(this, 0, ::gpu::memory_buffer::e_type_none);
-      
-      m_iVertexCount = ivertexes;
+   //   m_pbufferVertex->initialize_memory_buffer_with_model_buffer(this, 0, ::gpu::memory_buffer::e_type_none);
+   //   
+   //   m_iVertexCount = ivertexes;
 
-   }
+   //}
 
 
 

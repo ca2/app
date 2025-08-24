@@ -35,7 +35,7 @@ namespace graphics3d
    }
 
 
-   void mesh::initialize_mesh(const model_data<Vertex>& data)
+   void mesh::initialize_mesh(const ::gpu::model_data<Vertex>& data)
    {
       
       m_modeldata = data;
@@ -118,7 +118,7 @@ namespace graphics3d
 
       øconstruct_new(m_pmodel);
 
-      m_pmodel->initialize_model(m_pgpucontext->m_pgpurenderer, m_modeldata);
+      m_pmodel->initialize_model(m_pgpucontext, m_modeldata);
 
       // m_pmodel->initialize_model(m_pgpucontext->m_pgpurenderer, );
 

@@ -15,7 +15,7 @@ namespace graphics3d
 {
 
 
-   class CLASS_DECL_BRED sky_box :
+   class CLASS_DECL_BRED skybox :
    virtual public ::graphics3d::scene_object
    
    {
@@ -70,7 +70,7 @@ namespace graphics3d
       //::particle* pparticle, const ::string_array_base& faces
 
       //::pointer < engine >                m_pengine;
-      ::pointer < ::graphics3d::model < Vertex > >    m_pmodelCube;
+      ::pointer < ::gpu::model_buffer >               m_pmodelCube;
       ::pointer < ::gpu::texture >                    m_ptextureCubeMap;
       ::int_size                                      m_sizeSquare;
 
@@ -79,8 +79,8 @@ namespace graphics3d
 
       ::string          m_strCubemapTextureName;
 
-      sky_box();
-      ~sky_box();
+      skybox();
+      ~skybox();
 
 
       virtual void initialize_sky_box(engine * pengine, const ::scoped_string & scopedstrName);

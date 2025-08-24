@@ -40,8 +40,8 @@ namespace graphics3d
 		glm::vec3													            m_initialCameraRotation{ 0.f };
 
 		//int															            m_iSkyboxId = -1;
-		::pointer<::graphics3d::sky_box>							         m_pskyboxCurrent;
-	   string_map < ::pointer < ::graphics3d::sky_box > >          m_mapSkybox;
+		::pointer<::graphics3d::skybox>							         m_pskyboxCurrent;
+	   string_map < ::pointer < ::graphics3d::skybox > >          m_mapSkybox;
 		::string													               m_strSkyboxCubemapName;
       ::gpu::properties                                           m_gpupropertiesGlobalUbo;
 
@@ -71,7 +71,7 @@ namespace graphics3d
 
 		//virtual ::pair<glm::mat4, glm::mat4> getMainCameraMatrices()const;
 
-		virtual void set_sky_box(::graphics3d::sky_box * pskybox);
+		virtual void set_sky_box(::graphics3d::skybox * pskybox);
 
 		virtual class camera *camera();
 
@@ -82,7 +82,7 @@ namespace graphics3d
 		//virtual void addGameObject(uint32_t id, ::graphics3d::scene_object * obj);
 		//virtual void removeGameObject(uint32_t id);
 
-		virtual ::graphics3d::sky_box * current_sky_box();
+		virtual ::graphics3d::skybox * current_sky_box();
 
 		//::graphics3d::sandbox_game_object>>
 		//	getSkyboxObject();
@@ -94,7 +94,7 @@ namespace graphics3d
 	   ::pointer<::graphics3d::scene_object> create_scene_object();
 
 
-	   ::pointer<::graphics3d::sky_box> create_sky_box();
+	   ::pointer<::graphics3d::skybox> create_sky_box();
 
 
 		::pointer<::graphics3d::point_light> create_point_light(
@@ -107,7 +107,7 @@ namespace graphics3d
 
 
 	   virtual void on_load_scene(::gpu::context* pgpucontext);
-	   virtual void on_update_global_ubo(::gpu::context* pgpucontext);
+	   virtual void on_update(::gpu::context* pgpucontext);
 	   virtual void on_render(::gpu::context * pgpucontext);
 
 

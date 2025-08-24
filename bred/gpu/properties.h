@@ -2,8 +2,8 @@
 #pragma once
 
 
-#include "bred/gpu/_.h"
-#include <glm/glm.hpp>
+//#include "bred/gpu/_.h"
+//#include <glm/glm.hpp>
 
 template < typename TYPE >
 inline ::gpu::property* gpu_properties()
@@ -458,11 +458,14 @@ namespace gpu
 } // namespace gpu
 
 
+#define DECLARE_GPU_PROPERTIES(rooting, type)                                                                                     \
+template<>                                                 \
+rooting ::gpu::property *gpu_properties<type>();
 
 
 #define BEGIN_GPU_PROPERTIES(type) \
 	template < >	\
-   inline ::gpu::property * gpu_properties<type>() \
+   CLASS_DECL_EXPORT ::gpu::property * gpu_properties<type>() \
    { \
       static ::gpu::property s_pproperty[]= {
 

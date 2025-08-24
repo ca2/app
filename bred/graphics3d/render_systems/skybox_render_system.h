@@ -20,61 +20,66 @@ namespace graphics3d
    {
    public:
 
-      using Vertex = ::graphics3d::shape_factory::Vertex;
 
-      struct cube_face
-      {
-
-         ::file::path               m_path;
-         ::image::image_pointer     m_pimage;
+            string_map<::pointer<::graphics3d::skybox>> m_mapSkybox;
 
 
-         cube_face() {}
-         cube_face(const ::file::path& path) :
-            m_path(path)
-         {
+      //using Vertex = ::graphics3d::shape_factory::Vertex;
+
+      //struct cube_face
+      //{
+
+      //   ::file::path               m_path;
+      //   ::image::image_pointer     m_pimage;
 
 
-         }
+      //   cube_face() {}
+      //   cube_face(const ::file::path& path) :
+      //      m_path(path)
+      //   {
 
-      };
+
+      //   }
+
+      //};
 
 
-      struct cube :
-         public ::preallocated_array_base < ::array < cube_face >, 6 >
-      {
-      public:
+      //struct cube :
+      //   public ::preallocated_array_base < ::array < cube_face >, 6 >
+      //{
+      //public:
 
-         cube()
-         {
+      //   cube()
+      //   {
 
-         }
-         cube(::std::initializer_list < ::file::path > list)
-         {
+      //   }
+      //   cube(::std::initializer_list < ::file::path > list)
+      //   {
 
-            int i = 0;
+      //      int i = 0;
 
-            for (auto& item : list)
-            {
+      //      for (auto& item : list)
+      //      {
 
-               this->element_at(i).m_path = item;
+      //         this->element_at(i).m_path = item;
 
-               i++;
+      //         i++;
 
-            }
+      //      }
 
-         }
+      //   }
 
-      };
+      //};
       //::particle* pparticle, const ::string_array_base& faces
 
       //::pointer < engine >                m_pengine;
-      ::pointer < ::graphics3d::model < Vertex > >    m_pmodelCube;
-      ::pointer < ::gpu::texture >                    m_ptextureCubeMap;
-      ::int_size                                      m_sizeSquare;
+      ::pointer < ::graphics3d::skybox >              m_pskybox;
+      //::pointer < ::gpu::model_buffer >               m_pmodelCube;
+      //::pointer < ::gpu::texture >                    m_ptextureCubeMap;
+      //::int_size                                      m_sizeSquare;
 
-      cube                                            m_cube;
-      //::pointer<::gpu::shader>            m_pshader;
+      //cube                                            m_cube;
+      ////::pointer<::gpu::shader>            m_pshader;
 
 
 
@@ -82,12 +87,12 @@ namespace graphics3d
       ~skybox_render_system();
 
 
-      virtual void initialize_skybox_render_system(engine * pengine, const ::scoped_string & scopedstrName);
+      void initialize_render_system(engine * pengine) override;
 
-      virtual void SetupSkybox();
+      virtual void set_skybox(::graphics3d::skybox * pskybox);
 
-      virtual void load_cube_map_images();
-      virtual void load_cube_map_textures();
+      //virtual void load_cube_map_images();
+      //virtual void load_cube_map_textures();
 
       virtual void bind(::gpu::command_buffer* pgpucommandbuffer);
       virtual void draw(::gpu::command_buffer* pgpucommandbuffer);

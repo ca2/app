@@ -51,21 +51,5 @@ namespace gpu
 } // namespace gpu
 
 
-
-BEGIN_GPU_PROPERTIES(::gpu::projection_quad_texcoords_textColor)
-GPU_PROPERTY("projection", ::gpu::e_type_mat4)
-GPU_PROPERTY("quad", ::gpu::e_type_seq4)
-GPU_PROPERTY("texcoords", ::gpu::e_type_seq4)
-GPU_PROPERTY("textColor", ::gpu::e_type_seq4)
-END_GPU_PROPERTIES()
-
-
-
-BEGIN_GPU_PROPERTIES(::gpu::quad_texcoords_textColor)
-GPU_PROPERTY("quad", ::gpu::e_type_seq4)
-GPU_PROPERTY("texcoords", ::gpu::e_type_seq4)
-GPU_PROPERTY("textColor", ::gpu::e_type_seq4)
-END_GPU_PROPERTIES()
-
-
-
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::projection_quad_texcoords_textColor)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::quad_texcoords_textColor)

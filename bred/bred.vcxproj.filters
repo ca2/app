@@ -593,6 +593,15 @@
     <ClCompile Include="prodevian\immersion.cpp">
       <Filter>Source Files\prodevian</Filter>
     </ClCompile>
+    <ClCompile Include="gpu\types.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\types.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\shape_factory.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">

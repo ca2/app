@@ -29,9 +29,8 @@ namespace gpu
    class frame_ephemeral;
    //class program;
 
-
-
-
+   template<typename VERTEX>
+   class model_data;
 
    CLASS_DECL_BRED int get_type_size(::gpu::enum_type e);
 

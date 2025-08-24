@@ -645,7 +645,7 @@ namespace graphics3d
       if (pscene->global_ubo().size() > 0)
       {
 
-         pscene->on_update_global_ubo(pgpucontext);
+         pscene->on_update(pgpucontext);
          
          auto pcontext = gpu_context();
 
@@ -1072,7 +1072,7 @@ namespace graphics3d
    }
 
 
-   ::pointer < model<::graphics3d::Vertex> > engine::_load_wavefront_obj_renderable(const ::file::path& path)
+   ::pointer < ::graphics3d::renderable > engine::_load_wavefront_obj_renderable(const ::file::path& path)
    {
 
       tinyobjloader_Builder builder{};
@@ -1081,11 +1081,11 @@ namespace graphics3d
 
       builder.loadModel(pcontext, path);
 
-      ::pointer < model<::graphics3d::Vertex> > pmodel;
+      ::pointer < ::gpu::model_buffer > pmodel;
 
-      øconstruct_new(pmodel);
+      øconstruct(pmodel);
 
-      pmodel->initialize_model(pcontext->m_pgpurenderer, builder);
+      pmodel->initialize_model(pcontext, builder);
 
       return pmodel;
 

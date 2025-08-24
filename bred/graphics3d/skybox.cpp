@@ -19,7 +19,7 @@ namespace graphics3d
 
 
    // Constructor
-   sky_box::sky_box()
+   skybox::skybox()
    {
 
 
@@ -27,14 +27,14 @@ namespace graphics3d
 
 
    // Destructor
-   sky_box::~sky_box() {
+   skybox::~skybox() {
       //glDeleteVertexArrays(1, &skyboxVAO);
       //glDeleteBuffers(1, &skyboxVBO);
       //glDeleteTextures(1, &cubemapTexture);
    }
 
 
-   void sky_box::initialize_sky_box(engine * pengine, const ::scoped_string & scopedstrName)
+   void skybox::initialize_sky_box(engine * pengine, const ::scoped_string & scopedstrName)
    {
 
       cube cube;
@@ -53,11 +53,9 @@ namespace graphics3d
 
       auto modeldataCube = ::graphics3d::shape_factory::create_cube(32.0f);
 
-      øconstruct_new(m_pmodelCube);
+      øconstruct(m_pmodelCube);
 
-      m_pmodelCube->initialize_model(pengine->gpu_context()->m_pgpurenderer, modeldataCube);
-
-
+      m_pmodelCube->initialize_model(pengine->gpu_context(), modeldataCube);
       
       initialize(pengine->gpu_context());
       
@@ -66,7 +64,7 @@ namespace graphics3d
    }
 
    // Setup the skybox (VAO, VBO, EBO, and cubemap textures)
-   void sky_box::SetupSkybox() 
+   void skybox::SetupSkybox() 
    {
       //// Generate buffers
       //glGenVertexArrays(1, &skyboxVAO);
@@ -91,7 +89,7 @@ namespace graphics3d
    }
 
 
-   void sky_box::load_cube_map_images()
+   void skybox::load_cube_map_images()
    {
 
       m_sizeSquare.cx() = 0;
@@ -149,7 +147,7 @@ namespace graphics3d
 
 
    // Load cubemap textures
-   void sky_box::load_cube_map_textures()
+   void skybox::load_cube_map_textures()
    {
       //glGenTextures(1, &cubemapTexture);
       //glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
@@ -224,7 +222,7 @@ namespace graphics3d
    }
 
 
-   void sky_box::bind(::gpu::command_buffer* pgpucommandbuffer)
+   void skybox::bind(::gpu::command_buffer* pgpucommandbuffer)
    {
 
 
@@ -239,7 +237,7 @@ namespace graphics3d
    }
 
 
-   void sky_box::draw(::gpu::command_buffer* pgpucommandbuffer)
+   void skybox::draw(::gpu::command_buffer* pgpucommandbuffer)
    {
 
       m_pmodelCube->draw(pgpucommandbuffer);
@@ -247,7 +245,7 @@ namespace graphics3d
    }
 
 
-   void sky_box::unbind(::gpu::command_buffer* pgpucommandbuffer)
+   void skybox::unbind(::gpu::command_buffer* pgpucommandbuffer)
    {
 
       m_pmodelCube->unbind(pgpucommandbuffer);
@@ -256,7 +254,7 @@ namespace graphics3d
    }
 
    //
-   // void sky_box::on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
+   // void skybox::on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
    // {
    //
    //    auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());

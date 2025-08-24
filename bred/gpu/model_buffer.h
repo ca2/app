@@ -18,6 +18,40 @@ namespace gpu
 {
 
 
+   
+
+   template<typename VERTEX>
+   class model_data
+   {
+   public:
+
+      ::array<VERTEX> m_vertexes;
+      ::array<unsigned int> m_indexes;
+
+
+      //::pointer <::graphics3d::model> create_model(
+      //   ::gpu::renderer* prenderer)
+      //{
+
+      //   auto pmodel = prenderer->øcreate < ::graphics3d::model >();
+
+      //   pmodel->initialize_model(
+      //      prenderer,
+      //      m_vertexes.as_block(),
+      //      m_indexes.as_block());
+
+      //   auto pgpucontext = prenderer->m_pgpucontext;
+
+      //   auto pinputlayout = pgpucontext->input_layout(::gpu_properties< VERTEX >());
+
+      //   pmodel->defer_set_input_layout(pinputlayout);
+
+      //   return pmodel;
+
+      //}
+   };
+
+
    class CLASS_DECL_BRED model_buffer :
       virtual public context_object,
       virtual public poolable < model_buffer >,
@@ -248,6 +282,31 @@ namespace gpu
          m_pbufferIndex->_assign(p, sizeof(INDEX) * iIndexCount);
 
       }
+
+
+      virtual void bind_load_assets_command_buffer(::gpu::context *pcontext);
+      virtual void unbind_load_assets_command_buffer(::gpu::context *pcontext);
+
+      template < typename VERTEX >
+      void initialize_model(::gpu::context *pcontext, const ::gpu::model_data<VERTEX> &modeldata)
+      {
+
+         initialize(pcontext);
+      
+         initialize_gpu_context_object(pcontext);
+
+         bind_load_assets_command_buffer(pcontext);
+
+         static_initialize_vertexes(modeldata.m_vertexes);
+
+         static_initialize_indexes(modeldata.m_indexes);
+
+         unbind_load_assets_command_buffer(pcontext);
+
+      }
+
+
+      virtual void initialize_dummy_model(::gpu::renderer *pgpurenderer, int ivertexes);
 
 
       virtual bool is_dummy() const;

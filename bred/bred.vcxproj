@@ -507,6 +507,7 @@
     <ClCompile Include="gpu\layer.cpp" />
     <ClCompile Include="gpu\swap_chain.cpp" />
     <ClCompile Include="gpu\texture.cpp" />
+    <ClCompile Include="gpu\types.cpp" />
     <ClCompile Include="gpu\_.cpp" />
     <ClCompile Include="graphics3d\asset_manager.cpp" />
     <ClCompile Include="graphics3d\camera.cpp" />
@@ -529,7 +530,9 @@
     <ClCompile Include="graphics3d\scene.cpp" />
     <ClCompile Include="graphics3d\scene_object.cpp" />
     <ClCompile Include="graphics3d\shader.cpp" />
+    <ClCompile Include="graphics3d\shape_factory.cpp" />
     <ClCompile Include="graphics3d\skybox.cpp" />
+    <ClCompile Include="graphics3d\types.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />

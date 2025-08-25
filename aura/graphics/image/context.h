@@ -51,6 +51,25 @@ namespace image
       void destroy() override;
 
 
+      /// @brief  it always returns 4 channels!!
+      /// @param buffer 
+      /// @param len 
+      /// @param x 
+      /// @param y 
+      /// @param channels_in_file 
+      /// @param desired_channels 
+      /// @return 
+      virtual unsigned char * like_stbi_load_from_memory(
+         const unsigned char *buffer,
+         int len, 
+         int *x,
+         int *y,
+         int *channels_in_file,
+         int desired_channels);
+
+      virtual void like_stbi_image_free(void *data);
+
+
       inline ::particle* image_synchronization() { return m_pparticleImageSynchronization; }
 
 
@@ -80,6 +99,8 @@ namespace image
       virtual int create_image_integer(int w, int h, const image32_t * pcolor, int iScan = -1);
       virtual ::image::image_pointer integer_image(int i);
       virtual ::image::image_pointer path_image(const ::file::path & pathImage);
+      virtual ::image::image_pointer
+      image_from_file(const ::payload &payloadFile, const ::image::load_options &loadoptions = ::image::load_options());
 
 
       virtual ::image::icon_pointer get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());

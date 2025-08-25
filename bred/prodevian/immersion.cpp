@@ -32,12 +32,13 @@ namespace prodevian
    }
 
 
-   void immersion::initialize_immersion_layer(::graphics3d::engine * pengine, ::graphics3d::asset_manager * passetmanager)
+   void immersion::initialize_immersion_layer(::graphics3d::engine * pengine)
    {
 
-      ::graphics3d::immersion_layer::initialize_immersion_layer(pengine, passetmanager);
+      ::graphics3d::immersion_layer::initialize_immersion_layer(pengine);
 
    }
+
 
    ::pointer < ::graphics3d::scene > immersion::create_main_scene()
    {
@@ -57,7 +58,7 @@ namespace prodevian
       øconstruct(m_pscene);
 
       //m_scene = øcreate_pointer<sandbox_scene>(m_windowInput, m_assetManager);
-      m_pscene->initialize_scene(m_pengine);
+      m_pscene->initialize_scene(this);
       m_pscene->loadSceneFile("default_scene"); // TODO: Eventually specify which scene file to load in a better way than this probably via UI
       //m_pscene->init();
 

@@ -1,20 +1,20 @@
 #include "framework.h"
 // asset_manager.cpp
+#include <chrono>
 #include "acme/filesystem/filesystem/file_context.h"
 #include "asset_manager.h"
-#include "renderable.h"
 #include "bred/gpu/renderable.h"
-#include <chrono>
+#include "renderable.h"
 
 #include "engine.h"
 
-//#include "acme/exception/r"
-//#include <json.hpp>
+// #include "acme/exception/r"
+// #include <json.hpp>
 ////#include <fstream>
 ////#include <spdlog/spdlog.h>
-//#include <glm/glm.hpp>
+// #include <glm/glm.hpp>
 
-//using json = nlohmann::json;
+// using json = nlohmann::json;
 
 namespace graphics3d
 {
@@ -23,64 +23,62 @@ namespace graphics3d
    //    m_pgpudevice(pdevice), m_transferQueue(m_pgpudevice->graphicsQueue()) {
    //
    // }
-   asset_manager::asset_manager()
+   asset_manager::asset_manager() 
    {
-
+   
    }
 
 
-   asset_manager::~asset_manager()
-   {
+   asset_manager::~asset_manager() {}
 
+   void asset_manager::initialize_asset_manager(graphics3d::engine *pengine)
+   {
+      
+      m_pengine = pengine; 
+   
    }
 
-void asset_manager::initialize_asset_manager(graphics3d::engine *pengine)
-{
-   m_pengine=pengine;
-}
-
-//    ::pointer<::graphics3d::renderable> asset_manager::æloadObjModel(
-//      const ::scoped_string &name,
-//      const ::scoped_string &filepath,
-//      bool isSkybox
-//      )
-//    {
-//
-//       auto & p = m_mapRenderable[name];
-//
-//       if (p)
-//       {
-//
-// retu
-//
-//       }
-//
-//       auto pgpucontext = m_pengine->gpu_context();
-//
-//       // 2) load
-//       auto model = pgpucontext->loadObjModel(name, filepath, isSkybox);
-//
-//       // 3) cache & return
-//       m_mapObjectModel[name] = model;
-//       return model;
-//    }
-//
-//
-//    ::pointer<::graphics3d::renderable> asset_manager::æloadGLTFmodel(
-//       const ::scoped_string &name,
-//       const ::scoped_string &filepath,
-//       uint32_t gltfFlags,
-//       float scale
-//       )
-//    {
-//
-//
-//    }
+   //    ::pointer<::graphics3d::renderable> asset_manager::æloadObjModel(
+   //      const ::scoped_string &name,
+   //      const ::scoped_string &filepath,
+   //      bool isSkybox
+   //      )
+   //    {
+   //
+   //       auto & p = m_mapRenderable[name];
+   //
+   //       if (p)
+   //       {
+   //
+   // retu
+   //
+   //       }
+   //
+   //       auto pgpucontext = m_pengine->gpu_context();
+   //
+   //       // 2) load
+   //       auto model = pgpucontext->loadObjModel(name, filepath, isSkybox);
+   //
+   //       // 3) cache & return
+   //       m_mapObjectModel[name] = model;
+   //       return model;
+   //    }
+   //
+   //
+   //    ::pointer<::graphics3d::renderable> asset_manager::æloadGLTFmodel(
+   //       const ::scoped_string &name,
+   //       const ::scoped_string &filepath,
+   //       uint32_t gltfFlags,
+   //       float scale
+   //       )
+   //    {
+   //
+   //
+   //    }
 
 
-
-
-   // ::pointer<graphics3d::renderable> asset_manager::load_model(const ::scoped_string& name, const ::scoped_string& filepath, bool isSkybox)
+   // ::pointer<graphics3d::renderable> asset_manager::load_model(const ::scoped_string& name, const ::scoped_string&
+   // filepath, bool isSkybox)
    // {
    //
    //    auto pgpucontext = m_pengine->gpu_context();
@@ -96,8 +94,6 @@ void asset_manager::initialize_asset_manager(graphics3d::engine *pengine)
       auto pgpucontext = m_pengine->gpu_context();
 
       m_ptextureLuBrdf = pgpucontext->generateBRDFlut();
-
-
    }
 
 
@@ -106,19 +102,11 @@ void asset_manager::initialize_asset_manager(graphics3d::engine *pengine)
 
       auto pgpucontext = m_pengine->gpu_context();
 
-      m_ptextureIrradianceCube = pgpucontext->generateIrradianceMap(
-         m_ptextureEnvironmentCube,
-         m_pgpumodelbufferSkybox);
-
+      m_ptextureIrradianceCube = pgpucontext->generateIrradianceMap(m_ptextureEnvironmentCube, m_prenderableSkybox);
    }
 
 
-   void asset_manager::generatePrefilteredEnvMap()
-   {
-
-
-   }
-
+   void asset_manager::generatePrefilteredEnvMap() {}
 
 
    graphics3d::renderable *asset_manager::get_renderable(const ::scoped_string &name)
@@ -179,31 +167,23 @@ void asset_manager::initialize_asset_manager(graphics3d::engine *pengine)
    }
 
 
-   const ::pointer_array_base<::gpu::texture> &asset_manager::getAllTextures()
-   {
-      return m_texturea;
-   }
+   const ::pointer_array_base<::gpu::texture> &asset_manager::getAllTextures() { return m_texturea; }
 
 
-   bool asset_manager::hasTexture(const ::scoped_string &name)
-   {
-      return m_mapTexture.has(name);
-   }
+   bool asset_manager::hasTexture(const ::scoped_string &name) { return m_mapTexture.has(name); }
 
 
-   graphics3d::renderable *asset_manager::getSkyboxModel()
-   {
-      return m_prenderableSkybox;
-   } // make this override if necessary
+   graphics3d::renderable *asset_manager::getSkyboxModel() { return m_prenderableSkybox; }
 
 
    ::string_array_base asset_manager::listTextureNames()
    {
+
       ::string_array_base straKeys;
-      //keys.reserve(m_textures.size());
-      //keys.m_countAddUp = m_mapTexture.size();
-      straKeys =  m_mapTexture.items();
-        // keys.add(n);
+      // keys.reserve(m_textures.size());
+      // keys.m_countAddUp = m_mapTexture.size();
+      straKeys = m_mapTexture.items();
+      // keys.add(n);
       return straKeys;
    }
 
@@ -211,137 +191,151 @@ void asset_manager::initialize_asset_manager(graphics3d::engine *pengine)
    void asset_manager::preloadGlobalAssets()
    {
       // Read model & cubemap list JSON
-      auto modelJson = file()->as_network_payload("matter://scene_assets/default_scene_assets.json");
-      //if (!in.is_open()) {
-      //    throw std::runtime_error("Failed to open model list JSON.");
-      //}
+
+
+      auto modelJson = file()->safe_get_network_payload("matter://scene_assets/default_scene_assets.json");
+      // if (!in.is_open()) {
+      //     throw std::runtime_error("Failed to open model list JSON.");
+      // }
 
       auto pgpucontext = m_pengine->gpu_context();
 
       //::property_set modelJson;
-      //modelJson.parse_network_payload()
+      // modelJson.parse_network_payload()
 
       // 1) Load models first (unchanged from your flow)
 
-      auto &payloada = modelJson["models"].payload_array_reference();
-      for (const auto &element: payloada)
+      if (1)
       {
-         auto &entry = element.property_set_reference();
-
-         const ::string name = entry["name"];
-
-
-         auto prenderable = get_renderable(name);
-
-         if (!prenderable)
+         auto &payloada = modelJson["models"].payload_array_reference();
+         for (const auto &element: payloada)
          {
+            auto &entry = element.property_set_reference();
 
-            try
+            const ::string name = entry["name"];
+
+            auto prenderable = as_pointer(get_renderable(name));
+
+            if (!prenderable)
             {
 
-               prenderable = pgpucontext->load_model(entry);
+               try
+               {
 
-               if (prenderable->renderable_type() == ::gpu::e_renderable_type_wavefront_obj)
-               {
-                  //auto model = loadObjModel(name, path, false);
-                  information("[asset_manager] Successfully loaded OBJ model '{}' from '{}'",
-                     prenderable->m_strName, prenderable->m_path);
-               }
-               else if (prenderable->renderable_type() == ::gpu::e_renderable_type_gltf)
-               {
-                  // uint32_t flags = entry.get("flags", 0); // Optional flags
-                  // float scale = entry.get("scale", 1.0f); // Optional scale
-                  // auto pmodel = loadGLTFmodel(name, path, flags, scale);
-                  // if (entry.get("usage", "") == "skybox" || name == "cube")
-                  // {
-                  //    m_pmodelSkybox = pmodel;
-                  // }
-                  if (prenderable->renderable_usage() == ::gpu::e_renderable_usage_skybox)
+                  prenderable = pgpucontext->load_model(entry);
+
+                  if (prenderable->renderable_type() == ::gpu::e_renderable_type_wavefront_obj)
+                  {
+                     // auto model = loadObjModel(name, path, false);
+                     information("[asset_manager] Successfully loaded OBJ model '{}' from '{}'", prenderable->m_strName,
+                                 prenderable->m_path);
+                  }
+                  else if (prenderable->renderable_type() == ::gpu::e_renderable_type_gltf)
+                  {
+                     // uint32_t flags = entry.get("flags", 0); // Optional flags
+                     // float scale = entry.get("scale", 1.0f); // Optional scale
+                     // auto pmodel = loadGLTFmodel(name, path, flags, scale);
+                     // if (entry.get("usage", "") == "skybox" || name == "cube")
+                     // {
+                     //    m_pmodelSkybox = pmodel;
+                     // }
+                     if (prenderable->renderable_usage() == ::gpu::e_renderable_usage_skybox)
+                     {
+
+                        m_prenderableSkybox = prenderable;
+                     }
+                     information("[asset_manager] Successfully loaded glTF model '{}' from '{}'",
+                                 prenderable->m_strName, prenderable->m_path);
+                  }
+                  else
                   {
 
-                     m_prenderableSkybox=prenderable;
+                     warning("[asset_manager] Unknown model type '{}' for asset '{}'",
+                             prenderable->m_strRenderableType1, prenderable->m_path);
                   }
-                  information("[asset_manager] Successfully loaded glTF model '{}' from '{}'",
-                     prenderable->m_strName, prenderable->m_path);
                }
-               else
+               catch (const ::exception &e)
                {
-
-                  warning("[asset_manager] Unknown model type '{}' for asset '{}'",
-                     prenderable->m_strRenderableType1, prenderable->m_path);
-
+                  error("[asset_manager] Failed to load model '{}': {}", name, e.get_message());
                }
-
-            }
-            catch (const ::exception &e)
-            {
-               error("[asset_manager] Failed to load model '{}': {}", name, e.get_message());
+               m_mapRenderable.set_at(name, prenderable);
             }
          }
-      }
 
-      //    const ::string type = entry.get("type", "obj");
-      //    const ::string path = "matter://models/" + entry["path"].as_file_path();
-      //
-      //    try
-      //    {
-      //       if (type == "obj")
-      //       {
-      //          auto model = loadObjModel(name, path, false);
-      //          information("[asset_manager] Successfully loaded OBJ model '{}' from '{}'", name, path);
-      //       }
-      //       else if (type == "gltf")
-      //       {
-      //          uint32_t flags = entry.get("flags", 0); // Optional flags
-      //          float scale = entry.get("scale", 1.0f); // Optional scale
-      //          auto pmodel = loadGLTFmodel(name, path, flags, scale);
-      //          if (entry.get("usage", "") == "skybox" || name == "cube")
-      //          {
-      //             m_pmodelSkybox = pmodel;
-      //          }
-      //          information("[asset_manager] Successfully loaded glTF model '{}' from '{}'", name, path);
-      //       }
-      //       else
-      //       {
-      //          warning("[asset_manager] Unknown model type '{}' for asset '{}'", type, name);
-      //       }
-      //    }
-      //    catch (const ::exception &e)
-      //    {
-      //       error("[asset_manager] Failed to load model '{}': {}", name, e.get_message());
-      //    }
-      // }
+         //    const ::string type = entry.get("type", "obj");
+         //    const ::string path = "matter://models/" + entry["path"].as_file_path();
+         //
+         //    try
+         //    {
+         //       if (type == "obj")
+         //       {
+         //          auto model = loadObjModel(name, path, false);
+         //          information("[asset_manager] Successfully loaded OBJ model '{}' from '{}'", name, path);
+         //       }
+         //       else if (type == "gltf")
+         //       {
+         //          uint32_t flags = entry.get("flags", 0); // Optional flags
+         //          float scale = entry.get("scale", 1.0f); // Optional scale
+         //          auto pmodel = loadGLTFmodel(name, path, flags, scale);
+         //          if (entry.get("usage", "") == "skybox" || name == "cube")
+         //          {
+         //             m_pmodelSkybox = pmodel;
+         //          }
+         //          information("[asset_manager] Successfully loaded glTF model '{}' from '{}'", name, path);
+         //       }
+         //       else
+         //       {
+         //          warning("[asset_manager] Unknown model type '{}' for asset '{}'", type, name);
+         //       }
+         //    }
+         //    catch (const ::exception &e)
+         //    {
+         //       error("[asset_manager] Failed to load model '{}': {}", name, e.get_message());
+         //    }
+         // }
+      }
 
       // 2) Load cubemaps *before* generating BRDF / irradiance / prefiltered maps
       // Keep track of whether we loaded the environment cubemap used for IBL
       ::pointer<::gpu::texture> loadedEnvironmentCubemap = nullptr;
 
-      auto &payloada2 = modelJson["v"].payload_array_reference();
+      auto &payloada2 = modelJson["cubemaps"].payload_array_reference();
 
       for (const auto &element: payloada2)
       {
          auto &entry = element.property_set_reference();
          const ::string name = entry["name"];
-         const ::string path = "matter://res/textures/" + entry["path"].as_file_path();
+         const ::string path = "matter://textures/" + entry["path"].as_file_path();
 
          // Map format string (if present) to VkFormat; default to R32G32B32A32_SFLOAT
          ::string fmtStr = entry.get("format", "VK_FORMAT_R32G32B32A32_SFLOAT");
          // VkFormat format = VK_FORMAT_R32G32B32A32_SFLOAT;
-         // if (fmtStr == "VK_FORMAT_R16G16B16A16_SFLOAT") format = VK_FORMAT_R16G16B16A16_SFLOAT;
-         // else if (fmtStr == "VK_FORMAT_R32G32B32A32_SFLOAT") format = VK_FORMAT_R32G32B32A32_SFLOAT;
+         bool b32 = true;
+         if (fmtStr == "VK_FORMAT_R16G16B16A16_SFLOAT")
+         {
+
+            // format = VK_FORMAT_R16G16B16A16_SFLOAT;
+            b32 = false;
+         }
+         else if (fmtStr == "VK_FORMAT_R32G32B32A32_SFLOAT")
+         {
+
+            // format = VK_FORMAT_R32G32B32A32_SFLOAT;
+            b32 = true;
+         }
          // Add more mappings here if you expect other formats
 
          try
          {
             // loadCubemap() must return ::pointer<texture>
-            auto cubemap = pgpucontext->load_cube_map(
-               name,
-               path //,
-               //format
-               // ,
-               // VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT,
-               // VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL
-               );
+            auto cubemap = pgpucontext->load_cube_map(name,
+                                                      path, //,
+               b32
+                                                      // format
+                                                      //  ,
+                                                      //  VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT,
+                                                      //  VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL
+            );
 
             if (!cubemap)
             {
@@ -350,7 +344,7 @@ void asset_manager::initialize_asset_manager(graphics3d::engine *pengine)
             }
 
             // Register into your caches (optional helper)
-            //registerTextureIfNeeded(name, cubemap, m_textures, m_textureIndexMap, m_textureList);
+            // registerTextureIfNeeded(name, cubemap, m_textures, m_textureIndexMap, m_textureList);
 
             information("[asset_manager] Successfully loaded cubemap '{}' from '{}'", name, path);
 
@@ -381,8 +375,8 @@ void asset_manager::initialize_asset_manager(graphics3d::engine *pengine)
 
       if (!loadedEnvironmentCubemap)
       {
-         warning(
-            "[asset_manager] No environment cubemap found (expected 'skybox_hdr' or 'environment':true). Using placeholder/empty environmentCube.");
+         warning("[asset_manager] No environment cubemap found (expected 'skybox_hdr' or 'environment':true). Using "
+                 "placeholder/empty environmentCube.");
          // Optionally: throw or create a debug 1x1 texture so validation doesn't fail.
          // For now we will not create an invalid shared_ptr (keeps previous behavior safer).
       }
@@ -397,8 +391,15 @@ void asset_manager::initialize_asset_manager(graphics3d::engine *pengine)
       // irradianceCube = øcreate_pointer<graphics3d::texture>(&m_pgpudevice);
       // prefilteredCube = øcreate_pointer<graphics3d::texture>(&m_pgpudevice);
 
-      // Generate BRDF LUT first (your existing function)
-      generateBRDFlut();
+      try
+      {
+         // Generate BRDF LUT first (your existing function)
+         generateBRDFlut();
+      }
+      catch (...)
+      {
+
+      }
 
       // Now generate irradiance and prefiltered maps using environmentCube (must be valid)
       if (!m_ptextureEnvironmentCube)
@@ -420,7 +421,6 @@ void asset_manager::initialize_asset_manager(graphics3d::engine *pengine)
       }
 
       information("Assets loaded");
-
    }
 
    //
@@ -429,16 +429,16 @@ void asset_manager::initialize_asset_manager(graphics3d::engine *pengine)
    //
    // }
 
-//
-//    ::graphics3d::renderable * asset_manager::get_renderable(
-//    const ::scoped_string &name
-//    )
-//    {
-//
-// return nullptr;
-//
-//    }
-//
+   //
+   //    ::graphics3d::renderable * asset_manager::get_renderable(
+   //    const ::scoped_string &name
+   //    )
+   //    {
+   //
+   // return nullptr;
+   //
+   //    }
+   //
 
    //
    // ::pointer<sandbox_object_model> asset_manager::loadObjModel(

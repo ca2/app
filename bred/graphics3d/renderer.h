@@ -5,7 +5,7 @@
 // #include "bred/graphics3d/renderer.h"
 // //#include "SceneFoundry/graphics3d/render_system_i.h"
 // //#include "SceneFoundry/graphics3d/asset_provider_i.h"
-// // #include "SceneFoundry/graphics3d/render_systems/object_render_system.h"
+// // #include "SceneFoundry/graphics3d/render_systems/wavefront_obj_render_system.h"
 // // #include "SceneFoundry/graphics3d/render_systems/gltf_render_system.h"
 // // #include "SceneFoundry/graphics3d/render_systems/skybox_ibl_render_system.h"
 // // #include "SceneFoundry/graphics3d/render_systems/point_light_render_system.h"

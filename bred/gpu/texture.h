@@ -34,6 +34,7 @@ namespace gpu
       ::pointer < ::gpu::renderer >       m_pgpurenderer;
       //::pointer < ::gpu::render_target >  m_pgpurendertarget;
       ::int_rectangle                     m_rectangleTarget;
+      int                                 m_mipLevels;
       bool                                m_bTransferDst;
       bool                                m_bTransferSrc;
       bool                                m_bCpuRead;

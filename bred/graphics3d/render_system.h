@@ -4,7 +4,7 @@
 namespace graphics3d
 {
 
-   class render_system :
+   class CLASS_DECL_BRED render_system :
       virtual public ::particle
    {
    public:
@@ -22,6 +22,10 @@ namespace graphics3d
       ~render_system() override;
 
       virtual void initialize_render_system(::graphics3d::engine* pengine);
+
+
+
+      
 
       // virtual void on_prepare();
       //

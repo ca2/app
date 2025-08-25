@@ -51,8 +51,9 @@ namespace graphics3d
 
    using scene_object_map = ::string_map<::pointer<scene_object>>;
 
-
-   class object_render_system;
+   
+   class gltf_render_system;
+   class wavefront_obj_render_system;
    class point_light_render_system;
    class skybox_ibl_render_system;
    class skybox_render_system;

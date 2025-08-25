@@ -33,7 +33,9 @@ namespace prodevian
 
       //void initialize_immersion_layer(::graphics3d::IWindowInput * pinput, ::graphics3d::asset_manager & assets);
 
-      void initialize_immersion_layer(::graphics3d::engine * pengine, ::graphics3d::asset_manager * passetmanager) override;
+      //void initialize_immersion_layer(::graphics3d::engine * pengine, ::graphics3d::asset_manager * passetmanager) override;
+
+      void initialize_immersion_layer(::graphics3d::engine *pengine) override;
 
       void on_initialize_immersion_layer() override;
       //void onInit() override;
@@ -53,7 +55,7 @@ namespace prodevian
 
          //pscene->initialize_scene(m_pengine);
 
-         pscene->m_pengine = m_pengine;
+         pscene->m_pimmersionlayer = this;
 
          m_pengine->m_pimmersionlayer->add_scene(pscene);
 

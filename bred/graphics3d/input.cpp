@@ -165,40 +165,47 @@ namespace graphics3d
 
       auto pcamera = pscene->m_pcameraCurrent;
 
-      // limit pitch values between about +/- 85ish degrees
-      _yaw = pcamera->m_fYaw;
-      _pitch = pcamera->m_fPitch;
-
-      if (_yaw > glm::two_pi<float>()) _yaw -= glm::two_pi<float>();
-      if (_yaw < 0.0f) _yaw += glm::two_pi<float>();
-
-      _pitch = glm::clamp(_pitch, -1.5f, 1.5f);
-
-      if (m_b_001AbsoluteMousePosition)
+      if (pcamera)
       {
 
-         _yaw = (float) xOffset;
-         _pitch = (float)yOffset;
+         // limit pitch values between about +/- 85ish degrees
+         _yaw = pcamera->m_fYaw;
+         _pitch = pcamera->m_fPitch;
+
+         if (_yaw > glm::two_pi<float>())
+            _yaw -= glm::two_pi<float>();
+         if (_yaw < 0.0f)
+            _yaw += glm::two_pi<float>();
+
+         _pitch = glm::clamp(_pitch, -1.5f, 1.5f);
+
+         if (m_b_001AbsoluteMousePosition)
+         {
+
+            _yaw = (float)xOffset;
+            _pitch = (float)yOffset;
+         }
+         else
+         {
+
+            _yaw += (float)xOffset;
+            _pitch += (float)yOffset;
+         }
+
+         // Optional: wrap yaw
+         if (_yaw > glm::two_pi<float>())
+            _yaw -= glm::two_pi<float>();
+         if (_yaw < 0.0f)
+            _yaw += glm::two_pi<float>();
+
+         // Clamp pitch to avoid flipping
+         _pitch = glm::clamp(_pitch, -1.5f, 1.5f);
+
+
+         pcamera->m_fPitch = _pitch;
+         pcamera->m_fYaw = _yaw;
 
       }
-      else
-      {
-
-         _yaw += (float)xOffset;
-         _pitch += (float)yOffset;
-
-      }
-
-      // Optional: wrap yaw
-      if (_yaw > glm::two_pi<float>()) _yaw -= glm::two_pi<float>();
-      if (_yaw < 0.0f) _yaw += glm::two_pi<float>();
-
-      // Clamp pitch to avoid flipping
-      _pitch = glm::clamp(_pitch, -1.5f, 1.5f);
-
-
-      m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->m_fPitch = _pitch;
-      m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->m_fYaw = _yaw;
 
    }
 
@@ -232,40 +239,51 @@ namespace graphics3d
 
       //auto& transform = m_pengine->m_transform;
 
-      float yaw = m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->m_fYaw;
-      const glm::vec3 forwardDir{ cos(yaw), 0.f, sin(yaw) };
-      const glm::vec3 rightDir{ forwardDir.z, 0.f, -forwardDir.x };
-      const glm::vec3 upDir{ 0.f, -1.f, 0.f };
+      auto pcamera = m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent;
 
-      auto pinput = m_pengine->m_pinput;
-
-      glm::vec3 moveDir{ 0.f };
+      if (pcamera)
       {
-         using namespace ::graphics3d;
-         if (pinput->key(e_key_moveForward) == ::user::e_key_state_pressed) moveDir += forwardDir;
-         if (pinput->key(e_key_moveBackward) == ::user::e_key_state_pressed) moveDir -= forwardDir;
-         if (pinput->key(e_key_moveRight) == ::user::e_key_state_pressed) moveDir += rightDir;
-         if (pinput->key(e_key_moveLeft) == ::user::e_key_state_pressed) moveDir -= rightDir;
-         if (pinput->key(e_key_moveUp) == ::user::e_key_state_pressed) moveDir += upDir;
-         if (pinput->key(e_key_moveDown) == ::user::e_key_state_pressed) moveDir -= upDir;
 
-         if (glm::dot(moveDir, moveDir) > std::numeric_limits<float>::epsilon())
+         float yaw = pcamera->m_fYaw;
+         const glm::vec3 forwardDir{cos(yaw), 0.f, sin(yaw)};
+         const glm::vec3 rightDir{forwardDir.z, 0.f, -forwardDir.x};
+         const glm::vec3 upDir{0.f, -1.f, 0.f};
+
+         auto pinput = m_pengine->m_pinput;
+
+         glm::vec3 moveDir{0.f};
          {
+            using namespace ::graphics3d;
+            if (pinput->key(e_key_moveForward) == ::user::e_key_state_pressed)
+               moveDir += forwardDir;
+            if (pinput->key(e_key_moveBackward) == ::user::e_key_state_pressed)
+               moveDir -= forwardDir;
+            if (pinput->key(e_key_moveRight) == ::user::e_key_state_pressed)
+               moveDir += rightDir;
+            if (pinput->key(e_key_moveLeft) == ::user::e_key_state_pressed)
+               moveDir -= rightDir;
+            if (pinput->key(e_key_moveUp) == ::user::e_key_state_pressed)
+               moveDir += upDir;
+            if (pinput->key(e_key_moveDown) == ::user::e_key_state_pressed)
+               moveDir -= upDir;
 
-            m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->m_locationPosition += m_fMoveSpeed * m_pengine->dt() * glm::normalize(moveDir);
+            if (glm::dot(moveDir, moveDir) > std::numeric_limits<float>::epsilon())
+            {
 
+               m_pengine->m_pimmersionlayer->m_pscene->m_pcameraCurrent->m_locationPosition +=
+                  m_fMoveSpeed * m_pengine->dt() * glm::normalize(moveDir);
+            }
+
+            if (pinput->key(e_key_Exit) == ::user::e_key_state_pressed)
+            {
+
+               m_pengine->gpu_context()->set_finish();
+            }
          }
-
-         if (pinput->key(e_key_Exit) == ::user::e_key_state_pressed)
-         {
-
-            m_pengine->gpu_context()->set_finish();
-
-         }
-
       }
 
    }
+
 
    ::user::enum_key_state  input::get_key_state(::user::e_key ekey)
    {

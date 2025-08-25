@@ -362,7 +362,8 @@ namespace gpu
       virtual ::pointer<::graphics3d::renderable> load_model(const ::gpu::renderable_t & renderable);
       virtual ::pointer<::gpu::texture> load_cube_map(
          const ::scoped_string & scopedstrName,
-         const ::file::path & path);
+         const ::file::path & path, 
+         bool b32);
 
 
       // // ::pointer<::graphics3d::renderable> loadGLTFmodel(
@@ -394,12 +395,21 @@ namespace gpu
 
       virtual ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t & model);
 
+
+      /// @brief generatePrefilteredEnvMap
+      /// @param environmentCubeExisting 
+      /// @param prenderableSkybox 
+      /// @return 
+      virtual ::pointer<::gpu::texture> generatePrefilteredEnvMap(
+         ::gpu::texture *environmentCubeExisting,
+         ::graphics3d::renderable *prenderableSkybox);
+
       /// generate irradianceCube
       /// @return irradianceCube
       virtual ::pointer < ::gpu::texture > generateIrradianceMap(
 //         ::gpu::texture * irradianceCube,
          ::gpu::texture * environmentCube,
-         ::gpu::model_buffer * pmodelbufferSkybox);
+         ::graphics3d::renderable * prenderableSkybox);
       // ::pointer<::gpu::texture> loadCubemap(
       //    const ::scoped_string& name,
       //    const ::scoped_string& ktxFilename,
@@ -411,6 +421,8 @@ namespace gpu
       /// generate lutBrdf
       /// @return lutBrdf
       virtual ::pointer < ::gpu::texture > generateBRDFlut();
+
+
 
       //::pointer < ::graphics3d::renderable> create_tinyobj_renderable(const ::file::path& path);
 

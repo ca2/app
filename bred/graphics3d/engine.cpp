@@ -247,21 +247,33 @@ namespace graphics3d
 
       }
 
-      if (!m_pimmersionlayer->m_pscene->m_pcameraCurrent)
+      if (m_pimmersionlayer)
       {
 
-         m_pimmersionlayer->m_pscene->m_pcameraCurrent
-            = m_pimmersionlayer->m_pscene->m_pcameraScene;
+         if (m_pimmersionlayer->m_pscene)
+         {
 
+            if (!m_pimmersionlayer->m_pscene->m_pcameraCurrent)
+            {
+
+               m_pimmersionlayer->m_pscene->m_pcameraCurrent = m_pimmersionlayer->m_pscene->m_pcameraScene;
+
+            }
+
+         }
 
       }
 
-        
-      m_transform.m_vec3Translation = pcameraScene->m_locationPosition;
+      if (pcameraScene)
+      {
 
-      m_transform.m_vec3Rotation.x = pcameraScene->m_fPitch;
+         m_transform.m_vec3Translation = pcameraScene->m_locationPosition;
 
-      m_transform.m_vec3Rotation.y = pcameraScene->m_fYaw;
+         m_transform.m_vec3Rotation.x = pcameraScene->m_fPitch;
+
+         m_transform.m_vec3Rotation.y = pcameraScene->m_fYaw;
+
+      }
 
          //VkcCamera camera(glm::vec3(0.0f, 2.0f, -10.0f), .0f, 0.0f);
 
@@ -286,47 +298,50 @@ namespace graphics3d
 
       //m_pcamera->setViewYXZ(m_transform.translation, m_transform.rotation);
 
+      if (pcameraScene)
+      {
 
-      float aspect = m_pusergraphics3d->getAspectRatio();
+         float aspect = m_pusergraphics3d->getAspectRatio();
 
-      pcameraScene->setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 100.f);
+         pcameraScene->setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 100.f);
 
-      pcameraScene->UpdateCameraVectors();
-
-      //if (m_fYScale < 0)
-      //{
-
-      //   m_pcamera->m_matrixImpact = glm::lookAtRH(m_pcamera->m_locationPosition,
-      //      m_pcamera->m_locationPosition + m_pcamera->m_poleFront,
-      //      m_pcamera->m_poleWorldUp);
-
-      //}
-      //else
-      //{
-
-      glm::mat4 matrixImpact;
-          if (m_fYScale < 0)
-          {
-             matrixImpact=glm::lookAtRH(pcameraScene->m_locationPosition,
-                pcameraScene->m_locationPosition + pcameraScene->m_poleFront,
-                pcameraScene->m_poleWorldUp);
-             //matrixImpact[2][0] = -matrixImpact[2][0];
-             //matrixImpact[2][1] = -matrixImpact[2][1];
-             //matrixImpact[2][2] = -matrixImpact[2][2];
-             //matrixImpact[2][3] = -matrixImpact[2][3];
-          }
-          else
-          {
-             matrixImpact=glm::lookAtRH(pcameraScene->m_locationPosition,
-                pcameraScene->m_locationPosition + pcameraScene->m_poleFront,
-                pcameraScene->m_poleWorldUp);
+         pcameraScene->UpdateCameraVectors();
 
 
-          }
-             pcameraScene->m_matrixImpact = matrixImpact;
-      //}
+         // if (m_fYScale < 0)
+         //{
 
-      pcameraScene->m_matrixAntImpact = glm::inverse(pcameraScene->m_matrixImpact);
+         //   m_pcamera->m_matrixImpact = glm::lookAtRH(m_pcamera->m_locationPosition,
+         //      m_pcamera->m_locationPosition + m_pcamera->m_poleFront,
+         //      m_pcamera->m_poleWorldUp);
+
+         //}
+         // else
+         //{
+
+         glm::mat4 matrixImpact;
+         if (m_fYScale < 0)
+         {
+            matrixImpact =
+               glm::lookAtRH(pcameraScene->m_locationPosition,
+                             pcameraScene->m_locationPosition + pcameraScene->m_poleFront, pcameraScene->m_poleWorldUp);
+            // matrixImpact[2][0] = -matrixImpact[2][0];
+            // matrixImpact[2][1] = -matrixImpact[2][1];
+            // matrixImpact[2][2] = -matrixImpact[2][2];
+            // matrixImpact[2][3] = -matrixImpact[2][3];
+         }
+         else
+         {
+            matrixImpact =
+               glm::lookAtRH(pcameraScene->m_locationPosition,
+                             pcameraScene->m_locationPosition + pcameraScene->m_poleFront, pcameraScene->m_poleWorldUp);
+         }
+         pcameraScene->m_matrixImpact = matrixImpact;
+         //}
+
+         pcameraScene->m_matrixAntImpact = glm::inverse(pcameraScene->m_matrixImpact);
+
+      }
 
    }
 
@@ -615,7 +630,11 @@ namespace graphics3d
       m_rectanglePlacementNew = rectanglePlacement;
 
       get_gpu_context()->_send([this, rectanglePlacement]()
-         {
+      {
+
+            auto pgpurenderer = gpu_context()->get_gpu_renderer();
+
+            pgpurenderer->on_resize(rectanglePlacement.size());
 
             m_pusergraphics3d->on_load_engine();
 

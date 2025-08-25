@@ -2057,8 +2057,9 @@ return {};
 
 
    ::pointer<::gpu::texture> context::load_cube_map(
-   const ::scoped_string & scopedstrName,
-   const ::file::path & path)
+      const ::scoped_string & scopedstrName,
+      const ::file::path & path, 
+      bool b32)
    {
 
 return {};
@@ -2084,10 +2085,19 @@ return {};
    }
 
 
+   ::pointer<::gpu::texture> context::generatePrefilteredEnvMap(
+      ::gpu::texture *environmentCubeExisting,
+      ::graphics3d::renderable *prenderableSkybox)
+   {
+
+      return {};
+
+   }
+
+
    ::pointer < ::gpu::texture > context::generateIrradianceMap(
 //         ::gpu::texture * irradianceCube,
-   ::gpu::texture * environmentCube,
-   ::gpu::model_buffer * pmodelbufferSkybox)
+   ::gpu::texture * environmentCube, ::graphics3d::renderable *prenderableSkybox)
    {
 
       return {};

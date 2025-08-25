@@ -23,13 +23,19 @@ namespace graphics3d
 	   ~immersion_layer() override;
 
 
-	   virtual void initialize_immersion_layer(::graphics3d::engine * pengine, ::graphics3d::asset_manager * passetmanager);
+	   //virtual void initialize_immersion_layer(::graphics3d::engine * pengine, ::graphics3d::asset_manager * passetmanager);
+
+      virtual void initialize_immersion_layer(::graphics3d::engine *pengine);
 
 	   virtual void on_initialize_immersion_layer();
 
 	   virtual void add_scene(::graphics3d::scene* pscene);
 
 	   virtual void set_current_scene(::graphics3d::scene* pscene);
+
+      virtual ::graphics3d::camera *camera();
+
+      virtual ::graphics3d::asset_manager *asset_manager();
 
 		virtual ::pointer < ::graphics3d::scene > create_main_scene();
 		// virtual void onUpdate(float deltaTime);

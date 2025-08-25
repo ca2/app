@@ -234,6 +234,34 @@ bool file_context::exists(const ::file::path & pathParam)
 ::file::enum_type file_context::safe_get_type(const ::file::path & path, ::payload * pvarQuery)
 {
 
+   if (path.begins("zipresource://"))
+   {
+
+      ::file::path pathInZip(path);
+
+      pathInZip.begins_eat("zipresource://");
+
+         ::folder *pfolder = nullptr;
+
+         {
+
+            _synchronous_lock synchronouslock(this->synchronization());
+
+            pfolder = resource_folder();
+
+            if (::is_null(pfolder))
+            {
+
+               return ::file::e_type_doesnt_exist;
+            }
+         }
+
+         _synchronous_lock synchronouslock(pfolder->synchronization());
+
+
+         return pfolder->type(pathInZip);
+   }
+
    if (path.begins("http://") || path.begins("https://"))
    {
 

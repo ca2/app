@@ -32,7 +32,7 @@ namespace graphics3d
    }
 
 
-	class CLASS_DECL_BRED object_render_system :
+	class CLASS_DECL_BRED wavefront_obj_render_system :
 		virtual public ::graphics3d::render_system
 	{
 	public:
@@ -46,12 +46,12 @@ namespace graphics3d
 		//::pointer < ::gpu::shader > m_pshader;
 		///	VkPipelineLayout m_pipelineLayout;
 
-		//object_render_system(::graphics3d::device *pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout);
-		object_render_system();
-		~object_render_system();
+		//wavefront_obj_render_system(::graphics3d::device *pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout);
+		wavefront_obj_render_system();
+		~wavefront_obj_render_system();
 
-		//object_render_system(const object_render_system&) = delete;
-		//object_render_system& operator=(const object_render_system&) = delete;
+		//wavefront_obj_render_system(const wavefront_obj_render_system&) = delete;
+		//wavefront_obj_render_system& operator=(const wavefront_obj_render_system&) = delete;
 
 		// void init(
 		// 	::graphics3d::device * pdevice,

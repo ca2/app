@@ -22,10 +22,10 @@ namespace file
 
 
       exception(const ::e_status& estatus, const ::error_code& errorcode, const ::file::path& path, ::file::e_open eopen = {}, const ::scoped_string& strMessage = nullptr, const ::scoped_string& scopedstrDetails = nullptr);
-   exception(const ::file::exception& exception);
-   ~exception() override;
+      exception(const ::file::exception& exception);
+      ~exception() override;
 
-   ::pointer < ::subparticle > clone() override;
+      ::pointer < ::subparticle > clone() override;
 
 //      virtual ~exception();
 //

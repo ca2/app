@@ -3,6 +3,7 @@
 #include "point_light.h"
 #include "skybox.h"
 #include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/immersion_layer.h"
 #include "bred/graphics3d/scene.h"
 #include "bred/prodevian/actor.h"
 #include "openssl/ct.h"
@@ -50,10 +51,10 @@ namespace graphics3d
 
 
 
-   void scene::initialize_scene(::graphics3d::engine * pengine)
+   void scene::initialize_scene(::graphics3d::immersion_layer * pimmersionlayer)
    {
 
-      m_pengine = pengine;
+      m_pimmersionlayer = pimmersionlayer;
       //::graphics3d::scene::initialize_scene(pengine);
 
       auto pprodevianactor = øcreate_new<::prodevian::actor>();
@@ -114,6 +115,39 @@ namespace graphics3d
    }
 
 
+   void scene::load_lights(const ::property_set & objJson)
+   {
+
+      
+            auto count = objJson.get("count", 1);
+      auto radius = objJson.get("radius", 4.8f);
+      auto height = objJson.get("height", -2.5f);
+      auto intensity = objJson.get("intensity", 15.8f);
+      const auto &colorsJson = objJson["colors"];
+
+      for (int i = 0; i < count; ++i)
+      {
+
+         float angle = i * glm::two_pi<float>() / count;
+
+         glm::vec3 pos = {radius * std::cos(angle), height, radius * std::sin(angle)};
+
+         auto colorArray = colorsJson[i % colorsJson.array_get_count()];
+         auto color = ::argb(1.0f, colorArray[0].as_float(), colorArray[1].as_float(), colorArray[2].as_float());
+
+         auto ppointlight = this->create_point_light(intensity, 0.1f, color);
+
+         ppointlight->transform().m_vec3Translation = pos;
+
+         information("Placed point light at ({}, {}, {})", pos.x, pos.y, pos.z);
+
+         // m_mapSceneObject.set_at(ppointlight->m_strName, std::move(ppointlight));
+      }
+
+
+   }
+
+
    void scene::loadSceneFile(const ::scoped_string &fileName)
    {
 
@@ -129,7 +163,7 @@ namespace graphics3d
 
 
       // Parse skybox cubemap name (if present)
-      if (sceneJson.property_reference().has_property("skybox"))
+      if (sceneJson.has_property("skybox"))
       {
          m_strSkyboxCubemapName = sceneJson["skybox"].as_string();
          information("Scene specifies skybox: '{}'", m_strSkyboxCubemapName);
@@ -158,6 +192,8 @@ namespace graphics3d
             glm::radians(rot[2])
          };
 
+         m_bInitialCameraLoaded = true;
+
          information("Camera position: ({}, {}, {}), rotation (deg): ({}, {}, {})",
                      pos[0], pos[1], pos[2], rot[0], rot[1], rot[2]);
       }
@@ -171,52 +207,30 @@ namespace graphics3d
 
          if (objJson.get("special", "") == "lights")
          {
-            auto count = objJson.get("count", 1);
-            auto radius = objJson.get("radius", 4.8f);
-            auto height = objJson.get("height", -2.5f);
-            auto intensity = objJson.get("intensity", 15.8f);
-            const auto &colorsJson = objJson["colors"];
 
-            for (int i = 0; i < count; ++i)
-            {
- float angle = i * glm::two_pi<float>() / count;
-
-               glm::vec3 pos = {
-                  radius * std::cos(angle),
-                  height,
-                  radius * std::sin(angle)
-               };
-
-               auto colorArray = colorsJson[i % colorsJson.array_get_count()];
-               auto color = ::argb(
-                  1.0f,
-                  colorArray[0].as_float(),
-                  colorArray[1].as_float(),
-                  colorArray[2].as_float());
-
-               auto ppointlight = this->create_point_light(intensity, 0.1f, color);
-
-               ppointlight->transform().m_vec3Translation = pos;
-
-               information("Placed point light at ({}, {}, {})", pos.x, pos.y, pos.z);
-
-               //m_mapSceneObject.set_at(ppointlight->m_strName, std::move(ppointlight));
-
-            }
+            load_lights(objJson);
 
             continue; // Skip normal parsing for this object
+
          }
 
          ::string strModelName;
 
          strModelName = objJson["model"].as_string();
 
-         auto prenderable = m_passetmanager->get_renderable(strModelName);
+         ::pointer<::graphics3d::renderable> prenderable;
 
-         if (!prenderable)
+         if (strModelName.has_character())
          {
 
-            throw ::exception(error_not_found, "Model not found in cache: " + strModelName);
+            prenderable = m_pimmersionlayer->m_passetmanager->get_renderable(strModelName);
+
+            if (!prenderable)
+            {
+
+               throw ::exception(error_not_found, "Model not found in cache: " + strModelName);
+
+            }
 
          }
 
@@ -257,6 +271,8 @@ namespace graphics3d
 
             psceneobject = this->create_scene_object();
 
+            psceneobject->m_strName = strModelName;
+
             m_mapSceneObject.set_at(psceneobject->m_strName, psceneobject);
 
          }
@@ -290,6 +306,26 @@ namespace graphics3d
 
 
          // Store in map
+
+      }
+
+      if (m_bInitialCameraLoaded)
+      {
+
+         auto pcameraLoaded = øcreate_new<::graphics3d::camera>();
+
+         pcameraLoaded->m_pengine = m_pimmersionlayer->m_pengine;
+
+         //pcameraDefault->m_pengine = m_pimmersionlayer->m_pengine;
+
+         pcameraLoaded->m_locationPosition = m_initialCameraPosition;
+
+         pcameraLoaded->m_fPitch = m_initialCameraRotation.x;
+
+         pcameraLoaded->m_fYaw = m_initialCameraRotation.y;
+
+         m_pcameraDefault = pcameraLoaded;
+
 
       }
 
@@ -360,7 +396,39 @@ namespace graphics3d
    camera  * scene::camera()
    {
 
-      return m_pcameraCurrent;
+      if (m_pcameraCurrent)
+      {
+
+         return m_pcameraCurrent;
+      }
+
+      auto pimmersion = m_pimmersionlayer;
+
+      if (pimmersion)
+      {
+
+         auto pcameraImmersion = pimmersion->camera();
+
+         if (pcameraImmersion)
+         {
+
+            return pcameraImmersion;
+
+         }
+
+      }
+
+      auto pcameraScene = scene_camera();
+
+      if (pcameraScene)
+      {
+
+         return pcameraScene;
+
+      }
+
+      return nullptr;
+
       // if (m_p.empty())
       // {
       //    throw std::runtime_error("no players available to get camera from");
@@ -373,6 +441,21 @@ namespace graphics3d
       // }
       //
       // return player->getCamera();
+   }
+
+
+   class camera * scene::scene_camera()
+   {
+
+      if (!m_pcameraScene)
+      {
+
+         m_pcameraScene = get_default_camera();
+
+      }
+
+      return m_pcameraScene;
+
    }
 
 
@@ -419,7 +502,7 @@ namespace graphics3d
    ::pointer < ::graphics3d::scene_object > scene::_scene_object(const ::scoped_string & scopedstr, const ::file::path & path)
    {
 
-      auto pgpucontext = m_pengine->gpu_context();
+      auto pgpucontext = m_pimmersionlayer->m_pengine->gpu_context();
 
       ::gpu::renderable_t model;
 
@@ -507,7 +590,7 @@ namespace graphics3d
 
          m_bInitialized = true;
 
-         initialize_scene(pgpucontext->m_pengine);
+         initialize_scene(m_pimmersionlayer);
 
       }
 

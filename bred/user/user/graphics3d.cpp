@@ -182,9 +182,19 @@ namespace user
       m_pengine->m_pinput->m_fMoveSpeed = 3.f;
       m_pengine->m_pinput->m_fLookSpeed =  1.5f;
 
-      m_pengine->m_pimmersionlayer = create_immersion();
+      auto pgpucontextEngine = m_pengine->gpu_context();
+
+      pgpucontextEngine->m_pengine = m_pengine;
+
+      auto pimmersion = create_immersion();
+
+      pimmersion->initialize_immersion_layer(m_pengine);
+
+      m_pengine->m_pimmersionlayer = pimmersion;
 
       m_pengine->m_pimmersionlayer->m_pengine = m_pengine;
+
+      m_pengine->m_pimmersionlayer->m_passetmanager->preloadGlobalAssets();
 
       auto psceneMain = m_pengine->m_pimmersionlayer->create_main_scene();
 

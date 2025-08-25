@@ -403,7 +403,7 @@
     <ClInclude Include="graphics3d\renderer.h" />
     <ClInclude Include="graphics3d\render_system.h" />
     <ClInclude Include="graphics3d\render_systems\gltf_render_system.h" />
-    <ClInclude Include="graphics3d\render_systems\object_render_system.h" />
+    <ClInclude Include="graphics3d\render_systems\wavefront_obj_render_system.h" />
     <ClInclude Include="graphics3d\render_systems\point_light_render_system.h" />
     <ClInclude Include="graphics3d\render_systems\skybox_ibl_render_system.h" />
     <ClInclude Include="graphics3d\render_systems\skybox_render_system.h" />
@@ -523,7 +523,7 @@
     <ClCompile Include="graphics3d\renderer.cpp" />
     <ClCompile Include="graphics3d\render_system.cpp" />
     <ClCompile Include="graphics3d\render_systems\gltf_render_system.cpp" />
-    <ClCompile Include="graphics3d\render_systems\object_render_system.cpp" />
+    <ClCompile Include="graphics3d\render_systems\wavefront_obj_render_system.cpp" />
     <ClCompile Include="graphics3d\render_systems\point_light_render_system.cpp" />
     <ClCompile Include="graphics3d\render_systems\skybox_ibl_render_system.cpp" />
     <ClCompile Include="graphics3d\render_systems\skybox_render_system.cpp" />

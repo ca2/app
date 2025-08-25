@@ -1,6 +1,6 @@
 #include "framework.h"
 // obj_render_system.cpp
-#include "object_render_system.h"
+#include "wavefront_obj_render_system.h"
 //#include "pipeline.h"
 #include "bred/graphics3d/engine.h"
 //#include "port/graphics/freetype/include/freetype/internal/fttrace.h"
@@ -31,18 +31,18 @@ namespace graphics3d
 		//int textureIndex;
 	};
 
-	// object_render_system::object_render_system(graphics3d::device *pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
+	// wavefront_obj_render_system::wavefront_obj_render_system(graphics3d::device *pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
 	// 	: m_pgpudevice(pdevice)//, m_globalSetLayout(globalSetLayout)
 	// {
 	//
 	// }
-	object_render_system::object_render_system()
+	wavefront_obj_render_system::wavefront_obj_render_system()
 //		: m_pgpudevice(pdevice)//, m_globalSetLayout(globalSetLayout)
 	{
 
 	}
 
-	// void object_render_system::init(
+	// void wavefront_obj_render_system::init(
 	// 	graphics3d::device * pdevice,
 	// 	VkRenderPass renderPass,
 	// 	VkDescriptorSetLayout globalSetLayout,
@@ -55,13 +55,13 @@ namespace graphics3d
 	// 	createPipeline(renderPass);
 	// }
 
-	object_render_system::~object_render_system()
+	wavefront_obj_render_system::~wavefront_obj_render_system()
 	{
 		//vkDestroyPipelineLayout(m_pgpudevice->device(), m_pipelineLayout, nullptr);
 	}
 
 
-	// void object_render_system::on_render()
+	// void wavefront_obj_render_system::on_render()
 	// {
 	// 	//m_ppipeline->bind(frame.m_pcommandbuffer);
 	// 	//m_pshader->bind(pframe->getCommandBuffer());
@@ -122,7 +122,7 @@ namespace graphics3d
 	// }
 	//
 
-	// void object_render_system::createPipelineLayout(VkDescriptorSetLayout globalSetLayout) {
+	// void wavefront_obj_render_system::createPipelineLayout(VkDescriptorSetLayout globalSetLayout) {
 	//
 	// 	VkPushConstantRange pushConstantRange{};
 	// 	pushConstantRange.stageFlags = VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT;
@@ -147,7 +147,7 @@ namespace graphics3d
 	// 	}
 	// }
 
-	// void object_render_system::createPipeline(VkRenderPass renderPass)
+	// void wavefront_obj_render_system::createPipeline(VkRenderPass renderPass)
 	// {
 	// 	ASSERT(m_pipelineLayout != nullptr && "Cannot create pipeline before pipeline layout");
 	//
@@ -170,7 +170,7 @@ namespace graphics3d
 
 
 
-	void object_render_system::initialize_render_system(::graphics3d::engine* pengine)
+	void wavefront_obj_render_system::initialize_render_system(::graphics3d::engine* pengine)
 	{
 
 		::graphics3d::render_system::initialize_render_system(pengine);
@@ -178,7 +178,7 @@ namespace graphics3d
 	}
 
 
-	void object_render_system::on_prepare(::gpu::context* pgpucontext)
+	void wavefront_obj_render_system::on_prepare(::gpu::context* pgpucontext)
 	{
 
 		auto prenderer = pgpucontext->m_pgpurenderer;
@@ -199,14 +199,14 @@ namespace graphics3d
 	}
 
 
-	void object_render_system::on_update(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
+	void wavefront_obj_render_system::on_update(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
 	{
 
 
 	}
 
 
-	void object_render_system::on_render(::gpu::context * pgpucontext, ::graphics3d::scene* pscene)
+	void wavefront_obj_render_system::on_render(::gpu::context * pgpucontext, ::graphics3d::scene* pscene)
 	{
 
 		m_pshader->bind(pgpucontext->current_target_texture(::gpu::current_frame()));
@@ -232,7 +232,8 @@ namespace graphics3d
 
 		   auto prenderable = obj->renderable();
 
-			if (prenderable)
+			if (prenderable && prenderable->m_erenderabletype ==
+            ::gpu::e_renderable_type_wavefront_obj)
 			{
 
 				//auto pszPath = obj->m_strPath.c_str();

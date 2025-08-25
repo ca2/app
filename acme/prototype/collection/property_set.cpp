@@ -3085,7 +3085,7 @@ CLASS_DECL_ACME ::pointer < ::property_set > create_network_arguments_property_s
 
 #undef __IMPLEMENT_GET
 #define __IMPLEMENT_GET(payloadDefault, as_getter) \
-auto iIndexOfPayloadInPropertySet = this->index_of_payload(atom); \
+auto iIndexOfPayloadInPropertySet = this->index_of(atom); \
                                        \
 if (iIndexOfPayloadInPropertySet < 0)                                       \
 {                                       \

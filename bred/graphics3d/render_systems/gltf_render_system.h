@@ -29,6 +29,11 @@ namespace graphics3d
 	public:
 
 
+
+      //VkDescriptorSetLayout m_globalSetLayout;
+      //VkDescriptorSetLayout m_iblSetLayout;
+      //VkDescriptorSet m_iblDescriptorSet;
+
 		//s::pointer <::graphics3d::device > m_pgpudevice;
 
 		// VkDescriptorSetLayout m_globalSetLayout;
@@ -53,6 +58,8 @@ namespace graphics3d
 		//gltf_render_system(::graphics3d::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout, IAssetProvider& assets);
 		gltf_render_system();
 		~gltf_render_system();
+
+      void on_prepare(::gpu::context *pgpucontext) override;
 
 		// gltf_render_system(const gltf_render_system&) = delete;
 		// gltf_render_system& operator=(const gltf_render_system&) = delete;

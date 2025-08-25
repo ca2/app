@@ -93,6 +93,40 @@ namespace image
    }
 
 
+   unsigned char * image_context::like_stbi_load_from_memory(
+      const unsigned char * buffer, int len, int * x, int * y,
+                                               int * channels_in_file, int desired_channels)
+   {
+
+      auto pmemoryfile = create_memory_file({buffer, len});
+
+      auto pimage = this->image_from_file(pmemoryfile);
+
+      *x = pimage->width();
+
+      *y = pimage->height();
+
+      *channels_in_file = 4;
+
+      int target_scan = *x * 4;
+
+      auto pimage32 = (image32_t *) memory_allocate( *y * target_scan);
+
+      pimage32->copy({*x, *y}, target_scan, pimage);
+
+      return (unsigned char *) pimage32;
+
+   }
+
+
+   void image_context::like_stbi_image_free(void * data)
+   {
+
+      memory_free(data);
+
+   }
+
+
    void image_context::on_destroy()
    {
 
@@ -275,6 +309,14 @@ namespace image
 
    }
 
+
+   ::image::image_pointer
+   image_context::image_from_file(const ::payload &payloadFile,                                 const ::image::load_options &loadoptions)
+   {
+
+      return get_image(payloadFile, loadoptions);
+
+   }
 
 
    ::image::image_pointer image_context::_load_image_from_file(const ::payload& payloadFile, const ::payload& varOptions)

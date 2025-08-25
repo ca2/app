@@ -288,7 +288,7 @@
     <ClInclude Include="graphics3d\render_systems\point_light_render_system.h">
       <Filter>Header Files\graphics3d\render_systems</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\render_systems\object_render_system.h">
+    <ClInclude Include="graphics3d\render_systems\wavefront_obj_render_system.h">
       <Filter>Header Files\graphics3d\render_systems</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\render_systems\gltf_render_system.h">
@@ -545,7 +545,7 @@
     <ClCompile Include="graphics3d\render_systems\gltf_render_system.cpp">
       <Filter>Source Files\graphics3d\render_systems</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\render_systems\object_render_system.cpp">
+    <ClCompile Include="graphics3d\render_systems\wavefront_obj_render_system.cpp">
       <Filter>Source Files\graphics3d\render_systems</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\render_systems\point_light_render_system.cpp">

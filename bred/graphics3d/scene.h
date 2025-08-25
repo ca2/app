@@ -27,15 +27,16 @@ namespace graphics3d
 	   bool                                                        m_bInitialized;
 	   bool                                                        m_bLoadedScene;
 	   ::interlocked_count                                         m_interlockedcountSceneObject;
-      ::pointer < ::graphics3d::engine >                          m_pengine;
+      ::pointer < ::graphics3d::immersion_layer >                 m_pimmersionlayer;
 		//::pointer<::graphics3d::IWindowInput>							      m_pwindowinput;
-		::pointer < ::graphics3d::asset_manager >				         m_passetmanager;
+		//::pointer < ::graphics3d::asset_manager >				         m_passetmanager;
       ::pointer < ::graphics3d::camera >                          m_pcameraCurrent;
 	   ::pointer < ::graphics3d::camera >                          m_pcameraDefault;
 	   ::pointer < ::graphics3d::camera >                          m_pcameraScene;
       ::pointer_array_base<::prodevian::actor>				         m_prodevianactora;
 	   ::pointer_array_base<::graphics3d::point_light>				   m_pointlighta;
 		::graphics3d::scene_object_map                           	m_mapSceneObject;
+      bool m_bInitialCameraLoaded = false;
 		glm::vec3													            m_initialCameraPosition{ 0.f };
 		glm::vec3													            m_initialCameraRotation{ 0.f };
 
@@ -54,12 +55,15 @@ namespace graphics3d
 		// pass input so your Player can read it
 		//void initialize_scene(::graphics3d::IWindowInput * input, ::graphics3d::IAssetProvider * passetmanager) override;
 
-	   virtual void initialize_scene(::graphics3d::engine * pengine);
+	   virtual void initialize_scene(::graphics3d::immersion_layer * pimmersionlayer);
 
 
 		virtual void on_initialize_scene();                 // load models, spawn entities
 		virtual void update(float dt);        // advance all entities
 		void loadSceneFile(const ::scoped_string& fileName);
+
+
+      void load_lights(const ::property_set &objJson);
 
 	   virtual ::gpu::properties & global_ubo();
 
@@ -74,6 +78,7 @@ namespace graphics3d
 		virtual void set_sky_box(::graphics3d::skybox * pskybox);
 
 		virtual class camera *camera();
+      virtual class camera *scene_camera();
 
 	   virtual void set_default_camera(::graphics3d::camera * pgpucamera);
 	   virtual ::graphics3d::camera * get_default_camera();
@@ -114,7 +119,7 @@ namespace graphics3d
 	   //virtual ::pointer < ::graphics3d::renderable> create_tinyobj_scene_object(const ::file::path& path);
 
 
-	   //virtual ::graphics3d::object_render_system * object_render_system();
+	   //virtual ::graphics3d::wavefront_obj_render_system * wavefront_obj_render_system();
 
 
 	};

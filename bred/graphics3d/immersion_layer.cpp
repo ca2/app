@@ -26,12 +26,14 @@ namespace graphics3d
 
 
 
-   void immersion_layer::initialize_immersion_layer(::graphics3d::engine * pengine, ::graphics3d::asset_manager * passetmanager)
+   void immersion_layer::initialize_immersion_layer(::graphics3d::engine * pengine)
    {
 
-
       m_pengine = pengine;
-      m_passetmanager = passetmanager;
+
+      øconstruct_new(m_passetmanager);
+
+      m_passetmanager->initialize_asset_manager(m_pengine);
 
    }
 
@@ -57,6 +59,23 @@ namespace graphics3d
       m_pscene = pscene;
 
    }
+
+
+   ::graphics3d::camera * immersion_layer::camera()
+   {
+
+      return m_pcamera;
+
+   }
+
+
+   ::graphics3d::asset_manager * immersion_layer::asset_manager()
+   {
+
+      return m_passetmanager;
+
+   }
+
 
 
    ::pointer < ::graphics3d::scene > immersion_layer::create_main_scene()

@@ -28,7 +28,7 @@ namespace graphics3d
       ::string_map < ::pointer < ::graphics3d::renderable>>             m_mapRenderable;
       //::string_map < ::pointer < ::graphics3d::renderable>>             m_mapGltf;
 
-      ::pointer < ::gpu::model_buffer >                                 m_pgpumodelbufferSkybox;
+      //::pointer < ::gpu::model_buffer >                                 m_pgpumodelbufferSkybox;
 
       ::string_map < ::pointer<::gpu::texture>>                         m_mapTexture; // name → texture
       ::string_map < size_t>                                            m_mapTextureIndex; // name → index
@@ -112,6 +112,14 @@ namespace graphics3d
       size_t getTextureIndex(const ::scoped_string& name);
       const ::pointer_array_base<::gpu::texture>& getAllTextures();
       bool hasTexture(const ::scoped_string& name);
+
+
+      //virtual ::particle *getBRDFLUTDescriptor();
+      //virtual ::particle *getIrradianceDescriptor();
+      //virtual ::particle *getPrefilteredDescriptor();
+
+
+
 
 
       // VkDescriptorImageInfo getBRDFLUTDescriptor()    const override { return lutBrdf->GetDescriptor(); }

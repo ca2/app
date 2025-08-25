@@ -45,6 +45,9 @@ namespace graphics3d
    }
 
 
+
+
+
    void render_system::update(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
    {
 

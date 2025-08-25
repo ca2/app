@@ -79,7 +79,7 @@ namespace graphics3d
       glm::vec3 m_vec3Rotation{};
 
 
-      glm::mat4 mat4() const;
+      glm::mat4 getMatrix() const;
 
 
       glm::mat3 normalMatrix() const;

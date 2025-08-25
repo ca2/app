@@ -114,7 +114,7 @@
 //       // // push it into systems list, before we init them
 //       // //m_systems.add(std::move(skyboxSystem));
 //       //
-//       // m_systems.add(øcreate_pointer<object_render_system>(
+//       // m_systems.add(øcreate_pointer<wavefront_obj_render_system>(
 //       //    m_pgpudevice,
 //       //    rp,
 //       //    globalLayout

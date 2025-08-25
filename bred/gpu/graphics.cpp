@@ -759,7 +759,7 @@ namespace gpu
 
        //   int iFrameCount = prenderer->get_frame_count();
 
-       //   m_psetdescriptorlayoutRectangle = ::gpu_vulkan::set_descriptor_layout::Builder(m_pgpucontextCompositor)
+       //   m_psetdescriptorlayoutRectangle = ::gpu_vulkan::descriptor_set_layout::Builder(m_pgpucontextCompositor)
        //      .addBinding(0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
        //      .build();
 
@@ -779,7 +779,7 @@ namespace gpu
 
        //   int iFrameCount = prenderer->get_frame_count();
 
-       //   m_psetdescriptorlayoutRectangle = ::gpu_vulkan::set_descriptor_layout::Builder(m_pgpucontextCompositor)
+       //   m_psetdescriptorlayoutRectangle = ::gpu_vulkan::descriptor_set_layout::Builder(m_pgpucontextCompositor)
        //      .addBinding(0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
        //      .build();
 
@@ -1405,7 +1405,9 @@ namespace gpu
          float h = (float) ch.Size.y;
          // update VBO for each character
          // render glyph texture over quad
-         if (ch.m_ppixmap)
+         if (ch.m_ppixmap 
+            && ch.m_ppixmap->m_pgputexture
+            && ch.m_ppixmap->m_pgputexture->is_in_shader_sampling_state())
          {
 
 

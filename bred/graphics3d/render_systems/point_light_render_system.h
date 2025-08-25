@@ -39,7 +39,7 @@ namespace graphics3d
 
       //::pointer<::graphics3d::device> m_pgpudevice;
 
-      //VkDescriptorSetLayout m_globalSetLayout;
+      //VkDescriptorSetLayout m_pdescriptorsetlayoutUbo;
       //::pointer<::gpu::shader> m_pshader;
       //::pointer<graphics3d::pipeline> m_ppipeline;
       //VkPipelineLayout m_pipelineLayout;

@@ -331,6 +331,14 @@ namespace gpu
    }
 
 
+   bool texture::is_in_shader_sampling_state()
+   {
+
+      return true;
+
+   }
+
+
 } // namespace gpu
 
 

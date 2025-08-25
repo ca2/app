@@ -52,6 +52,7 @@ namespace gpu
 
       virtual void on_end_frame();
 
+
    };
 
 

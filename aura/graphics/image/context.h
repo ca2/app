@@ -103,6 +103,7 @@ namespace image
       image_from_file(const ::payload &payloadFile, const ::image::load_options &loadoptions = ::image::load_options());
 
 
+
       virtual ::image::icon_pointer get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
       virtual ::image::image_pointer get_image(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
       virtual ::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, const ::image::load_options & loadoptions = ::image::load_options());

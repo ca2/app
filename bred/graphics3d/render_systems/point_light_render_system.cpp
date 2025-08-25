@@ -39,7 +39,7 @@ namespace graphics3d
 
 
    // point_light_render_system::point_light_render_system(graphics3d::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
-   //     : m_pgpudevice(pdevice), m_globalSetLayout(globalSetLayout)
+   //     : m_pgpudevice(pdevice), m_pdescriptorsetlayoutUbo(globalSetLayout)
    // {
    //
    // }

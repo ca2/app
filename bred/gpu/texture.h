@@ -79,6 +79,8 @@ namespace gpu
       virtual ::string texture_type();
       virtual void set_pixels(const ::int_rectangle& rectangle, const void* data);
 
+      virtual bool is_in_shader_sampling_state();
+
    };
 
 

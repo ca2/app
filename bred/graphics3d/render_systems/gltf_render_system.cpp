@@ -18,7 +18,7 @@ namespace graphics3d
    //     IAssetProvider& assets
    // ) :
    //     m_pgpudevice(pdevice),
-   //     m_globalSetLayout(globalSetLayout),
+   //     m_pdescriptorsetlayoutUbo(globalSetLayout),
    //     m_assets(assets)
    // {
    //
@@ -42,9 +42,9 @@ namespace graphics3d
    //    graphics3d::sandbox_descriptor_pool& descriptorPool,
    //     size_t frameCount
    // ) {
-   //     m_globalSetLayout = globalSetLayout;
+   //     m_pdescriptorsetlayoutUbo = globalSetLayout;
    //
-   //     m_iblLayout = graphics3d::sandbox_descriptor_set_layout::Builder{ pdevice }
+   //     m_pdescriptorsetlayoutIbl = graphics3d::sandbox_descriptor_set_layout::Builder{ pdevice }
    //     .addBinding(0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
    //     .addBinding(1, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
    //     //.addBinding(2, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
@@ -56,11 +56,11 @@ namespace graphics3d
    //     createPipeline(renderPass);
    //
    //     // --- 2) Allocate & write per‐frame IBL descriptor sets ---
-   //     m_iblDescriptorSets.resize(frameCount);
+   //     m_vkdescriptorsetaIbl.resize(frameCount);
    //     for (uint32_t i = 0; i < frameCount; i++) {
    //         VkDescriptorSet set;
    //         descriptorPool.allocateDescriptor(
-   //             m_iblLayout->getDescriptorSetLayout(),
+   //             m_pdescriptorsetlayoutIbl->getDescriptorSetLayout(),
    //             set,
    //             /*setIndex=*/0
    //         );
@@ -69,13 +69,13 @@ namespace graphics3d
    //         auto irradianceInfo = m_assets.getIrradianceDescriptor();
    //         // auto prefilterInfo = m_assets.getPrefilteredDescriptor();
    //
-   //         graphics3d::sandbox_descriptor_writer(*m_iblLayout, descriptorPool)
+   //         graphics3d::sandbox_descriptor_writer(*m_pdescriptorsetlayoutIbl, descriptorPool)
    //             .writeImage(0, &brdfInfo)
    //             .writeImage(1, &irradianceInfo)
    //           //  .writeImage(2, &prefilterInfo)
    //             .build(set);
    //
-   //         m_iblDescriptorSets[i] = set;
+   //         m_vkdescriptorsetaIbl[i] = set;
    //     }
    //
    //
@@ -107,7 +107,7 @@ namespace graphics3d
    //         globalSetLayout,
    //         graphics3d::gltf::descriptorSetLayoutUbo,
    //         graphics3d::gltf::descriptorSetLayoutImage,
-   //         m_iblLayout->getDescriptorSetLayout()
+   //         m_pdescriptorsetlayoutIbl->getDescriptorSetLayout()
    //     };
    //
    //     VkPipelineLayoutCreateInfo pipelineLayoutInfo{};

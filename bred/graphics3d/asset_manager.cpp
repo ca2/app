@@ -319,6 +319,8 @@ namespace graphics3d
                ::string fmtStr = entry["format"].as_string("VK_FORMAT_R8G8B8A8_UNORM");
 
                auto ptexture = pgpucontext->load_sandbox_texture(name, relPath, fmtStr);
+               defer_register_texture(name, ptexture);
+
             }
          }
 

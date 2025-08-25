@@ -297,6 +297,8 @@ namespace gpu
    }
 
 
+
+
    void context::construct(::pointer < ::gpu::shader >& pgpushader)
    {
 
@@ -1327,6 +1329,8 @@ return {};
             m_pgpudevice->on_end_frame();
 
          }
+
+
 
 
    }

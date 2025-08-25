@@ -390,6 +390,9 @@
     <ClInclude Include="gpu\_types.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="graphics3d\render_systems\scene_render_system.h">
+      <Filter>Header Files\graphics3d\render_systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -601,6 +604,9 @@
     </ClCompile>
     <ClCompile Include="graphics3d\shape_factory.cpp">
       <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\render_systems\scene_render_system.cpp">
+      <Filter>Source Files\graphics3d\render_systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

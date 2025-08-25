@@ -133,8 +133,6 @@ namespace gpu
    }
 
 
-
-
    //void* frame_storage::allocate(int size)
    //{
 

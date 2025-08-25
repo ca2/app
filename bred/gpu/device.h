@@ -189,6 +189,8 @@ namespace gpu
       //virtual void swap_buffers();
 
 
+
+
       //virtual void create_window_buffer(void* pHwnd);
       //virtual void _create_window_buffer(void* pHwnd);
       //virtual void create_offscreen_buffer(const ::int_size& size);

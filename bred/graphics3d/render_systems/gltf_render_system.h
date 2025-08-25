@@ -30,13 +30,13 @@ namespace graphics3d
 
 
 
-      //VkDescriptorSetLayout m_globalSetLayout;
+      //VkDescriptorSetLayout m_pdescriptorsetlayoutUbo;
       //VkDescriptorSetLayout m_iblSetLayout;
       //VkDescriptorSet m_iblDescriptorSet;
 
 		//s::pointer <::graphics3d::device > m_pgpudevice;
 
-		// VkDescriptorSetLayout m_globalSetLayout;
+		// VkDescriptorSetLayout m_pdescriptorsetlayoutUbo;
 		// VkDescriptorSetLayout m_iblSetLayout;
 		// VkDescriptorSet m_iblDescriptorSet;
 
@@ -51,8 +51,8 @@ namespace graphics3d
 
 		::pointer <::graphics3d::asset_manager > m_passetmanager;
 
-		//::pointer<::graphics3d::sandbox_descriptor_set_layout> m_iblLayout;
-		//::array_base<VkDescriptorSet>				  m_iblDescriptorSets;
+		//::pointer<::graphics3d::sandbox_descriptor_set_layout> m_pdescriptorsetlayoutIbl;
+		//::array_base<VkDescriptorSet>				  m_vkdescriptorsetaIbl;
 
 
 		//gltf_render_system(::graphics3d::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout, IAssetProvider& assets);

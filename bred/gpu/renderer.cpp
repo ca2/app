@@ -1386,6 +1386,40 @@ namespace gpu
    ::pointer < frame > renderer::beginFrame()
    {
 
+      if (m_procedureaPostOnJustBeforeFrameNextStart.has_element())
+      {
+
+         try
+         {
+
+            for (auto & procedure : m_procedureaPostOnJustBeforeFrameNextStart)
+            {
+
+               try
+               {
+
+                  procedure();
+
+               }
+               catch (...)
+               {
+
+
+               }
+
+            }
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+         m_procedureaPostOnJustBeforeFrameNextStart.clear();
+
+      }
+
       auto pcontext = m_pgpucontext;
 
       auto pgpudevice = pcontext->m_pgpudevice;
@@ -1466,6 +1500,37 @@ namespace gpu
       m_prenderstate->on_happening(e_happening_end_frame);
 
       isFrameStarted = false;
+
+      if (m_procedureaOnAfterEndFrame.has_element())
+      {
+
+         try
+         {
+
+            for (auto &procedure: m_procedureaOnAfterEndFrame)
+            {
+               try
+               {
+
+                  procedure();
+
+               }
+               catch (...)
+               {
+
+
+               }
+            }
+
+         }
+         catch (...)
+         {
+
+
+         }
+         m_procedureaOnAfterEndFrame.clear();
+
+      }
 
       if (m_timeLast5s.elapsed() > 5_s)
       {
@@ -1639,6 +1704,26 @@ namespace gpu
       //}
 
    }
+
+
+   void renderer::post_on_after_end_frame(const ::procedure &procedure)
+   {
+
+      //_synchronous_lock synchronouslock(this->synchronization());
+
+      m_procedureaOnAfterEndFrame.add(procedure);
+
+   }
+
+
+   void renderer::post_on_just_before_frame_next_start(const ::procedure & procedure)
+   {
+
+      m_procedureaPostOnJustBeforeFrameNextStart.add(procedure);
+
+   }
+
+
 
 
 } // namespace gpu

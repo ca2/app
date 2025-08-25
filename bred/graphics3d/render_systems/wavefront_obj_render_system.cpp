@@ -32,12 +32,12 @@ namespace graphics3d
 	};
 
 	// wavefront_obj_render_system::wavefront_obj_render_system(graphics3d::device *pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
-	// 	: m_pgpudevice(pdevice)//, m_globalSetLayout(globalSetLayout)
+	// 	: m_pgpudevice(pdevice)//, m_pdescriptorsetlayoutUbo(globalSetLayout)
 	// {
 	//
 	// }
 	wavefront_obj_render_system::wavefront_obj_render_system()
-//		: m_pgpudevice(pdevice)//, m_globalSetLayout(globalSetLayout)
+//		: m_pgpudevice(pdevice)//, m_pdescriptorsetlayoutUbo(globalSetLayout)
 	{
 
 	}

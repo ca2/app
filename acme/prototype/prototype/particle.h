@@ -422,6 +422,11 @@ public:
 
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
    template<typename... Ts>
+   void debug(const std::format_string<Ts...> fmt, Ts &&...args) const
+   {
+      trace(e_trace_level_debug, fmt, ::std::forward<Ts>(args)...);
+   }
+   template<typename... Ts>
    void information(const std::format_string<Ts...> fmt, Ts&&... args) const
    {
       trace(e_trace_level_information, fmt, ::std::forward<Ts>(args)...);

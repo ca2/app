@@ -364,7 +364,9 @@ namespace gpu
          const ::scoped_string & scopedstrName,
          const ::file::path & path, 
          bool b32);
-
+      virtual ::pointer<::gpu::texture> load_sandbox_texture(const ::scoped_string &scopedstrName,
+                                                             const ::file::path &path,
+                                                             const ::scoped_string &scopedstrImageFormat);
 
       // // ::pointer<::graphics3d::renderable> loadGLTFmodel(
       // //    const ::scoped_string &name,

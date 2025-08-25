@@ -4,6 +4,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "asset_manager.h"
 #include "bred/gpu/renderable.h"
+#include "bred/gpu/texture.h"
 #include "renderable.h"
 
 #include "engine.h"
@@ -304,94 +305,120 @@ namespace graphics3d
          // }
       }
 
-      // 2) Load cubemaps *before* generating BRDF / irradiance / prefiltered maps
-      // Keep track of whether we loaded the environment cubemap used for IBL
-      ::pointer<::gpu::texture> loadedEnvironmentCubemap = nullptr;
-
-      auto &payloada2 = modelJson["cubemaps"].payload_array_reference();
-
-      for (const auto &element: payloada2)
       {
-         auto &entry = element.property_set_reference();
-         const ::string name = entry["name"];
-         const ::string path = "matter://textures/" + entry["path"].as_file_path();
 
-         // Map format string (if present) to VkFormat; default to R32G32B32A32_SFLOAT
-         ::string fmtStr = entry.get("format", "VK_FORMAT_R32G32B32A32_SFLOAT");
-         // VkFormat format = VK_FORMAT_R32G32B32A32_SFLOAT;
-         bool b32 = true;
-         if (fmtStr == "VK_FORMAT_R16G16B16A16_SFLOAT")
+         auto &payloadaTextures = modelJson["textures"].payload_array_reference();
+
+         //if (modelJson.contains("textures"))
          {
-
-            // format = VK_FORMAT_R16G16B16A16_SFLOAT;
-            b32 = false;
-         }
-         else if (fmtStr == "VK_FORMAT_R32G32B32A32_SFLOAT")
-         {
-
-            // format = VK_FORMAT_R32G32B32A32_SFLOAT;
-            b32 = true;
-         }
-         // Add more mappings here if you expect other formats
-
-         try
-         {
-            // loadCubemap() must return ::pointer<texture>
-            auto cubemap = pgpucontext->load_cube_map(name,
-                                                      path, //,
-               b32
-                                                      // format
-                                                      //  ,
-                                                      //  VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT,
-                                                      //  VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL
-            );
-
-            if (!cubemap)
+            for (const auto &element: payloadaTextures)
             {
-               error("[asset_manager] loadCubemap returned nullptr for '{}'", name);
-               continue;
-            }
+               auto &entry = element.property_set_reference();
+               const ::string name = entry["name"];
+               const ::string relPath = entry["path"].as_string();
+               ::string fmtStr = entry["format"].as_string("VK_FORMAT_R8G8B8A8_UNORM");
 
-            // Register into your caches (optional helper)
-            // registerTextureIfNeeded(name, cubemap, m_textures, m_textureIndexMap, m_textureList);
-
-            information("[asset_manager] Successfully loaded cubemap '{}' from '{}'", name, path);
-
-            // If this cubemap is the environment (skybox_hdr per your JSON), remember it.
-            // Use the name you expect in your code / JSON. I see "skybox_hdr" in your example JSON.
-            if (name == "skybox_hdr" || entry.get("environment", false))
-            {
-               // prefer explicit "environment" : true in JSON or name match
-               loadedEnvironmentCubemap = cubemap;
+               auto ptexture = pgpucontext->load_sandbox_texture(name, relPath, fmtStr);
             }
          }
-         catch (const ::exception &e)
-         {
-            error("[asset_manager] Failed to load cubemap '{}': {}", name, e.get_message());
-         }
+
+
       }
 
-      // 3) Create/generate BRDF LUT and IBL assets — ensure environmentCube points to the loaded cubemap
-      // If your JSON didn't mark which cubemap is the environment, we fallback to looking up "skybox_hdr"
-      if (!loadedEnvironmentCubemap)
-      {
-         auto p = m_mapTexture.find("skybox_hdr");
-         if (p)
-         {
-            loadedEnvironmentCubemap = p->element2();
-         }
-      }
 
-      if (!loadedEnvironmentCubemap)
       {
-         warning("[asset_manager] No environment cubemap found (expected 'skybox_hdr' or 'environment':true). Using "
-                 "placeholder/empty environmentCube.");
-         // Optionally: throw or create a debug 1x1 texture so validation doesn't fail.
-         // For now we will not create an invalid shared_ptr (keeps previous behavior safer).
-      }
-      else
-      {
-         m_ptextureEnvironmentCube = loadedEnvironmentCubemap;
+         // 2) Load cubemaps *before* generating BRDF / irradiance / prefiltered maps
+         // Keep track of whether we loaded the environment cubemap used for IBL
+         ::pointer<::gpu::texture> loadedEnvironmentCubemap = nullptr;
+
+         auto &payloada2 = modelJson["cubemaps"].payload_array_reference();
+
+         for (const auto &element: payloada2)
+         {
+            auto &entry = element.property_set_reference();
+            const ::string name = entry["name"];
+            const ::string path = "matter://textures/" + entry["path"].as_file_path();
+
+            // Map format string (if present) to VkFormat; default to R32G32B32A32_SFLOAT
+            ::string fmtStr = entry.get("format", "VK_FORMAT_R32G32B32A32_SFLOAT");
+            // VkFormat format = VK_FORMAT_R32G32B32A32_SFLOAT;
+            bool b32 = true;
+            if (fmtStr == "VK_FORMAT_R16G16B16A16_SFLOAT")
+            {
+
+               // format = VK_FORMAT_R16G16B16A16_SFLOAT;
+               b32 = false;
+            }
+            else if (fmtStr == "VK_FORMAT_R32G32B32A32_SFLOAT")
+            {
+
+               // format = VK_FORMAT_R32G32B32A32_SFLOAT;
+               b32 = true;
+            }
+            // Add more mappings here if you expect other formats
+
+            try
+            {
+               // loadCubemap() must return ::pointer<texture>
+               auto cubemap =
+                  pgpucontext->load_cube_map(name,
+                                             path, //,
+                                             b32
+                                             // format
+                                             //  ,
+                                             //  VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT,
+                                             //  VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL
+                  );
+
+               if (!cubemap)
+               {
+                  error("[asset_manager] loadCubemap returned nullptr for '{}'", name);
+                  continue;
+               }
+
+               // Register into your caches (optional helper)
+               // registerTextureIfNeeded(name, cubemap, m_textures, m_textureIndexMap, m_textureList);
+
+               defer_register_texture(name, cubemap);
+
+               information("[asset_manager] Successfully loaded cubemap '{}' from '{}'", name, path);
+
+               // If this cubemap is the environment (skybox_hdr per your JSON), remember it.
+               // Use the name you expect in your code / JSON. I see "skybox_hdr" in your example JSON.
+               if (name == "skybox_hdr" || entry.get("environment", false))
+               {
+                  // prefer explicit "environment" : true in JSON or name match
+                  loadedEnvironmentCubemap = cubemap;
+               }
+            }
+            catch (const ::exception &e)
+            {
+               error("[asset_manager] Failed to load cubemap '{}': {}", name, e.get_message());
+            }
+         }
+
+         // 3) Create/generate BRDF LUT and IBL assets — ensure environmentCube points to the loaded cubemap
+         // If your JSON didn't mark which cubemap is the environment, we fallback to looking up "skybox_hdr"
+         if (!loadedEnvironmentCubemap)
+         {
+            auto p = m_mapTexture.find("skybox_hdr");
+            if (p)
+            {
+               loadedEnvironmentCubemap = p->element2();
+            }
+         }
+
+         if (!loadedEnvironmentCubemap)
+         {
+            warning("[asset_manager] No environment cubemap found (expected 'skybox_hdr' or 'environment':true). Using "
+                    "placeholder/empty environmentCube.");
+            // Optionally: throw or create a debug 1x1 texture so validation doesn't fail.
+            // For now we will not create an invalid shared_ptr (keeps previous behavior safer).
+         }
+         else
+         {
+            m_ptextureEnvironmentCube = loadedEnvironmentCubemap;
+         }
       }
 
       // Create BRDF LUT, irradianceCube, prefilteredCube structures (these should allocate their own images)
@@ -517,6 +544,7 @@ namespace graphics3d
    //    }
    //
    //    registerTextureIfNeeded(name, tex, m_textures, m_textureIndexMap, m_textureList);
+// 
    //    return tex;
    // }
 
@@ -536,5 +564,18 @@ namespace graphics3d
    //    }
    // }
 
+    void asset_manager::defer_register_texture(
+       const ::scoped_string &name,
+       ::gpu::texture * ptexture)
+    {
+
+       auto p = m_mapTexture.find(name);
+       if (!p)
+       {
+          m_mapTexture[name] = ptexture;
+          auto iIndexAdded = m_texturea.add(ptexture);
+          m_mapTextureIndex[name] = iIndexAdded;
+       }
+    }
 
 } // namespace graphics3d

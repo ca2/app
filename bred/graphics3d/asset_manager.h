@@ -139,13 +139,13 @@ namespace graphics3d
       // }
 
    //private:
-      // virtual void registerTextureIfNeeded(
-      //    const ::scoped_string& name,
-      //    const ::pointer<gpu::texture>& tex,
-      //    ::string_map< ::pointer<gpu::texture>>& textures,
-      //    ::string_map< size_t>& textureIndexMap,
-      //    ::pointer_array_base<gpu::texture>& textureList);
-      //
+       virtual void defer_register_texture(const ::scoped_string &name, gpu::texture *ptexture);
+
+
+          //::string_map< ::pointer<gpu::texture>>& textures,
+          //::string_map< size_t>& textureIndexMap,
+          //::pointer_array_base<gpu::texture>& textureList);
+      
 
 
    };

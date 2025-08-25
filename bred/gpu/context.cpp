@@ -2067,6 +2067,17 @@ return {};
    }
 
 
+   ::pointer<::gpu::texture> context::load_sandbox_texture(const ::scoped_string & scopedstrName,
+                                                    const ::file::path & path,
+                                                    const ::scoped_string & scopedstrImageFormat)
+   {
+
+      return {};
+
+         }
+
+
+
    // ::pointer < ::graphics3d::renderable> context::create_tinyobj_renderable(const ::file::path& path)
    // {
    //

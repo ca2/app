@@ -106,7 +106,16 @@ namespace graphics3d
    }
 
 
-   void asset_manager::generatePrefilteredEnvMap() {}
+   void asset_manager::generatePrefilteredEnvMap() 
+   
+   {
+   
+         auto pgpucontext = m_pengine->gpu_context();
+
+      m_ptexturePrefilteredCube = pgpucontext->generatePrefilteredEnvMap(
+         m_ptextureEnvironmentCube, m_prenderableSkybox);
+
+   }
 
 
    graphics3d::renderable *asset_manager::get_renderable(const ::scoped_string &name)

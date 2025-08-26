@@ -1,125 +1,68 @@
 // From mnk_controller from V0idsEmbrace@Twich continuum project
 // by camilo on 2025-05-18 <3ThomasBorregaardSorensen!!
 #pragma once 
-// MNK_Controller.h
+
+
 #include "bred/graphics3d/scene_object.h"
-//#include "window.h"
 #include "acme/constant/user_key.h"
 #include "bred/graphics3d/key_map.h"
-#include <glm/glm.hpp>
 
 
 namespace graphics3d
 {
 
-
-   struct input_t
+   struct input_block_0
    {
-      //KeyMappings keys{};
-      bool   m_bMouseAbsolute;
 
-      double m_dMouseLastX = 0.0;
-      double m_dMouseLastY = 0.0;
-      double m_Δx = 0.;
-      double m_Δy = 0.;
-
-      bool m_bWasLeft = false;
-
-      ::graphics3d::mouse_state                 m_mousestate;
-
-
-      double   m_dCursorX;
-      double   m_dCursorY;
-      bool		m_bFirstMouse;
-      bool		m_bLastMouse;
-
-      float    m_fMoveSpeed{ 3.f };
-      float    m_fLookSpeed{ 1.5f };
-
-      bool  m_b_001AbsoluteMousePosition;
-      float m_f_001UpdateLookSensitivity;  // Sensitivity factor for mouse movement
-      float _yaw;          // Camera yaw (horizontal rotation)
-      float _pitch;        // Camera pitch (vertical rotation)
-      glm::vec3 _cameraDirection; // Camera direction vector
-      glm::vec3 _cameraPosition;
-
-      ::block as_block()
-      {
-
-         return as_memory_block(*this);
-
-      }
+     ::graphics3d::mouse_state m_mousestate;
 
    };
 
-   class CLASS_DECL_BRED input :
-      virtual public input_t,
+
+   class CLASS_DECL_BRED input : 
+      public input_block_0,
       virtual public ::particle
    {
    public:
 
 
-
-      input(float sensitivity = 0.001f, float yaw = glm::radians(- 90.0f), float pitch = glm::radians(0.0f));
-
-      //void moveInPlaneXZ(::user::graphics3d * pimpact, float dt, application_object& gameObject);
-
-      void prepare_mouse_input();
-      void process_mouse_input();
-      void process_keyboard_input();
+      //::pointer<::user::graphics3d> m_pusergraphics3d;
+      ::pointer<::graphics3d::engine> m_pengine;
+      //::pointer<::graphics3d::key_map> m_pkeymap;
 
 
-      void _001OnMouseMove(const ::int_point & point);
-      void _001OnMouseOut();
-      void _001PrepareMouseInput();
-      void process_mouse_input_updateLook();
-      void _001UpdateLook();
-
-      //void processMouseMovement(float xOffset, float yOffset);
-      void processKeyboardInput(float deltaTime);
-      //void handleMouseInput();
-
-      void process_keyboard_input_updateMovement();
-      void process_keyboard_input_spaceExplorer();
-
-      void reset_mouse_last_position();
-   
-      glm::vec3 getCameraDirection() const;
-      glm::vec3 getCameraPosition() const;
+      input();
+      ~input() override;
 
 
-      ::pointer<::user::graphics3d > m_pusergraphics3d;
-      ::pointer<::graphics3d::engine > m_pengine;
-      ::pointer<::graphics3d::key_map > m_pkeymap;
-
-      auto key(auto ekey)
-      {
-
-         return m_pkeymap->key(ekey);
-
-      }
+      virtual ::user::enum_key_state key(::graphics3d::enum_key ekey);
 
       // from MyPlace2025@V0idsEmbrace@Twitch
-      ::user::enum_key_state  get_key_state(::user::e_key ekey);
-      bool IsKeyPressed(::user::e_key ekey); // New method for released keys
-      bool IsKeyReleased(::user::e_key ekey); // New method for released keys
-      bool IsAnyKeyPressed(); // New method to check if any keys are pressed
+      virtual ::user::enum_key_state get_key_state(::user::e_key ekey);
+      virtual bool IsKeyPressed(::user::e_key ekey); // New method for released keys
+      virtual bool IsKeyReleased(::user::e_key ekey); // New method for released keys
+      virtual bool IsAnyKeyPressed(); // New method to check if any keys are pressed
       // End from MyPlace2025@V0idsEmbrace@Twitch
 
-      //public:
-          //double lastX = 400.0;
-          //double lastY = 300.0;
-          //bool firstMouse = true;
 
-   //public:
+      virtual void prepare_mouse_input();
+      virtual void process_mouse_input();
 
+      virtual void process_keyboard_input();
 
 
-      // Existing functions...
-      //void handleMouseInput(GLFWwindow* window);
+      virtual ::block as_block();
 
-      float getX() const { return (float) m_Δx; }
-      float getY() const { return (float) m_Δy; }
+
+
+      virtual void _001OnMouseMove(const ::int_point &point);
+      virtual void _001OnMouseOut();
+
+
+
+      virtual void _001PrepareMouseInput();
+      virtual void process_mouse_input_updateLook();
+
 
 
    };

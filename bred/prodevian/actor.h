@@ -15,7 +15,7 @@ namespace prodevian
 {
 
 
-   class actor :
+   class CLASS_DECL_BRED actor :
       virtual public ::graphics3d::scene_object
    {
    public:

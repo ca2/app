@@ -69,10 +69,6 @@ namespace graphics3d
 
       //m_papproach = m_papplication->get_gpu_approach();
 
-      m_pinput = øallocate::graphics3d::input();
-      m_pinput->m_pusergraphics3d = m_pusergraphics3d;
-      m_pinput->m_pengine = this;
-      m_pinput->m_pkeymap = m_pusergraphics3d->m_pkeymap;
 
    }
 
@@ -229,23 +225,23 @@ namespace graphics3d
    void engine::on_update_frame()
    {
 
-      auto &pcameraScene = m_pimmersionlayer->m_pscene->m_pcameraScene;
+      //auto &pcameraScene = m_pimmersionlayer->m_pscene->m_pcameraScene;
 
-      if (!pcameraScene)
-      {
-         pcameraScene = m_pimmersionlayer->m_pscene->get_default_camera();
-         ::pointer <::database::client> pdatabaseclient = m_papplication;
+      //if (!pcameraScene)
+      //{
+      //   pcameraScene = m_pimmersionlayer->m_pscene->get_default_camera();
+      //   ::pointer <::database::client> pdatabaseclient = m_papplication;
 
-         if (pdatabaseclient)
-         {
+      //   if (pdatabaseclient)
+      //   {
 
-            //pdatabaseclient->datastream()->get_block("camera", m_pcamera->as_block());
-            //pdatabaseclient->datastream()->get_block("transform", as_memory_block(m_transform));
-            //pdatabaseclient->datastream()->get_block("input", m_pinput->as_block());
+      //      //pdatabaseclient->datastream()->get_block("camera", m_pcamera->as_block());
+      //      //pdatabaseclient->datastream()->get_block("transform", as_memory_block(m_transform));
+      //      //pdatabaseclient->datastream()->get_block("input", m_pinput->as_block());
 
-         }
+      //   }
 
-      }
+      //}
 
       if (m_pimmersionlayer)
       {
@@ -264,16 +260,19 @@ namespace graphics3d
 
       }
 
-      if (pcameraScene)
-      {
 
-         m_transform.m_vec3Translation = pcameraScene->m_locationPosition;
+      //m_pimmersionlayer->on_prepare_camera();
 
-         m_transform.m_vec3Rotation.x = pcameraScene->m_fPitch;
+      //if (pcameraScene)
+      //{
 
-         m_transform.m_vec3Rotation.y = pcameraScene->m_fYaw;
+      //   m_transform.m_vec3Translation = pcameraScene->m_locationPosition;
 
-      }
+      //   m_transform.m_vec3Rotation.x = pcameraScene->m_fPitch;
+
+      //   m_transform.m_vec3Rotation.y = pcameraScene->m_fYaw;
+
+      //}
 
          //VkcCamera camera(glm::vec3(0.0f, 2.0f, -10.0f), .0f, 0.0f);
 
@@ -298,50 +297,50 @@ namespace graphics3d
 
       //m_pcamera->setViewYXZ(m_transform.translation, m_transform.rotation);
 
-      if (pcameraScene)
-      {
+      //if (pcameraScene)
+      //{
 
-         float aspect = m_pusergraphics3d->getAspectRatio();
+      //   float aspect = m_pusergraphics3d->getAspectRatio();
 
-         pcameraScene->setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 100.f);
+      //   pcameraScene->setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 100.f);
 
-         pcameraScene->UpdateCameraVectors();
+      //   pcameraScene->UpdateCameraVectors();
 
 
-         // if (m_fYScale < 0)
-         //{
+      //   // if (m_fYScale < 0)
+      //   //{
 
-         //   m_pcamera->m_matrixImpact = glm::lookAtRH(m_pcamera->m_locationPosition,
-         //      m_pcamera->m_locationPosition + m_pcamera->m_poleFront,
-         //      m_pcamera->m_poleWorldUp);
+      //   //   m_pcamera->m_matrixImpact = glm::lookAtRH(m_pcamera->m_locationPosition,
+      //   //      m_pcamera->m_locationPosition + m_pcamera->m_poleFront,
+      //   //      m_pcamera->m_poleWorldUp);
 
-         //}
-         // else
-         //{
+      //   //}
+      //   // else
+      //   //{
 
-         glm::mat4 matrixImpact;
-         if (m_fYScale < 0)
-         {
-            matrixImpact =
-               glm::lookAtRH(pcameraScene->m_locationPosition,
-                             pcameraScene->m_locationPosition + pcameraScene->m_poleFront, pcameraScene->m_poleWorldUp);
-            // matrixImpact[2][0] = -matrixImpact[2][0];
-            // matrixImpact[2][1] = -matrixImpact[2][1];
-            // matrixImpact[2][2] = -matrixImpact[2][2];
-            // matrixImpact[2][3] = -matrixImpact[2][3];
-         }
-         else
-         {
-            matrixImpact =
-               glm::lookAtRH(pcameraScene->m_locationPosition,
-                             pcameraScene->m_locationPosition + pcameraScene->m_poleFront, pcameraScene->m_poleWorldUp);
-         }
-         pcameraScene->m_matrixImpact = matrixImpact;
-         //}
+      //   glm::mat4 matrixImpact;
+      //   if (m_fYScale < 0)
+      //   {
+      //      matrixImpact =
+      //         glm::lookAtRH(pcameraScene->m_locationPosition,
+      //                       pcameraScene->m_locationPosition + pcameraScene->m_poleFront, pcameraScene->m_poleWorldUp);
+      //      // matrixImpact[2][0] = -matrixImpact[2][0];
+      //      // matrixImpact[2][1] = -matrixImpact[2][1];
+      //      // matrixImpact[2][2] = -matrixImpact[2][2];
+      //      // matrixImpact[2][3] = -matrixImpact[2][3];
+      //   }
+      //   else
+      //   {
+      //      matrixImpact =
+      //         glm::lookAtRH(pcameraScene->m_locationPosition,
+      //                       pcameraScene->m_locationPosition + pcameraScene->m_poleFront, pcameraScene->m_poleWorldUp);
+      //   }
+      //   pcameraScene->m_matrixImpact = matrixImpact;
+      //   //}
 
-         pcameraScene->m_matrixAntImpact = glm::inverse(pcameraScene->m_matrixImpact);
+      //   pcameraScene->m_matrixAntImpact = glm::inverse(pcameraScene->m_matrixImpact);
 
-      }
+      //}
 
    }
 

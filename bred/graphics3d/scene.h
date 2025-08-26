@@ -37,8 +37,8 @@ namespace graphics3d
 	   ::pointer_array_base<::graphics3d::point_light>				   m_pointlighta;
 		::graphics3d::scene_object_map                           	m_mapSceneObject;
       bool m_bInitialCameraLoaded = false;
-		glm::vec3													            m_initialCameraPosition{ 0.f };
-		glm::vec3													            m_initialCameraRotation{ 0.f };
+		//glm::vec3													            m_initialCameraPosition{ 0.f };
+		//glm::vec3													            m_initialCameraRotation{ 0.f };
 
 		//int															            m_iSkyboxId = -1;
 		::pointer<::graphics3d::skybox>							         m_pskyboxCurrent;

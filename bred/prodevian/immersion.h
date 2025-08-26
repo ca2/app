@@ -26,7 +26,6 @@ namespace prodevian
       //::pointer<::graphics3d::IWindowInput> m_pwindowinput;
       ::pointer < graphics3d::asset_manager > m_passetmanager;
 
-
       immersion();
       ~immersion() override;
 

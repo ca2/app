@@ -9,6 +9,7 @@
 
 
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::point_light)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::point_light_push_constants)
 
 
 namespace graphics3d

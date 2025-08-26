@@ -57,15 +57,6 @@ namespace graphics3d
       m_pimmersionlayer = pimmersionlayer;
       //::graphics3d::scene::initialize_scene(pengine);
 
-      auto pprodevianactor = øcreate_new<::prodevian::actor>();
-
-      pprodevianactor->initialize_prodevian_actor(this);
-
-      pprodevianactor->transform().m_vec3Translation = m_initialCameraPosition;
-      pprodevianactor->transform().m_vec3Rotation = m_initialCameraRotation;
-      //pprodevianactor->onInit();
-
-      m_prodevianactora.add(pprodevianactor);
 
       on_initialize_scene();
 
@@ -182,20 +173,10 @@ namespace graphics3d
 
          auto &camJson = sceneJson["camera"].property_set_reference();
 
-         auto pos = camJson.get("position", ::float_array_base{0.f, 0.f, 0.f});
-         auto rot = camJson.get("rotation", ::float_array_base{0.f, 0.f, 0.f});
-
-         m_initialCameraPosition = {pos[0], pos[1], pos[2]};
-         m_initialCameraRotation = {
-            glm::radians(rot[0]),
-            glm::radians(rot[1]),
-            glm::radians(rot[2])
-         };
+         m_pimmersionlayer->load_camera(camJson);
 
          m_bInitialCameraLoaded = true;
 
-         information("Camera position: ({}, {}, {}), rotation (deg): ({}, {}, {})",
-                     pos[0], pos[1], pos[2], rot[0], rot[1], rot[2]);
       }
 
       auto objects = sceneJson["objects"].payload_array_reference();
@@ -312,20 +293,7 @@ namespace graphics3d
       if (m_bInitialCameraLoaded)
       {
 
-         auto pcameraLoaded = øcreate_new<::graphics3d::camera>();
-
-         pcameraLoaded->m_pengine = m_pimmersionlayer->m_pengine;
-
-         //pcameraDefault->m_pengine = m_pimmersionlayer->m_pengine;
-
-         pcameraLoaded->m_locationPosition = m_initialCameraPosition;
-
-         pcameraLoaded->m_fPitch = m_initialCameraRotation.x;
-
-         pcameraLoaded->m_fYaw = m_initialCameraRotation.y;
-
-         m_pcameraDefault = pcameraLoaded;
-
+         m_pimmersionlayer->on_initial_camera_load();
 
       }
 

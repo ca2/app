@@ -32,8 +32,8 @@ namespace user
    graphics3d::graphics3d()
    {
 
-      m_emouse = ::graphics3d::e_mouse_updateLook;
-      m_ekeyboard = ::graphics3d::e_keyboard_updateMovement;
+      //m_emouse = ::graphics3d::e_mouse_updateLook;
+      //m_ekeyboard = ::graphics3d::e_keyboard_updateMovement;
       ////m_bAbsoluteMousePosition = false;
       //m_bShouldClose = false;
       m_bFrameBufferResized = false;
@@ -179,8 +179,6 @@ namespace user
    void graphics3d::on_load_engine()
    {
 
-      m_pengine->m_pinput->m_fMoveSpeed = 3.f;
-      m_pengine->m_pinput->m_fLookSpeed =  1.5f;
 
       auto pgpucontextEngine = m_pengine->gpu_context();
 
@@ -222,12 +220,6 @@ namespace user
    void graphics3d::on_mouse_out()
    {
 
-      if (m_emouse == ::graphics3d::e_mouse_updateLook)
-      {
-
-         m_pengine->m_pinput->_001OnMouseOut();
-
-      }
 
    }
 
@@ -533,50 +525,29 @@ namespace user
    }
 
 
-   void graphics3d::prepare_mouse_input()
-   {
+   //void graphics3d::prepare_mouse_input()
+   //{
 
-      if (m_emouse == ::graphics3d::e_mouse_updateLook)
-      {
+   //   m_pengine->m_pinput->prepare_mouse_input();
 
-         m_pengine->m_pinput->_001PrepareMouseInput();
-
-      }
-
-   }
+   //}
 
 
-   void graphics3d::process_mouse_input()
-   {
+   //void graphics3d::process_mouse_input()
+   //{
 
-      if (m_emouse == ::graphics3d::e_mouse_updateLook)
-      {
+   //   m_pengine->m_pinput->process_mouse_input();
 
-         m_pengine->m_pinput->process_mouse_input_updateLook();
-
-      }
-
-   }
+   //}
 
 
-   void graphics3d::process_keyboard_input()
-   {
 
-      if (m_ekeyboard == ::graphics3d::e_keyboard_updateMovement)
-      {
+   //void graphics3d::process_keyboard_input()
+   //{
 
-         m_pengine->m_pinput->process_keyboard_input_updateMovement();
+   //   m_pengine->m_pinput->process_keyboard_input();
 
-      }
-      else if (m_ekeyboard == ::graphics3d::e_keyboard_spaceExplorer)
-      {
-
-         m_pengine->m_pinput->process_keyboard_input_spaceExplorer();
-
-      }
-
-   }
-
+   //}
 
 } // namespace user
 

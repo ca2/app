@@ -204,6 +204,13 @@ namespace graphics3d
 
 
       auto modelJson = file()->safe_get_network_payload("matter://scene_assets/default_scene_assets.json");
+
+      if (modelJson.is_empty())
+      {
+
+         return;
+
+      }
       // if (!in.is_open()) {
       //     throw std::runtime_error("Failed to open model list JSON.");
       // }

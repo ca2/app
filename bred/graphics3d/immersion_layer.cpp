@@ -87,6 +87,27 @@ namespace graphics3d
    }
 
 
+   void immersion_layer::load_camera(const ::property_set & set)
+   {
+
+
+   }
+
+
+   void immersion_layer::on_initial_camera_load()
+   {
+
+
+   }
+
+
+   void immersion_layer::on_pre_update_camera()
+   {
+
+
+   }
+
+
 } // namespace graphics3d
 
 

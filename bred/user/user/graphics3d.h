@@ -23,8 +23,8 @@ namespace user
       //memory m_memory;
       //int m_i;
 
-      ::graphics3d::enum_mouse                  m_emouse;
-      ::graphics3d::enum_keyboard               m_ekeyboard;
+      //::graphics3d::enum_mouse                  m_emouse;
+      //::graphics3d::enum_keyboard               m_ekeyboard;
       //bool                                      m_bAbsoluteMousePosition;
 
       ::pointer < ::graphics3d::engine >			m_pengine;
@@ -126,10 +126,10 @@ namespace user
       virtual ::pointer < ::graphics3d::key_map > get_default_key_map();
       virtual float getAspectRatio();
 
-      virtual void prepare_mouse_input();
-      virtual void process_mouse_input();
+      //virtual void prepare_mouse_input();
+      //virtual void process_mouse_input();
 
-      virtual void process_keyboard_input();
+      //virtual void process_keyboard_input();
 
 
    };

@@ -98,7 +98,7 @@ namespace graphics3d
          { ::gpu::shader::e_descriptor_set_slot_global,
          ::gpu::shader::e_descriptor_set_slot_local },
          nullptr,
-         ::gpu_properties<::gpu::point_light>(),
+         ::gpu_properties<::gpu::point_light_push_constants>(),
          pgpucontext->input_layout<::graphics3d::Vertex>(),
          ::gpu::shader::e_flag_clear_default_bindings_and_attributes_descriptions
       );
@@ -185,16 +185,16 @@ namespace graphics3d
       {
          //auto pobject = (*pframe->scene_objects())[it->element2()];
          //::cast<point_light> ppointlight = pobject;
-         PointLightPushConstants push{};
-         push.position = glm::vec4(ppointlight->transform().m_vec3Translation, 1.0f);
-         push.color = glm::vec4(
+         ::gpu::point_light_push_constants pushconstants{};
+         pushconstants.position = glm::vec4(ppointlight->transform().m_vec3Translation, 1.0f);
+         pushconstants.color = glm::vec4(
             ppointlight->color().f32_red(),
             ppointlight->color().f32_green(),
             ppointlight->color().f32_blue(),
             ppointlight->m_fLightIntensity);
-         push.radius = ppointlight->transform().m_vec3Scale.x;
+         pushconstants.radius = ppointlight->transform().m_vec3Scale.x;
 
-         m_pshader->set_push_properties(::as_memory_block(push));
+         m_pshader->set_push_properties(::as_memory_block(pushconstants));
 
          // vkCmdPushConstants(
          //     frame.m_pcommandbuffer,

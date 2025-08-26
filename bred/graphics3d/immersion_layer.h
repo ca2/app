@@ -44,6 +44,13 @@ namespace graphics3d
 		//virtual ~IGameLayer() = default;
 
 
+      virtual void load_camera(const ::property_set &set);
+      virtual void on_initial_camera_load();
+
+
+      virtual void on_pre_update_camera();
+
+
 	};
 
 

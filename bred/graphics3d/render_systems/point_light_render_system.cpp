@@ -166,7 +166,7 @@ namespace graphics3d
       // }
       //
       //
-      m_pshader->bind();
+      pgpucontext->defer_bind(m_pshader);
 
       auto pframe = ::gpu::current_frame();
 
@@ -186,7 +186,7 @@ namespace graphics3d
          //auto pobject = (*pframe->scene_objects())[it->element2()];
          //::cast<point_light> ppointlight = pobject;
          ::gpu::point_light_push_constants pushconstants{};
-         pushconstants.position = glm::vec4(ppointlight->transform().m_vec3Translation, 1.0f);
+         pushconstants.position = glm::vec4(ppointlight->transform().m_vec3Position, 1.0f);
          pushconstants.color = glm::vec4(
             ppointlight->color().f32_red(),
             ppointlight->color().f32_green(),
@@ -207,6 +207,8 @@ namespace graphics3d
          pframe->m_pgpucommandbuffer->draw_vertexes(6);
          //vkCmdDraw(frame.m_pcommandbuffer, 6, 1, 0, 0);
       }
+
+      pgpucontext->defer_unbind(m_pshader);
 
    }
 
@@ -230,12 +232,11 @@ namespace graphics3d
       {
 
          // update light position
-         ppointlight->m_transform.m_vec3Translation =
-            glm::vec3(rotateLight * glm::vec4(ppointlight->m_transform.m_vec3Translation, 1.f));
+         ppointlight->m_transform.m_vec3Position =
+            glm::vec3(rotateLight * glm::vec4(ppointlight->m_transform.m_vec3Position, 1.f));
 
          // copy light to ubo
-         globalubo["pointLights"][lightIndex]["position"] =
-            glm::vec4(ppointlight->m_transform.m_vec3Translation, 1.f);
+         globalubo["pointLights"][lightIndex]["position"] = glm::vec4(ppointlight->m_transform.m_vec3Position, 1.f);
          globalubo["pointLights"][lightIndex]["color"] =
             glm::vec4(ppointlight->m_color.f32_red(),
             ppointlight->m_color.f32_green(),

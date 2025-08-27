@@ -4,6 +4,7 @@
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/shader.h"
+#include "bred/gpu/texture.h"
 #include "bred/graphics3d/model.h"
 #include "bred/graphics3d/game_object.h"
 #include "bred/graphics3d/engine.h"
@@ -112,8 +113,8 @@ namespace graphics3d
 	   m_pshader->m_bindingCubeSampler.set();
 
 	   m_pshader->initialize_shader(pgpucontext->m_pgpurenderer,
-         "matter://shaders/skybox.vert",
-         "matter://shaders/skybox.frag",
+         "matter://shaders/skybox_ibl.vert",
+         "matter://shaders/skybox_ibl.frag",
          {::gpu::shader::e_descriptor_set_slot_global},
          nullptr,
          nullptr,
@@ -134,7 +135,7 @@ namespace graphics3d
    void skybox_ibl_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
 	{
 
-		if (!m_bHasCubemap) return;
+		//if (!m_bHasCubemap) return;
 
 	   auto pengine = m_pengine;
 
@@ -159,7 +160,8 @@ namespace graphics3d
 
 	   //auto pskybox = pscene->m_psceneobjectSkybox;
 
-	   auto ptextureCubeMap = pskyboxCurrent->m_ptextureCubeMap;
+	   auto ptextureCubeMap = pskyboxCurrent->m_ptexture;
+      //auto ptextureCubeMap = pscene->current_sky_box_texture();
 
 	   m_pshader->bind(ptextureDst, ptextureCubeMap);
 		//IGameObject * skyObj = skyOpt->get();
@@ -188,7 +190,8 @@ namespace graphics3d
 
       auto pframe = ::gpu::current_frame();
 
-		auto prenderable = pskyboxCurrent->renderable();
+		//auto prenderable = pskyboxCurrent->renderable();
+      auto prenderable = pskyboxCurrent->m_prenderable;
 
 	   if (prenderable)
 		{
@@ -201,6 +204,22 @@ namespace graphics3d
 
 
 	}
+
+
+   void skybox_ibl_render_system::setCubemapTexture(::gpu::texture *pgputexture)
+   {
+
+      m_pgputextureSkybox = pgputexture;
+
+      m_bHasCubemap = ::is_set(m_pgputextureSkybox);
+
+   }
+
+          //}
+   //     m_skyboxImageInfo = info;
+   //     m_bHasCubemap = true;
+   //     allocateAndWriteSkyboxDescriptorSet();
+   // }
 
 
 	// void skybox_ibl_render_system::createPipeline(VkRenderPass renderPass) {

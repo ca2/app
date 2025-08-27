@@ -5,6 +5,8 @@
 #include "bred/gpu/frame.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/texture.h"
+#include "bred/graphics3d/immersion_layer.h"
+#include "bred/graphics3d/scene.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/context.h"
 #include "aura/platform/application.h"
@@ -53,9 +55,15 @@ namespace graphics3d
 
       auto modeldataCube = ::graphics3d::shape_factory::create_cube(32.0f);
 
-      øconstruct(m_pmodelCube);
+      //øconstruct(m_pmodelCube);
 
-      m_pmodelCube->initialize_model(pengine->gpu_context(), modeldataCube);
+      auto pmodelCube = øcreate<::gpu::model_buffer>();
+
+      pmodelCube->initialize_model(pengine->gpu_context(), modeldataCube);
+
+      m_pmodelCube = pmodelCube;
+
+      //m_pmodelCube->initialize_model();
       
       initialize(pengine->gpu_context());
       
@@ -184,12 +192,14 @@ namespace graphics3d
 
       }
 
-      ødefer_construct(m_ptextureCubeMap);
+      ødefer_construct(m_ptexture);
 
-      m_ptextureCubeMap->m_bTransferDst = true;
+      m_ptexture->m_bTransferDst = true;
 
-      m_ptextureCubeMap->initialize_image_texture(
-         m_pmodelCube->m_pgpucontext->m_pgpurenderer,
+      auto prenderer = m_pscene->m_pimmersionlayer->m_pengine->gpu_context()->m_pgpurenderer;
+
+      m_ptexture->initialize_image_texture(
+         prenderer,
          imagea, ::gpu::texture::e_type_cube_map);
 
       //m_pshader->set_int("skybox", 0);

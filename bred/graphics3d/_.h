@@ -50,6 +50,7 @@ namespace graphics3d
 
 
    using scene_object_map = ::string_map<::pointer<scene_object>>;
+   using skybox_map = ::string_map<::pointer<skybox>>;
 
    
    class gltf_render_system;

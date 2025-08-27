@@ -218,6 +218,12 @@ namespace graphics3d
 
 			auto& obj = kv.element2();
 
+         if (!obj)
+         {
+            continue;
+
+         }
+
 			//SimplePushConstantData push{};
 			//push.modelMatrix = obj->m_transform.mat4();
 			//push.normalMatrix = obj->m_transform.normalMatrix();

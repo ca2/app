@@ -14,6 +14,7 @@ namespace gpu
       int m_iFrameIndex = -1;
       int m_iLayerIndex = -1;
       ::pointer < ::gpu::renderer >        m_pgpurenderer;
+      bool m_bRenderTargetFramebufferInitialized;
       //::pointer < renderer >        m_pgpurendererTarget;
       //::int_rectangle m_rectangleTarget;
       ::pointer_array <::gpu::texture >    m_texturea;

@@ -36,7 +36,7 @@ namespace graphics3d
    glm::mat4 transform::getMatrix() const
    {
       // 1) Translation
-      glm::mat4 T = glm::translate(glm::mat4(1.0f), m_vec3Translation);
+      glm::mat4 T = glm::translate(glm::mat4(1.0f), m_vec3Position);
       // 2) Rotation
       glm::mat4 R = glm::rotate(glm::mat4(1.0f), m_vec3Rotation.x, glm::vec3(1, 0, 0));
       R = glm::rotate(R, m_vec3Rotation.y, glm::vec3(0, 1, 0));

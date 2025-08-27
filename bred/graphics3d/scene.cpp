@@ -2,11 +2,13 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "point_light.h"
 #include "skybox.h"
+#include "bred/gpu/texture.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/immersion_layer.h"
 #include "bred/graphics3d/scene.h"
 #include "bred/prodevian/actor.h"
 #include "openssl/ct.h"
+
 ///#include "SceneFoundry/scene_foundry/player.h"
 //#include "SceneFoundry/sandbox_game/game_object.h"
 
@@ -27,7 +29,8 @@ namespace graphics3d
 
       m_bInitialized = false;
       m_bLoadedScene = false;
-      m_strSkyboxCubemapName = "skybox_hdr";
+      //m_strSkyboxCubemapName = "skybox_hdr";
+      m_strSkybox = "skybox_hdr";
       m_interlockedcountSceneObject = 1;
 
    }
@@ -73,17 +76,17 @@ namespace graphics3d
    void scene::set_sky_box(::graphics3d::skybox *pskybox)
    {
       //m_iSkyboxId = pobject->getId();
-      m_pskyboxCurrent = pskybox ;
+      //m_pskyboxCurrent = pskybox ;
 
    }
 
 
-   ::string scene::getSkyboxCubemapName()
-   {
+   //::string scene::getSkyboxCubemapName()
+   //{
 
-      return m_strSkyboxCubemapName;
+   //   return m_strSkyboxCubemapName;
 
-   }
+   //}
 
 
    void scene::update(float dt)
@@ -128,7 +131,7 @@ namespace graphics3d
 
          auto ppointlight = this->create_point_light(intensity, 0.1f, color);
 
-         ppointlight->transform().m_vec3Translation = pos;
+         ppointlight->transform().m_vec3Position = pos;
 
          information("Placed point light at ({}, {}, {})", pos.x, pos.y, pos.z);
 
@@ -156,13 +159,13 @@ namespace graphics3d
       // Parse skybox cubemap name (if present)
       if (sceneJson.has_property("skybox"))
       {
-         m_strSkyboxCubemapName = sceneJson["skybox"].as_string();
-         information("Scene specifies skybox: '{}'", m_strSkyboxCubemapName);
+         //m_strSkyboxCubemapName = sceneJson["skybox"].as_string();
+         //information("Scene specifies skybox: '{}'", m_strSkyboxCubemapName);
       }
       else
       {
 
-         warning("No skybox specified in scene file '{}', using default '{}'", fileName, m_strSkyboxCubemapName);
+         //warning("No skybox specified in scene file '{}', using default '{}'", fileName, m_strSkyboxCubemapName);
 
       }
 
@@ -195,25 +198,63 @@ namespace graphics3d
 
          }
 
-         ::string strModelName;
+         ::string strName = objJson["name"].as_string();
 
-         strModelName = objJson["model"].as_string();
+         ::string strModel;
+
+         strModel = objJson["model"].as_string();
 
          ::pointer<::graphics3d::renderable> prenderable;
 
-         if (strModelName.has_character())
+         ::pointer<::gpu::texture> ptexture;
+
+         ::pointer<::gpu::texture> ptextureCubemap;
+
+         if (strModel.has_character())
          {
 
-            prenderable = m_pimmersionlayer->m_passetmanager->get_renderable(strModelName);
+            prenderable = m_pimmersionlayer->m_passetmanager->get_renderable(strModel);
 
             if (!prenderable)
             {
 
-               throw ::exception(error_not_found, "Model not found in cache: " + strModelName);
+               throw ::exception(error_not_found, "Model not found in cache: " + strModel);
 
             }
 
          }
+
+         auto strTexture = objJson["texture"].as_string();
+
+         if (strTexture.has_character() && strName.has_character())
+         {
+
+            ptexture = m_pimmersionlayer->m_passetmanager->m_mapTexture[strTexture];
+
+            if (ptexture)
+            {
+
+               m_pimmersionlayer->m_passetmanager->m_mapObjectTexture[strName] = ptexture;
+
+            }
+
+         }
+
+         //auto strCubemap = objJson["cubemap"].as_string();
+
+         //if (strCubemap.has_character() && strCubemap.has_character())
+         //{
+
+         //   ptextureCubemap = m_pimmersionlayer->m_passetmanager->m_mapSkyboxTexture[strCubemap];
+
+         //   if (ptextureCubemap)
+         //   {
+
+         //      m_pimmersionlayer->m_passetmanager->m_mapObjectTexture[strName +".cubemap"] = ptexture;
+
+         //   }
+
+         //}
 
          ::pointer<::graphics3d::scene_object> psceneobject;
 
@@ -224,26 +265,42 @@ namespace graphics3d
 
             psceneobject = this->create_sky_box();
 
+            m_pskyboxCurrent = psceneobject;
+
+            m_pimmersionlayer->m_passetmanager->m_mapSkybox[strName] = psceneobject;
+
             ::cast<skybox> pskybox = psceneobject;
 
-            pskybox->m_strCubemapTextureName = objJson["cubemap"].as_string();
+            ptextureCubemap = m_pimmersionlayer->m_passetmanager->m_mapSkyboxTexture[strName];
 
-            // Store or fallback cubemap texture name on scene-wide variable
-            //if (isSkybox) {
-            if (pskybox->m_strCubemapTextureName.has_character())
-            {
+            pskybox->m_ptexture = ptextureCubemap;
 
-               if (m_strSkyboxCubemapName.is_empty())
-               {
-                  m_strSkyboxCubemapName = pskybox->m_cubemapTextureName;
-               }
-            }
+            ////pskybox->m_strCubemapTextureName = objJson["cube"].as_string();
 
-            set_sky_box(pskybox);
+            ////::string strModelName = objJson["name"].as_string();
 
-            information("GameObject '{}' marked as skybox with cubemap '{}'",
-                        strModelName,
-                        pskybox->m_strCubemapTextureName);
+            //psceneobject
+            
+            //m_strSkyboxName = strModelName;
+
+            //// Store or fallback cubemap texture name on scene-wide variable
+            ////if (isSkybox) {
+            //if (pskybox->m_strCubemapTextureName.has_character())
+            //{
+
+            //   if (m_strSkyboxCubemapName.is_empty())
+            //   {
+            //      m_strSkyboxCubemapName = pskybox->m_cubemapTextureName;
+            //   }
+            //}
+
+            //m_mapSceneObject.set_at(strModelName, psceneobject);
+
+            //set_sky_box(pskybox);
+
+            //information("GameObject '{}' marked as skybox with cubemap '{}'",
+            //            strModelName,
+            //            pskybox->m_strCubemapTextureName);
 
 
          }
@@ -252,11 +309,32 @@ namespace graphics3d
 
             psceneobject = this->create_scene_object();
 
-            psceneobject->m_strName = strModelName;
+            psceneobject->m_strName = strName;
 
-            m_mapSceneObject.set_at(psceneobject->m_strName, psceneobject);
+            psceneobject->m_strModel = strModel;
+
+            m_mapSceneObject.set_at(strName, psceneobject);
 
          }
+
+         if (strModel.has_character() && strName.has_character()
+            && strModel != strName)
+         {
+
+            auto pobject = m_mapSceneObject[strModel];
+
+            if (pobject)
+            {
+
+               m_pimmersionlayer->m_passetmanager->m_mapAliasSceneObject[strName] = pobject;
+
+            }
+
+         }
+         
+
+
+
          //
          //
          // auto isSkybox =
@@ -268,7 +346,7 @@ namespace graphics3d
          auto rot = objJson.get("rotation", ::float_array_base{0.f, 0.f, 0.f});
          auto scl = objJson.get("scale", ::float_array_base{1.f, 1.f, 1.f});
 
-         psceneobject->transform().m_vec3Translation = {pos[0], pos[1], pos[2]};
+         psceneobject->transform().m_vec3Position = {pos[0], pos[1], pos[2]};
          psceneobject->transform().m_vec3Rotation = {rot[0], rot[1], rot[2]};
          psceneobject->transform().m_vec3Scale = {scl[0], scl[1], scl[2]};
 
@@ -290,6 +368,21 @@ namespace graphics3d
 
       }
 
+      if (m_strSkybox.has_character())
+      {
+
+         auto pskybox = m_pimmersionlayer->m_passetmanager->m_mapSkybox[m_strSkybox];
+
+         if (pskybox)
+         {
+
+            m_pskyboxCurrent = pskybox;
+
+         }
+
+      }
+
+
       if (m_bInitialCameraLoaded)
       {
 
@@ -308,20 +401,52 @@ namespace graphics3d
 
       return m_pskyboxCurrent;
 
-      // if (m_iSkyboxId <= 0)
-      // {
-      //
-      //    return nullptr;
-      //
-      // }
-      // auto it = m_gameObjects.find(*m_skyboxId);
-      // if (it) {
-      //    // cast back from IGameObject→sandbox_game_object
-      //    return std::reference_wrapper(
-      //       static_cast<sandbox_game_object&>(*it->element2()));
-      // }
-      // return std::nullopt;
+      //if (m_pskyboxCurrent)
+      //{
+
+      //   m_pskyboxCurrent
+
+      //}
+
+       //if (m_strSkyboxModelName.is_empty())
+       //{
+      
+       //   return nullptr;
+      
+       //}
+       //auto p = m_mapSceneObject.find(m_strSkyboxModelName);
+       //if (!p) {
+
+       //   return nullptr;
+       //   // cast back from IGameObject→sandbox_game_object
+       //   //return std::reference_wrapper(
+       //     // static_cast<sandbox_game_object&>(*it->element2()));
+       //}
+       //return p->element2();
    }
+   //::gpu::texture *scene::current_sky_box_texture() 
+   //
+   //{
+   //   if (m_strSkyboxTextureName.is_empty())
+   //   {
+
+
+   //      return nullptr;
+   //   }
+
+   //   auto p = m_pimmersionlayer->m_passetmanager->m_mapTexture[m_strSkyboxTextureName];
+
+   //   if (!p)
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   return p;
+   //
+   //}
+
    //
    //
    // // Implements the IScene interface:
@@ -348,6 +473,13 @@ namespace graphics3d
    {
 
       m_pcameraDefault = pgpucamera;
+
+      if (m_pcameraDefault)
+      {
+
+         m_pimmersionlayer->m_pengine->m_transform.m_vec3Position = m_pcameraDefault->position();
+         m_pimmersionlayer->m_pengine->m_transform.m_vec3Rotation = m_pcameraDefault->rotation();
+      }
 
    }
 

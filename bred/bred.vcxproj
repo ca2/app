@@ -380,9 +380,7 @@
     <ClInclude Include="gpu\_constant.h" />
     <ClInclude Include="gpu\_model.h" />
     <ClInclude Include="gpu\_types.h" />
-    <ClInclude Include="graphics3d\aaa_context.h" />
     <ClInclude Include="graphics3d\asset_manager.h" />
-    <ClInclude Include="graphics3d\asset_provider.h" />
     <ClInclude Include="graphics3d\camera.h" />
     <ClInclude Include="graphics3d\class_set.h" />
     <ClInclude Include="graphics3d\class_set1.h" />
@@ -421,7 +419,6 @@
     <ClInclude Include="graphics3d\utilities.h" />
     <ClInclude Include="graphics3d\_.h" />
     <ClInclude Include="graphics3d\_constant.h" />
-    <ClInclude Include="graphics3d\_sandbox_interfaces.h" />
     <ClInclude Include="graphics3d\_types.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="include\_.h" />

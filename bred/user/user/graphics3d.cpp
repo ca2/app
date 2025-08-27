@@ -108,6 +108,8 @@ namespace user
 
          on_mouse_move(point);
 
+         track_mouse_leave();
+
       }
 
    }
@@ -220,6 +222,17 @@ namespace user
    void graphics3d::on_mouse_out()
    {
 
+      if (m_pengine)
+      {
+
+         if (m_pengine->m_pinput)
+         {
+
+            m_pengine->m_pinput->_001OnMouseOut();
+
+         }
+
+      }
 
    }
 

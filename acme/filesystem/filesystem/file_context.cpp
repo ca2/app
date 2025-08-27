@@ -1612,7 +1612,7 @@ void file_context::calculate_main_resource_memory()
 }
 
 
-::file::enum_type file_context::resource_get_type(const ::file::path & path)
+::file::enum_type file_context::resource_get_type(const ::file::path & path, string * pstrLogNotFound)
 {
 
    ::folder * pfolder = nullptr;

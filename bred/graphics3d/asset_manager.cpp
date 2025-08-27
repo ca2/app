@@ -1,14 +1,13 @@
 #include "framework.h"
 // asset_manager.cpp
-#include <chrono>
+#include "engine.h"
+#include "renderable.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "asset_manager.h"
 #include "bred/gpu/renderable.h"
 #include "bred/gpu/texture.h"
-#include "renderable.h"
-
-#include "engine.h"
-
+#include "bred/graphics3d/skybox.h"
+#include <chrono>
 // #include "acme/exception/r"
 // #include <json.hpp>
 ////#include <fstream>
@@ -103,7 +102,9 @@ namespace graphics3d
 
       auto pgpucontext = m_pengine->gpu_context();
 
-      m_ptextureIrradianceCube = pgpucontext->generateIrradianceMap(m_ptextureEnvironmentCube, m_prenderableSkybox);
+      m_ptextureIrradianceCube =
+         pgpucontext->generateIrradianceMap(m_ptextureEnvironmentCube, m_prenderableSkybox);
+
    }
 
 
@@ -113,8 +114,7 @@ namespace graphics3d
    
          auto pgpucontext = m_pengine->gpu_context();
 
-      m_ptexturePrefilteredCube = pgpucontext->generatePrefilteredEnvMap(
-         m_ptextureEnvironmentCube, m_prenderableSkybox);
+      m_ptexturePrefilteredCube = pgpucontext->generatePrefilteredEnvMap(m_ptextureEnvironmentCube, m_prenderableSkybox);
 
    }
 
@@ -182,8 +182,8 @@ namespace graphics3d
 
    bool asset_manager::hasTexture(const ::scoped_string &name) { return m_mapTexture.has(name); }
 
-
-   graphics3d::renderable *asset_manager::getSkyboxModel() { return m_prenderableSkybox; }
+//
+   //graphics3d::renderable *asset_manager::getSkyboxModel() { return m_prenderableSkybox; }
 
 
    ::string_array_base asset_manager::listTextureNames()
@@ -229,9 +229,9 @@ namespace graphics3d
          {
             auto &entry = element.property_set_reference();
 
-            const ::string name = entry["name"];
+            auto strName = entry["name"].as_string();
 
-            auto prenderable = as_pointer(get_renderable(name));
+            auto prenderable = as_pointer(get_renderable(strName));
 
             if (!prenderable)
             {
@@ -258,7 +258,7 @@ namespace graphics3d
                      // }
                      if (prenderable->renderable_usage() == ::gpu::e_renderable_usage_skybox)
                      {
-
+                        //m_mapSkyboxRenderable[strName] = prenderable;
                         m_prenderableSkybox = prenderable;
                      }
                      information("[asset_manager] Successfully loaded glTF model '{}' from '{}'",
@@ -273,9 +273,9 @@ namespace graphics3d
                }
                catch (const ::exception &e)
                {
-                  error("[asset_manager] Failed to load model '{}': {}", name, e.get_message());
+                  error("[asset_manager] Failed to load model '{}': {}", strName, e.get_message());
                }
-               m_mapRenderable.set_at(name, prenderable);
+               m_mapRenderable.set_at(strName, prenderable);
             }
          }
 
@@ -345,8 +345,8 @@ namespace graphics3d
          for (const auto &element: payloada2)
          {
             auto &entry = element.property_set_reference();
-            const ::string name = entry["name"];
-            const ::string path = "matter://textures/" + entry["path"].as_file_path();
+            auto strName = entry["name"].as_string();
+            auto path = "matter://textures/" + entry["path"].as_file_path();
 
             // Map format string (if present) to VkFormat; default to R32G32B32A32_SFLOAT
             ::string fmtStr = entry.get("format", "VK_FORMAT_R32G32B32A32_SFLOAT");
@@ -369,8 +369,8 @@ namespace graphics3d
             try
             {
                // loadCubemap() must return ::pointer<texture>
-               auto cubemap =
-                  pgpucontext->load_cube_map(name,
+               auto ptextureCubemap =
+                  pgpucontext->load_cube_map(strName,
                                              path, //,
                                              b32
                                              // format
@@ -379,30 +379,32 @@ namespace graphics3d
                                              //  VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL
                   );
 
-               if (!cubemap)
+               if (!ptextureCubemap)
                {
-                  error("[asset_manager] loadCubemap returned nullptr for '{}'", name);
+                  error("[asset_manager] loadCubemap returned nullptr for '{}'", strName);
                   continue;
                }
 
                // Register into your caches (optional helper)
                // registerTextureIfNeeded(name, cubemap, m_textures, m_textureIndexMap, m_textureList);
 
-               defer_register_texture(name, cubemap);
+               //defer_register_texture(name, cubemap);
 
-               information("[asset_manager] Successfully loaded cubemap '{}' from '{}'", name, path);
+               m_mapSkyboxTexture[strName] = ptextureCubemap;
+
+               information("[asset_manager] Successfully loaded cubemap '{}' from '{}'", strName, path);
 
                // If this cubemap is the environment (skybox_hdr per your JSON), remember it.
                // Use the name you expect in your code / JSON. I see "skybox_hdr" in your example JSON.
-               if (name == "skybox_hdr" || entry.get("environment", false))
+               if (strName == "skybox_hdr" || entry.get("environment", false))
                {
                   // prefer explicit "environment" : true in JSON or name match
-                  loadedEnvironmentCubemap = cubemap;
+                  loadedEnvironmentCubemap = ptextureCubemap;
                }
             }
             catch (const ::exception &e)
             {
-               error("[asset_manager] Failed to load cubemap '{}': {}", name, e.get_message());
+               error("[asset_manager] Failed to load cubemap '{}': {}", strName, e.get_message());
             }
          }
 

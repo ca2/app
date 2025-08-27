@@ -23,6 +23,23 @@ namespace graphics3d
 
    }
 
+
+   glm::vec3 camera::position()
+   {
+
+      return m_vec3Position;
+
+   }
+
+
+   glm::vec3 camera::rotation()
+   {
+
+      return m_vec3Rotation;
+
+   }
+
+
    ::block camera::as_block()
    {
 

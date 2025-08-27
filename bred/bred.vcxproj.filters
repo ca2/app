@@ -174,9 +174,6 @@
     <ClInclude Include="graphics3d\_.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\aaa_context.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
     <ClInclude Include="graphics3d\camera.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
@@ -297,16 +294,10 @@
     <ClInclude Include="graphics3d\_constant.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\_sandbox_interfaces.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
     <ClInclude Include="graphics3d\_types.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\asset_manager.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics3d\asset_provider.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\class_set.h">

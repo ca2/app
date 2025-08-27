@@ -348,7 +348,7 @@ namespace graphics3d
    glm::mat4 engine::model_matrix(::graphics3d::transform& transform)
    {
 
-      auto translation = transform.m_vec3Translation;
+      auto translation = transform.m_vec3Position;
       auto rotation = transform.m_vec3Rotation;
       auto scale = transform.m_vec3Scale;
 

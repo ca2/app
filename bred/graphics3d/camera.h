@@ -18,10 +18,20 @@ namespace graphics3d
 
 
 		::pointer < ::graphics3d::engine > m_pengine;
+      ::glm::vec3 m_vec3Position;
+      ::glm::vec3 m_vec3Rotation;
+
+
 
 		camera();
 		~camera() override;
 
+
+      virtual glm::vec3 position();
+      virtual glm::vec3 rotation();
+
+      inline auto &yaw() { return m_vec3Rotation.y; }
+      inline auto &pitch() { return m_vec3Rotation.x; }
 
       virtual ::block as_block();
 

@@ -83,7 +83,7 @@ namespace graphics3d
    void scene_object::translate(const glm::vec3 & vec3)
    {
 
-      transform().m_vec3Translation = vec3;
+      transform().m_vec3Position = vec3;
 
    }
 

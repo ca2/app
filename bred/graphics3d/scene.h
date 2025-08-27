@@ -36,14 +36,20 @@ namespace graphics3d
       ::pointer_array_base<::prodevian::actor>				         m_prodevianactora;
 	   ::pointer_array_base<::graphics3d::point_light>				   m_pointlighta;
 		::graphics3d::scene_object_map                           	m_mapSceneObject;
+      //::graphics3d::skybox_map                                    m_mapSkybox;
+      ::string                                                    m_strSkybox;
       bool m_bInitialCameraLoaded = false;
 		//glm::vec3													            m_initialCameraPosition{ 0.f };
 		//glm::vec3													            m_initialCameraRotation{ 0.f };
 
-		//int															            m_iSkyboxId = -1;
-		::pointer<::graphics3d::skybox>							         m_pskyboxCurrent;
-	   string_map < ::pointer < ::graphics3d::skybox > >          m_mapSkybox;
-		::string													               m_strSkyboxCubemapName;
+		//::string														            m_strSkyboxModelName;
+      //::string m_strSkyboxTextureName = "skybox_hdr";
+      //::string m_strSkyboxModelName;
+      //::string m_strSkyboxTextureName;
+		//::pointer<::graphics3d::skybox>							         m_pskyboxCurrent;
+	   //string_map < ::pointer < ::graphics3d::skybox > >           m_mapSkybox;
+		//::string													               m_strSkybox;
+      ::pointer < ::graphics3d::skybox >                          m_pskyboxCurrent;
       ::gpu::properties                                           m_gpupropertiesGlobalUbo;
 
 		scene();
@@ -92,7 +98,7 @@ namespace graphics3d
 		//::graphics3d::sandbox_game_object>>
 		//	getSkyboxObject();
 
-		::string getSkyboxCubemapName();
+		//::string getSkyboxCubemapName();
 
 	   ::pointer < ::graphics3d::renderable > create_tinyobj_renderable(const ::file::path& path);
 

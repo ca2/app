@@ -28,12 +28,14 @@ namespace graphics3d
       long long                              m_llId;
       ::pointer<::graphics3d::renderable>    m_prenderable;
       ::color::color                         m_color;
+      ::string                               m_strName;
+      ::string                               m_strModel;
       //bool m_bIsOBJ{ false };
       //      ::graphics3d::point_light_component m_pointlight;
 
-      ::string m_cubemapTextureName;
+      //::string m_cubemapTextureName;
       //long long m_llId;
-      bool m_bIsSkybox = false;
+      //bool m_bIsSkybox = false;
       ::string m_strRenderablePath;
 
 

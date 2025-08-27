@@ -2456,6 +2456,8 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
    //}
 
+   ::string strLogNotFound;
+
    if (psystem->directory_system()->m_bMatterFromHttpCache)
    {
 
@@ -2602,14 +2604,14 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
             strMatter.replace_with("/", "\\");
 
-            auto etype = file()->resource_get_type(strMatter);
+            auto etype = file()->resource_get_type(strMatter, &strLogNotFound);
 
             if (::is_existing_file_or_folder(etype))
             {
 
                path = "zipresource://" + strMatter;
 
-               information("The file {} was found in zip folder!!", path);
+               information("The file {} was found in zip folder.", path);
 
                path.m_etype = etype;
 
@@ -2655,6 +2657,8 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
    }
 
    bOk = false;
+
+   information(strLogNotFound);
 
    path = "itdoesntexist." + ::as_string(::long_long_millisecond());
 

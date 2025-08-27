@@ -25,7 +25,7 @@ namespace graphics3d
 
         //VkDescriptorSetLayout m_skyboxLayout;
 
-
+       ::pointer<::gpu::texture> m_pgputextureSkybox;
         //::pointer<::gpu_vulkan::pipeline> m_ppipeline;
         //VkPipelineLayout m_pipelineLayout;
         //VkDescriptorImageInfo m_skyboxImageInfo{};
@@ -57,7 +57,7 @@ namespace graphics3d
        void on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene) override;
 
         //
-        // inline void setCubemapTexture(const VkDescriptorImageInfo& info) {
+       virtual void setCubemapTexture(::gpu::texture *pgputexture);
         //     m_skyboxImageInfo = info;
         //     m_bHasCubemap = true;
         //     allocateAndWriteSkyboxDescriptorSet();

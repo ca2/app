@@ -391,10 +391,10 @@ namespace folder_zip
    }
 
 
-   void didnt_locate_file(const_char_pointer pszFile)
+   void folder::didnt_locate_file(const_char_pointer pszFile)
    {
 
-      information("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
+      m_strLogNotFound.append("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
 
       //::fflush(stdout);
 
@@ -600,7 +600,7 @@ namespace folder_zip
          if (!locate([strFile](const_char_pointer psz) {return strFile.case_insensitive_equals(psz); }))
          {
 
-            didnt_locate_file(strFile);
+            //didnt_locate_file(strFile);
 
             return false;
 

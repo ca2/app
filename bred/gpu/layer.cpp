@@ -92,6 +92,8 @@ namespace gpu
    void layer::layer_start()
    {
 
+      m_bRenderTargetFramebufferInitialized = false;
+
       m_pgpurenderer->on_start_layer(this);
 
    }

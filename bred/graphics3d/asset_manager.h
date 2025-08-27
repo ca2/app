@@ -10,7 +10,7 @@
 //#include "SceneFoundry/graphics3d/texture.h"
 //#include "SceneFoundry/graphics3d/pipeline.h"
 
-#include "bred/graphics3d/asset_provider.h"
+//#include "bred/graphics3d/asset_provider.h"
 #include "bred/gpu/model_buffer.h"
 
 
@@ -26,11 +26,17 @@ namespace graphics3d
       //::string_map < OBJmodelHandle> m_objModelCache;
       //::string_map < GLTFmodelHandle> m_gltfModelCache;
       ::string_map < ::pointer < ::graphics3d::renderable>>             m_mapRenderable;
+      ::string_map<::pointer<::graphics3d::renderable>>                 m_mapSkyboxRenderable;
+      ::graphics3d::skybox_map                                          m_mapSkybox;
+      ::pointer<::graphics3d::renderable>                               m_prenderableSkybox;
+      ::graphics3d::scene_object_map                                    m_mapAliasSceneObject;
       //::string_map < ::pointer < ::graphics3d::renderable>>             m_mapGltf;
 
       //::pointer < ::gpu::model_buffer >                                 m_pgpumodelbufferSkybox;
 
       ::string_map < ::pointer<::gpu::texture>>                         m_mapTexture; // name → texture
+      ::string_map<::pointer<::gpu::texture>> m_mapSkyboxTexture; // name → texture
+      ::string_map<::pointer<::gpu::texture>> m_mapObjectTexture; // object name → texture
       ::string_map < size_t>                                            m_mapTextureIndex; // name → index
       ::pointer_array_base<::gpu::texture>                              m_texturea; // index → texture
 
@@ -43,7 +49,7 @@ namespace graphics3d
       ::pointer < ::gpu::texture >                                      m_ptexturePrefilteredCube;
       ::pointer < ::gpu::texture >                                      m_ptextureEnvironmentCube;
 
-      ::pointer < ::graphics3d::renderable>                             m_prenderableSkybox;
+      //::pointer < ::graphics3d::skybox>                                 m_pskyboxCurrent;
 
 
       asset_manager();
@@ -129,7 +135,7 @@ namespace graphics3d
       // VkDescriptorImageInfo getTextureDescriptor(const ::scoped_string& name) const override {
       //    return getTexture(name)->GetDescriptor();
       // }
-      graphics3d::renderable * getSkyboxModel(); //const { return m_skyboxModel; }// make this override if necessary
+      //graphics3d::renderable * getSkyboxModel(); //const { return m_skyboxModel; }// make this override if necessary
 
        ::string_array_base listTextureNames() ; // const override {
       //    ::array_base<::string> keys;

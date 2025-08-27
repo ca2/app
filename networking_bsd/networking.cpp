@@ -12,6 +12,7 @@
 #include "acme/prototype/string/str.h"
 #include "apex/platform/context.h"
 #include "apex/platform/system.h"
+#include "apex/platform/node.h"
 
 
 #include "acme/prototype/collection/_array.h"
@@ -147,6 +148,8 @@ namespace networking_bsd
       //}
 
       m_bInitialized = true;
+
+      m_pmutexReverseCache = node()->create_mutex();
 
       //if(psystem->m_bGudoNetCache)
       {

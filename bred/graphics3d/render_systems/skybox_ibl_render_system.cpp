@@ -14,6 +14,46 @@
 #include "bred/graphics3d/skybox.h"
 
 
+   namespace gltf
+{
+   /*
+      gltf default vertex layout with easy Vulkan mapping functions
+   */
+   enum class CubeVertexComponent
+   {
+      Position,
+      Normal,
+      UV,
+      Color,
+      Joint0,
+      Weight0,
+      Tangent,
+   };
+
+   struct CubeVertex
+   {
+      glm::vec3 pos;
+      glm::vec3 normal;
+      glm::vec2 uv;
+      glm::vec4 color;
+      glm::vec4 joint0;
+      glm::vec4 weight0;
+      glm::vec4 tangent;
+    
+   };
+
+} // namespace gltf
+
+BEGIN_GPU_PROPERTIES(::gltf::CubeVertex)
+GPU_PROPERTY("position", ::gpu::e_type_seq3)
+GPU_PROPERTY("normal", ::gpu::e_type_seq3)
+GPU_PROPERTY("uv", ::gpu::e_type_seq2)
+GPU_PROPERTY("color", ::gpu::e_type_seq4)
+GPU_PROPERTY("joint0", ::gpu::e_type_seq4)
+GPU_PROPERTY("weight0", ::gpu::e_type_seq4)
+GPU_PROPERTY("tangent", ::gpu::e_type_seq4)
+END_GPU_PROPERTIES()
+
 namespace graphics3d
 {
 	//skybox_ibl_render_system::skybox_ibl_render_system(::graphics3d::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
@@ -99,6 +139,7 @@ namespace graphics3d
 	// 	}
 	// }
 
+
    void skybox_ibl_render_system::on_prepare(gpu::context *pgpucontext)
    {
 
@@ -118,7 +159,7 @@ namespace graphics3d
          {::gpu::shader::e_descriptor_set_slot_global},
          nullptr,
          nullptr,
-         pgpucontext->input_layout<::graphics3d::shape_factory::Vertex>()
+         pgpucontext->input_layout<::gltf::CubeVertex>()
       );
 
 
@@ -157,6 +198,7 @@ namespace graphics3d
 	   auto ptextureDst = pgpurenderer->current_render_target_texture(::gpu::current_frame());
 
 	   m_pshader->m_bindingCubeSampler.m_strUniform = "skybox";
+      m_pshader->m_bindingCubeSampler.m_uSet = 1;
 
 	   //auto pskybox = pscene->m_psceneobjectSkybox;
 

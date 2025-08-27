@@ -66,10 +66,11 @@ namespace graphics3d
 
 		virtual void on_initialize_scene();                 // load models, spawn entities
 		virtual void update(float dt);        // advance all entities
-		void loadSceneFile(const ::scoped_string& fileName);
+      virtual void loadSceneFile(const ::scoped_string &fileName);
 
 
-      void load_lights(const ::property_set &objJson);
+      virtual void load_scene_object(const ::property_set &setObject);
+      virtual void load_lights(const ::property_set &objJson);
 
 	   virtual ::gpu::properties & global_ubo();
 

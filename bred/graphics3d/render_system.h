@@ -4,6 +4,8 @@
 namespace graphics3d
 {
 
+  
+
    class CLASS_DECL_BRED render_system :
       virtual public ::particle
    {

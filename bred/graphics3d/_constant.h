@@ -50,6 +50,21 @@ enum class KeyAction {
     REPEAT
 };
 
+
+ enum enum_render_system
+{
+   e_render_system_none,
+   e_render_system_skybox,
+   e_render_system_skybox_ibl,
+   e_render_system_wavefront_obj,
+   e_render_system_scene,
+   e_render_system_gltf,
+   e_render_system_point_light,
+
+};
+
+ CLASS_DECL_BRED enum_render_system as_render_system(const ::scoped_string &scopedstr);
+
 } // namespace graphics3d
 
 
@@ -70,3 +85,5 @@ namespace user
 
 
 } // namespace user
+
+

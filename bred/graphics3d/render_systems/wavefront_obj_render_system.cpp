@@ -213,15 +213,20 @@ namespace graphics3d
 
 	   auto pgamelayer = m_pengine->m_pimmersionlayer;
 
-		for (auto& kv : pscene->scene_objects())
+		for (auto &[strName, psceneobject]: pscene->scene_objects())
 		{
 
-			auto& obj = kv.element2();
-
-         if (!obj)
+         if (!psceneobject)
          {
+
             continue;
 
+         }
+
+         if (psceneobject->m_erendersystem != ::graphics3d::e_render_system_wavefront_obj)
+         {
+
+            continue;
          }
 
 			//SimplePushConstantData push{};
@@ -236,7 +241,7 @@ namespace graphics3d
 			//	sizeof(SimplePushConstantData),
 			//	&push);
 
-		   auto prenderable = obj->renderable();
+		   auto prenderable = psceneobject->renderable();
 
 			if (prenderable && prenderable->m_erenderabletype ==
             ::gpu::e_renderable_type_wavefront_obj)
@@ -244,11 +249,11 @@ namespace graphics3d
 
 				//auto pszPath = obj->m_strPath.c_str();
 
-				auto modelMatrix = m_pengine->model_matrix(obj->m_transform);
+				auto modelMatrix = m_pengine->model_matrix(psceneobject->m_transform);
 
 				m_pshader->m_propertiesPush["modelMatrix"] = modelMatrix;
 
-				auto normalMatrix = m_pengine->normal_matrix(obj->m_transform);
+				auto normalMatrix = m_pengine->normal_matrix(psceneobject->m_transform);
 
 				m_pshader->m_propertiesPush["normalMatrix"] = normalMatrix;
 

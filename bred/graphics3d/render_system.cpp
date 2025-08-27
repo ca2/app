@@ -100,7 +100,44 @@ namespace graphics3d
 
    //};
 
+   CLASS_DECL_BRED enum_render_system as_render_system(const ::scoped_string & scopedstr)
+   {
 
+      if (scopedstr.case_insensitive_equals("scene"))
+      {
+
+         return e_render_system_scene;
+
+      }
+      else if (scopedstr.case_insensitive_equals("gltf"))
+      {
+
+         return e_render_system_gltf;
+      }
+      else if (scopedstr.case_insensitive_begins("wavefront"))
+      {
+
+         return e_render_system_wavefront_obj;
+      }
+      else if (scopedstr.case_insensitive_equals("skybox_ibl"))
+      {
+
+         return e_render_system_skybox_ibl;
+      }
+      else if (scopedstr.case_insensitive_equals("skybox"))
+      {
+
+         return e_render_system_skybox;
+      }
+      else
+      {
+
+         return e_render_system_none;
+
+      }
+
+
+   }
 
 
 }// namespace graphics3d

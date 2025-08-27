@@ -109,15 +109,15 @@ namespace graphics3d
    }
 
 
-   void scene::load_lights(const ::property_set & objJson)
+   void scene::load_lights(const ::property_set & setObject)
    {
 
       
-            auto count = objJson.get("count", 1);
-      auto radius = objJson.get("radius", 4.8f);
-      auto height = objJson.get("height", -2.5f);
-      auto intensity = objJson.get("intensity", 15.8f);
-      const auto &colorsJson = objJson["colors"];
+            auto count = setObject.get("count", 1);
+      auto radius = setObject.get("radius", 4.8f);
+      auto height = setObject.get("height", -2.5f);
+      auto intensity = setObject.get("intensity", 15.8f);
+      const auto &colorsJson = setObject["colors"];
 
       for (int i = 0; i < count; ++i)
       {
@@ -137,6 +137,182 @@ namespace graphics3d
 
          // m_mapSceneObject.set_at(ppointlight->m_strName, std::move(ppointlight));
       }
+
+
+   }
+
+
+   void scene::load_scene_object(const ::property_set & setObject)
+   {
+
+      if (setObject.get("special", "") == "lights")
+      {
+
+         load_lights(setObject);
+
+         return;
+
+      }
+
+      auto strName = setObject["name"].as_string();
+
+      auto strModel = setObject["model"].as_string();
+
+      auto strRenderSystem = setObject["renderSystem"].as_string();
+
+      auto erendersystem = as_render_system(strRenderSystem);
+
+      ::pointer<::graphics3d::renderable> prenderable;
+
+      ::pointer<::gpu::texture> ptexture;
+
+      ::pointer<::gpu::texture> ptextureCubemap;
+
+      if (strModel.has_character())
+      {
+
+         prenderable = m_pimmersionlayer->m_passetmanager->get_renderable(strModel);
+
+         if (!prenderable)
+         {
+
+            return;
+
+            throw ::exception(error_not_found, "Model not found in cache: " + strModel);
+         }
+      }
+
+      auto strTexture = setObject["texture"].as_string();
+
+      if (strTexture.has_character() && strName.has_character())
+      {
+
+         ptexture = m_pimmersionlayer->m_passetmanager->m_mapTexture[strTexture];
+
+         if (ptexture)
+         {
+
+            m_pimmersionlayer->m_passetmanager->m_mapObjectTexture[strName] = ptexture;
+         }
+      }
+
+      // auto strCubemap = setObject["cubemap"].as_string();
+
+      // if (strCubemap.has_character() && strCubemap.has_character())
+      //{
+
+      //   ptextureCubemap = m_pimmersionlayer->m_passetmanager->m_mapSkyboxTexture[strCubemap];
+
+      //   if (ptextureCubemap)
+      //   {
+
+      //      m_pimmersionlayer->m_passetmanager->m_mapObjectTexture[strName +".cubemap"] = ptexture;
+
+      //   }
+
+      //}
+
+      ::pointer<::graphics3d::scene_object> psceneobject;
+
+      bool bSkybox = setObject["skybox"].is_true();
+
+      if (bSkybox)
+      {
+
+         psceneobject = this->create_sky_box();
+
+         m_pskyboxCurrent = psceneobject;
+
+         m_pimmersionlayer->m_passetmanager->m_mapSkybox[strName] = psceneobject;
+
+         ::cast<skybox> pskybox = psceneobject;
+
+         ptextureCubemap = m_pimmersionlayer->m_passetmanager->m_mapSkyboxTexture[strName];
+
+         pskybox->m_ptexture = ptextureCubemap;
+
+         ////pskybox->m_strCubemapTextureName = setObject["cube"].as_string();
+
+         ////::string strModelName = setObject["name"].as_string();
+
+         // psceneobject
+
+         // m_strSkyboxName = strModelName;
+
+         //// Store or fallback cubemap texture name on scene-wide variable
+         ////if (isSkybox) {
+         // if (pskybox->m_strCubemapTextureName.has_character())
+         //{
+
+         //   if (m_strSkyboxCubemapName.is_empty())
+         //   {
+         //      m_strSkyboxCubemapName = pskybox->m_cubemapTextureName;
+         //   }
+         //}
+
+         // m_mapSceneObject.set_at(strModelName, psceneobject);
+
+         // set_sky_box(pskybox);
+
+         // information("GameObject '{}' marked as skybox with cubemap '{}'",
+         //             strModelName,
+         //             pskybox->m_strCubemapTextureName);
+      }
+      else
+      {
+
+         psceneobject = this->create_scene_object();
+
+         psceneobject->m_strName = strName;
+
+         psceneobject->m_strModel = strModel;
+
+         m_mapSceneObject.set_at(strName, psceneobject);
+      }
+
+      if (strModel.has_character() && strName.has_character() && strModel != strName)
+      {
+
+         auto pobject = m_mapSceneObject[strModel];
+
+         if (pobject)
+         {
+
+            m_pimmersionlayer->m_passetmanager->m_mapAliasSceneObject[strName] = pobject;
+         }
+      }
+
+
+      //
+      //
+      // auto isSkybox =
+      // gameObject->m_bIsSkybox = isSkybox;
+
+      psceneobject->m_erendersystem = erendersystem;
+
+      psceneobject->set_renderable(prenderable);
+
+      auto pos = setObject.get("position", ::float_array_base{0.f, 0.f, 0.f});
+      auto rot = setObject.get("rotation", ::float_array_base{0.f, 0.f, 0.f});
+      auto scl = setObject.get("scale", ::float_array_base{1.f, 1.f, 1.f});
+
+      psceneobject->transform().m_vec3Position = {pos[0], pos[1], pos[2]};
+      psceneobject->transform().m_vec3Rotation = {rot[0], rot[1], rot[2]};
+      psceneobject->transform().m_vec3Scale = {scl[0], scl[1], scl[2]};
+
+      information("Loaded GameObject '{}' - Pos: ({}, {}, {}), Rot: ({}, {}, {}), Scale: ({}, {}, {})",
+                  setObject.get("name", "unnamed"), pos[0], pos[1], pos[2], rot[0], rot[1], rot[2], scl[0], scl[1],
+                  scl[2]);
+
+
+      //
+      // if (setObject.has_property("cubemap")) {
+      //
+      //
+      // }
+
+
+      // Store in map
 
 
    }
@@ -187,184 +363,9 @@ namespace graphics3d
       for (auto &item: objects)
       {
 
-         auto &objJson = item.property_set_reference();
+         auto &setObject = item.property_set_reference();
 
-         if (objJson.get("special", "") == "lights")
-         {
-
-            load_lights(objJson);
-
-            continue; // Skip normal parsing for this object
-
-         }
-
-         ::string strName = objJson["name"].as_string();
-
-         ::string strModel;
-
-         strModel = objJson["model"].as_string();
-
-         ::pointer<::graphics3d::renderable> prenderable;
-
-         ::pointer<::gpu::texture> ptexture;
-
-         ::pointer<::gpu::texture> ptextureCubemap;
-
-         if (strModel.has_character())
-         {
-
-            prenderable = m_pimmersionlayer->m_passetmanager->get_renderable(strModel);
-
-            if (!prenderable)
-            {
-
-               throw ::exception(error_not_found, "Model not found in cache: " + strModel);
-
-            }
-
-         }
-
-         auto strTexture = objJson["texture"].as_string();
-
-         if (strTexture.has_character() && strName.has_character())
-         {
-
-            ptexture = m_pimmersionlayer->m_passetmanager->m_mapTexture[strTexture];
-
-            if (ptexture)
-            {
-
-               m_pimmersionlayer->m_passetmanager->m_mapObjectTexture[strName] = ptexture;
-
-            }
-
-         }
-
-         //auto strCubemap = objJson["cubemap"].as_string();
-
-         //if (strCubemap.has_character() && strCubemap.has_character())
-         //{
-
-         //   ptextureCubemap = m_pimmersionlayer->m_passetmanager->m_mapSkyboxTexture[strCubemap];
-
-         //   if (ptextureCubemap)
-         //   {
-
-         //      m_pimmersionlayer->m_passetmanager->m_mapObjectTexture[strName +".cubemap"] = ptexture;
-
-         //   }
-
-         //}
-
-         ::pointer<::graphics3d::scene_object> psceneobject;
-
-         bool bSkybox = objJson["skybox"].is_true();
-
-         if (bSkybox)
-         {
-
-            psceneobject = this->create_sky_box();
-
-            m_pskyboxCurrent = psceneobject;
-
-            m_pimmersionlayer->m_passetmanager->m_mapSkybox[strName] = psceneobject;
-
-            ::cast<skybox> pskybox = psceneobject;
-
-            ptextureCubemap = m_pimmersionlayer->m_passetmanager->m_mapSkyboxTexture[strName];
-
-            pskybox->m_ptexture = ptextureCubemap;
-
-            ////pskybox->m_strCubemapTextureName = objJson["cube"].as_string();
-
-            ////::string strModelName = objJson["name"].as_string();
-
-            //psceneobject
-            
-            //m_strSkyboxName = strModelName;
-
-            //// Store or fallback cubemap texture name on scene-wide variable
-            ////if (isSkybox) {
-            //if (pskybox->m_strCubemapTextureName.has_character())
-            //{
-
-            //   if (m_strSkyboxCubemapName.is_empty())
-            //   {
-            //      m_strSkyboxCubemapName = pskybox->m_cubemapTextureName;
-            //   }
-            //}
-
-            //m_mapSceneObject.set_at(strModelName, psceneobject);
-
-            //set_sky_box(pskybox);
-
-            //information("GameObject '{}' marked as skybox with cubemap '{}'",
-            //            strModelName,
-            //            pskybox->m_strCubemapTextureName);
-
-
-         }
-         else
-         {
-
-            psceneobject = this->create_scene_object();
-
-            psceneobject->m_strName = strName;
-
-            psceneobject->m_strModel = strModel;
-
-            m_mapSceneObject.set_at(strName, psceneobject);
-
-         }
-
-         if (strModel.has_character() && strName.has_character()
-            && strModel != strName)
-         {
-
-            auto pobject = m_mapSceneObject[strModel];
-
-            if (pobject)
-            {
-
-               m_pimmersionlayer->m_passetmanager->m_mapAliasSceneObject[strName] = pobject;
-
-            }
-
-         }
-         
-
-
-
-         //
-         //
-         // auto isSkybox =
-         // gameObject->m_bIsSkybox = isSkybox;
-
-         psceneobject->set_renderable(prenderable);
-
-         auto pos = objJson.get("position", ::float_array_base{0.f, 0.f, 0.f});
-         auto rot = objJson.get("rotation", ::float_array_base{0.f, 0.f, 0.f});
-         auto scl = objJson.get("scale", ::float_array_base{1.f, 1.f, 1.f});
-
-         psceneobject->transform().m_vec3Position = {pos[0], pos[1], pos[2]};
-         psceneobject->transform().m_vec3Rotation = {rot[0], rot[1], rot[2]};
-         psceneobject->transform().m_vec3Scale = {scl[0], scl[1], scl[2]};
-
-         information("Loaded GameObject '{}' - Pos: ({}, {}, {}), Rot: ({}, {}, {}), Scale: ({}, {}, {})",
-                     objJson.get("name", "unnamed"),
-                     pos[0], pos[1], pos[2],
-                     rot[0], rot[1], rot[2],
-                     scl[0], scl[1], scl[2]);
-
-
-         //
-         // if (objJson.has_property("cubemap")) {
-         //
-         //
-         // }
-
-
-         // Store in map
+         load_scene_object(setObject);
 
       }
 

@@ -26,6 +26,7 @@ namespace graphics3d
       ::pointer < ::graphics3d::scene >      m_pscene;
       ::graphics3d::transform                m_transform;
       long long                              m_llId;
+      enum_render_system m_erendersystem;
       ::pointer<::graphics3d::renderable>    m_prenderable;
       ::color::color                         m_color;
       ::string                               m_strName;

@@ -317,13 +317,13 @@ using property_holder_array_base = ::array_base < ::holder < ::property > >;
 //}
 //
 
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::property & property)
-{
-
-   return operator=(property.as_string());
-
-}
+//template < typename ITERATOR_TYPE >
+//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::property & property)
+//{
+//
+//   return operator=(property.as_string());
+//
+//}
 
 
 template < typename ITERATOR_TYPE >

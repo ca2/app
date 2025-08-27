@@ -173,15 +173,15 @@ inline mutable_string_range < ITERATOR_TYPE >::mutable_string_range(const block 
 //}
 
 
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::atom & atom)
-{
-
-   assign_range(atom.as_string());
-
-   return *this;
-
-}
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::atom & atom)
+//{
+//
+//   assign_range(atom.as_string());
+//
+//   return *this;
+//
+//}
 
 
 //template < typename ITERATOR_TYPE >

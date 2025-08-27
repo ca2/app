@@ -969,15 +969,15 @@ inline ::payload & copy(::payload & payload1, const ::payload & payload2)
 //}
 
 
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::payload & payload)
-{
-
-   assign_range(payload.as_string());
-
-   return *this;
-
-}
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::payload & payload)
+//{
+//
+//   assign_range(payload.as_string());
+//
+//   return *this;
+//
+//}
 
 
 template < typename ITERATOR_TYPE >

@@ -624,68 +624,114 @@ public:
 //      return *this;
 //   }
 //   string_base & operator = (string_base && string_base) { NATURAL_POINTER::operator=(::transfer(string_base)); return *this; }
-   string_base & operator = (ansi_character ansich) { assign(ansich); return *this; }
-   string_base & operator = (wd16_character wd16ch) { assign(wd16ch); return *this; }
-   string_base & operator = (wd32_character wd32ch) { assign(wd32ch); return *this; }
-   string_base & operator = (const ansi_character * pansisz) { assign(pansisz); return *this; }
-   string_base & operator = (const wd16_character * pwd16sz) { assign(pwd16sz); return *this; }
-   string_base & operator = (const wd32_character * pwd32sz) { assign(pwd32sz); return *this; }
-   string_base & operator = (const ::atom & atom);
-   string_base & operator = (const ::payload & payload);
-   string_base & operator = (const ::property & property);
-   //template < typename ITERATOR_TYPE2, int t_size >
-   //string_base& operator = (const const_string_range_static_array < ITERATOR_TYPE2, t_size >& a) { return assign(a); }
-   template < character_count n >
-   string_base & operator = (const ::inline_string < ::ansi_character, n > & inlinestring) { assign(inlinestring.begin(), inlinestring.size()); return *this; }
-   //   template < has_as_string HAS_AS_STRING >
-   //   string_base & operator = (const HAS_AS_STRING & has_as_string)
-   //   {
-   //
-   //      return operator =(has_as_string.as_string());
-   //
-   //   }
+   ////string_base & operator = (ansi_character ansich) { assign(ansich); return *this; }
+   ////string_base & operator = (wd16_character wd16ch) { assign(wd16ch); return *this; }
+   ////string_base & operator = (wd32_character wd32ch) { assign(wd32ch); return *this; }
+   ////string_base & operator = (const ansi_character * pansisz) { assign(pansisz); return *this; }
+   ////string_base & operator = (const wd16_character * pwd16sz) { assign(pwd16sz); return *this; }
+   ////string_base & operator = (const wd32_character * pwd32sz) { assign(pwd32sz); return *this; }
+   //string_base & operator = (const ::atom & atom);
+   //string_base & operator = (const ::payload & payload);
+   //string_base & operator = (const ::property & property);
+   ////template < typename ITERATOR_TYPE2, int t_size >
+   ////string_base& operator = (const const_string_range_static_array < ITERATOR_TYPE2, t_size >& a) { return assign(a); }
+   //template < character_count n >
+   //string_base & operator = (const ::inline_string < ::ansi_character, n > & inlinestring) { assign(inlinestring.begin(), inlinestring.size()); return *this; }
+   ////   template < has_as_string HAS_AS_STRING >
+   ////   string_base & operator = (const HAS_AS_STRING & has_as_string)
+   ////   {
+   ////
+   ////      return operator =(has_as_string.as_string());
+   ////
+   ////   }
 
-      //string_base & operator = (const_char_pointer pansichar);
-      //string_base & operator = (const ::wd16_character * pwd16char);
-      //string_base & operator = (const ::wd32_character * pwd32char);
-      //string_base & operator = (const natural_ansistring & ansistr);
-      //string_base & operator = (const natural_wd16string & wd16str);
-      //string_base & operator = (const natural_wd32string & wd32str);
-   string_base & operator = (const const_ansi_range & ansirange) {assign_range(ansirange); return *this;}
-   string_base & operator = (const const_wd16_range & wd16range) {assign_range(wd16range); return *this;}
-   string_base & operator = (const const_wd32_range & wd32range) {assign_range(wd32range); return *this;}
-   string_base & operator = (const ansi_string & ansistr) { assign_range(ansistr); return *this;}
-   string_base & operator = (const wd16_string & wd16str) { assign_range(wd16str); return *this;}
-   string_base & operator = (const wd32_string & wd32str) { assign_range(wd32str); return *this;}
-   string_base & operator = (string_base && str) { assign_range(::transfer(str)); return *this; }
+   //   //string_base & operator = (const_char_pointer pansichar);
+   //   //string_base & operator = (const ::wd16_character * pwd16char);
+   //   //string_base & operator = (const ::wd32_character * pwd32char);
+   //   //string_base & operator = (const natural_ansistring & ansistr);
+   //   //string_base & operator = (const natural_wd16string & wd16str);
+   //   //string_base & operator = (const natural_wd32string & wd32str);
+   ////string_base & operator = (const const_ansi_range & ansirange) {assign_range(ansirange); return *this;}
+   ////string_base & operator = (const const_wd16_range & wd16range) {assign_range(wd16range); return *this;}
+   ////string_base & operator = (const const_wd32_range & wd32range) {assign_range(wd32range); return *this;}
+   ////string_base & operator = (const ansi_string & ansistr) { assign_range(ansistr); return *this;}
+   ////string_base & operator = (const wd16_string & wd16str) { assign_range(wd16str); return *this;}
+   ////string_base & operator = (const wd32_string & wd32str) { assign_range(wd32str); return *this;}
 
-   template < primitive_block BLOCK >
-   string_base & operator = (const BLOCK & block) { assign((const CHARACTER *)block.begin(), (const CHARACTER *)block.end()); return *this; }
-      //template < primitive_character CHARACTER2 >
-      //string_base & operator = (const ::range < const CHARACTER2 * > & str);
-      //string_base & operator = (string_base && str);
-   string_base & operator = (const ::inline_number_string & inline_number_string) {assign(inline_number_string.begin(), inline_number_string.end()); return *this;}
-   string_base & operator = (const scoped_ansi_string & ansistr);
-   string_base & operator = (const scoped_wd16_string & wd16str);
-   string_base & operator = (const scoped_wd32_string & wd32str);
-#ifdef __STD_FORMAT__
-   string_base& operator = (const ::std::string &str) { operator =(str.c_str()); return *this; }
-#endif
-      //string_base & operator = (const string_base & str);
-      //string_base & operator = (const string_base & str);
-      //string_base & operator = (::ansi_character ansich);
-      //string_base & operator = (::wd16_character wd16ch);
-   //   string_base & operator = (::wd32_character wd32ch);
-   //#ifdef WINDOWS
-     // string_base & operator = (const USHORT * pshSrc) { return operator=((const ::wd16_character *)pshSrc); }
-   //#endif
-   //#ifdef UNIVERSAL_WINDOWS
-     // string_base& operator = (String^& str) { return operator=(str->Begin()); }
-   //#endif
-      //string_base & operator = (const ::atom & atom);
-      //string_base & operator = (const ::payload & payload);
-      //string_base & operator = (const ::property & property);
+   string_base &operator =(const string_base & str)
+   {
+      this->assign_range(str);
+      return *this;
+   }
 
+   template < primitive_range SOME_RANGE >
+   string_base &operator=(SOME_RANGE && range)
+   {
+      this->transfer_range(::transfer(range));
+      return *this;
+   }
+
+
+   //string_base &operator=(string_base &&str)
+   //{
+   //   transfer_range(::transfer(str));
+   //   return *this;
+   //}
+
+//
+//
+//   //template<primitive_character MAY_BE_OTHER_CHARACTER>
+//   //string_base &operator=(MAY_BE_OTHER_CHARACTER character)
+//   //{
+//   //   assign(character);
+//   //   return *this;
+//   //}
+//
+//
+//   //template<primitive_character MAY_BE_OTHER_CHARACTER>
+//   //string_base &operator=(const MAY_BE_OTHER_CHARACTER * psz)
+//   //{
+//   //   assign(psz);
+//   //   return *this;
+//   //}
+//
+//   //template<typename MAY_BE_OTHER_CHARACTER_RANGE>
+//   //string_base &operator=(const MAY_BE_OTHER_CHARACTER_RANGE &range)
+//   //   requires (other_character_range<MAY_BE_OTHER_CHARACTER_RANGE, CHARACTER> ||
+//   //   !::std::is_base_of< string_base, MAY_BE_OTHER_CHARACTER_RANGE>::value)
+//   //{
+//   //   assign_range(range);
+//   //   return *this;
+//   //}
+//
+//
+//   template < primitive_block BLOCK >
+//   string_base & operator = (const BLOCK & block) { assign((const CHARACTER *)block.begin(), (const CHARACTER *)block.end()); return *this; }
+//      //template < primitive_character CHARACTER2 >
+//      //string_base & operator = (const ::range < const CHARACTER2 * > & str);
+//      //string_base & operator = (string_base && str);
+//   string_base & operator = (const ::inline_number_string & inline_number_string) {assign(inline_number_string.begin(), inline_number_string.end()); return *this;}
+//   string_base & operator = (const scoped_ansi_string & ansistr);
+//   string_base & operator = (const scoped_wd16_string & wd16str);
+//   string_base & operator = (const scoped_wd32_string & wd32str);
+//#ifdef __STD_FORMAT__
+//   string_base& operator = (const ::std::string &str) { operator =(str.c_str()); return *this; }
+//#endif
+//      //string_base & operator = (const string_base & str);
+//      //string_base & operator = (const string_base & str);
+//      //string_base & operator = (::ansi_character ansich);
+//      //string_base & operator = (::wd16_character wd16ch);
+//   //   string_base & operator = (::wd32_character wd32ch);
+//   //#ifdef WINDOWS
+//     // string_base & operator = (const USHORT * pshSrc) { return operator=((const ::wd16_character *)pshSrc); }
+//   //#endif
+//   //#ifdef UNIVERSAL_WINDOWS
+//     // string_base& operator = (String^& str) { return operator=(str->Begin()); }
+//   //#endif
+//      //string_base & operator = (const ::atom & atom);
+//      //string_base & operator = (const ::payload & payload);
+//      //string_base & operator = (const ::property & property);
+//
    //   template < int t_nSize >
      // inline string_base & operator=(const static_string<CHARACTER, t_nSize > & ansistrSrc);
 
@@ -811,28 +857,27 @@ public:
 //   }
 
 
-   template < typed_character_range < CHARACTER > TYPED_CHARACTER_RANGE >
-   inline string_base & assign_range(const TYPED_CHARACTER_RANGE & range)
+   template<typename SAME_CHARACTER_RANGE >
+   string_base &assign_range(const SAME_CHARACTER_RANGE & range) 
+      requires (typed_character_range<SAME_CHARACTER_RANGE, CHARACTER>)
    {
 
-      if((::range<const CHARACTER *>*)(this) != (::range<const CHARACTER *>*)(&range))
+      if ((::range<const CHARACTER *> *)(this) != (::range<const CHARACTER *> *)(&range))
       {
 
-         BASE_DATA* pdata;
+         BASE_DATA *pdata;
 
          if (this->m_erange & e_range_string)
          {
 
             pdata = BASE_DATA::base_data_from_data(this->m_begin);
 
-            //this->__destroy();
-
+            // this->__destroy();
          }
          else
          {
 
             pdata = nullptr;
-
          }
 
          construct10(range);
@@ -844,11 +889,8 @@ public:
             {
 
                this->base_data_release(pdata);
-
             }
-
          }
-
       }
 
       return *this;
@@ -856,8 +898,9 @@ public:
    }
 
 
-   template < typed_character_range < CHARACTER > TYPED_CHARACTER_RANGE >
-   inline string_base & assign_range(TYPED_CHARACTER_RANGE && range)
+   template<typename SAME_CHARACTER_RANGE>
+   string_base &transfer_range(SAME_CHARACTER_RANGE &&range)
+      requires(typed_character_range<SAME_CHARACTER_RANGE, CHARACTER>)
    {
 
       if((::range<const CHARACTER *>*)(this) != (::range<const CHARACTER *>*)(&range))
@@ -883,22 +926,25 @@ public:
       return *this;
 
    }
-   template < other_character_range < CHARACTER > OTHER_CHARACTER_RANGE >
-   inline string_base & assign_range(const OTHER_CHARACTER_RANGE & range)
+
+   
+   template<typename OTHER_CHARACTER_RANGE>
+   string_base &assign_range(const OTHER_CHARACTER_RANGE &range)
+      requires(other_character_range<OTHER_CHARACTER_RANGE, CHARACTER>)
    {
-
+      
       this->assign(range.m_begin, range.m_end);
-
+      
       return *this;
 
    }
 
 
-
-   template < other_character_range < CHARACTER > OTHER_CHARACTER_RANGE >
-   inline string_base & assign_range(OTHER_CHARACTER_RANGE && range)
+   template < typename OTHER_CHARACTER_RANGE >
+   inline string_base & transfer_range(OTHER_CHARACTER_RANGE && range)
+      requires(other_character_range<OTHER_CHARACTER_RANGE, CHARACTER>)
    {
-
+      
       this->assign(range.m_begin, range.m_end);
 
       range.m_begin = nullptr;

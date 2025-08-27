@@ -2179,7 +2179,7 @@ template < primitive_container CONTAINER >
    for (auto & item : container)
    {
 
-      count += this->case_insensitive_erase_item(item);
+      count += this->case_insensitive_erase(item);
 
    }
 

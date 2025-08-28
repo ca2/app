@@ -545,7 +545,7 @@ namespace draw2d
 
       virtual void intersect_clip(const ::double_rectangle& double_rectangle);
       virtual void intersect_clip(const ::double_ellipse& ellipse);
-      virtual void intersect_clip(const ::double_polygon& polygon);
+      virtual void intersect_clip(const ::double_polygon_base& polygon);
 
 
       virtual ::draw2d::region* defer_get_os_data(::pointer < ::geometry2d::region >& pregion);
@@ -572,7 +572,7 @@ namespace draw2d
       virtual bool _add_simple_shape(::geometry2d::item* pitem);
       virtual void _add_shape(const ::double_rectangle& rectangle);
       virtual void _add_shape(const ::double_ellipse& ellipse);
-      virtual void _add_shape(const ::double_polygon& polygon);
+      virtual void _add_shape(const ::double_polygon_base& polygon);
 
       //virtual void IntersectClipregion(::draw2d::region * pregion);
       //virtual void IntersectClipRect(double x1, double y1, double x2, double y2);
@@ -1362,7 +1362,7 @@ namespace draw2d
       //virtual bool _set(const ::lines & lines);
       virtual bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::region>& pregion);
       virtual bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::region>& pregion);
-      virtual bool _set(const ::double_polygon & polygon, const ::pointer<::draw2d::region>& pregion);
+      virtual bool _set(const ::double_polygon_base & polygon, const ::pointer<::draw2d::region>& pregion);
       virtual bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::region>& pregion);
       virtual bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::region>& pregion);
 
@@ -1372,7 +1372,7 @@ namespace draw2d
       virtual bool _set(const ::double_lines & lines, const ::pointer<::draw2d::path>& ppath);
       virtual bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::path>& ppath);
       virtual bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::path>& ppath);
-      virtual bool _set(const ::double_polygon & polygon, const ::pointer<::draw2d::path>& ppath);
+      virtual bool _set(const ::double_polygon_base & polygon, const ::pointer<::draw2d::path>& ppath);
       virtual bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::path>& ppath);
       virtual bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::path>& ppath);
 
@@ -1382,7 +1382,7 @@ namespace draw2d
       virtual bool _set(const ::double_lines & lines);
       virtual bool _set(const ::double_rectangle & rectangle);
       virtual bool _set(const ::double_ellipse & ellipse);
-      virtual bool _set(const ::double_polygon & polygon);
+      virtual bool _set(const ::double_polygon_base & polygon);
       virtual bool _set(const ::write_text::text_out & textout);
       virtual bool _set(const ::write_text::draw_text & drawtext);
 

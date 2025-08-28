@@ -436,7 +436,7 @@ namespace draw2d_cairo
 //   }
 //
 //
-//   void graphics::_add_clipping_shape(const ::double_polygon & polygon, ::draw2d::region * pregion)
+//   void graphics::_add_clipping_shape(const ::double_polygon_base & polygon, ::draw2d::region * pregion)
 //   {
 //
 //      _add_shape(polygon);
@@ -477,7 +477,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::_add_shape(const ::double_polygon & polygon)
+   void graphics::_add_shape(const ::double_polygon_base & polygon)
    {
 
       if (polygon.is_empty())
@@ -5975,7 +5975,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::double_polygon & polygon, const ::pointer<::draw2d::region>& pregion)
+   bool graphics::_set(const ::double_polygon_base & polygon, const ::pointer<::draw2d::region>& pregion)
    {
 
       return _set(polygon);
@@ -6039,7 +6039,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::double_polygon & polygon, const ::pointer<::draw2d::path>& ppath)
+   bool graphics::_set(const ::double_polygon_base & polygon, const ::pointer<::draw2d::path>& ppath)
    {
 
       return _set(polygon);
@@ -6357,7 +6357,7 @@ namespace draw2d_cairo
 //}
 
 
-   bool graphics::_set(const ::double_polygon & int_polygon)
+   bool graphics::_set(const ::double_polygon_base & int_polygon)
    {
 
       if (int_polygon.get_count() <= 1)

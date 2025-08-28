@@ -202,11 +202,11 @@ namespace draw2d_cairo
       //void _intersect_clip() override;
       //void _add_shape(const ::double_rectangle & rectangle) override;
       //void _add_shape(const ::double_ellipse & ellipse) override;
-      //void _add_shape(const ::double_polygon & polygon) override;
+      //void _add_shape(const ::double_polygon_base & polygon) override;
 
       //void intersect_clip(const ::double_rectangle & rectangle) override;
       //void intersect_clip(const ::double_ellipse & rectangle) override;
-      //void intersect_clip(const ::double_polygon & rectangle) override;
+      //void intersect_clip(const ::double_polygon_base & rectangle) override;
 
       //void set_clipping(::draw2d::region* pregion) override;
       //virtual void intersect_clip(const ::draw2d::clip & clip);
@@ -243,13 +243,13 @@ namespace draw2d_cairo
       //virtual void _add_shape(const ::double_ellipse & ellipse) override;
       //void _add_clipping_shape(const ::double_ellipse & ellipse, ::draw2d::region * pregion) override;
       //virtual void _add_shape(const ::int_polygon & int_polygon) override;
-      //void _add_clipping_shape(const ::double_polygon & int_polygon, ::draw2d::region * pregion) override;
+      //void _add_clipping_shape(const ::double_polygon_base & int_polygon, ::draw2d::region * pregion) override;
 
       void _add_shape(const ::double_rectangle & double_rectangle) override;
       //virtual void _add_shape(const ::double_ellipse & ellipse) override;
       void _add_shape(const ::double_ellipse & ellipse) override;
       //virtual void _add_shape(const ::int_polygon & int_polygon) override;
-      void _add_shape(const ::double_polygon & int_polygon) override;
+      void _add_shape(const ::double_polygon_base & int_polygon) override;
 
 
       // Line-Output Functions
@@ -572,7 +572,7 @@ namespace draw2d_cairo
       //bool _set(const ::lines & lines) override;
       bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::region>& pregion) override;
       bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::region>& pregion) override;
-      bool _set(const ::double_polygon & polygon, const ::pointer<::draw2d::region>& pregion) override;
+      bool _set(const ::double_polygon_base & polygon, const ::pointer<::draw2d::region>& pregion) override;
       bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::region>& pregion) override;
       bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::region>& pregion) override;
 
@@ -582,7 +582,7 @@ namespace draw2d_cairo
       bool _set(const ::double_lines & lines, const ::pointer<::draw2d::path>& ppath) override;
       bool _set(const ::double_rectangle & rectangle, const ::pointer<::draw2d::path>& ppath) override;
       bool _set(const ::double_ellipse & ellipse, const ::pointer<::draw2d::path>& ppath) override;
-      bool _set(const ::double_polygon & polygon, const ::pointer<::draw2d::path>& ppath) override;
+      bool _set(const ::double_polygon_base & polygon, const ::pointer<::draw2d::path>& ppath) override;
       bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::path>& ppath) override;
       bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::path>& ppath) override;
 
@@ -592,7 +592,7 @@ namespace draw2d_cairo
       bool _set(const ::double_lines & lines) override;
       bool _set(const ::double_rectangle & rectangle) override;
       bool _set(const ::double_ellipse & ellipse) override;
-      bool _set(const ::double_polygon & polygon) override;
+      bool _set(const ::double_polygon_base & polygon) override;
       bool _set(const ::write_text::text_out & textout) override;
       bool _set(const ::write_text::draw_text & drawtext) override;
 

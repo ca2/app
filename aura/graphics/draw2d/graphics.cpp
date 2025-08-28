@@ -3916,7 +3916,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_shape(const ::double_polygon & polygon)
+   void graphics::_add_shape(const ::double_polygon_base & polygon)
    {
 
       throw ::interface_only();
@@ -3946,7 +3946,7 @@ namespace draw2d
    }
 
 
-   void graphics::intersect_clip(const ::double_polygon & polygon)
+   void graphics::intersect_clip(const ::double_polygon_base & polygon)
    {
 
       _add_shape(polygon);
@@ -4015,7 +4015,7 @@ namespace draw2d
       //}
 
 
-   //   void graphics::intersect_clip(const ::double_polygon & polygon)
+   //   void graphics::intersect_clip(const ::double_polygon_base & polygon)
    //   {
    //
    //      ::pointer<::draw2d::region>pregion;
@@ -6653,7 +6653,7 @@ namespace draw2d
          return false;
 
       }
-      bool graphics::_set(const ::double_polygon & polygon, const ::pointer<::draw2d::region>& pregion)
+      bool graphics::_set(const ::double_polygon_base & polygon, const ::pointer<::draw2d::region>& pregion)
       {
 
          return false;
@@ -6703,7 +6703,7 @@ namespace draw2d
          return false;
 
       }
-      bool graphics::_set(const ::double_polygon & polygon, const ::pointer<::draw2d::path>& ppath)
+      bool graphics::_set(const ::double_polygon_base & polygon, const ::pointer<::draw2d::path>& ppath)
       {
 
          return false;
@@ -6753,7 +6753,7 @@ namespace draw2d
          return false;
 
       }
-      bool graphics::_set(const ::double_polygon & polygon)
+      bool graphics::_set(const ::double_polygon_base & polygon)
       {
 
          return false;

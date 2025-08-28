@@ -34,7 +34,8 @@ struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
 #endif
    ::logic::boolean                       m_bShowApplicationInformation;
    ::logic::boolean                       m_bDataCentralRequired;
-
+   bool                                   m_bUseCloudStorageForAppData = true;
+   bool                                   m_bUseComputerNameInAppLocalConfigFolder = false;
    ::logic::boolean                       m_bExperienceMainFrame;
    ::logic::boolean                       m_bVerbose;
 //   //PFN_NEW_MATTER                   m_pfnnewmatterApplication;

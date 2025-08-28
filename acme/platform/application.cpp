@@ -1191,7 +1191,31 @@ void application::start_application()
    ::file::path application::get_app_localconfig_folder()
    {
 
-      ::file::path pathFolder = directory_system()->roaming() / m_strAppId;
+      ::file::path pathFolder;
+
+      if (m_bUseCloudStorageForAppData)
+      {
+
+         pathFolder = "dropbox-app://";
+
+      }
+      else
+      {
+
+         pathFolder = directory_system()->roaming();
+
+      }
+      
+      pathFolder /= m_strAppId;
+
+      if (m_bUseComputerNameInAppLocalConfigFolder)
+      {
+
+         auto strComputerName = node()->get_computer_name();
+
+         pathFolder /= strComputerName;
+
+      }
 
       return pathFolder;
 

@@ -55,7 +55,7 @@ namespace platform
    application::application()
    {
 
-      
+      m_bUseCloudStorageForAppData = true;
       m_gpu.m_bUseSwapChainWindow = false;
       m_gpu.m_eoutputDraw2d = ::gpu::e_output_none;
       m_gpu.m_eoutputEngine = ::gpu::e_output_none;
@@ -1202,11 +1202,9 @@ void application::start_application()
       else
       {
 
-         pathFolder = directory_system()->roaming();
+         pathFolder = directory_system()->roaming() / m_strAppId;
 
       }
-      
-      pathFolder /= m_strAppId;
 
       if (m_bUseComputerNameInAppLocalConfigFolder)
       {

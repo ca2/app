@@ -112,7 +112,7 @@ public:
       ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
    { 
       
-      construct1(str); 
+      construct_from_string(str); 
    
    }
    
@@ -157,7 +157,7 @@ public:
       ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
    {
       
-      construct10(str);
+      construct_from_a_range(str);
 
    }
 
@@ -186,9 +186,9 @@ public:
    }
 
 
-   //string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(no_initialize_t{}) { construct10(ansistr); }
-   //string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(no_initialize_t{}) { construct10(wd16str); }
-   //string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(no_initialize_t{}) { construct10(wd32str); }
+   //string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(ansistr); }
+   //string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(wd16str); }
+   //string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(wd32str); }
    string_base(string_base && str) :
       ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
    { 
@@ -199,9 +199,9 @@ public:
       str.m_end = nullptr; 
    }
 
-   //void _construct(const ::ansi_string & ansistr) { construct10(ansistr); }
-   //void _construct(const ::wd16_string & wd16str) { construct10(wd16str); }
-   //void _construct(const ::wd32_string & wd32str) { construct10(wd32str); }
+   //void _construct(const ::ansi_string & ansistr) { construct_from_a_range(ansistr); }
+   //void _construct(const ::wd16_string & wd16str) { construct_from_a_range(wd16str); }
+   //void _construct(const ::wd32_string & wd32str) { construct_from_a_range(wd32str); }
    //void _construct(string_base && str)
    //{
    //   this->m_begin = str.m_begin;
@@ -226,19 +226,19 @@ public:
 
 
    //template<typed_range<::ansi_character *> RANGE>
-   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
+   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
    //template<typed_range<::wd16_character *> RANGE>
-   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
+   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
    //template<typed_range<::wd32_character *> RANGE>
-   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
+   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
 
 
    //template<typed_range<const_char_pointer >RANGE>
-   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
+   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
    //template<typed_range<const ::wd16_character *> RANGE>
-   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
+   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
    //template<typed_range<const ::wd32_character *> RANGE>
-   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
+   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
 
    //template < int t_size >
    //inline string_base(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a);
@@ -266,9 +266,9 @@ public:
    //xxxstring_base(const const_ansi_range & ansirange) : NATURAL_POINTER(no_initialize_t{}) { construct2(ansirange.begin(), ansirange.size()); }
    //xxxstring_base(const const_wd16_range & wd16range) : NATURAL_POINTER(no_initialize_t{}) { construct2(wd16range.begin(), wd16range.size()); }
    //xxxstring_base(const const_wd32_range & wd32range) : NATURAL_POINTER(no_initialize_t{}) { construct2(wd32range.begin(), wd32range.size()); }
-   //string_base(const const_ansi_range & ansirange) : NATURAL_POINTER(no_initialize_t{}) { construct10(ansirange); }
-   //string_base(const const_wd16_range & wd16range) : NATURAL_POINTER(no_initialize_t{}) { construct10(wd16range); }
-   //string_base(const const_wd32_range & wd32range) : NATURAL_POINTER(no_initialize_t{}) { construct10(wd32range); }
+   //string_base(const const_ansi_range & ansirange) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(ansirange); }
+   //string_base(const const_wd16_range & wd16range) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(wd16range); }
+   //string_base(const const_wd32_range & wd32range) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(wd32range); }
    //string_base(const const_ansi_range & ansirange, character_count length) : NATURAL_POINTER(no_initialize_t{})  { construct2(ansirange, 0, length); }
    //string_base(const const_wd16_range & wd16range, character_count length) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd16range, 0, length); }
    //string_base(const const_wd32_range & wd32range, character_count length) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd32range, 0, length); }
@@ -280,7 +280,7 @@ public:
    template < primitive_block BLOCK >
    string_base(const BLOCK & block) : string_base((const CHARACTER *)block.begin(), (const CHARACTER *)block.end()) {}
    template < character_pointer CHARACTER_POINTER >
-   string_base(CHARACTER_POINTER start, character_count length) : ::const_string_range<ITERATOR_TYPE>(no_initialize_t{}) { construct5(start, length); }
+   string_base(CHARACTER_POINTER start, character_count length) : ::const_string_range<ITERATOR_TYPE>(no_initialize_t{}) { construct_from_range(start, length); }
    template < character_pointer CHARACTER_POINTER >
    string_base(CHARACTER_POINTER start, CHARACTER_POINTER end) : string_base(start, end-start) { }
    template < character_pointer CHARACTER_POINTER >
@@ -330,8 +330,8 @@ public:
    //string_base(::ansi_character ansich) : string_base(&ansich, 1) {}
    //string_base(::wd16_character wd16ch) : string_base(&wd16ch, 1) {}
    //string_base(::wd32_character wd32ch) : string_base(&wd32ch, 1) {}
-   //string_base(const ::string & cstr) :NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
-   //string_base(const ::scoped_wstring & scopedwstr) :NATURAL_POINTER(no_initialize_t{}) { construct10(scopedwstr); }
+   //string_base(const ::string & cstr) :NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
+   //string_base(const ::scoped_wstring & scopedwstr) :NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(scopedwstr); }
 #if defined(__STD_FORMAT__)
    string_base(const ::std::string & str) : string_base(str.c_str()) { }
 #endif
@@ -419,23 +419,23 @@ public:
    }*/
 
 
-   void construct1(const string_base& str);
+   void construct_from_string(const string_base& str);
 
 
    //template < typename RANGE >
-   //void construct10(const RANGE& range) requires 
+   //void construct_from_a_range(const RANGE& range) requires 
    //   ::std::is_base_of_v < ::range < const typename string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE >
    //   && !
    //   (::std::is_base_of_v < string_base < ITERATOR_TYPE >, RANGE >
    //      || ::std::is_same_v < string_base < ITERATOR_TYPE >, RANGE >)
    template < typename RANGE >
-   void construct10(const RANGE& range)
+   void construct_from_a_range(const RANGE& range)
    {
 
       if (range.m_erange & e_range_string)
       {
 
-         this->construct1(*(const string_base*)&range);
+         this->construct_from_string(*(const string_base*)&range);
 
       }
       else if (range.m_erange & e_range_string_literal)
@@ -449,7 +449,7 @@ public:
       else
       {
 
-         this->construct5(range.data(), range.size());
+         this->construct_from_range(range.data(), range.size());
 
       }
 
@@ -463,19 +463,19 @@ public:
     requires other_primitive_character < OTHER_CHARACTER, CHARACTER > ;
 
 
-   inline void construct1(const ITERATOR_TYPE psz, character_count length);
+   //inline void construct_from_string(const ITERATOR_TYPE psz, character_count length);
 
    inline void construct2(const ::range < const CHARACTER * > & range);
 
 
-   inline void construct5(ITERATOR_TYPE pSrc, character_count length);
+   inline void construct_from_range(ITERATOR_TYPE pSrc, character_count length);
 
    template < typename OTHER_CHARACTER_POINTER >
-   inline void construct5(OTHER_CHARACTER_POINTER pSrc, character_count length)
+   inline void construct_from_range(OTHER_CHARACTER_POINTER pSrc, character_count length)
     requires other_character_pointer < OTHER_CHARACTER_POINTER, ITERATOR_TYPE > ;
 
    //template < primitive_character CHARACTER2 >
-    //   //inline void construct10(const ::range < const CHARACTER2 * > & range);
+    //   //inline void construct_from_a_range(const ::range < const CHARACTER2 * > & range);
 
     //template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
    template < typename OTHER_CHARACTER >
@@ -872,7 +872,6 @@ public:
 
             pdata = BASE_DATA::base_data_from_data(this->m_begin);
 
-            // this->__destroy();
          }
          else
          {
@@ -880,7 +879,7 @@ public:
             pdata = nullptr;
          }
 
-         construct10(range);
+         construct_from_a_range(range);
 
          if (pdata)
          {
@@ -889,8 +888,11 @@ public:
             {
 
                this->base_data_release(pdata);
+
             }
+
          }
+
       }
 
       return *this;
@@ -906,20 +908,39 @@ public:
       if((::range<const CHARACTER *>*)(this) != (::range<const CHARACTER *>*)(&range))
       {
 
+         BASE_DATA* pdata;
+
          if (this->m_erange & e_range_string)
          {
 
-            this->__destroy();
+            pdata = BASE_DATA::base_data_from_data(this->m_begin);
+
+         }
+         else
+         {
+
+            pdata = nullptr;
 
          }
 
-         this->m_begin = range.m_begin;
-         this->m_end = range.m_end;
-         this->m_erange = range.m_erange;
+         this->construct_from_a_range(range);
 
          range.m_begin = nullptr;
          range.m_end = nullptr;
          range.m_erange = e_range_none;
+
+         if (pdata)
+         {
+
+            if (pdata->data() != this->begin())
+            {
+
+               this->base_data_release(pdata);
+
+            }
+
+         }
+
 
       }
 

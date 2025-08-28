@@ -437,9 +437,14 @@ namespace text
                const schema * pschema = plocale->get_schema(scopedstrSchema);
                if(pschema != nullptr)
                {
-                  table = (*pschema)[atom];
-                  if(table.has_character())
-                     return table;
+                  
+                  auto p = pschema->find(atom);
+                  if (p)
+                  {
+
+                     return p->element2();
+
+                  }
                }
             }
 

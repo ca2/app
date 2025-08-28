@@ -2,26 +2,26 @@
 #pragma once
 
 
-template < typename ITERATOR_TYPE >
-inline void string_base < ITERATOR_TYPE >::construct1(const ITERATOR_TYPE p, character_count length)
-{
-
-   if (::is_null(p) || length <= 0)
-   {
-
-      default_construct();
-
-      return;
-
-   }
-
-   fork_string<false, false>(length);
-
-   memory_copy((void*)this->m_begin, p, length * sizeof(CHARACTER));
-
-   *(CHARACTER*)this->m_end = (CHARACTER)0;
-
-}
+//template < typename ITERATOR_TYPE >
+//inline void string_base < ITERATOR_TYPE >::construct_from_string(const ITERATOR_TYPE p, character_count length)
+//{
+//
+//   if (::is_null(p) || length <= 0)
+//   {
+//
+//      default_construct();
+//
+//      return;
+//
+//   }
+//
+//   fork_string<false, false>(length);
+//
+//   memory_copy((void*)this->m_begin, p, length * sizeof(CHARACTER));
+//
+//   *(CHARACTER*)this->m_end = (CHARACTER)0;
+//
+//}
 
 
 //template < typename ITERATOR_TYPE >
@@ -181,7 +181,7 @@ requires other_primitive_character < OTHER_CHARACTER, CHARACTER > :
 
 
 template < typename ITERATOR_TYPE >
-void string_base< ITERATOR_TYPE >::construct1(const string_base& str)
+void string_base< ITERATOR_TYPE >::construct_from_string(const string_base& str)
 {
 
    this->m_begin = str.m_begin;
@@ -201,7 +201,7 @@ void string_base< ITERATOR_TYPE >::construct1(const string_base& str)
 
 
 template < typename ITERATOR_TYPE >
-inline void string_base< ITERATOR_TYPE >::construct5(ITERATOR_TYPE pSrc, character_count len)
+inline void string_base< ITERATOR_TYPE >::construct_from_range(ITERATOR_TYPE pSrc, character_count len)
 {
 
    if (::is_null(pSrc) || len <= 0)
@@ -226,7 +226,7 @@ inline void string_base< ITERATOR_TYPE >::construct5(ITERATOR_TYPE pSrc, charact
 
 template < typename ITERATOR_TYPE >
 template < typename OTHER_CHARACTER_POINTER >
-inline void string_base< ITERATOR_TYPE >::construct5(OTHER_CHARACTER_POINTER pSrc, character_count src_len)
+inline void string_base< ITERATOR_TYPE >::construct_from_range(OTHER_CHARACTER_POINTER pSrc, character_count src_len)
 requires other_character_pointer < OTHER_CHARACTER_POINTER, ITERATOR_TYPE >
 {
 
@@ -277,7 +277,7 @@ void string_base< ITERATOR_TYPE >::construct40(const RANGE1& range1, const RANGE
       else
       {
       
-         construct10(range2);
+         construct_from_a_range(range2);
       
       }
 
@@ -287,7 +287,7 @@ void string_base< ITERATOR_TYPE >::construct40(const RANGE1& range1, const RANGE
    else if (range2.is_empty())
    {
 
-      construct10(range1);
+      construct_from_a_range(range1);
 
       return;
 

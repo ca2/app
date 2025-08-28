@@ -402,7 +402,7 @@ inline atom::atom(enum_type etypeAdd, const ::atom & atom)
 
       m_etype = (enum_type) (etypeAdd | e_type_text);
 
-      m_str.construct1(atom.m_str);
+      m_str.construct_from_string(atom.m_str);
 
    }
    else if (atom.is_integer())
@@ -432,7 +432,7 @@ inline atom::atom(::atom && atom)
    {
       if (atom.m_etype & e_type_text)
       {
-         m_str.construct1(::transfer(atom.m_str));
+         m_str.construct_from_string(::transfer(atom.m_str));
       }
       else
       {
@@ -452,7 +452,7 @@ inline atom::atom(const atom & atom)
 
       m_etype = atom.m_etype;
 
-      m_str.construct1(atom.m_str);
+      m_str.construct_from_string(atom.m_str);
 
    }
    else
@@ -675,7 +675,7 @@ inline atom & atom::operator = (const atom & atom)
       else if (atom.is_text())
       {
 
-         m_str.construct1(atom.m_str);
+         m_str.construct_from_string(atom.m_str);
 
       }
       else

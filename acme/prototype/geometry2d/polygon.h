@@ -30,8 +30,8 @@ public:
 
 
    polygon_base();
-   polygon_base(const polygon_base & int_polygon);
-   polygon_base(polygon_base&& int_polygon);
+   polygon_base(const polygon_base & polygon);
+   polygon_base(polygon_base&& polygon);
    ~polygon_base();
 
    template < primitive_rectangle RECTANGLE >
@@ -366,7 +366,7 @@ inline bool int_lineersection(double_point & point, const double_point & pt1, co
 }
 
 
-inline void get_intersection_points(double_point_array & pa, const double_point & point1, const double_point & point2, const double_point_array & paPolygon)
+inline void get_intersection_points(double_point_array_base & pa, const double_point & point1, const double_point & point2, const double_point_array_base & paPolygon)
 {
 
    double_point point;

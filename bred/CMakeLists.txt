@@ -73,13 +73,18 @@ list(APPEND library_source
    gpu/swap_chain.h
    gpu/texture.cpp
    gpu/texture.h
+   gpu/types.cpp
    gpu/types.h
-   graphics3d/render_systems/object_render_system.cpp
-   graphics3d/render_systems/object_render_system.h
+   graphics3d/render_systems/gltf_render_system.cpp
+   graphics3d/render_systems/gltf_render_system.h
    graphics3d/render_systems/point_light_render_system.cpp
    graphics3d/render_systems/point_light_render_system.h
    graphics3d/render_systems/skybox_ibl_render_system.cpp
    graphics3d/render_systems/skybox_ibl_render_system.h
+   graphics3d/render_systems/skybox_render_system.cpp
+   graphics3d/render_systems/skybox_render_system.h
+   graphics3d/render_systems/wavefront_obj_render_system.cpp
+   graphics3d/render_systems/wavefront_obj_render_system.h
    graphics3d/_.h
    graphics3d/_constant.h
    graphics3d/_sandbox_interfaces.h
@@ -89,7 +94,7 @@ list(APPEND library_source
    graphics3d/aaa_transform_component.h
    graphics3d/asset_manager.cpp
    graphics3d/asset_manager.h
-   graphics3d/asset_provider.h
+   #graphics3d/asset_provider.h
    graphics3d/camera.h
    graphics3d/class_set.h
    graphics3d/class_set1.h
@@ -107,9 +112,11 @@ list(APPEND library_source
    graphics3d/scene.h
    graphics3d/scene_object.cpp
    graphics3d/scene_object.h
+   graphics3d/shape_factory.cpp
+   graphics3d/shape_factory.h
    graphics3d/window_input.h
-   graphics3d/sky_box.cpp
-   graphics3d/sky_box.h
+   graphics3d/skybox.cpp
+   graphics3d/skybox.h
    graphics3d/point_light.cpp
    graphics3d/point_light.h
    graphics3d/renderable.cpp
@@ -138,10 +145,9 @@ list(APPEND library_source
    graphics3d/scene.h
    graphics3d/scene_object.cpp
    graphics3d/scene_object.h
-   graphics3d/sky_box.cpp
-   graphics3d/sky_box.h
    #graphics3d/scene_system.cpp
    #graphics3d/scene_system.h
+   graphics3d/types.cpp
    graphics3d/types.h
    graphics3d/utilities.h
    include/_.h
@@ -204,9 +210,7 @@ list(APPEND library_references
    berg)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   graphics3d/render_systems/skybox_render_system.cpp
-   graphics3d/render_systems/skybox_render_system.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

@@ -59,55 +59,9 @@ CLASS_DECL_ACME int throw_assert_exception(const_char_pointer pszFileName, int i
                                                                \
 }
 
-template <primitive_container CONTAINER>
-inline void __assert_container_ok(const CONTAINER * pcontainer, const_char_pointer pszFileName, int nLine)
-{
 
-   if (pcontainer == nullptr)
-   {
-
-      if(!__assert_failed_line(pszFileName, nLine))
-      {
-
-         debug_break();
-
-      }
-
-      return;
-
-   }
-
-   if (!is_memory_segment_ok(pcontainer, sizeof(::particle)))
-   {
-
-      if (__assert_failed_line(pszFileName, nLine))
-      {
-
-         debug_break();
-
-      }
-
-      return;
-
-   }
-
-   if (!is_memory_segment_ok(pcontainer, sizeof(CONTAINER)))
-   {
-
-      if (!__assert_failed_line(pszFileName, nLine))
-      {
-
-         debug_break();
-
-      }
-
-      return;
-
-   }
-
-   pcontainer->container_ok();
-
-}
+template < primitive_container CONTAINER >
+inline void __assert_container_ok(const CONTAINER * pcontainer, const_char_pointer pszFileName, int nLine);
 
 
 CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const_char_pointer pszFileName, int nLine);

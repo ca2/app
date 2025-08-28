@@ -26,7 +26,7 @@ public:
    
    //~rectangle_array_base();
 
-   using array < ::rectangle_type < NUMBER > >::add;
+   using array_base < ::rectangle_type < NUMBER > >::add;
    void add(const ::rectangle_type < NUMBER > & rectangle);
    void add(UNIT_TYPE left, UNIT_TYPE top, UNIT_TYPE right, UNIT_TYPE bottom);
    void add(const ::point_type < NUMBER > & point, const ::size_type < NUMBER > & size);

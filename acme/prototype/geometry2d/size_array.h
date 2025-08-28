@@ -23,7 +23,7 @@ public:
    ///~size_array_base() override { }
 
 
-   using array < ::size_type < NUMBER > >::add;
+   using array_base < ::size_type < NUMBER > >::add;
    void add(UNIT_TYPE cx, UNIT_TYPE cy) { add(SIZE_TYPE(cx, cy)); }
    //void add(const POINT_TYPE & point) { add(SIZE_TYPE(point.x(), point.y())); }
 

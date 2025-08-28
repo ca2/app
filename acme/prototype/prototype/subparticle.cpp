@@ -58,6 +58,19 @@ subparticle::subparticle(const ::subparticle & subparticle) :
 }
 
 
+subparticle::subparticle(::subparticle && subparticle) :
+   ::quantum(::transfer(subparticle)),
+   m_countReference(1)
+{
+
+   subparticle_referencing_debugging_construct();
+
+   ::allocator::on_destruct_subparticle(&subparticle);
+
+}
+
+
+
 void subparticle::subparticle_referencing_debugging_construct()
 {
 

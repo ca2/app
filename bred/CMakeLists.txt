@@ -100,7 +100,7 @@ list(APPEND library_source
    graphics3d/class_set1.h
    graphics3d/entity.h
    graphics3d/frame.h
-   graphics3d/framework.h
+   #graphics3d/framework.h
    graphics3d/immersion_layer.cpp
    graphics3d/immersion_layer.h
    graphics3d/game_object.h

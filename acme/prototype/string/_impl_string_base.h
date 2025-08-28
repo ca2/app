@@ -6999,5 +6999,17 @@ inline typename scoped_string_base < ITERATOR_TYPE >::STRING scoped_string_base 
 
 }
 
+#include "acme/prototype/string/c_string.h"
+
+
+template < typename ITERATOR_TYPE >
+string_base<ITERATOR_TYPE>::string_base(const ::c::string & cstring) :
+   string_base(cstring.m_psz)
+{
+
+
+}
+
+
 
 

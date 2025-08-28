@@ -31,9 +31,9 @@ public:
 
    template < typename TYPED_RANGE >
    character_range(const TYPED_RANGE& range) requires
-      (typed_range<this_iterator>
-         && !::std::is_convertible<TYPED_RANGE, character_range >::value) :
-      base_array(range.begin(), range.end())
+      (typed_range<TYPED_RANGE, this_iterator>
+         && !std::is_same_v<std::decay_t<TYPED_RANGE>, character_range>) :
+      BASE_RANGE(range.begin(), range.end())
    {
    }
 

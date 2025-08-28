@@ -239,20 +239,44 @@ public:
    //    character_count offset_of(const CHARACTER *p) const { return ::offset_of(p, data()); }
 
 
-   string_range & operator=(const THIS_RANGE & range)
+
+   string_range &operator =(const string_range & range)
    {
       BASE_RANGE::operator=(range);
       return *this;
    }
 
-   string_range & operator=(string_range && range) {
-      BASE_RANGE::operator=(::transfer(range));
+   template < primitive_range SOME_RANGE >
+   string_range &operator=(SOME_RANGE && range) requires
+   (sizeof(typename SOME_RANGE::ITEM) == sizeof(ITEM))
+   {
+      BASE_RANGE::operator=(range);
+      if (range.m_erange & e_range_string)
+      {
+
+         ((STRING_BASE*)&range)->__destroy();
+
+      }
+      range.m_begin = nullptr;
+      range.m_end = nullptr;
+      range.m_erange = e_range_none;
       return *this;
    }
 
-   //string_range & operator=(const atom & atom);
-
-   string_range & operator=(const block & block);
+   // string_range & operator=(const THIS_RANGE & range)
+   // {
+   //    BASE_RANGE::operator=(range);
+   //    return *this;
+   // }
+   //
+   // string_range & operator=(string_range && range) {
+   //    BASE_RANGE::operator=(::transfer(range));
+   //    return *this;
+   // }
+   //
+   // //string_range & operator=(const atom & atom);
+   //
+   // string_range & operator=(const block & block);
 
 
 

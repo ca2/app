@@ -86,10 +86,6 @@ public:
    using BASE_RANGE = ::character_range<ITERATOR_TYPE>;
    using RAW_CHARACTER_RANGE = typename BASE_RANGE::RAW_CHARACTER_RANGE;
 
-   using BASE_RANGE = ::character_range<ITERATOR_TYPE>;
-   using RAW_CHARACTER_RANGE = typename BASE_RANGE::RAW_CHARACTER_RANGE;
-
-
    //using BASE_RANGE = ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >;
 
    using THIS_RANGE = ::const_string_range<ITERATOR_TYPE>;

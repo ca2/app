@@ -99,7 +99,7 @@ namespace image
 
 
    class CLASS_DECL_AURA image_descriptor_map_base :
-      virtual public map_base < image_header, ::image::image_pointer >
+      public map_base < image_header, ::image::image_pointer >
    {
    public:
 

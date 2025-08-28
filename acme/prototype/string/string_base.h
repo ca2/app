@@ -199,6 +199,8 @@ public:
       str.m_end = nullptr; 
    }
 
+   string_base(const ::c::string & cstring);
+
    //void _construct(const ::ansi_string & ansistr) { construct_from_a_range(ansistr); }
    //void _construct(const ::wd16_string & wd16str) { construct_from_a_range(wd16str); }
    //void _construct(const ::wd32_string & wd32str) { construct_from_a_range(wd32str); }

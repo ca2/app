@@ -270,7 +270,7 @@ public:
 
 
    template < typename PRED >
-   typename iterator predicate_find(PRED pred)
+   iterator predicate_find(PRED pred)
    {
 
       auto p = this->begin();

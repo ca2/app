@@ -227,16 +227,16 @@ inline mutable_string_range < ITERATOR_TYPE >::mutable_string_range(const block 
 //}
 
 
-template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator = (const block & block)
-{
-
-   this->m_begin = (const CHARACTER *)block.data();
-   this->m_end = (const CHARACTER *)block.end();
-
-   return *this;
-
-}
+// template < typename ITERATOR_TYPE >
+// inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator = (const block & block)
+// {
+//
+//    this->m_begin = (const CHARACTER *)block.data();
+//    this->m_end = (const CHARACTER *)block.end();
+//
+//    return *this;
+//
+// }
 
 
 inline atom::atom()

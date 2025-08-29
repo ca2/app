@@ -369,7 +369,7 @@ namespace gpu
 
       virtual void draw_lines(::gpu::command_buffer* pcommandbuffer);
 
-      virtual void unbind(::gpu::command_buffer* pcommandbuffer);
+      void unbind(::gpu::command_buffer* pcommandbuffer) override;
 
       virtual void set_input_layout(::gpu::input_layout* pinputlayout);
 

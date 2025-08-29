@@ -2635,10 +2635,11 @@ template < >
 struct std::formatter<::string > :
    public ::std::formatter< ::std::string_view >
 {
-   auto format(const ::string & str, std::format_context& ctx) const 
+   template < typename FormatContext >
+   auto format(const ::string & str, FormatContext & context) const
    {
       return ::std::formatter<::std::string_view>::format(
-         ::std::string_view{ str.begin(), str.end() }, ctx);
+         ::std::string_view{ str.begin(), str.end() }, context);
    }
 };
 

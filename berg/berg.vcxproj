@@ -1175,6 +1175,7 @@
     <ClCompile Include="user\user\multiple_document_template.cpp" />
     <ClCompile Include="user\user\network_configuration.cpp" />
     <ClCompile Include="user\user\handler_impact.cpp" />
+    <ClCompile Include="user\user\options_impact_handler.cpp" />
     <ClCompile Include="user\user\picture.cpp" />
     <ClCompile Include="user\user\picture_impl.cpp" />
     <ClCompile Include="user\user\picture_interaction.cpp" />

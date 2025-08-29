@@ -769,6 +769,9 @@
     <ClCompile Include="user\menu\menu.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\options_impact_handler.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="user\user\_impl.h">

@@ -2130,21 +2130,21 @@ public:
 
 
 
-   template<typename... Ts>
-   string_base & format(const ::std::format_string<Ts...> fmt, Ts&&... args)
+   template<typename... Args>
+   string_base & format(::std::format_string<Args...> fmt, Args&&... args)
    {
 
-      auto s = std::format(fmt, std::forward<Ts>(args)...);
+      auto s = std::format(fmt, std::forward<Args>(args)...);
 
       return this->assign(s.c_str(), s.size());
 
    }
 
-   template<typename... Ts>
-   string_base & append_format(const std::format_string<Ts...> fmt, Ts&&... args)
+   template<typename... Args>
+   string_base & append_format(std::format_string<Args...> fmt, Args&&... args)
    {
 
-      return this->operator +=(std::format(fmt, std::forward<Ts>(args)...));
+      return this->operator +=(std::format(fmt, std::forward<Args>(args)...));
 
    }
 

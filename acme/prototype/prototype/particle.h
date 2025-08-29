@@ -408,46 +408,46 @@ public:
 //#if defined(__STD_FORMAT__)
    
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-   template<typename... Ts>
-   void trace(enum_trace_level etracelevel, const std::format_string<Ts...> fmt, Ts&&... args) const
+   template<typename... Args>
+   void trace(enum_trace_level etracelevel, std::format_string<Args...> fmt, Args&&... args) const
    {
 
       auto statement = ::transfer(log_statement());
 
       statement(etracelevel)(trace_category());
 
-      statement.format_output(fmt, ::std::forward<Ts>(args)...);
+      statement.format_output(fmt, ::std::forward<Args>(args)...);
 
    }
 
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-   template<typename... Ts>
-   void debug(const std::format_string<Ts...> fmt, Ts &&...args) const
+   template<typename... Args>
+   void debug(std::format_string<Args...> fmt, Args &&...args) const
    {
-      trace(e_trace_level_debug, fmt, ::std::forward<Ts>(args)...);
+      trace(e_trace_level_debug, fmt, ::std::forward<Args>(args)...);
    }
-   template<typename... Ts>
-   void information(const std::format_string<Ts...> fmt, Ts&&... args) const
+   template<typename... Args>
+   void information(std::format_string<Args...> fmt, Args&&... args) const
    {
-      trace(e_trace_level_information, fmt, ::std::forward<Ts>(args)...);
-   }
-   // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-   template<typename... Ts>
-   void warning(const std::format_string<Ts...> fmt, Ts&&... args) const
-   {
-      trace(e_trace_level_warning, fmt, ::std::forward<Ts>(args)...);
+      trace(e_trace_level_information, fmt, ::std::forward<Args>(args)...);
    }
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-   template<typename... Ts>
-   void error(const std::format_string<Ts...> fmt, Ts&&... args) const
+   template<typename... Args>
+   void warning(std::format_string<Args...> fmt, Args&&... args) const
    {
-      trace(e_trace_level_error, fmt, ::std::forward<Ts>(args)...);
+      trace(e_trace_level_warning, fmt, ::std::forward<Args>(args)...);
    }
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-   template<typename... Ts>
-   void fatal(const std::format_string<Ts...> fmt, Ts&&... args) const
+   template<typename... Args>
+   void error(std::format_string<Args...> fmt, Args&&... args) const
    {
-      trace(e_trace_level_fatal, fmt, ::std::forward<Ts>(args)...);
+      trace(e_trace_level_error, fmt, ::std::forward<Args>(args)...);
+   }
+   // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
+   template<typename... Args>
+   void fatal(std::format_string<Args...> fmt, Args&&... args) const
+   {
+      trace(e_trace_level_fatal, fmt, ::std::forward<Args>(args)...);
    }
 
 
@@ -1121,56 +1121,56 @@ inline long long global_release(T*& p);
 //
 //
 //// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-//template<typename... Ts>
-//inline void information(const std::format_string<Ts...> fmt, Ts&&... args)
+//template<typename... Args>
+//inline void information(const std::format_string<Args...> fmt, Args&&... args)
 //{
 //
 //   auto statement = log_statement();
 //
 //   statement(e_trace_level_information);
 //
-//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//   statement.format_output(fmt, std::forward<Args>(args)...);
 //
 //}
 //
 //
 //// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-//template<typename... Ts>
-//inline void warning(const std::format_string<Ts...> fmt, Ts&&... args)
+//template<typename... Args>
+//inline void warning(const std::format_string<Args...> fmt, Args&&... args)
 //{
 //
 //   auto statement = log_statement();
 //
 //   statement(e_trace_level_warning);
 //
-//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//   statement.format_output(fmt, std::forward<Args>(args)...);
 //
 //}
 //
 //// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-//template<typename... Ts>
-//void error(const std::format_string<Ts...> fmt, Ts&&... args)
+//template<typename... Args>
+//void error(const std::format_string<Args...> fmt, Args&&... args)
 //{
 //
 //   auto statement = log_statement();
 //
 //   statement(e_trace_level_error);
 //
-//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//   statement.format_output(fmt, std::forward<Args>(args)...);
 //
 //}
 //
 //
 //// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-//template<typename... Ts>
-//void fatal(const std::format_string<Ts...> fmt, Ts&&... args)
+//template<typename... Args>
+//void fatal(const std::format_string<Args...> fmt, Args&&... args)
 //{
 //
 //   auto statement = log_statement();
 //
 //   statement(e_trace_level_fatal);
 //
-//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//   statement.format_output(fmt, std::forward<Args>(args)...);
 //
 //}
 //

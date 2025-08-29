@@ -46,7 +46,7 @@ namespace file
 
 
    // not rigorous at all file::path ... more "ryg"orous with performance and like you should know what are you doing
-   class path :
+   class CLASS_DECL_ACME path :
       public string,
       public path_meta
    {
@@ -65,6 +65,7 @@ namespace file
       //path(enum_for_moving) { }
       //path(enum_get_buffer, character_count len) { get_buffer(len); }
       path(const path & path) : string(path), path_meta(path) {}
+      path(path&& path) : string(::transfer(path)), path_meta(::transfer(path)) {}
       //template < typename ITERATOR_TYPE, int t_size >
       //path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
       //template < primitive_character_range RANGE >

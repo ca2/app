@@ -6,7 +6,7 @@
 #define MEMDFREE 0
 void * g_pDebugPointer = nullptr;
 
-#define MEMDUPFREE2 1
+#define MEMDUPFREE2 0
 
 #if MEMDUPFREE2
 

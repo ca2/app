@@ -48,6 +48,9 @@ CLASS_DECL_ACME::file::path get_module_path();
 #endif
 
 
+void _001TestSlashedPath();
+
+
 namespace platform
 {
 
@@ -67,6 +70,9 @@ namespace platform
       m_pfilesystemoptions = øallocate::filesystem::file_system_options();
 
       m_bApplicationFirstRequest = true;
+
+
+      _001TestSlashedPath();
 
       //if (!::platform::platform::s_pplatform->m_papplication)
       //{

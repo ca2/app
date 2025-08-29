@@ -5,6 +5,11 @@
 
 
 CLASS_DECL_ACME void __what__(int i);
+namespace c
+{
+
+   class string;
+} // namespace c
 
 
 #include "string_iterator.h"

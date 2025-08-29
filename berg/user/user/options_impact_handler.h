@@ -15,7 +15,11 @@ namespace user
    public:
 
 
-      virtual void create_options_impact(::user::interaction * puserinteractionParent) = 0;
+      options_impact_handler();
+      ~options_impact_handler() override;
+
+
+      virtual void create_options_impact(::user::interaction * puserinteractionParent);
 
 
    };

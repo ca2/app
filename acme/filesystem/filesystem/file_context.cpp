@@ -25,6 +25,7 @@
 #include "acme/prototype/datetime/datetime.h"
 #include "acme/prototype/prototype/read_only_memory.h"
 #include "acme/prototype/string/base64.h"
+#include "acme/filesystem/file/protocol_file.h"
 //#include "acme/prototype/string/hex.h"
 #include "acme/prototype/string/str.h"
 //#include "acme/user/user/conversation.h"
@@ -3858,6 +3859,17 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 
 ::file_pointer file_context::defer_get_protocol_file(const ::scoped_string & scopedstrProtocol, const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
+
+   if(scopedstrProtocol == "mediastore")
+   {
+
+      auto pfile = øcreate_new < ::protocol_file >();
+
+      pfile->open(path, eopen, pfileexception);
+
+      return pfile;
+
+   }
 
    return nullptr;
 

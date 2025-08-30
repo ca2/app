@@ -75,8 +75,10 @@ namespace platform
     virtual void list_file_enumerate(const ::scoped_string & scopedstrListFileEnumerate);
        virtual ::file::path synchronously_getDocumentFolder(const class ::time & timeOut);
 
-       virtual ::pointer < ::data::block > media_store_set_data(const ::scoped_string & scopedstrPath, const ::block & block);
-       virtual ::pointer < ::data::block > media_store_get_data(const ::scoped_string & scopedstrPath);
+       //virtual ::pointer < ::data::block > media_store_set_data(const ::scoped_string & scopedstrPath, const ::block & block);
+       //virtual ::pointer < ::data::block > media_store_get_data(const ::scoped_string & scopedstrPath);
+
+       virtual void post_media_store_operation(::data::block * pdatablock);
 
 
     };

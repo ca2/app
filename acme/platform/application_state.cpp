@@ -61,59 +61,67 @@ namespace platform
    }
 
 
-   void application_state::set_data(const ::scoped_string & scopedstrRelativeName,
-                                 const ::scoped_string & scopedstrMimeType,
-                                 const ::block & block)
-{
-
-           auto pdatablock = øcreate_new<::data::block>();
-   pdatablock->m_bWrite = true;
-   pdatablock->m_strPath = scopedstrRelativeName;
-   pdatablock->m_strMime = scopedstrMimeType;
-   pdatablock->m_memory = block;
-
+   void application_state::post_media_store_operation(::data::block * pdatablock)
    {
+
       _synchronous_lock synchronouslock(this->synchronization());
       m_datablockaInputOutput.add(pdatablock);
 
    }
 
-}
-
-
-::string application_state::get_data(const ::scoped_string & scopedstrRelativeName,
-                                 const ::scoped_string & scopedstrMimeType,
-                                 const class ::time & timeTimeout)
-{
-
-      manual_reset_happening happening;
-
-         bool bRead = false;
-
-   auto pdatablock = øcreate_new<::data::block>();
-   pdatablock->m_bWrite = false;
-   pdatablock->m_strPath = scopedstrRelativeName;
-   pdatablock->m_strMime = scopedstrMimeType;
-   pdatablock->lockm_procedureOnRead = [&happening, &bRead]()
-   {
-bRead = true;
-      happening.set_happening();
-
-   };
-   {
-      _synchronous_lock synchronouslock(this->synchronization());
-      m_datablockaInputOutput.add(pdatablock);
-
-
-   }
-   happening.wait(timeTimeout);
-   if(!bRead)
-   {throw ::exception(error_timeout, "timeout");
-     } else{
-      return pdatablock->m_memory;
-   }
-}
-
+//   void application_state::set_data(const ::scoped_string & scopedstrRelativeName,
+//                                 const ::scoped_string & scopedstrMimeType,
+//                                 const ::block & block)
+//{
+//
+//           auto pdatablock = øcreate_new<::data::block>();
+//   pdatablock->m_bWrite = true;
+//   pdatablock->m_strPath = scopedstrRelativeName;
+//   pdatablock->m_strMime = scopedstrMimeType;
+//   pdatablock->m_memory = block;
+//
+//   {
+//      _synchronous_lock synchronouslock(this->synchronization());
+//      m_datablockaInputOutput.add(pdatablock);
+//
+//   }
+//
+//}
+//
+//
+//::string application_state::get_data(const ::scoped_string & scopedstrRelativeName,
+//                                 const ::scoped_string & scopedstrMimeType,
+//                                 const class ::time & timeTimeout)
+//{
+//
+//      manual_reset_happening happening;
+//
+//         bool bRead = false;
+//
+//   auto pdatablock = øcreate_new<::data::block>();
+//   pdatablock->m_bWrite = false;
+//   pdatablock->m_strPath = scopedstrRelativeName;
+//   pdatablock->m_strMime = scopedstrMimeType;
+//   pdatablock->lockm_procedureOnRead = [&happening, &bRead]()
+//   {
+//bRead = true;
+//      happening.set_happening();
+//
+//   };
+//   {
+//      _synchronous_lock synchronouslock(this->synchronization());
+//      m_datablockaInputOutput.add(pdatablock);
+//
+//
+//   }
+//   happening.wait(timeTimeout);
+//   if(!bRead)
+//   {throw ::exception(error_timeout, "timeout");
+//     } else{
+//      return pdatablock->m_memory;
+//   }
+//}
+//
 
    void
    application_state::queue_message_box(::message_box * pmessagebox)

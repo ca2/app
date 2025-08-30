@@ -250,14 +250,14 @@ namespace platform
 
    }
 
-
- void application_state::post_media_store_operation(
-    ::data::block * pdatablock)
- {
-
-//return {};
-
- }
+//
+// ::pointer < ::data::block > application_state::post_media_store_operation(
+//    ::data::block * pdatablock)
+// {
+//
+//    return {};
+//
+// }
 // ::pointer < ::data::block >application_state:: media_store_get_data(const ::scoped_string & scopedstrPath)
 // {
 //

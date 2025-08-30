@@ -26,7 +26,6 @@
 //#include "acme/prototype/collection/array.h"
 //#include "acme/prototype/collection/string_array.h"
 #include "acme/nano/nano.h"
-#include "acme/platform/node.h"
 #include "acme/prototype/data/block.h"
 #include "acme/user/micro/button.h"
 #include "acme/user/micro/message_box.h"
@@ -5021,7 +5020,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
          øconstruct_new(pdatablock->m_pmanualresethappening);
 
-         node()->post_media_store_operation(pdatablock);
+         this->post_media_store_operation(pdatablock);
 
          pdatablock->m_pmanualresethappening->wait(1_min);
 
@@ -5048,9 +5047,11 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
          øconstruct_new(pdatablock->m_pmanualresethappening);
 
-         node()->post_media_store_operation(pdatablock);
+         this->post_media_store_operation(pdatablock);
 
          pdatablock->m_pmanualresethappening->wait(1_min);
+
+         return pdatablock->m_memory;
 
       }
       else

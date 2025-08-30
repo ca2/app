@@ -50,12 +50,12 @@ namespace platform
 
     virtual void after_exchange();
 
-    virtual void set_data(const ::scoped_string & scopedstrRelativeName,
-                            const ::scoped_string & scopedstrMimeType,
-                            const ::block & block);
-    virtual ::string get_data(const ::scoped_string & scopedstrRelativeName,
-                               const ::scoped_string & scopedstrMimeType,
-                               const class ::time & timeTimeout);
+//    virtual void set_data(const ::scoped_string & scopedstrRelativeName,
+//                            const ::scoped_string & scopedstrMimeType,
+//                            const ::block & block);
+//    virtual ::string get_data(const ::scoped_string & scopedstrRelativeName,
+//                               const ::scoped_string & scopedstrMimeType,
+//                               const class ::time & timeTimeout);
 
     virtual void
     queue_message_box(::message_box *pmessagebox);

@@ -26,7 +26,8 @@
 //#include "acme/prototype/collection/array.h"
 //#include "acme/prototype/collection/string_array.h"
 #include "acme/nano/nano.h"
-#include "acme/prototype/data/block.h
+#include "acme/platform/node.h"
+#include "acme/prototype/data/block.h"
 #include "acme/user/micro/button.h"
 #include "acme/user/micro/message_box.h"
 #include "acme/user/micro/user.h"
@@ -5016,7 +5017,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
          auto pdatablock = øcreate_new<::data::block>();
 
-         pdatablock->set_output_operating(scopestrPath, "text/plain", block);
+         pdatablock->initialize_set_operation(scopedstrPath, "text/plain", block);
 
          øconstruct_new(pdatablock->m_pmanualresethappening);
 
@@ -5043,7 +5044,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
          auto pdatablock = øcreate_new<::data::block>();
 
-         pdatablock->set_input_operating(scopestrPath, "text/plain");
+         pdatablock->initialize_get_operation(scopedstrPath, "text/plain");
 
          øconstruct_new(pdatablock->m_pmanualresethappening);
 

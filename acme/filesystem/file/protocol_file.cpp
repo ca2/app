@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "protocol_file.h"
+#include "acme/platform/node.h"
 
 
 protocol_file::protocol_file()

@@ -11,10 +11,10 @@ namespace data
    public:
 
    bool m_bWrite = false;
-   ::procedure m_procedureOnFinished;
    ::string m_strPath;
    ::string m_strMime;
    ::memory m_memory;
+   ::pointer < ::manual_reset_happening > m_pmanualresethappening;
 
    block();
 
@@ -23,6 +23,10 @@ namespace data
    block()
 
    override;
+
+   virtual void initialize_set_operation(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrMime, const ::block & block);
+   virtual void initialize_get_operation(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrMime);
+
 };
 using block_array = ::pointer_array_base<block>;
 } // namespace data

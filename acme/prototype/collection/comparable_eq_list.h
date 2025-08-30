@@ -407,7 +407,7 @@ bool comparable_eq_list_base < TYPE, ARG_TYPE , LIST_BASE >::erase_first(const T
 
       auto pErase = p;
 
-      p = p + 1;
+      p++;
 
       this->erase(pErase);
 

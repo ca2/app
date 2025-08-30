@@ -2004,7 +2004,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    }
 
 
-   void acme_node_layer::media_store_set_data(const ::scoped_string & scopedstrPath, const ::block & block)
+   void acme_node_layer::post_media_store_operation(::data::block* pdatablock)
    {
 
       throw interface_only();

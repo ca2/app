@@ -5013,7 +5013,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
       if(scopedstrProtocol == "mediastore")
       {
 
-         node()->media_store_set_data(scopedstrPath, block);
+         node()->post_media_store_set_data(scopedstrPath, block);
 
       }
       else

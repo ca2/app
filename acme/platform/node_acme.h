@@ -1327,8 +1327,7 @@ namespace platform
       virtual ::memory on_protocol_get_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath);
 
 
-      virtual ::pointer < ::data::block > media_store_set_data(const ::scoped_string & scopedstrPath, const ::block & block);
-      virtual ::pointer < ::data::block > media_store_get_data(const ::scoped_string & scopedstrPath);
+      virtual void post_media_store_operation(::data::block * pdatablock);
 
 
    };

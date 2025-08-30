@@ -30,7 +30,7 @@ namespace userex
 
       // void dump(dump_context & dumpcontext) const override;
 
-      virtual void on_create_split_impact() override;
+      void on_create_split_impact() override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
@@ -38,12 +38,12 @@ namespace userex
 
       void defer_do_graphics(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
-      virtual bool set_sel_by_name(const ::scoped_string & scopedstr);
+      bool set_sel_by_name(const ::scoped_string & scopedstr) override;
 
 
    };

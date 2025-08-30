@@ -42,7 +42,12 @@ namespace platform
    {
       return id_none;
    }
+   ::file::path acme_node_layer::synchronously_request_document_folder()
+   {
 
+      return {};
+
+   }
 
     void acme_node_layer::notify_system_started()
     {
@@ -1963,4 +1968,62 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    }
 
 
-}
+   void acme_node_layer::protocol_set_data(const ::file::path & path, const ::block & block)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   ::memory acme_node_layer:: protocol_get_data(const ::file::path & path)
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
+   void acme_node_layer::on_protocol_set_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath, const ::block & block)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   ::memory acme_node_layer::on_protocol_get_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath)
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
+   void acme_node_layer::media_store_set_data(const ::scoped_string & scopedstrPath, const ::block & block)
+   {
+
+      throw interface_only();
+
+   }
+
+
+   ::memory media_store_get_data(const ::scoped_string & scopedstrPath)
+   {
+
+      throw interface_only();
+
+      return {};
+
+
+   }
+
+
+ } // namespace platform
+
+
+

@@ -169,7 +169,9 @@ CLASS_DECL_ACME character_count  get_formatted_length(const ::wd32_character * p
 
    wd32_string wstr(pszFormat);
 
-   return vswprintf(nullptr, 0, pszFormat, args);
+   wd32_character dummy;
+
+   return vswprintf(&dummy, 0, pszFormat, args);
 
 #endif
 

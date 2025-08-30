@@ -4982,6 +4982,87 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
    }
 
+
+   void node::protocol_set_data(const ::file::path & path, const ::block & block)
+   {
+
+      ::string strProtocol = ::url::get_protocol(path);
+
+      ::string strPath = ::url::get_host(path) + ::url::get_raw_request_path(path);
+
+      on_protocol_set_data(strProtocol, strPath, block);
+
+   }
+
+
+   ::memory node:: protocol_get_data(const ::file::path & path)
+   {
+
+      ::string strProtocol = ::url::get_protocol(path);
+
+      ::string strPath = ::url::get_host(path) + ::url::get_raw_request_path(path);
+
+      return on_protocol_get_data(strProtocol, strPath);
+
+   }
+
+
+   void node::on_protocol_set_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath, const ::block & block)
+   {
+
+      if(scopedstrProtocol == "mediastore")
+      {
+
+         node()->media_store_set_data(scopedstrPath, block);
+
+      }
+      else
+      {
+
+         throw ::exception(error_not_supported, "Not yet supported protocol");
+
+      }
+
+   }
+
+
+   ::memory node::on_protocol_get_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath)
+   {
+
+      if(scopedstrProtocol == "mediastore")
+      {
+
+         return node()->media_store_get_data(scopedstrPath, block);
+
+      }
+      else
+      {
+
+         throw ::exception(error_not_supported, "Not yet supported protocol");
+
+         return {};
+
+      }
+
+   }
+
+//
+//   void acme_node_layer::media_store_set_data(const ::scoped_string & scopedstrPath, const ::block & block)
+//   {
+//
+//
+//   }
+//
+//
+//   virtual ::memory media_store_get_data(const ::scoped_string & scopedstrPath)
+//   {
+//
+//
+//
+//   }
+//
+
+
 } // namespace platform
 
 

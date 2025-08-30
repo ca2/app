@@ -22,6 +22,7 @@
 #include "acme/platform/http.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/path.h"
 //#include "apex/networking/http/context.h"
 #include "acme/platform/node.h"
 

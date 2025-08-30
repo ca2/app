@@ -738,6 +738,8 @@ list(APPEND library_source
         #prototype/data/_data.h
         prototype/data/_impl.h
         prototype/data/_tree.h
+        prototype/data/block.cpp
+        prototype/data/block.h
         prototype/data/check_property.cpp
         prototype/data/check_property.h
         prototype/data/container.cpp
@@ -1705,6 +1707,8 @@ list(APPEND library_source
         filesystem/file/ostream_flush.h
         filesystem/file/path.h
         filesystem/file/payload_stream.h
+        filesystem/file/protocol_file.cpp
+        filesystem/file/protocol_file.h
         filesystem/file/prototype.h
         filesystem/file/read_sz_stream.h
         filesystem/file/serialize.h

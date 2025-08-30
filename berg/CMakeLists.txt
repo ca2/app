@@ -181,6 +181,7 @@ list(APPEND library_source
    user/user/network_configuration.h
    #user/user/notification_area.cpp
    #user/user/notification_area.h
+   user/user/options_impact_handler.cpp
    user/user/options_impact_handler.h
    user/user/picture.cpp
    user/user/picture.h

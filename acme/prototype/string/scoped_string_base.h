@@ -832,20 +832,21 @@ inline ::hash32 as_hash32 < scoped_wd32_string >(const scoped_wd32_string & scop
 #include  "acme/prototype/mathematics/_string.h"
 
 
-#ifdef __STD_FORMAT__
+//#ifdef __STD_FORMAT__
 
 
 template < >
 struct std::formatter<::scoped_string > :
    public ::std::formatter< ::std::string_view >
 {
-   auto format(const ::scoped_string& scopedstr, std::format_context& ctx) const {
-      return formatter<::std::string_view>::format({ scopedstr.begin(), scopedstr.end() }, ctx);
+   template < typename FormatContext >
+   auto format(const ::scoped_string& scopedstr, FormatContext & context) const {
+      return formatter<::std::string_view>::format({ scopedstr.begin(), scopedstr.end() }, context);
    }
 };
 
 
-#endif
+//#endif
 
 
 inline ::block as_block(const ::scoped_string & scopedstr)
@@ -879,15 +880,15 @@ inline bool EqualElements(const ::scoped_string_base < const wchar_t * >& elemen
 
 }
 
-
-template < >
-struct std::formatter<::scoped_string > :
-   public ::std::formatter< ::std::string_view >
-{
-   auto format(const ::scoped_string& scopedstr, std::format_context& ctx) const {
-      return ::std::formatter<::std::string_view>::format(::std::string_view{ scopedstr.begin(), scopedstr.end() }, ctx);
-   }
-};
+//
+//template < >
+//struct std::formatter<::scoped_string > :
+//   public ::std::formatter< ::std::string_view >
+//{
+//   auto format(const ::scoped_string& scopedstr, std::format_context& ctx) const {
+//      return ::std::formatter<::std::string_view>::format(::std::string_view{ scopedstr.begin(), scopedstr.end() }, ctx);
+//   }
+//};
 
 
 

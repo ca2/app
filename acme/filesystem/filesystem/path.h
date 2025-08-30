@@ -53,7 +53,7 @@ namespace file
    public:
 
 
-      using BASe_RANGE = typename ::string::BASE_RANGE;
+      using BASE_RANGE = typename ::string::BASE_RANGE;
       using CHARACTER = typename BASE_RANGE::CHARACTER;
       using ITEM = CHARACTER;
 
@@ -665,6 +665,16 @@ namespace file
 
 } // namespace file
 
+template<>
+struct std::formatter<::file::path> : std::formatter<std::string_view> {
+   template<typename FormatContext>
+   auto format(const ::file::path& p, FormatContext& ctx) const {
+      return std::formatter<std::string_view>::format(
+         std::string_view(p.begin(), p.end()), ctx);
+   }
+};
+
+
 
 
 
@@ -804,17 +814,5 @@ template < primitive_character CHARACTER >
 
 
 
-
-
-template < >
-struct std::formatter<::file::path > :
-   public ::std::formatter< ::std::string_view >
-{
-   auto format(const ::file::path& path, std::format_context& ctx) const
-   {
-      return ::std::formatter<::std::string_view>::format(
-         ::std::string_view{ path.begin(), path.end() }, ctx);
-   }
-};
 
 

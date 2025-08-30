@@ -1046,6 +1046,20 @@ namespace platform
       virtual ::file::path get_font_path_from_name(const ::scoped_string& scopedstrName);
       virtual ::file::path _get_font_path_from_name(const ::scoped_string& scopedstrName);
 
+
+      void protocol_set_data(const ::file::path & path, const ::block & block) override;
+      ::memory protocol_get_data(const ::file::path & path) override;
+
+
+      void on_protocol_set_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath, const ::block & block) override;
+      ::memory on_protocol_get_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath) override;
+
+
+//    void media_store_set_data(const ::scoped_string & scopedstrPath, const ::block & block) override;
+//    ::memory media_store_get_data(const ::scoped_string & scopedstrPath) override;
+
+
+
    };
 
 

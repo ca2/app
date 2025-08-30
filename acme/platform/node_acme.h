@@ -138,7 +138,7 @@ namespace platform
 
 
       virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state* pkeystate);
-
+      virtual ::file::path synchronously_request_document_folder();
 
       virtual void notify_system_started();
       //idaPid = pnode->(path, false);
@@ -1317,6 +1317,18 @@ namespace platform
       virtual ::string system_name();
       virtual ::string system_release();
       virtual ::string system_architecture();
+
+
+      virtual void protocol_set_data(const ::file::path & path, const ::block & block);
+      virtual ::memory protocol_get_data(const ::file::path & path);
+
+
+      virtual void on_protocol_set_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath, const ::block & block);
+      virtual ::memory on_protocol_get_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath);
+
+
+      virtual ::pointer < ::data::block > media_store_set_data(const ::scoped_string & scopedstrPath, const ::block & block);
+      virtual ::pointer < ::data::block > media_store_get_data(const ::scoped_string & scopedstrPath);
 
 
    };

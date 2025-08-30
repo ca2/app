@@ -21,6 +21,8 @@ namespace data
    class check;
    class text;
 
+   class block;
+
 
 } // namespace data
 

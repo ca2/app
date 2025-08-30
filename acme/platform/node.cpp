@@ -26,6 +26,7 @@
 //#include "acme/prototype/collection/array.h"
 //#include "acme/prototype/collection/string_array.h"
 #include "acme/nano/nano.h"
+#include "acme/prototype/data/block.h
 #include "acme/user/micro/button.h"
 #include "acme/user/micro/message_box.h"
 #include "acme/user/micro/user.h"
@@ -5013,7 +5014,15 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
       if(scopedstrProtocol == "mediastore")
       {
 
-         node()->post_media_store_set_data(scopedstrPath, block);
+         auto pdatablock = øcreate_new<::data::block>();
+
+         pdatablock->set_output_operating(scopestrPath, "text/plain", block);
+
+         øconstruct_new(pdatablock->m_pmanualresethappening);
+
+         node()->post_media_store_operation(pdatablock);
+
+         pdatablock->m_pmanualresethappening->wait(1_min);
 
       }
       else
@@ -5032,7 +5041,15 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
       if(scopedstrProtocol == "mediastore")
       {
 
-         return node()->media_store_get_data(scopedstrPath, block);
+         auto pdatablock = øcreate_new<::data::block>();
+
+         pdatablock->set_input_operating(scopestrPath, "text/plain");
+
+         øconstruct_new(pdatablock->m_pmanualresethappening);
+
+         node()->post_media_store_operation(pdatablock);
+
+         pdatablock->m_pmanualresethappening->wait(1_min);
 
       }
       else

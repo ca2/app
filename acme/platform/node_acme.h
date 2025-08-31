@@ -138,7 +138,7 @@ namespace platform
 
 
       virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state* pkeystate);
-      virtual ::file::path synchronously_request_document_folder();
+      //virtual ::file::path synchronously_request_document_folder();
 
       virtual void notify_system_started();
       //idaPid = pnode->(path, false);

@@ -42,12 +42,12 @@ namespace platform
    {
       return id_none;
    }
-   ::file::path acme_node_layer::synchronously_request_document_folder()
-   {
-
-      return {};
-
-   }
+//   ::file::path acme_node_layer::synchronously_request_document_folder()
+//   {
+//
+//      return {};
+//
+//   }
 
     void acme_node_layer::notify_system_started()
     {

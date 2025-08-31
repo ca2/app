@@ -236,12 +236,12 @@ namespace platform
 
    }
 
-   ::file::path application_state::synchronously_getDocumentFolder(const class ::time & timeOut)
-   {
-
-      return {};
-
-   }
+//   ::file::path application_state::synchronously_getDocumentFolder(const class ::time & timeOut)
+//   {
+//
+//      return {};
+//
+//   }
 
 //
 // ::pointer < ::data::block > application_state::post_media_store_operation(

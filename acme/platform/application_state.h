@@ -35,7 +35,7 @@ namespace platform
 
     ::string_array_base             m_straListFileEnumerate;
 
-::data::block_array m_datablockaInputOutput;
+    ::data::block_array             m_datablockaMediaStore;
 
 
     application_state();
@@ -62,13 +62,13 @@ namespace platform
 
     virtual ::pointer<::message_box> pick_message_box();
 
-       virtual ::pointer<::data::block> pick_input_output_data_block();
+       virtual ::pointer<::data::block> pick_media_store_operation();
 
-       virtual void defer_post_all_input_output_data_blocks();
+       virtual void defer_post_all_media_store_operations();
 
-       virtual void on_input_output_data_block(::data::block * pdatablock);
-       virtual void on_write_input_output_data_block(::data::block * pdatablock);
-       virtual void on_read_input_output_data_block(::data::block * pdatablock);
+       virtual void on_media_store_operation(::data::block * pdatablock);
+       //virtual void on_write_input_output_data_block(::data::block * pdatablock);
+       //virtual void on_read_input_output_data_block(::data::block * pdatablock);
 
     virtual void open_url(const ::scoped_string & scopedstrOpenUrl);
 

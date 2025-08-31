@@ -65,7 +65,8 @@ namespace platform
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
-      m_datablockaInputOutput.add(pdatablock);
+
+      m_datablockaMediaStore.add(pdatablock);
 
    }
 
@@ -156,32 +157,32 @@ namespace platform
    }
 
 
-   ::pointer<::data::block> application_state::pick_input_output_data_block()
+   ::pointer<::data::block> application_state::pick_media_store_operation()
    {
 
       //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer);
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_datablockaInputOutput.is_empty()) {
+      if (m_datablockaMediaStore.is_empty()) {
 
          return nullptr;
 
       }
 
-      auto pdatablock = m_datablockaInputOutput.pop_first();
+      auto pdatablock = m_datablockaMediaStore.pop_first();
 
       return pdatablock;
 
    }
 
 
-   void application_state::defer_post_all_input_output_data_blocks()
+   void application_state::defer_post_all_media_store_operations()
    {
 
       while (true) {
 
-         auto pdatablock = pick_input_output_data_block();
+         auto pdatablock = pick_media_store_operation();
 
          if (!pdatablock) {
 
@@ -189,39 +190,31 @@ namespace platform
 
          }
 
-         on_input_output_data_block(pdatablock);
+         on_media_store_operation(pdatablock);
 
       }
       //defer_process_all_input_output_data_blocks();
 
    }
 
-   void application_state::on_input_output_data_block(::data::block * pdatablock)
+   void application_state::on_media_store_operation(::data::block * pdatablock)
    {
-
-      if (pdatablock->m_bWrite) {
-
-         on_write_input_output_data_block(pdatablock);
-
-      } else {
-
-         on_read_input_output_data_block(pdatablock);
-      }
-   }
-
-
-   void application_state::on_write_input_output_data_block(::data::block * pdatablock)
-   {
-
 
    }
 
-
-   void application_state::on_read_input_output_data_block(::data::block * pdatablock)
-   {
-
-
-   }
+//
+//   void application_state::on_write_input_output_data_block(::data::block * pdatablock)
+//   {
+//
+//
+//   }
+//
+//
+//   void application_state::on_read_input_output_data_block(::data::block * pdatablock)
+//   {
+//
+//
+//   }
 
    void application_state::open_url(const ::scoped_string & scopedstrOpenUrl)
    {

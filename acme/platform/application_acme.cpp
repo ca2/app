@@ -271,6 +271,14 @@ void acme_application_layer::start_application()
    }
 
 
+   void acme_application_layer::on_application_message(::platform::application_message * papplicationmessage)
+   {
+
+
+
+   }
+
+
    void acme_application_layer::locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator,
                                                      const ::scoped_string& scopedstrLocale,
                                                      const ::scoped_string& scopedstrSchema)

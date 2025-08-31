@@ -10,6 +10,9 @@ namespace platform
 {
 
 
+
+
+
     class CLASS_DECL_ACME application_state
 
     :

@@ -1303,6 +1303,12 @@ void application::start_application()
    }
 
 
+   void application::on_application_message(::platform::application_message * papplicationmessage)
+   {
+
+
+   }
+
 
    void application::set_locale(const scoped_string& scopedstrLocale, const ::action_context& context)
    {

@@ -693,38 +693,41 @@ namespace platform
 
 
       bool handle_call(::payload& payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set& propertyset) override;
-      virtual bool handle_application_call(::payload& payload, const ::scoped_string & scopedstrMember, ::property_set& propertyset) override;
+       bool handle_application_call(::payload& payload, const ::scoped_string & scopedstrMember, ::property_set& propertyset) override;
 
 
-      virtual ::file::path get_app_localconfig_folder() override;
-      virtual ::property_set get_ini(const ::scoped_string& scopedstrIniName = {}) override;
+      ::file::path get_app_localconfig_folder() override;
+      ::property_set get_ini(const ::scoped_string& scopedstrIniName = {}) override;
 
 
-      virtual ::string get_visual_studio_build() override;
+      ::string get_visual_studio_build() override;
 
 
-      virtual ::string get_application_name() override;
+      ::string get_application_name() override;
+
+
+      void on_application_message(::platform::application_message * papplicationmessage) override;
 
 
       void locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
-      virtual void matter_locator_locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
+      void matter_locator_locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
 
-      virtual string get_locale_schema_dir(const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
-      virtual string get_locale_schema_dir(const ::scoped_string& scopedstrLocale) override;
+      string get_locale_schema_dir(const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
+      string get_locale_schema_dir(const ::scoped_string& scopedstrLocale) override;
       string get_locale_schema_dir() override;
 
-      virtual void set_locale(const ::scoped_string& scopedstrLocale, const ::action_context& action_context) override;
+      void set_locale(const ::scoped_string& scopedstrLocale, const ::action_context& action_context) override;
 
-      virtual void set_schema(const ::scoped_string& scopedstrSchema, const ::action_context& action_context) override;
+      void set_schema(const ::scoped_string& scopedstrSchema, const ::action_context& action_context) override;
 
-      virtual void on_set_locale(const ::scoped_string& scopedstrLocale, const ::action_context& action_context) override;
+      void on_set_locale(const ::scoped_string& scopedstrLocale, const ::action_context& action_context) override;
 
-      virtual void on_set_schema(const ::scoped_string& scopedstrSchema, const ::action_context& action_context) override;
+      void on_set_schema(const ::scoped_string& scopedstrSchema, const ::action_context& action_context) override;
 
 
 
-      virtual void fill_locale_schema(::text::international::locale_schema& localeschema) override;
-      virtual void fill_locale_schema(::text::international::locale_schema& localeschema, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
+      void fill_locale_schema(::text::international::locale_schema& localeschema) override;
+      void fill_locale_schema(::text::international::locale_schema& localeschema, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;
 
 
       virtual void process_init() override;

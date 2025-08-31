@@ -4239,6 +4239,12 @@
     <ClInclude Include="prototype\string\_character_range.h">
       <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\file\protocol_file.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\data\block.h">
+      <Filter>Header Files\prototype\data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6055,6 +6061,12 @@
     </ClCompile>
     <ClCompile Include="prototype\collection\property_set.cpp">
       <Filter>Source Files\prototype\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\protocol_file.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\data\block.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

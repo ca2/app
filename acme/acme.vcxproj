@@ -1683,6 +1683,7 @@
     <ClCompile Include="filesystem\file\folder.cpp" />
     <ClCompile Include="filesystem\file\payload_stream.cpp" />
     <ClCompile Include="filesystem\file\print_formatting.cpp" />
+    <ClCompile Include="filesystem\file\protocol_file.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />
     <ClCompile Include="filesystem\file\string_stream.cpp" />
@@ -1744,9 +1745,11 @@
     <ClInclude Include="array2d.h" />
     <ClInclude Include="call.h" />
     <ClInclude Include="constant\call.h" />
+    <ClInclude Include="filesystem\file\protocol_file.h" />
     <ClInclude Include="platform\http.h" />
     <ClInclude Include="prototype\collection\base_array.h" />
     <ClInclude Include="prototype\collection\static_array.h" />
+    <ClInclude Include="prototype\data\block.h" />
     <ClInclude Include="prototype\geometry\Matrix.h" />
     <ClInclude Include="prototype\prototype\call.h" />
     <ClInclude Include="compress\compress.h" />
@@ -3223,6 +3226,7 @@
     <ClCompile Include="prototype\collection\_container.cpp" />
     <ClCompile Include="prototype\collection\_range.cpp" />
     <ClCompile Include="prototype\collection\__payload_array.cpp" />
+    <ClCompile Include="prototype\data\block.cpp" />
     <ClCompile Include="prototype\data\check_property.cpp" />
     <ClCompile Include="prototype\data\client.cpp" />
     <ClCompile Include="prototype\data\container.cpp" />

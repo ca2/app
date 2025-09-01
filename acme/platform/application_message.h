@@ -19,6 +19,7 @@ namespace platform
 
          e_message_none = 0,
          e_message_request_uri = 1,
+         e_message_on_size = 2,
 
       };
 

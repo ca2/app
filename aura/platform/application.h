@@ -190,6 +190,10 @@ namespace aura
       virtual void _001CloseApplication() override;
 
 
+
+      void on_application_message(::platform::application_message * papplicationmessage) override;
+
+
       //virtual ::user::style* get_user_style() const;
       //virtual bool app_data_get(const ::atom & atom, stream & os) override;
       //virtual bool app_data_set(const ::atom & atom, stream & is) override;

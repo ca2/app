@@ -46,6 +46,11 @@
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 //#include "bred/gpu/approach.h"
+#include "acme/filesystem/file/byte2_stream.h"
+#include "acme/platform/application_message.h"
+#include "acme/prototype/geometry2d/_byte2_stream.h"
+#include "aura/windowing/display.h"
+#include "aura/windowing/monitor.h"
 
 
 extern "C"
@@ -9272,6 +9277,66 @@ namespace aura
       }
 
    }
+
+
+   void application::on_application_message(::platform::application_message * papplicationmessage)
+   {
+
+      aqua::application::on_application_message(papplicationmessage);
+
+      if(papplicationmessage->m_emessage == ::platform::application_message::e_message_on_size)
+      {
+
+         auto pwindowApplicationHost = system()->get_main_host_window();
+
+         if (::is_set(pwindowApplicationHost))
+         {
+
+            int_size size;
+
+            ::byte2_stream stream(papplicationmessage->m_memory);
+
+            stream >> size;
+
+            auto psystem = system();
+
+            if (psystem->m_pacmewindowing)
+            {
+
+               auto pwindowing = psystem->windowing();
+
+               auto pdisplay = pwindowing->display();
+
+               if(pdisplay)
+               {
+
+                  auto pmonitor = psystem->øcreate_new<::windowing::monitor>();
+
+                  pmonitor->m_pdisplay = pdisplay;
+
+                  ::int_rectangle r(::int_point(), size);
+
+                  pmonitor->
+                     m_rectangle = r;
+                  pmonitor->
+                     m_rectangleFixedWorkspace = r;
+                  pmonitor->
+                     m_rectangleWorkspace = r;
+
+                  pdisplay->m_monitora.set_at_grow(0, pmonitor);
+
+               }
+
+            }
+
+            pwindowApplicationHost->on_size(size.cx(), size.cy());
+
+         }
+
+      }
+
+   }
+
 
 
    //   icon_pointer application::load_icon(const ::payload& payloadFile)

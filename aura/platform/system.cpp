@@ -305,6 +305,28 @@ namespace aura
    }
 
 
+   ::windowing::window* system::get_main_host_window()
+   {
+
+      ::cast<::windowing::windowing> pwindowing = this->windowing();
+
+      if (::is_set(pwindowing)) {
+
+         ::cast<::windowing::window> pwindowApplicationHost = pwindowing->get_application_host_window();
+
+         if (::is_set(pwindowApplicationHost)) {
+
+            return pwindowApplicationHost;
+
+         }
+
+      }
+
+      return nullptr;
+
+   }
+
+
    // void system::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    // {
    //

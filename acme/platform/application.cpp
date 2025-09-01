@@ -4,6 +4,7 @@
 // app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "application.h"
+#include "application_message.h"
 #include "acme.h"
 #include "application_menu.h"
 #include "acme/exception/exit.h"
@@ -1306,6 +1307,16 @@ void application::start_application()
    void application::on_application_message(::platform::application_message * papplicationmessage)
    {
 
+      auto emessage = papplicationmessage->m_emessage;
+
+      if(emessage == ::platform::application_message::e_message_request_uri)
+      {
+
+         ::string strUri = papplicationmessage->m_memory.get_string();
+
+         system()->handle_uri(strUri);
+
+      }
 
    }
 

@@ -56,6 +56,8 @@ namespace aura
 
       void on_add_session(::platform::session* papexsession) override;
 
+      ::windowing::window * get_main_host_window() override;
+
       void init() override;
       //virtual void init_instance() override;
       //virtual void term_instance() override;

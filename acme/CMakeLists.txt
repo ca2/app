@@ -496,10 +496,11 @@ list(APPEND library_source
         platform/acme.h
         platform/allocator.cpp
         platform/allocator.h
-   platform/application_state.cpp
-   platform/application_state.h
-
-   platform/asset.cpp
+        platform/application_message.cpp
+        platform/application_message.h
+        platform/application_state.cpp
+        platform/application_state.h
+        platform/asset.cpp
         platform/asset.h
         platform/asset_manager.cpp
         platform/asset_manager.h
@@ -1686,6 +1687,8 @@ list(APPEND library_source
         filesystem/file/_serializable_impl.h
         filesystem/file/_stream_process_impl.h
         filesystem/file/_text_stream_impl.h
+   filesystem/file/byte2_stream.cpp
+   filesystem/file/byte2_stream.h
         filesystem/file/binary_stream.h
         filesystem/file/buffer.h
         filesystem/file/buffered_file.h

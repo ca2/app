@@ -67,6 +67,15 @@ namespace platform
    {
    }
 
+
+   ::windowing::window* aura_system_layer::get_main_host_window()
+   {
+
+      return nullptr;
+
+   }
+
+
    //
    // ::aura::session* get_session()
    // {

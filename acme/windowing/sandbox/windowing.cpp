@@ -623,7 +623,7 @@ bool windowing::defer_release_mouse_capture(::thread * pthread, ::acme::windowin
 //      //
 //      //            pwindow->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
 //      //
-//      //            //pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(e_message_kill_focus);
+//      //            //pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(::user::e_message_kill_focus);
 //      //
 //      //            pwindow->aaa_m_pacmeuserinteractionKeyboardFocus.release();
 //      
@@ -633,7 +633,7 @@ bool windowing::defer_release_mouse_capture(::thread * pthread, ::acme::windowin
 //      //         if (puserinteraction)
 //      //         {
 //      //
-//      //            puserinteraction->post_message(e_message_kill_focus);
+//      //            puserinteraction->post_message(::user::e_message_kill_focus);
 //      //
 //      //         }
 //      //
@@ -642,7 +642,7 @@ bool windowing::defer_release_mouse_capture(::thread * pthread, ::acme::windowin
 //      //
 //      //         //   pwindow->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
 //      //
-//      //         //   pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(e_message_kill_focus);
+//      //         //   pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(::user::e_message_kill_focus);
 //      //
 //      //         //}
 //      //

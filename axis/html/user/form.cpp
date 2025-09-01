@@ -197,21 +197,21 @@ void html_form::install_message_routing(::channel * pchannel)
 
    ::user::form_window::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_create, pchannel, this, &html_form::on_message_create);
+   MESSAGE_LINK(::user::e_message_create, pchannel, this, &html_form::on_message_create);
 
-   //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
-   //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
-   MESSAGE_LINK(e_message_key_down, pchannel, this, &::html_form::on_message_key_down);
-   //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
+   //MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
+   //MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
+   MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &::html_form::on_message_key_down);
+   //MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
 
-   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &html_form::on_message_left_button_down);
-   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form::on_message_mouse_move);
-   MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &html_form::on_message_mouse_leave);
-   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &html_form::on_message_left_button_up);
+   MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &html_form::on_message_left_button_down);
+   MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &html_form::on_message_mouse_move);
+   MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &html_form::on_message_mouse_leave);
+   MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &html_form::on_message_left_button_up);
 
-   MESSAGE_LINK(e_message_image_loaded, pchannel, this, &html_form::_001OnImageLoaded);
+   MESSAGE_LINK(::user::e_message_image_loaded, pchannel, this, &html_form::_001OnImageLoaded);
 
-   MESSAGE_LINK(e_message_destroy, pchannel, this, &html_form::on_message_destroy);
+   MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &html_form::on_message_destroy);
 
 }
 

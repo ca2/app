@@ -42,13 +42,13 @@ namespace filemanager
          void list_impact::install_message_routing(::channel * pchannel)
          {
             simple_list_impact::install_message_routing(pchannel);
-            MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_impact::on_message_left_button_double_click);
-//            //MESSAGE_LINK(e_message_timer, pchannel, this, &list_impact::on_timer);
-            MESSAGE_LINK(e_message_size, pchannel, this, &list_impact::on_message_size);
+            MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &list_impact::on_message_left_button_double_click);
+//            //MESSAGE_LINK(::user::e_message_timer, pchannel, this, &list_impact::on_timer);
+            MESSAGE_LINK(::user::e_message_size, pchannel, this, &list_impact::on_message_size);
 #ifdef WINDOWS_DESKTOP
-            MESSAGE_LINK(e_message_context_menu, pchannel, this, &list_impact::on_message_context_menu);
+            MESSAGE_LINK(::user::e_message_context_menu, pchannel, this, &list_impact::on_message_context_menu);
 #endif
-            //MESSAGE_LINK(e_message_erase_background, pchannel, this, &list_impact::_001OnEraseBkgnd);
+            //MESSAGE_LINK(::user::e_message_erase_background, pchannel, this, &list_impact::_001OnEraseBkgnd);
             MESSAGE_LINK(WM_USER + 1217, pchannel, this, &list_impact::_001OnFillTaskResponse);
 
          }

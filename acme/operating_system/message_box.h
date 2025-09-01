@@ -20,7 +20,7 @@
 //
 //      //virtual void do_modal(const_char_pointer pszMsg, bool bError);
 //
-////      virtual ::atom initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails = {});
+////      virtual ::atom initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails = {});
 //
 //      //virtual ::atom do_modal();
 //      
@@ -28,7 +28,7 @@
 //      void complete_step(sequencer & sequencer) override;
 //
 //      
-//      static ::pointer < ::subparticle > create_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
+//      static ::pointer < ::subparticle > create_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
 //
 //      
 //   };

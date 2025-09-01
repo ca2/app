@@ -56,7 +56,7 @@ void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppoin
 //
 //   psystem->init_main_data(pinitmaindata);
 //
-//   //message_box(nullptr, "box1", "box1", e_message_box_icon_information);
+//   //message_box(nullptr, "box1", "box1", ::user::e_message_box_icon_information);
 //
 //   nReturnCode = psystem->main();
 //

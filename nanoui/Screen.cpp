@@ -1830,7 +1830,7 @@ namespace nanoui
    bool Screen::on_key_down(::user::enum_key ekey, long long scancode, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText)
    {
 
-      return keyboard_event(ekey, (int)scancode, e_message_key_down, ekeyModifiers, scopedstrText);
+      return keyboard_event(ekey, (int)scancode, ::user::e_message_key_down, ekeyModifiers, scopedstrText);
 
    }
 
@@ -1838,7 +1838,7 @@ namespace nanoui
    bool Screen::on_key_up(::user::enum_key ekey, long long scancode, const ::user::e_key& ekeyModifiers)
    {
 
-      return keyboard_event(ekey, (int)scancode, e_message_key_up, ekeyModifiers, "");
+      return keyboard_event(ekey, (int)scancode, ::user::e_message_key_up, ekeyModifiers, "");
 
    }
 

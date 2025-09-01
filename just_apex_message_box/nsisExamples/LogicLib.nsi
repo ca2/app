@@ -600,7 +600,7 @@ SectionEnd
 Function ComponentsLeave
   ; Section flags tests (requires sections.nsh be included)
   ${Unless} ${SectionIsSelected} ${TESTS}
-    MessageBox e_message_box_ok "Please select the component"
+    MessageBox ::user::e_message_box_ok "Please select the component"
     Abort
   ${EndIf}
 FunctionEnd

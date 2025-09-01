@@ -1156,7 +1156,7 @@ bool thread::task_iteration()
 //
 //      }
 //
-//      if (m_message.m_emessage == e_message_quit)
+//      if (m_message.m_emessage == ::user::e_message_quit)
 //      {
 //
 //         string strType = ::type(this).name();
@@ -1183,9 +1183,9 @@ bool thread::task_iteration()
 //         }
 //
 //         information()(e_trace_category_appmsg) << ::type(this).name() <<
-//            " thread::pump_message - Received e_message_quit.";
+//            " thread::pump_message - Received ::user::e_message_quit.";
 //
-//         information() << ::type(this).name() << " thread::pump_message - Received e_message_quit.";
+//         information() << ::type(this).name() << " thread::pump_message - Received ::user::e_message_quit.";
 //
 //         m_nDisablePumpCount++; // application must die
 //         // Note: prevents calling message loop things in 'exit_thread'
@@ -1196,7 +1196,7 @@ bool thread::task_iteration()
 //      else
 //      {
 //
-//         if (m_message.m_emessage == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
+//         if (m_message.m_emessage == ::user::e_message_destroy_window && m_strDebugType.contains("notify_icon"))
 //         {
 //
 //            information() << "notify_icon";
@@ -1252,7 +1252,7 @@ bool thread::get_message()
 
    get_message(&message, NULL, 0, 0);
 
-   if (m_message.m_emessage == e_message_quit)
+   if (m_message.m_emessage == ::user::e_message_quit)
    {
 
       return false;
@@ -1315,9 +1315,9 @@ bool thread::get_message()
 //         }
 //
 //         information()(e_trace_category_appmsg) << "xx" << strType <<
-//            " thread::raw_pump_message - Received e_message_quit";
+//            " thread::raw_pump_message - Received ::user::e_message_quit";
 //
-//         information() << "xx" << strType << " thread::raw_pump_message - Received e_message_quit.";
+//         information() << "xx" << strType << " thread::raw_pump_message - Received ::user::e_message_quit.";
 //
 //         m_nDisablePumpCount++; // application must die
 //         // Note: prevents calling message loop things in 'exit_thread'
@@ -1468,12 +1468,12 @@ bool thread::handle_message(bool & bContinue)
    if (peek_message(&m_message, nullptr, 0, 0, true))
    {
 
-      if (m_message.m_emessage == e_message_quit)
+      if (m_message.m_emessage == ::user::e_message_quit)
       {
 
          information(
             "\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " +
-            ::as_string(m_message.m_emessage == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
+            ::as_string(m_message.m_emessage == ::user::e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
             ::as_string((unsigned long long)::current_task_index()) + ")\n\n\n");
          
          bContinue = false;
@@ -1557,7 +1557,7 @@ void thread::kick_idle()
          //   m_bCertainlyTheresWindowsMessageQueue = true;
          //}
 
-         ::PostThreadMessage((DWORD)m_itask.m_i, e_message_kick_idle, 0, 0);
+         ::PostThreadMessage((DWORD)m_itask.m_i, ::user::e_message_kick_idle, 0, 0);
 
       }
 
@@ -1604,7 +1604,7 @@ void thread::post_quit()
    if (m_pmessagequeue)
    {
 
-      m_pmessagequeue->post_message(nullptr, e_message_quit, 0, 0);
+      m_pmessagequeue->post_message(nullptr, ::user::e_message_quit, 0, 0);
 
    }
 
@@ -1619,7 +1619,7 @@ void thread::post_quit()
          if (m_bMessageThread)
          {
 
-            post_message(e_message_quit, 0, 0);
+            post_message(::user::e_message_quit, 0, 0);
 
          }
 
@@ -2617,16 +2617,16 @@ void thread::system_pre_translate_message(::message::message* pmessage)
 void thread::process_window_procedure_exception(const ::exception& e, ::message::message* pmessage)
 {
 
-   if (pmessage->m_emessage == e_message_create)
+   if (pmessage->m_emessage == ::user::e_message_create)
    {
 
       pmessage->m_lresult = -1;
 
    }
-   else if (pmessage->m_emessage == e_message_paint)
+   else if (pmessage->m_emessage == ::user::e_message_paint)
    {
 
-      // force validation of interaction_impl to prevent getting e_message_paint again
+      // force validation of interaction_impl to prevent getting ::user::e_message_paint again
 
 #ifdef WIDOWSEX
       ValidateRect(pusermessage->m_puserinteraction->get_safe_handle(), nullptr);
@@ -3154,18 +3154,18 @@ namespace apex
 
       //#ifdef _DEBUG
       //
-      //      if (atom == e_message_quit)
+      //      if (atom == ::user::e_message_quit)
       //      {
       //
-      //         //!!for e_message_quit please use post_quit_to_all_threads;
+      //         //!!for ::user::e_message_quit please use post_quit_to_all_threads;
       //         throw ::exception(error_bad_argument);
       //
       //      }
       //
       //#endif
 
-      //for e_message_quit please use post_quit_to_all_threads;
-      //if(atom == e_message_quit)
+      //for ::user::e_message_quit please use post_quit_to_all_threads;
+      //if(atom == ::user::e_message_quit)
       //{
 
       //   ::parallelization::post_quit_to_all_threads();
@@ -3210,7 +3210,7 @@ namespace apex
 //
 //   return __sync_routine(timeTimeout, this, &thread::post, routine);
 //
-//   //return send_object(e_message_system, e_system_message_method, routine, timeTimeout);
+//   //return send_object(::user::e_message_system, e_system_message_method, routine, timeTimeout);
 //
 //}
 
@@ -3226,16 +3226,16 @@ void thread::post_element(const ::enum_message & emessage, const ::wparam & wpar
 void thread::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
 {
 
-   if (emessage == e_message_close)
+   if (emessage == ::user::e_message_close)
    {
 
-      informationf("thread::post_message e_message_close");
+      informationf("thread::post_message ::user::e_message_close");
 
    }
-   else if (emessage == e_message_branch)
+   else if (emessage == ::user::e_message_branch)
    {
 
-      informationf("thread::post_message e_message_branch");
+      informationf("thread::post_message ::user::e_message_branch");
 
    }
 
@@ -3244,7 +3244,7 @@ void thread::post_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
    if (m_htask.is_set() && !m_bAuraMessageQueue && m_bMessageThread)
    {
 
-      if (emessage == e_message_quit)
+      if (emessage == ::user::e_message_quit)
       {
 
          string strType = ::type(this).name();
@@ -3370,7 +3370,7 @@ void thread::send_element(const ::enum_message & emessage, const ::wparam & wpar
 
    //}
 
-   //if (atom == e_message_quit)
+   //if (atom == ::user::e_message_quit)
    //{
 
    //   return false;
@@ -3402,7 +3402,7 @@ void thread::send_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
 
    //}
 
-   //if (atom == e_message_quit)
+   //if (atom == ::user::e_message_quit)
    //{
 
    //   ///wait(durWaitStep);
@@ -3419,7 +3419,7 @@ void thread::send_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
 
    pmessage->m_message.m_lparam = lparam;
 
-   post_message(e_message_system, e_system_message_meta, pmessage);
+   post_message(::user::e_message_system, e_system_message_meta, pmessage);
 
    pmessage->m_ev.wait(time);
 
@@ -4048,7 +4048,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 
       get_message_queue()->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, 500_ms);
 
-      if (pMsg->m_emessage == e_message_quit)
+      if (pMsg->m_emessage == ::user::e_message_quit)
       {
 
          return;
@@ -4067,7 +4067,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 
          set_finishing_flag();
 
-         if (pMsg->m_emessage == e_message_quit)
+         if (pMsg->m_emessage == ::user::e_message_quit)
          {
 
             return;
@@ -4128,16 +4128,16 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
          msg.message = WM_QUIT;
 
       }
-      else if (msg.message == e_message_quit)
+      else if (msg.message == ::user::e_message_quit)
       {
 
-         informationf("e_message_quit");
+         informationf("::user::e_message_quit");
 
       }
-      else if (msg.message == e_message_destroy_window)
+      else if (msg.message == ::user::e_message_destroy_window)
       {
 
-         informationf("e_message_destroy_window");
+         informationf("::user::e_message_destroy_window");
 
       }
 
@@ -4346,7 +4346,7 @@ void thread::handle_posted_messages()
             //            if(cIgnoredMessages > 0)
             //            {
             //
-            //               if(pmessage->m_emessage == e_message_mouse_move)
+            //               if(pmessage->m_emessage == ::user::e_message_mouse_move)
             //               {
             //
             //                  information() << cIgnoredMessages << " ignored mouse move message" << (cIgnoredMessages > 1 ? "s" : 0);
@@ -4493,7 +4493,7 @@ bool thread::process_message()
 
 #ifdef WINDOWS_DESKTOP
 
-      if (message.m_oswindow != nullptr || message.m_emessage == e_message_timer)
+      if (message.m_oswindow != nullptr || message.m_emessage == ::user::e_message_timer)
       {
 
          MSG msg;
@@ -4510,7 +4510,7 @@ bool thread::process_message()
 
 #endif
 
-      if (message.m_emessage == e_message_event2_trying_to_remove)
+      if (message.m_emessage == ::user::e_message_event2_trying_to_remove)
       {
 
          //if(msg.lParam)
@@ -4531,7 +4531,7 @@ bool thread::process_message()
          //}
 
       }
-      else if (message.m_emessage == e_message_system)
+      else if (message.m_emessage == ::user::e_message_system)
       {
 
          if (message.m_wparam == e_system_message_create)
@@ -4593,7 +4593,7 @@ bool thread::process_message()
 
       }
 
-      if (message.m_emessage == e_message_kick_idle)
+      if (message.m_emessage == ::user::e_message_kick_idle)
       {
 
          return true;
@@ -4843,9 +4843,9 @@ void thread::kick_thread()
 
    //}
 
-   post_message(e_message_null);
+   post_message(::user::e_message_null);
 
-   //if (!post_message(e_message_null))
+   //if (!post_message(::user::e_message_null))
    //{
 
    //   return false;
@@ -4878,7 +4878,7 @@ void thread::post_request(::request* prequest)
 {
 
    ::task::post_request(prequest);
-   //post_element(e_message_system, e_system_message_create, prequest);
+   //post_element(::user::e_message_system, e_system_message_create, prequest);
 
 }
 

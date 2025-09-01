@@ -31,11 +31,11 @@ namespace user
    void elastic_slider::install_message_routing(::channel * pchannel)
    {
       ::user::interaction::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &elastic_slider::on_message_create);
-      ////MESSAGE_LINK(e_message_timer, pchannel, this, &elastic_slider::on_timer);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &elastic_slider::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &elastic_slider::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &elastic_slider::on_message_mouse_move);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &elastic_slider::on_message_create);
+      ////MESSAGE_LINK(::user::e_message_timer, pchannel, this, &elastic_slider::on_timer);
+      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &elastic_slider::on_message_left_button_down);
+      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &elastic_slider::on_message_left_button_up);
+      MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &elastic_slider::on_message_mouse_move);
    }
 
 

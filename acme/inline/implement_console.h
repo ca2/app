@@ -160,7 +160,7 @@ int main(int argc, char ** argv, char ** envp)
       else
       {
 
-         auto pmessagebox = __initialize_new_with(::system()) ::message_box(exception, "Exception", "Exception", e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
+         auto pmessagebox = __initialize_new_with(::system()) ::message_box(exception, "Exception", "Exception", ::user::e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
 
          pmessagebox->sync();
 

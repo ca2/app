@@ -160,6 +160,7 @@ public:
    e_str_flag                       m_estrflag;
    ::file::e_iostate                m_iostate;
    memsize                          m_gcount;
+   ::file::enum_stream              m_estream = ::file::e_stream_none;
 
 
    stream_base()
@@ -231,8 +232,34 @@ public:
 
    //}
 
+
+
 };
 
+template < typename S, typename T >
+void stream_exchange(S & s, T & t)
+{
+
+   if(s.m_estream == ::file::e_stream_output)
+   {
+
+      s << t;
+
+   }
+   else if(s.m_estream == ::file::e_stream_input)
+   {
+
+      s >> t;
+
+   }
+   else
+   {
+
+      throw "wrong state m_estream is bad";
+
+   }
+
+}
 
 
 //template < typename POINTER_TYPE >

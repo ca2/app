@@ -26,7 +26,7 @@ void simple_printer_list_impact::install_message_routing(::channel * pchannel)
 {
 
    simple_list_impact::install_message_routing(pchannel);
-   MESSAGE_LINK(e_message_create, pchannel, this, &simple_printer_list_impact::on_message_create);
+   MESSAGE_LINK(::user::e_message_create, pchannel, this, &simple_printer_list_impact::on_message_create);
 
 }
 

@@ -17,13 +17,13 @@ namespace simple_ui
       int                              m_iResult;
       string                           m_strMessage;
       string                           m_strTitle;
-      ::e_message_box                  m_emessagebox;
+      ::::user::e_message_box                  m_emessagebox;
       ::duration                       m_durationTimeout;
       callback                         m_callback;
       manual_reset_happening               m_happeningReady;
 
 
-      message_box(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::duration durationTimeout);
+      message_box(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::duration durationTimeout);
       virtual ~message_box();
 
 

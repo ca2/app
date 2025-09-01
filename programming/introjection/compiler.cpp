@@ -131,7 +131,7 @@ namespace introjection
 //
 //            strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
 //
-//            //message_box(strMessage, strMessage, e_message_box_ok);
+//            //message_box(strMessage, strMessage, ::user::e_message_box_ok);
 //
 //         }
 //

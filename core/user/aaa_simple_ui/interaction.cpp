@@ -35,7 +35,7 @@ namespace simple_ui
 //
 //      ::user::interaction::install_message_routing(pchannel);
 //
-//      MESSAGE_LINK(e_message_show_window, pchannel, this, &::user::interaction::on_message_show_window);
+//      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &::user::interaction::on_message_show_window);
 //
 //   }
 //   
@@ -43,12 +43,12 @@ namespace simple_ui
 //   void interaction::install_simple_ui_default_mouse_handling(::channel * pchannel)
 //   {
 //      
-//      MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &interaction::on_message_left_button_down);
-//      MESSAGE_LINK(e_message_left_button_up    , pchannel, this, &interaction::on_message_left_button_up);
-//      MESSAGE_LINK(e_message_middle_button_down  , pchannel, this, &interaction::on_message_middle_button_down);
-//      MESSAGE_LINK(e_message_middle_button_up    , pchannel, this, &interaction::on_message_middle_button_up);
-//      MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &interaction::on_message_mouse_move);
-//      MESSAGE_LINK(e_message_mouse_leave   , pchannel, this, &interaction::on_message_mouse_leave);
+//      MESSAGE_LINK(::user::e_message_left_button_down  , pchannel, this, &interaction::on_message_left_button_down);
+//      MESSAGE_LINK(::user::e_message_left_button_up    , pchannel, this, &interaction::on_message_left_button_up);
+//      MESSAGE_LINK(::user::e_message_middle_button_down  , pchannel, this, &interaction::on_message_middle_button_down);
+//      MESSAGE_LINK(::user::e_message_middle_button_up    , pchannel, this, &interaction::on_message_middle_button_up);
+//      MESSAGE_LINK(::user::e_message_mouse_move    , pchannel, this, &interaction::on_message_mouse_move);
+//      MESSAGE_LINK(::user::e_message_mouse_leave   , pchannel, this, &interaction::on_message_mouse_leave);
 //
 //   }
 //

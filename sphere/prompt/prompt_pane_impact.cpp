@@ -289,8 +289,8 @@ namespace prompt
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_impact::on_message_create);
-      MESSAGE_LINK(e_message_size, pchannel, this, &pane_impact::on_message_size);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &pane_impact::on_message_create);
+      MESSAGE_LINK(::user::e_message_size, pchannel, this, &pane_impact::on_message_size);
       MESSAGE_LINK(WM_USER + 1122, this, this, &pane_impact::_001OnMenuMessage);
 
    }

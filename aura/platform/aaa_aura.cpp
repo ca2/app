@@ -487,7 +487,7 @@ namespace aura
 //
 //      //g_iFirstNano = get_nanos();
 //
-//      //xxdebug_box("aura.dll base_static_start (0)", "box", e_message_box_ok);
+//      //xxdebug_box("aura.dll base_static_start (0)", "box", ::user::e_message_box_ok);
 //
 //      //g_pexceptionengine = aaa_primitive_new ::OPERATING_SYSTEM_NAMESPACE::exception_engine();
 //
@@ -1093,7 +1093,7 @@ namespace aura
 //      CLASS_DECL_AURA void init()
 //      {
 //
-//         xxdebug_box("axis.dll axis_static_start (0)", "box", e_message_box_ok);
+//         xxdebug_box("axis.dll axis_static_start (0)", "box", ::user::e_message_box_ok);
 
 //         sqlite3_config(SQLITE_CONFIG_MULTITHREAD);
 
@@ -1242,7 +1242,7 @@ namespace aura
 ////      CLASS_DECL_AURA void init()
 ////      {
 ////
-////         xxdebug_box("aura.dll base_static_start (0)", "box", e_message_box_ok);
+////         xxdebug_box("aura.dll base_static_start (0)", "box", ::user::e_message_box_ok);
 ////
 ////         //#ifdef __ANDROID__
 ////         //

@@ -84,15 +84,15 @@ namespace user
    void form_list::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &form_list::on_message_key_down);
+      MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &form_list::on_message_key_down);
 
       form_mesh::install_message_routing(pchannel);
 
       ::user::list::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &form_list::on_message_scroll_y);
+      MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &form_list::on_message_scroll_y);
 
-      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &form_list::on_message_scroll_x);
+      MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &form_list::on_message_scroll_x);
 
    }
 
@@ -129,7 +129,7 @@ namespace user
 
                m_pitemControl = pitem;
 
-               send_message(e_message_subject, 0, pextendedtopic);
+               send_message(::user::e_message_subject, 0, pextendedtopic);
 
             }
 
@@ -218,7 +218,7 @@ namespace user
 
                m_pitemControl = pitem;
 
-               send_message(e_message_subject, 0, pextendedtopic);
+               send_message(::user::e_message_subject, 0, pextendedtopic);
 
             }
 
@@ -1398,7 +1398,7 @@ namespace user
    //
    //      screen_to_client()(point);
    //
-   //      if (pmouse->m_emessage == e_message_left_button_down)
+   //      if (pmouse->m_emessage == ::user::e_message_left_button_down)
    //      {
    //
    //         index iItem;
@@ -1446,7 +1446,7 @@ namespace user
    //
    //      }
    //
-   //      //else if(emessage == e_message_left_button_up)
+   //      //else if(emessage == ::user::e_message_left_button_up)
    //      //{
    //      //int iItem;
    //      //int iSubItem;
@@ -1517,7 +1517,7 @@ namespace user
    //
    //      //::int_point point = pmouse->m_point;
    //      //screen_to_client()(point);
-   //      ///*      if(emessage == e_message_left_button_down)
+   //      ///*      if(emessage == ::user::e_message_left_button_down)
    //      //      {
    //      //      int iItem;
    //      //      int iSubItem;
@@ -1537,7 +1537,7 @@ namespace user
    //      //      }
    //      //      }
    //      //      }
-   //      //      else if(emessage == e_message_left_button_up)
+   //      //      else if(emessage == ::user::e_message_left_button_up)
    //      //      {
    //      //      int iItem;
    //      //      int iSubItem;

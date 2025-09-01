@@ -2377,7 +2377,7 @@ void object::_001OnUpdate(::message::message* pmessage)
 // void object::install_message_routing(::channel* pchannel)
 // {
 //
-//    //pchannel->add_handler(e_message_system_update, this, &::object::_001OnUpdate);
+//    //pchannel->add_handler(::user::e_message_system_update, this, &::object::_001OnUpdate);
 //
 // }
 
@@ -2653,7 +2653,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 
 
-//pointer< ::extended::sequence < ::conversation > > object::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox)
+//pointer< ::extended::sequence < ::conversation > > object::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box& emessagebox)
 //{
 //
 //   auto psystem = system();
@@ -2665,7 +2665,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 
 
-//void object::message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, const ::future & future)
+//void object::message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::::user::e_message_box & emessagebox, const ::future & future)
 //{
 //
 //   ::e_status estatus = error_failed;
@@ -3505,7 +3505,7 @@ void object::initialize(::particle * pparticle)
 //}
 
 
-//pointer< ::extended::future < ::conversation > >  object::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox)
+//pointer< ::extended::future < ::conversation > >  object::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box& emessagebox)
 //{
 //
 //   return nullptr;
@@ -3518,15 +3518,15 @@ void object::initialize(::particle * pparticle)
 //}
 
 
-// void message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+// void message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future());
 //{
 
 //   return message_box_timeout(nullptr, pszMessage, pszTitle, timeTimeout, emessagebox, process);
 
 //}
 
-// void message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
-// void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+// void message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future());
+// void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future());
 
 //void object::release_references()
 //{

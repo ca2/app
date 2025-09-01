@@ -203,7 +203,7 @@ namespace user
 {
 
    /*
-   * e_message_size message wParam values
+   * ::user::e_message_size message wParam values
    */
 //#define SIZE_RESTORED       0
 //#define SIZE_MINIMIZED      1
@@ -231,7 +231,7 @@ namespace user
 
 
 ///*
-//* Identifiers for the e_message_show_window message
+//* Identifiers for the ::user::e_message_show_window message
 //*/
 //#define SW_PARENTCLOSING    1
 //#define SW_OTHERZOOM        2
@@ -268,12 +268,12 @@ namespace user
 #define SWP_NOZORDER        0x0004
 #define SWP_NOREDRAW        0x0008
 #define SWP_NOACTIVATE      0x0010
-#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send e_message_non_client_calc_size */
+#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send ::user::e_message_non_client_calc_size */
 #define SWP_SHOWWINDOW      0x0040
 #define SWP_HIDEWINDOW      0x0080
 #define SWP_NOCOPYBITS      0x0100
 #define SWP_NOOWNERZORDER   0x0200  /* Don't do owner Z ordering */
-#define SWP_NOSENDCHANGING  0x0400  /* Don't send e_message_window_position_changing */
+#define SWP_NOSENDCHANGING  0x0400  /* Don't send ::user::e_message_window_position_changing */
 
 #define SWP_DRAWFRAME       SWP_FRAMECHANGED
 #define SWP_NOREPOSITION    SWP_NOOWNERZORDER
@@ -295,12 +295,12 @@ namespace user
 #define SWP_NOZORDER        0x0004
 #define SWP_NOREDRAW        0x0008
 #define SWP_NOACTIVATE      0x0010
-#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send e_message_non_client_calc_size */
+#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send ::user::e_message_non_client_calc_size */
 #define SWP_SHOWWINDOW      0x0040
 #define SWP_HIDEWINDOW      0x0080
 #define SWP_NOCOPYBITS      0x0100
 #define SWP_NOOWNERZORDER   0x0200  /* Don't do owner Z ordering */
-#define SWP_NOSENDCHANGING  0x0400  /* Don't send e_message_window_position_changing */
+#define SWP_NOSENDCHANGING  0x0400  /* Don't send ::user::e_message_window_position_changing */
 
 #define SWP_DRAWFRAME       SWP_FRAMECHANGED
 #define SWP_NOREPOSITION    SWP_NOOWNERZORDER

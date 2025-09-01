@@ -22,7 +22,7 @@ int ui_MessageBoxA(const ::scoped_string & scopedstrMessageParam, const ::scoped
 
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 
-void message_box_synchronous(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, const ::function < void(::enum_dialog_result) > & function)
+void message_box_synchronous(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, const ::function < void(::enum_dialog_result) > & function)
 {
 
    auto pevent = ::platform::get()->øcreate_new< manual_reset_happening >();

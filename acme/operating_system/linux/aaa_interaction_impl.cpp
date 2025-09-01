@@ -260,7 +260,7 @@ namespace linux
 
          m_puserinteraction->m_bMessageWindow = true;
 
-         //send_message(e_message_create, 0, (LPARAM) &cs);
+         //send_message(::user::e_message_create, 0, (LPARAM) &cs);
 
       }
       else
@@ -642,7 +642,7 @@ namespace linux
       if(bOk)
       {
 
-         m_puserinteraction->send_message(e_message_create, 0, (LPARAM) &cs);
+         m_puserinteraction->send_message(::user::e_message_create, 0, (LPARAM) &cs);
 
          m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
@@ -673,37 +673,37 @@ namespace linux
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
-         MESSAGE_LINK(e_message_paint, pchannel, this,&interaction_impl::_001OnPaint);
+         MESSAGE_LINK(::user::e_message_paint, pchannel, this,&interaction_impl::_001OnPaint);
          MESSAGE_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
       }
 
       m_puserinteraction->install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::on_message_create);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this,&interaction_impl::on_message_create);
 
 
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
-         //MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
-         //MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
-         //MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::on_message_size);
-         //MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this,&interaction_impl::on_message_non_client_calculate_size);
+         //MESSAGE_LINK(::user::e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
+         //MESSAGE_LINK(::user::e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
+         //MESSAGE_LINK(::user::e_message_size, pchannel, this,&interaction_impl::on_message_size);
+         //MESSAGE_LINK(::user::e_message_non_client_calcsize, pchannel, this,&interaction_impl::on_message_non_client_calculate_size);
 
          // linux
-         MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction_impl::on_message_move);
-         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::on_message_size);
-         MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
+         MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &interaction_impl::on_message_move);
+         MESSAGE_LINK(::user::e_message_size, pchannel, this, &interaction_impl::on_message_size);
+         MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
 
-         //MESSAGE_LINK(e_message_window_position_changing, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
-         //MESSAGE_LINK(e_message_window_position_changed, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
+         //MESSAGE_LINK(::user::e_message_window_position_changing, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
+         //MESSAGE_LINK(::user::e_message_window_position_changed, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
          //MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
-         //MESSAGE_LINK(e_message_set_focus, pchannel, this,&interaction_impl::on_message_set_focus);
-         //MESSAGE_LINK(e_message_kill_focus, pchannel, this,&interaction_impl::on_message_kill_focus);
+         //MESSAGE_LINK(::user::e_message_set_focus, pchannel, this,&interaction_impl::on_message_set_focus);
+         //MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this,&interaction_impl::on_message_kill_focus);
 //         MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
          ::windowing::window::prio_install_message_routing(pchannel);
       }
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this,&interaction_impl::on_message_destroy);
+      MESSAGE_LINK(::user::e_message_destroy, pchannel, this,&interaction_impl::on_message_destroy);
 
    }
 
@@ -1116,9 +1116,9 @@ namespace linux
 
          ::user::interaction * pinteraction = m_puserinteraction;
 
-         send_message(e_message_destroy, 0, 0);
+         send_message(::user::e_message_destroy, 0, 0);
 
-         send_message(e_message_non_client_destroy, 0, 0);
+         send_message(::user::e_message_non_client_destroy, 0, 0);
 
          ::oswindow_erase_message_only_window(this);
 
@@ -1324,34 +1324,34 @@ namespace linux
    void interaction_impl::aaa_message_handler(::user::message * pusermessage)
    {
 
-      if(pusermessage->m_emessage == e_message_timer)
+      if(pusermessage->m_emessage == ::user::e_message_timer)
       {
 
          //m_pthread->step_timer();
 
       }
-      else if(pusermessage->m_emessage == e_message_left_button_down)
+      else if(pusermessage->m_emessage == ::user::e_message_left_button_down)
       {
 
-         informationf("e_message_left_button_down (0)");
+         informationf("::user::e_message_left_button_down (0)");
 
       }
-      else if(pusermessage->m_emessage == e_message_left_button_up)
+      else if(pusermessage->m_emessage == ::user::e_message_left_button_up)
       {
 
-         informationf("e_message_left_button_up (0)");
+         informationf("::user::e_message_left_button_up (0)");
 
       }
-      else if(pusermessage->m_emessage == e_message_mouse_move)
+      else if(pusermessage->m_emessage == ::user::e_message_mouse_move)
       {
 
          g_iMouseMove++;
 
-         //informationf("linux::aaa_interaction_impl::message_handler e_message_mouse_move");
+         //informationf("linux::aaa_interaction_impl::message_handler ::user::e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
-      else if(pusermessage->m_emessage == e_message_paint)
+      else if(pusermessage->m_emessage == ::user::e_message_paint)
       {
 
       }
@@ -1416,14 +1416,14 @@ namespace linux
 
       }
 
-      if(pusermessage->m_emessage == e_message_key_down || pusermessage->m_emessage == e_message_key_up || pusermessage->m_emessage == e_message_char)
+      if(pusermessage->m_emessage == ::user::e_message_key_down || pusermessage->m_emessage == ::user::e_message_key_up || pusermessage->m_emessage == ::user::e_message_char)
       {
 
          ::message::key * pkey = (::message::key *) pusermessage;
 
          psession->translate_os_key_message(pkey);
 
-         if(pusermessage->m_emessage == e_message_key_down)
+         if(pusermessage->m_emessage == ::user::e_message_key_down)
          {
 
             try
@@ -1438,7 +1438,7 @@ namespace linux
             }
 
          }
-         else if(pusermessage->m_emessage == e_message_key_up)
+         else if(pusermessage->m_emessage == ::user::e_message_key_up)
          {
 
             try
@@ -1458,7 +1458,7 @@ namespace linux
 
       pusermessage->m_lresult = 0;
 
-      if(pusermessage->m_emessage == e_message_mouse_leave)
+      if(pusermessage->m_emessage == ::user::e_message_mouse_leave)
       {
 
          _000OnMouseLeave(pusermessage);
@@ -1467,15 +1467,15 @@ namespace linux
 
       }
 
-      if(pusermessage->m_emessage == e_message_left_button_down ||
-            pusermessage->m_emessage == e_message_left_button_up ||
-            pusermessage->m_emessage == e_message_middle_button_down ||
-            pusermessage->m_emessage == e_message_middle_button_up ||
-            pusermessage->m_emessage == e_message_right_button_down ||
-            pusermessage->m_emessage == e_message_right_button_up ||
-            pusermessage->m_emessage == e_message_mouse_move ||
-            pusermessage->m_emessage == e_message_mouse_move)
-//         pusermessage->m_emessage == e_message_mouse_wheel)
+      if(pusermessage->m_emessage == ::user::e_message_left_button_down ||
+            pusermessage->m_emessage == ::user::e_message_left_button_up ||
+            pusermessage->m_emessage == ::user::e_message_middle_button_down ||
+            pusermessage->m_emessage == ::user::e_message_middle_button_up ||
+            pusermessage->m_emessage == ::user::e_message_right_button_down ||
+            pusermessage->m_emessage == ::user::e_message_right_button_up ||
+            pusermessage->m_emessage == ::user::e_message_mouse_move ||
+            pusermessage->m_emessage == ::user::e_message_mouse_move)
+//         pusermessage->m_emessage == ::user::e_message_mouse_wheel)
       {
 
          if(::is_set(m_puserinteraction) && !m_puserinteraction->m_bUserElementOk)
@@ -1537,7 +1537,7 @@ namespace linux
             }
          }
 
-         if(pusermessage->m_emessage == e_message_mouse_move)
+         if(pusermessage->m_emessage == ::user::e_message_mouse_move)
          {
             // We are at the message handler procedure.
             // mouse messages originated from message handler and that are mouse transfer happenings should end up with the correct cursor.
@@ -1552,9 +1552,9 @@ namespace linux
          return;
 
       }
-      else if(pusermessage->m_emessage == e_message_key_down ||
-              pusermessage->m_emessage == e_message_key_up ||
-              pusermessage->m_emessage == e_message_char)
+      else if(pusermessage->m_emessage == ::user::e_message_key_down ||
+              pusermessage->m_emessage == ::user::e_message_key_up ||
+              pusermessage->m_emessage == ::user::e_message_char)
       {
 
          ::message::key * pkey = (::message::key *) pusermessage;
@@ -1602,7 +1602,7 @@ namespace linux
 
       }
 
-      if(pusermessage->m_emessage == e_message_event)
+      if(pusermessage->m_emessage == ::user::e_message_event)
       {
 
          if(m_puserinteraction != nullptr)
@@ -2084,11 +2084,11 @@ pmessagebox->sync();
 //      {
 //      // normal messages (just wparam, lparam through OnWndMsg)
 //
-//      case e_message_scroll_x:
-//      case e_message_scroll_y:
+//      case ::user::e_message_scroll_x:
+//      case ::user::e_message_scroll_y:
 //      case WM_PARENTNOTIFY:
 //      case WM_DRAWITEM:
-//      case e_message_measure_item:
+//      case ::user::e_message_measure_item:
 //      case WM_DELETEITEM:
 //      case WM_VKEYTOITEM:
 //      case WM_CHARTOITEM:
@@ -2098,12 +2098,12 @@ pmessagebox->sync();
 //
 //         return false;
 //
-//      // special case for e_message_command
-//      case e_message_command:
+//      // special case for ::user::e_message_command
+//      case ::user::e_message_command:
 //      {
 //         // reflect the message through the message ::collection::map as OCM_COMMAND
 //         /* xxx         int nCode = HIWORD(wparam);
-//         if (interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+e_message_command), nullptr, nullptr))
+//         if (interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+::user::e_message_command), nullptr, nullptr))
 //         {
 //         if (pResult != nullptr)
 //         *pResult = 1;
@@ -2152,7 +2152,7 @@ pmessagebox->sync();
 //   void interaction_impl::OnParentNotify(const ::atom & atom, LPARAM lparam)
 //
 //   {
-//      if ((LOWORD(message) == e_message_create || LOWORD(message) == e_message_destroy))
+//      if ((LOWORD(message) == ::user::e_message_create || LOWORD(message) == ::user::e_message_destroy))
 //      {
 //         if (ReflectLastMsg((oswindow)lparam))
 //

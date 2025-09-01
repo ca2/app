@@ -98,7 +98,7 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, unsigned 
 
          MESSAGE & msg = m_messagea[i];
 
-         if (msg.message == e_message_quit)
+         if (msg.message == ::user::e_message_quit)
          {
 
             m_bQuit = true;
@@ -350,7 +350,7 @@ CLASS_DECL_AURA int_bool post_ui_message(const MESSAGE & message)
 //
 //   itask idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 //
-//   auto pmq = ::get_message_queue(idthread, message.message != e_message_quit);
+//   auto pmq = ::get_message_queue(idthread, message.message != ::user::e_message_quit);
 //
 //   if(pmq == nullptr)
 //   {

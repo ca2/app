@@ -157,7 +157,7 @@ namespace experience
    //{
    //   MESSAGE * pmsg = (MESSAGE *)lParam;
 
-   //   if (wParam == e_message_mouse_move)
+   //   if (wParam == ::user::e_message_mouse_move)
    //   {
    //      ::int_point pointCursor = pmsg->pt;
 
@@ -255,11 +255,11 @@ namespace experience
 
       ::user::button::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &orto_button::on_message_show_window);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &orto_button::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &orto_button::on_message_left_button_up);
-      //MESSAGE_LINK(e_message_size, pchannel, this, &orto_button::on_message_size);
-      //   //MESSAGE_LINK(e_message_timer, pchannel, this,&orto_button::on_timer);
+      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &orto_button::on_message_show_window);
+      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &orto_button::on_message_left_button_down);
+      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &orto_button::on_message_left_button_up);
+      //MESSAGE_LINK(::user::e_message_size, pchannel, this, &orto_button::on_message_size);
+      //   //MESSAGE_LINK(::user::e_message_timer, pchannel, this,&orto_button::on_timer);
    }
 
 

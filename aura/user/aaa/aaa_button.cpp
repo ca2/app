@@ -104,8 +104,8 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create    , pchannel, this, &button::on_message_create);
-      MESSAGE_LINK(e_message_key_down   , pchannel, this, &button::on_message_key_down);
+      MESSAGE_LINK(::user::e_message_create    , pchannel, this, &button::on_message_create);
+      MESSAGE_LINK(::user::e_message_key_down   , pchannel, this, &button::on_message_key_down);
 
       install_simple_ui_default_mouse_handling(pchannel);
 

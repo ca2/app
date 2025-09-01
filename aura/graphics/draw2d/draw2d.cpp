@@ -471,7 +471,7 @@ namespace draw2d
       catch (...)
       {
 
-         output_error_message("except", "except", e_message_box_ok);
+         output_error_message("except", "except", ::user::e_message_box_ok);
 
       }
 

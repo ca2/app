@@ -1344,7 +1344,7 @@ inline ::iptr atom::as_iptr() const
 inline enum_message atom::as_emessage() const
 {
 
-   return m_etype == e_type_message ? m_emessage : (enum_message) e_message_undefined;
+   return m_etype == e_type_message ? m_emessage : (enum_message) ::user::e_message_undefined;
 
 }
 

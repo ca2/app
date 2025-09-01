@@ -603,12 +603,12 @@ namespace platform
       //virtual ::pointer<::conversation> create_new_message_conversation();
 
 
-      //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
+      //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
 
 
-      //virtual void ::micro::message_box(::sequence < ::conversation > * psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox);
+      //virtual void ::micro::message_box(::sequence < ::conversation > * psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box& emessagebox);
 
-      //virtual ::pointer < ::subparticle > create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
+      //virtual ::pointer < ::subparticle > create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
 
 
       virtual void shell_launch(const ::scoped_string & scopedstrAppId);

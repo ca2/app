@@ -86,16 +86,16 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &multiple_option::on_message_mouse_move);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &multiple_option::on_message_mouse_leave);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &multiple_option::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &multiple_option::on_message_left_button_up);
-      MESSAGE_LINK(e_message_key_down,pchannel,this,&multiple_option::on_message_key_down);
-      MESSAGE_LINK(e_message_key_up,pchannel,this,&multiple_option::on_message_key_up);
-      //MESSAGE_LINK(e_message_set_focus,pchannel,this,&multiple_option::on_message_set_focus);
-      //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &multiple_option::on_message_kill_focus);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &multiple_option::on_message_show_window);
-      MESSAGE_LINK(e_message_reposition, pchannel, this, &multiple_option::on_message_move);
+      MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &multiple_option::on_message_mouse_move);
+      MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &multiple_option::on_message_mouse_leave);
+      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &multiple_option::on_message_left_button_down);
+      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &multiple_option::on_message_left_button_up);
+      MESSAGE_LINK(::user::e_message_key_down,pchannel,this,&multiple_option::on_message_key_down);
+      MESSAGE_LINK(::user::e_message_key_up,pchannel,this,&multiple_option::on_message_key_up);
+      //MESSAGE_LINK(::user::e_message_set_focus,pchannel,this,&multiple_option::on_message_set_focus);
+      //MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &multiple_option::on_message_kill_focus);
+      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &multiple_option::on_message_show_window);
+      MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &multiple_option::on_message_move);
 
    }
 
@@ -268,7 +268,7 @@ namespace user
          //if (m_plistbox.is_set() && m_plistbox->is_window())
          //{
 
-         //   m_plistbox->post_message(e_message_close);
+         //   m_plistbox->post_message(::user::e_message_close);
 
          //}
 
@@ -482,7 +482,7 @@ namespace user
       //if (::is_set(m_plistbox) && m_plistbox->is_window())
       //{
 
-      //   m_plistbox->post_message(e_message_close);
+      //   m_plistbox->post_message(::user::e_message_close);
 
       //}
 
@@ -729,7 +729,7 @@ namespace user
 //         throw ::exception(todo);
 //#endif
 //         break;
-//      case e_message_measure_item:
+//      case ::user::e_message_measure_item:
 //#ifdef WINDOWSEX
 //         MeasureItem((LPMEASUREITEMSTRUCT)pusermessage->m_lparam);
 //#else

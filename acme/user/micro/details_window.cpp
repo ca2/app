@@ -71,7 +71,7 @@ namespace micro
 
          display_temporary_file_with_text(m_prealizable->m_strDetails);
 
-         //pdetailswindow->display_synchronously(m_strDetails, m_strTitle + " : Details", e_message_box_ok, m_strDetails);
+         //pdetailswindow->display_synchronously(m_strDetails, m_strTitle + " : Details", ::user::e_message_box_ok, m_strDetails);
 
          //m_atomResult.clear();
 

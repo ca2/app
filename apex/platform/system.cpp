@@ -289,7 +289,7 @@ namespace apex
 
       //::platform::context::install_message_routing(pchannel);
 
-      //MESSAGE_LINK(e_message_erase_session, pchannel, this, &system::on_message_erase_session);
+      //MESSAGE_LINK(::user::e_message_erase_session, pchannel, this, &system::on_message_erase_session);
 
    }
 
@@ -395,7 +395,7 @@ namespace apex
       // cold start (never previously called program and its Dlls...)?
       m_timeMainStart = m_timeStart;
 
-      //xxdebug_box("box1", "box1", e_message_box_icon_information);
+      //xxdebug_box("box1", "box1", ::user::e_message_box_icon_information);
    //
      // ::file::path pathOutputDebugString = directory_system()->system() / strAppId / "information.txt" ;
 
@@ -3289,7 +3289,7 @@ pdirectorysystem->create("/ca2core");
 
          strMessage.formatf("protocol: ca2project\nbase: %s\nAppId: %s\nquery: %s\n", strBase, strAppId, strQuery);
 
-         //message_box(strMessage, e_message_box_ok);
+         //message_box(strMessage, ::user::e_message_box_ok);
 
          string strParams;
 
@@ -3473,7 +3473,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
       if (strProfile.is_empty() && strTarget.is_empty() && strBrowser.is_empty())
       {
 
-         //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, e_message_box_ok);
+         //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, ::user::e_message_box_ok);
 
          pmessagebox->sync();
 
@@ -3742,7 +3742,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
             strParam = " -c \"" + strCmd + "\"";
 
-            //MessageBox(nullptr, strParam, path, e_message_box_ok);
+            //MessageBox(nullptr, strParam, path, ::user::e_message_box_ok);
 
             call_async(shell, strParam, pathHome, e_display_default, false);
 
@@ -5100,7 +5100,7 @@ namespace apex
    }
 
 
-   //pointer< ::extended::future < ::conversation > > system::_message_box(::particle * pparticle, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::future < ::conversation > > system::_message_box(::particle * pparticle, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox)
    //{
 
    //   return ::system::_message_box(pparticle, pszText, pszTitle, emessagebox);

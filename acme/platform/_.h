@@ -58,8 +58,13 @@ namespace platform
 
    class uuid;
 
+   class application_state;
+
 
 } // namespace platform
+
+
+class application_message;
 
 
 class message_box;

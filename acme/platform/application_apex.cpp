@@ -462,18 +462,18 @@ namespace platform
    //// os_* functions generally
    //// reserves a lot of surprises from each
    //// operating system specific behavior
-   //void apex_application_layer::auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
    //pmessagebox->sync(){}
 
 
-   //void apex_application_layer::ui_message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
-   //void apex_application_layer::ui_message_box_timeout(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::ui_message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::ui_message_box_timeout(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class ::time& timeTimeOut = time::infinite(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
 
    //using ::platform::context::message_box{}
-   //void apex_application_layer::message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
-   //void apex_application_layer::message_box_timeout(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::message_box_timeout(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class ::time& timeTimeOut = time::infinite(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
 
    void apex_application_layer::on_file_new()
@@ -1237,15 +1237,15 @@ namespace platform
    //void route_command(::message::command* pcommand, bool bRouteToKeyDescendant = false) override{}
 
 
-   //virtual pointer< ::extended::future < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::e_message_box & emessagebox = e_message_box_ok) override{}
-   //virtual ::enum_dialog_result message_box_timeout(const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override{}
+   //virtual pointer< ::extended::future < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok) override{}
+   //virtual ::enum_dialog_result message_box_timeout(const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class time & timeTimeout = ::time::infinite(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future()) override{}
 
 
    //void EnableHtmlHelp(){}
 
 
-   //virtual int sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::string apex_application_layer::& pszTitle, class ::time timeTimeout,unsigned int fuStyle = e_message_box_ok) override{}
-   //virtual int sync_message_box(::user::interaction_base * puiOwner,const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, unsigned int fuStyle = e_message_box_ok) override{}
+   //virtual int sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::string apex_application_layer::& pszTitle, class ::time timeTimeout,unsigned int fuStyle = ::user::e_message_box_ok) override{}
+   //virtual int sync_message_box(::user::interaction_base * puiOwner,const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, unsigned int fuStyle = ::user::e_message_box_ok) override{}
 
 
    //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId) override{}

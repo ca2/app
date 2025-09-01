@@ -648,7 +648,7 @@ namespace apex
 
       ::thread::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_close, pchannel, this, &application::on_message_close);
+      MESSAGE_LINK(::user::e_message_close, pchannel, this, &application::on_message_close);
 
       add_command_handler("try_close_application", { this, &application::on_message_app_exit });
       add_command_handler("switch_context_theme", { this, &application::_001OnSwitchContextTheme });
@@ -1169,7 +1169,7 @@ namespace apex
    }
 
 
-   //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::auto pmessagebox = __initialize_new ::message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -1179,7 +1179,7 @@ namespace apex
    //}
 
 
-   //void application::ui_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!get_session() || !psession->userex())
@@ -1194,7 +1194,7 @@ namespace apex
    //}
 
 
-   //void application::ui_message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!get_session() || !psession->userex())
@@ -1209,7 +1209,7 @@ namespace apex
    //}
 
 
-   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -1228,7 +1228,7 @@ namespace apex
    //}
 
 
-   //void application::message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
@@ -1536,7 +1536,7 @@ namespace apex
    void application::_001CloseApplication()
    {
 
-      post_message(e_message_close, 0, 0);
+      post_message(::user::e_message_close, 0, 0);
 
    }
 
@@ -1705,7 +1705,7 @@ namespace apex
    //      //
    //      //         }
 
-   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", ::user::e_message_box_icon_information);
 
    //      //auto estatus =
    //      on_before_launching();
@@ -2013,9 +2013,9 @@ namespace apex
 
                //          payload["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80 style=\"display:block;\"><br/><br/>";
 
-               //message_box(strMessage, m_strAppName, timeTimeout, e_message_box_icon_asterisk);
+               //message_box(strMessage, m_strAppName, timeTimeout, ::user::e_message_box_icon_asterisk);
 
-               //message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
+               //message_box(strMessage, m_strAppName, ::user::e_message_box_icon_asterisk);
 
                informationf(strMessage);
 
@@ -2048,7 +2048,7 @@ namespace apex
 
       }
 
-      //xxdebug_box("check_exclusive ok", "check_exclusive ok", e_message_box_icon_information);
+      //xxdebug_box("check_exclusive ok", "check_exclusive ok", ::user::e_message_box_icon_information);
 
       //if (m_bInitializeDataCentral)
       //{
@@ -2591,7 +2591,7 @@ namespace apex
 
    //      handle_exception(e);
 
-   //      auto pmessagebox = __initialize_new ::message_box("Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
+   //      auto pmessagebox = __initialize_new ::message_box("Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, ::user::e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
 
 //pmessagebox->sync();
 
@@ -2659,7 +2659,7 @@ namespace apex
    //   catch (const ::exception & exception)
    //   {
 
-   //      message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName, e_message_box_ok,
+   //      message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName, ::user::e_message_box_ok,
    //         exception.m_strMessage + "\n\n" + exception.m_strDetails + "\n\n" + exception.m_strCallstack);
 
    //      throw exception;
@@ -3268,7 +3268,7 @@ namespace apex
 
    //   psystem->install_progress_add_up(); // 2
 
-   //   //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
+   //   //xxdebug_box("init1 ok", "init1 ok", ::user::e_message_box_icon_information);
 
    //   ping();
 
@@ -3285,7 +3285,7 @@ namespace apex
 
    //   psystem->install_progress_add_up(); // 3
 
-   //   //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
+   //   //xxdebug_box("init2 ok", "init2 ok", ::user::e_message_box_icon_information);
 
    //   ping();
 
@@ -3302,7 +3302,7 @@ namespace apex
 
    //   psystem->install_progress_add_up(); // 4
 
-   //   //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
+   //   //xxdebug_box("init3 ok", "init3 ok", ::user::e_message_box_icon_information);
 
    //   ping();
 
@@ -5200,7 +5200,7 @@ namespace apex
    void application::send_language_change_message()
    {
 
-      ::message::message message(e_message_language);
+      ::message::message message(::user::e_message_language);
 
       route_message_to_windows(&message);
 
@@ -5929,7 +5929,7 @@ namespace apex
    void application::_001TryCloseApplication()
    {
 
-      post_message(e_message_close, 1, 0);
+      post_message(::user::e_message_close, 1, 0);
 
    }
 
@@ -7189,7 +7189,7 @@ namespace apex
          if (pmutex->has_already_exists_flag())
          {
 
-            //            output_error_message("Could not launch spa installer. It is already running.", e_message_box_ok);
+            //            output_error_message("Could not launch spa installer. It is already running.", ::user::e_message_box_ok);
 
               // return -35;
 
@@ -7687,8 +7687,8 @@ namespace apex
 
       switch (pmessage->m_emessage)
       {
-      case e_message_create:
-      case e_message_paint:
+      case ::user::e_message_create:
+      case ::user::e_message_paint:
 
          return thread::process_window_procedure_exception(e, pmessage);
             
@@ -7701,7 +7701,7 @@ namespace apex
       //linux unsigned int nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const ::string & nIDP = "Internal Failure";
       pmessage->m_lresult = 0;        // sensible default
-      if (pmessage->m_emessage == e_message_command)
+      if (pmessage->m_emessage == ::user::e_message_command)
       {
 
          if (pmessage->m_lparam == 0)
@@ -7718,7 +7718,7 @@ namespace apex
       if (e.estatus() == error_no_memory)
       {
 
-         report_error(e, e_message_box_icon_exclamation | e_message_box_system_modal, nullptr);
+         report_error(e, ::user::e_message_box_icon_exclamation | ::user::e_message_box_system_modal, nullptr);
 
       }
       else if (e.estatus() == error_user)
@@ -7726,7 +7726,7 @@ namespace apex
 
          // ::account::user has not been alerted yet of this catastrophic problem
 
-         report_error(e, e_message_box_icon_stop, nullptr);
+         report_error(e, ::user::e_message_box_icon_stop, nullptr);
 
       }
 
@@ -8289,7 +8289,7 @@ namespace apex
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle task
+   //      // trans pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle task
    //
    //      //trans pMainWnd->WinHelp(dwData, nCmd);
    //   }
@@ -8306,7 +8306,7 @@ namespace apex
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle task
+   //      // trans pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle task
    //
    //      // trans pMainWnd->HtmlHelp(dwData, nCmd);
    //   }
@@ -8321,7 +8321,7 @@ namespace apex
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle task
+   //      // trans pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle task
    //      // trans pMainWnd->WinHelpInternal(dwData, nCmd);
    //   }
    //
@@ -8530,7 +8530,7 @@ namespace apex
    //ENSURE(pMainWnd->is_frame_window());
    //pMainWnd->OnContextHelp();
    //m_bHelpMode = pMainWnd->m_bHelpMode;
-   //pMainWnd->PostMessage(e_message_kick_idle); // trigger idle task */
+   //pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle task */
    //}
    //
    ///////////////////////////////////////////////////////////////////////////////
@@ -8622,7 +8622,7 @@ namespace apex
    //
    ////ASSERT(m_pacmeuserinteractionMain != nullptr);
    //
-   ////m_pacmeuserinteractionMain->m_puiThis->send_message(e_message_close);
+   ////m_pacmeuserinteractionMain->m_puiThis->send_message(::user::e_message_close);
    //
    //}
    //
@@ -10189,7 +10189,7 @@ namespace apex
    }
 
 
-   //pointer< ::extended::future < ::conversation > > application::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::future < ::conversation > > application::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox)
    //{
    //
    //   auto psystem = system();

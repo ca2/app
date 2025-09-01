@@ -67,6 +67,15 @@ namespace platform
    {
    }
 
+
+   ::windowing::window* aura_system_layer::get_main_host_window()
+   {
+
+      return nullptr;
+
+   }
+
+
    //
    // ::aura::session* get_session()
    // {
@@ -153,8 +162,8 @@ namespace platform
    // }
    //
 
-   //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override{}
-   //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override{}
+   //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok) override{}
+   //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future()) override{}
 
 
    //void aura_system_layer::create_html(){}
@@ -840,7 +849,7 @@ namespace platform
    }
 
 
-   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override{}
+   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok) override{}
 
    //void windowing_send(const ::procedure & procedure) override{}
    //void windowing_post(const ::procedure & procedure) override{}

@@ -24,7 +24,7 @@ namespace user
    {
 
       common_construct();
-      m_emessage           = ::e_message_system_command;
+      m_emessage           = ::::user::e_message_system_command;
       id()                          = atom;
       m_bRadioChanged               = false;
 

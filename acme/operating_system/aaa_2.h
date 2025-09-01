@@ -169,7 +169,7 @@ enum enum_command_system
 
 CLASS_DECL_ACME void command_system(string & strOutput, string & strError, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite());
 
-CLASS_DECL_ACME ::atom auto pmessagebox = __initialize_new ::message_box(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, enum_message_box emessagebox = e_message_box_ok);
+CLASS_DECL_ACME ::atom auto pmessagebox = __initialize_new ::message_box(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, enum_message_box emessagebox = ::user::e_message_box_ok);
 
 pmessagebox->sync();
 

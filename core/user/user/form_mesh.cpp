@@ -40,7 +40,7 @@ namespace user
 
    void form_mesh::install_message_routing(::channel * pchannel)
    {
-      MESSAGE_LINK(e_message_key_down, pchannel, this,&form_mesh::on_message_key_down);
+      MESSAGE_LINK(::user::e_message_key_down, pchannel, this,&form_mesh::on_message_key_down);
 
       form::install_message_routing(pchannel);
       mesh::install_message_routing(pchannel);
@@ -83,7 +83,7 @@ namespace user
 
                m_pitemControl                         = pitem;
 
-               send_message(e_message_subject,0, pextendedtopic);
+               send_message(::user::e_message_subject,0, pextendedtopic);
 
             }
 
@@ -507,7 +507,7 @@ namespace user
 
    //   //screen_to_client()(point);
 
-   //   //if(pmouse->m_emessage == e_message_left_button_down)
+   //   //if(pmouse->m_emessage == ::user::e_message_left_button_down)
    //   //{
    //   //
    //   //   int iItem;
@@ -534,7 +534,7 @@ namespace user
    //   //}
    //   //}
    //   //}
-   //   //else if(emessage == e_message_left_button_up)
+   //   //else if(emessage == ::user::e_message_left_button_up)
    //   //{
    //   //int iItem;
    //   //int iSubItem;

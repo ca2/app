@@ -878,11 +878,11 @@ namespace user
 
       form::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel,this,&form_control::on_message_create);
-      MESSAGE_LINK(e_message_after_create, pchannel,this,&form_control::_000OnPosCreate);
-      MESSAGE_LINK(e_message_language, pchannel,this,&form_control::_001OnAppLanguage);
-      //MESSAGE_LINK(e_message_key_down                     , pchannel,this,&form_control::on_message_key_down);
-      //MESSAGE_LINK(e_message_key_up                       , pchannel,this,&form_control::on_message_key_up);
+      MESSAGE_LINK(::user::e_message_create, pchannel,this,&form_control::on_message_create);
+      MESSAGE_LINK(::user::e_message_after_create, pchannel,this,&form_control::_000OnPosCreate);
+      MESSAGE_LINK(::user::e_message_language, pchannel,this,&form_control::_001OnAppLanguage);
+      //MESSAGE_LINK(::user::e_message_key_down                     , pchannel,this,&form_control::on_message_key_down);
+      //MESSAGE_LINK(::user::e_message_key_up                       , pchannel,this,&form_control::on_message_key_up);
       MESSAGE_LINK(WM_USER + 123, pchannel,this,&form_control::_001OnUser123);
 
       //install_update_data_message_routing(pchannel);
@@ -1068,7 +1068,7 @@ namespace user
    void form_control::WfiOnClose()
    {
 
-      post_message(e_message_close);
+      post_message(::user::e_message_close);
 
    }
 

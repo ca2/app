@@ -1254,7 +1254,7 @@ g_bWindowingOutputDebugString = true;
 
          string strDetails = exception.get_consolidated_details(this);
 
-         auto pmessagebox = __initialize_new_with(this) ::message_box(strMessage, "Library Loading Failure", e_message_box_ok | e_message_box_icon_warning,
+         auto pmessagebox = __initialize_new_with(this) ::message_box(strMessage, "Library Loading Failure", ::user::e_message_box_ok | ::user::e_message_box_icon_warning,
             strDetails);
 
          pmessagebox->async();
@@ -1362,7 +1362,7 @@ g_bWindowingOutputDebugString = true;
   //    {
 
     //     auto pmessagebox = __initialize_new_with(this) ::message_box(librarynotloaded.get_message(),
-            //"Library not loaded", e_message_box_icon_error, librarynotloaded.m_strDetails);
+            //"Library not loaded", ::user::e_message_box_icon_error, librarynotloaded.m_strDetails);
 
       //   pmessagebox->async();
 

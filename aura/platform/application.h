@@ -190,6 +190,10 @@ namespace aura
       virtual void _001CloseApplication() override;
 
 
+
+      void on_application_message(::application_message * papplicationmessage) override;
+
+
       //virtual ::user::style* get_user_style() const;
       //virtual bool app_data_get(const ::atom & atom, stream & os) override;
       //virtual bool app_data_set(const ::atom & atom, stream & is) override;
@@ -478,18 +482,18 @@ namespace aura
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
 //pmessagebox->sync();
 
 
-      //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void ui_message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::aura::context_thread::message_box;
-      //virtual void message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
 
       //virtual void on_file_new() override;

@@ -2366,7 +2366,7 @@ void file_context::replace_with(const ::file::path & pathContext, const ::scoped
    }
    //if (strFail.has_character())
    //{
-   //   App(papp).message_box(nullptr, strFail, e_message_box_icon_exclamation);
+   //   App(papp).message_box(nullptr, strFail, ::user::e_message_box_icon_exclamation);
    //}
 
    //return e;

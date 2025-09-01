@@ -51,14 +51,14 @@ namespace message
       bool m_bCommand = false;
 
 
-      message(::enum_message emessage = e_message_undefined);
+      message(::enum_message emessage = ::user::e_message_undefined);
       ~message() override;
 
 
       //void common_construct();
 
 
-      inline bool is_message() const { return m_emessage != e_message_undefined; }
+      inline bool is_message() const { return m_emessage != ::user::e_message_undefined; }
       inline bool is_thread_message() const { return is_message() && m_oswindow == nullptr; }
 
 

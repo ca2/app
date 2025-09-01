@@ -136,7 +136,7 @@ namespace user
 
       ::thread::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_redraw, pchannel, this, &graphics_thread::on_message_redraw);
+      MESSAGE_LINK(::user::e_message_redraw, pchannel, this, &graphics_thread::on_message_redraw);
 
    }
 
@@ -423,7 +423,7 @@ namespace user
       //   if (m_puserinteraction->has_destroying_flag())
       //   {
 
-      //     m_puserinteraction->post_message(e_message_destroy_window);
+      //     m_puserinteraction->post_message(::user::e_message_destroy_window);
 
       //   }
 
@@ -461,7 +461,7 @@ namespace user
 
          get_message(&m_message, nullptr, 0, 0);
 
-         if (m_message.m_emessage == e_message_quit)
+         if (m_message.m_emessage == ::user::e_message_quit)
          {
 
             ::string strType = type(m_puserinteraction).name();
@@ -474,7 +474,7 @@ namespace user
          
          int iRedrawMessageCount = 0;
          
-         if (m_message.m_emessage == e_message_redraw)
+         if (m_message.m_emessage == ::user::e_message_redraw)
          {
 
             iRedrawMessageCount = 1;
@@ -486,7 +486,7 @@ namespace user
          while (peek_message(&m_message, nullptr, 0, 0, true))
          {
 
-            if (m_message.m_emessage == e_message_redraw)
+            if (m_message.m_emessage == ::user::e_message_redraw)
             {
 
                iRedrawMessageCount++;
@@ -505,7 +505,7 @@ namespace user
 
 #ifdef EXTRA_PRODEVIAN_ITERATION_LOG
 
-         information() << "Skipped e_message_redraw count "+ as_string(iRedrawMessageCount) + "\n";
+         information() << "Skipped ::user::e_message_redraw count "+ as_string(iRedrawMessageCount) + "\n";
 
 #endif
 
@@ -529,20 +529,20 @@ namespace user
       while (peek_message(&m_message, NULL, 0, 0, true))
       {
 
-         if(m_message.m_emessage == e_message_quit)
+         if(m_message.m_emessage == ::user::e_message_quit)
          {
 
             return false;
 
          }
 
-//               if (m_message.m_emessage == e_message_null)
+//               if (m_message.m_emessage == ::user::e_message_null)
 //               {
 //
 //                  return true;
 //
 //               }
-//               else if (m_message.m_emessage != e_message_redraw)
+//               else if (m_message.m_emessage != ::user::e_message_redraw)
 //               {
 //
 //                  return true;
@@ -632,7 +632,7 @@ namespace user
 //
 //             //}
 //
-//             //while (peek_message(&m_message, nullptr, e_message_redraw, e_message_redraw, true))
+//             //while (peek_message(&m_message, nullptr, ::user::e_message_redraw, ::user::e_message_redraw, true))
 //             //{
 //
 //
@@ -641,13 +641,13 @@ namespace user
 // //            while (peek_message(&m_message, NULL, 0, 0, true))
 // //            {
 // //
-// ////               if (m_message.m_emessage == e_message_null)
+// ////               if (m_message.m_emessage == ::user::e_message_null)
 // ////               {
 // ////
 // ////                  return true;
 // ////
 // ////               }
-// ////               else if (m_message.m_emessage != e_message_redraw)
+// ////               else if (m_message.m_emessage != ::user::e_message_redraw)
 // ////               {
 // ////
 // ////                  return true;
@@ -1479,7 +1479,7 @@ namespace user
 
          bool bUpdateBuffer = 1;
 
-         post_message(e_message_redraw, bUpdateBuffer ? 1 : 0);
+         post_message(::user::e_message_redraw, bUpdateBuffer ? 1 : 0);
 
       }
 
@@ -1735,7 +1735,7 @@ namespace user
       try
       {
 
-         post_message(e_message_redraw);
+         post_message(::user::e_message_redraw);
 
       }
       catch (...)
@@ -1891,7 +1891,7 @@ namespace user
       if (m_timeLastFrame.elapsed() > (m_timePostRedrawNominal * 3 / 4))
       {
 
-         post_message(e_message_redraw);
+         post_message(::user::e_message_redraw);
 
       }
 

@@ -158,9 +158,9 @@ namespace bred
 //      virtual pointer< ::sequence < ::conversation > > dialog_box(::particle * pparticle, const ::scoped_string & scopedstrMatter, ::property_set & propertyset);
 //
 //
-//      virtual pointer< ::sequence < ::conversation > > ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
-//      virtual pointer< ::sequence < ::conversation > > ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinity(), const ::e_message_box & emessagebox = e_message_box_ok);
-//      //virtual void ui_message_box_timeout(::object* pparticle, ::user::interaction_base* puiOwner, ::payload payload, class ::time timeTimeout, unsigned int fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
+//      virtual pointer< ::sequence < ::conversation > > ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok);
+//      virtual pointer< ::sequence < ::conversation > > ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinity(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok);
+//      //virtual void ui_message_box_timeout(::object* pparticle, ::user::interaction_base* puiOwner, ::payload payload, class ::time timeTimeout, unsigned int fuStyle = ::user::e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 //
 //      virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 //

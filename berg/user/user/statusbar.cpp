@@ -40,10 +40,10 @@ namespace user
 
    void status_bar::install_message_routing(::channel * pchannel)
    {
-      MESSAGE_LINK(e_message_non_client_hit_test, pchannel, this, &status_bar::_001OnNcHitTest);
-      MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &status_bar::on_message_non_client_calculate_size);
-      MESSAGE_LINK(e_message_size, pchannel, this, &status_bar::on_message_size);
-      MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &status_bar::_001OnWindowPosChanging);
+      MESSAGE_LINK(::user::e_message_non_client_hit_test, pchannel, this, &status_bar::_001OnNcHitTest);
+      MESSAGE_LINK(::user::e_message_non_client_calc_size, pchannel, this, &status_bar::on_message_non_client_calculate_size);
+      MESSAGE_LINK(::user::e_message_size, pchannel, this, &status_bar::on_message_size);
+      MESSAGE_LINK(::user::e_message_window_position_changing, pchannel, this, &status_bar::_001OnWindowPosChanging);
 //#ifdef WINDOWS_DESKTOP
 //      MESSAGE_LINK(WM_SETTEXT, pchannel, this, &status_bar::_001OnSetText);
 //      MESSAGE_LINK(WM_GETTEXT, pchannel, this, &status_bar::_001OnGetText);

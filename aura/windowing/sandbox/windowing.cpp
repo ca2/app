@@ -588,7 +588,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 ////
 ////            pwindow->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
 ////
-////            //pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(e_message_kill_focus);
+////            //pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(::user::e_message_kill_focus);
 ////
 ////            pwindow->aaa_m_pacmeuserinteractionKeyboardFocus.release();
 //
@@ -598,7 +598,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 ////         if (puserinteraction)
 ////         {
 ////
-////            puserinteraction->post_message(e_message_kill_focus);
+////            puserinteraction->post_message(::user::e_message_kill_focus);
 ////
 ////         }
 ////
@@ -607,7 +607,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 ////
 ////         //   pwindow->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
 ////
-////         //   pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(e_message_kill_focus);
+////         //   pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(::user::e_message_kill_focus);
 ////
 ////         //}
 ////

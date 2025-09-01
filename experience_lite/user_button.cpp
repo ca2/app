@@ -156,7 +156,7 @@ namespace user
 
       ::user::button::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &button::on_message_show_window);
+      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &button::on_message_show_window);
 
    }
 

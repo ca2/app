@@ -86,15 +86,15 @@ SectionEnd
 Section "TempTest"
 
 SectionIn 1 2 3
-  Start: MessageBox e_message_box_ok "Start:"
+  Start: MessageBox ::user::e_message_box_ok "Start:"
 
   MessageBox MB_YESNO "Goto MyLabel" IDYES MyLabel
 
-  MessageBox e_message_box_ok "Right before MyLabel:"
+  MessageBox ::user::e_message_box_ok "Right before MyLabel:"
 
-  MyLabel: MessageBox e_message_box_ok "MyLabel:"
+  MyLabel: MessageBox ::user::e_message_box_ok "MyLabel:"
   
-  MessageBox e_message_box_ok "Right after MyLabel:"
+  MessageBox ::user::e_message_box_ok "Right after MyLabel:"
 
   MessageBox MB_YESNO "Goto Start:?" IDYES Start
 
@@ -124,16 +124,16 @@ SectionIn 1 4 3
 
   ReadINIStr $1 "$INSTDIR\test.ini" "MySectionIni" "Value1"
   StrCmp $1 "" INIDelSuccess
-    MessageBox e_message_box_ok "DeleteINISec failed"
+    MessageBox ::user::e_message_box_ok "DeleteINISec failed"
   INIDelSuccess:
 
   ClearErrors
   ReadRegStr $1 HKCR "software\microsoft" xyz_cc_does_not_exist
   IfErrors 0 NoError
-    MessageBox e_message_box_ok "could not read from HKCR\software\microsoft\xyz_cc_does_not_exist"
+    MessageBox ::user::e_message_box_ok "could not read from HKCR\software\microsoft\xyz_cc_does_not_exist"
     Goto ErrorYay
   NoError:
-    MessageBox e_message_box_ok "read '$1' from HKCR\software\microsoft\xyz_cc_does_not_exist"
+    MessageBox ::user::e_message_box_ok "read '$1' from HKCR\software\microsoft\xyz_cc_does_not_exist"
   ErrorYay:
   
 SectionEnd
@@ -213,7 +213,7 @@ Section "Test Exec functions" TESTIDX
   
   SearchPath $1 notepad.exe
 
-  MessageBox e_message_box_ok "notepad.exe=$1"
+  MessageBox ::user::e_message_box_ok "notepad.exe=$1"
   Exec '"$1"'
   ExecShell "open" '"$INSTDIR"'
   millis_sleep 500
@@ -248,7 +248,7 @@ FunctionEnd
 Function myfunc
 
   StrCpy $2 "MyTestVar=$1"
-  MessageBox e_message_box_ok "myfunc: $2"
+  MessageBox ::user::e_message_box_ok "myfunc: $2"
 
 FunctionEnd
 
@@ -256,7 +256,7 @@ Function MyFunctionTest
 
   ReadINIStr $1 "$INSTDIR\test.ini" "MySectionIni" "Value1"
   StrCmp $1 $8 NoFailedMsg
-    MessageBox e_message_box_ok "WriteINIStr failed"
+    MessageBox ::user::e_message_box_ok "WriteINIStr failed"
   
   NoFailedMsg:
 
@@ -302,7 +302,7 @@ Section "Uninstall"
   RMDir "$INSTDIR"
 
   IfFileExists "$INSTDIR" 0 NoErrorMsg
-    MessageBox e_message_box_ok "Note: $INSTDIR could not be erased!" IDOK 0 ; skipped if file doesn't exist
+    MessageBox ::user::e_message_box_ok "Note: $INSTDIR could not be erased!" IDOK 0 ; skipped if file doesn't exist
   NoErrorMsg:
 
 SectionEnd

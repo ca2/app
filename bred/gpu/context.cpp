@@ -850,8 +850,6 @@ return {};
 
       m_rectangle.set_size(size);
 
-      m_escene = m_escene;
-
       on_create_context(pgpudevice, eoutput, pwindow, size);
 
    }

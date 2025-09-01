@@ -12,7 +12,7 @@ struct MESSAGE
 
    
    ::oswindow              m_oswindow = nullptr;
-   ::enum_message          m_emessage = e_message_null;
+   ::enum_message          m_emessage = ::user::e_message_null;
    wparam                  m_wparam;
    lparam                  m_lparam;
    ::int_point             m_point;

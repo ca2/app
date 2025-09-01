@@ -9,23 +9,23 @@
 CLASS_DECL_ACME int message_box_to_windows_message_box_type(enum_message_box emessagebox)
 {
 
-   auto emessageboxType = (enum_message_box)(emessagebox & e_message_box_type_mask);
+   auto emessageboxType = (enum_message_box)(emessagebox & ::user::e_message_box_type_mask);
 
    switch (emessageboxType)
    {
-   case e_message_box_ok:
+   case ::user::e_message_box_ok:
       return MB_OK;
-   case e_message_box_ok_cancel:
+   case ::user::e_message_box_ok_cancel:
       return MB_OKCANCEL;
-   case e_message_box_abort_retry_ignore:
+   case ::user::e_message_box_abort_retry_ignore:
       return MB_ABORTRETRYIGNORE;
-   case e_message_box_yes_no_cancel:
+   case ::user::e_message_box_yes_no_cancel:
       return MB_YESNOCANCEL;
-   case e_message_box_yes_no:
+   case ::user::e_message_box_yes_no:
       return MB_YESNO;
-   case e_message_box_retry_cancel:
+   case ::user::e_message_box_retry_cancel:
       return MB_RETRYCANCEL;
-   case e_message_box_cancel_try_continue:
+   case ::user::e_message_box_cancel_try_continue:
       return MB_CANCELTRYCONTINUE;
    default:
       return 0;
@@ -37,17 +37,17 @@ CLASS_DECL_ACME int message_box_to_windows_message_box_type(enum_message_box eme
 CLASS_DECL_ACME int message_box_to_windows_message_box_icon(enum_message_box emessagebox)
 {
 
-   auto emessageboxIcon = (enum_message_box)(emessagebox & e_message_box_icon_mask);
+   auto emessageboxIcon = (enum_message_box)(emessagebox & ::user::e_message_box_icon_mask);
 
    switch (emessageboxIcon)
    {
-   case e_message_box_icon_error:
+   case ::user::e_message_box_icon_error:
       return MB_ICONERROR;
-   case e_message_box_icon_exclamation:
+   case ::user::e_message_box_icon_exclamation:
       return MB_ICONEXCLAMATION;
-   case e_message_box_icon_question:
+   case ::user::e_message_box_icon_question:
       return MB_ICONQUESTION;
-   case e_message_box_icon_asterisk:
+   case ::user::e_message_box_icon_asterisk:
       return MB_ICONASTERISK;
    default:
       return 0;
@@ -59,17 +59,17 @@ CLASS_DECL_ACME int message_box_to_windows_message_box_icon(enum_message_box eme
 CLASS_DECL_ACME int message_box_to_windows_message_box_default_button(enum_message_box emessagebox)
 {
 
-   auto emessageboxDefaultButton = (enum_message_box)(emessagebox & e_message_box_default_button_mask);
+   auto emessageboxDefaultButton = (enum_message_box)(emessagebox & ::user::e_message_box_default_button_mask);
 
    switch (emessageboxDefaultButton)
    {
-   case e_message_box_default_button_1:
+   case ::user::e_message_box_default_button_1:
       return MB_DEFBUTTON1;
-   case e_message_box_default_button_2:
+   case ::user::e_message_box_default_button_2:
       return MB_DEFBUTTON1;
-   case e_message_box_default_button_3:
+   case ::user::e_message_box_default_button_3:
       return MB_DEFBUTTON3;
-   case e_message_box_default_button_4:
+   case ::user::e_message_box_default_button_4:
       return MB_DEFBUTTON4;
    default:
       return 0;
@@ -90,7 +90,7 @@ CLASS_DECL_ACME int message_box_to_windows_message_box_default_button(enum_messa
 //   public:
 //
 //      //::atom do_modal(const ::scoped_string & scopedstrMessage,
-//      //                               const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox,
+//      //                               const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox,
 //      //                               const ::scoped_string & scopedstrDetails) override
 //      ::enum_dialog_result m_edialogresult;
 //      void run() override

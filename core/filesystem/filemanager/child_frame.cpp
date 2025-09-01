@@ -29,9 +29,9 @@ namespace filemanager
 
       simple_child_frame::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_language, pchannel, this, &child_frame::_001OnAppLanguage);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &child_frame::on_message_show_window);
-      MESSAGE_LINK(e_message_create, pchannel, this, &child_frame::on_message_create);
+      MESSAGE_LINK(::user::e_message_language, pchannel, this, &child_frame::_001OnAppLanguage);
+      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &child_frame::on_message_show_window);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &child_frame::on_message_create);
 
    }
 

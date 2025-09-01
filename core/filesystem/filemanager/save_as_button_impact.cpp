@@ -129,7 +129,7 @@ namespace filemanager
 
                //   });
 
-               auto pmessagebox = __initialize_new ::message_box("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no);
+               auto pmessagebox = __initialize_new ::message_box("Do you want to replace the existing file " + strPath + "?", nullptr, ::user::e_message_box_yes_no);
 
                pmessagebox->async()
                   << [this, pmessagebox, strPath]()

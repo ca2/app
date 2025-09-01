@@ -315,6 +315,14 @@ namespace file
    }
 
 
+   void file::write_unsigned_char(unsigned char uch)
+   {
+
+      write(&uch, 1);
+
+   }
+
+
    void file::write(const void * dataToWrite, ::memsize amountToWrite)
    {
       

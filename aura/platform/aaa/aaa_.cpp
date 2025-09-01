@@ -487,7 +487,7 @@ void c_post_system_happening(unsigned long long u, void* pparam)
    LPARAM lparam = (LPARAM)pparam;
 
 
-   ::auraacmesystem()->post_message(e_message_event2, (WPARAM)u, lparam);
+   ::auraacmesystem()->post_message(::user::e_message_event2, (WPARAM)u, lparam);
 
 
 }

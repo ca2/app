@@ -156,7 +156,7 @@ bool ImageImpact::keyboard_event(::user::enum_key ekey, int /* scancode */, int 
 
    }
 
-   if (action == ::e_message_key_down)
+   if (action == ::::user::e_message_key_down)
    {
       
       if (ekey == ::user::e_key_r) 

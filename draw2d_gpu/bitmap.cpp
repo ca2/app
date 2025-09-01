@@ -422,29 +422,29 @@ namespace draw2d_gpu
 //
 //      switch (msg)
 //      {
-//      case e_message_create:
+//      case ::user::e_message_create:
 //         //         timeBeginPeriod(1);
 //         //set_timer(hWnd, 1, 1000, 0);
 //         return 0;
 //
-//      case e_message_destroy:
+//      case ::user::e_message_destroy:
 //         //kill_timer(hWnd, 1);
 //         //       timeEndPeriod(1);
 //         //PostQuitMessage(0);
 //         return 0;
 //
-//      case e_message_key_down:
+//      case ::user::e_message_key_down:
 //         //if (wParam == VK_ESCAPE)
 //      {
-//         //SendMessage(hWnd, e_message_close, 0, 0);
+//         //SendMessage(hWnd, ::user::e_message_close, 0, 0);
 //         // return 0;
 //      }
 //      break;
 //
-//      case e_message_non_client_hit_test:
+//      case ::user::e_message_non_client_hit_test:
 //         return HTCAPTION;   // allows dragging of the window
 //
-//      case e_message_timer:
+//      case ::user::e_message_timer:
 //         //         _stprintf(szBuffer, _TEXT("%d FPS"), g_frames);
 //         //set_window_text(hWnd, szBuffer);
 //         //         g_frames = 0;
@@ -491,7 +491,7 @@ namespace draw2d_gpu
 //               TranslateMessage(&msg);
 //               DispatchMessage(&msg);
 //
-//               if (msg.message == e_message_non_client_destroy)
+//               if (msg.message == ::user::e_message_non_client_destroy)
 //                  break;
 //
 //            }
@@ -730,13 +730,13 @@ namespace draw2d_gpu
 ////
 ////      if (!wglDestroyPbufferARB || !wglQueryPbufferARB || !wglGetPbufferDCARB || !wglCreatePbufferARB || !wglReleasePbufferDCARB)
 ////      {
-////         MessageBox(0, _T("Required extension WGL_ARB_pbuffer not supported"), _T("Error"), e_message_box_icon_stop);
+////         MessageBox(0, _T("Required extension WGL_ARB_pbuffer not supported"), _T("Error"), ::user::e_message_box_icon_stop);
 ////         return false;
 ////      }
 ////
 ////      if (!wglChoosePixelFormatARB || !wglGetPixelFormatAttribfvARB || !wglGetPixelFormatAttribivARB)
 ////      {
-////         MessageBox(0, _T("Required extension WGL_ARB_pixel_format not supported"), _T("Error"), e_message_box_icon_stop);
+////         MessageBox(0, _T("Required extension WGL_ARB_pixel_format not supported"), _T("Error"), ::user::e_message_box_icon_stop);
 ////         return false;
 ////      }
 ////#endif
@@ -769,25 +769,25 @@ namespace draw2d_gpu
 ////
 ////      if (!wglChoosePixelFormatARB(g_hDC, attribList, 0, 1, &format, &matchingFormats))
 ////      {
-////         MessageBox(0, _T("wglChoosePixelFormatARB() failed"), _T("Error"), e_message_box_icon_stop);
+////         MessageBox(0, _T("wglChoosePixelFormatARB() failed"), _T("Error"), ::user::e_message_box_icon_stop);
 ////         return false;
 ////      }
 ////
 ////      if (!(g_hPBuffer = wglCreatePbufferARB(g_hDC, format, m_sizeOut.cx(), m_sizeOut.cy(), 0)))
 ////      {
-////         MessageBox(0, _T("wglCreatePbufferARB() failed"), _T("Error"), e_message_box_icon_stop);
+////         MessageBox(0, _T("wglCreatePbufferARB() failed"), _T("Error"), ::user::e_message_box_icon_stop);
 ////         return false;
 ////      }
 ////
 ////      if (!(g_hPBufferDC = wglGetPbufferDCARB(g_hPBuffer)))
 ////      {
-////         MessageBox(0, _T("wglGetPbufferDCARB() failed"), _T("Error"), e_message_box_icon_stop);
+////         MessageBox(0, _T("wglGetPbufferDCARB() failed"), _T("Error"), ::user::e_message_box_icon_stop);
 ////         return false;
 ////      }
 ////
 ////      if (!(g_hPBufferRC = wglCreateContext(g_hPBufferDC)))
 ////      {
-////         MessageBox(0, _T("wglCreateContext() failed for PBuffer"), _T("Error"), e_message_box_icon_stop);
+////         MessageBox(0, _T("wglCreateContext() failed for PBuffer"), _T("Error"), ::user::e_message_box_icon_stop);
 ////         return false;
 ////      }
 ////#endif

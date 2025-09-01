@@ -46,6 +46,11 @@
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 //#include "bred/gpu/approach.h"
+#include "acme/filesystem/file/byte2_stream.h"
+#include "acme/platform/application_message.h"
+#include "acme/prototype/geometry2d/_byte2_stream.h"
+#include "aura/windowing/display.h"
+#include "aura/windowing/monitor.h"
 
 
 extern "C"
@@ -790,7 +795,7 @@ namespace aura
    //}
 
 
-   //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::auto pmessagebox = __initialize_new ::message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -800,7 +805,7 @@ namespace aura
    //}
 
 
-   //void application::ui_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -815,7 +820,7 @@ namespace aura
    //}
 
 
-   //void application::ui_message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -830,7 +835,7 @@ namespace aura
    //}
 
 
-   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -849,7 +854,7 @@ namespace aura
    //}
 
 
-   //void application::message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
@@ -1574,7 +1579,7 @@ namespace aura
 ////
 ////         }
 //
-//         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+//         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", ::user::e_message_box_icon_information);
 //
 //         if (!initial_check_directrix())
 //         {
@@ -1762,7 +1767,7 @@ namespace aura
 
    //      application_pos_run();
 
-   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", ::user::e_message_box_icon_information);
 
    //   }
    //   catch (...)
@@ -2369,7 +2374,7 @@ retry_license:
 //
 //      psystem->install_progress_add_up(); // 2
 //
-//      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
+//      //xxdebug_box("init1 ok", "init1 ok", ::user::e_message_box_icon_information);
 //
 //      ping();
 //
@@ -2384,7 +2389,7 @@ retry_license:
 //
 //      psystem->install_progress_add_up(); // 3
 //
-//      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
+//      //xxdebug_box("init2 ok", "init2 ok", ::user::e_message_box_icon_information);
 //
 //      ping();
 //
@@ -2399,7 +2404,7 @@ retry_license:
 //
 //      psystem->install_progress_add_up(); // 4
 //
-//      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
+//      //xxdebug_box("init3 ok", "init3 ok", ::user::e_message_box_icon_information);
 //
 //      ping();
 //
@@ -2487,7 +2492,7 @@ retry_license:
 
       //   //   information() << "ERROR: image_context required but missing.";
 
-      //   //   //output_error_message("image_context required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+      //   //   //output_error_message("image_context required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::::user::e_message_box_icon_information);
 
       //   //   return estatus;
 
@@ -2511,7 +2516,7 @@ retry_license:
 
       //    //   information() << "ERROR: image_context required but missing.";
 
-      //    //   //output_error_message("image_context required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+      //    //   //output_error_message("image_context required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::::user::e_message_box_icon_information);
 
       //    //   return estatus;
 
@@ -2687,7 +2692,7 @@ retry_license:
          //if(::is_set(get_session()))
          //{
 
-         //   get_session()->post_message(e_message_erase_application, 0, this);
+         //   get_session()->post_message(::user::e_message_erase_application, 0, this);
 
          //}
 
@@ -3874,7 +3879,7 @@ retry_license:
 
                synchronouslock.unlock();
 
-               get_app()->post_message(e_message_close);
+               get_app()->post_message(::user::e_message_close);
 
             }
 
@@ -4078,7 +4083,7 @@ retry_license:
    //     if (pmsg->id() == 126)
    //     {
 
-   //        information() << "e_message_display_change";
+   //        information() << "::user::e_message_display_change";
 
    //     }
 
@@ -5604,7 +5609,7 @@ retry_license:
 //         if (::pointer < ::mutex >.already_exists())
 //         {
 //
-//            //            output_error_message("Could not launch spa installer. It is already running.", e_message_box_ok);
+//            //            output_error_message("Could not launch spa installer. It is already running.", ::user::e_message_box_ok);
 //
 //            return -35;
 //
@@ -6106,8 +6111,8 @@ namespace aura
 
       switch (pusermessage->m_emessage)
       {
-         case e_message_create:
-         case e_message_paint:
+         case ::user::e_message_create:
+         case ::user::e_message_paint:
 
             return thread::process_window_procedure_exception(e, pmessage);
 
@@ -6120,7 +6125,7 @@ namespace aura
       //linux unsigned int nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const_char_pointer nIDP = "Internal Failure";
       pusermessage->m_lresult = 0;        // sensible default
-      if (pusermessage->m_emessage == e_message_command)
+      if (pusermessage->m_emessage == ::user::e_message_command)
       {
          if (pusermessage->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
@@ -6131,7 +6136,7 @@ namespace aura
       if (e.estatus() == error_no_memory)
       {
 
-         report_error(e, e_message_box_icon_exclamation | e_message_box_system_modal, nIDP);
+         report_error(e, ::user::e_message_box_icon_exclamation | ::user::e_message_box_system_modal, nIDP);
 
       }
       else if (e.estatus() == error_user)
@@ -6139,7 +6144,7 @@ namespace aura
 
          // ::account::user has not been alerted yet of this catastrophic problem
 
-         report_error(e, e_message_box_icon_stop, nIDP);
+         report_error(e, ::user::e_message_box_icon_stop, nIDP);
 
       }
 
@@ -6718,7 +6723,7 @@ namespace aura
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle update
+   //      // trans pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle update
    //
    //      //trans pMainWnd->WinHelp(dwData, nCmd);
    //   }
@@ -6735,7 +6740,7 @@ namespace aura
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle update
+   //      // trans pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle update
    //
    //      // trans pMainWnd->HtmlHelp(dwData, nCmd);
    //   }
@@ -6750,7 +6755,7 @@ namespace aura
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle update
+   //      // trans pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle update
    //      // trans pMainWnd->WinHelpInternal(dwData, nCmd);
    //   }
    //
@@ -6959,7 +6964,7 @@ namespace aura
    //   ENSURE(pMainWnd->is_frame_window());
    //   pMainWnd->OnContextHelp();
    //   m_bHelpMode = pMainWnd->m_bHelpMode;
-   //   pMainWnd->PostMessage(e_message_kick_idle); // trigger idle update */
+   //   pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle update */
    //}
 
    ///////////////////////////////////////////////////////////////////////////////
@@ -7057,7 +7062,7 @@ namespace aura
 
    //   auto puserinteractionMain = __user_interaction(m_pacmeuserinteractionMain);
 
-   //   puserinteractionMain->m_puiThis->send_message(e_message_close);
+   //   puserinteractionMain->m_puiThis->send_message(::user::e_message_close);
 
    //}
 
@@ -8897,7 +8902,7 @@ namespace aura
       //         //pMainWnd = __get_main_window();
       //         //if((m_puiMain != nullptr) && (IsEnterKey(pusermessage) || IsButtonUp(pusermessage)))
       //         //{
-      //         //   //                  pMainWnd->SendMessage(e_message_command, ID_HELP);
+      //         //   //                  pMainWnd->SendMessage(::user::e_message_command, ID_HELP);
       //         //   pusermessage->m_bRet = true;
       //         //   return;
       //         //}
@@ -8908,7 +8913,7 @@ namespace aura
       //case MSGF_DIALOGBOX:    // handles message boxes as well.
       //   //pMainWnd = __get_main_window();
       //   if (code == MSGF_DIALOGBOX && m_puiActive != nullptr &&
-      //      pusermessage->id() >= e_message_key_first && pusermessage->id() <= e_message_key_last)
+      //      pusermessage->id() >= ::user::e_message_key_first && pusermessage->id() <= ::user::e_message_key_last)
       //   {
       //   }
       //   break;
@@ -9048,7 +9053,7 @@ namespace aura
                //               synchronouslock.unlock();
                try
                {
-                  pinteraction->send_message(e_message_idle_update_command_user_interface, (wparam)true);
+                  pinteraction->send_message(::user::e_message_idle_update_command_user_interface, (wparam)true);
                }
                catch (...)
                {
@@ -9272,6 +9277,68 @@ namespace aura
       }
 
    }
+
+
+   void application::on_application_message(::application_message * papplicationmessage)
+   {
+
+      aqua::application::on_application_message(papplicationmessage);
+
+      auto emessage = papplicationmessage->m_eapplicationmessage;
+
+      if(emessage == ::e_application_message_on_size)
+      {
+
+         int_size size;
+
+         ::byte2_stream stream(papplicationmessage->m_memory);
+
+         stream >> size;
+
+         auto psystem = system();
+
+         if (psystem->m_pacmewindowing)
+         {
+
+            auto pwindowing = psystem->windowing();
+
+            auto pdisplay = pwindowing->display();
+
+            if(pdisplay)
+            {
+
+               auto pmonitor = psystem->øcreate_new<::windowing::monitor>();
+
+               pmonitor->m_pdisplay = pdisplay;
+
+               ::int_rectangle r(::int_point(), size);
+
+               pmonitor->
+                  m_rectangle = r;
+               pmonitor->
+                  m_rectangleFixedWorkspace = r;
+               pmonitor->
+                  m_rectangleWorkspace = r;
+
+               pdisplay->m_monitora.set_at_grow(0, pmonitor);
+
+            }
+
+         }
+
+         auto pwindowApplicationHost = system()->get_main_host_window();
+
+         if (::is_set(pwindowApplicationHost))
+         {
+
+            pwindowApplicationHost->on_size(size.cx(), size.cy());
+
+         }
+
+      }
+
+   }
+
 
 
    //   icon_pointer application::load_icon(const ::payload& payloadFile)

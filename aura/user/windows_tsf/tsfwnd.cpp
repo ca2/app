@@ -177,14 +177,14 @@ LRESULT CALLBACK CTSFMainWnd::_WndProc( HWND hWnd,
 {
     CTSFMainWnd *pThis = (CTSFMainWnd*)GetWindowLongPtr(hWnd, THIS_POINTER_OFFSET);
 
-    if((NULL == pThis) && (uMessage != e_message_non_client_create))
+    if((NULL == pThis) && (uMessage != ::user::e_message_non_client_create))
     {
         return default_window_procedure(hWnd, uMessage, wParam, lParam);
     }
     
     switch (uMessage)
     {
-    case e_message_non_client_create:
+    case ::user::e_message_non_client_create:
         {
             LPCREATESTRUCT lpcs = (LPCREATESTRUCT)lParam;
             pThis = (CTSFMainWnd*)(lpcs->lpCreateParams);
@@ -195,33 +195,33 @@ LRESULT CALLBACK CTSFMainWnd::_WndProc( HWND hWnd,
         }
         break;
 
-    case e_message_create:
+    case ::user::e_message_create:
         return pThis->_OnCreate();
 
-    case e_message_size:
+    case ::user::e_message_size:
         return pThis->_OnSize(LOWORD(lParam), HIWORD(lParam));
 
-    case e_message_destroy:
+    case ::user::e_message_destroy:
         return pThis->_OnDestroy();
 
-    case e_message_set_focus:
+    case ::user::e_message_set_focus:
         return pThis->_OnSetFocus();
 
-    case e_message_kill_focus:
+    case ::user::e_message_kill_focus:
         return pThis->_OnKillFocus();
 
-    case e_message_activate:
+    case ::user::e_message_activate:
         return pThis->_OnActivate(wParam);
 
-    case e_message_initialize_menu_popup:
+    case ::user::e_message_initialize_menu_popup:
         return pThis->_OnInitMenuPopup(wParam, lParam);
 
-    case e_message_command:
+    case ::user::e_message_command:
         return pThis->_OnCommand(   GET_WM_COMMAND_ID(wParam, lParam), 
                                     GET_WM_COMMAND_CMD(wParam, lParam), 
                                     GET_WM_COMMAND_HWND(wParam, lParam));
 
-    case e_message_non_client_destroy:
+    case ::user::e_message_non_client_destroy:
         pThis->m_hWnd = NULL;
         break;
 
@@ -281,11 +281,11 @@ LRESULT CTSFMainWnd::_OnCommand(unsigned short wID, unsigned short wCmd, HWND hW
     switch(wID)
     {
     case IDM_EXIT:
-        PostMessage(m_hWnd, e_message_close, 0, 0);
+        PostMessage(m_hWnd, ::user::e_message_close, 0, 0);
         break;
     
     case IDM_ABOUT:
-        MessageBox(m_hWnd, TEXT(""), g_szTSFAppTitle, e_message_box_ok | e_message_box_icon_information);
+        MessageBox(m_hWnd, TEXT(""), g_szTSFAppTitle, ::user::e_message_box_ok | ::user::e_message_box_icon_information);
         break;
     
     case IDM_GETPRESERVEDKEY:

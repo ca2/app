@@ -11,28 +11,28 @@
 //   ON_TYPED_MESSAGE(atom, ::message::message, message)
 
 //#define ON_WM_SHOWWINDOW \
-//   ON_TYPED_MESSAGE(e_message_show_window, ::message::show_window, showwindow)
+//   ON_TYPED_MESSAGE(::user::e_message_show_window, ::message::show_window, showwindow)
 //
 //#define ON_WM_LBUTTONDOWN \
-//   ON_TYPED_MESSAGE(e_message_left_button_down, ::message::mouse, mouse)
+//   ON_TYPED_MESSAGE(::user::e_message_left_button_down, ::message::mouse, mouse)
 //
 //#define ON_WM_LBUTTONUP \
-//   ON_TYPED_MESSAGE(e_message_left_button_up, ::message::mouse, mouse)
+//   ON_TYPED_MESSAGE(::user::e_message_left_button_up, ::message::mouse, mouse)
 //
 //#define ON_WM_MBUTTONDOWN \
-//   ON_TYPED_MESSAGE(e_message_middle_button_down, ::message::mouse, mouse)
+//   ON_TYPED_MESSAGE(::user::e_message_middle_button_down, ::message::mouse, mouse)
 //
 //#define ON_WM_MBUTTONUP \
-//   ON_TYPED_MESSAGE(e_message_middle_button_up, ::message::mouse, mouse)
+//   ON_TYPED_MESSAGE(::user::e_message_middle_button_up, ::message::mouse, mouse)
 //
 //#define ON_WM_RBUTTONDOWN \
-//   ON_TYPED_MESSAGE(e_message_right_button_down, ::message::mouse, mouse)
+//   ON_TYPED_MESSAGE(::user::e_message_right_button_down, ::message::mouse, mouse)
 //
 //#define ON_WM_RBUTTONUP \
-//   ON_TYPED_MESSAGE(e_message_right_button_up, ::message::mouse, mouse)
+//   ON_TYPED_MESSAGE(::user::e_message_right_button_up, ::message::mouse, mouse)
 //
 //#define ON_WM_MOUSEMOVE \
-//   ON_TYPED_MESSAGE(e_message_mouse_move, ::message::mouse, mouse)
+//   ON_TYPED_MESSAGE(::user::e_message_mouse_move, ::message::mouse, mouse)
 //
 //#define SCAST_MSG(tcast) \
 //   ::message::tcast * p##tcast = dynamic_cast < ::message::tcast * > (pmessage);

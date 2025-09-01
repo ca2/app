@@ -114,13 +114,13 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 
    ::user::toolbar::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_create       , pchannel, this, &simple_toolbar::on_message_create);
-   MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &simple_toolbar::on_message_left_button_double_click);
-   //MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &simple_toolbar::on_message_mouse_move);
-   //MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &simple_toolbar::on_message_left_button_down);
-   //MESSAGE_LINK(e_message_left_button_up    , pchannel, this, &simple_toolbar::on_message_left_button_up);
-   //MESSAGE_LINK(e_message_non_client_hit_test    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
-   //MESSAGE_LINK(e_message_mouse_leave   , pchannel, this, &simple_toolbar::on_message_mouse_leave);
+   MESSAGE_LINK(::user::e_message_create       , pchannel, this, &simple_toolbar::on_message_create);
+   MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &simple_toolbar::on_message_left_button_double_click);
+   //MESSAGE_LINK(::user::e_message_mouse_move    , pchannel, this, &simple_toolbar::on_message_mouse_move);
+   //MESSAGE_LINK(::user::e_message_left_button_down  , pchannel, this, &simple_toolbar::on_message_left_button_down);
+   //MESSAGE_LINK(::user::e_message_left_button_up    , pchannel, this, &simple_toolbar::on_message_left_button_up);
+   //MESSAGE_LINK(::user::e_message_non_client_hit_test    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
+   //MESSAGE_LINK(::user::e_message_mouse_leave   , pchannel, this, &simple_toolbar::on_message_mouse_leave);
 
    //install_click_default_mouse_handling(pchannel);
    
@@ -421,7 +421,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //
 //   // erase parts not drawn
 //   //pgraphics->IntersectClipRect(rectangleWindow);
-//   //SendMessage(e_message_erase_background, (WPARAM)pgraphics->get_handle1());
+//   //SendMessage(::user::e_message_erase_background, (WPARAM)pgraphics->get_handle1());
 //
 //   // draw gripper in non-client area
 //   DrawGripper(pgraphics, rectangleWindow);
@@ -466,7 +466,7 @@ void simple_toolbar::on_message_create(::message::message * pmessage)
 //
 //         // allow reflections
 //         //if (::user::interaction::on_command(0,
-//         //   MAKELONG((index)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+//         //   MAKELONG((index)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
 //         //   &state, nullptr))
 //         //   continue;
 //
@@ -1496,7 +1496,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //      if (pTarget != nullptr)
 //      {
 //
-//         pTarget->send_message_to_descendants(e_message_idle_update_command_user_interface);
+//         pTarget->send_message_to_descendants(::user::e_message_idle_update_command_user_interface);
 //
 //      }
 //

@@ -24,7 +24,7 @@ namespace user
 {
 
 
-   //message_box::message_box(const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox) :
+   //message_box::message_box(const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox) :
    message_box::message_box() :
       m_strFontName("serif"),
       m_size(100, 40),
@@ -156,7 +156,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &message_box::on_message_create);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &message_box::on_message_create);
 
    }
 
@@ -511,7 +511,7 @@ namespace aura
 {
 
 
-   //pointer< ::extended::future < ::conversation > > system::message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::future < ::conversation > > system::message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox)
    //{
 
    //   auto pnode = m_pnode;

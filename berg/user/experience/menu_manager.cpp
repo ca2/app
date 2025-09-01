@@ -65,13 +65,13 @@ namespace experience
 
       //}
 
-      if(pusermessage->m_emessage == e_message_right_button_down)
+      if(pusermessage->m_emessage == ::user::e_message_right_button_down)
       {
 
          m_enumState = StateMBDown;
 
       }
-      else if(pusermessage->m_emessage == e_message_right_button_up)
+      else if(pusermessage->m_emessage == ::user::e_message_right_button_up)
       {
 
          if(m_enumState == StateMBDown)
@@ -98,7 +98,7 @@ namespace experience
 
       switch(pusermessage->m_emessage)
       {
-      case e_message_left_button_double_click:
+      case ::user::e_message_left_button_double_click:
       {
                               auto point = pusermessage->m_lparam.point();
                               if(OnLButtonDblClk((unsigned int)pusermessage->m_wparam, point))
@@ -117,15 +117,15 @@ namespace experience
             break;
       }
 
-      if(pusermessage->m_emessage == e_message_right_button_down)
+      if(pusermessage->m_emessage == ::user::e_message_right_button_down)
       {
          m_enumState = StateMBDown;
       }
-      if(pusermessage->m_emessage == e_message_right_button_down)
+      if(pusermessage->m_emessage == ::user::e_message_right_button_down)
       {
          m_enumState = StateMBDown;
       }
-      else if(pusermessage->m_emessage == e_message_right_button_up)
+      else if(pusermessage->m_emessage == ::user::e_message_right_button_up)
       {
          if(m_enumState == StateMBDown)
          {

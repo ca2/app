@@ -24,19 +24,19 @@ namespace user
 
    //   switch(message)
    //   {
-   //   case e_message_right_button_down:
+   //   case ::user::e_message_right_button_down:
 
    //      OnNotifyIconContextMenu(uNotifyIcon);
 
    //      break;
 
-   //   case e_message_left_button_double_click:
+   //   case ::user::e_message_left_button_double_click:
 
    //      OnNotifyIconLButtonDblClk(uNotifyIcon);
 
    //      break;
 
-   //   case e_message_left_button_down:
+   //   case ::user::e_message_left_button_down:
 
    //      OnNotifyIconLButtonDown(uNotifyIcon);
 

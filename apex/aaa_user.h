@@ -13,7 +13,7 @@ namespace graphics
 
 
 
-//#define e_message_size_parent       0x0361  // lParam = &__SIZEPARENTPARAMS
+//#define ::user::e_message_size_parent       0x0361  // lParam = &__SIZEPARENTPARAMS
 
 
 
@@ -44,9 +44,9 @@ namespace graphics
 
 // WM_ACTIVATETOPLEVEL is like WM_ACTIVATEAPP but works with hierarchies
 //   of mixed processes (as is the case with OLE in-place activation)
-#define WM_ACTIVATETOPLEVEL 0x036E  // wParam = nState (like e_message_activate)
+#define WM_ACTIVATETOPLEVEL 0x036E  // wParam = nState (like ::user::e_message_activate)
 // lParam = pointer to oswindow[2]
-//  lParam[0] = oswindow getting e_message_activate
+//  lParam[0] = oswindow getting ::user::e_message_activate
 //  lParam[1] = oswindow_Other
 
 #define WM_RESERVED_036F   0x036F  // was WM_QUERY3DCONTROLS (now not used)

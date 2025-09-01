@@ -74,7 +74,7 @@ void details_window::on_click(const ::payload& payload, ::user::mouse * pmouse)
 
       display_temporary_file_with_text(m_strDetails);
 
-      //pdetailswindow->display_synchronously(m_strDetails, m_strTitle + " : Details", e_message_box_ok, m_strDetails);
+      //pdetailswindow->display_synchronously(m_strDetails, m_strTitle + " : Details", ::user::e_message_box_ok, m_strDetails);
 
       //m_atomResult.clear();
 

@@ -848,8 +848,8 @@ namespace nanoui
 
          //auto psession = screen()->m_puserinteraction->get_session();
 
-         //if (action == ::e_message_key_down || action == GLFW_REPEAT) {
-         if (action == ::e_message_key_down)
+         //if (action == ::::user::e_message_key_down || action == GLFW_REPEAT) {
+         if (action == ::::user::e_message_key_down)
          {
 
             auto eid = application()->key_command(ekey, session());

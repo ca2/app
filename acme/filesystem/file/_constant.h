@@ -58,7 +58,13 @@ namespace file
    };
 
 
+enum enum_stream
+{
+   e_stream_none,
+   e_stream_input,
+   e_stream_output,
 
+};
 
    enum fmtflags : unsigned int
    {

@@ -62,7 +62,7 @@ namespace user
       scroll_base_x::install_message_routing(pchannel);
       scroll_base_y::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::e_message_create, pchannel, this, &scroll_base::on_message_create);
+      MESSAGE_LINK(::::user::e_message_create, pchannel, this, &scroll_base::on_message_create);
 
    }
 

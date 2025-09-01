@@ -271,7 +271,7 @@ namespace apex
             strCaption = "Assertion Failed";
 
             informationf(str);
-            /*if(message_box(nullptr, str, strCaption, e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
+            /*if(message_box(nullptr, str, strCaption, ::user::e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
             {
                string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(scopedstrFileName)+ "\" /command \"edit.goto "+as_string(iLine)+"\"";
                ::platform::system(strCmdLine);

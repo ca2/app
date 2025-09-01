@@ -24,7 +24,7 @@ CLASS_DECL_ACME void __simple_tracea(enum_trace_level elevel, const_char_pointer
 CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const_char_pointer pszFunction, const_char_pointer pszFile, int iLine, const ::scoped_string & scopedstrFormat, va_list args);
 
 
-//CLASS_DECL_ACME void FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
+//CLASS_DECL_ACME void FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::callback callback)
 //{
 //
 //   ::auto pmessagebox = __initialize_new ::message_box(nullptr, pszMessage, pszTitle, iFlags, function);

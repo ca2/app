@@ -59,7 +59,7 @@ enum enum_test_increment
 //   while (true)
 //   {
 //
-//      auto result = auto pmessagebox = __initialize_new ::message_box(pcontext, "Hello!!\nNo: for exception test!!", "Hello App!", e_message_box_yes_no_cancel | e_message_box_default_button_3, "Hello Multiverse!!");
+//      auto result = auto pmessagebox = __initialize_new ::message_box(pcontext, "Hello!!\nNo: for exception test!!", "Hello App!", ::user::e_message_box_yes_no_cancel | ::user::e_message_box_default_button_3, "Hello Multiverse!!");
 
 pmessagebox->sync();
 //
@@ -70,7 +70,7 @@ pmessagebox->sync();
 //
 //         output_debug_string("Yes!!\n");
 //
-//         auto pmessagebox = __initialize_new ::message_box(pcontext, "Yes!!", "Yes!!", e_message_box_ok);
+//         auto pmessagebox = __initialize_new ::message_box(pcontext, "Yes!!", "Yes!!", ::user::e_message_box_ok);
 
 pmessagebox->sync();
 //
@@ -96,7 +96,7 @@ pmessagebox->sync();
 //                  
 ////                  ::exception exception(error_catch_all_exception);
 ////
-////                  auto psequencer = psystem->nano()->exception_message_console(exception, "Dummy inline Catchall Exception at Hello Console App!!\n", "Dummy inline Hello Console App!", e_message_box_ok, "Dummy inline Hello Console App!!");
+////                  auto psequencer = psystem->nano()->exception_message_console(exception, "Dummy inline Catchall Exception at Hello Console App!!\n", "Dummy inline Hello Console App!", ::user::e_message_box_ok, "Dummy inline Hello Console App!!");
 ////
 ////                  pmessagebox->async();
 //                  
@@ -112,7 +112,7 @@ pmessagebox->sync();
 //               catch(::exception & exception)
 //               {
 //                  
-//                  auto psequencer = pcontext->nano()->exception_message_console(exception, "Exception at Hello Console App!!\n" + exception.get_message(), "Hello Console App!", e_message_box_ok, "Hello Console App!!\n");
+//                  auto psequencer = pcontext->nano()->exception_message_console(exception, "Exception at Hello Console App!!\n" + exception.get_message(), "Hello Console App!", ::user::e_message_box_ok, "Hello Console App!!\n");
 //
 //                  pmessagebox->async();
 //                  
@@ -122,7 +122,7 @@ pmessagebox->sync();
 //                  
 //                  ::exception exception(error_catch_all_exception);
 //
-//                  auto psequencer = pcontext->nano()->exception_message_console(exception, "Catchall Exception at Hello Console App!!\n", "Hello Console App!", e_message_box_ok, "Hello Console App!!");
+//                  auto psequencer = pcontext->nano()->exception_message_console(exception, "Catchall Exception at Hello Console App!!\n", "Hello Console App!", ::user::e_message_box_ok, "Hello Console App!!");
 //
 //                  pmessagebox->async();
 //
@@ -136,7 +136,7 @@ pmessagebox->sync();
 //
 //         output_debug_string("No!\n");
 //
-//         auto pmessagebox = __initialize_new ::message_box(pcontext, "No!", "No!", e_message_box_ok);
+//         auto pmessagebox = __initialize_new ::message_box(pcontext, "No!", "No!", ::user::e_message_box_ok);
 
 pmessagebox->sync();
 //
@@ -148,7 +148,7 @@ pmessagebox->sync();
 //
 //         output_debug_string("Cancel!!\n");
 //
-//         auto pmessagebox = __initialize_new ::message_box(pcontext, "Cancel", "Cancel", e_message_box_ok);
+//         auto pmessagebox = __initialize_new ::message_box(pcontext, "Cancel", "Cancel", ::user::e_message_box_ok);
 
 pmessagebox->sync();
 //
@@ -1090,7 +1090,7 @@ namespace console_hello
       while (true)
       {
 
-         auto pmessagebox = message_box((const_char_pointer )unsigned char"Hello!!\nNo: for exception test(\u2717)!!", "Hello App!", e_message_box_yes_no_cancel | e_message_box_default_button_3, "Hello Multiverse!!");
+         auto pmessagebox = message_box((const_char_pointer )unsigned char"Hello!!\nNo: for exception test(\u2717)!!", "Hello App!", ::user::e_message_box_yes_no_cancel | ::user::e_message_box_default_button_3, "Hello Multiverse!!");
 
          auto result = pmessagebox->sync();
 
@@ -1101,7 +1101,7 @@ namespace console_hello
 
             output_debug_string("Yes!!\n");
 
-            psequencer = message_box("Yes!!", "Yes!!", e_message_box_ok);
+            psequencer = message_box("Yes!!", "Yes!!", ::user::e_message_box_ok);
 
             pmessagebox->sync();
 
@@ -1127,7 +1127,7 @@ namespace console_hello
 
                //                  ::exception exception(error_catch_all_exception);
                //
-               //                  auto psequencer = psystem->nano()->exception_message_console(exception, "Dummy inline Catchall Exception at Hello Console App!!\n", "Dummy inline Hello Console App!", e_message_box_ok, "Dummy inline Hello Console App!!");
+               //                  auto psequencer = psystem->nano()->exception_message_console(exception, "Dummy inline Catchall Exception at Hello Console App!!\n", "Dummy inline Hello Console App!", ::user::e_message_box_ok, "Dummy inline Hello Console App!!");
                //
                //                  pmessagebox->async();
 
@@ -1143,12 +1143,12 @@ namespace console_hello
             catch (::exception& exception)
             {
 
-               auto psequencer = exception_message_box(exception, "Exception at Hello Console App!!\n" + exception.get_message(), "Hello Console App!", e_message_box_ok, "Hello Console App!!\n");
+               auto psequencer = exception_message_box(exception, "Exception at Hello Console App!!\n" + exception.get_message(), "Hello Console App!", ::user::e_message_box_ok, "Hello Console App!!\n");
                
                psequencer->then([this](auto)
                   {
 
-                     auto pmessagebox = message_box("Got ::exception", "Got ::exception", e_message_box_ok | e_message_box_icon_information);
+                     auto pmessagebox = message_box("Got ::exception", "Got ::exception", ::user::e_message_box_ok | ::user::e_message_box_icon_information);
 
                      pmessagebox->async();
 
@@ -1163,12 +1163,12 @@ namespace console_hello
 
                ::exception exception(error_catch_all_exception);
 
-               auto psequencer = exception_message_box(exception, "Catchall Exception at Hello Console App!!\n", "Hello Console App!", e_message_box_ok, "Hello Console App!!");
+               auto psequencer = exception_message_box(exception, "Catchall Exception at Hello Console App!!\n", "Hello Console App!", ::user::e_message_box_ok, "Hello Console App!!");
                
                psequencer->then([this](auto)
                {
 
-                     auto pmessagebox = message_box("Caught (...)", "Caught (...)", e_message_box_ok | e_message_box_icon_information);
+                     auto pmessagebox = message_box("Caught (...)", "Caught (...)", ::user::e_message_box_ok | ::user::e_message_box_icon_information);
 
                      pmessagebox->async();
 
@@ -1186,7 +1186,7 @@ namespace console_hello
 
             output_debug_string("No!\n");
 
-            psequencer = message_box("No!", "No!", e_message_box_ok);
+            psequencer = message_box("No!", "No!", ::user::e_message_box_ok);
 
             pmessagebox->sync();
 
@@ -1198,7 +1198,7 @@ namespace console_hello
 
             output_debug_string("Cancel!!\n");
 
-            psequencer = message_box("Cancel", "Cancel", e_message_box_ok);
+            psequencer = message_box("Cancel", "Cancel", ::user::e_message_box_ok);
 
             pmessagebox->sync();
 
@@ -1447,7 +1447,7 @@ namespace console_hello
 //   while (true)
 //   {
 //
-//      auto psequencer = application.message_box("Hello!!\nNo: for exception test!!", "Hello App!", e_message_box_yes_no_cancel | e_message_box_default_button_3, "Hello Multiverse!!");
+//      auto psequencer = application.message_box("Hello!!\nNo: for exception test!!", "Hello App!", ::user::e_message_box_yes_no_cancel | ::user::e_message_box_default_button_3, "Hello Multiverse!!");
 //
 //      auto result = pmessagebox->sync();
 //
@@ -1458,7 +1458,7 @@ namespace console_hello
 //
 //         output_debug_string("Yes!!\n");
 //
-//         psequencer = application.message_box("Yes!!", "Yes!!", e_message_box_ok);
+//         psequencer = application.message_box("Yes!!", "Yes!!", ::user::e_message_box_ok);
 //
 //         pmessagebox->sync();
 //
@@ -1486,7 +1486,7 @@ namespace console_hello
 //                  
 ////                  ::exception exception(error_catch_all_exception);
 ////
-////                  auto psequencer = psystem->nano()->exception_message_console(exception, "Dummy inline Catchall Exception at Hello Console App!!\n", "Dummy inline Hello Console App!", e_message_box_ok, "Dummy inline Hello Console App!!");
+////                  auto psequencer = psystem->nano()->exception_message_console(exception, "Dummy inline Catchall Exception at Hello Console App!!\n", "Dummy inline Hello Console App!", ::user::e_message_box_ok, "Dummy inline Hello Console App!!");
 ////
 ////                  pmessagebox->async();
 //                  
@@ -1502,7 +1502,7 @@ namespace console_hello
 //               catch(::exception & exception)
 //               {
 //                  
-//                  auto psequencer = pcontext->exception_message_box(exception, "Exception at Hello Console App!!\n" + exception.get_message(), "Hello Console App!", e_message_box_ok, "Hello Console App!!\n");
+//                  auto psequencer = pcontext->exception_message_box(exception, "Exception at Hello Console App!!\n" + exception.get_message(), "Hello Console App!", ::user::e_message_box_ok, "Hello Console App!!\n");
 //
 //                  pmessagebox->async();
 //                  
@@ -1512,7 +1512,7 @@ namespace console_hello
 //                  
 //                  ::exception exception(error_catch_all_exception);
 //
-//                  auto psequencer = pcontext->exception_message_box(exception, "Catchall Exception at Hello Console App!!\n", "Hello Console App!", e_message_box_ok, "Hello Console App!!");
+//                  auto psequencer = pcontext->exception_message_box(exception, "Catchall Exception at Hello Console App!!\n", "Hello Console App!", ::user::e_message_box_ok, "Hello Console App!!");
 //
 //                  pmessagebox->async();
 //
@@ -1526,7 +1526,7 @@ namespace console_hello
 //
 //         output_debug_string("No!\n");
 //
-//         psequencer = application.message_box("No!", "No!", e_message_box_ok);
+//         psequencer = application.message_box("No!", "No!", ::user::e_message_box_ok);
 //
 //         pmessagebox->sync();
 //
@@ -1538,7 +1538,7 @@ namespace console_hello
 //
 //         output_debug_string("Cancel!!\n");
 //
-//         psequencer = application.message_box("Cancel", "Cancel", e_message_box_ok);
+//         psequencer = application.message_box("Cancel", "Cancel", ::user::e_message_box_ok);
 //
 //         pmessagebox->sync();
 //

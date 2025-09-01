@@ -466,7 +466,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
       if(bTimedOut)
       {
 
-         //::message_box(nullptr," - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",e_message_box_icon_information | e_message_box_ok);
+         //::message_box(nullptr," - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",::user::e_message_box_icon_information | ::user::e_message_box_ok);
 
          //m_phost->m_pbasecomposer->m_strEntryHallText = "Starting papp->..";
 
@@ -480,7 +480,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
       else if((int) dwExitCode >= 0)
       {
 
-         //  ::message_box(nullptr,"Successfully run : " + strPath,"Debug only message, please install.",e_message_box_icon_information | e_message_box_ok);
+         //  ::message_box(nullptr,"Successfully run : " + strPath,"Debug only message, please install.",::user::e_message_box_icon_information | ::user::e_message_box_ok);
 
          m_phost->m_pbasecomposer->m_strEntryHallText = "***papp started.";
 
@@ -490,7 +490,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
       else
       {
 
-         //::message_box(nullptr,strPath + "\n\nFailed return code : " + as_string(dwExitCode),"Error Message",e_message_box_icon_information | e_message_box_ok);
+         //::message_box(nullptr,strPath + "\n\nFailed return code : " + as_string(dwExitCode),"Error Message",::user::e_message_box_icon_information | ::user::e_message_box_ok);
 
          //m_phost->m_pbasecomposer->m_strEntryHallText = "***Failed to start application.";
 
@@ -879,7 +879,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  ::pointer<user::message>paxis = øallocate user::message(get_app(),this,e_message_activate,MAKEWPARAM(WA_INACTIVE,0),0,lresult);
+                  ::pointer<user::message>paxis = øallocate user::message(get_app(),this,::user::e_message_activate,MAKEWPARAM(WA_INACTIVE,0),0,lresult);
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -896,7 +896,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  ::pointer<user::message>paxis = øallocate user::message(get_app(),this,e_message_activate,MAKEWPARAM(WA_ACTIVE,0),0,lresult);
+                  ::pointer<user::message>paxis = øallocate user::message(get_app(),this,::user::e_message_activate,MAKEWPARAM(WA_ACTIVE,0),0,lresult);
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -914,7 +914,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  ::pointer<user::message>paxis = øallocate user::message(get_app(),this,e_message_kill_focus,0,0,lresult);
+                  ::pointer<user::message>paxis = øallocate user::message(get_app(),this,::user::e_message_kill_focus,0,0,lresult);
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -931,7 +931,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  ::pointer<user::message>paxis = øallocate user::message(get_app(),this,e_message_set_focus,0,0,lresult);
+                  ::pointer<user::message>paxis = øallocate user::message(get_app(),this,::user::e_message_set_focus,0,0,lresult);
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 

@@ -182,11 +182,11 @@ Function _systemSplashWndCB
    System::Store "s r2r5r7r9"
 
    ; Message branching
-   IntCmp $5 ${e_message_close} m_Close
-   IntCmp $5 ${e_message_timer} m_Timer
-   IntCmp $5 ${e_message_left_button_down} m_Lbtn
-   IntCmp $5 ${e_message_create} m_Create
-   IntCmp $5 ${e_message_paint} m_Paint
+   IntCmp $5 ${::user::e_message_close} m_Close
+   IntCmp $5 ${::user::e_message_timer} m_Timer
+   IntCmp $5 ${::user::e_message_left_button_down} m_Lbtn
+   IntCmp $5 ${::user::e_message_create} m_Create
+   IntCmp $5 ${::user::e_message_paint} m_Paint
    goto default
 
 m_Create:
@@ -286,7 +286,7 @@ m_Paint:
 m_Timer:
 m_Lbtn:
    StrCpy $4 0
-   IntCmp $5 ${e_message_timer} destroy
+   IntCmp $5 ${::user::e_message_timer} destroy
         StrCpy $4 1
 
 destroy:

@@ -82,10 +82,10 @@ namespace tsf
    void edit_window::install_message_routing(::channel* pchannel)
    {
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &edit_window::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &edit_window::on_message_destroy);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_window::on_message_set_focus);
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_window::on_message_kill_focus);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &edit_window::on_message_create);
+      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &edit_window::on_message_destroy);
+      MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &edit_window::on_message_set_focus);
+      MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &edit_window::on_message_kill_focus);
 
    }
 
@@ -427,14 +427,14 @@ namespace tsf
    //{
    //    edit_window *pThis = (edit_window*)GetWindowLongPtr(hWnd, THIS_POINTER_OFFSET);
    //
-   //    if((NULL == pThis) && (uMessage != e_message_non_client_create))
+   //    if((NULL == pThis) && (uMessage != ::user::e_message_non_client_create))
    //    {
    //        return default_window_procedure(hWnd, uMessage, wParam, lParam);
    //    }
    //    
    //    switch (uMessage)
    //    {
-   //    case e_message_non_client_create:
+   //    case ::user::e_message_non_client_create:
    //        {
    //            LPCREATESTRUCT lpcs = (LPCREATESTRUCT)lParam;
    //            pThis = (edit_window*)(lpcs->lpCreateParams);
@@ -444,38 +444,38 @@ namespace tsf
    //            pThis->m_hWnd = hWnd;
    //
    //            /*
-   //            AddRef() the object. Release() will be called in e_message_non_client_destroy.
-   //            Many owners will call Release during their e_message_destroy, but the 
+   //            AddRef() the object. Release() will be called in ::user::e_message_non_client_destroy.
+   //            Many owners will call Release during their ::user::e_message_destroy, but the 
    //            child window isn't destroyed until after the parent, so the object 
    //            gets deleted while the window still exists. Calling Release() 
-   //            ourselves in e_message_non_client_destroy ensures the object exists for the entire
+   //            ourselves in ::user::e_message_non_client_destroy ensures the object exists for the entire
    //            life of the window.
    //            */
    //            pThis->AddRef();
    //        }
    //        break;
    //
-   //    case e_message_create:
+   //    case ::user::e_message_create:
    //        return pThis->_OnCreate();
    //
-   //    case e_message_size:
+   //    case ::user::e_message_size:
    //        return pThis->_OnSize(wParam, lParam);
    //
-   //    case e_message_destroy:
+   //    case ::user::e_message_destroy:
    //        return pThis->_OnDestroy();
    //
-   //    case e_message_set_focus:
+   //    case ::user::e_message_set_focus:
    //        return pThis->_OnSetFocus();
    //
-   //    case e_message_kill_focus:
+   //    case ::user::e_message_kill_focus:
    //        return pThis->_OnKillFocus();
    //
-   //    case e_message_command:
+   //    case ::user::e_message_command:
    //        return pThis->_OnCommand(   GET_WM_COMMAND_ID(wParam, lParam), 
    //                                    GET_WM_COMMAND_CMD(wParam, lParam), 
    //                                    GET_WM_COMMAND_HWND(wParam, lParam));
    //
-   //    case e_message_non_client_destroy:
+   //    case ::user::e_message_non_client_destroy:
    //        pThis->Release();
    //        
    //        pThis->m_hWnd = NULL;
@@ -670,7 +670,7 @@ namespace tsf
    //lresult edit_window::_OnSize(wparam wParam, lparam lParam)
    //{
    //    //adjust the int_size and location of the status bar
-   //    //SendMessage(m_hwndStatus, e_message_size, wParam, lParam);
+   //    //SendMessage(m_hwndStatus, ::user::e_message_size, wParam, lParam);
    //
    //    ::int_rectangle    rc;
    //

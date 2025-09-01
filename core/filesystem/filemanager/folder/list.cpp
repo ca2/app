@@ -38,7 +38,7 @@ namespace filemanager
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &folder_list::on_message_left_button_double_click);
+      MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &folder_list::on_message_left_button_double_click);
 
 //#ifdef WINDOWS_DESKTOP
 //      MESSAGE_LINK(WM_CANCELMODE, pchannel, this, &folder_list::_001OnCancelMode);

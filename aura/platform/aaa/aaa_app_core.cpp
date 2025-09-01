@@ -207,7 +207,7 @@ void app_core::system_prep()
    if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
    {
 
-      //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
+      //debug_box("zzzAPPzzz app", "zzzAPPzzz app", ::user::e_message_box_icon_information);
 
    }
 
@@ -340,14 +340,14 @@ void app_core::system_init()
 
       uid_t uid = atoi(strUid);
 
-      auto pmessagebox = __initialize_new ::message_box(nullptr, "going to seteuid to: " + as_string(uid), "going to seteuid", e_message_box_ok);
+      auto pmessagebox = __initialize_new ::message_box(nullptr, "going to seteuid to: " + as_string(uid), "going to seteuid", ::user::e_message_box_ok);
 
 pmessagebox->sync();
 
       if (seteuid(uid) == 0)
       {
 
-         auto pmessagebox = __initialize_new ::message_box(nullptr, "uid=" + as_string(uid), "seteuid success", e_message_box_ok);
+         auto pmessagebox = __initialize_new ::message_box(nullptr, "uid=" + as_string(uid), "seteuid success", ::user::e_message_box_ok);
 
 pmessagebox->sync();
 
@@ -361,7 +361,7 @@ pmessagebox->sync();
 
          strError.formatf("errno=%d uid=%d", iErr);
 
-         auto pmessagebox = __initialize_new ::message_box(nullptr, strError, "seteuid failed", e_message_box_icon_exclamation);
+         auto pmessagebox = __initialize_new ::message_box(nullptr, strError, "seteuid failed", ::user::e_message_box_icon_exclamation);
 
 pmessagebox->sync();
 
@@ -522,7 +522,7 @@ pmessagebox->sync();
    // cold start (never previously called program and its Dlls...)?
    ::auraacmesystem()->m_durationMainStart = m_durationStart;
 
-   //xxdebug_box("box1", "box1", e_message_box_icon_information);
+   //xxdebug_box("box1", "box1", ::user::e_message_box_icon_information);
 
    ::file::path pathOutputDebugString =          auto psystem = system();
 
@@ -689,7 +689,7 @@ pdirectorysystem->ca2roaming() / "program";
 //      //   if (pfnDeferTerm == nullptr)
 //      //   {
 //
-//      //      output_error_message("Missing corresponding defer_*_term for the defer_*_init backbone library." + e_message_box_icon_error);
+//      //      output_error_message("Missing corresponding defer_*_term for the defer_*_init backbone library." + ::user::e_message_box_icon_error);
 //
 //      //      on_result(error_failed);
 //
@@ -1927,7 +1927,7 @@ bool app_core::has_aura_application_factory() const
 
 #ifndef UNIVERSAL_WINDOWS
 
-               output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
+               output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", ::user::e_message_box_icon_error);
 
 #endif
 

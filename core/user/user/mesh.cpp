@@ -188,25 +188,25 @@ namespace user
 
       bool bList = dynamic_cast <::user::list *> (this) != nullptr;
 
-      MESSAGE_LINK(e_message_size, pchannel, this,&mesh::on_message_size);
-      MESSAGE_LINK(e_message_scroll_y, pchannel, this,&mesh::on_message_scroll_y);
-      MESSAGE_LINK(e_message_scroll_x, pchannel, this,&mesh::on_message_scroll_x);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this,&mesh::on_message_mouse_leave);
+      MESSAGE_LINK(::user::e_message_size, pchannel, this,&mesh::on_message_size);
+      MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this,&mesh::on_message_scroll_y);
+      MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this,&mesh::on_message_scroll_x);
+      MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this,&mesh::on_message_mouse_leave);
 
       if (!bList)
       {
-         MESSAGE_LINK(e_message_left_button_down, pchannel, this, &mesh::on_message_left_button_down);
-         MESSAGE_LINK(e_message_left_button_up, pchannel, this, &mesh::on_message_left_button_up);
-         MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &mesh::on_message_left_button_double_click);
+         MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &mesh::on_message_left_button_down);
+         MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &mesh::on_message_left_button_up);
+         MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &mesh::on_message_left_button_double_click);
       }
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this,&mesh::on_message_right_button_down);
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &mesh::on_message_right_button_up);
+      MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this,&mesh::on_message_right_button_down);
+      MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &mesh::on_message_right_button_up);
 
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this,&mesh::on_message_mouse_move);
+      MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this,&mesh::on_message_mouse_move);
 
-      MESSAGE_LINK(e_message_key_down, pchannel, this,&mesh::on_message_key_down);
+      MESSAGE_LINK(::user::e_message_key_down, pchannel, this,&mesh::on_message_key_down);
 
-      MESSAGE_LINK(e_message_create, pchannel, this,&mesh::on_message_create);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this,&mesh::on_message_create);
 
       add_command_handler("mesh_impact_auto_arrange", { this,  &mesh::_001OnMeshImpactAutoArrange });
 
@@ -3323,7 +3323,7 @@ namespace user
 
                       pmessage->m_pwindow = window();
 
-                      pmessage->m_emessage = e_message_left_button_double_click;
+                      pmessage->m_emessage = ::user::e_message_left_button_double_click;
 
                       pmessage->m_ebuttonstate = pmouse->m_ebuttonstate;
 
@@ -3446,13 +3446,13 @@ namespace user
       else if(get_form() != nullptr)
       {
 
-         get_form()->send_message(e_message_event,0,(LPARAM)&ev);
+         get_form()->send_message(::user::e_message_event,0,(LPARAM)&ev);
 
       }
       else
       {
 
-         get_parent()->send_message(e_message_event,0,(LPARAM)&ev);
+         get_parent()->send_message(::user::e_message_event,0,(LPARAM)&ev);
 
       }*/
       return true;

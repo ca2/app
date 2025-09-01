@@ -459,10 +459,10 @@ int g_iDebug_post_thread_msg_time;
 //   msg.pt.y() = I32_MINIMUM;
 //   msg.hwnd = nullptr;
 //
-//   if (msg.message == e_message_quit)
+//   if (msg.message == ::user::e_message_quit)
 //   {
 //
-//      informationf("e_message_quit thread");
+//      informationf("::user::e_message_quit thread");
 //
 //   }
 //

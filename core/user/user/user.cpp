@@ -596,7 +596,7 @@ namespace core
    //}
 
 
-   //pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
+   //pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox)
    //{
 
    //   return nullptr;
@@ -632,15 +632,15 @@ namespace core
 
    //   //string strMatter;
 
-   //   //auto emessageboxType = emessagebox & e_message_box_type_mask;
+   //   //auto emessageboxType = emessagebox & ::user::e_message_box_type_mask;
 
-   //   //if(emessageboxType == e_message_box_yes_no_cancel)
+   //   //if(emessageboxType == ::user::e_message_box_yes_no_cancel)
    //   //{
 
    //   //   strMatter = "system\\user\\message_box\\yesnocancel.xhtml";
 
    //   //}
-   //   //else if (emessageboxType == e_message_box_yes_no)
+   //   //else if (emessageboxType == ::user::e_message_box_yes_no)
    //   //{
 
    //   //   strMatter = "system\\user\\message_box\\yesno.xhtml";
@@ -731,7 +731,7 @@ namespace core
    //}
 
 
-   //pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::e_message_box & emessagebox)
+   //pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::::user::e_message_box & emessagebox)
    //{
 
    //   //__UNREFERENCED_PARAMETER(puiOwner);
@@ -754,9 +754,9 @@ namespace core
 
    //   //string strMatter;
 
-   //   //auto emessageboxType = emessagebox & e_message_box_type_mask;
+   //   //auto emessageboxType = emessagebox & ::user::e_message_box_type_mask;
 
-   //   //if (emessageboxType == e_message_box_yes_no_cancel)
+   //   //if (emessageboxType == ::user::e_message_box_yes_no_cancel)
    //   //{
 
    //   //   strMatter = "system\\user\\message_box_timeout\\yesnocancel.xhtml";

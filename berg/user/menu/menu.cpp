@@ -132,16 +132,16 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &menu::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu::on_message_destroy);
-      MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &menu::_001OnNcActivate);
-      MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &menu::on_message_non_client_calculate_size);
-      MESSAGE_LINK(e_message_enable, pchannel, this, &menu::_001OnEnable);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &menu::on_message_show_window);
-      MESSAGE_LINK(e_message_close, pchannel, this, &menu::on_message_close);
-      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &menu::_001OnMouseActivate);
-      MESSAGE_LINK(e_message_activate, pchannel, this, &menu::_001OnActivate);
-      MESSAGE_LINK(e_message_non_client_create, pchannel, this, &menu::_001OnNcCreate);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &menu::on_message_create);
+      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &menu::on_message_destroy);
+      MESSAGE_LINK(::user::e_message_non_client_activate, pchannel, this, &menu::_001OnNcActivate);
+      MESSAGE_LINK(::user::e_message_non_client_calc_size, pchannel, this, &menu::on_message_non_client_calculate_size);
+      MESSAGE_LINK(::user::e_message_enable, pchannel, this, &menu::_001OnEnable);
+      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &menu::on_message_show_window);
+      MESSAGE_LINK(::user::e_message_close, pchannel, this, &menu::on_message_close);
+      MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &menu::_001OnMouseActivate);
+      MESSAGE_LINK(::user::e_message_activate, pchannel, this, &menu::_001OnActivate);
+      MESSAGE_LINK(::user::e_message_non_client_create, pchannel, this, &menu::_001OnNcCreate);
 
    }
 
@@ -1138,7 +1138,7 @@ namespace user
       if (!m_bInline && !ptopic->m_bRet)
       {
 
-         post_message(e_message_close);
+         post_message(::user::e_message_close);
 
          if (m_pmenuParent)
          {
@@ -1366,7 +1366,7 @@ namespace user
 
                defer_close();
 
-               // this may be destroyed by e_message_close above
+               // this may be destroyed by ::user::e_message_close above
 
                if (::is_set(pchannelNotify))
                {
@@ -1440,7 +1440,7 @@ namespace user
 
          m_pmenuSubMenu->m_bCloseParentOnClose = false;
 
-         m_pmenuSubMenu->post_message(e_message_close);
+         m_pmenuSubMenu->post_message(::user::e_message_close);
 
          m_pmenuSubMenu = nullptr;
          //m_pitemSubMenu.release();
@@ -1534,7 +1534,7 @@ namespace user
 
          //if (m_atomSubMenu.has_character())
          //{
-         //   m_psubmenu->send_message(e_message_close);
+         //   m_psubmenu->send_message(::user::e_message_close);
          //   m_psubmenu = nullptr;
          //   m_atomSubMenu.is_empty();
          //}
@@ -1615,7 +1615,7 @@ namespace user
          //      if(puiTarget != nullptr)
          //      {
          //         /* xxx if(puserinteractionParent->on_command(0,
-         //          MAKELONG((int)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+         //          MAKELONG((int)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
          //          &commandui, nullptr))
          //          continue;*/
          //         if(puiTarget->_001SendUpdateCmdUi(&commandui))
@@ -1683,7 +1683,7 @@ namespace user
    //             {
    //                /*
    //                 if(puserinteractionParent->on_command(0,
-   //                 MAKELONG((int)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+   //                 MAKELONG((int)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
    //                 &commandui, nullptr))
    //                 continue;
    //                 */
@@ -1838,7 +1838,7 @@ namespace user
             if (m_pmenuParent != nullptr)
             {
 
-               m_pmenuParent->post_message(e_message_close);
+               m_pmenuParent->post_message(::user::e_message_close);
 
             }
 

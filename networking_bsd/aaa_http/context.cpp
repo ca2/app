@@ -408,7 +408,7 @@ namespace http
    string context::get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
-      //output_error_message("What?!", nullptr, e_message_box_ok);
+      //output_error_message("What?!", nullptr, ::user::e_message_box_ok);
 
       informationf("What?!");
 

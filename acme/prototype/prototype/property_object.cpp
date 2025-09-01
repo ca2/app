@@ -100,7 +100,7 @@ string get_message_text(const ::atom & atom, bool bWithNumbers);
 
 CLASS_DECL_ACME void debug_debug_reference()
 {
-   auto message = e_message_create;
+   auto message = ::user::e_message_create;
 #if OSBIT == 64
    wparam wparam = 0x12345678901234;
    lparam lparam = 0x56781234567890;

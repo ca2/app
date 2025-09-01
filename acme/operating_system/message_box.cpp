@@ -25,7 +25,7 @@
 //   }
 //
 //
-//::pointer < ::subparticle > message_box::create_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+//::pointer < ::subparticle > message_box::create_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //{
 //
 //   //auto psequencer = pparticle->øcreate_new < ::sequencer < ::conversation > >();

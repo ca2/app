@@ -1271,7 +1271,7 @@
 ////
 ////      }
 ////
-////      if(msg.message == e_message_quit)
+////      if(msg.message == ::user::e_message_quit)
 ////         break;
 ////
 ////

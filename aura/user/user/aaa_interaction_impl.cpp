@@ -642,7 +642,7 @@ namespace user
       //
       //         m_puserinteraction->m_bMessageWindow = true;
       //
-      //         //send_message(e_message_create, 0, (LPARAM) &cs);
+      //         //send_message(::user::e_message_create, 0, (LPARAM) &cs);
       //
       //      }
       //      else
@@ -654,7 +654,7 @@ namespace user
       //      if(bOk)
       //      {
       //
-      //         m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
+      //         m_puserinteraction->send_message(::user::e_message_create, 0, (lparam) &pusersystem->m_createstruct);
       //
       //         m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
       //
@@ -826,7 +826,7 @@ namespace user
       //
       //         m_puserinteraction->m_bMessageWindow = true;
       //
-      //         //send_message(e_message_create, 0, (LPARAM) &cs);
+      //         //send_message(::user::e_message_create, 0, (LPARAM) &cs);
       //
       //      }
       //      else
@@ -861,7 +861,7 @@ namespace user
       //      if(bOk)
       //      {
       //
-      //         m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
+      //         m_puserinteraction->send_message(::user::e_message_create, 0, (lparam) &pusersystem->m_createstruct);
       //
       //         m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
       //
@@ -1205,11 +1205,11 @@ namespace user
       //if (m_puserthread && !m_puserthread->m_bCreateNativeWindowOnInteractionThread)
       //{
 
-      //   send_message(e_message_create, 0, (lparam)&pusersystem);
+      //   send_message(::user::e_message_create, 0, (lparam)&pusersystem);
 
       //   //m_puserinteraction->set_dim(pusersystem->m_createstruct.x(), pusersystem->m_createstruct.cy(), pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy());
 
-      //   send_message(e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy()));
+      //   send_message(::user::e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx(), pusersystem->m_createstruct.cy()));
 
       //   m_puserinteraction->increment_reference_count(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
@@ -1293,8 +1293,8 @@ namespace user
 
       ::user::primitive_impl::prio_install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::_001OnPrioCreate);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::on_prio_message_set_focus);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &interaction_impl::_001OnPrioCreate);
+      MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &interaction_impl::on_prio_message_set_focus);
 
    }
 
@@ -1302,32 +1302,32 @@ namespace user
    void interaction_impl::last_install_message_routing(::channel *pchannel)
    {
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::on_message_create);
-      MESSAGE_LINK(e_message_after_create, pchannel, this, &interaction_impl::on_message_after_create);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &interaction_impl::on_message_create);
+      MESSAGE_LINK(::user::e_message_after_create, pchannel, this, &interaction_impl::on_message_after_create);
 
       ::user::primitive_impl::last_install_message_routing(pchannel);
 
       if (!m_puserinteraction->m_bMessageWindow)
       {
 
-         //MESSAGE_LINK(e_message_redraw, pchannel, this, &interaction_impl::_001OnRedraw);
-         //MESSAGE_LINK(e_message_apply_visual, pchannel, this, &interaction_impl::_001OnApplyVisual);
+         //MESSAGE_LINK(::user::e_message_redraw, pchannel, this, &interaction_impl::_001OnRedraw);
+         //MESSAGE_LINK(::user::e_message_apply_visual, pchannel, this, &interaction_impl::_001OnApplyVisual);
 
 
          //#ifndef LINUX
-         MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction_impl::on_message_reposition);
-         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::on_message_size);
-         //MESSAGE_LINK(e_message_window_position_changed, pchannel, this, &interaction_impl::on_message_window_position_changed);
+         MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &interaction_impl::on_message_reposition);
+         MESSAGE_LINK(::user::e_message_size, pchannel, this, &interaction_impl::on_message_size);
+         //MESSAGE_LINK(::user::e_message_window_position_changed, pchannel, this, &interaction_impl::on_message_window_position_changed);
          //#endif
 
-         MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
-         MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::on_message_kill_focus);
-         //MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::on_message_set_focus);
+         MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
+         MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &interaction_impl::on_message_kill_focus);
+         //MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &interaction_impl::on_message_set_focus);
 
       }
 
-      MESSAGE_LINK(e_message_destroy_window, pchannel, this, &interaction_impl::_001OnDestroyWindow);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
+      MESSAGE_LINK(::user::e_message_destroy_window, pchannel, this, &interaction_impl::_001OnDestroyWindow);
+      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
 
    }
 
@@ -1386,7 +1386,7 @@ namespace user
          //   try
          //   {
 
-         //      pinteraction->send_message(e_message_mouse_leave);
+         //      pinteraction->send_message(::user::e_message_mouse_leave);
 
          //   }
          //   catch (...)
@@ -1435,14 +1435,14 @@ namespace user
 
    //   }
 
-   //   if (pmouse->m_emessage == e_message_left_button_up)
+   //   if (pmouse->m_emessage == ::user::e_message_left_button_up)
    //   {
 
    //      informationf("lbutton_up");
 
    //   }
 
-   //   if(pmouse->m_emessage == ::e_message_left_button_down)
+   //   if(pmouse->m_emessage == ::::user::e_message_left_button_down)
    //   {
 
    //      on_configuration_change(m_puserinteraction);
@@ -1485,7 +1485,7 @@ namespace user
    //      for(auto & pinteraction : uia.interactiona())
    //      {
 
-   //         pinteraction->send_message(e_message_mouse_leave);
+   //         pinteraction->send_message(::user::e_message_mouse_leave);
 
    //      }
 
@@ -1503,7 +1503,7 @@ namespace user
    //   if(m_pwindow->has_capture())
    //   {
 
-   //      if (pmouse->m_emessage == e_message_left_button_up)
+   //      if (pmouse->m_emessage == ::user::e_message_left_button_up)
    //      {
 
    //         informationf("lbutton_up");
@@ -1538,7 +1538,7 @@ namespace user
    //   {
 
 
-   //      if (pmouse->m_emessage == e_message_left_button_up)
+   //      if (pmouse->m_emessage == ::user::e_message_left_button_up)
    //      {
 
    //         informationf("lbutton_up");
@@ -1769,7 +1769,7 @@ namespace user
 
             synchronouslock.unlock();
 
-            pinteraction->message_handler(e_message_mouse_leave);
+            pinteraction->message_handler(::user::e_message_mouse_leave);
 
             synchronouslock._lock();
 
@@ -1836,7 +1836,7 @@ namespace user
    //      for (auto & pinteraction : uia)
    //      {
    //
-   //         pinteraction->send_message((enum_message)e_message_mouse_leave);
+   //         pinteraction->send_message((enum_message)::user::e_message_mouse_leave);
    //
    //      }
    //
@@ -1895,13 +1895,13 @@ namespace user
       if (!m_puserinteraction->m_bMessageWindow)
       {
 
-         MESSAGE_LINK(e_message_capture_changed, pchannel, this, &interaction_impl::_001OnCaptureChanged);
+         MESSAGE_LINK(::user::e_message_capture_changed, pchannel, this, &interaction_impl::_001OnCaptureChanged);
 
       }
 
       //#endif
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
+      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
 
       prio_install_message_routing(pchannel);
 
@@ -2066,7 +2066,7 @@ namespace user
 
          auto pwindow = window();
 
-         message_queue_post(pwindow, e_message_destroy_window, 0, 0);
+         message_queue_post(pwindow, ::user::e_message_destroy_window, 0, 0);
 
          //return true;
 
@@ -2119,7 +2119,7 @@ namespace user
 
          set_destroying_flag();
 
-         m_puserinteraction->post_message(e_message_destroy_window);
+         m_puserinteraction->post_message(::user::e_message_destroy_window);
 
          return;
 
@@ -2286,36 +2286,36 @@ namespace user
 
       }
 
-      if (pmessage->m_emessage == e_message_timer)
+      if (pmessage->m_emessage == ::user::e_message_timer)
       {
 
          //m_pthread->step_timer();
 
-      } else if (pmessage->m_emessage == e_message_left_button_down)
+      } else if (pmessage->m_emessage == ::user::e_message_left_button_down)
       {
 
-         informationf("linux::interaction_impl::e_message_left_button_down");
+         informationf("linux::interaction_impl::::user::e_message_left_button_down");
 
-      } else if (pmessage->m_emessage == e_message_left_button_up)
+      } else if (pmessage->m_emessage == ::user::e_message_left_button_up)
       {
 
-         informationf("linux::interaction_impl::e_message_left_button_up");
+         informationf("linux::interaction_impl::::user::e_message_left_button_up");
 
-      } else if (pmessage->m_emessage == e_message_mouse_move)
+      } else if (pmessage->m_emessage == ::user::e_message_mouse_move)
       {
 
          //g_iMouseMove++;
 
-         //informationf("interaction_impl::message_handler e_message_mouse_move");
+         //informationf("interaction_impl::message_handler ::user::e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
-      } else if (pmessage->m_emessage == e_message_paint)
+      } else if (pmessage->m_emessage == ::user::e_message_paint)
       {
 
-      } else if (pmessage->m_emessage == e_message_left_button_up)
+      } else if (pmessage->m_emessage == ::user::e_message_left_button_up)
       {
 
-         informationf("e_message_left_button_up (0)");
+         informationf("::user::e_message_left_button_up (0)");
 
       }
 
@@ -2392,7 +2392,7 @@ namespace user
       //
       //         //pwindowing->set(pkey, get_oswindow(), m_pwindow, pkey->m_emessage, pkey->m_wparam, pkey->m_lparam);
       //
-      ////         if(pmessage->m_emessage == e_message_key_down)
+      ////         if(pmessage->m_emessage == ::user::e_message_key_down)
       ////         {
       ////
       ////            try
@@ -2407,7 +2407,7 @@ namespace user
       ////            }
       ////
       ////         }
-      ////         else if(pmessage->m_emessage == e_message_key_up)
+      ////         else if(pmessage->m_emessage == ::user::e_message_key_up)
       ////         {
       ////
       ////            try
@@ -2427,7 +2427,7 @@ namespace user
 
       pmessage->m_lresult = 0;
 
-      if (pmessage->m_emessage == e_message_mouse_leave)
+      if (pmessage->m_emessage == ::user::e_message_mouse_leave)
       {
 
          _000OnMouseLeave(pmessage);
@@ -2436,15 +2436,15 @@ namespace user
 
       }
 
-      if (pmessage->m_emessage == e_message_left_button_down ||
-          pmessage->m_emessage == e_message_left_button_up ||
-          pmessage->m_emessage == e_message_middle_button_down ||
-          pmessage->m_emessage == e_message_middle_button_up ||
-          pmessage->m_emessage == e_message_right_button_down ||
-          pmessage->m_emessage == e_message_right_button_up ||
-          pmessage->m_emessage == e_message_left_button_double_click ||
-          pmessage->m_emessage == e_message_mouse_move ||
-          pmessage->m_emessage == e_message_mouse_wheel)
+      if (pmessage->m_emessage == ::user::e_message_left_button_down ||
+          pmessage->m_emessage == ::user::e_message_left_button_up ||
+          pmessage->m_emessage == ::user::e_message_middle_button_down ||
+          pmessage->m_emessage == ::user::e_message_middle_button_up ||
+          pmessage->m_emessage == ::user::e_message_right_button_down ||
+          pmessage->m_emessage == ::user::e_message_right_button_up ||
+          pmessage->m_emessage == ::user::e_message_left_button_double_click ||
+          pmessage->m_emessage == ::user::e_message_mouse_move ||
+          pmessage->m_emessage == ::user::e_message_mouse_wheel)
       {
 
          ::pointer<::message::mouse> pmouse = pmessage;
@@ -2456,9 +2456,9 @@ namespace user
          return;
 
       }
-         /*      else if(pmessage->m_emessage == e_message_key_down ||
-                       pmessage->m_emessage == e_message_key_up ||
-                       pmessage->m_emessage == e_message_char)*/
+         /*      else if(pmessage->m_emessage == ::user::e_message_key_down ||
+                       pmessage->m_emessage == ::user::e_message_key_up ||
+                       pmessage->m_emessage == ::user::e_message_char)*/
       else if (bKeyMessage)
       {
 
@@ -2498,7 +2498,7 @@ namespace user
 
       }
 
-      if (pmessage->m_emessage == e_message_subject)
+      if (pmessage->m_emessage == ::user::e_message_subject)
       {
 
          if (m_puserinteraction != nullptr)
@@ -2537,13 +2537,13 @@ namespace user
 
       }
 
-      if (pmessage->m_emessage == e_message_create)
+      if (pmessage->m_emessage == ::user::e_message_create)
       {
 
          //if (m_puserinteraction->m_procedureOnAfterCreate)
          //{
 
-         //   m_puserinteraction->post_message(e_message_after_create);
+         //   m_puserinteraction->post_message(::user::e_message_after_create);
 
          //}
 
@@ -2594,25 +2594,25 @@ namespace user
 
       pmouse->m_pwindow->m_pointCursor2 = pmouse->m_pointHost;
 
-      if (pmouse->m_emessage == e_message_left_button_double_click)
+      if (pmouse->m_emessage == ::user::e_message_left_button_double_click)
       {
 
-         information() << "e_message_left_button_double_click";
+         information() << "::user::e_message_left_button_double_click";
 
-      } else if (pmouse->m_emessage == e_message_left_button_down)
+      } else if (pmouse->m_emessage == ::user::e_message_left_button_down)
       {
 
-         information() << "e_message_left_button_down";
+         information() << "::user::e_message_left_button_down";
 
-      } else if (pmouse->m_emessage == e_message_mouse_move)
+      } else if (pmouse->m_emessage == ::user::e_message_mouse_move)
       {
 
-         //information() << "e_message_mouse_move : " << pmouse->m_pointAbsolute;
+         //information() << "::user::e_message_mouse_move : " << pmouse->m_pointAbsolute;
 
-      } else if (pmouse->m_emessage == e_message_left_button_up)
+      } else if (pmouse->m_emessage == ::user::e_message_left_button_up)
       {
 
-         information() << "e_message_left_button_up";
+         information() << "::user::e_message_left_button_up";
 
       }
 
@@ -2726,7 +2726,7 @@ namespace user
 
       //information() << "omousemsg pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
 
-      if (pmouse->m_emessage == e_message_mouse_move)
+      if (pmouse->m_emessage == ::user::e_message_mouse_move)
       {
 
          // We are at the message handler routine.
@@ -2737,7 +2737,7 @@ namespace user
 
          m_puserinteraction->m_pinteractionimpl->_on_mouse_move_step(pmouse->m_pointHost);
 
-         //information() << "e_message_mouse_move (2): " << pmouse->m_pointAbsolute;
+         //information() << "::user::e_message_mouse_move (2): " << pmouse->m_pointAbsolute;
 
       }
 
@@ -2785,7 +2785,7 @@ namespace user
       //
       //         }
 
-      if (pmouse->m_emessage == e_message_left_button_down)
+      if (pmouse->m_emessage == ::user::e_message_left_button_down)
       {
 
 
@@ -2802,13 +2802,13 @@ namespace user
 
       }
 
-      if (pmouse->m_emessage == e_message_left_button_down)
+      if (pmouse->m_emessage == ::user::e_message_left_button_down)
       {
 
 
          informationf("left_button_down");
 
-      } else if (pmouse->m_emessage == e_message_left_button_up)
+      } else if (pmouse->m_emessage == ::user::e_message_left_button_up)
       {
 
 
@@ -2855,7 +2855,7 @@ namespace user
 
       //         string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : ::type(puserinteractionMouse).name());
       //
-      //         if(pmouse->m_emessage == e_message_mouse_move)
+      //         if(pmouse->m_emessage == ::user::e_message_mouse_move)
       //         {
       //
       //            static int s_iMotionNotify = 0;
@@ -2883,7 +2883,7 @@ namespace user
       //if (puserinteractionMouse)
       //{
 
-      //   //            if(pmouse->m_emessage == ::e_message_left_button_double_click && puserinteractionMouse->m_bEatsDoubleClick)
+      //   //            if(pmouse->m_emessage == ::::user::e_message_left_button_double_click && puserinteractionMouse->m_bEatsDoubleClick)
       //   //            {
       //   //
       //   //               pmouse->m_bRet = true;
@@ -2912,7 +2912,7 @@ namespace user
 
       //}
 
-      if (pmouse->m_emessage == e_message_left_button_up)
+      if (pmouse->m_emessage == ::user::e_message_left_button_up)
       {
 
          auto pwindow = pmouse->m_pwindow;
@@ -2942,44 +2942,44 @@ namespace user
 
       return true;
 
-//      if (pmouse->m_emessage == e_message_left_button_down)
+//      if (pmouse->m_emessage == ::user::e_message_left_button_down)
 //      {
 //
-//         informationf("e_message_left_button_down");
+//         informationf("::user::e_message_left_button_down");
 //
 //         string strType = ::type(m_puserinteraction).name();
 //
 //         if (strType.case_insensitive_contains("list_box"))
 //         {
 //
-//            informationf("list_box e_message_left_button_down");
+//            informationf("list_box ::user::e_message_left_button_down");
 //
 //         }
 //
 //      }
-//      else if (pmouse->m_emessage == e_message_left_button_up)
+//      else if (pmouse->m_emessage == ::user::e_message_left_button_up)
 //      {
 //
-//         informationf("e_message_left_button_up");
+//         informationf("::user::e_message_left_button_up");
 //
 //      }
-//      else if (pmouse->m_emessage == e_message_non_client_left_button_up)
+//      else if (pmouse->m_emessage == ::user::e_message_non_client_left_button_up)
 //      {
 //
-//         informationf("e_message_non_client_left_button_up");
+//         informationf("::user::e_message_non_client_left_button_up");
 //
 //      }
-//      else if (pmouse->m_emessage == e_message_non_client_left_button_down)
+//      else if (pmouse->m_emessage == ::user::e_message_non_client_left_button_down)
 //      {
 //
-//         informationf("e_message_non_client_left_button_down");
+//         informationf("::user::e_message_non_client_left_button_down");
 //
 //         string strType;
 //
 //         if (strType.case_insensitive_contains("list_box"))
 //         {
 //
-//            informationf("list_box e_message_non_client_left_button_down");
+//            informationf("list_box ::user::e_message_non_client_left_button_down");
 //
 //         }
 //
@@ -2994,7 +2994,7 @@ namespace user
 //
 //      }
 //
-//      if (pmouse->m_emessage == e_message_mouse_move)
+//      if (pmouse->m_emessage == ::user::e_message_mouse_move)
 //      {
 //         string strType = ::type(m_puserinteraction).name();
 //
@@ -3008,7 +3008,7 @@ namespace user
 //
 //         pmouse->m_pcursor = pcursor;
 //
-//         //informationf("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x(), pmouse->m_point.y());
+//         //informationf("windows::::user::e_message_mouse_move(%d,%d)", pmouse->m_point.x(), pmouse->m_point.y());
 //
 //         //string strType;
 //
@@ -3020,14 +3020,14 @@ namespace user
 //            if (strType.case_insensitive_contains("list_box"))
 //            {
 //
-//               //informationf("list_box e_message_mouse_move");
+//               //informationf("list_box ::user::e_message_mouse_move");
 //
 //            }
 //
 //         }
 //
 //      }
-//      else if (pmouse->m_emessage == e_message_non_client_mouse_move)
+//      else if (pmouse->m_emessage == ::user::e_message_non_client_mouse_move)
 //      {
 //         // We are at the message handler procedure.
 //         // mouse messages originated from message handler and that are mouse transfer happenings should end up with the correct cursor.
@@ -4016,7 +4016,7 @@ namespace user
 
       auto pthread = puserinteraction->m_pthreadUserInteraction;
 
-      if (atom == e_message_redraw)
+      if (atom == ::user::e_message_redraw)
       {
 
          if (m_pgraphicsthread)
@@ -4580,7 +4580,7 @@ namespace user
 
       m_pgraphicsthread->post_redraw();
 
-      //m_puserinteraction->post_message(::e_message_redraw, bForceUpdateBuffer);
+      //m_puserinteraction->post_message(::::user::e_message_redraw, bForceUpdateBuffer);
 
 //      m_pgraphicsthread->graphics_thread_redraw();
 
@@ -5055,7 +5055,7 @@ namespace user
       for (auto &pinteraction: userinteractiona)
       {
 
-         pinteraction->post_message(e_message_mouse_leave);
+         pinteraction->post_message(::user::e_message_mouse_leave);
 
       }
 
@@ -5440,7 +5440,7 @@ namespace user
                try
                {
 
-                  pinteraction->send_message(e_message_mouse_leave);
+                  pinteraction->send_message(::user::e_message_mouse_leave);
 
                }
                catch (...)
@@ -5484,7 +5484,7 @@ namespace user
                   try
                   {
 
-                     pinteraction->send_message(e_message_show_window, 0, (long long) e_show_window_parent_closing);
+                     pinteraction->send_message(::user::e_message_show_window, 0, (long long) e_show_window_parent_closing);
 
                   }
                   catch (...)
@@ -6757,7 +6757,7 @@ namespace user
 //      else
 //      {
 //
-//         m_puserinteraction->post_message(e_message_apply_visual);
+//         m_puserinteraction->post_message(::user::e_message_apply_visual);
 //
 //      }
 //
@@ -7047,7 +7047,7 @@ namespace user
 //      else
 //      {
 //
-//         m_pgraphicsthread->post_message(e_message_redraw, bUpdateBuffer ? 1 : 0);
+//         m_pgraphicsthread->post_message(::user::e_message_redraw, bUpdateBuffer ? 1 : 0);
 //
 //      }
 //
@@ -7543,7 +7543,7 @@ namespace user
    //         if(pprimitiveFocusOld->m_bFocus)
    //         {
 
-   //            pprimitiveFocusOld->send_message(e_message_kill_focus);
+   //            pprimitiveFocusOld->send_message(::user::e_message_kill_focus);
 
    //         }
 
@@ -7566,7 +7566,7 @@ namespace user
    //         if (!pprimitiveFocusNew->m_bFocus)
    //         {
 
-   //            pprimitiveFocusNew->send_message(e_message_set_focus);
+   //            pprimitiveFocusNew->send_message(::user::e_message_set_focus);
 
    //         }
 
@@ -7615,7 +7615,7 @@ namespace user
    //         if (pprimitiveFocusKillFocus->m_bFocus)
    //         {
 
-   //            pprimitiveFocusKillFocus->send_message(e_message_kill_focus);
+   //            pprimitiveFocusKillFocus->send_message(::user::e_message_kill_focus);
 
    //         }
 
@@ -7650,7 +7650,7 @@ namespace user
    //         if (pprimitiveFocusKillFocus->m_bFocus)
    //         {
 
-   //            pprimitiveFocusKillFocus->send_message(e_message_kill_focus);
+   //            pprimitiveFocusKillFocus->send_message(::user::e_message_kill_focus);
 
    //         }
 

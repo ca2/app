@@ -64,7 +64,7 @@ namespace message
       ::atom command_id() const;
 
 
-      bool is_command()const { return m_emessage == e_message_command; }
+      bool is_command()const { return m_emessage == ::user::e_message_command; }
       bool is_command_probe() const { return m_bProbing; }
 
       void handle(::channel * pcommandtarget);

@@ -29,7 +29,36 @@ public:
    byte2_stream & operator << (int i);
 
 
+
 };
 
 
+class CLASS_DECL_ACME input_byte2_stream :
+   virtual public byte2_stream
+{
+public:
+
+
+
+   input_byte2_stream(const ::block & block);
+   ~input_byte2_stream() override;
+
+
+
+};
+
+
+class CLASS_DECL_ACME output_byte2_stream :
+   virtual public byte2_stream
+{
+public:
+
+
+
+   output_byte2_stream();
+   ~output_byte2_stream() override;
+
+
+
+};
 

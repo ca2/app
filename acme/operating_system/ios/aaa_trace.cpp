@@ -90,8 +90,8 @@
 //   ENSURE_ARG(pmessage != nullptr);
 //   ::pointer<::user::message>pusermessage(pmessage);
 //
-//   if (pusermessage->m_emessage == e_message_mouse_move || pusermessage->m_emessage == e_message_non_client_mouse_move ||
-//       pusermessage->m_emessage == e_message_non_client_hittest || pusermessage->m_emessage == e_message_set_cursor ||
+//   if (pusermessage->m_emessage == ::user::e_message_mouse_move || pusermessage->m_emessage == ::user::e_message_non_client_mouse_move ||
+//       pusermessage->m_emessage == ::user::e_message_non_client_hittest || pusermessage->m_emessage == ::user::e_message_set_cursor ||
 //       pusermessage->id() == WM_CTLCOLORBTN ||
 //       pusermessage->id() == WM_CTLCOLORDLG ||
 //       pusermessage->id() == WM_CTLCOLOREDIT ||
@@ -173,8 +173,8 @@
 //   //ENSURE_ARG(::windows_definition::IsValidString(lpszPrefix));
 //   ENSURE_ARG(lpmsg != nullptr);
 //
-//   if (lpmsg->message == e_message_mouse_move || lpmsg->message == e_message_non_client_mouse_move ||
-//       lpmsg->message == e_message_non_client_hittest || lpmsg->message == e_message_set_cursor ||
+//   if (lpmsg->message == ::user::e_message_mouse_move || lpmsg->message == ::user::e_message_non_client_mouse_move ||
+//       lpmsg->message == ::user::e_message_non_client_hittest || lpmsg->message == ::user::e_message_set_cursor ||
 //       lpmsg->message == WM_CTLCOLORBTN ||
 //       lpmsg->message == WM_CTLCOLORDLG ||
 //       lpmsg->message == WM_CTLCOLOREDIT ||

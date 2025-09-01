@@ -30,10 +30,10 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
 
    auto emessage = pusermessage->m_emessage;
 
-   if(emessage != e_message_mouse_move
-         && emessage != e_message_timer
-         && emessage != e_message_left_button_down
-         && emessage != e_message_left_button_up)
+   if(emessage != ::user::e_message_mouse_move
+         && emessage != ::user::e_message_timer
+         && emessage != ::user::e_message_left_button_down
+         && emessage != ::user::e_message_left_button_up)
    {
       return;
    }
@@ -42,9 +42,9 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
 
    character_count iChar;
 
-   if((emessage == e_message_mouse_move && GetState() == e_state_tracking)
-         || emessage == e_message_left_button_down
-         || emessage == e_message_left_button_up)
+   if((emessage == ::user::e_message_mouse_move && GetState() == e_state_tracking)
+         || emessage == ::user::e_message_left_button_down
+         || emessage == ::user::e_message_left_button_up)
    {
       
       bool bInside;
@@ -59,8 +59,8 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
       
       if(!bInside && GetState() == e_state_tracking)
       {
-         if(emessage == e_message_left_button_up
-               || emessage == e_message_mouse_move)
+         if(emessage == ::user::e_message_left_button_up
+               || emessage == ::user::e_message_mouse_move)
          {
             if(pointCursor.y() < rectanglePlacement.top()
                   ||
@@ -75,7 +75,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
                SetSelAfter(viewline);
                //                viewline.get_interaction()->set_need_redraw();
             }
-            if(emessage == e_message_left_button_up)
+            if(emessage == ::user::e_message_left_button_up)
             {
                OnSelEvent(viewline, e_event_end);
             }
@@ -85,7 +85,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
       else if(bInside)
       {
          //unsigned int fwKeys = pusermessage->m_wparam; // key flags
-         if(emessage == e_message_left_button_down)
+         if(emessage == ::user::e_message_left_button_down)
          {
             if(viewline.CalcChar(pointCursor, iChar))
             {
@@ -109,8 +109,8 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
             return;
          }
          else if(
-         (emessage == e_message_left_button_up
-          || emessage == e_message_mouse_move)
+         (emessage == ::user::e_message_left_button_up
+          || emessage == ::user::e_message_mouse_move)
          && GetState() == e_state_tracking)
          {
             if(viewline.CalcChar(pointCursor, iChar))
@@ -134,7 +134,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
                //viewline.get_interaction()->set_need_redraw();
 
             }
-            if(emessage == e_message_left_button_up)
+            if(emessage == ::user::e_message_left_button_up)
             {
                OnSelEvent(viewline, e_event_end);
                if(m_iLineStartSource == m_item.GetLineStart()
@@ -157,7 +157,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
             pusermessage->m_bRet = true;
             return;
          }
-         else if(emessage == e_message_mouse_move)
+         else if(emessage == ::user::e_message_mouse_move)
          {
 
             auto pointCursor = m_puserinteraction->mouse_cursor_position();
@@ -169,7 +169,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
       }
 
    }
-   else if(emessage == e_message_timer)
+   else if(emessage == ::user::e_message_timer)
    {
 
       uptr uEvent = pusermessage->m_wparam;

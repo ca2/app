@@ -28,21 +28,21 @@ public:
       //    alert.informativeText = "Your changes will be lost if you don't save them."
       //int iButtonCount = 0;
       
-      switch(emessagebox & e_message_box_type_mask)
+      switch(emessagebox & ::user::e_message_box_type_mask)
       {
-         case e_message_box_ok:
+         case ::user::e_message_box_ok:
             add_button(e_dialog_result_ok);
             break;
-         case e_message_box_yes_no:
+         case ::user::e_message_box_yes_no:
             add_button(e_dialog_result_yes);
             add_button(e_dialog_result_no);
             break;
-         case e_message_box_yes_no_cancel:
+         case ::user::e_message_box_yes_no_cancel:
             add_button(e_dialog_result_yes);
             add_button(e_dialog_result_no);
             add_button(e_dialog_result_cancel);
             break;
-         case e_message_box_ok_cancel:
+         case ::user::e_message_box_ok_cancel:
             add_button(e_dialog_result_ok);
             add_button(e_dialog_result_cancel);
             break;

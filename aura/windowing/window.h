@@ -1153,7 +1153,7 @@ namespace windowing
 
       //bool FlashWindow(bool bInvert);
 
-      //virtual int message_box(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption = nullptr,unsigned int nType = e_message_box_ok);
+      //virtual int message_box(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption = nullptr,unsigned int nType = ::user::e_message_box_ok);
 
 
 //#if(WINVER >= 0x0500)

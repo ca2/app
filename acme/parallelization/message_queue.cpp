@@ -16,7 +16,7 @@
 #endif
 
 
-//#define e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
+//#define ::user::e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
 #if defined(LINUX) // || defined(__ANDROID__)
 
 
@@ -88,10 +88,10 @@ void message_queue::post_message(const MESSAGE & message)
 
    }
 
-   if (message.m_emessage == e_message_quit)
+   if (message.m_emessage == ::user::e_message_quit)
    {
 
-      informationf("message_queue::post_message e_message_quit\n");
+      informationf("message_queue::post_message ::user::e_message_quit\n");
 
    }
 
@@ -128,7 +128,7 @@ void message_queue::kick_idle()
 
    //m_happeningNewMessage.set_happening();
 
-   post_message(nullptr, e_message_kick_idle, {}, {});
+   post_message(nullptr, ::user::e_message_kick_idle, {}, {});
 
 }
 
@@ -187,7 +187,7 @@ void message_queue::kick_idle()
 
          auto & message = m_messagea[i];
 
-         if (message.m_emessage == e_message_quit)
+         if (message.m_emessage == ::user::e_message_quit)
          {
 
             m_bQuit = true;

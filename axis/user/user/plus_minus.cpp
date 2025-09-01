@@ -39,7 +39,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &::user::plus_minus::on_message_create);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &::user::plus_minus::on_message_create);
 
    }
 

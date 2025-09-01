@@ -679,7 +679,7 @@ namespace user
       // open the document, then print it.
       pDoc = psystem->open_document_file(get_app(), cmdInfo.m_payloadFile);
       //psystem->m_pCmdInfo = &cmdInfo;
-      psystem->m_puiMain->SendMessage(e_message_command, ID_FILE_PRINT_DIRECT);
+      psystem->m_puiMain->SendMessage(::user::e_message_command, ID_FILE_PRINT_DIRECT);
       //psystem->m_pCmdInfo = nullptr;
 
       // close the document if it wasn't open previously (based on doc count)

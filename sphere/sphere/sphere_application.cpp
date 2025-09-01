@@ -702,13 +702,13 @@ namespace sphere
                get_document() != nullptr && get_document()->get_typed_impact < pane_impact >() != nullptr
                && (!pcreate->m_pappbias.is_set() || pcreate->m_pappbias->m_puserinteractionParent == nullptr))
             {
-               //message_box(nullptr, "request3", "request3", e_message_box_icon_exclamation);
+               //message_box(nullptr, "request3", "request3", ::user::e_message_box_icon_exclamation);
                get_document()->get_typed_impact < pane_impact >()->set_current_tab_by_id("app:" + pcreate->m_strApp);
                App(m_pappCurrent).do_request(pcreate);
             }
             else
             {
-               //message_box(nullptr, "request4", "request4", e_message_box_icon_exclamation);
+               //message_box(nullptr, "request4", "request4", ::user::e_message_box_icon_exclamation);
                on_request(pcreate);
             }
          }

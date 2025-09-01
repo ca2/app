@@ -37,7 +37,7 @@ namespace prompt
    {
 
       BASE::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_context_menu, pchannel, this, &primary_impact::on_message_context_menu);
+      MESSAGE_LINK(::user::e_message_context_menu, pchannel, this, &primary_impact::on_message_context_menu);
 
    }
 

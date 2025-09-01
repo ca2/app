@@ -3892,7 +3892,7 @@ namespace user
    void element::post_simple_command(const enum_simple_command & ecommand, const ::lparam & lparam)
    {
 
-      post_message(e_message_simple_command, (wparam)ecommand, lparam);
+      post_message(::user::e_message_simple_command, (wparam)ecommand, lparam);
 
       //return true;
 
@@ -3983,7 +3983,7 @@ namespace user
 //      case ::message::PrototypeTimer:
 //      {
 //         
-//         //throw ::exception(::exception("do not use e_message_timer or Windows set_timer/kill_timer"));
+//         //throw ::exception(::exception("do not use ::user::e_message_timer or Windows set_timer/kill_timer"));
 //         
 //         pmessage = øallocate ::message::timer();
 //

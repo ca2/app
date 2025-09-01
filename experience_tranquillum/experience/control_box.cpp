@@ -128,12 +128,12 @@ namespace experience_tranquillum
 
       ::experience::control_box::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &control_box::on_message_show_window);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_box::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &control_box::on_message_left_button_up);
-      MESSAGE_LINK(e_message_create, pchannel, this, &control_box::on_message_create);
-   //   MESSAGE_LINK(e_message_size, pchannel, this, &control_box::on_message_size);
-   //   //MESSAGE_LINK(e_message_timer, pchannel, this, &control_box::on_timer);
+      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &control_box::on_message_show_window);
+      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &control_box::on_message_left_button_down);
+      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &control_box::on_message_left_button_up);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &control_box::on_message_create);
+   //   MESSAGE_LINK(::user::e_message_size, pchannel, this, &control_box::on_message_size);
+   //   //MESSAGE_LINK(::user::e_message_timer, pchannel, this, &control_box::on_timer);
 
    }
 

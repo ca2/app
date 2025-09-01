@@ -70,12 +70,12 @@ namespace browser
 
       impact_base::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create,pchannel,this,&impact::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::on_message_destroy);
-      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact::_001OnMouse);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::_001OnMouse);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &impact::_001OnMouse);
+      MESSAGE_LINK(::user::e_message_create,pchannel,this,&impact::on_message_create);
+      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &impact::on_message_destroy);
+      //MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &impact::on_message_left_button_down);
+      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &impact::_001OnMouse);
+      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &impact::_001OnMouse);
+      MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &impact::_001OnMouse);
 
    }
 
@@ -328,7 +328,7 @@ namespace browser
       happening.x() = point.x();
       happening.y() = point.y();
 
-      if (pmouse->m_emessage == e_message_left_button_down)
+      if (pmouse->m_emessage == ::user::e_message_left_button_down)
       {
 
          papp->m_ppaneimpact->m_pimpactLastBilbo = this;
@@ -336,13 +336,13 @@ namespace browser
          m_pbrowser->GetHost()->SendMouseClickEvent(happening, cef_mouse_button_type_t::MBT_LEFT, false, 1);
 
       }
-      else if (pmouse->m_emessage == e_message_left_button_up)
+      else if (pmouse->m_emessage == ::user::e_message_left_button_up)
       {
 
          m_pbrowser->GetHost()->SendMouseClickEvent(happening, cef_mouse_button_type_t::MBT_LEFT, true, 1);
 
       }
-      else if (pmouse->m_emessage == e_message_mouse_move)
+      else if (pmouse->m_emessage == ::user::e_message_mouse_move)
       {
 
          m_pbrowser->GetHost()->SendMouseMoveEvent(happening, false);
@@ -844,7 +844,7 @@ namespace browser
 
    //BOOL impact::PreTranslateMessage(MSG* pMsg)
    //{
-   //   if (pMsg->message == e_message_key_down)
+   //   if (pMsg->message == ::user::e_message_key_down)
    //   {
    //      if (pMsg->wParam == VK_F5)
    //      {

@@ -3637,7 +3637,7 @@ namespace user
    void interaction_base::post_simple_command(const enum_simple_command & ecommand, const ::lparam & lparam)
    {
 
-      post_message(e_message_simple_command, (wparam)ecommand, lparam);
+      post_message(::user::e_message_simple_command, (wparam)ecommand, lparam);
 
       //return true;
 
@@ -3733,7 +3733,7 @@ namespace user
 //      case ::message::PrototypeTimer:
 //      {
 //         
-//         //throw ::exception(::exception("do not use e_message_timer or Windows set_timer/kill_timer"));
+//         //throw ::exception(::exception("do not use ::user::e_message_timer or Windows set_timer/kill_timer"));
 //         
 //         pmessage = øallocate ::message::timer();
 //
@@ -3845,7 +3845,7 @@ namespace user
    // bool interaction_base::call_message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point, lresult * plresult)
    // {
       
-   //    if(atom == e_message_post_user)
+   //    if(atom == ::user::e_message_post_user)
    //    {
 
    //       if(wparam==1)

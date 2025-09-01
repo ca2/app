@@ -34,8 +34,8 @@ namespace user
 
       place_holder_container::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &split_layout::on_message_create);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &split_layout::on_message_show_window);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &split_layout::on_message_create);
+      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &split_layout::on_message_show_window);
 
    }
 
@@ -241,7 +241,7 @@ namespace user
       CalcSplitBarRect(iIndex, &splitRect);
       ::int_point pointCursor = pMsg->pt;
 
-      if(pMsg->message == e_message_left_button_down)
+      if(pMsg->message == ::user::e_message_left_button_down)
 
       {
 
@@ -255,7 +255,7 @@ namespace user
             m_iState = stateDragging;
          }
       }
-      else if(pMsg->message == e_message_left_button_up)
+      else if(pMsg->message == ::user::e_message_left_button_up)
 
       {
 
@@ -269,12 +269,12 @@ namespace user
          }
 
       }
-      else if(pMsg->message == e_message_capture_changed)
+      else if(pMsg->message == ::user::e_message_capture_changed)
 
       {
 
       }
-      else if(pMsg->message == e_message_mouse_move)
+      else if(pMsg->message == ::user::e_message_mouse_move)
 
       {
 
@@ -1146,7 +1146,7 @@ namespace user
 
       CalcSplitBarRect(iSplitBar, &splitRect);
 
-      if(emessage == e_message_left_button_down)
+      if(emessage == ::user::e_message_left_button_down)
       {
 
          int   fwKeys = (int) wParam;        // key flags
@@ -1160,7 +1160,7 @@ namespace user
             m_iState = stateDragging;
          }
       }
-      else if(emessage == e_message_left_button_up)
+      else if(emessage == ::user::e_message_left_button_up)
       {
 //         int   fwKeys = wParam;        // key flags
 //         int xPos = splitRect.left() + (short) LOWORD(lParam);  // horizontal position of cursor
@@ -1171,10 +1171,10 @@ namespace user
             m_iState = stateInitial;
          }
       }
-      else if(emessage == e_message_capture_changed)
+      else if(emessage == ::user::e_message_capture_changed)
       {
       }
-      else if(emessage == e_message_mouse_move)
+      else if(emessage == ::user::e_message_mouse_move)
       {
          int   fwKeys = (int) wParam;        // key flags
          int xPos = splitRect.left() + (short) LOWORD(lParam);  // horizontal position of cursor

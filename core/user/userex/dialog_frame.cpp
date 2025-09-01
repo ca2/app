@@ -66,9 +66,9 @@ namespace userex
 
       ::simple_frame_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &dialog_frame::on_message_create);
-      //MESSAGE_LINK(e_message_activate, pchannel, this, &list_box::_001OnActivate);
-      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &dialog_frame::_001OnMouseActivate);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &dialog_frame::on_message_create);
+      //MESSAGE_LINK(::user::e_message_activate, pchannel, this, &list_box::_001OnActivate);
+      MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &dialog_frame::_001OnMouseActivate);
 
    }
 

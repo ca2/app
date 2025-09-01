@@ -163,7 +163,7 @@ namespace aura
 //   }
 
    
-   //pointer< ::extended::sequence < ::conversation > > node::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::sequence < ::conversation > > node::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox)
    //{
 
    //   auto pmessagebox = puserinteraction->øcreate < ::user::message_box >();

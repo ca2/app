@@ -10,7 +10,7 @@ namespace motif
 {
 
 
-   ::atom message_box::do_modal(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+   ::atom message_box::do_modal(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
    //void message_box::do_modal(const_char_pointer pszMsg, bool bError)
    {
       XmString xmString = XmStringCreateLocalized(const_cast<char *>(scopedstrMessage.as_string().c_str()));
@@ -22,12 +22,12 @@ namespace motif
       //XtSetArg (args[2], XmNwidth
 // create and label message box
 
-      switch(emessagebox & e_message_box_icon_mask)
+      switch(emessagebox & ::user::e_message_box_icon_mask)
       {
-      case e_message_box_icon_error:
+      case ::user::e_message_box_icon_error:
          m_pwidgetMsgBox = XmCreateErrorDialog(m_pwidgetTop, (char *) "Error", args, 2);
          break;
-      case e_message_box_icon_warning:
+      case ::user::e_message_box_icon_warning:
          m_pwidgetMsgBox = XmCreateWarningDialog(m_pwidgetTop, (char *) "Warning", args, 2);
          break;
       default:

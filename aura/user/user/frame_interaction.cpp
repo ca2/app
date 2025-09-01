@@ -445,9 +445,9 @@ namespace user
       add_command_handler("try_close_application", { this, &frame_interaction::on_message_application_exit });
       
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &frame_interaction::on_message_destroy);
-      MESSAGE_LINK(e_message_application_exit, pchannel, this, &frame_interaction::on_message_application_exit);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &frame_interaction::on_message_key_down);
+      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &frame_interaction::on_message_destroy);
+      MESSAGE_LINK(::user::e_message_application_exit, pchannel, this, &frame_interaction::on_message_application_exit);
+      MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &frame_interaction::on_message_key_down);
 
       system()->signal(id_operating_system_user_color_change)->add_handler(this);
 //#ifdef WINDOWS_DESKTOP
@@ -513,7 +513,7 @@ namespace user
          if(pkey->m_ekey == ::user::e_key_q && session()->is_key_pressed(::user::e_key_command))
          {
             
-            post_message(e_message_close);
+            post_message(::user::e_message_close);
             pmessage->m_bRet = true;
             
          }

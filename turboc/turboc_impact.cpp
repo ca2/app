@@ -91,7 +91,7 @@ namespace turboc
 
       ::aura::impact::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&impact::on_message_create);
+      IGUI_WIN_MSG_LINK(::user::e_message_create,pdispatch,this,&impact::on_message_create);
 
    }
 

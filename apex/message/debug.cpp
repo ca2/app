@@ -14,53 +14,53 @@
 //   {
 //      str = "-1";
 //   }
-//   else __msg_entry(e_message_null)
-//else __msg_entry(e_message_create)
-//else __msg_entry(e_message_destroy)
-//else __msg_entry(e_message_reposition)
-//else __msg_entry(e_message_size)
-//else __msg_entry(e_message_activate)
-//else __msg_entry(e_message_set_focus)
-//else __msg_entry(e_message_kill_focus)
-//else __msg_entry(e_message_enable)
-//else __msg_entry(e_message_paint)
-//else __msg_entry(e_message_close)
-//else __msg_entry(e_message_quit)
-//else __msg_entry(e_message_erase_background)
-//else __msg_entry(e_message_show_window)
-//else __msg_entry(e_message_set_cursor)
-//else __msg_entry(e_message_mouse_activate)
-//else __msg_entry(e_message_paint)
-//else __msg_entry(e_message_measure_item)
-//else __msg_entry(e_message_window_position_changing)
-//else __msg_entry(e_message_window_position_changed)
-//else __msg_entry(e_message_context_menu)
-//else __msg_entry(e_message_display_change)
-//else __msg_entry(e_message_non_client_create)
-//else __msg_entry(e_message_non_client_destroy)
-//else __msg_entry(e_message_non_client_calc_size)
-//else __msg_entry(e_message_non_client_hit_test)
-//else __msg_entry(e_message_non_client_paint)
-//else __msg_entry(e_message_non_client_activate)
-//else __msg_entry(e_message_non_client_mouse_move)//)//      0x00A0
-//else __msg_entry(e_message_non_client_left_button_down)//)//      0x00A1
-//else __msg_entry(e_message_non_client_left_button_up)//)//      0x00A2
-//else __msg_entry(e_message_key_first)      //            0x0100
-//else __msg_entry(e_message_key_down)      //            0x0100
-//else __msg_entry(e_message_key_up)      //            0x0101
-//else __msg_entry(e_message_char)      //            0x0102
-//else __msg_entry(e_message_dead_char)      //            0x0103
-//else __msg_entry(e_message_sys_key_down)      //            0x0104
-//else __msg_entry(e_message_sys_key_up)      //            0x0105
-//else __msg_entry(e_message_sys_char)      //            0x0106
-//else __msg_entry(e_message_sys_dead_char)      //            0x0107
-//else __msg_entry(e_message_uni_char)      //            0x0109
-//else __msg_entry(e_message_key_last)      //            0x0109
-//else __msg_entry(e_message_command)      //             0x0111
-//else __msg_entry(e_message_timer)      //             0x0113
-//else __msg_entry(e_message_scroll_x)      //             0x0114
-//else __msg_entry(e_message_scroll_y)      //             0x0115
-//else __msg_entry(e_message_initialize_menu_popup)      //             0x0117
+//   else __msg_entry(::user::e_message_null)
+//else __msg_entry(::user::e_message_create)
+//else __msg_entry(::user::e_message_destroy)
+//else __msg_entry(::user::e_message_reposition)
+//else __msg_entry(::user::e_message_size)
+//else __msg_entry(::user::e_message_activate)
+//else __msg_entry(::user::e_message_set_focus)
+//else __msg_entry(::user::e_message_kill_focus)
+//else __msg_entry(::user::e_message_enable)
+//else __msg_entry(::user::e_message_paint)
+//else __msg_entry(::user::e_message_close)
+//else __msg_entry(::user::e_message_quit)
+//else __msg_entry(::user::e_message_erase_background)
+//else __msg_entry(::user::e_message_show_window)
+//else __msg_entry(::user::e_message_set_cursor)
+//else __msg_entry(::user::e_message_mouse_activate)
+//else __msg_entry(::user::e_message_paint)
+//else __msg_entry(::user::e_message_measure_item)
+//else __msg_entry(::user::e_message_window_position_changing)
+//else __msg_entry(::user::e_message_window_position_changed)
+//else __msg_entry(::user::e_message_context_menu)
+//else __msg_entry(::user::e_message_display_change)
+//else __msg_entry(::user::e_message_non_client_create)
+//else __msg_entry(::user::e_message_non_client_destroy)
+//else __msg_entry(::user::e_message_non_client_calc_size)
+//else __msg_entry(::user::e_message_non_client_hit_test)
+//else __msg_entry(::user::e_message_non_client_paint)
+//else __msg_entry(::user::e_message_non_client_activate)
+//else __msg_entry(::user::e_message_non_client_mouse_move)//)//      0x00A0
+//else __msg_entry(::user::e_message_non_client_left_button_down)//)//      0x00A1
+//else __msg_entry(::user::e_message_non_client_left_button_up)//)//      0x00A2
+//else __msg_entry(::user::e_message_key_first)      //            0x0100
+//else __msg_entry(::user::e_message_key_down)      //            0x0100
+//else __msg_entry(::user::e_message_key_up)      //            0x0101
+//else __msg_entry(::user::e_message_char)      //            0x0102
+//else __msg_entry(::user::e_message_dead_char)      //            0x0103
+//else __msg_entry(::user::e_message_sys_key_down)      //            0x0104
+//else __msg_entry(::user::e_message_sys_key_up)      //            0x0105
+//else __msg_entry(::user::e_message_sys_char)      //            0x0106
+//else __msg_entry(::user::e_message_sys_dead_char)      //            0x0107
+//else __msg_entry(::user::e_message_uni_char)      //            0x0109
+//else __msg_entry(::user::e_message_key_last)      //            0x0109
+//else __msg_entry(::user::e_message_command)      //             0x0111
+//else __msg_entry(::user::e_message_timer)      //             0x0113
+//else __msg_entry(::user::e_message_scroll_x)      //             0x0114
+//else __msg_entry(::user::e_message_scroll_y)      //             0x0115
+//else __msg_entry(::user::e_message_initialize_menu_popup)      //             0x0117
 //#ifdef WINDOWS
 //   else __msg_entry(WM_SETREDRAW)
 //   else __msg_entry(WM_SETTEXT)
@@ -162,19 +162,19 @@
 unsigned int g_puiaMessageMouseMove[] =
 {
 
-   e_message_mouse_move,
-   e_message_set_cursor,
-   e_message_non_client_hit_test,
-   e_message_non_client_mouse_move,
+   ::user::e_message_mouse_move,
+   ::user::e_message_set_cursor,
+   ::user::e_message_non_client_hit_test,
+   ::user::e_message_non_client_mouse_move,
    (unsigned int)-1
 };
 
 unsigned int g_puiaMessageWindowDeactivating[] =
 {
    // 2019-06-28-00-28
-   e_message_non_client_activate,
-   e_message_activate,
-   e_message_kill_focus,
+   ::user::e_message_non_client_activate,
+   ::user::e_message_activate,
+   ::user::e_message_kill_focus,
 #ifdef WINDOWS
    WM_ACTIVATEAPP,
    WM_IME_SETCONTEXT,
@@ -186,11 +186,11 @@ unsigned int g_puiaMessageWindowDeactivating[] =
 unsigned int g_puiaMessageWindowActivating[] =
 {
    // 2019-06-28-00-33
-   e_message_window_position_changing,
-   e_message_window_position_changed,
-   e_message_non_client_activate,
-   e_message_activate,
-   e_message_set_focus,
+   ::user::e_message_window_position_changing,
+   ::user::e_message_window_position_changed,
+   ::user::e_message_non_client_activate,
+   ::user::e_message_activate,
+   ::user::e_message_set_focus,
 #ifdef WINDOWS
    WM_ACTIVATEAPP,
    WM_SYSCOMMAND,
@@ -205,21 +205,21 @@ unsigned int f[] =
    // IME, Input Method Editor Client : ca2 Framework
    // Viagem da Mummi... : Yakissoba delicioso!!
    // 2019-06-27-22-36
-   e_message_non_client_create,
-   e_message_non_client_calc_size,
-   e_message_create,
-   e_message_size,
-   e_message_reposition,
-   e_message_show_window,
-   e_message_window_position_changing,
-   e_message_non_client_activate,
-   e_message_activate,
-   e_message_set_focus,
-   e_message_non_client_paint,
-   e_message_erase_background,
-   e_message_window_position_changed,
-   e_message_paint,
-   e_message_redraw,
+   ::user::e_message_non_client_create,
+   ::user::e_message_non_client_calc_size,
+   ::user::e_message_create,
+   ::user::e_message_size,
+   ::user::e_message_reposition,
+   ::user::e_message_show_window,
+   ::user::e_message_window_position_changing,
+   ::user::e_message_non_client_activate,
+   ::user::e_message_activate,
+   ::user::e_message_set_focus,
+   ::user::e_message_non_client_paint,
+   ::user::e_message_erase_background,
+   ::user::e_message_window_position_changed,
+   ::user::e_message_paint,
+   ::user::e_message_redraw,
 #ifdef WINDOWS
    WM_GETMINMAXINFO,
    WM_SETICON,
@@ -250,7 +250,7 @@ unsigned int g_puiaMessageInputLanguageChange[] =
    // Twitch Streamers Vibe : Denzel@RB.TV, jitspoe, FearItSelf, WildN00b, AndyMilonakis
    // 2019-06-27-23-19
    // 2019-06-38-00-06 Talk2meGooseman
-   e_message_key_up,
+   ::user::e_message_key_up,
 #ifdef WINDOWS
    WM_INPUTLANGCHANGE,
    WM_IME_NOTIFY,

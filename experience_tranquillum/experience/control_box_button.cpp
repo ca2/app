@@ -162,8 +162,8 @@ namespace experience_tranquillum
 
       ::experience::button::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &control_box_button::on_message_create);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &control_box_button::on_message_show_window);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &control_box_button::on_message_create);
+      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &control_box_button::on_message_show_window);
 
    }
 

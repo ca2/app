@@ -112,3 +112,33 @@ byte2_stream & byte2_stream::operator <<(int i)
    return *this;
 
 }
+
+
+
+
+   input_byte2_stream:: input_byte2_stream(const ::block & block) :
+   byte2_stream(block)
+   {
+      m_estream = ::file::e_stream_input;
+   }
+
+   input_byte2_stream::~input_byte2_stream()
+{
+
+
+}
+
+
+
+   output_byte2_stream::output_byte2_stream():
+   byte2_stream()
+   {
+
+      m_estream = ::file::e_stream_output;
+   }
+output_byte2_stream::~output_byte2_stream()
+{
+
+}
+
+

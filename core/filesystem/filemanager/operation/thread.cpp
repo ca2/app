@@ -264,13 +264,13 @@ namespace filemanager
 
          }
 
-         m_pimpact->post_message(e_message_main_post, operation_impact::e_main_post_file_operation);
+         m_pimpact->post_message(::user::e_message_main_post, operation_impact::e_main_post_file_operation);
 
          sleep(millisStepSetSleep);
 
       }
 
-      m_pimpact->post_message(e_message_main_post,  operation_impact::e_main_post_file_operation_final);
+      m_pimpact->post_message(::user::e_message_main_post,  operation_impact::e_main_post_file_operation_final);
 
    }
 

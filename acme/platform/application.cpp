@@ -435,7 +435,7 @@ void application::start_application()
       auto pmessagebox = __initialize_new::message_box(
          "Application needs iCloud and it is not Available",
          "iCloud is not Available.",
-         e_message_box_ok | e_message_box_icon_exclamation);
+         ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation);
 
       pmessagebox->sync();
 
@@ -1122,7 +1122,7 @@ void application::start_application()
    void application::user_confirm_close_application()
    {
 
-      auto pmessagebox = __initialize_new::message_box("Are you sure you want to close application?", nullptr, e_message_box_yes_no);
+      auto pmessagebox = __initialize_new::message_box("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
 
       pmessagebox->async()
          << [this, pmessagebox]()
@@ -1304,12 +1304,12 @@ void application::start_application()
    }
 
 
-   void application::on_application_message(::platform::application_message * papplicationmessage)
+   void application::on_application_message(::application_message * papplicationmessage)
    {
 
-      auto emessage = papplicationmessage->m_emessage;
+      auto emessage = papplicationmessage->m_eapplicationmessage;
 
-      if(emessage == ::platform::application_message::e_message_request_uri)
+      if(emessage == ::e_application_message_request_uri)
       {
 
          ::string strUri = papplicationmessage->m_memory.get_string();
@@ -1743,7 +1743,7 @@ void application::start_application()
          auto pmessagebox = __initialize_new::message_box(
             "Application failed to initialize (1).\n\n" + e.m_strMessage,
             m_strAppName,
-            e_message_box_ok,
+            ::user::e_message_box_ok,
             e.m_strMessage + "\n" + e.m_strDetails);
 
          pmessagebox->sync();
@@ -1806,7 +1806,7 @@ void application::start_application()
          auto pmessagebox = __initialize_new::message_box(
             "Application failed to initialize (4). Unknown exception",
             m_strAppName,
-            e_message_box_ok,
+            ::user::e_message_box_ok,
             exception.m_strMessage + "\n\n" + exception.get_consolidated_details(this));
 
          pmessagebox->sync();
@@ -1875,7 +1875,7 @@ void application::start_application()
    //      //
    //      //         }
 
-   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", ::user::e_message_box_icon_information);
 
    //      //auto estatus =
    //      on_before_launching();
@@ -1951,7 +1951,7 @@ void application::start_application()
 
       psystem->install_progress_add_up(); // 2
 
-      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
+      //xxdebug_box("init1 ok", "init1 ok", ::user::e_message_box_icon_information);
 
       ping();
 
@@ -1968,7 +1968,7 @@ void application::start_application()
 
       psystem->install_progress_add_up(); // 3
 
-      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
+      //xxdebug_box("init2 ok", "init2 ok", ::user::e_message_box_icon_information);
 
       ping();
 
@@ -1985,7 +1985,7 @@ void application::start_application()
 
       psystem->install_progress_add_up(); // 4
 
-      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
+      //xxdebug_box("init3 ok", "init3 ok", ::user::e_message_box_icon_information);
 
       ping();
 
@@ -2039,7 +2039,7 @@ void application::start_application()
 
    //      application_pos_run();
 
-   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", ::user::e_message_box_icon_information);
 
    //   }
    //   catch (...)
@@ -2320,7 +2320,7 @@ void application::start_application()
 
       picon->load_image_from_file(pfile);
 
-      auto paboutbox = __initialize_new_with(system()->acme_windowing()) ::message_box("About\n\n" + strMessage, nullptr, e_message_box_ok, "", picon);
+      auto paboutbox = __initialize_new_with(system()->acme_windowing()) ::message_box("About\n\n" + strMessage, nullptr, ::user::e_message_box_ok, "", picon);
 
       //psequencer->then([this, strPath](auto pconversation)
       //      {

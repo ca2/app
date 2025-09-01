@@ -226,14 +226,14 @@ namespace experience
          if (top_level()->layout().is_moving())
          {
 
-            //informationf("experience control_box : top level is moving : ignoring e_message_timer");
+            //informationf("experience control_box : top level is moving : ignoring ::user::e_message_timer");
 
             return;
 
          } else if (top_level()->layout().is_sizing())
          {
 
-            //informationf("experience control_box : top level is sizing : ignoring e_message_timer");
+            //informationf("experience control_box : top level is sizing : ignoring ::user::e_message_timer");
 
             return;
 
@@ -406,15 +406,15 @@ namespace experience
 
       ::user::interaction::install_message_routing(pframewindow);
 
-      MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::on_message_show_window);
-      MESSAGE_LINK(e_message_create, pframewindow, this, &control_box::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pframewindow, this, &control_box::on_message_destroy);
-      MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::on_message_mouse_move);
-      MESSAGE_LINK(e_message_mouse_leave, pframewindow, this, &control_box::on_message_mouse_leave);
-      MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pframewindow, this, &control_box::on_message_left_button_up);
-      MESSAGE_LINK(e_message_reposition, pframewindow, this, &control_box::on_message_move);
-      MESSAGE_LINK(e_message_size, pframewindow, this, &control_box::on_message_size);
+      MESSAGE_LINK(::user::e_message_show_window, pframewindow, this, &control_box::on_message_show_window);
+      MESSAGE_LINK(::user::e_message_create, pframewindow, this, &control_box::on_message_create);
+      MESSAGE_LINK(::user::e_message_destroy, pframewindow, this, &control_box::on_message_destroy);
+      MESSAGE_LINK(::user::e_message_mouse_move, pframewindow, this, &control_box::on_message_mouse_move);
+      MESSAGE_LINK(::user::e_message_mouse_leave, pframewindow, this, &control_box::on_message_mouse_leave);
+      MESSAGE_LINK(::user::e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
+      MESSAGE_LINK(::user::e_message_left_button_up, pframewindow, this, &control_box::on_message_left_button_up);
+      MESSAGE_LINK(::user::e_message_reposition, pframewindow, this, &control_box::on_message_move);
+      MESSAGE_LINK(::user::e_message_size, pframewindow, this, &control_box::on_message_size);
 
    }
 

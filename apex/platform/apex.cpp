@@ -870,7 +870,7 @@ void on_term_thread();
 //      CLASS_DECL_APEX void init()
 //      {
 //
-//         xxdebug_box("axis.dll axis_static_start (0)", "box", e_message_box_ok);
+//         xxdebug_box("axis.dll axis_static_start (0)", "box", ::user::e_message_box_ok);
 
 //         sqlite3_config(SQLITE_CONFIG_MULTITHREAD);
 
@@ -1008,7 +1008,7 @@ void on_term_thread();
 ////      CLASS_DECL_APEX void init()
 ////      {
 ////
-////         xxdebug_box("apex.dll base_static_start (0)", "box", e_message_box_ok);
+////         xxdebug_box("apex.dll base_static_start (0)", "box", ::user::e_message_box_ok);
 ////
 ////         //#ifdef __ANDROID__
 ////         //

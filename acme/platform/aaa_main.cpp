@@ -944,7 +944,7 @@ extern thread_local ::task_pointer t_pthread;
       __defer_new(::acme::g_pelementaddraReleaseOnEnd);
 
 
-      //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
+      //xxdebug_box("acme.dll base_static_start (0)", "box", ::user::e_message_box_ok);
 
       //g_pengine = aaa_primitive_new ::OPERATING_SYSTEM_NAMESPACE::exception_engine();
 
@@ -1763,7 +1763,7 @@ CLASS_DECL_ACME ::e_status get_last_status()
 //      CLASS_DECL_ACME void init()
 //      {
 //
-//         xxdebug_box("axis.dll axis_static_start (0)", "box", e_message_box_ok);
+//         xxdebug_box("axis.dll axis_static_start (0)", "box", ::user::e_message_box_ok);
 
 //         sqlite3_config(SQLITE_CONFIG_MULTITHREAD);
 

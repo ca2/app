@@ -62,7 +62,7 @@ namespace simpledb
 
       if (!m_pserver->initialize())
       {
-         message_box(nullptr, "Could not initialize simpledb.", e_message_box_ok);
+         message_box(nullptr, "Could not initialize simpledb.", ::user::e_message_box_ok);
          return false;
       }
 

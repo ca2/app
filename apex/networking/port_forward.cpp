@@ -306,7 +306,7 @@ namespace networking
 //
 //      //auto psystem = system();
 //
-//      //message_box(tempStr,"Change Detected in Number of Port Mappings",e_message_box_ok | e_message_box_icon_exclamation);
+//      //message_box(tempStr,"Change Detected in Number of Port Mappings",::user::e_message_box_ok | ::user::e_message_box_icon_exclamation);
 //
 //      ::information(tempStr + "Change Detected in Number of Port Mappings");
 //
@@ -324,7 +324,7 @@ namespace networking
 //
 //      auto psystem = system();
 //
-//      //message_box(tempStr,"Change Detected in External IP Address",e_message_box_ok | e_message_box_icon_exclamation);
+//      //message_box(tempStr,"Change Detected in External IP Address",::user::e_message_box_ok | ::user::e_message_box_icon_exclamation);
 //
 //      information(tempStr+ "Change Detected in External IP Address");
 //

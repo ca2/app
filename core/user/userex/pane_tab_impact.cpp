@@ -166,7 +166,7 @@ namespace userex
 
       ::user::tab_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_tab_impact::on_message_create);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &pane_tab_impact::on_message_create);
 
       add_command_handler("file_save_as", { this,  &pane_tab_impact::_001OnFileSaveAs });
       add_command_prober("file_save_as", { this,  &pane_tab_impact::_001OnUpdateFileSaveAs });

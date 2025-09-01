@@ -99,10 +99,10 @@ namespace userpresence
    {
 
       // user presence status activity reporting
-      if (pmouse->get_message() == e_message_left_button_down
-          || pmouse->get_message() == e_message_right_button_down
-          || pmouse->get_message() == e_message_middle_button_down
-          || pmouse->get_message() == e_message_mouse_move)
+      if (pmouse->get_message() == ::user::e_message_left_button_down
+          || pmouse->get_message() == ::user::e_message_right_button_down
+          || pmouse->get_message() == ::user::e_message_middle_button_down
+          || pmouse->get_message() == ::user::e_message_mouse_move)
       {
 
          auto psession = session();

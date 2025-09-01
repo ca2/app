@@ -60,10 +60,11 @@ namespace platform
 
    class application_state;
 
-   class application_message;
-
 
 } // namespace platform
+
+
+class application_message;
 
 
 class message_box;

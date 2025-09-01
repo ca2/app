@@ -83,6 +83,7 @@ namespace platform
 
        virtual void post_media_store_operation(::data::block * pdatablock);
 
+       virtual void on_main_task_iteration();
 
     };
 

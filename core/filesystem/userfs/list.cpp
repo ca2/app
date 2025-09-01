@@ -57,11 +57,11 @@ namespace userfs
 
       ::user::form_list_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &list::on_message_scroll_x);
-      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &list::on_message_scroll_y);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &list::on_message_show_window);
-      MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::on_message_left_button_double_click);
+      MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &list::on_message_scroll_x);
+      MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &list::on_message_scroll_y);
+      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &list::on_message_show_window);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &list::on_message_create);
+      MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &list::on_message_left_button_double_click);
 
    }
 

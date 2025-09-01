@@ -12,7 +12,7 @@
 #include "acme/parallelization/task.h"
 
 
-#define e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
+#define ::user::e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
 #if defined(LINUX) // || defined(__ANDROID__)
 
 
@@ -53,7 +53,7 @@ bool apex_defer_process_x_message(htask htask,MESSAGE * pMsg,oswindow oswindow,b
 ////
 ////   itask idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 ////
-////   auto pmessagequeue = ::aaa_get_message_queue(idthread, message.message != e_message_quit);
+////   auto pmessagequeue = ::aaa_get_message_queue(idthread, message.message != ::user::e_message_quit);
 ////
 ////   if(pmessagequeue == nullptr)
 ////   {

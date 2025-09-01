@@ -321,8 +321,8 @@ namespace message
    };
 
 
-   // e_message_paint -> aura
-   // e_message_mouse_leave -> aura
+   // ::user::e_message_paint -> aura
+   // ::user::e_message_mouse_leave -> aura
 
 
    class CLASS_DECL_AURA nc_hit_test : public ::user::message

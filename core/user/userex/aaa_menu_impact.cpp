@@ -94,8 +94,8 @@
 //void menu_impact::install_message_routing(::channel * pchannel)
 //{
 //   ::user::form::install_message_routing(pchannel);
-//   MESSAGE_LINK(e_message_create, pchannel, this, &menu_impact::on_message_create);
-////   //MESSAGE_LINK(e_message_timer, pchannel, this, &menu_impact::on_timer);
+//   MESSAGE_LINK(::user::e_message_create, pchannel, this, &menu_impact::on_message_create);
+////   //MESSAGE_LINK(::user::e_message_timer, pchannel, this, &menu_impact::on_timer);
 //   //MESSAGE_LINK(WM_USER + 123, pchannel, this, &menu_impact::_001OnUser123);
 //
 //}

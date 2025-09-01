@@ -1514,12 +1514,12 @@ namespace user
 
       auto emessage = pmouse->m_emessage;
 
-      if(emessage == e_message_left_button_down
-       //|| emessage == e_message_left_button_up
-       || emessage == e_message_right_button_down
-       //|| emessage == e_message_right_button_up
-       || emessage == e_message_middle_button_down
-       //|| emessage == e_message_middle_button_up
+      if(emessage == ::user::e_message_left_button_down
+       //|| emessage == ::user::e_message_left_button_up
+       || emessage == ::user::e_message_right_button_down
+       //|| emessage == ::user::e_message_right_button_up
+       || emessage == ::user::e_message_middle_button_down
+       //|| emessage == ::user::e_message_middle_button_up
        )
        {
 
@@ -1547,7 +1547,7 @@ namespace user
                   if (pinteraction->m_ewindowflag & e_window_flag_focus)
                   {
 
-                     pinteraction->post_message(e_message_kill_focus);
+                     pinteraction->post_message(::user::e_message_kill_focus);
 
                   }
 

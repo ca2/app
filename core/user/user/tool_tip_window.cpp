@@ -44,7 +44,7 @@ namespace user
 
       switch(pusermessage->m_emessage)
       {
-      case e_message_mouse_move:
+      case ::user::e_message_mouse_move:
       {
 
          auto puserinteraction = pusermessage->user_interaction();
@@ -275,7 +275,7 @@ namespace user
    // Function Name: OnPaint
    //
    // Purpose:
-   // e_message_paint message handler.
+   // ::user::e_message_paint message handler.
    //
    // Output:
    // See aura API documentation.
@@ -339,7 +339,7 @@ namespace user
    // Function Name: OnTimer()
    //
    // Purpose:
-   // Handler for e_message_timer message
+   // Handler for ::user::e_message_timer message
    //
    // Output:
    // none
@@ -621,7 +621,7 @@ namespace user
 
       CText text;
       
-      if (!m_puserinteraction->send_message(e_message_tool_tip_text, iTool, (lparam)&text))
+      if (!m_puserinteraction->send_message(::user::e_message_tool_tip_text, iTool, (lparam)&text))
       {
 
          return false;

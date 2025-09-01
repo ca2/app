@@ -3506,7 +3506,7 @@ namespace aura
 
    //      merge_accumulated_on_open_file(pcreate);
 
-   //      papp->post_object(e_message_system, e_system_message_create, pcreate);
+   //      papp->post_object(::user::e_message_system, e_system_message_create, pcreate);
 
    //   }
 
@@ -4153,7 +4153,7 @@ namespace aura
 //      if (strProfile.is_empty() && strTarget.is_empty() && strBrowser.is_empty())
 //      {
 //
-//         //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, e_message_box_ok);
+//         //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, ::user::e_message_box_ok);
 
 //pmessagebox->sync();
 //
@@ -4385,7 +4385,7 @@ namespace aura
 //
 //            strParam = " -c \"" + strCmd + "\"";
 //
-//            //MessageBox(nullptr, strParam, path, e_message_box_ok);
+//            //MessageBox(nullptr, strParam, path, ::user::e_message_box_ok);
 //
 //            call_async(shell, strParam, pathHome, e_display_default, false);
 //

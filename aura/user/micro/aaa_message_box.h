@@ -14,7 +14,7 @@ public:
    ~micro_message_box() override;
 
 
-   void do_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox) override;
+   void do_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box& emessagebox) override;
 
 
 };

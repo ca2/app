@@ -1374,7 +1374,7 @@ namespace berg
       if (!pstyle)
       {
 
-         output_error_message("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.", nullptr, e_message_box_ok);
+         output_error_message("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.", nullptr, ::user::e_message_box_ok);
 
          throw ::exit_exception(::error_exit_system, system());
 

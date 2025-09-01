@@ -53,13 +53,13 @@ simple_scroll_bar::~simple_scroll_bar()
 void simple_scroll_bar::install_message_routing(::channel * pchannel)
 {
    ::user::interaction::install_message_routing(pchannel);
-   MESSAGE_LINK(e_message_create, pchannel, this, &simple_scroll_bar::on_message_create);
-   MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_scroll_bar::on_message_destroy);
-   MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_scroll_bar::on_message_show_window);
-   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_scroll_bar::on_message_mouse_move);
-   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &simple_scroll_bar::on_message_left_button_down);
-   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &simple_scroll_bar::on_message_left_button_up);
-   MESSAGE_LINK(e_message_scroll_x, pchannel, this, &simple_scroll_bar::on_message_scroll_x);
+   MESSAGE_LINK(::user::e_message_create, pchannel, this, &simple_scroll_bar::on_message_create);
+   MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &simple_scroll_bar::on_message_destroy);
+   MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &simple_scroll_bar::on_message_show_window);
+   MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &simple_scroll_bar::on_message_mouse_move);
+   MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &simple_scroll_bar::on_message_left_button_down);
+   MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &simple_scroll_bar::on_message_left_button_up);
+   MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &simple_scroll_bar::on_message_scroll_x);
 
 }
 
@@ -1058,11 +1058,11 @@ m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPosition = nPos;
 
 if(m_eorientation == e_orientation_horizontal)
 {
-puiParent->SendMessage(e_message_scroll_x, MAKEWPARAM(e_scroll_command_LINERIGHT, m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPosition), (LPARAM) this->get_handle());
+puiParent->SendMessage(::user::e_message_scroll_x, MAKEWPARAM(e_scroll_command_LINERIGHT, m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPosition), (LPARAM) this->get_handle());
 }
 else
 {
-puiParent->SendMessage(e_message_scroll_y, MAKEWPARAM(e_scroll_command_LINEDOWN, m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPosition), (LPARAM) this->get_handle());
+puiParent->SendMessage(::user::e_message_scroll_y, MAKEWPARAM(e_scroll_command_LINEDOWN, m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPosition), (LPARAM) this->get_handle());
 }*/
 
 //}

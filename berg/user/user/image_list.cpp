@@ -125,8 +125,8 @@ namespace user
 
       //install_click_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &image_list::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list::on_message_destroy);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &image_list::on_message_create);
+      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &image_list::on_message_destroy);
 
    }
 
@@ -847,8 +847,8 @@ namespace user
       ::user::impact::install_message_routing(pchannel);
       ::user::image_list::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &image_list_impact::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_impact::on_message_destroy);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &image_list_impact::on_message_create);
+      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &image_list_impact::on_message_destroy);
 
    }
 

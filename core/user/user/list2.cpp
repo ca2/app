@@ -36,7 +36,7 @@ namespace user
 
       ::user::scroll_base::install_message_routing(psender);
 
-      MESSAGE_LINK(e_message_create, psender, this, &list2::on_message_create);
+      MESSAGE_LINK(::user::e_message_create, psender, this, &list2::on_message_create);
 
       // add_command_handler("generate_and_copy_button", { this, &form_001::_001OnGenerateAndCopyButton });
       //add_command_handler("clear_button", { this, &form_001::_001OnClearButton });

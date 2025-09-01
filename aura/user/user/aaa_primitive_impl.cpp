@@ -152,7 +152,7 @@ namespace user
    void primitive_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //m_puserinteraction->message_call(e_message_size, 0, process_state().m_size.lparam());
+      //m_puserinteraction->message_call(::user::e_message_size, 0, process_state().m_size.lparam());
 
       //m_puserinteraction->m_timeLastVisualChange.Now();
 
@@ -275,7 +275,7 @@ namespace user
    //      else
    //      {
 
-   //         pinteraction->send_message(e_message_size_parent, 0, (lparam)& sizeparentparams);
+   //         pinteraction->send_message(::user::e_message_size_parent, 0, (lparam)& sizeparentparams);
 
    //      }
 
@@ -882,7 +882,7 @@ namespace user
       case ::message::e_prototype_timer:
       {
 
-         //throw ::exception(::exception("do not use e_message_timer or Windows set_timer/kill_timer"));
+         //throw ::exception(::exception("do not use ::user::e_message_timer or Windows set_timer/kill_timer"));
 
          _NEW_MESSAGE(::message::timer);
 
@@ -2281,7 +2281,7 @@ namespace user
          try
          {
 
-            puiThis->send_message(e_message_destroy);
+            puiThis->send_message(::user::e_message_destroy);
 
          }
          catch (...)
@@ -2292,7 +2292,7 @@ namespace user
          try
          {
 
-            puiThis->send_message(e_message_non_client_destroy);
+            puiThis->send_message(::user::e_message_non_client_destroy);
 
          }
          catch (...)
@@ -2694,10 +2694,10 @@ namespace user
       //}
 
       //g_p->set_at((iptr)this, ::type(m_puserinteraction).name()) + "xxx" + ::type(this).name();
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &primitive_impl::on_message_show_window);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &primitive_impl::on_message_destroy);
-      MESSAGE_LINK(e_message_non_client_destroy, pchannel, this, &primitive_impl::on_message_non_client_destroy);
-      MESSAGE_LINK(e_message_create, pchannel, this, &primitive_impl::_001OnPrioCreate);
+      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &primitive_impl::on_message_show_window);
+      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &primitive_impl::on_message_destroy);
+      MESSAGE_LINK(::user::e_message_non_client_destroy, pchannel, this, &primitive_impl::on_message_non_client_destroy);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &primitive_impl::_001OnPrioCreate);
 
       if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))
       {

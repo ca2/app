@@ -98,7 +98,7 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact_host::on_message_create);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &impact_host::on_message_create);
 
    }
 

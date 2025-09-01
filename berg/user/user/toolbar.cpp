@@ -106,10 +106,10 @@ namespace user
 
       ::user::control_bar::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_non_client_hit_test, pchannel, this, &toolbar::_001OnNcHitTest);
-      MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &toolbar::on_message_non_client_calculate_size);
-      MESSAGE_LINK(e_message_create, pchannel, this, &toolbar::on_message_create);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &toolbar::on_message_left_button_double_click);
+      MESSAGE_LINK(::user::e_message_non_client_hit_test, pchannel, this, &toolbar::_001OnNcHitTest);
+      MESSAGE_LINK(::user::e_message_non_client_calc_size, pchannel, this, &toolbar::on_message_non_client_calculate_size);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &toolbar::on_message_create);
+      MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &toolbar::on_message_left_button_double_click);
       //#ifdef WINDOWS_DESKTOP
 //      MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
 //      MESSAGE_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);
@@ -168,7 +168,7 @@ namespace user
 
          // allow reflections
          //if (::user::interaction::on_command(0,
-         //   MAKELONG((index)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+         //   MAKELONG((index)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
          //   &state, nullptr))
          //   continue;
 
@@ -1701,7 +1701,7 @@ namespace user
          {
             // allow reflections
             if (::user::interaction::on_command(0,
-               MAKELONG((index)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+               MAKELONG((index)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
                &state, nullptr))
                continue;
 

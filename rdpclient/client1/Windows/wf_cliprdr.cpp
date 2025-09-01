@@ -1068,8 +1068,8 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //	switch (Msg)
 //	{
-//		case e_message_create:
-//			DEBUG_CLIPRDR("info: e_message_create");
+//		case ::user::e_message_create:
+//			DEBUG_CLIPRDR("info: ::user::e_message_create");
 //			clipboard = (wfClipboard*)((CREATESTRUCT*) lParam)->lpCreateParams;
 //			if (!AddClipboardFormatListener(hWnd)) {
 //				DEBUG_CLIPRDR("error: AddClipboardFormatListener failed with %#x.", get_last_error());
@@ -1077,8 +1077,8 @@ void wf_destroy_file_obj(IDataObject* instance);
 //			clipboard->hwnd = hWnd;
 //			break;
 //
-//		case e_message_close:
-//			DEBUG_CLIPRDR("info: e_message_close");
+//		case ::user::e_message_close:
+//			DEBUG_CLIPRDR("info: ::user::e_message_close");
 //			RemoveClipboardFormatListener(hWnd);
 //			break;
 //
@@ -1156,10 +1156,10 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //		case WM_DESTROYCLIPBOARD:
 //		case WM_ASKCBFORMATNAME:
-//		case e_message_hscrollCLIPBOARD:
-//		case e_message_paintCLIPBOARD:
+//		case ::user::e_message_hscrollCLIPBOARD:
+//		case ::user::e_message_paintCLIPBOARD:
 //		case WM_SIZECLIPBOARD:
-//		case e_message_vscrollCLIPBOARD:
+//		case ::user::e_message_vscrollCLIPBOARD:
 //		default:
 //			return DefWindowProc(hWnd, Msg, wParam, lParam);
 //	}
@@ -2034,7 +2034,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //		return;
 //
 //	if (clipboard->hwnd)
-//		PostMessage(clipboard->hwnd, e_message_quit, 0, 0);
+//		PostMessage(clipboard->hwnd, ::user::e_message_quit, 0, 0);
 //
 //	if (clipboard->thread)
 //	{

@@ -53,15 +53,15 @@ namespace user
 //#ifdef WINDOWS
 //      MESSAGE_LINK(WM_CTLCOLOR, pchannel, this, &control_bar::_001OnCtlColor);
 //#endif
-      MESSAGE_LINK(e_message_size_parent, pchannel, this, &control_bar::_001OnSizeParent);
-      MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &control_bar::_001OnWindowPosChanging);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::on_message_mouse_move);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_bar::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &control_bar::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &control_bar::_001OnMouseActivate);
-      MESSAGE_LINK(e_message_create, pchannel, this, &control_bar::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &control_bar::on_message_destroy);
-      MESSAGE_LINK(e_message_help_hit_test, pchannel, this, &control_bar::_001OnHelpHitTest);
+      MESSAGE_LINK(::user::e_message_size_parent, pchannel, this, &control_bar::_001OnSizeParent);
+      MESSAGE_LINK(::user::e_message_window_position_changing, pchannel, this, &control_bar::_001OnWindowPosChanging);
+      MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &control_bar::on_message_mouse_move);
+      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &control_bar::on_message_left_button_down);
+      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &control_bar::on_message_left_button_up);
+      MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &control_bar::_001OnMouseActivate);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &control_bar::on_message_create);
+      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &control_bar::on_message_destroy);
+      MESSAGE_LINK(::user::e_message_help_hit_test, pchannel, this, &control_bar::_001OnHelpHitTest);
    }
 
 
@@ -319,7 +319,7 @@ namespace user
 //
 //      // handle CBRS_FLYBY style (status bar flyby help)
 //      if (((m_dwStyle & CBRS_FLYBY) ||
-//            message == e_message_left_button_down || message == e_message_left_button_up) &&
+//            message == ::user::e_message_left_button_down || message == ::user::e_message_left_button_up) &&
 //            ((message >= WM_MOUSEFIRST && message <= WM_MOUSELAST)))
 ////          (message >= WM_NCMOUSEFIRST && message <= WM_NCMOUSELAST)))
 //      {
@@ -384,9 +384,9 @@ namespace user
 //      switch (message)
 //      {
 //      case WM_NOTIFY:
-//      case e_message_command:
+//      case ::user::e_message_command:
 //      case WM_DRAWITEM:
-//      case e_message_measure_item:
+//      case ::user::e_message_measure_item:
 //      case WM_DELETEITEM:
 //      case WM_COMPAREITEM:
 //      case WM_VKEYTOITEM:
@@ -548,7 +548,7 @@ namespace user
 
          // erase parts not drawn
          spgraphics->IntersectClipRect(rectangleWindow);
-         SendMessage(e_message_erase_background, (WPARAM)spgraphics->get_handle1());
+         SendMessage(::user::e_message_erase_background, (WPARAM)spgraphics->get_handle1());
 
          // draw gripper in non-client area
          DrawGripper(&spgraphics, rectangleWindow);*/
@@ -575,7 +575,7 @@ namespace user
 
       // erase parts not drawn
       //pgraphics->IntersectClipRect(rectangleWindow);
-      //SendMessage(e_message_erase_background, (WPARAM)spgraphics->get_handle1());
+      //SendMessage(::user::e_message_erase_background, (WPARAM)spgraphics->get_handle1());
       pgraphics->reset_clip();
 
       auto rectangle = ::double_rectangle_dimension(0, 0, rectangleWindow.width(), rectangleWindow.height());
@@ -661,7 +661,7 @@ namespace user
       // // update the indicators before becoming visible
       // ::user::message base(this);
       // LRESULT lresult;
-      // base.set(this, e_message_idle_update_command_user_interface, true, (LPARAM) 0, lresult);
+      // base.set(this, ::user::e_message_idle_update_command_user_interface, true, (LPARAM) 0, lresult);
       // _001OnIdleUpdateCmdUI(&base);
 
    }

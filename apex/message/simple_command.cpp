@@ -11,7 +11,7 @@ namespace message
    simple_command::simple_command()
    {
 
-      m_emessage = ::e_message_simple_command;
+      m_emessage = ::::user::e_message_simple_command;
 
       set(e_simple_command_none);
 

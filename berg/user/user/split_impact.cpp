@@ -33,10 +33,10 @@ namespace user
       split_layout::install_message_routing(pchannel);
       impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &split_impact::on_message_create);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &split_impact::on_message_create);
 
-      //MESSAGE_LINK(e_message_size, pchannel, this, &split_impact::on_message_size);
-      //MESSAGE_LINK(e_message_show_window, pchannel, this, &split_impact::on_message_show_window);
+      //MESSAGE_LINK(::user::e_message_size, pchannel, this, &split_impact::on_message_size);
+      //MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &split_impact::on_message_show_window);
 
    }
 
@@ -95,7 +95,7 @@ namespace user
 
          strMessage.formatf("split_impact::on_create_impact failed to create views for split impact %s", typeid(this).name());
 
-         //message_box(strMessage, nullptr, e_message_box_icon_exclamation)->get_object(10_s);
+         //message_box(strMessage, nullptr, ::user::e_message_box_icon_exclamation)->get_object(10_s);
 
          output_error_message(strMessage);
 

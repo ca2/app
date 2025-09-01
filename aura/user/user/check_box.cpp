@@ -731,8 +731,8 @@ namespace user
 
       //install_click_default_mouse_handling(pchannel);
       
-      MESSAGE_LINK(e_message_create, pchannel, this, &check_box::on_message_create);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &check_box::on_message_left_button_double_click);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &check_box::on_message_create);
+      MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &check_box::on_message_left_button_double_click);
 
    }
 

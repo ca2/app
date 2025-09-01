@@ -35,14 +35,14 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &still::on_message_create);
-      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &still::on_message_left_button_down);
-      //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &still::on_message_left_button_up);
-      //MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &still::on_message_middle_button_down);
-      //MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &still::on_message_middle_button_up);
-      //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &still::on_message_mouse_move);
-      //MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &still::on_message_mouse_leave);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &still::on_message_key_down);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &still::on_message_create);
+      //MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &still::on_message_left_button_down);
+      //MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &still::on_message_left_button_up);
+      //MESSAGE_LINK(::user::e_message_middle_button_down, pchannel, this, &still::on_message_middle_button_down);
+      //MESSAGE_LINK(::user::e_message_middle_button_up, pchannel, this, &still::on_message_middle_button_up);
+      //MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &still::on_message_mouse_move);
+      //MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &still::on_message_mouse_leave);
+      MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &still::on_message_key_down);
 
    }
 
@@ -372,7 +372,7 @@ namespace user
    //   //      topic.m_puserinteraction = this;
    //   //      topic.id() = ::id_mouse_enter;
    //   //      get_parent()->send_message(
-   //   //      e_message_event, 0, (LPARAM)&ev);
+   //   //      ::user::e_message_event, 0, (LPARAM)&ev);
    //   //      //               m_bActionHover = true;
    //   //   }
    //   //   else if (iHover == -1)
@@ -381,7 +381,7 @@ namespace user
    //   //      topic.m_puserinteraction = this;
    //   //      topic.id() = ::id_mouse_leave;
    //   //      get_parent()->send_message(
-   //   //      e_message_event, 0, (LPARAM)&ev);
+   //   //      ::user::e_message_event, 0, (LPARAM)&ev);
    //   //      //             m_bActionHover = false;
    //   //   }
    //   //}
@@ -404,7 +404,7 @@ namespace user
    //   //   topic.id() = ::id_mouse_leave;
    //   //   if (get_parent() != nullptr)
    //   //   {
-   //   //      get_parent()->send_message(e_message_event, 0, (LPARAM)&ev);
+   //   //      get_parent()->send_message(::user::e_message_event, 0, (LPARAM)&ev);
    //   //   }
    //   //}
 

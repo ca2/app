@@ -361,7 +361,7 @@ media_player::~media_player()
 void media_player::post_command(media_player_command * pcommand)
 {
 
-//      post_object(e_message_player_command, 0, pcommand);
+//      post_object(::user::e_message_player_command, 0, pcommand);
 
 }
 
@@ -473,7 +473,7 @@ bool media_player::player_command_procedure(media_player_command * pcommand)
 
       //}
 
-      //m_pwaveout->post_object(e_message_player_start, 0, pcommand);
+      //m_pwaveout->post_object(::user::e_message_player_start, 0, pcommand);
       OnHappening(e_player_happening_play, pcommand);
       
    }
@@ -583,7 +583,7 @@ void media_player::post_event(enum_player_happening ehappening, media_player_com
 
    //::pointer<player_command>spcommand(pcommand);
 
-   //post_message(e_message_player_event, (WPARAM)ehappening, spcommand);
+   //post_message(::user::e_message_player_event, (WPARAM)ehappening, spcommand);
    OnHappening(ehappening, pcommand);
 
 }
@@ -855,7 +855,7 @@ void media_player::_Stop()
    if (IsPlaying())
    {
 
-      //m_pwaveout->post_message(e_message_player_stop);
+      //m_pwaveout->post_message(::user::e_message_player_stop);
 
    }
 

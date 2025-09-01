@@ -1404,7 +1404,7 @@ namespace user
 
          pre_close_frame(pframe);
 
-         pframe->post_message(e_message_destroy_window);
+         pframe->post_message(::user::e_message_destroy_window);
 
          //pframe->destroy();
 
@@ -1604,8 +1604,8 @@ namespace user
          //   ::aura::FormatString1(prompt, nIDP, strTitle);*/
          //}
 
-         //message_box(prompt, e_message_box_icon_exclamation, nHelpContext);
-         //message_box(strPrompt, nullptr, e_message_box_icon_exclamation);
+         //message_box(prompt, ::user::e_message_box_icon_exclamation, nHelpContext);
+         //message_box(strPrompt, nullptr, ::user::e_message_box_icon_exclamation);
 
          output_error_message(strPrompt);
 

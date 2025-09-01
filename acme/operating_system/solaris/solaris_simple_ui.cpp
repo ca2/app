@@ -315,11 +315,11 @@ namespace os
                            }
                            else if(e.xbutton.button == Button2)
                            {
-                              //         lpMsg->message = e_message_middle_button_down;
+                              //         lpMsg->message = ::user::e_message_middle_button_down;
                            }
                            else if(e.xbutton.button == Button3)
                            {
-                              //       lpMsg->message = e_message_right_button_down;
+                              //       lpMsg->message = ::user::e_message_right_button_down;
                            }
                            else
                            {
@@ -335,11 +335,11 @@ namespace os
                            }
                            else if(e.xbutton.button == Button2)
                            {
-                              //lpMsg->message = e_message_middle_button_up;
+                              //lpMsg->message = ::user::e_message_middle_button_up;
                            }
                            else if(e.xbutton.button == Button3)
                            {
-                              //lpMsg->message = e_message_right_button_up;
+                              //lpMsg->message = ::user::e_message_right_button_up;
                            }
                            else
                            {
@@ -401,13 +401,13 @@ namespace os
                                  buffer[0] = '\0';
                               }
                            }
-                           // lpMsg->message = e_message_key_down;
+                           // lpMsg->message = ::user::e_message_key_down;
 
                         }
                         else if(e.xkey.type == KeyRelease)
                         {
 
-                           //lpMsg->message = e_message_key_up;
+                           //lpMsg->message = ::user::e_message_key_up;
                            if(keysym == XK_Tab)
                            {
                               //on_key_up(VK_TAB);
@@ -441,7 +441,7 @@ namespace os
                      {
 
                         //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
-                        //lpMsg->message       = e_message_mouse_move;
+                        //lpMsg->message       = ::user::e_message_mouse_move;
                         //lpMsg->wParam        = 0;
                         //lpMsg->lParam        = make_int(e.xmotion.x_root, e.xmotion.y_root);
 
@@ -454,7 +454,7 @@ namespace os
                      {
 
                         //lpMsg->hwnd          = oswindow_get(display, e.xdestroywindow.window);
-                        //lpMsg->message       = e_message_destroy;
+                        //lpMsg->message       = ::user::e_message_destroy;
 
                         m_bRunLoop = false;
 

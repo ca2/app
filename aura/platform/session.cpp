@@ -830,7 +830,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 ////      //         if (pinteraction.is_set())
 ////      //         {
 ////
-////      //            pinteraction->send_message(e_message_kill_focus, (wparam) ( (pkeyboardfocus != nullptr &&
+////      //            pinteraction->send_message(::user::e_message_kill_focus, (wparam) ( (pkeyboardfocus != nullptr &&
 ////      //                              pkeyboardfocus != (::user::interaction_base *) (ulong_ptr) 1 )?
 ////      //                              pkeyboardfocus->get_safe_handle() : nullptr));
 ////
@@ -995,7 +995,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 //      //         if (pinteraction.is_set())
 //      //         {
 //
-//      //            pinteraction->send_message(e_message_kill_focus, (wparam) ( (pkeyboardfocus != nullptr &&
+//      //            pinteraction->send_message(::user::e_message_kill_focus, (wparam) ( (pkeyboardfocus != nullptr &&
 //      //                              pkeyboardfocus != (::user::interaction_base *) (ulong_ptr) 1 )?
 //      //                              pkeyboardfocus->get_safe_handle() : nullptr));
 //
@@ -1153,7 +1153,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 //      //         if (pinteraction.is_set())
 //      //         {
 //
-//      //            pinteraction->send_message(e_message_kill_focus, (wparam) ( (pkeyboardfocus != nullptr &&
+//      //            pinteraction->send_message(::user::e_message_kill_focus, (wparam) ( (pkeyboardfocus != nullptr &&
 //      //                              pkeyboardfocus != (::user::interaction_base *) (ulong_ptr) 1 )?
 //      //                              pkeyboardfocus->get_safe_handle() : nullptr));
 //
@@ -1353,12 +1353,12 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
    //   long long iMessage = pmouse->m_emessage;
 
-   //   if(iMessage == e_message_left_button_down
-   //    //|| iMessage == e_message_left_button_up
-   //    || iMessage == e_message_right_button_down
-   //    //|| iMessage == e_message_right_button_up
-   //    || iMessage == e_message_middle_button_down
-   //    //|| iMessage == e_message_middle_button_up
+   //   if(iMessage == ::user::e_message_left_button_down
+   //    //|| iMessage == ::user::e_message_left_button_up
+   //    || iMessage == ::user::e_message_right_button_down
+   //    //|| iMessage == ::user::e_message_right_button_up
+   //    || iMessage == ::user::e_message_middle_button_down
+   //    //|| iMessage == ::user::e_message_middle_button_up
    //    )
    //    {
 
@@ -1384,7 +1384,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
    //               if(pinteraction->m_bFocus)
    //               {
 
-   //                  pinteraction->post_message(e_message_kill_focus);
+   //                  pinteraction->post_message(::user::e_message_kill_focus);
 
    //               }
 

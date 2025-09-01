@@ -70,6 +70,13 @@ namespace platform
 
    }
 
+
+   void application_state::on_main_task_iteration()
+   {
+
+
+   }
+
 //   void application_state::set_data(const ::scoped_string & scopedstrRelativeName,
 //                                 const ::scoped_string & scopedstrMimeType,
 //                                 const ::block & block)

@@ -539,9 +539,9 @@ void ns_main_async(dispatch_block_t block);
 //   if(!w->m_pimpl->m_bDestroyImplOnly)
 //   {
 //
-//      w->m_pimpl->m_puserinteraction->post_message(e_message_destroy);
+//      w->m_pimpl->m_puserinteraction->post_message(::user::e_message_destroy);
 //
-//      w->m_pimpl->m_puserinteraction->post_message(e_message_non_client_destroy);
+//      w->m_pimpl->m_puserinteraction->post_message(::user::e_message_non_client_destroy);
 //
 //   }
 //   else
@@ -550,9 +550,9 @@ void ns_main_async(dispatch_block_t block);
 //      ns_main_async(^()
 //      {
 //
-//         w->m_pimpl->call_message_handler(e_message_destroy, 0, 0);
+//         w->m_pimpl->call_message_handler(::user::e_message_destroy, 0, 0);
 //
-//         w->m_pimpl->call_message_handler(e_message_non_client_destroy, 0, 0);
+//         w->m_pimpl->call_message_handler(::user::e_message_non_client_destroy, 0, 0);
 //
 //      });
 //

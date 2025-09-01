@@ -286,9 +286,9 @@ namespace user
 
       impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &tab_impact::on_message_create);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &tab_impact::on_message_create);
       MESSAGE_LINK(WM_USER + 1122, pchannel, this, &tab_impact::_001OnMenuMessage);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_impact::on_message_set_focus);
+      MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &tab_impact::on_message_set_focus);
 
    }
 

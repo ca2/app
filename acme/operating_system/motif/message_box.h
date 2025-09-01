@@ -30,7 +30,7 @@ namespace motif
       enum_dialog_result         m_edialogresult;
 
 
-      ::atom do_modal(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails) override;
+      ::atom do_modal(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails) override;
       //void do_modal(const_char_pointer pszMsg, bool bError) override;
 
 

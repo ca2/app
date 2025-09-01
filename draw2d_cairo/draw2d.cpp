@@ -259,7 +259,7 @@ return g_pdraw2dcairo;
 //      catch (...)
 //      {
 //
-//         output_error_message("except", "except", e_message_box_ok);
+//         output_error_message("except", "except", ::user::e_message_box_ok);
 //
 //      }
 //
@@ -1219,7 +1219,7 @@ return g_pdraw2dcairo;
 //      if (!estatus)
 //      {
 //
-//         informationf("([a-z0-9_]+)_factory has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
+//         informationf("([a-z0-9_]+)_factory has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", ::user::e_message_box_ok);
 //
 //         return estatus;
 //

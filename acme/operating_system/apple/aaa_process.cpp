@@ -800,7 +800,7 @@ auto tickStart = ::duration::now();
 
          m_exitstatus.m_iExitCode = -1;
 
-         ::message_box(nullptr,"gksu is not installed, please install gksu.","Please, install gksu.",e_message_box_icon_information);
+         ::message_box(nullptr,"gksu is not installed, please install gksu.","Please, install gksu.",::user::e_message_box_icon_information);
 
          return false;
 

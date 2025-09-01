@@ -356,7 +356,7 @@ namespace html
 
       }
 
-      MESSAGE_LINK(e_message_key_down, m_puserinteraction, this, &core_data::on_message_key_down);
+      MESSAGE_LINK(::user::e_message_key_down, m_puserinteraction, this, &core_data::on_message_key_down);
       
       m_bImplemented = true;
       
@@ -633,7 +633,7 @@ namespace html
       if (m_puserinteraction != nullptr)
       {
 
-         m_puserinteraction->post_message(e_message_image_loaded);
+         m_puserinteraction->post_message(::user::e_message_image_loaded);
 
       }
 

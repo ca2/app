@@ -114,7 +114,7 @@ namespace tc4
       set["abc"] = 0;
       set["ebc"] = 0;
 
-      ::MessageBox(NULL,"stop oh yes!!","stop oh yes!!",e_message_box_icon_information);
+      ::MessageBox(NULL,"stop oh yes!!","stop oh yes!!",::user::e_message_box_icon_information);
 
       */
 

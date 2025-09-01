@@ -560,7 +560,7 @@ namespace platform
    //      //psystem->merge_accumulated_on_open_file(pcreate);
    //
    //      //papp->do_request(pcreate);
-   //      papp->post_element(e_message_system, e_system_message_create, pcreate);
+   //      papp->post_element(::user::e_message_system, e_system_message_create, pcreate);
    //
    //      //         while (task_get_run())
    //      //         {

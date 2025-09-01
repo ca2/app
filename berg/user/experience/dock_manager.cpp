@@ -466,7 +466,7 @@ namespace experience
 
       m_bDocking = true;
 
-      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.add(e_message_mouse_move);
+      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.add(::user::e_message_mouse_move);
 
       m_pframewindow->on_start_layout_experience(e_layout_experience_docking);
 
@@ -524,7 +524,7 @@ namespace experience
 
       }
 
-      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.erase(e_message_mouse_move);
+      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.erase(::user::e_message_mouse_move);
 
       m_bDocking = false;
 

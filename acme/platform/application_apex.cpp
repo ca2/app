@@ -462,18 +462,18 @@ namespace platform
    //// os_* functions generally
    //// reserves a lot of surprises from each
    //// operating system specific behavior
-   //void apex_application_layer::auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
    //pmessagebox->sync(){}
 
 
-   //void apex_application_layer::ui_message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
-   //void apex_application_layer::ui_message_box_timeout(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class ::time& timeTimeOut = time::infinite(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::ui_message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::ui_message_box_timeout(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
 
    //using ::platform::context::message_box{}
-   //void apex_application_layer::message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
-   //void apex_application_layer::message_box_timeout(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class ::time& timeTimeOut = time::infinite(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::message_box_timeout(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
 
    void apex_application_layer::on_file_new()
@@ -1051,7 +1051,7 @@ namespace platform
    //void apex_application_layer::erase_frame(::user::interaction * puserinteraction){}
 
 
-   void apex_application_layer::send_message_to_windows(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void apex_application_layer::send_message_to_windows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
       // return false;
    } // with tbs in <3
@@ -1081,7 +1081,7 @@ namespace platform
    // user virtual ::user::document * place_hold(::user::interaction * pinteraction){}
 
 
-   void apex_application_layer::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void apex_application_layer::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
    }
 
@@ -1237,8 +1237,8 @@ namespace platform
    //void route_command(::message::command* pcommand, bool bRouteToKeyDescendant = false) override{}
 
 
-   //virtual pointer< ::extended::future < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok) override{}
-   //virtual ::enum_dialog_result message_box_timeout(const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class time & timeTimeout = ::time::infinite(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future()) override{}
+   //virtual pointer< ::extended::future < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override{}
+   //virtual ::enum_dialog_result message_box_timeout(const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const class time & timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future()) override{}
 
 
    //void EnableHtmlHelp(){}

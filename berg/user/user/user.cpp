@@ -446,7 +446,7 @@ namespace berg
    }
 
 
-   void user::SendMessageToWindows(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void user::SendMessageToWindows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       //auto pappBase = get_app();

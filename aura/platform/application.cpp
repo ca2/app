@@ -2,7 +2,7 @@
 #include "application.h"
 #include "shell_open.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/folder.h"
 #include "acme/filesystem/file/memory_file.h"
@@ -795,7 +795,7 @@ namespace aura
    //}
 
 
-   //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::auto pmessagebox = __initialize_new ::message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -805,7 +805,7 @@ namespace aura
    //}
 
 
-   //void application::ui_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -820,7 +820,7 @@ namespace aura
    //}
 
 
-   //void application::ui_message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::::user::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -835,7 +835,7 @@ namespace aura
    //}
 
 
-   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -854,7 +854,7 @@ namespace aura
    //}
 
 
-   //void application::message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::::user::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
@@ -2492,7 +2492,7 @@ retry_license:
 
       //   //   information() << "ERROR: image_context required but missing.";
 
-      //   //   //output_error_message("image_context required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::::user::e_message_box_icon_information);
+      //   //   //output_error_message("image_context required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::user::e_message_box_icon_information);
 
       //   //   return estatus;
 
@@ -2516,7 +2516,7 @@ retry_license:
 
       //    //   information() << "ERROR: image_context required but missing.";
 
-      //    //   //output_error_message("image_context required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::::user::e_message_box_icon_information);
+      //    //   //output_error_message("image_context required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::user::e_message_box_icon_information);
 
       //    //   return estatus;
 
@@ -3890,7 +3890,7 @@ retry_license:
    }
 
 
-   void application::send_message_to_windows(::enum_message emessage, ::wparam wparam, ::lparam lparam) // with tbs in <3
+   void application::send_message_to_windows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) // with tbs in <3
    {
 
       ::pointer<::user::interaction>puserinteraction;
@@ -4163,7 +4163,7 @@ retry_license:
    //}
 
 
-   void application::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam )
+   void application::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam )
    {
 
       ::thread::post_message(emessage, wparam, lparam);
@@ -8491,7 +8491,7 @@ namespace aura
 
       auto puserinteractionMain = m_pacmeuserinteractionMain;
 
-      //puserinteractionMain->message_box(strMessage, nullptr, ::enum_message_box(iMessageFlags));
+      //puserinteractionMain->message_box(strMessage, nullptr, ::user::enum_message_box(iMessageFlags));
 
       output_error_message(strMessage, scopedstrTopic, iMessageFlags);
 

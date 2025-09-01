@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "statusbar.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/exception/interface_only.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"

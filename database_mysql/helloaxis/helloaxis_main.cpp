@@ -115,7 +115,7 @@ BOOL InitInstance(::particle * pparticle, HINSTANCE hInstance, int nCmdShow)
 //  ::user::e_message_destroy  - post a quit message and return
 //
 //
-LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+LRESULT CALLBACK WndProc(HWND hWnd, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
    ::aura::application * papp;
    if (message == ::user::e_message_create)
@@ -165,7 +165,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::
 }
 
 // Message handler for about box.
-INT_PTR CALLBACK About(HWND hDlg, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+INT_PTR CALLBACK About(HWND hDlg, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
    __UNREFERENCED_PARAMETER(lParam);
    switch (message)

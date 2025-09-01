@@ -4,7 +4,7 @@
 #include "list_column_array.h"
 #include "list_item.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/handler/item.h"
@@ -1004,7 +1004,7 @@ namespace user
 
                   _001SetSubItemText(psubitemTarget);
 
-                  //::pointer<::::user::list::column>pcolumn = m_pcolumna->get_by_subitem(iSubItemTarget);
+                  //::pointer<::user::list::column>pcolumn = m_pcolumna->get_by_subitem(iSubItemTarget);
                   //
                   //if (pcolumn.is_set() && m_controldescriptorset.bounds(pcolumn->m_iControl))
                   //{

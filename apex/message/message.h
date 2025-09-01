@@ -51,7 +51,7 @@ namespace message
       bool m_bCommand = false;
 
 
-      message(::enum_message emessage = ::user::e_message_undefined);
+      message(::user::enum_message eusermessage = ::user::e_message_undefined);
       ~message() override;
 
 
@@ -70,8 +70,8 @@ namespace message
       bool previous(); // returns bRet
 
       virtual void set_lresult(lresult lresult);
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point);
-      //virtual void set(oswindow oswindow, ::windowing::window* pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam);
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point);
+      //virtual void set(oswindow oswindow, ::windowing::window* pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
 
       unsigned int GetNotifyCode() const { return __hiword(m_wparam.m_number); }

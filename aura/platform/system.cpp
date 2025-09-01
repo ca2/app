@@ -2431,7 +2431,7 @@ namespace aura
    }
 
 
-   //unsigned int system::os_post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //unsigned int system::os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   post_to_all_threads(emessage, wparam, lparam);

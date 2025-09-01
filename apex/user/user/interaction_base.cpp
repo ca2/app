@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "apex/user/user/interaction_base.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/single_lock.h"
@@ -1118,7 +1118,7 @@ namespace user
    }
 
 
-   lresult interaction_base::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
+   lresult interaction_base::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
    {
 
       return message_call(emessage, wparam, lparam, point);
@@ -1134,7 +1134,7 @@ namespace user
 //   }
 
 
-   lresult interaction_base::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
+   lresult interaction_base::message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
    {
 
       return 0;
@@ -1236,7 +1236,7 @@ namespace user
    //}
 
 
-   void interaction_base::send_message_to_descendants(::enum_message emessage, ::wparam wparam, ::lparam lparam,bool bDeep,bool bOnlyPerm)
+   void interaction_base::send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam,bool bDeep,bool bOnlyPerm)
 
    {
 
@@ -2500,7 +2500,7 @@ namespace user
    //}
 
 
-   lresult interaction_base::message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   lresult interaction_base::message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       throw ::interface_only();
@@ -2510,7 +2510,7 @@ namespace user
    }
 
 
-   void interaction_base::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void interaction_base::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       throw ::interface_only();
@@ -2518,7 +2518,7 @@ namespace user
    }
 
 
-   //bool interaction_base::user_post(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //bool interaction_base::user_post(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   throw ::interface_only();
@@ -3694,7 +3694,7 @@ namespace user
    }
 
 
-//   ::pointer<::message::message>interaction_base::get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+//   ::pointer<::message::message>interaction_base::get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 //   {
 //
 //      ::pointer<::message::message>pmessage;
@@ -3842,7 +3842,7 @@ namespace user
 //   }
 
 
-   // bool interaction_base::call_message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point, lresult * plresult)
+   // bool interaction_base::call_message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point, lresult * plresult)
    // {
       
    //    if(atom == ::user::e_message_post_user)

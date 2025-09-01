@@ -2,7 +2,7 @@
 #include "image_list.h"
 #include "top_edit_impact.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/message.h"
 #include "acme/filesystem/filesystem/listing.h"

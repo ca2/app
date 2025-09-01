@@ -332,7 +332,7 @@ namespace handler
 
    //
 
-   void handler::call_message(const ::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
+   void handler::call_message(const ::user::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
    {
 
 

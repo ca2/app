@@ -163,7 +163,7 @@ namespace parallelization
    }
 
 
-   CLASS_DECL_APEX void post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   CLASS_DECL_APEX void post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       critical_section_lock criticalsectionlock(&::system()->m_criticalsectionThreadStorage);

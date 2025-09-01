@@ -62,7 +62,7 @@ public:
    //bool add_message_handler(long long iMessage, RECEIVER* preceiver, void (RECEIVER::* phandler)(::message::message* pmessage))
    //{
 
-      //return add_message_handler((const ::atom&)(::enum_message)iMessage, preceiver, phandler);
+      //return add_message_handler((const ::atom&)(::user::enum_message)iMessage, preceiver, phandler);
 
    //}
 
@@ -78,7 +78,7 @@ public:
 
    virtual ::pointer<::message::message>get_message(MESSAGE * pmessage);
 
-   virtual ::pointer<::message::message>get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none);
+   virtual ::pointer<::message::message>get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none);
 
 
 
@@ -95,13 +95,13 @@ public:
    //}
 
 
-   ::particle * add_message_handler(::enum_message emessage, const ::message::dispatcher & dispatcher);
+   ::particle * add_message_handler(::user::enum_message eusermessage, const ::message::dispatcher & dispatcher);
    ::particle * add_command_handler(const ::atom & atom, const ::message::dispatcher & dispatcher);
    ::particle * add_command_prober(const ::atom & atom, const ::message::dispatcher & dispatcher);
 
 
    template < typename T1, typename T2 >
-   ::particle* add_message_handler(::enum_message emessage, T1 * p, void (T2:: * pfn)(::message::message *))
+   ::particle* add_message_handler(::user::enum_message eusermessage, T1 * p, void (T2:: * pfn)(::message::message *))
    {
 
       return add_message_handler(emessage, { p, pfn });

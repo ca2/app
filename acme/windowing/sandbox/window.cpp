@@ -5,7 +5,7 @@
 // camilo <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "_sandbox.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/platform/system.h"
 ///#include "aura/graphics/image/context.h"
 //#include "aura/graphics/image/drawing.h"
@@ -2046,13 +2046,13 @@ bool window::is_destroying()
 //   if (message.m_emessage == ::user::e_message_left_button_down)
 //   {
 
-//      informationf("post_ui_message::::user::e_message_left_button_down\n");
+//      informationf("post_ui_message::user::e_message_left_button_down\n");
 
 //   }
 //   else if (message.m_emessage == ::user::e_message_left_button_up)
 //   {
 
-//      informationf("post_ui_message::::user::e_message_left_button_up\n");
+//      informationf("post_ui_message::user::e_message_left_button_up\n");
 
 //   }
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "frame_window.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "acme/platform/application_menu.h"
@@ -997,7 +997,7 @@ namespace experience
    void frame_window::on_command(::message::command * pcommand)
    {
 
-      if (pcommand->m_emessage == ::::user::e_message_system_command && m_pframe != nullptr)
+      if (pcommand->m_emessage == ::user::e_message_system_command && m_pframe != nullptr)
       {
 
          auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(pcommand->command_id());

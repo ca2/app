@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "scroll.h"
 #include "scroll_bar.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/user/user/drag.h"
@@ -62,7 +62,7 @@ namespace user
       scroll_base_x::install_message_routing(pchannel);
       scroll_base_y::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::::user::e_message_create, pchannel, this, &scroll_base::on_message_create);
+      MESSAGE_LINK(::user::e_message_create, pchannel, this, &scroll_base::on_message_create);
 
    }
 

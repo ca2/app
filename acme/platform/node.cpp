@@ -2416,7 +2416,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    //}
 
 
-   //::pointer < ::subparticle > node::create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+   //::pointer < ::subparticle > node::create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
 
    //   //auto psequencer = øcreate_new < ::sequencer < ::conversation > >();
@@ -2434,7 +2434,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    //}
 
 
-   //::pointer < ::subparticle > node::create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+   //::pointer < ::subparticle > node::create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
 
    //   ///auto psequencer = øcreate_new < ::sequencer < ::conversation > >();
@@ -2452,7 +2452,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    //}
 
 
-   //void node::micro::message_box(::sequence < ::conversation >* psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box& emessagebox)
+   //void node::micro::message_box(::sequence < ::conversation >* psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox)
    //{
 
 

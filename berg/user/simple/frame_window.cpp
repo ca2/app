@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "frame_window.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/constant/id.h"
 #include "acme/parallelization/pool.h"

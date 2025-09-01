@@ -18,7 +18,7 @@
 #include "acme/compress/compress.h"
 #include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/crypto/crypto.h"
 #include "acme/exception/dump_context.h"
 #include "acme/exception/interface_only.h"
@@ -1876,7 +1876,7 @@ pdirectorysystem->create("/ca2core");
    //}
 
 
-   //void system::post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //void system::post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   synchronous_lock synchronouslock(m_pmutexThread);
@@ -2040,7 +2040,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   unsigned int system::os_post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   unsigned int system::os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       post_to_all_threads(emessage, wparam, lparam);
@@ -5100,7 +5100,7 @@ namespace apex
    }
 
 
-   //pointer< ::extended::future < ::conversation > > system::_message_box(::particle * pparticle, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox)
+   //pointer< ::extended::future < ::conversation > > system::_message_box(::particle * pparticle, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //{
 
    //   return ::system::_message_box(pparticle, pszText, pszTitle, emessagebox);

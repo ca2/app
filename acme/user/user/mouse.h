@@ -18,7 +18,7 @@ namespace user
 
 
    class CLASS_DECL_ACME mouse :
-      virtual public ::acme::message
+      virtual public ::acme::user::message
    {
    protected:
       friend class ::user::interaction;

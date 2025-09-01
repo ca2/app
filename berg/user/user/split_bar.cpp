@@ -2,7 +2,7 @@
 #include "split_bar.h"
 #include "split_pane.h"
 #include "split_layout.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/user/user/frame_interaction.h"

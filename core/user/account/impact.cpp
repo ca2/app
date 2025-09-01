@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "impact.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/crypto/crypto.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/icon.h"

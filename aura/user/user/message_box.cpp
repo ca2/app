@@ -9,7 +9,7 @@
 #include "user.h"
 #include "style.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 //#include "acme/handler/sequence.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -24,7 +24,7 @@ namespace user
 {
 
 
-   //message_box::message_box(const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox) :
+   //message_box::message_box(const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox) :
    message_box::message_box() :
       m_strFontName("serif"),
       m_size(100, 40),
@@ -511,7 +511,7 @@ namespace aura
 {
 
 
-   //pointer< ::extended::future < ::conversation > > system::message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox)
+   //pointer< ::extended::future < ::conversation > > system::message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //{
 
    //   auto pnode = m_pnode;

@@ -22,7 +22,7 @@ namespace message
    //}
 
 
-   message::message(::enum_message emessage)
+   message::message(::user::enum_message eusermessage)
    { 
       
       m_emessage = emessage;
@@ -116,8 +116,8 @@ namespace message
    }
 
 
-   //void message::set(oswindow oswindow, ::windowing::window * playeredUserPrimitive, ::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
-   //void message::set(oswindow oswindow, ::windowing::window* playeredUserPrimitive, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //void message::set(oswindow oswindow, ::windowing::window * playeredUserPrimitive, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   //void message::set(oswindow oswindow, ::windowing::window* playeredUserPrimitive, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
    //   
    //   //initialize(playeredUserPrimitive);

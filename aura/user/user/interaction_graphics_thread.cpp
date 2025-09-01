@@ -9,7 +9,7 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 #include "interaction_thread.h"
 //#include "interaction_impl.h"
 #include "interaction.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/message_queue.h"

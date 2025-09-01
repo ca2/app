@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "xfplayer_impact_line_selection.h"
 #include "xfplayer_impact_line.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "aura/windowing/window.h"
 #include "aura/message/user.h"

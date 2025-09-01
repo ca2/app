@@ -53,7 +53,7 @@ namespace hotplugin
       // It is the location url of the page that hosts the plugin when the plugin was created.
       virtual string get_host_location_url() override;
 
-      virtual void post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      virtual void post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
       virtual oswindow get_host_user_interaction() override;
 
@@ -128,7 +128,7 @@ namespace hotplugin
       virtual void translate_mouse_message(int * px, int * py) override;
 
       virtual void message_handler(::user::message * pusermessage) override;
-      virtual void plugin_message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx) override;
+      virtual void plugin_message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx) override;
 
       virtual void plugin_message_handler(MESSAGE * pmsg, bool bEnsureTx) override;
 

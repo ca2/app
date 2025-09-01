@@ -2,7 +2,7 @@
 #include "child_frame.h"
 #include "file_list.h"
 #include "document.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/filesystem/file/item_array.h"
 #include "acme/handler/item.h"
 #include "aura/graphics/image/icon.h"

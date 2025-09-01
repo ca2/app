@@ -2,7 +2,7 @@
 #include "impact.h"
 #include "acme/handler/item.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 //#include "acme/handler/sequence.h"
 #include "acme/prototype/geometry2d/_collection.h"

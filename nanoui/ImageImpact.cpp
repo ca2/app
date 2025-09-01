@@ -12,7 +12,7 @@
 #include "ImageImpact.h"
 #include "Screen.h"
 #include "nano2d/context.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "aura/graphics/image/image.h"
 
@@ -156,7 +156,7 @@ bool ImageImpact::keyboard_event(::user::enum_key ekey, int /* scancode */, int 
 
    }
 
-   if (action == ::::user::e_message_key_down)
+   if (action == ::user::e_message_key_down)
    {
       
       if (ekey == ::user::e_key_r) 

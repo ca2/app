@@ -12,7 +12,7 @@
 #include "acme/parallelization/task.h"
 
 
-#define ::user::e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
+#define e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
 #if defined(LINUX) // || defined(__ANDROID__)
 
 
@@ -130,7 +130,7 @@ bool apex_defer_process_x_message(htask htask,MESSAGE * pMsg,oswindow oswindow,b
 //}
 //
 
-void mq_post_thread_message(::task_index & taskindex, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+void mq_post_thread_message(::task_index & taskindex, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    //if (atom.m_etype != ::atom::e_type_message)

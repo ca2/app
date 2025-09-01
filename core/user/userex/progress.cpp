@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "progress.h"
 //#include "user.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"

@@ -127,7 +127,7 @@ WCHAR * module_debug_wcsdup(hinstance hinstance, const WCHAR * pwszPrefix = null
 }
 
 
-// void module_debug_box_w(const ::::user::e_message_box & emessagebox, hinstance hinstance, const WCHAR * pwszCaption, WCHAR * pwszSuffix = nullptr)
+// void module_debug_box_w(const ::user::e_message_box & emessagebox, hinstance hinstance, const WCHAR * pwszCaption, WCHAR * pwszSuffix = nullptr)
 // {
 
 //    WCHAR * pwsz = nullptr;

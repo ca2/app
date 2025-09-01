@@ -114,7 +114,7 @@ CLASS_DECL_ACME void trace_category_static_term();
 //extern const_char_pointer g_pszTopLevelDomainList[];
 
 
-enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::enum_message_box & emessagebox);
+enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::user::enum_message_box & emessagebox);
 
 
 
@@ -1421,7 +1421,7 @@ namespace platform
    }
 
 
-   //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox)
+   //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //{
 
    //   auto psequence = øallocate ::sequence < ::conversation > ();
@@ -3253,7 +3253,7 @@ namespace platform
 
 
 
-   //::pointer < ::subparticle > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+   //::pointer < ::subparticle > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
    //{
    //
    //   auto psequencer = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -4089,7 +4089,7 @@ namespace platform
 
 
 //   ::pointer < ::message_box > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
-//                                                       const ::::user::e_message_box & emessagebox,
+//                                                       const ::user::e_message_box & emessagebox,
 //                                                       const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //   {
 //      
@@ -4106,7 +4106,7 @@ namespace platform
    //::pointer < ::message_box > system::exception_message_box(
    //    const ::exception & exception, const ::scoped_string & scopedstrMessage, 
    //   const ::scoped_string & scopedstrTitle,
-   //    const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+   //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
    //   return micro_user()->exception_message_box(
    //exception,
@@ -4120,7 +4120,7 @@ namespace platform
 
 
    //::pointer < ::message_box > system::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
-   //                                                           const ::::user::e_message_box & emessagebox,
+   //                                                           const ::user::e_message_box & emessagebox,
    //                                                           const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
    //   
@@ -4137,7 +4137,7 @@ namespace platform
    //::pointer < ::message_box > system::exception_message_console(
    //    const ::exception & exception, const ::scoped_string & scopedstrMessage,
    //   const ::scoped_string & scopedstrTitle,
-   //    const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+   //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
 
    //   return micro_user()->exception_message_console(

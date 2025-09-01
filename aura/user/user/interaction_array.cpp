@@ -431,7 +431,7 @@ namespace user
    }
 
 
-   void interaction_array::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void interaction_array::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       for (int i = 0; i < this->interaction_count(); i++)
@@ -453,7 +453,7 @@ namespace user
    }
 
 
-   void interaction_array::send_message_to_descendants(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bRecursive)
+   void interaction_array::send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bRecursive)
    {
 
       for (int i = 0; i < this->interaction_count(); i++)

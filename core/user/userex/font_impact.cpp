@@ -3,7 +3,7 @@
 #include "top_impact.h"
 #include "top_edit_impact.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "aura/graphics/write_text/font_list.h"
 #include "aura/user/user/frame_interaction.h"

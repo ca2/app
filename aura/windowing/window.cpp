@@ -5,7 +5,7 @@
 #include "display.h"
 #include "aura/user/user/frame_interaction.h"
 #include "placement_log.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/graphics/output_purpose.h"
 #include "acme/handler/request.h"
@@ -422,13 +422,13 @@ namespace windowing
       else if (pmessage->m_emessage == ::user::e_message_left_button_down)
       {
 
-         informationf("linux::interaction_impl::::user::e_message_left_button_down");
+         informationf("linux::interaction_impl::user::e_message_left_button_down");
 
       }
       else if (pmessage->m_emessage == ::user::e_message_left_button_up)
       {
 
-         informationf("linux::interaction_impl::::user::e_message_left_button_up");
+         informationf("linux::interaction_impl::user::e_message_left_button_up");
 
       }
       else if (pmessage->m_emessage == ::user::e_message_mouse_move)
@@ -1492,7 +1492,7 @@ namespace windowing
    }
 
 
-   lresult window::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   lresult window::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       return 0;
@@ -1500,7 +1500,7 @@ namespace windowing
    }
 
 
-   //void window::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //void window::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   //return false;
@@ -4974,7 +4974,7 @@ namespace windowing
 
    //   }
 
-   //   if(pmouse->m_emessage == ::::user::e_message_left_button_down)
+   //   if(pmouse->m_emessage == ::user::e_message_left_button_down)
    //   {
 
    //      on_configuration_change(user_interaction());
@@ -5894,13 +5894,13 @@ namespace windowing
       else if (pmessage->m_emessage == ::user::e_message_left_button_down)
       {
 
-         informationf("linux::window::::user::e_message_left_button_down");
+         informationf("linux::window::user::e_message_left_button_down");
 
       }
       else if (pmessage->m_emessage == ::user::e_message_left_button_up)
       {
 
-         informationf("linux::window::::user::e_message_left_button_up");
+         informationf("linux::window::user::e_message_left_button_up");
 
       }
       else if (pmessage->m_emessage == ::user::e_message_mouse_move)
@@ -6507,7 +6507,7 @@ namespace windowing
       //if (puserinteractionMouse)
       //{
 
-      //   //            if(pmouse->m_emessage == ::::user::e_message_left_button_double_click && puserinteractionMouse->m_bEatsDoubleClick)
+      //   //            if(pmouse->m_emessage == ::user::e_message_left_button_double_click && puserinteractionMouse->m_bEatsDoubleClick)
       //   //            {
       //   //
       //   //               pmouse->m_bRet = true;
@@ -6634,7 +6634,7 @@ namespace windowing
       //
       //         pmouse->m_pcursor = pcursor;
       //
-      //         //informationf("windows::::user::e_message_mouse_move(%d,%d)", pmouse->m_point.x(), pmouse->m_point.y());
+      //         //informationf("windows::user::e_message_mouse_move(%d,%d)", pmouse->m_point.x(), pmouse->m_point.y());
       //
       //         //string strType;
       //
@@ -7544,7 +7544,7 @@ namespace windowing
    }
 
 
-   lresult window::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
+   lresult window::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
    {
 
       auto pmessage = user_interaction()->get_message(emessage, wparam, lparam);
@@ -7584,7 +7584,7 @@ namespace windowing
    //#endif
 
 
-//   void window::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+//   void window::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 //   {
 //
 //      if (!user_interaction())
@@ -8233,7 +8233,7 @@ namespace windowing
 
       m_pgraphicsthread->post_redraw();
 
-      //user_interaction()->post_message(::::user::e_message_redraw, bForceUpdateBuffer);
+      //user_interaction()->post_message(::user::e_message_redraw, bForceUpdateBuffer);
 
 //      m_pgraphicsthread->graphics_thread_redraw();
 
@@ -14179,7 +14179,7 @@ namespace windowing
    //}
 
 
-   //lresult window::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   //lresult window::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
    //{
 
    //   return message_call(emessage, wparam, lparam, point);
@@ -14215,7 +14215,7 @@ namespace windowing
    //   pmessageBase = pmessage
 
 
-   ::pointer<::message::message>window::get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype)
+   ::pointer<::message::message>window::get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype)
    {
 
       return user_interaction()->get_message(emessage, wparam, lparam);
@@ -14273,7 +14273,7 @@ namespace windowing
    //      case ::message::e_prototype_key:
    //      {
    //         _NEW_MESSAGE(::message::key);
-   //         //void key::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //         //void key::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //         {
    //
    //            // ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
@@ -14404,7 +14404,7 @@ namespace windowing
    //      case ::message::e_prototype_object:
    //      {
    //         _NEW_MESSAGE(::message::particle);
-   //         //void particle::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //         //void particle::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //         {
    //
    //            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
@@ -14448,7 +14448,7 @@ namespace windowing
    //         _NEW_MESSAGE(::message::activate);
    //         //pmessage = p;
    //         //default_set(pmessage, emessage, wparam, lparam)
-   //         //void activate::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //         //void activate::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //         //{
    //
    //            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
@@ -15367,7 +15367,7 @@ namespace windowing
    //}
 
 
-   lresult window::message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   lresult window::message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       // if (::is_null(user_interaction()))
@@ -15409,7 +15409,7 @@ namespace windowing
    }
 
 
-   lresult window::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
+   lresult window::message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
    {
 
       ::pointer<::message::message>pmessage;
@@ -15479,7 +15479,7 @@ namespace windowing
    }
 
 
-   void window::send_message_to_descendants(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bDeep, bool bOnlyPerm)
+   void window::send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bDeep, bool bOnlyPerm)
    {
 
       return user_interaction()->send_message_to_descendants(emessage, wparam, lparam, bDeep, bOnlyPerm);
@@ -15846,7 +15846,7 @@ namespace windowing
    //}
 
 
-   void window::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void window::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       // if (::is_null(user_interaction()))

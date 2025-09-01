@@ -6,7 +6,7 @@
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/input.h"
 #include "bred/graphics3d/scene.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/node.h"

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/prototype/data/listener.h"
 #include "aura/graphics/draw2d/printer.h"

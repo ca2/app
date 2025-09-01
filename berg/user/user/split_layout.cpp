@@ -2,7 +2,7 @@
 #include "split_layout.h"
 #include "split_pane.h"
 #include "split_bar.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/handler/request.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -1154,7 +1154,7 @@ namespace user
    }
 
 
-//   void split_layout::RelayEventSplitBar(::collection::index iSplitBar, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+//   void split_layout::RelayEventSplitBar(::collection::index iSplitBar, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 //   {
 //
 //      ASSERT(false);

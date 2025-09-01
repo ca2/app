@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "tree.h"
 #include "tree_data.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/exception/interface_only.h"
 #include "acme/prototype/data/item.h"

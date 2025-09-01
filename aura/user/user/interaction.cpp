@@ -17,7 +17,7 @@
 #include "acme/handler/topic.h"
 #include "aura/windowing/placement_log.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/constant/message_prototype.h"
 #include "acme/constant/simple_command.h"
@@ -90,10 +90,10 @@ CLASS_DECL_AURA::int_point __get_bottom_right();
 CLASS_DECL_AURA void __set_bottom_right(const ::int_point & pointBottomRight);
 
 
-inline void make_parent_mouse_message(::enum_message & emessage)
+inline void make_parent_mouse_message(::user::enum_message & emessage)
 {
 
-   emessage = (::enum_message)((long long)emessage + (long long)(::user::e_message_parent_mouse_first - ::user::e_message_mouse_first));
+   emessage = (::user::enum_message)((long long)emessage + (long long)(::user::e_message_parent_mouse_first - ::user::e_message_mouse_first));
 
 }
 
@@ -10063,7 +10063,7 @@ if(get_parent())
 
 
 
-   lresult interaction::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   lresult interaction::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
    {
 
       //if (window() == nullptr)
@@ -10180,7 +10180,7 @@ if(get_parent())
    //   }
 
 
-   lresult interaction::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   lresult interaction::message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
    {
 
       //if (window() == nullptr)
@@ -10311,7 +10311,7 @@ if(get_parent())
    //}
 
 
-   void interaction::send_message_to_descendants(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bDeep,
+   void interaction::send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bDeep,
                                                  bool bOnlyPerm)
    {
 
@@ -14447,13 +14447,13 @@ if(get_parent())
          else if (pmessage->m_emessage == ::user::e_message_left_button_down)
          {
 
-            informationf("user::interaction::message_handler ::::user::e_message_left_button_down");
+            informationf("user::interaction::message_handler ::user::e_message_left_button_down");
 
          }
          else if (pmessage->m_emessage == ::user::e_message_left_button_up)
          {
 
-            informationf("user::interaction::message_handler ::::user::e_message_left_button_up");
+            informationf("user::interaction::message_handler ::user::e_message_left_button_up");
 
          }
          else if (pmessage->m_emessage == ::user::e_message_mouse_move)
@@ -14461,7 +14461,7 @@ if(get_parent())
 
             //g_iMouseMove++;
 
-            //informationf("user::interaction::message_handler ::::user::e_message_mouse_move");
+            //informationf("user::interaction::message_handler ::user::e_message_mouse_move");
             //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
          }
@@ -16367,7 +16367,7 @@ if(get_parent())
    //}
 
 
-   lresult interaction::message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   lresult interaction::message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       // if (::is_null(m_puserinteraction))
@@ -16398,7 +16398,7 @@ if(get_parent())
    }
 
 
-   lresult interaction::call_route_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   lresult interaction::call_route_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       // if (::is_null(m_puserinteraction))
@@ -16429,7 +16429,7 @@ if(get_parent())
    }
 
 
-   void interaction::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void interaction::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       if (::is_null(window()))
@@ -16450,7 +16450,7 @@ if(get_parent())
    }
 
 
-   void interaction::post_object(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void interaction::post_object(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       //bool bIsWindow = ::is_set(window()) && is_window();
@@ -16483,7 +16483,7 @@ if(get_parent())
    }
 
 
-   //bool interaction::user_post(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //bool interaction::user_post(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
    //
    //   return user_thread()->post_message(emessage, wparam, lparam);
@@ -18510,7 +18510,7 @@ if(get_parent())
 
 
    ::pointer<::message::message>
-      interaction::get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype)
+      interaction::get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype)
    {
 
       ::pointer<::message::message>pmessageBase;
@@ -18569,7 +18569,7 @@ if(get_parent())
       case ::message::e_prototype_key:
       {
          _NEW_MESSAGE(::message::key);
-         //void key::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+         //void key::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
          {
 
             // ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
@@ -18700,7 +18700,7 @@ if(get_parent())
       case ::message::e_prototype_object:
       {
          _NEW_MESSAGE(::message::particle);
-         //void particle::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+         //void particle::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
          {
 
             //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
@@ -18744,7 +18744,7 @@ if(get_parent())
          _NEW_MESSAGE(::message::activate);
          //pmessage = p;
          //default_set(pmessage, emessage, wparam, lparam)
-         //void activate::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+         //void activate::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
          //{
 
             //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
@@ -29034,7 +29034,7 @@ __check_refdbg;
    }
 
 
-   //pointer< ::sequence < ::conversation > > interaction::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box& emessagebox)
+   //pointer< ::sequence < ::conversation > > interaction::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox)
    //{
 
    //   auto pmessagebox = øcreate < ::user::message_box >();

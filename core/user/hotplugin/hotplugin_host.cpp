@@ -82,7 +82,7 @@ namespace hotplugin
    }
 
 
-   void host::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void host::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 
    {
 
@@ -625,7 +625,7 @@ namespace hotplugin
    }
 
 
-   void host::plugin_message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx)
+   void host::plugin_message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx)
 
    {
 

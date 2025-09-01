@@ -11,7 +11,7 @@
 #include "check_box.h"
 #include "notify_icon.h"
 #include "progress.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -836,7 +836,7 @@ namespace user
    }
 
 
-   void user::SendMessageToWindows(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void user::SendMessageToWindows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       auto psession = session();

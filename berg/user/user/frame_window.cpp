@@ -6,7 +6,7 @@
 #include "impact_system.h"
 #include "toolbar.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/request.h"

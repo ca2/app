@@ -6,10 +6,10 @@
 #include "acme/_operating_system.h"
 
 
-CLASS_DECL_ACME int message_box_to_windows_message_box_type(enum_message_box emessagebox)
+CLASS_DECL_ACME int message_box_to_windows_message_box_type(::user::user::enum_message_box emessagebox)
 {
 
-   auto emessageboxType = (enum_message_box)(emessagebox & ::user::e_message_box_type_mask);
+   auto emessageboxType = (::user::user::enum_message_box)(emessagebox & ::user::e_message_box_type_mask);
 
    switch (emessageboxType)
    {
@@ -34,10 +34,10 @@ CLASS_DECL_ACME int message_box_to_windows_message_box_type(enum_message_box eme
 }
 
 
-CLASS_DECL_ACME int message_box_to_windows_message_box_icon(enum_message_box emessagebox)
+CLASS_DECL_ACME int message_box_to_windows_message_box_icon(::user::user::enum_message_box emessagebox)
 {
 
-   auto emessageboxIcon = (enum_message_box)(emessagebox & ::user::e_message_box_icon_mask);
+   auto emessageboxIcon = (::user::user::enum_message_box)(emessagebox & ::user::e_message_box_icon_mask);
 
    switch (emessageboxIcon)
    {
@@ -56,10 +56,10 @@ CLASS_DECL_ACME int message_box_to_windows_message_box_icon(enum_message_box eme
 }
 
 
-CLASS_DECL_ACME int message_box_to_windows_message_box_default_button(enum_message_box emessagebox)
+CLASS_DECL_ACME int message_box_to_windows_message_box_default_button(::user::user::enum_message_box emessagebox)
 {
 
-   auto emessageboxDefaultButton = (enum_message_box)(emessagebox & ::user::e_message_box_default_button_mask);
+   auto emessageboxDefaultButton = (::user::user::enum_message_box)(emessagebox & ::user::e_message_box_default_button_mask);
 
    switch (emessageboxDefaultButton)
    {
@@ -90,7 +90,7 @@ CLASS_DECL_ACME int message_box_to_windows_message_box_default_button(enum_messa
 //   public:
 //
 //      //::atom do_modal(const ::scoped_string & scopedstrMessage,
-//      //                               const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox,
+//      //                               const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox,
 //      //                               const ::scoped_string & scopedstrDetails) override
 //      ::enum_dialog_result m_edialogresult;
 //      void run() override
@@ -132,7 +132,7 @@ CLASS_DECL_ACME int message_box_to_windows_message_box_default_button(enum_messa
 
 
 
-CLASS_DECL_ACME int message_box_to_windows_message_box(enum_message_box emessagebox)
+CLASS_DECL_ACME int message_box_to_windows_message_box(::user::user::enum_message_box emessagebox)
 {
 
    int iMessageBox = 0;

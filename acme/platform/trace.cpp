@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "trace.h"
 #include "log.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/parallelization/task.h"
 #include "acme/platform/system.h"
 #include "acme/_operating_system.h"

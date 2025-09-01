@@ -1706,7 +1706,7 @@ bool particle::is_branch_current() const
 }
 
 
-CLASS_DECL_ACME lresult __call_message(::particle * pparticle, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+CLASS_DECL_ACME lresult __call_message(::particle * pparticle, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    throw "what?!?!?!";
@@ -1771,7 +1771,7 @@ CLASS_DECL_ACME lresult __call_message(::particle * pparticle, ::enum_message em
 //
 
 
-lresult particle::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+lresult particle::message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    return message_handler(emessage, wparam, lparam);
@@ -1800,7 +1800,7 @@ lresult particle::message_call(::enum_message emessage, ::wparam wparam, ::lpara
 }
 
 
-lresult particle::message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+lresult particle::message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    return __call_message(this, emessage, wparam, lparam);
@@ -2116,7 +2116,7 @@ bool particle::should_run_async() const
 
 
 
-::pointer < ::message_box > particle::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+::pointer < ::message_box > particle::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
    return __initialize_new::message_box(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
@@ -2124,7 +2124,7 @@ bool particle::should_run_async() const
 }
 
 
-::pointer < ::message_box > particle::message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+::pointer < ::message_box > particle::message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
    return __initialize_new::message_box(exception, scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
@@ -2250,7 +2250,7 @@ void particle::kick_idle()
 }
 //
 //
-//::pointer < ::message_box > particle::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+//::pointer < ::message_box > particle::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //{
 //   
 //   ::micro::user * pmicrouser = nullptr;
@@ -2281,7 +2281,7 @@ void particle::kick_idle()
 //}
 
 
-//::pointer < ::message_box > particle::exception_message_box(const ::exception& exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+//::pointer < ::message_box > particle::exception_message_box(const ::exception& exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //{
 //
 //   return system()->micro_user()->exception_message_box(exception, strMessage, strTitle, emessagebox, strDetails, picon);
@@ -2289,7 +2289,7 @@ void particle::kick_idle()
 //}
 //
 //
-//::pointer < ::message_box > particle::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+//::pointer < ::message_box > particle::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //{
 //
 //   return system()->micro_user()->message_console(strMessage, strTitle, emessagebox, strDetails, picon);
@@ -2297,7 +2297,7 @@ void particle::kick_idle()
 //}
 //
 //
-//::pointer < ::message_box > particle::exception_message_console(const ::exception& exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+//::pointer < ::message_box > particle::exception_message_console(const ::exception& exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //{
 //
 //   return system()->micro_user()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails, picon);

@@ -2,7 +2,7 @@
 #include "thread.h"
 #include "operation.h"
 #include "impact.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/platform/keep.h"

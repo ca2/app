@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "group_image_list.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/graphics/image/context.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"

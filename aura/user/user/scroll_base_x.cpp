@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "scroll_bar.h"
 #include "scroll_base_x.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/message/user.h"

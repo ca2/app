@@ -4,7 +4,7 @@
 #include "impact.h"
 #include "impact_system.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/platform/keep.h"

@@ -216,7 +216,7 @@ namespace platform
       //
 
 
-      virtual unsigned int os_post_to_all_threads(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+      virtual unsigned int os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
 
       //
@@ -389,7 +389,7 @@ namespace platform
 
 
       virtual void post_quit_to_all_threads();
-      virtual void post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam);
+      virtual void post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
 
       virtual void dump_command_line_and_environment_variables_to_file();

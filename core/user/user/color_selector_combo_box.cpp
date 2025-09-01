@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "color_selector_combo_box.h"
 #include "color_selector_popup.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/system.h"

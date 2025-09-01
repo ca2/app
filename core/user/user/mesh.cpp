@@ -6,7 +6,7 @@
 #include "list_item.h"
 #include "list_column.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/constant/user_key.h"
 #include "acme/exception/interface_only.h"
@@ -48,9 +48,9 @@
 namespace user
 {
 
-   const ::enum_message mesh::MESSAGE_ENDCOLUMNHEADERDRAG = (::enum_message)(WM_USER + 25);
-   const ::enum_message mesh::MESSAGE_COLUMNHEADERTRACK = (::enum_message) (WM_USER + 26);
-   const ::enum_message mesh::MESSAGE_ENDCOLUMNHEADERTRACK = (::enum_message) (WM_USER + 27);
+   const ::user::enum_message mesh::MESSAGE_ENDCOLUMNHEADERDRAG = (::user::enum_message)(WM_USER + 25);
+   const ::user::enum_message mesh::MESSAGE_COLUMNHEADERTRACK = (::user::enum_message) (WM_USER + 26);
+   const ::user::enum_message mesh::MESSAGE_ENDCOLUMNHEADERTRACK = (::user::enum_message) (WM_USER + 27);
 
    mesh::mesh()
    {

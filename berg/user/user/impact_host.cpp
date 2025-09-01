@@ -3,7 +3,7 @@
 #include "frame_window.h"
 #include "impact.h"
 #include "impact_exception.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/exception/interface_only.h"
 #include "berg/platform/application.h"
 #include "place_holder.h"

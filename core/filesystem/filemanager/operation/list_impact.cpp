@@ -3,7 +3,7 @@
 #include "document.h"
 #include "operation.h"
 #include "thread.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/timer.h"
 #include "core/filesystem/filemanager/file_properties_form.h"

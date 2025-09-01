@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "step_slider.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"

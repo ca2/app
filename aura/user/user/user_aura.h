@@ -114,7 +114,7 @@ namespace user
 
       virtual bool on_ui_mouse_message(::message::mouse_base * pmouse);
 
-      virtual void SendMessageToWindows(::enum_message emessage, ::wparam wparam, ::lparam lparam);
+      virtual void SendMessageToWindows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
       //virtual void term() override;
 

@@ -22,7 +22,7 @@
 //       lparam                        m_lparam;
 
 
-//       call_message_handler_task(interaction * pinteraction, ::enum_message emessage, ::wparam wparam, ::lparam lparam);
+//       call_message_handler_task(interaction * pinteraction, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 //       ~call_message_handler_task() override;
 
 

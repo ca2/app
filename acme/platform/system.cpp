@@ -128,7 +128,7 @@ CLASS_DECL_ACME void trace_category_static_term();
 
 
 enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrTitle,
-   const ::enum_message_box& emessagebox);
+   const ::user::enum_message_box& emessagebox);
 
 
 #include "acme/_operating_system.h"
@@ -1945,7 +1945,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox)
+   //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //{
 
    //   auto psequence = øallocate ::sequence < ::conversation > ();
@@ -3578,7 +3578,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    void system::system_id_update(int iId, long long iPayload)
    {
 
-      call_message((::enum_message)iId, iPayload, {}, nullptr);
+      call_message((::user::enum_message)iId, iPayload, {}, nullptr);
 
    }
 
@@ -3708,7 +3708,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   void system::call_message(const ::enum_message& emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
+   void system::call_message(const ::user::enum_message& emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
    {
 
    }
@@ -4059,7 +4059,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //::pointer < ::subparticle > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+   //::pointer < ::subparticle > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
    //{
    //
    //   auto psequencer = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -4964,7 +4964,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 
    //   ::pointer < ::message_box > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
-   //                                                       const ::::user::e_message_box & emessagebox,
+   //                                                       const ::user::e_message_box & emessagebox,
    //                                                       const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //   {
    //
@@ -4981,7 +4981,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //::pointer < ::message_box > system::exception_message_box(
    //    const ::exception & exception, const ::scoped_string & scopedstrMessage,
    //   const ::scoped_string & scopedstrTitle,
-   //    const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+   //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
    //   return micro_user()->exception_message_box(
    //exception,
@@ -4995,7 +4995,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 
    //::pointer < ::message_box > system::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
-   //                                                           const ::::user::e_message_box & emessagebox,
+   //                                                           const ::user::e_message_box & emessagebox,
    //                                                           const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
    //
@@ -5012,7 +5012,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //::pointer < ::message_box > system::exception_message_console(
    //    const ::exception & exception, const ::scoped_string & scopedstrMessage,
    //   const ::scoped_string & scopedstrTitle,
-   //    const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+   //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
 
    //   return micro_user()->exception_message_console(

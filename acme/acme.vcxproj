@@ -1745,6 +1745,8 @@
     <ClInclude Include="array2d.h" />
     <ClInclude Include="call.h" />
     <ClInclude Include="constant\call.h" />
+    <ClInclude Include="constant\message.h" />
+    <ClInclude Include="constant\user_message.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />
     <ClInclude Include="platform\http.h" />
     <ClInclude Include="prototype\collection\base_array.h" />
@@ -1784,9 +1786,8 @@
     <ClInclude Include="constant\integration.h" />
     <ClInclude Include="constant\media_library.h" />
     <ClInclude Include="constant\memory_heap.h" />
-    <ClInclude Include="constant\message.h" />
-    <ClInclude Include="constant\message_box.h" />
-    <ClInclude Include="constant\message_prototype.h" />
+    <ClInclude Include="constant\user_message_box.h" />
+    <ClInclude Include="constant\user_message_prototype.h" />
     <ClInclude Include="constant\os_text.h" />
     <ClInclude Include="constant\parallelization.h" />
     <ClInclude Include="constant\path.h" />

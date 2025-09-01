@@ -5,7 +5,7 @@
 #include "interaction.h"
 #include "user.h"
 #include "system.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/node.h"
@@ -602,7 +602,7 @@ namespace user
                if (puserframe)
                {
 
-                  if (message.m_emessage == ::::user::e_message_redraw)
+                  if (message.m_emessage == ::user::e_message_redraw)
                   {
 
                      throw ::exception(error_failed, "Please post ::user::e_message_redraw directly to the graphics thread");

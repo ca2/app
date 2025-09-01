@@ -682,7 +682,7 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 
 
 
-//::pointer < ::subparticle > matter::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+//::pointer < ::subparticle > matter::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 //{
 //
 //   auto psequence = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "list_window.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "berg/user/menu/item.h"
 #include "berg/user/menu/item_ptra.h"

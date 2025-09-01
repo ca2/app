@@ -2,7 +2,7 @@
 #include "impact.h"
 #include "list_impact.h"
 #include "acme/handler/item.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
 #include "acme/platform/timer.h"

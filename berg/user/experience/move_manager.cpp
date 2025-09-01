@@ -2,7 +2,7 @@
 #include "move_manager.h"
 #include "frame_window.h"
 #include "frame.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "apex/parallelization/thread.h"
 #include "aura/user/user/interaction_thread.h"

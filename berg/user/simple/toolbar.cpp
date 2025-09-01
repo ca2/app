@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "toolbar.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/exception/bad_unit_exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/user/user/content.h"

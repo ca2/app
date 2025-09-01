@@ -3,7 +3,7 @@
 // Adapted by Camilo for android 2022-01-05 04:37 <3TBS (Thomas likes number 5), Mummi and bilbo!!
 #include "framework.h"
 #include "_sandbox.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "apex/platform/system.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
@@ -2040,13 +2040,13 @@ namespace sandbox_windowing
    //   if (message.m_emessage == ::user::e_message_left_button_down)
    //   {
 
-   //      informationf("post_ui_message::::user::e_message_left_button_down\n");
+   //      informationf("post_ui_message::user::e_message_left_button_down\n");
 
    //   }
    //   else if (message.m_emessage == ::user::e_message_left_button_up)
    //   {
 
-   //      informationf("post_ui_message::::user::e_message_left_button_up\n");
+   //      informationf("post_ui_message::user::e_message_left_button_up\n");
 
    //   }
 

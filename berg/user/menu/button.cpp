@@ -2,7 +2,7 @@
 #include "button.h"
 #include "menu.h"
 #include "aura/user/user/calc_size.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"

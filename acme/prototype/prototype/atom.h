@@ -305,24 +305,25 @@ public:
    union
    {
 
-      enum_id              m_eid;
-      enum_impact          m_eimpact;
-      enum_property        m_eproperty;
-      enum_factory         m_efactory;
-      enum_task_tool       m_etasktool;
-      enum_timer           m_etimer;
-      enum_message         m_emessage;
-      enum_dialog_result   m_edialogresult;
-      enum_happening       m_ehappening;
-      enum_element         m_eelement;
-      e_status             m_estatus;
-      e_command            m_ecommand;
-      e_check              m_echeck;
-      domain_id            m_domainid;
-      ::string             m_str;
-      ::ansi_range         m_range;
-      long long                m_iLargest;
-      unsigned long long                m_uLargest;
+      enum_id                       m_eid;
+      enum_impact                   m_eimpact;
+      enum_property                 m_eproperty;
+      enum_factory                  m_efactory;
+      enum_task_tool                m_etasktool;
+      enum_timer                    m_etimer;
+      ::user::enum_message          m_eusermessage;
+      ::message::enum_message       m_emessage;
+      enum_dialog_result            m_edialogresult;
+      enum_happening                m_ehappening;
+      enum_element                  m_eelement;
+      e_status                      m_estatus;
+      e_command                     m_ecommand;
+      e_check                       m_echeck;
+      domain_id                     m_domainid;
+      ::string                      m_str;
+      ::ansi_range                  m_range;
+      long long                     m_iLargest;
+      unsigned long long            m_uLargest;
 
    };
 
@@ -345,7 +346,8 @@ public:
    inline atom(enum_element eelement);
    //inline atom(::enum_id EID);
    //inline atom(const ::e_command & ecommand);
-   inline atom(enum_message emessage);
+   inline atom(::user::enum_message eusermessage);
+   inline atom(::message::enum_message emessage);
    //inline atom(ENUM_MESSAGE EMESSAGE);
    inline atom(enum_impact eimpact);
    inline atom(ENUM_IMPACT EIMPACT);
@@ -596,22 +598,22 @@ public:
     inline bool operator == (::ENUM_IMPACT EIMPACT) const { return *this == (::enum_impact)EIMPACT; }
     inline ::std::strong_ordering operator <=> (::ENUM_IMPACT EIMPACT) const { return *this <=> (::enum_impact)EIMPACT; }
 
-    //inline ::std::strong_ordering order(::enum_message emessage) const;
-   inline bool operator == (::enum_message emessage) const;
-   inline ::std::strong_ordering operator <=> (::enum_message emessage) const;
-   //inline bool operator < (::enum_message emessage) const;
-   //inline bool operator <= (::enum_message emessage) const;
-   //inline bool operator > (::enum_message emessage) const;
-   //inline bool operator >= (::enum_message emessage) const;
+    //inline ::std::strong_ordering order(::user::enum_message eusermessage) const;
+   inline bool operator == (::user::enum_message eusermessage) const;
+   inline ::std::strong_ordering operator <=> (::user::enum_message eusermessage) const;
+   //inline bool operator < (::user::enum_message eusermessage) const;
+   //inline bool operator <= (::user::enum_message eusermessage) const;
+   //inline bool operator > (::user::enum_message eusermessage) const;
+   //inline bool operator >= (::user::enum_message eusermessage) const;
 
 
-   // //inline ::std::strong_ordering order(ENUM_MESSAGE EID) const { return order((::enum_message)EID); }
-   // inline bool operator == (ENUM_MESSAGE EID) const { return *this == (::enum_message)EID; }
-   // inline ::std::strong_ordering operator <=> (ENUM_MESSAGE EID) const { return *this <=> (::enum_message)EID; }
-   // //inline bool operator < (ENUM_MESSAGE EID) const { return operator<((::enum_message)EID); }
-   // //inline bool operator <= (ENUM_MESSAGE EID) const { return operator<=((::enum_message)EID); }
-   // //inline bool operator > (ENUM_MESSAGE EID) const { return operator>((::enum_message)EID); }
-   // //inline bool operator >= (ENUM_MESSAGE EID) const { return operator>=((::enum_message)EID); }
+   // //inline ::std::strong_ordering order(ENUM_MESSAGE EID) const { return order((::user::enum_message)EID); }
+   // inline bool operator == (ENUM_MESSAGE EID) const { return *this == (::user::enum_message)EID; }
+   // inline ::std::strong_ordering operator <=> (ENUM_MESSAGE EID) const { return *this <=> (::user::enum_message)EID; }
+   // //inline bool operator < (ENUM_MESSAGE EID) const { return operator<((::user::enum_message)EID); }
+   // //inline bool operator <= (ENUM_MESSAGE EID) const { return operator<=((::user::enum_message)EID); }
+   // //inline bool operator > (ENUM_MESSAGE EID) const { return operator>((::user::enum_message)EID); }
+   // //inline bool operator >= (ENUM_MESSAGE EID) const { return operator>=((::user::enum_message)EID); }
 
 
    //inline int order(::enum_topic etopic) const;
@@ -670,7 +672,7 @@ public:
 
 
    //inline operator ::iptr() const { return as_iptr(); }
-   //inline operator ::enum_message () const { return as_emessage(); }
+   //inline operator ::user::enum_message () const { return as_emessage(); }
    
    inline long long as_long_long() const;
    inline ::iptr as_iptr() const;
@@ -678,7 +680,7 @@ public:
    inline unsigned int as_unsigned_int() const { return (unsigned int) as_long_long(); }
    inline ::collection::index as_index() const { return (::collection::index)as_long_long(); }
    inline unsigned int as_umessage() const { return as_unsigned_int(); }
-   inline ::enum_message as_emessage() const;
+   inline ::user::enum_message as_emessage() const;
    inline ::enum_id as_eid() const;
    //inline ::e_check as_echeck() const { return m_etype == e_type_check ? m_echeck : (::e_check) e_check_undefined; }
    //inline ::e_status as_estatus() const { return m_etype == e_type_status ? m_estatus : (::e_status) e_status_none; }

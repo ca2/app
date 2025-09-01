@@ -2,7 +2,7 @@
 #include "element.h"
 #include "item.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/handler/item.h"
 #include "acme/exception/interface_only.h"
@@ -1018,7 +1018,7 @@ namespace user
    //}
 
 
-   lresult element::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   lresult element::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
    {
 
       return message_call(emessage, wparam, lparam, point);
@@ -1034,7 +1034,7 @@ namespace user
    }
 
 
-   lresult element::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   lresult element::message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
    {
 
       return 0;
@@ -1135,7 +1135,7 @@ namespace user
    //}
 
 
-   void element::send_message_to_descendants(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bDeep, bool bOnlyPerm)
+   void element::send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bDeep, bool bOnlyPerm)
    {
 
       throw ::interface_only();
@@ -2399,7 +2399,7 @@ namespace user
    //}
 
 
-   lresult element::message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   lresult element::message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       throw ::interface_only();
@@ -2409,7 +2409,7 @@ namespace user
    }
 
 
-   void element::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void element::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       throw ::interface_only();

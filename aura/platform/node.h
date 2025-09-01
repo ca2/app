@@ -79,7 +79,7 @@ namespace aura
       //virtual ::windowing::windowing * windowing();
 
 
-      //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox) override;
+      //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox) override;
 
 
       void BeginWaitCursor() override;
@@ -99,7 +99,7 @@ namespace aura
 
       //pointer< ::sequence < ::conversation > > get_new_conversation_sequence() override;
 
-      //pointer< ::sequence < ::conversation > > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box& emessagebox) override;
+      //pointer< ::sequence < ::conversation > > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox) override;
 
 
       virtual bool defer_windowing_post(const ::procedure & procedure) override;

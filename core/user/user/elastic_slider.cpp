@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "elastic_slider.h"
 #include "mesh.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/platform/timer.h"
 #include "acme/prototype/mathematics/scalar.h"
 #include "aura/graphics/draw2d/graphics.h"

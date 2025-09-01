@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "box.h"
 #include "acme/platform/__string.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/platform/scoped_restore.h"

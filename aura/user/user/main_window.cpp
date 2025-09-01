@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "main_window.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/handler/request.h"
 #include "acme/user/user/simple_item_base.h"

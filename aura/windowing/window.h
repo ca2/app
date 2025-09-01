@@ -429,9 +429,9 @@ namespace windowing
 
       virtual void win_update_graphics();
 
-      virtual lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+      virtual lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
-      void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      void post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
       void set_window_text(const ::scoped_string & scopedstr) override;
@@ -923,7 +923,7 @@ namespace windowing
 //
 //#endif   // WINVER >= 0x0500
 //
-      lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
+      lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
 
       lresult send_message(::message::message * pmessage) override;
 
@@ -935,7 +935,7 @@ namespace windowing
       //#endif
 
 
-      //void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      //void post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
       //virtual bool SendNotifyMessage(unsigned int message,wparam wParam,lparam lParam);
@@ -1397,7 +1397,7 @@ namespace windowing
       //virtual void queue_message_handler(::message::message * pmessage);
 
 
-      virtual ::pointer<::message::message>get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
+      virtual ::pointer<::message::message>get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
 
 
       //virtual void enable_window(bool bEnable = true);
@@ -1508,13 +1508,13 @@ namespace windowing
       //virtual bool _is_window();
 
 
-      //virtual ::lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {});
+      //virtual ::lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {});
 
       //virtual ::lresult send_message(::message::message * pmessage);
 
       using ::channel::message_handler;
 
-      virtual lresult message_handler(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      virtual lresult message_handler(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
       //virtual void post_message(const ::atom & atom, const ::wparam & wparam = {}, ::const ::lparam & lparam = {});
@@ -1722,10 +1722,10 @@ namespace windowing
       //virtual ::user::frame_interaction * EnsureParentFrame();
 
 
-      virtual lresult message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point = {}) override;
+      virtual lresult message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point = {}) override;
       virtual lresult message_call(::message::message * pmessage) override;
 
-      virtual void send_message_to_descendants(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bDeep = true, bool bOnlyPerm = false) override;
+      virtual void send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bDeep = true, bool bOnlyPerm = false) override;
 
 
 

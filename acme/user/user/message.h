@@ -12,31 +12,36 @@ namespace acme
 {
 
 
-   class CLASS_DECL_ACME message :
-      virtual public ::property_object
+   namespace user
    {
-   public:
 
 
-      message_union        m_union;
-
-      class ::time         m_time;
-      long long         m_iTimestamp;
-      ::double_point       m_pointMessage;
-      ::enum_message       m_emessage;
-      wparam               m_wparam;
-      lparam               m_lparam;
-      lresult              m_lresult;
-      bool                 m_bRet = false;
+      class CLASS_DECL_ACME message : virtual public ::property_object
+      {
+      public:
 
 
-      virtual ::user::activation_token * user_activation_token();
+         message_union m_union;
 
-   private:
+         class ::time m_time;
+         long long m_iTimestamp;
+         ::double_point m_pointMessage;
+         ::user::enum_message m_emessage;
+         wparam m_wparam;
+         lparam m_lparam;
+         lresult m_lresult;
+         bool m_bRet = false;
 
-      int id() { return 0; }
 
-   };
+         virtual ::user::activation_token *user_activation_token();
+
+      private:
+
+         int id() { return 0; }
+      };
+
+
+   } // namespace user 
 
 
 } // namespace acme

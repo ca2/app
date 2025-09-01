@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "main_window.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"

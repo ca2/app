@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "presence.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"

@@ -78,7 +78,7 @@ namespace message
 
    using command_map = ::atom_map_base < dispatcher_array >;
 
-   using message_map = ::map_base < ::enum_message, dispatcher_array >;
+   using message_map = ::map_base < ::user::enum_message, dispatcher_array >;
 
    
 } // namespace message

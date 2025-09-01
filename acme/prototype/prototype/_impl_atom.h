@@ -5,7 +5,7 @@
 
 
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 
 
 template < typename ITERATOR_TYPE >
@@ -290,16 +290,20 @@ inline atom::atom(enum_element eelement) :
 // }
 
 
-inline atom::atom(enum_message emessage) :
-        m_etype(e_type_message),
-        m_iLargest((::iptr)emessage) // used m_iLargest to reset 64-bit field
+inline atom::atom(::user::enum_message eusermessage) :
+        m_etype(e_type_user_message),
+        m_iLargest((::iptr)eusermessage) // used m_iLargest to reset 64-bit field
 {
 
+}
+inline atom::atom(::message::enum_message emessage) :
+    m_etype(e_type_message), m_iLargest((::iptr)emessage) // used m_iLargest to reset 64-bit field
+{
 }
 
 
 // inline atom::atom(ENUM_MESSAGE EMESSAGE) :
-//         atom((::enum_message)EMESSAGE)
+//         atom((::user::enum_message)EMESSAGE)
 // {
 //
 // }
@@ -1066,7 +1070,7 @@ inline ::std::strong_ordering atom::operator <=>(const ::domain_id & domainid) c
 //}
 //
 
-inline bool atom::operator == (::enum_message emessage) const
+inline bool atom::operator == (::user::enum_message eusermessage) const
 {
 
    return ::comparison::tuple
@@ -1079,7 +1083,7 @@ inline bool atom::operator == (::enum_message emessage) const
 
 
 
-inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
+inline ::std::strong_ordering atom::operator <=>(::user::enum_message eusermessage) const
 {
 
    return ::comparison::tuple
@@ -1092,7 +1096,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
 
 
 
-//inline bool atom::operator != (::enum_message emessage) const
+//inline bool atom::operator != (::user::enum_message eusermessage) const
 //{
 //
 //   return order(emessage) != 0;
@@ -1100,7 +1104,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
 //}
 //
 //
-//inline bool atom::operator < (::enum_message emessage) const
+//inline bool atom::operator < (::user::enum_message eusermessage) const
 //{
 //
 //   return order(emessage) < 0;
@@ -1108,7 +1112,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
 //}
 //
 //
-//inline bool atom::operator <= (::enum_message emessage) const
+//inline bool atom::operator <= (::user::enum_message eusermessage) const
 //{
 //
 //   return order(emessage) <= 0;
@@ -1116,7 +1120,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
 //}
 //
 //
-//inline bool atom::operator > (::enum_message emessage) const
+//inline bool atom::operator > (::user::enum_message eusermessage) const
 //{
 //
 //   return order(emessage) > 0;
@@ -1124,7 +1128,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
 //}
 //
 //
-//inline bool atom::operator >= (::enum_message emessage) const
+//inline bool atom::operator >= (::user::enum_message eusermessage) const
 //{
 //
 //   return order(emessage) >= 0;

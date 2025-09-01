@@ -304,18 +304,18 @@ namespace platform
    //// os_* functions generally
    //// reserves a lot of surprises from each
    //// operating system specific behavior
-   //void aura_application_layer::auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+   //void aura_application_layer::auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
    //pmessagebox->sync(){}
 
 
-   //void aura_application_layer::ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
-   //void aura_application_layer::ui_message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+   //void aura_application_layer::ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+   //void aura_application_layer::ui_message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
 
    //using ::aura::context_thread::message_box{}
-   //void aura_application_layer::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
-   //void aura_application_layer::message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+   //void aura_application_layer::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+   //void aura_application_layer::message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
 
    //void aura_application_layer::on_file_new() override{}
@@ -665,7 +665,7 @@ namespace platform
    }
 
 
-   // bool aura_application_layer::send_message_to_windows(::enum_message emessage, ::wparam wparam, ::lparam lparam) override{} // with tbs in <3
+   // bool aura_application_layer::send_message_to_windows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override{} // with tbs in <3
    //
    // bool aura_application_layer::route_message_to_windows(::message::message * pmessage) override{} // with tbs in <3
 
@@ -680,7 +680,7 @@ namespace platform
    // // user virtual ::user::document * place_hold(::user::interaction * pinteraction){}
    //
    //
-   // void aura_application_layer::post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override{}
+   // void aura_application_layer::post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override{}
    //
    //
    //virtual ::image::icon * set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon){}

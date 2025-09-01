@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "interaction.h"
 #include "menu.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/platform/application.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"

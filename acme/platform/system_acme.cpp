@@ -134,7 +134,7 @@
 //
 //
 // enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrTitle,
-//                                            const ::enum_message_box& emessagebox);
+//                                            const ::user::enum_message_box& emessagebox);
 //
 //
 // #include "acme/_operating_system.h"
@@ -1123,7 +1123,7 @@ namespace platform
    //    }
    //
    //
-   //    //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox)
+   //    //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //    //{
    //
    //    //   auto psequence = øallocate ::sequence < ::conversation > ();
@@ -2940,7 +2940,7 @@ namespace platform
    //
    //
    //
-   //    //::pointer < ::subparticle > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+   //    //::pointer < ::subparticle > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
    //    //{
    //    //
    //    //   auto psequencer = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -3771,7 +3771,7 @@ namespace platform
    //
    //
    // //   ::pointer < ::message_box > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
-   // //                                                       const ::::user::e_message_box & emessagebox,
+   // //                                                       const ::user::e_message_box & emessagebox,
    // //                                                       const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    // //   {
    // //
@@ -3788,7 +3788,7 @@ namespace platform
    //    //::pointer < ::message_box > system::exception_message_box(
    //    //    const ::exception & exception, const ::scoped_string & scopedstrMessage,
    //    //   const ::scoped_string & scopedstrTitle,
-   //    //    const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+   //    //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //    //{
    //    //   return micro_user()->exception_message_box(
    //    //exception,
@@ -3802,7 +3802,7 @@ namespace platform
    //
    //
    //    //::pointer < ::message_box > system::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
-   //    //                                                           const ::::user::e_message_box & emessagebox,
+   //    //                                                           const ::user::e_message_box & emessagebox,
    //    //                                                           const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //    //{
    //    //
@@ -3819,7 +3819,7 @@ namespace platform
    //    //::pointer < ::message_box > system::exception_message_console(
    //    //    const ::exception & exception, const ::scoped_string & scopedstrMessage,
    //    //   const ::scoped_string & scopedstrTitle,
-   //    //    const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+   //    //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //    //{
    //
    //    //   return micro_user()->exception_message_console(
@@ -4510,7 +4510,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
 #endif
 
 
-   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok) override{}
+   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override{}
 
 
    //void acme_system_layer::on_initialize_window_object(){}
@@ -4983,13 +4983,13 @@ void acme_system_layer::on_open_untitled_file()
 
    //::pointer < ::message_box > & realize(::pointer < ::message_box > & pmessagebox);
 
-   //::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-   //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-   //::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-   //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
 } // namespace platform

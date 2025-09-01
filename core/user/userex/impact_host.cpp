@@ -9,7 +9,7 @@
 #include "impact_host.h"
 #include "pane_tab_impact.h"
 #include "font_impact.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"

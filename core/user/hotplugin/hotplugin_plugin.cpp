@@ -137,7 +137,7 @@ namespace hotplugin
       }
    }
 
-   void plugin::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void plugin::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 
    {
       if(m_phost != nullptr)
@@ -232,7 +232,7 @@ namespace hotplugin
 
 #ifdef WINDOWS
 
-   /*   LRESULT plugin::message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   /*   LRESULT plugin::message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 
       {
          return 0;
@@ -1107,7 +1107,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
    }
 
 
-   void plugin::plugin_message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx)
+   void plugin::plugin_message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx)
 
    {
 

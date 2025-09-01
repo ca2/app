@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "main_frame.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 
 
 namespace app_integration

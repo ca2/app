@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "dialog_frame.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/message/user.h"
 #include "berg/platform/application.h"
 

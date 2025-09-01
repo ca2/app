@@ -10,7 +10,7 @@
 #include "acme/handler/topic.h"
 #include "acme/parallelization/pool.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/user/user/key.h"
 #include "apex/handler/signal.h"
 #include "aura/graphics/image/icon.h"
@@ -455,7 +455,7 @@ namespace user
 //      if (is_frame_window())
 //      {
 //
-//         MESSAGE_LINK((::enum_message)WM_SYSCOMMAND, pchannel, this, &frame_interaction::_001OnSysCommand);
+//         MESSAGE_LINK((::user::enum_message)WM_SYSCOMMAND, pchannel, this, &frame_interaction::_001OnSysCommand);
 //
 //      }
 //

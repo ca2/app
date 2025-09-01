@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "message_queue.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/operating_system/message.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/scoped_restore.h"
@@ -51,7 +51,7 @@ void message_queue::on_initialize_particle()
 }
 
 
-void message_queue::post_message(oswindow oswindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+void message_queue::post_message(oswindow oswindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    if (m_bQuit)

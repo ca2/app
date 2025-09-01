@@ -806,11 +806,11 @@ namespace operating_system
 namespace message
 {
 
-
    class command;
 
-
 } // namespace message
+
+
 class matter;
 
 
@@ -1746,11 +1746,11 @@ class create_task_attributes;
 class security_attributes;
 
 
-namespace operating_system
+namespace user
 {
 
 
-   CLASS_DECL_ACME const_char_pointer get_message_text(enum_message emessage);
+   CLASS_DECL_ACME const_char_pointer get_message_text(::user::enum_message eusermessage);
 
 
 } // namespace operating_system

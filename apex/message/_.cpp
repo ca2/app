@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/message_prototype.h"
 #include "acme/operating_system/message.h"
 #include "apex/message/message.h"

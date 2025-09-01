@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "split_impact.h"
 #include "split_pane.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/message/user.h"
 #include "berg/platform/application.h"
 

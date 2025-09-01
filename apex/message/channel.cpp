@@ -288,7 +288,7 @@ void channel::transfer_command_probe_handler(::channel * pchannelReceiver, ::par
 
 
 
-::particle * channel::add_message_handler(::enum_message emessage, const ::message::dispatcher & dispatcher)
+::particle * channel::add_message_handler(::user::enum_message eusermessage, const ::message::dispatcher & dispatcher)
 {
 
    auto pdispatchermap = get_message_map();
@@ -474,8 +474,8 @@ void channel::_route_command_probe(::message::command * pcommand)
    pmessage->m_lparam = lparam;
 
 
-//::pointer<::message::message>channel::get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
-::pointer<::message::message>channel::get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype)
+//::pointer<::message::message>channel::get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+::pointer<::message::message>channel::get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype)
 {
 
    ::pointer<::message::message>pmessageBase;
@@ -518,7 +518,7 @@ void channel::_route_command_probe(::message::command * pcommand)
 }
 
 
-//::pointer<::user::message>channel::get_message_base(::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+//::pointer<::user::message>channel::get_message_base(::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 //{
 //
 //   if (atom.m_etype != ::atom::e_type_message)

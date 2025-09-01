@@ -3,7 +3,7 @@
 #include "control_box.h"
 #include "frame_window.h"
 #include "dock_manager.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/message/user.h"

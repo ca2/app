@@ -25,7 +25,7 @@ namespace user
 
 
 
-   //user::user(oswindow oswindow, ::layered * playeredUserPrimitive, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //user::user(oswindow oswindow, ::layered * playeredUserPrimitive, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   m_uiMessageFlags = 0;
@@ -83,7 +83,7 @@ namespace user
    }
 
 
-   //void message::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //void message::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   m_pwindow = pwindow;

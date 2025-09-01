@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "tree_impact.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/prototype/data/tree_item.h"
 #include "aura/message/user.h"
 

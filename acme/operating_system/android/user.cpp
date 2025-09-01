@@ -130,7 +130,7 @@
 ////
 //
 //
-//int _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox)
+//int _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
 //{
 //
 //   int iMessageBox = emessagebox.m_eenum & 0x7f;

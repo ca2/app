@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/memory/counter.h"
 #include "acme/parallelization/counter.h"
 #include "acme/parallelization/message_queue.h"
@@ -3149,7 +3149,7 @@ namespace apex
    }
 
 
-   void system::post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void system::post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       //#ifdef _DEBUG
@@ -3215,7 +3215,7 @@ namespace apex
 //}
 
 
-void thread::post_element(const ::enum_message & emessage, const ::wparam & wparam, ::particle* pparticle)
+void thread::post_element(const ::user::enum_message & emessage, const ::wparam & wparam, ::particle* pparticle)
 {
 
    post_message(emessage, wparam, pparticle);
@@ -3223,7 +3223,7 @@ void thread::post_element(const ::enum_message & emessage, const ::wparam & wpar
 }
 
 
-void thread::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+void thread::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    if (emessage == ::user::e_message_close)
@@ -3360,7 +3360,7 @@ void thread::post_message(::enum_message emessage, ::wparam wparam, ::lparam lpa
 }
 
 
-void thread::send_element(const ::enum_message & emessage, const ::wparam & wparam, ::particle* pparticle, const class time& time)
+void thread::send_element(const ::user::enum_message & emessage, const ::wparam & wparam, ::particle* pparticle, const class time& time)
 {
 
    //if (m_bThreadClosed)
@@ -3392,7 +3392,7 @@ void thread::send_element(const ::enum_message & emessage, const ::wparam & wpar
 }
 
 
-void thread::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const class time& time)
+void thread::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const class time& time)
 {
 
    //if (m_bThreadClosed)
@@ -4158,7 +4158,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 }
 
 
-void thread::post_message(oswindow oswindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+void thread::post_message(oswindow oswindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    //if (m_bThreadClosed)

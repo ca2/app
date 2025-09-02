@@ -54,10 +54,7 @@ namespace user
 {
    enum enum_message : unsigned int;
 } // namespace user
-namespace message
-{
-   enum enum_message : int;
-} // namespace message
+enum enum_message : int;
 enum enum_impact : long long;
 enum enum_id : ::uptr;
 enum enum_check : int;

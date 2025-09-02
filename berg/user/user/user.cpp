@@ -53,7 +53,6 @@
 namespace berg
 {
 
-
    user::user()
    {
 
@@ -77,7 +76,7 @@ namespace berg
 
       print_line("berg::user::initialize");
 
-      ::axis::user::initialize(pparticle);
+      ::axis::user::user::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -166,7 +165,7 @@ namespace berg
    {
 
 
-      ::axis::user::init1();
+      ::axis::user::user::init1();
 
 
       factory()->add_factory_item <::user::document >();
@@ -204,7 +203,7 @@ namespace berg
    void user::init()
    {
 
-      ::axis::user::init();
+      ::axis::user::user::init();
 
       //if (!::axis::user::init())
       //{
@@ -403,7 +402,7 @@ namespace berg
 
       ::user::document_manager_container::destroy();
 
-      ::axis::user::destroy();
+      ::axis::user::user::destroy();
 
 
 
@@ -468,9 +467,9 @@ namespace berg
             if (pinteraction != nullptr && pinteraction->is_window())
             {
 
-               pinteraction->send_message(emessage, wparam, lparam);
+               pinteraction->send_message(eusermessage, wparam, lparam);
 
-               pinteraction->send_message_to_descendants(emessage, wparam, lparam);
+               pinteraction->send_message_to_descendants(eusermessage, wparam, lparam);
 
             }
 
@@ -619,12 +618,6 @@ namespace berg
 
 #endif
 
-
-} // namespace user
-
-
-namespace berg
-{
 
 
    //void application::close(::aura::e_end eend)

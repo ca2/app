@@ -335,7 +335,7 @@ namespace windowing
    void window::message_handler(::message::message* pmessage)
    {
 
-      if (pmessage->m_emessage == ::user::e_message_post_user)
+      if (pmessage->m_eusermessage == ::user::e_message_post_user)
       {
 
          auto pparticle = pmessage->m_union.m_pparticle;
@@ -349,14 +349,14 @@ namespace windowing
 
          }
 
-         if (pmessagePost->m_emessage == ::user::e_message_scroll_y)
+         if (pmessagePost->m_eusermessage == ::user::e_message_scroll_y)
          {
 
             informationf("::user::e_message_scroll_y");
 
 
          }
-         else if (pmessagePost->m_emessage == ::user::e_message_text_composition)
+         else if (pmessagePost->m_eusermessage == ::user::e_message_text_composition)
          {
 
             informationf("message text composition");
@@ -413,25 +413,25 @@ namespace windowing
 
       }
 
-      if (pmessage->m_emessage == ::user::e_message_timer)
+      if (pmessage->m_eusermessage == ::user::e_message_timer)
       {
 
          //m_pthread->step_timer();
 
       }
-      else if (pmessage->m_emessage == ::user::e_message_left_button_down)
+      else if (pmessage->m_eusermessage == ::user::e_message_left_button_down)
       {
 
          informationf("linux::interaction_impl::user::e_message_left_button_down");
 
       }
-      else if (pmessage->m_emessage == ::user::e_message_left_button_up)
+      else if (pmessage->m_eusermessage == ::user::e_message_left_button_up)
       {
 
          informationf("linux::interaction_impl::user::e_message_left_button_up");
 
       }
-      else if (pmessage->m_emessage == ::user::e_message_mouse_move)
+      else if (pmessage->m_eusermessage == ::user::e_message_mouse_move)
       {
 
          //g_iMouseMove++;
@@ -440,11 +440,11 @@ namespace windowing
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
-      else if (pmessage->m_emessage == ::user::e_message_paint)
+      else if (pmessage->m_eusermessage == ::user::e_message_paint)
       {
 
       }
-      else if (pmessage->m_emessage == ::user::e_message_left_button_up)
+      else if (pmessage->m_eusermessage == ::user::e_message_left_button_up)
       {
 
          informationf("::user::e_message_left_button_up (0)");
@@ -526,7 +526,7 @@ namespace windowing
       //
       //         //pwindowing->set(pkey, get_oswindow(), m_pwindow, pkey->m_emessage, pkey->m_wparam, pkey->m_lparam);
       //
-      ////         if(pmessage->m_emessage == ::user::e_message_key_down)
+      ////         if(pmessage->m_eusermessage == ::user::e_message_key_down)
       ////         {
       ////
       ////            try
@@ -541,7 +541,7 @@ namespace windowing
       ////            }
       ////
       ////         }
-      ////         else if(pmessage->m_emessage == ::user::e_message_key_up)
+      ////         else if(pmessage->m_eusermessage == ::user::e_message_key_up)
       ////         {
       ////
       ////            try
@@ -561,22 +561,22 @@ namespace windowing
 
       pmessage->m_lresult = 0;
 
-      if (pmessage->m_emessage == ::user::e_message_mouse_leave)
+      if (pmessage->m_eusermessage == ::user::e_message_mouse_leave)
       {
 
          _000OnMouseLeave(pmessage);
 
       }
 
-      if (pmessage->m_emessage == ::user::e_message_left_button_down ||
-         pmessage->m_emessage == ::user::e_message_left_button_up ||
-         pmessage->m_emessage == ::user::e_message_middle_button_down ||
-         pmessage->m_emessage == ::user::e_message_middle_button_up ||
-         pmessage->m_emessage == ::user::e_message_right_button_down ||
-         pmessage->m_emessage == ::user::e_message_right_button_up ||
-         pmessage->m_emessage == ::user::e_message_left_button_double_click ||
-         pmessage->m_emessage == ::user::e_message_mouse_move ||
-         pmessage->m_emessage == ::user::e_message_mouse_wheel)
+      if (pmessage->m_eusermessage == ::user::e_message_left_button_down ||
+         pmessage->m_eusermessage == ::user::e_message_left_button_up ||
+         pmessage->m_eusermessage == ::user::e_message_middle_button_down ||
+         pmessage->m_eusermessage == ::user::e_message_middle_button_up ||
+         pmessage->m_eusermessage == ::user::e_message_right_button_down ||
+         pmessage->m_eusermessage == ::user::e_message_right_button_up ||
+         pmessage->m_eusermessage == ::user::e_message_left_button_double_click ||
+         pmessage->m_eusermessage == ::user::e_message_mouse_move ||
+         pmessage->m_eusermessage == ::user::e_message_mouse_wheel)
       {
 
          auto pmouse = pmessage->m_union.m_pmouse;
@@ -588,9 +588,9 @@ namespace windowing
          return;
 
       }
-      /*      else if(pmessage->m_emessage == ::user::e_message_key_down ||
-                    pmessage->m_emessage == ::user::e_message_key_up ||
-                    pmessage->m_emessage == ::user::e_message_char)*/
+      /*      else if(pmessage->m_eusermessage == ::user::e_message_key_down ||
+                    pmessage->m_eusermessage == ::user::e_message_key_up ||
+                    pmessage->m_eusermessage == ::user::e_message_char)*/
       else if (bKeyMessage)
       {
 
@@ -631,7 +631,7 @@ namespace windowing
 
       }
 
-      if (pmessage->m_emessage == ::user::e_message_subject)
+      if (pmessage->m_eusermessage == ::user::e_message_subject)
       {
 
          if (user_interaction() != nullptr)
@@ -671,7 +671,7 @@ namespace windowing
 
       }
 
-      if (pmessage->m_emessage == ::user::e_message_create)
+      if (pmessage->m_eusermessage == ::user::e_message_create)
       {
 
          //if (user_interaction()->m_procedureOnAfterCreate)
@@ -1377,7 +1377,7 @@ namespace windowing
 
       preposition->m_pwindow = this;
 
-      preposition->m_emessage = ::user::e_message_reposition;
+      preposition->m_eusermessage = ::user::e_message_reposition;
 
       preposition->m_point.x() = x;
 
@@ -1430,7 +1430,7 @@ namespace windowing
 
       psize->m_pwindow = this;
 
-      psize->m_emessage = ::user::e_message_size;
+      psize->m_eusermessage = ::user::e_message_size;
 
       psize->m_size.cx() = cx;
 
@@ -4826,8 +4826,8 @@ namespace windowing
 
    //   //::windowing::window_base::prio_install_message_routing(pchannel);
 
-   //   MESSAGE_LINK(::user::e_message_create, pchannel, this, &window::_001OnPrioCreate);
-   //   MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &window::on_prio_message_set_focus);
+   //   USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &window::_001OnPrioCreate);
+   //   USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &window::on_prio_message_set_focus);
 
    //}
 
@@ -4835,31 +4835,31 @@ namespace windowing
    void window::last_install_message_routing(::channel* pchannel)
    {
 
-      ///MESSAGE_LINK(::user::e_message_create, pchannel, this, &window::on_message_create);
+      ///USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &window::on_message_create);
 
       //::windowing::window_base::last_install_message_routing(pchannel);
 
       if (!user_interaction()->m_bMessageOnlyWindow)
       {
 
-         //MESSAGE_LINK(::user::e_message_redraw, pchannel, this, &window::_001OnRedraw);
-         //MESSAGE_LINK(::user::e_message_apply_visual, pchannel, this, &window::_001OnApplyVisual);
+         //USER_MESSAGE_LINK(::user::e_message_redraw, pchannel, this, &window::_001OnRedraw);
+         //USER_MESSAGE_LINK(::user::e_message_apply_visual, pchannel, this, &window::_001OnApplyVisual);
 
 
          //#ifndef LINUX
-         MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &window::on_message_reposition);
-         MESSAGE_LINK(::user::e_message_size, pchannel, this, &window::on_message_size);
-         //MESSAGE_LINK(::user::e_message_window_position_changed, pchannel, this, &window::on_message_window_position_changed);
+         USER_MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &window::on_message_reposition);
+         USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &window::on_message_size);
+         //USER_MESSAGE_LINK(::user::e_message_window_position_changed, pchannel, this, &window::on_message_window_position_changed);
          //#endif
 
-         MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &window::on_message_show_window);
-         //MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &window::on_message_set_focus);
-         MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &window::on_message_kill_focus);
+         USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &window::on_message_show_window);
+         //USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &window::on_message_set_focus);
+         USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &window::on_message_kill_focus);
 
       }
 
-      MESSAGE_LINK(::user::e_message_destroy_window, pchannel, this, &window::_001OnDestroyWindow);
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &window::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_destroy_window, pchannel, this, &window::_001OnDestroyWindow);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &window::on_message_destroy);
 
    }
 
@@ -5447,13 +5447,13 @@ namespace windowing
       if (!user_interaction()->m_bMessageOnlyWindow)
       {
 
-         MESSAGE_LINK(::user::e_message_capture_changed, pchannel, this, &window::_001OnCaptureChanged);
+         USER_MESSAGE_LINK(::user::e_message_capture_changed, pchannel, this, &window::_001OnCaptureChanged);
 
       }
 
       //#endif
 
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &window::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &window::on_message_destroy);
 
       prio_install_message_routing(pchannel);
 
@@ -5885,25 +5885,25 @@ namespace windowing
 
       }
 
-      if (pmessage->m_emessage == ::user::e_message_timer)
+      if (pmessage->m_eusermessage == ::user::e_message_timer)
       {
 
          //m_pthread->step_timer();
 
       }
-      else if (pmessage->m_emessage == ::user::e_message_left_button_down)
+      else if (pmessage->m_eusermessage == ::user::e_message_left_button_down)
       {
 
          informationf("linux::window::user::e_message_left_button_down");
 
       }
-      else if (pmessage->m_emessage == ::user::e_message_left_button_up)
+      else if (pmessage->m_eusermessage == ::user::e_message_left_button_up)
       {
 
          informationf("linux::window::user::e_message_left_button_up");
 
       }
-      else if (pmessage->m_emessage == ::user::e_message_mouse_move)
+      else if (pmessage->m_eusermessage == ::user::e_message_mouse_move)
       {
 
          //g_iMouseMove++;
@@ -5912,11 +5912,11 @@ namespace windowing
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
-      else if (pmessage->m_emessage == ::user::e_message_paint)
+      else if (pmessage->m_eusermessage == ::user::e_message_paint)
       {
 
       }
-      else if (pmessage->m_emessage == ::user::e_message_left_button_up)
+      else if (pmessage->m_eusermessage == ::user::e_message_left_button_up)
       {
 
          informationf("::user::e_message_left_button_up (0)");
@@ -5998,7 +5998,7 @@ namespace windowing
       //
       //         //pwindowing->set(pkey, get_oswindow(), m_pwindow, pkey->m_emessage, pkey->m_wparam, pkey->m_lparam);
       //
-      ////         if(pmessage->m_emessage == ::user::e_message_key_down)
+      ////         if(pmessage->m_eusermessage == ::user::e_message_key_down)
       ////         {
       ////
       ////            try
@@ -6013,7 +6013,7 @@ namespace windowing
       ////            }
       ////
       ////         }
-      ////         else if(pmessage->m_emessage == ::user::e_message_key_up)
+      ////         else if(pmessage->m_eusermessage == ::user::e_message_key_up)
       ////         {
       ////
       ////            try
@@ -6033,7 +6033,7 @@ namespace windowing
 
       pmessage->m_lresult = 0;
 
-      if (pmessage->m_emessage == ::user::e_message_mouse_leave)
+      if (pmessage->m_eusermessage == ::user::e_message_mouse_leave)
       {
 
          _000OnMouseLeave(pmessage);
@@ -6042,15 +6042,15 @@ namespace windowing
 
       }
 
-      if (pmessage->m_emessage == ::user::e_message_left_button_down ||
-         pmessage->m_emessage == ::user::e_message_left_button_up ||
-         pmessage->m_emessage == ::user::e_message_middle_button_down ||
-         pmessage->m_emessage == ::user::e_message_middle_button_up ||
-         pmessage->m_emessage == ::user::e_message_right_button_down ||
-         pmessage->m_emessage == ::user::e_message_right_button_up ||
-         pmessage->m_emessage == ::user::e_message_left_button_double_click ||
-         pmessage->m_emessage == ::user::e_message_mouse_move ||
-         pmessage->m_emessage == ::user::e_message_mouse_wheel)
+      if (pmessage->m_eusermessage == ::user::e_message_left_button_down ||
+         pmessage->m_eusermessage == ::user::e_message_left_button_up ||
+         pmessage->m_eusermessage == ::user::e_message_middle_button_down ||
+         pmessage->m_eusermessage == ::user::e_message_middle_button_up ||
+         pmessage->m_eusermessage == ::user::e_message_right_button_down ||
+         pmessage->m_eusermessage == ::user::e_message_right_button_up ||
+         pmessage->m_eusermessage == ::user::e_message_left_button_double_click ||
+         pmessage->m_eusermessage == ::user::e_message_mouse_move ||
+         pmessage->m_eusermessage == ::user::e_message_mouse_wheel)
       {
 
          ::pointer<::message::mouse> pmouse = pmessage;
@@ -6062,9 +6062,9 @@ namespace windowing
          return;
 
       }
-      /*      else if(pmessage->m_emessage == ::user::e_message_key_down ||
-                    pmessage->m_emessage == ::user::e_message_key_up ||
-                    pmessage->m_emessage == ::user::e_message_char)*/
+      /*      else if(pmessage->m_eusermessage == ::user::e_message_key_down ||
+                    pmessage->m_eusermessage == ::user::e_message_key_up ||
+                    pmessage->m_eusermessage == ::user::e_message_char)*/
       else if (bKeyMessage)
       {
 
@@ -6105,7 +6105,7 @@ namespace windowing
 
       }
 
-      if (pmessage->m_emessage == ::user::e_message_subject)
+      if (pmessage->m_eusermessage == ::user::e_message_subject)
       {
 
          if (user_interaction() != nullptr)
@@ -6145,7 +6145,7 @@ namespace windowing
 
       }
 
-      if (pmessage->m_emessage == ::user::e_message_create)
+      if (pmessage->m_eusermessage == ::user::e_message_create)
       {
 
          //if (user_interaction()->m_procedureOnAfterCreate)
@@ -6204,25 +6204,25 @@ namespace windowing
 
       m_pointCursor2 = pmouse->m_pointHost;
 
-      if (pmouse->m_emessage == ::user::e_message_left_button_double_click)
+      if (pmouse->m_eusermessage == ::user::e_message_left_button_double_click)
       {
 
          information() << "::user::e_message_left_button_double_click";
 
       }
-      else if (pmouse->m_emessage == ::user::e_message_left_button_down)
+      else if (pmouse->m_eusermessage == ::user::e_message_left_button_down)
       {
 
          information() << "::user::e_message_left_button_down";
 
       }
-      else if (pmouse->m_emessage == ::user::e_message_mouse_move)
+      else if (pmouse->m_eusermessage == ::user::e_message_mouse_move)
       {
 
          //information() << "::user::e_message_mouse_move : " << pmouse->m_pointAbsolute;
 
       }
-      else if (pmouse->m_emessage == ::user::e_message_left_button_up)
+      else if (pmouse->m_eusermessage == ::user::e_message_left_button_up)
       {
 
          information() << "::user::e_message_left_button_up";
@@ -6335,11 +6335,11 @@ namespace windowing
 
       auto pwindowing = windowing();
 
-      pwindowing->set(pmouse, oswindow(), this, pmouse->m_emessage, pmouse->m_wparam, pmouse->m_lparam);
+      pwindowing->set(pmouse, oswindow(), this, pmouse->m_eusermessage, pmouse->m_wparam, pmouse->m_lparam);
 
       //information() << "omousemsg pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
 
-      if (pmouse->m_emessage == ::user::e_message_mouse_move)
+      if (pmouse->m_eusermessage == ::user::e_message_mouse_move)
       {
 
          // We are at the message handler routine.
@@ -6400,7 +6400,7 @@ namespace windowing
       //
       //         }
 
-      if (pmouse->m_emessage == ::user::e_message_left_button_down)
+      if (pmouse->m_eusermessage == ::user::e_message_left_button_down)
       {
 
 
@@ -6417,14 +6417,14 @@ namespace windowing
 
       }
 
-      if (pmouse->m_emessage == ::user::e_message_left_button_down)
+      if (pmouse->m_eusermessage == ::user::e_message_left_button_down)
       {
 
 
          informationf("left_button_down");
 
       }
-      else if (pmouse->m_emessage == ::user::e_message_left_button_up)
+      else if (pmouse->m_eusermessage == ::user::e_message_left_button_up)
       {
 
 
@@ -6543,7 +6543,7 @@ namespace windowing
       if (::is_set(pwindow))
       {
 
-         if (pmouse->m_emessage == ::user::e_message_left_button_up)
+         if (pmouse->m_eusermessage == ::user::e_message_left_button_up)
          {
             if (::is_set(pwindow->m_puiLastLButtonDown))
             {
@@ -7547,7 +7547,7 @@ namespace windowing
    lresult window::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
    {
 
-      auto pmessage = user_interaction()->get_message(emessage, wparam, lparam);
+      auto pmessage = user_interaction()->get_message(eusermessage, wparam, lparam);
 
       auto lresult = send_message(pmessage);
 
@@ -14182,7 +14182,7 @@ namespace windowing
    //lresult window::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
    //{
 
-   //   return message_call(emessage, wparam, lparam, point);
+   //   return message_call(eusermessage, wparam, lparam, point);
 
    //}
 
@@ -14200,7 +14200,7 @@ namespace windowing
    pmessage->m_pchannel = this; \
    pmessage->m_oswindow = oswindow; \
    pmessage->m_pwindow = pwindow; \
-   pmessage->m_emessage = atom; \
+   pmessage->m_eusermessage = atom; \
    pmessage->m_wparam = wparam; \
    pmessage->m_lparam = lparam; \
    pmessageBase = pmessage
@@ -14209,16 +14209,16 @@ namespace windowing
    //#define _NEW_MESSAGE(TYPE) \
    //   auto pmessage = øcreate_new<TYPE>(); \
    //   pmessage->m_pchannel = this; \
-   //   pmessage->m_emessage = atom; \
+   //   pmessage->m_eusermessage = atom; \
    //   pmessage->m_wparam = wparam; \
    //   pmessage->m_lparam = lparam; \
    //   pmessageBase = pmessage
 
 
-   ::pointer<::message::message>window::get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype)
+   ::pointer<::message::message>window::get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::user::enum_message_prototype eprototype)
    {
 
-      return user_interaction()->get_message(emessage, wparam, lparam);
+      return user_interaction()->get_message(eusermessage, wparam, lparam);
 
    }
 
@@ -14226,7 +14226,7 @@ namespace windowing
    //
    //      ::pointer<::message::message>pmessageBase;
    //
-   //      if (eprototype == ::message::e_prototype_none)
+   //      if (eprototype == ::user::e_message_prototype_none)
    //      {
    //
    //         eprototype = ::message::get_message_prototype(atom.as_emessage(), 0);
@@ -14239,44 +14239,44 @@ namespace windowing
    //
    //      switch (eprototype)
    //      {
-   //      case ::message::e_prototype_none:
+   //      case ::user::e_message_prototype_none:
    //      {
    //
    //         _NEW_MESSAGE(::user::message);
    //
    //      }
    //      break;
-   //      case ::message::e_prototype_create:
+   //      case ::user::e_message_prototype_create:
    //      {
    //         _NEW_MESSAGE(::message::create);
    //
    //      }
    //      break;
-   //      case ::message::e_prototype_enable:
+   //      case ::user::e_message_prototype_enable:
    //      {
    //         _NEW_MESSAGE(::message::enable);
    //
    //      }
    //      break;
-   //      case ::message::e_prototype_non_client_activate:
+   //      case ::user::e_message_prototype_non_client_activate:
    //      {
    //         _NEW_MESSAGE(::message::nc_activate);
    //         {
    //
-   //            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+   //            //::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
    //
    //            pmessage->m_bActive = wparam != false;
    //
    //         }
    //      }
    //      break;
-   //      case ::message::e_prototype_key:
+   //      case ::user::e_message_prototype_key:
    //      {
    //         _NEW_MESSAGE(::message::key);
    //         //void key::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //         {
    //
-   //            // ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+   //            // ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
    //
    //            pmessage->m_nChar = static_cast<unsigned int>(wparam);
    //
@@ -14294,7 +14294,7 @@ namespace windowing
    //
    //      }
    //      break;
-   //      case ::message::e_prototype_timer:
+   //      case ::user::e_message_prototype_timer:
    //      {
    //
    //         //throw ::exception(::exception("do not use ::user::e_message_timer or Windows set_timer/kill_timer"));
@@ -14305,7 +14305,7 @@ namespace windowing
    //
    //      }
    //      break;
-   //      case ::message::e_prototype_show_window:
+   //      case ::user::e_message_prototype_show_window:
    //      {
    //         _NEW_MESSAGE(::message::show_window);
    //         pmessage->m_bShow = wparam != false;
@@ -14314,12 +14314,12 @@ namespace windowing
    //
    //      }
    //      break;
-   //      case ::message::e_prototype_set_cursor:
+   //      case ::user::e_message_prototype_set_cursor:
    //      {
    //         _NEW_MESSAGE(::message::set_cursor);
    //      }
    //      break;
-   //      case ::message::e_prototype_non_client_hit_test:
+   //      case ::user::e_message_prototype_non_client_hit_test:
    //      {
    //         _NEW_MESSAGE(::message::nc_hit_test);
    //         pmessage->m_point.x() = lparam_int_x(lparam);
@@ -14327,18 +14327,18 @@ namespace windowing
    //         pmessage->m_point.y() = lparam_int_y(lparam);
    //      }
    //      break;
-   //      case ::message::e_prototype_move:
+   //      case ::user::e_message_prototype_move:
    //      {
    //         _NEW_MESSAGE(::message::reposition);
    //         pmessage->m_point = lparam.point();
    //      }
    //      break;
-   //      case ::message::e_prototype_erase_background:
+   //      case ::user::e_message_prototype_erase_background:
    //      {
    //         _NEW_MESSAGE(::message::erase_bkgnd);
    //      }
    //      break;
-   //      case ::message::e_prototype_scroll:
+   //      case ::user::e_message_prototype_scroll:
    //      {
    //         _NEW_MESSAGE(::message::scroll);
    //
@@ -14347,7 +14347,7 @@ namespace windowing
    //
    //#endif
    //
-   //         //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+   //         //::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
    //
    //         pmessage->m_ecommand = (enum_scroll_command)(short)lower_unsigned_short(wparam);
    //
@@ -14355,33 +14355,33 @@ namespace windowing
    //
    //      }
    //      break;
-   //      case ::message::e_prototype_set_focus:
+   //      case ::user::e_message_prototype_set_focus:
    //      {
    //         _NEW_MESSAGE(::message::set_keyboard_focus);
    //      }
    //      break;
-   //      case ::message::e_prototype_kill_focus:
+   //      case ::user::e_message_prototype_kill_focus:
    //      {
    //         _NEW_MESSAGE(::message::kill_keyboard_focus);
    //         pmessage->m_oswindowNew = (::oswindow)wparam.m_number;
    //      }
    //      break;
    //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
-   //      case ::message::e_prototype_window_pos:
+   //      case ::user::e_message_prototype_window_pos:
    //
    //      {
    //         _NEW_MESSAGE(::message::window_pos);
    //         pmessage->m_pWINDOWPOS = reinterpret_cast<void *>(lparam.m_lparam);
    //      }
    //      break;
-   //      case ::message::e_prototype_non_client_calc_size:
+   //      case ::user::e_message_prototype_non_client_calc_size:
    //      {
    //         _NEW_MESSAGE(::message::nc_calc_size);
    //         pmessage->m_pNCCALCSIZE_PARAMS = reinterpret_cast<void *>(lparam.m_lparam);
    //      }
    //      break;
    //#endif
-   //      case ::message::e_prototype_mouse:
+   //      case ::user::e_message_prototype_mouse:
    //      {
    //         _NEW_MESSAGE(::message::mouse);
    //         pmessage->m_ebuttonstate = (::user::enum_button_state)wparam.m_number;
@@ -14401,13 +14401,13 @@ namespace windowing
    //
    //      }
    //      break;
-   //      case ::message::e_prototype_object:
+   //      case ::user::e_message_prototype_object:
    //      {
    //         _NEW_MESSAGE(::message::particle);
    //         //void particle::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //         {
    //
-   //            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+   //            //::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
    //
    //            ::particle_pointer pparticle(lparam);
    //
@@ -14418,7 +14418,7 @@ namespace windowing
    //         }
    //      }
    //      break;
-   //      case ::message::e_prototype_mouse_wheel:
+   //      case ::user::e_message_prototype_mouse_wheel:
    //      {
    //         _NEW_MESSAGE(::message::mouse_wheel);
    //
@@ -14434,7 +14434,7 @@ namespace windowing
    //
    //      }
    //      break;
-   //      case ::message::e_prototype_size:
+   //      case ::user::e_message_prototype_size:
    //      {
    //         _NEW_MESSAGE(::message::size);
    //
@@ -14443,15 +14443,15 @@ namespace windowing
    //         pmessage->m_size = ::int_size(lparam_int_x(lparam), lparam_int_y(lparam));
    //      }
    //      break;
-   //      case ::message::e_prototype_activate:
+   //      case ::user::e_message_prototype_activate:
    //      {
    //         _NEW_MESSAGE(::message::activate);
    //         //pmessage = p;
-   //         //default_set(pmessage, emessage, wparam, lparam)
+   //         //default_set(pmessage, eusermessage, wparam, lparam)
    //         //void activate::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //         //{
    //
-   //            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+   //            //::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
    //
    //         pmessage->m_eactivate = (enum_activate)(lower_unsigned_short(wparam));
    //
@@ -14480,7 +14480,7 @@ namespace windowing
    //
    //      }
    //      break;
-   //      case ::message::e_prototype_mouse_activate:
+   //      case ::user::e_message_prototype_mouse_activate:
    //      {
    //         _NEW_MESSAGE(::message::mouse_activate);
    //      }
@@ -14488,7 +14488,7 @@ namespace windowing
    //      default:
    //      {
    //
-   //         auto pmessage = ::channel::get_message(emessage, wparam, lparam, eprototype);
+   //         auto pmessage = ::channel::get_message(eusermessage, wparam, lparam, eprototype);
    //
    //         pmessageBase = pmessage;
    //
@@ -15377,7 +15377,7 @@ namespace windowing
 
       // }
 
-      // user_interaction()->interaction_post(øallocate call_message_handler_task(user_interaction(), emessage, wparam, lparam));
+      // user_interaction()->interaction_post(øallocate call_message_handler_task(user_interaction(), eusermessage, wparam, lparam));
 
       //auto pmessage
 
@@ -15388,13 +15388,13 @@ namespace windowing
       if (user_interaction())
       {
 
-         pmessage = user_interaction()->get_message(emessage, wparam, lparam);
+         pmessage = user_interaction()->get_message(eusermessage, wparam, lparam);
 
       }
       else
       {
 
-         pmessage = get_message(emessage, wparam, lparam);
+         pmessage = get_message(eusermessage, wparam, lparam);
 
       }
 
@@ -15417,13 +15417,13 @@ namespace windowing
       if (user_interaction())
       {
 
-         pmessage = user_interaction()->get_message(emessage, wparam, lparam);
+         pmessage = user_interaction()->get_message(eusermessage, wparam, lparam);
 
       }
       else
       {
 
-         pmessage = get_message(emessage, wparam, lparam);
+         pmessage = get_message(eusermessage, wparam, lparam);
 
       }
 
@@ -15482,7 +15482,7 @@ namespace windowing
    void window::send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bDeep, bool bOnlyPerm)
    {
 
-      return user_interaction()->send_message_to_descendants(emessage, wparam, lparam, bDeep, bOnlyPerm);
+      return user_interaction()->send_message_to_descendants(eusermessage, wparam, lparam, bDeep, bOnlyPerm);
 
    }
 
@@ -15856,7 +15856,7 @@ namespace windowing
 
       // }
 
-      // user_interaction()->interaction_post(øallocate call_message_handler_task(user_interaction(), emessage, wparam, lparam));
+      // user_interaction()->interaction_post(øallocate call_message_handler_task(user_interaction(), eusermessage, wparam, lparam));
 
       //auto pmessage
 
@@ -15867,13 +15867,13 @@ namespace windowing
       if (user_interaction())
       {
 
-         pmessage = user_interaction()->get_message(emessage, wparam, lparam);
+         pmessage = user_interaction()->get_message(eusermessage, wparam, lparam);
 
       }
       else
       {
 
-         pmessage = get_message(emessage, wparam, lparam);
+         pmessage = get_message(eusermessage, wparam, lparam);
 
       }
 
@@ -16124,12 +16124,12 @@ namespace windowing
       //}
 
       //g_p->set_at((iptr)this, ::type(user_interaction()).name()) + "xxx" + ::type(this).name();
-      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &window::on_message_show_window);
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &window::on_message_destroy);
-      MESSAGE_LINK(::user::e_message_non_client_destroy, pchannel, this, &window::on_message_non_client_destroy);
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &window::_001OnPrioCreate);
-      MESSAGE_LINK(::user::e_message_after_create, pchannel, this, &window::_001OnPrioAfterCreate);
-      MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &window::on_prio_message_set_focus);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &window::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &window::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_non_client_destroy, pchannel, this, &window::on_message_non_client_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &window::_001OnPrioCreate);
+      USER_MESSAGE_LINK(::user::e_message_after_create, pchannel, this, &window::_001OnPrioAfterCreate);
+      USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &window::on_prio_message_set_focus);
 
       if (user_interaction() && ::type(user_interaction()).name().contains("notify_icon"))
       {

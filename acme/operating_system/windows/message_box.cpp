@@ -6,10 +6,10 @@
 #include "acme/_operating_system.h"
 
 
-CLASS_DECL_ACME int message_box_to_windows_message_box_type(::user::user::enum_message_box emessagebox)
+CLASS_DECL_ACME int message_box_to_windows_message_box_type(::user::enum_message_box emessagebox)
 {
 
-   auto emessageboxType = (::user::user::enum_message_box)(emessagebox & ::user::e_message_box_type_mask);
+   auto emessageboxType = (::user::enum_message_box)(emessagebox & ::user::e_message_box_type_mask);
 
    switch (emessageboxType)
    {
@@ -34,10 +34,10 @@ CLASS_DECL_ACME int message_box_to_windows_message_box_type(::user::user::enum_m
 }
 
 
-CLASS_DECL_ACME int message_box_to_windows_message_box_icon(::user::user::enum_message_box emessagebox)
+CLASS_DECL_ACME int message_box_to_windows_message_box_icon(::user::enum_message_box emessagebox)
 {
 
-   auto emessageboxIcon = (::user::user::enum_message_box)(emessagebox & ::user::e_message_box_icon_mask);
+   auto emessageboxIcon = (::user::enum_message_box)(emessagebox & ::user::e_message_box_icon_mask);
 
    switch (emessageboxIcon)
    {
@@ -56,10 +56,10 @@ CLASS_DECL_ACME int message_box_to_windows_message_box_icon(::user::user::enum_m
 }
 
 
-CLASS_DECL_ACME int message_box_to_windows_message_box_default_button(::user::user::enum_message_box emessagebox)
+CLASS_DECL_ACME int message_box_to_windows_message_box_default_button(::user::enum_message_box emessagebox)
 {
 
-   auto emessageboxDefaultButton = (::user::user::enum_message_box)(emessagebox & ::user::e_message_box_default_button_mask);
+   auto emessageboxDefaultButton = (::user::enum_message_box)(emessagebox & ::user::e_message_box_default_button_mask);
 
    switch (emessageboxDefaultButton)
    {
@@ -132,7 +132,7 @@ CLASS_DECL_ACME int message_box_to_windows_message_box_default_button(::user::us
 
 
 
-CLASS_DECL_ACME int message_box_to_windows_message_box(::user::user::enum_message_box emessagebox)
+CLASS_DECL_ACME int message_box_to_windows_message_box(::user::enum_message_box emessagebox)
 {
 
    int iMessageBox = 0;

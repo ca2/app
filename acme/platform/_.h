@@ -64,7 +64,14 @@ namespace platform
 } // namespace platform
 
 
-class application_message;
+namespace message
+{
+
+   
+   class message;
+
+
+} // namespace message
 
 
 class message_box;

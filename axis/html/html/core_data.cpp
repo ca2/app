@@ -356,7 +356,7 @@ namespace html
 
       }
 
-      MESSAGE_LINK(::user::e_message_key_down, m_puserinteraction, this, &core_data::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_down, m_puserinteraction, this, &core_data::on_message_key_down);
       
       m_bImplemented = true;
       

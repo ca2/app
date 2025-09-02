@@ -10,7 +10,6 @@ namespace message
    application::application(e_application eapplication)
    {
 
-      m_emessage = ::user::e_message_application;
       m_eapplication = eapplication;
       m_bOk = true;
 

@@ -445,9 +445,9 @@ namespace user
       add_command_handler("try_close_application", { this, &frame_interaction::on_message_application_exit });
       
 
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &frame_interaction::on_message_destroy);
-      MESSAGE_LINK(::user::e_message_application_exit, pchannel, this, &frame_interaction::on_message_application_exit);
-      MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &frame_interaction::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &frame_interaction::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_application_exit, pchannel, this, &frame_interaction::on_message_application_exit);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &frame_interaction::on_message_key_down);
 
       system()->signal(id_operating_system_user_color_change)->add_handler(this);
 //#ifdef WINDOWS_DESKTOP
@@ -455,7 +455,7 @@ namespace user
 //      if (is_frame_window())
 //      {
 //
-//         MESSAGE_LINK((::user::enum_message)WM_SYSCOMMAND, pchannel, this, &frame_interaction::_001OnSysCommand);
+//         USER_MESSAGE_LINK((::user::enum_message)WM_SYSCOMMAND, pchannel, this, &frame_interaction::_001OnSysCommand);
 //
 //      }
 //

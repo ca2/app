@@ -289,7 +289,7 @@ namespace apex
 
       //::platform::context::install_message_routing(pchannel);
 
-      //MESSAGE_LINK(::user::e_message_erase_session, pchannel, this, &system::on_message_erase_session);
+      //USER_MESSAGE_LINK(::user::e_message_erase_session, pchannel, this, &system::on_message_erase_session);
 
    }
 
@@ -2043,7 +2043,7 @@ pdirectorysystem->create("/ca2core");
    unsigned int system::os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
-      post_to_all_threads(emessage, wparam, lparam);
+      post_to_all_threads(eusermessage, wparam, lparam);
 
       return 0;
 

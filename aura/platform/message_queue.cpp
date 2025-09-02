@@ -40,7 +40,7 @@
 //
 //   //if (!
 //   
-//   pmq->post_message(pwindow->oswindow(), emessage, wparam, lparam);
+//   pmq->post_message(pwindow->oswindow(), eusermessage, wparam, lparam);
 //   //{
 //
 //   //   return false;

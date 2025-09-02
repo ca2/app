@@ -8,20 +8,8 @@
 #include "acme/prototype/prototype/memory.h"
 
 
-namespace message
+namespace platform
 {
-
-
-   enum enum_message
-   {
-
-      e_message_none = 0,
-      e_message_request_uri = 1,
-      e_message_on_size = 2,
-      e_message_set_editor_selection = 3,
-      e_message_application_started = 4,
-
-   };
 
 
    class CLASS_DECL_ACME message : virtual public ::particle
@@ -47,7 +35,7 @@ namespace message
    };
 
 
-} // namespace message
+} // namespace platform
 
 
 

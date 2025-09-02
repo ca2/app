@@ -1228,9 +1228,9 @@ return;
       ::filemanager_impact_base::install_message_routing(pchannel);
       ::userfs::tree_data::install_message_routing(pchannel);
 
-      MESSAGE_LINK(MessageMainPost, pchannel,  this,  &tree_data::_001OnMainPostMessage);
-      MESSAGE_LINK(::user::e_message_context_menu, pchannel, this, &tree_data::on_message_context_menu);
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &tree_data::on_message_create);
+      USER_MESSAGE_LINK(MessageMainPost, pchannel,  this,  &tree_data::_001OnMainPostMessage);
+      USER_MESSAGE_LINK(::user::e_message_context_menu, pchannel, this, &tree_data::on_message_context_menu);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &tree_data::on_message_create);
 
    }
 

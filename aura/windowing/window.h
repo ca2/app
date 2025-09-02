@@ -1397,7 +1397,7 @@ namespace windowing
       //virtual void queue_message_handler(::message::message * pmessage);
 
 
-      virtual ::pointer<::message::message>get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
+      virtual ::pointer<::message::message>get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::user::enum_message_prototype eprototype = ::user::e_message_prototype_none) override;
 
 
       //virtual void enable_window(bool bEnable = true);

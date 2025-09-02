@@ -4248,6 +4248,12 @@
     <ClInclude Include="constant\message.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
+    <ClInclude Include="platform\acme_message.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\byte2_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6070,6 +6076,12 @@
     </ClCompile>
     <ClCompile Include="prototype\data\block.cpp">
       <Filter>Source Files\prototype\data</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\acme_message.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\byte2_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

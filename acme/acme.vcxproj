@@ -1676,6 +1676,7 @@
     <ClCompile Include="filesystem\filesystem\windows_path.cpp" />
     <ClCompile Include="filesystem\file\binary_stream.cpp" />
     <ClCompile Include="filesystem\file\buffered_buffer.cpp" />
+    <ClCompile Include="filesystem\file\byte2_stream.cpp" />
     <ClCompile Include="filesystem\file\circular_buffer.cpp" />
     <ClCompile Include="filesystem\file\composite.cpp" />
     <ClCompile Include="filesystem\file\cpp.cpp" />
@@ -1747,7 +1748,9 @@
     <ClInclude Include="constant\call.h" />
     <ClInclude Include="constant\message.h" />
     <ClInclude Include="constant\user_message.h" />
+    <ClInclude Include="filesystem\file\byte2_stream.h" />
     <ClInclude Include="filesystem\file\protocol_file.h" />
+    <ClInclude Include="platform\acme_message.h" />
     <ClInclude Include="platform\http.h" />
     <ClInclude Include="prototype\collection\base_array.h" />
     <ClInclude Include="prototype\collection\static_array.h" />
@@ -3092,6 +3095,7 @@
     <ClCompile Include="parallelization\wait_for_end_of_sequence.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\acme.cpp" />
+    <ClCompile Include="platform\acme_message.cpp" />
     <ClCompile Include="platform\allocator.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\application_acme.cpp" />

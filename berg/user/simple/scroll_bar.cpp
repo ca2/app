@@ -53,13 +53,13 @@ simple_scroll_bar::~simple_scroll_bar()
 void simple_scroll_bar::install_message_routing(::channel * pchannel)
 {
    ::user::interaction::install_message_routing(pchannel);
-   MESSAGE_LINK(::user::e_message_create, pchannel, this, &simple_scroll_bar::on_message_create);
-   MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &simple_scroll_bar::on_message_destroy);
-   MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &simple_scroll_bar::on_message_show_window);
-   MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &simple_scroll_bar::on_message_mouse_move);
-   MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &simple_scroll_bar::on_message_left_button_down);
-   MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &simple_scroll_bar::on_message_left_button_up);
-   MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &simple_scroll_bar::on_message_scroll_x);
+   USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &simple_scroll_bar::on_message_create);
+   USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &simple_scroll_bar::on_message_destroy);
+   USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &simple_scroll_bar::on_message_show_window);
+   USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &simple_scroll_bar::on_message_mouse_move);
+   USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &simple_scroll_bar::on_message_left_button_down);
+   USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &simple_scroll_bar::on_message_left_button_up);
+   USER_MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &simple_scroll_bar::on_message_scroll_x);
 
 }
 

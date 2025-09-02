@@ -359,7 +359,7 @@ namespace user
    void scroll_base_x::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &scroll_base_x::on_message_scroll_x);
+      USER_MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &scroll_base_x::on_message_scroll_x);
 
    }
 
@@ -456,7 +456,7 @@ namespace user
 
       //}
 
-      pscroll->m_emessage = ::user::e_message_scroll_x;
+      pscroll->m_eusermessage = ::user::e_message_scroll_x;
 
       send_message(pscroll);
 

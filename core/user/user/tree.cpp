@@ -1022,18 +1022,18 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
       ::user::scroll_base::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &tree::on_message_create);
-      MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &tree::on_message_left_button_double_click);
-      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &tree::on_message_left_button_up);
-      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &tree::on_message_left_button_down);
-      MESSAGE_LINK(::user::e_message_right_button_up, pchannel, this, &tree::on_message_right_button_up);
-      MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &tree::on_message_right_button_down);
-      MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &tree::on_message_mouse_move);
-      MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &tree::on_message_mouse_leave);
-      MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &tree::on_message_scroll_x);
-      MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &tree::on_message_scroll_y);
-      MESSAGE_LINK(::user::e_message_change_experience, pchannel, this, &tree::_001OnChangeExperience);
-      //      //MESSAGE_LINK(::user::e_message_timer         , pchannel, this, &tree::on_timer);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &tree::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &tree::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &tree::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &tree::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_right_button_up, pchannel, this, &tree::on_message_right_button_up);
+      USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &tree::on_message_right_button_down);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &tree::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &tree::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &tree::on_message_scroll_x);
+      USER_MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &tree::on_message_scroll_y);
+      USER_MESSAGE_LINK(::user::e_message_change_experience, pchannel, this, &tree::_001OnChangeExperience);
+      //      //USER_MESSAGE_LINK(::user::e_message_timer         , pchannel, this, &tree::on_timer);
 
    }
 

@@ -1070,7 +1070,7 @@ bool thread::task_iteration()
       for (auto & m : m_messageaInitialQueue)
       {
 
-         ::PostThreadMessage((DWORD)m_itask.m_i, m.m_emessage, m.m_wparam, m.m_lparam);
+         ::PostThreadMessage((DWORD)m_itask.m_i, m.m_eusermessage, m.m_wparam, m.m_lparam);
 
       }
 
@@ -1252,7 +1252,7 @@ bool thread::get_message()
 
    get_message(&message, NULL, 0, 0);
 
-   if (m_message.m_emessage == ::user::e_message_quit)
+   if (m_message.m_eusermessage == ::user::e_message_quit)
    {
 
       return false;
@@ -1468,12 +1468,12 @@ bool thread::handle_message(bool & bContinue)
    if (peek_message(&m_message, nullptr, 0, 0, true))
    {
 
-      if (m_message.m_emessage == ::user::e_message_quit)
+      if (m_message.m_eusermessage == ::user::e_message_quit)
       {
 
          information(
             "\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " +
-            ::as_string(m_message.m_emessage == ::user::e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
+            ::as_string(m_message.m_eusermessage == ::user::e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
             ::as_string((unsigned long long)::current_task_index()) + ")\n\n\n");
          
          bContinue = false;
@@ -2617,13 +2617,13 @@ void thread::system_pre_translate_message(::message::message* pmessage)
 void thread::process_window_procedure_exception(const ::exception& e, ::message::message* pmessage)
 {
 
-   if (pmessage->m_emessage == ::user::e_message_create)
+   if (pmessage->m_eusermessage == ::user::e_message_create)
    {
 
       pmessage->m_lresult = -1;
 
    }
-   else if (pmessage->m_emessage == ::user::e_message_paint)
+   else if (pmessage->m_eusermessage == ::user::e_message_paint)
    {
 
       // force validation of interaction_impl to prevent getting ::user::e_message_paint again
@@ -3176,7 +3176,7 @@ namespace apex
 
       //      auto psystem = system();
       //
-      //      psystem->post_to_all_threads(emessage, wparam, lparam);
+      //      psystem->post_to_all_threads(eusermessage, wparam, lparam);
 
    }
 
@@ -3226,13 +3226,13 @@ void thread::post_element(const ::user::enum_message & emessage, const ::wparam 
 void thread::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
-   if (emessage == ::user::e_message_close)
+   if (eusermessage == ::user::e_message_close)
    {
 
       informationf("thread::post_message ::user::e_message_close");
 
    }
-   else if (emessage == ::user::e_message_branch)
+   else if (eusermessage == ::user::e_message_branch)
    {
 
       informationf("thread::post_message ::user::e_message_branch");
@@ -3244,7 +3244,7 @@ void thread::post_message(::user::enum_message eusermessage, ::wparam wparam, ::
    if (m_htask.is_set() && !m_bAuraMessageQueue && m_bMessageThread)
    {
 
-      if (emessage == ::user::e_message_quit)
+      if (eusermessage == ::user::e_message_quit)
       {
 
          string strType = ::type(this).name();
@@ -3301,14 +3301,14 @@ void thread::post_message(::user::enum_message eusermessage, ::wparam wparam, ::
       //   m_bCertainlyTheresWindowsMessageQueue = true;
       //}
 
-      UINT message = emessage;
+      UINT message = eusermessage;
 
       int_bool bOk = ::PostThreadMessageW((DWORD)m_itask.m_i, message, wparam, lparam) != false;
 
       if (!bOk)
       {
          MESSAGE message;
-         message.m_emessage = emessage;
+         message.m_eusermessage = eusermessage;
          message.m_wparam = wparam;
          message.m_lparam = lparam;
          m_messageaInitialQueue.add(message);
@@ -3334,10 +3334,10 @@ void thread::post_message(::user::enum_message eusermessage, ::wparam wparam, ::
       if (!is_task_set2())
       {
 
-         _post([this, emessage, wparam, lparam]()
+         _post([this, eusermessage, wparam, lparam]()
          {
 
-            post_message(emessage, wparam, lparam);
+            post_message(eusermessage, wparam, lparam);
 
          });
 
@@ -3353,7 +3353,7 @@ void thread::post_message(::user::enum_message eusermessage, ::wparam wparam, ::
 
    }
 
-   pmessagequeue->post_message(nullptr, emessage, wparam, lparam);
+   pmessagequeue->post_message(nullptr, eusermessage, wparam, lparam);
 
    new_main_loop_happening()->set_happening();
 
@@ -3413,7 +3413,7 @@ void thread::send_message(::user::enum_message eusermessage, ::wparam wparam, ::
 
    auto pmessage = øallocate ::send_thread_message(this);
 
-   pmessage->m_message.m_emessage = emessage;
+   pmessage->m_message.m_eusermessage = eusermessage;
 
    pmessage->m_message.m_wparam = wparam;
 
@@ -4048,7 +4048,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 
       get_message_queue()->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, 500_ms);
 
-      if (pMsg->m_emessage == ::user::e_message_quit)
+      if (pMsg->m_eusermessage == ::user::e_message_quit)
       {
 
          return;
@@ -4067,7 +4067,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 
          set_finishing_flag();
 
-         if (pMsg->m_emessage == ::user::e_message_quit)
+         if (pMsg->m_eusermessage == ::user::e_message_quit)
          {
 
             return;
@@ -4173,7 +4173,7 @@ void thread::post_message(oswindow oswindow, ::user::enum_message eusermessage, 
    if (m_htask.is_set() && !m_bAuraMessageQueue)
    {
 
-      if (::PostMessage(as_hwnd(oswindow), (UINT) emessage, wparam, lparam))
+      if (::PostMessage(as_hwnd(oswindow), (UINT) eusermessage, wparam, lparam))
       {
 
          return;
@@ -4184,9 +4184,9 @@ void thread::post_message(oswindow oswindow, ::user::enum_message eusermessage, 
 
 #endif
 
-   //return get_message_queue()->post_message(oswindow, emessage, wparam, lparam);
+   //return get_message_queue()->post_message(oswindow, eusermessage, wparam, lparam);
 
-   get_message_queue()->post_message(oswindow, emessage, wparam, lparam);
+   get_message_queue()->post_message(oswindow, eusermessage, wparam, lparam);
 
 }
 
@@ -4316,7 +4316,7 @@ void thread::handle_posted_messages()
       if (m_emessageaGetLast.has_element())
       {
 
-         if (m_emessageaGetLast.contains(pmessage->m_emessage))
+         if (m_emessageaGetLast.contains(pmessage->m_eusermessage))
          {
 
             ::collection::index cIgnoredMessages = 0;
@@ -4324,7 +4324,7 @@ void thread::handle_posted_messages()
             for (::collection::index i = 1; i < m_messagea.size();)
             {
 
-               if (m_messagea[i]->m_emessage == pmessage->m_emessage)
+               if (m_messagea[i]->m_eusermessage == pmessage->m_eusermessage)
                {
 
                   m_messagea.erase_at(iEraseAt);
@@ -4346,7 +4346,7 @@ void thread::handle_posted_messages()
             //            if(cIgnoredMessages > 0)
             //            {
             //
-            //               if(pmessage->m_emessage == ::user::e_message_mouse_move)
+            //               if(pmessage->m_eusermessage == ::user::e_message_mouse_move)
             //               {
             //
             //                  information() << cIgnoredMessages << " ignored mouse move message" << (cIgnoredMessages > 1 ? "s" : 0);
@@ -4493,7 +4493,7 @@ bool thread::process_message()
 
 #ifdef WINDOWS_DESKTOP
 
-      if (message.m_oswindow != nullptr || message.m_emessage == ::user::e_message_timer)
+      if (message.m_oswindow != nullptr || message.m_eusermessage == ::user::e_message_timer)
       {
 
          MSG msg;
@@ -4510,7 +4510,7 @@ bool thread::process_message()
 
 #endif
 
-      if (message.m_emessage == ::user::e_message_event2_trying_to_remove)
+      if (message.m_eusermessage == ::user::e_message_event2_trying_to_remove)
       {
 
          //if(msg.lParam)
@@ -4531,7 +4531,7 @@ bool thread::process_message()
          //}
 
       }
-      else if (message.m_emessage == ::user::e_message_system)
+      else if (message.m_eusermessage == ::user::e_message_system)
       {
 
          if (message.m_wparam == e_system_message_create)
@@ -4593,7 +4593,7 @@ bool thread::process_message()
 
       }
 
-      if (message.m_emessage == ::user::e_message_kick_idle)
+      if (message.m_eusermessage == ::user::e_message_kick_idle)
       {
 
          return true;

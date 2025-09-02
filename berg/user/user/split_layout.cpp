@@ -44,8 +44,8 @@ namespace user
 
       place_holder_container::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &split_layout::on_message_create);
-      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &split_layout::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &split_layout::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &split_layout::on_message_show_window);
 
    }
 
@@ -273,7 +273,7 @@ namespace user
 
       CalcSplitBarRect(iIndex, splitRect);
 
-      if(pMsg->m_emessage == ::user::e_message_left_button_down)
+      if(pMsg->m_eusermessage == ::user::e_message_left_button_down)
       {
 
          if(session()->is_mouse_button_pressed(::user::e_mouse_left_button))
@@ -290,7 +290,7 @@ namespace user
          }
 
       }
-      else if(pMsg->m_emessage == ::user::e_message_left_button_up)
+      else if(pMsg->m_eusermessage == ::user::e_message_left_button_up)
       {
 
          if(m_iState != stateInitial)
@@ -303,7 +303,7 @@ namespace user
          }
 
       }
-      else if(pMsg->m_emessage == ::user::e_message_mouse_move)
+      else if(pMsg->m_eusermessage == ::user::e_message_mouse_move)
       {
 
 //         int   fwKeys = (int) pMsg->wParam;        // key flags

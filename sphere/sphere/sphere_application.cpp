@@ -454,7 +454,7 @@ namespace sphere
 
          m_pconsole = øallocate ::console::department(this);
 
-         MESSAGE_LINK(WM_APP + 3243, this, m_pconsole.m_p, &console::department::_001OnImpact);
+         USER_MESSAGE_LINK(WM_APP + 3243, this, m_pconsole.m_p, &console::department::_001OnImpact);
 
 
       }

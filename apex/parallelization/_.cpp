@@ -176,7 +176,7 @@ namespace parallelization
 
             ::pointer<::thread>pthread = pair.element2().m_ptask;
 
-            pthread->post_message(emessage, wparam, lparam);
+            pthread->post_message(eusermessage, wparam, lparam);
 
          }
          catch (...)

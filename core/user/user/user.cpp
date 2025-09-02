@@ -114,6 +114,8 @@ namespace core
 {
 
 
+   namespace user
+   {
    /* class user_static_factory
     {
     public:
@@ -187,7 +189,7 @@ namespace core
 
       print_line("core::user::initialize\n");
 
-      ::berg::user::initialize(pparticle);
+      ::berg::user::user::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -205,7 +207,7 @@ namespace core
    {
 
 
-      ::berg::user::init1();
+      ::berg::user::user::init1();
 
       factory()->add_factory_item < ::user::picture::picture_impl >();
 
@@ -236,7 +238,7 @@ namespace core
    void user::init()
    {
 
-      ::berg::user::init();
+      ::berg::user::user::init();
 
       //if (!::berg::user::init())
       //{
@@ -505,7 +507,7 @@ namespace core
    void user::init2()
    {
 
-      ::berg::user::init2();
+      ::berg::user::user::init2();
 
       //if (!::acme::department::init2())
       //{
@@ -1561,14 +1563,6 @@ namespace core
 
 
 
-} //namespace core
-
-
-
-namespace core
-{
-
-
    void user::initialize_userex()
    {
 
@@ -1878,6 +1872,9 @@ namespace core
    __namespace_object_factory(user, ::system_setup::flag_object_user);
 
 
+   } // namespace user
+
+
 
 } // namespace userex
 
@@ -1886,32 +1883,13 @@ namespace user
 {
 
 
-   ::pointer<::user::mesh_data>mesh::create_mesh_data()
-   {
-
-      return user()->default_create_mesh_data(this);
-
-   }
+   ::pointer<::user::mesh_data> mesh::create_mesh_data() { return user()->default_create_mesh_data(this); }
 
 
-   ::pointer<::user::list_header>list::create_list_header()
-   {
-
-      return user()->default_create_list_header(this);
-
-   }
+   ::pointer<::user::list_header> list::create_list_header() { return user()->default_create_list_header(this); }
 
 
-   ::pointer<::user::mesh_data>list::create_mesh_data()
-   {
-
-      return user()->default_create_list_data(this);
-
-   }
-
-
-
-
+   ::pointer<::user::mesh_data> list::create_mesh_data() { return user()->default_create_list_data(this); }
 
 
 } // namespace user

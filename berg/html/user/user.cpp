@@ -13,7 +13,6 @@
 namespace berg
 {
 
-
    void user::initialize_html()
    {
 
@@ -21,22 +20,21 @@ namespace berg
       m_typeatomHtmlDocument = typeid(html_document);
       m_typeatomHtmlImpact = typeid(html_impact);
 
-      factory()->add_factory_item < html_document >();
-      factory()->add_factory_item < html_impact >();
-      factory()->add_factory_item < ::html::core_data::image >();
+      factory()->add_factory_item<html_document>();
+      factory()->add_factory_item<html_impact>();
+      factory()->add_factory_item<::html::core_data::image>();
 
-      //auto ptemplate = __initialize_new ::user::multiple_document_template(
-      //   "system/form",
-      //   ::type < html_document >(),
-      //   get_simple_child_frame_type_info(),
-      //   ::type < html_impact >()));
+      // auto ptemplate = __initialize_new ::user::multiple_document_template(
+      //    "system/form",
+      //    ::type < html_document >(),
+      //    get_simple_child_frame_type_info(),
+      //    ::type < html_impact >()));
 
-      //m_ptemplateHtmlChildForm1 = ptemplate;
+      // m_ptemplateHtmlChildForm1 = ptemplate;
 
-      //add_document_template(ptemplate);
+      // add_document_template(ptemplate);
 
-      //return ::success;
-
+      // return ::success;
    }
 
 

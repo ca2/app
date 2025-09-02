@@ -60,8 +60,8 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &still::on_message_create);
-      MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &still::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &still::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &still::on_message_key_down);
 
    }
 

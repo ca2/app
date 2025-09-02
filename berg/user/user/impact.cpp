@@ -48,20 +48,20 @@ namespace user
 
       ::user::box::install_message_routing(pchannel);
 
-      //MESSAGE_LINK(WM_VIEW, pchannel, this, &impact::_001OnImpact);
-      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &impact::on_message_left_button_down);
-      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
-      MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &impact::on_message_mouse_move);
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &impact::on_message_create);
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &impact::on_message_destroy);
-      //      MESSAGE_LINK(::user::e_message_left_button_down    , pchannel, this, &impact::on_message_right_button_down);
-      MESSAGE_LINK(::user::e_message_middle_button_down, pchannel, this, &impact::on_message_middle_button_down);
-      MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &impact::on_message_right_button_down);
+      //USER_MESSAGE_LINK(WM_VIEW, pchannel, this, &impact::_001OnImpact);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &impact::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &impact::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &impact::on_message_destroy);
+      //      USER_MESSAGE_LINK(::user::e_message_left_button_down    , pchannel, this, &impact::on_message_right_button_down);
+      USER_MESSAGE_LINK(::user::e_message_middle_button_down, pchannel, this, &impact::on_message_middle_button_down);
+      USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &impact::on_message_right_button_down);
 
 
-      MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &impact::_001OnMouseActivate);
-      //      MESSAGE_LINK(::user::e_message_destroy        , pchannel, this, &impact::on_message_destroy);
-      //    MESSAGE_LINK(::user::e_message_create        , pchannel, this, &impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &impact::_001OnMouseActivate);
+      //      USER_MESSAGE_LINK(::user::e_message_destroy        , pchannel, this, &impact::on_message_destroy);
+      //    USER_MESSAGE_LINK(::user::e_message_create        , pchannel, this, &impact::on_message_create);
 
       // Standard commands for split pane
       //  //      add_command_handler(ID_WINDOW_SPLIT , &impact::_001OnSplitCmd);

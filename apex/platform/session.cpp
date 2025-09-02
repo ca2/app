@@ -170,7 +170,7 @@ namespace apex
 
       //::platform::context::install_message_routing(pchannel);
       
-      //MESSAGE_LINK(::user::e_message_erase_application, pchannel, this, &session::on_message_erase_application);
+      //USER_MESSAGE_LINK(::user::e_message_erase_application, pchannel, this, &session::on_message_erase_application);
 
    }
 
@@ -2021,8 +2021,8 @@ namespace apex
    void session::frame_pre_translate_message(::message::message* pmessage)
    {
 
-//      if (pmessage->m_emessage == WM_GETTEXT
-//         || pmessage->m_emessage == WM_GETTEXTLENGTH
+//      if (pmessage->m_eusermessage == WM_GETTEXT
+//         || pmessage->m_eusermessage == WM_GETTEXTLENGTH
 //         )
 //      {
 //
@@ -2032,7 +2032,7 @@ namespace apex
 //         return;
 //
 //      }
-      //else if (pmessage->m_emessage == ::user::e_message_mouse_move)
+      //else if (pmessage->m_eusermessage == ::user::e_message_mouse_move)
       //{
 
       //   pmessage->m_uiMessageFlags |= 0; // message considered pre translated

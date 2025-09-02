@@ -8,12 +8,12 @@
 namespace acme
 {
 
-
-   ::user::activation_token * message::user_activation_token()
-   {
-
-      return nullptr;
-
+     
+   ::user::activation_token *message::user_activation_token() 
+   { 
+         
+      return nullptr; 
+      
    }
 
 

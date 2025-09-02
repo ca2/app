@@ -5,6 +5,7 @@
 
 
 #include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "acme/constant/user_message.h"
 
 
@@ -296,7 +297,7 @@ inline atom::atom(::user::enum_message eusermessage) :
 {
 
 }
-inline atom::atom(::message::enum_message emessage) :
+inline atom::atom(::enum_message emessage) :
     m_etype(e_type_message), m_iLargest((::iptr)emessage) // used m_iLargest to reset 64-bit field
 {
 }
@@ -1070,13 +1071,14 @@ inline ::std::strong_ordering atom::operator <=>(const ::domain_id & domainid) c
 //}
 //
 
+
 inline bool atom::operator == (::user::enum_message eusermessage) const
 {
 
    return ::comparison::tuple
            (
                    [&]() { return m_etype == e_type_message; },
-                   [&]() { return m_emessage == emessage; }
+                   [&]() { return m_eusermessage == eusermessage; }
            );
 
 }
@@ -1089,11 +1091,28 @@ inline ::std::strong_ordering atom::operator <=>(::user::enum_message eusermessa
    return ::comparison::tuple
            (
                    [&]() { return m_etype <=> e_type_message; },
-                   [&]() { return m_emessage <=> emessage; }
+                   [&]() { return m_eusermessage <=> eusermessage; }
            );
 
 }
 
+
+
+
+inline bool atom::operator==(::enum_message emessage) const
+{
+
+   return ::comparison::tuple([&]() { return m_etype == e_type_message; },
+                              [&]() { return m_emessage == emessage; });
+}
+
+
+inline ::std::strong_ordering atom::operator<=>(::enum_message emessage) const
+{
+
+   return ::comparison::tuple([&]() { return m_etype <=> e_type_message; },
+                              [&]() { return m_emessage <=> emessage; });
+}
 
 
 //inline bool atom::operator != (::user::enum_message eusermessage) const
@@ -1345,11 +1364,18 @@ inline ::iptr atom::as_iptr() const
 }
 
 
-inline enum_message atom::as_emessage() const
+inline ::user::enum_message atom::as_eusermessage() const
 {
 
-   return m_etype == e_type_message ? m_emessage : (enum_message) ::user::e_message_undefined;
+   return m_etype == e_type_user_message ? m_eusermessage : (::user::enum_message) ::user::e_message_undefined;
 
+}
+
+
+inline ::enum_message atom::as_emessage1() const
+{
+
+   return m_etype == e_type_message ? m_emessage : (::enum_message)::e_message_undefined;
 }
 
 

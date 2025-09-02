@@ -191,7 +191,7 @@ namespace aura
 
 
 
-      void on_application_message(::application_message * papplicationmessage) override;
+      void on_application_message(::platform::message * papplicationmessage) override;
 
 
       //virtual ::user::style* get_user_style() const;

@@ -856,9 +856,9 @@ namespace user
             if (pinteraction != nullptr && pinteraction->is_window())
             {
 
-               pinteraction->send_message(emessage, wparam, lparam);
+               pinteraction->send_message(eusermessage, wparam, lparam);
 
-               pinteraction->send_message_to_descendants(emessage, wparam, lparam);
+               pinteraction->send_message_to_descendants(eusermessage, wparam, lparam);
 
             }
 
@@ -1512,7 +1512,7 @@ namespace user
 
       }
 
-      auto emessage = pmouse->m_emessage;
+      auto emessage = pmouse->m_eusermessage;
 
       if(emessage == ::user::e_message_left_button_down
        //|| emessage == ::user::e_message_left_button_up

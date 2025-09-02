@@ -16,54 +16,39 @@
 namespace axis
 {
 
-
    user::user()
    {
 
       print_line("axis::user::user");
 
-      //m_paxisuser = this;
-
+      // m_paxisuser = this;
    }
 
 
-   user::~user()
-   {
+   user::~user() {}
 
 
-   }
+   void user::init() { ::user::user::init(); }
 
 
-   void user::init()
-   {
-
-      ::user::user::init();
-
-   }
-
-
-   void user::init1() 
+   void user::init1()
    {
 
       ::user::user::init1();
 
-      factory()->add_factory_item <::user::list_box >();
-      factory()->add_factory_item <::user::combo_box >();
-
+      factory()->add_factory_item<::user::list_box>();
+      factory()->add_factory_item<::user::combo_box>();
    }
 
-   
-   void user::term()
+
+   void user::term() {}
+   ::pointer<::user::interaction>
+   user::create_menu_button(::user::menu *pusermenu, ::draw2d::graphics_pointer &pgraphics, ::menu::item *pmenuitem)
    {
 
+
+      return nullptr;
    }
-::pointer < ::user::interaction > user::create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pgraphics, ::menu::item * pmenuitem)
-{
-   
- 
-   return nullptr;
-   
-}
 
 
 } // namespace axis

@@ -66,7 +66,7 @@ namespace account
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &login::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &login::on_message_create);
 
    }
 

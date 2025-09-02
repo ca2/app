@@ -79,8 +79,8 @@ namespace user
 
       //install_click_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &menu_impact::on_message_create);
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &menu_impact::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &menu_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &menu_impact::on_message_destroy);
 
    }
 

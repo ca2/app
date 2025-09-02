@@ -136,7 +136,7 @@ namespace user
 
       ::thread::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_redraw, pchannel, this, &graphics_thread::on_message_redraw);
+      USER_MESSAGE_LINK(::user::e_message_redraw, pchannel, this, &graphics_thread::on_message_redraw);
 
    }
 
@@ -461,7 +461,7 @@ namespace user
 
          get_message(&m_message, nullptr, 0, 0);
 
-         if (m_message.m_emessage == ::user::e_message_quit)
+         if (m_message.m_eusermessage == ::user::e_message_quit)
          {
 
             ::string strType = type(m_puserinteraction).name();
@@ -474,7 +474,7 @@ namespace user
          
          int iRedrawMessageCount = 0;
          
-         if (m_message.m_emessage == ::user::e_message_redraw)
+         if (m_message.m_eusermessage == ::user::e_message_redraw)
          {
 
             iRedrawMessageCount = 1;
@@ -486,7 +486,7 @@ namespace user
          while (peek_message(&m_message, nullptr, 0, 0, true))
          {
 
-            if (m_message.m_emessage == ::user::e_message_redraw)
+            if (m_message.m_eusermessage == ::user::e_message_redraw)
             {
 
                iRedrawMessageCount++;
@@ -529,7 +529,7 @@ namespace user
       while (peek_message(&m_message, NULL, 0, 0, true))
       {
 
-         if(m_message.m_emessage == ::user::e_message_quit)
+         if(m_message.m_eusermessage == ::user::e_message_quit)
          {
 
             return false;

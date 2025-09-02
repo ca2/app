@@ -102,8 +102,8 @@ public:
    bool                                               m_bTemporary;
    ::pointer<::object>                                m_pobjectScript;
 
-   ::pointer_array_base < ::message::message >        m_messagea;
-   numeric_array_base < enum_message >                m_emessageaGetLast;
+   ::pointer_array_base < ::user::message >           m_messagea;
+   numeric_array_base < ::user::enum_message >        m_emessageaGetLast;
 
 #ifdef WINDOWS
    ::raw_array_base < MESSAGE >                       m_messageaInitialQueue;

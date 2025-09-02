@@ -94,7 +94,7 @@ namespace app_integration
 
       simple_frame_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &simple_main_frame::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &simple_main_frame::on_message_create);
 
    }
 

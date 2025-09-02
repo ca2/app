@@ -138,9 +138,9 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create    , pchannel, this, &button::on_message_create);
-      MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &button::on_message_left_button_double_click);
-      MESSAGE_LINK(::user::e_message_key_down  , pchannel, this, &button::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_create    , pchannel, this, &button::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &button::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_key_down  , pchannel, this, &button::on_message_key_down);
 
       //install_click_default_mouse_handling(pchannel);
       
@@ -1234,7 +1234,7 @@ namespace user
 
          set_timer(16384,100_ms,nullptr);
 
-         MESSAGE_LINK(::user::e_message_key_up, this, this, &button::on_message_key_up);
+         USER_MESSAGE_LINK(::user::e_message_key_up, this, this, &button::on_message_key_up);
 
       }
 

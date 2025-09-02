@@ -7,7 +7,7 @@
 #include "acme/user/user/control.h"
 #include "acme/user/user/text.h"
 #include "acme/user/user/command_update_target.h"
-#include "message.h"
+#include "apex/user/user/message.h"
 
 
 namespace message
@@ -15,7 +15,7 @@ namespace message
 
 
    class CLASS_DECL_APEX command :
-      virtual public ::message::message,
+      virtual public ::user::message,
       virtual public ::user::check,
       virtual public ::user::text
    {
@@ -64,7 +64,7 @@ namespace message
       ::atom command_id() const;
 
 
-      bool is_command()const { return m_emessage == ::user::e_message_command; }
+      bool is_command()const { return m_eusermessage == ::user::e_message_command; }
       bool is_command_probe() const { return m_bProbing; }
 
       void handle(::channel * pcommandtarget);

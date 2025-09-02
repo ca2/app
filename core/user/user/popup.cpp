@@ -28,7 +28,7 @@ namespace user
    void popup::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &popup::on_message_kill_focus);
+      USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &popup::on_message_kill_focus);
 
    }
 

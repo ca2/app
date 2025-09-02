@@ -557,18 +557,18 @@ namespace user
 
          auto & message = m_message;
 
-         if (message.m_emessage == ::user::e_message_mouse_move)
+         if (message.m_eusermessage == ::user::e_message_mouse_move)
          {
 
 
          }
-         else if (message.m_emessage == ::user::e_message_left_button_down)
+         else if (message.m_eusermessage == ::user::e_message_left_button_down)
          {
 
             informationf("::user::e_message_left_button_down");
 
          }
-         else if (message.m_emessage == ::user::e_message_left_button_up)
+         else if (message.m_eusermessage == ::user::e_message_left_button_up)
          {
 
             informationf("::user::e_message_left_button_up");
@@ -602,7 +602,7 @@ namespace user
                if (puserframe)
                {
 
-                  if (message.m_emessage == ::user::e_message_redraw)
+                  if (message.m_eusermessage == ::user::e_message_redraw)
                   {
 
                      throw ::exception(error_failed, "Please post ::user::e_message_redraw directly to the graphics thread");
@@ -647,7 +647,7 @@ namespace user
                      if (pmessage)
                      {
 
-                        if (pmessage->m_emessage == ::user::e_message_left_button_down)
+                        if (pmessage->m_eusermessage == ::user::e_message_left_button_down)
                         {
 
                            informationf("::user::e_message_left_button_down");
@@ -750,7 +750,7 @@ namespace user
          if (::is_set(puserinteraction))
          {
 
-            auto emessage = pmessage->m_emessage;
+            auto eusermessage = pmessage->m_eusermessage;
 
             //throw ::exception(todo("interaction"));
             //throw ::exception(todo("thread"));
@@ -773,7 +773,7 @@ namespace user
 //
 //            }
 //            else
-            if (emessage == ::user::e_message_update_notify_icon)
+            if (eusermessage == ::user::e_message_update_notify_icon)
             {
 
                puserinteraction->route_message(pusermessage);

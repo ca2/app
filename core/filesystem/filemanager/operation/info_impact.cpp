@@ -136,8 +136,8 @@ namespace filemanager
    void operation_info_impact::install_message_routing(::channel * pchannel)
    {
       ::user::impact::install_message_routing(pchannel);
-      MESSAGE_LINK(::user::e_message_create,pchannel,this,&operation_info_impact::on_message_create);
-//      //MESSAGE_LINK(::user::e_message_timer,pchannel,this,&operation_info_impact::on_timer);
+      USER_MESSAGE_LINK(::user::e_message_create,pchannel,this,&operation_info_impact::on_message_create);
+//      //USER_MESSAGE_LINK(::user::e_message_timer,pchannel,this,&operation_info_impact::on_timer);
    }
 
 //   void operation_info_impact::assert_ok() const

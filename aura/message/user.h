@@ -171,7 +171,7 @@ namespace message
       virtual unsigned int get_message() override
       {
          
-         return m_emessage;
+         return m_eusermessage;
 
       }
 

@@ -51,9 +51,9 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &line_layout::on_message_create);
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &line_layout::on_message_destroy);
-      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &line_layout::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &line_layout::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &line_layout::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &line_layout::on_message_show_window);
 
    }
 

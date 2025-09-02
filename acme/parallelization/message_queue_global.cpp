@@ -149,7 +149,7 @@ void mq_post_thread_message(::task_index & taskindex, ::user::enum_message euser
 
    }
 
-   pmessagequeue->post_message(nullptr, emessage, wparam, lparam);
+   pmessagequeue->post_message(nullptr, eusermessage, wparam, lparam);
 
 }
 

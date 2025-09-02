@@ -74,75 +74,77 @@ namespace userfs
 namespace core
 {
 
-
-   //::pointer<::userfs::userfs>user::create_userfs()
-   //{
-
-   //  auto puserfs  = øallocate ::userfs::userfs(this);
-
-   //  return puserfs;
-
-   //}
-
-
-   void user::userfs_process_init()
+   namespace user
    {
-
-      information() << "user::userfs_process_init start";
-
-      //m_puserfs = create_userfs();
-
-      //auto estatus = 
-      
-      øconstruct(m_puserfs);
-
-      //if (!estatus)
+      //::pointer<::userfs::userfs>user::create_userfs()
       //{
 
-      //   error() <<".1";
+      //  auto puserfs  = øallocate ::userfs::userfs(this);
 
-      //   m_result.add(estatus);
-
-      //   return estatus;
+      //  return puserfs;
 
       //}
 
-      //m_spobjectUserFs = m_puserfs;
 
-      //m_puserfs->construct(this);
+      void user::userfs_process_init()
+      {
 
-      information() << "ok";
+         information() << "user::userfs_process_init start";
 
-      //return ::success;
+         // m_puserfs = create_userfs();
 
-   }
+         // auto estatus =
+
+         øconstruct(m_puserfs);
+
+         // if (!estatus)
+         //{
+
+         //   error() <<".1";
+
+         //   m_result.add(estatus);
+
+         //   return estatus;
+
+         //}
+
+         // m_spobjectUserFs = m_puserfs;
+
+         // m_puserfs->construct(this);
+
+         information() << "ok";
+
+         // return ::success;
+      }
 
 
-   void user::userfs_init1()
-   {
+      void user::userfs_init1()
+      {
 
-      information() << "user::userfs_init1 start";
+         information() << "user::userfs_init1 start";
 
-      //auto estatus =
-      
-      m_puserfs->init1();
+         // auto estatus =
 
-      //if(!estatus)
-      //{
+         m_puserfs->init1();
 
-      //   m_result.add(estatus);
+         // if(!estatus)
+         //{
 
-      //   error() <<".1";
+         //   m_result.add(estatus);
 
-      //   return estatus;
+         //   error() <<".1";
 
-      //}
+         //   return estatus;
 
-      information() << "ok";
+         //}
 
-      //return ::success;
+         information() << "ok";
 
-   }
+         // return ::success;
+      }
+
+
+   } // namespace user
 
 
 } // namespace userfs

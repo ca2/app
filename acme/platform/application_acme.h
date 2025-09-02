@@ -233,7 +233,7 @@ namespace platform
       virtual ::string get_application_name();
 
 
-      virtual void on_application_message(::application_message * papplicationmessage);
+      virtual void on_application_message(::platform::message * pmessage);
 
       virtual void locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
       virtual void matter_locator_locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);

@@ -82,7 +82,7 @@ namespace bred
    {
 
 
-      ::berg::user::init1();
+      ::berg::user::user::init1();
 //
 //      factory()->add_factory_item < ::user::picture::picture_impl >();
 //
@@ -113,7 +113,7 @@ namespace bred
 void user::init(){
 //   {
 //
-      ::berg::user::init();
+      ::berg::user::user::init();
 //
 //      //if (!::berg::user::init())
 //      //{
@@ -385,7 +385,7 @@ void user::init(){
 void user::init2()
 {
 //
-      ::berg::user::init2();
+      ::berg::user::user::init2();
 //
 //      //if (!::acme::department::init2())
 //      //{

@@ -20,7 +20,9 @@ class front_end_schema;
 namespace core
 {
 
+
    class user;
+
 
 } //namespace core
 

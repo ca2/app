@@ -504,10 +504,10 @@ namespace user
    void list_header::install_message_routing(::channel * pchannel)
    {
       ::user::box::install_message_routing(pchannel);
-      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &list_header::on_message_left_button_down);
-      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &list_header::on_message_left_button_up);
-      MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &list_header::on_message_left_button_double_click);
-      MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &list_header::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &list_header::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &list_header::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &list_header::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &list_header::on_message_mouse_move);
    }
 
    void list_header::on_message_left_button_down(::message::message * pmessage)

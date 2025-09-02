@@ -440,7 +440,7 @@ namespace user
          try
          {
 
-            this->interaction_at(i)->send_message(emessage, wparam, lparam);
+            this->interaction_at(i)->send_message(eusermessage, wparam, lparam);
 
          }
          catch (...)
@@ -462,7 +462,7 @@ namespace user
          try
          {
 
-            this->interaction_at(i)->send_message_to_descendants(emessage, wparam, lparam, bRecursive);
+            this->interaction_at(i)->send_message_to_descendants(eusermessage, wparam, lparam, bRecursive);
 
          }
          catch (...)

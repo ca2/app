@@ -1076,8 +1076,12 @@ namespace desktop_environment_xfce
 
 namespace apex
 {
+
+
    class application;
-}
+
+
+} // namespace apex
 
 
 class thread;
@@ -1094,12 +1098,18 @@ class lparam;
 class time;
 class timer_callback;
 
-
+namespace platform
+{
+   class message;
+} // namespace message
 namespace message
 {
    class message;
-}
-
+} // namespace message
+namespace user
+{
+   class message;
+} // namespace message
 
 class value;
 struct block;
@@ -1843,7 +1853,7 @@ namespace apex
    class node;
 
 
-   //   class application;
+   class application;
 
 
 } // namespace apex
@@ -1863,6 +1873,16 @@ namespace aqua
 
 
 } // namespace aqua
+
+
+namespace user
+{
+
+
+   class user;
+
+
+} // namespace user
 
 
 namespace aura
@@ -1930,7 +1950,7 @@ namespace berg
 
    class system;
 
-
+   
    class user;
 
 
@@ -1940,6 +1960,7 @@ namespace berg
 namespace bred
 {
 
+
    class system;
 
 
@@ -1951,14 +1972,12 @@ namespace bred
 
    class user;
 
+
 } // namespace bred
 
 
 namespace core
 {
-
-
-   //   class idpool;
 
 
    class application;
@@ -1968,6 +1987,9 @@ namespace core
 
 
    class system;
+
+   
+   class user;
 
 
 } // namespace core

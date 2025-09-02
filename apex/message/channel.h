@@ -4,7 +4,7 @@
 #include "apex/message/dispatcher.h"
 #include "acme/prototype/collection/atom_array.h"
 ////#include "acme/prototype/prototype/object.h"
-#include "acme/constant/message_prototype.h"
+#include "acme/constant/user_message_prototype.h"
 
 
 class CLASS_DECL_APEX channel :
@@ -78,7 +78,7 @@ public:
 
    virtual ::pointer<::message::message>get_message(MESSAGE * pmessage);
 
-   virtual ::pointer<::message::message>get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none);
+   virtual ::pointer<::message::message>get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::user::enum_message_prototype eprototype = ::user::e_message_prototype_none);
 
 
 
@@ -104,7 +104,7 @@ public:
    ::particle* add_message_handler(::user::enum_message eusermessage, T1 * p, void (T2:: * pfn)(::message::message *))
    {
 
-      return add_message_handler(emessage, { p, pfn });
+      return add_message_handler(eusermessage, { p, pfn });
 
    }
 
@@ -165,8 +165,8 @@ public:
 };
 
 
-#define MESSAGE_LINK(emessage, pchannel, preceiver, phandler) \
-   pchannel->add_message_handler((enum_message)(emessage), { preceiver, phandler })
+#define USER_MESSAGE_LINK(eusermessage, pchannel, preceiver, phandler) \
+   pchannel->add_message_handler((::user::enum_message)(eusermessage), { preceiver, phandler })
 
 
 

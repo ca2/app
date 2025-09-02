@@ -112,17 +112,17 @@ namespace user
 
          ::user::interaction::install_message_routing(pchannel);
 
-         MESSAGE_LINK(::user::e_message_create, pchannel, this, &edit::on_message_create);
-         MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &edit::on_message_destroy);
-         MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &edit::on_message_show_window);
-         MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &edit::on_message_left_button_down);
-         MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &edit::on_message_left_button_up);
-         MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &edit::on_message_mouse_move);
-         MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &edit::on_message_mouse_leave);
-         MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &edit::on_message_key_down);
-         MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &edit::on_message_key_up);
-//         MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &edit::on_message_set_focus);
-         //MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &edit::on_message_kill_focus);
+         USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &edit::on_message_create);
+         USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &edit::on_message_destroy);
+         USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &edit::on_message_show_window);
+         USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &edit::on_message_left_button_down);
+         USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &edit::on_message_left_button_up);
+         USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &edit::on_message_mouse_move);
+         USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &edit::on_message_mouse_leave);
+         USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &edit::on_message_key_down);
+         USER_MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &edit::on_message_key_up);
+//         USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &edit::on_message_set_focus);
+         //USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &edit::on_message_kill_focus);
          
 #ifdef WINDOWS_DESKTOP
 

@@ -63,7 +63,7 @@ namespace core
 
       factory()->add_factory_item < ::core::system, ::platform::system >();
       factory()->add_factory_item < ::core::session, ::platform::session >();
-      factory()->add_factory_item < ::core::user, ::user::user >();
+      factory()->add_factory_item < ::core::user::user, ::user::user >();
 
 
 

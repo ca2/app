@@ -1021,7 +1021,7 @@ namespace user
    lresult element::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
    {
 
-      return message_call(emessage, wparam, lparam, point);
+      return message_call(eusermessage, wparam, lparam, point);
 
    }
 
@@ -4085,7 +4085,7 @@ namespace user
 //
 //      }
 //
-//      pmessage->set(get_oswindow(), get_window(), emessage, wparam, lparam);
+//      pmessage->set(get_oswindow(), get_window(), eusermessage, wparam, lparam);
 //
 //      return pmessage;
 //
@@ -4095,7 +4095,7 @@ namespace user
    // bool element::call_message_handler(const ::atom & atom, const ::wparam & wparam, const ::lparam & lparam, const ::int_point & point, lresult * plresult)
    // {
 
-   //    //auto pmessage = get_message(emessage, wparam, lparam);
+   //    //auto pmessage = get_message(eusermessage, wparam, lparam);
 
    //    //try
    //    //{

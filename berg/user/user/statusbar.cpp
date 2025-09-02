@@ -40,15 +40,15 @@ namespace user
 
    void status_bar::install_message_routing(::channel * pchannel)
    {
-      MESSAGE_LINK(::user::e_message_non_client_hit_test, pchannel, this, &status_bar::_001OnNcHitTest);
-      MESSAGE_LINK(::user::e_message_non_client_calc_size, pchannel, this, &status_bar::on_message_non_client_calculate_size);
-      MESSAGE_LINK(::user::e_message_size, pchannel, this, &status_bar::on_message_size);
-      MESSAGE_LINK(::user::e_message_window_position_changing, pchannel, this, &status_bar::_001OnWindowPosChanging);
+      USER_MESSAGE_LINK(::user::e_message_non_client_hit_test, pchannel, this, &status_bar::_001OnNcHitTest);
+      USER_MESSAGE_LINK(::user::e_message_non_client_calc_size, pchannel, this, &status_bar::on_message_non_client_calculate_size);
+      USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &status_bar::on_message_size);
+      USER_MESSAGE_LINK(::user::e_message_window_position_changing, pchannel, this, &status_bar::_001OnWindowPosChanging);
 //#ifdef WINDOWS_DESKTOP
-//      MESSAGE_LINK(WM_SETTEXT, pchannel, this, &status_bar::_001OnSetText);
-//      MESSAGE_LINK(WM_GETTEXT, pchannel, this, &status_bar::_001OnGetText);
-//      MESSAGE_LINK(WM_GETTEXTLENGTH, pchannel, this, &status_bar::_001OnGetTextLength);
-//      MESSAGE_LINK(SB_SETMINHEIGHT, pchannel, this, &status_bar::_001OnSetMinHeight);
+//      USER_MESSAGE_LINK(WM_SETTEXT, pchannel, this, &status_bar::_001OnSetText);
+//      USER_MESSAGE_LINK(WM_GETTEXT, pchannel, this, &status_bar::_001OnGetText);
+//      USER_MESSAGE_LINK(WM_GETTEXTLENGTH, pchannel, this, &status_bar::_001OnGetTextLength);
+//      USER_MESSAGE_LINK(SB_SETMINHEIGHT, pchannel, this, &status_bar::_001OnSetMinHeight);
 //#endif
    }
 
@@ -613,7 +613,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      if (pmessage->m_emessage != WM_DRAWITEM)
+//      if (pmessage->m_eusermessage != WM_DRAWITEM)
 //      {
 //
 //         return ::user::interaction::OnChildNotify(pmessage);

@@ -42,7 +42,7 @@ namespace user
       
       ::pointer<::user::message>pusermessage(pmessage);
 
-      switch(pusermessage->m_emessage)
+      switch(pusermessage->m_eusermessage)
       {
       case ::user::e_message_mouse_move:
       {

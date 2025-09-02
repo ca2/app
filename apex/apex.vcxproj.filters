@@ -494,16 +494,10 @@
     <ClInclude Include="message\listener_pointer_array.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
-    <ClInclude Include="message\message.h">
-      <Filter>Header Files\message</Filter>
-    </ClInclude>
     <ClInclude Include="message\receiver.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
     <ClInclude Include="message\route.h">
-      <Filter>Header Files\message</Filter>
-    </ClInclude>
-    <ClInclude Include="message\simple_command.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
     <ClInclude Include="platform\history.h">
@@ -1082,6 +1076,9 @@
     <ClInclude Include="gpu\_.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="message\simple_command.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1118,12 +1115,6 @@
       <Filter>Source Files\message</Filter>
     </ClCompile>
     <ClCompile Include="message\channel.cpp">
-      <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="message\message.cpp">
-      <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="message\simple_command.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
     <ClCompile Include="platform\app_launcher.cpp">
@@ -1560,6 +1551,12 @@
     </ClCompile>
     <ClCompile Include="gpu\approach.cpp">
       <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="message\message.cpp">
+      <Filter>Source Files\message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\simple_command.cpp">
+      <Filter>Source Files\message</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

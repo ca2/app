@@ -271,9 +271,8 @@ void acme_application_layer::start_application()
    }
 
 
-   void acme_application_layer::on_application_message(::application_message * papplicationmessage)
+   void acme_application_layer::on_application_message(::platform::message * pmessage)
    {
-
 
 
    }

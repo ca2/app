@@ -52,10 +52,10 @@ namespace experience_anthill
 
       ::experience::control_box::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &control_box::on_message_create);
-      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &control_box::on_message_show_window);
-      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &control_box::on_message_left_button_down);
-      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &control_box::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &control_box::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &control_box::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &control_box::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &control_box::on_message_left_button_up);
 
    }
 

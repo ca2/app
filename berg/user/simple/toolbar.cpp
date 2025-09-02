@@ -114,13 +114,13 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 
    ::user::toolbar::install_message_routing(pchannel);
 
-   MESSAGE_LINK(::user::e_message_create       , pchannel, this, &simple_toolbar::on_message_create);
-   MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &simple_toolbar::on_message_left_button_double_click);
-   //MESSAGE_LINK(::user::e_message_mouse_move    , pchannel, this, &simple_toolbar::on_message_mouse_move);
-   //MESSAGE_LINK(::user::e_message_left_button_down  , pchannel, this, &simple_toolbar::on_message_left_button_down);
-   //MESSAGE_LINK(::user::e_message_left_button_up    , pchannel, this, &simple_toolbar::on_message_left_button_up);
-   //MESSAGE_LINK(::user::e_message_non_client_hit_test    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
-   //MESSAGE_LINK(::user::e_message_mouse_leave   , pchannel, this, &simple_toolbar::on_message_mouse_leave);
+   USER_MESSAGE_LINK(::user::e_message_create       , pchannel, this, &simple_toolbar::on_message_create);
+   USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &simple_toolbar::on_message_left_button_double_click);
+   //USER_MESSAGE_LINK(::user::e_message_mouse_move    , pchannel, this, &simple_toolbar::on_message_mouse_move);
+   //USER_MESSAGE_LINK(::user::e_message_left_button_down  , pchannel, this, &simple_toolbar::on_message_left_button_down);
+   //USER_MESSAGE_LINK(::user::e_message_left_button_up    , pchannel, this, &simple_toolbar::on_message_left_button_up);
+   //USER_MESSAGE_LINK(::user::e_message_non_client_hit_test    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
+   //USER_MESSAGE_LINK(::user::e_message_mouse_leave   , pchannel, this, &simple_toolbar::on_message_mouse_leave);
 
    //install_click_default_mouse_handling(pchannel);
    

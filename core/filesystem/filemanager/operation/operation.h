@@ -32,7 +32,7 @@ namespace filemanager
       int                        m_iBufferSize;
       ::user::interaction *      m_oswindowCallback;
       //atom                       m_atomFileManagerOperation;
-      enum_message               m_emessageFileManagerOperation;
+      ::user::enum_message       m_emessageFileManagerOperation;
       wparam                     m_wparamCallback;
 
 

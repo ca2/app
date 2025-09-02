@@ -48,7 +48,7 @@ namespace filemanager
 
             ::user::split_impact::install_message_routing(pchannel);
 
-            MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &::filemanager::fs::simple::impact::on_message_destroy);
+            USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &::filemanager::fs::simple::impact::on_message_destroy);
 
          }
 

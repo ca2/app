@@ -168,7 +168,7 @@ bool db_server::create_message_queue()
 
       //set_timer(1258477, 484, nullptr);
 
-      ////MESSAGE_LINK(::user::e_message_timer, m_pimpl, this, &db_server::on_timer);
+      ////USER_MESSAGE_LINK(::user::e_message_timer, m_pimpl, this, &db_server::on_timer);
 
    }
 

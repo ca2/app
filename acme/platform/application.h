@@ -706,7 +706,7 @@ namespace platform
       ::string get_application_name() override;
 
 
-      void on_application_message(::application_message * papplicationmessage) override;
+      void on_application_message(::platform::message * pmessage) override;
 
 
       void locale_schema_matter(string_array_base& stra, const string_array_base& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema) override;

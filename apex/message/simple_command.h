@@ -8,7 +8,7 @@ namespace message
 {
 
 
-   class CLASS_DECL_APEX simple_command :
+   class CLASS_DECL_APEX simple_command : 
       public ::message::message
    {
    public:

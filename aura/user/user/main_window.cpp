@@ -68,7 +68,7 @@ namespace user
 
       ::user::frame_interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &main_window::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &main_window::on_message_create);
 
       //install_click_default_mouse_handling(pchannel);
       

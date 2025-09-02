@@ -2,7 +2,7 @@
 
 
 #include "acme/constant/source.h"
-#include "acme/user/user/message.h"
+#include "acme/platform/acme_message.h"
 
 
 class CLASS_DECL_ACME action_context
@@ -13,7 +13,7 @@ public:
    bool                                      m_bRet : 1;
    e_source                                  m_esource;
    pointer< pointer_array < ::particle > >   m_pparticlea;
-   ::pointer<::acme::user::message>          m_pmessage;
+   ::pointer<::acme::message>                m_pmessage;
    ::pointer < ::user::activation_token >    m_puseractivationtoken;
 
 

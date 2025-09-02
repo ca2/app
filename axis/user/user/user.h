@@ -7,13 +7,12 @@
 namespace axis
 {
 
-
-   class CLASS_DECL_AXIS user :
-      virtual public ::user::user
+   
+   class CLASS_DECL_AXIS user : virtual public ::user::user
    {
    public:
 
-      
+
       user();
       ~user() override;
 
@@ -21,14 +20,15 @@ namespace axis
       void init() override;
       void term() override;
 
-      
+
       void init1() override;
 
 
       //::user::style* user_style() override;
 
-      ::pointer < ::user::interaction > create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pgraphics, ::menu::item * pmenuitem) override;
-      
+      ::pointer<::user::interaction> create_menu_button(::user::menu *pusermenu,
+                                                         ::draw2d::graphics_pointer &pgraphics,
+                                                         ::menu::item *pmenuitem) override;
    };
 
 

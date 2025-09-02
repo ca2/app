@@ -1062,7 +1062,7 @@ namespace user
 
       virtual void create_message_queue(const ::scoped_string & scopedstrName) override;
 
-      virtual ::pointer<::message::message>get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
+      virtual ::pointer<::message::message>get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::user::enum_message_prototype eprototype = ::user::e_message_prototype_none) override;
 
       virtual bool has_text_input();
 

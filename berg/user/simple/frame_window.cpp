@@ -54,12 +54,7 @@ namespace berg
 {
 
 
-   ::type_atom user::get_simple_frame_window_type_info()
-   {
-
-      return ::type < ::simple_frame_window >();
-
-   }
+   ::type_atom user::get_simple_frame_window_type_info() { return ::type<::simple_frame_window>(); }
 
 
 } // namespace berg
@@ -430,31 +425,31 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 
    ::experience::frame_window::install_message_routing(pchannel);
 
-   MESSAGE_LINK(::user::e_message_create, pchannel, this, &simple_frame_window::on_message_create);
+   USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &simple_frame_window::on_message_create);
    //#ifdef WINDOWS_DESKTOP
-      //MESSAGE_LINK(WM_DDE_INITIATE, pchannel, this, &simple_frame_window::_001OnDdeInitiate);
+      //USER_MESSAGE_LINK(WM_DDE_INITIATE, pchannel, this, &simple_frame_window::_001OnDdeInitiate);
    //#endif
-   MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &simple_frame_window::on_message_destroy);
-   MESSAGE_LINK(::user::e_message_close, pchannel, this, &simple_frame_window::on_message_close);
-   MESSAGE_LINK(::user::e_message_size, pchannel, this, &simple_frame_window::on_message_size);
-   MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &simple_frame_window::on_message_move);
+   USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &simple_frame_window::on_message_destroy);
+   USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &simple_frame_window::on_message_close);
+   USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &simple_frame_window::on_message_size);
+   USER_MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &simple_frame_window::on_message_move);
 
 #ifdef WINDOWS_DESKTOP
 
-   MESSAGE_LINK(::user::e_message_get_min_max_info, pchannel, this, &simple_frame_window::_001OnGetMinMaxInfo);
+   USER_MESSAGE_LINK(::user::e_message_get_min_max_info, pchannel, this, &simple_frame_window::_001OnGetMinMaxInfo);
 
 #endif
 
-   MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &simple_frame_window::on_message_mouse_move);
-   MESSAGE_LINK(::user::e_message_display_change, pchannel, this, &simple_frame_window::on_message_display_change);
-   MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &simple_frame_window::on_message_show_window);
-   MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &simple_frame_window::_001OnMouseActivate);
-   MESSAGE_LINK(::user::e_message_non_client_hit_test, pchannel, this, &simple_frame_window::_001OnNcHitTest);
+   USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &simple_frame_window::on_message_mouse_move);
+   USER_MESSAGE_LINK(::user::e_message_display_change, pchannel, this, &simple_frame_window::on_message_display_change);
+   USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &simple_frame_window::on_message_show_window);
+   USER_MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &simple_frame_window::_001OnMouseActivate);
+   USER_MESSAGE_LINK(::user::e_message_non_client_hit_test, pchannel, this, &simple_frame_window::_001OnNcHitTest);
 
-   MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &simple_frame_window::_001OnKey);
-   MESSAGE_LINK(::user::e_message_sys_key_down, pchannel, this, &simple_frame_window::_001OnKey);
-   MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &simple_frame_window::_001OnKey);
-   MESSAGE_LINK(::user::e_message_sys_key_up, pchannel, this, &simple_frame_window::_001OnKey);
+   USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &simple_frame_window::_001OnKey);
+   USER_MESSAGE_LINK(::user::e_message_sys_key_down, pchannel, this, &simple_frame_window::_001OnKey);
+   USER_MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &simple_frame_window::_001OnKey);
+   USER_MESSAGE_LINK(::user::e_message_sys_key_up, pchannel, this, &simple_frame_window::_001OnKey);
 
    add_command_prober("transparent_frame", { this,  &simple_frame_window::_001OnUpdateToggleTransparentFrame });
    add_command_handler("transparent_frame", { this,  &simple_frame_window::_001OnToggleTransparentFrame });
@@ -468,13 +463,13 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 #ifdef WINDOWS_DESKTOP
 
 
-   MESSAGE_LINK(::user::e_message_application_exit, pchannel, this, &simple_frame_window::on_message_app_exit);
-   MESSAGE_LINK(::user::e_message_activate_app, pchannel, this, &simple_frame_window::_001OnActivateApp);
+   USER_MESSAGE_LINK(::user::e_message_application_exit, pchannel, this, &simple_frame_window::on_message_app_exit);
+   USER_MESSAGE_LINK(::user::e_message_activate_app, pchannel, this, &simple_frame_window::_001OnActivateApp);
 
 #endif
 
-   MESSAGE_LINK(::user::e_message_activate, pchannel, this, &simple_frame_window::_001OnActivate);
-   MESSAGE_LINK(::user::e_message_update_notify_icon, pchannel, this, &simple_frame_window::_001OnUpdateNotifyIcon);
+   USER_MESSAGE_LINK(::user::e_message_activate, pchannel, this, &simple_frame_window::_001OnActivate);
+   USER_MESSAGE_LINK(::user::e_message_update_notify_icon, pchannel, this, &simple_frame_window::_001OnUpdateNotifyIcon);
 
 }
 
@@ -2447,13 +2442,13 @@ void simple_frame_window::_001OnKey(::message::message * pmessage)
 void simple_frame_window::pre_translate_message(::message::message * pmessage)
 {
 
-   if (pmessage->m_emessage == ::user::e_message_display_change)
+   if (pmessage->m_eusermessage == ::user::e_message_display_change)
    {
 
       display();
 
    }
-   else if (pmessage->m_emessage == ::user::e_message_mouse_move)
+   else if (pmessage->m_eusermessage == ::user::e_message_mouse_move)
    {
 
    }

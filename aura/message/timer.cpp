@@ -9,7 +9,7 @@ namespace message
    //void timer::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
    //   m_uTimer = static_cast<unsigned int>(wparam);
 

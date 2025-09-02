@@ -4,23 +4,18 @@
 #pragma once
 
 
-namespace message
+enum enum_message : int
 {
 
+   e_message_undefined = -1,
+   e_message_none = 0,
+   e_message_request_uri = 1,
+   e_message_on_size = 2,
+   e_message_set_editor_selection = 3,
+   e_message_application_started = 4,
 
-   enum enum_message : int
-   {
+};
 
-      e_message_none = 0,
-      e_message_request_uri = 1,
-      e_message_on_size = 2,
-      e_message_set_editor_selection = 3,
-      e_message_application_started = 4,
-
-   };
-
-
-} // namespace message
 
 
 

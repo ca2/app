@@ -33,9 +33,9 @@ namespace app_message_box
 
       ::app_app::main_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &main_window::on_message_create);
-      MESSAGE_LINK(::user::e_message_close, pchannel, this, &main_window::on_message_close);
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &main_window::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &main_window::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &main_window::on_message_close);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &main_window::on_message_destroy);
 
    }
 

@@ -272,11 +272,11 @@ namespace userex
 
       ::user::image_list_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &image_list_impact::on_message_create);
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &image_list_impact::on_message_destroy);
-//      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &image_list_impact::on_message_left_button_down);
-      //    MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &image_list_impact::on_message_mouse_move);
-      //  MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &image_list_impact::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &image_list_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &image_list_impact::on_message_destroy);
+//      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &image_list_impact::on_message_left_button_down);
+      //    USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &image_list_impact::on_message_mouse_move);
+      //  USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &image_list_impact::on_message_mouse_leave);
 
    }
 

@@ -208,15 +208,15 @@ namespace user
 
       ::user::main_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &frame_window::on_message_destroy);
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &frame_window::on_message_create);
-      MESSAGE_LINK(::user::e_message_size, pchannel, this, &frame_window::on_message_size);
-      MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &frame_window::on_message_set_focus);
-      MESSAGE_LINK(::user::e_message_activate, pchannel, this, &frame_window::_001OnActivate);
-      MESSAGE_LINK(::user::e_message_non_client_activate, pchannel, this, &frame_window::_001OnNcActivate);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &frame_window::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &frame_window::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &frame_window::on_message_size);
+      USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &frame_window::on_message_set_focus);
+      USER_MESSAGE_LINK(::user::e_message_activate, pchannel, this, &frame_window::_001OnActivate);
+      USER_MESSAGE_LINK(::user::e_message_non_client_activate, pchannel, this, &frame_window::_001OnNcActivate);
 #ifdef WINDOWS_DESKTOP
-      //MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
-      //MESSAGE_LINK(WM_QUERYENDSESSION, pchannel, this, &frame_window::_001OnQueryEndSession);
+      //USER_MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
+      //USER_MESSAGE_LINK(WM_QUERYENDSESSION, pchannel, this, &frame_window::_001OnQueryEndSession);
 #endif
 
    }

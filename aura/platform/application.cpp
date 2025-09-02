@@ -47,7 +47,7 @@
 #include "aura/windowing/windowing.h"
 //#include "bred/gpu/approach.h"
 #include "acme/filesystem/file/byte2_stream.h"
-#include "acme/platform/application_message.h"
+#include "acme/platform/message.h"
 #include "acme/prototype/geometry2d/_byte2_stream.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/monitor.h"
@@ -3910,7 +3910,7 @@ retry_license:
                   try
                   {
 
-                     puserinteraction->send_message(emessage, wparam, lparam);
+                     puserinteraction->send_message(eusermessage, wparam, lparam);
 
                   }
                   catch (...)
@@ -3921,7 +3921,7 @@ retry_license:
                   try
                   {
 
-                     puserinteraction->send_message_to_descendants(emessage, wparam, lparam);
+                     puserinteraction->send_message_to_descendants(eusermessage, wparam, lparam);
 
                   }
                   catch (...)
@@ -4166,7 +4166,7 @@ retry_license:
    void application::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam )
    {
 
-      ::thread::post_message(emessage, wparam, lparam);
+      ::thread::post_message(eusermessage, wparam, lparam);
 
    }
 
@@ -6109,7 +6109,7 @@ namespace aura
 
       // handle certain messages in thread
 
-      switch (pusermessage->m_emessage)
+      switch (pusermessage->m_eusermessage)
       {
          case ::user::e_message_create:
          case ::user::e_message_paint:
@@ -6125,7 +6125,7 @@ namespace aura
       //linux unsigned int nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const_char_pointer nIDP = "Internal Failure";
       pusermessage->m_lresult = 0;        // sensible default
-      if (pusermessage->m_emessage == ::user::e_message_command)
+      if (pusermessage->m_eusermessage == ::user::e_message_command)
       {
          if (pusermessage->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
@@ -7945,7 +7945,7 @@ namespace aura
 
       //::pointer<::user::message>pusermessage(pmessage);
 
-      //      if (pmessage->m_emessage == WM_USER + 124 && pmessage->userinteraction() == nullptr)
+      //      if (pmessage->m_eusermessage == WM_USER + 124 && pmessage->userinteraction() == nullptr)
       //      {
       //
       //         /*
@@ -9279,19 +9279,19 @@ namespace aura
    }
 
 
-   void application::on_application_message(::application_message * papplicationmessage)
+   void application::on_application_message(::platform::message * pmessage)
    {
 
-      aqua::application::on_application_message(papplicationmessage);
+      aqua::application::on_application_message(pmessage);
 
-      auto emessage = papplicationmessage->m_eapplicationmessage;
+      auto emessage = pmessage->m_emessage;
 
-      if(emessage == ::e_application_message_on_size)
+      if(emessage == ::e_message_on_size)
       {
 
          int_size size;
 
-         ::byte2_stream stream(papplicationmessage->m_memory);
+         ::byte2_stream stream(pmessage->m_memory);
 
          stream >> size;
 

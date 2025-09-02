@@ -150,11 +150,11 @@ void xfplayer_impact_linea::SetEffect(int iEffect)
 
 void xfplayer_impact_linea::install_message_routing(::channel * pchannel)
 {
-   MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &xfplayer_impact_linea::OnMouseMove);
-   MESSAGE_LINK(::user::e_message_set_cursor, pchannel, this, &xfplayer_impact_linea::OnSetCursor);
-   //MESSAGE_LINK(::user::e_message_timer,        pchannel, this, &xfplayer_impact_linea::OnTimer);
-   MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &xfplayer_impact_linea::OnLButtonDown);
-   MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &xfplayer_impact_linea::OnLButtonUp);
+   USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &xfplayer_impact_linea::OnMouseMove);
+   USER_MESSAGE_LINK(::user::e_message_set_cursor, pchannel, this, &xfplayer_impact_linea::OnSetCursor);
+   //USER_MESSAGE_LINK(::user::e_message_timer,        pchannel, this, &xfplayer_impact_linea::OnTimer);
+   USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &xfplayer_impact_linea::OnLButtonDown);
+   USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &xfplayer_impact_linea::OnLButtonUp);
 }
 
 void xfplayer_impact_linea::OnMouseMove(::message::message * pmessage)

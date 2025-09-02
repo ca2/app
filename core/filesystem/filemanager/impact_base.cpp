@@ -102,7 +102,7 @@ void filemanager_impact_base::install_message_routing(::channel * pchannel)
 
    add_command_handler("edit_paste", { this,  &filemanager_impact_base::_001OnEditPaste });
 
-   MESSAGE_LINK(WM_APP + 1024,pchannel,this,&filemanager_impact_base::_001OnOperationDocMessage);
+   USER_MESSAGE_LINK(WM_APP + 1024,pchannel,this,&filemanager_impact_base::_001OnOperationDocMessage);
 
 }
 

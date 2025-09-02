@@ -11,7 +11,7 @@ namespace message
    simple_command::simple_command()
    {
 
-      m_emessage = ::user::e_message_simple_command;
+      m_eusermessage = ::user::e_message_simple_command;
 
       set(e_simple_command_none);
 
@@ -21,7 +21,7 @@ namespace message
    //void simple_command::set(oswindow oswindow, ::layered * playeredUserPrimitive, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, playeredUserPrimitive, emessage, wparam, lparam);
+   //   ::user::message::set(oswindow, playeredUserPrimitive, eusermessage, wparam, lparam);
 
    //   m_esimplecommand = (e_simple_command)wparam.m_number;
 

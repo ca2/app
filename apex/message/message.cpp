@@ -6,7 +6,7 @@ namespace message
 {
 
 
-   //message::message(const ::atom & atom) :
+   // message::message(const ::atom & atom) :
    //{
 
    //   //common_construct();
@@ -14,7 +14,7 @@ namespace message
    //}
 
 
-   //message::message(enum_message emessage)
+   // message::message(enum_message emessage)
    //{
 
    //   common_construct(emessage);
@@ -23,10 +23,10 @@ namespace message
 
 
    message::message(::user::enum_message eusermessage)
-   { 
-      
-      m_emessage = emessage;
-      
+   {
+
+      m_eusermessage = eusermessage;
+
       m_union.m_p = nullptr;
       m_pdispatchera = nullptr;
       m_pchannel = nullptr;
@@ -37,17 +37,13 @@ namespace message
       m_uiMessageFlags = 0;
       m_estatus = ::success;
       m_lresult = 0;
-
    }
 
 
-   message::~message()
-   {
-
-   }
+   message::~message() {}
 
 
-   //bool message::route_message()
+   // bool message::route_message()
    //{
 
    //   return m_bRet;
@@ -55,12 +51,11 @@ namespace message
    //}
 
    bool message::route_message()
-   { 
-      
-      m_pdispatchera->data()[m_iRouteIndex].m_functionHandler(this); 
-      
-      return m_bRet; 
-   
+   {
+
+      m_pdispatchera->data()[m_iRouteIndex].m_functionHandler(this);
+
+      return m_bRet;
    }
 
 
@@ -76,51 +71,42 @@ namespace message
          {
 
             break;
-
          }
-
       }
 
       return true;
-
    }
 
 
-   bool message::previous() 
-   { 
+   bool message::previous()
+   {
 
       if (--m_iRouteIndex < 0)
       {
 
          return false;
-
       }
 
       if (m_pdispatchera->data())
       {
 
          m_pdispatchera->data()[m_iRouteIndex].m_functionHandler(this);
-
       }
 
-      return m_bRet; 
-   
+      return m_bRet;
    }
 
 
-   void message::set_lresult(lresult lresult)
-   {
-
-      m_lresult = lresult;
-
-   }
+   void message::set_lresult(lresult lresult) { m_lresult = lresult; }
 
 
-   //void message::set(oswindow oswindow, ::windowing::window * playeredUserPrimitive, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
-   //void message::set(oswindow oswindow, ::windowing::window* playeredUserPrimitive, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   // void message::set(oswindow oswindow, ::windowing::window * playeredUserPrimitive, ::user::enum_message
+   // eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point) void message::set(oswindow oswindow,
+   // ::windowing::window* playeredUserPrimitive, ::user::enum_message eusermessage, ::wparam wparam, ::lparam
+   // lparam)
    //{
-   //   
-   //   //initialize(playeredUserPrimitive);
+   //
+   //    //initialize(playeredUserPrimitive);
 
    //   m_oswindow = oswindow;
 
@@ -133,48 +119,37 @@ namespace message
    //}
 
 
-   unsigned int translate_to_os_message(const ::atom& atom)
-   {
-
-      return atom.as_unsigned_int();
-
-   }
+   unsigned int translate_to_os_message(const ::atom &atom) { return atom.as_unsigned_int(); }
 
 
-   message & message::operator = (const message & message)
+   message &message::operator=(const message &message)
    {
 
       if (this != &message)
       {
-         
+
          m_pdispatchera = message.m_pdispatchera;
          m_pchannel = message.m_pchannel;
          m_oswindow = message.m_oswindow;
          m_eflagMessage = message.m_eflagMessage;
-         //m_iRouteIndex = message.m_iRouteIndex;
+         // m_iRouteIndex = message.m_iRouteIndex;
          m_iParam = message.m_iRouteIndex;
-         //m_bRet = message.m_iRouteIndex;
+         // m_bRet = message.m_iRouteIndex;
          m_uiMessageFlags = message.m_uiMessageFlags;
-         //m_estatus = message.m_estatus;
-         //m_actioncontext = message.m_estatus;
+         // m_estatus = message.m_estatus;
+         // m_actioncontext = message.m_estatus;
          m_pointMessage = message.m_pointMessage;
-         //m_bProbing = message.m_bProbing;
-         //m_bCommand = message.m_bCommand;
-
+         // m_bProbing = message.m_bProbing;
+         // m_bCommand = message.m_bCommand;
       }
 
 
       return *this;
-
    }
 
 
-   ::user::activation_token * message::user_activation_token()
-   {
+   ::user::activation_token *message::user_activation_token() { return m_actioncontext.user_activation_token(); }
 
-      return m_actioncontext.user_activation_token();
-
-   }
 
 } // namespace message
 

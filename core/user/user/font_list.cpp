@@ -60,11 +60,11 @@ namespace user
 
       ::user::list_box::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &font_list::on_message_create);
-      //MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &font_list::on_message_left_button_down);
-      //MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &font_list::on_message_mouse_move);
-      MESSAGE_LINK(::user::e_message_close, pchannel, this, &font_list::on_message_close);
-      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &font_list::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &font_list::on_message_create);
+      //USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &font_list::on_message_left_button_down);
+      //USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &font_list::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &font_list::on_message_close);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &font_list::on_message_show_window);
 
    }
 

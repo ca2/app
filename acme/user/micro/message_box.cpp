@@ -552,8 +552,8 @@ namespace micro
 
    //CLASS_DECL_ACME ::platform::system * system();
 #ifdef WINDOWS_DESKTOP
-   CLASS_DECL_ACME int message_box_to_windows_message_box(enum_message_box emessagebox);
-   CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(int iResult);
+   CLASS_DECL_ACME int message_box_to_windows_message_box(::user::enum_message_box emessagebox);
+   CLASS_DECL_ACME ::enum_dialog_result windows_message_box_result_to_dialog_result(int iResult);
 #endif
 
 #ifdef MACOS

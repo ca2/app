@@ -33,13 +33,14 @@
 namespace core
 {
 
-
-   ::type_atom user::get_pane_tab_impact_type_info()
+   
+   namespace user
    {
 
-      return ::type < ::userex::pane_tab_impact >();
+      ::type_atom user::get_pane_tab_impact_type_info() { return ::type<::userex::pane_tab_impact>(); }
 
-   }
+
+   } // namespace user
 
 
 } // namespace core
@@ -166,7 +167,7 @@ namespace userex
 
       ::user::tab_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &pane_tab_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &pane_tab_impact::on_message_create);
 
       add_command_handler("file_save_as", { this,  &pane_tab_impact::_001OnFileSaveAs });
       add_command_prober("file_save_as", { this,  &pane_tab_impact::_001OnUpdateFileSaveAs });

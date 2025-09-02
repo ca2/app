@@ -84,15 +84,15 @@ namespace user
    void form_list::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &form_list::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &form_list::on_message_key_down);
 
       form_mesh::install_message_routing(pchannel);
 
       ::user::list::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &form_list::on_message_scroll_y);
+      USER_MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &form_list::on_message_scroll_y);
 
-      MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &form_list::on_message_scroll_x);
+      USER_MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &form_list::on_message_scroll_x);
 
    }
 

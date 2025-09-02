@@ -338,8 +338,8 @@ FileSystemSizeWnd::FileSystemSizeWnd(::particle * pparticle) :
 void FileSystemSizeWnd::install_message_routing(::channel * pchannel)
 {
    m_p->install_message_routing(pchannel);
-   MESSAGE_LINK(WM_COPYDATA, pchannel, this, &FileSystemSizeWnd::_001OnCopyData);
-   //MESSAGE_LINK(::user::e_message_timer, pchannel, this, &FileSystemSizeWnd::on_timer);
+   USER_MESSAGE_LINK(WM_COPYDATA, pchannel, this, &FileSystemSizeWnd::_001OnCopyData);
+   //USER_MESSAGE_LINK(::user::e_message_timer, pchannel, this, &FileSystemSizeWnd::on_timer);
 }
 
 bool FileSystemSizeWnd::CreateClient()

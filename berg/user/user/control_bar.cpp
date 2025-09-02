@@ -51,17 +51,17 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
 //#ifdef WINDOWS
-//      MESSAGE_LINK(WM_CTLCOLOR, pchannel, this, &control_bar::_001OnCtlColor);
+//      USER_MESSAGE_LINK(WM_CTLCOLOR, pchannel, this, &control_bar::_001OnCtlColor);
 //#endif
-      MESSAGE_LINK(::user::e_message_size_parent, pchannel, this, &control_bar::_001OnSizeParent);
-      MESSAGE_LINK(::user::e_message_window_position_changing, pchannel, this, &control_bar::_001OnWindowPosChanging);
-      MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &control_bar::on_message_mouse_move);
-      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &control_bar::on_message_left_button_down);
-      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &control_bar::on_message_left_button_up);
-      MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &control_bar::_001OnMouseActivate);
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &control_bar::on_message_create);
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &control_bar::on_message_destroy);
-      MESSAGE_LINK(::user::e_message_help_hit_test, pchannel, this, &control_bar::_001OnHelpHitTest);
+      USER_MESSAGE_LINK(::user::e_message_size_parent, pchannel, this, &control_bar::_001OnSizeParent);
+      USER_MESSAGE_LINK(::user::e_message_window_position_changing, pchannel, this, &control_bar::_001OnWindowPosChanging);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &control_bar::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &control_bar::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &control_bar::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &control_bar::_001OnMouseActivate);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &control_bar::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &control_bar::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_help_hit_test, pchannel, this, &control_bar::_001OnHelpHitTest);
    }
 
 
@@ -315,7 +315,7 @@ namespace user
 //
 //      unsigned int message;
 //
-//      message = pmessage->m_emessage.umessage();
+//      message = pmessage->m_eusermessage.umessage();
 //
 //      // handle CBRS_FLYBY style (status bar flyby help)
 //      if (((m_dwStyle & CBRS_FLYBY) ||
@@ -379,7 +379,7 @@ namespace user
 //
 //      unsigned int message;
 //
-//      message = pmessage->m_emessage.umessage();
+//      message = pmessage->m_eusermessage.umessage();
 //
 //      switch (message)
 //      {
@@ -401,7 +401,7 @@ namespace user
 //
 //         // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
 ////#ifdef WINDOWS_DESKTOP
-////            if(pmessage->m_emessage == WM_NOTIFY)
+////            if(pmessage->m_eusermessage == WM_NOTIFY)
 ////            {
 ////               NMHDR* pNMHDR = (NMHDR*)pmessage->m_lparam.m_lparam;
 ////               if (pNMHDR->code == TTN_NEEDTEXTA || pNMHDR->code == TTN_NEEDTEXTW)

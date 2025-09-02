@@ -28,7 +28,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
 
    ::pointer<::user::message>pusermessage(pmessage);
 
-   auto emessage = pusermessage->m_emessage;
+   auto emessage = pusermessage->m_eusermessage;
 
    if(emessage != ::user::e_message_mouse_move
          && emessage != ::user::e_message_timer

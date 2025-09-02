@@ -8,8 +8,7 @@
 #pragma once
 
 
-
-#include "acme/platform/message.h"
+#include "acme/platform/acme_message.h"
 #include "acme/prototype/geometry2d/point.h"
 
 
@@ -18,7 +17,7 @@ namespace user
 
 
    class CLASS_DECL_ACME mouse :
-      virtual public ::acme::user::message
+      virtual public ::acme::message
    {
    protected:
       friend class ::user::interaction;

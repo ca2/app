@@ -65,7 +65,7 @@ void message_queue::post_message(oswindow oswindow, ::user::enum_message euserme
    MESSAGE message;
 
    message.m_oswindow = oswindow;
-   message.m_emessage = emessage;
+   message.m_eusermessage = eusermessage;
    message.m_wparam = wparam;
    message.m_lparam = lparam;
    message.m_point.x() = I32_MINIMUM;
@@ -88,7 +88,7 @@ void message_queue::post_message(const MESSAGE & message)
 
    }
 
-   if (message.m_emessage == ::user::e_message_quit)
+   if (message.m_eusermessage == ::user::e_message_quit)
    {
 
       informationf("message_queue::post_message ::user::e_message_quit\n");
@@ -187,7 +187,7 @@ void message_queue::kick_idle()
 
          auto & message = m_messagea[i];
 
-         if (message.m_emessage == ::user::e_message_quit)
+         if (message.m_eusermessage == ::user::e_message_quit)
          {
 
             m_bQuit = true;
@@ -203,7 +203,7 @@ void message_queue::kick_idle()
 
          }
 
-         auto emessage = message.m_emessage;
+         auto emessage = message.m_eusermessage;
 
          if ((oswindow == nullptr || message.m_oswindow == oswindow) && emessage >= iFilterMinimum && emessage <= iFilterMaximum)
          {
@@ -299,7 +299,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,unsigned int 
 
       MESSAGE & msg = m_messagea[i];
 
-      if((oswindow == nullptr || msg.m_oswindow == oswindow) && msg.m_emessage >= wMsgFilterMin && msg.m_emessage <= wMsgFilterMax)
+      if((oswindow == nullptr || msg.m_oswindow == oswindow) && msg.m_eusermessage >= wMsgFilterMin && msg.m_eusermessage <= wMsgFilterMax)
       {
 
          *pMsg = msg;

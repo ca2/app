@@ -149,9 +149,9 @@ namespace userfs
    void tree_data::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &tree_data::on_message_create);
-      MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &tree_data::on_message_left_button_double_click);
-      MESSAGE_LINK(::user::e_message_context_menu, pchannel, this, &tree_data::on_message_context_menu);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &tree_data::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &tree_data::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_context_menu, pchannel, this, &tree_data::on_message_context_menu);
 
    }
 

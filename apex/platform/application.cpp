@@ -648,7 +648,7 @@ namespace apex
 
       ::thread::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_close, pchannel, this, &application::on_message_close);
+      USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &application::on_message_close);
 
       add_command_handler("try_close_application", { this, &application::on_message_app_exit });
       add_command_handler("switch_context_theme", { this, &application::_001OnSwitchContextTheme });
@@ -5251,9 +5251,9 @@ namespace apex
    void application::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
-      //return ::thread::post_message(emessage, wparam, lparam);
+      //return ::thread::post_message(eusermessage, wparam, lparam);
 
-      ::thread::post_message(emessage, wparam, lparam);
+      ::thread::post_message(eusermessage, wparam, lparam);
 
    }
 
@@ -7685,7 +7685,7 @@ namespace apex
 
       // handle certain messages in thread
 
-      switch (pmessage->m_emessage)
+      switch (pmessage->m_eusermessage)
       {
       case ::user::e_message_create:
       case ::user::e_message_paint:
@@ -7701,7 +7701,7 @@ namespace apex
       //linux unsigned int nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const ::string & nIDP = "Internal Failure";
       pmessage->m_lresult = 0;        // sensible default
-      if (pmessage->m_emessage == ::user::e_message_command)
+      if (pmessage->m_eusermessage == ::user::e_message_command)
       {
 
          if (pmessage->m_lparam == 0)

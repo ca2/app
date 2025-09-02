@@ -32,7 +32,7 @@ namespace user
    //   m_lresult = 0;
    //   m_bDestroyed = false;
    //   m_bDoSystemDefault = true;
-   //   set(oswindow, playeredUserPrimitive, emessage, wparam, lparam);
+   //   set(oswindow, playeredUserPrimitive, eusermessage, wparam, lparam);
 
 
    //   //papp->tellme_destroyed(puserinteraction, &m_bDestroyed);
@@ -88,7 +88,7 @@ namespace user
 
    //   m_pwindow = pwindow;
 
-   //   ::message::message::set(oswindow, pwindow, emessage, wparam, lparam);
+   //   ::message::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
    //}
 

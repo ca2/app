@@ -56,7 +56,7 @@ namespace calculator
     
       ::user::plain_edit::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &edit::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &edit::on_message_create);
       
    }
 

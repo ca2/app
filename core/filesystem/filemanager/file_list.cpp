@@ -78,12 +78,12 @@ namespace filemanager
 
       ::userfs::list::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &file_list::on_message_scroll_x);
-      MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &file_list::on_message_scroll_y);
-      MESSAGE_LINK(::user::e_message_right_button_up, pchannel, this, &file_list::on_message_context_menu);
-      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &file_list::on_message_show_window);
-      MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &file_list::on_message_set_focus);
-      MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &file_list::on_message_kill_focus);
+      USER_MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &file_list::on_message_scroll_x);
+      USER_MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &file_list::on_message_scroll_y);
+      USER_MESSAGE_LINK(::user::e_message_right_button_up, pchannel, this, &file_list::on_message_context_menu);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &file_list::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &file_list::on_message_set_focus);
+      USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &file_list::on_message_kill_focus);
 
       add_command_prober("edit_copy", { this,  &file_list::_001OnUpdateEditCopy });
       add_command_handler("edit_copy", { this,  &file_list::_001OnEditCopy });

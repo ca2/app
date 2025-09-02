@@ -65,13 +65,13 @@ namespace experience
 
       //}
 
-      if(pusermessage->m_emessage == ::user::e_message_right_button_down)
+      if(pusermessage->m_eusermessage == ::user::e_message_right_button_down)
       {
 
          m_enumState = StateMBDown;
 
       }
-      else if(pusermessage->m_emessage == ::user::e_message_right_button_up)
+      else if(pusermessage->m_eusermessage == ::user::e_message_right_button_up)
       {
 
          if(m_enumState == StateMBDown)
@@ -96,7 +96,7 @@ namespace experience
    void menu_manager::message_handler(::user::interaction * pframewindow, ::user::message * pusermessage)
    {
 
-      switch(pusermessage->m_emessage)
+      switch(pusermessage->m_eusermessage)
       {
       case ::user::e_message_left_button_double_click:
       {
@@ -117,15 +117,15 @@ namespace experience
             break;
       }
 
-      if(pusermessage->m_emessage == ::user::e_message_right_button_down)
+      if(pusermessage->m_eusermessage == ::user::e_message_right_button_down)
       {
          m_enumState = StateMBDown;
       }
-      if(pusermessage->m_emessage == ::user::e_message_right_button_down)
+      if(pusermessage->m_eusermessage == ::user::e_message_right_button_down)
       {
          m_enumState = StateMBDown;
       }
-      else if(pusermessage->m_emessage == ::user::e_message_right_button_up)
+      else if(pusermessage->m_eusermessage == ::user::e_message_right_button_up)
       {
          if(m_enumState == StateMBDown)
          {

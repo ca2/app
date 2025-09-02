@@ -1654,17 +1654,17 @@ namespace user
 
       //install_hover_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &tab::on_message_create);
-      MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &tab::on_message_left_button_down);
-      MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &tab::on_message_left_button_up);
-      MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &tab::on_message_left_button_double_click);
-      MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &tab::on_message_mouse_move);
-      MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &tab::on_message_mouse_leave);
-      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &tab::on_message_show_window);
-      MESSAGE_LINK(::user::e_message_language, pchannel, this, &tab::_001OnAppLanguage);
-      MESSAGE_LINK(::user::e_message_start_tab_drag, pchannel, this, &tab::_001OnStartTabDrag);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &tab::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &tab::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &tab::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &tab::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &tab::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &tab::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &tab::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_language, pchannel, this, &tab::_001OnAppLanguage);
+      USER_MESSAGE_LINK(::user::e_message_start_tab_drag, pchannel, this, &tab::_001OnStartTabDrag);
 
-      ////MESSAGE_LINK(::user::e_message_timer, pchannel, this, &tab::on_timer);
+      ////USER_MESSAGE_LINK(::user::e_message_timer, pchannel, this, &tab::on_timer);
 
    }
 

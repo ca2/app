@@ -73,12 +73,12 @@ namespace user
 
       ::user::interaction::install_message_routing(psender);
 
-      MESSAGE_LINK(::user::e_message_create, psender, this, &::user::color_combo_box::on_message_create);
-      MESSAGE_LINK(::user::e_message_left_button_down, psender, this, &::user::color_combo_box::on_message_left_button_down);
-      MESSAGE_LINK(::user::e_message_left_button_up, psender, this, &::user::color_combo_box::on_message_left_button_up);
-      MESSAGE_LINK(::user::e_message_mouse_move, psender, this, &::user::color_combo_box::on_message_mouse_move);
-      MESSAGE_LINK(::user::e_message_mouse_leave, psender, this, &::user::color_combo_box::on_message_mouse_leave);
-      MESSAGE_LINK(::user::e_message_show_window, psender, this, &::user::color_combo_box::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, psender, this, &::user::color_combo_box::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, psender, this, &::user::color_combo_box::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, psender, this, &::user::color_combo_box::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, psender, this, &::user::color_combo_box::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave, psender, this, &::user::color_combo_box::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_show_window, psender, this, &::user::color_combo_box::on_message_show_window);
 
    }
 

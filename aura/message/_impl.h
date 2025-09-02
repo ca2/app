@@ -4,7 +4,7 @@
 //#define MSG_TYPE_LINK(emessagetype, pchannel, preceiver, phandler) \
 //   pchannel->add_route(preceiver, phandler, ::atom((::message::enum_type)(emessagetype)))
 //
-//#define MESSAGE_LINK(int_message, pchannel, preceiver, phandler) \
+//#define USER_MESSAGE_LINK(int_message, pchannel, preceiver, phandler) \
 //   pchannel->add_route(preceiver, phandler, ::atom(::atom((index) (int_message)), ::message::e_type_message))
 //
 //#define ON_TYPED_MESSAGE(atom, MESSAGE, name) \
@@ -40,7 +40,7 @@
 ///*
 //
 //#define USER_MESSAGE_LINK(emessageenum, pchannel, preceiver, phandler) \
-//   MESSAGE_LINK(::message::emessageenum, pchannel, preceiver, phandler)
+//   USER_MESSAGE_LINK(::message::emessageenum, pchannel, preceiver, phandler)
 //
 //*/
 //

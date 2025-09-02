@@ -263,6 +263,7 @@ public:
       e_type_check,
       e_type_status,
       e_type_domainid,
+      e_type_user_message,
 
       e_type_not_an_atom = 127,
 
@@ -312,7 +313,7 @@ public:
       enum_task_tool                m_etasktool;
       enum_timer                    m_etimer;
       ::user::enum_message          m_eusermessage;
-      ::message::enum_message       m_emessage;
+      ::enum_message                m_emessage;
       enum_dialog_result            m_edialogresult;
       enum_happening                m_ehappening;
       enum_element                  m_eelement;
@@ -347,7 +348,7 @@ public:
    //inline atom(::enum_id EID);
    //inline atom(const ::e_command & ecommand);
    inline atom(::user::enum_message eusermessage);
-   inline atom(::message::enum_message emessage);
+   inline atom(::enum_message emessage);
    //inline atom(ENUM_MESSAGE EMESSAGE);
    inline atom(enum_impact eimpact);
    inline atom(ENUM_IMPACT EIMPACT);
@@ -601,7 +602,9 @@ public:
     //inline ::std::strong_ordering order(::user::enum_message eusermessage) const;
    inline bool operator == (::user::enum_message eusermessage) const;
    inline ::std::strong_ordering operator <=> (::user::enum_message eusermessage) const;
-   //inline bool operator < (::user::enum_message eusermessage) const;
+   inline bool operator==(::enum_message emessage) const;
+   inline ::std::strong_ordering operator<=>(::enum_message emessage) const;
+   // inline bool operator < (::user::enum_message eusermessage) const;
    //inline bool operator <= (::user::enum_message eusermessage) const;
    //inline bool operator > (::user::enum_message eusermessage) const;
    //inline bool operator >= (::user::enum_message eusermessage) const;
@@ -680,7 +683,8 @@ public:
    inline unsigned int as_unsigned_int() const { return (unsigned int) as_long_long(); }
    inline ::collection::index as_index() const { return (::collection::index)as_long_long(); }
    inline unsigned int as_umessage() const { return as_unsigned_int(); }
-   inline ::user::enum_message as_emessage() const;
+   inline ::user::enum_message as_eusermessage() const;
+   inline ::enum_message as_emessage1() const;
    inline ::enum_id as_eid() const;
    //inline ::e_check as_echeck() const { return m_etype == e_type_check ? m_echeck : (::e_check) e_check_undefined; }
    //inline ::e_status as_estatus() const { return m_etype == e_type_status ? m_estatus : (::e_status) e_status_none; }

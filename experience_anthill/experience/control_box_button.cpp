@@ -167,7 +167,7 @@ namespace experience_anthill
 
       ::user::button::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &button::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &button::on_message_show_window);
 
    }
 

@@ -120,20 +120,20 @@ namespace user
 
       //install_click_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &list_box::on_message_create);
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &list_box::on_message_destroy);
-      MESSAGE_LINK(::user::e_message_activate, pchannel, this, &list_box::on_message_activate);
-      //MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &list_box::on_message_set_focus);
-      //MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &list_box::on_message_kill_focus);
-      MESSAGE_LINK(::user::e_message_close, pchannel, this, &list_box::on_message_close);
-      MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
-      MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &list_box::on_message_key_down);
-      MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &list_box::on_message_key_up);
-      MESSAGE_LINK(::user::e_message_non_client_left_button_down, pchannel, (::user::interaction*)this, &interaction::on_message_left_button_down);
-      MESSAGE_LINK(::user::e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
-      MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
-      //MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
-      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &list_box::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &list_box::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &list_box::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_activate, pchannel, this, &list_box::on_message_activate);
+      //USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &list_box::on_message_set_focus);
+      //USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &list_box::on_message_kill_focus);
+      USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &list_box::on_message_close);
+      USER_MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &list_box::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &list_box::on_message_key_up);
+      USER_MESSAGE_LINK(::user::e_message_non_client_left_button_down, pchannel, (::user::interaction*)this, &interaction::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
+      USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
+      //USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &list_box::on_message_show_window);
 
    }
 

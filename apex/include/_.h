@@ -290,6 +290,7 @@ namespace berg
    class application;
    class session;
    class system;
+
    class user;
 
 
@@ -303,6 +304,7 @@ namespace bred
    class application;
    class session;
    class system;
+
    class user;
 
 

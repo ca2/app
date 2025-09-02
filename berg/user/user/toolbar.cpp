@@ -106,16 +106,16 @@ namespace user
 
       ::user::control_bar::install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_non_client_hit_test, pchannel, this, &toolbar::_001OnNcHitTest);
-      MESSAGE_LINK(::user::e_message_non_client_calc_size, pchannel, this, &toolbar::on_message_non_client_calculate_size);
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &toolbar::on_message_create);
-      MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &toolbar::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_non_client_hit_test, pchannel, this, &toolbar::_001OnNcHitTest);
+      USER_MESSAGE_LINK(::user::e_message_non_client_calc_size, pchannel, this, &toolbar::on_message_non_client_calculate_size);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &toolbar::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &toolbar::on_message_left_button_double_click);
       //#ifdef WINDOWS_DESKTOP
-//      MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
-//      MESSAGE_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);
-//      MESSAGE_LINK(WM_SETTINGCHANGE, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
-//      MESSAGE_LINK(WM_SETFONT, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
-//      MESSAGE_LINK(WM_SYSCOLORCHANGE, pchannel, this, &toolbar::_001OnSysColorChange);
+//      USER_MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
+//      USER_MESSAGE_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);
+//      USER_MESSAGE_LINK(WM_SETTINGCHANGE, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
+//      USER_MESSAGE_LINK(WM_SETFONT, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
+//      USER_MESSAGE_LINK(WM_SYSCOLORCHANGE, pchannel, this, &toolbar::_001OnSysColorChange);
 //#endif
 
    }

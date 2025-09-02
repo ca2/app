@@ -142,7 +142,7 @@ namespace hotplugin
    {
       if(m_phost != nullptr)
       {
-         m_phost->post_message(emessage, wparam, lparam);
+         m_phost->post_message(eusermessage, wparam, lparam);
 
       }
    }

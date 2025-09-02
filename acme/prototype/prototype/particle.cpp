@@ -1774,12 +1774,12 @@ CLASS_DECL_ACME lresult __call_message(::particle * pparticle, ::user::enum_mess
 lresult particle::message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
-   return message_handler(emessage, wparam, lparam);
+   return message_handler(eusermessage, wparam, lparam);
 
    //if (atom.m_etype == ::atom::e_type_message)
    //{
 
-   //   return message_handler(emessage, wparam, lparam);
+   //   return message_handler(eusermessage, wparam, lparam);
 
    //}
    //else
@@ -1803,9 +1803,10 @@ lresult particle::message_call(::user::enum_message eusermessage, ::wparam wpara
 lresult particle::message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
-   return __call_message(this, emessage, wparam, lparam);
+   return __call_message(this, eusermessage, wparam, lparam);
 
 }
+
 
 //
 //

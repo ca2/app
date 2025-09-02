@@ -23,7 +23,7 @@ namespace core
       common_construct();
 
       factory()->add_factory_item < ::core::session, ::platform::session >();
-      factory()->add_factory_item < ::core::user::user, ::user::user >();
+      factory()->add_factory_item < ::core::user, ::user::user >();
 
 
    }

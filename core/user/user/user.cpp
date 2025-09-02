@@ -114,8 +114,6 @@ namespace core
 {
 
 
-   namespace user
-   {
    /* class user_static_factory
     {
     public:
@@ -1870,10 +1868,6 @@ namespace core
    //}
 
    __namespace_object_factory(user, ::system_setup::flag_object_user);
-
-
-   } // namespace user
-
 
 
 } // namespace userex

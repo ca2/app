@@ -34,13 +34,7 @@ namespace core
 {
 
    
-   namespace user
-   {
-
-      ::type_atom user::get_pane_tab_impact_type_info() { return ::type<::userex::pane_tab_impact>(); }
-
-
-   } // namespace user
+   ::type_atom user::get_pane_tab_impact_type_info() { return ::type<::userex::pane_tab_impact>(); }
 
 
 } // namespace core

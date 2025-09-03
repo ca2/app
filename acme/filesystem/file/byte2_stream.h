@@ -31,13 +31,16 @@ public:
    byte2_stream(const ::file_pointer & pfile);
    ~byte2_stream() override;
 
-
+   byte2_stream & operator >>(bool &b);
+   byte2_stream & operator << (bool b);
    byte2_stream & operator >>(int & i);
    byte2_stream & operator << (int  i);
    byte2_stream & operator >>(long long & ll);
    byte2_stream & operator << (long long ll);
    byte2_stream & operator >>(string & str);
    byte2_stream & operator << (string & str);
+   byte2_stream & operator >>(memory & memory);
+   byte2_stream & operator << (memory & memory);
 
    template < byte2_exchangable BYTE2_EXCHANGABLE >
    byte2_stream & operator >>(BYTE2_EXCHANGABLE & t)

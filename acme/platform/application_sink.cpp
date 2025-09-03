@@ -70,6 +70,8 @@ namespace platform
 
       _synchronous_lock synchronouslock(this->synchronization());
 
+      byte2_stream & operator >>(string & str);
+      byte2_stream & operator << (string & str);
       m_datablockaMediaStore.add(pdatablock);
 
    }

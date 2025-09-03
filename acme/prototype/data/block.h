@@ -27,6 +27,9 @@ namespace data
    virtual void initialize_set_operation(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrMime, const ::block & block);
    virtual void initialize_get_operation(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrMime);
 
+
+   virtual void byte2_exchange(byte2_stream & stream);
+
 };
 using block_array = ::pointer_array_base<block>;
 } // namespace data

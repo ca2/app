@@ -3,6 +3,8 @@
 //
 #include "framework.h"
 #include "block.h"
+#include "acme/filesystem/file/byte2_stream.h"
+
 
 namespace data
 {
@@ -36,6 +38,25 @@ void block::initialize_get_operation(const ::scoped_string & scopedstrPath,
    m_strMime = scopedstrMime;
 
 }
+
+   void block::byte2_exchange(byte2_stream & stream)
+   {
+
+      long long llCallback = 0;
+      if(stream.m_estream == ::file::e_stream_output)
+      {
+
+         llCallback = (::iptr) (void*) (::data::block *) this;
+
+      }
+      stream.exchange(llCallback);
+      stream.exchange(m_bWrite);
+      stream.exchange(m_strPath);
+      stream.exchange(m_strMime);
+      stream.exchange(m_memory);
+
+
+   }
 
 
 } // namespace data

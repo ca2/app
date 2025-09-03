@@ -4,6 +4,8 @@
 #include "framework.h"
 #include "message.h"
 #include "message_sink.h"
+#include "acme/filesystem/file/byte2_stream.h"
+#include "acme/prototype/data/_byte2_stream.h"
 
 
 message_sink::message_sink()
@@ -61,6 +63,22 @@ void message_sink::post_message(::platform::message * pmessage)
    _synchronous_lock synchronouslock(this->synchronization());
 
    m_messagea.add(pmessage);
+
+}
+
+
+void message_sink::post_data_block_message(::enum_message emessage, ::data::block * pdatablock)
+{
+
+   auto pmessage = øcreate_new < ::platform::message >();
+
+   pmessage->m_emessage = emessage;
+
+   output_byte2_stream stream(pmessage->m_memory);
+
+   stream << *pdatablock;
+
+   post_message(pmessage);
 
 }
 

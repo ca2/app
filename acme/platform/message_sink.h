@@ -28,6 +28,7 @@ public:
 
    virtual void post_simple_message(::enum_message emessage);
    virtual void post_message(::platform::message * pmessage);
+   virtual void post_data_block_message(::enum_message emessage, ::data::block * pdatablock);
 
 
    ::pointer < platform::message > pick_message_to_post();

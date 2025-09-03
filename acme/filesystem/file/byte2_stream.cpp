@@ -38,6 +38,37 @@ byte2_stream::~byte2_stream()
 }
 
 
+byte2_stream & byte2_stream::operator >>(bool & b)
+{
+
+   auto iByte = m_pfile->get_unsigned_char();
+
+   if (iByte < 0) {
+
+      throw ::exception(error_io, "bytes2_stream read bool exception");
+
+   }
+
+   b = iByte ? true : false;
+
+   return *this;
+
+}
+
+
+byte2_stream & byte2_stream::operator <<(bool b)
+{
+
+   unsigned char uch = b ? 0xff : 0;
+
+   m_pfile->write(&uch, 1);
+
+   return *this;
+
+}
+
+
+
 byte2_stream & byte2_stream::operator >>(int & i)
 {
 
@@ -318,6 +349,45 @@ byte2_stream & byte2_stream::operator <<(::string & str)
    *this << len;
 
    m_pfile->write(str.data(), len);
+
+   return *this;
+
+}
+
+
+
+
+byte2_stream & byte2_stream::operator >>(::memory & memory)
+{
+
+   long long ll;
+
+   *this >> ll;
+
+   memory.set_size(ll);
+
+   auto read = m_pfile->read(memory.data(), ll);
+
+   if(read < ll)
+   {
+
+      throw ::exception(error_io);
+
+   }
+
+   return *this;
+
+}
+
+
+byte2_stream & byte2_stream::operator <<(::memory & memory)
+{
+
+   auto ll = (long long)memory.size();
+
+   *this << ll;
+
+   m_pfile->write(memory);
 
    return *this;
 

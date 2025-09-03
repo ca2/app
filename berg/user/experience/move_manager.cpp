@@ -133,7 +133,7 @@ namespace experience
 
       }
 
-      ASSERT(pmouse->m_emessage == ::user::e_message_parent_mouse_move);
+      ASSERT(pmouse->m_eusermessage == ::user::e_message_parent_mouse_move);
 
       //auto pwindowing = m_pframewindow->windowing();
 

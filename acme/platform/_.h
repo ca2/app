@@ -58,7 +58,7 @@ namespace platform
 
    class uuid;
 
-   class application_state;
+   class application_sink;
 
 
 } // namespace platform
@@ -93,3 +93,4 @@ namespace acme
 
 
 
+class message_sink;

@@ -67,8 +67,8 @@ namespace experience
    {
 
       ASSERT(
-         pmouse->m_emessage == ::user::e_message_parent_left_button_down
-         || pmouse->m_emessage == ::user::e_message_non_client_left_button_down);
+         pmouse->m_eusermessage == ::user::e_message_parent_left_button_down
+         || pmouse->m_eusermessage == ::user::e_message_non_client_left_button_down);
 
       if(!m_pframewindow->is_sizing_enabled())
       {
@@ -201,9 +201,9 @@ namespace experience
       //information() << "size_manager::on_message_mouse_move : " << pmouse->m_pointAbsolute;
 
       ASSERT(
-         pmouse->m_emessage == ::user::e_message_mouse_move 
-         || pmouse->m_emessage == ::user::e_message_parent_mouse_move
-         || pmouse->m_emessage == ::user::e_message_non_client_mouse_move);
+         pmouse->m_eusermessage == ::user::e_message_mouse_move
+         || pmouse->m_eusermessage == ::user::e_message_parent_mouse_move
+         || pmouse->m_eusermessage == ::user::e_message_non_client_mouse_move);
 
       if(m_eframeSizing != e_frame_none)
       {

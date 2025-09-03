@@ -59,7 +59,7 @@ namespace nanoui
 //extern std::map_base<GLFWwindow *, Screen *> __nanoui_screens;
 
 #if defined(__APPLE__)
-extern void disable_saved_application_state_osx();
+extern void disable_saved_application_sink_osx();
 #endif
 
 //void init() {
@@ -69,7 +69,7 @@ extern void disable_saved_application_state_osx();
 //#endif
 //
 //#if defined(__APPLE__)
-//   disable_saved_application_state_osx();
+//   disable_saved_application_sink_osx();
 //   glfwInitHint(GLFW_COCOA_CHDIR_RESOURCES, GLFW_FALSE);
 //#endif
 //

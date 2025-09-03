@@ -2,17 +2,21 @@
 // Created by camilo on 2025-07-10 00:52 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "application_state.h"
+#include "application_sink.h"
+#include "message_sink.h"
+#include "acme/filesystem/file/byte2_stream.h"
 #include "acme/parallelization/manual_reset_happening.h"
+#include "acme/windowing/message/types.h"
+
 
 namespace platform
 {
 
 
-   ::pointer<application_state> g_papplicationstate;
+   ::pointer<application_sink> g_papplicationsink;
 
 
-   application_state::application_state()
+   application_sink::application_sink()
    {
       m_iWidth = 0;
       m_iHeight = 0;
@@ -25,43 +29,43 @@ namespace platform
    }
 
 
-   application_state::~application_state()
+   application_sink::~application_sink()
    {
 
 
    }
 
-   application_state * application_state::get()
+   application_sink * application_sink::get()
    {
 
-      return g_papplicationstate;
+      return g_papplicationsink;
 
    }
 
 
-   void application_state::set(application_state * papplicationstate)
+   void application_sink::set(application_sink * papplicationsink)
    {
 
-      g_papplicationstate = papplicationstate;
+      g_papplicationsink = papplicationsink;
 
    }
 
 
-   void application_state::exchange1()
-   {
-
-
-   }
-
-
-   void application_state::after_exchange()
+   void application_sink::exchange1()
    {
 
 
    }
 
 
-   void application_state::post_media_store_operation(::data::block * pdatablock)
+   void application_sink::after_exchange()
+   {
+
+
+   }
+
+
+   void application_sink::post_media_store_operation(::data::block * pdatablock)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -71,13 +75,13 @@ namespace platform
    }
 
 
-   void application_state::on_main_task_iteration()
+   void application_sink::on_main_task_iteration()
    {
 
 
    }
 
-//   void application_state::set_data(const ::scoped_string & scopedstrRelativeName,
+//   void application_sink::set_data(const ::scoped_string & scopedstrRelativeName,
 //                                 const ::scoped_string & scopedstrMimeType,
 //                                 const ::block & block)
 //{
@@ -97,7 +101,7 @@ namespace platform
 //}
 //
 //
-//::string application_state::get_data(const ::scoped_string & scopedstrRelativeName,
+//::string application_sink::get_data(const ::scoped_string & scopedstrRelativeName,
 //                                 const ::scoped_string & scopedstrMimeType,
 //                                 const class ::time & timeTimeout)
 //{
@@ -132,39 +136,47 @@ namespace platform
 //
 
    void
-   application_state::queue_message_box(::message_box * pmessagebox)
+   application_sink::post_message_box(::message_box * pmessagebox)
    {
 
       //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer);
 
-      synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization());
 
-      m_messageboxa.add(pmessagebox);
+      auto pmessage = message_sink().create_message(::e_message_message_box);
 
-   }
+      output_byte2_stream stream(pmessage->m_memory);
 
+      ::message::message_box box(pmessagebox);
 
-   ::pointer<::message_box> application_state::pick_message_box()
-   {
+      stream << box;
 
-      //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer);
-
-      synchronous_lock synchronouslock(this->synchronization());
-
-      if (m_messageboxa.is_empty()) {
-
-         return nullptr;
-
-      }
-
-      auto psequencer = m_messageboxa.pop_first();
-
-      return psequencer;
+      message_sink().post_message(pmessage);
 
    }
 
 
-   ::pointer<::data::block> application_state::pick_media_store_operation()
+//   ::pointer<::message_box> application_sink::pick_message_box()
+//   {
+//
+//      //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer);
+//
+//      synchronous_lock synchronouslock(this->synchronization());
+//
+//      if (m_messageboxa.is_empty()) {
+//
+//         return nullptr;
+//
+//      }
+//
+//      auto psequencer = m_messageboxa.pop_first();
+//
+//      return psequencer;
+//
+//   }
+
+
+   ::pointer<::data::block> application_sink::pick_media_store_operation()
    {
 
       //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer);
@@ -184,7 +196,7 @@ namespace platform
    }
 
 
-   void application_state::defer_post_all_media_store_operations()
+   void application_sink::defer_post_all_media_store_operations()
    {
 
       while (true) {
@@ -204,26 +216,26 @@ namespace platform
 
    }
 
-   void application_state::on_media_store_operation(::data::block * pdatablock)
+   void application_sink::on_media_store_operation(::data::block * pdatablock)
    {
 
    }
 
 //
-//   void application_state::on_write_input_output_data_block(::data::block * pdatablock)
+//   void application_sink::on_write_input_output_data_block(::data::block * pdatablock)
 //   {
 //
 //
 //   }
 //
 //
-//   void application_state::on_read_input_output_data_block(::data::block * pdatablock)
+//   void application_sink::on_read_input_output_data_block(::data::block * pdatablock)
 //   {
 //
 //
 //   }
 
-   void application_state::open_url(const ::scoped_string & scopedstrOpenUrl)
+   void application_sink::open_url(const ::scoped_string & scopedstrOpenUrl)
    {
 
       synchronous_lock lock(this->synchronization());
@@ -233,7 +245,7 @@ namespace platform
    }
 
 
-   void application_state::list_file_enumerate(const ::scoped_string & scopedstrListFileEnumerate)
+   void application_sink::list_file_enumerate(const ::scoped_string & scopedstrListFileEnumerate)
    {
 
       //synchronous_lock lock(m_pparticleMutexListFileEnumerate);
@@ -243,7 +255,7 @@ namespace platform
 
    }
 
-//   ::file::path application_state::synchronously_getDocumentFolder(const class ::time & timeOut)
+//   ::file::path application_sink::synchronously_getDocumentFolder(const class ::time & timeOut)
 //   {
 //
 //      return {};
@@ -251,19 +263,23 @@ namespace platform
 //   }
 
 //
-// ::pointer < ::data::block > application_state::post_media_store_operation(
+// ::pointer < ::data::block > application_sink::post_media_store_operation(
 //    ::data::block * pdatablock)
 // {
 //
 //    return {};
 //
 // }
-// ::pointer < ::data::block >application_state:: media_store_get_data(const ::scoped_string & scopedstrPath)
+// ::pointer < ::data::block >application_sink:: media_store_get_data(const ::scoped_string & scopedstrPath)
 // {
 //
 //      return {};
 //
 // }
+void application_sink::context_on_size_changed()
+   {
+
+   }
 
 } // namespace platform
 

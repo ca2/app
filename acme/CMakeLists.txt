@@ -106,9 +106,11 @@ list(APPEND library_source
         constant/code_page.h
         constant/earth.h
         constant/element.h
+   constant/message.h
         #constant/idpool.cpp
         constant/library.h
-        constant/message_box.h
+        constant/user_message_box.h
+   constant/user_message_prototype.h
         crypto/_.h
         crypto/_crypto.h
         crypto/crypto.cpp
@@ -494,12 +496,12 @@ list(APPEND library_source
         platform/_synchronization.h
         platform/acme.cpp
         platform/acme.h
+   platform/acme_message.cpp
+   platform/acme_message.h
         platform/allocator.cpp
         platform/allocator.h
-        platform/application_message.cpp
-        platform/application_message.h
-        platform/application_state.cpp
-        platform/application_state.h
+        platform/application_sink.cpp
+        platform/application_sink.h
         platform/asset.cpp
         platform/asset.h
         platform/asset_manager.cpp
@@ -618,6 +620,8 @@ list(APPEND library_source
         platform/message.h
         platform/message_box.cpp
         platform/message_box.h
+   platform/message_sink.cpp
+   platform/message_sink.h
         #platform/muldiv64.cpp
         #   platform/nano_http.cpp
         #   platform/nano_http.h

@@ -113,6 +113,143 @@ byte2_stream & byte2_stream::operator <<(int i)
 
 }
 
+byte2_stream & byte2_stream::operator >>(long long & ll)
+{
+
+   long long iByte = m_pfile->get_unsigned_char();
+
+   if(iByte < 0)
+   {
+
+      throw ::exception(error_io, "bytes2_stream read long long exception");
+
+   }
+
+   ll = iByte;
+
+   iByte = m_pfile->get_unsigned_char();
+
+   if(iByte < 0)
+   {
+
+      throw ::exception(error_io, "bytes2_stream read long long exception (b)");
+
+   }
+
+   ll |= (iByte << 8);
+
+   iByte = m_pfile->get_unsigned_char();
+
+   if(iByte < 0)
+   {
+
+      throw ::exception(error_io, "bytes2_stream read long long exception (c)");
+
+   }
+
+   ll |= (iByte << 16);
+
+   iByte = m_pfile->get_unsigned_char();
+
+   if(iByte < 0)
+   {
+
+      throw ::exception(error_io, "bytes2_stream read int exception (b)");
+
+   }
+
+   ll |= (iByte << 24);
+
+   iByte = m_pfile->get_unsigned_char();
+
+   if(iByte < 0)
+   {
+
+      throw ::exception(error_io, "bytes2_stream read int exception (b)");
+
+   }
+
+   ll |= (iByte << 32);
+
+   iByte = m_pfile->get_unsigned_char();
+
+   if(iByte < 0)
+   {
+
+      throw ::exception(error_io, "bytes2_stream read int exception (b)");
+
+   }
+
+   ll |= (iByte << 40);
+
+   iByte = m_pfile->get_unsigned_char();
+
+   if(iByte < 0)
+   {
+
+      throw ::exception(error_io, "bytes2_stream read int exception (b)");
+
+   }
+
+   ll |= (iByte << 48);
+
+   iByte = m_pfile->get_unsigned_char();
+
+   if(iByte < 0)
+   {
+
+      throw ::exception(error_io, "bytes2_stream read int exception (b)");
+
+   }
+
+   ll |= (iByte << 56);
+
+
+
+
+   return *this;
+
+}
+
+
+byte2_stream & byte2_stream::operator <<(long long ll)
+{
+
+   unsigned char uch = ll&0xff;
+
+   m_pfile->write(&uch, 1); // byte 0
+
+   uch = (ll >> 8) & 0xff;
+
+   m_pfile->write(&uch, 1);// byte 1
+
+   uch = (ll >> 16) & 0xff;
+
+   m_pfile->write(&uch, 1);// byte 2
+
+   uch = (ll >> 24) & 0xff;
+
+   m_pfile->write(&uch, 1);// byte 3
+
+   uch = (ll >> 32) & 0xff;
+
+   m_pfile->write(&uch, 1);// byte 4
+
+   uch = (ll >> 40) & 0xff;
+
+   m_pfile->write(&uch, 1);// byte 5
+
+   uch = (ll >> 48) & 0xff;
+
+   m_pfile->write(&uch, 1);// byte 6
+
+   uch = (ll >> 56) & 0xff;
+
+   m_pfile->write(&uch, 1);// byte 7
+
+   return *this;
+
+}
 
 
 
@@ -136,9 +273,55 @@ byte2_stream & byte2_stream::operator <<(int i)
 
       m_estream = ::file::e_stream_output;
    }
+output_byte2_stream::output_byte2_stream(const ::block & block):
+   byte2_stream(block)
+{
+
+   m_estream = ::file::e_stream_output;
+}
 output_byte2_stream::~output_byte2_stream()
 {
 
 }
+
+
+byte2_stream & byte2_stream::operator >>(::string & str)
+{
+
+   int len;
+
+   *this >> len;
+
+   auto psz = str.get_buffer(len);
+
+   auto read = m_pfile->read(psz, len);
+
+   if(read < len)
+   {
+
+      throw ::exception(error_io);
+
+   }
+
+   str.release_buffer(len);
+
+   return *this;
+
+}
+
+
+byte2_stream & byte2_stream::operator <<(::string & str)
+{
+
+   int len = (int)str.length();
+
+   *this << len;
+
+   m_pfile->write(str.data(), len);
+
+   return *this;
+
+}
+
 
 

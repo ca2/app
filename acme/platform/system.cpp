@@ -942,7 +942,7 @@ namespace platform
 
       papplication->øconstruct(m_pnode);
 
-      m_pnode = m_pnode;
+      //m_pnode = m_pnode;
 
       // if (m_psession)
       // {

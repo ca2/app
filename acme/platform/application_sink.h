@@ -10,15 +10,10 @@ namespace platform
 {
 
 
-
-
-
-    class CLASS_DECL_ACME application_state
-
-    :
-    virtual public ::particle
-{
-    public:
+    class CLASS_DECL_ACME application_sink :
+       virtual public ::particle
+   {
+      public:
 
 
     int m_iWidth;
@@ -28,7 +23,7 @@ namespace platform
 
     bool m_bRedraw;
        bool m_bSetApplicationReady;
-    ::pointer_array<::message_box> m_messageboxa;
+    //::pointer_array<::message_box> m_messageboxa;
 
     ::pointer<::acme::asset_manager> m_passetmanager;
 
@@ -38,16 +33,19 @@ namespace platform
 
     ::string_array_base             m_straListFileEnumerate;
 
-    ::data::block_array             m_datablockaMediaStore;
+    //::data::block_array             m_datablockaMediaStore;
+
+    ::pointer <::message_sink>      m_pmessagesink;
+    ::pointer <::message_sink>      m_pmessagesinkMediaStore;
 
 
-    application_state();
-    ~application_state() override;
+    application_sink();
+    ~application_sink() override;
 
 
-    static ::platform::application_state *get();
+    static ::platform::application_sink *get();
 
-    static void set(::platform::application_state * papplicationstate);
+    static void set(::platform::application_sink * papplicationsink);
 
     virtual void exchange1();
 
@@ -60,10 +58,9 @@ namespace platform
 //                               const ::scoped_string & scopedstrMimeType,
 //                               const class ::time & timeTimeout);
 
-    virtual void
-    queue_message_box(::message_box *pmessagebox);
+    virtual void post_message_box(::message_box *pmessagebox);
 
-    virtual ::pointer<::message_box> pick_message_box();
+    //virtual ::pointer<::message_box> pick_message_box();
 
        virtual ::pointer<::data::block> pick_media_store_operation();
 
@@ -84,6 +81,8 @@ namespace platform
        virtual void post_media_store_operation(::data::block * pdatablock);
 
        virtual void on_main_task_iteration();
+
+      virtual void context_on_size_changed();
 
     };
 

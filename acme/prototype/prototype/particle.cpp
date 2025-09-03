@@ -80,7 +80,7 @@ void particle::initialize(::particle * pparticle)
 //
 //#endif
 
-   if (!m_papplication)
+   if (!m_papplication && ::is_set(pparticle))
    {
 
       m_papplication = pparticle->m_papplication;

@@ -27,6 +27,22 @@ namespace message
 
    };
 
+   struct editor_text_and_selection {
+
+      ::string m_strEditorText;
+      int m_iSelectionStart;
+      int m_iSelectionEnd;
+
+      void byte2_exchange(byte2_stream & stream)
+      {
+
+         stream.exchange(m_strEditorText);
+         stream.exchange(m_iSelectionStart);
+         stream.exchange(m_iSelectionEnd);
+
+      }
+
+   };
 
    struct editor_text_updated {
 

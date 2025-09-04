@@ -21,6 +21,8 @@ enum enum_message : int
    e_message_hide_software_keyboard = 10,
    e_message_pick_image = 11,
    e_message_open_file_request = 12,
+   e_message_editor_text_and_selection = 16,
+   e_message_restart_input = 17,
    e_message_message_box = 1024
 
 };

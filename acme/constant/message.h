@@ -16,6 +16,11 @@ enum enum_message : int
    e_message_editor_text_updated = 5,
    e_message_open_url = 6,
    e_message_application_about_to_start = 7,
+   e_message_media_store_operation = 8,
+   e_message_show_software_keyboard = 9,
+   e_message_hide_software_keyboard = 10,
+   e_message_pick_image = 11,
+   e_message_open_file_request = 12,
    e_message_message_box = 1024
 
 };

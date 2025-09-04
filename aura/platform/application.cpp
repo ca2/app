@@ -9291,7 +9291,7 @@ namespace aura
 
          int_size size;
 
-         ::byte2_stream stream(pmessage->m_memory);
+         ::input_byte2_stream stream(pmessage->m_memory);
 
          stream >> size;
 

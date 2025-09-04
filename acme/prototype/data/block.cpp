@@ -46,6 +46,7 @@ void block::initialize_get_operation(const ::scoped_string & scopedstrPath,
       if(stream.m_estream == ::file::e_stream_output)
       {
 
+         this->increment_reference_count();
          llCallback = (::iptr) (void*) (::data::block *) this;
 
       }

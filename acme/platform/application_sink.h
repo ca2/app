@@ -62,11 +62,11 @@ namespace platform
 
     //virtual ::pointer<::message_box> pick_message_box();
 
-       virtual ::pointer<::data::block> pick_media_store_operation();
+       //virtual ::pointer<::data::block> pick_media_store_operation();
 
-       virtual void defer_post_all_media_store_operations();
+       //virtual void defer_post_all_media_store_operations();
 
-       virtual void on_media_store_operation(::data::block * pdatablock);
+       //virtual void on_media_store_operation(::data::block * pdatablock);
        //virtual void on_write_input_output_data_block(::data::block * pdatablock);
        //virtual void on_read_input_output_data_block(::data::block * pdatablock);
 
@@ -80,9 +80,13 @@ namespace platform
 
        virtual void post_media_store_operation(::data::block * pdatablock);
 
-       virtual void on_main_task_iteration();
+       //virtual void on_main_task_iteration();
 
       virtual void context_on_size_changed();
+
+      virtual ::message_sink * message_sink();
+
+      virtual ::message_sink * media_store_message_sink();
 
     };
 

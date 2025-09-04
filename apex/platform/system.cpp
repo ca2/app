@@ -4922,10 +4922,17 @@ namespace apex
    bool system::_handle_uri(const ::scoped_string & scopedstrUri)
    {
 
-      if (application() && application()->_handle_uri(scopedstrUri))
+      auto papplication = application();
+
+      if (papplication)
       {
 
-         return true;
+         if(papplication->_handle_uri(scopedstrUri))
+         {
+
+            return true;
+
+         }
 
       }
 

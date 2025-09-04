@@ -5016,7 +5016,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
          auto pdatablock = øcreate_new<::data::block>();
 
-         pdatablock->initialize_set_operation(scopedstrPath, "text/plain", block);
+         pdatablock->initialize_set_operation(scopedstrPath, "application/octet-stream", block);
 
          øconstruct_new(pdatablock->m_pmanualresethappening);
 
@@ -5043,7 +5043,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
          auto pdatablock = øcreate_new<::data::block>();
 
-         pdatablock->initialize_get_operation(scopedstrPath, "text/plain");
+         pdatablock->initialize_get_operation(scopedstrPath, "application/octet-stream");
 
          øconstruct_new(pdatablock->m_pmanualresethappening);
 

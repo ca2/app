@@ -14,7 +14,7 @@ class CLASS_DECL_ACME message_sink :
 public:
 
    
-   ::pointer_array_base<::platform::message> m_messagea;
+   //::pointer_array_base<::platform::message> m_messagea;
 
 
    message_sink();
@@ -31,10 +31,10 @@ public:
    virtual void post_data_block_message(::enum_message emessage, ::data::block * pdatablock);
 
 
-   ::pointer < platform::message > pick_message_to_post();
+   //::pointer < platform::message > pick_message_to_post();
 
 
-   virtual void dispatch_posted_messages();
+   //virtual void dispatch_posted_messages();
    virtual void dispatch_message(::platform::message * pmessage);
 
 

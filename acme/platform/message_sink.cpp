@@ -5,7 +5,8 @@
 #include "message.h"
 #include "message_sink.h"
 #include "acme/filesystem/file/byte2_stream.h"
-#include "acme/prototype/data/_byte2_stream.h"
+#include "acme/prototype/data/block.h"
+#include "acme/windowing/windowing.h"
 
 
 message_sink::message_sink()
@@ -60,9 +61,23 @@ void message_sink::post_simple_message(enum_message emessage)
 void message_sink::post_message(::platform::message * pmessage)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   //_synchronous_lock synchronouslock(this->synchronization());
 
-   m_messagea.add(pmessage);
+   //m_messagea.add(pmessage);
+
+   auto psystem = ::system();
+
+   auto pacmewindowing = psystem->acme_windowing();
+
+   auto p = ::as_pointer(pmessage);
+
+   pacmewindowing->_main_post(
+      [this, p]()
+      {
+
+         dispatch_message(p);
+
+      });
 
 }
 
@@ -83,46 +98,46 @@ void message_sink::post_data_block_message(::enum_message emessage, ::data::bloc
 }
 
 
-::pointer < ::platform::message > message_sink::pick_message_to_post()
-{
+//::pointer < ::platform::message > message_sink::pick_message_to_post()
+//{
+//
+//   _synchronous_lock synchronouslock(this->synchronization());
+//
+//   if(m_messagea.is_empty())
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto pmessage = m_messagea.pick_first();
+//
+//   return pmessage;
+//
+//}
 
-   _synchronous_lock synchronouslock(this->synchronization());
-
-   if(m_messagea.is_empty())
-   {
-
-      return nullptr;
-
-   }
-
-   auto pmessage = m_messagea.pick_first();
-
-   return pmessage;
-
-}
 
 
-
-void message_sink::dispatch_posted_messages()
-{
-
-   while(true)
-   {
-
-      auto pmessage = pick_message_to_post();
-
-      if(!pmessage)
-      {
-
-         break;
-
-      }
-
-      dispatch_message(pmessage);
-
-   }
-
-}
+//void message_sink::dispatch_posted_messages()
+//{
+//
+//   while(true)
+//   {
+//
+//      auto pmessage = pick_message_to_post();
+//
+//      if(!pmessage)
+//      {
+//
+//         break;
+//
+//      }
+//
+//      dispatch_message(pmessage);
+//
+//   }
+//
+//}
 
 
 void message_sink::dispatch_message(::platform::message * pmessage)

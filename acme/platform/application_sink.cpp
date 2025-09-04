@@ -68,20 +68,23 @@ namespace platform
    void application_sink::post_media_store_operation(::data::block * pdatablock)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      m_pmessagesinkMediaStore->post_data_block_message(
+         ::e_message_media_store_operation,
+         pdatablock);
+      //_synchronous_lock synchronouslock(this->synchronization());
 
-      byte2_stream & operator >>(string & str);
-      byte2_stream & operator << (string & str);
-      m_datablockaMediaStore.add(pdatablock);
-
-   }
-
-
-   void application_sink::on_main_task_iteration()
-   {
-
+      //byte2_stream & operator >>(string & str);
+      //byte2_stream & operator << (string & str);
+      //m_datablockaMediaStore.add(pdatablock);
 
    }
+
+
+//   void application_sink::on_main_task_iteration()
+//   {
+//
+//
+//   }
 
 //   void application_sink::set_data(const ::scoped_string & scopedstrRelativeName,
 //                                 const ::scoped_string & scopedstrMimeType,
@@ -145,7 +148,7 @@ namespace platform
 
       //synchronous_lock synchronouslock(this->synchronization());
 
-      auto pmessage = message_sink().create_message(::e_message_message_box);
+      auto pmessage = message_sink()->create_message(::e_message_message_box);
 
       output_byte2_stream stream(pmessage->m_memory);
 
@@ -153,7 +156,7 @@ namespace platform
 
       stream << box;
 
-      message_sink().post_message(pmessage);
+      message_sink()->post_message(pmessage);
 
    }
 
@@ -178,50 +181,50 @@ namespace platform
 //   }
 
 
-   ::pointer<::data::block> application_sink::pick_media_store_operation()
-   {
+//   ::pointer<::data::block> application_sink::pick_media_store_operation()
+//   {
+//
+//      //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer);
+//
+//      synchronous_lock synchronouslock(this->synchronization());
+//
+//      if (m_datablockaMediaStore.is_empty()) {
+//
+//         return nullptr;
+//
+//      }
+//
+//      auto pdatablock = m_datablockaMediaStore.pop_first();
+//
+//      return pdatablock;
+//
+//   }
 
-      //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer);
 
-      synchronous_lock synchronouslock(this->synchronization());
+//   void application_sink::defer_post_all_media_store_operations()
+//   {
+//
+//      while (true) {
+//
+//         auto pdatablock = pick_media_store_operation();
+//
+//         if (!pdatablock) {
+//
+//            return;
+//
+//         }
+//
+//         on_media_store_operation(pdatablock);
+//
+//      }
+//      //defer_process_all_input_output_data_blocks();
+//
+//   }
 
-      if (m_datablockaMediaStore.is_empty()) {
-
-         return nullptr;
-
-      }
-
-      auto pdatablock = m_datablockaMediaStore.pop_first();
-
-      return pdatablock;
-
-   }
-
-
-   void application_sink::defer_post_all_media_store_operations()
-   {
-
-      while (true) {
-
-         auto pdatablock = pick_media_store_operation();
-
-         if (!pdatablock) {
-
-            return;
-
-         }
-
-         on_media_store_operation(pdatablock);
-
-      }
-      //defer_process_all_input_output_data_blocks();
-
-   }
-
-   void application_sink::on_media_store_operation(::data::block * pdatablock)
-   {
-
-   }
+//   void application_sink::on_media_store_operation(::data::block * pdatablock)
+//   {
+//
+//   }
 
 //
 //   void application_sink::on_write_input_output_data_block(::data::block * pdatablock)
@@ -282,6 +285,22 @@ void application_sink::context_on_size_changed()
    {
 
    }
+
+   ::message_sink * application_sink::message_sink()
+   {
+
+      return m_pmessagesink;
+
+   }
+
+
+   ::message_sink * application_sink::media_store_message_sink()
+   {
+
+      return m_pmessagesinkMediaStore;
+
+   }
+
 
 } // namespace platform
 

@@ -37,6 +37,7 @@ namespace acme
       windowing::windowing()
       {
 
+         m_bKeepRunningPostedProcedures = true;
          m_ewindowing = ::windowing::e_windowing_none;
          m_ewindowingbias = ::windowing::e_bias_unknown;
 

@@ -14,11 +14,20 @@ m_pfile(::system()->create_memory_file())
 }
 
 
-byte2_stream::byte2_stream(const ::block & block) :
+byte2_stream::byte2_stream(stream_input_t, const ::block & block) :
 m_pfile(::system()->create_memory_file(block))
 {
 
+m_estream = ::file::e_stream_input;
 
+}
+
+
+byte2_stream::byte2_stream(stream_output_t, memory & memory) :
+   m_pfile(::system()->create_memory_file(memory))
+{
+
+   m_estream = ::file::e_stream_output;
 
 }
 
@@ -285,9 +294,9 @@ byte2_stream & byte2_stream::operator <<(long long ll)
 
 
    input_byte2_stream:: input_byte2_stream(const ::block & block) :
-   byte2_stream(block)
+   byte2_stream(stream_input_t{}, block)
    {
-      m_estream = ::file::e_stream_input;
+      //m_estream = ::file::e_stream_input;
    }
 
    input_byte2_stream::~input_byte2_stream()
@@ -304,11 +313,10 @@ byte2_stream & byte2_stream::operator <<(long long ll)
 
       m_estream = ::file::e_stream_output;
    }
-output_byte2_stream::output_byte2_stream(const ::block & block):
-   byte2_stream(block)
+output_byte2_stream::output_byte2_stream(memory & memory) :
+   byte2_stream(stream_output_t{}, memory)
 {
-
-   m_estream = ::file::e_stream_output;
+   //m_estream = ::file::e_stream_output;
 }
 output_byte2_stream::~output_byte2_stream()
 {

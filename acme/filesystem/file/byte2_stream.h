@@ -10,6 +10,9 @@
 
 class byte2_stream;
 
+struct stream_output_t{};
+struct stream_input_t{};
+
 template < typename BYTE2_EXCHANGABLE >
 concept byte2_exchangable = requires(BYTE2_EXCHANGABLE & t, ::byte2_stream &s)
 {
@@ -27,7 +30,8 @@ public:
 
 
    byte2_stream();
-   byte2_stream(const ::block & block);
+   byte2_stream(stream_input_t, const ::block & block);
+   byte2_stream(stream_output_t, memory & memory);
    byte2_stream(const ::file_pointer & pfile);
    ~byte2_stream() override;
 
@@ -114,7 +118,7 @@ public:
 
 
    output_byte2_stream();
-   output_byte2_stream(const ::block & block);
+   output_byte2_stream(memory & memory);
    ~output_byte2_stream() override;
 
 

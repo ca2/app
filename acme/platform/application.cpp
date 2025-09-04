@@ -1317,6 +1317,21 @@ void application::start_application()
          system()->handle_uri(strUri);
 
       }
+      else if (emessage == ::e_message_open_file_request)
+      {
+
+         auto prequest = øcreate_new <::request>();
+
+         ::string strUri = pmessage->m_memory.get_string();
+
+         prequest->m_payloadFile = strUri;
+
+         prequest->m_ecommand = ::e_command_file_open;
+
+         this->request(prequest);
+
+      }
+
 
    }
 

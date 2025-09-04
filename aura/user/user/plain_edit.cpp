@@ -9021,6 +9021,9 @@ namespace user
 
             ::collection::index iAfterComposingCursorPosition = -1;
 
+            plain_edit_on_after_change_text(pgraphics, ::e_source_user);
+
+
             //if (::is_set(m_pitemComposing))
             //{
 
@@ -9638,7 +9641,7 @@ namespace user
 
                get_text(strText);
 
-               ptexteditorinterface->set_editor_text(strText);
+               //ptexteditorinterface->set_editor_text(strText);
 
                ::character_count iBeg = -1;
 
@@ -9646,7 +9649,9 @@ namespace user
 
                get_text_selection(iBeg, iEnd);
 
-               ptexteditorinterface->set_editor_selection(iBeg, iEnd);
+               //ptexteditorinterface->set_editor_selection(iBeg, iEnd);
+
+               ptexteditorinterface->set_editor_text_and_selection(strText, iBeg, iEnd);
 
             }
 

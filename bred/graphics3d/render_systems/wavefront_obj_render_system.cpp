@@ -209,6 +209,7 @@ namespace graphics3d
 	void wavefront_obj_render_system::on_render(::gpu::context * pgpucontext, ::graphics3d::scene* pscene)
 	{
 
+
 		m_pshader->bind(pgpucontext->current_target_texture(::gpu::current_frame()));
 
 	   auto pgamelayer = m_pengine->m_pimmersionlayer;

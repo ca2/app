@@ -73,7 +73,7 @@ namespace graphics3d
       //::particle* pparticle, const ::string_array_base& faces
 
       //::pointer < engine >                m_pengine;
-      ::pointer < ::graphics3d::skybox >              m_pskybox;
+      //::pointer < ::graphics3d::skybox >              m_pskybox;
       //::pointer < ::gpu::model_buffer >               m_pmodelCube;
       //::pointer < ::gpu::texture >                    m_ptextureCubeMap;
       //::int_size                                      m_sizeSquare;
@@ -89,7 +89,7 @@ namespace graphics3d
 
       void initialize_render_system(engine * pengine) override;
 
-      virtual void set_skybox(::graphics3d::skybox * pskybox);
+      //virtual void set_skybox(::graphics3d::skybox * pskybox);
 
       //virtual void load_cube_map_images();
       //virtual void load_cube_map_textures();

@@ -36,8 +36,10 @@ namespace graphics3d
    }
 
 
-   void skybox::initialize_sky_box(engine * pengine, const ::scoped_string & scopedstrName)
+   void skybox::initialize_sky_box(::graphics3d::scene * pscene, const ::scoped_string & scopedstrName)
    {
+
+      ::graphics3d::scene_object::initialize_scene_object(pscene);
 
       cube cube;
 
@@ -59,13 +61,14 @@ namespace graphics3d
 
       auto pmodelCube = øcreate<::gpu::model_buffer>();
 
-      pmodelCube->initialize_model(pengine->gpu_context(), modeldataCube);
+      pmodelCube->initialize_model(pscene->m_pimmersionlayer->m_pengine->
+         gpu_context(), modeldataCube);
 
       m_pmodelCube = pmodelCube;
 
       //m_pmodelCube->initialize_model();
       
-      initialize(pengine->gpu_context());
+      initialize(pscene->m_pimmersionlayer->m_pengine->gpu_context());
       
       SetupSkybox();
 

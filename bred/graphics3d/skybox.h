@@ -86,7 +86,7 @@ namespace graphics3d
       ~skybox();
 
 
-      virtual void initialize_sky_box(engine * pengine, const ::scoped_string & scopedstrName);
+      virtual void initialize_sky_box(::graphics3d::scene * pscene, const ::scoped_string & scopedstrName);
 
       virtual void SetupSkybox();
 

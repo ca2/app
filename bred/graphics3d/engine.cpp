@@ -266,7 +266,7 @@ namespace graphics3d
       //if (pcameraScene)
       //{
 
-      //   m_transform.m_vec3Translation = pcameraScene->m_locationPosition;
+      //   m_transform.m_vec3Position = pcameraScene->m_locationPosition;
 
       //   m_transform.m_vec3Rotation.x = pcameraScene->m_fPitch;
 

@@ -89,6 +89,7 @@ namespace gpu
 
       m_erenderabletype = as_renderable_type(m_strRenderableType1);
 
+
    }
 
 

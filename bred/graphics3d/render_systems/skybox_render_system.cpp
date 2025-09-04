@@ -5,6 +5,8 @@
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/texture.h"
 #include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/immersion_layer.h"
+#include "bred/graphics3d/scene.h"
 #include "bred/graphics3d/skybox.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/context.h"
@@ -86,33 +88,33 @@ namespace graphics3d
 
    }
 
-   // Setup the skybox (VAO, VBO, EBO, and cubemap textures)
-   void skybox_render_system::set_skybox(::graphics3d::skybox * pskybox) 
-   {
+   //// Setup the skybox (VAO, VBO, EBO, and cubemap textures)
+   //void skybox_render_system::set_skybox(::graphics3d::skybox * pskybox) 
+   //{
 
-      m_pskybox = pskybox;
+   //   m_pskybox = pskybox;
 
-      //// Generate buffers
-      //glGenVertexArrays(1, &skyboxVAO);
-      //glGenBuffers(1, &skyboxVBO);
+   //   //// Generate buffers
+   //   //glGenVertexArrays(1, &skyboxVAO);
+   //   //glGenBuffers(1, &skyboxVBO);
 
-      //glBindVertexArray(skyboxVAO);
+   //   //glBindVertexArray(skyboxVAO);
 
-      //glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
-      ////glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
+   //   //glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
+   //   ////glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
 
-      //// Set the vertex attribute pointer for the graphics3d vertexes
-      //glEnableVertexAttribArray(0);
-      //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+   //   //// Set the vertex attribute pointer for the graphics3d vertexes
+   //   //glEnableVertexAttribArray(0);
+   //   //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
 
-      //load_cube_map_images();
+   //   //load_cube_map_images();
 
-      //// Load cubemap textures
-      //load_cube_map_textures();
+   //   //// Load cubemap textures
+   //   //load_cube_map_textures();
 
-      //glBindVertexArray(0);  // Unbind VAO
-   }
+   //   //glBindVertexArray(0);  // Unbind VAO
+   //}
 
 
    //void skybox_render_system::load_cube_map_images()
@@ -251,6 +253,20 @@ namespace graphics3d
    void skybox_render_system::bind(::gpu::command_buffer* pgpucommandbuffer)
    {
 
+      auto pengine = m_pengine;
+
+      auto pimmersionlayer = pengine->m_pimmersionlayer;
+
+      auto pscene = pimmersionlayer->m_pscene;
+
+      auto pskybox = pscene->m_pskyboxCurrent;
+
+      if (::is_null(pskybox))
+      {
+
+         return;
+
+      }
       // Set uniforms in the shader
       auto iFrameSerial = m_pengine->gpu_context()->m_pgpudevice->m_iFrameSerial2;
 
@@ -258,22 +274,37 @@ namespace graphics3d
       
       m_pshader->m_bindingCubeSampler.m_strUniform = "skybox";
 
-      m_pshader->bind(ptextureDst, m_pskybox->m_ptexture); // Make sure to bind the shader first
+     
+      m_pshader->bind(ptextureDst, pskybox->m_ptexture); // Make sure to bind the shader first
       //auto view = m_pengine->m_pcamera->getView();
       //glm::mat4 skyboxView = glm::mat4(glm::mat3(view)); // <-- drop translation
       //m_pshader->set_mat4("view", skyboxView);
       //auto projection = m_pengine->m_pcamera->getProjection();
       //m_pshader->set_mat4("projection", projection);
       //m_pshader->bind_source(m_ptextureCubeMap);
-      m_pskybox->m_pmodelCube->bind(pgpucommandbuffer);
+      pskybox->m_pmodelCube->bind(pgpucommandbuffer);
 
    }
 
 
    void skybox_render_system::draw(::gpu::command_buffer* pgpucommandbuffer)
    {
+      auto pengine = m_pengine;
 
-      m_pskybox->m_pmodelCube->draw(pgpucommandbuffer);
+      auto pimmersionlayer = pengine->m_pimmersionlayer;
+
+      auto pscene = pimmersionlayer->m_pscene;
+
+      auto pskybox = pscene->m_pskyboxCurrent;
+
+      if (::is_null(pskybox))
+      {
+
+         return;
+
+      }
+
+      pskybox->m_pmodelCube->draw(pgpucommandbuffer);
 
    }
 
@@ -281,7 +312,22 @@ namespace graphics3d
    void skybox_render_system::unbind(::gpu::command_buffer* pgpucommandbuffer)
    {
 
-      m_pskybox->m_pmodelCube->unbind(pgpucommandbuffer);
+
+      auto pengine = m_pengine;
+
+      auto pimmersionlayer = pengine->m_pimmersionlayer;
+
+      auto pscene = pimmersionlayer->m_pscene;
+
+      auto pskybox = pscene->m_pskyboxCurrent;
+
+      if (::is_null(pskybox))
+      {
+
+         return;
+
+      }
+      pskybox->m_pmodelCube->unbind(pgpucommandbuffer);
       m_pshader->unbind();
 
    }

@@ -369,21 +369,6 @@ namespace graphics3d
 
       }
 
-      if (m_strSkybox.has_character())
-      {
-
-         auto pskybox = m_pimmersionlayer->m_passetmanager->m_mapSkybox[m_strSkybox];
-
-         if (pskybox)
-         {
-
-            m_pskyboxCurrent = pskybox;
-
-         }
-
-      }
-
-
       if (m_bInitialCameraLoaded)
       {
 
@@ -624,6 +609,12 @@ namespace graphics3d
 
       psceneobject->initialize_scene_object(this);
 
+      if (model.m_erenderabletype == ::gpu::e_renderable_type_wavefront_obj)
+      {
+
+         psceneobject->m_erendersystem = e_render_system_wavefront_obj;
+      }
+
       psceneobject->m_strRenderablePath = path;
 
       psceneobject->m_prenderable = prenderable;
@@ -699,6 +690,23 @@ namespace graphics3d
       {
 
          on_load_scene(pgpucontext);
+
+         if (m_strSkybox.has_character())
+         {
+
+            auto pskybox = m_pimmersionlayer->m_passetmanager->m_mapSkybox[m_strSkybox];
+
+            if (pskybox)
+            {
+
+               m_pskyboxCurrent = pskybox;
+
+            }
+
+         }
+
+
+
 
          m_bLoadedScene = true;
 

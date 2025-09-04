@@ -49,7 +49,7 @@ namespace graphics3d
    }
    glm::mat3 transform::normalMatrix() const
    {
-      // Build RS (ignore m_vec3Translation)
+      // Build RS (ignore m_vec3Position)
       glm::mat4 R = glm::rotate(glm::mat4(1.0f), m_vec3Rotation.y, glm::vec3(0, 1, 0));
       R = glm::rotate(R, m_vec3Rotation.x, glm::vec3(1, 0, 0));
       R = glm::rotate(R, m_vec3Rotation.z, glm::vec3(0, 0, 1));

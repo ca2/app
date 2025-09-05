@@ -97,7 +97,7 @@ find_first_item(const TYPE & t, iterator p, iterator end) const
 
    }
 
-   while(::iterator_is_end(p, end))
+   while(!::iterator_is_end(p, end))
    {
 
       if(*p == t)

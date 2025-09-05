@@ -384,7 +384,9 @@ namespace platform
 
          auto prequest = øcreate_new < ::request >();
 
-         prequest->initialize_command_line2(::system()->m_strCommandLine);
+         ::string strCommandLine = ::system()->command_line();
+
+         prequest->initialize_command_line2(strCommandLine);
 
          psystem->m_papplication->property_set().merge(prequest->property_set());
 

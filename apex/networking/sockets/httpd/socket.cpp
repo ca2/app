@@ -206,7 +206,7 @@ namespace httpd
 
       auto timeNow = ::earth::time::now();
 
-      gregoriantime.set(timeNow, ::time::local());
+      gregoriantime.set(timeNow, ::time::local_offset());
 
       char slask[40]; // yyyy-mm-dd hh:mm:ss
 

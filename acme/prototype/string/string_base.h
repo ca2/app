@@ -757,19 +757,20 @@ public:
 
       // so exhaustively implementing them at least
       // for most relevant and proper acme types
-   string_base & operator += (const_char_pointer psz) { append(psz); return *this; }
-   string_base & operator += (const ::wd16_character * psz) { append(psz); return *this; }
-   string_base & operator += (const ::wd32_character * psz) { append(psz); return *this; }
-   string_base & operator += (::ansi_character ansich) { append(&ansich, 1); return *this; }
-   string_base & operator += (::wd16_character wd16ch) { append(&wd16ch, 1); return *this; }
-   string_base & operator += (::wd32_character wd32ch) { append(&wd32ch, 1); return *this; }
-   string_base & operator += (const ::const_ansi_range & range) { append(range); return *this; }
-   string_base & operator += (const ::const_wd16_range & range) { append(range); return *this; }
-   string_base & operator += (const ::const_wd32_range & range) { append(range); return *this; }
-   string_base & operator += (const inline_number_string & inlinenumberstring) { append((const ::const_ansi_range &)inlinenumberstring); return *this; }
-   string_base & operator += (const ::atom & atom);
-   string_base & operator += (const ::payload & payload);
-   string_base & operator += (const ::property & property);
+   string_base & operator += (const string_base & str) { append(str); return *this; }
+   // string_base & operator += (const_char_pointer psz) { append(psz); return *this; }
+   // string_base & operator += (const ::wd16_character * psz) { append(psz); return *this; }
+   // string_base & operator += (const ::wd32_character * psz) { append(psz); return *this; }
+   // string_base & operator += (::ansi_character ansich) { append(&ansich, 1); return *this; }
+   // string_base & operator += (::wd16_character wd16ch) { append(&wd16ch, 1); return *this; }
+   // string_base & operator += (::wd32_character wd32ch) { append(&wd32ch, 1); return *this; }
+   // string_base & operator += (const ::const_ansi_range & range) { append(range); return *this; }
+   // string_base & operator += (const ::const_wd16_range & range) { append(range); return *this; }
+   // string_base & operator += (const ::const_wd32_range & range) { append(range); return *this; }
+   // string_base & operator += (const inline_number_string & inlinenumberstring) { append((const ::const_ansi_range &)inlinenumberstring); return *this; }
+   // string_base & operator += (const ::atom & atom);
+   // string_base & operator += (const ::payload & payload);
+   // string_base & operator += (const ::property & property);
    //template < typename ITERATOR_TYPE2, int t_size >
    //string_base& operator += (const const_string_range_static_array < ITERATOR_TYPE2, t_size >& a) { return append(a); }
 #ifdef __STD_FORMAT__

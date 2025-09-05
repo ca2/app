@@ -362,7 +362,7 @@ enum enum_trace_level
 };
 
 
-constexpr int trace_level_letter(enum_trace_level etracelevel)
+constexpr char trace_level_letter(enum_trace_level etracelevel)
 {
 
    return etracelevel < 0|| etracelevel >= e_trace_level_count? ' ': " IWEF"[(int)etracelevel];

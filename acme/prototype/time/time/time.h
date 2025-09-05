@@ -177,7 +177,7 @@ public:
    //constexpr static time zero();
 //   constexpr bool operator !() const {return is_null();}
 
-   static class ::time local();
+   static class ::time local_offset();
 
    //constexpr void infinite() {*this=infinity();}
    //void PosInfinity() {*this=pos_infinity();}

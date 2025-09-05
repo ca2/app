@@ -1334,7 +1334,7 @@ namespace dynamic_source
 
       auto p = m_mapSession.begin();
 
-      while (::is_ok(p))
+      while (!m_mapSession.is_end(p))
       {
 
          auto pNext = p + 1;

@@ -53,7 +53,7 @@ public:
       pixmap.m_sizeRaw.cy() = m_pqimageArgb32->height();
       pixmap.m_iScan = m_pqimageArgb32->bytesPerLine();
 
-      map_base({(int)m_pqimageArgb32->width(), (int)m_pqimageArgb32->height()});
+      map({(int)m_pqimageArgb32->width(), (int)m_pqimageArgb32->height()});
 
    }
 

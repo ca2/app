@@ -280,7 +280,7 @@ namespace geo
             ::payload payload;
 
             payload["nocache"] = true;
-            payload["url"] = "https://ca2.network/city-list_base.json";
+            payload["url"] = "https://ca2.network/city-list.json";
 
             DEBUGF_LINE("mnoxxd2");
 

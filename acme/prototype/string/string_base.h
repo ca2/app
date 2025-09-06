@@ -442,7 +442,18 @@ public:
       if (range.m_erange & e_range_string)
       {
 
-         this->construct_from_string(*(const string_base*)&range);
+         if constexpr (sizeof(typename RANGE::CHARACTER) == sizeof(CHARACTER))
+         {
+
+            this->construct_from_string(*(const string_base*)&range);
+
+         }
+         else
+         {
+
+            this->construct_from_range(range.data(), range.size());
+
+         }
 
       }
       else if (range.m_erange & e_range_string_literal)
@@ -872,18 +883,43 @@ public:
       if ((::range<const CHARACTER *> *)(this) != (::range<const CHARACTER *> *)(&range))
       {
 
-         BASE_DATA *pdata;
+         BASE_DATA * pdataThis;
 
          if (this->m_erange & e_range_string)
          {
 
-            pdata = BASE_DATA::base_data_from_data(this->m_begin);
+            pdataThis = BASE_DATA::base_data_from_data(this->m_begin);
 
          }
          else
          {
 
-            pdata = nullptr;
+            pdataThis = nullptr;
+
+         }
+
+         BASE_DATA * pdataSource;
+
+         if (range->m_erange & e_range_string)
+         {
+
+            pdataSource = BASE_DATA::base_data_from_data(range.m_begin);
+
+            if (pdataSource && pdataSource == pdataThis)
+            {
+
+               truncate(range.size());
+
+               return *this;
+
+            }
+
+         }
+         else
+         {
+
+            pdataSource = nullptr;
+
          }
 
          construct_from_a_range(range);

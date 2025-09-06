@@ -2779,7 +2779,7 @@ inline typename string_base < ITERATOR_TYPE >::this_iterator & string_base < ITE
       if (pbasedata->base_data_is_shared())
       {
 
-         *this = (*this)(0, p);
+         this->assign(this->m_begin, p);
 
       }
       else

@@ -358,7 +358,9 @@ namespace apex
 
          string strShowApplicationInformation;
 
-         if (is_command_line_parameter_true(strShowApplicationInformation, this->m_strCommandLine, "show_application_information"))
+         ::string strCommandLine = this->command_line();
+
+         if (is_command_line_parameter_true(strShowApplicationInformation, strCommandLine, "show_application_information"))
          {
 
             application()->m_bShowApplicationInformation = true;

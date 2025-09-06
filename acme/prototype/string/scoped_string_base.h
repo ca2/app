@@ -121,6 +121,30 @@ public:
    
    }
 
+
+   scoped_string_base(const c::string & cstring) :
+   BASE_RANGE(no_initialize_t{})
+   {
+
+      if constexpr (sizeof(CHARACTER) == 1)
+      {
+
+         this->m_begin = cstring.m_psz;
+
+         this->m_end = this->m_begin + string_safe_length(this->m_begin);
+
+         this->m_erange = e_range_null_terminated;
+
+      }
+      else
+      {
+
+         this->construct_str(cstring);
+
+      }
+
+   }
+
    
    template < character_count n >
    scoped_string_base(const CHARACTER (&s)[n]) :

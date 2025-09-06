@@ -300,7 +300,7 @@ public:
    //}
 
 
-   inline void base_data_destroy(BASE_DATA * pbasedata)
+   inline static void base_data_destroy(BASE_DATA * pbasedata)
    {
 
       memory()->free(pbasedata);
@@ -426,7 +426,7 @@ public:
    }*/
 
 
-   void base_data_release(BASE_DATA * pbasedata)
+   static void base_data_release(BASE_DATA * pbasedata)
    {
 
       if (pbasedata->base_data_decrement_reference_count() == 0)
@@ -439,12 +439,13 @@ public:
    }
 
 
-   BASE_DATA* base_data_from_data(const DATA* pdata)const
+   static BASE_DATA* base_data_from_data(const DATA* pdata)
    {
       
       return BASE_DATA::base_data_from_data(pdata);
    
    }
+
 
 };
 

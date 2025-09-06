@@ -262,7 +262,7 @@ string_base< ITERATOR_TYPE >::string_base(CHARACTER_POINTER s1, CHARACTER_POINTE
 
 template < typename ITERATOR_TYPE >
 template < typename RANGE1, typename RANGE2 >
-void string_base< ITERATOR_TYPE >::construct40(const RANGE1& range1, const RANGE2& range2)
+void string_base< ITERATOR_TYPE >::construct_from_two_ranges_concatenation(const RANGE1& range1, const RANGE2& range2)
 {
 
    if (range1.is_empty())

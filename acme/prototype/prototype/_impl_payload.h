@@ -980,13 +980,13 @@ inline ::payload & copy(::payload & payload1, const ::payload & payload2)
 //}
 
 
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::payload & payload)
-{
-
-   return append(payload);
-
-}
+// template < typename ITERATOR_TYPE >
+// string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::payload & payload)
+// {
+//
+//    return append(payload);
+//
+// }
 
 
 template < typename ITERATOR_TYPE >

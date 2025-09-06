@@ -1174,8 +1174,15 @@ public:
       return this->find_first_character_in(range, ::comparison::comparison<ITEM>());
 
    }
+
    constexpr character_count find_first_character_in_index(const SCOPED_STRING& range, ::character_count start = 0) const {
       return this->index_of((*this)(start).find_first_character_in(range));
+   }
+
+   constexpr bool contains_any_character_in(const SCOPED_STRING& range) const {
+
+      return ::found(this->find_first_character_in(range));
+
    }
 
 

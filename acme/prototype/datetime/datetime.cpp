@@ -1737,7 +1737,7 @@ namespace datetime
                   set["day"].as_int(),
                   set["hour"].as_int(),
                   set["minute"].as_int(),
-                  set["second"].as_int(), ::time::local());
+                  set["second"].as_int(), ::time::local_offset());
 
             }
 

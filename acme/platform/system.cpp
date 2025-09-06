@@ -2147,9 +2147,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       m_bApplicationStartFileOpenRequest = true;
 
-      auto strCommandLine = this->m_strCommandLine;
+      auto strCommandLineSystemNative = this->m_strCommandLineSystemNative;
 
-      strCommandLine.trim();
+      strCommandLineSystemNative.trim();
 
       ::payload payloadFile;
 
@@ -2159,12 +2159,12 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       ::property_set setRequest;
 
-      if (strCommandLine.has_character())
+      if (strCommandLineSystemNative.has_character())
       {
 
-         information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
+         information() << "system::defer_post_initial_request ***strCommandLineSystemNative*** : ***" << strCommandLineSystemNative << "***";
 
-         setRequest._008ParseCommandFork(strCommandLine, m_payloadFile, strApp);
+         setRequest._008ParseCommandFork(strCommandLineSystemNative, m_payloadFile, strApp);
       }
       else if (this->m_argc > 0 && this->m_args)
       {
@@ -3463,7 +3463,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          ::file::path path = pathFolder / (strModifier + "_command_line.txt");
 
-         file_system()->put_contents(path, this->m_strCommandLine);
+         ::string strCommandLine = this->command_line();
+
+         file_system()->put_contents(path, strCommandLine);
 
          ::file::path pathExecutable = file_system()->module();
 

@@ -165,7 +165,10 @@ namespace platform
 
       bool                                                  m_bOutputDebugString;
 
-      string                                                m_strCommandLine;
+      bool                                                  m_bCommandLineCalculated = false;
+      string                                                m_strCommandLineCalculated;
+      bool                                                  m_bCommandLineSystemNative = false;
+      string                                                m_strCommandLineSystemNative;
 
 
       //::critical_section                                    m_criticalsectionTask;
@@ -198,13 +201,17 @@ namespace platform
 
 
       platform();
-      virtual ~platform();
+      ~platform() override;
 
       virtual bool is_console() const;
 
       virtual bool is_desktop_system() const;
 
       virtual bool is_sandboxed() const;
+
+         virtual ::string command_line() const;
+
+         virtual void calculate_command_line();
 
 
       ::critical_section * channel_critical_section()

@@ -1730,13 +1730,13 @@ inline void from_string(::atom & atom, const_char_pointer psz)
 //}
 
 
-template < typename CHAR >
-string_base < CHAR > & string_base < CHAR >::operator +=(const ::atom & atom)
-{
-
-   return append(atom);
-
-}
+// template < typename CHAR >
+// string_base < CHAR > & string_base < CHAR >::operator +=(const ::atom & atom)
+// {
+//
+//    return append(atom);
+//
+// }
 
 
 //template < typename ITERATOR_TYPE >

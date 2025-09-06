@@ -223,6 +223,15 @@ public:
    }
 
 
+   template<typename... Args>
+   auto & append_format(std::format_string<Args...> fmt, Args&&... args)
+   {
+
+      return this->add_new().format(fmt, std::forward<Args>(args)...);
+
+   }
+
+
    auto & add_trace(enum_trace_level etracelevel, const SCOPED_STRING & scopedstr)
    {
 

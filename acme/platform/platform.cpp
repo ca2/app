@@ -192,6 +192,61 @@ namespace platform
    }
 
 
+   ::string platform::command_line() const
+   {
+
+      if (m_bCommandLineSystemNative)
+      {
+
+         return m_bCommandLineSystemNative;
+
+      }
+
+      if (!m_bCommandLineCalculated)
+      {
+
+         ((platform*)this)->calculate_command_line();
+
+      }
+
+      return m_strCommandLineCalculated;
+
+   }
+
+
+   void platform::calculate_command_line()
+   {
+
+      m_bCommandLineCalculated = true;
+
+      ::string_array stra;
+
+      auto argc = m_argc;
+
+      auto args = m_args;
+
+      for (int i = 0; i < argc; i++)
+      {
+
+         ::string strArg = args[i];
+
+         if (strArg.contains_any_character_in(" \t\r\n"))
+         {
+
+            strArg.surround("\"");
+
+         }
+
+         stra.add(strArg);
+
+      }
+
+      ::string strCommandLineCalculated = stra.implode(" ");
+
+      m_strCommandLineCalculated = strCommandLineCalculated;
+
+   }
+
 
    void platform::platform_initialize()
    {

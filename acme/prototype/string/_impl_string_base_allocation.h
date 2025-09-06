@@ -85,7 +85,7 @@ inline string_base < ITERATOR_TYPE >::string_base(CHARACTER chSrc, character_cou
 
    auto len = repeat;
 
-   auto p = construct_string(len);
+   auto p = this->construct_string(len);
 
    while (repeat > 0)
    {

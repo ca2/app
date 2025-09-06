@@ -899,30 +899,51 @@ public:
       requires (typed_character_range<SAME_CHARACTER_RANGE, CHARACTER>)
    {
 
-      if ((::range<const CHARACTER *> *)(this) != (::range<const CHARACTER *> *)(&range))
+      if ((::range<const CHARACTER *> *)(this) == (::range<const CHARACTER *> *)(&range))
       {
 
-         BASE_DATA * pdataThis;
+         return *this;
 
-         if (this->m_erange & e_range_string)
-         {
+      }
 
-            pdataThis = BASE_DATA::base_data_from_data(this->m_begin);
+      BASE_DATA * pdataThis;
 
-         }
-         else
-         {
+      if (this->m_erange & e_range_string)
+      {
 
-            pdataThis = nullptr;
+         pdataThis = BASE_DATA::base_data_from_data(this->m_begin);
 
-         }
+      }
+      else
+      {
+
+         pdataThis = nullptr;
+
+      }
+
+      if (range.m_erange & e_range_string)
+      {
+
+         this->m_begin = range.m_begin;
+
+         this->m_end = range.m_end;
+
+         this->m_erange = range.m_erange;
+
+         auto pdataSource = BASE_DATA::base_data_from_data(range.m_begin);
+
+         pdataSource->base_data_increment_reference_count();
+
+      }
+      else
+      {
 
          BASE_DATA * pdataSource;
 
          if (range.m_erange & e_range_string)
          {
 
-            pdataSource = BASE_DATA::base_data_from_data(range.m_begin);
+
 
             if (pdataSource && pdataSource == pdataThis)
             {
@@ -1292,20 +1313,28 @@ public:
    //}
 
 
-   inline CHARACTER* construct_string(character_count character_count)
+   inline static CHARACTER* create_string_data(character_count character_count)
    {
 
-      auto pbasedata = this->base_data_create(character_count + 1);
+      auto pbasedata = NATURAL_POINTER::base_data_create(character_count + 1);
 
       auto p = pbasedata->data();
 
-      this->m_begin = p;
+      return p;
 
-      this->m_end = p + character_count;
+   }
+
+
+   inline CHARACTER * construct_string(character_count character_count)
+   {
+
+      this->m_begin = create_string_data(character_count);
+
+      this->m_end = this->m_begin + character_count;
 
       this->m_erange = e_range_string | e_range_null_terminated;
 
-      return p;
+      return (CHARACTER *) this->m_begin;
 
    }
 

@@ -225,30 +225,31 @@ concept other_character_pointer =
 //&& ::std::is_array_v<CHARACTER_POINTER>
 //&& ::std::is_same_v < CHARACTER, ::non_const <::erase_pointer<TYPED_CHARACTER_POINTER>>>;
 
-
+template < typename ITERATOR_TYPE >
+class character_range;
 
 
 template < typename CHARACTER_RANGE >
 concept primitive_character_range =
-(::std::is_base_of_v < ::range< const typename CHARACTER_RANGE::CHARACTER* >, CHARACTER_RANGE >
+(::std::is_base_of_v < ::character_range< const typename CHARACTER_RANGE::CHARACTER* >, CHARACTER_RANGE >
 && primitive_character < typename CHARACTER_RANGE::CHARACTER > )||
-(::std::is_same_v < ::range< const typename CHARACTER_RANGE::ITEM* >, CHARACTER_RANGE > &&
+(::std::is_same_v < ::character_range< const typename CHARACTER_RANGE::ITEM* >, CHARACTER_RANGE > &&
 primitive_character < typename CHARACTER_RANGE::ITEM >);
 
 
 
 template < typename TYPED_CHARACTER_RANGE, typename CHARACTER >
 concept typed_character_range =
-(::std::is_base_of_v < ::range< const CHARACTER* >, TYPED_CHARACTER_RANGE >
-   || ::std::is_same_v < ::range< const CHARACTER* >, TYPED_CHARACTER_RANGE >)
+(::std::is_base_of_v < ::character_range< const CHARACTER* >, TYPED_CHARACTER_RANGE >
+   || ::std::is_same_v < ::character_range< const CHARACTER* >, TYPED_CHARACTER_RANGE >)
    && primitive_character < CHARACTER >;
 
 
 template < typename OTHER_CHARACTER_RANGE, typename CHARACTER >
 concept other_character_range = 
-(::std::is_base_of_v < ::range< const typename OTHER_CHARACTER_RANGE::CHARACTER* >, OTHER_CHARACTER_RANGE >
+(::std::is_base_of_v < ::character_range< const typename OTHER_CHARACTER_RANGE::CHARACTER* >, OTHER_CHARACTER_RANGE >
    && other_primitive_character < typename OTHER_CHARACTER_RANGE::CHARACTER, CHARACTER >) ||
-   (::std::is_same_v < ::range< const typename OTHER_CHARACTER_RANGE::ITEM* >, OTHER_CHARACTER_RANGE > &&
+   (::std::is_same_v < ::character_range< const typename OTHER_CHARACTER_RANGE::ITEM* >, OTHER_CHARACTER_RANGE > &&
       other_primitive_character < typename OTHER_CHARACTER_RANGE::ITEM, CHARACTER >);
 
 

@@ -202,7 +202,9 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE > ::consume_token_un
 
          this->m_begin = this->m_end;
 
-         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
+         //this->m_erange = e_range_none;
+
+         //this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
 
       }
 

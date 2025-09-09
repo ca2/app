@@ -198,7 +198,7 @@ namespace platform
       if (m_bCommandLineSystemNative)
       {
 
-         return m_bCommandLineSystemNative;
+         return m_strCommandLineSystemNative;
 
       }
 
@@ -353,7 +353,8 @@ namespace platform
       m_hinstanceThis = hinstanceThis;
       m_hinstancePrev = hinstancePrev;
       //m_strCommandLine = pCmdLine; // pCmdLine lacks the executable file path arg[0]
-      m_strCommandLine = ::GetCommandLineW();
+      m_strCommandLineSystemNative = ::GetCommandLineW();
+      m_bCommandLineSystemNative = true;
       m_nCmdShow = nCmdShow;
 
       m_argc = __argc;

@@ -73,7 +73,13 @@ namespace file
       // 
       // 
       // 
-      
+      // template < primitive_character_range RANGE >
+      // inline path(const RANGE& range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalizePath = true, long long iSize = -1)
+      //    requires
+      //    (!(::std::is_base_of_v < path, RANGE >
+      //       || ::std::is_same_v < path, RANGE >)) :
+      //    string(range)
+
       template < primitive_character_range RANGE >
       inline path(const RANGE& range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalizePath = true, long long iSize = -1)
          requires
@@ -190,10 +196,10 @@ namespace file
       //path(const const_wd16_range & wd16range, character_count start, character_count len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd16range, start, len); }
       //path(const const_wd32_range & wd32range, character_count start, character_count len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd32range, start, len); }
       template < primitive_character CHARACTER2 >
-      path(const CHARACTER2 * start, const CHARACTER2 * end, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) : 
+      path(const CHARACTER2 * start, const CHARACTER2 * end, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) :
          path(::string(start, end), epath, etype, bNormalize, iSize) {}
       template < primitive_character CHARACTER2 >
-      path(const CHARACTER2 * start, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) : 
+      path(const CHARACTER2 * start, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) :
          path(::string(start), epath, etype, bNormalize, iSize) {}
       template < primitive_character CHARACTER2 >
       path(const CHARACTER2 * start, character_count len, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) :
@@ -391,7 +397,7 @@ namespace file
       path & operator = (const ::file::path & path);
 
       template < primitive_character CHARACTER2 >
-      path & operator = (const ::range < const CHARACTER2 *> & range)
+      path & operator = (const ::character_range < const CHARACTER2 *> & range)
       {
 
          auto path = ::file::path(range);
@@ -737,8 +743,8 @@ CLASS_DECL_ACME bool path_begins_eat(::string& strUri, const ::scoped_string& sc
 
 template < primitive_character CHARACTER >
 ::file::path operator / (
-   const ::range < const CHARACTER* >& range1,
-   const ::range < const CHARACTER* >& range2)
+   const ::character_range < const CHARACTER* >& range1,
+   const ::character_range < const CHARACTER* >& range2)
 {
 
    return ::file::path(range1).slashed_path(range2);
@@ -748,7 +754,7 @@ template < primitive_character CHARACTER >
 
 template < primitive_character CHARACTER, character_count n >
 ::file::path operator / (
-   const ::range < const CHARACTER* >& range,
+   const ::character_range < const CHARACTER* >& range,
    const CHARACTER(&s)[n])
 {
 
@@ -760,7 +766,7 @@ template < primitive_character CHARACTER, character_count n >
 template < primitive_character CHARACTER, character_count n >
 ::file::path operator / (
    const CHARACTER(&s)[n],
-   const ::range < const CHARACTER* >& range)
+   const ::character_range < const CHARACTER* >& range)
 {
 
    return ::file::path(::as_string_literal< CHARACTER, n>(s)) / ::file::path(range);
@@ -770,7 +776,7 @@ template < primitive_character CHARACTER, character_count n >
 
 template < primitive_character CHARACTER, typed_character_pointer < CHARACTER > TYPED_CHARACTER_POINTER >
 ::file::path operator / (
-   const ::range < const CHARACTER* >& range,
+   const ::character_range < const CHARACTER* >& range,
    TYPED_CHARACTER_POINTER p)
 {
 
@@ -782,7 +788,7 @@ template < primitive_character CHARACTER, typed_character_pointer < CHARACTER > 
 template < character_pointer CHARACTER_POINTER >
 ::file::path operator / (
    CHARACTER_POINTER p,
-   const ::range < const ::decay< CHARACTER_POINTER > * > & range
+   const ::character_range < const ::decay< CHARACTER_POINTER > * > & range
    )
 {
 
@@ -793,7 +799,7 @@ template < character_pointer CHARACTER_POINTER >
 
 //template < primitive_character CHARACTER, int t_size >
 //::file::path operator / (
-//   const ::range < const CHARACTER* >& range,
+//   const ::character_range < const CHARACTER* >& range,
 //   const const_string_range_static_array< const CHARACTER *, t_size > & a)
 //{
 //
@@ -804,7 +810,7 @@ template < character_pointer CHARACTER_POINTER >
 
 template < primitive_character CHARACTER >
 ::file::path operator / (
-   const ::range < const CHARACTER* >& range,
+   const ::character_range < const CHARACTER* >& range,
    const ::atom & atom)
 {
 

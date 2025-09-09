@@ -43,7 +43,8 @@ ENUM enum_default()
 struct payload_all_t
 {
 
-   unsigned char     m_ua[32];
+   //unsigned char     m_ua[32];
+   unsigned char     m_ua[40];
 
 };
 

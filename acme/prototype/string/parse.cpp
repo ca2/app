@@ -53,7 +53,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
    }
 
-   parse::parse(const_char_pointer psz, character_count iLen)
+   parse::parse(const_char_pointer psz, character_count iLen, enum_range erange, base_data<ansi_character > * pbasedata)
       :m_psz(psz)
    ,pa_splits("")
    ,m_strWord("")
@@ -67,7 +67,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
    }
 
-   parse::parse(const_char_pointer s,character_count iLen, ::range < const_char_pointer >splits)
+   parse::parse(const_char_pointer s,character_count iLen, ::character_range < const_char_pointer >splits, enum_range erange, base_data<ansi_character > * pbasedata)
    :m_psz(s)
    ,pa_splits(splits)
    ,m_strWord("")
@@ -81,7 +81,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
    }
 
-   parse::parse(const_char_pointer s,character_count iLen, ::range < const_char_pointer >splits,short nospace)
+   parse::parse(const_char_pointer s,character_count iLen, ::character_range < const_char_pointer >splits,short nospace, enum_range erange, base_data<ansi_character > * pbasedata)
    :m_psz(s)
    ,pa_splits(splits)
    ,m_strWord("")

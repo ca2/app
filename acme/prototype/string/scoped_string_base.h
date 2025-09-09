@@ -1,8 +1,10 @@
 // Created by camilo on 2012-12-18 18:44 <3ThomasBorregaardSorensen!!
 #pragma once
+
+
 #include "scoped_string_base.h"
 #include "scoped_string_base.h"
-#include "acme/prototype/geometry2d/_function.h"
+#include "acme/prototype/string/c_string.h"
 
 
 template < typename ITERATOR_TYPE >
@@ -34,6 +36,7 @@ public:
    using iterator = typename BASE_RANGE::iterator;
    using const_iterator = typename BASE_RANGE::const_iterator;
    using STRING = ::string_base < ITERATOR_TYPE >;
+   using BASE_DATA = BASE_RANGE::BASE_DATA;
 
 
    scoped_string_base(no_initialize_t) : BASE_RANGE(no_initialize_t{}) { }
@@ -44,8 +47,8 @@ public:
 
 
    template < typed_character_pointer < typename scoped_string_base < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
-   scoped_string_base(CHARACTER_POINTER start, CHARACTER_POINTER end, enum_range erange = e_range_none) :
-      BASE_RANGE(start, end, erange) {}
+   scoped_string_base(CHARACTER_POINTER start, CHARACTER_POINTER end, enum_range erange = e_range_none, BASE_DATA * pbasedata = nullptr) :
+      BASE_RANGE(start, end, erange, pbasedata) {}
 
 
    template < other_character_pointer < typename scoped_string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER_POINTER >
@@ -68,7 +71,7 @@ public:
 
 
    template < character_pointer CHARACTER_POINTER >
-   scoped_string_base(CHARACTER_POINTER start) : BASE_RANGE(start) { }
+   scoped_string_base(CHARACTER_POINTER start) : scoped_string_base(start, ::string_safe_length(start)) { }
 
 
    template < character_pointer CHARACTER_POINTER >
@@ -100,6 +103,8 @@ public:
 
             this->m_erange = e_range_none;
 
+            this->m_pbasedata = nullptr;
+
             return;
 
          }
@@ -111,6 +116,8 @@ public:
       this->m_end = s + length;
 
       this->m_erange = e_range_none;
+
+      this->m_pbasedata = nullptr;
 
    }
 
@@ -150,10 +157,10 @@ public:
    }
 
 
-   scoped_string_base(const range < const CHARACTER * > & range) : scoped_string_base(range.m_begin, range.m_end, range.m_erange) { }
+   scoped_string_base(const ::character_range < const CHARACTER * > & range) : scoped_string_base(range.m_begin, range.m_end, range.m_erange, range.m_pbasedata) { }
 
    template < other_primitive_character <CHARACTER> OTHER_CHARACTER >
-   scoped_string_base(const range < const OTHER_CHARACTER* > & range) : scoped_string_base(range.m_begin, range.m_end, range.m_erange) { this->construct_owned_string(range.m_begin, range.m_end, range.m_erange); }
+   scoped_string_base(const ::character_range < const OTHER_CHARACTER* > & range) : scoped_string_base(range.m_begin, range.m_end, range.m_erange) { this->construct_owned_string(range.m_begin, range.m_end, range.m_erange); }
 
    // template < typed_primitive_string <CHARACTER> STRING2 >
    // scoped_string_base(const STRING2& str) : BASE_RANGE(str) { }
@@ -299,21 +306,21 @@ public:
    }
 
 
-   void __release()
-   {
-
-      ((STRING*)this)->__release();
-
-   }
-
+   // void __release()
+   // {
+   //
+   //    ((STRING*)this)->__release();
+   //
+   // }
+   //
 
    void destroy()
    {
 
-      if (this->m_erange & e_range_scoped_ownership)
+      if (!(this->m_erange & e_range_scoped_ownership))
       {
 
-         __release();
+         ::release_base_data(this->m_pbasedata);
 
          //this->m_erange = e_range_none;
 
@@ -337,53 +344,53 @@ public:
    }
 
 
-   scoped_string_base & _append(const scoped_string_base & scopedstr)
-   {
-
-      if (this->m_erange & e_range_scoped_ownership
-      && this->m_erange& e_range_string)
-      {
-
-         ((STRING *)this)->append(scopedstr);
-
-      }
-      else
-      {
-
-         auto data = this->data();
-         auto size = this->size();
-         this->m_begin = nullptr;
-         this->m_end = nullptr;
-         this->m_erange = e_range_none;
-
-         string_concatenate(*((STRING *)this), data, size, scopedstr.data(), scopedstr.size());
-
-      }
-
-      return *this;
-
-   }
-
-
-   scoped_string_base & append(const scoped_string_base & scopedstr)
-   {
-      if (this->has_character())
-      {
-         //::string str(m_scopedstrLine + ::string(buf + x, i - x));
-         //m_scopedstrLine.destroy();
-         //m_scopedstrLine = str;
-         this->_append(scopedstr);
-      }
-      else
-      {
-         this->assign(scopedstr);
-         //m_scopedstrLine.destroy();
-         //m_scopedstrLine.construct_str({buf + x, i - x});
-      }
-
-      return *this;
-
-   }
+   // scoped_string_base & _append(const scoped_string_base & scopedstr)
+   // {
+   //
+   //    if (this->m_erange & e_range_scoped_ownership
+   //    && ::is_set(this->m_pbasedata)
+   //    {
+   //
+   //       ((STRING *)this)->append(scopedstr);
+   //
+   //    }
+   //    else
+   //    {
+   //
+   //       auto data = this->data();
+   //       auto size = this->size();
+   //       this->m_begin = nullptr;
+   //       this->m_end = nullptr;
+   //       this->m_erange = e_range_none;
+   //
+   //       string_concatenate(*((STRING *)this), data, size, scopedstr.data(), scopedstr.size());
+   //
+   //    }
+   //
+   //    return *this;
+   //
+   // }
+   //
+   //
+   // scoped_string_base & append(const scoped_string_base & scopedstr)
+   // {
+   //    if (this->has_character())
+   //    {
+   //       //::string str(m_scopedstrLine + ::string(buf + x, i - x));
+   //       //m_scopedstrLine.destroy();
+   //       //m_scopedstrLine = str;
+   //       this->_append(scopedstr);
+   //    }
+   //    else
+   //    {
+   //       this->assign(scopedstr);
+   //       //m_scopedstrLine.destroy();
+   //       //m_scopedstrLine.construct_str({buf + x, i - x});
+   //    }
+   //
+   //    return *this;
+   //
+   // }
 
 
    // scoped_string_base & _append(const scoped_string_base & scopedstr)
@@ -599,12 +606,11 @@ public:
    requires (sizeof(get_iterator_item < OTHER_ITERATOR_TYPE >) != sizeof(CHARACTER))
    {
 
-      create_string(*this, start, end, erange);
+      this->_create_string(start, end, erange);
 
       this->m_erange = (enum_range) (this->m_erange | e_range_scoped_ownership);
 
    }
-
 
 
    void transfer_construct_owned_string(STRING && str)

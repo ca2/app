@@ -2,18 +2,18 @@
 #include <stdio.h>
 //#include "string.h"
 
-
-
-template < >
-CLASS_DECL_ACME base_data < string_heap_data < ::ansi_character > > * __nil < base_data < string_heap_data < ::ansi_character > > >()
-{
-
-   static base_data < string_heap_data < ::ansi_character > > s_ansistringNil;
-
-   return &s_ansistringNil;
-
-}
-
+//
+//
+// template < >
+// CLASS_DECL_ACME base_data < string_heap_data < ::ansi_character > > * __nil < base_data < string_heap_data < ::ansi_character > > >()
+// {
+//
+//    static base_data < string_heap_data < ::ansi_character > > s_ansistringNil;
+//
+//    return &s_ansistringNil;
+//
+// }
+//
 
 
 //string::string(unichar ch,character_count nLength)

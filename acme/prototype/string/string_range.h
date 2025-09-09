@@ -252,25 +252,31 @@ public:
    {
 
       auto pbasedataOld = this->m_pbasedata;
+
       BASE_RANGE::operator=(range);
+
       if (pbasedataOld)
       {
 
-         pbasedataOld->base_data_release();
+         ::release_base_data(pbasedataOld);
 
       }
+
       // if (range.m_erange & e_range_string)
       // {
       //
       //    ((STRING_BASE*)&range)->__destroy();
       //
       // }
+
       range.m_begin = nullptr;
 
       range.m_end = nullptr;
 
       range.m_erange = e_range_none;
+
       range.m_pbasedata = nullptr;
+
       return *this;
 
    }
@@ -1626,7 +1632,7 @@ public:
 
          this->m_begin = p;
 
-         this->m_erange = (enum_range) (this->m_erange  & ~e_range_string);
+         //this->m_erange = (enum_range) (this->m_erange  & ~e_range_string);
 
       }
 
@@ -1641,14 +1647,14 @@ public:
 
          this->m_end = p;
 
-         this->m_erange = (enum_range)(this->m_erange & ~(e_range_string));
+         //this->m_erange = (enum_range)(this->m_erange & ~(e_range_string));
 
       }
 
    }
 
 
-   string_range & trim_left(const SCOPED_STRING & range) RELEASENOTHROW { add_to_begin(this->count_left(range));
+   string_range & trim_left(const SCOPED_STRING & range) RELEASENOTHROW { shift_begin(this->count_left(range));
          return *this; }
 
    //    const_iterator rear_find_first_whitespace() const RELEASENOTHROW { return this->rear_find_first_character_in("\t\r\n "); }
@@ -1657,7 +1663,7 @@ public:
    //
    //    ::character_count count_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->m_end - this->rear_skip_any_character_in(range); }
 
-   string_range & trim_right(const SCOPED_STRING & range) RELEASENOTHROW { add_to_end(-this->count_right(range)); return *this; }
+   string_range & trim_right(const SCOPED_STRING & range) RELEASENOTHROW { shift_end(-this->count_right(range)); return *this; }
 
    //    ::character_count count_left_and_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { ::character_count c; return ((c = count_left(range)) == this->size()) ? c : c + count_right(range); }
 
@@ -1680,9 +1686,9 @@ public:
 
       }
 
-      this->add_to_begin(1);
+      this->shift_begin(1);
 
-      this->add_to_end(-1);
+      this->shift_end(-1);
 
       return true;
 

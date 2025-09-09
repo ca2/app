@@ -463,7 +463,7 @@ string surround_and_implode(const numeric_array_base < TYPE, t_etypeContainer > 
 
 
 template < typename ITERATOR_TYPE >
-inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::range < const CHARACTER* >& range) const
+inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::character_range < const CHARACTER* >& range) const
 {
 
    return this->equals(range);
@@ -473,7 +473,7 @@ inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::range < co
 
 template < typename ITERATOR_TYPE >
 template < typename OTHER_CHARACTER >
-inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::range < const OTHER_CHARACTER* >& range) const
+inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::character_range < const OTHER_CHARACTER* >& range) const
 requires other_primitive_character < OTHER_CHARACTER, CHARACTER >
 {
    return this->equals(string_base(range));
@@ -711,12 +711,12 @@ bool string_range < ITERATOR_TYPE >::begins_consume(const ::scoped_string & scop
 
       }
 
-      if(this->m_erange & e_range_string)
-      {
-
-         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
-
-      }
+      // if(this->m_erange & e_range_string)
+      // {
+      //
+      //    this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
+      //
+      // }
 
       this->m_begin += scopedstr.size();
 
@@ -741,12 +741,12 @@ bool string_range < ITERATOR_TYPE >::begins_eat(const ::scoped_string & scopedst
 
       }
 
-      if(this->m_erange & e_range_string)
-      {
-
-         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
-
-      }
+      // if(this->m_erange & e_range_string)
+      // {
+      //
+      //    this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
+      //
+      // }
 
       this->m_begin += scopedstr.size();
 
@@ -771,12 +771,12 @@ bool string_range < ITERATOR_TYPE >::ends_eat(const ::scoped_string & scopedstr)
 
       }
 
-      if(this->m_erange & e_range_string)
-      {
-
-         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
-
-      }
+//      if(this->m_erange & e_range_string)
+//      {
+//
+//         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
+//
+//      }
 
       this->m_end -= scopedstr.size();
 
@@ -802,12 +802,12 @@ bool string_range < ITERATOR_TYPE >::case_insensitive_begins_eat(const ::scoped_
 
       }
 
-      if(this->m_erange & e_range_string)
-      {
-
-         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
-
-      }
+//      if(this->m_erange & e_range_string)
+//      {
+//
+//         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
+//
+//      }
 
       this->m_begin += scopedstr.size();
 
@@ -832,12 +832,12 @@ bool string_range < ITERATOR_TYPE >::case_insensitive_ends_eat(const ::scoped_st
 
       }
 
-      if(this->m_erange & e_range_string)
-      {
-
-         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
-
-      }
+//      if(this->m_erange & e_range_string)
+//      {
+//
+//         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
+//
+//      }
 
       this->m_end -= scopedstr.size();
 

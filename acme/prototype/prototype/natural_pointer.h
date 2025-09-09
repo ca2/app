@@ -18,6 +18,10 @@ NATURAL_DATA* __nil() { return nullptr; }
 
 
 template < typename TYPE_DATA >
+struct ønil_base_data;
+
+
+template < typename TYPE_DATA >
 class base_data
 {
 public:
@@ -28,7 +32,7 @@ public:
    using DATA = non_const < TYPE_DATA >;
 
 
-   memsize_storage                     m_sizeStorageInBytes;
+   ::collection::count                 m_count;
    interlocked_int                     m_countReference;
    ::heap::enum_memory                 m_ememoryHeap;
 
@@ -38,7 +42,7 @@ public:
    //heap_data(): m_countData(0), m_sizeStorageInBytes(0), m_countReference(1) {}
    //heap_data(enum_zero_init) : m_countData(0), m_sizeStorageInBytes(0), m_countReference(1) {}
 
-   base_data() : m_sizeStorageInBytes(0), m_countReference(1) {}
+   base_data(::collection::count count) : m_count(count), m_countReference(1) {}
    //heap_data(enum_zero_init) :  m_sizeStorageInBytes(0), m_countReference(1) {}
 
    bool base_data_is_shared() const { return m_countReference >= 2; }
@@ -49,6 +53,8 @@ public:
    
    auto base_data_decrement_reference_count() { return --m_countReference; }
 
+
+   //inline static base_data * base_nil_data();
    
    //constexpr static ::memsize base_dataoffset() { return (offsetof(base_data, m_endofmetadata) + NATURAL_METADATA_ALIGN - 1) & (~(NATURAL_METADATA_ALIGN - 1)); }
 
@@ -63,25 +69,104 @@ public:
 
    static base_data * base_data_from_data(const DATA * pdata) { return &((base_data *) pdata)[-1]; }
 
-   void base_data_release()
+
+   int release_base_data()
    {
-      if (base_data_decrement_reference_count() == 0)
+
+      auto i = base_data_decrement_reference_count();
+
+      if (i == 0)
       {
 
          memory_free(this);
 
       }
+
+      return i;
+
    }
 
-   static void * heap_data_create(::collection::count c)
+
+   static base_data * create_base_data(::collection::count count, ::heap::enum_memory ememory = ::heap::e_memory_string)
    {
 
-      return memory_allocate(sizeof(base_data) + c * sizeof(DATA));
+      memsize memsize = count * sizeof(DATA);
+
+      auto p = ::acme::get()->m_pheapmanagement->memory(ememory)->allocate(memsize + sizeof(base_data), &memsize);
+
+      auto pbasedata = __raw_new (p) base_data((memsize - sizeof(base_data)) / sizeof(DATA));
+
+      return pbasedata;
+
+   }
+
+
+   inline ::collection::count storage_count() const
+   {
+
+      return m_count;
+
+   }
+
+   /// character count borrow meaning from string character count
+   /// where character count is one less element than the storage
+   /// item count (not counting last empty item)
+   /// this idea can be borrowed to other arrays.
+   inline character_count storage_character_count() const
+   {
+
+      if (!::is_null(this))
+      {
+
+         return 0;
+
+      }
+
+      auto s = this->storage_count();
+
+      auto n = null_terminated_byte_length_to_character_count(this->data(), s);
+
+      return n;
 
    }
 
 
 };
+
+
+template < typename TYPE_DATA >
+class ønil_character_data
+{
+public:
+
+
+
+   inline  static const TYPE_DATA m_data[1]={};
+
+   //ønil_character_data() {}
+
+
+   inline static const TYPE_DATA * get()
+   {
+
+      return m_data;
+
+   }
+
+};
+
+
+
+
+// template < typename TYPE_DATA>
+// inline const TYPE_DATA * ønil_character_data <TYPE_DATA>::base_nil_data()
+// {
+//
+//    static ønil_base_data<TYPE_DATA> ønil{};
+//
+//    return &ønil;
+//
+// }
 
 
 //#pragma pack(pop, base_data)
@@ -310,7 +395,7 @@ public:
 // // //         //if (this->is_string())
 // // //         //{
 // // //
-// // //            this->base_data_release(base_data_from_data(this->begin()));
+// // //            this->release_base_data(base_data_from_data(this->begin()));
 // // //
 // // ////            this->clear_string_flag();
 // // //
@@ -532,7 +617,7 @@ public:
 // //
 // //    //}
 // //
-// //   /* static void base_data_release(BASE_DATA * pbasedata)
+// //   /* static void release_base_data(BASE_DATA * pbasedata)
 // //    {
 // //
 // //       if (::is_null(pbasedata))
@@ -547,7 +632,7 @@ public:
 // //    }*/
 // //
 // //
-// //    static void base_data_release(BASE_DATA * pbasedata)
+// //    static void release_base_data(BASE_DATA * pbasedata)
 // //    {
 // //
 // //       if (pbasedata->base_data_decrement_reference_count() == 0)
@@ -575,3 +660,37 @@ public:
 //
 //
 //
+
+
+template < typename DATA >
+int release_base_data(::base_data < DATA > * & pbasedata)
+{
+
+   auto p = pbasedata;
+
+   pbasedata = nullptr;
+
+   int i = -1;
+
+   if (::is_set(p))
+   {
+
+      try
+      {
+
+         i = p->release_base_data();
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+   return i;
+
+}
+
+
+

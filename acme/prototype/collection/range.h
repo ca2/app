@@ -445,14 +445,14 @@ public:
 
    }
 
-
-   template < primitive_character CHARACTER >
-   character_count __utf_length(CHARACTER * ptrigger, character_count *& plen) const;
-
-
-   template < primitive_character CHARACTER >
-   void __utf_concatenate_to(CHARACTER *& p, character_count *& plen) const;
-
+   //
+   // template < primitive_character CHARACTER >
+   // character_count __utf_length(CHARACTER * ptrigger, character_count *& plen) const;
+   //
+   //
+   // template < primitive_character CHARACTER >
+   // void __utf_concatenate_to(CHARACTER *& p, character_count *& plen) const;
+   //
 
    template < same_as < ITEM > A_ITEM > 
    void block_concatenate_to(A_ITEM * & p)
@@ -2659,7 +2659,7 @@ constexpr bool null_terminated_ends(const ITEM * pz, const ITEM * pzSuffix, EQUA
 
 
 template < primitive_character CHARACTER, character_count n >
-constexpr class ::range < const CHARACTER* > as_string_literal(const CHARACTER* s)
+constexpr class ::character_range < const CHARACTER* > as_string_literal(const CHARACTER* s)
 {
 
    if constexpr (n >= 1)

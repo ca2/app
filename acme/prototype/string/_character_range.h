@@ -85,7 +85,7 @@ inline ::string_base < const typename RANGE::CHARACTER* > operator +(const typen
 {
 
    return   {
-               ::range < const typename RANGE::CHARACTER*>(
+               ::character_range < const typename RANGE::CHARACTER*>(
                   (const typename RANGE::CHARACTER*) & ch,
                   ((const typename RANGE::CHARACTER*) (&ch)) + 1,
                   e_range_none

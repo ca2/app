@@ -17,7 +17,7 @@ template < > consteval auto typed_##NAME<char32_t>() { return U##LITERAL; }
 
 
 template<primitive_character CHARACTER>
-constexpr ::range<const CHARACTER *>
+constexpr ::character_range<const CHARACTER *>
 inline _start_count_string_range(const CHARACTER *psz, memsize start, memsize count);
 
 //
@@ -78,15 +78,15 @@ struct end_of_line_and_next_line
 /// <typeparam name="ITERATOR_TYPE"></typeparam>
 template<typename ITERATOR_TYPE>
 class const_string_range :
-   //public ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >
-   //public ::array_range < ::range < ITERATOR_TYPE > > >
+   //public ::comparable_range < ::comparable_eq_range < ::array_range < ::character_range < ITERATOR_TYPE > > > >
+   //public ::array_range < ::character_range < ITERATOR_TYPE > > >
    public ::character_range<ITERATOR_TYPE> {
 public:
 
    using BASE_RANGE = ::character_range<ITERATOR_TYPE>;
    using RAW_CHARACTER_RANGE = typename BASE_RANGE::RAW_CHARACTER_RANGE;
 
-   //using BASE_RANGE = ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >;
+   //using BASE_RANGE = ::comparable_range < ::comparable_eq_range < ::array_range < ::character_range < ITERATOR_TYPE > > > >;
 
    using THIS_RANGE = ::const_string_range<ITERATOR_TYPE>;
 
@@ -96,6 +96,8 @@ public:
    using ITEM_POINTER = get_type_item_pointer<ITERATOR_TYPE>;
    using ITEM = non_const<dereference<ITEM_POINTER> >;
    using CHARACTER = ITEM;
+
+   using BASE_DATA = BASE_RANGE::BASE_DATA;
 
 
    using this_iterator = typename BASE_RANGE::this_iterator;
@@ -172,8 +174,8 @@ public:
    constexpr const_string_range(const_string_range && range) :
       BASE_RANGE(::transfer(range)) { }
 
-   constexpr const_string_range(this_iterator begin, this_iterator end, enum_range erange = e_range_none) :
-      BASE_RANGE(begin, end, erange) { }
+   constexpr const_string_range(this_iterator begin, this_iterator end, enum_range erange = e_range_none, BASE_DATA * pbasedata = nullptr) :
+      BASE_RANGE(begin, end, erange, pbasedata) { }
 
    //explicit const_string_range(const ::atom& atom);
 
@@ -2432,7 +2434,7 @@ public:
    //inline bool operator==(const ::wd32_string& str) const;
 
 //   template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
-   inline bool operator==(const ::range < const CHARACTER* >& range) const;
+   inline bool operator==(const ::character_range < const CHARACTER* >& range) const;
 
    template < character_count n >
    inline bool operator==(const CHARACTER(&s)[n]) const
@@ -2443,7 +2445,7 @@ public:
    }
 
    template < typename OTHER_CHARACTER >
-   inline bool operator==(const ::range < const OTHER_CHARACTER* >& range) const
+   inline bool operator==(const ::character_range < const OTHER_CHARACTER* >& range) const
     requires other_primitive_character < OTHER_CHARACTER, CHARACTER >;
 
    //inline bool operator ==(const SCOPED_STRING & scopedstr) const { return this->equals(scopedstr); }
@@ -2610,10 +2612,10 @@ public:
 
 
 template<primitive_character CHARACTER>
-constexpr ::range<const CHARACTER*> _string_range(const CHARACTER* psz);
+constexpr ::character_range<const CHARACTER*> _string_range(const CHARACTER* psz);
 
 template<primitive_character CHARACTER>
-constexpr ::range<const CHARACTER*>
+constexpr ::character_range<const CHARACTER*>
 _start_count_string_range(const CHARACTER* psz, memsize start, memsize count);
 
 

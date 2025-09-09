@@ -16,49 +16,49 @@ inline const TYPE & for_copy(TYPE && t)
 }
 
 
-template < typename ITERATOR_TYPE >
-inline void string_base_increment_reference_count(ITERATOR_TYPE piterator);
-
-
-template < typename ITERATOR_TYPE >
-inline void string_base_release(ITERATOR_TYPE piterator);
+// template < typename ITERATOR_TYPE >
+// inline void string_base_increment_reference_count(ITERATOR_TYPE piterator);
+//
+//
+// template < typename ITERATOR_TYPE >
+// inline void string_base_release(ITERATOR_TYPE piterator);
 
 
 //template < typename RANGE, typename ITERATOR_TYPE >
-//inline RANGE & create_string(RANGE & rangeTarget, const ::range < ITERATOR_TYPE > & rangeSource)
-//requires (::std::is_base_of < ::range < ITERATOR_TYPE >, RANGE >::value);
+//inline RANGE & create_string(RANGE & rangeTarget, const ::character_range < ITERATOR_TYPE > & rangeSource)
+//requires (::std::is_base_of < ::character_range < ITERATOR_TYPE >, RANGE >::value);
 // {
 //
 //    this->m_begin =
 //
 // }
-
-
-//template < character_count n >
-//scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(cha); }
-//template < typed_character_pointer < typename scoped_string_base < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
-template < typename RANGE, typename ITERATOR_TYPE >
-RANGE & create_string(RANGE & range, ITERATOR_TYPE start, ITERATOR_TYPE end, enum_range erange = e_range_none)
-requires (::std::is_base_of < ::range < ITERATOR_TYPE >, RANGE >::value);
-
-
-template < typename RANGE, typename OTHER_ITERATOR_TYPE >
-RANGE & create_string(RANGE & range, OTHER_ITERATOR_TYPE start, OTHER_ITERATOR_TYPE end, enum_range erange = e_range_none)
-requires (sizeof(get_iterator_item < OTHER_ITERATOR_TYPE >) != sizeof(typename RANGE::ITEM)
-   && ::std::is_base_of < ::range < typename RANGE::this_iterator >, RANGE >::value);
-
-
-template < typename ITERATOR_TYPE >
-inline ITERATOR_TYPE character_range_defer_increment_reference_count(ITERATOR_TYPE piterator, enum_range erange);
-
-
-template < typename RANGE >
-inline RANGE & character_range_defer_increment_reference_count(RANGE & range);
-
-
-template < typename RANGE >
-inline RANGE & character_range_defer_release(RANGE & range);
-
+//
+//
+// //template < character_count n >
+// //scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(cha); }
+// //template < typed_character_pointer < typename scoped_string_base < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+// template < typename RANGE, typename ITERATOR_TYPE >
+// RANGE & create_string(RANGE & range, ITERATOR_TYPE start, ITERATOR_TYPE end, enum_range erange = e_range_none)
+// requires (::std::is_base_of < ::character_range < ITERATOR_TYPE >, RANGE >::value);
+//
+//
+// template < typename RANGE, typename OTHER_ITERATOR_TYPE >
+// RANGE & create_string(RANGE & range, OTHER_ITERATOR_TYPE start, OTHER_ITERATOR_TYPE end, enum_range erange = e_range_none)
+// requires (sizeof(get_iterator_item < OTHER_ITERATOR_TYPE >) != sizeof(typename RANGE::ITEM)
+//    && ::std::is_base_of < ::character_range < typename RANGE::this_iterator >, RANGE >::value);
+//
+//
+// template < typename ITERATOR_TYPE >
+// inline ITERATOR_TYPE character_range_defer_increment_reference_count(ITERATOR_TYPE piterator, enum_range erange);
+//
+//
+// template < typename RANGE >
+// inline RANGE & character_range_defer_increment_reference_count(RANGE & range);
+//
+//
+// template < typename RANGE >
+// inline RANGE & character_range_defer_release(RANGE & range);
+//
 
 template < typename ITERATOR_TYPE >
 class character_range :
@@ -69,57 +69,47 @@ public:
    using THIS_CHARACTER_RANGE = character_range < ITERATOR_TYPE >;
    using RAW_CHARACTER_RANGE = THIS_CHARACTER_RANGE;
 
-
-   using BASE_RANGE = ::range < ITERATOR_TYPE >;
-   using BASE_RAW_RANGE = character_range < ITERATOR_TYPE >;
+   using BASE_RANGE = ::character_range < ITERATOR_TYPE >;
+   using BASE_RAW_RANGE = ::character_range < ITERATOR_TYPE >;
+   using _BASE_RAW_RANGE = ::range < ITERATOR_TYPE >;
 
    using this_iterator = typename BASE_RANGE::this_iterator;
 
    using CHARACTER = typename BASE_RANGE::ITEM;
    using BASE_DATA = ::base_data < CHARACTER >;
 
-   BASE_DATA * m_pbasedata = nullptr;
+   BASE_DATA * m_pbasedata;
 
-   character_range(no_initialize_t) :
-      BASE_RANGE(no_initialize_t{}) { }
+   constexpr character_range(no_initialize_t) :
+      _BASE_RAW_RANGE(no_initialize_t{}) { }
 
+   constexpr character_range() : _BASE_RAW_RANGE()
+   {
+      m_pbasedata = nullptr;
+   }
+
+   constexpr character_range(nullptr_t) : _BASE_RAW_RANGE(nullptr)
+   {
+      m_pbasedata = nullptr;
+   }
 
    template < typed_character_pointer < typename character_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
-   character_range(CHARACTER_POINTER begin, CHARACTER_POINTER end, enum_range erange = e_range_none) :
-      BASE_RANGE(begin, end, erange) { }
-   // {
-   //
-   //    if (end <= begin)
-   //    {
-   //
-   //       this->set_null();
-   //
-   //       return;
-   //
-   //    }
-   //
-   //    if (erange & e_range_string)
-   //    {
-   //
-   //       this->m_begin = begin;
-   //
-   //       this->m_end = end;
-   //
-   //       this->m_erange = erange;
-   //
-   //       character_range_defer_increment_reference_count(*this);
-   //
-   //       return;
-   //
-   //    }
-   //
-   //    this->m_begin = begin;
-   //
-   //    this->m_end = end;
-   //
-   //    this->m_erange = *this->m_end ? e_range_none : e_range_null_terminated;
-   //
-   // }
+   character_range(CHARACTER_POINTER begin, CHARACTER_POINTER end, enum_range erange = e_range_none, BASE_DATA * pbasedata = nullptr) :
+      _BASE_RAW_RANGE(begin, end, erange)
+   {
+
+      this->m_begin = begin;
+   
+      this->m_pbasedata = pbasedata;
+
+      if (::is_set(this->m_pbasedata) && !(erange & e_range_scoped_ownership))
+      {
+
+         this->m_pbasedata->base_data_increment_reference_count();
+
+      }
+   
+   }
 
 
    template < other_character_pointer < typename character_range < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER_POINTER >
@@ -128,7 +118,7 @@ public:
 
    template < character_count length >
    character_range(const CHARACTER (&s)[length]) :
-      BASE_RANGE(no_initialize_t{})
+      _BASE_RAW_RANGE(no_initialize_t{})
    {
 
       if constexpr (length >= 1)
@@ -152,6 +142,8 @@ public:
 
             this->m_erange = e_range_none;
 
+            this->m_pbasedata = nullptr;
+
             return;
 
          }
@@ -163,6 +155,8 @@ public:
       this->m_end = s + length;
 
       this->m_erange = e_range_none;
+
+      this->m_pbasedata = nullptr;
 
       //this->m_erange = *this->m_end ? e_range_none : e_range_null_terminated;
 
@@ -182,31 +176,25 @@ public:
 
 
    character_range(const character_range& characterrange) :
-      character_range(characterrange.m_begin, characterrange.m_end, characterrange.m_end) { }
-
-   character_range(character_range && characterrange) :
-      character_range(::for_copy(characterrange)) { characterrange.set_null(); }
-
-   character_range(const character_range& characterrange) :
-      BASE_RANGE(characterrange)
+      _BASE_RAW_RANGE(characterrange)
    {
 
-      m_pbasedata = characterrange.m_pbasedata;
+      this->m_pbasedata = characterrange.m_pbasedata;
 
-      if (m_pbasedata)
+      if (::is_set(this->m_pbasedata) && !(this->m_erange & e_range_scoped_ownership))
       {
 
-         m_pbasedata->base_data_increment_reference_count();
+         this->m_pbasedata->base_data_increment_reference_count();
 
       }
 
    }
 
    character_range(character_range&& characterrange) :
-      BASE_RANGE(::transfer(characterrange))
+      _BASE_RAW_RANGE(::transfer(characterrange))
    {
 
-      m_pbasedata = nullptr;
+      m_pbasedata = characterrange.m_pbasedata;
 
       characterrange.m_pbasedata = nullptr;
 
@@ -217,7 +205,7 @@ public:
    character_range(const TYPED_RANGE& range) requires
       (typed_range<TYPED_RANGE, this_iterator>
          && !std::is_same_v<std::decay_t<TYPED_RANGE>, character_range>) :
-      character_range(range.m_begin, range.m_end, range.m_erange) { }
+      character_range(range.m_begin, range.m_end, range.m_erange, range.m_pbasedata) { }
 
    template < typename OTHER_RANGE >
    character_range(const OTHER_RANGE& range) requires
@@ -227,40 +215,137 @@ public:
    // BASE_RANGE(character_range_defer_increment_reference_count(begin, erange), end, erange) { }
 
 
-   character_range& operator=(const character_range& range)
-   {
-      BASE_RANGE::operator=(range);
-      return *this;
-   }
-
-
-   character_range& operator=(character_range&& range) {
-      BASE_RANGE::operator=(::transfer(range));
-      return *this;
-   }
-
-
-   inline ::character_count storage_character_count() const
+   inline memsize storage_count() const
    {
 
-      if (!m_pbasedata)
+      auto pbasedata = this->m_pbasedata;
+
+      if (is_null(pbasedata))
       {
 
          return 0;
 
       }
 
-      return (::character_count)null_terminated_byte_length_to_character_count(m_pbasedata->m_sizeStorageInBytes);
+      return pbasedata->storage_count();
 
    }
+
+
+   inline character_count storage_character_count() const
+   {
+
+      auto pbasedata = this->m_pbasedata;
+
+      if (is_null(pbasedata))
+      {
+
+         return 0;
+
+      }
+
+      return pbasedata->storage_character_count();
+
+   }
+
+   inline character_count length() const { return this->m_end - this->m_begin; }
+   inline character_count size() const { return this->length(); }
+   inline memsize character_count_in_bytes() const { return this->length() * sizeof(CHARACTER); };
+   inline memsize null_terminated_character_count_in_bytes() const { return (this->length() + 1) * sizeof(CHARACTER); }
+
+   character_range& operator=(const character_range& range)
+   {
+      _BASE_RAW_RANGE::operator=(range);
+      this->m_pbasedata = range.m_pbasedata;
+      return *this;
+   }
+
+
+   character_range& operator=(character_range&& range) {
+      _BASE_RAW_RANGE::operator=(::transfer(range));
+      this->m_pbasedata = range.m_pbasedata;
+      range.m_pbasedata = nullptr;
+      return *this;
+   }
+
+
+   // inline ::character_count storage_character_count() const
+   // {
+   //
+   //    if (!m_pbasedata)
+   //    {
+   //
+   //       return 0;
+   //
+   //    }
+   //
+   //    return (::character_count);
+   //
+   // }
 
 
    constexpr bool has_string_storage() const { return m_pbasedata != nullptr; }
 
 
    constexpr bool is_null_terminated() const { return !*this->m_end; }
-};
 
+
+   void set_null()
+   {
+
+      _BASE_RAW_RANGE::set_null();
+
+      this->m_pbasedata = nullptr;
+
+   }
+
+   // inline static BASE_DATA * create_base_data(character_count character_count)
+   // {
+   //
+   //    auto pbasedata = BASE_DATA::heap_data_create(character_count);
+   //
+   //    return pbasedata;
+   //
+   // }
+
+
+   void _set_length(::character_count count)
+   {
+
+      this->m_end = this->m_begin + count;
+
+      *((CHARACTER *)this->m_end) = {};
+
+   }
+
+
+   template < typename OTHER_ITERATOR_TYPE >
+   void _create_string(OTHER_ITERATOR_TYPE start, OTHER_ITERATOR_TYPE end, enum_range erange)
+   requires (sizeof(get_iterator_item < OTHER_ITERATOR_TYPE >) != sizeof(CHARACTER))
+   {
+
+      auto length = end - start;
+
+      auto lengthNew = utf_to_utf_length(this->m_begin, start, length);
+
+      auto pbasedata = BASE_DATA::create_base_data(lengthNew + 1);
+
+      auto pdata = pbasedata->data();
+
+      this->m_begin = pdata;
+
+      utf_to_utf(pdata, this->m_begin, length);
+
+      this->_set_length(lengthNew);
+
+      this->m_erange = e_range_none;
+
+      this->m_pbasedata = pbasedata;
+
+   }
+
+
+};
 
 
 //
@@ -296,6 +381,8 @@ struct std::formatter<::character_range<const CharT *>, CharT> {
       return formatter.format(
          std::basic_string_view<CharT>(s.data(), s.size()), ctx);
    }
+
+
 };
 
 

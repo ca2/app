@@ -226,12 +226,12 @@ public:
             erange = e_range_none;
 
          }
-         else
-         {
-
-            erange = erange & ~e_range_string;
-
-         }
+         // else
+         // {
+         //
+         //    erange = erange & ~e_range_string;
+         //
+         // }
 
       }
       else if (end != 0)
@@ -315,14 +315,12 @@ public:
    constexpr THIS_RANGE _begin_set(ITERATOR_TYPE pbegin) const
    {
 
-      return pbegin == this->m_begin ?
-         *this :
-         THIS_RANGE{
+      return THIS_RANGE{
             pbegin,
             this->m_end,
-            (enum_range)this->m_erange & ~e_range_string
-      }
-      ;
+            (enum_range)this->m_erange,
+            this->m_pbasedata
+      };
 
    }
 

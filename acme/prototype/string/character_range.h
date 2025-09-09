@@ -2,7 +2,9 @@
 #pragma once
 #include <format>
 
+
 #include "acme/prototype/collection/range.h"
+#include "acme/prototype/string/string_heap_data.h"
 
 
 template < typename TYPE >
@@ -73,10 +75,14 @@ public:
 
    using this_iterator = typename BASE_RANGE::this_iterator;
 
-   using CHARACTER = BASE_RANGE::ITEM;
+   using CHARACTER = typename BASE_RANGE::ITEM;
+   using BASE_DATA = ::base_data < CHARACTER >;
 
+   BASE_DATA * m_pbasedata = nullptr;
 
-   using BASE_RANGE::BASE_RANGE;
+   character_range(no_initialize_t) :
+      BASE_RANGE(no_initialize_t{}) { }
+
 
    template < typed_character_pointer < typename character_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
    character_range(CHARACTER_POINTER begin, CHARACTER_POINTER end, enum_range erange = e_range_none) :
@@ -181,6 +187,32 @@ public:
    character_range(character_range && characterrange) :
       character_range(::for_copy(characterrange)) { characterrange.set_null(); }
 
+   character_range(const character_range& characterrange) :
+      BASE_RANGE(characterrange)
+   {
+
+      m_pbasedata = characterrange.m_pbasedata;
+
+      if (m_pbasedata)
+      {
+
+         m_pbasedata->base_data_increment_reference_count();
+
+      }
+
+   }
+
+   character_range(character_range&& characterrange) :
+      BASE_RANGE(::transfer(characterrange))
+   {
+
+      m_pbasedata = nullptr;
+
+      characterrange.m_pbasedata = nullptr;
+
+   }
+
+
    template < typename TYPED_RANGE >
    character_range(const TYPED_RANGE& range) requires
       (typed_range<TYPED_RANGE, this_iterator>
@@ -208,9 +240,25 @@ public:
    }
 
 
+   inline ::character_count storage_character_count() const
+   {
+
+      if (!m_pbasedata)
+      {
+
+         return 0;
+
+      }
+
+      return (::character_count)null_terminated_byte_length_to_character_count(m_pbasedata->m_sizeStorageInBytes);
+
+   }
+
+
+   constexpr bool has_string_storage() const { return m_pbasedata != nullptr; }
+
+
    constexpr bool is_null_terminated() const { return !*this->m_end; }
-
-
 };
 
 

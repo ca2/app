@@ -191,19 +191,18 @@ public:
             this->m_erange = e_range_none;
 
          }
-         else
-         {
-
-            this->m_erange =(enum_range) ( this->m_erange & ~e_range_string);
-         }
-
-      }
-      else if(e != this->m_end)
-      {
-
-         this->m_erange = (enum_range)(this->m_erange);
+         // else
+         // {
+         //
+         //    this->m_erange =(enum_range) ( this->m_erange & ~e_range_string);
+         //}
 
       }
+      // else if(e != this->m_end)
+      // {
+      //    this->m_erange = (enum_range)(this->m_erange & ~e_range_null_terminated);
+      //
+      // }
       this->m_begin = s;
       this->m_end = e;
       return *this;
@@ -252,21 +251,26 @@ public:
    (sizeof(typename SOME_RANGE::ITEM) == sizeof(ITEM))
    {
 
+      auto pbasedataOld = this->m_pbasedata;
       BASE_RANGE::operator=(range);
-
-      if (range.m_erange & e_range_string)
+      if (pbasedataOld)
       {
 
-         string_base_release(range.m_begin);
+         pbasedataOld->base_data_release();
 
       }
-
+      // if (range.m_erange & e_range_string)
+      // {
+      //
+      //    ((STRING_BASE*)&range)->__destroy();
+      //
+      // }
       range.m_begin = nullptr;
 
       range.m_end = nullptr;
 
       range.m_erange = e_range_none;
-
+      range.m_pbasedata = nullptr;
       return *this;
 
    }
@@ -1584,7 +1588,7 @@ public:
      //    ::character_count count_left(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->skip_any_character_in(range) - this->begin(); }
 
 
-   void add_to_begin(::character_count size)
+   void shift_begin(::character_count size)
    {
 
       if(size)
@@ -1592,14 +1596,14 @@ public:
 
          this->m_begin += size;
 
-         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
+         //this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
 
       }
 
    }
 
 
-   void add_to_end(::character_count size)
+   void shift_end(::character_count size)
    {
 
       if(size)
@@ -1607,7 +1611,7 @@ public:
 
          this->m_end += size;
 
-         this->m_erange = (enum_range)(this->m_erange & ~(e_range_string));
+         //this->m_erange = (enum_range)(this->m_erange & ~(e_range_string | e_range_null_terminated));
 
       }
 

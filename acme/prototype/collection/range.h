@@ -12,7 +12,7 @@ enum enum_range : int
 
    e_range_none = 0,
    //e_range_null_terminated = 1,
-   e_range_string = 2,
+   //e_range_string = 2,
    /// last time crazy attempt on 2025-04-25
    /// it is very difficult and possibly not
    /// much portable to determine a string
@@ -372,6 +372,9 @@ public:
    }
 
 
+
+
+
    range & operator =(const range & range)
    {
 
@@ -420,9 +423,9 @@ public:
 
 
 
-   constexpr bool is_string() const { return m_erange & e_range_string; }
-   constexpr void set_string_flag() { m_erange = (enum_range)(m_erange | e_range_string); }
-   constexpr void clear_string_flag() { m_erange = (enum_range) (m_erange & ~e_range_string); }
+   //constexpr bool is_string() const { return m_erange & e_range_string; }
+   //constexpr void set_string_flag() { m_erange = (enum_range)(m_erange | e_range_string); }
+   //constexpr void clear_string_flag() { m_erange = (enum_range) (m_erange & ~e_range_string); }
 
 
    template < primitive_integral START >

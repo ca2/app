@@ -48,14 +48,14 @@ namespace c
 //#error "already included?!?! WHAT?!?! (After including <format>)"_ansi
 //#endif
 
-template < typename ITERATOR_TYPE >
-using string_natural_pointer =
-::natural_pointer < 
-   ::string_heap_data <
-   dereference <
-   get_type_item_pointer < ITERATOR_TYPE >
-   >
-   >, ::heap::e_memory_string >;
+// template < typename ITERATOR_TYPE >
+// using string_natural_pointer =
+// ::natural_pointer <
+//    ::string_heap_data <
+//    dereference <
+//    get_type_item_pointer < ITERATOR_TYPE >
+//    >
+//    >, ::heap::e_memory_string >;
 
 
 enum enum_canonical
@@ -79,8 +79,8 @@ using get_word_function = ::function < const_string_range < ITERATOR_TYPE >(cons
 
 template < typename ITERATOR_TYPE >
 class string_base :
-   public ::const_string_range < ITERATOR_TYPE >,
-   public ::string_natural_pointer < ITERATOR_TYPE >
+   public ::const_string_range < ITERATOR_TYPE >
+ //  , public ::string_natural_pointer < ITERATOR_TYPE >
 {
 public:
    
@@ -92,14 +92,14 @@ public:
 
 
 
-   using NATURAL_POINTER = string_natural_pointer < this_iterator >;
-   using BASE_DATA = typename NATURAL_POINTER::BASE_DATA;
+   //using NATURAL_POINTER = string_natural_pointer < this_iterator >;
    //using META_DATA = typename NATURAL_POINTER::META_DATA;
    using PRIMITIVE_STRING_TAG = PRIMITIVE_STRING_TAG_TYPE;
    using ITEM_POINTER = get_type_item_pointer< this_iterator >;
    using ITEM = ::const_string_range < ITERATOR_TYPE >::ITEM;
    using CHARACTER = ::const_string_range < ITERATOR_TYPE >::CHARACTER;
    //using THIS_RAW_RANGE = typename BASE_RANGE::THIS_RAW_RANGE;
+   using BASE_DATA = BASE_RANGE::BASE_DATA;
    using SCOPED_STRING = scoped_string_base < this_iterator >;
 
 
@@ -387,12 +387,12 @@ public:
    }
 
 
-   inline static void string_data_release(ITERATOR_TYPE piterator)
+   inline void __release()
    {
 
-      auto pdataSource = BASE_DATA::base_data_from_data(piterator);
+      auto pbasedata = this->base_data_from_data(this->m_begin);
 
-      NATURAL_POINTER::base_data_release(pdataSource);
+      this->base_data_release(pbasedata);
 
    }
 
@@ -400,18 +400,10 @@ public:
    inline void _release()
    {
 
-      string_data_release(this->m_begin);
-
-   }
-
-
-   inline void defer_release()
-   {
-
       if (this->is_string() && ::is_set(this->m_begin))
       {
 
-         _release();
+         __release();
 
       }
 
@@ -421,7 +413,7 @@ public:
    inline void destroy()
    {
 
-      this->defer_release();
+      this->_release();
 
       this->m_begin = nullptr;
 
@@ -1458,7 +1450,7 @@ public:
    inline static CHARACTER* create_string_data(character_count character_count)
    {
 
-      auto pbasedata = NATURAL_POINTER::base_data_create(character_count + 1);
+      auto pbasedata = BASE_DATA::heap_data_create(character_count + 1);
 
       auto p = pbasedata->data();
 

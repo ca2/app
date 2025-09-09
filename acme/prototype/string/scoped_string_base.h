@@ -299,21 +299,89 @@ public:
    }
 
 
+   void __release()
+   {
+
+      ((STRING*)this)->__release();
+
+   }
+
+
    void destroy()
    {
 
       if (this->m_erange & e_range_scoped_ownership)
       {
 
-         character_range_defer_release(*this);
+         __release();
+
+         //this->m_erange = e_range_none;
+
+      }
+      //else
+      //{
+
+         //// don't need to cleanup if above flags are not set
+         // Actually you are asking to destroy...
+         // ... so it should be clean/clear after...
+         // ... and reported as empty or null....
+
+         this->m_begin = nullptr;
+
+         this->m_end = nullptr;
+
+         this->m_erange = e_range_none;
+
+      //}
+
+   }
+
+
+   scoped_string_base & _append(const scoped_string_base & scopedstr)
+   {
+
+      if (this->m_erange & e_range_scoped_ownership
+      && this->m_erange& e_range_string)
+      {
+
+         ((STRING *)this)->append(scopedstr);
+
+      }
+      else
+      {
+
+         auto data = this->data();
+         auto size = this->size();
+         this->m_begin = nullptr;
+         this->m_end = nullptr;
+         this->m_erange = e_range_none;
+
+         string_concatenate(*((STRING *)this), data, size, scopedstr.data(), scopedstr.size());
 
       }
 
-      this->m_begin = nullptr;
+      return *this;
 
-      this->m_end = nullptr;
+   }
 
-      this->m_erange = e_range_none;
+
+   scoped_string_base & append(const scoped_string_base & scopedstr)
+   {
+      if (this->has_character())
+      {
+         //::string str(m_scopedstrLine + ::string(buf + x, i - x));
+         //m_scopedstrLine.destroy();
+         //m_scopedstrLine = str;
+         this->_append(scopedstr);
+      }
+      else
+      {
+         this->assign(scopedstr);
+         //m_scopedstrLine.destroy();
+         //m_scopedstrLine.construct_str({buf + x, i - x});
+      }
+
+      return *this;
 
    }
 

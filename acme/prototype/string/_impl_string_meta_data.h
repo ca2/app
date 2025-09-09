@@ -44,13 +44,6 @@
 //}
 
 
-template < primitive_character CHARACTER >
-inline ::character_count string_heap_data < CHARACTER>::storage_character_count() const
-{
-
-   return (::character_count)null_terminated_byte_length_to_character_count(this->data(), this->m_sizeStorageInBytes);
-
-}
 
 
 //template < primitive_character CHARACTER >

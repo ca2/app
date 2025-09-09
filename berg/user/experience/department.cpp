@@ -214,7 +214,7 @@ namespace experience
 
       pframe->m_pexperience = pexperience;
 
-      pframe->m_strExperience = strExperience;
+      pframe->m_strExperience = pexperience->m_strExperience;
 
       pframe->m_strFrameSchema = scopedstrFrameSchema;
 

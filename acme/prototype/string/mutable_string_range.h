@@ -323,8 +323,7 @@ inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string
    string_range < ITERATOR_TYPE >
    {
       this->m_begin + minimum(start, sizeThis),
-      this->m_begin + end,
-      !(*this->m_end) ? e_range_null_terminated : e_range_none
+      this->m_begin + end
    };
 
 

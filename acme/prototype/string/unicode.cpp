@@ -264,9 +264,9 @@ character_count wd16_to_wd32_len(const ::wd16_character * input, character_count
 
 
 
-CLASS_DECL_ACME character_count __utf_to_utf_length(const ::ansi_character* p, const ::wd16_character* s, character_count n)
-{
-
-
-   return utf_to_utf_length(p, s, n);
-}
+// CLASS_DECL_ACME character_count __utf_to_utf_length(const ::ansi_character* p, const ::wd16_character* s, character_count n)
+// {
+//
+//
+//    return utf_to_utf_length(p, s, n);
+// }

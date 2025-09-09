@@ -941,7 +941,7 @@ void subparticle::get_debug_title(char * sz, character_count c) const
 
    auto psubparticle = (::subparticle *)this;
 
-   ::string_count_copy(sz, ::type(*psubparticle).name(), c);
+   ::string_count_copy(sz, typeid(*psubparticle).name(), c);
 
 }
 

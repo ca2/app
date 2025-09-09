@@ -128,7 +128,8 @@ namespace sockets_bsd
       bool                    m_bLineProtocol; ///< Line protocol mode flag
       bool                    m_skip_c; ///< Skip element2() char of CRLF or LFCR sequence in OnRead
       char                    m_c; ///< First char in CRLF or LFCR sequence
-      scoped_string           m_scopedstrLine; ///< Current line in line protocol mode
+      //scoped_string           m_scopedstrLine; ///< Current line in line protocol mode
+      string                  m_strLine;
 
       ::e_status             m_estatus;
       //class ::time              m_timeStart;

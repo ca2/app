@@ -874,7 +874,7 @@ enum enum_extract
 struct default_initialization_t{};
 
 
-struct no_initialize{};
+//struct no_initialize{};
 
 
 //enum zero_t

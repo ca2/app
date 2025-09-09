@@ -120,6 +120,13 @@ public:
    using STRING_ARRAY = ::string_base_array < STRING, STRING, e_type_string_array >;
 
 
+   const_string_range(no_initialize_t) : BASE_RANGE(no_initialize_t{}) {}
+
+   const_string_range(nullptr_t) : BASE_RANGE(nullptr) {}
+
+   const_string_range() {}
+
+
    //template<character_count n>
    //constexpr const_string_range(const CHARACTER(&s)[n]) :
    //   BASE_RANGE(no_initialize_t{})
@@ -153,12 +160,6 @@ public:
    constexpr const_string_range(const_iterator begin, INTEGRAL count) : BASE_RANGE((this_iterator)begin,
       (this_iterator)(begin + count)) {
    }
-
-   const_string_range(no_initialize_t) : BASE_RANGE(no_initialize_t{}) {}
-
-   const_string_range(nullptr_t) : BASE_RANGE(nullptr) {}
-
-   const_string_range() {}
 
    template < typed_range < iterator > TYPED_RANGE >
    constexpr const_string_range(const TYPED_RANGE & range) 
@@ -2665,7 +2666,8 @@ public:
 
       this->m_begin = s;
       this->m_end = s + n;
-      this->m_erange = e_range_string_literal | e_range_null_terminated;
+      //this->m_erange = e_range_string_literal | e_range_null_terminated;
+      this->m_erange = e_range_string_literal;
 
    }
 
@@ -2703,10 +2705,7 @@ template < primitive_character CHARACTER, character_count n >
    return
    {
       s,
-      s + (s[n - 1] == CHARACTER{} ? n - 1 : n),
-      (enum_range)
-         (s[n - 1] == CHARACTER{} ?
-               e_range_null_terminated : e_range_none)
+      s + (s[n - 1] == CHARACTER{} ? n - 1 : n)
    };
 
 }

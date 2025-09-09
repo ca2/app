@@ -11,7 +11,7 @@ enum enum_range : int
 {
 
    e_range_none = 0,
-   e_range_null_terminated = 1,
+   //e_range_null_terminated = 1,
    e_range_string = 2,
    /// last time crazy attempt on 2025-04-25
    /// it is very difficult and possibly not
@@ -20,12 +20,24 @@ enum enum_range : int
    /// A simple char sz[20]= "stackstring"
    /// matches template<> const char (&s)[n];
    e_range_string_literal = 4,
-   /// scoped ownership seems also not usable
-   /// once a ownership is done, reference
-   /// count is incremented and then it should
-   /// be decremented. scoped ownership tends 
-   /// to just follow e_range_string flag,
-   /// so using e_range_string is enough. 
+   ///// scoped ownership seems also not usable
+   ///// once a ownership is done, reference
+   ///// count is incremented and then it should
+   ///// be decremented. scoped ownership tends
+   ///// to just follow e_range_string flag,
+   ///// so using e_range_string is enough.
+
+   /// e_range_scoped_ownership
+   /// scoped_string_base shouldn't increment or decrement string references
+   /// it should be reference neutral
+   /// it can forward a string referenced by it normally as
+   /// a string, but shoudln't be referencing or releasing reference itself
+   /// This flag e_range_scoped_ownership holds a reference count of that should be released
+   /// by the scoped string.
+   /// Its created when there is conversion between string with different character sizes
+   /// or allocation to add null terminator.
+   /// It can forward the reference to be used as a string normally.
+   /// but in this case, it should release a single reference when destroying the scoped string.
    e_range_scoped_ownership = 32768,
    e_range_buffer = 65536,
    //e_range_read_only = 4,
@@ -332,7 +344,8 @@ public:
    constexpr range(TYPE *& p) : 
       m_begin((this_iterator)p), 
       m_end((this_iterator)find_first_null_character(p)),
-      m_erange(e_range_null_terminated)
+      //m_erange(e_range_null_terminated)
+      m_erange(e_range_none)
    {
 
    }
@@ -353,7 +366,8 @@ public:
    constexpr range(this_iterator begin, EQUALITY equality) : 
       m_begin(begin), 
       m_end((this_iterator)find_first_null_character(begin, equality)),
-      m_erange(e_range_null_terminated)
+      //m_erange(e_range_null_terminated)
+   m_erange(e_range_none)
    {
    }
 
@@ -391,6 +405,19 @@ public:
       // not implementable for ranges without allocation
 
    }
+
+
+   void set_null()
+   {
+
+      this->m_begin = nullptr;
+
+      this->m_end = nullptr;
+
+      this->m_erange = e_range_none;
+
+   }
+
 
 
    constexpr bool is_string() const { return m_erange & e_range_string; }
@@ -2638,13 +2665,13 @@ constexpr class ::range < const CHARACTER* > as_string_literal(const CHARACTER* 
       if (s[n - 1] == CHARACTER{})
       {
 
-         return { s, s + n - 1, e_range_null_terminated };
+         return { s, s + n - 1 };
 
       }
 
    }
 
-   return { s, s + n, e_range_none };
+   return { s, s + n };
 
 }
 

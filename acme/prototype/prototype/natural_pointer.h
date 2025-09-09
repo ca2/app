@@ -18,25 +18,26 @@ NATURAL_DATA* __nil() { return nullptr; }
 
 
 template < typename TYPE_DATA >
-class heap_data
+class base_data
 {
 public:
 
 
-   using BASE_DATA_BASE = heap_data < TYPE_DATA >;
+   using BASE_DATA_BASE = base_data < TYPE_DATA >;
 
    using DATA = non_const < TYPE_DATA >;
 
 
-   interlocked_count                   m_countReference;
+   interlocked_int                     m_countReference;
    memsize_storage                     m_sizeStorageInBytes;
+   ::heap::enum_memory                 m_ememoryHeap;
    //memsize_storage                     m_countData;
 
 
    //heap_data(): m_countData(0), m_sizeStorageInBytes(0), m_countReference(1) {}
    //heap_data(enum_zero_init) : m_countData(0), m_sizeStorageInBytes(0), m_countReference(1) {}
 
-   heap_data() : m_sizeStorageInBytes(0), m_countReference(1) {}
+   base_data() : m_sizeStorageInBytes(0), m_countReference(1) {}
    //heap_data(enum_zero_init) :  m_sizeStorageInBytes(0), m_countReference(1) {}
 
    bool base_data_is_shared() const { return m_countReference >= 2; }
@@ -59,7 +60,7 @@ public:
    //DATA * end() const { return (DATA *)(begin() + this->m_countData); }
 
 
-   static heap_data * base_data_from_data(const DATA * pdata) { return &((heap_data *) pdata)[-1]; }
+   static base_data * base_data_from_data(const DATA * pdata) { return &((base_data *) pdata)[-1]; }
 
 
 };

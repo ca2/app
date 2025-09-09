@@ -117,12 +117,12 @@ CLASS_DECL_ACME character_count utf_to_utf_length(const ::wd16_character *, cons
 
 
 
-CLASS_DECL_ACME character_count __utf_to_utf_length(const ::wd16_character*, const ::ansi_character* psource, character_count srclen)
-{
-
-   return ansi_to_wd16_len(psource, srclen);
-
-}
+// CLASS_DECL_ACME character_count __utf_to_utf_length(const ::wd16_character*, const ::ansi_character* psource, character_count srclen)
+// {
+//
+//    return ansi_to_wd16_len(psource, srclen);
+//
+// }
 
 
 CLASS_DECL_ACME character_count utf_to_utf_length(const_char_pointer ,const ::wd32_character * psource, character_count srclen)

@@ -93,7 +93,7 @@ public:
 
 
    template < character_pointer CHARACTER_POINTER >
-   string_range(CHARACTER_POINTER start) : BASE_RANGE(start, start + string_safe_length(start), e_range_null_terminated) {}
+   string_range(CHARACTER_POINTER start) : BASE_RANGE(start, start + string_safe_length(start)) {}
 
    //explicit string_range(ITERATOR_TYPE psz) : string_range(scopedstr, 0, string_safe_length(scopedstr)) {}
 
@@ -200,7 +200,8 @@ public:
       }
       else if(e != this->m_end)
       {
-         this->m_erange = (enum_range)(this->m_erange & ~e_range_null_terminated);
+
+         this->m_erange = (enum_range)(this->m_erange);
 
       }
       this->m_begin = s;
@@ -250,18 +251,26 @@ public:
    string_range &operator=(SOME_RANGE && range) requires
    (sizeof(typename SOME_RANGE::ITEM) == sizeof(ITEM))
    {
+
       BASE_RANGE::operator=(range);
+
       if (range.m_erange & e_range_string)
       {
 
-         ((STRING_BASE*)&range)->__destroy();
+         string_base_release(range.m_begin);
 
       }
+
       range.m_begin = nullptr;
+
       range.m_end = nullptr;
+
       range.m_erange = e_range_none;
+
       return *this;
+
    }
+
 
    // string_range & operator=(const THIS_RANGE & range)
    // {
@@ -1598,7 +1607,7 @@ public:
 
          this->m_end += size;
 
-         this->m_erange = (enum_range)(this->m_erange & ~(e_range_string | e_range_null_terminated));
+         this->m_erange = (enum_range)(this->m_erange & ~(e_range_string));
 
       }
 
@@ -1628,7 +1637,7 @@ public:
 
          this->m_end = p;
 
-         this->m_erange = (enum_range)(this->m_erange & ~(e_range_string | e_range_null_terminated));
+         this->m_erange = (enum_range)(this->m_erange & ~(e_range_string));
 
       }
 
@@ -2053,9 +2062,7 @@ template < primitive_character CHARACTER, primitive_integral INTEGRAL >
 
    return {
       p,
-      p + n,
-      p[n] == CHARACTER{} ?
-      e_range_null_terminated : e_range_none
+      p + n
    };
 
 }

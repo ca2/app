@@ -1192,6 +1192,7 @@ list(APPEND library_source
         prototype/string/network_payload.h
         prototype/string/parse.cpp
         prototype/string/parse.h
+        prototype/string/scoped_string_base.h
         #prototype/string/simple.cpp
         prototype/string/static_string.h
         #prototype/string/stdstring.h

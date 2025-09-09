@@ -2860,10 +2860,10 @@ bool base_socket::SetSoKeepalive(bool x)
                if (buf[x])
                {
 
-                  m_scopedstrLine += {buf + x, i - x};
+                  m_strLine += {buf + x, i - x};
 
                }
-               OnLine( m_scopedstrLine);
+               OnLine( m_strLine);
                if(IsCloseAndDelete())
                   break;
                i++;
@@ -2875,7 +2875,7 @@ bool base_socket::SetSoKeepalive(bool x)
                   i++;
                }
                x = i;
-               m_scopedstrLine.destroy();
+               m_strLine.destroy();
             }
             if (!LineProtocol())
             {
@@ -2914,7 +2914,7 @@ bool base_socket::SetSoKeepalive(bool x)
          else if (buf[x])
          {
 
-            m_scopedstrLine.assign_copy({buf + x, string_safe_length(buf+x)});
+            m_strLine.assign(buf + x, string_safe_length(buf+x));
 
          }
 

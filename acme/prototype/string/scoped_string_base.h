@@ -82,38 +82,38 @@ public:
       BASE_RANGE(no_initialize_t{})
    {
 
-      if constexpr (length >= 1)
-      {
+      //if constexpr (length >= 1)
+      //{
 
-         if (s[length - 1] == CHARACTER{})
-         {
+      //   if (s[length - 1] == CHARACTER{})
+      //   {
 
-            if (length - 1 <= 0)
-            {
+      //      if (length - 1 <= 0)
+      //      {
 
-               this->set_null();
+      //         this->set_null();
 
-               return;
+      //         return;
 
-            }
+      //      }
 
-            this->m_begin = s;
+      //      this->m_begin = s;
 
-            this->m_end = s + length - 1;
+      //      this->m_end = s + length - 1;
 
-            this->m_erange = e_range_none;
+      //      this->m_erange = e_range_none;
 
-            this->m_pbasedata = nullptr;
+      //      this->m_pbasedata = nullptr;
 
-            return;
+      //      return;
 
-         }
+      //   }
 
-      }
+      //}
 
       this->m_begin = s;
 
-      this->m_end = s + length;
+      this->m_end = s + string_safe_length(s, length);
 
       this->m_erange = e_range_none;
 

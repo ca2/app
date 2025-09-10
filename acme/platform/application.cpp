@@ -50,6 +50,18 @@ CLASS_DECL_ACME::file::path get_module_path();
 
 
 void _001TestSlashedPath();
+void _001Test001(const ::scoped_string& scopedstr)
+{
+
+   ::string str;
+
+   str = scopedstr;
+
+   str += "123";
+
+   ::debug() << str;
+
+}
 
 
 namespace platform
@@ -64,7 +76,9 @@ namespace platform
       m_gpu.m_eoutputDraw2d = ::gpu::e_output_none;
       m_gpu.m_eoutputEngine = ::gpu::e_output_none;
 
+      int cx = 204;
 
+      _001Test001(::as_string(cx));
       //m_bTransferToContainer = true;
       //m_bTransferredToContainer = false;
 

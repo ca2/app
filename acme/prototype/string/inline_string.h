@@ -22,6 +22,8 @@ public:
       
       this->m_begin = m_sz;
       this->m_end = this->m_begin;
+      this->m_erange = e_range_none;
+      this->m_pbasedata = nullptr;
       m_sz[0] = '\0';
 
    }
@@ -53,6 +55,7 @@ public:
       this->m_begin = m_sz;
       this->m_end = m_sz + inlinestring.size();
       this->m_erange = inlinestring.m_erange;
+      this->m_pbasedata = inlinestring.m_pbasedata;
    }
 
 

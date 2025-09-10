@@ -281,13 +281,9 @@ requires (sizeof(SAME_SIZE_CHARACTER) == sizeof(CHARACTER))
    {
       auto lengthNew = len;
 
-      if (((ITERATOR_TYPE) pszSource == this->m_begin)
-         ||
-         (
-            ::is_set(pdataThis) &&
+      if (::is_set(pdataThis) &&
             !pdataThis->base_data_is_shared() &&
             lengthNew <= pdataThis->storage_character_count()
-         )
          )
       {
 

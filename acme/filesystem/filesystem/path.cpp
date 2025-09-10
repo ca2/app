@@ -23,6 +23,12 @@ namespace file
          return scopedstr;
 
       }
+      else if (scopedstr.is_empty())
+      {
+
+         return *this;
+
+      }
 
       //bool bJustAfterProtocol1 = thisrange.ends(":/");
 

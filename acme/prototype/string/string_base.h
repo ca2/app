@@ -479,7 +479,7 @@ public:
 
          this->m_end = end;
 
-         this->m_erange = erange;
+         this->m_erange = (enum_range) (erange & ~e_range_scoped_ownership);
 
          this->m_pbasedata = pbasedata;
 
@@ -1032,7 +1032,7 @@ public:
 
          this->m_end = range.m_end;
 
-         this->m_erange = range.m_erange;
+         this->m_erange = (enum_range)(range.m_erange & ~e_range_scoped_ownership);
 
          this->m_pbasedata = range.m_pbasedata;
 
@@ -1067,15 +1067,13 @@ public:
 
             this->m_pbasedata = pbasedata;
 
+            this->m_erange = e_range_none;
+
          }
 
          ::memory_transfer((void *) this->m_begin, range.m_begin, sizeof(CHARACTER) * lengthNew);
 
-         this->m_end = this->m_begin + lengthNew;
-
-         //this->m_erange = e_range_string;
-
-         *((CHARACTER*)this->m_end) = CHARACTER{};
+         this->_set_length(lengthNew);
 
       }
 
@@ -1112,7 +1110,7 @@ public:
 
          this->m_end = range.m_end;
 
-         this->m_erange = range.m_erange;
+         this->m_erange = (enum_range) (range.m_erange & ~e_range_scoped_ownership);
 
          this->m_pbasedata = range.m_pbasedata;
 

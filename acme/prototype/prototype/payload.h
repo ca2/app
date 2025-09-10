@@ -1359,7 +1359,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    template < primitive_character CHARACTER >
    bool operator == (const CHARACTER * psz) const { return equals_scoped_string(psz); }
    template < primitive_character CHARACTER  >
-   bool operator == (const range < const CHARACTER * > & range) const { return equals_scoped_string(range); }
+   bool operator == (const character_range < const CHARACTER * > & range) const { return equals_scoped_string(range); }
    template < primitive_character CHARACTER  >
    bool operator == (const scoped_string_base < const CHARACTER * > & scoped_string) const { return equals_scoped_string(scoped_string); }
    template < primitive_character CHARACTER  >

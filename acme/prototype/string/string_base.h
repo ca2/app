@@ -491,7 +491,7 @@ public:
 
       auto lengthNew = end - start;
 
-      auto pbasedata = create_string_data(lengthNew + 1);
+      pbasedata = create_string_data(lengthNew + 1);
 
       auto pdata = pbasedata->data();
 

@@ -813,7 +813,7 @@ public:
    }
 
 
-   template < primitive_range SOME_RANGE >
+   template < primitive_character_range SOME_RANGE >
    string_base &operator=(SOME_RANGE && range)
    {
       this->transfer_range(::transfer(range));

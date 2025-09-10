@@ -162,6 +162,21 @@ struct CLASS_DECL_ACME block :
    }
 
 
+   template<typename ITERATOR_TYPE>
+   ::character_range<ITERATOR_TYPE> as_character_range()
+   {
+      ASSERT(this->size() % sizeof(typename ::range < ITERATOR_TYPE>::ITEM) == 0);
+      return {(ITERATOR_TYPE)begin(), (ITERATOR_TYPE)end()};
+   }
+
+
+   template<typename ITERATOR_TYPE>
+   const ::character_range < ITERATOR_TYPE > as_character_range() const
+   {
+      ASSERT(this->size() % sizeof(typename ::range<ITERATOR_TYPE>::ITEM) == 0);
+      return {(ITERATOR_TYPE) begin(), (ITERATOR_TYPE)end()};
+   }
+
 
    template < primitive_aggregate AGGREGATE >
    block & operator = (const AGGREGATE & aggregate)

@@ -1027,6 +1027,18 @@ namespace user
 
                         }
 
+                        if (!m_puserinteraction->window()->is_window_visible())
+                        {
+
+                           if (m_puserinteraction->const_layout().sketch().is_screen_visible())
+                           {
+
+                              break;
+
+                           }
+
+                        }
+
                         if (!::task_get_run())
                         {
 
@@ -1185,10 +1197,18 @@ namespace user
       if (m_puserinteraction->has_graphical_output_purpose())
       {
 
-         if (::type(m_puserinteraction.m_p) == "user::list_box")
+         ::string strType = ::type(m_puserinteraction.m_p);
+
+         if (strType == "user::list_box")
          {
 
             information() << "user::list_box graphics_thread_iteration has_graphical_output_purpose";
+
+         }
+         else if (strType.case_insensitive_contains("menu"))
+         {
+
+            debug() << "menu";
 
          }
 
@@ -1208,10 +1228,15 @@ namespace user
 
             }
 
-            if (m_iRedrawMessageCount <= 0)
+            if (is_equivalent(m_puserinteraction->window()->is_window_visible(),
+                              m_puserinteraction->const_layout().sketch().is_screen_visible()))
             {
 
-               return true;
+               if (m_iRedrawMessageCount <= 0)
+               {
+
+                  return true;
+               }
 
             }
 

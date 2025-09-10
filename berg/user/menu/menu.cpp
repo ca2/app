@@ -779,7 +779,7 @@ namespace user
 
             order(e_zorder_top_most);
 
-            m_bNeedPerformLayout = true;
+            set_need_perform_layout();
 
             set_need_layout();
 
@@ -2207,7 +2207,9 @@ namespace user
 
       auto pstyle = ptopowner->get_style(pgraphics);
 
-      pgraphics->set(get_font(pstyle));
+      auto pfont = pstyle->get_font(this, e_element_text);
+
+      pgraphics->set(pfont);
 
       auto metrics = pgraphics->get_text_metrics();
 

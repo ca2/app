@@ -60,6 +60,7 @@ inline const TYPE & for_copy(TYPE && t)
 // inline RANGE & character_range_defer_release(RANGE & range);
 //
 
+
 template < typename ITERATOR_TYPE >
 class character_range :
    public ::range < ITERATOR_TYPE >
@@ -334,7 +335,7 @@ public:
 
       this->m_begin = pdata;
 
-      utf_to_utf(pdata, this->m_begin, length);
+      utf_to_utf(pdata, start, length);
 
       this->_set_length(lengthNew);
 

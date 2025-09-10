@@ -150,7 +150,7 @@ public:
       ::file::path_object * m_ppath;
       payload_all_t                          m_payloadall;
       ::string                               m_str;
-      ::range < const_char_pointer >m_ansirange;
+      ::character_range < const_char_pointer >m_ansirange;
       ::function_common_base *               m_pfunctioncommonbase;
 
    };
@@ -1951,7 +1951,7 @@ payload::payload(const CHARACTER_RANGE& range) :
 
 template < primitive_character CHARACTER, primitive_payload PAYLOAD >
 inline ::file::path operator / (
-   const ::range < const CHARACTER * > & range,
+   const ::character_range < const CHARACTER * > & range,
    const PAYLOAD & payload)
 {
 

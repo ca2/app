@@ -1128,7 +1128,7 @@ public:
 
          auto lengthNew = range.size();
 
-         if (::is_null(pdataThis) &&
+         if (::is_set(pdataThis) &&
             !pdataThis->base_data_is_shared() &&
             lengthNew <= pdataThis->storage_character_count())
          {

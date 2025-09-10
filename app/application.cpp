@@ -46,9 +46,16 @@ namespace app_app
    void application::on_request(::request * prequest)
    {
 
-      auto pmainwindow = øcreate_new < ::app_app::main_window >();
+      if (!m_pmainwindow)
+      {
 
-      pmainwindow->display(e_display_normal);
+         m_pmainwindow = øcreate_new<::app_app::main_window>();
+
+         m_pmainwindow->create_main_window(prequest);
+
+         m_pmainwindow->display(e_display_normal);
+
+      }
 
 //      pmainwindow->m_procedureOnAfterCreate = [pmainwindow]()
 //      {
@@ -61,7 +68,7 @@ namespace app_app
 //
 //      };
 
-      pmainwindow->create_main_window(prequest);
+      //pmainwindow->create_main_window(prequest);
 
       //pmainwindow->m_pthreadUserInteraction->m_procedurea.add([this]() {});
 

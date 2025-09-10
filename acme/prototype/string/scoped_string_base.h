@@ -622,6 +622,16 @@ public:
 
       this->m_erange = (enum_range) (str.m_erange | e_range_scoped_ownership);
 
+      this->m_pbasedata = str.m_pbasedata;
+
+      str.m_begin = nullptr;
+
+      str.m_end = nullptr;
+
+      str.m_erange = e_range_none;
+
+      str.m_pbasedata = nullptr;
+
    }
 
 

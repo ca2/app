@@ -93,6 +93,8 @@ inline string_base < ITERATOR_TYPE >::string_base(CHARACTER chSrc, character_cou
 
    auto pdata = pbasedata->data();
 
+   this->m_begin = pdata;
+
    auto p = pdata;
 
    while (repeat > 0)

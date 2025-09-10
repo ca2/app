@@ -9266,6 +9266,13 @@ namespace windowing
 
       string strType = ::type(user_interaction()).name();
 
+      if (!strType.case_insensitive_contains("main_frame"))
+      {
+
+         debug() << "not main_frame";
+
+      }
+
 #ifdef MORE_LOG
 
       debug() << "do_graphics(A)";
@@ -9312,6 +9319,15 @@ namespace windowing
       debug() << "windowing::window::defer_do_graphics";
 
       //{
+
+      ::string strType = ::type(*user_interaction()).name();
+
+      if (!strType.case_insensitive_contains("main_frame"))
+      {
+
+         information() << "not main_frame";
+
+      }
 
       //user_interaction()->top_down_prefix();
 

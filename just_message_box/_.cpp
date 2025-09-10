@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "acme/_application_library.h"
 #include "acme/platform/release_time.h"
-#define APPLICATION_NAMESPACE app_just_message_box
-#include "acme/inline/application/main_application_library.inl"
+//#define APPLICATION_NAMESPACE app_just_message_box
+//#include "acme/inline/application/main_application_library.inl"
 
 
 

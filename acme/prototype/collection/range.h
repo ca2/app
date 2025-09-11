@@ -599,12 +599,21 @@ public:
 
    }
 
-   constexpr bool iterator_ok(const_iterator iterator) const
+
+   constexpr bool is_ok(const_iterator iterator) const
    {
 
-      return ::iterator_is_ok(iterator, m_begin, m_end);
+      return !this->is_end(iterator);
 
    }
+
+
+   //constexpr bool iterator_ok(const_iterator iterator) const
+   //{
+
+   //   return ::iterator_is_ok(iterator, m_begin, m_end);
+
+   //}
 
    //constexpr bool is_end() const
    //{

@@ -1571,7 +1571,7 @@ end_processing_adding:
       bool check_max_fd = false;
 
       // check detach of socket if master handler - EVENT
-      if (!m_bSlave && m_socketlistDetach.get_size())
+      if (!m_bSlave && m_socketlistDetach.has_element())
       //if(m_socketlistDetach.has_element())
       {
 
@@ -1579,7 +1579,7 @@ end_processing_adding:
 
          //SOCKET socket = 0;
 
-         while(it != m_socketlistDetach.end())
+         while(m_socketlistDetach.is_ok(it))
          {
 
             auto socket = *it;
@@ -2595,7 +2595,7 @@ end_processing_adding:
       //if (add)
       //{
       //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
-      //               (which_one == e_list_detach) ? "detach" :
+      //               (which_one == aaa_e_list_detach) ? "detach" :
       //               (which_one == e_list_timeout) ? "time_out" :
       //               (which_one == e_list_retry) ? "Retry" :
       //               (which_one == e_list_close) ? "close" : "<undef>",
@@ -2631,7 +2631,7 @@ end_processing_adding:
          //if (add)
          //{
          //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
-         //               (which_one == e_list_detach) ? "detach" :
+         //               (which_one == aaa_e_list_detach) ? "detach" :
          //               (which_one == e_list_timeout) ? "time_out" :
          //               (which_one == e_list_retry) ? "Retry" :
          //               (which_one == e_list_close) ? "close" : "<undef>",
@@ -2658,12 +2658,25 @@ end_processing_adding:
 
       //set(s, false, false, false); // erase from fd_set's
 
-      m_socketlistCallOnConnect.erase(s);
-      m_socketlistDetach.erase(s);
-      m_socketlistTimeout.erase(s);
-      m_socketlistRetryClientConnect.erase(s);
-      m_socketlistClose.erase(s);
+      int iSocketList = 0;
+      auto psocketlistCallOnConnect = &m_socketlistCallOnConnect;
+      psocketlistCallOnConnect->erase(s);
 
+      iSocketList = 1;
+      auto psocketlistDetach = &m_socketlistDetach;
+      psocketlistDetach->erase(s);
+
+      iSocketList = 2;
+      auto psocketlistTimeout = &m_socketlistTimeout;
+      psocketlistTimeout->erase(s);
+
+      iSocketList = 3;
+      auto psocketlistRetryClientConnect = &m_socketlistRetryClientConnect;
+      psocketlistRetryClientConnect->erase(s);
+
+      iSocketList = 4;
+      auto psocketlistClose = &m_socketlistClose;
+      psocketlistClose->erase(s);
 
    }
 

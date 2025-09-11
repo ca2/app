@@ -295,7 +295,7 @@ namespace sockets
    //   if (psocket->IsDetach())
    //   {
 
-   //      socket_id_list_add(psocket->get_socket_id(), e_list_detach);
+   //      socket_id_list_add(psocket->get_socket_id(), aaa_e_list_detach);
 
    //   }
 
@@ -1946,7 +1946,7 @@ namespace sockets
    //  {
    //  case e_list_call_on_connect:
    //     return m_socketidlistCallOnConnect;
-   //  case e_list_detach:
+   //  case aaa_e_list_detach:
    //     return m_socketidlistDetach;
    //  case e_list_timeout:
    //     return m_socketidlistTimeout;
@@ -1994,7 +1994,7 @@ namespace sockets
    //  //if (add)
    //  //{
    //  //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
-   //  //               (which_one == e_list_detach) ? "detach" :
+   //  //               (which_one == aaa_e_list_detach) ? "detach" :
    //  //               (which_one == e_list_timeout) ? "time_out" :
    //  //               (which_one == e_list_retry) ? "Retry" :
    //  //               (which_one == e_list_close) ? "close" : "<undef>",
@@ -2030,7 +2030,7 @@ namespace sockets
    //     //if (add)
    //     //{
    //     //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
-   //     //               (which_one == e_list_detach) ? "detach" :
+   //     //               (which_one == aaa_e_list_detach) ? "detach" :
    //     //               (which_one == e_list_timeout) ? "time_out" :
    //     //               (which_one == e_list_retry) ? "Retry" :
    //     //               (which_one == e_list_close) ? "close" : "<undef>",

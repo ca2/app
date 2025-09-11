@@ -578,7 +578,6 @@ constexpr void append_and_step_if_true(bool b, CHARACTER *& p, CHARACTER charact
 }
 
 
-
 template < primitive_iterator ITERATOR, primitive_iterator BEGIN >
 constexpr bool iterator_is_before_begin(ITERATOR p, BEGIN)
 {

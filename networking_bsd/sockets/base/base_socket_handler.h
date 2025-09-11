@@ -38,16 +38,6 @@ namespace sockets_bsd
 {
 
 
-   //enum enum_list
-   //{
-   //   e_list_call_on_connect,
-   //   e_list_detach,
-   //   e_list_timeout,
-   //   e_list_retry_client_connect,
-   //   e_list_close
-   //};
-
-
    /** socket container class, happening generator.
    \ingroup basic */
    class CLASS_DECL_NETWORKING_BSD base_socket_handler:

@@ -45,9 +45,9 @@ inline ::std::strong_ordering _case_insensitive_string_count_compare(const ::wd1
 
 
 CLASS_DECL_ACME character_count string_get_length(const ::wd16_character * psz) noexcept;
-CLASS_DECL_ACME character_count string_get_length(const ::wd16_character* psz, character_count sizeMaximumInterest) noexcept;
+CLASS_DECL_ACME character_count string_get_length2(const ::wd16_character* psz, character_count sizeMaximumInterest) noexcept;
 CLASS_DECL_ACME character_count string_safe_length(const ::wd16_character * psz) noexcept;
-CLASS_DECL_ACME character_count string_safe_length(const ::wd16_character* psz, character_count sizeMaximumInterest) noexcept;
+CLASS_DECL_ACME character_count string_safe_length2(const ::wd16_character* psz, character_count sizeMaximumInterest) noexcept;
 CLASS_DECL_ACME ::wd16_character * string_lowercase(::wd16_character * psz, character_count size) noexcept;
 
 

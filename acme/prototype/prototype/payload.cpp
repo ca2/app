@@ -11715,25 +11715,25 @@ payload & payload::add(const ::payload & payload)
       if (payload.get_type() == e_type_long_long_array)
       {
 
-         double_array_reference().add(payload.long_long_array_reference());
+         double_array_reference().append_container(payload.long_long_array_reference());
 
       }
       else if (payload.get_type() == e_type_int_array)
       {
 
-         double_array_reference().add(payload.int_array_reference());
+         double_array_reference().append_container(payload.int_array_reference());
 
       }
       else if (payload.get_type() == e_type_double_array)
       {
 
-         double_array_reference().add(payload.double_array_reference());
+         double_array_reference().append_container(payload.double_array_reference());
 
       }
       else if (payload.get_type() == e_type_float_array)
       {
 
-         double_array_reference().add(payload.float_array_reference());
+         double_array_reference().append_container(payload.float_array_reference());
 
       }
       else

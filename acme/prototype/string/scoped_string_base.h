@@ -113,7 +113,7 @@ public:
 
       this->m_begin = s;
 
-      this->m_end = s + string_safe_length(s, length);
+      this->m_end = s + string_safe_length2(s, length);
 
       this->m_erange = e_range_none;
 
@@ -127,31 +127,10 @@ public:
       BASE_RANGE(no_initialize_t{})
    {
 
-      if constexpr (length >= 1)
-      {
-
-         if (s[length - 1] == CHARACTER{})
-         {
-
-            if (length - 1 <= 0)
-            {
-
-               this->set_null();
-
-               return;
-
-            }
-
-         }
-
-      }
-
       this->construct_owned_string(
          {
             s,
-            s[length - 1] == CHARACTER{} ? length - 1 : length
-            //,
-            //s[length - 1] == CHARACTER{} || s[length] == CHARACTER{} ? e_range_null_terminated : e_range_none
+            string_safe_length(s, length)
          });
 
    }
@@ -219,7 +198,7 @@ public:
       if (!this->is_null_terminated())
       {
 
-         this->create_owned_string();
+         ((scoped_string_base *)this)->create_owned_string();
 
       }
 
@@ -590,25 +569,49 @@ public:
    //template < character_count n >
    //scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(cha); }
    //template < typed_character_pointer < typename scoped_string_base < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
-   void construct_owned_string(ITERATOR_TYPE start, ITERATOR_TYPE end, enum_range erange = e_range_none)
-   requires (sizeof(get_iterator_item < ITERATOR_TYPE >) == sizeof(CHARACTER))
+   //void construct_owned_string(ITERATOR_TYPE start, ITERATOR_TYPE end, enum_range erange = e_range_none)
+   //requires (sizeof(get_iterator_item < ITERATOR_TYPE >) == sizeof(CHARACTER))
+   //{
+
+   //   auto length = end - start;
+
+   //   auto lengthNew = string_safe_length(start, length);
+
+   //   auto pbasedata = this->create_string_data2(lengthNew, e_range_scoped_ownership);
+
+   //   auto pdata = pbasedata->data();
+
+   //   this->m_begin = pdata;
+
+   //   memory_transfer(pdata, start, lengthNew);
+
+   //   this->_set_length(lengthNew);
+
+   //}
+
+
+   void create_owned_string()
    {
 
-      create_string(*this, start, end, erange);
+      auto pdataThis = this->m_pbasedata;
 
-      this->m_erange = (enum_range) (this->m_erange | e_range_scoped_ownership);
+      construct_owned_string(this->m_begin, this->m_end);
+
+      if (pdataThis)
+      {
+
+         ::release_base_data(pdataThis);
+
+      }
 
    }
 
 
-   template < typename OTHER_ITERATOR_TYPE >
-   void construct_owned_string(OTHER_ITERATOR_TYPE start, OTHER_ITERATOR_TYPE end, enum_range erange = e_range_none)
-   requires (sizeof(get_iterator_item < OTHER_ITERATOR_TYPE >) != sizeof(CHARACTER))
+   template < typename SOME_ITERATOR_TYPE >
+   void construct_owned_string(SOME_ITERATOR_TYPE start, SOME_ITERATOR_TYPE end, enum_range erange = e_range_none)
    {
 
-      this->_create_string(start, end, erange);
-
-      this->m_erange = (enum_range) (this->m_erange | e_range_scoped_ownership);
+      this->construct_string(start, end, (enum_range)(erange | e_range_scoped_ownership));
 
    }
 

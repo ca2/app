@@ -58,17 +58,15 @@ inline void string_base < ITERATOR_TYPE >::construct20(const OTHER_CHARACTER * p
 
    auto lengthNew = utf_to_utf_length(this->m_begin, psz, length);
 
-   auto pbasedata  = BASE_DATA::create_base_data(lengthNew + 1);
+   auto pbasedata  = this->create_string_data2(lengthNew, erange);
 
-   this->m_begin = pbasedata->data();
+   auto pdata = pbasedata->data();
 
-   utf_to_utf((CHARACTER *) this->m_begin, psz, lengthNew);
+   this->m_begin = pdata;
+
+   utf_to_utf(pdata, psz, lengthNew);
 
    this->_set_length(lengthNew);
-
-   this->m_pbasedata = pbasedata;
-
-   this->m_erange = e_range_none;
 
 }
 
@@ -89,7 +87,7 @@ inline string_base < ITERATOR_TYPE >::string_base(CHARACTER chSrc, character_cou
 
    auto lengthNew = repeat;
 
-   auto pbasedata= BASE_DATA::create_base_data(lengthNew + 1);
+   auto pbasedata = this->create_string_data2(lengthNew, e_range_none);
 
    auto pdata = pbasedata->data();
 
@@ -107,10 +105,6 @@ inline string_base < ITERATOR_TYPE >::string_base(CHARACTER chSrc, character_cou
    }
 
    this->_set_length(lengthNew);
-
-   this->m_erange = e_range_none;
-
-   this->m_pbasedata = pbasedata;
 
 }
 
@@ -135,9 +129,11 @@ requires other_primitive_character < OTHER_CHARACTER, CHARACTER > :
 
    auto lengthNew = lenUnit * repeat;
 
-   auto pbasedata = BASE_DATA::create_base_data(lengthNew + 1);
+   auto pbasedata = this->create_string_data2(lengthNew, e_range_none);
 
    auto pdata = pbasedata->data();
+
+   this->m_begin = pdata;
 
    CHARACTER sz[8];
 
@@ -166,10 +162,6 @@ requires other_primitive_character < OTHER_CHARACTER, CHARACTER > :
    }
 
    this->_set_length(lengthNew);
-
-   this->m_erange = e_range_none;
-
-   this->m_pbasedata = pbasedata;
 
 }
 
@@ -224,7 +216,7 @@ inline ::string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(c
 
 template < typename ITERATOR_TYPE >
 template < primitive_character SAME_SIZE_CHARACTER >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_assign(const SAME_SIZE_CHARACTER * pszSource, character_count len)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_assign(const SAME_SIZE_CHARACTER * pszSource, character_count length)
 requires (sizeof(SAME_SIZE_CHARACTER) == sizeof(CHARACTER))
 {
 
@@ -256,6 +248,8 @@ requires (sizeof(SAME_SIZE_CHARACTER) == sizeof(CHARACTER))
    //
    // }
 
+   auto lengthNew = string_safe_length2(pszSource, length);
+
    auto pdataThis = this->m_pbasedata;
 
    // if(this->m_erange & e_range_string)
@@ -271,7 +265,7 @@ requires (sizeof(SAME_SIZE_CHARACTER) == sizeof(CHARACTER))
    //
    // }
 
-   if (::is_null(pszSource) || len <= 0)
+   if (::is_null(pszSource) || lengthNew <= 0)
    {
 
       this->default_construct();
@@ -279,8 +273,7 @@ requires (sizeof(SAME_SIZE_CHARACTER) == sizeof(CHARACTER))
    }
    else
    {
-      auto lengthNew = len;
-
+      
       if (::is_set(pdataThis) &&
             !pdataThis->base_data_is_shared() &&
             lengthNew <= pdataThis->storage_character_count()
@@ -293,21 +286,15 @@ requires (sizeof(SAME_SIZE_CHARACTER) == sizeof(CHARACTER))
       else
       {
 
-         auto pbasedata = BASE_DATA::create_base_data(len + 1);
+         auto pbasedata = this->create_string_data2(lengthNew, this->m_erange);
 
          this->m_begin = pbasedata->data();
-
-         this->m_pbasedata = pbasedata;
 
       }
 
       ::memory_transfer((void*) this->m_begin, pszSource, lengthNew);
 
-      this->m_end = this->m_begin + lengthNew;
-
-      this->m_erange = e_range_none;
-
-      *((CHARACTER*)this->m_end) = CHARACTER{};
+      this->_set_length(lengthNew);
 
    }
 
@@ -385,21 +372,15 @@ requires (sizeof(OTHER_SIZE_CHARACTER) != sizeof(CHARACTER))
       else
       {
 
-         auto pbasedata =  BASE_DATA::create_base_data(len + 1);
+         auto pbasedata =  this->create_string_data2(lengthNew, this->m_erange);
 
          this->m_begin = pbasedata->data();
-
-         this->m_pbasedata = pbasedata;
 
       }
 
       utf_to_utf((CHARACTER*)  this->m_begin, pszSource, lengthNew);
 
-      this->m_end = this->m_begin + lengthNew;
-
-      this->m_erange = e_range_none;
-
-      *((CHARACTER*)this->m_end) = CHARACTER{};
+      this->_set_length(lengthNew);
 
    }
 
@@ -616,8 +597,10 @@ void string_base< ITERATOR_TYPE >::construct_from_string(const string_base& str)
 
 
 template < typename ITERATOR_TYPE >
-inline void string_base< ITERATOR_TYPE >::construct_from_range(ITERATOR_TYPE pSrc, character_count lengthNew)
+inline void string_base< ITERATOR_TYPE >::construct_from_range(ITERATOR_TYPE pSrc, character_count length)
 {
+
+   auto lengthNew = string_safe_length2(pSrc, length);
 
    if (::is_null(pSrc) || lengthNew <= 0)
    {
@@ -628,7 +611,7 @@ inline void string_base< ITERATOR_TYPE >::construct_from_range(ITERATOR_TYPE pSr
 
    }
 
-   auto pbasedata = BASE_DATA::create_base_data(lengthNew + 1);
+   auto pbasedata = this->create_string_data2(lengthNew, e_range_none);
 
    auto pdata = pbasedata->data();
 
@@ -638,13 +621,7 @@ inline void string_base< ITERATOR_TYPE >::construct_from_range(ITERATOR_TYPE pSr
 
    this->_set_length(lengthNew);
 
-   this->m_erange = e_range_none;
-
-   this->m_pbasedata = pbasedata;
-
 }
-
-
 
 
 template < typename ITERATOR_TYPE >
@@ -653,7 +630,9 @@ inline void string_base< ITERATOR_TYPE >::construct_from_range(OTHER_CHARACTER_P
 requires other_character_pointer < OTHER_CHARACTER_POINTER, ITERATOR_TYPE >
 {
 
-   if (::is_null(pSrc) || src_len <= 0)
+   auto lengthNew = utf_to_utf_length(this->begin(), pSrc, src_len);
+
+   if (::is_null(pSrc) || lengthNew <= 0)
    {
 
       default_construct();
@@ -662,9 +641,7 @@ requires other_character_pointer < OTHER_CHARACTER_POINTER, ITERATOR_TYPE >
 
    }
 
-   auto lengthNew = utf_to_utf_length(this->begin(), pSrc, src_len);
-
-   auto pbasedata = BASE_DATA::create_base_data(lengthNew + 1);
+   auto pbasedata = this->create_string_data2(lengthNew, e_range_none);
 
    auto pdata = pbasedata->data();
 
@@ -673,10 +650,6 @@ requires other_character_pointer < OTHER_CHARACTER_POINTER, ITERATOR_TYPE >
    utf_to_utf(pdata, pSrc, src_len);
 
    this->_set_length(lengthNew);
-
-   this->m_erange = e_range_none;
-
-   this->m_pbasedata = pbasedata;
 
 }
 
@@ -726,11 +699,15 @@ void string_base< ITERATOR_TYPE >::construct_from_two_ranges_concatenation(const
 
    auto len1 = range1.size();
 
+   auto lenNew1 = string_safe_length2(range1.m_begin, len1);
+
    auto len2 = range2.size();
 
-   auto lengthNew = len1 + len2;
+   auto lenNew2 = string_safe_length2(range2.m_begin, len2);
 
-   auto pbasedata = BASE_DATA::create_base_data(lengthNew + 1);
+   auto lengthNew = lenNew1 + lenNew2;
+
+   auto pbasedata = this->create_string_data2(lengthNew, e_range_none);
 
    auto pdata = pbasedata->data();
 
@@ -738,15 +715,11 @@ void string_base< ITERATOR_TYPE >::construct_from_two_ranges_concatenation(const
 
    auto p = pdata;
 
-   string_count_copy(p, range1.m_begin, len1);
+   string_count_copy(p, range1.m_begin, lenNew1);
 
-   string_count_copy(p + len1, range2.m_begin, len2);
+   string_count_copy(p + lenNew1, range2.m_begin, lenNew2);
 
    this->_set_length(lengthNew);
-
-   this->m_erange = e_range_none;
-
-   this->m_pbasedata = pbasedata;
 
 }
 

@@ -2057,7 +2057,7 @@ template < typename CONTAINER >
    for (auto& item : container)
    {
 
-      add(item);
+      add((ARG_TYPE) item);
 
    }
 

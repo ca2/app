@@ -225,10 +225,32 @@ namespace platform
 
       auto args = m_args;
 
+      auto wargs = m_wargs;
+
+      if (!wargs && args)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
       for (int i = 0; i < argc; i++)
       {
 
-         ::string strArg = args[i];
+         ::string strArg;
+         
+         if (wargs[i])
+         {
+
+            strArg = wargs[i];
+
+         }
+         else
+         {
+
+            strArg = args[i];
+
+         }
 
          if (strArg.contains_any_character_in(" \t\r\n"))
          {

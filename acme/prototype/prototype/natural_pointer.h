@@ -87,7 +87,7 @@ public:
    }
 
 
-   static base_data * create_base_data(::collection::count count, ::heap::enum_memory ememory = ::heap::e_memory_string)
+   static base_data * create_base_data2(::collection::count count, ::heap::enum_memory ememory = ::heap::e_memory_string)
    {
 
       memsize memsize = count * sizeof(DATA);

@@ -216,6 +216,29 @@ public:
    // BASE_RANGE(character_range_defer_increment_reference_count(begin, erange), end, erange) { }
 
 
+   BASE_DATA * create_string_data2(character_count lengthNew, enum_range erange)
+   {
+
+      auto allocationSize = lengthNew;
+
+      if (erange & e_range_buffer)
+      {
+
+         allocationSize *= 2;
+
+      }
+
+      auto pbasedata = BASE_DATA::create_base_data2(allocationSize + 1);
+
+      this->m_pbasedata = pbasedata;
+
+      this->m_erange = (enum_range) (erange & ~(e_range_string_literal));
+
+      return pbasedata;
+
+   }
+
+
    inline memsize storage_count() const
    {
 
@@ -320,8 +343,28 @@ public:
    }
 
 
+   void construct_string(ITERATOR_TYPE start, ITERATOR_TYPE end, enum_range erange = e_range_none)
+   {
+
+      auto length = end - start;
+
+      auto lengthNew = string_safe_length2(start, length);
+
+      auto pbasedata = this->create_string_data2(lengthNew, erange);
+
+      auto pdata = pbasedata->data();
+
+      this->m_begin = pdata;
+
+      memory_transfer(pdata, start, lengthNew);
+
+      this->_set_length(lengthNew);
+
+   }
+
+
    template < typename OTHER_ITERATOR_TYPE >
-   void _create_string(OTHER_ITERATOR_TYPE start, OTHER_ITERATOR_TYPE end, enum_range erange)
+   void construct_string(OTHER_ITERATOR_TYPE start, OTHER_ITERATOR_TYPE end, enum_range erange = e_range_none)
    requires (sizeof(get_iterator_item < OTHER_ITERATOR_TYPE >) != sizeof(CHARACTER))
    {
 
@@ -329,7 +372,7 @@ public:
 
       auto lengthNew = utf_to_utf_length(this->m_begin, start, length);
 
-      auto pbasedata = BASE_DATA::create_base_data(lengthNew + 1);
+      auto pbasedata = this->create_string_data2(lengthNew, erange);
 
       auto pdata = pbasedata->data();
 
@@ -338,10 +381,6 @@ public:
       utf_to_utf(pdata, start, length);
 
       this->_set_length(lengthNew);
-
-      this->m_erange = e_range_none;
-
-      this->m_pbasedata = pbasedata;
 
    }
 

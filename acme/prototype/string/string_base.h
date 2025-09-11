@@ -529,15 +529,15 @@ public:
 
       auto pdata = pbasedata->data();
 
-      this->m_begin = pdata;
+      this->m_pbasedata = pbasedata;
 
-      this->m_end = this->m_begin + lengthNew;
+      this->m_erange = e_range_none;
+
+      this->m_begin = pdata;
 
       utf_to_utf(this->m_begin, start, lengthNew);
 
       this->_set_length(lengthNew);
-
-      this->m_pbasedata = pbasedata;
 
    }
 
@@ -1048,7 +1048,9 @@ public:
       else
       {
 
-         auto lengthNew = range.size();
+         auto length = range.size();
+
+         auto lengthNew = string_safe_length2(range.m_begin, length);
 
          if (::is_set(pdataThis) &&
             !pdataThis->base_data_is_shared() &&
@@ -1061,13 +1063,9 @@ public:
          else
          {
 
-            auto pbasedata = BASE_DATA::create_base_data(lengthNew+1);
+            auto pbasedata = this->create_string_data2(lengthNew, this->m_erange);
 
             this->m_begin = pbasedata->data();
-
-            this->m_pbasedata = pbasedata;
-
-            this->m_erange = e_range_none;
 
          }
 
@@ -1137,19 +1135,15 @@ public:
          else
          {
 
-            auto pbasedata =  BASE_DATA::create_base_data(lengthNew + 1);
+            auto pbasedata = this->create_string_data2(lengthNew, this->m_erange);
 
             this->m_begin = pbasedata->data();
-
-            this->m_pbasedata = pbasedata;
 
          }
 
          ::memory_transfer((void *) this->m_begin, range.m_begin, sizeof(CHARACTER) * lengthNew);
 
-         this->m_end = this->m_begin + lengthNew;
-
-         *((CHARACTER*)this->m_end) = CHARACTER{};
+         this->_set_length(lengthNew);
 
       }
 
@@ -1666,7 +1660,7 @@ public:
 
       auto old_size = this->size();
 
-      auto new_size = characterCount;
+      auto lengthNew = characterCount;
 
       auto pbasedataOld = this->m_pbasedata;
 
@@ -1677,12 +1671,10 @@ public:
 
          if (::is_set(pbasedataOld) &&
             !pbasedataOld->base_data_is_shared() &&
-            new_size <= pbasedataOld->storage_character_count())
+            lengthNew <= pbasedataOld->storage_character_count())
          {
 
-            this->m_end = this->m_begin + new_size;
-
-            ((CHARACTER*) this->m_end)[new_size] = CHARACTER{};
+            this->_set_length(lengthNew);
 
             return (CHARACTER *) this->m_begin;
 
@@ -1690,23 +1682,23 @@ public:
 
       }
 
-      memsize allocationSize = (new_size + 1) * sizeof(CHARACTER);
+      //auto allocationSize 
 
-      if constexpr(t_bWasString)
-      {
+      //if constexpr(t_bWasString)
+      //{
 
-         if (this->m_erange & e_range_buffer && allocationSize >= 16_KiB)
-         {
+      //   if (this->m_erange & e_range_buffer && lengthNew >= 16_KiB)
+      //   {
 
-            allocationSize *= 2;
+      //      allocationSize *= 2;
 
-         }
+      //   }
 
-      }
+      //}
 
-      auto pbasedata = BASE_DATA::create_base_data(allocationSize);
+      auto pbasedata = this->create_string_data2(lengthNew, this->m_erange);
 
-      auto p = pbasedata->data();
+      auto pdata = pbasedata->data();
 
       if constexpr (t_bWasString)
       {
@@ -1721,12 +1713,12 @@ public:
          if constexpr (t_bPreserve)
          {
 
-            auto sizeCopy = minimum(old_size, new_size);
+            auto sizeCopy = minimum(old_size, lengthNew);
 
             if (sizeCopy > 0)
             {
 
-               memory_copy((void*)p, pbasedataOld->data(), sizeCopy * sizeof(CHARACTER));
+               memory_copy((void*)pdata, pbasedataOld->data(), sizeCopy * sizeof(CHARACTER));
 
             }
 
@@ -1741,17 +1733,11 @@ public:
 
       }
 
-      this->m_begin = p;
+      this->m_begin = pdata;
 
-      this->m_end = p + new_size;
+      this->_set_length(lengthNew);
 
-      this->m_erange = e_range_none;
-
-      this->m_pbasedata = pbasedata;
-
-      p[new_size] = CHARACTER{};
-
-      return p;
+      return pdata;
 
    }
 
@@ -3148,30 +3134,34 @@ template < primitive_character_range RANGE, typed_character_pointer < typename R
 // }
 
 
-//template < character_count n >
-//scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(cha); }
-//template < typed_character_pointer < typename scoped_string_base < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
-template < typename RANGE, typename ITERATOR_TYPE >
-RANGE & create_string(RANGE & range, ITERATOR_TYPE start, ITERATOR_TYPE end, enum_range erange)
-requires (::std::is_base_of < ::character_range < ITERATOR_TYPE >, RANGE >::value)
-{
-
-   auto length = range.size();
-
-   range.m_begin = create_string_data<ITERATOR_TYPE>(length);
-
-   range.m_end = range.m_begin + length;
-
-   ::memory_transfer(range.m_begin, start, length);
-
-   *(typename RANGE::ITEM*)&range.m_end = typename RANGE::ITEM{};
-
-   range.m_erange = e_range_none;
-
-   return range;
-
-}
-
+////template < character_count n >
+////scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(cha); }
+////template < typed_character_pointer < typename scoped_string_base < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+//template < typename RANGE, typename ITERATOR_TYPE >
+//RANGE & create_string(RANGE & range, ITERATOR_TYPE start, ITERATOR_TYPE end, enum_range erange)
+//requires (::std::is_base_of < ::character_range < ITERATOR_TYPE >, RANGE >::value)
+//{
+//
+//   auto lengthNew = range.size();
+//
+//   auto pbasedata = BASE_DATA::create_base_data(lengthNew);
+//
+//   auto pdata = pbasedata->data();
+//
+//   range.m_begin = pdata;
+//
+//   ::memory_transfer(range.m_begin, start, length);
+//
+//   range._set_length(lengthNew);
+//
+//   range.m_erange = e_range_none;
+//
+//   range.m_pbasedata = pbasedata;
+//
+//   return range;
+//
+//}
+//
 
 
 

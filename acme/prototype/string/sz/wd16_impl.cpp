@@ -1,7 +1,6 @@
 // Refactored by camilo on 2022-11-04 05:42 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-
-
+#include "_template.h"
 #include <wchar.h>
 
 
@@ -37,15 +36,37 @@ CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_collate(con
 
 
 CLASS_DECL_ACME character_count string_get_length(const ::wd16_character * psz) noexcept { return wd16_len(psz); }
-CLASS_DECL_ACME character_count string_get_length(const ::wd16_character* psz, character_count sizeMaximumInterest) noexcept
-{
-   character_count size = 0;
-   sizeMaximumInterest++;
-   while (*psz && sizeMaximumInterest > 0) { psz++; size++; sizeMaximumInterest--; }
-   return sizeMaximumInterest == 0 ? -1 : size;
+
+
+CLASS_DECL_ACME character_count string_get_length2(const ::wd16_character* psz, character_count lengthMax) noexcept 
+{ 
+
+   return _string_get_length2(psz, lengthMax);
+   
+   // character_count size = 0;
+
+   // while (lengthMax > 0 && *psz) 
+   // { 
+      
+   //    psz++; 
+      
+   //    size++; 
+      
+   //    lengthMax--; 
+   
+   // }
+
+   // return size;
+
 }
+
 CLASS_DECL_ACME character_count string_safe_length(const ::wd16_character * psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
-CLASS_DECL_ACME character_count string_safe_length(const ::wd16_character* psz, character_count sizeMaximumInterest) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz, sizeMaximumInterest); }
+
+CLASS_DECL_ACME character_count string_safe_length2(const ::wd16_character* psz, character_count sizeMaximumInterest) noexcept 
+{
+   if (::is_null(psz)) return 0; return string_get_length2(psz, sizeMaximumInterest); 
+}
+
 CLASS_DECL_ACME ::wd16_character * string_lowercase(::wd16_character * psz, character_count size) noexcept { wd16_lwr_s(psz, size); return  psz; }
 
 

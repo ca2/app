@@ -92,9 +92,9 @@ inline ::std::strong_ordering _case_insensitive_string_count_compare(const ::ans
 inline bool string_equals(const_char_pointer pszA, const_char_pointer pszB) noexcept{return string_compare(pszA, pszB) == 0; }
 
 CLASS_DECL_ACME character_count string_get_length(const_char_pointer psz) noexcept;
-CLASS_DECL_ACME character_count string_get_length(const ::ansi_character* psz, character_count sizeMaximumInterest) noexcept;
+CLASS_DECL_ACME character_count string_get_length2(const ::ansi_character* psz, character_count sizeMaximumInterest) noexcept;
 CLASS_DECL_ACME character_count string_safe_length(const_char_pointer psz) noexcept;
-CLASS_DECL_ACME character_count string_safe_length(const ::ansi_character* psz, character_count sizeMaximumInterest) noexcept;
+CLASS_DECL_ACME character_count string_safe_length2(const ::ansi_character* psz, character_count sizeMaximumInterest) noexcept;
 CLASS_DECL_ACME ::ansi_character * string_lowercase(::ansi_character * psz, character_count size) noexcept;
 
 

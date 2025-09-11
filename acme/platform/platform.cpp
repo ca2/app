@@ -225,20 +225,35 @@ namespace platform
 
       auto args = m_args;
 
+#ifdef WINDOWS
+
       auto wargs = m_wargs;
 
-      if (!wargs && args)
+      if (!args && !wargs)
       {
 
          throw ::exception(error_wrong_state);
 
       }
 
+#else
+
+      if (!args)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+#endif
+
       for (int i = 0; i < argc; i++)
       {
 
          ::string strArg;
-         
+
+#ifdef WINDOWS
+
          if (wargs[i])
          {
 
@@ -246,6 +261,7 @@ namespace platform
 
          }
          else
+#endif
          {
 
             strArg = args[i];

@@ -1579,7 +1579,7 @@ end_processing_adding:
 
          //SOCKET socket = 0;
 
-         while(m_socketlistDetach.is_ok(it))
+         while(m_socketlistDetach.is_iterator_ok(it))
          {
 
             auto socket = *it;

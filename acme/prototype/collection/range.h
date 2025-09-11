@@ -600,7 +600,7 @@ public:
    }
 
 
-   constexpr bool iterator_ok(const_iterator iterator) const
+   constexpr bool is_iterator_ok(const_iterator iterator) const
    {
 
       return !this->is_end(iterator);

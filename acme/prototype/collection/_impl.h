@@ -665,7 +665,7 @@ base_array(const OTHER_RANGE & range) requires
    base_array()
 { 
 
-   for (auto p = range.begin(); range.iterator_ok(p); p++)
+   for (auto p = range.begin(); range.is_iterator_ok(p); p++)
    {
 
       this->add((ARG_TYPE) *p);

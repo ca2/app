@@ -343,7 +343,7 @@ public:
 
       auto srclen = end - start;
 
-      auto lengthSrc = srclen;
+      character_count lengthSrc = srclen;
 
       auto lengthNew = utf_to_utf_length2(this->m_begin, start, lengthSrc);
 

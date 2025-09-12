@@ -135,6 +135,14 @@ CLASS_DECL_ACME character_count utf_to_utf_length1(const ::wd32_character *, con
 }
 
 
+CLASS_DECL_ACME character_count utf_to_utf_length2(const ::wd32_character *, const ::wd16_character *psource,
+                                                   character_count & srclen)
+{
+
+   return wd16_to_wd32_len(psource, srclen);
+
+}
+
 
 CLASS_DECL_ACME character_count utf_to_utf_length1(const_char_pointer ,const ::wd16_character * psource, character_count srclen)
 {

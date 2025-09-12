@@ -1148,7 +1148,7 @@ CLASS_DECL_ACME character_count wd16_to_wd16_len2(const wd16_character * psz, ch
 }
 
 
-CLASS_DECL_ACME character_count wd16_to_wd16(wd16_character *psz, const const wd16_character * pcsz,
+CLASS_DECL_ACME character_count wd16_to_wd16(wd16_character *psz, const wd16_character * pcsz,
                                              character_count input_size)
 {
 

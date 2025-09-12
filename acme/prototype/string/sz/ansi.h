@@ -5,6 +5,7 @@
 #include <stdarg.h>
 #include <string.h>
 
+
 #define const_ansichar_trigger const_char_pointer 
 
 

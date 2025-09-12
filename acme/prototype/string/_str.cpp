@@ -1683,7 +1683,7 @@ character_count str::find_ww(const ::scoped_string & scopedstrOld, const ::scope
       do
       {
 
-         unicode_increment(pszIter);
+         pszIter = unicode_next(pszIter);
 
       } while (*pszIter != '\0' && unicode_is_letter_or_digit(pszIter));
 
@@ -1731,7 +1731,7 @@ character_count str::find_aww(const ::scoped_string & scopedstrOld, const ::scop
       do
       {
 
-         unicode_increment(pszIter);
+         pszIter = unicode_next(pszIter);
 
       } while (*pszIter != '\0' && unicode_is_letter(pszIter));
 
@@ -1879,7 +1879,7 @@ void str::calc_v1(const ::scoped_string & scopedstrParam, bool & bHasUpper, bool
          break;
       }
       
-      unicode_increment(psz);
+      psz = unicode_next(psz);
 
    }
 
@@ -2480,7 +2480,7 @@ string get_utf8_char(const_char_pointer pszBeg, const_char_pointer psz, ::collec
       while (i != 0)
       {
 
-         unicode_increment(psz);
+         psz = (char *) unicode_next(psz);
 
          if (*psz == '\0')
          {
@@ -2621,7 +2621,7 @@ bool str::get_curly_content(const_char_pointer psz, string & str)
 
    const_char_pointer pszChar;
 
-   for (pszChar = unicode_next(psz); pszChar != nullptr; unicode_increment(pszChar))
+   for (pszChar = (char *) unicode_next(psz); pszChar != nullptr; pszChar = unicode_next(pszChar))
    {
 
       if (*pszChar == '}')
@@ -2675,7 +2675,7 @@ bool str::is_simple_natural(const_char_pointer pszCandidate, character_count iCo
 
       }
 
-      unicode_increment(psz);
+      psz = unicode_next(psz);
 
       iCount--;
 

@@ -144,18 +144,18 @@ CLASS_DECL_ACME ::collection::count unichar_len(const ::wide_character * psz)
    return count;
 }
 
-::collection::count utf16_len_len(const_char_pointer psz, character_count srclen)
-{
-   if(psz == nullptr)
-      return -1;
-   int count = 0;
-   while(srclen > 0 && (psz = unicode_next(psz)) != nullptr)
-   {
-      count++;
-      srclen--;
-   }
-   return count;
-}
+//::collection::count utf16_len_len(const_char_pointer psz, character_count srclen)
+//{
+//   if(psz == nullptr)
+//      return -1;
+//   int count = 0;
+//   while(srclen > 0 && (psz = unicode_next(psz)) != nullptr)
+//   {
+//      count++;
+//      srclen--;
+//   }
+//   return count;
+//}
 
 
 void ansi_to_wd16(::wd16_character * pwsz, const_char_pointer psz)
@@ -247,6 +247,60 @@ void ansi_to_wd16_len(::wd16_character * pwsz, const_char_pointer psz, character
 }
 
 
+void ansi_to_wd16_len(::wd16_character *pwsz, const_char_pointer psz, character_count & srclen)
+{
+
+   character_count count = 0;
+
+   while (count < srclen && *psz != '\0')
+   {
+
+      int len;
+
+      auto iWd32 = unicode_index_length(psz, len);
+
+      if (iWd32)
+      {
+
+         throw ::exception(error_invalid_character);
+
+         return;
+
+      }
+
+      if (count + len > srclen)
+      {
+
+         throw ::exception(error_invalid_character);
+
+         return;
+
+      }
+
+      psz += len;
+
+      srclen -= len;
+
+      auto iWd16 = wd32_to_wd16_char(pwsz, iWd32);
+
+      if (iWd16)
+      {
+
+         throw ::exception(error_invalid_character);
+
+         return;
+
+      }
+
+      pwsz += iWd16;
+
+   }
+
+   *pwsz = L'\0';
+
+}
+
+
 /*
 WCHAR * ansi_to_wd16(const_char_pointer psz)
 {
@@ -282,24 +336,24 @@ int utf8_len(const ::wide_character * pwsz)
    return count;
 }
 
-int utf8_len_len(const ::wide_character * pwsz, character_count srclen)
-{
-   if(pwsz == nullptr)
-      return -1;
-   int count = 0;
-   int n;
-   char sz[16];
-   while(srclen > 0 && *pwsz != L'\0')
-   {
-      n = *pwsz < 0x80 ? 1: uni_to_utf8_2_or_more(sz,*pwsz);
-      if(n <= 0)
-         break;
-      count += n;
-      srclen--;
-      pwsz++;
-   }
-   return count;
-}
+//int utf8_len_len(const ::wide_character * pwsz, character_count srclen)
+//{
+//   if(pwsz == nullptr)
+//      return -1;
+//   int count = 0;
+//   int n;
+//   char sz[16];
+//   while(srclen > 0 && *pwsz != L'\0')
+//   {
+//      n = *pwsz < 0x80 ? 1: uni_to_utf8_2_or_more(sz,*pwsz);
+//      if(n <= 0)
+//         break;
+//      count += n;
+//      srclen--;
+//      pwsz++;
+//   }
+//   return count;
+//}
 
 
 int x_size_of_tables()

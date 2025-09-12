@@ -2345,6 +2345,7 @@
     <ClInclude Include="prototype\string\character_range.h" />
     <ClInclude Include="prototype\string\const_string_range_static_array.h" />
     <ClInclude Include="prototype\string\c_string.h" />
+    <ClInclude Include="prototype\string\sz\_template.h" />
     <ClInclude Include="prototype\string\_character_range.h" />
     <ClInclude Include="prototype\string\_impl_const_string_range.h" />
     <ClInclude Include="prototype\string\_impl_string_base_allocation.h" />
@@ -3977,11 +3978,8 @@
     <ClInclude Include="prototype\string\const_string_range.h" />
     <ClInclude Include="prototype\string\mutable_string_range.h" />
     <ClInclude Include="prototype\string\sz\ansi.h" />
-    <ClInclude Include="prototype\string\sz\ansi_impl.h" />
     <ClInclude Include="prototype\string\sz\wd16.h" />
-    <ClInclude Include="prototype\string\sz\wd16_impl.h" />
     <ClInclude Include="prototype\string\sz\wd32.h" />
-    <ClInclude Include="prototype\string\sz\wd32_impl.h" />
     <ClInclude Include="prototype\string\sz\_.h" />
     <ClInclude Include="prototype\string\sz\_impl.h" />
     <ClInclude Include="prototype\string\utf8_character.h" />

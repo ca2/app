@@ -229,7 +229,7 @@ namespace write_text
 
          bWhitespace = bWhitespaceNow;
 
-         pszEnd = unicode_increment(pszEnd);
+         pszEnd = unicode_next(pszEnd);
 
          if (::is_empty(pszEnd))
          {
@@ -334,7 +334,7 @@ namespace write_text
 
          auto pszLast = pszEnd;
 
-         unicode_increment(pszEnd);
+         pszEnd = unicode_next(pszEnd);
 
          string strNow = string(pszStart, pszEnd - pszStart);
          

@@ -2867,7 +2867,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
       }
 
-      ::unicode_increment(psz);
+      psz = ::unicode_next(psz);
 
    }
 
@@ -3005,9 +3005,6 @@ inline string & operator <<(string & str, INTEGRAL i)
 }
 
 
-
-
-
 template < typename ITERATOR_TYPE >
 inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::unicode_rear_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 {
@@ -3016,13 +3013,13 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
    auto pszEnd = (const CHARACTER *)this->end();
    
-   unicode_decrement(pszEnd, psz);
+   pszEnd = unicode_prior(pszEnd, psz);
 
    auto pszBlock = (const CHARACTER *)scopedstr.begin();
 
    auto pszBlockEnd = (const CHARACTER *)scopedstr.end();
 
-   unicode_decrement(pszBlockEnd, pszBlock);
+   pszBlockEnd = unicode_prior(pszBlockEnd, pszBlock);
 
    if (::is_null(pszBlockEnd))
    {
@@ -3050,7 +3047,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
          }
 
-         pszSub2 = (const CHARACTER *)unicode_decrement(pszSub2, pszBlock);
+         pszSub2 = (const CHARACTER *)unicode_prior(pszSub2, pszBlock);
 
          if (::is_null(pszSub2))
          {
@@ -3063,7 +3060,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
          }
 
-         psz2 = (const CHARACTER *)unicode_decrement(psz2, psz);
+         psz2 = (const CHARACTER *)unicode_prior(psz2, psz);
 
          if (is_null(psz2))
          {
@@ -3078,7 +3075,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
       }
 
-      pszEnd = (const CHARACTER *)unicode_decrement(pszEnd, psz);
+      pszEnd = (const CHARACTER *)unicode_prior(pszEnd, psz);
 
    }
 
@@ -3099,13 +3096,13 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
    auto pszEnd = (const CHARACTER *)this->end();
 
-   unicode_decrement(pszEnd, psz);
+   pszEnd = unicode_prior(pszEnd, psz);
 
    auto pszBlock = (const CHARACTER *)scopedstr.begin();
 
    auto pszBlockEnd = (const CHARACTER *)scopedstr.end();
 
-   unicode_decrement(pszBlockEnd, pszBlock);
+   pszBlockEnd = unicode_prior(pszBlockEnd, pszBlock);
 
    if (::is_null(pszBlockEnd))
    {
@@ -3133,7 +3130,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
          }
 
-         pszSub2 = (const CHARACTER *)unicode_decrement(pszSub2, pszBlock);
+         pszSub2 = (const CHARACTER *)unicode_prior(pszSub2, pszBlock);
 
          if (::is_null(pszSub2))
          {
@@ -3146,7 +3143,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
          }
 
-         psz2 = (const CHARACTER *)unicode_decrement(psz2, psz);
+         psz2 = (const CHARACTER *)unicode_prior(psz2, psz);
 
          if (is_null(psz2))
          {
@@ -3161,7 +3158,7 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
       }
 
-      pszEnd = (const CHARACTER *)unicode_decrement(pszEnd, psz);
+      pszEnd = (const CHARACTER *)unicode_prior(pszEnd, psz);
 
    }
 
@@ -4021,7 +4018,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::unichar_substr(char
    while (ca < iFirst && *pchStart != '\0')
    {
 
-      pchStart = unicode_increment(pchStart);
+      pchStart = unicode_next(pchStart);
 
       ca++;
 
@@ -4037,7 +4034,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::unichar_substr(char
    while (ca < count && *pchEnd != '\0')
    {
 
-      pchEnd = unicode_increment(pchEnd);
+      pchEnd = unicode_next(pchEnd);
 
       ca++;
 

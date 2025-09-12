@@ -52,11 +52,13 @@
 template < typename ITERATOR_TYPE >
 //template < other_primitive_character < typename ::string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
 template < typename OTHER_CHARACTER >
-inline void string_base < ITERATOR_TYPE >::construct20(const OTHER_CHARACTER * psz, character_count length, enum_range erange)
+inline void string_base < ITERATOR_TYPE >::construct20(const OTHER_CHARACTER * psz, character_count srclen, enum_range erange)
  requires (other_primitive_character < OTHER_CHARACTER, CHARACTER >)
 {
 
-   auto lengthNew = utf_to_utf_length(this->m_begin, psz, length);
+   auto lengthSrc = srclen;
+
+   auto lengthNew = utf_to_utf_length2(this->m_begin, psz, lengthSrc);
 
    auto pbasedata  = this->create_string_data2(lengthNew, erange);
 
@@ -64,7 +66,7 @@ inline void string_base < ITERATOR_TYPE >::construct20(const OTHER_CHARACTER * p
 
    this->m_begin = pdata;
 
-   utf_to_utf(pdata, psz, lengthNew);
+   utf_to_utf(pdata, psz, lengthSrc);
 
    this->_set_length(lengthNew);
 
@@ -125,7 +127,7 @@ requires other_primitive_character < OTHER_CHARACTER, CHARACTER > :
 
    }
 
-   auto lenUnit = utf_to_utf_length(this->begin(), &chSrc, 1);
+   auto lenUnit = utf_to_utf_length1(this->begin(), &chSrc, 1);
 
    auto lengthNew = lenUnit * repeat;
 
@@ -313,11 +315,11 @@ requires (sizeof(SAME_SIZE_CHARACTER) == sizeof(CHARACTER))
 
 template < typename ITERATOR_TYPE >
 template < primitive_character OTHER_SIZE_CHARACTER >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_assign(const OTHER_SIZE_CHARACTER * pszSource, character_count len)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_assign(const OTHER_SIZE_CHARACTER * pszSource, character_count srclen)
 requires (sizeof(OTHER_SIZE_CHARACTER) != sizeof(CHARACTER))
 {
 
-   ASSERT((void * )(pszSource + len) < (void*)this->m_begin
+   ASSERT((void * )(pszSource + srclen) < (void*)this->m_begin
       || (void * )pszSource > (void*)(this->m_end))
 
    // auto dstlen = utf_to_utf_length(this->begin(), pszSource, len);
@@ -350,7 +352,7 @@ requires (sizeof(OTHER_SIZE_CHARACTER) != sizeof(CHARACTER))
 
    auto pdataThis = this->m_pbasedata;
 
-   if (::is_null(pszSource) || len <= 0)
+   if (::is_null(pszSource) || srclen <= 0)
    {
 
       this->default_construct();
@@ -359,28 +361,39 @@ requires (sizeof(OTHER_SIZE_CHARACTER) != sizeof(CHARACTER))
    else
    {
 
-      auto lengthNew = utf_to_utf_length(this->begin(), pszSource, len);
+      auto lengthSrc = srclen;
 
-      if ((::is_null(pdataThis) &&
-         !pdataThis->base_data_is_shared() &&
-         lengthNew <= pdataThis->storage_character_count()))
+      auto lengthNew = utf_to_utf_length2(this->begin(), pszSource, lengthSrc);
+
+      if (lengthNew <= 0)
       {
 
-         pdataThis = nullptr;
+         this->default_construct();
 
       }
       else
       {
 
-         auto pbasedata =  this->create_string_data2(lengthNew, this->m_erange);
+         if ((::is_set(pdataThis) && !pdataThis->base_data_is_shared() &&
+              lengthNew <= pdataThis->storage_character_count()))
+         {
 
-         this->m_begin = pbasedata->data();
+            pdataThis = nullptr;
+
+         }
+         else
+         {
+
+            auto pbasedata = this->create_string_data2(lengthNew, this->m_erange);
+
+            this->m_begin = pbasedata->data();
+         }
+
+         utf_to_utf((CHARACTER *)this->m_begin, pszSource, lengthSrc);
+
+         this->_set_length(lengthNew);
 
       }
-
-      utf_to_utf((CHARACTER*)  this->m_begin, pszSource, lengthNew);
-
-      this->_set_length(lengthNew);
 
    }
 
@@ -404,7 +417,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHA
    if (repeat > 0)
    {
 
-      auto lenUnit = utf_to_utf_length(this->begin(), &chSrc, 1);
+      auto lenUnit = utf_to_utf_length1(this->begin(), &chSrc, 1);
 
       auto len = lenUnit * repeat;
 
@@ -450,7 +463,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHA
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_append(const CHARACTER * pszSrc, character_count count)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_append(const CHARACTER * pszSrc, character_count srclen)
 {
 
    auto old_len = this->length();
@@ -462,17 +475,17 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_append(co
 
    }
 
-   auto add_len = utf_to_utf_length(this->m_begin, pszSrc, count);
+   auto lengthSrc = srclen;
+
+   auto add_len = utf_to_utf_length2(this->m_begin, pszSrc, lengthSrc);
 
    auto new_len = old_len + add_len;
 
    auto p = get_buffer<true>(new_len);
 
-   utf_to_utf(p + old_len, pszSrc, count);
+   utf_to_utf(p + old_len, pszSrc, lengthSrc);
 
-   //release_buffer(nNewLength);
-
-   p[new_len] = CHARACTER{};
+   this->_set_length(new_len);
 
    return *this;
 
@@ -494,7 +507,9 @@ requires other_primitive_character < OTHER_CHARACTER, CHARACTER >
 
    }
 
-   auto add_len = utf_to_utf_length(this->m_begin, pszSrc, count);
+   auto lengthSrcAppend = count;
+
+   auto add_len = utf_to_utf_length2(this->m_begin, pszSrc, lengthSrcAppend);
 
    auto new_len = old_len + add_len;
 
@@ -502,11 +517,9 @@ requires other_primitive_character < OTHER_CHARACTER, CHARACTER >
 
    p += old_len;
 
-   utf_to_utf(p, pszSrc, count);
+   utf_to_utf(p, pszSrc, lengthSrcAppend);
 
-   ASSERT(p <= this->m_end);
-
-   p[new_len] = CHARACTER{};
+   this->_set_length(new_len);
 
    return *this;
 
@@ -626,11 +639,13 @@ inline void string_base< ITERATOR_TYPE >::construct_from_range(ITERATOR_TYPE pSr
 
 template < typename ITERATOR_TYPE >
 template < typename OTHER_CHARACTER_POINTER >
-inline void string_base< ITERATOR_TYPE >::construct_from_range(OTHER_CHARACTER_POINTER pSrc, character_count src_len)
+inline void string_base< ITERATOR_TYPE >::construct_from_range(OTHER_CHARACTER_POINTER pSrc, character_count srclen)
 requires other_character_pointer < OTHER_CHARACTER_POINTER, ITERATOR_TYPE >
 {
 
-   auto lengthNew = utf_to_utf_length(this->begin(), pSrc, src_len);
+   auto lengthSrc = srclen;
+
+   auto lengthNew = utf_to_utf_length2(this->begin(), pSrc, lengthSrc);
 
    if (::is_null(pSrc) || lengthNew <= 0)
    {
@@ -647,7 +662,7 @@ requires other_character_pointer < OTHER_CHARACTER_POINTER, ITERATOR_TYPE >
 
    this->m_begin = pdata;
 
-   utf_to_utf(pdata, pSrc, src_len);
+   utf_to_utf(pdata, pSrc, lengthSrc);
 
    this->_set_length(lengthNew);
 

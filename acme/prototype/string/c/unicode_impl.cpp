@@ -46,33 +46,50 @@
 
 
 
-CLASS_DECL_ACME character_count _utf_to_utf_length(const ::ansi_character*, const ::ansi_character* psource, character_count srclen)
+//CLASS_DECL_ACME character_count _utf_to_utf_length(const ::ansi_character*, const ::ansi_character* psource, character_count srclen)
+//{
+//
+//   return srclen >= 0 ? srclen : string_get_length(psource) + srclen + 1;
+//
+//}
+
+
+CLASS_DECL_ACME character_count utf_to_utf_length1(const_char_pointer ,const_char_pointer psource, character_count srclen)
 {
 
-   return srclen >= 0 ? srclen : string_get_length(psource) + srclen + 1;
+   return ansi_to_ansi_len(psource, srclen);
 
 }
 
 
-CLASS_DECL_ACME character_count utf_to_utf_length(const_char_pointer ,const_char_pointer psource, character_count srclen)
+CLASS_DECL_ACME character_count utf_to_utf_length2(const_char_pointer, const_char_pointer psource,
+                                                   character_count & srclen)
 {
 
-   return srclen >= 0 ? srclen : string_safe_length(psource) + srclen + 1;
+   return ansi_to_ansi_len2(psource, srclen);
 
 }
 
 
 // template <  >
-CLASS_DECL_ACME character_count utf_to_utf_length(const ::wd16_character *, const ::wd16_character * psource, character_count srclen)
+CLASS_DECL_ACME character_count utf_to_utf_length1(const ::wd16_character *, const ::wd16_character * psource, character_count srclen)
 {
 
-   return srclen >= 0 ? srclen : string_safe_length(psource) + srclen + 1;
+   return wd16_to_wd16_len(psource, srclen);
 
 }
 
 
+CLASS_DECL_ACME character_count utf_to_utf_length2(const ::wd16_character *, const ::wd16_character *psource,
+                                                   character_count & srclen)
+{
 
-CLASS_DECL_ACME character_count utf_to_utf_length(const ::wd16_character *, const ::wd32_character * psource, character_count srclen)
+   return wd16_to_wd16_len2(psource, srclen);
+
+}
+
+
+CLASS_DECL_ACME character_count utf_to_utf_length1(const ::wd16_character *, const ::wd32_character * psource, character_count srclen)
 {
 
    return wd32_to_wd16_len(psource, srclen);
@@ -81,16 +98,36 @@ CLASS_DECL_ACME character_count utf_to_utf_length(const ::wd16_character *, cons
 
 
 
-CLASS_DECL_ACME character_count utf_to_utf_length(const ::wd32_character *, const ::wd32_character * psource, character_count srclen)
+CLASS_DECL_ACME character_count utf_to_utf_length2(const ::wd16_character *, const ::wd32_character *psource,
+                                                   character_count & srclen)
 {
 
-   return srclen >= 0 ? srclen : string_safe_length(psource) + srclen + 1;
+   return wd32_to_wd16_len2(psource, srclen);
+
+}
+
+
+CLASS_DECL_ACME character_count utf_to_utf_length1(const ::wd32_character *, const ::wd32_character *psource,
+                                                   character_count srclen)
+{
+
+   return wd32_to_wd32_len(psource, srclen);
 
 }
 
 
 
-CLASS_DECL_ACME character_count utf_to_utf_length(const ::wd32_character *, const ::wd16_character * psource, character_count srclen)
+CLASS_DECL_ACME character_count utf_to_utf_length2(const ::wd32_character *, const ::wd32_character *psource,
+                                                   character_count & srclen)
+{
+
+   return wd32_to_wd32_len2(psource, srclen);
+
+}
+
+
+CLASS_DECL_ACME character_count utf_to_utf_length1(const ::wd32_character *, const ::wd16_character *psource,
+                                                   character_count srclen)
 {
 
    return wd16_to_wd32_len(psource, srclen);
@@ -99,7 +136,7 @@ CLASS_DECL_ACME character_count utf_to_utf_length(const ::wd32_character *, cons
 
 
 
-CLASS_DECL_ACME character_count utf_to_utf_length(const_char_pointer ,const ::wd16_character * psource, character_count srclen)
+CLASS_DECL_ACME character_count utf_to_utf_length1(const_char_pointer ,const ::wd16_character * psource, character_count srclen)
 {
 
    return wd16_to_ansi_len(psource, srclen);
@@ -108,7 +145,17 @@ CLASS_DECL_ACME character_count utf_to_utf_length(const_char_pointer ,const ::wd
 
 
 
-CLASS_DECL_ACME character_count utf_to_utf_length(const ::wd16_character *, const_char_pointer psource, character_count srclen)
+CLASS_DECL_ACME character_count utf_to_utf_length2(const_char_pointer, const ::wd16_character *psource,
+                                                   character_count & srclen)
+{
+
+   return wd16_to_ansi_len2(psource, srclen);
+
+}
+
+
+CLASS_DECL_ACME character_count utf_to_utf_length1(const ::wd16_character *, const_char_pointer psource,
+                                                   character_count srclen)
 {
 
    return ansi_to_wd16_len(psource, srclen);
@@ -116,16 +163,16 @@ CLASS_DECL_ACME character_count utf_to_utf_length(const ::wd16_character *, cons
 }
 
 
+CLASS_DECL_ACME character_count utf_to_utf_length2(const ::wd16_character *, const_char_pointer psource,
+                                                   character_count & srclen)
+{
 
-// CLASS_DECL_ACME character_count __utf_to_utf_length(const ::wd16_character*, const ::ansi_character* psource, character_count srclen)
-// {
-//
-//    return ansi_to_wd16_len(psource, srclen);
-//
-// }
+   return ansi_to_wd16_len2(psource, srclen);
+
+}
 
 
-CLASS_DECL_ACME character_count utf_to_utf_length(const_char_pointer ,const ::wd32_character * psource, character_count srclen)
+CLASS_DECL_ACME character_count utf_to_utf_length1(const_char_pointer ,const ::wd32_character * psource, character_count srclen)
 {
 
    return wd32_to_ansi_len(psource, srclen);
@@ -134,7 +181,17 @@ CLASS_DECL_ACME character_count utf_to_utf_length(const_char_pointer ,const ::wd
 
 
 
-CLASS_DECL_ACME character_count utf_to_utf_length(const ::wd32_character *, const_char_pointer psource, character_count srclen)
+CLASS_DECL_ACME character_count utf_to_utf_length2(const_char_pointer, const ::wd32_character *psource,
+                                                   character_count & srclen)
+{
+
+   return wd32_to_ansi_len(psource, srclen);
+
+}
+
+
+CLASS_DECL_ACME character_count utf_to_utf_length1(const ::wd32_character *, const_char_pointer psource,
+                                                   character_count srclen)
 {
 
    return ansi_to_wd32_len(psource, srclen);

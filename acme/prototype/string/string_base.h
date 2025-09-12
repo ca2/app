@@ -514,6 +514,10 @@ public:
    void construct_from_a_range(OTHER_CHARACTER_POINTER start, OTHER_CHARACTER_POINTER end, enum_range erange = e_range_none)
    {
 
+      auto length = end - start;
+
+      auto lengthNew = utf_to_utf_length(this->m_begin, start, length);
+
       if (::is_null(start) || end <= start)
       {
 
@@ -523,7 +527,6 @@ public:
 
       }
 
-      auto lengthNew = utf_to_utf_length(this->m_begin, start, end - start);
 
       auto pbasedata = BASE_DATA::create_base_data(lengthNew + 1);
 

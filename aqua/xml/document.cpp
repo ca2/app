@@ -376,7 +376,7 @@ namespace xml
 
          }
 
-         unicode_increment(rangeXml.m_begin);
+         rangeXml.m_begin = unicode_next(rangeXml.m_begin);
 
       }
 

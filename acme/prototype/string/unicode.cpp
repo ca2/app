@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/prototype/string/c/encoding.h"
 ////#include "acme/exception/exception.h"
 
 
@@ -270,3 +271,177 @@ character_count wd16_to_wd32_len(const ::wd16_character * input, character_count
 //
 //    return utf_to_utf_length(p, s, n);
 // }
+
+
+CLASS_DECL_ACME character_count ansi_to_ansi_len(const_char_pointer psz, character_count input_size)
+{
+
+   if (input_size < 0)
+   {
+      
+      auto p = psz;
+
+      int iError = 0;
+
+      while (*p)
+      {
+
+         p = unicode_next(p, &iError);
+
+         if (iError > 0)
+         {
+
+            throw ::exception(error_invalid_character, "ansi_to_ansi_len");
+
+         }
+
+      }
+
+      return p - psz;
+
+   }
+   else
+   {
+      
+      return ansi_to_ansi_len2(psz, input_size);
+
+   }
+
+}
+
+
+CLASS_DECL_ACME character_count ansi_to_ansi_len2(const_char_pointer psz, character_count & srclen)
+{
+
+   if (srclen < 0)
+   {
+
+      return ansi_to_ansi_len(psz, -1);
+
+   }
+   else
+   {
+
+      auto p = psz;
+
+      character_count countSrc = 0;
+
+      auto remainingSrc = srclen;
+
+      int iError = 0;
+
+      while (countSrc < srclen && *p)
+      {
+         
+         auto pNext = unicode_next(p, &remainingSrc);
+
+         auto len = pNext - p;
+
+         countSrc += len;
+
+         p = pNext;
+
+      }
+
+      return countSrc;
+
+   }
+
+}
+
+
+CLASS_DECL_ACME character_count ansi_to_ansi(::ansi_character * psz, const_char_pointer pcsz,
+                                             character_count input_size)
+{
+
+   if (input_size < 0)
+   {
+
+      auto pSrc = pcsz;
+      
+      auto pDst = psz;
+
+      int iError = 0;
+
+      while (*pSrc)
+      {
+
+         auto pSrcNext = unicode_next(pSrc, &iError);
+
+         if (iError > 0)
+         {
+
+            throw ::exception(error_invalid_character, "ansi_to_ansi_len (a)");
+
+         }
+
+         while (pSrc < pSrcNext)
+         {
+
+            *pDst = *pSrc;
+
+            pSrc++;
+
+            pDst++;
+
+         }
+
+      }
+
+      return pDst - psz;
+
+   }
+   else
+   {
+
+      auto pSrc = pcsz;
+
+      auto pDst = psz;
+
+      auto count = 0;
+
+      int iError = 0;
+
+      while (count < input_size && *pSrc)
+      {
+
+         auto pSrcNext = unicode_next(pSrc, &iError);
+
+         if (iError > 0)
+         {
+
+            throw ::exception(error_invalid_character, "ansi_to_ansi (b1)");
+         }
+
+         auto len = pSrcNext - pSrc;
+
+         if (count + len > input_size)
+         {
+
+            throw ::exception(error_index_out_of_bounds, "ansi_to_ansi (b2)");
+
+         }
+
+         while (pSrc < pSrcNext)
+         {
+
+            *pDst = *pSrc;
+
+            pSrc++;
+
+            pDst++;
+
+            count++;
+
+         }
+
+      }
+
+      return count;
+
+   }
+
+}
+
+
+

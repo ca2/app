@@ -11,7 +11,6 @@
 //CLASS_DECL_ACME  constexpr character_count     byte_length_to_character_count(const_wd16char_trigger, memsize nByteLength);
 
 
-
 CLASS_DECL_ACME void string_count_copy(::wd16_character * pchDest, const ::wd16_character * pchSrc, character_count nChars) noexcept;
 CLASS_DECL_ACME void string_count_copy(::wd16_character * pchDest, size_t nDestLen, const ::wd16_character * pchSrc, character_count nChars) noexcept;
 CLASS_DECL_ACME void overlapped_string_count_copy(::wd16_character * pchDest, const ::wd16_character * pchSrc, character_count nChars) noexcept;

@@ -12,11 +12,10 @@ encoding_exception::encoding_exception(const ::scoped_string & scopedstrMessage)
 }
 
 
-
-CLASS_DECL_ACME void throw_encoding_exception(const ::scoped_string & scopedstrMessage)
+CLASS_DECL_ACME void throw_encoding_exception(const_char_pointer pszMessage)
 {
 
-   throw encoding_exception(scopedstrMessage);
+   throw encoding_exception(pszMessage);
 
 }
 

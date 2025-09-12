@@ -4175,7 +4175,7 @@ namespace draw2d
       while (*psz && iRange < iStart + iCount)
       {
 
-         const_char_pointer pszNext = unicode_next(scopedstr);
+         const_char_pointer pszNext = unicode_next(scopedstr.m_begin);
 
          if (pszNext == nullptr)
          {
@@ -5051,7 +5051,7 @@ namespace draw2d
             while (true)
             {
 
-               unicode_increment(psz);
+               psz = unicode_next(psz);
 
                strSample = string(pszStart, psz - pszStart) + "...";
 
@@ -5115,7 +5115,7 @@ namespace draw2d
                if ((int)sz.cx() > rectangleClip.width())
                {
 
-                  i = unicode_prior_index(i, str);
+                  i = unicode_prior(str.c_str() + i, str.c_str()) - str.c_str();
 
                   if (i <= 0)
                   {
@@ -5318,7 +5318,7 @@ namespace draw2d
 
       const_char_pointer pszEnd = pszSource + len;
 
-      const_char_pointer pszStart = unicode_next(scopedstrSource);
+      const_char_pointer pszStart = unicode_next(scopedstrSource.m_begin);
 
       int_size sz;
 
@@ -5413,7 +5413,7 @@ namespace draw2d
 
                pszPrevious = psz;
 
-               unicode_increment(psz);
+               psz = unicode_next(psz);
 
             } while (psz != nullptr);
 
@@ -5442,7 +5442,7 @@ namespace draw2d
                break;
             }
 
-            unicode_decrement(psz, pszSource);
+            psz = unicode_prior(psz, pszSource);
 
             pszEnd = psz;
 
@@ -5452,7 +5452,7 @@ namespace draw2d
 
          pszPrevious = psz;
 
-         unicode_increment(psz);
+         psz = unicode_next(psz);
 
          if (bEnd)
          {

@@ -122,38 +122,11 @@ public:
       _BASE_RAW_RANGE(no_initialize_t{})
    {
 
-      if constexpr (length >= 1)
-      {
-
-         if (s[length - 1] == CHARACTER{})
-         {
-
-            if (length - 1 <= 0)
-            {
-
-               this->set_null();
-
-               return;
-
-            }
-
-            this->m_begin = s;
-
-            this->m_end = s + length - 1;
-
-            this->m_erange = e_range_none;
-
-            this->m_pbasedata = nullptr;
-
-            return;
-
-         }
-
-      }
+      auto lengthNew = string_safe_length2(s, length);
 
       this->m_begin = s;
 
-      this->m_end = s + length;
+      this->m_end = s + lengthNew;
 
       this->m_erange = e_range_none;
 
@@ -368,9 +341,11 @@ public:
    requires (sizeof(get_iterator_item < OTHER_ITERATOR_TYPE >) != sizeof(CHARACTER))
    {
 
-      auto length = end - start;
+      auto srclen = end - start;
 
-      auto lengthNew = utf_to_utf_length(this->m_begin, start, length);
+      auto lengthSrc = srclen;
+
+      auto lengthNew = utf_to_utf_length2(this->m_begin, start, lengthSrc);
 
       auto pbasedata = this->create_string_data2(lengthNew, erange);
 
@@ -378,7 +353,7 @@ public:
 
       this->m_begin = pdata;
 
-      utf_to_utf(pdata, start, length);
+      utf_to_utf(pdata, start, lengthSrc);
 
       this->_set_length(lengthNew);
 

@@ -27,7 +27,7 @@ CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const_char_pointer psz, const_
 CLASS_DECL_ACME void windowing_output_debug_string(const ::scoped_string & scopedstrDebugString);
 
 
-CLASS_DECL_ACME void throw_encoding_exception(const ::scoped_string & scopedstrMessage);
+CLASS_DECL_ACME void throw_encoding_exception(const_char_pointer pszMessage);
 
 
 //CLASS_DECL_ACME::platform::system* system();

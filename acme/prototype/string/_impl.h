@@ -588,7 +588,7 @@ bool string_range < ITERATOR_TYPE > ::defer_consume_quoted_value(string_base <IT
 
    skip:
 
-      unicode_increment(this->m_begin);
+      this->m_begin = unicode_next(this->m_begin);
 
       if (this->is_empty() || *this->m_begin == '\0')
       {
@@ -600,7 +600,7 @@ bool string_range < ITERATOR_TYPE > ::defer_consume_quoted_value(string_base <IT
       if (*this->m_begin == '\\')
       {
 
-         unicode_increment(this->m_begin);
+         this->m_begin = unicode_next(this->m_begin);
 
          if (this->is_empty())
          {
@@ -930,7 +930,7 @@ unsigned long long string_range < ITERATOR_TYPE >::consume_natural(unsigned long
    while (unicode_is_digit(this->m_begin))
    {
 
-      unicode_increment(this->m_begin);
+      this->m_begin = unicode_next(this->m_begin);
 
       i++;
 
@@ -1016,7 +1016,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_non_space
    while (!unicode_is_whitespace(this->m_begin))
    {
       
-      unicode_increment(this->m_begin);
+      this->m_begin = unicode_next(this->m_begin);
 
       if (this->is_empty())
       {
@@ -1092,7 +1092,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_nc_name()
    do
    {
 
-      unicode_increment(this->m_begin);
+      this->m_begin = unicode_next(this->m_begin);
 
    } while(this->has_character() &&
            (unicode_is_letter_or_digit(this->m_begin)
@@ -1234,7 +1234,7 @@ void string_range < ITERATOR_TYPE >::no_escape_skip_quoted_value()
    while (*this->m_begin != quoting_character)
    {
 
-      unicode_increment(this->m_begin);
+      this->m_begin = unicode_next(this->m_begin);
 
       if (this->is_empty())
       {
@@ -1743,7 +1743,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::xml_consume_comme
 
       }
 
-      unicode_increment(this->m_begin);
+      this->m_begin = unicode_next(this->m_begin);
 
    }
 

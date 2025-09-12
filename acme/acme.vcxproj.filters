@@ -1995,19 +1995,10 @@
     <ClInclude Include="prototype\string\sz\ansi.h">
       <Filter>Header Files\prototype\string\sz</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\string\sz\ansi_impl.h">
-      <Filter>Header Files\prototype\string\sz</Filter>
-    </ClInclude>
     <ClInclude Include="prototype\string\sz\wd16.h">
       <Filter>Header Files\prototype\string\sz</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\string\sz\wd16_impl.h">
-      <Filter>Header Files\prototype\string\sz</Filter>
-    </ClInclude>
     <ClInclude Include="prototype\string\sz\wd32.h">
-      <Filter>Header Files\prototype\string\sz</Filter>
-    </ClInclude>
-    <ClInclude Include="prototype\string\sz\wd32_impl.h">
       <Filter>Header Files\prototype\string\sz</Filter>
     </ClInclude>
     <ClInclude Include="prototype\string\sz\_impl.h">
@@ -4253,6 +4244,9 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\byte2_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\sz\_template.h">
+      <Filter>Header Files\prototype\string\sz</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -165,7 +165,7 @@ CLASS_DECL_ACME ::wd16_character * string_reverse(::wd16_character * psz) noexce
 
    ::wd16_character * pDec;
 
-   while ((pDec = unicode_prior(psz, p)) != nullptr)
+   while ((pDec = (wd16_character *) unicode_prior(psz, p)) != nullptr)
    {
 
       strReverse.append(pDec, pDec - p);

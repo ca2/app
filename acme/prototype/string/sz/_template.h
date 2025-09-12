@@ -24,4 +24,71 @@ inline character_count _string_get_length2(const CHARACTER * psz, character_coun
 }
 
 
+template<typename CHARACTER>
+inline character_count __utftype_to_utftype_len(const CHARACTER *psz)
+{
+
+   auto p = psz;
+
+   while (*p)
+   {
+
+      p = unicode_next(p);
+
+      if (!p)
+      {
+
+         throw_encoding_exception("__utftype_to_utftype_len");
+
+      }
+
+   }
+
+   return p - psz;
+
+}
+
+
+template<typename CHARACTER, typename CHARACTER_COUNT>
+inline character_count __utftype_to_utftype_len2(const CHARACTER *psz, CHARACTER_COUNT & srclen)
+{
+
+   if (srclen < 0)
+   {
+
+      return __utftype_to_utftype_len(psz);
+
+   }
+
+   auto p = psz;
+
+   auto countSrc = 0;
+
+   auto remainingSrc = srclen;
+
+   while (countSrc < srclen && *p)
+   {
+
+      auto pNext = unicode_next(p, &remainingSrc);
+
+      auto len = pNext - p;
+
+      if (countSrc + len > srclen)
+      {
+
+         throw_encoding_exception("__utftype_to_utftype_len2");
+
+      }
+
+      p = pNext;
+
+      countSrc += len;
+
+   }
+
+   return countSrc;
+
+}
+
+
 

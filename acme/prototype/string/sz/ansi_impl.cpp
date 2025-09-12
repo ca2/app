@@ -196,7 +196,7 @@ CLASS_DECL_ACME ::ansi_character * string_reverse(::ansi_character * psz) noexce
 
    ::ansi_character * pDec;
 
-   while ((pDec = (::ansi_character *)unicode_decrement(psz, p)) != nullptr)
+   while ((pDec = (::ansi_character *)unicode_prior(psz, p)) != nullptr)
    {
 
       strReverse.append(pDec, pDec - p);

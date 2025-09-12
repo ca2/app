@@ -286,7 +286,7 @@ namespace html
             strChar.formatf("&#%d;", iChar);
             str += strChar;
          }
-         unicode_increment(psz);
+         psz = unicode_next(psz);
       }
       return str;
    }
@@ -341,7 +341,7 @@ namespace html
             str += strChar;
          }
          
-         unicode_increment(psz);
+         psz = unicode_next(psz);
 
       }
       return str;

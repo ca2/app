@@ -1234,7 +1234,7 @@ namespace html
 
                   }
 
-                  unicode_increment(pszEnd);
+                  unicode_next(pszEnd);
 
                   iChar++;
                }

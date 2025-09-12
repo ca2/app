@@ -5357,10 +5357,14 @@ namespace user
 
          pszPrevious = pszEnd;
 
-         unicode_increment(pszEnd);
+         pszEnd = unicode_next(pszEnd);
 
          if (pszEnd == nullptr)
+         {
+
             break;
+
+         }
 
          lim1 = lim2;
 

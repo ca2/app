@@ -176,7 +176,7 @@ bool const_string_range < ITERATOR_TYPE > ::is_trimmed_empty() const
 
       }
 
-      unicode_increment(p);
+      p = unicode_next(p);
 
    }
 

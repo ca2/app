@@ -17,7 +17,7 @@
 //
 //   }
 //
-//   synchronous_lock synchronouslock(pmutex);
+//   synchronous_lock synchronouslock(pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   return mm1_get_file_image(pcr, cx, cy, iScan, psz);
 //

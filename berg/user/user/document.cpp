@@ -161,7 +161,7 @@ namespace user
    ::user::interaction_array document::get_top_level_windows()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::user::interaction_array uia;
 
@@ -226,7 +226,7 @@ namespace user
    bool document::contains(::user::interaction* pinteraction) const
    {
       
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (auto& pimpact : m_impacta)
       {
@@ -531,7 +531,7 @@ namespace user
    void document::disconnect_impacts()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (::collection::index index = 0; index < m_impacta.get_count(); index++)
       {
@@ -893,7 +893,7 @@ namespace user
    {
       
       {
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
          
          // if no more views on the document_interface, delete ourself
          // not called if directly closing the document_interface or terminating the cast
@@ -1379,7 +1379,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          for (auto & pimpact : m_impacta)
          {
@@ -1412,7 +1412,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_impacta.erase_all();
 
@@ -1428,7 +1428,7 @@ namespace user
 
       ::pointer<::object>pthis = this;
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto viewptra = m_impacta;
 
@@ -1623,7 +1623,7 @@ namespace user
    //  (at least one of our views must be in this frame)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //ASSERT_OK(pframeParam);
 
@@ -2065,7 +2065,7 @@ namespace user
    {
 
       
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
          
          //ASSERT_OK(pimpact);
       
@@ -2099,7 +2099,7 @@ namespace user
    void document::erase_impact(::user::impact * pimpact)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //ASSERT_OK(pimpact);
 
@@ -2229,7 +2229,7 @@ namespace user
       
       {
          
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
          
          impacta = m_impacta;
          

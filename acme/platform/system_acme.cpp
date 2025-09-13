@@ -997,7 +997,7 @@ namespace platform
    //    unsigned int system::crc32(unsigned int uCrc, const ::block& block)
    //    {
    //
-   //       _synchronous_lock synchronouslock(this->synchronization());
+   //       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //       if (!m_pcompressZlibCrc32)
    //       {
@@ -1640,7 +1640,7 @@ namespace platform
    //    //
    //    //#ifdef CUBE
    //    //
-   //    //      _synchronous_lock synchronouslock(m_pmutexContainerizedLibrary);
+   //    //      _synchronous_lock synchronouslock(m_pmutexContainerizedLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //    //
    //    //      auto & plibrary = m_mapContainerizedLibrary[strComponent][strImplementation];
    //    //
@@ -1760,7 +1760,7 @@ namespace platform
    //    ::pointer<::regular_expression::context>system::get_regular_expression_context(const ::scoped_string & scopedstrStyle)
    //    {
    //
-   //       _synchronous_lock synchronouslock(this->synchronization());
+   //       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //       ødefer_construct_new(m_pmapRegularExpressionContext);
    //

@@ -146,7 +146,7 @@ namespace simpledb
 
                {
 
-                  synchronous_lock slDatabase(synchronization());
+                  synchronous_lock slDatabase(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   http()->get(url, set);
 
@@ -190,7 +190,7 @@ namespace simpledb
    void thread::queue(const ::scoped_string & scopedstrKey, block block)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pitem = øallocate queue_item();
 

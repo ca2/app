@@ -105,7 +105,7 @@
 ::binary_stream & operator <<(::binary_stream & stream, const ::user::rich_text::data & data)
 {
 
-   synchronous_lock synchronouslock(data.synchronization());
+   synchronous_lock synchronouslock(data.synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    stream << (const ::pointer_array< ::user::rich_text::format > &) data;
 
@@ -120,7 +120,7 @@
 ::binary_stream & operator >>(::binary_stream & stream, ::user::rich_text::data & data)
 {
 
-   synchronous_lock synchronouslock(data.synchronization());
+   synchronous_lock synchronouslock(data.synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //data.m_plinea->erase_all();
 

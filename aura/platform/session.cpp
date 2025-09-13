@@ -1369,7 +1369,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
    //         {
 
-   //            synchronous_lock synchronouslock(this->synchronization());
+   //            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //            ::generic::container::copy(uiptraToolWindow, m_uiptraToolWindow);
 
@@ -1583,7 +1583,7 @@ return m_psavings;
 //   bool session::is_key_pressed(::user::enum_key ekey)
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_pmapKeyPressed == nullptr)
 //      {
@@ -1658,7 +1658,7 @@ return m_psavings;
 //   void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_pmapKeyPressed == nullptr)
 //      {
@@ -1700,7 +1700,7 @@ return m_psavings;
    void session::on_show_user_input_popup(::user::interaction * pinteraction)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {

@@ -160,7 +160,7 @@ namespace browser
 
          {
 
-            synchronous_lock synchronouslock(m_pmutexText);
+            synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             calc_processed_browser(m_strProcessedHellomultiverse);
 
@@ -168,7 +168,7 @@ namespace browser
 
          {
 
-            synchronous_lock synchronouslock(m_pmutexText);
+            synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             if (m_bPendingImageChange)
             {
@@ -210,11 +210,11 @@ namespace browser
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       {
 
-         synchronous_lock slText(m_pmutexText);
+         synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if(m_strNewHelloBrowser.is_empty())
          {
@@ -471,7 +471,7 @@ namespace browser
    void impact::calc_processed_browser(string & strProcessedHellomultiverse)
    {
 
-      synchronous_lock slText(m_pmutexText);
+      synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string str;
 
@@ -598,7 +598,7 @@ namespace browser
    string impact::get_browser()
    {
 
-      synchronous_lock synchronouslock(m_pmutexText);
+      synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(m_strHelloBrowser.c_str() != m_strNewHelloBrowser.c_str())
       {
@@ -662,7 +662,7 @@ namespace browser
       if (m_prender != nullptr)
       {
 
-         synchronous_lock synchronouslock(m_pmutexText);
+         synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_strProcessedHellomultiverse != m_prender->m_strHelloBrowser)
          {
@@ -683,7 +683,7 @@ namespace browser
    void impact::on_draw_image_layer(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_prender->m_bImageEnable && m_prender->m_pimageImage->is_ok())
       {
@@ -720,7 +720,7 @@ namespace browser
 
 /*                  pimage->stretch_image(m_prender->m_pimageImage);
 
-                  synchronous_lock synchronouslock(this->synchronization());
+                  synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*                  m_prender->m_pimageImageStretched = pimage;
 
@@ -749,7 +749,7 @@ namespace browser
 
       {
 
-         synchronous_lock synchronouslock(m_pmutexText);
+         synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_strNewHelloBrowser = strText;
 
@@ -890,7 +890,7 @@ namespace browser
                       int height)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pixmap p;
 

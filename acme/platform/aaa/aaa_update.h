@@ -68,7 +68,7 @@ public:
 
    static void post_destroy_all();
 
-   inline bool is_ending() { synchronous_lock synchronouslock(this->synchronization()); return m_map.is_empty(); };
+   inline bool is_ending() { synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX); return m_map.is_empty(); };
    inline int poll_millis() { return os_get_system_update_poll_time(m_iUpdateSerial); };
 
    static inline bool should_poll(int iMillis)

@@ -10,7 +10,7 @@
 void output_debug_string(const ::scoped_string & scopedstr)
 {
 
-   synchronous_lock synchronouslock(g_pmutexOutputDebugStringA);
+   synchronous_lock synchronouslock(g_pmutexOutputDebugStringA, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //if (m_pstrOutputDebugStringA == nullptr)
    //{

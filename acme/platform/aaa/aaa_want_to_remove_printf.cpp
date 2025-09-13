@@ -58,7 +58,7 @@ int vwprintf_dup(const ::wide_character *format, va_list args)
 int ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 {
 
-   synchronous_lock ml(g_pmutexCvt);
+   synchronous_lock ml(g_pmutexCvt, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    char * psz = ecvt(d, i, pi1, pi2);
 
@@ -77,7 +77,7 @@ int ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz,
 int fcvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 {
 
-   synchronous_lock ml(g_pmutexCvt);
+   synchronous_lock ml(g_pmutexCvt, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    char * psz = fcvt(d, i, pi1, pi2);
 

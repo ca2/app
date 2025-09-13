@@ -199,7 +199,7 @@ namespace experience
    ::item_pointer button::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pregion.is_null() || !m_pregion->contains(point))
       {

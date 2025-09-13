@@ -389,7 +389,7 @@ namespace user
    interaction * form_list::_001GetControl(::collection::index iItem, ::collection::index iSubItem)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::user::list_column * pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
@@ -410,7 +410,7 @@ namespace user
    interaction * form_list::_001GetControl(draw_list_subitem * psubitem)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::user::list_column * pcolumn = psubitem->m_pcolumn;
 
@@ -1350,7 +1350,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          for (::collection::index i = 0; i < m_pcolumna->get_size(); i++)
          {

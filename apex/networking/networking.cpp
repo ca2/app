@@ -1087,7 +1087,7 @@ namespace networking
    //bool networking::reverse_schedule(reverse_cache_item* pitem)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_reversecacheaRequest.add(pitem);
 

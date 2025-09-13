@@ -1125,7 +1125,7 @@ namespace networking_bsd
 
       {
 
-         _synchronous_lock synchronouslock(m_pmutexReverseCache);
+         _synchronous_lock synchronouslock(m_pmutexReverseCache, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_reversecacheaRequest.add(pitem);
 
@@ -1252,7 +1252,7 @@ namespace networking_bsd
    bool networking::reverse(string& hostname, ::networking::address* paddress)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexReverseCache);
+      _synchronous_lock synchronouslock(m_pmutexReverseCache, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto& pitem = m_mapReverseCache[paddress->get_display_number()];
 
@@ -2631,7 +2631,7 @@ namespace networking_bsd
       //bool networking::reverse_schedule(reverse_cache_item * pitem)
       //{
       //
-      //   synchronous_lock synchronouslock(this->synchronization());
+      //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       //
       //   m_reversecacheaRequest.add(pitem);
       //
@@ -3873,7 +3873,7 @@ cert::~cert()
    cert* networking::get_cert(const ::scoped_string& keyfile)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexCert);
+      _synchronous_lock synchronouslock(m_pmutexCert, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto& pcert = m_certmap[keyfile];
 

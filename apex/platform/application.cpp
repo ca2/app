@@ -668,7 +668,7 @@ namespace apex
    bool application::enable_application_events(::particle * pparticle, bool bEnable)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (bEnable)
       {
@@ -1414,7 +1414,7 @@ namespace apex
 
       }
 
-      synchronous_lock synchronouslock(m_pmutexStr);
+      synchronous_lock synchronouslock(m_pmutexStr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_stringtableStd.find(strTable, pmap))
       {
@@ -1884,7 +1884,7 @@ namespace apex
 
    //   ::thread::on_pos_run_thread();
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //try
    //   //{
@@ -2895,7 +2895,7 @@ namespace apex
 
       auto psystem = system();
 
-      _synchronous_lock synchronouslock(psystem->m_pmutexSystemAppData);
+      _synchronous_lock synchronouslock(psystem->m_pmutexSystemAppData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string strId(scopedstrId);
       //string strSystemLocale = psystem->m_strLocale;
@@ -4750,7 +4750,7 @@ namespace apex
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          file()->add_contents(directory()->appdata() / (file()->module().name() + "_log_error.txt"), strMessage);
 
@@ -4936,7 +4936,7 @@ namespace apex
    void application::install_trace(const ::scoped_string & scopedstr)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //::install::trace_file(this, m_strInstallTraceLabel).print(str);
 
@@ -4946,7 +4946,7 @@ namespace apex
    void application::install_trace(double dRate)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
 
@@ -5427,7 +5427,7 @@ namespace apex
    //
    //      {
    //
-   //         _synchronous_lock synchronouslock(this->synchronization());
+   //         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //         ptra = m_particleaddressaEventHook;
    //
@@ -5601,7 +5601,7 @@ namespace apex
    //void application::record(::create * pcommand)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   get_command()->m_createa.add(pcommand);
 
@@ -5713,7 +5713,7 @@ namespace apex
    string application::load_string(const ::atom & atom)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexStr);
+      _synchronous_lock synchronouslock(m_pmutexStr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string str;
 
@@ -5819,7 +5819,7 @@ namespace apex
 
    //   }
 
-   //   _synchronous_lock synchronouslock(m_pmutexStr);
+   //   _synchronous_lock synchronouslock(m_pmutexStr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ::pointer<string_to_string_base>pmap;
 
@@ -6600,7 +6600,7 @@ namespace apex
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_straActivationMessage.add(scopedstrMessage);
 
@@ -6614,7 +6614,7 @@ namespace apex
    bool application::has_activation_message() const
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_straActivationMessage.has_element();
 
@@ -6624,7 +6624,7 @@ namespace apex
    void application::handle_posted_activation_message()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_bAttendedFirstRequest)
       {
@@ -10242,7 +10242,7 @@ namespace apex
    class networking::application * application::networking_application(::networking::application_handler * papplicationhandlerCreateNetworkApplication)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_pnetworkingapplication)
       {

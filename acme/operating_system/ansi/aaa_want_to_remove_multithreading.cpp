@@ -408,7 +408,7 @@
 ////      return NULL;
 ////
 ////
-////   synchronous_lock mlThreadId(g_pmutexThreadIdLock);
+////   synchronous_lock mlThreadId(g_pmutexThreadIdLock, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   thread_id_map().set_at(threadHandle,DwThreadId());
 ////
@@ -419,7 +419,7 @@
 ////
 ////
 ////
-////   synchronous_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
+////   synchronous_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   thread_id_handle_map().set_at(thread_id_map()[threadHandle],threadHandle);
 ////
@@ -438,7 +438,7 @@
 ////   return nullptr;
 ////   }*/
 ////
-////   //   synchronous_lock mlThreadHandle(threadHandleLock);
+////   //   synchronous_lock mlThreadHandle(threadHandleLock, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   // thread_handle_map().set_at(completionEvent, threadHandle);
 ////
@@ -460,7 +460,7 @@
 ////         info.suspensionEvent    = aaa_primitive_new happening(get_thread_app(),false,true);
 ////         info.nPriority = 0;
 ////
-////         synchronous_lock lock(g_pmutexPendingThreadsLock);
+////         synchronous_lock lock(g_pmutexPendingThreadsLock, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////         pendingThreads()[threadHandle] = info;
 ////
@@ -494,7 +494,7 @@
 ////
 ////unsigned int WINAPI ResumeThread(htask htask)
 ////{
-////   synchronous_lock lock(g_pmutexPendingThreadsLock);
+////   synchronous_lock lock(g_pmutexPendingThreadsLock, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   // Look up the requested thread.
 ////   map < htask,htask,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().plookup(htask);
@@ -531,7 +531,7 @@
 ////unsigned int WINAPI TlsAlloc()
 ////{
 ////
-////   synchronous_lock lock(g_pmutexTlsData);
+////   synchronous_lock lock(g_pmutexTlsData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   // Can we reuse a previously freed TLS slot?
 ////   if(freeTlsIndices->get_count() > 0)
@@ -549,7 +549,7 @@
 ////int_bool WINAPI TlsFree(unsigned int dwTlsIndex)
 ////{
 ////
-////   synchronous_lock lock(g_pmutexTlsData);
+////   synchronous_lock lock(g_pmutexTlsData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   //assert(dwTlsIndex < nextTlsIndex);
 ////   /*   for(int i = 0; i < freeTlsIndices.get_count(); i++)
@@ -621,7 +621,7 @@
 ////   try
 ////   {
 ////
-////      synchronous_lock lock(g_pmutexTlsData);
+////      synchronous_lock lock(g_pmutexTlsData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////      if(allthreaddata->is_empty())
 ////         return NULL;
@@ -666,7 +666,7 @@
 ////      {
 ////         threadData = aaa_primitive_new ThreadLocalData;
 ////
-////         synchronous_lock lock(g_pmutexTlsData);
+////         synchronous_lock lock(g_pmutexTlsData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////         allthreaddata->set_at(currentThread,threadData);
 ////
@@ -691,7 +691,7 @@
 ////int_bool WINAPI TlsSetValue(htask htask,unsigned int dwTlsIndex,LPVOID lpTlsValue)
 ////{
 ////
-////   synchronous_lock lock(g_pmutexTlsData);
+////   synchronous_lock lock(g_pmutexTlsData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   ThreadLocalData * threadData = allthreaddata->operator [] (htask);
 ////
@@ -765,7 +765,7 @@
 ////
 ////      */
 ////
-////      synchronous_lock ml(g_pmutexTlsData);
+////      synchronous_lock ml(g_pmutexTlsData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////      allthreaddata->erase_key(currentThread);
 ////
@@ -781,7 +781,7 @@
 ////int WINAPI GetThreadPriority(htask  htask)
 ////{
 ////
-////   synchronous_lock lock(g_pmutexPendingThreadsLock);
+////   synchronous_lock lock(g_pmutexPendingThreadsLock, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   // Look up the requested thread.
 ////   map < htask,htask,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().plookup(htask);
@@ -934,13 +934,13 @@
 ////unsigned int os_thread::run()
 ////{
 ////
-////   synchronous_lock mlThreadHandle(g_pmutexThreadHandleLock);
+////   synchronous_lock mlThreadHandle(g_pmutexThreadHandleLock, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   currentThread =  m_htask;
 ////
 ////   mlThreadHandle.unlock();
 ////
-////   synchronous_lock mlThreadId(g_pmutexThreadIdLock);
+////   synchronous_lock mlThreadId(g_pmutexThreadIdLock, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   currentThreadId =  thread_id_map()[currentThread];
 ////
@@ -1109,7 +1109,7 @@
 ////CLASS_DECL_ACME unsigned int WINAPI GetThreadId(htask Thread)
 ////{
 ////
-////   synchronous_lock mlThreadId(g_pmutexThreadIdLock);
+////   synchronous_lock mlThreadId(g_pmutexThreadIdLock, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   map < htask,htask,unsigned int,unsigned int >::pair * p = thread_id_map().plookup(Thread);
 ////
@@ -1124,7 +1124,7 @@
 ////CLASS_DECL_ACME htask  WINAPI get_thread_handle(unsigned int dw)
 ////{
 ////
-////   synchronous_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
+////   synchronous_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   map < unsigned int,unsigned int,htask,htask >::pair * p = thread_id_handle_map().plookup(dw);
 ////

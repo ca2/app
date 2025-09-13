@@ -541,7 +541,7 @@ namespace user
                if (pimpl.is_set())
                {
 
-                  //synchronous_lock synchronouslock(pimpl->m_spgraphics->synchronization());
+                  //synchronous_lock synchronouslock(pimpl->m_spgraphics->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   ::image::image_pointer pimage1;
 
@@ -555,7 +555,7 @@ namespace user
 
                   auto pbufferitem = pimpl->m_pgraphicsgraphics->on_begin_draw(e_graphics_draw);
 
-                  synchronous_lock synchronouslock(pbufferitem->m_pmutex);
+                  synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   auto rectangleTarget = ::double_rectangle(rectangle.size());
 

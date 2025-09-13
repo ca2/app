@@ -49,7 +49,7 @@ namespace universal_windows
 //
 //         {
 //
-//            synchronous_lock synchronouslock(this->synchronization());
+//            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //            if (m_pimagemap->lookup(imagekey, iImage))
 //            {
@@ -124,7 +124,7 @@ namespace universal_windows
 //         if (!b48 && shfi48.hIcon != nullptr)
 //         {
 //            ::DestroyIcon(shfi48.hIcon);
-//         }         synchronous_lock synchronouslock(this->synchronization());
+//         }         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_imagemap.set_at(imagekey, iImage);
 
@@ -264,8 +264,8 @@ pdirectorysystem->is(strPath))
 
             /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->directory()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
             HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->directory()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-            synchronous_lock sl1(m_pil48Hover->mutex());
-            synchronous_lock sl2(m_pil48->mutex());
+            synchronous_lock sl1(m_pil48Hover->mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            synchronous_lock sl2(m_pil48->mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
             iImage = m_pil16->add_icon_os_data(hicon16);
             m_pil48Hover->add_icon_os_data(hicon48);
 

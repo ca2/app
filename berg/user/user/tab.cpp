@@ -170,7 +170,7 @@ namespace user
 
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (iIndex < 0)
       {
@@ -242,7 +242,7 @@ namespace user
       ppane->m_bPermanent = bPermanent;
       ppane->m_pplaceholder = pholder;
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (atom.is_empty())
       {
@@ -283,7 +283,7 @@ namespace user
       ppane->m_bPermanent = bPermanent;
       ppane->set_title(scopedstrName);
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (atom.is_empty())
       {
@@ -382,7 +382,7 @@ namespace user
    void tab::erase_tab(::collection::index iIndex, bool bVisible)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (iIndex < 0 || iIndex >= get_data()->m_tabpanea.get_size())
       {
@@ -445,7 +445,7 @@ namespace user
    void tab::erase_all_tabs()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       get_data()->m_tabpanea.erase_all();
 
@@ -1182,7 +1182,7 @@ namespace user
    void tab::defer_erase_child_pane(::user::interaction * pinteraction)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::collection::index iIndex = find_child_pane(pinteraction);
 
@@ -1260,7 +1260,7 @@ namespace user
 
       auto pointCursor = point;
 
-      //_synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::int_rectangle rectangleScroll;
 
@@ -1676,7 +1676,7 @@ namespace user
        
       {
 
-         _synchronous_lock lock(get_data()->synchronization());
+         _synchronous_lock lock(get_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          get_data()->m_idaSel.erase_all();
 
@@ -1723,7 +1723,7 @@ namespace user
 
       auto pdata = get_data();
 
-      _synchronous_lock lock(pdata->synchronization());
+      _synchronous_lock lock(pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return pdata->m_tabpanea.predicate_find_first([ptabpaneFind](auto & ptabpane)
          {
@@ -1747,7 +1747,7 @@ namespace user
 
       auto pdata = get_data();
 
-      _synchronous_lock lock(pdata->synchronization());
+      _synchronous_lock lock(pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return pdata->m_tabpanea.predicate_index_index(iVisibleIndex, [](auto & ptabpane)
          {
@@ -1771,7 +1771,7 @@ namespace user
 
       auto pdata = get_data();
 
-      _synchronous_lock lock(pdata->synchronization());
+      _synchronous_lock lock(pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return pdata->m_tabpanea.index_predicate_index(iIndex, [](auto & ptabpane)
          {
@@ -1788,7 +1788,7 @@ namespace user
 
       auto pdata = get_data();
 
-      _synchronous_lock lock(pdata->synchronization());
+      _synchronous_lock lock(pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return pdata->m_tabpanea.predicate_contains([atom](auto & ptabpane)
          {
@@ -1805,7 +1805,7 @@ namespace user
 
       auto pdata = get_data();
 
-      _synchronous_lock lock(pdata->synchronization());
+      _synchronous_lock lock(pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return pdata->m_tabpanea.predicate_find_first([atom](auto & ptabpane)
          {
@@ -1823,7 +1823,7 @@ namespace user
 
       auto pdata = get_data();
 
-      _synchronous_lock lock(pdata->synchronization());
+      _synchronous_lock lock(pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (iIndex < 0 || iIndex >= pdata->m_tabpanea.get_count())
       {
@@ -2712,7 +2712,7 @@ namespace user
    void tab::get_child_rect(::int_rectangle & rectangle)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       rectangle = get_data()->m_rectangleHosting;
 

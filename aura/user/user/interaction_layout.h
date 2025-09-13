@@ -287,7 +287,7 @@ namespace user
    //inline void visual_state::set_busy()
    //{
 
-   //   synchronous_lock synchronouslock(m_playout->synchronization());
+   //   synchronous_lock synchronouslock(m_playout->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_bBusy = true;
 
@@ -297,7 +297,7 @@ namespace user
    //inline bool visual_state::set_ready()
    //{
 
-   //   synchronous_lock synchronouslock(m_playout->synchronization());
+   //   synchronous_lock synchronouslock(m_playout->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   if (!m_bBusy)
    //   {

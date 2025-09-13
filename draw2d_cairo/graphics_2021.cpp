@@ -198,7 +198,7 @@ namespace draw2d_cairo
    graphics::~graphics()
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pdc != nullptr)
       {
@@ -268,7 +268,7 @@ namespace draw2d_cairo
    void graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pdc != nullptr)
       {
@@ -479,7 +479,7 @@ namespace draw2d_cairo
    void graphics::set(::draw2d::bitmap * pbitmap)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (pbitmap == nullptr)
       {
@@ -545,7 +545,7 @@ namespace draw2d_cairo
 //int graphics::GetPolyFillMode()
 //{
 //
-//    synchronous_lock ml(::draw2d_cairo::mutex());
+//    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //    cairo_fill_rule_t fillrule = cairo_get_fill_rule(m_pdc);
 //
@@ -763,7 +763,7 @@ namespace draw2d_cairo
    void graphics::arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       double centerx = (x2 + x1) / 2.0;
 
@@ -800,7 +800,7 @@ namespace draw2d_cairo
    void graphics::arc(double x, double y, double w, double h, angle start, angle extends)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       double end = start + extends;
 
@@ -861,7 +861,7 @@ namespace draw2d_cairo
    void graphics::fill_rectangle(const ::double_rectangle & rectangle, ::draw2d::brush * pbrush)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (rectangle.right() <= rectangle.left() || rectangle.bottom() <= rectangle.top())
       {
@@ -883,7 +883,7 @@ namespace draw2d_cairo
    void graphics::draw_rectangle(const ::double_rectangle & rectangle, ::draw2d::pen * ppen)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (rectangle.right() <= rectangle.left() || rectangle.bottom() <= rectangle.top())
       {
@@ -1151,7 +1151,7 @@ namespace draw2d_cairo
    void graphics::draw_ellipse(double x1, double y1, double x2, double y2)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       double centerx = (x2 + x1) / 2.0;
 
@@ -1213,7 +1213,7 @@ namespace draw2d_cairo
    void graphics::fill_ellipse(double x1, double y1, double x2, double y2)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       double centerx = (x2 + x1) / 2.0;
 
@@ -1285,7 +1285,7 @@ namespace draw2d_cairo
    void graphics::fill_polygon(const ::double_point * pa, ::collection::count nCount)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (nCount <= 0)
       {
@@ -1315,7 +1315,7 @@ namespace draw2d_cairo
    void graphics::draw_polygon(const ::double_point * pa, ::collection::count nCount)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (nCount <= 0)
       {
@@ -1345,7 +1345,7 @@ namespace draw2d_cairo
    void graphics::polygon(const ::double_point * pa, ::collection::count nCount)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (nCount <= 0)
       {
@@ -1375,7 +1375,7 @@ namespace draw2d_cairo
    void graphics::double_rectangle(const ::double_rectangle & rectangle)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_rectangle(m_pdc, rectangle.left(), rectangle.top(), ::width(rectangle), ::height(rectangle));
 
@@ -1400,7 +1400,7 @@ namespace draw2d_cairo
                             const ::image::image_drawing_options & imagedrawingoptions, const ::double_point & pointSrc)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_keep keep(m_pdc);
 
@@ -1661,7 +1661,7 @@ namespace draw2d_cairo
                                const ::double_rectangle & rectangleSource)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_keep keep(m_pdc);
 
@@ -2004,7 +2004,7 @@ namespace draw2d_cairo
    void graphics::get_text_metrics(::write_text::text_metric * lpMetrics)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pfont = (::draw2d_cairo::font *) m_pfont->m_pthis;
 
@@ -2481,7 +2481,7 @@ namespace draw2d_cairo
 ////
 ////      cairo_matrix_multiply(&matrix, &matrix, &matrixShear);
 //
-//    synchronous_lock ml(::draw2d_cairo::mutex());
+//    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //    cairo_keep keep(m_pdc);
 //
@@ -2831,7 +2831,7 @@ namespace draw2d_cairo
    void graphics::draw(::draw2d::path * ppath)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!_set(ppath))
       {
@@ -2849,7 +2849,7 @@ namespace draw2d_cairo
    void graphics::fill(::draw2d::path * ppath)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!_set(ppath))
       {
@@ -2867,7 +2867,7 @@ namespace draw2d_cairo
    void graphics::draw(::draw2d::path * ppath, ::draw2d::pen * ppen)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!_set(ppath))
       {
@@ -2885,7 +2885,7 @@ namespace draw2d_cairo
    void graphics::fill(::draw2d::path * ppath, ::draw2d::brush * pbrush)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!_set(ppath))
       {
@@ -2914,7 +2914,7 @@ namespace draw2d_cairo
 //void graphics::_alpha_blend_raw(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource, double dRate)
 //{
 //
-//    synchronous_lock ml(::draw2d_cairo::mutex());
+//    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //    cairo_keep keep(m_pdc);
 //
@@ -3189,7 +3189,7 @@ namespace draw2d_cairo
    void graphics::DeleteDC()
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pdc == nullptr)
       {
@@ -3222,7 +3222,7 @@ namespace draw2d_cairo
    int graphics::SaveDC()
    {
 
-      synchronous_lock synchronouslock(::draw2d_cairo::mutex());
+      synchronous_lock synchronouslock(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_iSaveDC++;
 
@@ -3236,7 +3236,7 @@ namespace draw2d_cairo
    void graphics::RestoreDC(int nSavedDC)
    {
 
-      synchronous_lock synchronouslock(::draw2d_cairo::mutex());
+      synchronous_lock synchronouslock(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       bool bRestored = false;
 
@@ -3492,7 +3492,7 @@ namespace draw2d_cairo
 //int graphics::SelectClipRgn(::draw2d::region * pregion)
 //{
 //
-//   synchronous_lock ml(::draw2d_cairo::mutex());
+//   synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (pregion == nullptr)
 //   {
@@ -3535,7 +3535,7 @@ namespace draw2d_cairo
 //int graphics::IntersectClipRect(double x1, double y1, double x2, double y2)
 //{
 //
-//   synchronous_lock ml(::draw2d_cairo::mutex());
+//   synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   cairo_rectangle(m_pdc, x1, y1, x2 - x1, y2 - y1);
 //
@@ -3584,7 +3584,7 @@ namespace draw2d_cairo
 //void graphics::move_to(double x, double y)
 //{
 //
-//    synchronous_lock ml(::draw2d_cairo::mutex());
+//    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //    cairo_move_to(m_pdc, x, y);
 //
@@ -3600,7 +3600,7 @@ namespace draw2d_cairo
    void graphics::set_current_point(double x, double y)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_move_to(m_pdc, x, y);
 
@@ -3786,7 +3786,7 @@ namespace draw2d_cairo
 
       }
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pfont.is_null())
       {
@@ -3939,7 +3939,7 @@ namespace draw2d_cairo
                             const ::e_draw_text & edrawtext)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_keep keep(m_pdc);
 
@@ -3957,7 +3957,7 @@ namespace draw2d_cairo
    {
 
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pfont = (::draw2d_cairo::font *) m_pfont->m_pthis;
 
@@ -4143,7 +4143,7 @@ namespace draw2d_cairo
 
    //    }
 
-   //    synchronous_lock ml(::draw2d_cairo::mutex());
+   //    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //    if (m_pfont.is_null())
    //    {
@@ -4376,7 +4376,7 @@ namespace draw2d_cairo
 
       }
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pfont.is_null())
       {
@@ -4519,7 +4519,7 @@ namespace draw2d_cairo
 
       }
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pfont.is_null())
       {
@@ -4644,7 +4644,7 @@ namespace draw2d_cairo
    void graphics::fill_rectangle(const ::double_rectangle & rectangle, const ::color::color & color)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (rectangle.right() <= rectangle.left() || rectangle.bottom() <= rectangle.top())
       {
@@ -4670,7 +4670,7 @@ namespace draw2d_cairo
 //void graphics::fill_rectangle(const ::double_rectangle & rectangle, const ::color::color & color)
 //{
 //
-//    synchronous_lock ml(::draw2d_cairo::mutex());
+//    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //    if (rectangle.right() <= rectangle.left() || rectangle.bottom() <= rectangle.top())
 //    {
@@ -4701,7 +4701,7 @@ namespace draw2d_cairo
    void graphics::TextOutRaw(double x, double y, const block & block)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_keep keep(m_pdc);
 
@@ -4734,7 +4734,7 @@ namespace draw2d_cairo
    void graphics::line_to(double x, double y)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!cairo_has_current_point(m_pdc))
       {
@@ -4759,7 +4759,7 @@ namespace draw2d_cairo
    void graphics::draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_move_to(m_pdc, x1, y1);
 
@@ -4779,7 +4779,7 @@ namespace draw2d_cairo
 //void graphics::draw_line(const ::double_point & point1, const ::double_point & point2, ::draw2d::pen * ppen)
 //{
 //
-//    synchronous_lock ml(::draw2d_cairo::mutex());
+//    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //    cairo_move_to(m_pdc, point1.x(), point1.y());
 //
@@ -4797,7 +4797,7 @@ namespace draw2d_cairo
    void graphics::set_alpha_mode(::draw2d::enum_alpha_mode ealphamode)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       /*  try
         {*/
@@ -4858,7 +4858,7 @@ namespace draw2d_cairo
    void graphics::attach(void * pdata)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pdc != nullptr)
       {
@@ -4883,7 +4883,7 @@ namespace draw2d_cairo
    void cairo_image_surface_blur(cairo_surface_t * surface, double radius)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       // Steve Hanov, 2009
       // Released into the public domain.
@@ -4994,7 +4994,7 @@ namespace draw2d_cairo
    void graphics::blur(bool bExpand, double dRadius, const ::double_rectangle & rectangle)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_pattern_t * ppattern = cairo_get_source(m_pdc);
 
@@ -5033,7 +5033,7 @@ namespace draw2d_cairo
    bool graphics::_set(::draw2d::brush * pbrush, double x, double y)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (pbrush->m_ebrush == ::draw2d::e_brush_radial_gradient_color)
       {
@@ -5358,7 +5358,7 @@ namespace draw2d_cairo
    bool graphics::_set(::draw2d::pen * ppen)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (ppen->m_epen == ::draw2d::e_pen_brush)
       {
@@ -5398,7 +5398,7 @@ namespace draw2d_cairo
    bool graphics::_set(::write_text::font * pfontParam)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (::is_null(pfontParam))
       {
@@ -5481,7 +5481,7 @@ namespace draw2d_cairo
    bool graphics::fill_and_draw()
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       bool bPen = m_ppen->m_epen != ::draw2d::e_pen_null;
 
@@ -5530,7 +5530,7 @@ namespace draw2d_cairo
    bool graphics::fill(::draw2d::brush * pbrush, double xOrg, double yOrg)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (pbrush == nullptr || pbrush->m_ebrush == ::draw2d::e_brush_null)
       {
@@ -5633,7 +5633,7 @@ namespace draw2d_cairo
    bool graphics::draw(::draw2d::pen * ppen)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (ppen == nullptr || ppen->m_epen == ::draw2d::e_pen_null)
       {
@@ -5672,7 +5672,7 @@ namespace draw2d_cairo
 
       }
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_keep keep(m_pdc);
 
@@ -5711,7 +5711,7 @@ namespace draw2d_cairo
    bool graphics::_set(___shape * pshape)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto eshape = pshape->eshape();
 
@@ -5759,7 +5759,7 @@ namespace draw2d_cairo
    bool graphics::_set(const ::enum_shape & eshape)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (eshape == e_shape_begin_figure)
       {
@@ -5817,7 +5817,7 @@ namespace draw2d_cairo
 
       }
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_keep keep(m_pdc);
 
@@ -5846,7 +5846,7 @@ namespace draw2d_cairo
 //bool graphics::_set(const ::line & line)
 //{
 //
-//    synchronous_lock ml(::draw2d_cairo::mutex());
+//    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //    if (cairo_has_current_point(m_pdc))
 //    {
@@ -5888,7 +5888,7 @@ namespace draw2d_cairo
    bool graphics::_set(const ::line & line)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (cairo_has_current_point(m_pdc))
       {
@@ -5931,7 +5931,7 @@ namespace draw2d_cairo
 
       }
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (cairo_has_current_point(m_pdc))
       {
@@ -5985,7 +5985,7 @@ namespace draw2d_cairo
 
       }
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (cairo_has_current_point(m_pdc))
       {
@@ -6039,7 +6039,7 @@ namespace draw2d_cairo
 //
 //   }
 //
-//   synchronous_lock ml(::draw2d_cairo::mutex());
+//   synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   cairo_new_sub_path(m_pdc);
 //
@@ -6060,7 +6060,7 @@ namespace draw2d_cairo
 
       }
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_new_sub_path(m_pdc);
 
@@ -6081,7 +6081,7 @@ namespace draw2d_cairo
 //
 //   }
 //
-//   synchronous_lock ml(::draw2d_cairo::mutex());
+//   synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   cairo_new_sub_path(m_pdc);
 //
@@ -6104,7 +6104,7 @@ namespace draw2d_cairo
 
       }
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_new_sub_path(m_pdc);
 
@@ -6120,7 +6120,7 @@ namespace draw2d_cairo
 //bool graphics::_set(const ::int_rectangle & rectangle)
 //{
 //
-//    synchronous_lock ml(::draw2d_cairo::mutex());
+//    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //    cairo_rectangle(
 //      m_pdc,
@@ -6137,7 +6137,7 @@ namespace draw2d_cairo
    bool graphics::_set(const ::double_rectangle & rectangle)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_rectangle(
          m_pdc,
@@ -6154,7 +6154,7 @@ namespace draw2d_cairo
    bool graphics::_set(const ::double_ellipse & ellipse)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       double Δx = ellipse.center_x();
 
@@ -6182,7 +6182,7 @@ namespace draw2d_cairo
    bool graphics::_set(const ::write_text::text_out & textout)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto rectangle = ::double_rectangle(textout.m_point, double_size(65535.0, 65535.0));
 
@@ -6218,7 +6218,7 @@ namespace draw2d_cairo
    bool graphics::_set(const ::write_text::draw_text & drawtext)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto rectangle = drawtext.m_rectangle;
 
@@ -6262,7 +6262,7 @@ namespace draw2d_cairo
 //void graphics::set(const ::draw2d_cairo::path::transfer & p)
 //{
 //
-//    synchronous_lock ml(::draw2d_cairo::mutex());
+//    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //    cairo_move_to(m_pdc, p.m_x + 0.5, p.m_y + 0.5);
 //
@@ -6283,7 +6283,7 @@ namespace draw2d_cairo
    void * graphics::detach()
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_t * p = m_pdc;
 
@@ -6299,7 +6299,7 @@ namespace draw2d_cairo
    bool graphics::_set_os_color(color32_t color32)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto r = color32_byte_red(color32);
 
@@ -6319,7 +6319,7 @@ namespace draw2d_cairo
    void graphics::flush()
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_pattern_t * ppattern = cairo_get_source(m_pdc);
 
@@ -6354,7 +6354,7 @@ namespace draw2d_cairo
 //void graphics::attach_hdc(HDC hdc)
 //{
 //
-//    synchronous_lock ml(::draw2d_cairo::mutex());
+//    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //    if (m_hdcAttach != nullptr)
 //    {
@@ -6394,7 +6394,7 @@ namespace draw2d_cairo
 //HDC graphics::detach_hdc()
 //{
 //
-//    synchronous_lock ml(::draw2d_cairo::mutex());
+//    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //    if (m_hdcAttach == nullptr)
 //    {
@@ -6423,7 +6423,7 @@ namespace draw2d_cairo
 //void graphics::enum_fonts(::write_text::font_enumeration_item_array & itema)
 //{
 //
-//    synchronous_lock ml(::draw2d_cairo::mutex());
+//    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //    PangoFontMap * pfontmap = pango_cairo_font_map_get_default();
 //
@@ -6506,7 +6506,7 @@ namespace draw2d_cairo
 ////
 ////#elif defined(LINUX)
 ////
-////   synchronous_lock ml(::draw2d_cairo::mutex());
+////   synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   FcPattern *    pat;
 ////
@@ -6630,7 +6630,7 @@ namespace draw2d_cairo
 //
 //#ifdef LINUX
 //
-//    synchronous_lock ml(::draw2d_cairo::mutex());
+//    synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //    if (str.find("/") >= 0)
 //    {
@@ -6739,7 +6739,7 @@ namespace draw2d_cairo
    void graphics::_get(::geometry2d::matrix & matrix)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_matrix_t cairomatrix;
 
@@ -6755,7 +6755,7 @@ namespace draw2d_cairo
    void graphics::_set(const ::geometry2d::matrix & matrix)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pdc == nullptr)
       {
@@ -6778,7 +6778,7 @@ namespace draw2d_cairo
    FT_Face graphics::ftface(const ::scoped_string & scopedstrFontName, int iWeight, bool bItalic)
    {
 
-      synchronous_lock synchronouslock(::draw2d_cairo::mutex());
+      synchronous_lock synchronouslock(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       FT_Face ftface = (*g_pmapFontFace)[pszFontName][iWeight * 10 + (bItalic ? 1 : 0)];
 

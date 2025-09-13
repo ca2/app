@@ -166,7 +166,7 @@ pdirectorysystem->system() / "trace.txt";
       //set_trace_category(trace_category_socket, "category_Socket", e_trace_level_warning);       // socket traces
 
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bInitialized)
       {
@@ -323,7 +323,7 @@ pdirectorysystem->system() / "log.txt"))
 
       const ::scoped_string & scopedstrTopicText = ::is_set(pparticle) ? pparticle->topic_text() : nullptr;
 
-      synchronous_lock sl2(m_pmutexTrace);
+      synchronous_lock sl2(m_pmutexTrace, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::aura::trace::category * pcategory = nullptr;
 
@@ -724,7 +724,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    void log::destroy()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_bInitialized)
       {

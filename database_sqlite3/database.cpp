@@ -371,7 +371,7 @@ namespace sqlite
    void database::_connect()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       disconnect();
 
@@ -426,7 +426,7 @@ namespace sqlite
    void database::disconnect()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pstmtSelect != nullptr)
       {
@@ -487,7 +487,7 @@ namespace sqlite
    void database::drop()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       disconnect();
 
@@ -519,7 +519,7 @@ namespace sqlite
    //long database::nextid(const ::string & sname)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   if(!isActive())
    //   {
@@ -582,7 +582,7 @@ namespace sqlite
    void database::start_transaction()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (isActive())
       {
@@ -595,7 +595,7 @@ namespace sqlite
    void database::commit_transaction()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (isActive())
       {
@@ -608,7 +608,7 @@ namespace sqlite
    void database::rollback_transaction()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (isActive())
       {
@@ -635,14 +635,14 @@ namespace sqlite
    //void database::create_long_set(const ::scoped_string & scopedstrTable)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   try
    //   {
 
    //      dataset dataset(this);
 
-   //      _synchronous_lock synchronouslock(this->synchronization());
+   //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //      dataset.query("select * from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
@@ -664,14 +664,14 @@ namespace sqlite
    //void database::create_string_set(const ::scoped_string & scopedstrTable)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   try
    //   {
 
    //      dataset dataset(this);
 
-   //      _synchronous_lock synchronouslock(this->synchronization());
+   //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //      dataset.query("select * from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
@@ -729,7 +729,7 @@ namespace sqlite
 
          string str;
 
-         _synchronous_lock slDatabase(synchronization());
+         _synchronous_lock slDatabase(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          {
 

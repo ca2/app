@@ -72,7 +72,7 @@ namespace fs
    ::file::listing_base & set::root_ones(::file::listing_base & listing)
    {
 
-      _synchronous_lock synchronouslock(synchronization());
+      synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_fsdatamap.erase_all();
 
@@ -116,7 +116,7 @@ namespace fs
 
       auto range = filepath();
 
-      _synchronous_lock synchronouslock(synchronization());
+      synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto p = m_fsdatamap.begin();
 

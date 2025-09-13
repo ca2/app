@@ -115,7 +115,7 @@ t_phappeningNotifyLock;
             if (::is_set(pmq))
             {
 
-               synchronous_lock synchronouslock(pmq->synchronization());
+               synchronous_lock synchronouslock(pmq->synchronization(), pmq, SYNCHRONOUS_LOCK_SUFFIX);
 
                if (pmq->m_messagea.get_count() > 0)
                {
@@ -448,7 +448,7 @@ int g_iDebug_post_thread_msg_time;
 //CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, unsigned int Msg, WPARAM wParam, LPARAM lParam)
 //{
 //
-//   synchronous_lock ml(pmq->synchronization());
+//   synchronous_lock ml(pmq->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   MESSAGE msg;
 //

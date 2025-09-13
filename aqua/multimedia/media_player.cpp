@@ -36,7 +36,7 @@ media_player::~media_player()
 //void media_player::prepare_wave_player(enum_purpose epurpose)
 //{
 //
-//   synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   //if (thread_active())
 //   //{
@@ -895,7 +895,7 @@ void media_player::_Stop()
 //   try
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      //plistener->assert_ok();
 //
@@ -950,7 +950,7 @@ void media_player::_Stop()
 //   try
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      //try
 //      //{
@@ -995,7 +995,7 @@ void media_player::_Stop()
 //   try
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      while (m_listenera.get_count() > 0)
 //      {

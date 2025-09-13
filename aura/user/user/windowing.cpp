@@ -170,7 +170,7 @@
 //
 //   {
 //
-//      synchronous_lock slSystem(psystem->synchronization());
+//      synchronous_lock slSystem(psystem->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (psystem->m_pwindowmap->m_map.erase_key(oswindow))
 //      {

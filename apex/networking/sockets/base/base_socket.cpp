@@ -3306,7 +3306,7 @@ namespace sockets
 
 //#ifdef BSD_STYLE_SOCKETS
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_psslcontext->m_pclientcontext->get_session() != nullptr)
 //      {
@@ -3323,7 +3323,7 @@ namespace sockets
    void base_socket::get_ssl_session()
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       base_socket_impl()->get_ssl_session();
 

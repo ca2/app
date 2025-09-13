@@ -170,7 +170,13 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
          auto nOldSize = this->size();
 
-         TYPED::copy_construct_count(this->m_begin + nOldSize, nNewSize - nOldSize, *ptype);
+         for (auto i = nOldSize; i < nNewSize; i++)
+         {
+
+            this->m_begin[i] = *ptype;
+
+         }
+         //TYPED::copy_construct_count(this->m_begin + nOldSize, nNewSize - nOldSize, *ptype);
 
       }
 
@@ -221,12 +227,13 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
             else
             {
              
+               TYPED::construct_count(this->m_begin, this->size());
                this->m_end = this->m_begin;
-               
+
             }
 
             this->m_countAllocationOffset = 0;
-            
+
 
          }
          else
@@ -244,16 +251,16 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
       }
 
       this->m_end = this->m_begin;
-      
+
    }
    else if(this->m_begin == nullptr)
    {
 
       if(nNewSize > UPTR_MAXIMUM / sizeof(TYPE))
       {
-         
+
          throw_exception(error_no_memory);
-         
+
       }
 
       auto nAllocSize = maximum(nNewSize, m_countAddUp);
@@ -315,23 +322,23 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
          memset(this->m_begin, 0, nAllocSize * sizeof(TYPE));
 
       }
-      
+
       if(!bRaw)
       {
-         
+
          if (::is_null(ptype))
          {
-            
+
             TYPED::construct_count(this->m_begin, nNewSize);
-            
+
          }
          else
          {
-            
+
             TYPED::copy_construct_count(this->m_begin, nNewSize, *ptype);
-            
+
          }
-         
+
       }
 
       this->m_end = this->m_begin + nNewSize;
@@ -373,6 +380,11 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
             {
 
                memset(this->m_begin + nNewSize, 0, (countOld - nNewSize) * sizeof(TYPE));
+
+            }
+            else
+            {
+               TYPED::construct_count(this->m_begin + nNewSize, countOld - nNewSize);
 
             }
 

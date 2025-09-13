@@ -966,7 +966,7 @@ namespace dynamic_source
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
+         _synchronous_lock synchronouslock(m_pmutexIncludeMatches, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          try
          {
@@ -999,7 +999,7 @@ namespace dynamic_source
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5);
+         _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_mapIncludeExpandMd5.erase(path);
 
@@ -1018,7 +1018,7 @@ namespace dynamic_source
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
+         _synchronous_lock synchronouslock(m_pmutexIncludeMatches, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          try
          {
@@ -1051,7 +1051,7 @@ namespace dynamic_source
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5);
+         _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_mapIncludeExpandMd5.erase_all();
 
@@ -1068,7 +1068,7 @@ namespace dynamic_source
    bool script_manager::include_matches_file_exists(const ::scoped_string& scopedstrPath)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
+      _synchronous_lock synchronouslock(m_pmutexIncludeMatches, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto & bExists = m_mapIncludeMatchesFileExists2[scopedstrPath];
 
@@ -1087,7 +1087,7 @@ namespace dynamic_source
    void script_manager::set_include_matches_file_exists(const ::scoped_string& scopedstrPath, bool bFileExists)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
+      _synchronous_lock synchronouslock(m_pmutexIncludeMatches, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_mapIncludeMatchesFileExists2.set_at(scopedstrPath, bFileExists);
 
@@ -1097,7 +1097,7 @@ namespace dynamic_source
    bool script_manager::include_matches_is_dir(const ::scoped_string& scopedstrPath)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
+      _synchronous_lock synchronouslock(m_pmutexIncludeMatches, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto &bIsDir = m_mapIncludeMatchesIsDir2[scopedstrPath];
 
@@ -1123,7 +1123,7 @@ namespace dynamic_source
 
       }
 
-      _synchronous_lock synchronouslock(m_pmutexIncludeHasScript);
+      _synchronous_lock synchronouslock(m_pmutexIncludeHasScript, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto &bHasScript = m_mapIncludeHasScript2[scopedstrPath];
 
@@ -1142,7 +1142,7 @@ namespace dynamic_source
    string script_manager::include_expand_md5(const ::scoped_string& scopedstrPath)
    {
       
-      _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5);
+      _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_mapIncludeExpandMd5[scopedstrPath];
 
@@ -1152,7 +1152,7 @@ namespace dynamic_source
    void script_manager::set_include_expand_md5(const ::scoped_string& scopedstrPath, const ::scoped_string& scopedstrMd5)
    {
    
-      _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5);
+      _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_mapIncludeExpandMd5[scopedstrPath] = scopedstrMd5;
 
@@ -1214,7 +1214,7 @@ namespace dynamic_source
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmanager->m_pmutexShouldBuild);
+         _synchronous_lock synchronouslock(m_pmanager->m_pmutexShouldBuild, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_pmanager->m_mapShouldBuild2[path] = true;
 
@@ -1280,7 +1280,7 @@ namespace dynamic_source
    ::pointer<::dynamic_source::session>script_manager::get_session(const ::scoped_string& scopedstrId)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexSession);
+      _synchronous_lock synchronouslock(m_pmutexSession, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto p = m_mapSession.find(scopedstrId);
 
@@ -1326,7 +1326,7 @@ namespace dynamic_source
    void script_manager::defer_clean_session()
    {
 
-      _synchronous_lock synchronouslock(m_pmutexSession);
+      _synchronous_lock synchronouslock(m_pmutexSession, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::earth::time timeNow;
 
@@ -1383,7 +1383,7 @@ namespace dynamic_source
 
       }*/
 
-      _synchronous_lock synchronouslock(m_pmutexRsa);
+      _synchronous_lock synchronouslock(m_pmutexRsa, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto psystem = system();
 
@@ -1419,7 +1419,7 @@ namespace dynamic_source
 
       auto prsa = pcrypto->generate_rsa_key();
 
-      _synchronous_lock synchronouslock(m_pmutexRsa);
+      _synchronous_lock synchronouslock(m_pmutexRsa, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_rsaptra.add(prsa);
 
@@ -1477,7 +1477,7 @@ namespace dynamic_source
    bool script_manager::has_link_out_link(const ::scoped_string & scopedstrServer, ::sockets::link_in_socket* pinsocket, ::httpd::socket* phttpdsocket)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexOutLink);
+      _synchronous_lock synchronouslock(m_pmutexOutLink, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto p = m_mapOutLink.find(scopedstrServer);
 
@@ -1558,7 +1558,7 @@ namespace dynamic_source
    bool script_manager::is_online(const ::scoped_string & scopedstrServer)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTunnel);
+      _synchronous_lock synchronouslock(m_pmutexTunnel, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto p = m_mapTunnel.find(scopedstrServer);
 
@@ -1592,7 +1592,7 @@ namespace dynamic_source
 
       {
 
-         _synchronous_lock synchronouslock(m_pmutexTunnel);
+         _synchronous_lock synchronouslock(m_pmutexTunnel, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          tunnel_map_item item;
 
@@ -1605,7 +1605,7 @@ namespace dynamic_source
 
       {
 
-         _synchronous_lock synchronouslock(m_pmutexOutLink);
+         _synchronous_lock synchronouslock(m_pmutexOutLink, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_mapOutLink.set_at(scopedstrServer, psocket);
 
@@ -1829,7 +1829,7 @@ namespace dynamic_source
    bool script_manager::should_build(const ::file::path& strScriptPath)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexShouldBuild);
+      _synchronous_lock synchronouslock(m_pmutexShouldBuild, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::logic::boolean bShouldBuild = false;
 

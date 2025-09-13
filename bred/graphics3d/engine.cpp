@@ -111,7 +111,7 @@ namespace graphics3d
 
             auto pscene = m_pimmersionlayer->m_pscene;
 
-            _synchronous_lock synchronouslock(pscene->synchronization());
+            _synchronous_lock synchronouslock(pscene->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             if (pscene->global_ubo().size() > 0)
             {

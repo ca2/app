@@ -183,7 +183,7 @@ namespace image
    ::image::pool_image image_context::pool_image(const ::int_size& size)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto& imagea = m_imagepool[size];
 
@@ -202,7 +202,7 @@ namespace image
    void image_context::release_pool_image(::image::pool_image* ppoolimage)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto& imagea = m_imagepool[ppoolimage->image()->size()];
 
@@ -1278,7 +1278,7 @@ namespace image
 
       }
 
-      _synchronous_lock synchronouslock(image_synchronization());
+      _synchronous_lock synchronouslock(image_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto& pimage = system()->m_mapImage[path];
 

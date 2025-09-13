@@ -575,7 +575,7 @@ namespace tts_sapi
 
          //}
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          defer_co_initialize_ex(false);
 
@@ -778,7 +778,7 @@ namespace tts_sapi
 
          //}
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          defer_co_initialize_ex(false);
 
@@ -962,7 +962,7 @@ namespace tts_sapi
 
          }
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_voice[strLang].is_null())
          {

@@ -120,7 +120,7 @@ string object::as_string() const
 //void object::add_composite(::particle * pparticle)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   ødefer_construct_new(m_pcompositea);
 //
@@ -145,7 +145,7 @@ string object::as_string() const
 //void object::add_reference(::particle * pparticle)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   ødefer_construct_new(m_preferencea);
 //
@@ -180,7 +180,7 @@ string object::as_string() const
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_pcompositea)
 //   {
@@ -209,7 +209,7 @@ string object::as_string() const
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_pcompositea)
 //   {
@@ -251,7 +251,7 @@ string object::as_string() const
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_preferencea)
 //   {
@@ -380,7 +380,7 @@ void object::dev_log(const ::scoped_string & scopedstrMessage)
 //
 //   {
 //
-//      _synchronous_lock synchronouslock(this->synchronization());
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      ødefer_construct_new(m_pobjecta);
 //
@@ -390,7 +390,7 @@ void object::dev_log(const ::scoped_string & scopedstrMessage)
 //
 //   {
 //
-//      _synchronous_lock synchronouslock(this->synchronization());
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      ødefer_construct_new(pparticle->m_pobjecta);
 //
@@ -404,7 +404,7 @@ void object::dev_log(const ::scoped_string & scopedstrMessage)
 //void object::on_delete_object(::object* pparticle)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_pobjecta)
 //   {
@@ -974,7 +974,7 @@ void object::destruct()
 //
 //   //{
 //
-//   //   _synchronous_lock synchronouslock(this->synchronization());
+//   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   //   if (m_pobjecta)
 //   //   {
@@ -1020,7 +1020,7 @@ void object::add_task(::object* pobjectTask)
 
    defer_create_synchronization();
 
-   _synchronous_lock synchronouslockParent1(synchronization());
+   _synchronous_lock synchronouslockParent1(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(is_ascendant_task(pobjectTask))
    {
@@ -1033,9 +1033,9 @@ void object::add_task(::object* pobjectTask)
 
    auto ptaskOldParent = pobjectTask->m_pobjectParentTask;
 
-   _synchronous_lock synchronouslockParent2(ptaskOldParent ? ptaskOldParent->synchronization() : nullptr);
+   _synchronous_lock synchronouslockParent2(ptaskOldParent ? ptaskOldParent->synchronization() : nullptr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   _synchronous_lock synchronouslock(pobjectTask->synchronization());
+   _synchronous_lock synchronouslock(pobjectTask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(ptaskOldParent == this
    && m_pparticleaChildrenTask
@@ -1087,9 +1087,9 @@ void object::add_task(::object* pobjectTask)
 void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object * pobjectTaskNewParent)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   _synchronous_lock synchronouslockObject(pobjectTask->synchronization());
+   _synchronous_lock synchronouslockObject(pobjectTask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //#if REFERENCING_DEBUGGING
 //
@@ -1182,13 +1182,13 @@ void object::transfer_tasks_from(::object* ptask)
          if (ptaskTaskTarget)
          {
 
-            _synchronous_lock synchronouslockTask(ptaskTask->synchronization());
+            _synchronous_lock synchronouslockTask(ptaskTask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             auto procedurea = ::transfer(ptaskTask->m_procedurea2);
 
             synchronouslockTask.unlock();
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             ptaskTaskTarget->m_procedurea2.append(procedurea);
 
@@ -1198,7 +1198,7 @@ void object::transfer_tasks_from(::object* ptask)
 
    }
 
-   _synchronous_lock synchronouslockParent2(ptask->synchronization());
+   _synchronous_lock synchronouslockParent2(ptask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(!ptask->m_pparticleaChildrenTask || ptask->m_pparticleaChildrenTask->is_empty())
    {
@@ -1220,7 +1220,7 @@ void object::transfer_tasks_from(::object* ptask)
    for (auto pobjectTask : objectaChildrenTask)
    {
 
-      _synchronous_lock synchronouslock(pobjectTask->synchronization());
+      _synchronous_lock synchronouslock(pobjectTask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -1302,7 +1302,7 @@ bool object::set_children_to_finish_and_check_them_finished()
 
    }
 
-   _synchronous_lock lock(synchronization());
+   _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (has_flag(e_flag_checking_children_task))
    {
@@ -1475,7 +1475,7 @@ void object::on_notify(::particle * pparticle, enum_id eid)
    if (eid == id_destroy)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_particleaNotify.erase(pparticle);
 
@@ -1520,7 +1520,7 @@ void object::delete_this()
 //
 //   string strTypeName = ::type(this).name();
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_pcompositea)
 //   {
@@ -1552,7 +1552,7 @@ void object::delete_this()
 //
 //   string strTypeName = ::type(this).name();
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_preferencea)
 //   {
@@ -1580,7 +1580,7 @@ CLASS_DECL_ACME::pointer < ::mutex >* get_children_mutex();
 //
 //   }
 //
-//   _synchronous_lock synchronouslock(get_children_mutex());
+//   _synchronous_lock synchronouslock(get_children_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (!m_preferencea)
 //   {
@@ -1640,7 +1640,7 @@ bool object::__is_child_task(::particle * pparticleTask) const
 
    }
 
-   _synchronous_lock lock(synchronization());
+   _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (!m_pparticleaChildrenTask)
    {
@@ -1831,7 +1831,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    defer_create_synchronization();
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (!m_pqueuemap)
    {
@@ -2055,7 +2055,7 @@ void object::process_exception(const ::exception& e)
 //::collection::index object::task_add(::task * ptask)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   return get_meta()->task_add(this, ptask);
 //
@@ -2065,7 +2065,7 @@ void object::process_exception(const ::exception& e)
 void object::task_erase(::task* ptask)
 {
 
-   //_synchronous_lock synchronouslock(this->synchronization());
+   //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //if (m_pmeta)
    //{
@@ -2085,7 +2085,7 @@ void object::task_erase(::task* ptask)
 
       string strThreadChild = ::type(ptask).name();
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (::is_null(ptask))
       {
@@ -2094,7 +2094,7 @@ void object::task_erase(::task* ptask)
 
       }
 
-      //_synchronous_lock slChild(ptask->synchronization());
+      //_synchronous_lock slChild(ptask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       //{
@@ -2161,7 +2161,7 @@ void object::sleep(const class time & time)
 
       {
 
-         _synchronous_lock synchronouslock(ptask->synchronization());
+         _synchronous_lock synchronouslock(ptask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (ptask->m_pevSleep.is_null())
          {
@@ -2260,7 +2260,7 @@ void object::sleep(const class time & time)
 //void object::task_erase_all()
 //{
 //
-//   /*_synchronous_lock synchronouslock(this->synchronization());
+//   /*_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_pmeta)
 //   {
@@ -2274,7 +2274,7 @@ void object::sleep(const class time & time)
 //::task_array * object::task_array_get()
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (!m_pmeta)
 //   {
@@ -2291,7 +2291,7 @@ void object::sleep(const class time & time)
 //const ::task_array* object::task_array_get() const
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (!m_pmeta)
 //   {
@@ -2308,7 +2308,7 @@ void object::sleep(const class time & time)
 //bool object::task_is_empty() const
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   auto pthreada = task_array_get();
 //
@@ -3718,7 +3718,7 @@ bool object::IsSerializable() const
 
    //   auto ptask = ::get_task();
 
-   //   _synchronous_lock synchronouslock(ptask->synchronization());
+   //   _synchronous_lock synchronouslock(ptask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   if (ptask && ptask->m_bIsPredicate)
    //   {

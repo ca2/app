@@ -1091,7 +1091,7 @@ m_position += nCount;
    void edit_file::flush()
    {
       
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pfile = create_memory_file();
 

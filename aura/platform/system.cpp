@@ -409,7 +409,7 @@ namespace aura
 //   ::acme::library * system::get_library(const ::scoped_string & scopedstrLibrary1, bool bOpenCa2)
 //   {
 //
-//      synchronous_lock synchronouslock(m_pmutexLibrary);
+//      synchronous_lock synchronouslock(m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      string strLibrary(scopedstrLibrary1);
 //
@@ -1117,7 +1117,7 @@ namespace aura
    void system::initialize_draw2d()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 
       ::e_status estatus = ::success;
@@ -2242,7 +2242,7 @@ namespace aura
 
       //   auto psystem = system();
 
-      //   synchronous_lock synchronouslock(m_pmutexLibrary2);
+      //   synchronous_lock synchronouslock(m_pmutexLibrary2, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   if (m_mapLibrary["draw2d"].is_set() && m_mapLibrary["draw2d"]->is_opened())
       //   {
@@ -2577,7 +2577,7 @@ namespace aura
 //   ::pointer< ::mutex > system::get_openweather_city_mutex()
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_spmutexOpenweatherCity.is_null())
 //      {
@@ -3440,7 +3440,7 @@ namespace aura
    //bool system::defer_accumulate_on_open_file(string_array_base stra, const ::scoped_string & scopedstrExtra)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_timeCommandLineLast.Now();
 
@@ -3518,7 +3518,7 @@ namespace aura
    bool system::on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto applicationa = session()->m_applicationa;
 
@@ -3818,7 +3818,7 @@ namespace aura
 
 #elif defined(LINUX)
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_rectangleaMonitor.get_count();
 
@@ -3862,7 +3862,7 @@ namespace aura
 //
 //#elif defined(LINUX)
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (iMonitor < 0 || iMonitor >= get_monitor_count())
 //      {
@@ -4008,7 +4008,7 @@ namespace aura
 //
 //#elif defined(LINUX)
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (iWorkspace < 0 || iWorkspace >= get_workspace_count())
 //      {
@@ -4781,7 +4781,7 @@ namespace aura
 //   ::thread* system::get_task(itask itask)
 //   {
 //
-//      synchronous_lock synchronouslock(m_pmutexTask);
+//      synchronous_lock synchronouslock(m_pmutexTask, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      return m_threadmap[itask];
 //
@@ -4791,7 +4791,7 @@ namespace aura
 //   itask system::get_thread_id(::thread* pthread)
 //   {
 //
-//      synchronous_lock synchronouslock(m_pmutexTask);
+//      synchronous_lock synchronouslock(m_pmutexTask, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      itask itask = null_itask;
 //
@@ -4810,7 +4810,7 @@ namespace aura
 //   void system::set_thread(itask itask, ::thread* pthread)
 //   {
 //
-//      synchronous_lock synchronouslock(m_pmutexTask);
+//      synchronous_lock synchronouslock(m_pmutexTask, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      m_threadmap[itask].reset(pthread REFERENCING_DEBUGGING_COMMA_P_NOTE(this, "thread::thread_set"));
 //
@@ -4838,7 +4838,7 @@ namespace aura
 //   void system::unset_thread(itask itask, ::thread * pthread)
 //   {
 //
-//      synchronous_lock synchronouslock(m_pmutexTask);
+//      synchronous_lock synchronouslock(m_pmutexTask, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //#if REFERENCING_DEBUGGING
 //
@@ -4936,7 +4936,7 @@ namespace aura
 
    //   }
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   auto & threadgroupa = m_taskgroupmap[epriority];
 
@@ -4957,7 +4957,7 @@ namespace aura
    //::task_tool * system::task_tool(::enum_task_tool etool)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   auto& threadtoola = m_tasktoolmap[etool];
 
@@ -7109,7 +7109,7 @@ if(!m_pimaging)
    //bool system::on_application_menu_action(const ::scoped_string & scopedstrCommand)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   
 

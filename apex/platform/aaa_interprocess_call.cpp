@@ -148,7 +148,7 @@ bool ::interprocess::call::_wait(const class ::wait & wait)
 
    auto psynca = synca();
 
-   synchronous_lock synchronouslock(psynca);
+   synchronous_lock synchronouslock(psynca, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    return synchronouslock.wait(wait);
 

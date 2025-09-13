@@ -5150,7 +5150,7 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
    auto pdraw2d = psystem->draw2d();
 
-   synchronous_lock synchronouslock(pdraw2d->synchronization());
+   synchronous_lock synchronouslock(pdraw2d->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto & pmemory = pdraw2d->m_alpha_spread__32CC_filterMap[iRadius];
 
@@ -7050,7 +7050,7 @@ void image_context::set_cursor_image(const ::image::image *pimage, int xHotSpot,
 ::image::image_pointer imaging::get_work_image()
 {
 
-   synchronous_lock synchronouslock(m_pmutexWork);
+   synchronous_lock synchronouslock(m_pmutexWork, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (m_pimageaWork->has_no_image())
    {
@@ -7087,7 +7087,7 @@ void imaging::free_work_image(::image::image *pimage)
 
    }
 
-   synchronous_lock synchronouslock(m_pmutexWork);
+   synchronous_lock synchronouslock(m_pmutexWork, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_pimageaWork->m_imagea.push(pimage);
 

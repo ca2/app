@@ -246,7 +246,7 @@ bool file_context::exists(const ::file::path & pathParam)
 
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             pfolder = resource_folder();
 
@@ -257,7 +257,7 @@ bool file_context::exists(const ::file::path & pathParam)
             }
          }
 
-         _synchronous_lock synchronouslock(pfolder->synchronization());
+         _synchronous_lock synchronouslock(pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 
          return pfolder->type(pathInZip);
@@ -449,7 +449,7 @@ file_context::time(const ::file::path & pathBase, int iMaxLevel, const ::scoped_
 
    auto psystem = system();
 
-   _synchronous_lock lockMachineEvent(psystem->synchronization());
+   _synchronous_lock lockMachineEvent(psystem->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::file::path str;
 
@@ -1458,7 +1458,7 @@ void file_context::calculate_main_resource_memory()
    try
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pfactory = system()->folder_factory();
 
@@ -1524,7 +1524,7 @@ void file_context::calculate_main_resource_memory()
 
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pfolder = resource_folder();
 
@@ -1537,7 +1537,7 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-   _synchronous_lock synchronouslock(pfolder->synchronization());
+   _synchronous_lock synchronouslock(pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strPath(path);
 
@@ -1620,7 +1620,7 @@ void file_context::calculate_main_resource_memory()
 
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pfolder = resource_folder();
 
@@ -1633,7 +1633,7 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-   _synchronous_lock synchronouslock(pfolder->synchronization());
+   _synchronous_lock synchronouslock(pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strPath(path);
 
@@ -3432,7 +3432,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
    while_predicateicate_Sleep(60 * 1000, [&]()
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex());
+      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return system()->http_download_array()->contains(url.as_string()) || system()->http_exists_array()->contains(url.as_string());
 
@@ -3446,7 +3446,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex());
+      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (bDoCache && file_system()->exists(pathCache))
       {
@@ -3469,7 +3469,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
    if (bDoCache)
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex());
+      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       system()->http_download_array()->add(url.as_string());
 
@@ -3505,7 +3505,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
    if (bDoCache)
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex());
+      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {

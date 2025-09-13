@@ -160,7 +160,7 @@ namespace user
       ::pointer<span>data::add_span(const span & span)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          return øallocate class span (this, span);
 
@@ -170,7 +170,7 @@ namespace user
       ::pointer<span>data::add_span(::e_align ealignNewLine, bool bEndOfLine)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pspan = create_span();
 
@@ -215,7 +215,7 @@ namespace user
       void data::__update_text()
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          set_text(::user::rich_text::as_text(m_spana), ::e_source_sync);
 
@@ -239,7 +239,7 @@ namespace user
 
          }
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          update_span_cache(m_spana);
 
@@ -348,7 +348,7 @@ namespace user
       string data::get_full_text()
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          update_span_cache(m_spana);
 
@@ -370,7 +370,7 @@ namespace user
 
          straLines.add_lines(strProcess);
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ::collection::index iSelBeg = i1;
 
@@ -540,7 +540,7 @@ namespace user
       void data::_001SetFontFormat(character_count i1, character_count i2, const format * pformat, const e_attribute & eattribute)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          optimize_data();
 
@@ -870,7 +870,7 @@ namespace user
       //void data::do_layout()
       //{
 
-      //   synchronous_lock synchronouslock(this->synchronization());
+      //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   if (m_pgraphics.is_null())
       //   {
@@ -892,7 +892,7 @@ namespace user
       void data::optimize_data()
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          {
 
@@ -957,7 +957,7 @@ namespace user
       character_count data::_get_text_length() const
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_spana.is_empty())
          {
@@ -997,7 +997,7 @@ namespace user
       //void data::write(::binary_stream & stream) const
       //{
 
-      //   synchronous_lock synchronouslock(this->synchronization());
+      //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   stream << m_pformathost;
 
@@ -1009,7 +1009,7 @@ namespace user
       //void data::read(::binary_stream & stream)
       //{
 
-      //   synchronous_lock synchronouslock(this->synchronization());
+      //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   m_plinea->erase_all();
 

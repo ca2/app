@@ -265,7 +265,7 @@ namespace platform
    application_array application_container::get_applicationa()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_applicationa;
 
@@ -282,7 +282,7 @@ namespace platform
    //
    //   }
    //
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //   if (papp == this)
    //   {
@@ -299,7 +299,7 @@ namespace platform
    //void application_container::app_erase(::apex::application * papp)
    //{
    //
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //   if (m_applicationa.is_set())
    //   {
@@ -454,7 +454,7 @@ namespace platform
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          papplication = m_applicationa.find_running_defer_try_quit_damaged(scopedstrAppId);
 

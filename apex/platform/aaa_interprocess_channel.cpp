@@ -423,7 +423,7 @@ namespace interprocess_channel
    //void handler::dispatch_item(::pointer<class dispatch_item> && pdispatchitem)
    //{
 
-   //   synchronous_lock synchronouslock(m_pmutexDispatch);
+   //   synchronous_lock synchronouslock(m_pmutexDispatch, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   bool bWasEmpty = m_dispatchitema.is_empty();
 

@@ -1804,7 +1804,7 @@ namespace platform
    unsigned int system::crc32(unsigned int uCrc, const ::block& block)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_pcompressZlibCrc32)
       {
@@ -2274,7 +2274,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    ::component* system::component(const ::scoped_string& scopedstrComponent)
    {
 
-      _synchronous_lock synchronouslock(this->ui_destroyed_synchronization());
+      _synchronous_lock synchronouslock(this->ui_destroyed_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto& pcomponent = m_mapComponent[scopedstrComponent];
 
@@ -2627,7 +2627,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //
    //#ifdef CUBE
    //
-   //      _synchronous_lock synchronouslock(m_pmutexContainerizedLibrary);
+   //      _synchronous_lock synchronouslock(m_pmutexContainerizedLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //      auto & plibrary = m_mapContainerizedLibrary[strComponent][strImplementation];
    //
@@ -2747,7 +2747,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    ::pointer<::regular_expression::context> system::get_regular_expression_context(const ::scoped_string & scopedstrStyle)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ødefer_construct_new(m_pmapRegularExpressionContext);
 

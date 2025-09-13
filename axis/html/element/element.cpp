@@ -90,7 +90,7 @@ namespace html
 
       m_pdata = phtmldata;
 
-      synchronous_lock lock(phtmldata->synchronization());
+      synchronous_lock lock(phtmldata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       implement_phase1(phtmldata);
 
@@ -945,7 +945,7 @@ namespace html
 
       }
 
-      synchronous_lock lock(phtmldata->m_pcoredata->synchronization());
+      synchronous_lock lock(phtmldata->m_pcoredata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_phtmlbase = phtmlbase;
 

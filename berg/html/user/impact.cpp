@@ -191,7 +191,7 @@ void html_impact::on_document_complete(const ::scoped_string & scopedstrUrl)
 //
 //         {
 //
-//            synchronous_lock synchronouslock(this->synchronization());
+//            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //            if (get_html_data() == nullptr)
 //            {
@@ -239,7 +239,7 @@ void html_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
 
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             if (get_html_data() == nullptr)
             {

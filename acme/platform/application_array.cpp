@@ -74,7 +74,7 @@ namespace platform
    ::platform::application * application_array::find_by_app_id(const ::scoped_string & scopedstrAppId)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    restart:
 

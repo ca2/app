@@ -165,7 +165,7 @@ namespace acme
 
          //::user::element::on_initialize_particle();
 
-         //_synchronous_lock synchronouslock(system()->acme_windowing()->synchronization());
+         //_synchronous_lock synchronouslock(system()->acme_windowing()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //system()->acme_windowing()->m_windowbasea.add(this);
 
@@ -260,7 +260,7 @@ namespace acme
 
          }
 
-         //_synchronous_lock synchronouslock(system()->acme_windowing()->synchronization());
+         //_synchronous_lock synchronouslock(system()->acme_windowing()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //system()->acme_windowing()->m_windowbasea.erase(this);
 
@@ -787,7 +787,7 @@ namespace acme
     //void window::erase_keyboard_focus(::acme::user::interaction * pacmeuserinteractionFocus)
     //{
 
-    //   _synchronous_lock synchronouslock(this->synchronization());
+    //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
     //   if (pacmeuserinteractionFocus == m_pacmeuserinteractionKeyboardFocus)
     //   {
@@ -1196,7 +1196,7 @@ namespace acme
 
       //   ::user::element::on_initialize_particle();
 
-      //   _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization());
+      //   _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   system()->acme_windowing()->m_windowbasea.add(this);
 
@@ -1208,7 +1208,7 @@ namespace acme
 
       //   ::user::element::destroy();
 
-      //   _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization());
+      //   _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   system()->acme_windowing()->m_windowbasea.erase(this);
 

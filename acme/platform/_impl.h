@@ -150,7 +150,7 @@ const_char_pointer memory_counter_id(T * pthis)
 //
 //      _memory_counter_increment(scopedstr);
 //
-//      //synchronous_lock synchronouslock(g_pmutexMemoryCounters);
+//      //synchronous_lock synchronouslock(g_pmutexMemoryCounters, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      //int i = atoi(file_system()->as_string(path));
 //

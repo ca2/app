@@ -2074,7 +2074,7 @@ namespace user
       }
 
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(main_content().m_pitema)
       {

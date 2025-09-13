@@ -240,7 +240,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(m_pmeshdata->synchronization());
+      synchronous_lock synchronouslock(m_pmeshdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::int_rectangle rectangleX = this->rectangle();
 
@@ -999,7 +999,7 @@ namespace user
    void list2::on_layout(::draw2d::graphics_pointer& pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //m_dItemHeight = m_sizeMaximumItem.cy() + 1;
 
@@ -1135,7 +1135,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_nItemCount = nCount;
 
@@ -3288,7 +3288,7 @@ namespace user
    void list2::LayoutHeaderCtrl()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_plistheader == nullptr)
       {
@@ -3329,7 +3329,7 @@ namespace user
       if (pkey->previous()) // give chance to child
          return;
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (pkey->m_ekey == ::user::e_key_down || pkey->m_ekey == ::user::e_key_up ||
          pkey->m_ekey == ::user::e_key_next || pkey->m_ekey == ::user::e_key_prior)
@@ -3442,7 +3442,7 @@ namespace user
 
       screen_to_client()(point);
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bDrag)
       {
@@ -3635,7 +3635,7 @@ namespace user
 
       screen_to_client()(point);
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       
 
@@ -3995,7 +3995,7 @@ namespace user
 
       kill_timer(224455);
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 
       if (m_bDrag)
@@ -4204,7 +4204,7 @@ namespace user
 
       screen_to_client()(point);
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!has_keyboard_focus())
       {
@@ -5413,7 +5413,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_pcolumna->erase_all();
 
@@ -5669,7 +5669,7 @@ namespace user
    void list2::cache_hint()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pmeshcache.is_set())
       {
@@ -6698,7 +6698,7 @@ namespace user
    void list2::on_change_context_offset(::draw2d::graphics_pointer& pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto point = get_context_offset();
 
@@ -7664,7 +7664,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string strSort(m_pmeshdata ? m_pmeshdata->m_strMeshSort.c_str() : "");
 

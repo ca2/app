@@ -73,7 +73,7 @@ public:
    TYPE* get()
    {
 
-      _synchronous_lock synchronouslock(m_ppoolgroup->synchronization());
+      _synchronous_lock synchronouslock(m_ppoolgroup->synchronization(), m_ppoolgroup, SYNCHRONOUS_LOCK_SUFFIX);
 
       TYPE* pGet;
 

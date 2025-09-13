@@ -89,7 +89,7 @@ namespace user
    ::image::image *image_list::get_current_image()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_iaSel.get_count() != 1)
       {
@@ -390,7 +390,7 @@ namespace user
    void image_list::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pstyle = get_style(pgraphics);
 
@@ -415,7 +415,7 @@ namespace user
    void image_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pstyle = get_style(pgraphics);
 
@@ -719,7 +719,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       int left = m_iMargin;
 
@@ -918,7 +918,7 @@ namespace user
    ::item_pointer image_list::current_item()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_iaSel.get_count() == 1)
       {
@@ -935,7 +935,7 @@ namespace user
    index_array image_list::get_selection()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_iaSel;
 
@@ -945,7 +945,7 @@ namespace user
    void image_list::set_current_item(::collection::index iFind, const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_iaSel.erase_all();
 
@@ -957,7 +957,7 @@ namespace user
    void image_list::set_selection(const index_array & ia, const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!::acme::array::equals_non_unique_unordered(ia, m_iaSel))
       {

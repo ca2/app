@@ -983,7 +983,7 @@ namespace linux
 //      if (m_puserinteraction->m_pthread != nullptr)
 //      {
 //
-//         synchronous_lock synchronouslock(m_puserinteraction->m_pthread->mutex());
+//         synchronous_lock synchronouslock(m_puserinteraction->m_pthread->mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         if(m_puserinteraction->m_pthread->m_puiptra != nullptr)
 //         {
@@ -4863,7 +4863,7 @@ pmessagebox->sync();
          //x11_sync([&]()
          //{
 
-         synchronous_lock synchronouslock(x11_mutex());
+         synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             _001UpdateScreen();
 

@@ -1539,7 +1539,7 @@ namespace user
          //   m_atomSubMenu.is_empty();
          //}
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_pmenuitemShowSubMenu2)
          {
@@ -1593,7 +1593,7 @@ namespace user
 
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             update_command(m_pmenuitem);
 

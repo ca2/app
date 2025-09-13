@@ -182,7 +182,7 @@ namespace windowing
 
       __check_refdbg
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       __check_refdbg
 
@@ -211,7 +211,7 @@ namespace windowing
    void windowing::set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathFolder)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bSettingCursorMatter)
       {

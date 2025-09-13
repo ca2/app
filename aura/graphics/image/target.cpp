@@ -42,7 +42,7 @@ namespace image
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         _synchronous_lock synchronouslock(m_pparticleSynchronization);
+         _synchronous_lock synchronouslock(m_pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ::image::image_source imagesource(m_pimage, m_pimage->rectangle());
 
@@ -60,7 +60,7 @@ namespace image
    void target::set_size(const ::int_size& size)
    {
 
-      _synchronous_lock synchronouslock(m_pparticleSynchronization);
+      _synchronous_lock synchronouslock(m_pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_pimage->create(size);
 
@@ -74,7 +74,7 @@ namespace image
 
       {
 
-         _synchronous_lock synchronouslock(m_pparticleSynchronization);
+         _synchronous_lock synchronouslock(m_pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_pimage->create(s);
 

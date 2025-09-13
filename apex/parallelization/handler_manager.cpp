@@ -104,7 +104,7 @@ bool handler_manager::is_branch_current() const
 void handler_manager::handle_asynchronously(const ::procedure & procedure)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_procedurea.add(procedure);
 
@@ -155,7 +155,7 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
 ::procedure handler_manager::pick_new_task()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (m_procedurea.is_empty())
    {

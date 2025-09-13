@@ -225,7 +225,7 @@ namespace gpu
 
             }
 
-            _synchronous_lock synchronouslock(m_pcpubuffer->synchronization());
+            _synchronous_lock synchronouslock(m_pcpubuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_pcpubuffer->set_size(size);
 
@@ -302,7 +302,7 @@ namespace gpu
    void context::construct(::pointer < ::gpu::shader >& pgpushader)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -331,7 +331,7 @@ namespace gpu
    void context::manage_retired_objects()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (::collection::index i = 0; i < m_shaderaRetire.size();)
       {
@@ -377,7 +377,7 @@ namespace gpu
    ::gpu::texture* context::texture(const ::file::path& path)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto& ptexture = m_texturemap[path];
 

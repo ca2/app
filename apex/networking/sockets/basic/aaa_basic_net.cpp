@@ -813,7 +813,7 @@ int net::in6_addr_compare(in6_addr a,in6_addr b)
 //bool net::reverse_schedule(reverse_cache_item * pitem)
 //{
 //
-//   synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   m_reversecacheaRequest.add(pitem);
 //

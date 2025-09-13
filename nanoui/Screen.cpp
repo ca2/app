@@ -722,7 +722,7 @@ namespace nanoui
    {
 
 
-      _synchronous_lock lock(m_puserinteraction->synchronization());
+      _synchronous_lock lock(m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bNeedLayout)
       {
@@ -925,7 +925,7 @@ namespace nanoui
    bool Screen::on_mouse_move(const ::int_point& point, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
-      _synchronous_lock lock(this->synchronization());
+      _synchronous_lock lock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       bool ret = false;
 
       //if (point.x() > m_size.cx() - 10 && point.y() > m_size.cy() - 10)
@@ -1477,7 +1477,7 @@ namespace nanoui
    void Screen::move_window_to_front(Window* window)
    {
       
-      _synchronous_lock lock(m_puserinteraction->synchronization());
+      _synchronous_lock lock(m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_children.contains(window))
       {

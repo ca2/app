@@ -227,7 +227,7 @@ namespace database
       if (m_pdataserver != nullptr)
       {
 
-         _synchronous_lock synchronouslock(m_pdataserver->synchronization());
+         _synchronous_lock synchronouslock(m_pdataserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_pdataserver->m_clienta.erase_client(this);
 
@@ -236,7 +236,7 @@ namespace database
       if (pserver != nullptr)
       {
 
-         _synchronous_lock synchronouslock(pserver->synchronization());
+         _synchronous_lock synchronouslock(pserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          pserver->m_clienta.add_client(this);
 
@@ -262,7 +262,7 @@ namespace database
    //   if (m_pdataserver != nullptr)
    //   {
 
-   //      _synchronous_lock synchronouslock(m_pdataserver->synchronization());
+   //      _synchronous_lock synchronouslock(m_pdataserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //      m_pdataserver->m_clienta.erase_client(this);
 
@@ -271,7 +271,7 @@ namespace database
    //   if(pserver != nullptr)
    //   {
 
-   //      _synchronous_lock synchronouslock(pserver->synchronization());
+   //      _synchronous_lock synchronouslock(pserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //      pserver->m_clienta.add_client(this);
 
@@ -292,7 +292,7 @@ namespace database
       if(m_pdataserver != nullptr)
       {
 
-         _synchronous_lock synchronouslock(m_pdataserver->synchronization());
+         _synchronous_lock synchronouslock(m_pdataserver->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          try
          {

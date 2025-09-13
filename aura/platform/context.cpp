@@ -916,7 +916,7 @@ namespace aura
 //   void context::on_update_matter_locator()
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      m_straMatterLocator.erase_all();
 //
@@ -967,7 +967,7 @@ namespace aura
 //   void context::add_matter_locator(const ::scoped_string & scopedstrApp)
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      string strMatterLocator = matter_locator(strApp);
 //
@@ -984,7 +984,7 @@ namespace aura
 //   void context::add_matter_locator(::apex::application* papp)
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      string strMatterLocator = matter_locator(papp);
 //

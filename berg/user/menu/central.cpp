@@ -37,7 +37,7 @@ namespace user
 
       defer_initialize();
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       int iIndex;
 
@@ -155,7 +155,7 @@ namespace user
    void menu_central::defer_initialize()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pimagelist)
       {

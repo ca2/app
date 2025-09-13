@@ -226,7 +226,7 @@ namespace user
 //
 //            {
 //
-//               _synchronous_lock synchronouslock(pimpl->synchronization());
+//               _synchronous_lock synchronouslock(pimpl->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //               if(pimpl->m_redrawitema.has_element())
 //               {
@@ -288,7 +288,7 @@ namespace user
 //   int graphics_thread::thread_index()
 //   {
 //
-//      _synchronous_lock sl(this->synchronization());
+//      _synchronous_lock sl(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      auto iTask = ::current_itask();
 //
@@ -564,7 +564,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+         _synchronous_lock synchronouslock(m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ASSERT(!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child));
 
@@ -1363,7 +1363,7 @@ namespace user
 
       {
 
-         _synchronous_lock sl(synchronization());
+         _synchronous_lock sl(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto timeNow = ::time::now();
 
@@ -1520,7 +1520,7 @@ namespace user
 //      try
 //      {
 //
-//         //         _synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+//         //         _synchronous_lock synchronouslock(m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //         //
 //         //         if(!m_puserinteraction)
 //         //         {
@@ -1634,7 +1634,7 @@ namespace user
 //      try
 //      {
 //
-////         _synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+////         _synchronous_lock synchronouslock(m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////         if(!m_puserinteraction)
 ////         {
@@ -1876,7 +1876,7 @@ namespace user
    void graphics_thread::profiling_on_after_update_screen()
    {
 
-      _synchronous_lock sl(synchronization());
+      _synchronous_lock sl(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       
       //m_timeLastFrame.Now();
 

@@ -652,7 +652,7 @@ namespace acme
       void windowing::_do_tasks()
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto interchangea = m_windowa;
 

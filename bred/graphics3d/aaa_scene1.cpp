@@ -67,7 +67,7 @@ namespace graphics3d
    // void scene::defer_load_scene(::gpu::context* pgpucontext)
    // {
    //
-   //    _synchronous_lock synchronouslock(this->synchronization());
+   //    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //    if (!m_bInitialized)
    //    {

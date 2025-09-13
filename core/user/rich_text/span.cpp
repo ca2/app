@@ -144,7 +144,7 @@ namespace user
       ::pointer<span>span::fork()
       { 
 
-         synchronous_lock synchronouslock(m_pdata->synchronization());
+         synchronous_lock synchronouslock(m_pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
          
          auto pspan = øallocate class span (m_pdata);
          
@@ -160,7 +160,7 @@ namespace user
       ::pointer<span>span::fork(const class format* pformat, const e_attribute& eattribute)
       {
 
-         synchronous_lock synchronouslock(m_pdata->synchronization());
+         synchronous_lock synchronouslock(m_pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pspan = fork();
 

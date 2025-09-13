@@ -196,7 +196,7 @@ namespace user
    ::item_pointer button::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_spregion.is_null())
       {

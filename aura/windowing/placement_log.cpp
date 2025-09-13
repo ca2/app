@@ -25,7 +25,7 @@ namespace windowing
       item.m_rectangle = rectangle;
       item.m_time.Now();
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       insert_at(0, item);
 
@@ -106,7 +106,7 @@ namespace windowing
 
       const auto timeRecent = 3_s;
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (::collection::index i = this->upper_bound(); i >= 0; i--)
       {

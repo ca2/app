@@ -569,7 +569,7 @@ namespace filemanager
 
             auto pmutexGlobal = node()->create_global_named_mutex(this, false, "ca2-filemanagers");
 
-            synchronous_lock synchronouslock(pmutexGlobal);
+            synchronous_lock synchronouslock(pmutexGlobal, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             stra.add_lines(file()->as_string(m_pathFilemanagerProject), true);
 

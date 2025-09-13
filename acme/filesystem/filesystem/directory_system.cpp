@@ -955,7 +955,7 @@ bool directory_system::enumerate(::file::listing_base & listing)
 bool directory_system::defer_enumerate_media_library(::file::listing_base& listing)
 {
 
-   _synchronous_lock sl(m_pmutexMediaLibrary);
+   _synchronous_lock sl(m_pmutexMediaLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    for (auto& pair : m_medialibraryitemmap)
    {
@@ -1020,7 +1020,7 @@ bool directory_system::defer_enumerate_protocol(::file::listing_base& listing)
 ::media_library::item* directory_system::media_library_item(const ::file::path& path)
 {
 
-   _synchronous_lock sl(m_pmutexMediaLibrary);
+   _synchronous_lock sl(m_pmutexMediaLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strId(path);
 
@@ -1388,7 +1388,7 @@ void directory_system::change_to_home()
 void directory_system::add_media_library_item(::media_library::item* pmedialibraryitem)
 {
 
-   _synchronous_lock lock(m_pmutexMediaLibrary);
+   _synchronous_lock lock(m_pmutexMediaLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto emedialibrary = pmedialibraryitem->media_library_type();
 

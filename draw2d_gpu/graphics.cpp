@@ -6376,7 +6376,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    //plusplus::Pen * graphics::gl2d_pen()
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   if(m_ppen.is_null())
    //   {
@@ -6477,7 +6477,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    void graphics::flush()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //      m_pgraphics->Flush();
 
@@ -6489,7 +6489,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    void graphics::sync_flush()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //m_pgraphics->Flush(plusplus::FlushIntentionSync);
 
@@ -6529,7 +6529,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 
    //   return;
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   draw2d_gpu_enum_fonts fonts(itema);
 

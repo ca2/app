@@ -287,7 +287,7 @@ namespace user
    bool keyboard::load_os_layout(const ::file::path & path)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //int iCode;
 
@@ -726,7 +726,7 @@ namespace user
    void keyboard::translate_os_key_message(key * pkey)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(pkey->m_ekey == ::user::e_key_refer_to_text_member
          && pkey->m_strText.has_character())

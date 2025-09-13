@@ -93,7 +93,7 @@ namespace userex
    void image_list_impact::update_data(bool bSaveAndValidate)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (bSaveAndValidate)
       {
@@ -104,7 +104,7 @@ namespace userex
       else
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_pimageaThumb->m_imagea.clear();
 
@@ -142,7 +142,7 @@ namespace userex
       fork([this]()
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          int iForkDib = m_iForkAddDib;
 

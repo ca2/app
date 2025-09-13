@@ -1132,7 +1132,7 @@ public:
 
    inline TYPE pop(::collection::index i = -1);
    inline ::collection::index push(ARG_TYPE newElement);
-   inline void pop_back(::collection::index i = -1);
+   inline void pop_last(::collection::index i = -1);
    inline TYPE & add_item(ARG_TYPE newElement);
    inline TYPE & add(ARG_TYPE newElement) { return this->add_item(newElement); }
    inline TYPE& add_new();
@@ -1755,11 +1755,20 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
    auto nCount = in_count_out_last - first + 1;
 
-   ::collection::count nMoveCount = this->size() - in_count_out_last;
+   auto sizeOld = this->size();
+
+   ::collection::count nMoveCount = sizeOld - in_count_out_last;
 
    TYPED::destruct_count(this->m_begin + first, nCount);
 
-   if (first == 0)
+   if (this->m_erange & e_range_array_allocate)
+   {
+
+      TYPED::construct_count(this->m_begin + first, nCount);
+
+   }
+
+   if (first == 0 && sizeOld > nCount)
    {
 
       m_countAllocationOffset -= nCount;
@@ -1935,6 +1944,7 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::destroy()
       }
       else
       {
+         TYPED::construct_count(this->m_begin, size);
          this->m_end                      = this->m_begin;
          this->m_countAllocationOffset    = 0;
       }
@@ -2356,6 +2366,13 @@ base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > base_array < TYPE
    base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > a(this->m_begin + nIndex, (size_t)nMoveCount);
 
    TYPED::destruct_count(this->m_begin + nIndex, nCount);
+
+   if (this->m_erange == e_range_array_allocate)
+   {
+
+      TYPED::construct_count(this->m_begin + nIndex, nCount);
+
+   }
 
    if (nMoveCount)
    {
@@ -3590,7 +3607,7 @@ inline TYPE base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop_
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop_back(::collection::index n)
+inline void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop_last(::collection::index n)
 {
 
    erase_at(this->get_upper_bound(n));
@@ -3730,7 +3747,7 @@ inline ::collection::count base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCo
 
 //template < typename TYPE1, typename TYPE2 >
 //concept is_same_family = ::std::is_base_of<TYPE1, TYPE2> || ::std::is_base_of<TYPE2, TYPE1>;
-
+struct default_constructor_t{};
 
 
 
@@ -3743,8 +3760,8 @@ public:
 
    using BASE_ARRAY = ARRAY_BASE;
    
-   using CONTAINER_ITEM_TYPE = typename ARRAY_BASE::CONTAINER_ITEM_TYPE;
-   
+   using CONTAINER_ITEM_TYPE = ARRAY_BASE::CONTAINER_ITEM_TYPE;
+
    
    CONTAINER_ITEM_TYPE  m_elementaPreallocated[t_preallocated_array_size];
 
@@ -3753,7 +3770,7 @@ public:
 
    preallocated_array_base()
    {
-      
+
       this->m_erange = (::enum_range)(this->m_erange | e_range_array_allocate);
       this->m_begin = m_elementaPreallocated;
       this->m_end = m_elementaPreallocated;

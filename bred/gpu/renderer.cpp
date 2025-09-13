@@ -1709,7 +1709,7 @@ namespace gpu
    void renderer::post_on_after_end_frame(const ::procedure &procedure)
    {
 
-      //_synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_procedureaOnAfterEndFrame.add(procedure);
 

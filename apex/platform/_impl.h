@@ -109,7 +109,7 @@
 //
 //   }
 //
-//  synchronous_lock synchronouslock(channel_mutex());
+//  synchronous_lock synchronouslock(channel_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //  ::object* pobjectReceiver = dynamic_cast <::object*> (preceiverDerived);
 //
@@ -199,7 +199,7 @@
 //::message::typed_route < MESSAGE > & channel::get_typed_route (const ::atom & atom, RECEIVER * preceiverDerived)
 //{
 //
-//  synchronous_lock synchronouslock(s_pmutexChannel);
+//  synchronous_lock synchronouslock(s_pmutexChannel, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //  ::object * pobjectReceiver = dynamic_cast < ::object * > (preceiverDerived);
 //

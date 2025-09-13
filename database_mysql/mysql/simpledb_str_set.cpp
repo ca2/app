@@ -275,7 +275,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
 
       papp->assert_user_logged_in();
 
-      synchronous_lock synchronouslock(m_pmutex);
+      synchronous_lock synchronouslock(m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(m_pcore->m_phttpsession == nullptr)
       {

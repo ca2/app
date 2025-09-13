@@ -178,7 +178,7 @@ namespace user
       else
       {
 
-         //synchronous_lock synchronouslock(get_image_list()->synchronization());
+         //synchronous_lock synchronouslock(get_image_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pimagelist = get_image_list();
 

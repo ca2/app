@@ -806,7 +806,7 @@ namespace user
    ::collection::index multiple_option::add_item(const ::scoped_string& scopedstr, const ::atom & atom)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto iIndex = m_atomaOptions.add(atom);
 
@@ -819,7 +819,7 @@ namespace user
    //::collection::index multiple_option::add_string(const ::scoped_string & scopedstrString,uptr dwItemData)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ASSERT(m_edatamode == data_mode_opaque);
 

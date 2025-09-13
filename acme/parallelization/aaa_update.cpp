@@ -117,7 +117,7 @@ void update::notify()
 void update::add(::matter * pmatter)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(m_elementa.is_empty())
    {
@@ -139,7 +139,7 @@ void update::add(::matter * pmatter)
 void update::erase(::matter * pmatter)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_elementa.erase(pmatter);
 

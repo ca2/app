@@ -4242,7 +4242,7 @@ namespace user
    //void element::add_thread(::thread * pthread)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_threadptra.add(pthread);
 
@@ -4252,7 +4252,7 @@ namespace user
    //void element::erase_thread(::thread * pthread)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_threadptra.erase(pthread);
 

@@ -679,7 +679,7 @@ namespace gpu
 
    //         }
 
-   //         synchronous_lock synchronouslock(m_pcpubuffer->synchronization());
+   //         synchronous_lock synchronouslock(m_pcpubuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //         m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
 
@@ -1235,7 +1235,7 @@ namespace gpu
    void device::on_top_end_frame()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto procedureaOnTopFrameEnd = ::transfer(m_procedureaOnTopFrameEnd);
 

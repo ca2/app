@@ -620,7 +620,7 @@ void channel::erase_all_routes()
 //               try
 //               {
 //
-//                  synchronous_lock synchronouslock(route->m_preceiver->m_pmutexChannel);
+//                  synchronous_lock synchronouslock(route->m_preceiver->m_pmutexChannel, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //                  route->m_preceiver->m_sendera.erase(this);
 //

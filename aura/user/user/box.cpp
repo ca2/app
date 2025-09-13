@@ -961,7 +961,7 @@ namespace user
    string box::calculate_display()
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string strDisplay;
 
@@ -999,7 +999,7 @@ namespace user
    void box::defer_update_display()
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_strDisplay = calculate_display();
 

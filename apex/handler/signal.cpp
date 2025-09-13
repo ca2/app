@@ -134,7 +134,7 @@ namespace handler
    void signal::notify()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (auto & pair : m_objecthandlercontext)
       {
@@ -208,7 +208,7 @@ namespace handler
    ::handler_context * signal::listener_context(const ::signal_handler & signalhandler)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto & pcontext = m_signalhandlercontext[signalhandler];
 
@@ -279,7 +279,7 @@ namespace handler
       if (pobject)
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_objecthandlercontext.erase(pobject);
 
@@ -293,7 +293,7 @@ namespace handler
 
       pobject->notifya().add(this);
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto & pcontext = m_objecthandlercontext[pobject];
 
@@ -312,7 +312,7 @@ namespace handler
 
       pobject->notifya().erase(this);
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_objecthandlercontext.erase(pobject);
 
@@ -322,7 +322,7 @@ namespace handler
    void signal::add_signal_handler(const ::signal_handler & signalhandler)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //bool bShouldFork = false;
 
@@ -364,7 +364,7 @@ namespace handler
    void signal::erase_signal_handler(const ::signal_handler & signalhandler)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_signalhandlercontext.erase(signalhandler);
 
@@ -374,7 +374,7 @@ namespace handler
    //void signal::erase_signal_handlers(::particle * pparticle)
    //{
    //
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //   while(true)
    //   {
@@ -403,7 +403,7 @@ namespace handler
    void signal::set_modified()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_bModified = true;
 
@@ -438,7 +438,7 @@ namespace handler
    void signal::post_destroy_all()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_signalhandlercontext.erase_all();
 

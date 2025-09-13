@@ -739,7 +739,7 @@ throw_todo();
    bool form_window::_001GetData(const ::atom & atom, bool &bData)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer<interaction>pinteraction = get_child_by_id(atom);
 
@@ -860,7 +860,7 @@ throw_todo();
    //void form_window::_001RemoveControls()
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //m_controldescriptorset.erase_all();
 
@@ -880,7 +880,7 @@ throw_todo();
    void form_window::data_on_after_change(::database::client* pclient, const ::scoped_string & strDataKey, const ::payload & payload, ::topic * ptopic)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(ptopic != nullptr)
       {
@@ -936,7 +936,7 @@ throw_todo();
    void form_window::_001UpdateFunctionStatic()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto papp = get_app();
 
@@ -1330,7 +1330,7 @@ throw_todo();
       if(m_bInitialized)
          return true;
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       _001InitializeFormPreData();
 

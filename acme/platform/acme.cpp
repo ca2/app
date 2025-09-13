@@ -1263,7 +1263,7 @@ namespace acme
       //try
       //{
 
-      //   synchronous_lock synchronouslock(system()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(system()->g_mutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   g_pmapLibCall->erase_all();
 
@@ -1277,7 +1277,7 @@ namespace acme
       //try
       //{
 
-      //   synchronous_lock synchronouslock(system()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(system()->g_mutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   system()->g_mapLibrary.erase_all();
 

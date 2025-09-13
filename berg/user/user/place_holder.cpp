@@ -143,7 +143,7 @@ namespace user
    bool place_holder::can_merge(::user::interaction * pinteraction)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
@@ -172,9 +172,9 @@ namespace user
    bool place_holder::merge(::user::interaction * pinteraction)
    {
 
-      //_synchronous_lock synchronouslock(mutex_children());
+      //_synchronous_lock synchronouslock(mutex_children(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!can_merge(pinteraction))
       {
@@ -202,7 +202,7 @@ namespace user
    bool place_holder::is_place_holding(::user::interaction * pinteraction)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
@@ -323,7 +323,7 @@ namespace user
    bool place_holder::unplace(::user::interaction * pinteraction)
    {
       
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pacmeuserinteractionaChildren)
       {
@@ -344,7 +344,7 @@ namespace user
    void place_holder::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
@@ -451,7 +451,7 @@ namespace user
    interaction * place_holder::get_hold()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 

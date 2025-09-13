@@ -136,7 +136,7 @@ namespace apex
       //set_trace_category(trace_category_socket, "category_Socket", e_trace_level_warning);       // socket traces
 
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bInitialized)
       {
@@ -325,9 +325,9 @@ namespace apex
 //
 //      //const ::scoped_string & scopedstrTopicText = ::is_set(pparticle) ? pparticle->topic_text() : nullptr;
 //
-//      //synchronous_lock sl2(m_pmutexTrace);
+//      //synchronous_lock sl2(m_pmutexTrace, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-////      synchronous_lock sl2(synchronization());
+////      synchronous_lock sl2(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////      ::trace::category * pcategory = nullptr;
 ////
@@ -731,7 +731,7 @@ namespace apex
    void log::destroy()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bInitialized)
       {

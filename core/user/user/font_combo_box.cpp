@@ -110,7 +110,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(pfontlist->synchronization());
+      _synchronous_lock synchronouslock(pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pfontlist->m_pfontlist->m_puserinteractionGraphicsContext = pfontlist;
 

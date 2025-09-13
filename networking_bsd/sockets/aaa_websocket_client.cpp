@@ -723,7 +723,7 @@ namespace networking_bsd
    void websocket_client::write(const void *buf, memsize c)
    {
 
-      synchronous_lock synchronouslock(m_pmutexWebsocketWrite);
+      synchronous_lock synchronouslock(m_pmutexWebsocketWrite, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       http_client_socket::write(buf, c);
 

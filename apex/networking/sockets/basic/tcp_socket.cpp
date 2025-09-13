@@ -1480,7 +1480,7 @@ return true;
 
 //      SetNonblocking(true);
 //
-//      //synchronous_lock slMap(psystem->sockets().m_clientcontextmap.m_pmutex);
+//      //synchronous_lock slMap(psystem->sockets().m_clientcontextmap.m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (is_true("from_pool"))
 //         return;
@@ -1588,7 +1588,7 @@ return true;
 
       SetNonblocking(true);
 
-      //synchronous_lock slMap(psystem->sockets().m_servercontextmap.m_pmutex);
+      //synchronous_lock slMap(psystem->sockets().m_servercontextmap.m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //{
       //   if(m_psslcontext.is_set()
@@ -1604,7 +1604,7 @@ return true;
       //}
 
 
-      //synchronous_lock synchronouslock(m_pmutexSslCtx);
+      //synchronous_lock synchronouslock(m_pmutexSslCtx, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //slMap.unlock();
 
@@ -2141,7 +2141,7 @@ return true;
 //
 //
 //      {
-//         synchronous_lock synchronouslock(this->synchronization());
+//         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //         int i;
 //
 //         auto psystem = system();

@@ -61,7 +61,7 @@ namespace windowing
 
       ::user::element::on_initialize_particle();
 
-      _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization());
+      _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       system()->acme_windowing()->m_windowbasea.add(this);
 
@@ -73,7 +73,7 @@ namespace windowing
 
       ::user::element::destroy();
 
-      _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization());
+      _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       system()->acme_windowing()->m_windowbasea.erase(this);
 

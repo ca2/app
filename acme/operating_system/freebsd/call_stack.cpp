@@ -52,7 +52,7 @@ string get_callstack(::particle * pparticle,  const ::scoped_string & scopedstrF
 //   //
 //   //   const ::scoped_string & scopedstr;
 //   //
-//   //   synchronous_lock synchronouslock(::exception_engine().mutex());
+//   //   synchronous_lock synchronouslock(::exception_engine().mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //   //
 //   //   ::exception_engine().xxxstack_trace(iSkip, nullptr, m_pszFormat, m_iCount);
 //   //
@@ -131,7 +131,7 @@ void freebsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolNa
 
       auto psynchronization = ::system()->synchronization();
 
-      synchronous_lock sl(psynchronization);
+      synchronous_lock sl(psynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {

@@ -190,7 +190,7 @@ namespace account
 
                {
 
-                  synchronous_lock slInteractive(m_pcredentials->synchronization());
+                  synchronous_lock slInteractive(m_pcredentials->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   pcredentials = øallocate ::account::credentials(*m_pcredentials);
 

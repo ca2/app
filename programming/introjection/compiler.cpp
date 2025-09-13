@@ -577,7 +577,7 @@ namespace introjection
 
       }
 
-      synchronous_lock slCompiler(synchronization());
+      synchronous_lock slCompiler(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto & plibrary = m_lib[pathFile];
 

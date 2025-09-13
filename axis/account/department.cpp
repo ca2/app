@@ -335,7 +335,7 @@ namespace account
    void department::not_auth(::file::path pathUrl)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto puser = get_user(pathUrl);
 

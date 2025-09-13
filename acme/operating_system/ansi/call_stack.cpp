@@ -223,12 +223,18 @@ namespace platform
 
 #if !defined(ANDROID)
 
+
+    critical_section g_criticalsectionCallStack;
+
+
     string node::_get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & strFormat, int iSkip, void *caller_address, int iCount)
     {
 
-       auto psynchronization = ::system()->synchronization();
+       //auto psynchronization = ::system()->synchronization();
 
-       _synchronous_lock sl(psynchronization);
+       //_synchronous_lock sl(psynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+       critical_section_lock criticalsectionlock(&g_criticalsectionCallStack);
 
 #if defined(FREEBSD) || defined(OPENBSD)
        const int iMaximumFramesToCapture = 32;

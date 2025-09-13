@@ -169,7 +169,7 @@ namespace user
             //if (pimpl)
             //{
 
-            //   synchronous_lock synchronouslock(pimpl->synchronization());
+            //   synchronous_lock synchronouslock(pimpl->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             //   pimpl->m_userinteractionaHideOnConfigurationChange.add_unique_interaction(this);
 
@@ -343,7 +343,7 @@ namespace user
    void list_box::reset_content()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_straList.erase_all();
 
@@ -420,7 +420,7 @@ namespace user
                if (pwindow)
                {
 
-                  _synchronous_lock synchronouslock(pwindow->synchronization());
+                  _synchronous_lock synchronouslock(pwindow->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   pwindow->m_userinteractionaHideOnConfigurationChange.erase_interaction(this);
 
@@ -645,7 +645,7 @@ namespace user
    void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, ::int_size* psize)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -1645,7 +1645,7 @@ namespace user
 
             {
 
-               synchronous_lock synchronouslock(session()->synchronization());
+               synchronous_lock synchronouslock(session()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                auto pinteraction = øcreate_new < ::user::interaction >();
 
@@ -1663,7 +1663,7 @@ namespace user
 
             {
 
-               synchronous_lock synchronouslock(session()->synchronization());
+               synchronous_lock synchronouslock(session()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                auto puser = user();
 

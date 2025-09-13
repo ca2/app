@@ -140,7 +140,7 @@ namespace data
    //::collection::count tree_base_composite::get_proper_item_count()
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   return get_base_item()->get_proper_item_count();
 
@@ -470,7 +470,7 @@ namespace data
    //void tree_base_composite::start_fill_children()
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_bFill = true;
 

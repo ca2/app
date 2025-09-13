@@ -315,7 +315,7 @@ namespace dynamic_source
    void script_compiler::compile(ds_script* pscript)
    {
 
-      //synchronous_lock synchronouslock(pscript->synchronization());
+      //synchronous_lock synchronouslock(pscript->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       _synchronous_lock slCompiler(&m_pmanager->m_semCompiler);
 
@@ -1391,7 +1391,7 @@ namespace dynamic_source
    void script_compiler::operator()(::file::action* paction)
    {
 
-      synchronous_lock synchronouslock(m_pmutex);
+      synchronous_lock synchronouslock(m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::file::path path = paction->m_pathFolder / paction->m_pathFile;
 
@@ -3051,7 +3051,7 @@ namespace dynamic_source
    void script_compiler::pstr_set(const ::atom & atomTopic, atom idLocale, atom idSchema, const ::scoped_string & scopedstr)
    {
 
-      synchronous_lock synchronouslock(m_pmanager->synchronization());
+      synchronous_lock synchronouslock(m_pmanager->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto psystem = system();
 

@@ -327,7 +327,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         _synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pformatSelectionCommon = øcreate_new < format >();
 
@@ -871,7 +871,7 @@ namespace user
       void edit_impl::draw_impl(::draw2d::graphics_pointer & pgraphics)
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //pgraphics->offset_origin(m_pointScroll.x(), m_pointScroll.y());
 
@@ -905,7 +905,7 @@ namespace user
 
          return _000OnDraw(pgraphics);
 
-         //_synchronous_lock synchronouslock(this->synchronization());
+         //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ////pgraphics->offset_origin(m_pointScroll.x(), m_pointScroll.y());
 
@@ -1081,7 +1081,7 @@ namespace user
 
                auto prichtextdata = get_rich_text_data();
 
-               _synchronous_lock synchronouslock(prichtextdata->synchronization());
+               _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                if (pformattool->m_eattribute & e_attribute_align)
                {
@@ -1207,7 +1207,7 @@ namespace user
       void edit_impl::on_message_key_down(::message::message * pmessage)
       {
 
-         //_synchronous_lock synchronouslock(this->synchronization());
+         //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          {
 
@@ -1520,7 +1520,7 @@ namespace user
 
             auto prichtextdata = get_rich_text_data();
 
-            _synchronous_lock synchronouslock(prichtextdata->synchronization());
+            _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             character_count i1 = get_sel_beg();
 
@@ -1657,7 +1657,7 @@ namespace user
 
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             bool bControl = psession->is_key_pressed(::user::e_key_control);
 
@@ -1742,7 +1742,7 @@ namespace user
 
                   {
 
-                     _synchronous_lock synchronouslock(prichtextdata->synchronization());
+                     _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                      character_count i1 = get_sel_beg();
 
@@ -1809,7 +1809,7 @@ namespace user
 
                auto prichtextdata = get_rich_text_data();
 
-               _synchronous_lock synchronouslock(prichtextdata->synchronization());
+               _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                double x;
 
@@ -1847,7 +1847,7 @@ namespace user
 
                auto prichtextdata = get_rich_text_data();
 
-               _synchronous_lock synchronouslock(prichtextdata->synchronization());
+               _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                double x;
 
@@ -1887,7 +1887,7 @@ namespace user
                if (!bShift && m_iSelBeg > m_iSelEnd)
                {
 
-                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   m_iSelEnd = m_iSelBeg;
 
@@ -1899,7 +1899,7 @@ namespace user
 
                   auto prichtextdata = get_rich_text_data();
 
-                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   m_iSelBeg = m_iSelEnd;
 
@@ -1911,7 +1911,7 @@ namespace user
 
                   auto prichtextdata = get_rich_text_data();
 
-                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   if (m_iSelEnd < _001GetLayoutTextLength())
                   {
@@ -1952,7 +1952,7 @@ namespace user
                if (!bShift && m_iSelBeg < m_iSelEnd)
                {
 
-                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   m_iSelEnd = m_iSelBeg;
 
@@ -1964,7 +1964,7 @@ namespace user
 
                   auto prichtextdata = get_rich_text_data();
 
-                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   m_iSelBeg = m_iSelEnd;
 
@@ -1976,7 +1976,7 @@ namespace user
 
                   auto prichtextdata = get_rich_text_data();
 
-                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   string strText;
 
@@ -2009,7 +2009,7 @@ namespace user
 
                auto prichtextdata = get_rich_text_data();
 
-               _synchronous_lock synchronouslock(prichtextdata->synchronization());
+               _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                if (bControl)
                {
@@ -2045,7 +2045,7 @@ namespace user
 
                auto prichtextdata = get_rich_text_data();
 
-               _synchronous_lock synchronouslock(prichtextdata->synchronization());
+               _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                if (bControl)
                {

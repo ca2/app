@@ -42,7 +42,7 @@ namespace draw2d_cairo
    //void image::read(::binary_stream & stream)
    //{
 
-   //   _synchronous_lock ml(::draw2d_cairo::mutex());
+   //   _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ::image::image::read(stream);
 
@@ -61,7 +61,7 @@ namespace draw2d_cairo
    //void image::write(::binary_stream & stream) const
    //{
 
-   //   _synchronous_lock ml(::draw2d_cairo::mutex());
+   //   _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ::image::image::write(stream);
 
@@ -489,7 +489,7 @@ namespace draw2d_cairo
    void image::_map(bool bApplyAlphaTransform)
    {
 
-      _synchronous_lock ml(::draw2d_cairo::mutex());
+      _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bMapped)
       {
@@ -579,7 +579,7 @@ namespace draw2d_cairo
    void image::_unmap()
    {
 
-      _synchronous_lock ml(::draw2d_cairo::mutex());
+      _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_bMapped)
       {

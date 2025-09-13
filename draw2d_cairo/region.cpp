@@ -140,7 +140,7 @@ namespace draw2d_cairo
    bool region::_mask(cairo_t * pgraphics, double dOpacity, enum_mask emask)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(m_pcairo != nullptr)
       {
@@ -370,7 +370,7 @@ namespace draw2d_cairo
    bool region::_rect(cairo_t * pgraphics)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer<::geometry2d::rectangle_item>pitem = m_pitem;
 
@@ -389,7 +389,7 @@ namespace draw2d_cairo
    bool region::_ellipse(cairo_t * pgraphics)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer<::geometry2d::ellipse_item>pitem = m_pitem;
 
@@ -428,7 +428,7 @@ namespace draw2d_cairo
    bool region::_polygon(cairo_t * pgraphics)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer<::geometry2d::polygon_item>pitem = m_pitem;
 
@@ -456,7 +456,7 @@ namespace draw2d_cairo
    bool region::_poly_polygon(cairo_t * pgraphics)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer<::geometry2d::poly_polygon_item>pitem = m_pitem;
 
@@ -504,7 +504,7 @@ namespace draw2d_cairo
    bool region::_mask_combine(cairo_t * pgraphics)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       cairo_push_group(pgraphics);
 
@@ -667,7 +667,7 @@ namespace draw2d_cairo
    bool region::clip(cairo_t * pgraphics)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //      return _mask(pgraphics, 1.0, e_mask_fill);
 
@@ -701,7 +701,7 @@ namespace draw2d_cairo
 //
 //      }
 //      else
-      //synchronous_lock ml(::draw2d_cairo::mutex());
+      //synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(m_pcairo != nullptr)
       {
@@ -777,7 +777,7 @@ namespace draw2d_cairo
    //bool region::clip_rect(cairo_t * pgraphics)
    //{
 
-   //   synchronous_lock ml(::draw2d_cairo::mutex());
+   //   synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   cairo_rectangle(pgraphics, m_x1, m_y1, m_x2, m_y2);
 
@@ -791,7 +791,7 @@ namespace draw2d_cairo
    //bool region::clip_oval(cairo_t * pgraphics)
    //{
 
-   //   synchronous_lock ml(::draw2d_cairo::mutex());
+   //   synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   double centerx    = (m_x2 + m_x1) / 2.0;
 
@@ -828,7 +828,7 @@ namespace draw2d_cairo
    //bool region::clip_polygon(cairo_t * pgraphics)
    //{
 
-   //   synchronous_lock ml(::draw2d_cairo::mutex());
+   //   synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   if(m_nCount <= 0)
    //   {

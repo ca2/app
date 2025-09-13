@@ -83,7 +83,7 @@
 // //
 // //      };
 // //
-// //      //synchronous_lock synchronouslock(x11_mutex());
+// //      //synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 // //
 // //      //xdisplay display(x11_get_display());
 // //
@@ -236,7 +236,7 @@
 // //
 // //      };
 // //
-// //      //synchronous_lock synchronouslock(x11_mutex());
+// //      //synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 // //
 // //      //xdisplay display(x11_get_display());
 // //
@@ -380,7 +380,7 @@
 //
 //       };
 //
-//       //synchronous_lock synchronouslock(x11_mutex());
+//       //synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //       //xdisplay display(x11_get_display());
 //

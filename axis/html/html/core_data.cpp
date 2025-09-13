@@ -209,7 +209,7 @@ namespace html
    void core_data::delete_contents()
    {
 
-      synchronous_lock lock(synchronization());
+      synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       destroy();
 
@@ -401,7 +401,7 @@ namespace html
    void core_data::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_bImplemented)
       {
@@ -451,7 +451,7 @@ namespace html
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_pgraphics = pgraphics;
 
@@ -603,7 +603,7 @@ namespace html
    bool core_data::load_image(image* pimage)
    {
 
-      synchronous_lock lockImage(pimage->synchronization());
+      synchronous_lock lockImage(pimage->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       bool bRet = false;
 
@@ -710,7 +710,7 @@ namespace html
 
       //int iRetry = 0;
 
-      synchronous_lock lock(synchronization());
+      synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //restart:
 
@@ -944,7 +944,7 @@ namespace html
 
       }*/
 
-      synchronous_lock lock(synchronization());
+      synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_puserinteraction = pform;
 
@@ -997,7 +997,7 @@ namespace html
 
       //}
 
-      synchronous_lock lock(synchronization());
+      synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_puserinteraction = pform;
 
@@ -1039,7 +1039,7 @@ namespace html
 
       //}
 
-      synchronous_lock lock(synchronization());
+      synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_puserinteraction = pform;
 

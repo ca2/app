@@ -78,7 +78,7 @@ namespace gpu_opengl
 
       };
 
-      synchronous_lock synchronouslock(user_synchronization());
+      synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto psession = session();
 
@@ -189,7 +189,7 @@ namespace gpu_opengl
 
       ::e_status estatus = ::success;
 
-      synchronous_lock synchronouslock(user_synchronization());
+      synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto psession = session();
 
@@ -252,7 +252,7 @@ namespace gpu_opengl
 
       };
 
-      synchronous_lock synchronouslock(user_synchronization());
+      synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pnode = (::aura_posix::node *) node()->m_pAuraPosix;
 

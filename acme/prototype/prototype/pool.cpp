@@ -36,7 +36,7 @@ void pool_group::on_initialize_particle()
 void pool_group::call_ongoing(const ::call& call)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto pparticleaOngoing = m_pongoingparticlearraysource->ongoing_particle_array();
 

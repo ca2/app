@@ -86,7 +86,7 @@ namespace multimedia
 
          auto pmultimedia = psystem->multimedia();
 
-         synchronous_lock synchronouslock(pmultimedia->synchronization());
+         synchronous_lock synchronouslock(pmultimedia->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          wstrAttr = pmultimedia->get_media_call_title(strPathOrigin);
 
@@ -208,7 +208,7 @@ namespace multimedia
    bool decoder::multimedia_get_attribute(::enum_id eattribute, ::payload & payload)
    {
 
-      synchronous_lock lock(synchronization());
+      synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (eattribute == id_title)
       {

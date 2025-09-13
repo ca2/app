@@ -84,7 +84,7 @@ void SSL_set_app_data2(SSL* ssl, void* arg)
 int current_session_key(::sockets_bsd::tcp_socket* c, ssl_ticket_key* key)
 {
    int result = false;
-   _synchronous_lock synchronouslock(c->synchronization());
+   _synchronous_lock synchronouslock(c->synchronization(), c, SYNCHRONOUS_LOCK_SUFFIX);
    if (c->m_ticketkeya.has_elements())
    {
       *key = c->m_ticketkeya.first();
@@ -99,7 +99,7 @@ int find_session_key(::sockets_bsd::tcp_socket* c, unsigned char key_name[16], s
 {
 
    int result = false;
-   _synchronous_lock synchronouslock(c->synchronization());
+   _synchronous_lock synchronouslock(c->synchronization(), c, SYNCHRONOUS_LOCK_SUFFIX);
    for (auto& ticketkey : c->m_ticketkeya)
    {
       // Check if we have a match for tickets.
@@ -123,7 +123,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
 
    ::sockets_bsd::tcp_socket* c = (::sockets_bsd::tcp_socket*)SSL_get_app_data2(ssl);
 
-   _synchronous_lock synchronouslock(c->synchronization());
+   _synchronous_lock synchronouslock(c->synchronization(), c, SYNCHRONOUS_LOCK_SUFFIX);
    //auto conn = static_cast<Connection*>(SSL_get_app_data(ssl));
    //auto handler = static_cast<ClientHandler*>(conn->data);
    //auto worker = handler->get_worker();
@@ -1965,7 +1965,7 @@ m_ibuf(isize)
 
       SetNonblocking(false);
 
-      //synchronous_lock slMap(pnetworking2->m_clientcontextmap.m_pmutex);
+      //synchronous_lock slMap(pnetworking2->m_clientcontextmap.m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (is_true("from_pool"))
          return;
@@ -2074,7 +2074,7 @@ m_ibuf(isize)
 
       SetNonblocking(false);
 
-      //synchronous_lock slMap(pnetworking2->m_servercontextmap.m_pmutex);
+      //synchronous_lock slMap(pnetworking2->m_servercontextmap.m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       {
          if (m_psslcontext.is_set()
@@ -2090,7 +2090,7 @@ m_ibuf(isize)
       }
 
 
-      //synchronous_lock synchronouslock(m_pmutexSslCtx);
+      //synchronous_lock synchronouslock(m_pmutexSslCtx, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //slMap.unlock();
 
@@ -2799,7 +2799,7 @@ m_ibuf(isize)
 
 
       {
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
          int i;
 
          //auto psystem = system();

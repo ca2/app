@@ -81,7 +81,7 @@ void machine_event_central::run()
    {
 
       {
-         _synchronous_lock lockMachineEvent(m_pmachinehappening->synchronization());
+         _synchronous_lock lockMachineEvent(m_pmachinehappening->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //machine_event_data data;
 
@@ -102,7 +102,7 @@ void machine_event_central::run()
 bool machine_event_central::is_close_application()
 {
 
-   _synchronous_lock lockMachineEvent(m_pmachinehappening->synchronization());
+   _synchronous_lock lockMachineEvent(m_pmachinehappening->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    machine_event_data data;
 

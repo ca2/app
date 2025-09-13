@@ -1834,7 +1834,7 @@ bool app_core::has_aura_application_factory() const
 
    string strAppId = pszAppId;
 
-   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::pointer<::acme::library> plibrary = ::auraacmesystem()->m_mapLibrary[strAppId];
 

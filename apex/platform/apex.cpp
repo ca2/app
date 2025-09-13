@@ -518,7 +518,7 @@ void on_term_thread();
 ////      //try
 ////      //{
 ////
-////      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
+////      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////      //   g_pmapLibCall->erase_all();
 ////
@@ -532,7 +532,7 @@ void on_term_thread();
 ////      //try
 ////      //{
 ////
-////      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
+////      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////      //   psystem->g_mapLibrary.erase_all();
 ////

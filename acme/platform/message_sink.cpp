@@ -61,7 +61,7 @@ void message_sink::post_simple_message(enum_message emessage)
 void message_sink::post_message(::platform::message * pmessage)
 {
 
-   //_synchronous_lock synchronouslock(this->synchronization());
+   //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //m_messagea.add(pmessage);
 
@@ -101,7 +101,7 @@ void message_sink::post_data_block_message(::enum_message emessage, ::data::bloc
 //::pointer < ::platform::message > message_sink::pick_message_to_post()
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if(m_messagea.is_empty())
 //   {

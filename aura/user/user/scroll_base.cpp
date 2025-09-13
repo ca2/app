@@ -205,7 +205,7 @@ namespace user
 
       //{
 
-      //   _synchronous_lock synchronouslock(this->synchronization());
+      //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   auto pitemDragSrcoll = tool().item(e_element_drag_scroll);
 

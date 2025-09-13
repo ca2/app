@@ -1186,7 +1186,7 @@ auto tickStart = ::time::now();
 
             {
 
-               synchronous_lock synchronouslock(sckDataConnection.synchronization());
+               synchronous_lock synchronouslock(sckDataConnection.synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                sckDataConnection.write(m_vBuffer);
 
@@ -1277,7 +1277,7 @@ auto tickStart = ::time::now();
 
             {
 
-               synchronous_lock synchronouslock(this->synchronization());
+               synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                iNumRead = sckDataConnection.m_pmemoryfile->erase_begin(m_vBuffer.data(), static_cast<int>(m_vBuffer.size()));
 

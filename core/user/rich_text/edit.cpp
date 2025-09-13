@@ -423,7 +423,7 @@ namespace user
 
          //m_rectangle = rectangle;
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -888,7 +888,7 @@ namespace user
       void edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -1891,7 +1891,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         _synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ::collection::index iSelBeg = get_sel_beg();
 
@@ -1907,7 +1907,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         _synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          update_span_cache(prichtextdata->m_spana);
 
@@ -1988,7 +1988,7 @@ namespace user
       void edit::_001GetLayoutText(string & str) const
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          str = layout_text(*m_plinea);
 
@@ -2008,7 +2008,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         _synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (iLine < 0)
          {
@@ -2056,7 +2056,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         _synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //double xLast = 0.0;
 
@@ -2179,7 +2179,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         _synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto plinea = m_plinea;
 
@@ -2252,7 +2252,7 @@ namespace user
       void edit::internal_update_sel_char()
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //m_iSelBeg = sel_char(*plinea, m_iSelBeg3, m_ebiasBeg);
 
@@ -2338,7 +2338,7 @@ namespace user
       character_count edit::_001GetLayoutTextLength() const
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto plinea = m_plinea;
 
@@ -2357,13 +2357,13 @@ namespace user
       void edit::draw_text(::draw2d::graphics_pointer & pgraphics, const ::double_rectangle & rectangleBox)
       {
 
-         _synchronous_lock synchronouslock(pgraphics->synchronization());
+         _synchronous_lock synchronouslock(pgraphics->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         _synchronous_lock sl1(this->synchronization());
+         _synchronous_lock sl1(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         //_synchronous_lock sl2(m_plinea->synchronization());
+         //_synchronous_lock sl2(m_plinea->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         //_synchronous_lock sl3(m_pformathost->synchronization());
+         //_synchronous_lock sl3(m_pformathost->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

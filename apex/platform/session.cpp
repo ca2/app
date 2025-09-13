@@ -945,7 +945,7 @@ class ::fs::data * session::fs()
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_pmapKeyPressed)
       {
@@ -1030,7 +1030,7 @@ ret:
    void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_pmapKeyPressed)
       {

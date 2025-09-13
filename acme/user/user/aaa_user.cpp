@@ -446,7 +446,7 @@ namespace acme
       void user::_do_tasks()
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto windowa = system()->acme_windowing()->m_windowa;
 

@@ -477,7 +477,7 @@ namespace hotplugin
 
       }
 
-      synchronous_lock ml(m_pmutexBitmap);
+      synchronous_lock ml(m_pmutexBitmap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_sizeBitmap = abs(rectangle.size());
 
@@ -517,7 +517,7 @@ namespace hotplugin
       if(!m_memorymapBitmap.is_mapped())
          return;
 
-      synchronous_lock ml(m_pmutexBitmap);
+      synchronous_lock ml(m_pmutexBitmap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_sizeBitmap = abs(rectangle.size());
 
@@ -560,7 +560,7 @@ namespace hotplugin
       if(!m_memorymapBitmap.is_mapped())
          return;
 
-      synchronous_lock ml(m_pmutexBitmap);
+      synchronous_lock ml(m_pmutexBitmap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_pimage = create_image(m_sizeBitmap);
 

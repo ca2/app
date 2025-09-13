@@ -177,7 +177,7 @@ namespace aura
 
       auto psynca = synca();
 
-      synchronous_lock synchronouslock(psynca);
+      synchronous_lock synchronouslock(psynca, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return synchronouslock.wait(m_duration);
 
@@ -320,7 +320,7 @@ namespace aura
    bool inteprocess_channel::start(const ::scoped_string & scopedstrApp)
    {
 
-      synchronous_lock sl1(mutex());
+      synchronous_lock sl1(mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto & pmutex = m_mapAppMutex[strApp];
 
@@ -333,7 +333,7 @@ namespace aura
 
       sl1.unlock();
 
-      synchronous_lock synchronouslock(pmutex);
+      synchronous_lock synchronouslock(pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto idaPid = get_pid(strApp);
 
@@ -679,7 +679,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       auto pobjectTask = øallocate class task (pcall, idPid, atomic_increment(&m_iTaskSeed));
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -693,7 +693,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    ::pointer<class inteprocess_channel::task> inteprocess_channel::get_task(long long iTask)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_mapTask[iTask];
 

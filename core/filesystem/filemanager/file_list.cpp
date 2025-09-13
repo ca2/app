@@ -167,7 +167,7 @@ namespace filemanager
    void file_list::RenameFile(int iLine, string &wstrNameNew, const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(fs_list()->synchronization());
+      synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::file::path filepath = fs_list_item(iLine)->final_path();
 
@@ -187,7 +187,7 @@ namespace filemanager
 
       ::pointer<::message::mouse>pcontextmenu(pmessage);
 
-      synchronous_lock synchronouslock(fs_list()->synchronization());
+      synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::collection::index iItem;
 
@@ -467,7 +467,7 @@ namespace filemanager
 
       ::pointer<::message::command>pcommand(pmessage);
 
-      synchronous_lock synchronouslock(fs_list()->synchronization());
+      synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::file::item_array itema;
 
@@ -933,7 +933,7 @@ namespace filemanager
    //void file_list::_001OnSpafy2(::message::message * pmessage)
    //{
 
-   //   synchronous_lock synchronouslock(fs_list()->synchronization());
+   //   synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ::pointer<::userfs::list_data>pdata = fs_list();
    //
@@ -1084,7 +1084,7 @@ namespace filemanager
 
          pdatabaseclient->datastream()->get(filemanager_data()->m_strDataKeyStatic, stra);
 
-         synchronous_lock lock(fs_list()->synchronization());
+         synchronous_lock lock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          fs_list()->m_pitema->erase_all();
 
@@ -1173,7 +1173,7 @@ namespace filemanager
 
          auto pparticleSynchronization = fs_list()->synchronization();
 
-         synchronous_lock lock(pparticleSynchronization);
+         synchronous_lock lock(pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ::file::listing_base & listingUser = filemanager_data()->m_listingUser2;
 
@@ -1233,7 +1233,7 @@ namespace filemanager
 
       {
 
-         synchronous_lock lock(fs_list()->synchronization());
+         synchronous_lock lock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_eview == impact_icon)
          {
@@ -1655,7 +1655,7 @@ namespace filemanager
    void file_list::_017OpenContextMenuSelected(const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(fs_list()->synchronization());
+      synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::file::item_array itema;
 
@@ -1772,7 +1772,7 @@ namespace filemanager
    //void file_list::GetSelected(::file::item_array &itema)
    //{
 
-   //   synchronous_lock synchronouslock(fs_list()->synchronization());
+   //   synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   index iItemRange, iItem;
    //   ::user::range range;
@@ -1839,7 +1839,7 @@ namespace filemanager
    bool file_list::add_fs_item(::file::path pathUser, ::file::path pathFinal, const ::scoped_string & scopedstrName)
    {
 
-      synchronous_lock synchronouslock(fs_list()->synchronization());
+      synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::userfs::list_item item;
 
@@ -1929,7 +1929,7 @@ namespace filemanager
    bool file_list::query_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
    {
 
-      synchronous_lock synchronouslock(fs_list()->synchronization());
+      synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (iDisplayDrag < 0)
          return false;
@@ -1970,7 +1970,7 @@ namespace filemanager
    bool file_list::do_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
    {
 
-      synchronous_lock synchronouslock(fs_list()->synchronization());
+      synchronous_lock synchronouslock(fs_list()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::collection::index strict = display_to_strict(iDisplayDrop);
 
@@ -2154,7 +2154,7 @@ namespace filemanager
 
          //   {
 
-         //      synchronous_lock synchronouslock(mutex_draw());
+         //      synchronous_lock synchronouslock(mutex_draw(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //      if (filemanager_data()->m_pholderFileList->m_puserinteractionpointeraChild->has_interaction())
          //      {

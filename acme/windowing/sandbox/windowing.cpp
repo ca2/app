@@ -301,7 +301,7 @@ bool windowing::targeted_keyboard_messages()
 
 //   }
 
-//   synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //   m_procedurelist.add_tail(procedure);
 
@@ -332,7 +332,7 @@ bool windowing::targeted_keyboard_messages()
 
 //    //}
 
-//    synchronous_lock synchronouslock(this->synchronization());
+//    synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //    if (m_procedurelist.is_empty())
 //    {
@@ -391,7 +391,7 @@ bool windowing::targeted_keyboard_messages()
 //::pointer<::windowing::cursor>windowing::load_default_cursor(enum_cursor ecursor)
 //{
 //   
-//   synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //   
 //   if (!m_pcursormanager)
 //   {
@@ -483,7 +483,7 @@ bool windowing::targeted_keyboard_messages()
 //   
 //   //}
 //   
-//   //synchronous_lock sl(user_synchronization());
+//   //synchronous_lock sl(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //   
 //   windowing_output_debug_string("::x11_GetWindowRect 1");
 //   
@@ -508,7 +508,7 @@ bool windowing::targeted_keyboard_messages()
 ::acme::windowing::window* windowing::window(oswindow oswindow)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    return m_oswindowmap[oswindow];
 

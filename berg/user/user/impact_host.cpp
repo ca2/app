@@ -575,7 +575,7 @@ namespace user
       if(!bCallOnCreateImpact)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          return m_impactdatamap[atom];
 

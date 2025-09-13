@@ -79,7 +79,7 @@ int html_data::create_font(::html::element* pelemental)
 void html_data::delete_contents()
 {
 
-   synchronous_lock lock(synchronization());
+   synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    destroy();
 

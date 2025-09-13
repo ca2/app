@@ -157,7 +157,7 @@ extern "C" void crypto_initializer_SSL_locking_function(int mode, int n, const c
 
    __UNREFERENCED_PARAMETER(line);
 
-   synchronous_lock synchronouslock(::crypto::g_pmutexMap);
+   synchronous_lock synchronouslock(::crypto::g_pmutexMap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::pointer < ::mutex >* pmutex = nullptr;
 

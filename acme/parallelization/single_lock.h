@@ -6,11 +6,15 @@ class CLASS_DECL_ACME single_lock
 public:
 
 
+   const ::subparticle *      m_psubparticleContext;
    ::subparticle *            m_psubparticleSynchronization;
    bool                       m_bLocked;
+   ::task *                   m_ptask = nullptr;
+   const_char_pointer         m_pszFile;
+   int                        m_iLine;
 
 
-   explicit single_lock(subparticle * psubparticleSynchronization, bool bInitialLock = false);
+   explicit single_lock(subparticle * psubparticleSynchronization, bool bInitialLock = false, const ::subparticle * psubparticleContext = nullptr, const_char_pointer pszFile = nullptr, int iLine = -1);
    ~single_lock();
 
 
@@ -26,6 +30,10 @@ public:
    class ::time remaining_from_timeout() const;
 
 
+   void debug_on_lock();
+   void debug_on_unlock();
+
+
 };
 
 
@@ -36,11 +44,15 @@ class CLASS_DECL_ACME _single_lock
 public:
 
 
+   const ::subparticle *            m_psubparticleContext;
    ::subparticle *                  m_psubparticleSynchronization;
    bool                             m_bLocked;
+   ::task *                         m_ptask = nullptr;
+   const_char_pointer               m_pszFile;
+   int                              m_iLine;
 
 
-   explicit _single_lock(::subparticle * psubparticle, bool bInitialLock = false);
+   explicit _single_lock(::subparticle * psubparticle, bool bInitialLock = false, const ::subparticle * psubparticleContext = nullptr, const_char_pointer pszFile = nullptr, int iLine = -1);
    ~_single_lock();
 
 
@@ -51,6 +63,10 @@ public:
    void unlock();
    void unlock(int lCount, int * lPrevCount = nullptr);
    bool is_locked() const;
+
+
+   void debug_on_lock();
+   void debug_on_unlock();
 
 
 };

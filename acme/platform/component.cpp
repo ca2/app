@@ -39,7 +39,7 @@ void component::on_initialize_particle()
 void component::update()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_straImplementationAll.clear();
    m_straImplementationOnShelf.clear();
@@ -177,7 +177,7 @@ void component::_001CreateForm(::user::interaction * puserinteractionParent)
 bool component::is_implementation(const ::scoped_string & scopedstrImplementation)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto strImplementation = scopedstrImplementation.lowered();
 
@@ -189,7 +189,7 @@ bool component::is_implementation(const ::scoped_string & scopedstrImplementatio
 bool component::is_implementation_installed(const ::scoped_string & scopedstrImplementation)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto strImplementation = scopedstrImplementation.lowered();
 
@@ -202,7 +202,7 @@ bool component::is_implementation_installed(const ::scoped_string & scopedstrImp
 bool component::is_implementation_on_shelf(const ::scoped_string & scopedstrImplementation)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto strImplementation = scopedstrImplementation.lowered();
    
@@ -214,7 +214,7 @@ bool component::is_implementation_on_shelf(const ::scoped_string & scopedstrImpl
 bool component::is_implementation_enabled(const ::scoped_string & scopedstrImplementation)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto strImplementation = scopedstrImplementation.lowered();
 
@@ -226,7 +226,7 @@ bool component::is_implementation_enabled(const ::scoped_string & scopedstrImple
 ::string component::implementation_path(const ::scoped_string & scopedstrImplementation)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto strImplementation = scopedstrImplementation.lowered();
 

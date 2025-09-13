@@ -60,6 +60,7 @@ public:
 
 
    inline pointer();
+   inline pointer(no_initialize_t){}
    inline pointer( nullptr_t);
    inline pointer(lparam& lparam);
 

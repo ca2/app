@@ -840,7 +840,7 @@ namespace user
          if (eelement == e_tree_element_expand_box)
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             information() << "user::tree perform_click expand_box";
 
@@ -852,7 +852,7 @@ namespace user
          else if (eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             information() << "user::tree perform_click image or text";
 
@@ -1041,7 +1041,7 @@ namespace user
    void tree::update_drawing_objects()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    
       //      style_context context(this);
 
@@ -2374,7 +2374,7 @@ namespace user
    ::collection::index tree::get_proper_item_count()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_ptreedata)
       {

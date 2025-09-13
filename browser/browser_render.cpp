@@ -113,9 +113,9 @@ namespace browser
       if (m_bNewLayout)
       {
 
-         synchronous_lock sl2(m_pmutexWork);
-         synchronous_lock sl3(m_pmutexDraw);
-         synchronous_lock sl4(m_pmutexSwap);
+         synchronous_lock sl2(m_pmutexWork, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         synchronous_lock sl3(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         synchronous_lock sl4(m_pmutexSwap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_bNewLayout = false;
 
@@ -195,7 +195,7 @@ namespace browser
    void render::get_browser(string & strHellomultiverse)
    {
 
-      synchronous_lock synchronouslock(m_pmutexText);
+      synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       strHellomultiverse = m_strHelloBrowser.c_str();
 
@@ -330,7 +330,7 @@ namespace browser
    void render::browser_render()
    {
 
-      synchronous_lock synchronouslock(m_pmutexWork);
+      synchronous_lock synchronouslock(m_pmutexWork, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*      ::image::image_pointer pimage = m_pimageWork;
 
@@ -375,7 +375,7 @@ namespace browser
       if (m_bVoidTransfer)
          return;
 
-      synchronous_lock slDraw(m_pmutexDraw);
+      synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bDib1)
       {
@@ -392,7 +392,7 @@ namespace browser
 
       }
 
-      synchronous_lock slSwap(m_pmutexSwap);
+      synchronous_lock slSwap(m_pmutexSwap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bDib1)
       {
@@ -460,7 +460,7 @@ namespace browser
 
       {
 
-         synchronous_lock synchronouslock(m_pmutexText);
+         synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          get_browser(strHelloBrowser);
 
@@ -501,7 +501,7 @@ namespace browser
 
             {
 
-               synchronous_lock slDib(m_pmutexDib);
+               synchronous_lock slDib(m_pmutexDib, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*               m_pimage->create_image(this, ::int_size(m_cxCache1, m_cyCache1));
 
@@ -546,7 +546,7 @@ namespace browser
 
       {
 
-         synchronous_lock synchronouslock(m_pmutexText);
+         synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          get_browser(strGetHelloBrowser);
 
@@ -656,7 +656,7 @@ namespace browser
 
          {
 
-            synchronous_lock synchronouslock(m_pmutexText);
+            synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             get_browser(strGetHelloBrowser);
 
@@ -763,7 +763,7 @@ namespace browser
 
       {
 
-         synchronous_lock synchronouslock(m_pmutexText);
+         synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          get_browser(strGetHelloBrowser);
 
@@ -779,7 +779,7 @@ namespace browser
 
       {
 
-         synchronous_lock slDib(m_pmutexDib);
+         synchronous_lock slDib(m_pmutexDib, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (!session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
          {
@@ -1066,7 +1066,7 @@ namespace browser
 
             {
 
-               synchronous_lock synchronouslock(m_pmutexText);
+               synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                strHelloBrowser = m_pimpact->m_strProcessedHellomultiverse.c_str();
 
@@ -1130,9 +1130,9 @@ namespace browser
       if (m_bFast || !m_bFirstDone || m_timeLastFast.elapsed() < m_timeFastAnime)
       {
 
-         synchronous_lock sl1(m_pimpact->get_wnd()->synchronization());
+         synchronous_lock sl1(m_pimpact->get_wnd()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         synchronous_lock slDraw(m_pmutexDraw);
+         synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_bFast || m_pimageFast->is_null())
          {
@@ -1191,9 +1191,9 @@ namespace browser
 
       ::image::image_pointer imageFast = m_pimageFast;
 
-      synchronous_lock synchronouslock(m_pmutexDraw);
+      synchronous_lock synchronouslock(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      synchronous_lock slSwap(m_pmutexSwap);
+      synchronous_lock slSwap(m_pmutexSwap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*      pimage = m_pimageOut;
 
@@ -1227,7 +1227,7 @@ namespace browser
    //::image::image_pointer & render::image23(const ::scoped_string & scopedstrImage)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   auto & pimage = m_mapDib23[strImage];
 
@@ -1250,7 +1250,7 @@ namespace browser
 
    //         {
 
-   //            synchronous_lock synchronouslock(this->synchronization());
+   //            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //            pimage = &m_mapDib23[strImage];
 
@@ -1275,7 +1275,7 @@ namespace browser
    void render::defer_update_slide_show()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //for (auto & pslide : slideshow())
       //{
@@ -1318,7 +1318,7 @@ namespace browser
 
       }
 
-      synchronous_lock slDraw(m_pmutexDraw);
+      synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::int_size sizeNew = ::int_size(m_cx, m_cy);
 

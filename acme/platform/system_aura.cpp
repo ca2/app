@@ -356,7 +356,7 @@ namespace platform
    //   if(idType.is_empty())
    //      return nullptr{}
 
-   //   synchronous_lock synchronouslock(m_pmutexFactory){}
+   //   synchronous_lock synchronouslock(m_pmutexFactory, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX){}
 
    //   return m_typemap[idType].m_p{}
 

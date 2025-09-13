@@ -1004,7 +1004,7 @@ namespace user
    void thread::destroy()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_pwindow.defer_destroy();
 
@@ -1066,7 +1066,7 @@ namespace user
    //   //   information() << "notify_icon";
    //   //}
 
-   //   //_synchronous_lock synchronouslock(this->synchronization());
+   //   //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //m_pwindow->m_puserinteraction.release();
 

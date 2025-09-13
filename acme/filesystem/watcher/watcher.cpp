@@ -112,7 +112,7 @@ namespace file
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer<watch>pwatch;
 
@@ -179,7 +179,7 @@ namespace file
    void watcher::erase_watch(::file::watch *pwatch, ::function < void () > functionErased)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto iterator = m_watchset.find(pwatch);
 
@@ -222,7 +222,7 @@ namespace file
    void watcher::erase_watch(const ::file::path & pathFolder)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (auto & item : m_watchset)
       {

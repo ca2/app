@@ -234,7 +234,7 @@ namespace experience_tranquillum
 
       return ::experience::button::on_hit_test(point, ezorder);
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //if (m_spregion.is_null())
       //{

@@ -798,7 +798,7 @@ namespace user
    void user::set_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_pmousefocusLButtonDown = pmousefocus;
 
@@ -808,7 +808,7 @@ namespace user
    void user::defer_erase_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pmousefocusLButtonDown == pmousefocus)
       {
@@ -846,7 +846,7 @@ namespace user
 
          ::pointer<::aura::application>pappAura = papp;
 
-         _synchronous_lock synchronouslock(pappAura->m_pmutexFrame);
+         _synchronous_lock synchronouslock(pappAura->m_pmutexFrame, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ::pointer<::user::interaction>pinteraction;
 
@@ -1530,7 +1530,7 @@ namespace user
 
             {
 
-               _synchronous_lock synchronouslock(this->synchronization());
+               _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                ::generic::container::copy(uiptraToolWindow, m_uiptraToolWindow);
 
@@ -1617,7 +1617,7 @@ namespace user
 
       bool bDoneALotOfThings = false;
 
-      _synchronous_lock synchronouslock(m_pmutexRunnable);
+      _synchronous_lock synchronouslock(m_pmutexRunnable, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       while (m_listRunnable.has_elements() && ::task_get_run())
       {

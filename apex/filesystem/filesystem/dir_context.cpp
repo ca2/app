@@ -1668,7 +1668,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::install()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto psystem = system();
 
@@ -1680,7 +1680,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::config()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto psystem = system();
 
@@ -1692,7 +1692,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::home()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto psystem = system();
 
@@ -1706,7 +1706,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 
 //   __UNREFERENCED_PARAMETER(pparticle);
 
-//   synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //   return m_pathUser;
 
@@ -1716,7 +1716,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::module()
 {
 
-   //synchronous_lock synchronouslock(this->synchronization());
+   //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto papplication = application();
 
@@ -1728,7 +1728,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //::file::path directory_context::ca2module()
 //{
 //
-//   synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   auto psystem = system();
 //
@@ -1805,7 +1805,7 @@ void directory_context::erase(const ::file::path& path, bool bRecursive)
 void directory_context::get_matter_locator(string_array_base& straMatterLocator, bool bIncludeMain)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    straMatterLocator.erase_all();
 
@@ -1846,7 +1846,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
    auto psystem = system();
 
-   synchronous_lock synchronouslock(psystem->m_pmutexMatter);
+   synchronous_lock synchronouslock(psystem->m_pmutexMatter, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strDir = matter(path);
 
@@ -2447,7 +2447,7 @@ ret:
    string_array_base straMatterLocator;
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       straMatterLocator = get_app()->m_straMatterLocator;
 
@@ -2550,7 +2550,7 @@ ret:
 ::file::path directory_context::commonappdata(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strAppId(scopedstrAppId);
 
@@ -2590,7 +2590,7 @@ ret:
    const ::scoped_string & scopedstrSchema)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strLocale(scopedstrLocale);
 
@@ -2872,7 +2872,7 @@ bool directory_context::is_inside(const ::file::path & pathFolder, const ::file:
 //         if(m_strApiCc.has_character())
 //            return m_strApiCc;
 //
-//         synchronous_lock synchronouslock(m_pmutex);
+//         synchronous_lock synchronouslock(m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //
 //

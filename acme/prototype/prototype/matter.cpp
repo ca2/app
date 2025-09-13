@@ -765,12 +765,12 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 
    psynchronizer->set_nok();
 
-   auto function = [functionReturn, &payload, psynchronizer]()
+   auto function = [this, functionReturn, &payload, psynchronizer]()
    {
 
       auto payloadReturn = functionReturn();
 
-      synchronous_lock synchronizationlock(psynchronizer->synchronization());
+      synchronous_lock synchronizationlock(psynchronizer->synchronization(), this, SYNCHRONOUS_LOCK_SUFFIX);
 
       psynchronizer->m_happeningGoingToWrite.set_happening();
 

@@ -117,7 +117,7 @@ return g_pdraw2dcairo;
 
       //}
 
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (!m_papi->open())
 //      {
@@ -198,7 +198,7 @@ return g_pdraw2dcairo;
    void draw2d::term()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -358,7 +358,7 @@ return g_pdraw2dcairo;
 //      int iRadius2 = iRadius * iRadius;
 //      int r2;
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      auto & filter = m_alpha_spread__24CC_filterMap[iRadius];
 //
@@ -673,7 +673,7 @@ return g_pdraw2dcairo;
 //      int rSquare;
 //
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
 //
@@ -1226,7 +1226,7 @@ return g_pdraw2dcairo;
 //      }
 //
 //
-//      synchronous_lock synchronouslock(psystem->m_pmutexLibrary);
+//      synchronous_lock synchronouslock(psystem->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      estatus = øconstruct(m_pwritetext);
 //
@@ -1467,7 +1467,7 @@ return g_pdraw2dcairo;
    cairo_font_face_t * draw2d::private_ftface_from_file(::platform::context * pcontext, const ::payload & payloadFile)
    {
 
-      synchronous_lock synchronouslock(::draw2d_cairo::mutex());
+      synchronous_lock synchronouslock(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::file::path pathFile = payloadFile.as_file_path();
 

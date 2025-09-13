@@ -1241,7 +1241,7 @@ namespace platform
    void context::add_matter_locator(const ::scoped_string & scopedstrApp)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string strMatterLocator = matter_locator(scopedstrApp);
 
@@ -1253,7 +1253,7 @@ namespace platform
    void context::add_matter_locator(::platform::application* papp)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string strMatterLocator = matter_locator(papp);
 

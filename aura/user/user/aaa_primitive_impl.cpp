@@ -1534,7 +1534,7 @@ namespace user
 ////
 ////      }
 ////
-////      synchronous_lock synchronouslock(m_pmutexLongPtr);
+////      synchronous_lock synchronouslock(m_pmutexLongPtr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////      m_longptr[nIndex] = lValue;
 ////
@@ -2229,7 +2229,7 @@ namespace user
             if (pwindow)
             {
 
-               synchronous_lock synchronouslock(pwindow->synchronization());
+               synchronous_lock synchronouslock(pwindow->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                pwindow->m_userinteractionaMouseHover.erase(m_puserinteraction);
 
@@ -2505,7 +2505,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          try
          {
@@ -2645,7 +2645,7 @@ namespace user
    void primitive_impl::on_message_destroy(::message::message * pmessage)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //try
       //{

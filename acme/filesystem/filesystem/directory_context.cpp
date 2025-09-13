@@ -1932,7 +1932,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::install()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto psystem = system();
 
@@ -1944,7 +1944,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::config()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto psystem = system();
 
@@ -1956,7 +1956,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::home()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto psystem = system();
 
@@ -1970,7 +1970,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 
 //   __UNREFERENCED_PARAMETER(pparticle);
 
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //   return m_pathUser;
 
@@ -1980,7 +1980,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::module()
 {
 
-   //_synchronous_lock synchronouslock(this->synchronization());
+   //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto papplication = application();
 
@@ -1992,7 +1992,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //::file::path directory_context::ca2module()
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   auto psystem = system();
 //
@@ -2071,7 +2071,7 @@ void directory_context::erase(const ::file::path& path, bool bRecursive)
 void directory_context::get_matter_locator(string_array_base& straMatterLocator, bool bIncludeMain)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    straMatterLocator.erase_all();
 
@@ -2143,7 +2143,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
       }
 
-      _synchronous_lock synchronouslock(psystem->matter_mutex());
+      _synchronous_lock synchronouslock(psystem->matter_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::property_set set;
 
@@ -2741,7 +2741,7 @@ ret:
    string_array_base straMatterLocator;
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       straMatterLocator = get_app()->m_straMatterLocator;
 
@@ -2848,7 +2848,7 @@ ret:
 //::file::path directory_context::commonappdata(const ::scoped_string& scopedstrAppId, const ::scoped_string& scopedstrBuild, const ::scoped_string& scopedstrPlatform, const ::scoped_string& scopedstrConfiguration)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   string strAppId(scopedstrAppId);
 //
@@ -2888,7 +2888,7 @@ ret:
 //   const ::scoped_string& scopedstrSchema)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   string strLocale(scopedstrLocale);
 //
@@ -3171,7 +3171,7 @@ bool directory_context::is_inside(const ::file::path & pathFolder, const ::file:
 //         if(m_strApiCc.has_character())
 //            return m_strApiCc;
 //
-//         _synchronous_lock synchronouslock(m_pmutex);
+//         _synchronous_lock synchronouslock(m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //
 //

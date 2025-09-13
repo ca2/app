@@ -275,7 +275,7 @@ namespace windowing
     void windowing_base::_do_tasks()
     {
 
-       _synchronous_lock synchronouslock(this->synchronization());
+       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
        auto windowbasea = m_windowbasea;
 

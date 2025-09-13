@@ -296,7 +296,7 @@ namespace sockets
    void read_socket::on_read(const void * pdata, iptr n)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       unsigned char * pbuf = (unsigned char *) pdata;
 
@@ -330,7 +330,7 @@ namespace sockets
 
    //      {
 
-   //         synchronous_lock synchronouslock(this->synchronization());
+   //         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //         iRead = m_pmemoryfile->erase_begin(&point[nBytesReceived], nSize - nBytesReceived);
 
@@ -404,7 +404,7 @@ namespace sockets
    void write_socket::OnWrite()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       write(m_pmemoryfile->full_data());
 

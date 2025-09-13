@@ -457,7 +457,7 @@ namespace berg
 
          ::pointer<::berg::application>pappItem = pappApex;
 
-         synchronous_lock synchronouslock(pappItem->m_pmutexFrame);
+         synchronous_lock synchronouslock(pappItem->m_pmutexFrame, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ::pointer<::user::interaction>pinteraction;
 

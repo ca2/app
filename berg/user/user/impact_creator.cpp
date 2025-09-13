@@ -76,7 +76,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (::is_set(pimpactdata->m_pplaceholder)
             && ::is_set(pimpactdata->m_pplaceholder->m_pacmeuserinteractionaChildren)

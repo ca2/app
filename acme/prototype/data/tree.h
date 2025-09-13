@@ -475,7 +475,7 @@ return;
    //::collection::count tree <  ITEM >::get_proper_item_count()
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   return get_base_item()->get_proper_item_count();
 
@@ -623,7 +623,7 @@ return;
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (pitemNew == nullptr)
       {
@@ -1016,7 +1016,7 @@ return;
    //void tree <  ITEM >::start_fill_children()
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_bFill = true;
 

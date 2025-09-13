@@ -536,7 +536,7 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //   if (::is_set(pcomposite))
 //   {
 //
-//      //synchronous_lock synchronouslock(this->synchronization());
+//      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      //if (m_pcompositea)
 //      //{
@@ -564,7 +564,7 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //   if (::is_set(preference))
 //   {
 //
-//      //synchronous_lock synchronouslock(this->synchronization());
+//      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      //if (m_preferencea)
 //      //{

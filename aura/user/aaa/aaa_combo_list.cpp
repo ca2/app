@@ -291,7 +291,7 @@ namespace user
    void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE32 psize)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -1094,7 +1094,7 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(psession->mutex());
+            synchronous_lock synchronouslock(psession->mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             auto & preference = psession->m_uiptraToolWindow.add_new();
 
@@ -1110,7 +1110,7 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(psession->mutex());
+            synchronous_lock synchronouslock(psession->mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             ::auto pFind = psession->m_uiptraToolWindow.predicate_find_first([this](auto& p) {return p.get() == this; });
 

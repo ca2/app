@@ -308,7 +308,7 @@ namespace userfs
 
       {
 
-         _synchronous_lock synchronouslock(fs_data()->synchronization());
+         _synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_pathFolder = pitem->user_path();
 
@@ -327,7 +327,7 @@ namespace userfs
 
          {
 
-            _synchronous_lock synchronouslock(fs_data()->synchronization());
+            _synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_listingRoot2 = listing;
 
@@ -546,7 +546,7 @@ namespace userfs
 
       {
 
-         synchronous_lock synchronouslock(fs_data()->synchronization());
+         synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_listingUser2 = listingUser;
 

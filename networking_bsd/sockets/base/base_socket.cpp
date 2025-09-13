@@ -3037,7 +3037,7 @@ bool base_socket::SetSoKeepalive(bool x)
 
 #ifdef BSD_STYLE_SOCKETS
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_psslcontext->m_pclientcontext->session() != nullptr)
       {
@@ -3054,7 +3054,7 @@ bool base_socket::SetSoKeepalive(bool x)
    void base_socket::get_ssl_session()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 #ifdef BSD_STYLE_SOCKETS
       if (m_psslcontext->m_pclientcontext->m_psslsession == nullptr)

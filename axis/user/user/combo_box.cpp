@@ -1630,7 +1630,7 @@ namespace user
    ::collection::index combo_box::add_item(const ::scoped_string& scopedstr, const ::atom & atom)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //      ASSERT(m_edatamode == data_mode_opaque);
 //
@@ -1650,7 +1650,7 @@ namespace user
    //::collection::index combo_box::add_string(const ::scoped_string & scopedstrString,uptr dwItemData)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ASSERT(m_edatamode == data_mode_opaque);
 

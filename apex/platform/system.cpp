@@ -1881,7 +1881,7 @@ pdirectorysystem->create("/ca2core");
    //void system::post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   synchronous_lock synchronouslock(m_pmutexThread);
+   //   synchronous_lock synchronouslock(m_pmutexThread, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   for (auto& pair : system()->m_threadidmap)
    //   {
@@ -2191,7 +2191,7 @@ pdirectorysystem->create("/ca2core");
    //   ::pointer< ::mutex > system::get_openweather_city_mutex()
    //   {
    //
-   //      synchronous_lock synchronouslock(this->synchronization());
+   //      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //      if (m_spmutexOpenweatherCity.is_null())
    //      {
@@ -2903,7 +2903,7 @@ pdirectorysystem->create("/ca2core");
    bool system::defer_accumulate_on_open_file(string_array_base stra, const ::scoped_string & scopedstrExtra)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_timeCommandLineLast.Now();
 
@@ -4139,7 +4139,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
 
    //   }
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   auto & threadgroupa = m_taskgroupmap[epriority];
 
@@ -4160,7 +4160,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
    //::task_tool * system::task_tool(::enum_task_tool etool)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   auto& threadtoola = m_tasktoolmap[etool];
 

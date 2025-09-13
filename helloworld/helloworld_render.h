@@ -115,7 +115,7 @@ namespace helloworld
 
       virtual string get_helloaura() override;
 
-      // { synchronous_lock slText(m_pmutexText);  string str(m_strHelloWorld.c_str()); return str; }
+      // { synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);  string str(m_strHelloWorld.c_str()); return str; }
 
 
       virtual int run();

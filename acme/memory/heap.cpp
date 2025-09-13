@@ -253,7 +253,7 @@ namespace heap
 //
 //#endif
 //
-//   synchronous_lock lock(g_pmutgen);
+//   synchronous_lock lock(g_pmutgen, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   memdleak_block * pblock = s_pmemdleakList;
 //

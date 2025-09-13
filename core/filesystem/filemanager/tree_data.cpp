@@ -444,7 +444,7 @@ namespace filemanager
 
       //auto pparticleSynchronization = m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr;
 
-      //synchronous_lock synchronouslock(pparticleSynchronization);
+      //synchronous_lock synchronouslock(pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //// auto pcontext = get_context();
 
@@ -842,7 +842,7 @@ return;
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::file::path_array_base patha;
       
@@ -989,7 +989,7 @@ return;
 
    //auto pparticleSynchronization = m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr;
 
-   //synchronous_lock synchronouslock(pparticleSynchronization);
+   //synchronous_lock synchronouslock(pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //// auto pcontext = get_context();
 

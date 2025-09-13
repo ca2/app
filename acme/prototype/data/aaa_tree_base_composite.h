@@ -447,7 +447,7 @@ namespace data
    ////::collection::count tree < ::item * >::get_proper_item_count()
    ////{
 
-   ////   _synchronous_lock synchronouslock(this->synchronization());
+   ////   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ////   return get_base_item()->get_proper_item_count();
 
@@ -561,7 +561,7 @@ namespace data
 
    //   }
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   if (pitemNew == nullptr)
    //   {
@@ -922,7 +922,7 @@ namespace data
    ////void tree < ::item * >::start_fill_children()
    ////{
 
-   ////   _synchronous_lock synchronouslock(this->synchronization());
+   ////   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ////   m_bFill = true;
 

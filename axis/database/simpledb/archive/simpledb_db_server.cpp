@@ -293,7 +293,7 @@ bool db_server::data_server_load(::database::client * pclient, ::string strDataK
 bool db_server::data_server_save(::database::client * pclient, ::string strDataKey, memory & memory, ::update * pupdate)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    __UNREFERENCED_PARAMETER(pparticle);
 
@@ -359,7 +359,7 @@ bool db_server::save(const ::scoped_string & strDataKey, const ::scoped_string &
 
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(get_db_str_set() == nullptr)
    {
@@ -377,7 +377,7 @@ bool db_server::save(const ::scoped_string & strDataKey, const ::scoped_string &
 bool db_server::save(const ::scoped_string & strDataKey, memory & mem)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string str;
 

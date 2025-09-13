@@ -152,7 +152,7 @@ public:
 
       //auto psystem = ::apexacmesystem();
 
-      synchronous_lock slGroup(system()->synchronization());
+      synchronous_lock slGroup(system()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ///   auto ptool = ::apexacmesystem()->task_tool(op_fork_count);
 

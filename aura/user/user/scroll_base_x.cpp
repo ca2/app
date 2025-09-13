@@ -266,7 +266,7 @@ namespace user
    //void scroll_base_x::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //if (m_pscrollbarX.is_set())
    //   //{

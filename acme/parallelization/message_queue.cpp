@@ -95,7 +95,7 @@ void message_queue::post_message(const MESSAGE & message)
 
    }
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_messagea.add(message);
    
@@ -122,7 +122,7 @@ void message_queue::post_message(const MESSAGE & message)
 void message_queue::kick_idle()
 {
 
-   //synchronous_lock synchronouslock(this->synchronization());
+   //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //m_bKickIdle = true;
 
@@ -154,7 +154,7 @@ void message_queue::kick_idle()
 
    }
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(m_eflagElement & (::enum_flag) (1ll <<37))
    {
@@ -267,7 +267,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,unsigned int 
 
    }
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(m_eflagElement & (::enum_flag) (1ll <<37))
    {

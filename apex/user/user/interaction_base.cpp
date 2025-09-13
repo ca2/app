@@ -4026,7 +4026,7 @@ namespace user
    //void interaction_base::add_thread(::thread * pthread)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_threadptra.add(pthread);
 
@@ -4036,7 +4036,7 @@ namespace user
    //void interaction_base::erase_thread(::thread * pthread)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_threadptra.erase(pthread);
 

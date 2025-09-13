@@ -266,7 +266,7 @@ void html_document::soft_reload()
 
    auto pparticleSynchronization = get_html_data()->synchronization();
 
-   synchronous_lock lock(pparticleSynchronization);
+   synchronous_lock lock(pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string str = get_html_data()->m_pcoredata->m_strSource;
 

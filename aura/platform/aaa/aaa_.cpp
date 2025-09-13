@@ -238,7 +238,7 @@ CLASS_DECL_AURA string_map < ::pointer<::acme::library >> __library()
 CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const ::scoped_string & scopedstr)
 {
 
-   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto ppair = ::auraacmesystem()->m_mapNewAuraLibrary.plookup(scopedstr);
 
@@ -257,7 +257,7 @@ CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const ::scoped_str
 CLASS_DECL_AURA::acme::library& get_library(const ::scoped_string & scopedstr)
 {
 
-   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    return *::auraacmesystem()->m_mapLibrary[psz];
 
@@ -267,7 +267,7 @@ CLASS_DECL_AURA::acme::library& get_library(const ::scoped_string & scopedstr)
 CLASS_DECL_AURA void register_get_new_aura_library(const ::scoped_string & scopedstr, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
 {
 
-   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    __get_new_aura_library()[psz] = pfnNewAuraLibrary;
 
@@ -277,7 +277,7 @@ CLASS_DECL_AURA void register_get_new_aura_library(const ::scoped_string & scope
 CLASS_DECL_AURA void register_library(const ::scoped_string & scopedstr, ::acme::library* plibrary)
 {
 
-   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    __library()[psz] = plibrary;
 
@@ -509,7 +509,7 @@ CLASS_DECL_AURA void load_factory_library(string strLibrary)
 {
 
 
-   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::pointer<::acme::library> plibrary = ::auraacmesystem()->m_mapLibrary[strLibrary];
 

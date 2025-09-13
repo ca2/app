@@ -1037,7 +1037,7 @@ namespace windowing
    // //      this->windowing()->windowing_post([this]()
    // //                                   {
    // //
-   // //                                      synchronous_lock synchronouslock(user_synchronization());
+   // //                                      synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    // //
    // ////                                      display_lock displaylock(x11_display()->Display());
    // //
@@ -4904,7 +4904,7 @@ namespace windowing
 
          //{
 
-         //   _synchronous_lock synchronouslock(this->synchronization());
+         //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //   uia = m_uiptraMouseHover;
 
@@ -4987,7 +4987,7 @@ namespace windowing
 
    //      {
 
-   //         _synchronous_lock synchronouslock(this->synchronization());
+   //         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //         for(auto & pinteraction : m_uiptraMouseHover)
    //         {
@@ -5077,7 +5077,7 @@ namespace windowing
 
    //      }
 
-   //      //_synchronous_lock synchronouslock(mutex_children());
+   //      //_synchronous_lock synchronouslock(mutex_children(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //      auto puserinteraction = user_interaction()->child_from_point(pmouse->m_point);
 
@@ -5121,7 +5121,7 @@ namespace windowing
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       bool bHadNoInterest = !has_graphical_output_purpose();
 
@@ -5142,7 +5142,7 @@ namespace windowing
    void window::erase(::graphics::output_purpose* pgraphicaloutputpurpose)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_graphicaloutputpurposea.erase(pgraphicaloutputpurpose);
 
@@ -5190,7 +5190,7 @@ namespace windowing
    void window::erase_graphical_output_purpose(::particle* pparticleGraphicalOutputPurposeOriginator)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_graphicaloutputpurposea.predicate_erase([pparticleGraphicalOutputPurposeOriginator](auto ppurpose)
          {
@@ -5206,7 +5206,7 @@ namespace windowing
    bool window::has_particle_fps_purpose(::particle* pparticleGraphicalOutputPurposeOriginator)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_graphicaloutputpurposea.predicate_contains([pparticleGraphicalOutputPurposeOriginator](auto ppurpose)
          {
@@ -5235,7 +5235,7 @@ namespace windowing
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          bWasEmpty = m_userinteractionaMouseHover.is_empty();
 
@@ -5272,7 +5272,7 @@ namespace windowing
    void window::_on_mouse_move_step(const ::int_point& pointCursor, bool bMouseLeave)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (::collection::index i = 0; i < m_userinteractionaMouseHover.get_count();)
       {
@@ -5324,7 +5324,7 @@ namespace windowing
    //
    //      {
    //
-   //         _synchronous_lock synchronouslock(this->synchronization());
+   //         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //         if (statusPointCursor.m_estatus != success)
    //         {
@@ -5383,7 +5383,7 @@ namespace windowing
    bool window::mouse_hover_erase(::user::interaction* pinterface)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_userinteractionaMouseHover.erase(pinterface) >= 0;
 
@@ -5486,7 +5486,7 @@ namespace windowing
 
          auto psync = synchronization();
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_userinteractionaMouseHover.erase_all();
 
@@ -7944,7 +7944,7 @@ namespace windowing
          bool bAscendants)
    {
 
-      _synchronous_lock synchronouslock(synchronization());
+      synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (rectangleaHostNeedRedraw.is_empty())
       {
@@ -8154,7 +8154,7 @@ namespace windowing
    //bool window::needs_to_draw(const ::int_rectangle & rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   _synchronous_lock synchronouslock(synchronization());
+   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   if (!m_pgraphics->is_single_buffer_mode())
    //   {
@@ -8698,7 +8698,7 @@ namespace windowing
 
          auto psync = synchronization();
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          userinteractiona = m_userinteractionaMouseHover;
 
@@ -9079,7 +9079,7 @@ namespace windowing
 
             {
 
-               _synchronous_lock synchronouslock(this->synchronization());
+               _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                userinteractiona = m_userinteractionaMouseHover;
 
@@ -9117,7 +9117,7 @@ namespace windowing
 
                //{
 
-               //   _synchronous_lock synchronouslock(this->synchronization());
+               //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                //   if(!user_interaction())
                //   {
@@ -9340,7 +9340,7 @@ namespace windowing
 
          auto pbuffer = m_pgraphicsgraphics;
 
-         _synchronous_lock slGraphics(pbuffer->synchronization());
+         _synchronous_lock slGraphics(pbuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //windowing::graphics_lock graphicslock(m_pwindow);
 
@@ -9375,7 +9375,7 @@ namespace windowing
 #endif
 
 
-         _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
+         _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 
          //information() << "graphics::on_begin_draw";
@@ -9433,7 +9433,7 @@ namespace windowing
          pgraphics->do_on_context([this, pbuffer, &pgraphics, &pbufferitem]()
             {
 
-               _synchronous_lock synchronous_lock(m_pmutexGraphics);
+               //_synchronous_lock synchronous_lock(m_pmutexGraphics);
 
                {
 
@@ -9463,7 +9463,7 @@ namespace windowing
 
                   //{
 
-                  //   _synchronous_lock synchronouslock(synchronization());
+                  //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
 
@@ -9503,7 +9503,7 @@ namespace windowing
 
                   {
 
-                     _synchronous_lock synchronouslock(synchronization());
+                     synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                      if (pgraphics->ødefer_construct_new(pgraphics->m_puserredraw))
                      {
@@ -9680,7 +9680,7 @@ namespace windowing
 
          //::draw2d::lock draw2dlock(this);
 
-         _synchronous_lock slGraphics(pbuffer->synchronization());
+         _synchronous_lock slGraphics(pbuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //windowing::graphics_lock graphicslock(m_pwindow);
 
@@ -9700,7 +9700,7 @@ namespace windowing
 
          }
 
-         _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
+         _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 
          //information() << "graphics::on_begin_draw";
@@ -9748,7 +9748,7 @@ namespace windowing
          pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()
             {
 
-               _synchronous_lock synchronous_lock(m_pmutexGraphics);
+               //_synchronous_lock synchronous_lock(m_pmutexGraphics);
 
 
 
@@ -9783,7 +9783,7 @@ namespace windowing
 
                   //{
 
-                  //   _synchronous_lock synchronouslock(synchronization());
+                  //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
 
@@ -9822,7 +9822,7 @@ namespace windowing
 
                   //{
 
-                  //   _synchronous_lock synchronouslock(synchronization());
+                  //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
 
@@ -10133,7 +10133,7 @@ namespace windowing
    //   void window::_001UpdateScreen()
    //   {
    //
-   //      _synchronous_lock synchronouslock(this->synchronization());
+   //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //      if (!user_interaction())
    //      {
@@ -10205,7 +10205,7 @@ namespace windowing
 
    //      {
 
-   //         _synchronous_lock synchronouslock(this->synchronization());
+   //         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //         if (m_messagelist.is_empty())
    //         {
@@ -10228,7 +10228,7 @@ namespace windowing
    //void window::queue_message_handler(::message::message * pmessage)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   bool bWasEmpty = m_messagelist.is_empty();
 
@@ -10408,11 +10408,11 @@ namespace windowing
          if (m_pgraphicsgraphics)
          {
 
-            _synchronous_lock slGraphics(m_pgraphicsgraphics->synchronization());
+            _synchronous_lock slGraphics(m_pgraphicsgraphics->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             auto pbufferitem = m_pgraphicsgraphics->get_buffer_item();
 
-            _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
+            _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             slGraphics.unlock();
 
@@ -10439,11 +10439,11 @@ namespace windowing
    //
    //         {
    //
-   //            _synchronous_lock slGraphics(m_pgraphics->synchronization());
+   //            _synchronous_lock slGraphics(m_pgraphics->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //            auto pbufferitem = m_pgraphics->get_buffer_item();
    //
-   //            _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
+   //            _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //            slGraphics.unlock();
    //
@@ -10457,9 +10457,9 @@ namespace windowing
    //
    //         //{
    //
-   //         //   _synchronous_lock synchronouslock(this->synchronization());
+   //         //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
-   //         //   _synchronous_lock slGraphics(m_pgraphics->synchronization());
+   //         //   _synchronous_lock slGraphics(m_pgraphics->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //         //   m_pgraphicsthread);
    //
@@ -10708,7 +10708,7 @@ namespace windowing
    //void window::on_final_set_keyboard_focus()
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //if (m_pacmeuserinteractionKeyboardFocusRequest)
    //   //{
@@ -10796,7 +10796,7 @@ namespace windowing
       //      }
 
 
-      //      _synchronous_lock synchronouslock(this->synchronization());
+      //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       //
       //      auto puserinteractionKeyboardFocus = aaa_m_pacmeuserinteractionKeyboardFocus;
       //
@@ -10919,7 +10919,7 @@ namespace windowing
    //void window::on_final_kill_keyboard_focus()
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   information() << "on_final_kill_keyboard_focus";
 
@@ -11313,7 +11313,7 @@ namespace windowing
    //   //if (m_puserthread)
    //   //{
 
-   //   //   _synchronous_lock synchronouslock(m_puserthread->synchronization());
+   //   //   _synchronous_lock synchronouslock(m_puserthread->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //   m_puserthread->m_messagebasea.add(pmessage);
 
@@ -11343,7 +11343,7 @@ namespace windowing
    void window::redraw_add(::particle* pparticle)
    {
 
-      _synchronous_lock synchronouslock(mutex_redraw());
+      _synchronous_lock synchronouslock(mutex_redraw(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_particleaRedraw.add(pparticle);
 
@@ -11353,7 +11353,7 @@ namespace windowing
    void window::redraw_erase(::particle* pparticle)
    {
 
-      _synchronous_lock synchronouslock(mutex_redraw());
+      _synchronous_lock synchronouslock(mutex_redraw(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_particleaRedraw.erase(pparticle);
 
@@ -11363,7 +11363,7 @@ namespace windowing
    bool window::has_redraw()
    {
 
-      _synchronous_lock synchronouslock(mutex_redraw());
+      _synchronous_lock synchronouslock(mutex_redraw(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_particleaRedraw.has_elements();
 
@@ -11390,7 +11390,7 @@ namespace windowing
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_particleaRedraw.has_elements())
          {
@@ -12019,7 +12019,7 @@ namespace windowing
    void window::on_configuration_change(::user::interaction_base* pprimitiveSource)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (auto& puserinteraction : m_userinteractionaHideOnConfigurationChange.m_interactiona)
       {
@@ -12841,11 +12841,11 @@ namespace windowing
    long long window::opaque_area(const ::int_rectangle& rect)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pitem = m_pgraphicsgraphics->get_screen_item();
 
-      _synchronous_lock synchronouslockScreen(pitem->m_pmutex);
+      _synchronous_lock synchronouslockScreen(pitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::color::color colorTransparent(::color::transparent);
 
@@ -12873,11 +12873,11 @@ namespace windowing
    long long window::opaque_area()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pitem = m_pgraphicsgraphics->get_screen_item();
 
-      _synchronous_lock synchronouslockScreen(pitem->m_pmutex);
+      _synchronous_lock synchronouslockScreen(pitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::color::color colorTransparent(::color::transparent);
 
@@ -12893,7 +12893,7 @@ namespace windowing
    long long window::_001GetTopLeftWeightedArea()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_pgraphicsgraphics)
       {
@@ -12904,7 +12904,7 @@ namespace windowing
 
       auto pitem = m_pgraphicsgraphics->get_screen_item();
 
-      _synchronous_lock synchronouslockScreen(pitem->m_pmutex);
+      _synchronous_lock synchronouslockScreen(pitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::color::color colorTransparent(::color::transparent);
 
@@ -13273,9 +13273,9 @@ namespace windowing
 //
 //      }
 
-      _synchronous_lock synchronouslock(pparticleSynchronization);
+      _synchronous_lock synchronouslock(pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //_synchronous_lock synchronouslock(pitem->m_pmutex);
+      //_synchronous_lock synchronouslock(pitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       int wSource;
 
@@ -14965,7 +14965,7 @@ namespace windowing
    ////
    ////      }
    ////
-   ////      synchronous_lock synchronouslock(m_pmutexLongPtr);
+   ////      synchronous_lock synchronouslock(m_pmutexLongPtr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    ////
    ////      m_longptr[nIndex] = lValue;
    ////
@@ -15664,7 +15664,7 @@ namespace windowing
    //         if (pwindow)
    //         {
 
-   //            synchronous_lock synchronouslock(pwindow->synchronization());
+   //            synchronous_lock synchronouslock(pwindow->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //            pwindow->m_userinteractionaMouseHover.erase(user_interaction());
 
@@ -15909,7 +15909,7 @@ namespace windowing
 
    //   {
 
-   //      _synchronous_lock synchronouslock(this->synchronization());
+   //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //      try
    //      {
@@ -16049,7 +16049,7 @@ namespace windowing
    //void window::on_message_destroy(::message::message * pmessage)
    //{
 
-   //   //synchronous_lock synchronouslock(this->synchronization());
+   //   //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //try
    //   //{

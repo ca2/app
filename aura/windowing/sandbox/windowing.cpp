@@ -278,7 +278,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 
    //   }
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_procedurelist.add_tail(procedure);
 
@@ -309,7 +309,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 
    //    //}
 
-   //    synchronous_lock synchronouslock(this->synchronization());
+   //    synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //    if (m_procedurelist.is_empty())
    //    {
@@ -368,7 +368,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
    ::pointer<::windowing::cursor>windowing::load_default_cursor(enum_cursor ecursor)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_pcursormanager)
       {
@@ -460,7 +460,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 
       //}
 
-      //synchronous_lock sl(user_synchronization());
+      //synchronous_lock sl(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       windowing_output_debug_string("::x11_GetWindowRect 1");
 

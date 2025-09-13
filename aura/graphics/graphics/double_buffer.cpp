@@ -304,11 +304,11 @@ namespace graphics
 
       }
 
-      _synchronous_lock sl(this->synchronization());
+      _synchronous_lock sl(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      _synchronous_lock slBuffer(get_buffer_item()->m_pmutex);
+      _synchronous_lock slBuffer(get_buffer_item()->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      _synchronous_lock slScreen(get_screen_item()->m_pmutex);
+      _synchronous_lock slScreen(get_screen_item()->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_iCurrentBuffer == 0)
       {
@@ -398,11 +398,11 @@ namespace graphics
    void double_buffer::update_screen()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pitemScreen = get_screen_item();
 
-      _synchronous_lock synchronouslockScreen(pitemScreen->m_pmutex);
+      _synchronous_lock synchronouslockScreen(pitemScreen->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       synchronouslock.unlock();
 

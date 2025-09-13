@@ -225,7 +225,7 @@
 //
 //      return true;
 //
-////      synchronous_lock synchronouslock(this->synchronization());
+////      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////      string strMain = pszBaseDir;
 ////
@@ -1042,7 +1042,7 @@
 //   bool str_context::match(string_array_base & stra, const ::scoped_string & scopedstr, atom idExpression, atom idRoot) const
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      string_array_base straCandidate;
 //

@@ -67,7 +67,7 @@ void ftpfs::initialize_ftpfs(::particle * pparticle, const ::scoped_string & sco
 bool ftpfs::fast_has_subdir(const ::file::path & path)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ::time tickTimeout;
 
@@ -92,7 +92,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       dir_listing & dir = m_map[path];
 
@@ -167,7 +167,7 @@ bool ftpfs::enumerate(::file::listing_base & listing)
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
@@ -300,7 +300,7 @@ retry:
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
@@ -368,7 +368,7 @@ retry:
 
    //::time tickTimeout;
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    dir_listing & dir = m_map[path.folder()];
 

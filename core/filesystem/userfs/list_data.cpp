@@ -138,7 +138,7 @@ namespace userfs
    void list_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //      if(is_locked())
 //         return;
@@ -426,7 +426,7 @@ namespace userfs
    void list_data::_001GetSubItemImage(::user::mesh_subitem * psubitem)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(psubitem->m_iSubItem == m_iNameSubItemText)
       {

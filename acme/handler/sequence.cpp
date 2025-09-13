@@ -106,7 +106,7 @@
 //
 //   m_estatus = ::success;
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   do
 //   {
@@ -149,7 +149,7 @@
 //   try
 //   {
 //
-//      _synchronous_lock synchronouslock(this->synchronization());
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      auto aggregator = *m_iterator;
 //
@@ -196,7 +196,7 @@
 //void sequencer_payload::add_step(const ::sequencer_step & step)
 //{
 //
-//   _synchronous_lock synchronouslock(synchronization());
+//   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   add_tail(step);
 //
@@ -209,14 +209,14 @@
 //void sequencer_payload::add_result(const ::payload & payload)
 //{
 //
-//   _synchronous_lock synchronouslock(synchronization());
+//   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //   m_payload.payload_array_reference().add(payload);
 //
 //}
 //
 //::payload sequencer_payload::last_result()
 //{
-//   _synchronous_lock synchronouslock(synchronization());
+//   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_payload.get_type() == e_type_payload_array)
 //   {

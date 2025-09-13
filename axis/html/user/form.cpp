@@ -173,7 +173,7 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
 
          get_html_data()->m_pcoredata->m_box = rectangleX;
 
-         synchronous_lock lock(get_html_data()->synchronization());
+         synchronous_lock lock(get_html_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pimage = image()->create_image({ 50,  50 });
 
@@ -240,7 +240,7 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(get_html_data() == nullptr)
    {
@@ -349,14 +349,14 @@ void html_form::on_message_mouse_move(::message::message * pmessage)
 
    host_to_client()(point);
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(::is_set(get_html_data()) 
       && ::is_set(get_html_data()->m_pcoredata) 
       && ::is_set(get_html_data()->m_pcoredata->m_pelement))
    {
 
-      synchronous_lock synchronouslock(get_html_data()->synchronization());
+      synchronous_lock synchronouslock(get_html_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       html::element * pelement = get_html_data()->m_pcoredata->m_pelement->hit_test(get_html_data(), point);
 
@@ -509,7 +509,7 @@ void html_form::soft_reload()
 
       auto pparticleSynchronization = phtmldata->synchronization();
 
-      synchronous_lock lock(pparticleSynchronization);
+      synchronous_lock lock(pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       str = phtmldata->m_pcoredata->m_strSource;
 

@@ -176,7 +176,7 @@ namespace acme
 
       //{
 
-         //synchronous_lock synchronouslock(s_pmutexLoading);
+         //synchronous_lock synchronouslock(s_pmutexLoading, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //KEEP(s_plibraryLoading, this, nullptr);
 

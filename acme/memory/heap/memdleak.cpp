@@ -327,7 +327,7 @@
 //
 //   pblock->m_size = nAllocSize;
 //
-////   synchronous_lock lock(g_pmutgen);
+////   synchronous_lock lock(g_pmutgen, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   pblock->m_pprevious = nullptr;
 //

@@ -71,7 +71,7 @@ namespace platform
       m_pmessagesinkMediaStore->post_data_block_message(
          ::e_message_media_store_operation,
          pdatablock);
-      //_synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //byte2_stream & operator >>(string & str);
       //byte2_stream & operator << (string & str);
@@ -98,7 +98,7 @@ namespace platform
 //   pdatablock->m_memory = block;
 //
 //   {
-//      _synchronous_lock synchronouslock(this->synchronization());
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //      m_datablockaInputOutput.add(pdatablock);
 //
 //   }
@@ -126,7 +126,7 @@ namespace platform
 //
 //   };
 //   {
-//      _synchronous_lock synchronouslock(this->synchronization());
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //      m_datablockaInputOutput.add(pdatablock);
 //
 //
@@ -144,9 +144,9 @@ namespace platform
    application_sink::post_message_box(::message_box * pmessagebox)
    {
 
-      //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer);
+      //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pmessage = message_sink()->create_message(::e_message_message_box);
 
@@ -164,9 +164,9 @@ namespace platform
 //   ::pointer<::message_box> application_sink::pick_message_box()
 //   {
 //
-//      //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer);
+//      //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_messageboxa.is_empty()) {
 //
@@ -184,9 +184,9 @@ namespace platform
 //   ::pointer<::data::block> application_sink::pick_media_store_operation()
 //   {
 //
-//      //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer);
+//      //synchronous_lock synchronouslock(m_pparticleMutexMessageBoxSequencer, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_datablockaMediaStore.is_empty()) {
 //
@@ -243,7 +243,7 @@ namespace platform
    void application_sink::open_url(const ::scoped_string & scopedstrOpenUrl)
    {
 
-      synchronous_lock lock(this->synchronization());
+      synchronous_lock lock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_straOpenUrl.add(scopedstrOpenUrl);
 
@@ -253,8 +253,8 @@ namespace platform
    void application_sink::list_file_enumerate(const ::scoped_string & scopedstrListFileEnumerate)
    {
 
-      //synchronous_lock lock(m_pparticleMutexListFileEnumerate);
-      synchronous_lock lock(this->synchronization());
+      //synchronous_lock lock(m_pparticleMutexListFileEnumerate, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      synchronous_lock lock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_straListFileEnumerate.add(scopedstrListFileEnumerate);
 

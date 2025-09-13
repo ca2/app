@@ -1858,11 +1858,11 @@ void image::fork_blend(const ::int_point& pointDstParam, ::image::image* pimageS
 
    auto pgroup = psystem->task_group();
 
-   synchronous_lock slGroup(pgroup->synchronization());
+   synchronous_lock slGroup(pgroup->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto ptool = psystem->task_tool(::e_task_tool_draw2d);
 
-   synchronous_lock slTool(ptool->synchronization());
+   synchronous_lock slTool(ptool->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (!pgroup || !ptool)
    {

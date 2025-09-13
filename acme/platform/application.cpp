@@ -722,7 +722,7 @@ void application::start_application()
    ::file::path application::get_module_path()
    {
 
-      _synchronous_lock synchronizationlock(synchronization());
+      _synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_bModulePath)
       {
@@ -755,7 +755,7 @@ void application::start_application()
    ::file::path application::get_module_folder()
    {
 
-      _synchronous_lock synchronizationlock(synchronization());
+      _synchronous_lock synchronizationlock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_bModuleFolder)
       {

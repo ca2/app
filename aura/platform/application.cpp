@@ -1040,7 +1040,7 @@ namespace aura
 
    //   }
 
-   //   _synchronous_lock synchronouslock(m_pmutexStr);
+   //   _synchronous_lock synchronouslock(m_pmutexStr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   if (m_stringtableStd.find(strTable, pmap))
    //   {
@@ -3279,7 +3279,7 @@ retry_license:
 //
 //      {
 //
-//         _synchronous_lock synchronouslock(this->synchronization());
+//         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         file()->add_contents(directory()->appdata() / (file()->module().name() + "_log_error.txt"), strMessage);
 //
@@ -3460,7 +3460,7 @@ retry_license:
    //void application::install_trace(const ::scoped_string & scopedstr)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //::install::trace_file(this, m_strInstallTraceLabel).print(str);
 
@@ -3470,7 +3470,7 @@ retry_license:
    //void application::install_trace(double dRate)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
 
@@ -3720,7 +3720,7 @@ retry_license:
             if (puserinteraction)
             {
 
-//                _synchronous_lock synchronouslock(puserinteraction->window()->m_pparticleChildrenSynchronization);
+//                _synchronous_lock synchronouslock(puserinteraction->window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //                auto pacmeuserinteractionaChildren = puserinteraction->m_pacmeuserinteractionaChildren;
 //
@@ -3744,7 +3744,7 @@ retry_license:
 
 #endif
 
-      //_synchronous_lock synchronouslock(m_pmutexFrame);
+      //_synchronous_lock synchronouslock(m_pmutexFrame, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //_synchronous_lock slChildren(::user::pointer < ::mutex >_children2());
 
@@ -3781,7 +3781,7 @@ retry_license:
 
       }
 
-      _synchronous_lock synchronouslock(m_pmutexFrame); // recursive lock (on m_framea.add(puserinteraction)) but m_puiMain is "cared" by m_frame.m_pmutex
+      _synchronous_lock synchronouslock(m_pmutexFrame, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX); // recursive lock (on m_framea.add(puserinteraction)) but m_puiMain is "cared" by m_frame.m_pmutex
 
       if (m_puserinteractiona->add_unique_interaction(puserinteraction))
       {
@@ -3816,7 +3816,7 @@ retry_license:
 
             {
 
-               _synchronous_lock synchronouslock(puserinteractionHost->synchronization());
+               _synchronous_lock synchronouslock(puserinteractionHost->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                puserinteractionHost->m_pacmeuserinteractionaChildren->add_unique(puserinteraction);
 
@@ -3838,7 +3838,7 @@ retry_license:
    void application::erase_user_interaction(::user::interaction * puserinteraction)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexFrame); // recursive lock (on m_framea.erase(puserinteraction)) but m_puiMain is "cared" by m_frame.m_pmutex
+      _synchronous_lock synchronouslock(m_pmutexFrame, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX); // recursive lock (on m_framea.erase(puserinteraction)) but m_puiMain is "cared" by m_frame.m_pmutex
 
       if (m_pacmeuserinteractionMain == puserinteraction)
       {
@@ -4266,7 +4266,7 @@ retry_license:
 ////
 ////      {
 ////
-////         _synchronous_lock synchronouslock(this->synchronization());
+////         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////         ptra = m_particleaddressaEventHook;
 ////
@@ -4429,7 +4429,7 @@ retry_license:
    //void application::record(::create * pcommand)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   get_command()->m_createa.add(pcommand);
 
@@ -4571,7 +4571,7 @@ retry_license:
    //string application::load_string(const ::atom & atom)
    //{
 
-   //   _synchronous_lock synchronouslock(m_pmutexStr);
+   //   _synchronous_lock synchronouslock(m_pmutexStr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   string str;
 
@@ -4679,7 +4679,7 @@ retry_license:
 
    //   }
 
-   //   _synchronous_lock synchronouslock(m_pmutexStr);
+   //   _synchronous_lock synchronouslock(m_pmutexStr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ::pointer<string_to_string_base>pmap;
 

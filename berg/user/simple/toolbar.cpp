@@ -1890,7 +1890,7 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
 ::collection::index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, ::collection::index nCount, ::collection::index nWidth)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::collection::count countNewlyWrapped = 0;
 

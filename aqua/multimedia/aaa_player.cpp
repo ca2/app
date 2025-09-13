@@ -38,7 +38,7 @@ namespace wave
    void player::prepare_wave_player(enum_purpose epurpose)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //if (thread_active())
       //{
@@ -896,7 +896,7 @@ namespace wave
       try
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //plistener->assert_ok();
 
@@ -951,7 +951,7 @@ namespace wave
       try
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //try
          //{
@@ -996,7 +996,7 @@ namespace wave
       try
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          while (m_listenera.get_count() > 0)
          {

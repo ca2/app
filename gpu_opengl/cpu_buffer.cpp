@@ -29,7 +29,7 @@ namespace gpu_opengl
    void cpu_buffer::gpu_read()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pimagetarget->m_pimage.nok())
       {
@@ -191,7 +191,7 @@ namespace gpu_opengl
    void cpu_buffer::gpu_write()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pimagetarget->m_pimage.nok())
       {

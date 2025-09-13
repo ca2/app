@@ -304,7 +304,7 @@ namespace user
    void tab_impact::_001OnRemoveTab(class tab_pane * ptabpane)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (ptabpane->m_pplaceholder.is_set())
       {
@@ -688,7 +688,7 @@ namespace user
 
                __check_refdbg
 
-               _synchronous_lock synchronouslock(this->synchronization());
+               _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                __check_refdbg
 
@@ -830,7 +830,7 @@ namespace user
    void tab_impact::on_after_change_cur_sel()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto ptabdata = get_data();
 
@@ -1311,7 +1311,7 @@ namespace user
 
    //         {
 
-   //            _synchronous_lock synchronouslock(this->synchronization());
+   //            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //            if (pimpactdata->m_strCreatorDataTitle.has_character() && ppane->id() == pimpactdata->id())
    //            {

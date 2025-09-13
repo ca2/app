@@ -139,11 +139,11 @@ namespace helloworld
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       {
 
-         synchronous_lock slText(m_pmutexText);
+         synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if(m_strNewHelloWorld.is_empty())
          {
@@ -293,7 +293,7 @@ namespace helloworld
    string impact::get_processed_helloworld()
    {
 
-      synchronous_lock slText(m_pmutexText);
+      synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string str = get_helloworld();
 
@@ -395,7 +395,7 @@ namespace helloworld
    string impact::get_helloworld()
    {
 
-      synchronous_lock synchronouslock(m_pmutexText);
+      synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(m_strHelloWorld != m_strNewHelloWorld)
       {
@@ -453,7 +453,7 @@ namespace helloworld
       if (m_prender != nullptr)
       {
 
-         synchronous_lock synchronouslock(m_pmutexText);
+         synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (get_processed_helloworld() != m_prender->m_strHelloWorld)
          {

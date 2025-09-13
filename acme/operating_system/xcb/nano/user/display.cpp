@@ -228,7 +228,7 @@ namespace xcb
 
             windowing_output_debug_string("\nwindow::select_input");
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             //display_lock displaylock(xcb_display());
 
@@ -263,7 +263,7 @@ namespace xcb
          //
          //      defer_create_synchronization();
          //
-         //      synchronous_lock synchronouslock(this->synchronization());
+         //      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
          //
          //      m_routineaPost.add(routine);
          //
@@ -275,7 +275,7 @@ namespace xcb
          //   bool display::aaa_display_posted_routine_step()
          //   {
          //
-         //      synchronous_lock synchronouslock(this->synchronization());
+         //      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
          //
          //      if (m_routineaPost.has_element())
          //      {
@@ -437,7 +437,7 @@ namespace xcb
          void display::add_listener(event_listener * plistener)
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_happeninglistenera.add(plistener);
 
@@ -447,7 +447,7 @@ namespace xcb
          void display::add_window(::xcb::micro::elemental * pwindow)
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_windowa.add(pwindow);
 
@@ -457,7 +457,7 @@ namespace xcb
          void display::erase_listener(event_listener * plistener)
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_happeninglistenera.erase(plistener);
 
@@ -467,7 +467,7 @@ namespace xcb
          void display::erase_window(micro::interchange * pwindow)
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_windowa.erase(pwindow);
 

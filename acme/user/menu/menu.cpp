@@ -100,7 +100,7 @@ menu::~menu()
 ////
 ////         {
 ////
-////            _synchronous_lock synchronouslock(mutex_children());
+////            _synchronous_lock synchronouslock(mutex_children(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////            m_uiptraChild.erase_all();
 ////
@@ -133,11 +133,11 @@ menu::~menu()
 ////
 //      {
 //
-//         // _synchronous_lock synchronouslock(mutex_children());
+//         // _synchronous_lock synchronouslock(mutex_children(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //          // m_uiptraChild.interactiona().erase_all();
 //
-//         _synchronous_lock synchronouslock(this->synchronization());
+//         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         m_puserinteractionpointeraChild.release();
 //
@@ -1308,7 +1308,7 @@ menu::~menu()
 //            //   m_atomSubMenu.is_empty();
 //            //}
 //
-//            _synchronous_lock synchronouslock(this->synchronization());
+//            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //            if (m_pmenuitemShowSubMenu2)
 //            {
@@ -1362,7 +1362,7 @@ menu::~menu()
 //
 //            {
 //
-//               _synchronous_lock synchronouslock(this->synchronization());
+//               _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //               update_command(m_pmenuitem);
 //

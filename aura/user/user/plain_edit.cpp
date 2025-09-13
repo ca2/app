@@ -1313,7 +1313,7 @@ namespace user
 
       //{
 
-      //   _synchronous_lock synchronouslock(this->synchronization());
+      //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   character_count iSelStart = -1;
 
@@ -1616,7 +1616,7 @@ namespace user
 
       m_pointLastCursor = point;
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::int_rectangle rectangleWindow;
 
@@ -1665,7 +1665,7 @@ namespace user
    //character_count plain_edit::get_text_length()
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   return _001_get_text_length();
 
@@ -1676,7 +1676,7 @@ namespace user
    character_count plain_edit::get_text_length()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto ptree = m_ptree;
 
@@ -1727,7 +1727,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       filesize iSize = m_ptree->m_peditfile->get_length();
 
@@ -1768,7 +1768,7 @@ namespace user
    void plain_edit::get_text(string & str, ::collection::index iBegParam, ::collection::index iEndParam) const
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       {
 
@@ -1779,7 +1779,7 @@ namespace user
 
          }
 
-         //_synchronous_lock synchronouslock(this->synchronization());
+         //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (iEndParam < 0)
          {
@@ -2017,7 +2017,7 @@ namespace user
 
       //{
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_textproperty.set_selection_text(scopedstr, actioncontext);
 
@@ -2163,7 +2163,7 @@ namespace user
    void plain_edit::plain_edit_set_text_selection_begin(character_count iBeg, const ::action_context & actioncontext)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_ptree->m_iSelBeg = iBeg;
 
@@ -2175,7 +2175,7 @@ namespace user
    void plain_edit::plain_edit_set_text_selection_end(character_count iEnd, const ::action_context & actioncontext)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_ptree->m_iSelEnd = iEnd;
 
@@ -2188,7 +2188,7 @@ namespace user
    void plain_edit::set_text_selection(character_count iBeg, character_count iEnd, const ::action_context & actioncontext)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_ptree->m_iSelBeg = iBeg;
 
@@ -2293,7 +2293,7 @@ namespace user
    void plain_edit::get_text_selection(character_count & iBeg, character_count & iEnd) const
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       iBeg = m_ptree->m_iSelBeg;
 
@@ -2305,7 +2305,7 @@ namespace user
    void plain_edit::get_text_selection(character_count & iBeg, character_count & iEnd, character_count & iComposingStart, character_count & iComposingEnd) const
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       iBeg = m_ptree->m_iSelBeg;
 
@@ -2456,7 +2456,7 @@ namespace user
 
       {
 
-         _synchronous_lock writing(m_ptree->synchronization());
+         _synchronous_lock writing(m_ptree->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_ptree->SetFile(pfile);
 
@@ -2567,7 +2567,7 @@ namespace user
 
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             //m_bLMouseDown = true;
 
@@ -2735,11 +2735,11 @@ namespace user
    void plain_edit::plain_edit_on_context_offset_layout(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       _plain_edit_update_extents(pgraphics, iOnlyLineToUpdate);
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //::int_rectangle rectangleX;
 
@@ -3105,7 +3105,7 @@ namespace user
    void plain_edit::plain_edit_on_calc_layout(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_bMultiLine)
       {
@@ -3159,7 +3159,7 @@ namespace user
          if (strTextPrevious != strText)
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_ptree->m_peditfile->seek(0, ::e_seek_set);
             m_ptree->m_peditfile->Delete((memsize)m_ptree->m_peditfile->get_length());
@@ -4060,7 +4060,7 @@ namespace user
    //   void plain_edit::_plain_edit_update_lines(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate)
    //   {
    //
-   //      _synchronous_lock synchronouslock(this->synchronization());
+   //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //      ::int_rectangle rectangleX;
    //
@@ -4384,7 +4384,7 @@ namespace user
    //   void plain_edit::_plain_edit_update_extents(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate)
    //   {
    //
-   //      //_synchronous_lock synchronouslock(this->synchronization());
+   //      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    ////::int_rectangle rectangleX;
    //
@@ -4797,7 +4797,7 @@ namespace user
    ::collection::index plain_edit::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       character_count i1;
 
@@ -4829,7 +4829,7 @@ namespace user
    ::collection::index plain_edit::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, character_count iChar)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (::collection::index iLine = 0; iLine < m_iaLineIndex.get_size(); iLine++)
       {
@@ -4910,7 +4910,7 @@ namespace user
 
       }
 
-      //_synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (iLine >= m_iaLineLength.get_size())
       {
@@ -4961,7 +4961,7 @@ namespace user
    ::collection::index plain_edit::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
    {
 
-      //_synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::int_rectangle rectangleX;
 
@@ -5001,7 +5001,7 @@ namespace user
    character_count plain_edit::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       while (iLine < 0)
       {
@@ -5105,7 +5105,7 @@ namespace user
    character_count plain_edit::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ødefer_construct(pgraphics);
 
@@ -5134,7 +5134,7 @@ namespace user
    ::collection::index plain_edit::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::int_rectangle rectangleX;
 
@@ -5179,7 +5179,7 @@ namespace user
    ::collection::index plain_edit::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, character_count iSel)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //string_array_base & straLines = m_plinea->lines;
 
@@ -5304,7 +5304,7 @@ namespace user
    character_count plain_edit::plain_edit_line_char_hit_test(::draw2d::graphics_pointer & pgraphics, int px, ::collection::index iLine)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::int_rectangle rectangleX;
 
@@ -5434,7 +5434,7 @@ namespace user
    //void plain_edit::get_text_selection(character_count & iSelBeg, character_count & iSelEnd)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_textproperty.get_selection(iSelBeg, iSelEnd);
 
@@ -5444,7 +5444,7 @@ namespace user
    //void plain_edit::get_text_selection(character_count & iSelBeg, character_count & iSelEnd)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   _001_get_impact_sel(iSelBeg, iSelEnd);
 
@@ -5454,7 +5454,7 @@ namespace user
    //void plain_edit::get_text_selection(character_count & iSelBeg, character_count & iSelEnd)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   if (m_ptree == nullptr)
    //   {
@@ -5505,7 +5505,7 @@ namespace user
    //void plain_edit::_001GetSel(character_count & iBeg, character_count & iEnd)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   iBeg = m_ptree->m_iSelBeg;
 
@@ -5517,7 +5517,7 @@ namespace user
    //void plain_edit::_001GetSel(character_count & iSelStart, character_count & iSelEnd, character_count & iComposingStart, character_count & iComposingEnd)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   iSelStart = m_ptree->m_iSelBeg;
 
@@ -5546,7 +5546,7 @@ namespace user
    void plain_edit::FileSave()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_ptree->m_peditfile->flush();
 
@@ -5568,7 +5568,7 @@ namespace user
    void plain_edit::plain_edit_create_line_index(::draw2d::graphics_pointer & pgraphics)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       memory m;
 
@@ -5787,7 +5787,7 @@ namespace user
    void plain_edit::plain_edit_update_line_index(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       memory m;
 
@@ -6008,7 +6008,7 @@ namespace user
    void plain_edit::plain_edit_on_delete_surrounding_text(::draw2d::graphics_pointer & pgraphics, character_count beforeLength, character_count afterLength)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       bool bFullUpdate = false;
 
@@ -6686,7 +6686,7 @@ namespace user
    void plain_edit::plain_edit_on_delete(::draw2d::graphics_pointer & pgraphics, bool bBackIfSelectionEmpty)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       bool bFullUpdate = false;
 
@@ -7122,7 +7122,7 @@ namespace user
    //bool plain_edit::plain_edit_delete_sel(::draw2d::graphics_pointer & pgraphics, bool & bFullUpdate, ::collection::index & iLineUpdate)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   character_count i1 = m_ptree->m_iSelBeg;
 
@@ -7227,7 +7227,7 @@ namespace user
    bool plain_edit::_001ReplaceSel(const ::scoped_string & scopedstrText, bool & bFullUpdate, ::collection::index & iLineUpdate)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       character_count i1 = m_ptree->m_iSelBeg;
 
@@ -7916,7 +7916,7 @@ namespace user
 
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             bool bControl = psession->is_key_pressed(::user::e_key_control);
 
@@ -8283,7 +8283,7 @@ namespace user
             else if (pkey->m_ekey == ::user::e_key_right)
             {
 
-               _synchronous_lock synchronouslock(this->synchronization());
+               _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                if (is_text_composition_active())
                {
@@ -8824,7 +8824,7 @@ namespace user
    void plain_edit::on_text_commit(const ::scoped_string & scopedstrText)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pitemComposing
          && !scopedstrText.contains('\r')
@@ -8913,7 +8913,7 @@ namespace user
    bool plain_edit::InputConnectionBeginBatchEdit(bool bSuper)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //MacroBegin();
 
@@ -8927,7 +8927,7 @@ namespace user
    bool plain_edit::InputConnectionEndBatchEdit(bool bSuper)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //MacroEnd();
 
@@ -9171,7 +9171,7 @@ namespace user
       queue_graphics_call([this, iComposingStart, iComposingEnd](::draw2d::graphics_pointer & pgraphics)
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             character_count iCandidateBeg = iComposingStart;
 
@@ -9325,7 +9325,7 @@ namespace user
    void plain_edit::_001OnSysChar(::message::message * pmessage)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pkey = pmessage->m_union.m_pkey;
 
@@ -9541,7 +9541,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //string str;
          //get_text(str);
@@ -9685,7 +9685,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //string str;
          //get_text(str);
@@ -9751,7 +9751,7 @@ namespace user
 
    void plain_edit::MacroEnd()
    {
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       if (m_ptree->m_pgroupcommand == nullptr)
       {
          ASSERT(false);
@@ -9778,7 +9778,7 @@ namespace user
 
    void plain_edit::MacroDiscard()
    {
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       if (m_ptree->m_pgroupcommand == nullptr)
       {
          ASSERT(false);
@@ -9793,7 +9793,7 @@ namespace user
 
    void plain_edit::MacroRecord(::pointer<plain_text_command>pcommand)
    {
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       if (m_ptree->m_pgroupcommand != nullptr && m_ptree->m_pgroupcommand != pcommand)
       {
          m_ptree->m_pgroupcommand->m_commanda.add(pcommand);
@@ -9808,7 +9808,7 @@ namespace user
    bool plain_edit::__plain_edit_undo()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!CanUndo())
       {
@@ -9833,7 +9833,7 @@ namespace user
 
       //{
 
-      //   _synchronous_lock synchronouslock(this->synchronization());
+      //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   if (m_ptreeitem == nullptr)
       //   {
@@ -9848,7 +9848,7 @@ namespace user
       //      return false;
       //   }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!CanRedo())
          return false;
@@ -9954,13 +9954,13 @@ namespace user
 
    bool plain_edit::CanUndo()
    {
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       return m_ptreeitem != m_ptree->get_base_item();
    }
 
    bool plain_edit::CanRedo()
    {
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       return m_ptreeitem &&
          m_ptree->m_iBranch >= 0
          && m_ptree->m_iBranch < GetRedoBranchCount();
@@ -9970,7 +9970,7 @@ namespace user
 
    ::collection::count plain_edit::GetRedoBranchCount()
    {
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_ptreeitem->get_expandable_children_count()
          + (m_ptreeitem->get_next() != nullptr ? 1 : 0)
@@ -10002,7 +10002,7 @@ namespace user
 
          __check_refdbg
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          __check_refdbg
 
@@ -10099,7 +10099,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_bParseDataPacks)
          {
@@ -10615,7 +10615,7 @@ namespace user
    void plain_edit::set_root(plain_text_tree * pdata, bool bOwnData)
    {
 
-      _synchronous_lock lockRoot(synchronization());
+      _synchronous_lock lockRoot(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_ptree != nullptr && m_bOwnData)
       {
@@ -10850,7 +10850,7 @@ namespace user
    string plain_edit::plain_edit_get_line(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string strLine;
 
@@ -11069,7 +11069,7 @@ namespace user
    void plain_edit::insert_text(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstrText, bool bForceNewStep)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       _synchronous_lock _synchronouslock2(m_ptree->m_peditfile->synchronization());
 

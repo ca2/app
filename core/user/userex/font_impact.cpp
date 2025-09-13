@@ -77,7 +77,7 @@ namespace userex
          if (m_ptopimpact != nullptr && ptopic->m_puserelement == m_ptopimpact->m_peditimpact)
          {
 
-            synchronous_lock synchronouslock(m_pimpact->m_pfontlist->synchronization());
+            synchronous_lock synchronouslock(m_pimpact->m_pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             string strText;
 

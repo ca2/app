@@ -490,7 +490,7 @@ public:
 
       auto ptask = ::get_task();
 
-      synchronous_lock synchronouslock(ptask->synchronization());
+      synchronous_lock synchronouslock(ptask->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (ptask && ptask->m_bIsPredicate)
       {

@@ -307,7 +307,7 @@ namespace axis
 //
 //
 //         }
-//         synchronous_lock synchronouslock(psystem->m_pmutexLibrary);
+//         synchronous_lock synchronouslock(psystem->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         ::pointer<::acme::library>& plibrary = psystem->m_mapLibrary[pszAppId];
 //

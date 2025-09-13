@@ -111,7 +111,7 @@ namespace aura
    bool library::open(const ::scoped_string & scopedstrPath,bool bAutoClose,bool bCa2Path)
    {
 
-      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_strMessage.empty();
 
@@ -187,7 +187,7 @@ namespace aura
    bool library::open_ca2_library(string strTitle)
    {
 
-      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pca2library.is_set())
       {
@@ -358,7 +358,7 @@ namespace aura
    string library::get_library_name()
    {
 
-      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(m_pca2library)
       {
@@ -403,7 +403,7 @@ namespace aura
    bool library::close()
    {
 
-      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -453,7 +453,7 @@ namespace aura
    string library::get_app_id(const ::scoped_string & scopedstrAppName)
    {
 
-      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(!contains_app(scopedstrAppName))
          return "";
@@ -507,7 +507,7 @@ namespace aura
    string library::get_app_name(const ::scoped_string & scopedstrAppId)
    {
 
-      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string strAppName(scopedstrAppId);
 
@@ -567,7 +567,7 @@ namespace aura
    ::pointer<::aura::application>library::get_new_application(::particle * pparticle, const ::scoped_string & scopedstrAppId)
    {
 
-      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -677,7 +677,7 @@ namespace aura
    void library::get_app_list(string_array_base & stra)
    {
 
-      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(get_ca2_library() != nullptr)
       {
@@ -739,7 +739,7 @@ namespace aura
    ::pointer<::matter>library::create_object(::particle * pparticle, const ::scoped_string & scopedstrClass)
    {
 
-      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (factory_has_object_class(scopedstrClass))
       {
@@ -782,7 +782,7 @@ namespace aura
    bool library::has_object_class(const ::scoped_string & scopedstrClassId)
    {
 
-      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (factory_has_object_class(scopedstrClassId))
       {
@@ -806,7 +806,7 @@ namespace aura
    bool library::contains_app(const ::scoped_string & scopedstrAppId)
    {
 
-      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string_array_base stra;
 
@@ -820,7 +820,7 @@ namespace aura
    string library::get_root()
    {
 
-      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(m_pca2library)
       {
@@ -837,7 +837,7 @@ namespace aura
    void library::get_create_impact_id_list(::array < atom > & ida)
    {
 
-      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       __UNREFERENCED_PARAMETER(ida);
 
@@ -847,7 +847,7 @@ namespace aura
    bool library::is_opened()
    {
 
-      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_plibrary != nullptr;
 
@@ -865,7 +865,7 @@ namespace aura
    void * library::raw_get(const ::scoped_string & scopedstrEntryName)
    {
 
-      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+      synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return __node_library_raw_get(m_plibrary,pszEntryName);
 

@@ -112,7 +112,7 @@ void interprocess_intercommunication::destroy()
 void interprocess_intercommunication::start(const ::scoped_string & scopedstrApp)
 {
 
-   synchronous_lock sl1(mutex());
+   synchronous_lock sl1(mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto & pmutex = m_mapAppMutex[strApp];
 
@@ -125,7 +125,7 @@ void interprocess_intercommunication::start(const ::scoped_string & scopedstrApp
 
    sl1.unlock();
 
-   synchronous_lock synchronouslock(pmutex);
+   synchronous_lock synchronouslock(pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto idaPid = get_pid(strApp);
 
@@ -522,7 +522,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 
    auto pobjectTask = øallocate ::interprocess::task(pcall, idPid, m_iTaskSeed++);
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -536,7 +536,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 ::pointer<::interprocess::task>interprocess_intercommunication::get_task(long long iTask)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    return m_mapTask[iTask];
 

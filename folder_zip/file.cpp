@@ -192,7 +192,7 @@ namespace folder_zip
 memsize file::read(void * p, ::memsize s)
 {
 
-   _synchronous_lock synchronouslock(m_pfolder->synchronization());
+   _synchronous_lock synchronouslock(m_pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ASSERT_OK(this);
    ASSERT(m_pfolder->m_unzfile != nullptr);
@@ -299,7 +299,7 @@ void file::write(const void * p, ::memsize s)
    void file::translate(filesize offset, ::enum_seek eseek)
    {
 
-      _synchronous_lock synchronouslock(m_pfolder->synchronization());
+      _synchronous_lock synchronouslock(m_pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       unsigned long long iNewPosition;
 

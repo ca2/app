@@ -319,7 +319,7 @@ namespace interprocess
    void communication::start(const ::scoped_string & scopedstrApp)
    {
 
-      synchronous_lock sl1(synchronization());
+      synchronous_lock sl1(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto & pmutex = m_mapAppMutex[scopedstrApp];
 
@@ -332,7 +332,7 @@ namespace interprocess
 
       sl1.unlock();
 
-      synchronous_lock synchronouslock(pmutex);
+      synchronous_lock synchronouslock(pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto idaPid = get_pid(scopedstrApp);
 
@@ -729,7 +729,7 @@ namespace interprocess
 
       auto pobjectTask = øallocate ::interprocess::task(pcall, idPid, m_iTaskSeed++);
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -743,7 +743,7 @@ namespace interprocess
    ::pointer<::interprocess::task>communication::get_task(long long iTask)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_mapTask[iTask];
 

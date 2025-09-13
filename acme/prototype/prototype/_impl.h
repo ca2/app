@@ -550,7 +550,7 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 //   if (pcomposite)
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_pcompositea)
 //      {
@@ -580,7 +580,7 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 //   if (preference)
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_preferencea)
 //      {
@@ -1126,7 +1126,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //
 //   auto pgroup = system()->task_group(epriority);
 //
-//   synchronous_lock slGroup(pgroup->synchronization());
+//   synchronous_lock slGroup(pgroup->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   ///   auto ptool = system()->task_tool(op_fork_count);
 //

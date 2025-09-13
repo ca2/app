@@ -144,7 +144,7 @@ namespace gpu
       //      [this, &a, p]()
       //      {
 
-      //         _synchronous_lock synchronouslock(this->synchronization());
+      //         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //         a.add(p);
 

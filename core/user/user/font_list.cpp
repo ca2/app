@@ -342,7 +342,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bEnsureVisible)
       {
@@ -461,7 +461,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pstyle = get_style(pgraphics);
 
@@ -522,7 +522,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       
       if(!m_pfontlist->m_pfontlistdata)
       {
@@ -564,7 +564,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer < ::write_text::font_list_item > pfontlistitem = m_pfontlist->m_pfontlistdata->item_at(iItemHover);
 
@@ -592,7 +592,7 @@ namespace user
    ::item_pointer font_list::current_item()
    {
 
-      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!::is_item_set(main_content().m_pitemCurrent))
       {
@@ -609,7 +609,7 @@ namespace user
    ::item_pointer font_list::hover_item()
    {
 
-      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!::is_item_set(m_pitemHover))
       {

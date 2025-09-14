@@ -70,6 +70,19 @@ public:
 
 
 };
-
+//
+//
+//namespace parallelization
+//{
+//
+//
+//   CLASS_DECL_ACME void on_single_lock_lock(::subparticle *psubparticleSynchronization,
+//                                            const ::subparticle *psubparticleContext, const_char_pointer pszFile,
+//                                            int iLine);
+//   CLASS_DECL_ACME void on_single_lock_unlock(::subparticle *psubparticleSynchronization);
+//
+//
+//} // namespace parallelization
+//
 
 

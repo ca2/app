@@ -1753,6 +1753,7 @@
     <ClInclude Include="platform\acme_message.h" />
     <ClInclude Include="platform\http.h" />
     <ClInclude Include="prototype\collection\base_array.h" />
+    <ClInclude Include="prototype\collection\block_array.h" />
     <ClInclude Include="prototype\collection\static_array.h" />
     <ClInclude Include="prototype\data\block.h" />
     <ClInclude Include="prototype\geometry\Matrix.h" />

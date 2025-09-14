@@ -338,6 +338,12 @@ void single_lock::debug_on_unlock()
    if (m_ptask)
    {
 
+      if (m_ptask != ::get_task())
+      {
+
+         throw ::exception(error_wrong_state);
+      }
+
       m_ptask->on_single_lock_unlock(m_psubparticleSynchronization);
 
    }
@@ -652,6 +658,12 @@ void _single_lock::debug_on_unlock()
 
    if (m_ptask)
    {
+
+      if (m_ptask != ::get_task())
+      {
+
+         throw ::exception(error_wrong_state);
+      }
 
       m_ptask->on_single_lock_unlock(m_psubparticleSynchronization);
 

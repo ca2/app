@@ -155,36 +155,66 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 ::collection::count base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::_allocate(::collection::count nNewSize, bool bShrink, bool bRaw, const TYPE * ptype)
 {
 
-   if (this->m_erange & e_range_array_allocate)
-   {
+   //if (this->m_erange & e_range_array_allocate)
+   //{
 
-      if (nNewSize > this->m_countAllocation)
-      {
+   //   if (nNewSize > this->m_countAllocation)
+   //   {
 
-         throw ::exception(error_wrong_state);
+   //      throw ::exception(error_wrong_state);
 
-      }
+   //   }
 
-      if (ptype)
-      {
+   //   if (nNewSize > this->m_countAllocation + this->m_countAllocationOffset)
+   //   {
 
-         auto nOldSize = this->size();
+   //      auto countOffset = this->m_countAllocationOffset;
 
-         for (auto i = nOldSize; i < nNewSize; i++)
-         {
+   //      for (auto p = this->m_begin; p < this->m_end; p++)
+   //      {
 
-            this->m_begin[i] = *ptype;
+   //         p[countOffset] = *p;
 
-         }
-         //TYPED::copy_construct_count(this->m_begin + nOldSize, nNewSize - nOldSize, *ptype);
+   //      }
 
-      }
+   //      this->m_begin += countOffset;
 
-      this->m_end = this->m_begin + nNewSize;
+   //      this->m_end += countOffset;
 
-      return nNewSize;
+   //      this->m_countAllocationOffset = 0;
 
-   }
+   //   }
+
+   //   if (ptype)
+   //   {
+
+   //      auto nOldSize = this->size();
+
+   //      TYPED::destruct_count(this->m_begin + nOldSize, nNewSize - nOldSize);
+
+   //      TYPED::copy_construct_count(this->m_begin + nOldSize, nNewSize - nOldSize, *ptype);
+
+   //   }
+
+   //   this->m_end = this->m_begin + nNewSize;
+
+   //   if (this->m_end == this->m_begin)
+   //   {
+
+   //      if (this->m_countAllocationOffset != 0)
+   //      {
+
+   //         this->m_begin += this->m_countAllocationOffset;
+
+   //         this->m_end = this->m_begin;
+
+   //      }
+
+   //   }
+
+   //   return nNewSize;
+
+   //}
 
    ASSERT(nNewSize >= 0);
 
@@ -215,7 +245,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
          if(bShrink)
          {
             
-            if(!(this->m_erange & e_range_array_allocate))
+            //if(!(this->m_erange & e_range_array_allocate))
             {
                
                MEMORY::free(this->m_begin + this->m_countAllocationOffset);
@@ -224,13 +254,13 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
                
 
             }
-            else
-            {
-             
-               TYPED::construct_count(this->m_begin, this->size());
-               this->m_end = this->m_begin;
+            //else
+            //{
+            // 
+            //   TYPED::construct_count(this->m_begin, this->size());
+            //   this->m_end = this->m_begin;
 
-            }
+            //}
 
             this->m_countAllocationOffset = 0;
 
@@ -521,19 +551,19 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
          
       }
       
-      if(!(this->m_erange & e_range_array_allocate))
+      //if(!(this->m_erange & e_range_array_allocate))
       {
          
          // get rid of old stuff (note: no destructors called)
          MEMORY::free(this->m_begin + this->m_countAllocationOffset);
          
       }
-      else
-      {
-         
-         this->m_erange = (::enum_range) (this->m_erange & ~e_range_array_allocate);
-         
-      }
+      //else
+      //{
+      //   
+      //   this->m_erange = (::enum_range) (this->m_erange & ~e_range_array_allocate);
+      //   
+      //}
 
       this->m_begin = pNewData;
 
@@ -567,7 +597,7 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_base_
 
       ASSERT(!this->m_end);
 
-      ASSERT(this->m_erange & e_range_array_allocate || this->m_countAllocation == 0);
+      ASSERT(this->m_countAllocation == 0);
 
    }
 

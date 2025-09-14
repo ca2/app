@@ -14,6 +14,7 @@
 #include "acme/parallelization/types.h"
 #include "acme/platform/implementable.h"
 #include "acme/prototype/data/property_container.h"
+#include "acme/prototype/collection/block_array.h"
 #include "acme/prototype/collection/comparable_eq_list.h"
 #include "acme/prototype/collection/procedure_array.h"
 
@@ -215,27 +216,28 @@ public:
    class ::time                                    m_timePostedProcedureTimeout;
 
 
-   class synchronous_lock_description
-   {
-   public:
-
-
-      const ::subparticle *         m_psubparticleContext;
-      ::subparticle *               m_psubparticleSynchronization;
-      //::string                      m_strCallstack;
-      const_char_pointer            m_pszFile;
-      int                           m_iLine;
-
-
-   };
-
-
-   ::preallocated_array_base < ::array < synchronous_lock_description >, 64 > m_synchronouslockdescriptiona;
-
 
    ::waiting_call_stack                            m_waitingcallstack;
 
    int m_iExitCode;
+
+
+
+   struct synchronous_lock_description_t
+   {
+   public:
+
+
+      const ::subparticle *m_psubparticleContext;
+      ::subparticle *m_psubparticleSynchronization;
+      const_char_pointer m_pszFile;
+      int m_iLine;
+   };
+
+
+   ::block_array<synchronous_lock_description_t, 64, e_array_raw>
+      m_synchronouslockdescriptiona;
+
 
    task();
    ~task() override;
@@ -250,8 +252,11 @@ public:
    //void update_new_main_loop_happening() override;
    //bool has_main_loop_happening() override;
 
-   virtual void on_single_lock_lock(::subparticle * psubparticleSynchronization, const ::subparticle * psubparticleContext, const_char_pointer pszFile, int iLine);
-   virtual void on_single_lock_unlock(::subparticle * psubparticleSynchronization);
+   
+   virtual void on_single_lock_lock(::subparticle *psubparticleSynchronization,
+                                            const ::subparticle *psubparticleContext, const_char_pointer pszFile,
+                                            int iLine);
+   virtual void on_single_lock_unlock(::subparticle *psubparticleSynchronization);
 
 
    virtual void __priority_and_affinity();

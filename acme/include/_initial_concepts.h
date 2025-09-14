@@ -763,7 +763,7 @@ template < typename ARRAY >
 concept primitive_array = requires (const ARRAY & array)
 {
 
-   array.array_base_ok();
+   array.array_range_ok();
 
 };
 

@@ -3,7 +3,7 @@
 #include "task.h"
 #include "task_flag.h"
 #include "acme/constant/id.h"
-
+#include "acme/parallelization/single_lock.h"
 //#include "acme/prototype/collection/string_array.h"
 //#include "acme/prototype/prototype/payload.h"
 #include "acme/platform/acme.h"
@@ -20,6 +20,76 @@ namespace parallelization
 {
 
 
+   //struct synchronous_lock_description_t
+   //{
+   //public:
+
+
+   //   const ::subparticle *m_psubparticleContext;
+   //   ::subparticle *m_psubparticleSynchronization;
+   //   const_char_pointer m_pszFile;
+   //   int m_iLine;
+
+   //};
+
+
+   //thread_local ::preallocated_array_base<::raw_array_base<synchronous_lock_description_t>, 64> t_synchronouslockdescriptiona;
+
+//
+//
+//   void on_single_lock_lock(subparticle *psubparticleSynchronization, const subparticle *psubparticleContext,
+//                                  const_char_pointer pszFile, int iLine)
+//   {
+//
+//#ifdef _DEBUG
+//
+//      auto &description = t_synchronouslockdescriptiona.add_new();
+//
+//      description.m_psubparticleContext = psubparticleContext;
+//
+//      description.m_pszFile = pszFile;
+//
+//      description.m_iLine = iLine;
+//
+//      description.m_psubparticleSynchronization = psubparticleSynchronization;
+//
+//      // description.m_strCallstack.format("{} {}", pszFile, iLine);
+//
+//      // description.m_strCallstack = node()->get_call_stack_trace(call_stack_default_format(),
+//      //  CALLSTACK_DEFAULT_SKIP_TRIGGER, nullptr, 3);
+//
+//#endif
+//   }
+//
+//
+//   void on_single_lock_unlock(subparticle *psubparticleSynchronization)
+//   {
+//
+//#ifdef _DEBUG
+//
+//      for (::collection::index i = t_synchronouslockdescriptiona.get_upper_bound(); i >= 0; i--)
+//      {
+//
+//         auto &description = t_synchronouslockdescriptiona[i];
+//
+//         auto psubparticleSynchronizationItem = description.m_psubparticleSynchronization;
+//
+//         if (psubparticleSynchronizationItem == psubparticleSynchronization)
+//         {
+//
+//            t_synchronouslockdescriptiona.erase_at(i);
+//
+//            return;
+//
+//         }
+//
+//      }
+//
+//      throw ::exception(error_not_expected);
+//
+//#endif
+//
+//   }
 
 
    //CLASS_DECL_ACME comparable_eq_array<itask> * s_piaThread2 = nullptr;

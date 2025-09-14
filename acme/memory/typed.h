@@ -659,6 +659,7 @@ namespace typed
    public:
 
 
+
       inline void construct(TYPE * p)
       {
 

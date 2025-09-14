@@ -80,17 +80,6 @@ DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
 
 #include "acme/prototype/collection/rear_iterator.h"
 
-//enum enum_array : unsigned long long
-//{
-//
-//   e_array_none = 0,
-//   e_array_zeroe_on_allocation = 1,
-//   e_range_array_allocate = 2,
-//   e_array_carriage_return = 4,
-//   //e_array_disable_referencing_debugging = 1ll << 52,
-//
-//};
-
 //DECLARE_ENUMERATION(e_array, enum_array);
 
 
@@ -117,7 +106,7 @@ struct null_terminated_t {};
 // array is an array that call default constructors, copy constructs and destructors in elements
 template < class TYPE, class ARG_TYPE, class TYPED, class MEMORY, ::enum_type t_etypeContainer >
 class base_array :
-   public ::range < TYPE * >,
+   public ::array_range < TYPE, ARG_TYPE >,
    public TYPED,
    public MEMORY
 {
@@ -131,7 +120,7 @@ public:
    using const_rear_iterator = ::pointer_rear_iterator<const TYPE>;
 
    //using ARRAY_RANGE = ::array_range < ::range < TYPE * > >;
-   using ARRAY_RANGE = ::range < TYPE * >;
+   using ARRAY_RANGE = ::array_range < TYPE, ARG_TYPE >;
    using BASE_RAW_RANGE = ::range < TYPE * >;
    //using array_range = ::range < TYPE * >;
 
@@ -934,16 +923,6 @@ public:
    inline bool is_empty(::collection::count countMinimum = 0) const noexcept { return this->size() <= countMinimum; }
    inline bool empty(::collection::count countMinimum = 0) const noexcept { return this->size() <= countMinimum; }
    inline bool has_elements(::collection::count countMinimum = 1) const noexcept { return this->size() >= countMinimum; }
-   inline ::collection::index get_lower_bound(::collection::index i = 0) const;
-   inline ::collection::index get_middle_index(::collection::index i = 0) const;
-   inline ::collection::index get_upper_bound(::collection::index i = -1) const;
-   inline ::collection::index lower_bound(::collection::index i = 0) const { return this->get_lower_bound(i); }
-   inline ::collection::index upper_bound(::collection::index i = -1) const { return this->get_upper_bound(i); }
-   inline ::collection::index first_index(::collection::index i = 0) const { return this->lower_bound(i); }
-   inline ::collection::index middle_index(::collection::index i = 0) const { return this->get_middle_index(i); }
-   inline ::collection::index last_index(::collection::index i = -1) const { return this->get_upper_bound(i); }
-   inline bool bounds(::collection::index i) const;
-   inline bool contains_index(::collection::index i) const { return  bounds(i); }
 
 
    inline this_iterator back(::collection::index i = -1) { return (this_iterator)(this->begin() + this->get_upper_bound(i)); }
@@ -1058,8 +1037,6 @@ public:
    void erase_descending_indexes(const ARRAY & ia);
 
 
-   inline bool prepare_first_last(::collection::index & first, ::collection::index & last) const;
-   inline bool prepare_first_in_count_last_out(::collection::index & first, ::collection::count & inCountLastOut) const;
 
 
    inline void erase_first(::collection::count c = 1);
@@ -1222,7 +1199,7 @@ public:
    inline bool is_index_ok(::collection::index iIndex) const { return iIndex >= 0 && iIndex < get_count(); }
 
    
-   inline bool is_last_index(::collection::index iIndex) const { return iIndex >= get_upper_bound(); }
+   inline bool is_last_index(::collection::index iIndex) const { return iIndex >= this->get_upper_bound(); }
 
 
    template < typename PRED >
@@ -1744,7 +1721,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 ::collection::index base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_at(::collection::index first, ::collection::count in_count_out_last)
 {
 
-   if (!prepare_first_in_count_last_out(first, in_count_out_last))
+   if (!this->prepare_first_in_count_last_out(first, in_count_out_last))
    {
 
       //throw_exception(error_bad_argument);
@@ -1753,40 +1730,66 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
    }
 
-   auto nCount = in_count_out_last - first + 1;
+   // abcde   size 5;
+   // erase a erase_at 0;
+   // size 4; need to transfer 4 from 1 to 0
+   // abcde   size 5;
+   // erase b erase_at 1;
+   // size 4; need to transfer 3 from 2 to 1
+
+   auto nEraseCount = in_count_out_last - first + 1;
 
    auto sizeOld = this->size();
 
-   ::collection::count nMoveCount = sizeOld - in_count_out_last;
+   /// with e_range_array_allocate,
+   /// elements start constructed,
+   /// and they are maintaned constructed
+   /// until the final array entire preallocation is gone.
+   //if (!(this->m_erange & e_range_array_allocate))
+   //{
 
-   TYPED::destruct_count(this->m_begin + first, nCount);
+      TYPED::destruct_count(this->m_begin + first, nEraseCount);
 
-   if (this->m_erange & e_range_array_allocate)
+   //}
+
+
+   if (first == 0 && sizeOld > nEraseCount)
    {
 
-      TYPED::construct_count(this->m_begin + first, nCount);
+      m_countAllocationOffset -= nEraseCount;
 
-   }
-
-   if (first == 0 && sizeOld > nCount)
-   {
-
-      m_countAllocationOffset -= nCount;
-
-      this->m_begin += nCount;
+      this->m_begin += nEraseCount;
 
    }
    else
    {
 
-      if (nMoveCount)
+      //if (this->m_erange & e_range_array_allocate)
+      //{
+
+      //   for (auto i = first + nEraseCount; i <= in_count_out_last; i++)
+      //   {
+
+      //      element_at(i - nEraseCount) = this->element_at(i);
+
+      //   }
+
+      //}
+      //else
       {
 
-         ::safe_memory_transfer2(this->m_begin + first, nMoveCount, this->m_begin + in_count_out_last + 1, (size_t)nMoveCount);
+         auto nTransferCount = sizeOld - (first + nEraseCount);
+
+         if (nTransferCount > 0)
+         {
+
+            ::safe_memory_transfer2(this->m_begin + first, nTransferCount, this->m_begin + first + nEraseCount,
+                                    (memsize)nTransferCount);
+         }
 
       }
 
-      this->m_end -= nCount;
+      this->m_end -= nEraseCount;
 
    }
 
@@ -1827,7 +1830,7 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::free_extra(
 
    auto sizeNew = size;
 
-   if(!(this->m_erange & e_range_array_allocate))
+   //if(!(this->m_erange & e_range_array_allocate))
    {
       
       if(sizeNew != m_countAllocation)
@@ -1835,7 +1838,7 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::free_extra(
          
          // shrink to desired size
          
-#ifdef SIZE_T_MAXvvvvvvvvvvvvvvvvvvvvvvvv
+#ifdef SIZE_T_MAX
          
          ASSERT(sizeNew <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
          
@@ -1932,7 +1935,7 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::destroy()
 
       TYPED::destruct_count(this->m_begin, size);
       
-      if(!(this->m_erange & e_range_array_allocate))
+      //if(!(this->m_erange & e_range_array_allocate))
       {
          
          MEMORY::free(this->m_begin + this->m_countAllocationOffset);
@@ -1942,12 +1945,12 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::destroy()
          this->m_countAllocationOffset    = 0;
 
       }
-      else
-      {
-         TYPED::construct_count(this->m_begin, size);
-         this->m_end                      = this->m_begin;
-         this->m_countAllocationOffset    = 0;
-      }
+      //else
+      //{
+      //   TYPED::construct_count(this->m_begin, size);
+      //   this->m_end                      = this->m_begin;
+      //   this->m_countAllocationOffset    = 0;
+      //}
 
 
    }
@@ -2367,12 +2370,12 @@ base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > base_array < TYPE
 
    TYPED::destruct_count(this->m_begin + nIndex, nCount);
 
-   if (this->m_erange == e_range_array_allocate)
-   {
+   //if (this->m_erange == e_range_array_allocate)
+   //{
 
-      TYPED::construct_count(this->m_begin + nIndex, nCount);
+   //   TYPED::construct_count(this->m_begin + nIndex, nCount);
 
-   }
+   //}
 
    if (nMoveCount)
    {
@@ -2745,14 +2748,14 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::reserve(::c
       ::safe_memory_copy2(pNewData, (size_t)newAllocationSize, this->m_begin, (size_t) this->size());
 
       // get rid of old stuff (note: no destructors called)
-      if(!(this->m_erange & e_range_array_allocate))
+      //if(!(this->m_erange & e_range_array_allocate))
       {
          MEMORY::free(this->m_begin);
       }
-      else
-      {
-         this->m_erange = (::enum_range) (this->m_erange & ~e_range_array_allocate);
-      }
+      //else
+      //{
+      //   this->m_erange = (::enum_range) (this->m_erange & ~e_range_array_allocate);
+      //}
 
       this->m_begin = pNewData;
 
@@ -3106,7 +3109,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 inline void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_each(ARG_TYPE element, ::collection::index first, ::collection::count in_count_out_last)
 {
 
-   prepare_first_in_count_last_out(first, in_count_out_last);
+   this->prepare_first_in_count_last_out(first, in_count_out_last);
 
    for(::collection::index i = first; i <= in_count_out_last; i++)
    {
@@ -3141,64 +3144,6 @@ inline void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::era
 }
 
 
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-bool base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::prepare_first_last(::collection::index & first, ::collection::index & last) const
-{
-
-   if (first < 0)
-   {
-
-      first += this->get_count();
-
-   }
-
-   if (last < 0)
-   {
-
-      last += this->get_count();
-
-   }
-
-   return last >= first;
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-bool base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::prepare_first_in_count_last_out(::collection::index & first, ::collection::count & in_count_out_last) const
-{
-
-   if (first < 0)
-   {
-
-      first += this->get_count();
-
-   }
-   
-   if(first < 0)
-   {
-      
-      first = 0;
-      
-   }
-
-   if (in_count_out_last < 0)
-   {
-
-      in_count_out_last += this->get_count();
-
-   }
-   else
-   {
-
-      in_count_out_last = first + in_count_out_last - 1;
-
-   }
-
-   return in_count_out_last >= first;
-
-}
 
 
 //
@@ -3286,30 +3231,6 @@ inline ::collection::count base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCo
 //{
 //   return this->size() >= countMinimum;
 //}
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::collection::index base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_lower_bound(::collection::index i) const
-{
-   return i < this->size() ? i : -1;
-}
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::collection::index base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_middle_index(::collection::index iIndex) const
-{
-   return this->size() / 2 + iIndex;
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::collection::index base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_upper_bound(::collection::index iIndex) const
-{
-   return this->size() + iIndex;
-}
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline bool base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::bounds(::collection::index i) const
-{
-   return i >= 0 && i < this->size();
-}
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
@@ -3356,7 +3277,7 @@ inline void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::era
 
    ASSERT(this->size() >= c);
 
-   erase_at(get_upper_bound(-c), c);
+   this->erase_at(this->get_upper_bound(-c), c);
 
 }
 
@@ -3751,32 +3672,32 @@ struct default_constructor_t{};
 
 
 
-template < typename ARRAY_BASE, int t_preallocated_array_size = 5 >
-class preallocated_array_base :
-   public ARRAY_BASE
-{
-public:
-   
-
-   using BASE_ARRAY = ARRAY_BASE;
-   
-   using CONTAINER_ITEM_TYPE = ARRAY_BASE::CONTAINER_ITEM_TYPE;
-
-   
-   CONTAINER_ITEM_TYPE  m_elementaPreallocated[t_preallocated_array_size];
-
-
-   using BASE_ARRAY::operator =;
-
-   preallocated_array_base()
-   {
-
-      this->m_erange = (::enum_range)(this->m_erange | e_range_array_allocate);
-      this->m_begin = m_elementaPreallocated;
-      this->m_end = m_elementaPreallocated;
-      this->m_countAllocation = t_preallocated_array_size;
-      
-   }
-   
-   
-};
+//template < typename ARRAY_BASE, int t_preallocated_array_size = 5 >
+//class preallocated_array_base :
+//   public ARRAY_BASE
+//{
+//public:
+//   
+//
+//   using BASE_ARRAY = ARRAY_BASE;
+//   
+//   using CONTAINER_ITEM_TYPE = ARRAY_BASE::CONTAINER_ITEM_TYPE;
+//
+//   
+//   CONTAINER_ITEM_TYPE  m_elementaPreallocated[t_preallocated_array_size];
+//
+//
+//   using BASE_ARRAY::operator =;
+//
+//   preallocated_array_base()
+//   {
+//
+//      this->m_erange = (::enum_range)(this->m_erange | e_range_array_allocate);
+//      this->m_begin = m_elementaPreallocated;
+//      this->m_end = m_elementaPreallocated;
+//      this->m_countAllocation = t_preallocated_array_size;
+//      
+//   }
+//   
+//   
+//};

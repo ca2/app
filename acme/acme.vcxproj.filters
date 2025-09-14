@@ -4248,6 +4248,9 @@
     <ClInclude Include="prototype\string\sz\_template.h">
       <Filter>Header Files\prototype\string\sz</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\collection\block_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

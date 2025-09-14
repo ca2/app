@@ -514,12 +514,15 @@ void task::set_finish()
 }
 
 
-void task::on_single_lock_lock(subparticle* psubparticleSynchronization, const subparticle * psubparticleContext, const_char_pointer pszFile, int iLine)
+
+
+void task::on_single_lock_lock(subparticle *psubparticleSynchronization, const subparticle *psubparticleContext,
+                         const_char_pointer pszFile, int iLine)
 {
 
 #ifdef _DEBUG
 
-   auto & description = m_synchronouslockdescriptiona.add_new();
+   auto &description = m_synchronouslockdescriptiona.add_new();
 
    description.m_psubparticleContext = psubparticleContext;
 
@@ -529,29 +532,50 @@ void task::on_single_lock_lock(subparticle* psubparticleSynchronization, const s
 
    description.m_psubparticleSynchronization = psubparticleSynchronization;
 
-   //description.m_strCallstack.format("{} {}", pszFile, iLine);
+   // description.m_strCallstack.format("{} {}", pszFile, iLine);
 
-   //description.m_strCallstack = node()->get_call_stack_trace(call_stack_default_format(),
-     // CALLSTACK_DEFAULT_SKIP_TRIGGER, nullptr, 3);
+   // description.m_strCallstack = node()->get_call_stack_trace(call_stack_default_format(),
+   //  CALLSTACK_DEFAULT_SKIP_TRIGGER, nullptr, 3);
 
 #endif
-
 }
 
 
-void task::on_single_lock_unlock(subparticle* psubparticleSynchronization)
+void task::on_single_lock_unlock(subparticle *psubparticleSynchronization)
 {
 
 #ifdef _DEBUG
 
-   if (m_synchronouslockdescriptiona.last().m_psubparticleSynchronization != psubparticleSynchronization)
+   for (::collection::index i = m_synchronouslockdescriptiona.get_upper_bound(); i >= 0; i--)
    {
 
-      throw ::exception(error_not_expected);
+      auto &description = m_synchronouslockdescriptiona[i];
+
+      auto psubparticleSynchronizationItem = description.m_psubparticleSynchronization;
+
+      if (psubparticleSynchronizationItem == psubparticleSynchronization)
+      {
+
+         if (i < m_synchronouslockdescriptiona.get_upper_bound())
+         {
+
+            m_synchronouslockdescriptiona.erase_at(i);
+
+         }
+         else
+         {
+
+            m_synchronouslockdescriptiona.erase_at(i);
+
+         }
+
+         return;
+
+      }
 
    }
 
-   m_synchronouslockdescriptiona.pop_last();
+   throw ::exception(error_not_expected);
 
 #endif
 

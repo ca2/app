@@ -1071,10 +1071,15 @@ class pointer_array_base;
 template<class T, typename ARG_T = const T *, typename ARRAY_BASE = array_base<::pointer<T>, ARG_T>>
 class pointer_array; // = ::array_particle < pointer_array_base < T, ARG_T, ARRAY_BASE > >;
 
+template<typename TYPE, int t_iSize, enum_array t_earray = e_array_none, typename ARG_TYPE = const TYPE &>
+class block_array;
+
+template<typename TYPE, typename ARG_TYPE>
+class array_range;
 
 
-template<class T, int t_preallocated_array_size, typename ARG_T = const T *, typename ARRAY_BASE = array_base<::pointer<T>, ARG_T> >
-using preallocated_pointer_array_base = pointer_array_base<T, ARG_T, preallocated_array_base<ARRAY_BASE, t_preallocated_array_size>>;
+template<class T, int t_preallocated_array_size, typename ARG_T = const T * >
+using preallocated_pointer_array_base = pointer_array_base<T, ARG_T, ::block_array < ::pointer < T >,t_preallocated_array_size, e_array_none, ARG_T > >;
 
 
 using particle_array_base = pointer_array_base<particle>;

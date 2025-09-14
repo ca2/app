@@ -43,7 +43,7 @@ enum enum_range : int
    //e_range_read_only = 4,
    //e_range_read_only_and_null_terminated = 5,
    //e_range_scoped_string_allocation = 2,
-   e_range_array_allocate = 128,
+   //e_range_array_allocate = 128,
    e_range_array_carriage_return = 256,
    e_range_array_clear_on_allocate = 512,
 
@@ -454,6 +454,8 @@ public:
    // void __utf_concatenate_to(CHARACTER *& p, character_count *& plen) const;
    //
 
+   ::collection::count array_get_count() const { return this->m_end - this->m_begin; }
+
    template < same_as < ITEM > A_ITEM > 
    void block_concatenate_to(A_ITEM * & p)
    {
@@ -605,7 +607,13 @@ public:
 
       return !this->is_end(iterator);
 
+
    }
+
+   inline bool prepare_first_last(::collection::index &first, ::collection::index &last) const;
+   inline bool prepare_first_in_count_last_out(::collection::index &first, ::collection::count &inCountLastOut) const;
+
+
 
 
    //constexpr bool iterator_ok(const_iterator iterator) const
@@ -2687,3 +2695,55 @@ constexpr class ::character_range < const CHARACTER* > as_string_literal(const C
 
 }
 
+
+template<typename ITERATOR_TYPE>
+bool range<ITERATOR_TYPE>::prepare_first_last(::collection::index &first,
+                                                                                     ::collection::index &last) const
+{
+
+   if (first < 0)
+   {
+
+      first += this->array_get_count();
+   }
+
+   if (last < 0)
+   {
+
+      last += this->array_get_count();
+   }
+
+   return last >= first;
+}
+
+
+template<typename ITERATOR_TYPE>
+bool range<ITERATOR_TYPE >::prepare_first_in_count_last_out(
+   ::collection::index &first, ::collection::count &in_count_out_last) const
+{
+
+   if (first < 0)
+   {
+
+      first += this->array_get_count();
+   }
+
+   if (first < 0)
+   {
+
+      first = 0;
+   }
+
+   if (in_count_out_last < 0)
+   {
+
+      in_count_out_last += this->array_get_count();
+   }
+   else
+   {
+
+      in_count_out_last = first + in_count_out_last - 1;
+   }
+
+   return in_count_out_last >= first;
+}

@@ -187,8 +187,7 @@ public:
       return nIndex;
 
    }
-   
-
+ 
    template < primitive_container CONTAINER >
    ::collection::index append(const CONTAINER & a)
    {

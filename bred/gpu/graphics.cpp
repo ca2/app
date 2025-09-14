@@ -693,7 +693,7 @@ namespace gpu
 
       }
 
-      ::preallocated_array_base < double_point_array_base, 4 > quad;
+      ::block_array < double_point, 4 > quad;
 
       quad.add(points[0]);
       quad.add(points[1]);

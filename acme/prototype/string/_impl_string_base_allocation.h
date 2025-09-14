@@ -466,6 +466,13 @@ template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_append(const CHARACTER * pszSrc, character_count srclen)
 {
 
+   if (this->is_empty())
+   {
+
+      return _assign(pszSrc, srclen);
+
+   }
+
    auto old_len = this->length();
 
    if (old_len < 0)

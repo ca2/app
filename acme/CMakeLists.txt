@@ -1171,7 +1171,10 @@ list(APPEND library_source
         #prototype/string/ch.h
         prototype/string/ch_class.cpp
         prototype/string/ch_class.h
-        prototype/string/command_line.cpp
+   prototype/string/character.cpp
+   prototype/string/character_range.h
+
+   prototype/string/command_line.cpp
         prototype/string/command_line.h
         prototype/string/composite.h
    prototype/string/c_string.cpp
@@ -1214,12 +1217,12 @@ list(APPEND library_source
         #prototype/string/to_string.cpp
         prototype/string/tokenizer.cpp
         prototype/string/tokenizer.h
+   prototype/string/utf8_character.cpp
+   prototype/string/utf8_character.h
         prototype/string/unicode.cpp
         prototype/string/unicode16.cpp
         prototype/string/unicode16_32.cpp
         prototype/string/unicode32.cpp
-        prototype/string/character.cpp
-        prototype/string/utf8_character.h
         prototype/string/wildcard.cpp
         #prototype/string/wstring_adaptor.h
         #prototype/string/x.cpp
@@ -1312,7 +1315,7 @@ list(APPEND library_source
         #   user/nano/device.h
         #   user/nano/device.h
         #   user/nano/display.cpp
-        #   user/nano/display.h
+        #   user/nano/display.heer
         #   user/nano/font.cpp
         #   user/nano/font.h
         #   user/nano/message_box.cpp

@@ -429,7 +429,8 @@ public:
    THIS_ITERATOR & operator =(nullptr_t) { this->m_p = nullptr;  return *this; }
 
 
-   constexpr bool operator == (THIS_ITERATOR iterator) const
+   template < typename ITERATOR >
+   constexpr bool operator == (ITERATOR iterator) const
    {
 
       return this->get() == iterator.get();

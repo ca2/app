@@ -188,7 +188,7 @@ public:
       if (nNewSize > nOldSize)
       {
 
-         for (int i = nOldSize; i < nNewSize; i++)
+         for (auto i = nOldSize; i < nNewSize; i++)
          {
 
             if constexpr (t_earray & e_array_raw)

@@ -527,7 +527,7 @@ inline int unicode_size_of_tables()
 
 
 template < typename CHARACTER, typename CHARACTER_COUNT >
-inline CHARACTER * unicode_next(CHARACTER *psz, CHARACTER_COUNT *piRemaining)
+[[nodiscard]] inline CHARACTER * unicode_next(CHARACTER *psz, CHARACTER_COUNT *piRemaining)
    requires(sizeof(CHARACTER) == 1)
 {
 

@@ -39,7 +39,7 @@ inline CHARACTER *unicode_next(CHARACTER *psz, CHARACTER_COUNT *piRemaining)
 
 
 template < typename CHARACTER >
-inline CHARACTER * unicode_next(CHARACTER * psz)
+[[nodiscard]] inline CHARACTER * unicode_next(CHARACTER * psz)
 {
 
    return unicode_next(psz, (int *)nullptr);

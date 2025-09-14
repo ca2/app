@@ -903,7 +903,7 @@ namespace datetime
       {
          token->m_str = consume_date_expression(m_ptextcontext, input);
          while(unicode_is_space_char(input))
-            unicode_next(input);
+            input = unicode_next(input);
          if(*input == '(')
          {
             token->m_etoken = e_token_function;

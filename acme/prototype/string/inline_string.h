@@ -36,7 +36,7 @@ public:
       while (*psz && this->size() < m_sizeMaximumLength)
       {
          
-         *this->m_end = *psz;
+         *((CHARACTER*)this->m_end) = *psz;
          
          this->m_end++;
          
@@ -44,7 +44,7 @@ public:
 
       }
 
-      *this->m_end = '\0';
+      *((CHARACTER*)this->m_end) = '\0';
 
    }
 

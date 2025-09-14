@@ -1234,9 +1234,10 @@ namespace html
 
                   }
 
-                  unicode_next(pszEnd);
+                  pszEnd = unicode_next(pszEnd);
 
                   iChar++;
+
                }
 
                iFind = iChar;

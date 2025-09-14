@@ -3370,6 +3370,7 @@
     <ClCompile Include="prototype\string\as_string.cpp" />
     <ClCompile Include="prototype\string\character.cpp" />
     <ClCompile Include="prototype\string\sz\wd32_impl.cpp" />
+    <ClCompile Include="prototype\string\utf8_character.cpp" />
     <ClCompile Include="prototype\string\_string.cpp" />
     <ClCompile Include="prototype\string\_str_impl.cpp" />
     <ClCompile Include="prototype\string\__wide.cpp" />

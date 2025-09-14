@@ -481,6 +481,17 @@ template<class TYPE, class ARG_TYPE, class LIST_BASE>
          count++;
 
       }
+      else
+      {
+
+         p++;
+
+      }
+
+
+
+
+
 
    }
 

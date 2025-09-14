@@ -62,7 +62,7 @@ inline character_count __utftype_to_utftype_len2(const CHARACTER *psz, CHARACTER
 
    auto p = psz;
 
-   auto countSrc = 0;
+   character_count countSrc = 0;
 
    auto remainingSrc = srclen;
 

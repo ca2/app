@@ -1627,7 +1627,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 //base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(const ::e_array & earray, const ::e_flag & eflag, const ::e_status & estatus) :
 //base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(array_flags_t, const ::e_array & earray) :
 base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(const ::enum_range & erange, ::collection::count c) :
-   BASE_RAW_RANGE(nullptr, nullptr, erange)
+   ARRAY_RANGE(nullptr, nullptr, erange)
 {
 
    m_countAddUp = c;

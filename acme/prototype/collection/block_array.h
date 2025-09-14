@@ -167,8 +167,10 @@ public:
       {
 
          throw ::exception(error_wrong_state);
+
       }
 
+      return nNewSize;
 
    }
 

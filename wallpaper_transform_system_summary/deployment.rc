@@ -25,8 +25,8 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_DEFAULT
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2025,0911,2028,28
- PRODUCTVERSION 2025,0911,2028,28
+ FILEVERSION 2025,0914,0144,24
+ PRODUCTVERSION 2025,0914,0144,24
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -43,9 +43,9 @@ BEGIN
         BEGIN
 			VALUE "CompanyName", "app"
 			VALUE "FileDescription", "app_wallpaper_transform_system_summary"
-            VALUE "FileVersion", "2025.0911.2028.28"
-            VALUE "LegalCopyright", "Copyright (C) 2025-09-11-20-28-28"
-            VALUE "ProductVersion", "2025.0911.2028.28"
+            VALUE "FileVersion", "2025.0914.0144.24"
+            VALUE "LegalCopyright", "Copyright (C) 2025-09-14-01-44-24"
+            VALUE "ProductVersion", "2025.0914.0144.24"
         END
     END
     BLOCK "VarFileInfo"

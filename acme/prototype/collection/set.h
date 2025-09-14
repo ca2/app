@@ -961,7 +961,7 @@ void node_set_base < NODE, t_eallocate >::_free(iterator iterator)
 
    }
 
-   if(this->m_begin == pnode)
+   if(this->m_begin.get() == pnode)
    {
 
       this->m_begin = next;
@@ -1570,7 +1570,7 @@ void node_set_base < ITEM, t_eallocate >::detach(iterator iterator)
 
    }
 
-   if (this->m_begin == pnode)
+   if (this->m_begin.get() == pnode)
    {
 
       this->m_begin = next;

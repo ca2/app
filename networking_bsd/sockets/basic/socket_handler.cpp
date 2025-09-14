@@ -1598,6 +1598,8 @@ end_processing_adding:
 
                   erase_socket(socket);
 
+                  m_socketmap.erase(socket);
+
                   // After DetachSocket(), all calls to socket_handler() will return a object
                   // to the ___new slave socket_handler running in the ___new thread.
                   try
@@ -1610,8 +1612,6 @@ end_processing_adding:
                   {
 
                   }
-
-                  m_socketmap.erase(socket);
 
                   check_max_fd = true;
 

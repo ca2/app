@@ -235,7 +235,7 @@ public:
    };
 
 
-   ::block_array<synchronous_lock_description_t, 64, e_array_raw>
+   ::block_array<synchronous_lock_description_t, 64>
       m_synchronouslockdescriptiona;
 
 

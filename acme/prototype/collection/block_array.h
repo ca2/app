@@ -137,10 +137,23 @@ public:
       else
       {
 
-         for (auto i = iErase + 1; i < this->size(); i++)
+         auto i = iErase + countErase;
+
+         for (; i < this->size(); i++)
          {
 
-            m_ta[i - 1] = m_ta[i];
+            m_ta[i - countErase] = m_ta[i];
+
+         }
+
+         i -= countErase;
+
+         for (; i < this->size(); i++)
+         {
+
+            m_ta[i].~TYPE();
+
+            new (&m_ta[i]) TYPE();
 
          }
 
@@ -160,7 +173,7 @@ public:
 
 
 
-   ::collection::count _allocate(::collection::count nNewSize, bool bShrink, bool bRaw, const TYPE * type)
+   ::collection::count _allocate(::collection::count nNewSize, bool bShrink, bool bRaw, const TYPE * ptype)
    {
 
       if (nNewSize >= this->storage_size())
@@ -169,6 +182,33 @@ public:
          throw ::exception(error_wrong_state);
 
       }
+
+      auto nOldSize = this->size();
+
+      if (nNewSize > nOldSize)
+      {
+
+         for (int i = nOldSize; i < nNewSize; i++)
+         {
+
+            if constexpr (t_earray & e_array_raw)
+            {
+
+               safe_memory_copy2(this->m_begin+ i, 1, ptype, 1);
+
+            }
+            else
+            {
+
+               this->m_begin[i] = *ptype;
+
+            }
+
+         }
+
+      }
+
+      this->m_end = this->m_begin + nNewSize;
 
       return nNewSize;
 

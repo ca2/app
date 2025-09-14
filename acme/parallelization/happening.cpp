@@ -1489,7 +1489,7 @@ void notify_lock_notifier::erase_notify_lock(::notify_lock * pnotifylock)
 void notify_lock_notifier::notify_lock_notify_all()
 {
 
-   for (auto pnotifylock:m_notifylocka)
+   for (auto &pnotifylock:m_notifylocka)
    {
 
       pnotifylock->m_pmanualresethappening->set_happening();

@@ -17,7 +17,7 @@ public:
 
    
    using BASE_RANGE = ::range<TYPE *>;
-   using RAW_BASE_ARRAY = block_array;
+   using RAW_BASE_ARRAY = array_range;
    using BASE_RAW_RANGE = ::range<TYPE *>;
    using BASE_TYPE = TYPE;
 

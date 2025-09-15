@@ -787,6 +787,8 @@ bool thread::handle_messages()
 
    }
 
+   //::preempt(5_min);
+
    update_new_main_loop_happening();
    
    return bContinue;

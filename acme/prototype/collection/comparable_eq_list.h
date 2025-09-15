@@ -457,12 +457,12 @@ template<class TYPE, class ARG_TYPE, class LIST_BASE>
 
    }
 
-   if (!end)
-   {
-
-      end = this->m_end;
-
-   }
+   // if (!end)
+   // {
+   //
+   //    end = this->m_end;
+   //
+   // }
 
    ::collection::count count = 0;
 

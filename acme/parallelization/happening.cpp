@@ -267,15 +267,20 @@ happening::happening(const ::scoped_string & scopedstrName, bool bInitiallyOwn, 
 
       ::memory_set(m_pcond, 0, sizeof(pthread_cond_t));
 
-      //pthread_mutexattr_t attr;
+      pthread_mutexattr_t attr;
 
-      //pthread_mutexattr_init(&attr);
+      pthread_mutexattr_init(&attr);
 
-      //pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+      pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
 
-      //auto rcMutex = pthread_mutex_init((pthread_mutex_t *) m_pmutex, &attr);
+      int rc = 0;
 
-      auto rcMutex = pthread_mutex_init((pthread_mutex_t *) m_pmutex, nullptr);
+      if((rc = pthread_mutex_init((pthread_mutex_t *) m_pmutex,&attr)))
+      {
+         throw ::exception(error_failed, "RC_OBJECT_NOT_CREATED");
+      }
+
+//      auto rcMutex = pthread_mutex_init((pthread_mutex_t *) m_pmutex, nullptr);
 
 #ifdef EVENT_EXTENDED_LOG
 
@@ -1503,7 +1508,7 @@ void notify_lock_notifier::notify_lock_notify_all()
 void happening::add_notify_lock(::notify_lock * pnotifylock)
 {
 
-#ifdef PTHREAD_PARALLELIZATION
+#ifdef PARALLELIZATION_PTHREAD
 
    pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
@@ -1516,7 +1521,7 @@ void happening::add_notify_lock(::notify_lock * pnotifylock)
    {
    }
 
-#ifdef PTHREAD_PARALLELIZATION
+#ifdef PARALLELIZATION_PTHREAD
 
    pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 
@@ -1528,7 +1533,7 @@ void happening::add_notify_lock(::notify_lock * pnotifylock)
 void happening::erase_notify_lock(::notify_lock * pnotifylock)
 {
 
-#ifdef PTHREAD_PARALLELIZATION
+#ifdef PARALLELIZATION_PTHREAD
 
    pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
@@ -1542,7 +1547,7 @@ void happening::erase_notify_lock(::notify_lock * pnotifylock)
 
    }
 
-#ifdef PTHREAD_PARALLELIZATION
+#ifdef PARALLELIZATION_PTHREAD
 
    pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 
@@ -1555,7 +1560,7 @@ void happening::erase_notify_lock(::notify_lock * pnotifylock)
 void happening::notify_lock_notify_all()
 {
 
-#ifdef PTHREAD_PARALLELIZATION
+#ifdef PARALLELIZATION_PTHREAD
    pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 #endif
 
@@ -1567,7 +1572,7 @@ void happening::notify_lock_notify_all()
 
    }
 
-#ifdef PTHREAD_PARALLELIZATION
+#ifdef PARALLELIZATION_PTHREAD
    pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 #endif
 

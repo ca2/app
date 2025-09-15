@@ -2661,13 +2661,17 @@ class string_literal :
 public:
 
 
-   constexpr string_literal(ITERATOR_TYPE s, std::size_t n)
+   using BASE_RANGE = const_string_range < ITERATOR_TYPE >;
+
+
+   constexpr string_literal(ITERATOR_TYPE s, std::size_t n) :
+   BASE_RANGE(no_initialize_t{})
    {
 
       this->m_begin = s;
       this->m_end = s + n;
-      //this->m_erange = e_range_string_literal | e_range_null_terminated;
       this->m_erange = e_range_string_literal;
+      this->m_pbasedata = nullptr;
 
    }
 

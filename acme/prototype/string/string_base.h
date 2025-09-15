@@ -1667,6 +1667,8 @@ public:
 
       auto pbasedataOld = this->m_pbasedata;
 
+      auto pdataOld = this->m_begin;
+
       /// if this string had heap string storage,
       /// checks if old storage can hold new requested size.
       if constexpr (t_bWasString)
@@ -1710,7 +1712,7 @@ public:
 
       }
 
-      if (::is_set(pbasedataOld))
+      if (::is_set(pdataOld))
       {
 
          if constexpr (t_bPreserve)
@@ -1721,11 +1723,16 @@ public:
             if (sizeCopy > 0)
             {
 
-               memory_copy((void*)pdata, pbasedataOld->data(), sizeCopy * sizeof(CHARACTER));
+               memory_copy((void*)pdata, pdataOld, sizeCopy * sizeof(CHARACTER));
 
             }
 
          }
+
+      }
+
+      if (::is_set(pbasedataOld))
+      {
 
          if constexpr (t_bWasString)
          {

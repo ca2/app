@@ -25,8 +25,8 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_DEFAULT
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2025,0914,1341,51
- PRODUCTVERSION 2025,0914,1341,51
+ FILEVERSION 2025,0915,0638,38
+ PRODUCTVERSION 2025,0915,0638,38
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -43,9 +43,9 @@ BEGIN
         BEGIN
 			VALUE "CompanyName", "app"
 			VALUE "FileDescription", "app_base"
-            VALUE "FileVersion", "2025.0914.1341.51"
-            VALUE "LegalCopyright", "Copyright (C) 2025-09-14-13-41-51"
-            VALUE "ProductVersion", "2025.0914.1341.51"
+            VALUE "FileVersion", "2025.0915.0638.38"
+            VALUE "LegalCopyright", "Copyright (C) 2025-09-15-06-38-38"
+            VALUE "ProductVersion", "2025.0915.0638.38"
         END
     END
     BLOCK "VarFileInfo"

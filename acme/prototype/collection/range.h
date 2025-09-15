@@ -610,8 +610,6 @@ public:
 
    }
 
-   inline bool prepare_first_last(::collection::index &first, ::collection::index &last) const;
-   inline bool prepare_first_in_count_last_out(::collection::index &first, ::collection::count &inCountLastOut) const;
 
 
 
@@ -2696,54 +2694,3 @@ constexpr class ::character_range < const CHARACTER* > as_string_literal(const C
 }
 
 
-template<typename ITERATOR_TYPE>
-bool range<ITERATOR_TYPE>::prepare_first_last(::collection::index &first,
-                                                                                     ::collection::index &last) const
-{
-
-   if (first < 0)
-   {
-
-      first += this->array_get_count();
-   }
-
-   if (last < 0)
-   {
-
-      last += this->array_get_count();
-   }
-
-   return last >= first;
-}
-
-
-template<typename ITERATOR_TYPE>
-bool range<ITERATOR_TYPE >::prepare_first_in_count_last_out(
-   ::collection::index &first, ::collection::count &in_count_out_last) const
-{
-
-   if (first < 0)
-   {
-
-      first += this->array_get_count();
-   }
-
-   if (first < 0)
-   {
-
-      first = 0;
-   }
-
-   if (in_count_out_last < 0)
-   {
-
-      in_count_out_last += this->array_get_count();
-   }
-   else
-   {
-
-      in_count_out_last = first + in_count_out_last - 1;
-   }
-
-   return in_count_out_last >= first;
-}

@@ -41,6 +41,10 @@ public:
    inline bool contains_index(::collection::index i) const { return bounds(i); }
 
 
+   inline bool prepare_first_last(::collection::index& first, ::collection::index& last) const;
+   inline bool prepare_first_in_count_last_out(::collection::index& first, ::collection::count& inCountLastOut) const;
+
+
    //
 //
 //   using BASE_RANGE = RANGE_TYPE;
@@ -578,3 +582,67 @@ inline bool array_range<TYPE, ARG_TYPE>::bounds(::collection::index i) const
 {
    return i >= 0 && i < this->size();
 }
+
+
+
+template<typename TYPE, typename ARG_TYPE>
+bool array_range<TYPE, ARG_TYPE>::prepare_first_last(::collection::index& first,
+   ::collection::index& last) const
+{
+
+   if (first < 0)
+   {
+
+      first += this->array_get_count();
+
+   }
+
+   if (last < 0)
+   {
+
+      last += this->array_get_count();
+
+   }
+
+   return last >= first;
+}
+
+
+template<typename TYPE, typename ARG_TYPE>
+bool array_range<TYPE, ARG_TYPE >::prepare_first_in_count_last_out(
+   ::collection::index& first, ::collection::count& in_count_out_last) const
+{
+
+   if (first < 0)
+   {
+
+      first += this->array_get_count();
+
+   }
+
+   if (first < 0)
+   {
+
+      first = 0;
+
+   }
+
+   if (in_count_out_last < 0)
+   {
+
+      in_count_out_last += this->array_get_count();
+
+   }
+   else
+   {
+
+      in_count_out_last = first + in_count_out_last - 1;
+
+   }
+
+   return in_count_out_last >= first;
+
+}
+
+
+

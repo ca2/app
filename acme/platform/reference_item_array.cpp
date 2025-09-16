@@ -254,10 +254,14 @@ void reference_item_array::add_referer(::reference_referer * preferer, bool bInc
    //pitem->m_referer = referer;
    if (pitem->m_preferer)
    {
-         pitem->m_strDebug = pitem->m_preferer->m_cstringDebug;
+
+      pitem->m_strDebug = pitem->m_preferer->m_cstringDebug;
+
    }
+
    if (!m_bFirstAllocationInformation)
    {
+
       m_bFirstAllocationInformation = true;
 
       m_strFirstAllocation = pitem->m_preferer->m_cstringType;
@@ -265,11 +269,8 @@ void reference_item_array::add_referer(::reference_referer * preferer, bool bInc
       m_strFirstAllocation += pitem->m_preferer->m_cstringDebug;
 
    }
+
    m_bFirstReference = false;
-
-
-
-
 
    m_itema.add(pitem);
 

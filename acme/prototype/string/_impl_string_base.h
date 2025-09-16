@@ -1824,7 +1824,7 @@ template < typename ITERATOR_TYPE >
 inline void string_base < ITERATOR_TYPE >::set_at(character_count iChar, CHARACTER ch)
 {
 
-   defer_fork_string<true>(maximum(this->size(), iChar + 1));
+   defer_set_size<true>(maximum(this->size(), iChar + 1));
 
    //auto p = this->NATURAL_POINTER::metadata();
 

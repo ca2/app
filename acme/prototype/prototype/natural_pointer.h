@@ -32,9 +32,9 @@ public:
    using DATA = non_const < TYPE_DATA >;
 
 
-   ::collection::count                 m_count;
    interlocked_int                     m_countReference;
    ::heap::enum_memory                 m_ememoryHeap;
+   ::collection::count                 m_count;
 
    //memsize_storage                     m_countData;
 
@@ -90,11 +90,14 @@ public:
    static base_data * create_base_data2(::collection::count count, ::heap::enum_memory ememory = ::heap::e_memory_string)
    {
 
-      memsize memsize = count * sizeof(DATA);
+      memsize memsizeAllocation = count * sizeof(DATA);
 
-      auto p = ::acme::get()->m_pheapmanagement->memory(ememory)->allocate(memsize + sizeof(base_data), &memsize);
+      const memsize memsizeBaseData = sizeof(base_data);
 
-      auto pbasedata = __raw_new (p) base_data((memsize - sizeof(base_data)) / sizeof(DATA));
+      auto p = ::acme::get()->m_pheapmanagement->memory(ememory)->allocate(
+         memsizeAllocation + memsizeBaseData, &memsizeAllocation);
+
+      auto pbasedata = __raw_new (p) base_data((memsizeAllocation - memsizeBaseData) / sizeof(DATA));
 
       return pbasedata;
 
@@ -115,7 +118,7 @@ public:
    inline character_count storage_character_count() const
    {
 
-      if (!::is_null(this))
+      if (::is_null(this))
       {
 
          return 0;
@@ -124,7 +127,7 @@ public:
 
       auto s = this->storage_count();
 
-      auto n = null_terminated_byte_length_to_character_count(this->data(), s);
+      auto n = s - 1;
 
       return n;
 

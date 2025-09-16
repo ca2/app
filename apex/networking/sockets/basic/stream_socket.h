@@ -82,7 +82,8 @@ namespace sockets
       // e_list_call_on_connect
 
       /** Instruct socket to call OnConnect callback next sockethandler cycle. */
-      virtual void SetCallOnConnect(bool x = true);
+      virtual void set_call_on_connect();
+      virtual void clear_call_on_connect();
 
       /** Check call on connect flag.
       \return true if OnConnect() should be called a.s.a.int_point */
@@ -91,7 +92,9 @@ namespace sockets
       // e_list_retry
 
       /** set flag to initiate a connection attempt after a connection timeout. */
-      virtual void SetRetryClientConnect(bool x = true);
+      virtual void set_retry_client_connect();
+
+      virtual void clear_retry_client_connect();
 
       /** Check if a connection attempt should be made.
       \return true when another attempt should be made */

@@ -147,12 +147,18 @@ namespace sockets
    }
 
 
-   void stream_socket::SetCallOnConnect(bool bCallOnConnect)
+   void stream_socket::set_call_on_connect()
    {
 
-      //socket_handler()->socket_id_list_modify(get_socket_id(), e_list_call_on_connect, bCallOnConnect);
+      return stream_socket_impl()->set_call_on_connect();
 
-      return stream_socket_impl()->SetCallOnConnect(bCallOnConnect);
+   }
+
+
+   void stream_socket::clear_call_on_connect()
+   {
+
+      return stream_socket_impl()->clear_call_on_connect();
 
    }
 
@@ -165,12 +171,18 @@ namespace sockets
    }
 
 
-   void stream_socket::SetRetryClientConnect(bool bSetRetryClientConnect)
+   void stream_socket::set_retry_client_connect()
    {
 
-      //socket_handler()->socket_id_list_modify(get_socket_id(), e_list_retry_client_connect, bSetRetryClientConnect);
+      stream_socket_impl()->set_retry_client_connect();
 
-      stream_socket_impl()->SetRetryClientConnect(bSetRetryClientConnect);
+   }
+
+
+   void stream_socket::clear_retry_client_connect()
+   {
+
+      stream_socket_impl()->clear_retry_client_connect();
 
    }
 

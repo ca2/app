@@ -576,7 +576,7 @@ public:
 
    template < typename SAME_ITERATOR_TYPE >
    void construct_owned_string(SAME_ITERATOR_TYPE start, SAME_ITERATOR_TYPE end, enum_range erange = e_range_none, typename ::character_range<SAME_ITERATOR_TYPE>::BASE_DATA * pbasedata = nullptr)
-   requires(sizeof(get_iterator_item < ITERATOR_TYPE >) == sizeof(CHARACTER))
+   requires(sizeof(get_iterator_item < SAME_ITERATOR_TYPE >) == sizeof(CHARACTER))
    {
 
       this->construct_string(start, end, (enum_range)(erange | e_range_scoped_ownership), pbasedata);

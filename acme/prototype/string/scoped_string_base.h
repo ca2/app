@@ -165,7 +165,7 @@ public:
       if (!this->is_null_terminated())
       {
 
-         ((scoped_string_base *)this)->create_owned_string();
+         ((scoped_string_base *)this)->make_owned_string();
 
       }
 

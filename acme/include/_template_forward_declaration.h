@@ -1012,8 +1012,6 @@ using raw_enum_of = typename raw_enum_of_struct<erase_const_effemeral<ENUM>>::ty
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
 
 
-template <typename T1, typename T2>
-inline bool is_equivalent(T1 t1, T2 t2);
 
 
 

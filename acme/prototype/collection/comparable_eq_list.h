@@ -46,6 +46,77 @@ public:
    bool add_head_unique(ARG_TYPE t);
 
 
+   bool add_unique(ARG_TYPE t)
+   {
+
+      auto pFind = this->find_first_item(t);
+
+      if (pFind)
+      {
+
+         return false;
+
+      }
+
+      this->add_tail(t);
+
+      return true;
+
+   }
+
+
+   void change(ARG_TYPE t, bool bAdd)
+   {
+
+      auto pFind = this->find_first_item(t);
+
+      if(pFind)
+      {
+
+         if (!bAdd)
+         {
+
+            this->erase(pFind);
+
+         }
+
+      }
+      else
+      {
+
+         if (bAdd)
+         {
+
+            this->add(t);
+
+         }
+
+      }
+
+   }
+
+
+   void toggle(ARG_TYPE t)
+   {
+
+      auto pFind = this->find_first_item(t);
+
+      if (pFind)
+      {
+
+         this->erase(pFind);
+
+      }
+      else
+      {
+
+         this->add(t);
+
+      }
+
+   }
+
+
    template < primitive_container CONTAINER >
    void merge_tail(const CONTAINER & container);
    template < primitive_container CONTAINER >

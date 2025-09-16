@@ -445,7 +445,7 @@ namespace sockets_bsd
 
             ::pointer < ::sockets_bsd::socket_handler > phandler = socket_handler();
 
-            phandler->socket_id_list_modify(m_socketid, e_list_close, bCloseAndDelete);
+            phandler->m_socketlistClose.change(m_socketid, bCloseAndDelete);
 
          }
 
@@ -2692,13 +2692,13 @@ bool base_socket::SetSoKeepalive(bool x)
          if (m_timeKeepConnectionAfterLastIO > 0_s)
          {
 
-            phandler->socket_id_list_add(GetSocketId(), e_list_timeout);
+            phandler->m_socketlistTimeout.add_unique(GetSocketId());
 
          }
          else
          {
 
-            phandler->socket_id_list_erase(GetSocketId(), e_list_timeout);
+            phandler->m_socketlistTimeout.erase(GetSocketId());
 
          }
 

@@ -307,7 +307,7 @@ namespace sockets_bsd
          if (psocketImpl->m_timeConnectionMaximum > 0_s)
          {
 
-            socket_id_list_add(psocket->GetSocketId(), e_list_timeout);
+            m_socketlistTimeout.add_unique(psocket->GetSocketId());
 
          }
 
@@ -320,22 +320,22 @@ namespace sockets_bsd
          if (psocketImpl->m_timeKeepConnectionAfterLastIO > 0_s)
          {
 
-            socket_id_list_add(psocket->GetSocketId(), e_list_timeout);
+            m_socketlistTimeout.add_unique(psocket->GetSocketId());
 
          }
          else
          {
 
-            socket_id_list_erase(psocket->GetSocketId(), e_list_timeout);
+            m_socketlistTimeout.erase(psocket->GetSocketId());
 
          }
 
       }
 
-      if (psocket->IsDetach())
+      if (!m_bSlave && psocket->IsDetach())
       {
 
-         socket_id_list_add(psocket->GetSocketId(), e_list_detach);
+         m_socketlistDetach.add_unique(psocket->GetSocketId());
 
       }
 
@@ -366,7 +366,7 @@ namespace sockets_bsd
          if (psocketImpl->m_timeConnectionMaximum > 0_s)
          {
 
-            socket_id_list_add(iterator->m_psocket->GetSocketId(), e_list_timeout);
+            m_socketlistTimeout.add_unique(iterator->m_psocket->GetSocketId());
 
          }
 
@@ -381,7 +381,7 @@ namespace sockets_bsd
 
             ::pointer < ::sockets_bsd::base_socket > psocket2 = iterator->m_psocket;
 
-            socket_id_list_add(psocket2->GetSocketId(), e_list_timeout);
+            m_socketlistTimeout.add_unique(psocket2->GetSocketId());
 
          }
 
@@ -665,7 +665,7 @@ namespace sockets_bsd
 
                warning() <<"socket_handler " << (int)socket << " Did not find expected socket using file descriptor(4)";
 
-               socket_id_list_erase(psocket->GetSocketId(), e_list_call_on_connect);
+               m_socketlistCallOnConnect.erase(psocket->GetSocketId());
 
             }
 
@@ -734,9 +734,9 @@ namespace sockets_bsd
 
                      }
 
-                     ptcpsocket->SetCallOnConnect(false);
+                     ptcpsocket->clear_call_on_connect();
 
-                     socket_id_list_erase(psocket->GetSocketId(), e_list_call_on_connect);
+                     m_socketlistCallOnConnect.erase(psocket->GetSocketId());
 
                   }
 
@@ -822,7 +822,7 @@ start_processing_adding:
 
             m_socketmap[passociationAdd->element1()] = passociationAdd->element2();
 
-            socket_id_list_add(socket, e_list_close);
+            m_socketlistClose.add_unique(socket);
 
             goto start_processing_adding;
 
@@ -1276,7 +1276,7 @@ end_processing_adding:
 
                         p->m_psocket->error() << " Select " << (int)p->m_socketid << "Bad fd in fd_set (2)"; // ->error() << LOG_LEVEL_ERROR);
 
-                        m_socketlistErase.add(p->m_socketid);
+                        m_socketlistErase.add_unique(p->m_socketid);
 
                      }
                      //else
@@ -1338,7 +1338,7 @@ end_processing_adding:
 
                      p->m_psocket->error() << "Select" << (int)p->m_socketid << "Bad fd in fd_set (3)"; // ->error() << LOG_LEVEL_ERROR);
 
-                     m_socketlistErase.add(p->m_socketid);
+                     m_socketlistErase.add_unique(p->m_socketid);
 
                   }
 
@@ -1350,7 +1350,7 @@ end_processing_adding:
 
                   p->m_psocket->error() << "Select" << (int)p->m_socketid << "Bad fd in fd_set (3)"; // ->error() << LOG_LEVEL_ERROR);
 
-                  m_socketlistErase.add(p->m_socketid);
+                  m_socketlistErase.add_unique(p->m_socketid);
 
                }
 
@@ -1737,7 +1737,7 @@ end_processing_adding:
 
                      SOCKET nn = *p; //(*it3).element1();
 
-                     ptcpsocket->SetRetryClientConnect(false);
+                     ptcpsocket->clear_retry_client_connect();
 
                      //information() << "close() before retry client connect\n");
 
@@ -2540,117 +2540,117 @@ end_processing_adding:
 
    }
 
-   socket_id_list& socket_handler::socket_id_list_get(enum_list elist)
-   {
+   //socket_id_list& socket_handler::socket_id_list_get(enum_list elist)
+   //{
 
-      switch (elist)
-      {
-      case e_list_call_on_connect:
-         return m_socketlistCallOnConnect;
-      case e_list_detach:
-         return m_socketlistDetach;
-      case e_list_timeout:
-         return m_socketlistTimeout;
-      case  e_list_retry_client_connect:
-         return m_socketlistRetryClientConnect;
-      case e_list_close:
-         return m_socketlistClose;
-      default:
-         return m_socketlistClose;
-      }
+   //   switch (elist)
+   //   {
+   //   case e_list_call_on_connect:
+   //      return m_socketlistCallOnConnect;
+   //   case e_list_detach:
+   //      return m_socketlistDetach;
+   //   case e_list_timeout:
+   //      return m_socketlistTimeout;
+   //   case  e_list_retry_client_connect:
+   //      return m_socketlistRetryClientConnect;
+   //   case e_list_close:
+   //      return m_socketlistClose;
+   //   default:
+   //      return m_socketlistClose;
+   //   }
 
-   }
-
-
-   void socket_handler::socket_id_list_modify(SOCKET s, enum_list elist, bool bAdd)
-   {
-
-      if (bAdd)
-      {
-
-         socket_id_list_add(s, elist);
-
-      }
-      else
-      {
-
-         socket_id_list_erase(s, elist);
-
-      }
-
-   }
-
-
-   void socket_handler::socket_id_list_add(SOCKET s, enum_list elist)
-   {
-
-      if (s == INVALID_SOCKET)
-      {
-         information() << "AddList:  invalid_socket";
-         return;
-      }
-
-      auto& socketlist = socket_id_list_get(elist);
-
-      //if (add)
-      //{
-      //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
-      //               (which_one == aaa_e_list_detach) ? "detach" :
-      //               (which_one == e_list_timeout) ? "time_out" :
-      //               (which_one == e_list_retry) ? "Retry" :
-      //               (which_one == e_list_close) ? "close" : "<undef>",
-      //               add ? "add" : "erase");*/
-      //}
-      //if (add)
-      //{
-      socketlist.add_tail_unique(s);
-         //if (which_one == e_list_close)
-         //{
-
-         //   //INFO(informationf("list_close");
-         //}
-         //return;
-      //}
-      // erase
-      //ref.erase(s);
-      //information() << "/AddList\n");
-   }
-
-
-   void socket_handler::socket_id_list_erase(SOCKET s, enum_list elist)
-   {
-
-      if (s == INVALID_SOCKET)
-      {
-         information() << "AddList:  invalid_socket";
-         return;
-      }
-
-      auto& socketlist = socket_id_list_get(elist);
-
-         //if (add)
-         //{
-         //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
-         //               (which_one == aaa_e_list_detach) ? "detach" :
-         //               (which_one == e_list_timeout) ? "time_out" :
-         //               (which_one == e_list_retry) ? "Retry" :
-         //               (which_one == e_list_close) ? "close" : "<undef>",
-         //               add ? "add" : "erase");*/
-         //}
-         //if (add)
-         //{
-      socketlist.erase(s);
-      //if (which_one == e_list_close)
-      //{
-
-      //   //INFO(informationf("list_close");
-      //}
-      //return;
    //}
-   // erase
-   //ref.erase(s);
-   //information() << "/AddList\n");
-   }
+
+
+   //void socket_handler::socket_id_list_modify(SOCKET s, enum_list elist, bool bAdd)
+   //{
+
+   //   if (bAdd)
+   //   {
+
+   //      socket_id_list_add(s, elist);
+
+   //   }
+   //   else
+   //   {
+
+   //      socket_id_list_erase(s, elist);
+
+   //   }
+
+   //}
+
+
+   //void socket_handler::socket_id_list_add(SOCKET s, enum_list elist)
+   //{
+
+   //   if (s == INVALID_SOCKET)
+   //   {
+   //      information() << "AddList:  invalid_socket";
+   //      return;
+   //   }
+
+   //   auto& socketlist = socket_id_list_get(elist);
+
+   //   //if (add)
+   //   //{
+   //   //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
+   //   //               (which_one == aaa_e_list_detach) ? "detach" :
+   //   //               (which_one == e_list_timeout) ? "time_out" :
+   //   //               (which_one == e_list_retry) ? "Retry" :
+   //   //               (which_one == e_list_close) ? "close" : "<undef>",
+   //   //               add ? "add" : "erase");*/
+   //   //}
+   //   //if (add)
+   //   //{
+   //   socketlist.add_tail_unique(s);
+   //      //if (which_one == e_list_close)
+   //      //{
+
+   //      //   //INFO(informationf("list_close");
+   //      //}
+   //      //return;
+   //   //}
+   //   // erase
+   //   //ref.erase(s);
+   //   //information() << "/AddList\n");
+   //}
+
+
+   //void socket_handler::socket_id_list_erase(SOCKET s, enum_list elist)
+   //{
+
+   //   if (s == INVALID_SOCKET)
+   //   {
+   //      information() << "AddList:  invalid_socket";
+   //      return;
+   //   }
+
+   //   auto& socketlist = socket_id_list_get(elist);
+
+   //      //if (add)
+   //      //{
+   //      //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
+   //      //               (which_one == aaa_e_list_detach) ? "detach" :
+   //      //               (which_one == e_list_timeout) ? "time_out" :
+   //      //               (which_one == e_list_retry) ? "Retry" :
+   //      //               (which_one == e_list_close) ? "close" : "<undef>",
+   //      //               add ? "add" : "erase");*/
+   //      //}
+   //      //if (add)
+   //      //{
+   //   socketlist.erase(s);
+   //   //if (which_one == e_list_close)
+   //   //{
+
+   //   //   //INFO(informationf("list_close");
+   //   //}
+   //   //return;
+   ////}
+   //// erase
+   ////ref.erase(s);
+   ////information() << "/AddList\n");
+   //}
 
 
    void socket_handler::erase_socket(SOCKET s)

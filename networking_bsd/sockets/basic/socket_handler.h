@@ -137,11 +137,11 @@ namespace sockets_bsd
       \lparam int_point listen_socket class pointer (use GetPort to identify which one) */
       bool OkToAccept(::sockets::base_socket *int_point) override;
 
-      /** Called by base_socket when a base_socket changes state. */
-      socket_id_list& socket_id_list_get(enum_list elist) override;
-      void socket_id_list_modify(SOCKET s, enum_list elist, bool bAdd) override;
-      void socket_id_list_add(SOCKET s, enum_list elist) override;
-      void socket_id_list_erase(SOCKET s, enum_list elist) override;
+      ///** Called by base_socket when a base_socket changes state. */
+      //socket_id_list& socket_id_list_get(enum_list elist) override;
+      //void socket_id_list_modify(SOCKET s, enum_list elist, bool bAdd) override;
+      //void socket_id_list_add(SOCKET s, enum_list elist) override;
+      //void socket_id_list_erase(SOCKET s, enum_list elist) override;
 
       void erase_socket(SOCKET s) override;
 

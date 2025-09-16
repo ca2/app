@@ -106,7 +106,7 @@ public:
    scoped_string_base(const ::character_range < const CHARACTER * > & range) : scoped_string_base(range.m_begin, range.m_end, range.m_erange, range.m_pbasedata) { }
 
    template < other_primitive_character <CHARACTER> OTHER_CHARACTER >
-   scoped_string_base(const ::character_range < const OTHER_CHARACTER* > & range) : scoped_string_base(range.m_begin, range.m_end, range.m_erange) { this->construct_owned_string(range.m_begin, range.m_end, range.m_erange, range.m_pbasedata); }
+   scoped_string_base(const ::character_range < const OTHER_CHARACTER* > & range) : scoped_string_base(range.m_begin, range.m_end, range.m_erange) { this->construct_owned_string(range.m_begin, range.m_end, range.m_erange); }
 
    // template < typed_primitive_string <CHARACTER> STRING2 >
    // scoped_string_base(const STRING2& str) : BASE_RANGE(str) { }
@@ -557,7 +557,7 @@ public:
    //}
 
 
-   void create_owned_string()
+   void make_owned_string()
    {
 
       auto pdataThis = this->m_pbasedata;
@@ -574,8 +574,19 @@ public:
    }
 
 
-   template < typename SOME_ITERATOR_TYPE >
-   void construct_owned_string(SOME_ITERATOR_TYPE start, SOME_ITERATOR_TYPE end, enum_range erange = e_range_none)
+   template < typename SAME_ITERATOR_TYPE >
+   void construct_owned_string(SAME_ITERATOR_TYPE start, SAME_ITERATOR_TYPE end, enum_range erange = e_range_none, typename ::character_range<SAME_ITERATOR_TYPE>::BASE_DATA * pbasedata = nullptr)
+   requires(sizeof(get_iterator_item < ITERATOR_TYPE >) == sizeof(CHARACTER))
+   {
+
+      this->construct_string(start, end, (enum_range)(erange | e_range_scoped_ownership), pbasedata);
+
+   }
+
+
+   template < typename OTHER_ITERATOR_TYPE >
+   void construct_owned_string(OTHER_ITERATOR_TYPE start, OTHER_ITERATOR_TYPE end, enum_range erange = e_range_none)
+   requires(sizeof(get_iterator_item < OTHER_ITERATOR_TYPE >) != sizeof(CHARACTER))
    {
 
       this->construct_string(start, end, (enum_range)(erange | e_range_scoped_ownership));

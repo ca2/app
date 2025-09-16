@@ -82,35 +82,6 @@ public:
       BASE_RANGE(no_initialize_t{})
    {
 
-      //if constexpr (length >= 1)
-      //{
-
-      //   if (s[length - 1] == CHARACTER{})
-      //   {
-
-      //      if (length - 1 <= 0)
-      //      {
-
-      //         this->set_null();
-
-      //         return;
-
-      //      }
-
-      //      this->m_begin = s;
-
-      //      this->m_end = s + length - 1;
-
-      //      this->m_erange = e_range_none;
-
-      //      this->m_pbasedata = nullptr;
-
-      //      return;
-
-      //   }
-
-      //}
-
       this->m_begin = s;
 
       this->m_end = s + string_safe_length2(s, length);
@@ -127,11 +98,7 @@ public:
       BASE_RANGE(no_initialize_t{})
    {
 
-      this->construct_owned_string(
-         {
-            s,
-            string_safe_length(s, length)
-         });
+      this->construct_owned_string(s, string_safe_length(s, length));
 
    }
 
@@ -139,7 +106,7 @@ public:
    scoped_string_base(const ::character_range < const CHARACTER * > & range) : scoped_string_base(range.m_begin, range.m_end, range.m_erange, range.m_pbasedata) { }
 
    template < other_primitive_character <CHARACTER> OTHER_CHARACTER >
-   scoped_string_base(const ::character_range < const OTHER_CHARACTER* > & range) : scoped_string_base(range.m_begin, range.m_end, range.m_erange) { this->construct_owned_string(range.m_begin, range.m_end, range.m_erange); }
+   scoped_string_base(const ::character_range < const OTHER_CHARACTER* > & range) : scoped_string_base(range.m_begin, range.m_end, range.m_erange) { this->construct_owned_string(range.m_begin, range.m_end, range.m_erange, range.m_pbasedata); }
 
    // template < typed_primitive_string <CHARACTER> STRING2 >
    // scoped_string_base(const STRING2& str) : BASE_RANGE(str) { }
@@ -177,9 +144,9 @@ public:
 
          this->m_end = this->m_begin + string_safe_length(this->m_begin);
 
-         //this->m_erange = e_range_null_terminated;
-
          this->m_erange = e_range_none;
+
+         this->m_pbasedata = nullptr;
 
       }
       else

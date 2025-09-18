@@ -747,7 +747,9 @@ namespace user
       if (::is_null(get_parent()))
       {
 
-         window()->set_position(pointNew);
+         //window()->set_position(pointNew);
+
+         set_need_redraw({}, pgraphics);
 
       }
       else

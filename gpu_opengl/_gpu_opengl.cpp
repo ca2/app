@@ -95,7 +95,7 @@ void defer_throw_gl_error()
 
       ::string strOpenGLError;
 
-      strOpenGLError.formatf("OpenGL error %d", strOpenGLError);
+      strOpenGLError.format("OpenGL error {}", iGlError);
 
       throw ::exception(error_failed, strOpenGLError);
 

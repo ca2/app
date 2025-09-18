@@ -1039,9 +1039,9 @@ namespace gpu
    ::pointer_array<::particle >* device::frame_particle_array(int iFrameIndex)
    {
       
-      auto& particleaFrame = m_particleaFrame.element_at_grow(iFrameIndex);
+      auto& pparticleaFrame = m_particleaFrame.element_at_grow(iFrameIndex);
 
-      return &particleaFrame;
+      return pparticleaFrame;
 
    }
 

@@ -819,7 +819,7 @@ inline CHARACTER * unicode_next(CHARACTER *psz, CHARACTER_COUNT *piRemaining)
       if(piRemaining)
       {
 
-         *piRemaining--;
+         (*piRemaining)--;
 
       }
 

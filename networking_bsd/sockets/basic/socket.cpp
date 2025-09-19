@@ -119,12 +119,13 @@ namespace sockets_bsd
 
       //   m_phandlerSlave->erase_socket(m_socketid);
 
+
       //}
 
-      if (::is_set(socket_handler()))
-      {
+      ::pointer < ::sockets_bsd::socket_handler > phandler = socket_handler();
 
-         ::pointer < ::sockets_bsd::socket_handler > phandler = m_psockethandler;
+      if (::is_set(phandler))
+      {
 
          phandler->erase_socket(m_socketid);
 

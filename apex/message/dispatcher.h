@@ -19,8 +19,8 @@ namespace message
 {
 
 
-   class CLASS_DECL_APEX dispatcher :
-      virtual public ::particle
+   class CLASS_DECL_APEX dispatcher //:
+      //virtual public ::particle
    {
    public:
 
@@ -64,7 +64,7 @@ namespace message
 
 
       dispatcher(const dispatcher& dispatcher);
-      ~dispatcher() override;
+      ~dispatcher();
 
 
       dispatcher& operator = (const dispatcher& dispatcher);

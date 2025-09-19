@@ -29,6 +29,9 @@ endif()
 add_subdirectory(fs_raw_folder_protocol_dropbox)
 add_subdirectory(regular_expression_pcre2)
 
+#add_subdirectory(launch)
+#add_subdirectory(store)
+
 
 if(INCLUDE_DRAW2D_CAIRO)
 

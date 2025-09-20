@@ -5,7 +5,7 @@
 #include "acme/platform/application.h"
 
 
-namespace app_launch
+namespace launch
 {
 
 
@@ -60,7 +60,7 @@ namespace app_launch
 
 
 
-} // namespace app_launch
+} // namespace launch
 
 
 

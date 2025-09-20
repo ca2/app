@@ -1,7 +1,7 @@
 #define DO_FACTORY(do) \
 do(acme_node); \
-do(folder_zip); \
-do(compress_zlib); \
+do(default_tiny_nano_http); \
+do(default_tiny_nano_compress);
 
 
 

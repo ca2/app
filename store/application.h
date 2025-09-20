@@ -2,39 +2,44 @@
 #pragma once
 
 
-namespace launch
+#include "launch/application.h"
+
+
+namespace store
 {
 
 
-   class application
+   class application :
+    virtual public ::launch::application
    {
    public:
 
 
-      int m_argc;
-      char ** m_argv;
-      int m_iExitCode;
-      const_char_pointer m_pszDistro;
-      char * m_pszVersion;
-      const_char_pointer m_pszBranch;
-      char * m_pszAppRoot;
-      char * m_pszAppName;
+      //int m_argc;
+      //char ** m_argv;
+      //int m_iExitCode;
+      //const_char_pointer m_pszDistro;
+      //char * m_pszVersion;
+      //const_char_pointer m_pszBranch;
+      //char * m_pszAppRoot;
+      //char * m_pszAppName;
 
-      application(int argc, char * argv[]);
+      //application(int argc, char * argv[]);
+      application();
       ~application();
 
-      void parse_app_root_and_app_name();
+      //void parse_app_root_and_app_name();
 
-      void run();
-
-
-      char * get_download_url(const_char_pointer pszRoot, const_char_pointer pszName);
-
-      bool check_http_ok(const_char_pointer pszUrl);
+      //void run();
 
 
-      void log_system(const_char_pointer psz);
-      void install_dependencies();
+      //char * get_download_url(const_char_pointer pszRoot, const_char_pointer pszName);
+
+      //bool check_http_ok(const_char_pointer pszUrl);
+
+
+      //void log_system(const_char_pointer psz);
+      //void install_dependencies();
 
 
    };

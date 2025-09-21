@@ -694,7 +694,7 @@
 		07E25E171B4FF98000752DE1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07E25E2B1B4FF98000752DE1 /* libbase.dylib */,
+				07E25E2B1B4FF98000752DE1 /* libberg.dylib */,
 				07E25E2D1B4FF98000752DE1 /* libios_base.a */,
 				07E25E2F1B4FF98000752DE1 /* base_iosTests.xctest */,
 			);
@@ -1253,10 +1253,10 @@
 			remoteRef = 07703CC91B6FF23D009026EA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07E25E2B1B4FF98000752DE1 /* libbase.dylib */ = {
+		07E25E2B1B4FF98000752DE1 /* libberg.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libbase.dylib;
+			path = libberg.dylib;
 			remoteRef = 07E25E2A1B4FF98000752DE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

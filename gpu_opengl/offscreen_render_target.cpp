@@ -1,5 +1,6 @@
 // From vk_swapchain by camilo on 2025-05-09 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "offscreen_render_target.h"
 //#include "initializers.h"
 //#include "physical_device.h"

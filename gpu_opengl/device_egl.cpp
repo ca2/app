@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "context.h"
 #include "device_egl.h"
 #include "swap_chain.h"

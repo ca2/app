@@ -420,7 +420,7 @@
 		9A88DAEF2ACDD65000A34627 /* auto_hide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = auto_hide.h; sourceTree = "<group>"; };
 		9A92318127EAE4B400B5A78D /* impact_kit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = impact_kit.cpp; sourceTree = "<group>"; };
 		9A92318227EAE4B400B5A78D /* impact_kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = impact_kit.h; sourceTree = "<group>"; };
-		9A93B6FA2846EB33005ACD11 /* libios_base.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_base.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A93B6FA2846EB33005ACD11 /* libios_berg.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_berg.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A94E73129E22AFD00C8C249 /* toolbar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = toolbar.cpp; sourceTree = "<group>"; };
 		9A94E73229E22AFD00C8C249 /* status_bar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = status_bar.h; sourceTree = "<group>"; };
 		9A94E73329E22AFD00C8C249 /* toolbar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = toolbar.h; sourceTree = "<group>"; };
@@ -450,7 +450,7 @@
 		9AA4DCEF2C2BA35C00DAC645 /* item.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = item.cpp; sourceTree = "<group>"; };
 		9AAFBF7E2A8B2C35005D10AB /* handler_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = handler_impact.h; sourceTree = "<group>"; };
 		9AAFBF7F2A8B2C35005D10AB /* handler_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = handler_impact.cpp; sourceTree = "<group>"; };
-		9AD117F324F51BE400177261 /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AD117F324F51BE400177261 /* libberg.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libberg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD1181E24F51C4000177261 /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AD1183024F51CE500177261 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -806,8 +806,8 @@
 		9AD117F424F51BE400177261 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AD117F324F51BE400177261 /* libbase.dylib */,
-				9A93B6FA2846EB33005ACD11 /* libios_base.a */,
+				9AD117F324F51BE400177261 /* libberg.dylib */,
+				9A93B6FA2846EB33005ACD11 /* libios_berg.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -863,9 +863,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9A93B6992846EB33005ACD11 /* ios_base */ = {
+		9A93B6992846EB33005ACD11 /* ios_berg */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A93B6F72846EB33005ACD11 /* Build configuration list for PBXNativeTarget "ios_base" */;
+			buildConfigurationList = 9A93B6F72846EB33005ACD11 /* Build configuration list for PBXNativeTarget "ios_berg" */;
 			buildPhases = (
 				9A93B69C2846EB33005ACD11 /* Headers */,
 				9A93B69E2846EB33005ACD11 /* Sources */,
@@ -875,14 +875,14 @@
 			dependencies = (
 				9A93B6FF2846EB66005ACD11 /* PBXTargetDependency */,
 			);
-			name = ios_base;
+			name = ios_berg;
 			productName = base;
-			productReference = 9A93B6FA2846EB33005ACD11 /* libios_base.a */;
+			productReference = 9A93B6FA2846EB33005ACD11 /* libios_berg.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		9AD117F224F51BE400177261 /* base */ = {
+		9AD117F224F51BE400177261 /* berg */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AD117FC24F51BE400177261 /* Build configuration list for PBXNativeTarget "base" */;
+			buildConfigurationList = 9AD117FC24F51BE400177261 /* Build configuration list for PBXNativeTarget "berg" */;
 			buildPhases = (
 				9AD117EF24F51BE400177261 /* Headers */,
 				9AD117F024F51BE400177261 /* Sources */,
@@ -894,9 +894,9 @@
 			dependencies = (
 				9AE649FB252A664C00BED5B8 /* PBXTargetDependency */,
 			);
-			name = base;
+			name = berg;
 			productName = base;
-			productReference = 9AD117F324F51BE400177261 /* libbase.dylib */;
+			productReference = 9AD117F324F51BE400177261 /* libberg.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -933,8 +933,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				9AD117F224F51BE400177261 /* base */,
-				9A93B6992846EB33005ACD11 /* ios_base */,
+				9AD117F224F51BE400177261 /* berg */,
+				9A93B6992846EB33005ACD11 /* ios_berg */,
 			);
 		};
 /* End PBXProject section */
@@ -1437,7 +1437,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A93B6F72846EB33005ACD11 /* Build configuration list for PBXNativeTarget "ios_base" */ = {
+		9A93B6F72846EB33005ACD11 /* Build configuration list for PBXNativeTarget "ios_berg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A93B6F82846EB33005ACD11 /* Debug */,
@@ -1455,7 +1455,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AD117FC24F51BE400177261 /* Build configuration list for PBXNativeTarget "base" */ = {
+		9AD117FC24F51BE400177261 /* Build configuration list for PBXNativeTarget "berg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AD117FD24F51BE400177261 /* Debug */,

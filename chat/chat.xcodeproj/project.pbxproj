@@ -15,7 +15,7 @@
 		0730AFDE1BA10CEC001D28DB /* calculator_token.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFD01BA10CEC001D28DB /* calculator_token.h */; };
 		0730AFE01BA10CEC001D28DB /* calculator_value.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFD21BA10CEC001D28DB /* calculator_value.h */; };
 		0730AFE21BA10CF9001D28DB /* _math_math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0730AFE11BA10CF9001D28DB /* _math_math.cpp */; };
-		0730AFE51BA10D6C001D28DB /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0730AFC01BA10CAC001D28DB /* libbase.dylib */; };
+		0730AFE51BA10D6C001D28DB /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0730AFC01BA10CAC001D28DB /* libberg.dylib */; };
 		0730AFF51BA11478001D28DB /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2EA37319A62C9E004DAFFC /* libaxis.dylib */; };
 		07B65767190F3CA2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65766190F3CA2002DAADE /* Foundation.framework */; };
 		07B65775190F3CA2002DAADE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65774190F3CA2002DAADE /* XCTest.framework */; };
@@ -212,7 +212,7 @@
 			files = (
 				07C8A4771B71DD67000226A8 /* libaura.dylib in Frameworks */,
 				0730AFF51BA11478001D28DB /* libaxis.dylib in Frameworks */,
-				0730AFE51BA10D6C001D28DB /* libbase.dylib in Frameworks */,
+				0730AFE51BA10D6C001D28DB /* libberg.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,8 +222,8 @@
 		0730AFB61BA10CAC001D28DB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0730AFC01BA10CAC001D28DB /* libbase.dylib */,
-				0730AFC21BA10CAC001D28DB /* libbase.dylib */,
+				0730AFC01BA10CAC001D28DB /* libberg.dylib */,
+				0730AFC21BA10CAC001D28DB /* libberg.dylib */,
 				0730AFC41BA10CAC001D28DB /* base_iosTests.xctest */,
 			);
 			name = Products;
@@ -484,17 +484,17 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		0730AFC01BA10CAC001D28DB /* libbase.dylib */ = {
+		0730AFC01BA10CAC001D28DB /* libberg.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libbase.dylib;
+			path = libberg.dylib;
 			remoteRef = 0730AFBF1BA10CAC001D28DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0730AFC21BA10CAC001D28DB /* libbase.dylib */ = {
+		0730AFC21BA10CAC001D28DB /* libberg.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libbase.dylib;
+			path = libberg.dylib;
 			remoteRef = 0730AFC11BA10CAC001D28DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

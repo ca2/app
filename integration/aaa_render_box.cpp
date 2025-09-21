@@ -35,7 +35,7 @@ namespace app_integration
 
       ::draw2d::pen_pointer ppen;
 
-      __øconstruct(ppen);
+      øconstruct(ppen);
 
       auto & echeckSimple = get_app()->application_properties().m_echeckSimple;
 
@@ -54,7 +54,7 @@ namespace app_integration
 
       ::draw2d::brush_pointer pbrush;
 
-      __øconstruct(pbrush);
+      øconstruct(pbrush);
 
       pbrush->CreateBoxGradientBrush(r.top_left(), r.size(), radius, ::dk_red(), ::color::transparent);
 

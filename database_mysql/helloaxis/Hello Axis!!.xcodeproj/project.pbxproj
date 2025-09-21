@@ -87,21 +87,21 @@
 		};
 		076A24831B6E772400BF6C7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 076A24261B6E772400BF6C7D /* base.xcodeproj */;
+			containerPortal = 076A24261B6E772400BF6C7D /* berg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
 			remoteInfo = base;
 		};
 		076A24851B6E772400BF6C7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 076A24261B6E772400BF6C7D /* base.xcodeproj */;
+			containerPortal = 076A24261B6E772400BF6C7D /* berg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
 			remoteInfo = ios_base;
 		};
 		076A24871B6E772400BF6C7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 076A24261B6E772400BF6C7D /* base.xcodeproj */;
+			containerPortal = 076A24261B6E772400BF6C7D /* berg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = base_iosTests;
@@ -206,7 +206,7 @@
 		};
 		076A24CE1B6E777500BF6C7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 076A24261B6E772400BF6C7D /* base.xcodeproj */;
+			containerPortal = 076A24261B6E772400BF6C7D /* berg.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
 			remoteInfo = base;
@@ -587,7 +587,7 @@
 		070B8F031B6E53FA00D26137 /* Hello_Multiverse__Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hello_Multiverse__Tests.m; sourceTree = "<group>"; };
 		076A24081B6E772400BF6C7D /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../app/aura/.xcodeproj; sourceTree = SOURCE_ROOT; };
 		076A240B1B6E772400BF6C7D /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../../app/axis/axis.xcodeproj; sourceTree = SOURCE_ROOT; };
-		076A24261B6E772400BF6C7D /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../../app/base/base.xcodeproj; sourceTree = SOURCE_ROOT; };
+		076A24261B6E772400BF6C7D /* berg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = berg.xcodeproj; path = ../../app/berg/berg.xcodeproj; sourceTree = SOURCE_ROOT; };
 		076A24291B6E772400BF6C7D /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../app/aura/.xcodeproj; sourceTree = SOURCE_ROOT; };
 		076A242C1B6E772400BF6C7D /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = ../../app/draw2d_quartz2d/draw2d_quartz2d.xcodeproj; sourceTree = SOURCE_ROOT; };
 		076A242F1B6E772400BF6C7D /* experience_lite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_lite.xcodeproj; path = ../../app/experience_lite/experience_lite.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -648,7 +648,7 @@
 				9A97F0891D8094A1000B4EC2 /* image_decode_jpeg.xcodeproj */,
 				9A97F0951D8094A8000B4EC2 /* image_decode_png.xcodeproj */,
 				9A97F0771D809475000B4EC2 /* axiswinpr.xcodeproj */,
-				076A24261B6E772400BF6C7D /* base.xcodeproj */,
+				076A24261B6E772400BF6C7D /* berg.xcodeproj */,
 				076A24291B6E772400BF6C7D /* aura.xcodeproj */,
 				076A242C1B6E772400BF6C7D /* draw2d_quartz2d.xcodeproj */,
 				076FB4CD1C9F90E000C73C4E /* gcom.xcodeproj */,
@@ -1021,7 +1021,7 @@
 				},
 				{
 					ProductGroup = 076A24271B6E772400BF6C7D /* Products */;
-					ProjectRef = 076A24261B6E772400BF6C7D /* base.xcodeproj */;
+					ProjectRef = 076A24261B6E772400BF6C7D /* berg.xcodeproj */;
 				},
 				{
 					ProductGroup = 076A242A1B6E772400BF6C7D /* Products */;

@@ -316,7 +316,7 @@ public:
 
       this->set_size(c);
 
-      ::collection::index j = 0;
+      //::collection::index j = 0;
 
       auto p = a.data();
 
@@ -410,6 +410,32 @@ public:
       {
 
          this->element_at(i) = *p;
+
+         i++;
+
+         p++;
+
+      }
+
+      return *this;
+
+   }
+
+   
+   template < primitive_container CONTAINER >
+   base_array & copy(const CONTAINER & container)
+   {
+
+      this->set_size(container.size());
+
+      auto p = container.begin();
+
+      ::collection::index i = 0;
+
+      while (!container.is_end(p))
+      {
+
+         ::copy(&this->element_at(i), &(*p));
 
          i++;
 

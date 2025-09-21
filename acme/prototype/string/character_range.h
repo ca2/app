@@ -103,7 +103,8 @@ public:
    
       this->m_pbasedata = pbasedata;
 
-      if (::is_set(this->m_pbasedata) && !(erange & e_range_scoped_ownership))
+//      if (::is_set(this->m_pbasedata) && !(erange & e_range_scoped_ownership))
+         if (::is_set(this->m_pbasedata))
       {
 
          this->m_pbasedata->base_data_increment_reference_count();
@@ -155,7 +156,8 @@ public:
 
       this->m_pbasedata = characterrange.m_pbasedata;
 
-      if (::is_set(this->m_pbasedata) && !(this->m_erange & e_range_scoped_ownership))
+      //if (::is_set(this->m_pbasedata) && !(this->m_erange & e_range_scoped_ownership))
+      if (::is_set(this->m_pbasedata))
       {
 
          this->m_pbasedata->base_data_increment_reference_count();

@@ -9,7 +9,9 @@
 #pragma once
 
 
-#include "context.h"
+
+#include "gpu_opengl/context.h"
+
 
 
 namespace opengl
@@ -17,7 +19,7 @@ namespace opengl
 
 
    class CLASS_DECL_GPU_OPENGL context_fbo :
-      virtual public ::opengl::context
+      virtual public ::gpu_opengl::context
    {
    public:
 
@@ -33,11 +35,16 @@ namespace opengl
       void lock_context() override;
       void unlock_context() override;
       void run() override;
-      void _create_offscreen_buffer(const ::int_size& size) override;
-      //virtual void resize_offscreen_buffer(const ::int_size& size) override;
-      void destroy_offscreen_buffer() override;
+      
+      void _create_cpu_buffer(const ::int_size& size) override;
 
-      void make_current() override;
+      //void _create_offscreen_buffer(const ::int_size& size) override;
+      //virtual void resize_offscreen_buffer(const ::int_size& size) override;
+      //void destroy_offscreen_buffer() override;
+      void destroy_cpu_buffer() override;
+
+      //void make_current() override;
+      void defer_make_current() override;
 
       string get_shader_version_text() override;
 
@@ -49,9 +56,9 @@ namespace opengl
       
       void prepare_for_gpu_read() override;
       
-      void resize_offscreen_buffer(const ::int_size& size) override;
+      //xvoid resize_offscreen_buffer(const ::int_size& size) override;
       
-
+      void resize_cpu_buffer(const ::int_size& size) override;
    };
 
 

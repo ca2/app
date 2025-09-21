@@ -87,7 +87,7 @@ pdirectorysystem->system() / "trace.txt";
    void log::initialize_aura_log(enum_trace_level etracelevelMin, const ::atom & atom)
    {
 
-      auto estatus = __construct_new(m_ptrace);
+      auto estatus = øconstruct_new(m_ptrace);
 
       if (!estatus)
       {

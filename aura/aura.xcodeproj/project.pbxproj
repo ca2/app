@@ -344,6 +344,9 @@
 		9A7DE1412D26B08400118A10 /* glyph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DE1362D26B08400118A10 /* glyph.cpp */; };
 		9A7DE1422D26B08400118A10 /* internal_font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DE13A2D26B08400118A10 /* internal_font.cpp */; };
 		9A7DE1432D26B08400118A10 /* glyph_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7DE1382D26B08400118A10 /* glyph_set.cpp */; };
+		9A7FEB342E7F45A80082C6FD /* offset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEB322E7F45A80082C6FD /* offset.h */; };
+		9A7FEB352E7F45A80082C6FD /* offset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEB332E7F45A80082C6FD /* offset.cpp */; };
+		9A7FEB362E7F45A80082C6FD /* offset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEB332E7F45A80082C6FD /* offset.cpp */; };
 		9A85D3852A2FEAD900116726 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A85D3832A2FEAD800116726 /* _.h */; };
 		9A85D3862A2FEAD900116726 /* _constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A85D3842A2FEAD800116726 /* _constant.h */; };
 		9A865FC329661CC5000C82F0 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A865FC229661CC5000C82F0 /* _.cpp */; };
@@ -829,6 +832,8 @@
 		9A7DE1382D26B08400118A10 /* glyph_set.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = glyph_set.cpp; sourceTree = "<group>"; };
 		9A7DE1392D26B08400118A10 /* internal_font.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = internal_font.h; sourceTree = "<group>"; };
 		9A7DE13A2D26B08400118A10 /* internal_font.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = internal_font.cpp; sourceTree = "<group>"; };
+		9A7FEB322E7F45A80082C6FD /* offset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = offset.h; sourceTree = "<group>"; };
+		9A7FEB332E7F45A80082C6FD /* offset.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = offset.cpp; sourceTree = "<group>"; };
 		9A85D3832A2FEAD800116726 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A85D3842A2FEAD800116726 /* _constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _constant.h; sourceTree = "<group>"; };
 		9A85D3892A2FEEED00116726 /* size_parent_layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = size_parent_layout.h; sourceTree = "<group>"; };
@@ -1292,6 +1297,8 @@
 		9A2A52FA1F1FEDFD001AB0F8 /* draw2d */ = {
 			isa = PBXGroup;
 			children = (
+				9A7FEB322E7F45A80082C6FD /* offset.h */,
+				9A7FEB332E7F45A80082C6FD /* offset.cpp */,
 				9A3764112409BEFA002D15D3 /* _.cpp */,
 				9A37646C2409BF0B002D15D3 /* _.h */,
 				9A3764222409BEFD002D15D3 /* _impl.h */,
@@ -2098,6 +2105,7 @@
 				9A3764D72409BF0C002D15D3 /* _.h in Headers */,
 				9A24866B2452C49000F23D28 /* session.h in Headers */,
 				9A3764892409BF0C002D15D3 /* brush.h in Headers */,
+				9A7FEB342E7F45A80082C6FD /* offset.h in Headers */,
 				9ACFE56828497F8800911485 /* windowing.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2337,6 +2345,7 @@
 				9A75C6A9283D6E6400EC37F2 /* devices.cpp in Sources */,
 				9A750FCB282B929E00C4861B /* fastblur.cpp in Sources */,
 				9A750FE0282B929E00C4861B /* icon.cpp in Sources */,
+				9A7FEB362E7F45A80082C6FD /* offset.cpp in Sources */,
 				9A750F61282B909E00C4861B /* shell.cpp in Sources */,
 				9A94DE6A282C0ADA00F5C1CA /* menu_command.cpp in Sources */,
 				9A750F63282B90A700C4861B /* scroll_bar.cpp in Sources */,
@@ -2524,6 +2533,7 @@
 				9A3764DB2409BF0C002D15D3 /* printer.cpp in Sources */,
 				9A87FF0A284B8D6F0084AA05 /* monitor.cpp in Sources */,
 				9A4AE70127F9549A00A4B000 /* control_box_icon.cpp in Sources */,
+				9A7FEB352E7F45A80082C6FD /* offset.cpp in Sources */,
 				9AC2CCC326533BB700CC8096 /* context.cpp in Sources */,
 				9A3764DD2409BF0C002D15D3 /* alpha.cpp in Sources */,
 				9AC2CEF42653455600CC8096 /* menu_command.cpp in Sources */,
@@ -2883,13 +2893,12 @@
 				USER_HEADER_SEARCH_PATHS = (
 					.,
 					"$(WorkspaceDir)/source",
-					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/source/app/include",
+					"$(WorkspaceDir)/source/app/_include",
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration_selection/$(CONFIGURATION)",
+					"$(WorkspaceDir)/port/_",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -3000,13 +3009,12 @@
 				USER_HEADER_SEARCH_PATHS = (
 					.,
 					"$(WorkspaceDir)/source",
-					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/source/app/include",
+					"$(WorkspaceDir)/source/app/_include",
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration_selection/$(CONFIGURATION)",
+					"$(WorkspaceDir)/port/_",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",

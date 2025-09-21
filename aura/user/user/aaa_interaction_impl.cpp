@@ -201,7 +201,7 @@ namespace user
 
 #endif
 
-         __øconstruct(m_pmutexDraw);
+         øconstruct(m_pmutexDraw);
 
       }
 
@@ -564,7 +564,7 @@ namespace user
       //
       //         //auto estatus =
       //
-      //         __øconstruct(m_pwindow);
+      //         øconstruct(m_pwindow);
       //
       //         //if (!estatus)
       //         //{
@@ -753,7 +753,7 @@ namespace user
       //
       //         //auto estatus =
       //
-      //         __øconstruct(m_pwindow);
+      //         øconstruct(m_pwindow);
       //
       //         //if (!estatus)
       //         //{
@@ -993,7 +993,7 @@ namespace user
       if (bNewOwnThread)
       {
 
-         puserthread = __create_new<::user::thread>();
+         puserthread = øcreate_new<::user::thread>();
 
          m_puserthread = puserthread;
 
@@ -1029,7 +1029,7 @@ namespace user
       if (bProdevianThread && m_puserinteraction->is_graphical())
       {
 
-         pgraphicsthread = __create_new<::user::graphics_thread>();
+         pgraphicsthread = øcreate_new<::user::graphics_thread>();
 
          m_pgraphicsthread = pgraphicsthread;
 
@@ -1293,8 +1293,8 @@ namespace user
 
       ::user::primitive_impl::prio_install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &interaction_impl::_001OnPrioCreate);
-      MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &interaction_impl::on_prio_message_set_focus);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &interaction_impl::_001OnPrioCreate);
+      USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &interaction_impl::on_prio_message_set_focus);
 
    }
 
@@ -1302,32 +1302,32 @@ namespace user
    void interaction_impl::last_install_message_routing(::channel *pchannel)
    {
 
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &interaction_impl::on_message_create);
-      MESSAGE_LINK(::user::e_message_after_create, pchannel, this, &interaction_impl::on_message_after_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &interaction_impl::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_after_create, pchannel, this, &interaction_impl::on_message_after_create);
 
       ::user::primitive_impl::last_install_message_routing(pchannel);
 
       if (!m_puserinteraction->m_bMessageWindow)
       {
 
-         //MESSAGE_LINK(::user::e_message_redraw, pchannel, this, &interaction_impl::_001OnRedraw);
-         //MESSAGE_LINK(::user::e_message_apply_visual, pchannel, this, &interaction_impl::_001OnApplyVisual);
+         //USER_MESSAGE_LINK(::user::e_message_redraw, pchannel, this, &interaction_impl::_001OnRedraw);
+         //USER_MESSAGE_LINK(::user::e_message_apply_visual, pchannel, this, &interaction_impl::_001OnApplyVisual);
 
 
          //#ifndef LINUX
-         MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &interaction_impl::on_message_reposition);
-         MESSAGE_LINK(::user::e_message_size, pchannel, this, &interaction_impl::on_message_size);
-         //MESSAGE_LINK(::user::e_message_window_position_changed, pchannel, this, &interaction_impl::on_message_window_position_changed);
+         USER_MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &interaction_impl::on_message_reposition);
+         USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &interaction_impl::on_message_size);
+         //USER_MESSAGE_LINK(::user::e_message_window_position_changed, pchannel, this, &interaction_impl::on_message_window_position_changed);
          //#endif
 
-         MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
-         MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &interaction_impl::on_message_kill_focus);
-         //MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &interaction_impl::on_message_set_focus);
+         USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
+         USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &interaction_impl::on_message_kill_focus);
+         //USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &interaction_impl::on_message_set_focus);
 
       }
 
-      MESSAGE_LINK(::user::e_message_destroy_window, pchannel, this, &interaction_impl::_001OnDestroyWindow);
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_destroy_window, pchannel, this, &interaction_impl::_001OnDestroyWindow);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
 
    }
 
@@ -1895,13 +1895,13 @@ namespace user
       if (!m_puserinteraction->m_bMessageWindow)
       {
 
-         MESSAGE_LINK(::user::e_message_capture_changed, pchannel, this, &interaction_impl::_001OnCaptureChanged);
+         USER_MESSAGE_LINK(::user::e_message_capture_changed, pchannel, this, &interaction_impl::_001OnCaptureChanged);
 
       }
 
       //#endif
 
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
 
       prio_install_message_routing(pchannel);
 
@@ -4467,7 +4467,7 @@ namespace user
          if (m_redrawitema.is_empty())
          {
 
-            auto predrawitem = __create_new<redraw_item>();
+            auto predrawitem = øcreate_new<redraw_item>();
 
             if (function)
             {
@@ -4505,7 +4505,7 @@ namespace user
 
       }
 
-      auto predrawitem = __create_new<redraw_item>();
+      auto predrawitem = øcreate_new<redraw_item>();
 
       predrawitem->m_rectanglea.append(rectangleaHostNeedRedraw);
 
@@ -6133,7 +6133,7 @@ namespace user
 
             //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            //   pgraphics->__construct_new(pgraphics->m_puserredraw);
+            //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
 
             //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 
@@ -6434,7 +6434,7 @@ namespace user
 
          //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         //   pgraphics->__construct_new(pgraphics->m_puserredraw);
+         //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
 
          //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 
@@ -6473,7 +6473,7 @@ namespace user
 
          //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         //   pgraphics->__construct_new(pgraphics->m_puserredraw);
+         //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
 
          //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 
@@ -7903,7 +7903,7 @@ namespace user
       if (m_pmutexRedraw == nullptr)
       {
 
-         __øconstruct(m_pmutexRedraw);
+         øconstruct(m_pmutexRedraw);
 
       }
 

@@ -53,21 +53,21 @@
 /* Begin PBXContainerItemProxy section */
 		9A18FD62251B10010064BCDE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A18FD5E251B10010064BCDE /* base.xcodeproj */;
+			containerPortal = 9A18FD5E251B10010064BCDE /* berg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AD117F324F51BE400177261;
 			remoteInfo = base;
 		};
 		9A18FD64251B100F0064BCDE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A18FD5E251B10010064BCDE /* base.xcodeproj */;
+			containerPortal = 9A18FD5E251B10010064BCDE /* berg.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AD117F224F51BE400177261;
 			remoteInfo = base;
 		};
 		9A93B95128471B54005ACD11 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A18FD5E251B10010064BCDE /* base.xcodeproj */;
+			containerPortal = 9A18FD5E251B10010064BCDE /* berg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A93B6FA2846EB33005ACD11;
 			remoteInfo = ios_base;
@@ -91,7 +91,7 @@
 		9A16E08924BC037D00C3DD5B /* render_arcs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = render_arcs.cpp; sourceTree = "<group>"; };
 		9A16E08A24BC037D00C3DD5B /* render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = render.h; sourceTree = "<group>"; };
 		9A16E08B24BC037D00C3DD5B /* render_1through3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = render_1through3.cpp; sourceTree = "<group>"; };
-		9A18FD5E251B10010064BCDE /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../../app/base/base.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A18FD5E251B10010064BCDE /* berg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = berg.xcodeproj; path = ../../app/berg/berg.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A23A7DF26CF2A3100F98012 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A258B8024DA56270013F50E /* tab_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tab_impact.cpp; sourceTree = "<group>"; };
 		9A258B8124DA56270013F50E /* tab_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tab_impact.h; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 		9AEB759A16F78DF10085103B = {
 			isa = PBXGroup;
 			children = (
-				9A18FD5E251B10010064BCDE /* base.xcodeproj */,
+				9A18FD5E251B10010064BCDE /* berg.xcodeproj */,
 				9AEB75AA16F78E600085103B /* simple_drawing */,
 				9AEB75A416F78DF10085103B /* Products */,
 				9A920FD61F3BF68400CD9D94 /* Frameworks */,
@@ -295,7 +295,7 @@
 			projectReferences = (
 				{
 					ProductGroup = 9A18FD5F251B10010064BCDE /* Products */;
-					ProjectRef = 9A18FD5E251B10010064BCDE /* base.xcodeproj */;
+					ProjectRef = 9A18FD5E251B10010064BCDE /* berg.xcodeproj */;
 				},
 			);
 			projectRoot = "";

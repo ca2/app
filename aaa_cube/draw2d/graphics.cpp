@@ -85,7 +85,7 @@ namespace draw2d_gpu
       if (!m_pgpucontext->m_pgpurenderer)
       {
 
-         __øconstruct(m_pgpucontext->m_pgpurenderer);
+         øconstruct(m_pgpucontext->m_pgpurenderer);
 
          //m_pgpucontext->m_eoutput = ::gpu::e_output_color_and_alpha_accumulation_buffers;
 
@@ -164,7 +164,7 @@ namespace draw2d_gpu
             if (!m_pgpucontextOutput)
             {
 
-               __øconstruct(m_pgpucontextOutput);
+               øconstruct(m_pgpucontextOutput);
 
                m_pgpucontextOutput = m_papplication->get_gpu()->get_device(pwindow, pwindow->get_window_rectangle())->start_swap_chain_context(this, pwindow);
 
@@ -212,7 +212,7 @@ namespace draw2d_gpu
             //if (!m_pgpucontextOutput)
             //{
 
-            //   __øconstruct(m_pgpucontextOutput);
+            //   øconstruct(m_pgpucontextOutput);
 
             //   m_pgpucontextOutput = m_papplication->get_gpu()->get_device(pwindow, pwindow->get_window_rectangle())->start_swap_chain_context(this, pwindow);
 

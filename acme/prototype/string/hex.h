@@ -206,7 +206,7 @@ namespace hex
    inline void to(unsigned int & u,const ::scoped_string & scopedstr) { u = to_unsigned_int(scopedstr); }
    inline void to(unsigned long long & u,const ::scoped_string & scopedstr) { u = to_unsigned_long_long(scopedstr); }
 #ifdef __APPLE__
-   inline void to(unsigned long & u,const ::scoped_string & scopedstr) { u = to_unsigned_long_long(str); }
+   inline void to(unsigned long & u,const ::scoped_string & scopedstr) { u = to_unsigned_long_long(scopedstr); }
 #endif
    inline uptr to_uptr(const ::scoped_string & scopedstr) { uptr u; to(u,scopedstr); return u; }
 

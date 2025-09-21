@@ -1,7 +1,7 @@
 #pragma once
 
 
-#define MESSAGE_LINK(atom, pchannel, preceiver, phandler) \
+#define USER_MESSAGE_LINK(atom, pchannel, preceiver, phandler) \
    pchannel->add_message_handler((enum_message) (atom), { preceiver, phandler } )
 
 //#define ON_TYPED_MESSAGE(atom, MESSAGE, name) \

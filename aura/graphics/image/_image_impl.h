@@ -206,7 +206,7 @@
 //// inline ::image::image_pointer __create_image(::particle * pparticle)
 //// {
 //
-////    auto ptype = __create_new_image();
+////    auto ptype = øcreate_new_image();
 //
 ////    if (!ptype)
 ////    {

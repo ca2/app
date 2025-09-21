@@ -99,12 +99,12 @@ inline ::pointer<BASE_TYPE>particle::__call__create(::factory::factory* pfactory
 
 
 template < typename TYPE >
-inline ::pointer<TYPE>particle::__call__create_new()
+inline ::pointer<TYPE>particle::__calløcreate_new()
 {
 
    //ASSERT(::is_set(this));
 
-   //return __call__create_new<TYPE>(this);
+   //return __calløcreate_new<TYPE>(this);
 
    //if (::is_null(pparticle))
    //{
@@ -131,12 +131,12 @@ inline ::pointer<TYPE>particle::__call__create_new()
 
 
 template < typename TYPE >
-inline ::pointer<TYPE>particle::__call__create_new_clone(TYPE * psrc)
+inline ::pointer<TYPE>particle::__calløcreate_new_clone(TYPE * psrc)
 {
 
    //ASSERT(::is_set(this));
 
-   //return __call__create_new<TYPE>(this);
+   //return __calløcreate_new<TYPE>(this);
 
    //if (::is_null(pparticle))
    //{

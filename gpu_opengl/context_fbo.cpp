@@ -6,9 +6,18 @@
 //  Copyright (c) 2020 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 #include "framework.h"
-#include <OpenGL/OpenGL.h>
+#if defined(MACOS)
+//#include <OpenGL/gl3.h>
+#include <glad/glad.h>
+#include <OpenGL/CGLTypes.h>
+////#include <OpenGL/glu.h>
+////#include <OpenGL/gl3.h>
+//#include <OpenGL/glext.h>
+#endif
+
+//#include <OpenGL/OpenGL.h>
 #include "context_fbo.h"
-#include "opengl.h"
+//#include "opengl.h"
 #include "aura/platform/system.h"
 
 
@@ -27,7 +36,7 @@ namespace opengl
    context_fbo::context_fbo()
    {
 
-      m_emode = e_mode_fbo;
+      //m_emode = e_mode_fbo;
       
       m_context = 0;
       
@@ -47,7 +56,7 @@ namespace opengl
 void context_fbo::on_initialize_particle()
 {
  
-   ::opengl::context::on_initialize_particle();
+   ::gpu_opengl::context::on_initialize_particle();
    
    branch();
 
@@ -65,7 +74,7 @@ void context_fbo::run()
    
 }
 
-   void context_fbo::_create_offscreen_buffer(const ::int_size & sizeParam)
+   void context_fbo::_create_cpu_buffer(const ::int_size & sizeParam)
    {
       
       
@@ -74,7 +83,7 @@ void context_fbo::run()
       this->post([this, size]()
                  {
          
-         auto pgpu = system()->get_gpu();
+         auto pgpu = system()->gpu_approach();
          
          ::pointer<opengl>popengl = pgpu;
          

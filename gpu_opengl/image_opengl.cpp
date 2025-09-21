@@ -3,6 +3,7 @@
 
 
 #include "acme/_operating_system.h"
+#include "_gpu_opengl.h"
 
 
 #ifdef WINDOWS_DESKTOP

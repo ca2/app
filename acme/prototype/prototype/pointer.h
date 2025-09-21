@@ -788,7 +788,7 @@ pointer < TYPE > clone(TYPE * p);
 
 
 //template < typename TYPE >
-//inline ::pointer<TYPE> __call__create_new( ::subparticle* pparticle);
+//inline ::pointer<TYPE> __calløcreate_new( ::subparticle* pparticle);
 
 
 template < typename TARGET, typename SOURCE >

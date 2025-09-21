@@ -127,7 +127,7 @@
 		};
 		9AE64969252A643200BED5B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AE64964252A643100BED5B8 /* base.xcodeproj */;
+			containerPortal = 9AE64964252A643100BED5B8 /* berg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AD117F324F51BE400177261;
 			remoteInfo = base;
@@ -148,7 +148,7 @@
 		};
 		9AE64982252A647600BED5B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AE64964252A643100BED5B8 /* base.xcodeproj */;
+			containerPortal = 9AE64964252A643100BED5B8 /* berg.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AD117F224F51BE400177261;
 			remoteInfo = base;
@@ -373,7 +373,7 @@
 		9AE632B8252A57A600BED5B8 /* aqua.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aqua.xcodeproj; path = ../aqua/aqua.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AE632C1252A57EB00BED5B8 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AE63EA4252A5BC100BED5B8 /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = SOURCE_ROOT; };
-		9AE64964252A643100BED5B8 /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../base/base.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9AE64964252A643100BED5B8 /* berg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = berg.xcodeproj; path = ../berg/berg.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AE6496B252A643900BED5B8 /* bred.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = bred.xcodeproj; path = ../bred/bred.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AE64972252A643F00BED5B8 /* core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = core.xcodeproj; path = ../core/core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AE64991252A64A700BED5B8 /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = ../draw2d_quartz2d/draw2d_quartz2d.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -403,7 +403,7 @@
 				9AE632B8252A57A600BED5B8 /* aqua.xcodeproj */,
 				9AE632C1252A57EB00BED5B8 /* aura.xcodeproj */,
 				9AE63EA4252A5BC100BED5B8 /* axis.xcodeproj */,
-				9AE64964252A643100BED5B8 /* base.xcodeproj */,
+				9AE64964252A643100BED5B8 /* berg.xcodeproj */,
 				9AE6496B252A643900BED5B8 /* bred.xcodeproj */,
 				9AE64972252A643F00BED5B8 /* core.xcodeproj */,
 				9AE64991252A64A700BED5B8 /* draw2d_quartz2d.xcodeproj */,
@@ -646,7 +646,7 @@
 				},
 				{
 					ProductGroup = 9AE64965252A643100BED5B8 /* Products */;
-					ProjectRef = 9AE64964252A643100BED5B8 /* base.xcodeproj */;
+					ProjectRef = 9AE64964252A643100BED5B8 /* berg.xcodeproj */;
 				},
 				{
 					ProductGroup = 9AE6496C252A643900BED5B8 /* Products */;

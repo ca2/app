@@ -7,6 +7,15 @@
 //
 
 #include "framework.h"
+#if defined(MACOS)
+//#include <OpenGL/gl3.h>
+#include <glad/glad.h>
+#include <OpenGL/CGLTypes.h>
+////#include <OpenGL/glu.h>
+////#include <OpenGL/gl3.h>
+//#include <OpenGL/glext.h>
+#endif
+
 #include "cpu_buffer.h"
 #include "context_cgl.h"
 #include "opengl.h"

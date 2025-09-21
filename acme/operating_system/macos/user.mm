@@ -18,7 +18,7 @@ public:
    int m_iButtonCount = 0;
    enum_dialog_result m_edialogresulta[4];
 
-   ns_alert_box(const char * pszMessage, const char * pszTitle, enum_message_box emessagebox)
+   ns_alert_box(const char * pszMessage, const char * pszTitle, ::user::enum_message_box emessagebox)
    {
       m_palert = [[NSAlert alloc] init];
       NSString * strMessage = [[NSString alloc]initWithUTF8String:pszMessage];
@@ -113,10 +113,10 @@ public:
 };
 
 
-enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, enum_message_box emessagebox)
+enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, ::user::enum_message_box emessagebox)
 {
    
-   class ns_alert_box nsalertbox(scopedstrMessage, pszTitle, emessagebox);
+   class ns_alert_box nsalertbox(pszMessage, pszTitle, emessagebox);
    
    auto edialogresult = nsalertbox.run_modal();
    

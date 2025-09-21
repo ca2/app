@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "command_buffer.h"
 #include "context.h"
 #include "device.h"

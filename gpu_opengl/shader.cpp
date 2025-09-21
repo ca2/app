@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "lock.h"
+#include "_gpu_opengl.h"
 #include "input_layout.h"
 #include "render_target.h"
 #include "renderer.h"

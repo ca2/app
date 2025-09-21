@@ -18,7 +18,7 @@
 #define CLASS_DECL_GPU_OPENGL  CLASS_DECL_IMPORT
 #endif
 
-#include "_gpu_opengl.h"
+//#include "_gpu_opengl.h"
 
 
 

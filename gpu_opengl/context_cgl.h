@@ -32,11 +32,11 @@ namespace opengl
       virtual ~context_cgl();
       
 
-      virtual void _create_offscreen_buffer(const ::int_size& size) override;
+      virtual void _create_cpu_buffer(const ::int_size& size) override;
       //virtual void resize_offscreen_buffer(const ::int_size& size) override;
-      virtual void destroy_offscreen_buffer() override;
+      virtual void destroy_cpu_buffer() override;
 
-      virtual void make_current() override;
+      virtual void defer_make_current() override;
 
       virtual string get_shader_version_text() override;
 

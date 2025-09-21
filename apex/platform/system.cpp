@@ -3320,9 +3320,9 @@ pdirectorysystem->create("/ca2core");
       if (strProtocol == "ca2project")
       {
 
-         string strBase = ::url::get_host(str);
+         string strBase = ::url::get_host(scopedstr);
 
-         string strScheme = ::url::get_request_path(str);
+         string strScheme = ::url::get_request_path(scopedstr);
 
          strScheme.begins_eat("/");
 

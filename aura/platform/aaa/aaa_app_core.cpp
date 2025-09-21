@@ -1881,7 +1881,7 @@ bool app_core::has_aura_application_factory() const
             if (strAppId.is_empty())
             {
 
-               papp = ::auraacmesystem()->__øcreate < ::aura::application > ();
+               papp = ::auraacmesystem()->øcreate < ::aura::application > ();
 
                *((::aura_main_struct*)papp) = *((::aura_main_struct*)this);
 

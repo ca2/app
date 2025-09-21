@@ -9,16 +9,17 @@
 #pragma once
 
 
-#include "context.h"
-
-#include <OpenGL/OpenGL.h>
+#include "gpu_opengl/context.h"
+#include "_gpu_opengl.h"
+//#include <OpenGL/OpenGL.h>
+//#include <CGL/CGL.h>
 
 namespace opengl
 {
 
 
    class CLASS_DECL_GPU_OPENGL context_cgl :
-      virtual public ::opengl::context
+      virtual public ::gpu_opengl::context
    {
    public:
 

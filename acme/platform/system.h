@@ -213,7 +213,7 @@ namespace platform
       //virtual ::http_system * http_system();
 
       virtual string get_system_platform() override;
-      virtual string get_system_configuration() override;
+      //virtual string get_system_configuration() override;
 
 
 

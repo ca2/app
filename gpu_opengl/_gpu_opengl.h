@@ -104,7 +104,7 @@
 
 #define GLAD_GLAPI_EXPORT
 #include <glad/glad.h>
-
+//#include <OpenGL/CGLTypes.h>
 
 
 #else

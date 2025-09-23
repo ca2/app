@@ -25,7 +25,7 @@ namespace gpu_opengl
 
 		void create(const ::int_size& size, bool bWithDepthBuffer = false);
 
-		void destroy();
+		void destroy() override;
 		void bind();
 		void unbind();
 

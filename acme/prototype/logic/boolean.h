@@ -196,3 +196,12 @@ namespace logic
 //
 //
 //#define __optional_is_true(flag, option) ((bool)(flag) || (__is_optional(flag) && (option)))
+
+
+
+inline bool is_equivalent(bool b1, bool b2)
+{
+
+   return !!b1 == !!b2;
+
+}

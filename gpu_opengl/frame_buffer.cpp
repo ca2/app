@@ -1,5 +1,6 @@
 // Created by camilo on 2025-05-24 20:56 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "frame_buffer.h"
 
 

@@ -2612,7 +2612,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
                path = "zipresource://" + strMatter;
 
-               information("The file {} was found in zip folder.", path);
+               informationf("The file %s was found in zip folder.", path.c_str());
 
                path.m_etype = etype;
 

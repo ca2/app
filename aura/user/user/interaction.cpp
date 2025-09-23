@@ -68,7 +68,7 @@
 #include "acme/prototype/geometry2d/item.h"
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "acme/prototype/collection/_tuple.h"
-#include "acme/_finish.h"
+//#include "acme/_finish.h"
 //#include "app-core/store/_.h"
 //#define SPECIAL_DEBUG
 #if defined( WINDOWS_DESKTOP) && defined(SPECIAL_DEBUG)
@@ -747,7 +747,9 @@ namespace user
       if (::is_null(get_parent()))
       {
 
-         window()->set_position(pointNew);
+         //window()->set_position(pointNew);
+
+         set_need_redraw({}, pgraphics);
 
       }
       else

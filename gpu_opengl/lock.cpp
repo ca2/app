@@ -1,5 +1,6 @@
 // Created by camilo on 2025-06-22 12:22 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "context.h"
 #include "device.h"
 #include "lock.h"

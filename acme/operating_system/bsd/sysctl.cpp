@@ -42,7 +42,7 @@
   
    auto p = strName.get_range_buffer(size);
    
-   result = sysctl(mib, 4, p, &size, nullptr, 0);
+   result = sysctl(mib, 4, p.m_begin, &size, nullptr, 0);
 
    strName.release_buffer(size);
 

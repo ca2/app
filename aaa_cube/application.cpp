@@ -130,7 +130,7 @@ namespace cube
 
       //auto estatus =
 
-      pfactoryGpu->__øconstruct(this, m_pgpu);
+      pfactoryGpu->øconstruct(this, m_pgpu);
 
 
       m_pgpu->initialize_gpu_approach();
@@ -154,11 +154,11 @@ namespace cube
       ////   ::pointer < ::graphics::application> papp = m_papplication;
 
 
-      ////   __construct_new(m_pvkcdevice);
+      ////   øconstruct_new(m_pvkcdevice);
 
       ////   m_pvkcdevice->initialize_device(m_pvkcontainer);
 
-      ////   __construct_new(m_prenderer);
+      ////   øconstruct_new(m_prenderer);
 
       ////   m_prenderer->initialize_renderer(m_pvkcontainer, m_pvkcdevice);
 

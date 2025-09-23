@@ -292,7 +292,7 @@ namespace wave
 
    //   }
 
-   //   auto estatus = __øconstruct(m_pwaveout);
+   //   auto estatus = øconstruct(m_pwaveout);
 
    //   if (!estatus)
    //   {

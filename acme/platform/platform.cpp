@@ -236,7 +236,7 @@ namespace platform
 
       }
 
-#else
+#elif !defined(ANDROID)
 
       if (!args)
       {
@@ -875,7 +875,8 @@ g_bWindowingOutputDebugString = true;
 
       //m_pfactory = øallocate ::factory::factory();
 
-      m_pfactory->InitHashTable(16189);
+
+      m_pfactory->InitHashTable(16381);
 
       //::acme::acme::g_pstaticstatic->m_pfactorya = ___new factory_array();
 

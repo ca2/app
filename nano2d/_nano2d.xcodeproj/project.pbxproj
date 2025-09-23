@@ -21,7 +21,7 @@
 		9AC01E2D2748D03C006BEBCC /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFFC73026786C6A00C4104F /* libaqua.dylib */; };
 		9AC01E2E2748D046006BEBCC /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFFC73126786C6A00C4104F /* libaura.dylib */; };
 		9AC01E2F2748D057006BEBCC /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFFC75026786CAD00C4104F /* libaxis.dylib */; };
-		9AC01E302748D060006BEBCC /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFFC75126786CAD00C4104F /* libbase.dylib */; };
+		9AC01E302748D060006BEBCC /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AFFC75126786CAD00C4104F /* libberg.dylib */; };
 		9AC01E3E2748D129006BEBCC /* libcrypto_openssl.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC01E3A2748D0E0006BEBCC /* libcrypto_openssl.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AE5CC8F22CBECAE00EDEAD1 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */; };
 		9AED730C2751960F00397A57 /* libexperience_core.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AED7309275195F800397A57 /* libexperience_core.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -44,7 +44,7 @@
 		9AFFC74D26786C8700C4104F /* libaura_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AFFC74A26786C8700C4104F /* libaura_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AFFC74F26786C8700C4104F /* libaura_posix.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AFFC74B26786C8700C4104F /* libaura_posix.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AFFC75326786CAE00C4104F /* libaxis.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AFFC75026786CAD00C4104F /* libaxis.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9AFFC75526786CAE00C4104F /* libbase.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AFFC75126786CAD00C4104F /* libbase.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AFFC75526786CAE00C4104F /* libberg.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AFFC75126786CAD00C4104F /* libberg.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,7 +205,7 @@
 				9AB3DE84278386270025099F /* libssl.dylib in Embed Libraries */,
 				9AFFC73626786C6B00C4104F /* libacme_apple.dylib in Embed Libraries */,
 				9AFFC74726786C6B00C4104F /* libaura.dylib in Embed Libraries */,
-				9AFFC75526786CAE00C4104F /* libbase.dylib in Embed Libraries */,
+				9AFFC75526786CAE00C4104F /* libberg.dylib in Embed Libraries */,
 				9A842CB7271BDAC200C64F6F /* libwrite_text_quartz2d.dylib in Embed Libraries */,
 				9AFFC74026786C6B00C4104F /* libapex_macos.dylib in Embed Libraries */,
 				9AFFC75326786CAE00C4104F /* libaxis.dylib in Embed Libraries */,
@@ -269,7 +269,7 @@
 		9AFFC74A26786C8700C4104F /* libaura_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AFFC74B26786C8700C4104F /* libaura_posix.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_posix.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AFFC75026786CAD00C4104F /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AFFC75126786CAD00C4104F /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AFFC75126786CAD00C4104F /* libberg.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libberg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,7 +277,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AC01E302748D060006BEBCC /* libbase.dylib in Frameworks */,
+				9AC01E302748D060006BEBCC /* libberg.dylib in Frameworks */,
 				9AC01E2F2748D057006BEBCC /* libaxis.dylib in Frameworks */,
 				9AC01E2E2748D046006BEBCC /* libaura.dylib in Frameworks */,
 				9AC01E2D2748D03C006BEBCC /* libaqua.dylib in Frameworks */,
@@ -409,7 +409,7 @@
 				9A842CB1271BDA6B00C64F6F /* libwindowing_macos.dylib */,
 				9AF8CEDC271B9CB300BF80B7 /* libidn.dylib */,
 				9AFFC75026786CAD00C4104F /* libaxis.dylib */,
-				9AFFC75126786CAD00C4104F /* libbase.dylib */,
+				9AFFC75126786CAD00C4104F /* libberg.dylib */,
 				9AFFC74A26786C8700C4104F /* libaura_macos.dylib */,
 				9AFFC74B26786C8700C4104F /* libaura_posix.dylib */,
 				9AFFC72A26786C6A00C4104F /* libacme_apple.dylib */,

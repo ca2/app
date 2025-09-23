@@ -7,7 +7,11 @@
 #include "aura/graphics/image/image.h"
 
 
+#if defined(USE_PORT_FREEIMAGE)
+#include <port_freeimage/FreeImage.h>
+#else
 #include <FreeImage.h>
+#endif
 
 
 CLASS_DECL_APEX void set_bypass_cache_if_empty(::payload& payloadFile);

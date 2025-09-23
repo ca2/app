@@ -479,7 +479,7 @@ public:
 
          this->m_end = end;
 
-         this->m_erange = (enum_range) (erange & ~e_range_scoped_ownership);
+         //this->m_erange = (enum_range) (erange & ~e_range_scoped_ownership);
 
          this->m_pbasedata = pbasedata;
 
@@ -1035,7 +1035,7 @@ public:
 
          this->m_end = range.m_end;
 
-         this->m_erange = (enum_range)(range.m_erange & ~e_range_scoped_ownership);
+         //this->m_erange = (enum_range)(range.m_erange & ~e_range_scoped_ownership);
 
          this->m_pbasedata = range.m_pbasedata;
 
@@ -1111,7 +1111,7 @@ public:
 
          this->m_end = range.m_end;
 
-         this->m_erange = (enum_range) (range.m_erange & ~e_range_scoped_ownership);
+         //this->m_erange = (enum_range) (range.m_erange & ~e_range_scoped_ownership);
 
          this->m_pbasedata = range.m_pbasedata;
 
@@ -1471,54 +1471,58 @@ public:
    inline CHARACTER * get_buffer(character_count characterCount = -1)
    {
 
-      auto p = (CHARACTER *) this->m_begin;
+      this->defer_set_size<t_bPreserve>(characterCount);
 
-      if (::is_set(this->m_pbasedata))
-      {
+      return (CHARACTER*)this->m_begin;
 
-         auto pbasedata = this->m_pbasedata;
-
-#ifdef _DEBUG
-
-         if (::is_set(pbasedata) && pbasedata->m_countReference <= 0)
-         {
-
-            __what__(1);
-
-         }
-
-#endif
-
-         if (::is_null(pbasedata) || pbasedata->base_data_is_shared() || characterCount > pbasedata->storage_character_count())
-         {
-
-            p = fork_string<true, t_bPreserve >(characterCount > 0 ? characterCount : this->size());
-
-         }
-         else
-         {
-
-            this->m_end = this->m_begin + (characterCount > 0 ? characterCount : this->size());
-
-         }
-         //else
-         //{
-
-         //   this->metadata()->set_character_count(characterCount);
-
-         //   this->m_end = this->m_begin + characterCount;
-
-         //}
-
-      }
-      else
-      {
-
-         p = create_string<t_bPreserve>(characterCount);
-
-      }
-
-      return p;
+//       auto p = (CHARACTER *) this->m_begin;
+//
+//       if (::is_set(this->m_pbasedata))
+//       {
+//
+//          auto pbasedata = this->m_pbasedata;
+//
+// #ifdef _DEBUG
+//
+//          if (::is_set(pbasedata) && pbasedata->m_countReference <= 0)
+//          {
+//
+//             __what__(1);
+//
+//          }
+//
+// #endif
+//
+//          if (::is_null(pbasedata) || pbasedata->base_data_is_shared() || characterCount > pbasedata->storage_character_count())
+//          {
+//
+//             defer_set_size<true, t_bPreserve >(characterCount > 0 ? characterCount : this->size());
+//
+//          }
+//          else
+//          {
+//
+//             this->m_end = this->m_begin + (characterCount > 0 ? characterCount : this->size());
+//
+//          }
+//          //else
+//          //{
+//
+//          //   this->metadata()->set_character_count(characterCount);
+//
+//          //   this->m_end = this->m_begin + characterCount;
+//
+//          //}
+//
+//       }
+//       else
+//       {
+//
+//          p = create_string<t_bPreserve>(characterCount);
+//
+//       }
+//
+//       return p;
 
    }
 
@@ -1656,9 +1660,17 @@ public:
    }
 
 
+   /// bit less drafty, more conclusive: t_bWasString template is rather easily, fastly
+   /// and cheaply deductable, dynamically
+   /// and more correctly determined by the presence of m_pbasedata
    /// draft: all allocation, release and assignment done
-   template < bool t_bWasString, bool t_bPreserve >
-   inline CHARACTER * fork_string(character_count characterCount)
+   /// changed name fork_string to defer_set_size
+   /// to sound friendlier and convey the idea that
+   /// probably this->_set_length(lengthNew);
+   /// should still be called
+   template < bool t_bPreserve >
+   //inline CHARACTER * fork_string(character_count characterCount)
+   inline void defer_set_size(character_count characterCount)
    {
 
       auto old_size = this->size();
@@ -1671,19 +1683,16 @@ public:
 
       /// if this string had heap string storage,
       /// checks if old storage can hold new requested size.
-      if constexpr (t_bWasString)
+      if (::is_set(pbasedataOld) &&
+         !pbasedataOld->base_data_is_shared() &&
+         lengthNew <= pbasedataOld->storage_character_count())
       {
 
-         if (::is_set(pbasedataOld) &&
-            !pbasedataOld->base_data_is_shared() &&
-            lengthNew <= pbasedataOld->storage_character_count())
-         {
+//         this->_set_length(lengthNew);
 
-            this->_set_length(lengthNew);
+         //return (CHARACTER *) this->m_begin;
 
-            return (CHARACTER *) this->m_begin;
-
-         }
+         return;
 
       }
 
@@ -1705,7 +1714,7 @@ public:
 
       auto pdata = pbasedata->data();
 
-      if constexpr (t_bWasString)
+      if (pbasedataOld)
       {
 
          ASSERT(::is_null(pbasedataOld) || pbasedataOld->m_countReference >= 1);
@@ -1734,22 +1743,118 @@ public:
       if (::is_set(pbasedataOld))
       {
 
-         if constexpr (t_bWasString)
-         {
+         //if constexpr (t_bWasString)
+         //{
 
             ::release_base_data(pbasedataOld);
 
-         }
+         //}
 
       }
 
       this->m_begin = pdata;
 
-      this->_set_length(lengthNew);
+      //this->_set_length(lengthNew);
 
-      return pdata;
+      //return pdata;
 
    }
+
+
+   // /// draft: all allocation, release and assignment done
+   // template < bool t_bWasString, bool t_bPreserve >
+   // inline CHARACTER * fork_string(character_count characterCount)
+   // {
+   //
+   //    auto old_size = this->size();
+   //
+   //    auto lengthNew = characterCount;
+   //
+   //    auto pbasedataOld = this->m_pbasedata;
+   //
+   //    auto pdataOld = this->m_begin;
+   //
+   //    /// if this string had heap string storage,
+   //    /// checks if old storage can hold new requested size.
+   //    if constexpr (t_bWasString)
+   //    {
+   //
+   //       if (::is_set(pbasedataOld) &&
+   //          !pbasedataOld->base_data_is_shared() &&
+   //          lengthNew <= pbasedataOld->storage_character_count())
+   //       {
+   //
+   //          this->_set_length(lengthNew);
+   //
+   //          return (CHARACTER *) this->m_begin;
+   //
+   //       }
+   //
+   //    }
+   //
+   //    //auto allocationSize
+   //
+   //    //if constexpr(t_bWasString)
+   //    //{
+   //
+   //    //   if (this->m_erange & e_range_buffer && lengthNew >= 16_KiB)
+   //    //   {
+   //
+   //    //      allocationSize *= 2;
+   //
+   //    //   }
+   //
+   //    //}
+   //
+   //    auto pbasedata = this->create_string_data2(lengthNew, this->m_erange);
+   //
+   //    auto pdata = pbasedata->data();
+   //
+   //    if constexpr (t_bWasString)
+   //    {
+   //
+   //       ASSERT(::is_null(pbasedataOld) || pbasedataOld->m_countReference >= 1);
+   //
+   //    }
+   //
+   //    if (::is_set(pdataOld))
+   //    {
+   //
+   //       if constexpr (t_bPreserve)
+   //       {
+   //
+   //          auto sizeCopy = minimum(old_size, lengthNew);
+   //
+   //          if (sizeCopy > 0)
+   //          {
+   //
+   //             memory_copy((void*)pdata, pdataOld, sizeCopy * sizeof(CHARACTER));
+   //
+   //          }
+   //
+   //       }
+   //
+   //    }
+   //
+   //    if (::is_set(pbasedataOld))
+   //    {
+   //
+   //       if constexpr (t_bWasString)
+   //       {
+   //
+   //          ::release_base_data(pbasedataOld);
+   //
+   //       }
+   //
+   //    }
+   //
+   //    this->m_begin = pdata;
+   //
+   //    this->_set_length(lengthNew);
+   //
+   //    return pdata;
+   //
+   // }
 
 
    ///// <summary>
@@ -1773,32 +1878,32 @@ public:
    //CHARACTER * fork_string(character_count character_count);
 
 
-   template < bool t_bPreserve >
-   CHARACTER * defer_fork_string(character_count character_count)
-   {
-
-      if (::is_null(this->m_pbasedata))
-      {
-
-         return fork_string<false, t_bPreserve>(character_count);
-
-      }
-
-      auto pbasedata = this->m_pbasedata;
-
-      auto p = pbasedata->data();
-
-      if (::is_set(pbasedata)
-         && (pbasedata->base_data_is_shared() || character_count > pbasedata->storage_character_count()))
-      {
-
-         p = fork_string<true, t_bPreserve>(character_count);
-
-      }
-
-      return p;
-
-   }
+   // template < bool t_bPreserve >
+   // CHARACTER * defer_fork_string(character_count character_count)
+   // {
+   //
+   //    if (::is_null(this->m_pbasedata))
+   //    {
+   //
+   //       return fork_string<false, t_bPreserve>(character_count);
+   //
+   //    }
+   //
+   //    auto pbasedata = this->m_pbasedata;
+   //
+   //    auto p = pbasedata->data();
+   //
+   //    if (::is_set(pbasedata)
+   //       && (pbasedata->base_data_is_shared() || character_count > pbasedata->storage_character_count()))
+   //    {
+   //
+   //       p = fork_string<true, t_bPreserve>(character_count);
+   //
+   //    }
+   //
+   //    return p;
+   //
+   // }
 
 
    //void _fork_string();

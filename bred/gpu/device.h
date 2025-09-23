@@ -79,7 +79,7 @@ namespace gpu
       enum_device_target                        m_edevicetarget;
       ::procedure_array                         m_procedureaOnTopFrameEnd;
       ::pointer_array < pool_group >            m_poolgroupaFrame;
-      ::array < ::pointer_array < ::particle > >m_particleaFrame;
+      ::pointer_array < ::pointer_array < ::particle > >m_particleaFrame;
 
       ::pointer_array < ::gpu::frame_storage >     m_framestoragea;
       ::pointer_array < ::gpu::frame_ephemeral >   m_frameephemerala;

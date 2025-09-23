@@ -147,36 +147,36 @@ void assert_atom_with_e_range_string_literal(const ::atom& atom)
 }
 
 
-void assert_scoped_string_ok2(const ::scoped_string& scopedstr)
-{
-
-   if (scopedstr.m_erange & e_range_scoped_ownership)
-   {
-
-      if (!scopedstr.m_pbasedata)
-      {
-
-         throw "assert_scoped_string_with_e_range_string failed";
-
-      }
-
-   }
-
-}
-
-
-void assert_scoped_string_ok(const ::scoped_string& scopedstr)
-{
-
-   // if (scopedstr.m_erange != e_range_string)
-   // {
-   //
-   //    //throw "assert_scoped_string_with_e_range_string failed";
-   //
-   // }
-   assert_scoped_string_ok2(scopedstr);
-
-}
+//void assert_scoped_string_ok2(const ::scoped_string& scopedstr)
+//{
+//
+/////   if (scopedstr.m_erange & e_range_scoped_ownership)
+////   {
+//
+//      if (!scopedstr.m_pbasedata)
+//      {
+//
+//         throw "assert_scoped_string_with_e_range_string failed";
+//
+//      }
+//
+//   ///}
+//
+//}
+//
+//
+//void assert_scoped_string_ok(const ::scoped_string& scopedstr)
+//{
+//
+//   // if (scopedstr.m_erange != e_range_string)
+//   // {
+//   //
+//   //    //throw "assert_scoped_string_with_e_range_string failed";
+//   //
+//   // }
+//   assert_scoped_string_ok2(scopedstr);
+//
+//}
 
 CLASS_DECL_ACME void log_const_ansi_range_literal(int n)
 {

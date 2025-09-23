@@ -1,8 +1,11 @@
 #include "framework.h"
 #include "acme/filesystem/file/file.h"
 
-
+#if defined(USE_PORT_FREEIMAGE)
+#include <port_freeimage/FreeImage.h>
+#else
 #include <FreeImage.h>
+#endif
 
 
 unsigned int _stdcall ___Ex1File__WriteProc(void * buffer, unsigned int size, unsigned int count, fi_handle handle)

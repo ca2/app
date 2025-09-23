@@ -84,7 +84,7 @@ list(APPEND library_source
         #prototype/promise_predicate/synchronized_predicate_routine.h
         #process/_.cpp
         _.cpp
-        _finish.h
+        #_finish.h
 
         #__matter_ca2.cpp
         compress/_.h
@@ -3135,7 +3135,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
         list(APPEND static_this_system_libraries z pthread iconv kvm c)
         message(STATUS "OPENBSD acme this_system_libraries ${this_system_libraries}")
     elseif (${FREEBSD})
-        message(SEND_ERROR "test is really freebsd?!")
+        message(STATUS "test is really freebsd?!")
         list(APPEND this_system_libraries z dl pthread iconv execinfo elf)
         list(APPEND static_this_system_libraries z pthread iconv execinfo elf)
         message(STATUS "FREEBSD acme this_system_libraries ${this_system_libraries}")

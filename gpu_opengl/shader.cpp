@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "lock.h"
+//#include "_gpu_opengl.h"
 #include "input_layout.h"
 #include "render_target.h"
 #include "renderer.h"
@@ -844,7 +844,9 @@ namespace gpu_opengl
          case ::gpu::e_type_mat4:
             _set_mat4(p->m_pszName, *(glm::mat4*)(m_propertiesPush.data() + iLen));
             break;
-
+        default:
+        throw ::exception(error_not_expected);
+        break;
          }
 
          auto iLenItem = ::gpu::get_type_size(p->m_etype);

@@ -1,5 +1,6 @@
 // Created by camilo on 2022-04-25 21:02 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "approach.h"
 #include "device.h"
 #include "object.h"
@@ -9,6 +10,8 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "assimp.h"
 #include "approach.h"
+
+
 
 //#include <GLUT/GLUT.h>
 

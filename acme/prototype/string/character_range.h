@@ -103,7 +103,8 @@ public:
    
       this->m_pbasedata = pbasedata;
 
-      if (::is_set(this->m_pbasedata) && !(erange & e_range_scoped_ownership))
+//      if (::is_set(this->m_pbasedata) && !(erange & e_range_scoped_ownership))
+         if (::is_set(this->m_pbasedata))
       {
 
          this->m_pbasedata->base_data_increment_reference_count();
@@ -155,7 +156,8 @@ public:
 
       this->m_pbasedata = characterrange.m_pbasedata;
 
-      if (::is_set(this->m_pbasedata) && !(this->m_erange & e_range_scoped_ownership))
+      //if (::is_set(this->m_pbasedata) && !(this->m_erange & e_range_scoped_ownership))
+      if (::is_set(this->m_pbasedata))
       {
 
          this->m_pbasedata->base_data_increment_reference_count();
@@ -316,20 +318,46 @@ public:
    }
 
 
-   void construct_string(ITERATOR_TYPE start, ITERATOR_TYPE end, enum_range erange = e_range_none)
+   template < typename SAME_ITERATOR_TYPE >
+   void construct_string(SAME_ITERATOR_TYPE start, SAME_ITERATOR_TYPE end, enum_range erange = e_range_none, typename ::character_range<SAME_ITERATOR_TYPE>::BASE_DATA * pbasedata = nullptr)
+   requires (sizeof(get_iterator_item < SAME_ITERATOR_TYPE >) == sizeof(CHARACTER))
    {
 
       auto length = end - start;
 
       auto lengthNew = string_safe_length2(start, length);
 
-      auto pbasedata = this->create_string_data2(lengthNew, erange);
+      if (::is_set(pbasedata))
+      {
 
-      auto pdata = pbasedata->data();
+         if (pbasedata->data() != start || length > pbasedata->storage_character_count())
+         {
 
-      this->m_begin = pdata;
+            throw "wrong state in construct string (1)";
 
-      memory_transfer(pdata, start, lengthNew);
+         }
+
+         pbasedata->base_data_increment_reference_count();
+
+         this->m_pbasedata = pbasedata;
+
+         this->m_erange = erange;
+
+         this->m_begin = start;
+
+      }
+      else
+      {
+
+         auto pbasedata = this->create_string_data2(lengthNew, erange);
+
+         auto pdata = pbasedata->data();
+
+         this->m_begin = pdata;
+
+         memory_transfer(pdata, start, lengthNew);
+
+      }
 
       this->_set_length(lengthNew);
 

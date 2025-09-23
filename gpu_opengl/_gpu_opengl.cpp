@@ -1,5 +1,6 @@
 // Created by camilo on 2025-06-15 18:14 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 
 
 namespace opengl
@@ -95,7 +96,7 @@ void defer_throw_gl_error()
 
       ::string strOpenGLError;
 
-      strOpenGLError.formatf("OpenGL error %d", strOpenGLError);
+      strOpenGLError.formatf("OpenGL error %d", iGlError);
 
       throw ::exception(error_failed, strOpenGLError);
 

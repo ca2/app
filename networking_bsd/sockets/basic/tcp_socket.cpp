@@ -742,7 +742,7 @@ m_ibuf(isize)
       else
       {
          attach(s);
-         SetCallOnConnect(); // base_socket_handler must call OnConnect
+         set_call_on_connect(); // base_socket_handler must call OnConnect
       }
 
       set_connection_start_time();
@@ -1350,7 +1350,7 @@ m_ibuf(isize)
       if (is_true("from_pool") && CallOnConnect())
       {
 
-         SetCallOnConnect(false);
+         clear_call_on_connect();
          SetConnected(true);
          OnConnect();
 
@@ -1365,7 +1365,7 @@ m_ibuf(isize)
          {
             set(!IsDisableRead(), false);
             set_connecting(false);
-            SetCallOnConnect();
+            set_call_on_connect();
             return;
          }
 
@@ -1880,7 +1880,7 @@ m_ibuf(isize)
       else
       {
 
-         SetRetryClientConnect();
+         set_retry_client_connect();
 
       }
 
@@ -3146,7 +3146,7 @@ m_ibuf(isize)
          if (OnConnectRetry())
          {
 
-            SetRetryClientConnect();
+            set_retry_client_connect();
 
          }
          else

@@ -46,6 +46,77 @@ public:
    bool add_head_unique(ARG_TYPE t);
 
 
+   bool add_unique(ARG_TYPE t)
+   {
+
+      auto pFind = this->find_first_item(t);
+
+      if (pFind)
+      {
+
+         return false;
+
+      }
+
+      this->add_tail(t);
+
+      return true;
+
+   }
+
+
+   void change(ARG_TYPE t, bool bAdd)
+   {
+
+      auto pFind = this->find_first_item(t);
+
+      if(pFind)
+      {
+
+         if (!bAdd)
+         {
+
+            this->erase(pFind);
+
+         }
+
+      }
+      else
+      {
+
+         if (bAdd)
+         {
+
+            this->add(t);
+
+         }
+
+      }
+
+   }
+
+
+   void toggle(ARG_TYPE t)
+   {
+
+      auto pFind = this->find_first_item(t);
+
+      if (pFind)
+      {
+
+         this->erase(pFind);
+
+      }
+      else
+      {
+
+         this->add(t);
+
+      }
+
+   }
+
+
    template < primitive_container CONTAINER >
    void merge_tail(const CONTAINER & container);
    template < primitive_container CONTAINER >
@@ -447,22 +518,19 @@ bool comparable_eq_list_base < TYPE, ARG_TYPE , LIST_BASE >::erase_first(const T
 
 
 template<class TYPE, class ARG_TYPE, class LIST_BASE>
-::collection::count comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::erase(const TYPE &t, iterator p, iterator end)
+::collection::count comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::erase(const TYPE &t, iterator start, iterator end)
 {
+
+   auto p = start;
+
+   auto begin = this->m_begin;
 
    if (!p)
    {
 
-      p = this->m_begin;
+      p = begin;
 
    }
-
-   // if (!end)
-   // {
-   //
-   //    end = this->m_end;
-   //
-   // }
 
    ::collection::count count = 0;
 
@@ -488,14 +556,10 @@ template<class TYPE, class ARG_TYPE, class LIST_BASE>
 
       }
 
-
-
-
-
-
    }
 
    return count;
+
 }
 
 

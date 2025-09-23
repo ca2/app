@@ -17,7 +17,7 @@
 //    ::pointer <::gpu::context > allocate_egl_context(::particle * pparticle)
 //    {
 //
-//       return pparticle->__create_new < context_egl >();
+//       return pparticle->øcreate_new < context_egl >();
 //
 //    }
 //

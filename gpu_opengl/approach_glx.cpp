@@ -1,4 +1,12 @@
 #include "framework.h"
+#if defined(MACOS)
+#include <OpenGL/OpenGL.h>
+//#include <glad/glad.h>
+//#include <OpenGL/CGLTypes.h>
+//////#include <OpenGL/glu.h>
+#include <OpenGL/gl3.h>
+#include <OpenGL/glext.h>
+#endif
 #include "approach.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/file_context.h"

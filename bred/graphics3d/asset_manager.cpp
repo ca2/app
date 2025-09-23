@@ -244,8 +244,8 @@ namespace graphics3d
                   if (prenderable->renderable_type() == ::gpu::e_renderable_type_wavefront_obj)
                   {
                      // auto model = loadObjModel(name, path, false);
-                     information("[asset_manager] Successfully loaded OBJ model '{}' from '{}'", prenderable->m_strName,
-                                 prenderable->m_path);
+                     informationf("[asset_manager] Successfully loaded OBJ model '%s' from '%s'", prenderable->m_strName.c_str(),
+                                 prenderable->m_path.c_str());
                   }
                   else if (prenderable->renderable_type() == ::gpu::e_renderable_type_gltf)
                   {
@@ -261,19 +261,19 @@ namespace graphics3d
                         //m_mapSkyboxRenderable[strName] = prenderable;
                         m_prenderableSkybox = prenderable;
                      }
-                     information("[asset_manager] Successfully loaded glTF model '{}' from '{}'",
-                                 prenderable->m_strName, prenderable->m_path);
+                     informationf("[asset_manager] Successfully loaded glTF model '%s' from '%s'",
+                                 prenderable->m_strName.c_str(), prenderable->m_path.c_str());
                   }
                   else
                   {
 
-                     warning("[asset_manager] Unknown model type '{}' for asset '{}'",
-                             prenderable->m_strRenderableType1, prenderable->m_path);
+                     warningf("[asset_manager] Unknown model type '%s' for asset '%s'",
+                             prenderable->m_strRenderableType1.c_str(), prenderable->m_path.c_str());
                   }
                }
                catch (const ::exception &e)
                {
-                  error("[asset_manager] Failed to load model '{}': {}", strName, e.get_message());
+                  errorf("[asset_manager] Failed to load model '%s': %s", strName.c_str(), e.get_message().c_str());
                }
                m_mapRenderable.set_at(strName, prenderable);
             }
@@ -381,7 +381,7 @@ namespace graphics3d
 
                if (!ptextureCubemap)
                {
-                  error("[asset_manager] loadCubemap returned nullptr for '{}'", strName);
+                  errorf("[asset_manager] loadCubemap returned nullptr for '%s'", strName.c_str());
                   continue;
                }
 
@@ -392,7 +392,7 @@ namespace graphics3d
 
                m_mapSkyboxTexture[strName] = ptextureCubemap;
 
-               information("[asset_manager] Successfully loaded cubemap '{}' from '{}'", strName, path);
+               informationf("[asset_manager] Successfully loaded cubemap '%s' from '%s'", strName.c_str(), path.c_str());
 
                // If this cubemap is the environment (skybox_hdr per your JSON), remember it.
                // Use the name you expect in your code / JSON. I see "skybox_hdr" in your example JSON.
@@ -404,7 +404,7 @@ namespace graphics3d
             }
             catch (const ::exception &e)
             {
-               error("[asset_manager] Failed to load cubemap '{}': {}", strName, e.get_message());
+               errorf("[asset_manager] Failed to load cubemap '%s': %s", strName.c_str(), e.get_message().c_str());
             }
          }
 
@@ -463,7 +463,7 @@ namespace graphics3d
          }
          catch (const ::exception &e)
          {
-            error("[asset_manager] IBL generation failed: {}", e.get_message());
+            errorf("[asset_manager] IBL generation failed: %s", e.get_message().c_str());
          }
       }
 

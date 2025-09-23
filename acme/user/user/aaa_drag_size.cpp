@@ -41,7 +41,7 @@ namespace user
    void drag_size_client::enable_drag_size()
    {
 
-      __construct_new(m_pdragsize);
+      øconstruct_new(m_pdragsize);
 
    }
 

@@ -569,10 +569,10 @@ public:
    ::pointer<subparticle>__call__id_create(const ::atom& atom, ::factory::factory * pfactory = nullptr);
 
    template < typename TYPE >
-   inline ::pointer<TYPE> __call__create_new();
+   inline ::pointer<TYPE> __calløcreate_new();
 
    template < typename TYPE >
-   inline ::pointer<TYPE> __call__create_new_clone(TYPE * p);
+   inline ::pointer<TYPE> __calløcreate_new_clone(TYPE * p);
 
    template < typename T, typename ...Args >
    ::pointer < T > __calløallocate_and_initialize(Args &&... args)
@@ -647,7 +647,7 @@ public:
 
    /// consumes a referer
    template < typename T >
-   ::pointer < T > __call__create_new_clone(const T * pSource)
+   ::pointer < T > __calløcreate_new_clone(const T * pSource)
    {
 
       auto p = this->øcreate_new< T >();

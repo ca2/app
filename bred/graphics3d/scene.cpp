@@ -133,7 +133,7 @@ namespace graphics3d
 
          ppointlight->transform().m_vec3Position = pos;
 
-         information("Placed point light at ({}, {}, {})", pos.x, pos.y, pos.z);
+         informationf("Placed point light at (%0.2f, %0.2f,%0.2f)", pos.x, pos.y, pos.z);
 
          // m_mapSceneObject.set_at(ppointlight->m_strName, std::move(ppointlight));
       }
@@ -300,8 +300,8 @@ namespace graphics3d
       psceneobject->transform().m_vec3Rotation = {rot[0], rot[1], rot[2]};
       psceneobject->transform().m_vec3Scale = {scl[0], scl[1], scl[2]};
 
-      information("Loaded GameObject '{}' - Pos: ({}, {}, {}), Rot: ({}, {}, {}), Scale: ({}, {}, {})",
-                  setObject.get("name", "unnamed"), pos[0], pos[1], pos[2], rot[0], rot[1], rot[2], scl[0], scl[1],
+      informationf("Loaded GameObject '%s' - Pos: (%0.2f, %0.2f, %0.2f), Rot: (%0.2f, %0.2f, %0.2f), Scale: (%0.2f, %0.2f, %0.2f)",
+                  setObject.get("name", "unnamed").c_str(), pos[0], pos[1], pos[2], rot[0], rot[1], rot[2], scl[0], scl[1],
                   scl[2]);
 
 
@@ -345,7 +345,7 @@ namespace graphics3d
 
       }
 
-      information("Loading scene file: {} ({})", fileName, path);
+      informationf("Loading scene file: %s (%s)", fileName.c_str(), path.c_str());
 
       if (sceneJson.has_property("camera"))
       {
@@ -376,7 +376,7 @@ namespace graphics3d
 
       }
 
-      information("Scene '{}' loaded. Total objects: {}", fileName, m_mapSceneObject.size());
+      informationf("Scene '%s' loaded. Total objects: %d", fileName.c_str(), m_mapSceneObject.size());
 
    }
 

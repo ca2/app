@@ -71,8 +71,8 @@ public:
    ::collection::index add_item(ARG_TYPE newElement);
    ::collection::index append(const TYPE * p, ::collection::count c);
    ::collection::index append(const raw_array_base& src);
-   virtual TYPE * add_new(::collection::count count);
-   virtual TYPE & add_new();
+   TYPE * add_new(::collection::count count);
+   TYPE & add_new();
 
    //::collection::index append(const raw_array_base& src);
    //void copy(const raw_array_base& src);

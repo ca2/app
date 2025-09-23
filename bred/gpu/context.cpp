@@ -2027,9 +2027,9 @@ return {};
          else
          {
 
-            warning("[context::load_model] Unknown model type '{}' for asset '{}'",
-               model.m_strRenderableType1,
-               model.m_strName);
+            warningf("[context::load_model] Unknown model type '%s' for asset '%s'",
+               model.m_strRenderableType1.c_str(),
+               model.m_strName.c_str());
 
          }
 
@@ -2037,7 +2037,7 @@ return {};
       catch (const ::exception &e)
       {
 
-         error("[asset_manager] Failed to load model '{}': {}", model.m_strName, e.get_message());
+         errorf("[asset_manager] Failed to load model '%s': %s", model.m_strName.c_str(), e.get_message().c_str());
 
       }
 

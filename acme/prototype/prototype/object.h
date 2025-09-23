@@ -104,6 +104,9 @@ public:
    virtual void task_erase(::task* ptask) override;
 
 
+   virtual void notify(::enum_id eid, ::handler_context * phandlercontext = nullptr);
+
+
    virtual void sleep(const class ::time& time);
 
 

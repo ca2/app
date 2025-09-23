@@ -480,10 +480,10 @@ namespace apex
       //virtual bool is_set_finish() const override;
 
 
-      virtual void on_change_theme() override;
-
-
-      virtual string get_theme() override;
+      // virtual void on_change_theme() override;
+      //
+      //
+      // virtual string get_theme() override;
 
 
       //virtual bool start_application(::request * prequest);

@@ -479,11 +479,11 @@ namespace apex
    }
 
 
-   void application::on_change_theme()
-   {
-
-
-   }
+   // void application::on_change_theme()
+   // {
+   //
+   //
+   // }
 
 
    //string application::get_theme()
@@ -10015,12 +10015,12 @@ namespace apex
    }
 
 
-   string application::get_theme()
-   {
-
-      return "";
-
-   }
+   // string application::get_theme()
+   // {
+   //
+   //    return "";
+   //
+   // }
 
 
    void application::initialize_contextualized_theme()

@@ -5105,7 +5105,7 @@ namespace draw2d
 
             }
 
-            char * psz = str.get_buffer(maximum(0, i));
+            char * psz = str.get_buffer<true>(maximum(0, i));
 
             while (i > 0)
             {

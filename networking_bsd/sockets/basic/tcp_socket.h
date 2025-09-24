@@ -314,6 +314,7 @@ namespace sockets_bsd
       /** SSL; get ssl password. */
       string GetPassword() override;
 
+      void set_no_ssl_shutdown() override;
 
       string get_url() override;
 

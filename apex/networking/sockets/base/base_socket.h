@@ -644,6 +644,7 @@ namespace sockets
       virtual bool IsSSLNegotiate();
       /** Set flag indicating ssl handshaking still in progress. */
       virtual void SetSSLNegotiate(bool x = true);
+      virtual void set_no_ssl_shutdown();
       /** OnAccept called with SSL Enabled.
       \return true if this is a tcp_socket with an incoming SSL connection */
       virtual bool IsSSLServer();

@@ -26,13 +26,16 @@ namespace sockets_bsd
 
       int                              m_iSslCtxRetry;
 
-      ::pointer<ssl_client_context>   m_pclientcontext;
+      ::pointer<ssl_client_context>    m_pclientcontext;
       SSL *                            m_ssl; ///< ssl 'socket'
       BIO *                            m_sbio; ///< ssl bio
+      ///< probably SSL_ERROR_SSL happened, if closing, SSL_shutdown
+      /// shouldn't be called
+      bool                             m_bNoSslShutdown;
 
 
       ssl_context();
-      virtual ~ssl_context();
+      ~ssl_context() override;
 
 
       void close();

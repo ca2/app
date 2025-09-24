@@ -622,6 +622,8 @@ namespace sockets_bsd
       bool IsSSLNegotiate() override;
       /** Set flag indicating ssl handshaking still in progress. */
       void SetSSLNegotiate(bool x = true) override;
+      /** Set flag indicating that ssl shutdown shouldn't be called when stopping the connection. */
+      void set_no_ssl_shutdown() override;
       /** OnAccept called with SSL Enabled.
       \return true if this is a tcp_socket with an incoming SSL connection */
       bool IsSSLServer() override;

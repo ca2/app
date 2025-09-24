@@ -2361,6 +2361,23 @@ m_ibuf(isize)
    }
 
 
+   void tcp_socket::set_no_ssl_shutdown()
+   {
+
+      if (!m_psslcontext)
+      {
+
+         warning() << "tcp_socket::set_no_ssl_shutdown: SSL Context is nullptr";
+
+         return;
+
+      }
+
+      m_psslcontext->m_bNoSslShutdown = true;
+
+   }
+
+
    bool tcp_socket::SSLNegotiate_Server()
    {
 
@@ -2432,6 +2449,24 @@ m_ibuf(isize)
          {
 
             information() << "SSL_accept return code is SSL_ERROR_WANT_ACCEPT";
+
+         }
+         else if (iSslError == SSL_ERROR_SSL)
+         {
+
+            // According to OpenSSL documentation, if SSL_ERROR_SSL 
+            // error has happened, a fatal error occurred and 
+            // SSL_shutdown shouldn't be called.
+
+            information() << "SSLNegotiate SSL_accept() failed with SSL_ERROR_SSL (1) network error = : " << iError;
+
+            set_no_ssl_shutdown();
+
+            SetSSLNegotiate(false);
+
+            SetCloseAndDelete(true);
+
+            OnSSLAcceptFailed();
 
          }
          else

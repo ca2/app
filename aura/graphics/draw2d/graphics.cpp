@@ -5334,7 +5334,7 @@ namespace draw2d
 
       //bool bBilboRaspi = str.case_insensitive_equals("bilbo-raspi");
 
-      int iLeft = rectangle.left();
+      int iLeft = (int) rectangle.left();
 
       // if (bBilboRaspi)
       // {

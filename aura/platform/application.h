@@ -455,8 +455,8 @@ namespace aura
       //virtual bool is_set_finish() const override;
 
 
-      virtual void on_change_theme() override;
-      virtual string get_theme() override;
+      // virtual void on_change_theme() override;
+      // virtual string get_theme() override;
 
 
       //virtual ::pointer<::acme::exclusive>get_exclusive(const ::scoped_string & scopedstr, LPSECURITY_ATTRIBUTES psa) override;

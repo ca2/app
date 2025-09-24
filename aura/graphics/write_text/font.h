@@ -43,24 +43,61 @@ namespace write_text
    public:
 
 
-      class text
+      class CLASS_DECL_AURA text
       {
       public:
 
-         double_size          m_size;
-         bool              m_bSize;
-         wstring           m_wstr;
+
+         enum enum_size
+         {
+            e_size_word_break,
+            e_size_end_ellipsis,
+            e_size_case_3,
+            e_size_unbounded,
+            e_size_backend_draw_text,
+            e_size_count,
+
+         };
+
+         class CLASS_DECL_AURA item
+         {
+         protected:
+            bool m_bHasSize = false;
+            double_size m_size;
+            wstring     m_wstr;
+         public:
+
+            bool has_size() const;
+
+            ::double_size get_size() const;
+
+            void set_size(const ::double_size &size);
+
+            void set_text(const ::scoped_string & scopedstr);
+
+            ::wstring get_text() const;
+
+         };
+
+
+      private:
+
+         item m_itema[e_size_count];
+
+      public:
+
+
          void *            m_osdata[4];
 
-         text()
-         {
+         text();
 
-            m_bSize = false;
+         item * get_item(enum_size esize);
 
-         }
+
 
       };
 
+      static ::mutex *s_pmutexFontTextMap;
 
       //string                        m_strFontFamilyName;
       font_family_pointer           m_pfontfamily;

@@ -236,7 +236,7 @@ namespace platform
 
       }
 
-#else
+#elif !defined(ANDROID)
 
       if (!args)
       {

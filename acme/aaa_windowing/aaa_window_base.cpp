@@ -380,7 +380,7 @@ void window_base::handle(::topic * ptopic, ::handler_context * phandlercontext)
 //    //
 //    // }
 //    //
-//    // //   auto pmessagebox = pparticle->__create_new < message_box >();
+//    // //   auto pmessagebox = pparticle->øcreate_new < message_box >();
 //    // //
 //    // //   atom idResult;
 //    // //

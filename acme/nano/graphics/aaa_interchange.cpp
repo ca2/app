@@ -81,7 +81,7 @@ void interchange::on_initialize_particle()
    
    ::object::on_initialize_particle();
    
-   __øconstruct(m_pwindowbase);
+   øconstruct(m_pwindowbase);
    
    m_pwindowbase->m_puserinteractionbase = this;
    
@@ -301,7 +301,7 @@ void interchange::create_drawing_objects()
       
 #endif
       
-      __øconstruct(m_pfont, nullptr);
+      øconstruct(m_pfont, nullptr);
       
       m_pfont->m_iFontSize = m_iFontSize;
       
@@ -854,7 +854,7 @@ void interchange::_run_modal_loop()
 
       }
 
-       // //   auto pmessagebox = pparticle->__create_new < message_box >();
+       // //   auto pmessagebox = pparticle->øcreate_new < message_box >();
        // //
        // //   atom idResult;
        // //

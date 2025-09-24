@@ -2,20 +2,20 @@ cmake_minimum_required(VERSION 3.16)
 project(launch CXX)
 
 
-list(APPEND executable_source
-        #_curl.cpp
-        #_wget.cpp
+list(APPEND library_source
         application.cpp
         application.h
+)
+
+
+list(APPEND executable_source
         main.cpp
 )
 
 
-add_executable(${PROJECT_NAME}
-        ${executable_source}
-)
+add_executable(${PROJECT_NAME} ${executable_source})
 
-add_library(static_${PROJECT_NAME}_library STATIC ${executable_source})
+add_library(static_${PROJECT_NAME}_library STATIC ${library_source})
 
 
 if (MSVC)
@@ -47,6 +47,7 @@ if(${LINUX})
    target_link_options(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++)
 elseif(${FREEBSD})
    target_link_options(${PROJECT_NAME} PRIVATE -static)
+
 elseif(${OPENBSD})
    target_link_options(${PROJECT_NAME} PRIVATE -static)
 elseif(${NETBSD})
@@ -54,8 +55,19 @@ elseif(${NETBSD})
 endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE static_acme)
-target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_windows_common)
-target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_windows)
+
+if(${LINUX})
+   target_link_options(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++)
+elseif(${FREEBSD})
+   target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_posix)
+   target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_darwin)
+   target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_freebsd)
+elseif(${OPENBSD})
+   target_link_options(${PROJECT_NAME} PRIVATE -static)
+elseif(${WIN32})
+   target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_windows_common)
+   target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_windows)
+endif()
 
 add_dependencies(static_${PROJECT_NAME}_library static_acme)
 

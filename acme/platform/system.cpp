@@ -4458,46 +4458,46 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   string system::get_system_configuration()
-   {
-
-#ifndef CA2_PLATFORM_VERSION
-
-#error "CA2_PLATFORM_VERSION not defined"
-
-#endif
-
-#ifndef CA2_BASIS
-
-#error "CA2_BASIS not defined"
-
-#endif
-
-#ifndef CA2_STAGE
-
-#error "CA2_STAGE not defined"
-
-#endif
-
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-
-      return "basis";
-
-      //#pragma message "CA2_PLATFORM_VERSION is CA2_BASIS"
-
-#elif CA2_PLATFORM_VERSION == CA2_STAGE
-
-      return "stage";
-
-      //#pragma message "CA2_PLATFORM_VERSION is CA2_STAGE"
-
-#else
-
-#error "CA2_PLATFORM_VERSION has unsupported definition"
-
-#endif
-
-   }
+//   string system::get_system_configuration()
+//   {
+//
+//#ifndef CA2_PLATFORM_VERSION
+//
+//#error "CA2_PLATFORM_VERSION not defined"
+//
+//#endif
+//
+//#ifndef CA2_BASIS
+//
+//#error "CA2_BASIS not defined"
+//
+//#endif
+//
+//#ifndef CA2_STAGE
+//
+//#error "CA2_STAGE not defined"
+//
+//#endif
+//
+//#if CA2_PLATFORM_VERSION == CA2_BASIS
+//
+//      return "basis";
+//
+//      //#pragma message "CA2_PLATFORM_VERSION is CA2_BASIS"
+//
+//#elif CA2_PLATFORM_VERSION == CA2_STAGE
+//
+//      return "stage";
+//
+//      //#pragma message "CA2_PLATFORM_VERSION is CA2_STAGE"
+//
+//#else
+//
+//#error "CA2_PLATFORM_VERSION has unsupported definition"
+//
+//#endif
+//
+//   }
 
 
    string system::get_system_platform()

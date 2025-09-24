@@ -44,7 +44,7 @@
 		9AA1009119971FCE004F84BD /* hellomultiverse_main_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA1008D19971FCE004F84BD /* hellomultiverse_main_impact.h */; };
 		9ACE47D61D2041A300A1E0AD /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47D51D2041A300A1E0AD /* libaura.dylib */; };
 		9ACE47DA1D2041AE00A1E0AD /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47D91D2041AE00A1E0AD /* libaxis.dylib */; };
-		9ACE47DC1D2041B800A1E0AD /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47DB1D2041B800A1E0AD /* libbase.dylib */; };
+		9ACE47DC1D2041B800A1E0AD /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47DB1D2041B800A1E0AD /* libberg.dylib */; };
 		9ACE47DE1D2041E400A1E0AD /* libpcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47DD1D2041E400A1E0AD /* libpcre.dylib */; };
 		9AE24EA11904CFFD001AEFFB /* libapp_core_hellomultiverse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E8A1904CFFD001AEFFB /* libapp_core_hellomultiverse.a */; };
 		9AE24EA71904CFFD001AEFFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AE24EA51904CFFD001AEFFB /* InfoPlist.strings */; };
@@ -182,11 +182,11 @@
 		9AA1008D19971FCE004F84BD /* hellomultiverse_main_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellomultiverse_main_impact.h; sourceTree = "<group>"; };
 		9AC62E941D20C12200A4AC0A /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-bmuegusfgbffmoeixicbxhlnbzop/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
 		9AC62E981D20C12800A4AC0A /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../../app/axis/build/Debug-iphoneos/libaxis.dylib"; sourceTree = "<group>"; };
-		9AC62E9A1D20C12F00A4AC0A /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../app/base/build/Debug-iphoneos/libbase.dylib"; sourceTree = "<group>"; };
+		9AC62E9A1D20C12F00A4AC0A /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = "../../app/base/build/Debug-iphoneos/libberg.dylib"; sourceTree = "<group>"; };
 		9AC62E9C1D20C14600A4AC0A /* libios_pcre.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_pcre.dylib; path = "../../app/pcre/build/Debug-iphoneos/libios_pcre.dylib"; sourceTree = "<group>"; };
 		9ACE47D51D2041A300A1E0AD /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libaura.dylib"; sourceTree = "<group>"; };
 		9ACE47D91D2041AE00A1E0AD /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = ../../app/axis/build/Debug/libaxis.dylib; sourceTree = "<group>"; };
-		9ACE47DB1D2041B800A1E0AD /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = ../../app/base/build/Debug/libbase.dylib; sourceTree = "<group>"; };
+		9ACE47DB1D2041B800A1E0AD /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = ../../app/base/build/Debug/libberg.dylib; sourceTree = "<group>"; };
 		9ACE47DD1D2041E400A1E0AD /* libpcre.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpcre.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libpcre.dylib"; sourceTree = "<group>"; };
 		9AE24E8A1904CFFD001AEFFB /* libapp_core_hellomultiverse.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libapp_core_hellomultiverse.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24E991904CFFD001AEFFB /* app_core_hellomultiverse_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = app_core_hellomultiverse_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,7 +233,7 @@
 				9A920FDC1F3BF69300CD9D94 /* libsphere.dylib in Frameworks */,
 				9A920FD81F3BF68500CD9D94 /* libcore.dylib in Frameworks */,
 				9ACE47DE1D2041E400A1E0AD /* libpcre.dylib in Frameworks */,
-				9ACE47DC1D2041B800A1E0AD /* libbase.dylib in Frameworks */,
+				9ACE47DC1D2041B800A1E0AD /* libberg.dylib in Frameworks */,
 				9ACE47DA1D2041AE00A1E0AD /* libaxis.dylib in Frameworks */,
 				9ACE47D61D2041A300A1E0AD /* libaura.dylib in Frameworks */,
 				070533EF1C90B2CF00F31B3F /* libgcom.dylib in Frameworks */,
@@ -305,11 +305,11 @@
 				9A986CE01D2262BA001F4C04 /* libios_axis.dylib */,
 				9A986CDE1D22629C001F4C04 /* libios_base.dylib */,
 				9AC62E9C1D20C14600A4AC0A /* libios_pcre.dylib */,
-				9AC62E9A1D20C12F00A4AC0A /* libbase.dylib */,
+				9AC62E9A1D20C12F00A4AC0A /* libberg.dylib */,
 				9AC62E981D20C12800A4AC0A /* libaxis.dylib */,
 				9AC62E941D20C12200A4AC0A /* libaura.dylib */,
 				9ACE47DD1D2041E400A1E0AD /* libpcre.dylib */,
-				9ACE47DB1D2041B800A1E0AD /* libbase.dylib */,
+				9ACE47DB1D2041B800A1E0AD /* libberg.dylib */,
 				9ACE47D91D2041AE00A1E0AD /* libaxis.dylib */,
 				9ACE47D51D2041A300A1E0AD /* libaura.dylib */,
 				9AEB75AA16F78E600085103B /* hellomultiverse */,

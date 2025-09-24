@@ -65,7 +65,8 @@ public:
 
       }
 
-      this->construct_owned_string( start, end, erange );
+      //this->construct_owned_string( start, end, erange );
+      this->construct_string( start, end, erange );
 
    }
 
@@ -106,7 +107,10 @@ public:
    scoped_string_base(const ::character_range < const CHARACTER * > & range) : scoped_string_base(range.m_begin, range.m_end, range.m_erange, range.m_pbasedata) { }
 
    template < other_primitive_character <CHARACTER> OTHER_CHARACTER >
-   scoped_string_base(const ::character_range < const OTHER_CHARACTER* > & range) : scoped_string_base(range.m_begin, range.m_end, range.m_erange) { this->construct_owned_string(range.m_begin, range.m_end, range.m_erange); }
+   scoped_string_base(const ::character_range < const OTHER_CHARACTER* > & range) : scoped_string_base(range.m_begin, range.m_end, range.m_erange) { //this->construct_owned_string(range.m_begin, range.m_end, range.m_erange);
+      this->construct_string(range.m_begin, range.m_end, range.m_erange);
+         
+   }
 
    // template < typed_primitive_string <CHARACTER> STRING2 >
    // scoped_string_base(const STRING2& str) : BASE_RANGE(str) { }
@@ -116,11 +120,16 @@ public:
 
 
    template < has_as_string HAS_AS_STRING >
-   scoped_string_base(const HAS_AS_STRING & has_as_string) : BASE_RANGE(no_initialize_t{}) { this->transfer_construct_owned_string(::transfer(has_as_string.as_string())); }
+   scoped_string_base(const HAS_AS_STRING & has_as_string) : BASE_RANGE(no_initialize_t{}) { //this->transfer_construct_owned_string(::transfer(has_as_string.as_string()));
+      this->transfer_construct_string(::transfer(has_as_string.as_string()));
+      
+   }
 
 
    template < has_get_string HAS_GET_STRING >
-   scoped_string_base(const HAS_GET_STRING & has_get_string) : BASE_RANGE(no_initialize_t{}) { this->transfer_construct_owned_string(::transfer(has_get_string.get_string())); }
+   scoped_string_base(const HAS_GET_STRING & has_get_string) : BASE_RANGE(no_initialize_t{}) { //this->transfer_construct_owned_string(::transfer(has_get_string.get_string()));
+      this->transfer_construct_string(::transfer(has_get_string.get_string()));
+   }
 
 
    // template < primitive_character SOME_CHARACTER, character_count m_sizeMaximumLength >
@@ -263,7 +272,8 @@ public:
    void destroy()
    {
 
-      if (!(this->m_erange & e_range_scoped_ownership))
+      //if (!(this->m_erange & e_range_scoped_ownership))
+      //if(::is_s)
       {
 
          ::release_base_data(this->m_pbasedata);
@@ -562,7 +572,8 @@ public:
 
       auto pdataThis = this->m_pbasedata;
 
-      construct_owned_string(this->m_begin, this->m_end);
+      //construct_owned_string(this->m_begin, this->m_end);
+      this->construct_string(this->m_begin, this->m_end);
 
       if (pdataThis)
       {
@@ -574,34 +585,36 @@ public:
    }
 
 
-   template < typename SAME_ITERATOR_TYPE >
-   void construct_owned_string(SAME_ITERATOR_TYPE start, SAME_ITERATOR_TYPE end, enum_range erange = e_range_none, typename ::character_range<SAME_ITERATOR_TYPE>::BASE_DATA * pbasedata = nullptr)
-   requires(sizeof(get_iterator_item < SAME_ITERATOR_TYPE >) == sizeof(CHARACTER))
-   {
+//   template < typename SAME_ITERATOR_TYPE >
+//   void construct_owned_string(SAME_ITERATOR_TYPE start, SAME_ITERATOR_TYPE end, enum_range erange = e_range_none, typename ::character_range<SAME_ITERATOR_TYPE>::BASE_DATA * pbasedata = nullptr)
+//   requires(sizeof(get_iterator_item < SAME_ITERATOR_TYPE >) == sizeof(CHARACTER))
+//   {
+//
+//      this->construct_string(start, end, (enum_range)(erange | e_range_scoped_ownership), pbasedata);
+//
+//   }
 
-      this->construct_string(start, end, (enum_range)(erange | e_range_scoped_ownership), pbasedata);
-
-   }
-
-
-   template < typename OTHER_ITERATOR_TYPE >
-   void construct_owned_string(OTHER_ITERATOR_TYPE start, OTHER_ITERATOR_TYPE end, enum_range erange = e_range_none)
-   requires(sizeof(get_iterator_item < OTHER_ITERATOR_TYPE >) != sizeof(CHARACTER))
-   {
-
-      this->construct_string(start, end, (enum_range)(erange | e_range_scoped_ownership));
-
-   }
+//
+//   template < typename OTHER_ITERATOR_TYPE >
+//   void construct_owned_string(OTHER_ITERATOR_TYPE start, OTHER_ITERATOR_TYPE end, enum_range erange = e_range_none)
+//   requires(sizeof(get_iterator_item < OTHER_ITERATOR_TYPE >) != sizeof(CHARACTER))
+//   {
+//
+//      this->construct_string(start, end, (enum_range)(erange | e_range_scoped_ownership));
+//
+//   }
 
 
-   void transfer_construct_owned_string(STRING && str)
+   //void transfer_construct_owned_string(STRING && str)
+   void transfer_construct_string(STRING && str)
    {
 
       this->m_begin = str.m_begin;
 
       this->m_end = str.m_end;
 
-      this->m_erange = (enum_range) (str.m_erange | e_range_scoped_ownership);
+//      this->m_erange = (enum_range) (str.m_erange | e_range_scoped_ownership);
+      this->m_erange = str.m_erange;
 
       this->m_pbasedata = str.m_pbasedata;
 

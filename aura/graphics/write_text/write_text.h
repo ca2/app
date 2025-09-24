@@ -26,7 +26,7 @@ namespace write_text
 
       string_map_base < int_to_string >                    m_mapFontKeyFaceName;
 
-      ::particle_pointer                        m_pparticleFontTextMapSynchronization;
+      //::particle_pointer                        m_pparticleFontTextMapSynchronization;
       string_map_base < ::pointer<internal_font >>m_mapInternalFont;
 
 

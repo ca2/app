@@ -1,15 +1,14 @@
 #include "framework.h"
 #include "aura/graphics/image/image.h"
-
-
 #include "acme/_operating_system.h"
+#include "_gpu_opengl.h"
 
-
-#ifdef WINDOWS_DESKTOP
-//#include <gl/glew.h>
-//#include <gl/gl.h>
-#include <glad/glad.h>
-#endif
+//
+//#ifdef WINDOWS_DESKTOP
+////#include <gl/glew.h>
+////#include <gl/gl.h>
+//#include <glad/glad.h>
+//#endif
 
 
 CLASS_DECL_GPU_OPENGL void image_gl_set(::image::image *pimage)

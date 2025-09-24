@@ -4256,6 +4256,16 @@ namespace draw2d
    //}
 
 
+   ::double_size graphics::_get_text_extent(const ::scoped_string& scopedstr)
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
    double_size graphics::get_text_extent(const scoped_string & scopedstr)
    {
 
@@ -4956,17 +4966,18 @@ namespace draw2d
 
       }
 
-      auto paurasystem = system();
 
-      auto pdraw2d = paurasystem->draw2d();
+      //::write_text::font::text * ptext = nullptr;
 
-      auto pwritetext = pdraw2d->write_text();
+      //::write_text::font::text::item * ptextitem = nullptr;
 
-      _synchronous_lock synchronouslock(pwritetext ? pwritetext->m_pparticleFontTextMapSynchronization : nullptr);
+      _synchronous_lock synchronouslock(::write_text::font::s_pmutexFontTextMap);
 
       m_pfont->get_os_data(this);
 
       string str(strParam);
+
+      bool bParamBilboRaspiEtc = strParam.case_insensitive_begins("bilbo-raspi-");
 
       string str2;
 
@@ -4987,10 +4998,25 @@ namespace draw2d
 
       character_count iUnderline = -1;
 
+      bool b1 = false;
+      bool b2 = false;
+      bool b3 = false;
+      bool b4 = false;
+      bool b5 = false;
+      bool b6 = false;
+      bool b7 = false;
+      bool b8 = false;
+      bool b9 = false;
+      bool bA = false;
+
+      ::double_size sizeB8;
+
       if (!(edrawtext & e_draw_text_no_prefix))
       {
 
          iUnderline = _EncodeV033(str);
+
+         b1 = true;
 
       }
 
@@ -4998,23 +5024,44 @@ namespace draw2d
 
       bool bLastLine = false;
 
+
+
       if ((edrawtext & e_draw_text_word_break) != 0)
       {
 
+         b2 = true;
+
+         // if (bParamBilboRaspiEtc)
+         // {
+         //
+         //    information() << "";
+         //
+         // }
+
          bLastLine = !word_break(this, str, rectangleClip, str, str2, (edrawtext & e_draw_text_end_ellipsis));
 
-         auto & text = m_pfont->m_mapFontText[str];
+         _synchronous_lock synchronouslockFontTextMap(::write_text::font::s_pmutexFontTextMap);
 
-         if (text.m_bSize)
+         auto ptext = &m_pfont->m_mapFontText[str];
+
+         auto ptextitem = ptext->get_item(::write_text::font::text::e_size_word_break);
+
+         if (ptextitem->has_size())
          {
 
-            sz = text.m_size;
+            sz = ptextitem->get_size();
+
+            b3 = true;
 
          }
          else
          {
 
-            sz = get_text_extent(str);
+            sz = _get_text_extent(str);
+
+            ptextitem->set_size(sz);
+
+            b4 = true;
 
          }
 
@@ -5022,51 +5069,80 @@ namespace draw2d
       else if ((edrawtext & e_draw_text_end_ellipsis) != 0)
       {
 
-         auto & text = m_pfont->m_mapFontText[str(0, iLen)];
+         // if (bParamBilboRaspiEtc)
+         // {
+         //
+         //    information() << "";
+         //
+         // }
 
-         if (text.m_bSize)
+         _synchronous_lock synchronouslockFontTextMap(::write_text::font::s_pmutexFontTextMap);
+
+         auto ptext = &m_pfont->m_mapFontText[str];
+
+         auto ptextitem = ptext->get_item(::write_text::font::text::e_size_end_ellipsis);
+
+         if (ptextitem->has_size())
          {
 
-            sz = text.m_size;
+            sz = ptextitem->get_size();
+
+            str = ptextitem->get_text();
+
+            b5 = true;
 
          }
          else
          {
 
-            sz = get_text_extent(str(0, iLen));
+            sz = _get_text_extent(str(0, iLen));
 
-         }
+            b6 = true;
 
-         if (sz.cx() > rectangleClip.width())
-         {
-
-            const_char_pointer pszStart = str;
-
-            const_char_pointer psz = pszStart;
-
-            string strLastSample = "...";
-
-            string strSample;
-
-            while (true)
+            if (sz.cx() > rectangleClip.width())
             {
 
-               psz = unicode_next(psz);
+               b7 = true;
 
-               strSample = string(pszStart, psz - pszStart) + "...";
+               const_char_pointer pszStart = str;
 
-               sz = get_text_extent(strSample);
+               const_char_pointer psz = pszStart;
 
-               if (sz.cx() > rectangleClip.width())
+               string strLastSample = "...";
+
+               string strSample;
+
+               auto sizeLast = sz;
+
+               while (true)
                {
 
-                  str = strLastSample;
+                  psz = unicode_next(psz);
 
-                  break;
+                  strSample = string(pszStart, psz - pszStart) + "...";
+
+                  auto szHere = _get_text_extent(strSample);
+
+                  if (szHere.cx() > rectangleClip.width())
+                  {
+
+                     str = strLastSample;
+
+                     sz = szHere;
+
+                     ptextitem->set_size(sz);
+
+                     ptextitem->set_text(str);
+
+                     break;
+
+                  }
+
+                  strLastSample = strSample;
+
+                  sizeLast = szHere;
 
                }
-
-               strLastSample = strSample;
 
             }
 
@@ -5076,67 +5152,98 @@ namespace draw2d
       else
       {
 
-         auto & text = m_pfont->m_mapFontText[str];
-
-         if (text.m_bSize)
+         if (bParamBilboRaspiEtc)
          {
 
-            sz = text.m_size;
+             information() << "";
+
+         }
+
+         _synchronous_lock synchronouslockFontTextMap(::write_text::font::s_pmutexFontTextMap);
+
+         auto ptext = &m_pfont->m_mapFontText[str];
+
+         auto ptextitem = ptext->get_item(::write_text::font::text::e_size_case_3);
+
+         if (ptextitem->has_size())
+         {
+
+            sz = ptextitem->get_size();
+
+            str = ptextitem->get_text();
+
+            b8 = true;
+
+            sizeB8 = sz;
 
          }
          else
          {
 
-            sz = get_text_extent(str);
+            ::string strCompute(str);
 
-            //text.m_bSize = true;
+            sz = _get_text_extent(strCompute);
 
-         }
+            b9 = true;
 
-         if (sz.cx() > rectangleClip.width())
-         {
-
-            character_count i = iLen;
-
-            if (i < 0)
+            if (sz.cx() > rectangleClip.width())
             {
 
-               i = 0;
+               bA = true;
 
-            }
+               character_count i = iLen;
 
-            char * psz = str.get_buffer(maximum(0, i));
-
-            while (i > 0)
-            {
-
-               sz = get_text_extent(str(0, i));
-
-               if ((int)sz.cx() > rectangleClip.width())
+               if (i < 0)
                {
 
-                  i = unicode_prior(str.c_str() + i, str.c_str()) - str.c_str();
+                  i = 0;
 
-                  if (i <= 0)
+               }
+
+               char *psz = strCompute.get_buffer<true>(maximum(0, i));
+
+               while (i > 0)
+               {
+
+                  auto szHere = _get_text_extent(str(0, i));
+
+                  if ((int)szHere.cx() > rectangleClip.width())
                   {
+
+                     i = unicode_prior(psz + i, psz) - psz;
+
+                     if (i <= 0)
+                     {
+
+                        sz = szHere;
+
+                        break;
+
+                     }
+
+                  }
+                  else
+                  {
+
+                     sz  = szHere;
 
                      break;
 
                   }
 
                }
-               else
-               {
 
-                  break;
+               psz[i] = L'\0';
 
-               }
+               strCompute.release_buffer();
+
+               ptextitem->set_size(sz);
+
+               ptextitem->set_text(strCompute);
+
+               str = strCompute;
 
             }
-
-            psz[i] = L'\0';
-
-            str.release_buffer();
 
          }
 
@@ -5223,8 +5330,88 @@ namespace draw2d
 
       rectangle.Align(ealign, rectangleParam);
 
+      //bool bBilboRaspiEtc = str.case_insensitive_begins("bilbo-raspi-");
+
+      //bool bBilboRaspi = str.case_insensitive_equals("bilbo-raspi");
+
+      int iLeft = (int) rectangle.left();
+
+      // if (bBilboRaspi)
+      // {
+      //
+      //    if (iLeft != 38)
+      //    {
+      //
+      //       information() << "";
+      //
+      //    }
+      //    else
+      //    {
+      //
+      //       information() << "";
+      //
+      //    }
+      //
+      //    if (rectangleClip.right() != 76)
+      //    {
+      //
+      //       information() << "";
+      //
+      //    }
+      //
+      //    if ((edrawtext & e_draw_text_end_ellipsis))
+      //    {
+      //
+      //
+      //       information() << "";
+      //
+      //    }
+      //    else
+      //    {
+      //
+      //       information() << "";
+      //
+      //    }
+      //
+      // }
+      // else if (bBilboRaspiEtc)
+      // {
+      //
+      //    if (iLeft != 38)
+      //    {
+      //
+      //       information() << "";
+      //
+      //    }
+      //
+      //    if (rectangleClip.right() != 76)
+      //    {
+      //
+      //       information() << "";
+      //    }
+      //
+      //             if ((edrawtext & e_draw_text_end_ellipsis))
+      //    {
+      //
+      //
+      //       information() << "";
+      //    }
+      //    else
+      //    {
+      //
+      //       information() << "";
+      //    }
+      // }
+
       if (iUnderline >= 0 && iUnderline < str.length())
       {
+
+         // if (bBilboRaspi)
+         // {
+         //
+         //    information() << "";
+         //
+         // }
 
          text_out(rectangle.left(), rectangle.top(), { str.c_str(), (int)minimum(iUnderline, str.length()) });
          /*::TextOutU(
@@ -5283,12 +5470,37 @@ namespace draw2d
       else
       {
 
-         text_out(rectangle.left(), rectangle.top(), str);
+         // if (bBilboRaspi)
+         // {
+         //
+         //
+         //
+         // }
+         // else if (bBilboRaspiEtc)
+         // {
+         //
+         //    text_out(rectangle.left(), rectangle.top(), str);
+         //
+         // }
+         // else
+         {
+
+            text_out(rectangle.left(), rectangle.top(), str);
+
+         }
+
 
       }
 
       if (!bLastLine && str2.length() > 0)
       {
+
+         // if (bBilboRaspi)
+         // {
+         //
+         //    information() << "";
+         //
+         // }
 
          rectangleClip.top() = rectangleClip.top() + sz.cy();
 

@@ -787,7 +787,7 @@ namespace user
 
 
 #define _NEW_MESSAGE(TYPE) \
-   auto pmessage = __create_new<TYPE>(); \
+   auto pmessage = øcreate_new<TYPE>(); \
    pmessage->m_pchannel = this; \
    pmessage->m_oswindow = oswindow; \
    pmessage->m_pwindow = pwindow; \
@@ -798,7 +798,7 @@ namespace user
 
 
 //#define _NEW_MESSAGE(TYPE) \
-//   auto pmessage = __create_new<TYPE>(); \
+//   auto pmessage = øcreate_new<TYPE>(); \
 //   pmessage->m_pchannel = this; \
 //   pmessage->m_emessage = atom; \
 //   pmessage->m_wparam = wparam; \
@@ -2151,7 +2151,7 @@ namespace user
       if (m_ptimerarray.is_null())
       {
 
-         __construct_new(m_ptimerarray);
+         øconstruct_new(m_ptimerarray);
 
          m_ptimerarray->m_pcallback = m_puserinteraction;
 
@@ -2694,10 +2694,10 @@ namespace user
       //}
 
       //g_p->set_at((iptr)this, ::type(m_puserinteraction).name()) + "xxx" + ::type(this).name();
-      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &primitive_impl::on_message_show_window);
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &primitive_impl::on_message_destroy);
-      MESSAGE_LINK(::user::e_message_non_client_destroy, pchannel, this, &primitive_impl::on_message_non_client_destroy);
-      MESSAGE_LINK(::user::e_message_create, pchannel, this, &primitive_impl::_001OnPrioCreate);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &primitive_impl::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &primitive_impl::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_non_client_destroy, pchannel, this, &primitive_impl::on_message_non_client_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &primitive_impl::_001OnPrioCreate);
 
       if (m_puserinteraction && ::type(m_puserinteraction).name().contains("notify_icon"))
       {

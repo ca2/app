@@ -38,7 +38,7 @@ enum enum_range : int
    /// or allocation to add null terminator.
    /// It can forward the reference to be used as a string normally.
    /// but in this case, it should release a single reference when destroying the scoped string.
-   e_range_scoped_ownership = 32768,
+   //e_range_scoped_ownership = 32768,
    e_range_buffer = 65536,
    //e_range_read_only = 4,
    //e_range_read_only_and_null_terminated = 5,

@@ -673,37 +673,37 @@ namespace linux
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
-         MESSAGE_LINK(::user::e_message_paint, pchannel, this,&interaction_impl::_001OnPaint);
-         MESSAGE_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
+         USER_MESSAGE_LINK(::user::e_message_paint, pchannel, this,&interaction_impl::_001OnPaint);
+         USER_MESSAGE_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
       }
 
       m_puserinteraction->install_message_routing(pchannel);
-      MESSAGE_LINK(::user::e_message_create, pchannel, this,&interaction_impl::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this,&interaction_impl::on_message_create);
 
 
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
-         //MESSAGE_LINK(::user::e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
-         //MESSAGE_LINK(::user::e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
-         //MESSAGE_LINK(::user::e_message_size, pchannel, this,&interaction_impl::on_message_size);
-         //MESSAGE_LINK(::user::e_message_non_client_calcsize, pchannel, this,&interaction_impl::on_message_non_client_calculate_size);
+         //USER_MESSAGE_LINK(::user::e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
+         //USER_MESSAGE_LINK(::user::e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
+         //USER_MESSAGE_LINK(::user::e_message_size, pchannel, this,&interaction_impl::on_message_size);
+         //USER_MESSAGE_LINK(::user::e_message_non_client_calcsize, pchannel, this,&interaction_impl::on_message_non_client_calculate_size);
 
          // linux
-         MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &interaction_impl::on_message_move);
-         MESSAGE_LINK(::user::e_message_size, pchannel, this, &interaction_impl::on_message_size);
-         MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
+         USER_MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &interaction_impl::on_message_move);
+         USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &interaction_impl::on_message_size);
+         USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
 
-         //MESSAGE_LINK(::user::e_message_window_position_changing, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
-         //MESSAGE_LINK(::user::e_message_window_position_changed, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
-         //MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
-         //MESSAGE_LINK(::user::e_message_set_focus, pchannel, this,&interaction_impl::on_message_set_focus);
-         //MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this,&interaction_impl::on_message_kill_focus);
-//         MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
+         //USER_MESSAGE_LINK(::user::e_message_window_position_changing, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
+         //USER_MESSAGE_LINK(::user::e_message_window_position_changed, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
+         //USER_MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
+         //USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this,&interaction_impl::on_message_set_focus);
+         //USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this,&interaction_impl::on_message_kill_focus);
+//         USER_MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
          ::windowing::window::prio_install_message_routing(pchannel);
       }
 
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this,&interaction_impl::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this,&interaction_impl::on_message_destroy);
 
    }
 

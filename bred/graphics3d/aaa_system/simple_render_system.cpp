@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "bred/graphics3d/context.h"
+//#include "bred/graphics3d/context.h"
 #include "bred/graphics3d/scene.h"
 #include "bred/gpu/shader.h"
 #include "bred/user/user/graphics3d.h"

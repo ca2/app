@@ -64,7 +64,7 @@
 		<Linker>
 			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
 			
-			<Add option="-lbase" />
+			<Add option="-lberg" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 			<Add directory="/usr/lib64/mysql/" />

@@ -19,7 +19,7 @@ namespace input
       bool m_bLeftPressed = false;
       bool m_bRightPressed = false;
       
-      virtual void mouse_proc(enum_message emessage) = 0;
+      virtual void mouse_proc(::user::enum_message emessage) = 0;
 
       
    };

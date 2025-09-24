@@ -49,7 +49,7 @@ namespace programming
       if (pcreate->has_property("introj"))
       {
 
-         auto pcompiler  = __create_new < ::introjection::compiler >();
+         auto pcompiler  = øcreate_new < ::introjection::compiler >();
 
          bool bNew = true;
 

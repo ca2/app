@@ -80,7 +80,7 @@ echo "Detected platform : $platform"
 
 if [ "$platform" = 'freebsd' ]; then
 
-   url='https://freebsd.ca2.store/store'
+   url="https://freebsd.ca2.store/store_$(uname -m)"
 
 elif [ "$platform" = 'linux' ]; then
 

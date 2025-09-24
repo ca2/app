@@ -98,7 +98,8 @@ namespace aura
       virtual void set_context_theme(const ::scoped_string & scopedstrTheme, const ::action_context & actioncontext);
       virtual void on_change_theme();
 
-      virtual string get_theme();
+      virtual string theme_id();
+      virtual string name();
 
 
       virtual ::file::path   get_theme_path();

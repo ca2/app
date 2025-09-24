@@ -433,15 +433,15 @@ namespace platform
    //bool apex_application_layer::is_set_finish() const override{}
 
 
-   void apex_application_layer::on_change_theme()
-   {
-   }
+   // void apex_application_layer::on_change_theme()
+   // {
+   // }
 
 
-   ::string apex_application_layer::apex_application_layer::get_theme()
-   {
-      return {};
-   }
+   // ::string apex_application_layer::apex_application_layer::get_theme()
+   // {
+   //    return {};
+   // }
 
 
    //bool apex_application_layer::start_application(::request * prequest){}

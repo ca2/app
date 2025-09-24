@@ -265,7 +265,7 @@ namespace aura
 
       runall(CREATE_ROUTINE);
 
-      estatus = __construct_new(m_prx);
+      estatus = øconstruct_new(m_prx);
 
       if (!estatus)
       {

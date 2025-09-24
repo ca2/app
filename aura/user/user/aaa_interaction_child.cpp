@@ -207,7 +207,7 @@ namespace user
          //m_puserinteraction->send_message(::user::e_message_create, 0, (lparam)(lparam)& pusersystem->m_createstruct);
          if (!(m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created))
          {
-//            auto pmessage = __create_new <::message::create>();
+//            auto pmessage = øcreate_new <::message::create>();
 //            pmessage->m_emessage = ::user::e_message_create;
 //            m_puserinteraction->send_message(pmessage);
 
@@ -320,9 +320,9 @@ namespace user
 
       last_install_message_routing(pchannel);
 
-      MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &interaction_child::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &interaction_child::on_message_destroy);
 
-      MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &interaction_child::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &interaction_child::on_message_show_window);
 
       m_puserinteraction->install_message_routing(pchannel);
 

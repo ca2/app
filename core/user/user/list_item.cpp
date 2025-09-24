@@ -532,28 +532,35 @@ namespace user
 
                }
                //if (
-               pdraw2d->embossed_text_out(
-                  m_pitem->m_pdrawlistitem->m_pgraphics,
-                  m_rectangleText,
-                  m_strText,
-                  *m_pitem->m_pmesh->m_plist->m_pfastblurIconText,
-                  pimage2,
-                  m_pitem->m_pdrawlistitem->m_pgraphics->m_pfont,
-                  m_pcolumn->m_pdrawlistcolumn->m_ealign,
-                  m_pcolumn->m_pdrawlistcolumn->m_edrawtext,
-                  m_pitem->m_pmesh->m_plist->m_colorEmbossedText,
-                  m_pitem->m_pmesh->m_plist->m_colorEmbossedTextBackground,
-                  m_pitem->m_pmesh->m_plist->m_iTextSpreadRadius, 
-                  m_pitem->m_pmesh->m_plist->m_iTextBlurRadius,
-                  m_pitem->m_pmesh->m_plist->m_iTextBlur,
-                  m_strText != m_pitem->m_pmesh->m_plist->m_mapText[m_pitem->m_iItem] || m_colorTextBackground != m_pitem->m_pmesh->m_plist->m_mapBackColor[m_pitem->m_iItem]);
 
-               //)
+               bool bRaspiBilbo = m_strText.case_insensitive_begins("bilbo-raspi-");
+
+               //if (bRaspiBilbo)
                {
 
-                  m_pitem->m_pmesh->m_plist->m_mapText[m_pitem->m_iItem] = m_strText;
 
-                  m_pitem->m_pmesh->m_plist->m_mapBackColor[m_pitem->m_iItem] = m_colorTextBackground;
+               }
+               //else
+               {
+
+                  pdraw2d->embossed_text_out(
+                     m_pitem->m_pdrawlistitem->m_pgraphics, m_rectangleText, m_strText,
+                     *m_pitem->m_pmesh->m_plist->m_pfastblurIconText, pimage2,
+                     m_pitem->m_pdrawlistitem->m_pgraphics->m_pfont, m_pcolumn->m_pdrawlistcolumn->m_ealign,
+                     m_pcolumn->m_pdrawlistcolumn->m_edrawtext, m_pitem->m_pmesh->m_plist->m_colorEmbossedText,
+                     m_pitem->m_pmesh->m_plist->m_colorEmbossedTextBackground,
+                     m_pitem->m_pmesh->m_plist->m_iTextSpreadRadius, m_pitem->m_pmesh->m_plist->m_iTextBlurRadius,
+                     m_pitem->m_pmesh->m_plist->m_iTextBlur,
+                     m_strText != m_pitem->m_pmesh->m_plist->m_mapText[m_pitem->m_iItem] ||
+                        m_colorTextBackground != m_pitem->m_pmesh->m_plist->m_mapBackColor[m_pitem->m_iItem]);
+
+                  //)
+                  {
+
+                     m_pitem->m_pmesh->m_plist->m_mapText[m_pitem->m_iItem] = m_strText;
+
+                     m_pitem->m_pmesh->m_plist->m_mapBackColor[m_pitem->m_iItem] = m_colorTextBackground;
+                  }
 
                }
 

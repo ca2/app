@@ -1,10 +1,10 @@
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "approach.h"
 #include "command_buffer.h"
 #include "context.h"
+#include "cpu_buffer.h"
 #include "device.h"
-#include "gpu_opengl/context.h"
-#include "gpu_opengl/cpu_buffer.h"
 #include "frame.h"
 #include "frame_buffer.h"
 #include "lock.h"
@@ -20,7 +20,7 @@
 #include "bred/gpu/render_state.h"
 #include "bred/user/user/graphics3d.h"
 #include "aura/windowing/window.h"
-#include <glad/glad.h>
+//#include <glad/glad.h>
 
 
 

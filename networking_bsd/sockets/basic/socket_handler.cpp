@@ -1388,7 +1388,7 @@ end_processing_adding:
 
          auto p = m_socketlist.begin();
 
-         for (; p.is_ok() && n; p++)
+         for (; m_socketlist.is_iterator_ok(p) && n; p++)
          {
             
             SOCKET socket = *p;

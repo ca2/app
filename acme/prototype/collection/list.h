@@ -325,6 +325,24 @@ public:
    }
 
 
+   constexpr bool is_end(const_iterator iterator) const
+   {
+
+      return ::iterator_is_end(iterator, this->end());
+
+   }
+
+
+   constexpr bool is_iterator_ok(const_iterator iterator) const
+   {
+
+      return !this->is_end(iterator);
+
+
+   }
+
+
+
    //const_iterator upper_bound() const
    //{
    //   return const_iterator(m_end, this);

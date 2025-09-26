@@ -27,23 +27,23 @@ CLASS_DECL_ACME::subparticle * refdbg_this();
 //#define øcreate __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create
 //#define øconstruct __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
 //#define øid_create __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_create
-//#define øcreate_new __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->template __calløcreate_new
+//#define øcreate_new __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create_new
 //#define øid_construct __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_construct
 //#define øraw_construct __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__raw_construct
 //#define øconstruct_new __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct_new
 //#define ødefer_construct __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct
-//#define øcreate_new_clone __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__calløcreate_new_clone
+//#define øcreate_new_clone __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create_new_clone
 //#define ødefer_construct_new __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct_new
 
 #define øcreate __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create
 #define øconstruct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
 #define øid_create __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_create
-#define øcreate_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __calløcreate_new
+#define øcreate_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create_new
 #define øid_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_construct
 #define øraw_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__raw_construct
 #define øconstruct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct_new
 #define ødefer_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct
-#define øcreate_new_clone __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__calløcreate_new_clone
+#define øcreate_new_clone __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create_new_clone
 #define ødefer_construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct_new
 
 
@@ -180,12 +180,12 @@ CLASS_DECL_ACME ::reference_referer* refdbg_get_top_releaser();
 #define øcreate __call__create
 #define øconstruct __call__construct
 #define øid_create __call__id_create
-#define øcreate_new __calløcreate_new
+#define øcreate_new __call__create_new
 #define øid_construct __call__id_construct
 #define øraw_construct __call__raw_construct
 #define øconstruct_new __call__construct_new
 #define ødefer_construct __call__defer_construct
-#define øcreate_new_clone __calløcreate_new_clone
+#define øcreate_new_clone __call__create_new_clone
 #define ødefer_construct_new __call__defer_construct_new
 
 

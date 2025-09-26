@@ -438,7 +438,7 @@ namespace platform
 
 
 
-      //pass_through_function &  __calløallocate_pass_through_function() { return m_passthroughfunction; }
+      //pass_through_function &  __call_allocate_pass_through_function() { return m_passthroughfunction; }
 
 
       //platform * __call__add_referer2(const ::reference_referer & referer) const;

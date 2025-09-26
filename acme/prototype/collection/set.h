@@ -335,7 +335,7 @@ public:
       for (auto& item : container)
       {
 
-         this->set_key(item.key());
+         this->set_key(item);
 
       }
 
@@ -349,7 +349,7 @@ public:
       for (auto& KEY : container)
       {
 
-         this->erase_key(KEY);
+         this->erase(KEY);
 
       }
 

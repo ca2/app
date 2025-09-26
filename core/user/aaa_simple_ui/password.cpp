@@ -159,9 +159,9 @@ namespace simple_ui
       character_count iSelEnd;
       character_count lim = 0;
 
-      auto ppenCaret = __øcreate < ::draw2d::pen > ();
+      auto ppenCaret = øcreate < ::draw2d::pen > ();
 
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
       ppenCaret->create_solid(1.0,argb(255,0,0,0));
 

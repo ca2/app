@@ -38,7 +38,7 @@ namespace filehandler
 
       //estatus =
       
-      __construct_new(m_ptree);
+      øconstruct_new(m_ptree);
 
       //if (!estatus)
       //{
@@ -246,7 +246,7 @@ namespace filehandler
 
          }
 
-         ptreeitem = m_ptree->insert_item(__allocate item(), ::data::e_relative_last_child, m_ptree->get_base_item());
+         ptreeitem = m_ptree->insert_item(øallocate item(), ::data::e_relative_last_child, m_ptree->get_base_item());
 
          ptreeitem->m_pitem.cast < item > ()->m_etopictype = item::topic_type_root;
 
@@ -278,7 +278,7 @@ namespace filehandler
 
          }
 
-         ptreeitem = m_ptree->insert_item(__allocate item(), ::data::e_relative_last_child, m_ptree->get_base_item());
+         ptreeitem = m_ptree->insert_item(øallocate item(), ::data::e_relative_last_child, m_ptree->get_base_item());
 
          auto pitem = ptreeitem->m_pitem.cast < item >();
 
@@ -322,7 +322,7 @@ namespace filehandler
 
       }
 
-      ptreeitem = m_ptree->insert_item(__allocate item(), ::data::e_relative_last_child, m_ptree->get_base_item());
+      ptreeitem = m_ptree->insert_item(øallocate item(), ::data::e_relative_last_child, m_ptree->get_base_item());
 
       auto pdataitem = ptreeitem->m_pitem.cast < item >();
 

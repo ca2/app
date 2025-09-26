@@ -263,7 +263,7 @@ namespace file
    //watch_id os_watcher::add_watch(const ::file::path& pathFolderParam, listener* plistenerParam, bool bRecursive)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   atom watchid = ++m_atomLast;
 
@@ -283,7 +283,7 @@ namespace file
 
    //   watchref->m_bRecursive     = bRecursive;
 
-   //   auto pwatch = __allocate os_watch();
+   //   auto pwatch = øallocate os_watch();
 
    //   pwatch->id()               = watchid;
 

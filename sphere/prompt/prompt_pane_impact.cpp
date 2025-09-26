@@ -113,7 +113,7 @@ namespace prompt
       case CONTEXT_MENU_IMPACT:
       {
 
-         auto pdata = psession->filemanager("filemanager::list");
+         auto pdata = psession->filemanager("filemanager::list_base");
 
          pdata->m_puserinteractionParent = pimpactdata->m_pplaceholder;
          pdata->m_iIconSize = 16;
@@ -193,7 +193,7 @@ namespace prompt
       case impact_three_action_launch:
       {
 
-         auto pdata = psession->filemanager("filemanager::list");
+         auto pdata = psession->filemanager("filemanager::list_base");
 
          pdata->m_puserinteractionParent = pimpactdata->m_pplaceholder;
          pdata->m_iIconSize = 48;
@@ -289,9 +289,9 @@ namespace prompt
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_impact::on_message_create);
-      MESSAGE_LINK(e_message_size, pchannel, this, &pane_impact::on_message_size);
-      MESSAGE_LINK(WM_USER + 1122, this, this, &pane_impact::_001OnMenuMessage);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &pane_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &pane_impact::on_message_size);
+      USER_MESSAGE_LINK(WM_USER + 1122, this, this, &pane_impact::_001OnMenuMessage);
 
    }
 

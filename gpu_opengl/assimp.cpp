@@ -17,7 +17,7 @@ namespace assimp
 {
 
 
-   bool load_obj(const void * data, memsize size, array<unsigned short> & indices, array<::glm::vec3> & vertices, array<::glm::vec2> & uvs, array<::glm::vec3> & normals)
+   bool load_obj(const void * data, memsize size, array<unsigned short> & indexes, array<::glm::vec3> & vertexes, array<::glm::vec2> & uvs, array<::glm::vec3> & normals)
    {
 
       Assimp::Importer importer;
@@ -35,34 +35,34 @@ namespace assimp
 
       const aiMesh * mesh = scene->mMeshes[0]; // In this simple example code we always use the 1rst mesh (in OBJ files there is often only one anyway)
 
-      // Fill vertices positions
-      vertices.reserve(mesh->mNumVertices);
+      // Fill vertexes positions
+      vertexes.reserve(mesh->mNumVertices);
       for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
          aiVector3D pos = mesh->mVertices[i];
-         vertices.add(glm::vec3(pos.x, pos.y, pos.z));
+         vertexes.add(glm::vec3(pos.x, pos.y, pos.z));
       }
 
-      // Fill vertices texture coordinates
+      // Fill vertexes texture coordinates
       uvs.reserve(mesh->mNumVertices);
       for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
          aiVector3D UVW = mesh->mTextureCoords[0][i]; // Assume only 1 set of UV coords; AssImp supports 8 UV sets.
          uvs.add(glm::vec2(UVW.x, UVW.y));
       }
 
-      // Fill vertices normals
+      // Fill vertexes normals
       normals.reserve(mesh->mNumVertices);
       for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
          aiVector3D n = mesh->mNormals[i];
          normals.add(glm::vec3(n.x, n.y, n.z));
       }
 
-      // Fill face indices
-      indices.reserve(3 * mesh->mNumFaces);
+      // Fill face indexes
+      indexes.reserve(3 * mesh->mNumFaces);
       for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
          // Assume the model has only triangles.
-         indices.add(mesh->mFaces[i].mIndices[0]);
-         indices.add(mesh->mFaces[i].mIndices[1]);
-         indices.add(mesh->mFaces[i].mIndices[2]);
+         indexes.add(mesh->mFaces[i].mIndices[0]);
+         indexes.add(mesh->mFaces[i].mIndices[1]);
+         indexes.add(mesh->mFaces[i].mIndices[2]);
       }
 
       // The "scene" pointer will be deleted automatically by "importer"

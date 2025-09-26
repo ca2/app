@@ -82,7 +82,7 @@ namespace hotplugin
    }
 
 
-   void host::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void host::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 
    {
 
@@ -276,7 +276,7 @@ namespace hotplugin
 
       {
 
-         ::pointer < ::mutex > pmutex = __allocate ::pointer < ::mutex > (e_create_new, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+         ::pointer < ::mutex > pmutex = øallocate ::pointer < ::mutex > (e_create_new, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
 
          if(::get_last_error() == ERROR_ALREADY_EXISTS)
          {
@@ -477,7 +477,7 @@ namespace hotplugin
 
       }
 
-      synchronous_lock ml(m_pmutexBitmap);
+      synchronous_lock ml(m_pmutexBitmap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_sizeBitmap = abs(rectangle.size());
 
@@ -517,7 +517,7 @@ namespace hotplugin
       if(!m_memorymapBitmap.is_mapped())
          return;
 
-      synchronous_lock ml(m_pmutexBitmap);
+      synchronous_lock ml(m_pmutexBitmap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_sizeBitmap = abs(rectangle.size());
 
@@ -560,7 +560,7 @@ namespace hotplugin
       if(!m_memorymapBitmap.is_mapped())
          return;
 
-      synchronous_lock ml(m_pmutexBitmap);
+      synchronous_lock ml(m_pmutexBitmap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_pimage = create_image(m_sizeBitmap);
 
@@ -625,7 +625,7 @@ namespace hotplugin
    }
 
 
-   void host::plugin_message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx)
+   void host::plugin_message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx)
 
    {
 

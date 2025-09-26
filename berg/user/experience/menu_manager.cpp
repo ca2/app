@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "menu_manager.h"
 #include "frame_window.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/message/user.h"
 
 
@@ -65,13 +65,13 @@ namespace experience
 
       //}
 
-      if(pusermessage->m_emessage == e_message_right_button_down)
+      if(pusermessage->m_eusermessage == ::user::e_message_right_button_down)
       {
 
          m_enumState = StateMBDown;
 
       }
-      else if(pusermessage->m_emessage == e_message_right_button_up)
+      else if(pusermessage->m_eusermessage == ::user::e_message_right_button_up)
       {
 
          if(m_enumState == StateMBDown)
@@ -96,9 +96,9 @@ namespace experience
    void menu_manager::message_handler(::user::interaction * pframewindow, ::user::message * pusermessage)
    {
 
-      switch(pusermessage->m_emessage)
+      switch(pusermessage->m_eusermessage)
       {
-      case e_message_left_button_double_click:
+      case ::user::e_message_left_button_double_click:
       {
                               auto point = pusermessage->m_lparam.point();
                               if(OnLButtonDblClk((unsigned int)pusermessage->m_wparam, point))
@@ -117,15 +117,15 @@ namespace experience
             break;
       }
 
-      if(pusermessage->m_emessage == e_message_right_button_down)
+      if(pusermessage->m_eusermessage == ::user::e_message_right_button_down)
       {
          m_enumState = StateMBDown;
       }
-      if(pusermessage->m_emessage == e_message_right_button_down)
+      if(pusermessage->m_eusermessage == ::user::e_message_right_button_down)
       {
          m_enumState = StateMBDown;
       }
-      else if(pusermessage->m_emessage == e_message_right_button_up)
+      else if(pusermessage->m_eusermessage == ::user::e_message_right_button_up)
       {
          if(m_enumState == StateMBDown)
          {

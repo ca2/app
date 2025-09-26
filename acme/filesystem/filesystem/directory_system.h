@@ -241,7 +241,7 @@ public:
          virtual bool defer_process_media_library_path(::file::path& path);
          virtual bool defer_media_library_representative_file_name(::file::path & path);
 
-         bool list(::string_array_base & stra, const ::scoped_string & path, ::file::e_flag eflag = ::file::e_flag_file_or_folder) override;
+         bool list_base(::string_array_base & stra, const ::scoped_string & path, ::file::e_flag eflag = ::file::e_flag_file_or_folder) override;
 
          virtual ::file::listing_base folders(const ::file::path & path) override;
          virtual ::file::listing_base files(const ::file::path& path) override;
@@ -280,7 +280,7 @@ public:
 
          //} // namespace dir
 
-   virtual string_to_string map_content(const ::file::path & path);
+   virtual string_to_string_base map_content(const ::file::path & path);
    virtual ::string_array_base enumerate_content(const ::file::path & path);
 
 

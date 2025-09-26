@@ -46,7 +46,7 @@ namespace filemanager
 
 
 //#ifdef WINDOWS_DESKTOP
-//      map < EFolder, IShellFolder * > m_mapFolder;
+//      map_base < EFolder, IShellFolder * > m_mapFolder;
 //#endif
 
 

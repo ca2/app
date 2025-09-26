@@ -230,3 +230,4 @@ namespace file
 
 
 
+class byte2_stream;

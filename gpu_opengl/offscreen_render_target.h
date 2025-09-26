@@ -58,12 +58,12 @@ namespace gpu_opengl
 
 	//public:
 		void on_init() override;
-		void createRenderPassImpl();
-		void createImageViews();
-		void createDepthResources();
-		void createRenderPass();
-		void createFramebuffers();
-		void createSyncObjects();
+		void createRenderPassImpl() override;
+		void createImageViews() override;
+		void createDepthResources() override;
+		void createRenderPass() override;
+		void createFramebuffers() override;
+		void createSyncObjects() override;
 
 		//HRESULT submitSamplingWork(const VkCommandBuffer buffer, uint32_t* imageIndex);
 		//HRESULT submitSamplingWork(const VkCommandBuffer buffer);

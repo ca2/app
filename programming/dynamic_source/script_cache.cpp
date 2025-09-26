@@ -69,7 +69,7 @@ namespace dynamic_source
    ::pointer<ds_script>script_cache::create_new_ds_script(const ::scoped_string & scopedstrName)
    {
 
-      auto pscript = __create_new< ds_script >();
+      auto pscript = øcreate_new< ds_script >();
 
       pscript->m_pmanager = m_pmanager;
 
@@ -91,20 +91,19 @@ namespace dynamic_source
 
 #endif
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto passoc = m_map.get_item(strName);
+      auto & pscript = m_map[strName];
 
-      if (::is_set(passoc)
-         && passoc->element2().is_set()
-         && passoc->element2()->m_strName == strName)
+      if (pscript.is_set()
+         && pscript->m_strName == strName)
       {
 
-         return passoc->element2();
+         return pscript;
 
       }
 
-      return passoc->payload() = create_new_ds_script(strName);
+      return pscript = create_new_ds_script(strName);
 
    }
 
@@ -122,12 +121,12 @@ namespace dynamic_source
 
       single_lock synchronouslock(synchronization(), true);
 
-      auto ppair = m_map.find_item(strName);
+      auto iterator = m_map.find(strName);
 
-      if(ppair)
+      if(iterator)
       {
 
-         ppair->payload() = pscript;
+         iterator->payload() = pscript;
 
          return pscript;
 
@@ -235,7 +234,7 @@ namespace dynamic_source
 
       single_lock synchronouslock(synchronization(), true);
 
-      m_map.erase_item(pscript->m_strName);
+      m_map.erase(pscript->m_strName);
 
    }
 

@@ -4,7 +4,7 @@
 #include "impact.h"
 #include "impact_system.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/platform/keep.h"
@@ -161,7 +161,7 @@ namespace user
    ::user::interaction_array document::get_top_level_windows()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::user::interaction_array uia;
 
@@ -226,7 +226,7 @@ namespace user
    bool document::contains(::user::interaction* pinteraction) const
    {
       
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (auto& pimpact : m_impacta)
       {
@@ -531,14 +531,14 @@ namespace user
    void document::disconnect_impacts()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (::collection::index index = 0; index < m_impacta.get_count(); index++)
       {
 
          ::pointer<::user::impact>pimpact = m_impacta[index];
 
-         ASSERT_VALID(pimpact);
+         ASSERT_OK(pimpact);
 
          ASSERT_KINDOF(::user::impact, pimpact);
 
@@ -856,12 +856,12 @@ namespace user
 
       //string strPathName;
       //Utf8ToAcp(strPathName, m_wstrPathName);
-      // add it to the file MRU list
+      // add it to the file MRU list_base
       /* xxx if (bAddToMRU)
       guserbase::get(this)->AddToRecentFileList(scopedstrPathName);*/
 
 
-      /*   ASSERT_VALID(this);
+      /*   ASSERT_OK(this);
       m_bNew = false;
 
 
@@ -869,14 +869,14 @@ namespace user
 
       ASSERT(!m_strPathName.is_empty());       // must be set to something
       m_bEmbedded = false;
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       // set the document_interface title based on path name
       string strTitle = file()->title_(m_strPathName);
       set_title(strTitle);
 
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       m_bNew = false;*/
    }
@@ -893,7 +893,7 @@ namespace user
    {
       
       {
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
          
          // if no more views on the document_interface, delete ourself
          // not called if directly closing the document_interface or terminating the cast
@@ -1049,7 +1049,7 @@ namespace user
       if (m_pimpactsystem->m_typeatomData.has_character())
       {
 
-         auto pNew = __id_create((const ::atom &) m_pimpactsystem->m_typeatomData);
+         auto pNew = øid_create((const ::atom &) m_pimpactsystem->m_typeatomData);
 
          ::pointer < ::data::data > pdataNew = pNew;
 
@@ -1127,7 +1127,7 @@ namespace user
          //if (m_pimpactsystem->m_typeatomData.has_character())
       {
 
-         // auto pNew = __id_create((const ::atom &)m_pimpactsystem->m_typeatomData);
+         // auto pNew = øid_create((const ::atom &)m_pimpactsystem->m_typeatomData);
 
          //auto pdata = create_data(0);
 
@@ -1200,7 +1200,7 @@ namespace user
          //if (m_pimpactsystem->m_typeatomData.has_character())
          {
 
-           // auto pNew = __id_create((const ::atom &)m_pimpactsystem->m_typeatomData);
+           // auto pNew = øid_create((const ::atom &)m_pimpactsystem->m_typeatomData);
 
             auto pdata = create_data(0);
             
@@ -1339,7 +1339,7 @@ namespace user
 
          }
 
-         auto pdataNew = __id_create(typeatomData);
+         auto pdataNew = øid_create(typeatomData);
 
          if (!pdataNew)
          {
@@ -1379,7 +1379,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          for (auto & pimpact : m_impacta)
          {
@@ -1404,7 +1404,7 @@ namespace user
 
          pre_close_frame(pframe);
 
-         pframe->post_message(e_message_destroy_window);
+         pframe->post_message(::user::e_message_destroy_window);
 
          //pframe->destroy();
 
@@ -1412,7 +1412,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_impacta.erase_all();
 
@@ -1428,7 +1428,7 @@ namespace user
 
       ::pointer<::object>pthis = this;
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto viewptra = m_impacta;
 
@@ -1604,8 +1604,8 @@ namespace user
          //   ::aura::FormatString1(prompt, nIDP, strTitle);*/
          //}
 
-         //message_box(prompt, e_message_box_icon_exclamation, nHelpContext);
-         //message_box(strPrompt, nullptr, e_message_box_icon_exclamation);
+         //message_box(prompt, ::user::e_message_box_icon_exclamation, nHelpContext);
+         //message_box(strPrompt, nullptr, ::user::e_message_box_icon_exclamation);
 
          output_error_message(strPrompt);
 
@@ -1623,9 +1623,9 @@ namespace user
    //  (at least one of our views must be in this frame)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //ASSERT_VALID(pframeParam);
+      //ASSERT_OK(pframeParam);
 
       //UNUSED(pframeParam);   // unused in release builds
 
@@ -1636,7 +1636,7 @@ namespace user
 
          ::pointer<::user::impact>pimpact = get_impact(index);
 
-         //ASSERT_VALID(pimpact);
+         //ASSERT_OK(pimpact);
 
          auto pframe = pimpact->parent_frame();
 
@@ -1645,7 +1645,7 @@ namespace user
          {
 
             // assumes 1 document_interface per frame
-            //ASSERT_VALID(pframe);
+            //ASSERT_OK(pframe);
 
             if (pframe->m_puserframewindow->m_nWindow > 0)
             {
@@ -1938,7 +1938,7 @@ namespace user
 
          ::user::impact * pimpact = get_impact(index);
 
-         //ASSERT_VALID(pimpact);
+         //ASSERT_OK(pimpact);
 
          if (pimpact->is_window_visible())
          {
@@ -1966,7 +1966,7 @@ namespace user
 
          ::user::impact * pimpact = get_impact(index);
 
-         //ASSERT_VALID(pimpact);
+         //ASSERT_OK(pimpact);
 
          if (pimpact->is_window_visible())
          {
@@ -1976,7 +1976,7 @@ namespace user
             if (pframe != nullptr && pframe->m_puserframewindow->m_nWindow == -1)
             {
 
-               //ASSERT_VALID(pframe);
+               //ASSERT_OK(pframe);
 
                // not yet counted (give it a 1 based number)
                pframe->m_puserframewindow->m_nWindow = ++nFrames;
@@ -1998,7 +1998,7 @@ namespace user
 
          ::user::impact * pimpact = get_impact(index);
 
-         //ASSERT_VALID(pimpact);
+         //ASSERT_OK(pimpact);
 
          if (pimpact->is_window_visible())   // Do not ::collection::count invisible windows.
          {
@@ -2008,7 +2008,7 @@ namespace user
             if (pframe != nullptr && pframe->m_puserframewindow->m_nWindow == iFrame)
             {
 
-               //ASSERT_VALID(pframe);
+               //ASSERT_OK(pframe);
 
                if (nFrames == 1)
                {
@@ -2065,9 +2065,9 @@ namespace user
    {
 
       
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
          
-         //ASSERT_VALID(pimpact);
+         //ASSERT_OK(pimpact);
       
       //auto pszType = typeid(*pimpact).name();
 
@@ -2099,9 +2099,9 @@ namespace user
    void document::erase_impact(::user::impact * pimpact)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //ASSERT_VALID(pimpact);
+      //ASSERT_OK(pimpact);
 
       if(pimpact->get_document() != this)
       {
@@ -2229,7 +2229,7 @@ namespace user
       
       {
          
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
          
          impacta = m_impacta;
          

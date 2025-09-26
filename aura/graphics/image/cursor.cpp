@@ -65,7 +65,7 @@ namespace image
    void cursor_alloc(::particle * pparticle,cursor_pointer & pcursor,int xHotspot,int yHotspot)
    {
 
-      pparticle->__øconstruct(pcursor);
+      pparticle->øconstruct(pcursor);
 
       pcursor->m_szHotspotOffset.cx() = xHotspot;
 

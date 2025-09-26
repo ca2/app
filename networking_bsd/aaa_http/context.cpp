@@ -121,7 +121,7 @@ namespace http
    void context::_get(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
-      auto pmessage = __create_new < ::http::message >();
+      auto pmessage = øcreate_new < ::http::message >();
 
       pmessage->m_ppropertyset = &set;
 
@@ -408,7 +408,7 @@ namespace http
    string context::get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
-      //output_error_message("What?!", nullptr, e_message_box_ok);
+      //output_error_message("What?!", nullptr, ::user::e_message_box_ok);
 
       informationf("What?!");
 
@@ -635,7 +635,7 @@ namespace http
             m_mapPac.erase_key(scopedstrUrl);
          }
 
-         auto ppac = __create_new < class pac >();
+         auto ppac = øcreate_new < class pac >();
 
          ppac->m_durationLastChecked= ::duration::now();
 
@@ -712,7 +712,7 @@ namespace http
             m_mapPac.erase_key(scopedstrUrl);
          }
 
-         auto pproxy = __create_new < class ::http::context::proxy >();
+         auto pproxy = øcreate_new < class ::http::context::proxy >();
 
          pproxy->m_durationLastChecked= ::duration::now();
 
@@ -1134,7 +1134,7 @@ namespace http
 
       string strSessId;
 
-      psession = __allocate ::sockets::http_session(strProtocol, strHost);
+      psession = øallocate ::sockets::http_session(strProtocol, strHost);
 
       /*::pointer<::account::user>puser;
 
@@ -1676,7 +1676,7 @@ namespace http
             else
             {
 
-               set["get_memory"] = __allocate memory(psession->GetDataPtr(), psession->GetContentLength());
+               set["get_memory"] = øallocate memory(psession->GetDataPtr(), psession->GetContentLength());
 
             }
 
@@ -1904,7 +1904,7 @@ namespace http
 
          bPut = true;
 
-         psocket = __allocate ::sockets::http_put_socket(strUrl);
+         psocket = øallocate ::sockets::http_put_socket(strUrl);
 
          dynamic_cast <::sockets::http_put_socket *> (psocket.m_p)->m_file = set["put"].cast < ::file::file >();
 
@@ -1918,7 +1918,7 @@ namespace http
 
          bPut = false;
 
-         psocket = __allocate ::sockets::http_post_socket(strUrl);
+         psocket = øallocate ::sockets::http_post_socket(strUrl);
 
          dynamic_cast <::sockets::http_post_socket *> (psocket.m_p)->m_fields = set["post"].propset();
 
@@ -1939,7 +1939,7 @@ namespace http
 
          bPut = false;
 
-         psocket = __allocate ::http::get_socket(strUrl);
+         psocket = øallocate ::http::get_socket(strUrl);
 
          psocket->m_emethod = ::sockets::string_http_method(set(__id(http_method), "GET"));
 
@@ -1957,7 +1957,7 @@ namespace http
       if (!psockethandler)
       {
 
-         psockethandler = __create_new < ::sockets::socket_handler >();
+         psockethandler = øcreate_new < ::sockets::socket_handler >();
 
          psocket->initialize_socket(psockethandler);
 
@@ -2535,7 +2535,7 @@ namespace http
          else
          {
 
-            set["get_memory"] = __allocate memory(psocket->GetDataPtr(), psocket->GetContentLength());
+            set["get_memory"] = øallocate memory(psocket->GetDataPtr(), psocket->GetContentLength());
 
          }
 
@@ -2596,7 +2596,7 @@ namespace http
 
       pmessage->get_property_set() = process_set(*pmessage->m_ppropertyset, pmessageMessage->m_strUrl);
 
-      auto phandler = __create_new < ::sockets::socket_handler >();
+      auto phandler = øcreate_new < ::sockets::socket_handler >();
 
       ::property_set & set = pmessage->get_property_set();
 
@@ -2676,7 +2676,7 @@ namespace http
    bool context::download(const ::scoped_string & scopedstrUrl, ::payload payloadFile, ::property_set & set)
    {
 
-      auto phandler = __create_new < ::sockets::socket_handler >();
+      auto phandler = øcreate_new < ::sockets::socket_handler >();
 
       ::pointer<::sockets::http_client_socket>psocket;
 
@@ -2749,7 +2749,7 @@ namespace http
 
          synchronouslock.unlock();
 
-         auto phandler = __create_new < ::sockets::socket_handler >();
+         auto phandler = øcreate_new < ::sockets::socket_handler >();
 
          set["only_headers"] = true;
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "bred/graphics3d/context.h"
+//#include "bred/graphics3d/context.h"
 #include "bred/graphics3d/scene.h"
 #include "bred/gpu/shader.h"
 #include "bred/user/user/graphics3d.h"
@@ -88,23 +88,23 @@ namespace graphics3d
 
 	//	assert(pipelineLayout != nullptr && "Cannot create pipeline before pipeline layout");
 
-	//	PipelineConfigInfo pipelineConfig{};
-	//	pipeline::defaultPipelineConfigInfo(pipelineConfig);
+	//	pipeline_configuration pipelineconfiguration{};
+	//	pipeline::default_pipeline_configuration(pipelineconfiguration);
 
-	//	pipelineConfig.renderPass = renderPass;
-	//	pipelineConfig.pipelineLayout = pipelineLayout;
+	//	pipelineconfiguration.renderPass = renderPass;
+	//	pipelineconfiguration.pipelineLayout = pipelineLayout;
 
 	//	// Construct paths using PROJECT_ROOT_DIR
 	//	std::string vertShaderPath = "matter://Shaders/SpirV/vert.vert.spv";
 	//	std::string fragShaderPath = "matter://Shaders/SpirV/frag.frag.spv";
 
-	//	m_ppipeline = __allocate pipeline();
+	//	m_ppipeline = øallocate pipeline();
 	//	
 	//	m_ppipeline->initialize_pipeline(
 	//		m_pcontext,
 	//		vertShaderPath.c_str(),
 	//		fragShaderPath.c_str(),
-	//		pipelineConfig
+	//		pipelineconfiguration
 	//	);
 	//}
 

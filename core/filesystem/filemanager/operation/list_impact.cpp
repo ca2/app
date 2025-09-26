@@ -3,7 +3,7 @@
 #include "document.h"
 #include "operation.h"
 #include "thread.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/timer.h"
 #include "core/filesystem/filemanager/file_properties_form.h"
@@ -28,8 +28,8 @@ namespace filemanager
 
       ::user::impact::install_message_routing(pchannel);
       ::user::list::install_message_routing(pchannel);
-//      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_list_impact::on_timer);
-      MESSAGE_LINK(e_message_create,pchannel,this,&operation_list_impact::on_message_create);
+//      //USER_MESSAGE_LINK(::user::e_message_timer,pchannel,this,&operation_list_impact::on_timer);
+      USER_MESSAGE_LINK(::user::e_message_create,pchannel,this,&operation_list_impact::on_message_create);
    }
 
 
@@ -114,7 +114,7 @@ namespace filemanager
 
       //auto estatus = 
       
-      __defer_construct_new(m_puserlistcache);
+      ødefer_construct_new(m_puserlistcache);
 
       m_pmeshcache = m_puserlistcache;
 

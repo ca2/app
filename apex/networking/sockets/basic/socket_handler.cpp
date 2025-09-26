@@ -103,7 +103,7 @@ namespace sockets
 
       base_socket_handler::initialize(pparticle);
 
-      __øconstruct(m_pcomposite);
+      øconstruct(m_pcomposite);
 
 
    }
@@ -121,18 +121,18 @@ namespace sockets
 
       //{
 
-      //   auto ppair = m_socketmap.get_start();
+      //   auto iterator = m_socketmap.get_start();
 
-      //   while (ppair != nullptr)
+      //   while (iterator != nullptr)
       //   {
 
-      //      if (ppair->element2().is_set())
+      //      if (iterator->element2().is_set())
       //      {
 
       //         try
       //         {
 
-      //            ppair->element2()->close();
+      //            iterator->element2()->close();
 
       //         }
       //         catch (...)
@@ -143,13 +143,13 @@ namespace sockets
       //         //if (m_slave)
       //         {
 
-      //            ppair->element2().release();
+      //            iterator->element2().release();
 
       //         }
 
       //      }
 
-      //      ppair = m_socketmap.get_next(ppair);
+      //      iterator = m_socketmap.get_next(iterator);
 
       //   }
 
@@ -257,9 +257,9 @@ namespace sockets
 
    //   }
 
-   //   //socket_pointer plookup;
+   //   //socket_pointer find;
 
-   //   //if (m_socketmapAdd.lookup(psocket->get_socket_id(), plookup))
+   //   //if (m_socketmapAdd.find(psocket->get_socket_id(), find))
    //   //{
 
    //   //   INFO(psocket, "add", (int)psocket->get_socket_id(), "Attempt to add socket_id already in add queue");
@@ -295,7 +295,7 @@ namespace sockets
    //   if (psocket->IsDetach())
    //   {
 
-   //      socket_id_list_add(psocket->get_socket_id(), e_list_detach);
+   //      socket_id_list_add(psocket->get_socket_id(), aaa_e_list_detach);
 
    //   }
 
@@ -491,7 +491,7 @@ namespace sockets
       //  {
       //     socket_id socket_id = pnode->m_value;
       //     socket_pointer psocket;
-      //     if (!m_socketmap.lookup(socket_id, psocket)) // not found
+      //     if (!m_socketmap.find(socket_id, psocket)) // not found
       //     {
 
       //        warning() <<"get_socket_id/handler/4 " << (int)socket_id << " Did not find expected socket_id using file descriptor(4)";
@@ -666,16 +666,16 @@ namespace sockets
 //              if (bAnySet)
 //              {
 //
-//                 auto ppairsocket_id = m_socketmap.plookup(socket_id);
+//                 auto iteratorsocket_id = m_socketmap.find(socket_id);
 //
-//                 if (::is_set(ppairsocket_id) && ::is_set(ppairsocket_id->m_psocket))
+//                 if (::is_set(iteratorsocket_id) && ::is_set(iteratorsocket_id->m_psocket))
 //                 {
 //
 //                    information() << "Bad fd in fd_set: " << socket_id;
 //
 //                    information() << "Deleting and removing socket_id: " << socket_id;
 //
-//                    ppairsocket_id->m_psocket->SetCloseAndDelete();
+//                    iteratorsocket_id->m_psocket->SetCloseAndDelete();
 //
 //                 }
 //
@@ -685,8 +685,8 @@ namespace sockets
 //
 //        }
 //
-//        /// \no more todo rebuild fd_set's from active sockets list (m_socketmap) here
-//        /// done : http://jbmon.googlecode.com/svn/trunk/sockets/socket_idHandler.cpp : rebuild fd_set's from active sockets list (m_socketmap) here
+//        /// \no more todo rebuild fd_set's from active sockets list_base (m_socketmap) here
+//        /// done : http://jbmon.googlecode.com/svn/trunk/sockets/socket_idHandler.cpp : rebuild fd_set's from active sockets list_base (m_socketmap) here
 //        {
 //
 //           FD_ZERO(&rfds);
@@ -843,22 +843,22 @@ namespace sockets
 //           if (FD_ISSET(socket_id, &rfds))
 //           {
 //              
-//              auto ppairsocket_id = m_socketmap.plookup(socket_id);
+//              auto iteratorsocket_id = m_socketmap.find(socket_id);
 //
-//              if (::is_set(ppairsocket_id) && ::is_set(ppairsocket_id->m_psocket)) // found
+//              if (::is_set(iteratorsocket_id) && ::is_set(iteratorsocket_id->m_psocket)) // found
 //              {
 //
 //                 // ___new SSL negotiate method
-//                 if (ppairsocket_id->m_psocket->IsSSLNegotiate())
+//                 if (iteratorsocket_id->m_psocket->IsSSLNegotiate())
 //                 {
 //                    
-//                    ppairsocket_id->m_psocket->SSLNegotiate();
+//                    iteratorsocket_id->m_psocket->SSLNegotiate();
 //
 //                 }
 //                 else
 //                 {
 //                    
-//                    ppairsocket_id->m_psocket->OnRead();
+//                    iteratorsocket_id->m_psocket->OnRead();
 //
 //                 }
 //
@@ -877,22 +877,22 @@ namespace sockets
 //           if (FD_ISSET(socket_id, &wfds))
 //           {
 //              
-//              auto ppairsocket_id = m_socketmap.plookup(socket_id);
+//              auto iteratorsocket_id = m_socketmap.find(socket_id);
 //
-//              if (::is_set(ppairsocket_id) && ::is_set(ppairsocket_id->m_psocket)) // found
+//              if (::is_set(iteratorsocket_id) && ::is_set(iteratorsocket_id->m_psocket)) // found
 //              {
 //
 //                 // ___new SSL negotiate method
-//                 if (ppairsocket_id->m_psocket->IsSSLNegotiate())
+//                 if (iteratorsocket_id->m_psocket->IsSSLNegotiate())
 //                 {
 //
-//                    ppairsocket_id->m_psocket->SSLNegotiate();
+//                    iteratorsocket_id->m_psocket->SSLNegotiate();
 //
 //                 }
 //                 else
 //                 {
 //
-//                    ppairsocket_id->m_psocket->OnWrite();
+//                    iteratorsocket_id->m_psocket->OnWrite();
 //
 //                 }
 //
@@ -911,24 +911,24 @@ namespace sockets
 //           if (FD_ISSET(socket_id, &efds))
 //           {
 //
-//              auto ppairsocket_id = m_socketmap.plookup(socket_id);
+//              auto iteratorsocket_id = m_socketmap.find(socket_id);
 //
-//              if (::is_set(ppairsocket_id) && ::is_set(ppairsocket_id->m_psocket)) // found
+//              if (::is_set(iteratorsocket_id) && ::is_set(iteratorsocket_id->m_psocket)) // found
 //              {
 //                 
 //                 // Out-Of-Band data
 //                 // recv with MSG_OOB
 //                 //posix_time tnow = time(nullptr);
 //
-//                 if (ppairsocket_id->m_psocket->has_timed_out())
+//                 if (iteratorsocket_id->m_psocket->has_timed_out())
 //                 {
 //                 
-//                    if (ppairsocket_id->m_psocket->is_connecting())
+//                    if (iteratorsocket_id->m_psocket->is_connecting())
 //                    {
 //
 //                       warning() <<"get_socket_id/handler/3" << (int)socket_id << "stream_socket_id on_connection_timeout (3)";
 //
-//                       ppairsocket_id->m_psocket->on_connection_timeout();
+//                       iteratorsocket_id->m_psocket->on_connection_timeout();
 //
 //                    }
 //                    else
@@ -936,7 +936,7 @@ namespace sockets
 //
 //                       warning() <<"get_socket_id/handler/3 " << (int)socket_id << " socket_id on_timeout(3)";
 //
-//                       ppairsocket_id->m_psocket->on_timeout();
+//                       iteratorsocket_id->m_psocket->on_timeout();
 //
 //                    }
 //
@@ -944,7 +944,7 @@ namespace sockets
 //                 else
 //                 {
 //
-//                    ppairsocket_id->m_psocket->OnException();
+//                    iteratorsocket_id->m_psocket->OnException();
 //
 //                 }
 //
@@ -986,13 +986,13 @@ namespace sockets
 //
 //           socket_id = *pos;
 //           
-//           auto ppairsocket_id = m_socketmap.plookup(socket_id);
+//           auto iteratorsocket_id = m_socketmap.find(socket_id);
 //
-//           if (::is_set(ppairsocket_id) && ::is_set(ppairsocket_id->m_psocket))
+//           if (::is_set(iteratorsocket_id) && ::is_set(iteratorsocket_id->m_psocket))
 //           {
 //
-//              if (ppairsocket_id->m_psocket->IsDetach()
-//                 && !ppairsocket_id->m_psocket->IsDetached())
+//              if (iteratorsocket_id->m_psocket->IsDetach()
+//                 && !iteratorsocket_id->m_psocket->IsDetached())
 //              {
 //
 //                 if (socket_id != INVALID_SOCKET_ID)
@@ -1005,7 +1005,7 @@ namespace sockets
 //                    try
 //                    {
 //
-//                       ppairsocket_id->m_psocket->Detachsocket_id(ppairsocket_id, &m_socketmap);
+//                       iteratorsocket_id->m_psocket->Detachsocket_id(iteratorsocket_id, &m_socketmap);
 //
 //                    }
 //                    catch (...)
@@ -1049,14 +1049,14 @@ namespace sockets
 //
 //              socket_id socket_id = *it;
 //
-//              auto ppairsocket_id = m_socketmap.plookup(socket_id);
+//              auto iteratorsocket_id = m_socketmap.find(socket_id);
 //
-//              if (::is_null(ppairsocket_id) || ::is_null(ppairsocket_id->m_psocket)) // not found
+//              if (::is_null(iteratorsocket_id) || ::is_null(iteratorsocket_id->m_psocket)) // not found
 //              {
 //
-//                 ppairsocket_id = m_socketmapAdd.plookup(socket_id);
+//                 iteratorsocket_id = m_socketmapAdd.find(socket_id);
 //
-//                 if (::is_null(ppairsocket_id) || ::is_null(ppairsocket_id->m_psocket))
+//                 if (::is_null(iteratorsocket_id) || ::is_null(iteratorsocket_id->m_psocket))
 //                 {
 //
 //                    warning() <<"get_socket_id/handler/6 " << (int)socket_id << " Did not find expected socket_id using file descriptor(f)";
@@ -1071,18 +1071,18 @@ namespace sockets
 //
 //              }
 //              
-//              if (::is_set(ppairsocket_id) || ::is_set(ppairsocket_id->m_psocket))
+//              if (::is_set(iteratorsocket_id) || ::is_set(iteratorsocket_id->m_psocket))
 //              {
 //
-//                 if (ppairsocket_id->m_psocket->has_timed_out())
+//                 if (iteratorsocket_id->m_psocket->has_timed_out())
 //                 {
 //
-//                    if (ppairsocket_id->m_psocket->is_connecting())
+//                    if (iteratorsocket_id->m_psocket->is_connecting())
 //                    {
 //
 //                       warning() <<"get_socket_id/handler/7 " << (int)socket_id << "stream_socket_id on_connection_timeout (g)";
 //
-//                       ppairsocket_id->m_psocket->on_connection_timeout();
+//                       iteratorsocket_id->m_psocket->on_connection_timeout();
 //
 //                    }
 //                    else
@@ -1090,11 +1090,11 @@ namespace sockets
 //
 //                       warning() <<"get_socket_id/handler/7 " << (int)socket_id << " socket_id on_timeout (g)";
 //
-//                       ppairsocket_id->m_psocket->on_timeout();
+//                       iteratorsocket_id->m_psocket->on_timeout();
 //
 //                    }
 //
-//                    ppairsocket_id->m_psocket->SetCloseAndDelete();
+//                    iteratorsocket_id->m_psocket->SetCloseAndDelete();
 //
 //                 }
 //
@@ -1119,19 +1119,19 @@ namespace sockets
 //        for (; socket_id; socket_id++)
 //        {
 //
-//           auto ppairsocket_id = m_socketmap.plookup(*socket_id);
+//           auto iteratorsocket_id = m_socketmap.find(*socket_id);
 //
-//           if (::is_null(ppairsocket_id) || ::is_null(ppairsocket_id->m_psocket))
+//           if (::is_null(iteratorsocket_id) || ::is_null(iteratorsocket_id->m_psocket))
 //           {
 //
 //              warning() <<"get_socket_id/handler/7 " << (int)socket_id << " Did not find expected socket_id using file descriptor(g)";
 //
 //           }
 //
-//           if (::is_set(ppairsocket_id) && ::is_set(ppairsocket_id->m_psocket))
+//           if (::is_set(iteratorsocket_id) && ::is_set(iteratorsocket_id->m_psocket))
 //           {
 //
-//              auto ptcpsocket = dynamic_cast < tcp_socket * > (ppairsocket_id->m_psocket.m_p);
+//              auto ptcpsocket = dynamic_cast < tcp_socket * > (iteratorsocket_id->m_psocket.m_p);
 //
 //              if (::is_set(ptcpsocket))
 //              {
@@ -1162,7 +1162,7 @@ namespace sockets
 //
 //                    }
 //
-//                    transfer(ppairsocket_id, &m_socketmap);
+//                    transfer(iteratorsocket_id, &m_socketmap);
 //
 //                    m_socketidlistErase.add_tail(nn);
 //
@@ -1191,14 +1191,14 @@ namespace sockets
 //
 //           socket_id_map* psocket_idmap = nullptr;
 //
-//           auto ppairsocket_id = m_socketmap.plookup(socket_id);
+//           auto iteratorsocket_id = m_socketmap.find(socket_id);
 //
-//           if (::is_null(ppairsocket_id) || ::is_null(ppairsocket_id->m_psocket)) // not found
+//           if (::is_null(iteratorsocket_id) || ::is_null(iteratorsocket_id->m_psocket)) // not found
 //           {
 //
-//              ppairsocket_id = m_socketmapAdd.plookup(socket_id);
+//              iteratorsocket_id = m_socketmapAdd.find(socket_id);
 //
-//              if (::is_null(ppairsocket_id) || ::is_null(ppairsocket_id->m_psocket))
+//              if (::is_null(iteratorsocket_id) || ::is_null(iteratorsocket_id->m_psocket))
 //              {
 //
 //                 warning() <<"get_socket_id/handler/8 " << (int)socket_id << " Did not find expected socket_id using file descriptor(8)";
@@ -1219,15 +1219,15 @@ namespace sockets
 //
 //           }
 //
-//           if (::is_set(ppairsocket_id) && ::is_set(ppairsocket_id->m_psocket))
+//           if (::is_set(iteratorsocket_id) && ::is_set(iteratorsocket_id->m_psocket))
 //           {
 //
-//              auto psocket = ppairsocket_id->m_psocket.m_p;
+//              auto psocket = iteratorsocket_id->m_psocket.m_p;
 //
 //              if (psocket->IsCloseAndDelete())
 //              {
 //
-//                 auto ptcpsocket = dynamic_cast <tcp_socket*> (ppairsocket_id->m_psocket.m_p);
+//                 auto ptcpsocket = dynamic_cast <tcp_socket*> (iteratorsocket_id->m_psocket.m_p);
 //
 //                 // ___new graceful ptcpsocket - flush and close timeout 5s
 //                 if (::is_set(ptcpsocket) && psocket->IsConnected() && ptcpsocket->GetFlushBeforeClose() &&
@@ -1292,7 +1292,7 @@ namespace sockets
 //
 //                    ptcpsocket->ResetConnectionRetryCount();
 //
-//                    transfer(ppairsocket_id, psocket_idmap);
+//                    transfer(iteratorsocket_id, psocket_idmap);
 //
 //                    m_socketidlistErase.add_tail(ptcpsocket->m_socket_id);
 //
@@ -1316,7 +1316,7 @@ namespace sockets
 //
 //                       synchronous_lock synchronouslock(&psystem->sockets().m_pmutexPool);
 //
-//                       auto ppoolsocket_id = __allocate pool_socket_id(psocket);
+//                       auto ppoolsocket_id = øallocate pool_socket_id(psocket);
 //
 //                       ppoolsocket_id->m_psocket_idhandler = this;
 //
@@ -1377,18 +1377,18 @@ namespace sockets
 //
 //        erase_socket_id(socket_id);
 //
-//        auto ppairsocket_id = m_socketmap.plookup(socket_id);
+//        auto iteratorsocket_id = m_socketmap.find(socket_id);
 //
-//        if (::is_set(ppairsocket_id) && ::is_set(ppairsocket_id->m_psocket))
+//        if (::is_set(iteratorsocket_id) && ::is_set(iteratorsocket_id->m_psocket))
 //        {
 //
-//           ppairsocket_id->m_psocket->m_psocket_idhandler.release();
+//           iteratorsocket_id->m_psocket->m_psocket_idhandler.release();
 //
-//           //ppairsocket_id->m_psocket->m_phandlerSlave.release();
+//           //iteratorsocket_id->m_psocket->m_phandlerSlave.release();
 //
 //           m_socketmap.erase_key(socket_id);
 //
-//           m_delete.erase(ppairsocket_id->m_psocket);
+//           m_delete.erase(iteratorsocket_id->m_psocket);
 //
 //           m_socketmapAdd.erase_key(socket_id);
 //
@@ -1481,7 +1481,7 @@ namespace sockets
   //bool socket_handler::Resolving(base_socket * p0)
   //{
 
-  //   return m_resolve_q.plookup(p0) != nullptr;
+  //   return m_resolve_q.find(p0) != nullptr;
 
   //}
 
@@ -1570,7 +1570,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket_id>presolvsocket_id = __allocate resolv_socket_id(pbasesocket_id, host, port);
+//      ::pointer<resolv_socket_id>presolvsocket_id = øallocate resolv_socket_id(pbasesocket_id, host, port);
 //
 //      presolvsocket_id->m_psocket_idhandler = this;
 //
@@ -1607,7 +1607,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket_id>resolv = __allocate resolv_socket_id(pbasesocket_id, host, port, true);
+//      ::pointer<resolv_socket_id>resolv = øallocate resolv_socket_id(pbasesocket_id, host, port, true);
 //
 //      resolv->m_psocket_idhandler = this;
 //
@@ -1642,7 +1642,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket_id>resolv = __allocate resolv_socket_id(pbasesocket_id, a);
+//      ::pointer<resolv_socket_id>resolv = øallocate resolv_socket_id(pbasesocket_id, a);
 //
 //      resolv->m_psocket_idhandler = this;
 //
@@ -1677,7 +1677,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket_id>resolv = __allocate resolv_socket_id(pbasesocket_id, a);
+//      ::pointer<resolv_socket_id>resolv = øallocate resolv_socket_id(pbasesocket_id, a);
 //
 //      resolv->m_psocket_idhandler = this;
 //
@@ -1715,7 +1715,7 @@ namespace sockets
 //
 //         m_resolver_port = port;
 //
-//         auto presolvserver = __allocate resolv_server();
+//         auto presolvserver = øallocate resolv_server();
 //
 //         m_resolver = presolvserver;
 //
@@ -1906,10 +1906,10 @@ namespace sockets
    }
 
 
-//  void socket_handler::CheckList(socket_id_list & list, const string & listname)
+//  void socket_handler::CheckList(socket_id_list & list_base, const string & listname)
 //  {
 //
-//     auto p = list.begin();
+//     auto p = list_base.begin();
 //
 //     for(; (bool) p ; p++)
 //     {
@@ -1946,7 +1946,7 @@ namespace sockets
    //  {
    //  case e_list_call_on_connect:
    //     return m_socketidlistCallOnConnect;
-   //  case e_list_detach:
+   //  case aaa_e_list_detach:
    //     return m_socketidlistDetach;
    //  case e_list_timeout:
    //     return m_socketidlistTimeout;
@@ -1994,7 +1994,7 @@ namespace sockets
    //  //if (add)
    //  //{
    //  //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
-   //  //               (which_one == e_list_detach) ? "detach" :
+   //  //               (which_one == aaa_e_list_detach) ? "detach" :
    //  //               (which_one == e_list_timeout) ? "time_out" :
    //  //               (which_one == e_list_retry) ? "Retry" :
    //  //               (which_one == e_list_close) ? "close" : "<undef>",
@@ -2030,7 +2030,7 @@ namespace sockets
    //     //if (add)
    //     //{
    //     //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
-   //     //               (which_one == e_list_detach) ? "detach" :
+   //     //               (which_one == aaa_e_list_detach) ? "detach" :
    //     //               (which_one == e_list_timeout) ? "time_out" :
    //     //               (which_one == e_list_retry) ? "Retry" :
    //     //               (which_one == e_list_close) ? "close" : "<undef>",
@@ -2080,9 +2080,9 @@ namespace sockets
 
    bool socket_handler::Subscribe(int atom, base_socket * psocket_idDst)
    {
-      //if (m_trigger_src.plookup(atom) != nullptr)
+      //if (m_trigger_src.find(atom) != nullptr)
       //{
-      //   if (m_trigger_dst[atom].plookup(psocket_idDst) != nullptr)
+      //   if (m_trigger_dst[atom].find(psocket_idDst) != nullptr)
       //   {
       //      m_trigger_dst[atom][psocket_idDst] = true;
       //      return true;
@@ -2103,10 +2103,10 @@ namespace sockets
    bool socket_handler::Unsubscribe(int atom, base_socket * psocket_idDst)
    {
 
-      //if (m_trigger_src.plookup(atom) != nullptr)
+      //if (m_trigger_src.find(atom) != nullptr)
       //{
 
-      //   if (m_trigger_dst[atom].plookup(psocket_idDst) != nullptr)
+      //   if (m_trigger_dst[atom].find(psocket_idDst) != nullptr)
       //   {
 
       //      m_trigger_dst[atom].erase_key(psocket_idDst);

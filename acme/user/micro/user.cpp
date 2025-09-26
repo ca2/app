@@ -40,7 +40,7 @@ namespace micro
       }
 
 
-      //::pointer < ::subparticle > user::micro()->message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
+      //::pointer < ::subparticle > user::micro()->message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
       //{
 
       //   auto psequencer = node()->micro()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -50,7 +50,7 @@ namespace micro
       //}
 
 
-      //::pointer < ::subparticle > user::micro()->message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
+      //::pointer < ::subparticle > user::micro()->message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox, const ::scoped_string & scopedstrDetails)
       //{
 
       //   auto psequencer = node()->micro()->message_console(strMessage, strTitle, emessagebox, strDetails);
@@ -60,7 +60,7 @@ namespace micro
       //}
 
       //::pointer < ::message_box > user::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
-      //                                                       const ::e_message_box & emessagebox,
+      //                                                       const ::user::e_message_box & emessagebox,
       //                                                       const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
       //{
       //   auto pnode = node();
@@ -73,7 +73,7 @@ namespace micro
 
       //::pointer < ::message_box > user::exception_message_box(
       //    const ::exception & exception, const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrTitleParam,
-      //    const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetailsParam, ::nano::graphics::icon * picon)
+      //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetailsParam, ::nano::graphics::icon * picon)
       //{
       //   string strExceptionDetails = exception.get_consolidated_details(this);
 
@@ -115,7 +115,7 @@ namespace micro
 
 
       //::pointer < ::message_box > user::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
-      //                                                           const ::e_message_box & emessagebox,
+      //                                                           const ::user::e_message_box & emessagebox,
       //                                                           const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
       //{
       //   auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
@@ -126,7 +126,7 @@ namespace micro
 
       //::pointer < ::message_box > user::exception_message_console(
       //    const ::exception & exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
-      //    const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+      //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
       //{
       //   string strExceptionDetails = exception.get_consolidated_details(this);
 
@@ -233,7 +233,7 @@ namespace micro
 
       //      system()->do_graphics_and_windowing_system_factory();
 
-      //      __øconstruct(m_pdisplaybase);
+      //      øconstruct(m_pdisplaybase);
 
       //      m_pdisplaybase->open_display();
 
@@ -385,7 +385,7 @@ namespace micro
 
          }
 
-         auto ptopic = __allocate ::topic(id_application_dark_mode_change);
+         auto ptopic = øallocate ::topic(id_application_dark_mode_change);
 
          auto microwindowingwindowa = system()->acme_windowing()->m_windowa;
 
@@ -448,7 +448,7 @@ namespace micro
       void user::_do_tasks()
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto windowa = system()->acme_windowing()->m_windowa;
 
@@ -486,7 +486,7 @@ namespace micro
       void user::update_micro_theme()
       {
 
-         __defer_construct_new(m_pmicrotheme);
+         ødefer_construct_new(m_pmicrotheme);
 
          m_pmicrotheme->update_drawing_objects();
 
@@ -529,13 +529,13 @@ namespace micro
          if (pmessageboxRealizable->m_bDetails)
          {
 
-            pmessageboxReified = __create_new < ::micro::details_window >();
+            pmessageboxReified = øcreate_new < ::micro::details_window >();
 
          }
          else
          {
 
-            pmessageboxReified = __create_new < ::micro::message_box >();
+            pmessageboxReified = øcreate_new < ::micro::message_box >();
 
          }
 

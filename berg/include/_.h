@@ -29,7 +29,14 @@ namespace berg
    class system;
    class session;
    class application;
-   class user;
+
+   namespace berg
+   {
+
+      class user;
+
+
+   } // namespace berg
 
 
 } // namespace berg

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "command_buffer.h"
 #include "context.h"
 #include "device.h"
@@ -90,13 +91,13 @@ namespace gpu_opengl
 
       }
       //glGenBuffers(1, &VAO);
-//      float vertices[] = {
+//      float vertexes[] = {
          // positions         // colors
   //        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
     //     -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
       //    0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top
       //};
-      float vertices[] = {
+      float vertexes[] = {
          // first triangle
           1.f,  1.f, 0.0f,  // top right
           1.f, -1.f, 0.0f,  // bottom right
@@ -131,7 +132,7 @@ namespace gpu_opengl
 #endif
 
       glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+      glBufferData(GL_ARRAY_BUFFER, sizeof(vertexes), vertexes, GL_STATIC_DRAW);
 
       // position attribute
       glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
@@ -435,23 +436,39 @@ namespace gpu_opengl
    //}
 
 
-   void context::set_cull_face(bool bSet)
+   void context::set_cull_face(::gpu::enum_cull_mode ecullmode)
    {
 
-      ::gpu::context::set_cull_face(bSet);
+      ::gpu::context::set_cull_face(ecullmode);
 
-      if (m_bCullFace)
+      if (m_ecullmode == gpu::e_cull_mode_none)
       {
 
-         glEnable(GL_CULL_FACE);
+         glDisable(GL_CULL_FACE);
          GLCheckError("");
 
       }
       else
       {
 
-         glDisable(GL_CULL_FACE);
+         glEnable(GL_CULL_FACE);
          GLCheckError("");
+
+         //glEnable(GL_CULL_FACE);   // turn on culling
+         //glDisable(GL_CULL_FACE);  // turn off culling
+         //2. Choose which faces to cull
+         //c
+         //Copy
+         //Edit
+         if (m_ecullmode == ::gpu::e_cull_mode_back)
+         {
+            glCullFace(GL_BACK);   // cull back faces (default)
+         }
+         else
+         {
+            glCullFace(GL_FRONT);  // cull front faces
+            //glCullFace(GL_FRONT_AND_BACK); // cull both
+         }
 
       }
 
@@ -480,7 +497,7 @@ namespace gpu_opengl
 
       }
 
-      __defer_construct(m_pframebuffer);
+      ødefer_construct(m_pframebuffer);
 
       if (size.area() > 0)
       {
@@ -586,7 +603,7 @@ namespace gpu_opengl
 
    //   }
 
-   //   ::e_status estatus = __øconstruct(m_pbuffer);
+   //   ::e_status estatus = øconstruct(m_pbuffer);
 
    //   if (!estatus)
    //   {
@@ -862,7 +879,7 @@ namespace gpu_opengl
       else
       {
 
-         warning() << "Failed to map UBO";
+         warning() << "Failed to map_base UBO";
 
       }
 
@@ -914,7 +931,7 @@ namespace gpu_opengl
       if (!m_pshaderCopy)
       {
 
-         __construct_new(m_pshaderCopy);
+         øconstruct_new(m_pshaderCopy);
 
          // Vertex shader
          const_char_pointer vertexShaderSource = R"(
@@ -1051,7 +1068,7 @@ void main() {
       if (!m_pmodelbufferDummy)
       {
 
-         __defer_construct(m_pmodelbufferDummy);
+         ødefer_construct(m_pmodelbufferDummy);
 
          m_pmodelbufferDummy->initialize_gpu_context_object(this);
 
@@ -1101,7 +1118,7 @@ void main() {
 }
 )frag";
 
-            __defer_construct_new(m_pshaderBlend3);
+            ødefer_construct_new(m_pshaderBlend3);
 
             m_pshaderBlend3->m_bEnableBlend = true;
             m_pshaderBlend3->m_bindingSampler.set();
@@ -2626,6 +2643,7 @@ void main() {
 
             void main() {
                outColor = fragColor;
+//outColor=vec4(0.5*0.35,0.5*0.75,0.5*0.95,0.5);
             }
 )frag";
 
@@ -2641,13 +2659,13 @@ void main() {
 
 out vec2 TexCoords;
 
-uniform mat4 projection;
+//uniform mat4 projection;
 uniform vec4 quad;       // l, t, r, b
 uniform vec4 texcoords;  // l, t, r, b
 uniform vec4 textColor;  // (if needed in fragment shader)
 
 void main() {
-    // 4 vertices: 0–3
+    // 4 vertexes: 0–3
     vec2 positions[4] = vec2[](
         vec2(quad.x, quad.y),
         vec2(quad.z, quad.y),
@@ -2663,7 +2681,8 @@ void main() {
     );
 
     int vid = gl_VertexID;
-    gl_Position = projection * vec4(positions[vid], 0.0, 1.0);
+    //gl_Position = projection * vec4(positions[vid], 0.0, 1.0);
+gl_Position = vec4(positions[vid], 0.0, 1.0);
     TexCoords = uvs[vid];
 }
 )vertexshader";
@@ -2690,6 +2709,7 @@ vec4 c = vec4(textColor) * sampled;
     //color = vec4(sqrt(c.r),sqrt(c.g), sqrt(c.b), sqrt(c.a));
 color = vec4(c.r,c.g, c.b, c.a);
 //color = vec4(0.0, 1.0, 0.0, 1.0); // Bright debug color
+//color=vec4(0.5*0.35,0.5*0.75,0.5*0.95,0.5);
 }
 )fragmentshader";
 

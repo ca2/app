@@ -45,9 +45,9 @@ namespace platform
 
       //task_map                                           m_taskmap;
       //task_id_map                                        m_taskidmap;
-      //::map < ::task_index, ::task_index >   m_mapTaskOn;
+      //::map_base < ::task_index, ::task_index >   m_mapTaskOn;
 
-      ::map < ::task_index, ::thread_storage >  m_mapThreadStorage;
+      ::map_base < ::task_index, ::thread_storage >  m_mapThreadStorage;
 
       bool m_bApplicationStartFileOpenRequest = false;
       ::pointer<::request> m_prequestApplicationStartFileOpen;
@@ -119,11 +119,11 @@ namespace platform
 
       ::pointer < ::prototype::prototype >                                    m_pprototype;
       //::pointer < ::mutex >                                                 m_pmutexFactory;
-      //string_map < ::pointer<::factory::factory >>                          m_mapFactory;
-      //string_map < ::pointer<::factory::factory >>                          m_mapFactory;
+      //string_map_base < ::pointer<::factory::factory >>                          m_mapFactory;
+      //string_map_base < ::pointer<::factory::factory >>                          m_mapFactory;
 
 
-      pointer< string_map < ::pointer<::regular_expression::context >>>       m_pmapRegularExpressionContext;
+      pointer< ::map_particle < string_map_base < ::pointer<::regular_expression::context >> >>       m_pmapRegularExpressionContext;
 
 #ifdef __APPLE__
       void *                                                                  m_pmmos;
@@ -147,10 +147,10 @@ namespace platform
 
       class ::time                                                            m_timeFileListingCache;
       //critical_section                                                      m_csEnumText;
-      //string_map < i64_map < string > >                                     m_mapEnumToText;
-      //string_map < string_map < long long > >                                     m_mapTextToEnum;
+      //string_map_base < i64_map < string > >                                     m_mapEnumToText;
+      //string_map_base < string_map_base < long long > >                                     m_mapTextToEnum;
 
-      ::string_map < ::pointer < ::component > >                              m_mapComponent;
+      ::string_map_base < ::pointer < ::component > >                              m_mapComponent;
       ::pointer<::internet::internet>                                         m_pinternet;
       ::pointer<::url::url_context>                                           m_purlcontext;
 
@@ -514,7 +514,7 @@ namespace platform
 #endif
 
 
-   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
 
 
    //virtual void on_initialize_window_object();
@@ -553,7 +553,7 @@ namespace platform
 //
 //      long long iValue;
 //
-//      if (m_mapTextToEnum[typeid(e).name()].lookup(scopedstr, iValue))
+//      if (m_mapTextToEnum[typeid(e).name()].find(scopedstr, iValue))
 //      {
 //
 //         e = (ENUM)iValue;
@@ -767,13 +767,13 @@ namespace platform
 
       //::pointer < ::message_box > & realize(::pointer < ::message_box > & pmessagebox);
 
-      //::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
    };

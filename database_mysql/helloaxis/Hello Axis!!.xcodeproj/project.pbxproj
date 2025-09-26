@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		070B8F041B6E53FA00D26137 /* Hello_Multiverse__Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070B8F031B6E53FA00D26137 /* Hello_Multiverse__Tests.m */; };
-		07330AF51B72BE1E009E318E /* libbase.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 076A24841B6E772400BF6C7D /* libbase.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		07330AF51B72BE1E009E318E /* libberg.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 076A24841B6E772400BF6C7D /* libberg.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		07330B191B72BE53009E318E /* libcore.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 076A248D1B6E772400BF6C7D /* libcore.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		073D67691B6E7B1000B8AC34 /* libdraw2d_quartz2d.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 076A24961B6E772400BF6C7D /* libdraw2d_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		073D69651B6E7B2A00B8AC34 /* libexperience_lite.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 076A249F1B6E772400BF6C7D /* libexperience_lite.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -17,7 +17,7 @@
 		076FB4DB1C9F916900C73C4E /* libgcom.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 076FB4D41C9F90E100C73C4E /* libgcom.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		07AF89311B72560F00150CC2 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076A243F1B6E772400BF6C7D /* libaura.dylib */; };
 		07AF89321B72563500150CC2 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076A248D1B6E772400BF6C7D /* libcore.dylib */; };
-		07AF89331B72565500150CC2 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076A24841B6E772400BF6C7D /* libbase.dylib */; };
+		07AF89331B72565500150CC2 /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076A24841B6E772400BF6C7D /* libberg.dylib */; };
 		07C6AA1B1CA4F16B00B4E555 /* app.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07C6AA181CA4F16B00B4E555 /* app.mm */; };
 		07C6AA1C1CA4F16B00B4E555 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07C6AA191CA4F16B00B4E555 /* Images.xcassets */; };
 		07C6AA271CA4F3A700B4E555 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C6AA261CA4F3A700B4E555 /* main.cpp */; };
@@ -87,21 +87,21 @@
 		};
 		076A24831B6E772400BF6C7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 076A24261B6E772400BF6C7D /* base.xcodeproj */;
+			containerPortal = 076A24261B6E772400BF6C7D /* berg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
 			remoteInfo = base;
 		};
 		076A24851B6E772400BF6C7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 076A24261B6E772400BF6C7D /* base.xcodeproj */;
+			containerPortal = 076A24261B6E772400BF6C7D /* berg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
 			remoteInfo = ios_base;
 		};
 		076A24871B6E772400BF6C7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 076A24261B6E772400BF6C7D /* base.xcodeproj */;
+			containerPortal = 076A24261B6E772400BF6C7D /* berg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = base_iosTests;
@@ -206,7 +206,7 @@
 		};
 		076A24CE1B6E777500BF6C7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 076A24261B6E772400BF6C7D /* base.xcodeproj */;
+			containerPortal = 076A24261B6E772400BF6C7D /* berg.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
 			remoteInfo = base;
@@ -571,7 +571,7 @@
 				07EF5CCB1B72C2C200863D39 /* libaura.dylib in CopyFiles */,
 				073D6D381B6E7B5E00B8AC34 /* libaxis.dylib in CopyFiles */,
 				07330B191B72BE53009E318E /* libcore.dylib in CopyFiles */,
-				07330AF51B72BE1E009E318E /* libbase.dylib in CopyFiles */,
+				07330AF51B72BE1E009E318E /* libberg.dylib in CopyFiles */,
 				073D67691B6E7B1000B8AC34 /* libdraw2d_quartz2d.dylib in CopyFiles */,
 				073D69651B6E7B2A00B8AC34 /* libexperience_lite.dylib in CopyFiles */,
 				073D69661B6E7B2A00B8AC34 /* libapp_core_hellomultiverse.dylib in CopyFiles */,
@@ -587,7 +587,7 @@
 		070B8F031B6E53FA00D26137 /* Hello_Multiverse__Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hello_Multiverse__Tests.m; sourceTree = "<group>"; };
 		076A24081B6E772400BF6C7D /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../app/aura/.xcodeproj; sourceTree = SOURCE_ROOT; };
 		076A240B1B6E772400BF6C7D /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../../app/axis/axis.xcodeproj; sourceTree = SOURCE_ROOT; };
-		076A24261B6E772400BF6C7D /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../../app/base/base.xcodeproj; sourceTree = SOURCE_ROOT; };
+		076A24261B6E772400BF6C7D /* berg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = berg.xcodeproj; path = ../../app/berg/berg.xcodeproj; sourceTree = SOURCE_ROOT; };
 		076A24291B6E772400BF6C7D /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../app/aura/.xcodeproj; sourceTree = SOURCE_ROOT; };
 		076A242C1B6E772400BF6C7D /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = ../../app/draw2d_quartz2d/draw2d_quartz2d.xcodeproj; sourceTree = SOURCE_ROOT; };
 		076A242F1B6E772400BF6C7D /* experience_lite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_lite.xcodeproj; path = ../../app/experience_lite/experience_lite.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -616,7 +616,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07AF89331B72565500150CC2 /* libbase.dylib in Frameworks */,
+				07AF89331B72565500150CC2 /* libberg.dylib in Frameworks */,
 				07AF89321B72563500150CC2 /* libcore.dylib in Frameworks */,
 				07AF89311B72560F00150CC2 /* libaura.dylib in Frameworks */,
 			);
@@ -648,7 +648,7 @@
 				9A97F0891D8094A1000B4EC2 /* image_decode_jpeg.xcodeproj */,
 				9A97F0951D8094A8000B4EC2 /* image_decode_png.xcodeproj */,
 				9A97F0771D809475000B4EC2 /* axiswinpr.xcodeproj */,
-				076A24261B6E772400BF6C7D /* base.xcodeproj */,
+				076A24261B6E772400BF6C7D /* berg.xcodeproj */,
 				076A24291B6E772400BF6C7D /* aura.xcodeproj */,
 				076A242C1B6E772400BF6C7D /* draw2d_quartz2d.xcodeproj */,
 				076FB4CD1C9F90E000C73C4E /* gcom.xcodeproj */,
@@ -722,7 +722,7 @@
 		076A24271B6E772400BF6C7D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				076A24841B6E772400BF6C7D /* libbase.dylib */,
+				076A24841B6E772400BF6C7D /* libberg.dylib */,
 				076A24861B6E772400BF6C7D /* libios_base.a */,
 				076A24881B6E772400BF6C7D /* base_iosTests.xctest */,
 			);
@@ -1021,7 +1021,7 @@
 				},
 				{
 					ProductGroup = 076A24271B6E772400BF6C7D /* Products */;
-					ProjectRef = 076A24261B6E772400BF6C7D /* base.xcodeproj */;
+					ProjectRef = 076A24261B6E772400BF6C7D /* berg.xcodeproj */;
 				},
 				{
 					ProductGroup = 076A242A1B6E772400BF6C7D /* Products */;
@@ -1103,10 +1103,10 @@
 			remoteRef = 076A244B1B6E772400BF6C7D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		076A24841B6E772400BF6C7D /* libbase.dylib */ = {
+		076A24841B6E772400BF6C7D /* libberg.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libbase.dylib;
+			path = libberg.dylib;
 			remoteRef = 076A24831B6E772400BF6C7D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

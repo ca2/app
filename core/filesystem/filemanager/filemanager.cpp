@@ -261,7 +261,7 @@ namespace filemanager
       //factory()->add_factory_item <fs::simple::list_impact >();
       //factory()->add_factory_item <fs::simple::tree >();
 
-      //__construct_new(this, m_pmap);
+      //øconstruct_new(this, m_pmap);
 
       //auto& user = User;
 
@@ -282,7 +282,7 @@ namespace filemanager
          ::type < form_child_frame >(),
          ::type < form >()));
 
-      //__øconstruct(m_pimpactsystemForm, pmulti);
+      //øconstruct(m_pimpactsystemForm, pmulti);
 
     /*  
 
@@ -295,7 +295,7 @@ namespace filemanager
          ::type < operation_child_frame >(),
          ::type < operation_impact >()));
 
-      //__øconstruct(m_pimpactsystemOperation, psingle);
+      //øconstruct(m_pimpactsystemOperation, psingle);
 
       //psession->add_document_template(psingle);
 
@@ -360,7 +360,7 @@ namespace filemanager
 
    //   }
 
-   //   auto pdata = __create_new<data>();
+   //   auto pdata = øcreate_new<data>();
 
    //   pdata->initialize_filemanager_data(this);
 
@@ -433,7 +433,7 @@ namespace filemanager
 
       //}
 
-      auto pdata = __create_new<data>();
+      auto pdata = øcreate_new<data>();
 
       pdata->initialize_filemanager_data(this);
 
@@ -569,7 +569,7 @@ namespace filemanager
 
             auto pmutexGlobal = node()->create_global_named_mutex(this, false, "ca2-filemanagers");
 
-            synchronous_lock synchronouslock(pmutexGlobal);
+            synchronous_lock synchronouslock(pmutexGlobal, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             stra.add_lines(file()->as_string(m_pathFilemanagerProject), true);
 
@@ -787,7 +787,7 @@ namespace filemanager
       //if (pcreate == nullptr)
       //{
 
-      //   pcreate = __allocate ::create(papp->handler(), payloadFile, true);
+      //   pcreate = øallocate ::create(papp->handler(), payloadFile, true);
 
       //}
 
@@ -944,7 +944,7 @@ namespace filemanager
    //   if (pcreate == nullptr)
    //   {
 
-   //      pcreate = __allocate ::create(pappOnBehalfOf->handler());
+   //      pcreate = øallocate ::create(pappOnBehalfOf->handler());
 
    //   }
    //   else
@@ -1075,7 +1075,7 @@ namespace filemanager
    //   if (pcreate.is_null())
    //   {
 
-   //      pcreate = __allocate ::create(pappOnBehalfOf->handler());
+   //      pcreate = øallocate ::create(pappOnBehalfOf->handler());
 
    //   }
    //   else
@@ -1196,7 +1196,7 @@ namespace filemanager
    //   if (pfilemanagerdata == nullptr)
    //   {
 
-   //      pfilemanagerdata = __allocate ::filemanager::data(this);
+   //      pfilemanagerdata = øallocate ::filemanager::data(this);
 
    //   }
 
@@ -1250,7 +1250,7 @@ namespace filemanager
    //   if (pfilemanagerdata == nullptr)
    //   {
 
-   //      pfilemanagerdata = __allocate ::filemanager::data(this);
+   //      pfilemanagerdata = øallocate ::filemanager::data(this);
 
    //   }
 
@@ -1308,7 +1308,7 @@ namespace filemanager
    //   if (pfilemanagerdata == nullptr)
    //   {
 
-   //      pfilemanagerdata = __allocate ::filemanager::data(this);
+   //      pfilemanagerdata = øallocate ::filemanager::data(this);
 
    //   }
 

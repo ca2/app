@@ -275,7 +275,7 @@ namespace data
       void _insert_child_at(::collection::index i, tree_item_base * ptreeitemNew) override
       {
 
-         __defer_construct_new(m_ptreeitema2);
+         ødefer_construct_new(m_ptreeitema2);
 
          m_ptreeitema2->insert_at(i, dynamic_cast <tree_item < ITEM > *> (ptreeitemNew));
 
@@ -285,7 +285,7 @@ namespace data
       void _add_child(tree_item_base * ptreeitemNew) override
       {
 
-         __defer_construct_new(m_ptreeitema2);
+         ødefer_construct_new(m_ptreeitema2);
 
          m_ptreeitema2->add_item(ptreeitemNew);
 
@@ -295,7 +295,7 @@ namespace data
       void _set_child_at(::collection::index i, tree_item_base * ptreeitemSet) override
       {
 
-         __defer_construct_new(m_ptreeitema2);
+         ødefer_construct_new(m_ptreeitema2);
 
          m_ptreeitema2->set_at_grow(i, dynamic_cast <::data::tree_item < ITEM > *>(ptreeitemSet));
 
@@ -620,7 +620,7 @@ namespace data
 
          pitemNew->erase_item_from_parent();
 
-         __defer_construct_new(m_ptreeitema2);
+         ødefer_construct_new(m_ptreeitema2);
 
          m_ptreeitema2->insert_at(0, pitemNew);
 
@@ -643,7 +643,7 @@ namespace data
 
          pitemNew->erase_item_from_parent();
 
-         __defer_construct_new(m_ptreeitema2);
+         ødefer_construct_new(m_ptreeitema2);
 
          m_ptreeitema2->add(pitemNew);
 
@@ -742,7 +742,7 @@ namespace data
       else if (erelative == e_relative_last_sibling)
       {
 
-         m_ptreeitemParent->__defer_construct_new(m_ptreeitemParent->m_ptreeitema2);
+         m_ptreeitemParent->ødefer_construct_new(m_ptreeitemParent->m_ptreeitema2);
 
          m_ptreeitemParent->m_ptreeitema2->add(pitemNew);
 
@@ -763,7 +763,7 @@ namespace data
       else if (erelative == e_relative_replace)
       {
 
-         __defer_construct_new(m_ptreeitemParent->m_ptreeitema2);
+         ødefer_construct_new(m_ptreeitemParent->m_ptreeitema2);
 
          auto iFind = m_ptreeitemParent->m_ptreeitema2->find_first(this);
 

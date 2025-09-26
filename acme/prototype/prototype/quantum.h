@@ -39,6 +39,12 @@ public:
 
    }
 
+   inline quantum(::quantum&& quantum)
+   {
+
+
+   }
+
 
    virtual ~quantum();
 

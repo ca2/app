@@ -13,10 +13,11 @@ public:
    //using BASE_ARRAY = comparable_range < ARRAY_TYPE >;
 
    using BASE_ARRAY = ARRAY_TYPE;
+   using RAW_BASE_ARRAY = typename BASE_ARRAY::RAW_BASE_ARRAY;
 
-   using BASE_RANGE = ARRAY_TYPE;
+   using BASE_RANGE = typename BASE_ARRAY::BASE_RANGE;
    
-   using RAW_RANGE = typename ARRAY_TYPE::RAW_RANGE;
+   using BASE_RAW_RANGE = typename BASE_ARRAY::BASE_RAW_RANGE;
 
    using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
 
@@ -27,17 +28,18 @@ public:
    //using BASE_ARRAY::operator ==;
    //using BASE_ARRAY::operator !=;
 
-   using BASE_ARRAY::operator +=;
-
    //using comparable_range < ARRAY_TYPE >::comparable_range;
 
-   using ARRAY_TYPE::ARRAY_TYPE;
-   using ARRAY_TYPE::operator =;
+   using BASE_ARRAY::BASE_ARRAY;
+   using BASE_ARRAY::operator =;
+   using BASE_ARRAY::operator +=;
+   using BASE_ARRAY::operator -=;
 
+   comparable_array_base(const RAW_BASE_ARRAY& a) : BASE_ARRAY(a) { }
    using iterator = typename BASE_ARRAY::iterator;
    using const_iterator = typename BASE_ARRAY::const_iterator;
 
-
+   using this_iterator = typename BASE_ARRAY::this_iterator;
    //using ARRAY_TYPE::ARRAY_TYPE;
 
    // comparable_array_base() { }
@@ -67,7 +69,7 @@ public:
 
       using BASE_RANGE::_order;
    
-      constexpr ::std::strong_ordering _order(const RAW_RANGE & range) const
+      constexpr auto _order(const BASE_RAW_RANGE & range) const
       {
    
          return _order(range, ::comparison::comparison < TYPE >());
@@ -77,14 +79,17 @@ public:
    
       using BASE_RANGE::order;
    
-      constexpr ::std::strong_ordering order(const RAW_RANGE & range) const
+      constexpr auto order(const BASE_RAW_RANGE & range) const
       {
    
          return BASE_RANGE::order(range, ::comparison::comparison < TYPE >());
    
       }
+
+
+
    
-      constexpr ::std::strong_ordering operator<=>(const comparable_array_base & array) const
+      constexpr auto operator<=>(const comparable_array_base & array) const
       {
    
          return this->order(array);
@@ -128,14 +133,14 @@ public:
       // }
 
 
-      inline comparable_array_base & operator += (const TYPE & t)
-      {
-
-         this->add_item(t);
-
-         return *this;
-
-      }
+      // inline comparable_array_base & operator += (const TYPE & t)
+      // {
+      //
+      //    this->add_item(t);
+      //
+      //    return *this;
+      //
+      // }
 
 };
 

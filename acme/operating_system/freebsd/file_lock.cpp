@@ -102,7 +102,7 @@ namespace file_lock
 
    //    }
 
-   //    int * pi = __allocate int();
+   //    int * pi = øallocate int();
 
    //    *pi = fd;
 

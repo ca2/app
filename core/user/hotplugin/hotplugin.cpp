@@ -47,7 +47,7 @@ namespace hotplugin
 pdirectorysystem->system() / "config\\plugin\\npca2_beg_debug_box.txt"))
 //         {
 
-//            debug_box("hotplugin boxmain NP_Initialize","ZZZzzz hotplugin box",e_message_box_ok);
+//            debug_box("hotplugin boxmain NP_Initialize","ZZZzzz hotplugin box",::user::e_message_box_ok);
 
 //         }
 //         if(file_system()->exists(         auto psystem = system();
@@ -73,7 +73,7 @@ pdirectorysystem->system() / "config\\plugin\\npca2_beg_sleep.txt"))
 
 // #endif
 
-//         xxdebug_box("box1","box1",e_message_box_icon_information);
+//         xxdebug_box("box1","box1",::user::e_message_box_icon_information);
 
 // #ifdef WINDOWS
 

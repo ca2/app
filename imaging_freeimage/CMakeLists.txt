@@ -99,10 +99,16 @@ elseif (${LINUX} OR ${OPENBSD} OR ${NETBSD} OR ${ANDROID})
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
+    if(${USE_PORT_FREEIMAGE})
+        set(freeimage_library port_freeimage)
+    else()
+        set(freeimage_library freeimage)
+    endif()
+
 
     target_compile_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME}_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME}_LDFLAGS})
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME}_LIBRARIES} freeimage ${library_references} ${global_library_references})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_${PROJECT_NAME}_LIBRARIES} ${freeimage_library} ${library_references} ${global_library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 

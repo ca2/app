@@ -84,7 +84,7 @@ public:
 
 using memory_pointer = ::pointer<memory>;
 
-inline memory_pointer create_memory() { return __allocate ::memory (); }
+inline memory_pointer create_memory() { return øallocate ::memory (); }
 
 
 inline ::memory memory_base::slice(memsize start, memsize count)

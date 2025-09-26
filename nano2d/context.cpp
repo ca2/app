@@ -1637,7 +1637,7 @@ void TransformSkewX(float* t, float a)
 	//
 	//	if (w > 0.0f) iw = 1.0f / w;
 	//
-	//	// Calculate which joins needs extra vertices to append, and gather vertex count.
+	//	// Calculate which joins needs extra vertexes to append, and gather vertex count.
 	//	for (i = 0; i < m_ppathcache->npaths; i++) {
 	//		::nano2d::path * path = &m_ppathcache->paths[i];
 	//		NVGpoint * pts = &m_ppathcache->points[path->first];
@@ -1861,7 +1861,7 @@ void TransformSkewX(float* t, float a)
 	//		float rw, lw, woff;
 	//		float ru, lu;
 	//
-	//		// Calculate shape vertices.
+	//		// Calculate shape vertexes.
 	//		woff = 0.5f * aa;
 	//		dst = verts;
 	//		path->fill = dst;
@@ -2776,7 +2776,7 @@ void TransformSkewX(float* t, float a)
    ::pointer < ::nano2d::text_box > context::text_box_layout(const ::scoped_string& scopedstr, float breakRowWidth)
    {
 
-      ::pointer < ::nano2d::text_box > ptextbox = __create_new<::nano2d::text_box >();
+      ::pointer < ::nano2d::text_box > ptextbox = øcreate_new<::nano2d::text_box >();
    
       ptextbox->m_fWidth = breakRowWidth;
       
@@ -2900,7 +2900,7 @@ void TransformSkewX(float* t, float a)
          {
             
             // Always handle ___new lines.
-            auto prow = __create_new <::nano2d::text_row >();
+            auto prow = øcreate_new <::nano2d::text_row >();
             auto start = rowStart != NULL ? rowStart : range.m_begin;
             auto end = rowEnd != NULL ? rowEnd : range.m_begin;
             
@@ -3001,7 +3001,7 @@ void TransformSkewX(float* t, float a)
                   {
                      
                      // The current word is longer than the row length, just break it from here.
-                     auto prow = __create_new <::nano2d::text_row >();
+                     auto prow = øcreate_new <::nano2d::text_row >();
                      prow->m_str.assign(rowStart, range.begin());
                      //prow->end = iter.str;
                      prow->width = rowWidth * invscale;
@@ -3030,7 +3030,7 @@ void TransformSkewX(float* t, float a)
                   {
                      
                      // Break the line from the end of the last word, and start ___new line from the beginning of the ___new.
-                     auto prow = __create_new <::nano2d::text_row >();
+                     auto prow = øcreate_new <::nano2d::text_row >();
                      //prow->start = rowStart;
                      //prow->end = breakEnd;
 							prow->m_str.assign(rowStart, breakEnd);
@@ -3073,7 +3073,7 @@ void TransformSkewX(float* t, float a)
       if (rowStart != NULL)
       {
          
-         auto prow = __create_new <::nano2d::text_row >();
+         auto prow = øcreate_new <::nano2d::text_row >();
          //prow->start = rowStart;
          //prow->end = rowEnd;
 			prow->m_str.assign(rowStart, rowEnd);

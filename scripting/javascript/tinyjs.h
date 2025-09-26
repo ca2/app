@@ -202,7 +202,7 @@ public:
    void setIntName(int n); ///< set the name as an integer (for arrays)
 };
 
-/// Variable class (containing a doubly-linked list of children)
+/// Variable class (containing a doubly-linked list_base of children)
 class CLASS_DECL_APP_SCRIPTING CScriptVar
 {
 public:

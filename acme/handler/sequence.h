@@ -189,13 +189,13 @@ public:
 
 //
 //class sequencer_payload :
-//   virtual public ::list < ::sequencer_step >
+//   virtual public ::list_base < ::sequencer_step >
 //{
 //public:
 //
 //
 //   ::payload                                    m_payload;
-//   ::list < ::sequencer_step >::iterator        m_iterator;
+//   ::list_base < ::sequencer_step >::iterator        m_iterator;
 //   ::sequencer & m_sequencer;
 //   //::pointer< ::particle >          m_pparticleLast;
 //   //::pointer< ::particle >          m_pparticle;
@@ -479,7 +479,7 @@ public:
 //
 //      m_stepa.add(step);
 //
-//      m_phappening = __allocate manual_reset_happening();
+//      m_phappening = øallocate manual_reset_happening();
 //
 //      lock.unlock();
 //
@@ -530,7 +530,7 @@ public:
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_phappening = __allocate manual_reset_happening();
+//      m_phappening = øallocate manual_reset_happening();
 //
 //      if (!m_phappening->wait(timeWait))
 //      {
@@ -564,7 +564,7 @@ public:
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_phappening = __allocate manual_reset_happening();
+//      m_phappening = øallocate manual_reset_happening();
 //
 //      lock.unlock();
 //
@@ -614,13 +614,13 @@ public:
 //
 //
 //class sequencer_payload :
-//   virtual public ::list < ::sequencer_step >
+//   virtual public ::list_base < ::sequencer_step >
 //{
 //public:
 //
 //
 //   ::payload                                    m_payload;
-//   ::list < ::sequencer_step >::iterator        m_iterator;
+//   ::list_base < ::sequencer_step >::iterator        m_iterator;
 //   ::sequencer &                                m_sequencer;
 //   //::pointer< ::particle >          m_pparticleLast;
 //   //::pointer< ::particle >          m_pparticle;
@@ -904,7 +904,7 @@ public:
 //
 //      m_stepa.add(step);
 //
-//      m_phappening = __allocate manual_reset_happening();
+//      m_phappening = øallocate manual_reset_happening();
 //
 //      lock.unlock();
 //
@@ -955,7 +955,7 @@ public:
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_phappening = __allocate manual_reset_happening();
+//      m_phappening = øallocate manual_reset_happening();
 //
 //      if (!m_phappening->wait(timeWait))
 //      {
@@ -989,7 +989,7 @@ public:
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_phappening = __allocate manual_reset_happening();
+//      m_phappening = øallocate manual_reset_happening();
 //
 //      lock.unlock();
 //

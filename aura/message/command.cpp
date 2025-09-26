@@ -369,7 +369,7 @@
 //   bool channel::has_command_handler(::message::command * pcommand)
 //   {
 //
-//      synchronous_lock synchronouslock(channel_mutex());
+//      synchronous_lock synchronouslock(channel_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      scoped_restore(pcommand->m_atomCommand.m_etype);
 //
@@ -382,7 +382,7 @@
 //
 //      }
 //
-//      auto passoc = m_idroute.plookup(pcommand->m_atomCommand);
+//      auto passoc = m_idroute.find(pcommand->m_atomCommand);
 //
 //      if (::is_null(passoc))
 //      {

@@ -75,11 +75,11 @@
 //
 //      ::user::interaction::install_message_routing(pchannel);
 //
-//      MESSAGE_LINK(e_message_create, pchannel, this, &static_control::on_message_create);
-//      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &static_control::on_message_left_button_down);
-//      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &static_control::on_message_left_button_up);
-//      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &static_control::on_message_mouse_leave);
-//      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &static_control::on_message_mouse_move);
+//      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &static_control::on_message_create);
+//      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &static_control::on_message_left_button_down);
+//      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &static_control::on_message_left_button_up);
+//      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &static_control::on_message_mouse_leave);
+//      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &static_control::on_message_mouse_move);
 //
 //   }
 //

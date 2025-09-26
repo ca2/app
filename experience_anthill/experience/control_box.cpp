@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "control_box.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -52,10 +52,10 @@ namespace experience_anthill
 
       ::experience::control_box::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &control_box::on_message_create);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &control_box::on_message_show_window);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_box::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &control_box::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &control_box::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &control_box::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &control_box::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &control_box::on_message_left_button_up);
 
    }
 
@@ -63,7 +63,7 @@ namespace experience_anthill
    void control_box::on_message_create(::message::message * pmessage)
    {
 
-      __øconstruct(m_pfontMarlett);
+      øconstruct(m_pfontMarlett);
 
       m_pfontMarlett->create_font("Marlett", 32_px);
 

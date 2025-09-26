@@ -10,12 +10,12 @@
 void output_debug_string(const ::scoped_string & scopedstr)
 {
 
-   synchronous_lock synchronouslock(g_pmutexOutputDebugStringA);
+   synchronous_lock synchronouslock(g_pmutexOutputDebugStringA, ::system(), SYNCHRONOUS_LOCK_SUFFIX);
 
    //if (m_pstrOutputDebugStringA == nullptr)
    //{
 
-   //   m_pstrOutputDebugStringA = __allocate string();
+   //   m_pstrOutputDebugStringA = øallocate string();
 
    //}
 

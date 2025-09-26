@@ -15,7 +15,7 @@
  /**
   * \file nanoui/icons.h
   *
-  * \brief This is a list of icon codes for the free variant of the
+  * \brief This is a list_base of icon codes for the free variant of the
   * FontAwesome 5.10.1 font.
   *
   * \rst
@@ -807,7 +807,7 @@
   *            </tr>
   *            <tr class="row-even">
   *              <td align="right"><code>FA_CLIPBOARD_LIST</code></td>
-  *              <td align="center"><span class="fa-clipboard-list"></span></td>
+  *              <td align="center"><span class="fa-clipboard-list_base"></span></td>
   *            </tr>
   *            <tr class="row-odd">
   *              <td align="right"><code>FA_CLOCK</code></td>
@@ -2095,19 +2095,19 @@
   *            </tr>
   *            <tr class="row-even">
   *              <td align="right"><code>FA_LIST</code></td>
-  *              <td align="center"><span class="fa-list"></span></td>
+  *              <td align="center"><span class="fa-list_base"></span></td>
   *            </tr>
   *            <tr class="row-odd">
   *              <td align="right"><code>FA_LIST_ALT</code></td>
-  *              <td align="center"><span class="fa-list-alt"></span></td>
+  *              <td align="center"><span class="fa-list_base-alt"></span></td>
   *            </tr>
   *            <tr class="row-even">
   *              <td align="right"><code>FA_LIST_OL</code></td>
-  *              <td align="center"><span class="fa-list-ol"></span></td>
+  *              <td align="center"><span class="fa-list_base-ol"></span></td>
   *            </tr>
   *            <tr class="row-odd">
   *              <td align="right"><code>FA_LIST_UL</code></td>
-  *              <td align="center"><span class="fa-list-ul"></span></td>
+  *              <td align="center"><span class="fa-list_base-ul"></span></td>
   *            </tr>
   *            <tr class="row-even">
   *              <td align="right"><code>FA_LOCATION_ARROW</code></td>
@@ -2163,31 +2163,31 @@
   *            </tr>
   *            <tr class="row-odd">
   *              <td align="right"><code>FA_MAP</code></td>
-  *              <td align="center"><span class="fa-map"></span></td>
+  *              <td align="center"><span class="fa-map_base"></span></td>
   *            </tr>
   *            <tr class="row-even">
   *              <td align="right"><code>FA_MAP_MARKED</code></td>
-  *              <td align="center"><span class="fa-map-marked"></span></td>
+  *              <td align="center"><span class="fa-map_base-marked"></span></td>
   *            </tr>
   *            <tr class="row-odd">
   *              <td align="right"><code>FA_MAP_MARKED_ALT</code></td>
-  *              <td align="center"><span class="fa-map-marked-alt"></span></td>
+  *              <td align="center"><span class="fa-map_base-marked-alt"></span></td>
   *            </tr>
   *            <tr class="row-even">
   *              <td align="right"><code>FA_MAP_MARKER</code></td>
-  *              <td align="center"><span class="fa-map-marker"></span></td>
+  *              <td align="center"><span class="fa-map_base-marker"></span></td>
   *            </tr>
   *            <tr class="row-odd">
   *              <td align="right"><code>FA_MAP_MARKER_ALT</code></td>
-  *              <td align="center"><span class="fa-map-marker-alt"></span></td>
+  *              <td align="center"><span class="fa-map_base-marker-alt"></span></td>
   *            </tr>
   *            <tr class="row-even">
   *              <td align="right"><code>FA_MAP_PIN</code></td>
-  *              <td align="center"><span class="fa-map-pin"></span></td>
+  *              <td align="center"><span class="fa-map_base-pin"></span></td>
   *            </tr>
   *            <tr class="row-odd">
   *              <td align="right"><code>FA_MAP_SIGNS</code></td>
-  *              <td align="center"><span class="fa-map-signs"></span></td>
+  *              <td align="center"><span class="fa-map_base-signs"></span></td>
   *            </tr>
   *            <tr class="row-even">
   *              <td align="right"><code>FA_MARKER</code></td>
@@ -3383,7 +3383,7 @@
   *            </tr>
   *            <tr class="row-even">
   *              <td align="right"><code>FA_TH_LIST</code></td>
-  *              <td align="center"><span class="fa-th-list"></span></td>
+  *              <td align="center"><span class="fa-th-list_base"></span></td>
   *            </tr>
   *            <tr class="row-odd">
   *              <td align="right"><code>FA_THEATER_MASKS</code></td>

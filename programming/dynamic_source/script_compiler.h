@@ -10,7 +10,7 @@
 namespace dynamic_source
 {
 
-   using library_map = string_map < ::pointer<library >>;
+   using library_map = string_map_base < ::pointer<library >>;
 
 
    class CLASS_DECL_APP_PROGRAMMING script_compiler :

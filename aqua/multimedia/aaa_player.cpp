@@ -38,7 +38,7 @@ namespace wave
    void player::prepare_wave_player(enum_purpose epurpose)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //if (thread_active())
       //{
@@ -292,7 +292,7 @@ namespace wave
 
    //   }
 
-   //   auto estatus = __øconstruct(m_pwaveout);
+   //   auto estatus = øconstruct(m_pwaveout);
 
    //   if (!estatus)
    //   {
@@ -363,7 +363,7 @@ namespace wave
    void player::post_command(player_command * pcommand)
    {
 
-//      post_object(e_message_player_command, 0, pcommand);
+//      post_object(::user::e_message_player_command, 0, pcommand);
 
    }
 
@@ -474,7 +474,7 @@ namespace wave
 
          //}
 
-         //m_pwaveout->post_object(e_message_player_start, 0, pcommand);
+         //m_pwaveout->post_object(::user::e_message_player_start, 0, pcommand);
 
       }
       break;
@@ -584,7 +584,7 @@ namespace wave
 
       //::pointer<player_command>spcommand(pcommand);
 
-      //post_message(e_message_player_event, (WPARAM)ehappening, spcommand);
+      //post_message(::user::e_message_player_event, (WPARAM)ehappening, spcommand);
       OnHappening(ehappening, pcommand);
 
    }
@@ -856,7 +856,7 @@ namespace wave
       if (IsPlaying())
       {
 
-         //m_pwaveout->post_message(e_message_player_stop);
+         //m_pwaveout->post_message(::user::e_message_player_stop);
 
       }
 
@@ -896,7 +896,7 @@ namespace wave
       try
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //plistener->assert_ok();
 
@@ -951,7 +951,7 @@ namespace wave
       try
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //try
          //{
@@ -996,7 +996,7 @@ namespace wave
       try
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          while (m_listenera.get_count() > 0)
          {

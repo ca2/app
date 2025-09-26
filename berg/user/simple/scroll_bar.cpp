@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "scroll_bar.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/platform/timer.h"
 #include "acme/user/user/content.h"
@@ -53,13 +53,13 @@ simple_scroll_bar::~simple_scroll_bar()
 void simple_scroll_bar::install_message_routing(::channel * pchannel)
 {
    ::user::interaction::install_message_routing(pchannel);
-   MESSAGE_LINK(e_message_create, pchannel, this, &simple_scroll_bar::on_message_create);
-   MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_scroll_bar::on_message_destroy);
-   MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_scroll_bar::on_message_show_window);
-   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_scroll_bar::on_message_mouse_move);
-   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &simple_scroll_bar::on_message_left_button_down);
-   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &simple_scroll_bar::on_message_left_button_up);
-   MESSAGE_LINK(e_message_scroll_x, pchannel, this, &simple_scroll_bar::on_message_scroll_x);
+   USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &simple_scroll_bar::on_message_create);
+   USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &simple_scroll_bar::on_message_destroy);
+   USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &simple_scroll_bar::on_message_show_window);
+   USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &simple_scroll_bar::on_message_mouse_move);
+   USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &simple_scroll_bar::on_message_left_button_down);
+   USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &simple_scroll_bar::on_message_left_button_up);
+   USER_MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &simple_scroll_bar::on_message_scroll_x);
 
 }
 
@@ -1058,11 +1058,11 @@ m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPosition = nPos;
 
 if(m_eorientation == e_orientation_horizontal)
 {
-puiParent->SendMessage(e_message_scroll_x, MAKEWPARAM(e_scroll_command_LINERIGHT, m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPosition), (LPARAM) this->get_handle());
+puiParent->SendMessage(::user::e_message_scroll_x, MAKEWPARAM(e_scroll_command_LINERIGHT, m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPosition), (LPARAM) this->get_handle());
 }
 else
 {
-puiParent->SendMessage(e_message_scroll_y, MAKEWPARAM(e_scroll_command_LINEDOWN, m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPosition), (LPARAM) this->get_handle());
+puiParent->SendMessage(::user::e_message_scroll_y, MAKEWPARAM(e_scroll_command_LINEDOWN, m_pscrolllayout->m_scrollstatea[::user::e_layout_sketch].m_iPosition), (LPARAM) this->get_handle());
 }*/
 
 //}
@@ -1071,12 +1071,12 @@ puiParent->SendMessage(e_message_scroll_y, MAKEWPARAM(e_scroll_command_LINEDOWN,
 void simple_scroll_bar::on_message_create(::message::message * pmessage)
 {
 
-   __øconstruct(m_ppenDraw);
-   __øconstruct(m_pbrushDraw);
-   __øconstruct(m_pregionA); // regiao da primeira seta
-   __øconstruct(m_pregionB); // regiao da segunda seta
+   øconstruct(m_ppenDraw);
+   øconstruct(m_pbrushDraw);
+   øconstruct(m_pregionA); // regiao da primeira seta
+   øconstruct(m_pregionB); // regiao da segunda seta
 
-   auto pitemScrollbarTrackbar = __allocate ::item(::item_t{ e_element_scrollbar_trackbar });
+   auto pitemScrollbarTrackbar = øallocate ::item(::item_t{ e_element_scrollbar_trackbar });
 
    tool().add_item(pitemScrollbarTrackbar);
 
@@ -1438,7 +1438,7 @@ void simple_scroll_bar::UpdateBitmaps()
 //   trw()
 //   {
 //
-//      //auto pusersystem = __allocate ::user::system(WS_EX_LAYERED, nullptr, "", WS_VISIBLE);
+//      //auto pusersystem = øallocate ::user::system(WS_EX_LAYERED, nullptr, "", WS_VISIBLE);
 //
 //      //if(create_window_ex(pusersystem))
 //      //if(create_host())
@@ -1536,7 +1536,7 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    //   if(!m_pshapeaClip)
    //   {
 
-   //      __construct_new(m_pshapeaClip);
+   //      øconstruct_new(m_pshapeaClip);
 
    //      ::user::interaction * pinteraction = this;
 
@@ -1564,9 +1564,9 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
    //         screen_to_client(rectangleFocus);
 
-   //         m_pshapeaClip->add_item(__allocate rectangle_shape(rectangleFocus));
+   //         m_pshapeaClip->add_item(øallocate rectangle_shape(rectangleFocus));
 
-   //         m_pshapeaClip->add_item(__allocate intersect_clip_shape());
+   //         m_pshapeaClip->add_item(øallocate intersect_clip_shape());
 
    //         i++;
 
@@ -1894,7 +1894,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    {
 
-      auto ppenArrow = __øcreate < ::draw2d::pen >();
+      auto ppenArrow = øcreate < ::draw2d::pen >();
 
       ppenArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
 
@@ -1966,7 +1966,7 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 
    rectangleDraw.deflate(1, 1);
 
-   auto ppen = __øcreate < ::draw2d::pen >();
+   auto ppen = øcreate < ::draw2d::pen >();
 
    ppen->create_solid(2.0, argb(150 * uchAlpha / 255, 108, 108, 100));
 
@@ -1974,7 +1974,7 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 
    pgraphics->draw_ellipse(rectangleDraw);
 
-   auto pbrush = __øcreate < ::draw2d::brush >();
+   auto pbrush = øcreate < ::draw2d::brush >();
 
    ::int_rectangle rectangleDotto(0, 0, 5, 5);
 
@@ -2005,7 +2005,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
       //auto estatus = 
 
-      __øconstruct(m_pimageDots);
+      øconstruct(m_pimageDots);
 
       //if (!estatus)
       //{
@@ -2385,7 +2385,7 @@ bool simple_scroll_bar::on_drag_start(::int_point & point, ::user::mouse * pmous
 //if (statusrectangleTrack.contains(point))
 //{
 
-//   return __allocate ::item(::e_element_scrollbar_trackbar);
+//   return øallocate ::item(::e_element_scrollbar_trackbar);
 
 //}
 //else
@@ -2398,7 +2398,7 @@ bool simple_scroll_bar::on_drag_start(::int_point & point, ::user::mouse * pmous
 //   if (statusrectanglePageA.contains(point))
 //   {
 
-//      return __allocate ::item(::e_element_scrollbar_pageA);
+//      return øallocate ::item(::e_element_scrollbar_pageA);
 
 //   }
 
@@ -2407,25 +2407,25 @@ bool simple_scroll_bar::on_drag_start(::int_point & point, ::user::mouse * pmous
 //   if (statusrectanglePageB.contains(point))
 //   {
 
-//      return __allocate ::item(::e_element_scrollbar_pageB);
+//      return øallocate ::item(::e_element_scrollbar_pageB);
 
 //   }
 
    //if (get_buttonA_rectangle(rectangleX, pgraphics).contains(point))
    //{
 
-   //   return __allocate ::item(::e_element_scrollbar_rectA);
+   //   return øallocate ::item(::e_element_scrollbar_rectA);
 
    //}
 
    //if (get_buttonA_rectangle(rectangleX, pgraphics).contains(point))
    //{
 
-   //   return __allocate ::item(::e_element_scrollbar_rectB);
+   //   return øallocate ::item(::e_element_scrollbar_rectB);
 
    //}
 
-//   auto pitemNone = __allocate ::item(e_element_none);
+//   auto pitemNone = øallocate ::item(e_element_none);
 
 //   return pitemNone;
 
@@ -2448,7 +2448,7 @@ bool simple_scroll_bar::on_drag_start(::int_point & point, ::user::mouse * pmous
    //if (statusrectangleTrack.contains(point))
    //{
 
-   //   return __allocate ::item(::e_element_scrollbar_trackbar);
+   //   return øallocate ::item(::e_element_scrollbar_trackbar);
 
    //}
    //else
@@ -2461,7 +2461,7 @@ bool simple_scroll_bar::on_drag_start(::int_point & point, ::user::mouse * pmous
    //   if (statusrectanglePageA.contains(point))
    //   {
 
-   //      return __allocate ::item(::e_element_scrollbar_pageA);
+   //      return øallocate ::item(::e_element_scrollbar_pageA);
 
    //   }
 
@@ -2470,25 +2470,25 @@ bool simple_scroll_bar::on_drag_start(::int_point & point, ::user::mouse * pmous
    //   if (statusrectanglePageB.contains(point))
    //   {
 
-   //      return __allocate ::item(::e_element_scrollbar_pageB);
+   //      return øallocate ::item(::e_element_scrollbar_pageB);
 
    //   }
 
    //   if (get_buttonA_rectangle(rectangleX, pgraphics).contains(point))
    //   {
 
-   //      return __allocate ::item(::e_element_scrollbar_rectA);
+   //      return øallocate ::item(::e_element_scrollbar_rectA);
 
    //   }
 
    //   if (get_buttonA_rectangle(rectangleX, pgraphics).contains(point))
    //   {
 
-   //      return __allocate ::item(::e_element_scrollbar_rectB);
+   //      return øallocate ::item(::e_element_scrollbar_rectB);
 
    //   }
 
-   //   auto pitemNone = __allocate ::item(e_element_none);
+   //   auto pitemNone = øallocate ::item(e_element_none);
 
    //   return pitemNone;
 

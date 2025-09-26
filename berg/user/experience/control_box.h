@@ -38,7 +38,7 @@ namespace experience
       };
 
 
-      using enum_button_item_map = ::map < enum_button, ::pointer < item > >;
+      using enum_button_item_map = ::map_base < enum_button, ::pointer < item > >;
 
 
       ::experience::frame_window *           m_pframewindow;
@@ -67,7 +67,7 @@ namespace experience
       ::color::color                         m_colorButtonForeDisabled;
 
       enum_button_item_map                   m_itemmap;
-      atom_map < enum_button >               m_idmap;
+      atom_map_base < enum_button >               m_idmap;
             
       status < ::color::color  >             m_colorBackground;
 

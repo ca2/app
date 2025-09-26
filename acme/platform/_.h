@@ -58,8 +58,20 @@ namespace platform
 
    class uuid;
 
+   class application_sink;
+
 
 } // namespace platform
+
+
+namespace message
+{
+
+   
+   class message;
+
+
+} // namespace message
 
 
 class message_box;
@@ -81,3 +93,4 @@ namespace acme
 
 
 
+class message_sink;

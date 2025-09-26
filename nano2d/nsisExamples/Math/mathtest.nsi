@@ -113,7 +113,7 @@ Go:
    IntCmp $TEMP3 0 End
    ; get single line to $TEMP2
    Call GetLine
-;   MessageBox e_message_box_ok "'$TEMP2'      '$TEMP1'"
+;   MessageBox ::user::e_message_box_ok "'$TEMP2'      '$TEMP1'"
    Math::Script "$TEMP2"
    goto Go
 End:

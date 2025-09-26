@@ -327,7 +327,7 @@ namespace windowing
 //
 //#elif defined(LINUX)
 //
-//      _synchronous_lock synchronouslock(this->synchronization());
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      return m_rectangleaMonitor.get_count();
 //
@@ -651,7 +651,7 @@ namespace windowing
    monitor * display::get_monitor(::collection::index iMonitor)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(iMonitor < 0 || iMonitor >= get_monitor_count())
       {
@@ -667,7 +667,7 @@ namespace windowing
 
          information() << "create_monitor";
 
-         __øconstruct(pmonitor);
+         øconstruct(pmonitor);
 
          if (!pmonitor)
          {
@@ -720,7 +720,7 @@ namespace windowing
    monitor * display::monitor_hit_test(const ::int_point & point)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for(auto pmonitor : m_monitora)
       {
@@ -744,7 +744,7 @@ namespace windowing
 
 
 
-   void display::get_monitor(int_rectangle_array & rectaMonitor, int_rectangle_array & rectaIntersect, const int_rectangle & rectangleParam)
+   void display::get_monitor(int_rectangle_array_base & rectaMonitor, int_rectangle_array_base & rectaIntersect, const int_rectangle & rectangleParam)
    {
 
       for (::collection::index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
@@ -1398,9 +1398,9 @@ namespace windowing
       if (bMove)
       {
 
-         int_rectangle_array rectaMonitor;
+         int_rectangle_array_base rectaMonitor;
 
-         int_rectangle_array rectaIntersect;
+         int_rectangle_array_base rectaIntersect;
 
          get_monitor(rectaMonitor, rectaIntersect, rectangleParam);
 

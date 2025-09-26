@@ -83,12 +83,12 @@ namespace nano2d
    void draw2d_context::_create_new_state()
    {
 
-      m_pstate = __allocate state(m_pgraphics);
+      m_pstate = øallocate state(m_pgraphics);
 
       m_pstate->initialize(m_pgraphics);
 
-      m_pgraphics->__øconstruct(m_pstate->m_ppen);
-      m_pgraphics->__øconstruct(m_pstate->m_pbrush);
+      m_pgraphics->øconstruct(m_pstate->m_ppen);
+      m_pgraphics->øconstruct(m_pstate->m_pbrush);
 
       m_pstate->m_ppen->m_epen = ::draw2d::e_pen_solid;
       m_pstate->m_ppen->m_dWidth = 1.0;
@@ -141,7 +141,7 @@ namespace nano2d
       if (stateOld.m_ppath)
       {
 
-         m_pgraphics->__øconstruct(stateNew.m_ppath);
+         m_pgraphics->øconstruct(stateNew.m_ppath);
 
          *stateNew.m_ppath = *stateOld.m_ppath;
 
@@ -167,7 +167,7 @@ namespace nano2d
    void draw2d_context::begin_path()
    {
 
-      m_pgraphics->__øconstruct(m_pstate->m_ppath);
+      m_pgraphics->øconstruct(m_pstate->m_ppath);
 
       m_pstate->m_ppath->begin_figure();
    
@@ -331,7 +331,7 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      m_pgraphics->__øconstruct(paintimage.m_pbrush);
+      m_pgraphics->øconstruct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateLinearGradientBrush(
          ::double_point(sx, sy),
@@ -355,7 +355,7 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      m_pgraphics->__øconstruct(paintimage.m_pbrush);
+      m_pgraphics->øconstruct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateBoxGradientBrush(
          ::double_point(x, y),
@@ -379,7 +379,7 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      m_pgraphics->__øconstruct(paintimage.m_pbrush);
+      m_pgraphics->øconstruct(paintimage.m_pbrush);
 
       paintimage.m_pbrush->CreateRadialGradientBrush(
          ::double_point(cx - inr, cy - outr),
@@ -413,7 +413,7 @@ namespace nano2d
 
       auto & paintimage = _create_new_paint_image();
 
-      //m_pgraphics->__øconstruct(paintimage.m_pbrush);
+      //m_pgraphics->øconstruct(paintimage.m_pbrush);
 
       //paintimage.m_pbrush->CreatePatternBrush(
       //   pimage,

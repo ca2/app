@@ -67,15 +67,15 @@ public:
 
    void formatf_output_arguments(const_char_pointer psz, va_list & arguments);
 
-   #if defined(__STD_FORMAT__)
+   ///#if defined(__STD_FORMAT__)
    
-   template<typename... Ts>
-   void format_output(const std::format_string<Ts...> fmt, Ts&&... args)
+   template<typename... Args>
+   void format_output(std::format_string<Args...> fmt, Args&&... args)
    {
 
       string str;
 
-      str.format(fmt, ::std::forward < Ts >(args)...);
+      str.format(fmt, ::std::forward < Args >(args)...);
 
       operator << (str);
 
@@ -83,14 +83,14 @@ public:
 
    //trace_statement & operator()(const_char_pointer pszFormat, ...);
 
-   template<typename... Ts>
-   trace_statement & operator()(const std::format_string<Ts...> fmt, Ts&&... args)
+   template<typename... Args>
+   trace_statement & operator()(std::format_string<Args...> fmt, Args&&... args)
    {
 
-      return format_output(fmt, ::std::forward < Ts >(args)...);
+      return format_output(fmt, ::std::forward < Args >(args)...);
 
    }
-   #endif
+   //#endif
    
    
    //void format_output_arguments(const_char_pointer psz, va_list & arguments)

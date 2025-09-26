@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "scroll_bar.h"
 #include "scroll_base_y.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -18,9 +18,9 @@ namespace user
 
       //m_iWheelDeltaScroll = 3;
 
-      //m_pscrollstateVertical = __allocate scroll_state();
+      //m_pscrollstateVertical = øallocate scroll_state();
 
-      m_pscrolllayoutY = __allocate scroll_layout();
+      m_pscrolllayoutY = øallocate scroll_layout();
 
       m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_bHasScroll = false;
       m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dPage = 0.;
@@ -332,7 +332,7 @@ namespace user
    //void scroll_base_y::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //if (m_pscrollbarY.is_set())
    //   //{
@@ -588,9 +588,9 @@ namespace user
    void scroll_base_y::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &scroll_base_y::on_message_scroll_y);
-      MESSAGE_LINK(e_message_mouse_wheel, pchannel, this, &scroll_base_y::on_message_mouse_wheel);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &scroll_base_y::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &scroll_base_y::on_message_scroll_y);
+      USER_MESSAGE_LINK(::user::e_message_mouse_wheel, pchannel, this, &scroll_base_y::on_message_mouse_wheel);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &scroll_base_y::on_message_key_down);
 
    }
 
@@ -674,7 +674,7 @@ namespace user
    void scroll_base_y::send_scroll_y_message(enum_scroll_command ecommand, double dPosition)
    {
 
-      auto pscroll = __allocate ::message::scroll();
+      auto pscroll = øallocate ::message::scroll();
 
       pscroll->m_ecommand = ecommand;
 
@@ -691,7 +691,7 @@ namespace user
 
       //}
 
-      pscroll->m_emessage = e_message_scroll_y;
+      pscroll->m_eusermessage = ::user::e_message_scroll_y;
 
       send_message(pscroll);
 
@@ -708,7 +708,7 @@ namespace user
 
       }
 
-      auto pbar = __øcreate < scroll_bar >();
+      auto pbar = øcreate < scroll_bar >();
 
       pbar->m_eorientation = ::e_orientation_vertical;
 

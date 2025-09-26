@@ -81,7 +81,7 @@ namespace geo
    void geo::defer_check_openweather_city_list()
    {
 
-      _synchronous_lock synchronouslock(get_openweather_city_mutex());
+      _synchronous_lock synchronouslock(get_openweather_city_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bOpenWeatherCityListLock)
       {
@@ -128,7 +128,7 @@ namespace geo
 
             DEBUGF_LINE("abcxxx3");
 
-            auto pfile = __allocate memory_file(memory);
+            auto pfile = øallocate memory_file(memory);
 
             DEBUGF_LINE("abcxxx4");
 
@@ -401,7 +401,7 @@ namespace geo
 
             DEBUGF_LINE("pqrxxe3");
 
-            auto pmessagebox = __initialize_new::message_box("Unable to download \"https://ca2.network/city-list.json\"");
+            auto pmessagebox = __initialize_new::message_box("Unable to download \"https://ca2.network/city-list_base.json\"");
 
             DEBUGF_LINE("pqrxxe4");
 
@@ -736,7 +736,7 @@ namespace geo
 
       string str = http()->get(strGetUrl, set);
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       const_char_pointer pszJson = str;
 
@@ -931,7 +931,7 @@ namespace geo
       //
       //         stream os(file);
       //
-      //         ::file::map::write(os, m_countryLocalityTimeZone);
+      //         ::file::map_base::write(os, m_countryLocalityTimeZone);
       //
       //      }
       //
@@ -1509,7 +1509,7 @@ namespace geo
 
                binary_stream reader(pfile);
 
-               _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+               _synchronous_lock synchronouslock(m_pmutexCityTimeZone, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                reader >> m_cityTimeZone;
 
@@ -1526,7 +1526,7 @@ namespace geo
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+         _synchronous_lock synchronouslock(m_pmutexCityTimeZone, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto& timezone = m_cityTimeZone[iOpenweatherCity];
 
@@ -1593,7 +1593,7 @@ namespace geo
 
                binary_stream reader(pfile);
 
-               _synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
+               _synchronous_lock synchronouslock(m_pmutexLocalityTimeZone, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                reader >> m_localityTimeZone;
 
@@ -1614,7 +1614,7 @@ namespace geo
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+         _synchronous_lock synchronouslock(m_pmutexCityTimeZone, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto& timezone = m_localityTimeZone[dLat][dLng];
 
@@ -1724,7 +1724,7 @@ namespace geo
 
             binary_stream reader(file);
 
-            _synchronous_lock synchronouslock(m_pmutexCityWeather);
+            _synchronous_lock synchronouslock(m_pmutexCityWeather, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             reader >> m_cityWeather;
 
@@ -1753,7 +1753,7 @@ namespace geo
       try
       {
 
-         _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+         _synchronous_lock synchronouslock(m_pmutexCityTimeZone, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto& stringtimeout = m_cityWeather[pcity->m_iId];
 
@@ -2020,7 +2020,7 @@ namespace geo
 
             binary_stream writer(pfile);
 
-            _synchronous_lock synchronouslock(m_pmutexCityTimeZone);
+            _synchronous_lock synchronouslock(m_pmutexCityTimeZone, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             writer << m_cityTimeZone;
 
@@ -2050,7 +2050,7 @@ namespace geo
 
             binary_stream writer(pfile);
 
-            _synchronous_lock synchronouslock(m_pmutexLocalityTimeZone);
+            _synchronous_lock synchronouslock(m_pmutexLocalityTimeZone, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             writer << m_localityTimeZone;
 
@@ -2077,7 +2077,7 @@ namespace geo
 
          binary_stream writer(pfile);
 
-         _synchronous_lock synchronouslock(m_pmutexCityWeather);
+         _synchronous_lock synchronouslock(m_pmutexCityWeather, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          writer << m_cityWeather;
 

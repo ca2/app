@@ -34,7 +34,7 @@ namespace user
    struct set_need_redraw
    {
 
-      ::int_rectangle_array      m_rectangleaNeedRedraw;
+      ::int_rectangle_array_base      m_rectangleaNeedRedraw;
       function<void()>           m_function;
       bool                       m_bAscendants;
 
@@ -329,7 +329,7 @@ namespace user
       ::int_array_base                               m_iaSubItemDisable;
 
       string                                    m_strClass;
-      string_to_string                          m_mapClassStyle;
+      string_to_string_base                          m_mapClassStyle;
       string                                    m_strStyle;
       ::property_set                            m_setStyle;
 
@@ -863,7 +863,7 @@ namespace user
       //void window_move(int x, int y) override;
 
 
-      //auto fps_interest() { return __allocate ::fps_interest(this); }
+      //auto fps_interest() { return øallocate ::fps_interest(this); }
 
       virtual bool should_save_window_rectangle();
       
@@ -931,10 +931,11 @@ namespace user
 
       virtual void set_reposition(bool bSetThis = true);
       virtual void _set_reposition(bool bSetThis = true);
+      virtual void set_need_perform_layout();
       virtual void set_need_layout();
       virtual void set_recalculate_clip_rectangle();
       //void set_need_layout() { m_bNeedLayout = true; }
-      void set_need_redraw(const ::int_rectangle_array& rectangleNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;
+      void set_need_redraw(const ::int_rectangle_array_base& rectangleNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function= nullptr, bool bAscendants = true) override;
       virtual bool needs_to_draw(::draw2d::graphics * pgraphics, const ::int_rectangle& rectangleNeedsToDraw = {});
       virtual void set_need_load_form_data() override;
       virtual void set_need_save_form_data() override;
@@ -1061,7 +1062,7 @@ namespace user
 
       virtual void create_message_queue(const ::scoped_string & scopedstrName) override;
 
-      virtual ::pointer<::message::message>get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
+      virtual ::pointer<::message::message>get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::user::enum_message_prototype eprototype = ::user::e_message_prototype_none) override;
 
       virtual bool has_text_input();
 
@@ -1556,12 +1557,12 @@ namespace user
 
       void post_message(::message::message* pmessage) override;
       
-      lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
+      lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
       lresult send_message(::message::message* pmessage) override;
 
       //virtual lresult send_create_message();
 
-      lresult message_call(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
+      lresult message_call(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
       lresult message_call(::message::message * pmessage) override;
 
       
@@ -1574,18 +1575,18 @@ namespace user
 
 #endif
 
-      lresult message_handler(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      lresult message_handler(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
-      virtual lresult call_route_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+      virtual lresult call_route_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
       virtual void on_default_window_procedure(::message::message * pmessage);
 
-      void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      void post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
-      virtual void post_object(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+      virtual void post_object(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
 
-      //virtual void user_post(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      //virtual void user_post(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
       //virtual void SetWindowDisplayChanged() override;
 
@@ -1964,7 +1965,7 @@ namespace user
       //virtual ::user::frame_interaction * top_level_frame() override;
 
 
-      void send_message_to_descendants(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bDeep = true, bool bOnlyPerm = false) override;
+      void send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bDeep = true, bool bOnlyPerm = false) override;
 
       void route_message_to_descendants(::message::message* pmessage) override;
 
@@ -2546,7 +2547,7 @@ namespace user
       //virtual bool has_function(enum_control_function econtrolfunction);
       //virtual enum_control_type get_control_type();
       //virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
-      //virtual bool _003CallCustomWindowProc(::pointer<::user::interaction>puserinteraction, ::enum_message emessage, ::wparam wparam, ::lparam lparam, lresult& lresult);
+      //virtual bool _003CallCustomWindowProc(::pointer<::user::interaction>puserinteraction, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, lresult& lresult);
       //virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
       //virtual void _003CustomWindowProc(::message::message* pmessage);
       //virtual form_list * get_form_list();
@@ -2842,7 +2843,7 @@ namespace user
    public:
 
 
-      id_to_id      m_mapControlCommand;
+      id_to_id_base      m_mapControlCommand;
 
 
       control_cmd_ui();

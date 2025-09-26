@@ -176,9 +176,9 @@ namespace nano
 void nano_http_get_transfer_progress(void * userdata, long done, long total)
 {
    
-   auto pget = dynamic_cast <::nano::http::get *>((::subparticle*)userdata);
+   auto defer_get = dynamic_cast <::nano::http::get *>((::subparticle*)userdata);
  
-   auto & function = pget->m_transferprogressfunction;
+   auto & function = defer_get->m_transferprogressfunction;
 
    if(function)
    {
@@ -196,18 +196,18 @@ void nano_http_get_transfer_progress(void * userdata, long done, long total)
 void nano_http_get_set_out_header(void * userdata, const_char_pointer pszKey, const_char_pointer pszPayload)
 {
    
-   auto pget = dynamic_cast <::nano::http::get *>((::subparticle*)userdata);
+   auto defer_get = dynamic_cast <::nano::http::get *>((::subparticle*)userdata);
    
-   pget->set_out_header(pszKey, pszPayload);
+   defer_get->set_out_header(pszKey, pszPayload);
 
 }
 
 bool nano_http_get_only_headers(void * userdata)
 {
    
-   auto pget = dynamic_cast <::nano::http::get *>((::subparticle*)userdata);
+   auto defer_get = dynamic_cast <::nano::http::get *>((::subparticle*)userdata);
    
-   return pget->only_headers();
+   return defer_get->only_headers();
 
 }
 
@@ -216,9 +216,9 @@ bool nano_http_get_only_headers(void * userdata)
 void nano_http_get_set_response(void * userdata, long http_status, const void * data, long size)
 {
    
-   auto pget = dynamic_cast <::nano::http::get *>((::subparticle*)userdata);
+   auto defer_get = dynamic_cast <::nano::http::get *>((::subparticle*)userdata);
  
 
-   pget->set_response(http_status, data, size);
+   defer_get->set_response(http_status, data, size);
    
 }

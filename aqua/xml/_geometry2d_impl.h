@@ -7,7 +7,7 @@
 
 
 template < typename POINT_TYPE >
-inline ::xml::input_tree & operator >> (::xml::input_tree & xmlif, point_base_array < POINT_TYPE > & pointa)
+inline ::xml::input_tree & operator >> (::xml::input_tree & xmlif, point_array_base < POINT_TYPE > & pointa)
 {
 
    pointa.erase_all();
@@ -39,7 +39,7 @@ inline ::xml::input_tree & operator >> (::xml::input_tree & xmlif, point_base_ar
 
 
 template < typename POINT_TYPE >
-inline ::xml::output_tree & operator << (::xml::output_tree & xmlof, point_base_array < POINT_TYPE > & pointa)
+inline ::xml::output_tree & operator << (::xml::output_tree & xmlof, point_array_base < POINT_TYPE > & pointa)
 {
 
    string strPoints;

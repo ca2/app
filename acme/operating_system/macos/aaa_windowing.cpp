@@ -22,7 +22,7 @@ void ns_main_async(dispatch_block_t block);
 //int oswindow_find(NSWindow * window)
 //{
 //
-//   synchronous_lock synchronouslock(g_pmutexOsWindowData);
+//   synchronous_lock synchronouslock(g_pmutexOsWindowData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   for(int i = 0; i < g_poswindowdataptra->get_count(); i++)
 //   {
@@ -39,7 +39,7 @@ void ns_main_async(dispatch_block_t block);
 //oswindow_data * oswindow_get(nswindow window)
 //{
 //
-//   synchronous_lock synchronouslock(g_pmutexOsWindowData);
+//   synchronous_lock synchronouslock(g_pmutexOsWindowData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   auto pFind = oswindow_find(window);
 //
@@ -119,7 +119,7 @@ void ns_main_async(dispatch_block_t block);
 //bool oswindow_erase(nswindow window)
 //{
 //
-//   synchronous_lock synchronouslock(g_pmutexOsWindowData);
+//   synchronous_lock synchronouslock(g_pmutexOsWindowData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   auto pFind = oswindow_find(window);
 //
@@ -426,7 +426,7 @@ void ns_main_async(dispatch_block_t block);
 //void deactivate_window(oswindow window)
 //{
 //
-//   synchronous_lock synchronouslock(g_pmutexOsWindowData);
+//   synchronous_lock synchronouslock(g_pmutexOsWindowData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if(g_oswindowActive != window)
 //   {
@@ -446,7 +446,7 @@ void ns_main_async(dispatch_block_t block);
 //oswindow set_active_window(oswindow window)
 //{
 //
-//   synchronous_lock synchronouslock(g_pmutexOsWindowData);
+//   synchronous_lock synchronouslock(g_pmutexOsWindowData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   oswindow windowOld(g_oswindowActive);
 //
@@ -539,9 +539,9 @@ void ns_main_async(dispatch_block_t block);
 //   if(!w->m_pimpl->m_bDestroyImplOnly)
 //   {
 //
-//      w->m_pimpl->m_puserinteraction->post_message(e_message_destroy);
+//      w->m_pimpl->m_puserinteraction->post_message(::user::e_message_destroy);
 //
-//      w->m_pimpl->m_puserinteraction->post_message(e_message_non_client_destroy);
+//      w->m_pimpl->m_puserinteraction->post_message(::user::e_message_non_client_destroy);
 //
 //   }
 //   else
@@ -550,9 +550,9 @@ void ns_main_async(dispatch_block_t block);
 //      ns_main_async(^()
 //      {
 //
-//         w->m_pimpl->call_message_handler(e_message_destroy, 0, 0);
+//         w->m_pimpl->call_message_handler(::user::e_message_destroy, 0, 0);
 //
-//         w->m_pimpl->call_message_handler(e_message_non_client_destroy, 0, 0);
+//         w->m_pimpl->call_message_handler(::user::e_message_non_client_destroy, 0, 0);
 //
 //      });
 //

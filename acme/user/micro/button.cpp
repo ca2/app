@@ -119,7 +119,7 @@ namespace micro
    //void micro_still::resize_to_fit()
    //{
    //
-   //   auto pdevice = __øcreate < ::nano::graphics::device >();
+   //   auto pdevice = øcreate < ::nano::graphics::device >();
    //
    //   auto size = pdevice->get_text_extents(m_strText, m_pinterchange->m_pfont);
    //

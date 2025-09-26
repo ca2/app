@@ -233,7 +233,7 @@ namespace user
    bool form_impact::open_html(const ::scoped_string & scopedstr)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pformOld = m_pform;
 

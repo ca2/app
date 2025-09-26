@@ -1676,6 +1676,7 @@
     <ClCompile Include="filesystem\filesystem\windows_path.cpp" />
     <ClCompile Include="filesystem\file\binary_stream.cpp" />
     <ClCompile Include="filesystem\file\buffered_buffer.cpp" />
+    <ClCompile Include="filesystem\file\byte2_stream.cpp" />
     <ClCompile Include="filesystem\file\circular_buffer.cpp" />
     <ClCompile Include="filesystem\file\composite.cpp" />
     <ClCompile Include="filesystem\file\cpp.cpp" />
@@ -1683,6 +1684,7 @@
     <ClCompile Include="filesystem\file\folder.cpp" />
     <ClCompile Include="filesystem\file\payload_stream.cpp" />
     <ClCompile Include="filesystem\file\print_formatting.cpp" />
+    <ClCompile Include="filesystem\file\protocol_file.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />
     <ClCompile Include="filesystem\file\string_stream.cpp" />
@@ -1744,9 +1746,16 @@
     <ClInclude Include="array2d.h" />
     <ClInclude Include="call.h" />
     <ClInclude Include="constant\call.h" />
+    <ClInclude Include="constant\message.h" />
+    <ClInclude Include="constant\user_message.h" />
+    <ClInclude Include="filesystem\file\byte2_stream.h" />
+    <ClInclude Include="filesystem\file\protocol_file.h" />
+    <ClInclude Include="platform\acme_message.h" />
     <ClInclude Include="platform\http.h" />
     <ClInclude Include="prototype\collection\base_array.h" />
+    <ClInclude Include="prototype\collection\block_array.h" />
     <ClInclude Include="prototype\collection\static_array.h" />
+    <ClInclude Include="prototype\data\block.h" />
     <ClInclude Include="prototype\geometry\Matrix.h" />
     <ClInclude Include="prototype\prototype\call.h" />
     <ClInclude Include="compress\compress.h" />
@@ -1781,9 +1790,8 @@
     <ClInclude Include="constant\integration.h" />
     <ClInclude Include="constant\media_library.h" />
     <ClInclude Include="constant\memory_heap.h" />
-    <ClInclude Include="constant\message.h" />
-    <ClInclude Include="constant\message_box.h" />
-    <ClInclude Include="constant\message_prototype.h" />
+    <ClInclude Include="constant\user_message_box.h" />
+    <ClInclude Include="constant\user_message_prototype.h" />
     <ClInclude Include="constant\os_text.h" />
     <ClInclude Include="constant\parallelization.h" />
     <ClInclude Include="constant\path.h" />
@@ -2335,12 +2343,16 @@
     <ClInclude Include="prototype\prototype\hash32.h" />
     <ClInclude Include="prototype\prototype\_impl_payload.h" />
     <ClInclude Include="prototype\prototype\_impl_ptr.h" />
+    <ClInclude Include="prototype\string\character_range.h" />
     <ClInclude Include="prototype\string\const_string_range_static_array.h" />
     <ClInclude Include="prototype\string\c_string.h" />
+    <ClInclude Include="prototype\string\sz\_template.h" />
+    <ClInclude Include="prototype\string\_character_range.h" />
     <ClInclude Include="prototype\string\_impl_const_string_range.h" />
     <ClInclude Include="prototype\string\_impl_string_base_allocation.h" />
     <ClInclude Include="prototype\time\__time.h" />
     <ClInclude Include="release\_.h" />
+    <ClInclude Include="template\list.h" />
     <ClInclude Include="user\menu\menu.h" />
     <ClInclude Include="user\menu\_.h" />
     <ClInclude Include="user\micro\aaa_brush.h" />
@@ -3085,6 +3097,7 @@
     <ClCompile Include="parallelization\wait_for_end_of_sequence.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\acme.cpp" />
+    <ClCompile Include="platform\acme_message.cpp" />
     <ClCompile Include="platform\allocator.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\application_acme.cpp" />
@@ -3211,6 +3224,7 @@
     <ClCompile Include="platform\_main_hold_base.cpp" />
     <ClCompile Include="platform\_synchronization.cpp" />
     <ClCompile Include="prototype\collection\procedure_array.cpp" />
+    <ClCompile Include="prototype\collection\property_set.cpp" />
     <ClCompile Include="prototype\collection\strdup_array.cpp" />
     <ClCompile Include="prototype\collection\string_array.cpp" />
     <ClCompile Include="prototype\collection\string_list.cpp" />
@@ -3219,6 +3233,7 @@
     <ClCompile Include="prototype\collection\_container.cpp" />
     <ClCompile Include="prototype\collection\_range.cpp" />
     <ClCompile Include="prototype\collection\__payload_array.cpp" />
+    <ClCompile Include="prototype\data\block.cpp" />
     <ClCompile Include="prototype\data\check_property.cpp" />
     <ClCompile Include="prototype\data\client.cpp" />
     <ClCompile Include="prototype\data\container.cpp" />
@@ -3355,6 +3370,7 @@
     <ClCompile Include="prototype\string\as_string.cpp" />
     <ClCompile Include="prototype\string\character.cpp" />
     <ClCompile Include="prototype\string\sz\wd32_impl.cpp" />
+    <ClCompile Include="prototype\string\utf8_character.cpp" />
     <ClCompile Include="prototype\string\_string.cpp" />
     <ClCompile Include="prototype\string\_str_impl.cpp" />
     <ClCompile Include="prototype\string\__wide.cpp" />
@@ -3964,11 +3980,8 @@
     <ClInclude Include="prototype\string\const_string_range.h" />
     <ClInclude Include="prototype\string\mutable_string_range.h" />
     <ClInclude Include="prototype\string\sz\ansi.h" />
-    <ClInclude Include="prototype\string\sz\ansi_impl.h" />
     <ClInclude Include="prototype\string\sz\wd16.h" />
-    <ClInclude Include="prototype\string\sz\wd16_impl.h" />
     <ClInclude Include="prototype\string\sz\wd32.h" />
-    <ClInclude Include="prototype\string\sz\wd32_impl.h" />
     <ClInclude Include="prototype\string\sz\_.h" />
     <ClInclude Include="prototype\string\sz\_impl.h" />
     <ClInclude Include="prototype\string\utf8_character.h" />
@@ -4316,7 +4329,6 @@
     <ClCompile Include="prototype\prototype\memory_base.cpp" />
     <ClCompile Include="prototype\prototype\memory_container.cpp" />
     <ClCompile Include="prototype\prototype\property.cpp" />
-    <ClCompile Include="prototype\prototype\property_set.cpp" />
     <ClCompile Include="prototype\prototype\type.cpp" />
     <ClCompile Include="prototype\prototype\var_element.cpp" />
     <ClCompile Include="prototype\prototype\paged_memory.cpp" />

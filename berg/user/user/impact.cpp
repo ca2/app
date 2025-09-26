@@ -6,7 +6,7 @@
 #include "toolbar.h"
 #include "impact_data.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/request.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/system.h"
@@ -48,20 +48,20 @@ namespace user
 
       ::user::box::install_message_routing(pchannel);
 
-      //MESSAGE_LINK(WM_VIEW, pchannel, this, &impact::_001OnImpact);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &impact::on_message_mouse_move);
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::on_message_destroy);
-      //      MESSAGE_LINK(e_message_left_button_down    , pchannel, this, &impact::on_message_right_button_down);
-      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &impact::on_message_middle_button_down);
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &impact::on_message_right_button_down);
+      //USER_MESSAGE_LINK(WM_VIEW, pchannel, this, &impact::_001OnImpact);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &impact::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &impact::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &impact::on_message_destroy);
+      //      USER_MESSAGE_LINK(::user::e_message_left_button_down    , pchannel, this, &impact::on_message_right_button_down);
+      USER_MESSAGE_LINK(::user::e_message_middle_button_down, pchannel, this, &impact::on_message_middle_button_down);
+      USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &impact::on_message_right_button_down);
 
 
-      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &impact::_001OnMouseActivate);
-      //      MESSAGE_LINK(e_message_destroy        , pchannel, this, &impact::on_message_destroy);
-      //    MESSAGE_LINK(e_message_create        , pchannel, this, &impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &impact::_001OnMouseActivate);
+      //      USER_MESSAGE_LINK(::user::e_message_destroy        , pchannel, this, &impact::on_message_destroy);
+      //    USER_MESSAGE_LINK(::user::e_message_create        , pchannel, this, &impact::on_message_create);
 
       // Standard commands for split pane
       //  //      add_command_handler(ID_WINDOW_SPLIT , &impact::_001OnSplitCmd);
@@ -451,7 +451,7 @@ namespace user
 
    bool impact::IsSelected(const object* pDocItem) const
    {
-      ASSERT_VALID(pDocItem);
+      ASSERT_OK(pDocItem);
       //  UNUSED(pDocItem);    // unused in release builds
 
       return false;   // not implemented, so not selected
@@ -765,7 +765,7 @@ namespace user
    //void impact::OnPrepareDC(::draw2d::graphics_pointer & pgraphics, CPrintInfo* pInfo)
    //{
    //   __UNREFERENCED_PARAMETER(pInfo);
-   //   ASSERT_VALID(pgraphics);
+   //   ASSERT_OK(pgraphics);
    //   UNUSED(pgraphics); // unused in release builds
 
    //   // Default to one page printing if doc length not known
@@ -880,7 +880,7 @@ namespace user
 
       ::pointer<::request>pcreate(e_create, this);
 
-      auto pusersystem = __allocate ::user::system();
+      auto pusersystem = øallocate ::user::system();
 
       m_pusersystem = pusersystem;
 
@@ -911,7 +911,7 @@ namespace user
 
          __check_refdbg
 
-         pusersystem = __create_new < ::user::system >();
+         pusersystem = øcreate_new < ::user::system >();
 
          __check_refdbg
          
@@ -930,7 +930,7 @@ namespace user
 
          __check_refdbg
 
-         __construct_new(pusersystem->m_prequest);
+         øconstruct_new(pusersystem->m_prequest);
 
          __check_refdbg
 
@@ -998,7 +998,7 @@ namespace user
 
       ::pointer<::request>pcreate(e_create_new, pdocument);
 
-      auto pusersystem= __allocate ::user::system();
+      auto pusersystem= øallocate ::user::system();
 
       pusersystem->m_typeatomNewImpact = typeatom;
 
@@ -1230,7 +1230,7 @@ namespace user
 
    /*   bool impact::IsSelected(const object* pDocItem) const
    {
-   ASSERT_VALID(pDocItem);
+   ASSERT_OK(pDocItem);
    //      UNUSED(pDocItem);    // unused in release builds
 
    return false;   // not implemented, so not selected
@@ -1306,9 +1306,9 @@ namespace user
       return ::user::box::_001CallOnDraw(pgraphics);
       //on_context_offset(pgraphics);
 
-      //synchronous_lock slImpact(synchronization());
+      //synchronous_lock slImpact(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ////synchronous_lock slDocument(get_document()->synchronization());.
+      ////synchronous_lock slDocument(get_document()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);.
 
       //{
 

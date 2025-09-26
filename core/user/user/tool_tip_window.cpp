@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "tool_tip_window.h"
 #include "tool_tip_tool.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/exception/interface_only.h"
 #include "acme/prototype/geometry2d/geometry.h"
@@ -42,9 +42,9 @@ namespace user
       
       ::pointer<::user::message>pusermessage(pmessage);
 
-      switch(pusermessage->m_emessage)
+      switch(pusermessage->m_eusermessage)
       {
-      case e_message_mouse_move:
+      case ::user::e_message_mouse_move:
       {
 
          auto puserinteraction = pusermessage->user_interaction();
@@ -275,7 +275,7 @@ namespace user
    // Function Name: OnPaint
    //
    // Purpose:
-   // e_message_paint message handler.
+   // ::user::e_message_paint message handler.
    //
    // Output:
    // See aura API documentation.
@@ -339,7 +339,7 @@ namespace user
    // Function Name: OnTimer()
    //
    // Purpose:
-   // Handler for e_message_timer message
+   // Handler for ::user::e_message_timer message
    //
    // Output:
    // none
@@ -377,7 +377,7 @@ namespace user
 
    //   m_pfont->create_point_font(pnode->font_name(e_font_sans), 10.0);
 
-   //   auto pusersystem = __allocate ::user::system();
+   //   auto pusersystem = øallocate ::user::system();
 
    //   return create_window_ex(pusersystem, nullptr, atom) != 0;
 
@@ -512,7 +512,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::update_drawing_objects()
    {
-      __øconstruct(m_pfont);
+      øconstruct(m_pfont);
 
       /*::draw2d::region rgn;
       auto rectangleX = this->rectangle();
@@ -621,7 +621,7 @@ namespace user
 
       CText text;
       
-      if (!m_puserinteraction->send_message(e_message_tool_tip_text, iTool, (lparam)&text))
+      if (!m_puserinteraction->send_message(::user::e_message_tool_tip_text, iTool, (lparam)&text))
       {
 
          return false;

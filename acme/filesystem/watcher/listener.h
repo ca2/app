@@ -42,7 +42,7 @@ namespace file
       
       //::function <  void(::file::action*) >       m_functionListener;
 
-      comparable_array < watch * >       m_watcha;
+      comparable_array_base < watch * >       m_watcha;
 
       using function::function;
 

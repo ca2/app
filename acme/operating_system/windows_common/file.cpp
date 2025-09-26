@@ -135,7 +135,7 @@ namespace windows
       ASSERT(sizeof(HANDLE) == sizeof(uptr));
       ASSERT(::file::e_open_share_compat == 0);
 
-      // map read/write mode
+      // map_base read/write mode
       ASSERT((::file::e_open_read | ::file::e_open_write | ::file::e_open_read_write) == 3);
       DWORD dwDesiredAccess = 0;
       switch (eopen & 3)
@@ -156,9 +156,9 @@ namespace windows
 
       auto eopenShare = eopen & ::file::e_open_share_mask;
 
-      // map share mode
+      // map_base share mode
       DWORD dwShareMode = 0;
-      switch (eopenShare)    // map compatibility mode to exclusive
+      switch (eopenShare)    // map_base compatibility mode to exclusive
       {
       default:
          ASSERT(false);  // invalid share mode?
@@ -182,7 +182,7 @@ namespace windows
 
       LPSECURITY_ATTRIBUTES lpSecurityattributes{};
 
-      // map modeNoInherit flag
+      // map_base modeNoInherit flag
       SECURITY_ATTRIBUTES securityattributes;
 
       if (eopen & ::file::e_open_no_inherit)

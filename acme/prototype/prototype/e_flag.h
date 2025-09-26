@@ -21,7 +21,7 @@ inline bool __enum_is_failed(const ::enum_flag& e) { return (e & e_flag_failure)
 //
 //
 //   e_flag() { m_eflag = e_flag_none; }
-//   e_flag(const std::initializer_list < enum_flag >& list) { m_eflag = e_flag_none; for (auto& e : list) add(e); }
+//   e_flag(const std::initializer_list < enum_flag >& list_base) { m_eflag = e_flag_none; for (auto& e : list_base) add(e); }
 //   e_flag(enum_flag e) { m_eflag = e; }
 //   e_flag(long long i) { m_eflag = (enum_flag)i; }
 //   e_flag(const e_flag& e) { m_eflag = e.m_eflag; }

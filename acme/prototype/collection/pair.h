@@ -126,6 +126,59 @@ public: \
 }
 
 
+
+#define MAKE_PAIR2(PAIR, T1, T2, MEMBER1, MEMBER2, member1, member2) \
+class PAIR : \
+public memory_quantum\
+{  \
+public: \
+\
+\
+using TYPE1 = T1;                               \
+using TYPE2 = T2;                               \
+using CONST_TYPE1 = ::const_of < TYPE1 >;       \
+using CONST_TYPE2 = ::const_of < TYPE2 >;       \
+using ARG_TYPE1 = ::argument_of < TYPE1 >;\
+using ARG_TYPE2 = ::argument_of < TYPE2 >;\
+\
+\
+T1       MEMBER1;\
+T2       MEMBER2;\
+\
+\
+inline T1 & element1() { return MEMBER1; } \
+inline T2 & element2() { return MEMBER2; } \
+inline T1 & member1() { return MEMBER1; } \
+inline T2 & member2() { return MEMBER2; } \
+inline CONST_TYPE1 & element1() const { return (CONST_TYPE1 &) MEMBER1; } \
+inline CONST_TYPE2 & element2() const { return (CONST_TYPE2 &) MEMBER2; } \
+inline CONST_TYPE1 & member1() const { return (CONST_TYPE1 &) MEMBER1; } \
+inline CONST_TYPE2 & member2() const { return (CONST_TYPE2 &) MEMBER2; } \
+inline T1 && transfer_element1() { return ::transfer(MEMBER1); } \
+inline T2 && transfer_element2() { return ::transfer(MEMBER2); } \
+inline T1 && transfer_##member1() { return ::transfer(MEMBER1); } \
+inline T2 && transfer_##member2() { return ::transfer(MEMBER2); } \
+inline CONST_TYPE1 && transfer_element1() const { return (CONST_TYPE1 &&) ::transfer(MEMBER1); } \
+inline CONST_TYPE2 && transfer_element2() const { return (CONST_TYPE2 &&) ::transfer(MEMBER2); } \
+inline CONST_TYPE1 && transfer_##member1() const { return (CONST_TYPE1 &&) ::transfer(MEMBER1); } \
+inline CONST_TYPE2 && transfer_##member2() const { return (CONST_TYPE2 &&) ::transfer(MEMBER2); } \
+inline T1 & key() { return MEMBER1; } \
+inline T2 & value() { return MEMBER2; } \
+inline CONST_TYPE1 & key() const { return (CONST_TYPE1 &) MEMBER1; } \
+inline CONST_TYPE2 & value() const { return (CONST_TYPE2 &) MEMBER2; } \
+inline T1 && transfer_key() { return ::transfer(MEMBER1); } \
+inline T2 && transfer_value() { return ::transfer(MEMBER2); } \
+inline CONST_TYPE1 && transfer_key() const { return (CONST_TYPE1 &&) ::transfer(MEMBER1); } \
+inline CONST_TYPE2 && transfer_value() const { return (CONST_TYPE2 &&) ::transfer(MEMBER2); } \
+\
+\
+PAIR() {} \
+PAIR(ARG_TYPE1 t1) : MEMBER1(t1) {} \
+PAIR(ARG_TYPE1 t1, ARG_TYPE2 t2) : MEMBER1(t1), MEMBER2(t2) {}   \
+\
+\
+}
+
 //#define MAKE_PAIR(PAIR, T1, T2, MEMBER1, MEMBER2) \
 //_MAKE_PAIR(PAIR, T1, T2, MEMBER1, MEMBER2) \
 //PAIR_TUPLE(PAIR, T1, T2, MEMBER1, MEMBER2)
@@ -145,8 +198,11 @@ template < typename PAIR >
 class make_pair :
    public PAIR
 {
-public: 
-   
+public:
+
+
+   using RAW_NODE = PAIR;
+
 
    using TYPE1 = typename PAIR::TYPE1;
    using TYPE2 = typename PAIR::TYPE2;
@@ -154,29 +210,33 @@ public:
    using ARG_TYPE2 = typename PAIR::ARG_TYPE2;
 
 
-   using ITEM = TYPE1;
+   using ELEMENT1 = TYPE1;
+   using ELEMENT2 = TYPE2;
+
+
+   using ARG_ELEMENT1 = ARG_TYPE1;
+   using ARG_ELEMENT2 = ARG_TYPE2;
+
+
+   using KEY = TYPE1;
    using PAYLOAD = TYPE2;
 
 
-   using ARG_ITEM = ARG_TYPE1;
+   using ARG_KEY = ARG_TYPE1;
    using ARG_PAYLOAD = ARG_TYPE2;
 
 
-   using ELEMENT1 = TYPE1;
-   using ELEMENT2 = TYPE2;
-   
-
-   inline auto & item() { return this->element1(); }
+   inline auto & key() { return this->element1(); }
    inline auto & payload() { return this->element2(); }
    inline auto & topic() { return *this; }
 
 
-   inline auto & item() const { return this->element1(); }
+   inline auto & key() const { return this->element1(); }
    inline auto & payload() const { return this->element2(); }
    inline auto & topic() const { return *this; }
 
 
-   inline auto transfer_item() { return ::transfer(this->transfer_element1()); }
+   inline auto transfer_key() { return ::transfer(this->transfer_element1()); }
    inline auto transfer_payload() { return ::transfer(this->transfer_element2()); }
    inline auto transfer_topic() { return ::transfer(*this); }
 
@@ -186,6 +246,13 @@ public:
    make_pair(ARG_TYPE1 t1) : PAIR(t1) {}
    make_pair(ARG_TYPE1 t1, ARG_TYPE2 t2) : PAIR(t1, t2) {}
 
+
+   void defer_set_payload(ARG_PAYLOAD payload)
+   {
+
+      this->element2() = payload;
+
+   }
 
 };
 
@@ -209,5 +276,26 @@ template < typename A, typename B > make_pair(A, B) -> make_pair < pair< A, B > 
 //#include <utility>
 
 //#include <tuple>
+
+
+template < typename T1, typename T2 >
+::hash32 as_hash32(const ::pair < T1, T2 >& pair) 
+{
+
+   return hash32(hash32(pair.element1()) + hash32(pair.transfer_element1()));
+
+}
+
+
+template < typename T1, typename T2, typename T3, typename T4 >
+bool operator ==(const ::pair < T1, T2 >& pair1, const ::pair < T3, T4 >& pair2)
+{
+   
+   return pair1.element1() == pair2.element1()
+      && pair1.element2() == pair2.element2();
+   
+
+}
+
 
 

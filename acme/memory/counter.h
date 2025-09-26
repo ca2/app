@@ -34,7 +34,7 @@ namespace heap
 
       //int                                 m_iMemoryCountersStartable = 0;
 
-      ::map < TYPE, item >       m_mapCounter;
+      ::map_base < TYPE, item >       m_mapCounter;
 
 
       counter()

@@ -28,7 +28,7 @@ ifs::~ifs()
 bool ifs::fast_has_subdir(const ::file::path & path)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    dir_listing & dir = m_map[path];
 
@@ -48,7 +48,7 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 bool ifs::has_subdir(const ::file::path & path)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    dir_listing & dir = m_map[path];
 
@@ -97,7 +97,7 @@ bool ifs::has_subdir(const ::file::path & path)
 bool ifs::enumerate(::file::listing_base & listing)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto & dir = m_map[listing.m_pathUser];
 
@@ -228,21 +228,21 @@ bool ifs::enumerate(::file::listing_base & listing)
    //listing = dir;
 
    ////   if(m_mapdirFolder[strDir].is_null())
-   ////   m_mapdirFolder[strDir] = __allocate string_array_base();
+   ////   m_mapdirFolder[strDir] = øallocate string_array_base();
    ////if(m_mapdirFolderName[strDir].is_null())
-   ////   m_mapdirFolderName[strDir] = __allocate string_array_base();
+   ////   m_mapdirFolderName[strDir] = øallocate string_array_base();
    ////if(m_mapdirFile[strDir].is_null())
-   ////   m_mapdirFile[strDir] = __allocate string_array_base();
+   ////   m_mapdirFile[strDir] = øallocate string_array_base();
    ////if(m_mapdirFileName[strDir].is_null())
-   ////   m_mapdirFileName[strDir] = __allocate string_array_base();
+   ////   m_mapdirFileName[strDir] = øallocate string_array_base();
    ////if (m_mapdirFileSize[strDir].is_null())
-   ////   m_mapdirFileSize[strDir] = __allocate long_long_array_base();
+   ////   m_mapdirFileSize[strDir] = øallocate long_long_array_base();
    ////if (m_mapdirFolderSize[strDir].is_null())
-   ////   m_mapdirFolderSize[strDir] = __allocate long_long_array_base();
+   ////   m_mapdirFolderSize[strDir] = øallocate long_long_array_base();
    ////if(m_mapdirFileDir[strDir].is_null())
-   ////   m_mapdirFileDir[strDir] = __allocate bool_array();
+   ////   m_mapdirFileDir[strDir] = øallocate bool_array();
    ////if(m_mapdirFolderDir[strDir].is_null())
-   ////   m_mapdirFolderDir[strDir] = __allocate bool_array();
+   ////   m_mapdirFolderDir[strDir] = øallocate bool_array();
 
 
    ////::file::path_array_base  & straThisDir         = m_mapdirFolder[strDir];
@@ -306,7 +306,7 @@ int ifs::is_dir(const ::file::path & path)
 
    defer_initialize();
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    dir_listing & dir = m_map[path.folder()];
 
@@ -348,7 +348,7 @@ bool ifs::file_move(const ::file::path & pathTarget,const ::file::path & pathSou
 file_pointer ifs::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception)
 {
 
-   auto pfile = __allocate ifs_file( payloadFile);
+   auto pfile = øallocate ifs_file( payloadFile);
 
    //auto result =
    

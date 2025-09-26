@@ -45,7 +45,7 @@ namespace gpu
       //int_rectangle                         m_rectangle;
       //int_size                              m_sizeHost;
       //string                              m_strFont1;
-      //string_map < ::image::image_pointer >      m_pimagemap;
+      //string_map_base < ::image::image_pointer >      m_pimagemap;
       //::image::image_pointer                     m_pimage1;
       //::image::image_pointer                     m_pimage2;
       //::color::hls                        m_hlsText;
@@ -66,6 +66,12 @@ namespace gpu
       ::pointer < render_target >   m_pgpurendertarget;
       ::pointer < swap_chain >      m_pswapchain;
       ::pointer < render_state >    m_prenderstate;
+
+            ::procedure_array m_procedureaOnAfterEndFrame;
+      ::procedure_array m_procedureaPostOnJustBeforeFrameNextStart;
+
+
+
 
       renderer();
       ~renderer() override;
@@ -244,6 +250,11 @@ namespace gpu
 
 
       virtual void on_after_load_scene(::graphics3d::scene* pscene);
+
+      virtual void post_on_after_end_frame(const ::procedure &procedure);
+
+
+      virtual void post_on_just_before_frame_next_start(const ::procedure &procedure);
 
 
    };

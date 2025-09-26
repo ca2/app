@@ -55,7 +55,7 @@ namespace aura
       string_array_base                           m_straTheme;
       string                                 m_strTheme;
       ::file::path                           m_pathTheme;
-      string_map < ::pointer < colors > >    m_mapColors;
+      string_map_base < ::pointer < colors > >    m_mapColors;
       ::pointer < colors >                   m_pcolors;
       pointer_array < theme_listener >       m_listenera;
 
@@ -98,7 +98,8 @@ namespace aura
       virtual void set_context_theme(const ::scoped_string & scopedstrTheme, const ::action_context & actioncontext);
       virtual void on_change_theme();
 
-      virtual string get_theme();
+      virtual string theme_id();
+      virtual string name();
 
 
       virtual ::file::path   get_theme_path();

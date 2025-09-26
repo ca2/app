@@ -28,11 +28,11 @@ http::~http()
 void http::s_http_response(long http_status, const void * data, long size, void * userdata)
 {
    
-   ::pointer < ::nano::http::get > pget (transfer_t{}, (::subparticle *) userdata);
+   ::pointer < ::nano::http::get > defer_get (transfer_t{}, (::subparticle *) userdata);
    
-   pget->set_response(http_status, data, size);
+   defer_get->set_response(http_status, data, size);
    
-   pget->set_finished();
+   defer_get->set_finished();
    
 //
 //   passynchronoushttpdata->m_response.m_set["http_status_code"] = http_status;
@@ -51,16 +51,16 @@ void http::s_http_response(long http_status, const void * data, long size, void 
 
 
 
-void http::perform(::nano::http::get * pget)
+void http::perform(::nano::http::get * defer_get)
 {
    
    //      pasynchronoushttpresponse->m_function = [](::pointer < ::nano::asynchronous_http_response > pasynchronoushttpresponse)
    //      {                                s_http_response(pasynchronoushttpresponse);
    //      };
    
-   pget->increment_reference_count();
+   defer_get->increment_reference_count();
    
-   nano_asynchronous_http_get(pget->m_url.as_string().c_str(), &s_http_response, (::subparticle *) pget);
+   nano_asynchronous_http_get(defer_get->m_url.as_string().c_str(), &s_http_response, (::subparticle *) defer_get);
    
          }
 

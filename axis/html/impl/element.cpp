@@ -847,7 +847,7 @@ namespace html
             {
                ::float_point point1(m_box.left() + m_margin.left() + m_border.left() / 2.f, m_box.top() + m_margin.top() + m_border.top() / 2.f);
                ::float_point point2(m_box.left() + m_margin.left() + m_border.left() / 2.f, m_box.bottom() - m_margin.bottom() - m_border.bottom() / 2.f);
-               auto ppen = pdata->__øcreate < ::draw2d::pen >();
+               auto ppen = pdata->øcreate < ::draw2d::pen >();
                ppen->create_solid(m_border.left(), m_border.colorLeft);
                pgraphics->set(ppen);
                pgraphics->line(point1.x(), point1.y(), point2.x(), point2.y());
@@ -859,7 +859,7 @@ namespace html
                pa[1] = ::double_point(bIn.left(), bIn.top());
                pa[2] = ::double_point(bIn.left(), bIn.bottom());
                pa[3] = ::double_point(bOut.left(), bOut.bottom());
-               auto pbrush = pdata->__øcreate < ::draw2d::brush >();
+               auto pbrush = pdata->øcreate < ::draw2d::brush >();
                pbrush->create_solid(m_border.colorLeft);
                pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
@@ -871,7 +871,7 @@ namespace html
             {
                ::float_point point1(m_box.left() + m_margin.left() + m_border.left() / 2.f, m_box.top() + m_margin.top() + m_border.top() / 2.f);
                ::float_point point2(m_box.right() - m_margin.right() - m_border.right() / 2.f, m_box.top() + m_margin.top() + m_border.top() / 2.f);
-               auto ppen = pdata->__øcreate < ::draw2d::pen >();
+               auto ppen = pdata->øcreate < ::draw2d::pen >();
                ppen->create_solid(m_border.top(), m_border.colorTop);
                pgraphics->set(ppen);
                pgraphics->line(point1.x(), point1.y(), point2.x(), point2.y());
@@ -883,7 +883,7 @@ namespace html
                pa[1] = ::double_point(bOut.right(), bOut.top());
                pa[2] = ::double_point(bIn.right(), bIn.top());
                pa[3] = ::double_point(bIn.left(), bIn.top());
-               auto pbrush = pdata->__øcreate < ::draw2d::brush >();
+               auto pbrush = pdata->øcreate < ::draw2d::brush >();
                pbrush->create_solid(m_border.colorTop);
                pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
@@ -895,7 +895,7 @@ namespace html
             {
                ::float_point point1(m_box.right() - m_margin.right() - m_border.right() / 2.f, m_box.top() + m_margin.top() + m_border.top() / 2.f);
                ::float_point point2(m_box.right() - m_margin.right() - m_border.right() / 2.f, m_box.bottom() - m_margin.bottom() - m_border.bottom() / 2.f);
-               auto ppen = pdata->__øcreate < ::draw2d::pen >();
+               auto ppen = pdata->øcreate < ::draw2d::pen >();
                ppen->create_solid(m_border.right(), m_border.colorRight);
                pgraphics->set(ppen);
                pgraphics->line(point1.x(), point1.y(), point2.x(), point2.y());
@@ -907,7 +907,7 @@ namespace html
                pa[1] = ::double_point(bOut.right(), bOut.bottom());
                pa[2] = ::double_point(bIn.right(), bIn.bottom());
                pa[3] = ::double_point(bIn.right(), bIn.top());
-               auto pbrush = pdata->__øcreate < ::draw2d::brush >();
+               auto pbrush = pdata->øcreate < ::draw2d::brush >();
                pbrush->create_solid(m_border.colorRight);
                pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
@@ -919,7 +919,7 @@ namespace html
             {
                ::float_point point1(m_box.left() + m_margin.left() + m_border.left() / 2.f, m_box.bottom() - m_margin.bottom() - m_border.bottom() / 2.f);
                ::float_point point2(m_box.right() - m_margin.right() - m_border.right() / 2.f, m_box.bottom() - m_margin.bottom() - m_border.bottom() / 2.f);
-               auto ppen = pdata->__øcreate < ::draw2d::pen >();
+               auto ppen = pdata->øcreate < ::draw2d::pen >();
                ppen->create_solid(m_border.bottom(), m_border.colorBottom);
                pgraphics->set(ppen);
                pgraphics->line(point1.x(), point1.y(), point2.x(), point2.y());
@@ -931,7 +931,7 @@ namespace html
                pa[1] = ::double_point(bIn.right(), bIn.bottom());
                pa[2] = ::double_point(bOut.right(), bOut.bottom());
                pa[3] = ::double_point(bOut.left(), bOut.bottom());
-               auto pbrush = pdata->__øcreate < ::draw2d::brush >();
+               auto pbrush = pdata->øcreate < ::draw2d::brush >();
                pbrush->create_solid(m_border.colorBottom);
                pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);

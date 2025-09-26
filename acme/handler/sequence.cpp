@@ -63,7 +63,7 @@
 //
 ////template < typename SEQUENCE >
 //class sequencer :
-//   virtual public ::list < ::pointer < step > >
+//   virtual public ::list_base < ::pointer < step > >
 //{
 //public:
 
@@ -92,7 +92,7 @@
 //void sequencer_payload::on_initialize_particle()
 //{
 //
-//   ::list < ::sequencer_step >::on_initialize_particle();
+//   ::list_base < ::sequencer_step >::on_initialize_particle();
 //
 //   defer_create_synchronization();
 //
@@ -106,7 +106,7 @@
 //
 //   m_estatus = ::success;
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   do
 //   {
@@ -149,7 +149,7 @@
 //   try
 //   {
 //
-//      _synchronous_lock synchronouslock(this->synchronization());
+//      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      auto aggregator = *m_iterator;
 //
@@ -196,7 +196,7 @@
 //void sequencer_payload::add_step(const ::sequencer_step & step)
 //{
 //
-//   _synchronous_lock synchronouslock(synchronization());
+//   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   add_tail(step);
 //
@@ -209,14 +209,14 @@
 //void sequencer_payload::add_result(const ::payload & payload)
 //{
 //
-//   _synchronous_lock synchronouslock(synchronization());
+//   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //   m_payload.payload_array_reference().add(payload);
 //
 //}
 //
 //::payload sequencer_payload::last_result()
 //{
-//   _synchronous_lock synchronouslock(synchronization());
+//   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (m_payload.get_type() == e_type_payload_array)
 //   {
@@ -541,7 +541,7 @@ sequence::~sequence()
 //
 //      m_stepa.add(step);
 //
-//      m_phappening = __allocate manual_reset_happening();
+//      m_phappening = øallocate manual_reset_happening();
 //
 //      lock.unlock();
 //
@@ -592,7 +592,7 @@ sequence::~sequence()
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_phappening = __allocate manual_reset_happening();
+//      m_phappening = øallocate manual_reset_happening();
 //
 //      if (!m_phappening->wait(timeWait))
 //      {
@@ -626,7 +626,7 @@ sequence::~sequence()
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_phappening = __allocate manual_reset_happening();
+//      m_phappening = øallocate manual_reset_happening();
 //
 //      lock.unlock();
 //

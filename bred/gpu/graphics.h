@@ -20,13 +20,24 @@ namespace gpu
    {
    public:
 
+      enum enum_transform_context
+      {
+
+         e_transform_context_default,
+         e_transform_context_geometry,
+         e_transform_context_text,
+
+
+      };
+
 
       ::geometry2d::matrix                   m_m1;
       ::pointer < ::gpu::shader >               m_pshaderSourceRectangle;
       ::pointer < ::gpu::shader >               m_pshaderBlendRectangle;
-      map < ::draw2d::enum_model, ::pool <::gpu::model_buffer > >   m_mapModelBufferPool;
+      map_base < ::draw2d::enum_model, ::pool <::gpu::model_buffer > >   m_mapModelBufferPool;
       ::pointer < ::gpu::shader >         m_pgpushaderTextOut;
       ::pointer < ::gpu::model_buffer >         m_pmodelbufferTextOutDummy;
+      //::pointer < ::gpu::shader >                 m_pshaderLine;
 
       pool_group* m_ppoolgroupFrame;
 
@@ -51,7 +62,7 @@ namespace gpu
       virtual ::gpu::model_buffer * model_buffer(::draw2d::enum_model epool);
       void update_matrix() override;
 
-      virtual ::geometry2d::matrix context_matrix();
+      virtual ::geometry2d::matrix context_matrix(enum_transform_context etransformcontext);
       virtual ::geometry2d::matrix context_scale_matrix();
 
 
@@ -61,7 +72,7 @@ namespace gpu
          
          m_m1.transform(p);
          
-         p.y() = m_pgpucontextCompositor2->m_rectangle.height() - p.y();
+         //p.y() = m_pgpucontextCompositor2->m_rectangle.height() - p.y();
          
          return p;
 
@@ -89,27 +100,30 @@ namespace gpu
 
       }
 
+      //
+      // template < primitive_point POINT >
+      // POINT& context_transform(POINT& p)
+      // {
+      //
+      //    context_matrix().transform(p);
+      //
+      //    return p;
+      //
+      // }
+      //
+      //
+      // template < primitive_array POINT_ARRAY >
+      // POINT_ARRAY& context_transform(POINT_ARRAY& a)
+      // {
+      //
+      //    for (auto& p : a)context_transform(p);
+      //
+      //    return a;
+      //
+      // }
 
-      template < primitive_point POINT >
-      POINT& context_transform(POINT& p)
-      {
-         
-         context_matrix().transform(p);
-         
-         return p;
 
-      }
-
-
-      template < primitive_array POINT_ARRAY >
-      POINT_ARRAY& context_transform(POINT_ARRAY& a)
-      {
-
-         for (auto& p : a)context_transform(p);
-
-         return a;
-
-      }
+      //virtual void context_transform(::double_point & p, enum_transform_context etransformcontext);
 
     
       ::double_size total_size() override;
@@ -130,7 +144,7 @@ namespace gpu
       //      [this, &a, p]()
       //      {
 
-      //         _synchronous_lock synchronouslock(this->synchronization());
+      //         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //         a.add(p);
 
@@ -154,6 +168,8 @@ namespace gpu
 
       void fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color) override;
 
+      using ::draw2d::graphics::line;
+      void line(double x1, double y1, double x2, double y2, ::draw2d::pen* ppen) override;
 
       using ::draw2d::graphics::get_text_extent;
       double_size get_text_extent(const ::scoped_string& scopedstr) override;

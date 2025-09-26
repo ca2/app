@@ -27,7 +27,7 @@ namespace acme
 {
 
 
-   using library_map = string_map < ::pointer < ::acme::library > >;
+   using library_map = string_map_base < ::pointer < ::acme::library > >;
 
    class acme;
 
@@ -38,8 +38,8 @@ namespace factory
 {
 
    using factory_pointer = ::pointer < ::factory::factory >;
-   using factory_map = ::string_map < factory_pointer >;
-   using component_factory_map = ::string_map < factory_map >;
+   using factory_map = ::string_map_base < factory_pointer >;
+   using component_factory_map = ::string_map_base < factory_map >;
 
 } // namespace factory
 
@@ -165,7 +165,10 @@ namespace platform
 
       bool                                                  m_bOutputDebugString;
 
-      string                                                m_strCommandLine;
+      bool                                                  m_bCommandLineCalculated = false;
+      string                                                m_strCommandLineCalculated;
+      bool                                                  m_bCommandLineSystemNative = false;
+      string                                                m_strCommandLineSystemNative;
 
 
       //::critical_section                                    m_criticalsectionTask;
@@ -198,13 +201,17 @@ namespace platform
 
 
       platform();
-      virtual ~platform();
+      ~platform() override;
 
       virtual bool is_console() const;
 
       virtual bool is_desktop_system() const;
 
       virtual bool is_sandboxed() const;
+
+         virtual ::string command_line() const;
+
+         virtual void calculate_command_line();
 
 
       ::critical_section * channel_critical_section()
@@ -328,7 +335,7 @@ namespace platform
       void add_factory_item(const ::atom & atom)
       {
 
-         set_factory(atom, __allocate ::factory::factory_item < TYPE, BASE > ());
+         set_factory(atom, øallocate ::factory::factory_item < TYPE, BASE > ());
 
       }
 
@@ -431,7 +438,7 @@ namespace platform
 
 
 
-      //pass_through_function &  __call__allocate_pass_through_function() { return m_passthroughfunction; }
+      //pass_through_function &  __calløallocate_pass_through_function() { return m_passthroughfunction; }
 
 
       //platform * __call__add_referer2(const ::reference_referer & referer) const;

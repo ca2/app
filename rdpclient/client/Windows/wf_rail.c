@@ -302,7 +302,7 @@ LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam,
 
 	switch (msg)
 	{
-		case e_message_paint:
+		case ::user::e_message_paint:
 			{
 				if (!wfc)
 					return 0;
@@ -318,7 +318,7 @@ LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam,
 			}
 			break;
 
-		case e_message_left_button_down:
+		case ::user::e_message_left_button_down:
 			{
 				if (!railWindow || !input)
 					return 0;
@@ -332,7 +332,7 @@ LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam,
 			}
 			break;
 
-		case e_message_left_button_up:
+		case ::user::e_message_left_button_up:
 			{
 				if (!railWindow || !input)
 					return 0;
@@ -346,7 +346,7 @@ LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam,
 			}
 			break;
 
-		case e_message_right_button_down:
+		case ::user::e_message_right_button_down:
 			{
 				if (!railWindow || !input)
 					return 0;
@@ -360,7 +360,7 @@ LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam,
 			}
 			break;
 
-		case e_message_right_button_up:
+		case ::user::e_message_right_button_up:
 			{
 				if (!railWindow || !input)
 					return 0;
@@ -374,7 +374,7 @@ LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam,
 			}
 			break;
 
-		case e_message_mouse_move:
+		case ::user::e_message_mouse_move:
 			{
 				if (!railWindow || !input)
 					return 0;
@@ -388,14 +388,14 @@ LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam,
 			}
 			break;
 
-		case e_message_mouse_wheel:
+		case ::user::e_message_mouse_wheel:
 			break;
 
-		case e_message_close:
+		case ::user::e_message_close:
 			DestroyWindow(hWnd);
 			break;
 
-		case e_message_destroy:
+		case ::user::e_message_destroy:
 			PostQuitMessage(0);
 			break;
 

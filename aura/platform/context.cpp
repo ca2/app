@@ -68,7 +68,7 @@ namespace aura
             try
             {
 
-               __øconstruct(m_pimagecontext);
+               øconstruct(m_pimagecontext);
 
             }
             catch (...)
@@ -94,10 +94,10 @@ namespace aura
    }
 
 
-   //pointer< ::extended::sequence < ::conversation > > context::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::sequence < ::conversation > > context::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //{
 
-   //   auto pmessagebox = __øcreate < ::user::message_box >();
+   //   auto pmessagebox = øcreate < ::user::message_box >();
 
    //   auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
 
@@ -916,7 +916,7 @@ namespace aura
 //   void context::on_update_matter_locator()
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      m_straMatterLocator.erase_all();
 //
@@ -967,7 +967,7 @@ namespace aura
 //   void context::add_matter_locator(const ::scoped_string & scopedstrApp)
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      string strMatterLocator = matter_locator(strApp);
 //
@@ -984,7 +984,7 @@ namespace aura
 //   void context::add_matter_locator(::apex::application* papp)
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      string strMatterLocator = matter_locator(papp);
 //
@@ -1033,7 +1033,7 @@ namespace aura
    //::image::image_pointer context::create_image()
    //{
 
-   //   auto pimage = __øcreate < ::image::image >();
+   //   auto pimage = øcreate < ::image::image >();
 
    //   if (!pimage)
    //   {
@@ -1050,7 +1050,7 @@ namespace aura
    //::image::image_pointer context::create_image(const ::int_size & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
    //{
 
-   //   auto pimage = m_papplication->__øcreate < ::image::image >();
+   //   auto pimage = m_papplication->øcreate < ::image::image >();
 
    //   if (!pimage)
    //   {

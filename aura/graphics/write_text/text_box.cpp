@@ -4,7 +4,7 @@
 #include "text_box.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
-#include "acme/_finish.h"
+//#include "acme/_finish.h"
 
 
 namespace write_text
@@ -64,7 +64,7 @@ namespace write_text
       if (!m_pimage)
       {
 
-         plist->__øconstruct(m_pimage);
+         plist->øconstruct(m_pimage);
 
          if (!m_pimage)
          {

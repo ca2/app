@@ -130,7 +130,7 @@ namespace cube
 
       //auto estatus =
 
-      pfactoryGpu->__øconstruct(this, m_pgpu);
+      pfactoryGpu->øconstruct(this, m_pgpu);
 
 
       m_pgpu->initialize_gpu_approach();
@@ -154,15 +154,15 @@ namespace cube
       ////   ::pointer < ::graphics::application> papp = m_papplication;
 
 
-      ////   __construct_new(m_pvkcdevice);
+      ////   øconstruct_new(m_pvkcdevice);
 
       ////   m_pvkcdevice->initialize_device(m_pvkcontainer);
 
-      ////   __construct_new(m_prenderer);
+      ////   øconstruct_new(m_prenderer);
 
       ////   m_prenderer->initialize_renderer(m_pvkcontainer, m_pvkcdevice);
 
-      ////   auto pglobalpoolbuilder = __allocate VkcDescriptorPool::Builder();
+      ////   auto pglobalpoolbuilder = øallocate VkcDescriptorPool::Builder();
 
       ////   pglobalpoolbuilder->initialize_builder(m_pvkcdevice);
       ////   pglobalpoolbuilder->setMaxSets(VkcRenderPass::MAX_FRAMES_IN_FLIGHT);
@@ -172,14 +172,14 @@ namespace cube
 
       ////   //m_pglobalpool->initialize_pool(m_pvkcdevice);
 
-      ////   //= __allocate
+      ////   //= øallocate
       ////   //   VkcDescriptorPool::Builder(m_pvkcdevice)
       ////   //   .setMaxSets(VkcSwapChain::MAX_FRAMES_IN_FLIGHT)
       ////   //   .addPoolSize(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VkcSwapChain::MAX_FRAMES_IN_FLIGHT)
       ////   //   .build();
       ////   loadGameObjects();
 
-      ////   //m_pvkcdevice = __allocate VkcDevice(m_pvulkandevice);
+      ////   //m_pvkcdevice = øallocate VkcDevice(m_pvulkandevice);
 
       ////   ::pointer_array<buffer> uboBuffers;
 
@@ -188,7 +188,7 @@ namespace cube
       ////   for (int i = 0; i < uboBuffers.size(); i++)
       ////   {
 
-      ////      uboBuffers[i] = __allocate buffer();
+      ////      uboBuffers[i] = øallocate buffer();
 
       ////      uboBuffers[i]->initialize_buffer(
       ////         m_pvkcdevice,

@@ -2,7 +2,7 @@
 #include "split_layout.h"
 #include "split_pane.h"
 #include "split_bar.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/handler/request.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -44,8 +44,8 @@ namespace user
 
       place_holder_container::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &split_layout::on_message_create);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &split_layout::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &split_layout::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &split_layout::on_message_show_window);
 
    }
 
@@ -159,7 +159,7 @@ namespace user
 
             //auto estatus = 
             
-            __øconstruct(m_splitbara[i]);
+            øconstruct(m_splitbara[i]);
 
             //if (!estatus)
             {
@@ -195,7 +195,7 @@ namespace user
 
             //auto estatus =
             
-            __construct_new(ppane);
+            øconstruct_new(ppane);
 
             ////if (!estatus)
             //{
@@ -231,7 +231,7 @@ namespace user
       for(::collection::index i = 0; i < m_panea.get_count(); i++)
       {
 
-         __construct_new(m_panea[i]);
+         øconstruct_new(m_panea[i]);
 
          if(m_panea[i]->m_pplaceholder.is_null())
          {
@@ -273,7 +273,7 @@ namespace user
 
       CalcSplitBarRect(iIndex, splitRect);
 
-      if(pMsg->m_emessage == e_message_left_button_down)
+      if(pMsg->m_eusermessage == ::user::e_message_left_button_down)
       {
 
          if(session()->is_mouse_button_pressed(::user::e_mouse_left_button))
@@ -290,7 +290,7 @@ namespace user
          }
 
       }
-      else if(pMsg->m_emessage == e_message_left_button_up)
+      else if(pMsg->m_eusermessage == ::user::e_message_left_button_up)
       {
 
          if(m_iState != stateInitial)
@@ -303,7 +303,7 @@ namespace user
          }
 
       }
-      else if(pMsg->m_emessage == e_message_mouse_move)
+      else if(pMsg->m_eusermessage == ::user::e_message_mouse_move)
       {
 
 //         int   fwKeys = (int) pMsg->wParam;        // key flags
@@ -314,7 +314,7 @@ namespace user
          //if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iIndex == m_iIndex))
          //{
 
-         //   _synchronous_lock synchronouslock(this->synchronization());
+         //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
          //   //critical_section_lock synchronouslock(m_pmutex);
          //   {
          //      //      informationf("split_layout::RelayChildEvent LOWORD(pMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
@@ -534,7 +534,7 @@ namespace user
          if (!m_splitbara.element_at(i))
          {
 
-            __construct_new(m_splitbara.element_at(i));
+            øconstruct_new(m_splitbara.element_at(i));
 
          }
 
@@ -767,7 +767,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pacmeuserinteractionaChildren = pholder->m_pacmeuserinteractionaChildren;
 
@@ -947,7 +947,7 @@ namespace user
    bool split_layout::InsertPaneAt(::collection::index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, ::atom atom)
    {
 
-      auto  pbar =__create_new<split_bar>();
+      auto  pbar =øcreate_new<split_bar>();
 
       m_splitbara.insert_at(iIndex, pbar);
 
@@ -957,7 +957,7 @@ namespace user
 
       auto & ppane = m_panea.add_new_at(iIndex);
 
-      __construct_new(ppane);
+      øconstruct_new(ppane);
 
       ppane->m_pplaceholder = place_hold(puserinteraction, ppane->m_rectangleHosting);
 
@@ -980,7 +980,7 @@ namespace user
    bool split_layout::RemovePaneAt(::collection::index iIndex)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ASSERT(iIndex >= 0);
 
@@ -999,7 +999,7 @@ namespace user
 
          auto & psplitbar = m_splitbara.add_new();
          
-         __øconstruct(psplitbar);
+         øconstruct(psplitbar);
 
          psplitbar->m_iIndex = i;
 
@@ -1154,7 +1154,7 @@ namespace user
    }
 
 
-//   void split_layout::RelayEventSplitBar(::collection::index iSplitBar, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+//   void split_layout::RelayEventSplitBar(::collection::index iSplitBar, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 //   {
 //
 //      ASSERT(false);
@@ -1166,7 +1166,7 @@ namespace user
 //
 //      CalcSplitBarRect(iSplitBar, &splitRect);
 //
-//      if(atom == e_message_left_button_down)
+//      if(atom == ::user::e_message_left_button_down)
 //      {
 //
 //         int   fwKeys = (int) wParam;        // key flags
@@ -1180,7 +1180,7 @@ namespace user
 //            m_iState = stateDragging;
 //         }
 //      }
-//      else if(atom == e_message_left_button_up)
+//      else if(atom == ::user::e_message_left_button_up)
 //      {
 ////         int   fwKeys = wParam;        // key flags
 ////         int xPos = splitRect.left() + (short) LOWORD(lParam);  // horizontal position of cursor
@@ -1202,11 +1202,11 @@ namespace user
 //
 //      }
 //#ifdef WINDOWS_DESKTOP
-//      else if(atom == e_message_capture_changed)
+//      else if(atom == ::user::e_message_capture_changed)
 //      {
 //      }
 //#endif
-//      else if(atom == e_message_mouse_move)
+//      else if(atom == ::user::e_message_mouse_move)
 //      {
 //         int   fwKeys = (int) wParam;        // key flags
 //         int xPos = splitRect.left() + (short) LOWORD(lParam);  // horizontal position of cursor
@@ -1215,7 +1215,7 @@ namespace user
 //         {
 //            //critical_section_lock lock(m_pmutex);
 //
-//            _synchronous_lock synchronouslock(this->synchronization());
+//            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //            {
 //               informationf("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));

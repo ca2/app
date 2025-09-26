@@ -48,7 +48,7 @@ bool defer_process_x_message(htask htask, MESSAGE * lpMsg, oswindow window, bool
             if(e.type == Expose)
             {
 
-               lpMsg->message       = e_message_paint;
+               lpMsg->message       = ::user::e_message_paint;
                lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                lpMsg->lParam        = 0;
                lpMsg->wParam        = 0;
@@ -64,7 +64,7 @@ bool defer_process_x_message(htask htask, MESSAGE * lpMsg, oswindow window, bool
                   {
                      if(j == i)
                         continue;
-                     PostMessage(::oswindow_data::s_pdataptra->element_at(j), e_message_display_change, 0, 0);
+                     PostMessage(::oswindow_data::s_pdataptra->element_at(j), ::user::e_message_display_change, 0, 0);
                   }
                   continue;
                }
@@ -79,15 +79,15 @@ bool defer_process_x_message(htask htask, MESSAGE * lpMsg, oswindow window, bool
                {
                   if(e.xbutton.button == Button1)
                   {
-                     lpMsg->message = e_message_left_button_down;
+                     lpMsg->message = ::user::e_message_left_button_down;
                   }
                   else if(e.xbutton.button == Button2)
                   {
-                     lpMsg->message = e_message_middle_button_down;
+                     lpMsg->message = ::user::e_message_middle_button_down;
                   }
                   else if(e.xbutton.button == Button3)
                   {
-                     lpMsg->message = e_message_right_button_down;
+                     lpMsg->message = ::user::e_message_right_button_down;
                   }
                   else
                   {
@@ -99,15 +99,15 @@ bool defer_process_x_message(htask htask, MESSAGE * lpMsg, oswindow window, bool
                {
                   if(e.xbutton.button == Button1)
                   {
-                     lpMsg->message = e_message_left_button_up;
+                     lpMsg->message = ::user::e_message_left_button_up;
                   }
                   else if(e.xbutton.button == Button2)
                   {
-                     lpMsg->message = e_message_middle_button_up;
+                     lpMsg->message = ::user::e_message_middle_button_up;
                   }
                   else if(e.xbutton.button == Button3)
                   {
-                     lpMsg->message = e_message_right_button_up;
+                     lpMsg->message = ::user::e_message_right_button_up;
                   }
                   else
                   {
@@ -143,13 +143,13 @@ bool defer_process_x_message(htask htask, MESSAGE * lpMsg, oswindow window, bool
                if(e.xkey.type == KeyPress)
                {
 
-                  lpMsg->message = e_message_key_down;
+                  lpMsg->message = ::user::e_message_key_down;
 
                }
                else if(e.xkey.type == KeyRelease)
                {
 
-                  lpMsg->message = e_message_key_up;
+                  lpMsg->message = ::user::e_message_key_up;
 
                }
                else
@@ -170,7 +170,7 @@ bool defer_process_x_message(htask htask, MESSAGE * lpMsg, oswindow window, bool
             {
 
                lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
-               lpMsg->message       = e_message_mouse_move;
+               lpMsg->message       = ::user::e_message_mouse_move;
                lpMsg->wParam        = 0;
                lpMsg->lParam        = make_int(e.xmotion.x_root, e.xmotion.y_root);
 
@@ -181,7 +181,7 @@ bool defer_process_x_message(htask htask, MESSAGE * lpMsg, oswindow window, bool
             {
 
                lpMsg->hwnd          = oswindow_get(display, e.xdestroywindow.window);
-               lpMsg->message       = e_message_destroy;
+               lpMsg->message       = ::user::e_message_destroy;
 
                bRet                 = true;
 

@@ -6,7 +6,7 @@
 #include "list_item_array.h"
 #include "list_item.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
 #include "acme/filesystem/file/item_array.h"
@@ -57,11 +57,11 @@ namespace userfs
 
       ::user::form_list_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &list::on_message_scroll_x);
-      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &list::on_message_scroll_y);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &list::on_message_show_window);
-      MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &list::on_message_scroll_x);
+      USER_MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &list::on_message_scroll_y);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &list::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &list::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &list::on_message_left_button_double_click);
 
    }
 
@@ -193,7 +193,7 @@ namespace userfs
       if (ptopic->id() == id_browse)
       {
 
-         //auto plistdata = __create_new < list_data>();
+         //auto plistdata = øcreate_new < list_data>();
 
          auto plistdata = fs_list();
 
@@ -671,7 +671,7 @@ namespace userfs
    //                  continue;
    //               iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
    //            }
-   //            itema.add(__allocate ::file::item(pdata->item(iStrict)));
+   //            itema.add(øallocate ::file::item(pdata->item(iStrict)));
    //         }
    //      }
    //   }
@@ -910,7 +910,7 @@ namespace userfs
    ::pointer<::user::mesh_data>list::create_mesh_data()
    {
 
-      return __create_new < list_data >();
+      return øcreate_new < list_data >();
 
    }
 

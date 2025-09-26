@@ -22,11 +22,11 @@ namespace draw3d
 
       double dA = bA / 255.0;
 
-      auto locationa = pbox->vertices();
+      auto locationa = pbox->vertexes();
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto ppen = __øcreate < ::draw2d::pen > ();
+      auto ppen = øcreate < ::draw2d::pen > ();
 
       double zmin = locationa[0].z();
       double zmax = locationa[0].z();
@@ -236,12 +236,12 @@ namespace draw3d
 
       double dA = bA / 255.0;
 
-      auto locationa = pbox->vertices();
+      auto locationa = pbox->vertexes();
       array < ::int_array_base > f = pbox->faces();
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto ppen = __øcreate < ::draw2d::pen > ();
+      auto ppen = øcreate < ::draw2d::pen > ();
 
       double zmin = 1000000.0;
       double zmax = -1000000.0;

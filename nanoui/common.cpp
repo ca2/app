@@ -34,7 +34,7 @@ void CLASS_DECL_NANOUI file_dialog_from_platform(
 
 //#include <nanoui/opengl.h>
 //#include <nanoui/metal.h>
-//#include <map>
+//#include <map_base>
 //#include <thread>
 //#include <chrono>
 //#include <mutex>
@@ -56,10 +56,10 @@ namespace nanoui
 
 
 
-//extern std::map<GLFWwindow *, Screen *> __nanoui_screens;
+//extern std::map_base<GLFWwindow *, Screen *> __nanoui_screens;
 
 #if defined(__APPLE__)
-extern void disable_saved_application_state_osx();
+extern void disable_saved_application_sink_osx();
 #endif
 
 //void init() {
@@ -69,7 +69,7 @@ extern void disable_saved_application_state_osx();
 //#endif
 //
 //#if defined(__APPLE__)
-//   disable_saved_application_state_osx();
+//   disable_saved_application_sink_osx();
 //   glfwInitHint(GLFW_COCOA_CHDIR_RESOURCES, GLFW_FALSE);
 //#endif
 //
@@ -275,10 +275,10 @@ static float emscripten_refresh = 0;
 }
 
 int __nanoui_get_image(::nano2d::context  * pcontext, const ::scoped_string & name, uint8_t * data, uint32_t size) {
-   static string_map < int> icon_cache;
-   auto it = icon_cache.plookup(name);
-   if (it != icon_cache.end())
-      return it->m_element2;
+   static string_map_base < int> icon_cache;
+   auto iterator = icon_cache.find(name);
+   if (iterator)
+      return iterator->m_element2;
    int icon_id = pcontext->create_image_mem(0, data, size);
    if (icon_id == 0)
       throw ::exception(error_failed, "Unable to load resource data.");

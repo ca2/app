@@ -2,7 +2,7 @@
 #include "main_impact.h"
 #include "list.h"
 #include "tree_data.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/handler/request.h"
@@ -22,7 +22,7 @@ namespace userfs
    void main_impact::install_message_routing(::channel * pchannel)
    {
       ::user::split_impact::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &main_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &main_impact::on_message_create);
    }
 
    void main_impact::on_message_create(::message::message * pmessage)
@@ -53,9 +53,9 @@ namespace userfs
 
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
-  //    cc->m_usercreatecontext.m_typeatomNewImpact = ::type < list >();
-      puserinteraction = create_impact(::type < list >(),get_document(), get_pane_holder(1),101);
-//      list * plist = dynamic_cast < list * > (puserinteraction);
+  //    cc->m_usercreatecontext.m_typeatomNewImpact = ::type < list_base >();
+      puserinteraction = create_impact(::type < ::userfs::list >(),get_document(), get_pane_holder(1),101);
+//      list_base * plist = dynamic_cast < list_base * > (puserinteraction);
       SetPane(1, puserinteraction, false);
       set_need_layout();
 

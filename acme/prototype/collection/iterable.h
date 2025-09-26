@@ -1079,13 +1079,13 @@ namespace iter
 
 
    //template < typename ITERABLE, typename ITYPE >
-   //bool contains_payload(const ITERABLE & map, const ITYPE & value)
+   //bool contains_payload(const ITERABLE & map_base, const ITYPE & value)
    //{
 
 
-   //   auto it = map.begin();
+   //   auto it = map_base.begin();
 
-   //   for (; it != map.end(); it++)
+   //   for (; it != map_base.end(); it++)
    //   {
 
    //      if (it->element2() == value)
@@ -1740,7 +1740,7 @@ end:
 
 
    //template<class ITYPE, class ARG_ITYPE>
-   //void list<ITYPE, ARG_ITYPE>::erase(iterator & it)
+   //void list_base<ITYPE, ARG_ITYPE>::erase(iterator & it)
    //{
    //
    //   this->erase_at(it);
@@ -3907,7 +3907,7 @@ end:
    ITERABLE & copy_from(ITERABLE & iterable, ITERATOR & iterator, ITERATOR & limit)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       iterable.provision(iterator, limit);
 

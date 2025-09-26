@@ -131,7 +131,7 @@ namespace introjection
 //
 //            strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
 //
-//            //message_box(strMessage, strMessage, e_message_box_ok);
+//            //message_box(strMessage, strMessage, ::user::e_message_box_ok);
 //
 //         }
 //
@@ -577,14 +577,14 @@ namespace introjection
 
       }
 
-      synchronous_lock slCompiler(synchronization());
+      synchronous_lock slCompiler(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto & plibrary = m_lib[pathFile];
 
       if(!plibrary)
       {
 
-         plibrary = __create_new < library > ();
+         plibrary = øcreate_new < library > ();
 
          plibrary->defer_create_synchronization();
 

@@ -149,7 +149,7 @@ namespace image
 
       virtual void hue_offset(double dRate);
 
-      virtual void map(bool bApplyAlphaTransform = true) const; // some implementations may requrire to map to m_pcolorref before manipulate it
+      virtual void map(bool bApplyAlphaTransform = true) const; // some implementations may requrire to map_base to m_pcolorref before manipulate it
       virtual void unmap() const; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
 
@@ -885,9 +885,9 @@ namespace image
 ////
 //// Compose, Construct, Create and Add_Reference Porngraphs
 ////
-//// __øcreate      // return ::pointer<BASE_TYPE>// _id atom // _new TYPE
-//// __øconstruct     // ::pointer<BASE_TYPE>&    // _id atom // _new TYPE // SOURCE psource
-//// __øconstruct   // ::pointer<BASE_TYPE>&      // _id atom // _new TYPE // SOURCE psource
+//// øcreate      // return ::pointer<BASE_TYPE>// _id atom // _new TYPE
+//// øconstruct     // ::pointer<BASE_TYPE>&    // _id atom // _new TYPE // SOURCE psource
+//// øconstruct   // ::pointer<BASE_TYPE>&      // _id atom // _new TYPE // SOURCE psource
 //// add_reference // ::pointer<BASE_TYPE>& SOURCE psource
 ////
 //// >>
@@ -898,26 +898,26 @@ namespace image
 //inline ::image::image_pointer __create_image()
 //{
 //
-//   return ::__øcreate<::image::image>();
+//   return ::øcreate<::image::image>();
 //
 //}
 //
 //// template < typename COMPOSER >
-//// void __øconstruct(COMPOSER && pcomposer, __ & pimage);
+//// void øconstruct(COMPOSER && pcomposer, __ & pimage);
 // //
 // template < typename COMPOSER >
-// inline void __øconstruct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, ::image::image *pimageSource);
+// inline void øconstruct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, ::image::image *pimageSource);
 // //
 // //
 // template < typename COMPOSER >
-// inline void __øconstruct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, const ::int_size & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1, void bPreserve = false);
+// inline void øconstruct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, const ::int_size & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1, void bPreserve = false);
 // //
 // //
 // template < typename COMPOSER >
 // inline void __preserve(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, const ::int_size & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1);
 // //
 //
-//void __øconstruct(::image::image_pointer & pimage);
+//void øconstruct(::image::image_pointer & pimage);
 
 inline void __call__construct(::image::image_pointer & pimage, ::image::image *pimageSource);
 //

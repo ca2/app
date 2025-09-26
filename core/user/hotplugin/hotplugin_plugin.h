@@ -82,7 +82,7 @@ namespace hotplugin
 
 
       virtual void         redraw();
-      virtual void         post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam);
+      virtual void         post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
       virtual oswindow         get_host_user_interaction();
 
@@ -140,7 +140,7 @@ namespace hotplugin
       virtual int x11_message_handler(void * pevent);
 #endif
       virtual void message_handler(::user::message * pusermessage) override;
-      virtual void plugin_message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx);
+      virtual void plugin_message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bEnsureTx);
 
       virtual void plugin_message_handler(MESSAGE * pmsg,bool bEnsureTx);
 

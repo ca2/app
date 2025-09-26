@@ -58,7 +58,7 @@ namespace app_build
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &impact::on_message_create);
 
    }
 
@@ -77,7 +77,7 @@ namespace app_build
 
       }
 
-      __defer_construct(m_pbuild);
+      ødefer_construct(m_pbuild);
 
       m_pbuild->branch();
 

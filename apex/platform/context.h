@@ -24,13 +24,13 @@ namespace apex
       //
       // string                              m_strStoreServerBaseUrl;
       //
-      // string_to_string                    m_mapCachedLatestBuild;
+      // string_to_string_base                    m_mapCachedLatestBuild;
       // //::pointer<::http::context>          m_phttpcontext;
       // //::pointer<::os_context>             m_poscontext;
       //
 
       bool                                                        m_bModifiedFsRawFolderProtocols;
-      ::string_map < ::pointer < ::fs::raw_folder_protocol > >    m_mapFsRawFolderProtocol;
+      ::string_map_base < ::pointer < ::fs::raw_folder_protocol > >    m_mapFsRawFolderProtocol;
 
 
 
@@ -216,7 +216,7 @@ namespace apex
 //      using acme::handler_context::http_get;
       //::pointer < ::nano::http::response > http_get(const ::scoped_string& scopedstrUrl, const ::property_set & set) override;
 
-      //virtual void perform(::nano::http::get * pget);
+      //virtual void perform(::nano::http::get * defer_get);
 
 
 

@@ -75,8 +75,8 @@ namespace application_build_helper
       bool                                m_bTranslateDependency;
 
 
-      string_map < string_to_string >     m_mapBinaryToProject;
-      string_map < string_to_string >     m_mapProjectToBinary;
+      string_map_base < string_to_string_base >     m_mapBinaryToProject;
+      string_map_base < string_to_string_base >     m_mapProjectToBinary;
 
       int                                 m_iExitCode;
 
@@ -132,7 +132,7 @@ namespace application_build_helper
       string defer_project_to_binary(const ::scoped_string & scopedstrProject);
 
 
-      void load_map(string_to_string & map, const ::scoped_string & scopedstrMap, const ::scoped_string & scopedstrRoot);
+      void load_map(string_to_string_base & map_base, const ::scoped_string & scopedstrMap, const ::scoped_string & scopedstrRoot);
 
       string defer_translate_application_name(const ::scoped_string & scopedstrDependency);
 

@@ -16,7 +16,7 @@ namespace experience
 
 
       
-      string_map < ::pointer<::experience::experience >>  m_mapExperience;
+      string_map_base < ::pointer<::experience::experience >>  m_mapExperience;
 
 
       department();

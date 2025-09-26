@@ -79,10 +79,10 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
 #define ENSURE(cond)      ENSURE_THROW(cond, throw_exception(error_bad_argument))
 #define ENSURE_ARG(cond)   ENSURE_THROW(cond, throw_exception(error_bad_argument))
 
-// Debug ASSERT_VALIDs then throws. Retail throws if pOb is nullptr
-#define ENSURE_VALID_THROW(pOb, exception)   \
-   do { ASSERT_VALID(pOb); if (!(pOb)){exception;} } while (false)
-#define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, throw_exception(error_bad_argument))
+// Debug ASSERT_VALIDs then throws. Retail throws if p is nullptr
+#define ENSURE_VALID_THROW(p, exception)   \
+   do { ASSERT_OK(p); if (!(p)){exception;} } while (false)
+#define ENSURE_VALID(p)   ENSURE_VALID_THROW(p, throw_exception(error_bad_argument))
 
 #define ASSERT_POINTER(p, type) \
    ASSERT(((p) != nullptr) && is_memory_segment_ok((p), sizeof(type), false))

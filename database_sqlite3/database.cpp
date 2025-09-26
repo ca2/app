@@ -50,7 +50,7 @@ namespace sqlite
    //::pointer<::database::dataset>database::dataset()
    //{
 
-   //   return __allocate class dataset (this);
+   //   return øallocate class dataset (this);
 
    //}
 
@@ -205,7 +205,7 @@ namespace sqlite
 
       m_strLastError.empty();
 
-      ::pointer<::database::result_set>presultset = __allocate ::database::result_set();
+      ::pointer<::database::result_set>presultset = øallocate ::database::result_set();
 
       char * errmsg = nullptr;
 
@@ -371,7 +371,7 @@ namespace sqlite
    void database::_connect()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       disconnect();
 
@@ -426,7 +426,7 @@ namespace sqlite
    void database::disconnect()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pstmtSelect != nullptr)
       {
@@ -487,7 +487,7 @@ namespace sqlite
    void database::drop()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       disconnect();
 
@@ -519,7 +519,7 @@ namespace sqlite
    //long database::nextid(const ::string & sname)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   if(!isActive())
    //   {
@@ -582,7 +582,7 @@ namespace sqlite
    void database::start_transaction()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (isActive())
       {
@@ -595,7 +595,7 @@ namespace sqlite
    void database::commit_transaction()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (isActive())
       {
@@ -608,7 +608,7 @@ namespace sqlite
    void database::rollback_transaction()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (isActive())
       {
@@ -635,14 +635,14 @@ namespace sqlite
    //void database::create_long_set(const ::scoped_string & scopedstrTable)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   try
    //   {
 
    //      dataset dataset(this);
 
-   //      _synchronous_lock synchronouslock(this->synchronization());
+   //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //      dataset.query("select * from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
@@ -664,14 +664,14 @@ namespace sqlite
    //void database::create_string_set(const ::scoped_string & scopedstrTable)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   try
    //   {
 
    //      dataset dataset(this);
 
-   //      _synchronous_lock synchronouslock(this->synchronization());
+   //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //      dataset.query("select * from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
@@ -729,7 +729,7 @@ namespace sqlite
 
          string str;
 
-         _synchronous_lock slDatabase(synchronization());
+         _synchronous_lock slDatabase(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          {
 
@@ -924,9 +924,9 @@ int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char*
 
    auto & prowa = presultset->m_prowa;
 
-   presultset->__defer_construct_new(pfielda);
+   presultset->ødefer_construct_new(pfielda);
 
-   presultset->__defer_construct_new(prowa);
+   presultset->ødefer_construct_new(prowa);
 
    if (pfielda->is_empty())
    {
@@ -936,7 +936,7 @@ int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char*
       for (::collection::index i = 0; i < ncol; i++)
       {
 
-         presultset->__defer_construct_new(pfielda->element_at(i));
+         presultset->ødefer_construct_new(pfielda->element_at(i));
 
          pfielda->element_at(i)->m_strName = cols[i];
 
@@ -977,7 +977,7 @@ int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char*
 
       }
 
-      auto prow = __allocate ::database::row();
+      auto prow = øallocate ::database::row();
 
       ::payload payload;
 

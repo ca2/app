@@ -207,7 +207,7 @@ void app_core::system_prep()
    if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
    {
 
-      //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
+      //debug_box("zzzAPPzzz app", "zzzAPPzzz app", ::user::e_message_box_icon_information);
 
    }
 
@@ -340,14 +340,14 @@ void app_core::system_init()
 
       uid_t uid = atoi(strUid);
 
-      auto pmessagebox = __initialize_new ::message_box(nullptr, "going to seteuid to: " + as_string(uid), "going to seteuid", e_message_box_ok);
+      auto pmessagebox = __initialize_new ::message_box(nullptr, "going to seteuid to: " + as_string(uid), "going to seteuid", ::user::e_message_box_ok);
 
 pmessagebox->sync();
 
       if (seteuid(uid) == 0)
       {
 
-         auto pmessagebox = __initialize_new ::message_box(nullptr, "uid=" + as_string(uid), "seteuid success", e_message_box_ok);
+         auto pmessagebox = __initialize_new ::message_box(nullptr, "uid=" + as_string(uid), "seteuid success", ::user::e_message_box_ok);
 
 pmessagebox->sync();
 
@@ -361,7 +361,7 @@ pmessagebox->sync();
 
          strError.formatf("errno=%d uid=%d", iErr);
 
-         auto pmessagebox = __initialize_new ::message_box(nullptr, strError, "seteuid failed", e_message_box_icon_exclamation);
+         auto pmessagebox = __initialize_new ::message_box(nullptr, strError, "seteuid failed", ::user::e_message_box_icon_exclamation);
 
 pmessagebox->sync();
 
@@ -508,11 +508,11 @@ pmessagebox->sync();
 
    //set_object(get_context_system());
 
-   auto pcreate = __allocate ::create(get_context_system());
+   auto pcreate = øallocate ::create(get_context_system());
 
    pcreate->m_strAppId = strAppId;
 
-   pcreate->m_pcommandline = __allocate command_line(get_context_system(), strCommandLine);
+   pcreate->m_pcommandline = øallocate command_line(get_context_system(), strCommandLine);
 
    //::auraacmesystem()->get_command()->add_create(pcreate);
 
@@ -522,7 +522,7 @@ pmessagebox->sync();
    // cold start (never previously called program and its Dlls...)?
    ::auraacmesystem()->m_durationMainStart = m_durationStart;
 
-   //xxdebug_box("box1", "box1", e_message_box_icon_information);
+   //xxdebug_box("box1", "box1", ::user::e_message_box_icon_information);
 
    ::file::path pathOutputDebugString =          auto psystem = system();
 
@@ -615,7 +615,7 @@ pdirectorysystem->ca2roaming() / "program";
 //
 //         string strLibrary = ::process::app_id_to_app_name(strAppId);
 //
-//         m_plibrary = __allocate ::acme::library();
+//         m_plibrary = øallocate ::acme::library();
 //
 //         m_plibrary->initialize(get_context_system());
 //
@@ -689,7 +689,7 @@ pdirectorysystem->ca2roaming() / "program";
 //      //   if (pfnDeferTerm == nullptr)
 //      //   {
 //
-//      //      output_error_message("Missing corresponding defer_*_term for the defer_*_init backbone library." + e_message_box_icon_error);
+//      //      output_error_message("Missing corresponding defer_*_term for the defer_*_init backbone library." + ::user::e_message_box_icon_error);
 //
 //      //      on_result(error_failed);
 //
@@ -929,7 +929,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //      aura_main_struct.m_bUser = true;
 //      aura_main_struct.m_bUserEx = true;
 //
-//      auto psystem = __allocate ::aura::system();
+//      auto psystem = øallocate ::aura::system();
 //
 //      psystem->system_construct(argc, argv);
 //
@@ -947,7 +947,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //CLASS_DECL_AURA long aura_prefix(::aura::system * psystem)
 //{
 //
-//   //pmaindata->m_pappcore = __allocate app_core(pmaindata);
+//   //pmaindata->m_pappcore = øallocate app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -971,7 +971,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //CLASS_DECL_AURA long aura_fork(::aura::system * psystem, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication)
 //{
 //
-//   //pmaindata->m_pappcore = __allocate app_core(pmaindata);
+//   //pmaindata->m_pappcore = øallocate app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -1834,7 +1834,7 @@ bool app_core::has_aura_application_factory() const
 
    string strAppId = pszAppId;
 
-   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
+   synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::pointer<::acme::library> plibrary = ::auraacmesystem()->m_mapLibrary[strAppId];
 
@@ -1881,7 +1881,7 @@ bool app_core::has_aura_application_factory() const
             if (strAppId.is_empty())
             {
 
-               papp = ::auraacmesystem()->__øcreate < ::aura::application > ();
+               papp = ::auraacmesystem()->øcreate < ::aura::application > ();
 
                *((::aura_main_struct*)papp) = *((::aura_main_struct*)this);
 
@@ -1903,7 +1903,7 @@ bool app_core::has_aura_application_factory() const
          else
          {
 
-            //plibrary = __allocate ::acme::library();
+            //plibrary = øallocate ::acme::library();
 
             //plibrary->initialize_aura_library(pparticle, 0, nullptr);
 
@@ -1927,7 +1927,7 @@ bool app_core::has_aura_application_factory() const
 
 #ifndef UNIVERSAL_WINDOWS
 
-               output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
+               output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", ::user::e_message_box_icon_error);
 
 #endif
 
@@ -2056,8 +2056,8 @@ bool app_core::has_aura_application_factory() const
    if (!papp->is_serviceable() || papp->is_user_service())
    {
 
-      ::auraacmesystem()->m_spmutexUserAppData = __allocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
-      ::auraacmesystem()->m_spmutexSystemAppData = __allocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
+      ::auraacmesystem()->m_spmutexUserAppData = øallocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
+      ::auraacmesystem()->m_spmutexSystemAppData = øallocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
 
    }
 

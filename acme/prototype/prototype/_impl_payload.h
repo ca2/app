@@ -208,7 +208,7 @@ public:
 //
 //   template < typename TYPE >
 //   pack(const ::pointer<TYPE>& p) { set_pointer(p); }
-//   pack(const ::std::initializer_list < pack >& list);
+//   pack(const ::std::initializer_list < pack >& list_base);
 //
 //};
 
@@ -969,24 +969,24 @@ inline ::payload & copy(::payload & payload1, const ::payload & payload2)
 //}
 
 
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::payload & payload)
-{
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::payload & payload)
+//{
+//
+//   assign_range(payload.as_string());
+//
+//   return *this;
+//
+//}
 
-   assign_range(payload.as_string());
 
-   return *this;
-
-}
-
-
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::payload & payload)
-{
-
-   return append(payload);
-
-}
+// template < typename ITERATOR_TYPE >
+// string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::payload & payload)
+// {
+//
+//    return append(payload);
+//
+// }
 
 
 template < typename ITERATOR_TYPE >
@@ -1063,7 +1063,7 @@ namespace file
 
 
 
-//template < character_range RANGE, primitive_payload PAYLOAD >
+//template < primitive_character_range RANGE, primitive_payload PAYLOAD >
 //::string operator + (const RANGE & range, const PAYLOAD & payload)
 //{
 //

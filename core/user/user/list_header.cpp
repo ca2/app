@@ -3,7 +3,7 @@
 #include "list_header.h"
 #include "list_column.h"
 #include "list_column_array.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/prototype/collection/_array_binary_stream.h"
 #include "apex/database/_binary_stream.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -36,10 +36,14 @@ namespace user
 
    }
 
-   void list_header::SetBaseListCtrlInterface(list *pinterface)
+
+   void list_header::SetBaseListCtrlInterface(::user::list *pinterface)
    {
+
       m_plist = pinterface;
+
    }
+
 
    void list_header::DrawItem(::draw2d::item * pdrawitem)
    {
@@ -50,7 +54,7 @@ namespace user
 
       int iColumn = pdrawitem->itemID;
 
-      list * plist = m_plist;
+      ::user::list * plist = m_plist;
 
       if (plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->is_set() && plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->area() > 0)
       {
@@ -158,7 +162,7 @@ namespace user
 
       }
 
-      list * plist = m_plist;
+      ::user::list * plist = m_plist;
 
       if (iItem >= plist->_001GetColumnCount())
       {
@@ -249,7 +253,7 @@ namespace user
 
       }
 
-      list * plist = m_plist;
+      ::user::list * plist = m_plist;
 
       if (iItem >= plist->_001GetColumnCount())
       {
@@ -360,7 +364,7 @@ namespace user
 
    bool list_header::hit_test(const ::int_point & point, enum_element & eelement, ::collection::index & iItemParam)
    {
-      list * plist = m_plist;
+      ::user::list * plist = m_plist;
       ::int_rectangle rectangle;
       for(int iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
@@ -388,7 +392,7 @@ namespace user
 
    bool list_header::hit_test(const ::int_point & point, enum_element eelementLButtonDown, ::collection::index iItemLButtonDown, enum_element & eelement, ::collection::index & iItemParam)
    {
-      list * plist = m_plist;
+      ::user::list * plist = m_plist;
       ::int_rectangle rectangle;
       for(int iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
@@ -418,7 +422,7 @@ namespace user
    ::collection::index list_header::ItemToColumnKey(::collection::index iItem)
    {
 
-      list * plist = m_plist;
+      ::user::list * plist = m_plist;
 
       return plist->_001MapColumnToOrder(iItem);
 
@@ -500,10 +504,10 @@ namespace user
    void list_header::install_message_routing(::channel * pchannel)
    {
       ::user::box::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list_header::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list_header::on_message_left_button_up);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_header::on_message_left_button_double_click);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_header::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &list_header::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &list_header::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &list_header::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &list_header::on_message_mouse_move);
    }
 
    void list_header::on_message_left_button_down(::message::message * pmessage)
@@ -532,7 +536,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      list * plist = m_plist;
+      ::user::list * plist = m_plist;
 
       auto pointCursor = pmouse->m_pointHost;
 
@@ -615,7 +619,7 @@ namespace user
 
       host_to_client()(pointCursor);
 
-      list * plist = m_plist;
+      ::user::list * plist = m_plist;
 
       enum_element eelement;
 
@@ -709,7 +713,7 @@ namespace user
 
       host_to_client()(pointCursor);
 
-      list * plist = m_plist;
+      ::user::list * plist = m_plist;
 
       enum_element eelement;
 
@@ -779,7 +783,7 @@ namespace user
       //   if (!m_pshapeaClip)
       //   {
 
-      //      __construct_new(m_pshapeaClip);
+      //      øconstruct_new(m_pshapeaClip);
 
       //      ::int_rectangle rectangleIntersect;
 
@@ -792,9 +796,9 @@ namespace user
 
       //         host_to_client(rectangleX);
 
-      //         m_pshapeaClip->add_item(__allocate rectangle_shape(::double_rectangle(rectangleX)));
+      //         m_pshapeaClip->add_item(øallocate rectangle_shape(::double_rectangle(rectangleX)));
 
-      //         m_pshapeaClip->add_item(__allocate intersect_clip_shape());
+      //         m_pshapeaClip->add_item(øallocate intersect_clip_shape());
 
       //         pinteraction = pinteraction->get_parent();
 
@@ -838,7 +842,7 @@ namespace user
       ////   if(!m_pshapeaClip)
       ////   {
 
-      ////      __construct_new(m_pshapeaClip);
+      ////      øconstruct_new(m_pshapeaClip);
       ////      
       ////      ::user::interaction * pinteraction = this;
 
@@ -853,7 +857,7 @@ namespace user
 
       ////         if (i == 1)
       ////         {
-      ////            // guess list client int_rectangle doesn't include header?
+      ////            // guess ::user::list client int_rectangle doesn't include header?
       ////            pinteraction->::user::interaction::this->rectangle(rectangleFocus);
 
       ////         }
@@ -872,9 +876,9 @@ namespace user
 
       ////         rectangleFocus.right()++;
 
-      ////         m_pshapeaClip->add_item(__allocate rectangle_shape(rectangleIntersect));
+      ////         m_pshapeaClip->add_item(øallocate rectangle_shape(rectangleIntersect));
 
-      ////         m_pshapeaClip->add_item(__allocate intersect_clip_shape());
+      ////         m_pshapeaClip->add_item(øallocate intersect_clip_shape());
 
       ////         i++;
 
@@ -930,9 +934,9 @@ namespace user
 
       ::draw2d::item drawitem;
       drawitem.m_pgraphics = pgraphics;
-      list * plist = m_plist;
+      ::user::list * plist = m_plist;
       ::int_rectangle rectangleDivider;
-      auto ppen = __øcreate < ::draw2d::pen > ();
+      auto ppen = øcreate < ::draw2d::pen > ();
 
       auto color = get_color(pstyle, ::e_element_separator);
 

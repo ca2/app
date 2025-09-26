@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "still.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
@@ -60,8 +60,8 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &still::on_message_create);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &still::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &still::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &still::on_message_key_down);
 
    }
 
@@ -131,7 +131,7 @@ namespace user
          if (m_estockicon != e_stock_icon_none)
          {
 
-            auto ppen = __øcreate < ::draw2d::pen > ();
+            auto ppen = øcreate < ::draw2d::pen > ();
 
             ppen->m_color = pgraphics->get_current_brush()->m_color;
 
@@ -150,7 +150,7 @@ namespace user
          {
 
 
-            //auto pbrushText = __øcreate < ::draw2d::brush >();
+            //auto pbrushText = øcreate < ::draw2d::brush >();
 
 
             //if (!is_window_enabled())
@@ -393,7 +393,7 @@ namespace user
    //   //      topic.m_puserinteraction = this;
    //   //      topic.id() = ::id_mouse_enter;
    //   //      get_parent()->send_message(
-   //   //      e_message_event, 0, (LPARAM)&ev);
+   //   //      ::user::e_message_event, 0, (LPARAM)&ev);
    //   //      //               m_bActionHover = true;
    //   //   }
    //   //   else if (iHover == -1)
@@ -402,7 +402,7 @@ namespace user
    //   //      topic.m_puserinteraction = this;
    //   //      topic.id() = ::id_mouse_leave;
    //   //      get_parent()->send_message(
-   //   //      e_message_event, 0, (LPARAM)&ev);
+   //   //      ::user::e_message_event, 0, (LPARAM)&ev);
    //   //      //             m_bActionHover = false;
    //   //   }
    //   //}
@@ -425,7 +425,7 @@ namespace user
    //   //   topic.id() = ::id_mouse_leave;
    //   //   if (get_parent() != nullptr)
    //   //   {
-   //   //      get_parent()->send_message(e_message_event, 0, (LPARAM)&ev);
+   //   //      get_parent()->send_message(::user::e_message_event, 0, (LPARAM)&ev);
    //   //   }
    //   //}
 
@@ -610,7 +610,7 @@ namespace user
    void still::defer_update_text_out_array(::draw2d::graphics_pointer & pgraphics)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer<::write_text::font>pfont;
 
@@ -669,7 +669,7 @@ namespace user
       if(::is_null(m_ptextouta))
       {
 
-         m_ptextouta = __allocate write_text::text_out_array();
+         m_ptextouta = øallocate write_text::text_out_array();
 
       }
 
@@ -716,7 +716,7 @@ namespace user
       if (m_bNeedAutoResizePerformLayout)
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //::pointer<::write_text::font>pfont;
 
@@ -948,7 +948,7 @@ namespace user
       }
 
 
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
 
       if (!is_window_enabled())

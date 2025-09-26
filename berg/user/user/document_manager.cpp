@@ -352,7 +352,7 @@ namespace user
 
    if (iStart != -1)
    {
-   // a file based document template - add to filter list
+   // a file based document template - add to filter list_base
 
    // If you hit the following ASSERT, your document template
    // string is formatted incorrectly.  The department of your
@@ -422,7 +422,7 @@ namespace user
 
       pimpactsystem->close_all_documents(false);
 
-      m_mapImpactSystem.erase_item(atom);
+      m_mapImpactSystem.erase(atom);
 
       //if (c <= 0)
       //{
@@ -679,7 +679,7 @@ namespace user
       // open the document, then print it.
       pDoc = psystem->open_document_file(get_app(), cmdInfo.m_payloadFile);
       //psystem->m_pCmdInfo = &cmdInfo;
-      psystem->m_puiMain->SendMessage(e_message_command, ID_FILE_PRINT_DIRECT);
+      psystem->m_puiMain->SendMessage(::user::e_message_command, ID_FILE_PRINT_DIRECT);
       //psystem->m_pCmdInfo = nullptr;
 
       // close the document if it wasn't open previously (based on doc count)
@@ -752,7 +752,7 @@ namespace user
 //
 //         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
 //
-//         ASSERT_VALID(ptemplate);
+//         ASSERT_OK(ptemplate);
 //
 //      }
 //
@@ -851,7 +851,7 @@ namespace user
          if(pimpact != nullptr)
          {
             
-            ASSERT_VALID(pimpact);
+            ASSERT_OK(pimpact);
 
             while(auto pFrame = pimpact->parent_frame())
             {

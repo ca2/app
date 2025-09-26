@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "frame_window.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/constant/id.h"
 #include "acme/parallelization/pool.h"
@@ -54,12 +54,7 @@ namespace berg
 {
 
 
-   ::type_atom user::get_simple_frame_window_type_info()
-   {
-
-      return ::type < ::simple_frame_window >();
-
-   }
+   ::type_atom user::get_simple_frame_window_type_info() { return ::type<::simple_frame_window>(); }
 
 
 } // namespace berg
@@ -430,31 +425,31 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 
    ::experience::frame_window::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_create, pchannel, this, &simple_frame_window::on_message_create);
+   USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &simple_frame_window::on_message_create);
    //#ifdef WINDOWS_DESKTOP
-      //MESSAGE_LINK(WM_DDE_INITIATE, pchannel, this, &simple_frame_window::_001OnDdeInitiate);
+      //USER_MESSAGE_LINK(WM_DDE_INITIATE, pchannel, this, &simple_frame_window::_001OnDdeInitiate);
    //#endif
-   MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_frame_window::on_message_destroy);
-   MESSAGE_LINK(e_message_close, pchannel, this, &simple_frame_window::on_message_close);
-   MESSAGE_LINK(e_message_size, pchannel, this, &simple_frame_window::on_message_size);
-   MESSAGE_LINK(e_message_reposition, pchannel, this, &simple_frame_window::on_message_move);
+   USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &simple_frame_window::on_message_destroy);
+   USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &simple_frame_window::on_message_close);
+   USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &simple_frame_window::on_message_size);
+   USER_MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &simple_frame_window::on_message_move);
 
 #ifdef WINDOWS_DESKTOP
 
-   MESSAGE_LINK(e_message_get_min_max_info, pchannel, this, &simple_frame_window::_001OnGetMinMaxInfo);
+   USER_MESSAGE_LINK(::user::e_message_get_min_max_info, pchannel, this, &simple_frame_window::_001OnGetMinMaxInfo);
 
 #endif
 
-   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_frame_window::on_message_mouse_move);
-   MESSAGE_LINK(e_message_display_change, pchannel, this, &simple_frame_window::on_message_display_change);
-   MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_frame_window::on_message_show_window);
-   MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &simple_frame_window::_001OnMouseActivate);
-   MESSAGE_LINK(e_message_non_client_hit_test, pchannel, this, &simple_frame_window::_001OnNcHitTest);
+   USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &simple_frame_window::on_message_mouse_move);
+   USER_MESSAGE_LINK(::user::e_message_display_change, pchannel, this, &simple_frame_window::on_message_display_change);
+   USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &simple_frame_window::on_message_show_window);
+   USER_MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &simple_frame_window::_001OnMouseActivate);
+   USER_MESSAGE_LINK(::user::e_message_non_client_hit_test, pchannel, this, &simple_frame_window::_001OnNcHitTest);
 
-   MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_frame_window::_001OnKey);
-   MESSAGE_LINK(e_message_sys_key_down, pchannel, this, &simple_frame_window::_001OnKey);
-   MESSAGE_LINK(e_message_key_up, pchannel, this, &simple_frame_window::_001OnKey);
-   MESSAGE_LINK(e_message_sys_key_up, pchannel, this, &simple_frame_window::_001OnKey);
+   USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &simple_frame_window::_001OnKey);
+   USER_MESSAGE_LINK(::user::e_message_sys_key_down, pchannel, this, &simple_frame_window::_001OnKey);
+   USER_MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &simple_frame_window::_001OnKey);
+   USER_MESSAGE_LINK(::user::e_message_sys_key_up, pchannel, this, &simple_frame_window::_001OnKey);
 
    add_command_prober("transparent_frame", { this,  &simple_frame_window::_001OnUpdateToggleTransparentFrame });
    add_command_handler("transparent_frame", { this,  &simple_frame_window::_001OnToggleTransparentFrame });
@@ -468,13 +463,13 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 #ifdef WINDOWS_DESKTOP
 
 
-   MESSAGE_LINK(e_message_application_exit, pchannel, this, &simple_frame_window::on_message_app_exit);
-   MESSAGE_LINK(e_message_activate_app, pchannel, this, &simple_frame_window::_001OnActivateApp);
+   USER_MESSAGE_LINK(::user::e_message_application_exit, pchannel, this, &simple_frame_window::on_message_app_exit);
+   USER_MESSAGE_LINK(::user::e_message_activate_app, pchannel, this, &simple_frame_window::_001OnActivateApp);
 
 #endif
 
-   MESSAGE_LINK(e_message_activate, pchannel, this, &simple_frame_window::_001OnActivate);
-   MESSAGE_LINK(e_message_update_notify_icon, pchannel, this, &simple_frame_window::_001OnUpdateNotifyIcon);
+   USER_MESSAGE_LINK(::user::e_message_activate, pchannel, this, &simple_frame_window::_001OnActivate);
+   USER_MESSAGE_LINK(::user::e_message_update_notify_icon, pchannel, this, &simple_frame_window::_001OnUpdateNotifyIcon);
 
 }
 
@@ -610,7 +605,7 @@ void simple_frame_window::defer_save_window_placement()
 
    }
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (!should_save_window_rectangle())
    {
@@ -769,7 +764,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    {
 
-      //_synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -1192,7 +1187,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
                            {
 
 
-                              __defer_construct(m_pnotifyicon);
+                              ødefer_construct(m_pnotifyicon);
 
                            }
                            catch(::exception &)
@@ -1226,7 +1221,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
                              on_update_notify_icon_menu(iNotifyIconItem);
 
-                             post_message(e_message_update_notify_icon);
+                             post_message(::user::e_message_update_notify_icon);
 
                           }
 
@@ -1256,7 +1251,7 @@ void simple_frame_window::_on_show_window()
       if (get_active_impact())
       {
 
-         get_active_impact()->post_message(e_message_simple_command, e_simple_command_defer_initialize_handled_impacts);
+         get_active_impact()->post_message(::user::e_message_simple_command, e_simple_command_defer_initialize_handled_impacts);
 
       }
 
@@ -1800,13 +1795,13 @@ void simple_frame_window::_001OnUpdateToggleTransparentFrame(::message::message 
    //if (top_level_frame()->frame_is_transparent())
    //{
 
-   //   MessageBox(nullptr, "ft", "", e_message_box_ok);
+   //   MessageBox(nullptr, "ft", "", ::user::e_message_box_ok);
 
    //}
    //else
    //{
 
-   //   MessageBox(nullptr, "fnt", "", e_message_box_ok);
+   //   MessageBox(nullptr, "fnt", "", ::user::e_message_box_ok);
 
    //}
 
@@ -2411,7 +2406,7 @@ bool simple_frame_window::LoadFrame(const ::scoped_string & scopedstrMatter, uns
    //if (pusersystem == nullptr)   // send initial update
    //{
 
-     // send_message_to_descendants(e_message_system_update, id_initial_update, (lparam)0, true, true);
+     // send_message_to_descendants(::user::e_message_system_update, id_initial_update, (lparam)0, true, true);
 
    //}
 
@@ -2447,13 +2442,13 @@ void simple_frame_window::_001OnKey(::message::message * pmessage)
 void simple_frame_window::pre_translate_message(::message::message * pmessage)
 {
 
-   if (pmessage->m_emessage == e_message_display_change)
+   if (pmessage->m_eusermessage == ::user::e_message_display_change)
    {
 
       display();
 
    }
-   else if (pmessage->m_emessage == e_message_mouse_move)
+   else if (pmessage->m_eusermessage == ::user::e_message_mouse_move)
    {
 
    }
@@ -2723,7 +2718,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //   //{
 //
-//   //   _synchronous_lock synchronouslock(this->synchronization());
+//   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   //   if (m_pprimitiveimpl->m_puserinteraction == nullptr)
 //   //   {
@@ -2766,7 +2761,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //   {
 //
 //      //auto estatus = 
-//      __defer_construct(m_pimageAlpha);
+//      ødefer_construct(m_pimageAlpha);
 //
 //      //if(estatus.succeeded())
 //      //{
@@ -3183,7 +3178,7 @@ void simple_frame_window::defer_create_notification_icon()
 
             //auto estatus = 
 
-            __øconstruct(m_piconNotify);
+            øconstruct(m_piconNotify);
 
             if(m_piconNotify)
             {
@@ -3228,7 +3223,7 @@ void simple_frame_window::defer_create_notification_icon()
          }
 
 
-         __defer_construct(m_pnotifyicon);
+         ødefer_construct(m_pnotifyicon);
 
          //m_pnotifyicon->m_puserinteraction = this;
          try
@@ -3555,7 +3550,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //
 //void simple_frame_window::NotifyFloatingWindows(unsigned int dwFlags)
 //{
-//   ASSERT_VALID(this);
+//   ASSERT_OK(this);
 //   // trans   ASSERT(get_handle() != nullptr);
 //
 //   // get top level parent frame u first unless this is a child u
@@ -3570,14 +3565,14 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //   //   if (bActivate && bEnabled && pParent != this)
 //   //   {
 //   //      // Excel will try to Activate itself when it receives a
-//   //      // e_message_non_client_activate so we need to keep it from doing that here.
+//   //      // ::user::e_message_non_client_activate so we need to keep it from doing that here.
 //   //      //m_nFlags |= WF_KEEPMINIACTIVE;
-//   //      pParent->send_message(e_message_non_client_activate, true);
+//   //      pParent->send_message(::user::e_message_non_client_activate, true);
 //   //      //m_nFlags &= ~WF_KEEPMINIACTIVE;
 //   //   }
 //   //   else
 //   //   {
-//   //      pParent->send_message(e_message_non_client_activate, false);
+//   //      pParent->send_message(::user::e_message_non_client_activate, false);
 //   //   }
 //   //}
 //
@@ -3668,7 +3663,7 @@ void simple_frame_window::handle(::topic * ptopic, ::handler_context * phandlerc
          //auto puser = user();
          
          
-         auto ptrackpopup  = __allocate  ::menu::track_popup (
+         auto ptrackpopup  = øallocate  ::menu::track_popup (
                                                            pmenu,
                                                            this,
                                                            m_pnotifyicon,
@@ -3803,13 +3798,13 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    }
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   uia = m_uiptraChild;
 
@@ -4047,7 +4042,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //void simple_frame_window::WfiOnClose()
 //{
 //
-//   post_message(e_message_close);
+//   post_message(::user::e_message_close);
 //
 //}
 //
@@ -4617,7 +4612,7 @@ void simple_frame_window::notification_area_action(const ::atom & atom, ::user::
 //string simple_frame_window::notification_area_get_xml_menu()
 //{
 //
-//   auto pxmldocument = __create_new < ::xml::document >();
+//   auto pxmldocument = øcreate_new < ::xml::document >();
 //
 //   pxmldocument->create_root("menu");
 //

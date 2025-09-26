@@ -14,7 +14,7 @@ namespace text
 
 
    class schema :
-      public atom_map < string >
+      public map_particle < atom_map_base < string > >
    {
    public:
 
@@ -28,7 +28,7 @@ namespace text
    };
 
    class CLASS_DECL_ACME locale :
-      public atom_map < schema >
+      public map_particle < atom_map_base < schema > >
    {
    public:
 
@@ -38,17 +38,8 @@ namespace text
       inline const schema * get_schema(const ::atom & idSchema) const
       {
          
-         auto p = plookup(idSchema);
-         
-         if (!p)
-         {
-            
-            return nullptr;
-            
-         }
-         
-         return &p->element2();
-         
+         return this->defer_get(idSchema);
+
       }
 
 
@@ -66,7 +57,7 @@ namespace text
 
       schema *                      m_pschemaEn;
       schema *                      m_pschemaStd;
-      atom_map < locale >             m_map;
+      atom_map_base < locale >             m_map;
       
 
       table();
@@ -76,16 +67,7 @@ namespace text
       inline const locale * get_locale(const ::atom & idLocale) const
       {
          
-         auto p = m_map.plookup(idLocale);
-
-         if (!p)
-         {
-
-            return nullptr;
-
-         }
-
-         return &p->element2();
+         return m_map.defer_get(idLocale);
 
       }
 

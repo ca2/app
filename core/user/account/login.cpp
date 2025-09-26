@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "login.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/crypto/crypto.h"
 #include "axis/user/user/simple_ui_draw.h"
 #include "aura/graphics/image/image.h"
@@ -66,7 +66,7 @@ namespace account
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &login::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &login::on_message_create);
 
    }
 
@@ -114,20 +114,20 @@ namespace account
       //
       m_bSubmitted = false;
 
-      //if (!(estatus = __construct_new(m_pstillUser))) return false;
-      //if(!(estatus = __construct_new(m_peditUser))) return false;
-      //if (!(estatus = __construct_new(m_pstillPassword))) return false;
-      //if (!(estatus = __construct_new(m_peditPassword))) return false;
-      //if (!(estatus = __construct_new(m_pbutton))) return false;
-      //if (!(estatus = __construct_new(m_pbuttonClose))) return false;
+      //if (!(estatus = øconstruct_new(m_pstillUser))) return false;
+      //if(!(estatus = øconstruct_new(m_peditUser))) return false;
+      //if (!(estatus = øconstruct_new(m_pstillPassword))) return false;
+      //if (!(estatus = øconstruct_new(m_peditPassword))) return false;
+      //if (!(estatus = øconstruct_new(m_pbutton))) return false;
+      //if (!(estatus = øconstruct_new(m_pbuttonClose))) return false;
 
 
-      __construct_new(m_pstillUser);
-      __construct_new(m_peditUser);
-      __construct_new(m_pstillPassword);
-      __construct_new(m_peditPassword);
-      __construct_new(m_pbutton);
-      __construct_new(m_pbuttonClose);
+      øconstruct_new(m_pstillUser);
+      øconstruct_new(m_peditUser);
+      øconstruct_new(m_pstillPassword);
+      øconstruct_new(m_peditPassword);
+      øconstruct_new(m_pbutton);
+      øconstruct_new(m_pbuttonClose);
 
       //return estatus;
 

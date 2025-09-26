@@ -23,8 +23,8 @@ namespace user
       ::draw2d::brush_pointer             m_pbrushBkHoverSel;
       ::draw2d::pen_pointer               m_ppenBkSel;
       ::draw2d::pen_pointer               m_ppen;
-      string_map < ::image::image_pointer >      m_pimageMap;
-      string_map < ::image::image_pointer >      m_pimageMapGray;
+      string_map_base < ::image::image_pointer >      m_pimageMap;
+      string_map_base < ::image::image_pointer >      m_pimageMapGray;
       //::int_array_base                         m_iaPopup;
       ::pointer < ::menu::item >             m_pmenuitem;
 

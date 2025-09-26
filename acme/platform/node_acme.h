@@ -80,8 +80,8 @@ namespace platform
       string m_strTheme;
       string m_strIconTheme;
 
-      map<enum_character_set, ::string> m_mapCharacterSetDefaultSampleText;
-      string_map<enum_character_set> m_mapCharacterSetEnum;
+      map_base<enum_character_set, ::string> m_mapCharacterSetDefaultSampleText;
+      string_map_base<enum_character_set> m_mapCharacterSetEnum;
 
       ::os_theme_colors* m_pthemecolors;
 
@@ -112,7 +112,7 @@ namespace platform
 
 
       enum_application_capability_array m_eapplicationcapabilitya;
-      string_map<::pointer<::acme::exclusive>> m_mapExclusive;
+      string_map_base<::pointer<::acme::exclusive>> m_mapExclusive;
 
 
    };
@@ -138,7 +138,7 @@ namespace platform
 
 
       virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state* pkeystate);
-
+      //virtual ::file::path synchronously_request_document_folder();
 
       virtual void notify_system_started();
       //idaPid = pnode->(path, false);
@@ -603,12 +603,12 @@ namespace platform
       //virtual ::pointer<::conversation> create_new_message_conversation();
 
 
-      //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
+      //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
 
 
-      //virtual void ::micro::message_box(::sequence < ::conversation > * psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox);
+      //virtual void ::micro::message_box(::sequence < ::conversation > * psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox);
 
-      //virtual ::pointer < ::subparticle > create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
+      //virtual ::pointer < ::subparticle > create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
 
 
       virtual void shell_launch(const ::scoped_string & scopedstrAppId);
@@ -1317,6 +1317,17 @@ namespace platform
       virtual ::string system_name();
       virtual ::string system_release();
       virtual ::string system_architecture();
+
+
+      virtual void protocol_set_data(const ::file::path & path, const ::block & block);
+      virtual ::memory protocol_get_data(const ::file::path & path);
+
+
+      virtual void on_protocol_set_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath, const ::block & block);
+      virtual ::memory on_protocol_get_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath);
+
+
+      virtual void post_media_store_operation(::data::block * pdatablock);
 
 
    };

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "interaction.h"
 #include "menu.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/platform/application.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
@@ -69,7 +69,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &menu_interaction::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &menu_interaction::on_message_create);
 
    }
 
@@ -82,7 +82,7 @@ namespace user
       if (id() == "separator")
       {
 
-         auto ppen = __øcreate < ::draw2d::pen > ();
+         auto ppen = øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(2.0, argb(127, 80, 80, 80));
 
@@ -101,11 +101,11 @@ namespace user
       if (m_pmenuitem.is_set() && m_pmenuitem->m_bPopup)
       {
 
-         auto pbrush = __øcreate < ::draw2d::brush > ();
+         auto pbrush = øcreate < ::draw2d::brush > ();
 
          pbrush->create_solid(rgb(0, 0, 0));
 
-         auto ppen = __øcreate < ::draw2d::pen > ();
+         auto ppen = øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(1, rgb(0, 0, 0));
          pgraphics->set(ppen);

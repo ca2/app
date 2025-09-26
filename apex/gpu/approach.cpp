@@ -51,7 +51,7 @@ namespace gpu
       //if (!m_pgpudevice)
       //{
 
-      //   __øconstruct(m_pgpudevice);
+      //   øconstruct(m_pgpudevice);
 
       //   if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       //   {

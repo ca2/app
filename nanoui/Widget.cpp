@@ -667,7 +667,7 @@ namespace nanoui
 
       }
 
-      _synchronous_lock lock(screen()->m_puserinteraction->synchronization());
+      _synchronous_lock lock(screen()->m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (iIndex > child_count())
       {
@@ -719,7 +719,7 @@ namespace nanoui
    void Widget::erase_child(Widget* pwidget)
    {
 
-      _synchronous_lock lock(screen()->m_puserinteraction->synchronization());
+      _synchronous_lock lock(screen()->m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pwidget->destroy_window();
 
@@ -736,7 +736,7 @@ namespace nanoui
    void Widget::to_top()
    {
 
-      _synchronous_lock lock(screen()->m_puserinteraction->synchronization());
+      _synchronous_lock lock(screen()->m_puserinteraction->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pwidgetParent->m_children.erase(this))
       {

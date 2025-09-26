@@ -88,8 +88,8 @@ namespace platform
    //    string                                                m_strTheme;
    //    string                                                m_strIconTheme;
    //
-   //    map < enum_character_set, ::string >                  m_mapCharacterSetDefaultSampleText;
-   //    string_map < enum_character_set >                     m_mapCharacterSetEnum;
+   //    map_base < enum_character_set, ::string >                  m_mapCharacterSetDefaultSampleText;
+   //    string_map_base < enum_character_set >                     m_mapCharacterSetEnum;
    //
    //    ::os_theme_colors *                                   m_pthemecolors;
    //
@@ -120,13 +120,13 @@ namespace platform
    //
    //
    //    enum_application_capability_array                     m_eapplicationcapabilitya;
-   //    string_map < ::pointer<::acme::exclusive > >          m_mapExclusive;
+   //    string_map_base < ::pointer<::acme::exclusive > >          m_mapExclusive;
       struct font_t
       {
          ::file::path m_path;
 
  };
-      ::string_map < font_t > m_mapFont;
+      ::string_map_base < font_t > m_mapFont;
 
       node();
       ~node() override;
@@ -483,12 +483,12 @@ namespace platform
       //virtual ::pointer<::conversation> create_new_message_conversation();
 
 
-      //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
+      //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
 
 
-      //virtual void ::micro::message_box(::sequence < ::conversation > * psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox);
+      //virtual void ::micro::message_box(::sequence < ::conversation > * psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox);
 
-      //virtual ::pointer < ::subparticle > create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
+      //virtual ::pointer < ::subparticle > create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
 
 
 
@@ -1045,6 +1045,20 @@ namespace platform
 
       virtual ::file::path get_font_path_from_name(const ::scoped_string& scopedstrName);
       virtual ::file::path _get_font_path_from_name(const ::scoped_string& scopedstrName);
+
+
+      void protocol_set_data(const ::file::path & path, const ::block & block) override;
+      ::memory protocol_get_data(const ::file::path & path) override;
+
+
+      void on_protocol_set_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath, const ::block & block) override;
+      ::memory on_protocol_get_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath) override;
+
+
+//    void media_store_set_data(const ::scoped_string & scopedstrPath, const ::block & block) override;
+//    ::memory media_store_get_data(const ::scoped_string & scopedstrPath) override;
+
+
 
    };
 

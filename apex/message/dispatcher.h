@@ -19,8 +19,8 @@ namespace message
 {
 
 
-   class CLASS_DECL_APEX dispatcher :
-      virtual public ::particle
+   class CLASS_DECL_APEX dispatcher //:
+      //virtual public ::particle
    {
    public:
 
@@ -64,7 +64,7 @@ namespace message
 
 
       dispatcher(const dispatcher& dispatcher);
-      ~dispatcher() override;
+      ~dispatcher();
 
 
       dispatcher& operator = (const dispatcher& dispatcher);
@@ -76,9 +76,9 @@ namespace message
    using dispatcher_array = ::array < dispatcher >;
 
 
-   using command_map = ::atom_map < dispatcher_array >;
+   using command_map = ::atom_map_base < dispatcher_array >;
 
-   using message_map = ::map < ::enum_message, dispatcher_array >;
+   using message_map = ::map_base < ::user::enum_message, dispatcher_array >;
 
    
 } // namespace message

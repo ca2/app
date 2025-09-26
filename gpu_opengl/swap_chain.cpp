@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "command_buffer.h"
 #include "context.h"
 #include "device.h"
@@ -45,7 +46,7 @@ namespace gpu_opengl
 //
 //      ::gpu_opengl::render_target::initialize_render_target(prenderer, size, previous);
 //
-//      __defer_construct_new(m_ptextureSwapChain);
+//      ødefer_construct_new(m_ptextureSwapChain);
 //
 //      prenderer->m_prenderstate->m_emode = ::gpu::e_render_mode_single_frame_state;
 //
@@ -138,7 +139,7 @@ namespace gpu_opengl
 //}
 //)frag";
 //
-//                        m_pshaderCopyTextureOnEndDraw = __create_new < ::gpu_opengl::shader >();
+//                        m_pshaderCopyTextureOnEndDraw = øcreate_new < ::gpu_opengl::shader >();
 //
 //                        m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
 //                           m_pgpucontextSwapChain->m_pgpurenderer,
@@ -256,7 +257,7 @@ void main() {
 }
 )frag";
 
-         m_pshaderCopyTextureOnEndDraw = __create_new < ::gpu_opengl::shader >();
+         m_pshaderCopyTextureOnEndDraw = øcreate_new < ::gpu_opengl::shader >();
 
          m_pshaderCopyTextureOnEndDraw->m_bEnableBlend = false;
 

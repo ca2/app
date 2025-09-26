@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "frame_window.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "acme/platform/application_menu.h"
@@ -209,13 +209,13 @@ namespace experience
 
       //#ifdef WINDOWS_DESKTOP
       //
-      //      if (pmessage->m_emessage == WM_GETTEXT)
+      //      if (pmessage->m_eusermessage == WM_GETTEXT)
       //      {
       //
       //         return;
       //
       //      }
-      //      else if (pmessage->m_emessage == WM_GETTEXTLENGTH)
+      //      else if (pmessage->m_eusermessage == WM_GETTEXTLENGTH)
       //      {
       //
       //         return;
@@ -225,16 +225,16 @@ namespace experience
       //
       //#endif
 
-      if (pmessage->m_emessage == e_message_mouse_move)
+      if (pmessage->m_eusermessage == ::user::e_message_mouse_move)
       {
 
          return;
 
       }
-      else if (pmessage->m_emessage == e_message_key_down
-         || pmessage->m_emessage == e_message_key_up
-         || pmessage->m_emessage == e_message_sys_key_down
-         || pmessage->m_emessage == e_message_sys_key_up)
+      else if (pmessage->m_eusermessage == ::user::e_message_key_down
+         || pmessage->m_eusermessage == ::user::e_message_key_up
+         || pmessage->m_eusermessage == ::user::e_message_sys_key_down
+         || pmessage->m_eusermessage == ::user::e_message_sys_key_up)
       {
 
          auto pkey = pmessage->m_union.m_pkey;
@@ -244,7 +244,7 @@ namespace experience
          if(pkey->user_interaction() == this)
          {
 
-            if (pmessage->m_emessage == e_message_key_down || pmessage->m_emessage == e_message_sys_key_down)
+            if (pmessage->m_eusermessage == ::user::e_message_key_down || pmessage->m_eusermessage == ::user::e_message_sys_key_down)
             {
 
                if (!m_bFullScreenOnMaximize)
@@ -296,7 +296,7 @@ namespace experience
                }
 
             }
-            else if (pmessage->m_emessage == e_message_key_up || pmessage->m_emessage == e_message_sys_key_up)
+            else if (pmessage->m_eusermessage == ::user::e_message_key_up || pmessage->m_eusermessage == ::user::e_message_sys_key_up)
             {
 
                if (pkey->m_ekey == ::user::e_key_return)
@@ -864,7 +864,7 @@ namespace experience
 
             informationf("button_clicked : button_close");
 
-            post_message(e_message_close);
+            post_message(::user::e_message_close);
 
             set_need_redraw();
 
@@ -997,7 +997,7 @@ namespace experience
    void frame_window::on_command(::message::command * pcommand)
    {
 
-      if (pcommand->m_emessage == ::e_message_system_command && m_pframe != nullptr)
+      if (pcommand->m_eusermessage == ::user::e_message_system_command && m_pframe != nullptr)
       {
 
          auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(pcommand->command_id());
@@ -1006,7 +1006,7 @@ namespace experience
          {
          case e_button_close:
 
-            post_message(e_message_close);
+            post_message(::user::e_message_close);
 
             set_need_redraw();
 
@@ -1489,21 +1489,21 @@ namespace experience
       //      //switch (m_psizemanager->m_eframeCursor)
       //      //{
       //      //case e_frame_sizing_left:
-      //      //   return __allocate ::item(e_element_resize_left);
+      //      //   return øallocate ::item(e_element_resize_left);
       //      //case e_frame_sizing_top:
-      //      //   return __allocate ::item(e_element_resize_top);
+      //      //   return øallocate ::item(e_element_resize_top);
       //      //case e_frame_sizing_right:
-      //      //   return __allocate ::item(e_element_resize_right);
+      //      //   return øallocate ::item(e_element_resize_right);
       //      //case e_frame_sizing_bottom:
-      //      //   return __allocate ::item(e_element_resize_bottom);
+      //      //   return øallocate ::item(e_element_resize_bottom);
       //      //case e_frame_sizing_top_left:
-      //      //   return __allocate ::item(e_element_resize_top_left);
+      //      //   return øallocate ::item(e_element_resize_top_left);
       //      //case e_frame_sizing_top_right:
-      //      //   return __allocate ::item(e_element_resize_top_right);
+      //      //   return øallocate ::item(e_element_resize_top_right);
       //      //case e_frame_sizing_bottom_left:
-      //      //   return __allocate ::item(e_element_resize_bottom_left);
+      //      //   return øallocate ::item(e_element_resize_bottom_left);
       //      //case e_frame_sizing_bottom_right:
-      //      //   return __allocate ::item(e_element_resize_bottom_right);
+      //      //   return øallocate ::item(e_element_resize_bottom_right);
       //      //   default:
       //      //      
       //      //      return nullptr;
@@ -1532,23 +1532,23 @@ namespace experience
 
       ::user::frame_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &frame_window::on_message_create);
-      MESSAGE_LINK(e_message_parent_left_button_down, pchannel, this, &frame_window::on_message_parent_left_button_down);
-      MESSAGE_LINK(e_message_parent_left_button_up, pchannel, this, &frame_window::on_message_parent_left_button_up);
-      //MESSAGE_LINK(e_message_parent_left_button_double_click, pchannel, this, &frame_window::on_message_parent_left_button_double_click);
-      MESSAGE_LINK(e_message_parent_mouse_move, pchannel, this, &frame_window::on_message_parent_mouse_move);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &frame_window::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &frame_window::on_message_left_button_up);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &frame_window::on_message_left_button_double_click);
-      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &frame_window::on_message_right_button_up);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &frame_window::on_message_mouse_move);
-      MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, this, &frame_window::_001OnNcLButtonDown);
-      MESSAGE_LINK(e_message_non_client_left_button_up, pchannel, this, &frame_window::_001OnNcLButtonUp);
-      MESSAGE_LINK(e_message_non_client_mouse_move, pchannel, this, &frame_window::_001OnNcMouseMove);
-      MESSAGE_LINK(e_message_non_client_hit_test, pchannel, this, &frame_window::_001OnNcHitTest);
-      MESSAGE_LINK(e_message_activate, pchannel, this, &frame_window::_001OnActivate);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &frame_window::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_parent_left_button_down, pchannel, this, &frame_window::on_message_parent_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_parent_left_button_up, pchannel, this, &frame_window::on_message_parent_left_button_up);
+      //USER_MESSAGE_LINK(::user::e_message_parent_left_button_double_click, pchannel, this, &frame_window::on_message_parent_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_parent_mouse_move, pchannel, this, &frame_window::on_message_parent_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &frame_window::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &frame_window::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &frame_window::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_right_button_up, pchannel, this, &frame_window::on_message_right_button_up);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &frame_window::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_non_client_left_button_down, pchannel, this, &frame_window::_001OnNcLButtonDown);
+      USER_MESSAGE_LINK(::user::e_message_non_client_left_button_up, pchannel, this, &frame_window::_001OnNcLButtonUp);
+      USER_MESSAGE_LINK(::user::e_message_non_client_mouse_move, pchannel, this, &frame_window::_001OnNcMouseMove);
+      USER_MESSAGE_LINK(::user::e_message_non_client_hit_test, pchannel, this, &frame_window::_001OnNcHitTest);
+      USER_MESSAGE_LINK(::user::e_message_activate, pchannel, this, &frame_window::_001OnActivate);
 
-      MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::on_message_size);
+      USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &frame_window::on_message_size);
 
    }
 
@@ -1744,19 +1744,19 @@ namespace experience
          if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
          {
 
-            //information() << "e_message_mouse_move during window transfer ignored!!";
+            //information() << "::user::e_message_mouse_move during window transfer ignored!!";
 
          }
          else if (pmouse->m_eflagMessage & ::message::e_flag_synthesized)
          {
 
-            information() << "synthesized e_message_mouse_move ignored!!";
+            information() << "synthesized ::user::e_message_mouse_move ignored!!";
 
          }
          else
          {
 
-            //information() << "e_message_mouse_move for experience::frame";
+            //information() << "::user::e_message_mouse_move for experience::frame";
 
             if (m_pframe->on_message_parent_mouse_move(pmouse))
             {
@@ -1797,19 +1797,19 @@ namespace experience
          if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
          {
 
-            //information() << "e_message_mouse_move during window transfer ignored!!";
+            //information() << "::user::e_message_mouse_move during window transfer ignored!!";
 
          }
          else if (pmouse->m_eflagMessage & ::message::e_flag_synthesized)
          {
 
-            information() << "synthesized e_message_mouse_move ignored!!";
+            information() << "synthesized ::user::e_message_mouse_move ignored!!";
 
          }
          else
          {
 
-            //information() << "e_message_mouse_move for experience::frame";
+            //information() << "::user::e_message_mouse_move for experience::frame";
 
             if (m_pframe->on_message_mouse_move(pmouse))
             {
@@ -1976,19 +1976,19 @@ namespace experience
    //      if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
    //      {
 
-   //         information() << "e_message_mouse_move during window transfer ignored!!";
+   //         information() << "::user::e_message_mouse_move during window transfer ignored!!";
 
    //      }
    //      else if (psetcursor->m_eflagMessage & ::message::flag_synthesized)
    //      {
 
-   //         information() << "synthesized e_message_mouse_move ignored!!";
+   //         information() << "synthesized ::user::e_message_mouse_move ignored!!";
 
    //      }
    //      else
    //      {
 
-   //         //information() << "e_message_mouse_move for experience::frame";
+   //         //information() << "::user::e_message_mouse_move for experience::frame";
 
    //         //if (m_pframe->on_message_set_cursor(psetcursor))
    //         //{
@@ -2661,7 +2661,7 @@ namespace experience
        if (eframe == ::experience::e_frame_title_bar)
        {
 
-          auto pitem = __allocate ::item(::e_element_title_bar, 0);
+          auto pitem = øallocate ::item(::e_element_title_bar, 0);
 
           pitem->initialize(this);
 

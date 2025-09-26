@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "progress.h"
 //#include "user.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -99,7 +99,7 @@ namespace userex
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          pdocument = m_pdocument;
 
@@ -231,7 +231,7 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &progress_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &progress_impact::on_message_create);
 
 
    }
@@ -250,7 +250,7 @@ namespace userex
 
       pmessage->previous();
 
-      __øconstruct(m_pprogress);
+      øconstruct(m_pprogress);
 
       m_pprogress->create_control(this, "progress_control");
 

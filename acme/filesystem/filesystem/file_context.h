@@ -49,7 +49,7 @@ public:
    virtual ::folder* resource_folder();
    virtual ::memory_file_pointer create_resource_file(const ::file::path & path);
    virtual ::memory get_resource_memory(const ::file::path & path);
-   virtual ::file::enum_type resource_get_type(const ::file::path & path);
+   virtual ::file::enum_type resource_get_type(const ::file::path & path, ::string  * pstrLogNotFound = nullptr);
 
 
    virtual void copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, enum_extract eextract = e_extract_first);

@@ -101,7 +101,7 @@ namespace user
 
 
       template < typename PAYLOAD, class PAIR = pair < image_key, PAYLOAD > >
-      using image_key_map = map< image_key, PAYLOAD, PAIR >;
+      using image_key_map = map_base< image_key, PAYLOAD, PAIR >;
 
       bool m_bGetFileImageByIconPath : 1;
       bool m_bGetFileImageByFileTypeImage : 1;
@@ -111,7 +111,7 @@ namespace user
 
       ::int_map < ::image::image_list_pointer  >                          m_pimagelist; // int is the int_size
       ::int_map < ::image::image_list_pointer  >                          m_pimagelistHover; // int is the size;
-      map < ::pointer < ::user::interaction >, ::string_array_base >      m_mapInterest;
+      map_base < ::pointer < ::user::interaction >, ::string_array_base >      m_mapInterest;
 
 
    public:

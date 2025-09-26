@@ -55,7 +55,7 @@
                    Added object counting a proper tree structure
                        (Allowing pass by object)
                    Allowed JSON output to output IDs, not strings
-                   Added get/set for array indices
+                   Added get/set for array indexes
                    Changed Callbacks to include user data pointer
                    Added some support for objects
                    Added more Java-esque builtin functions
@@ -108,7 +108,7 @@
           length variable cannot be set
           The postfix increment operator returns the current value, not the previous as it should.
           There is no prefix increment operator
-          Arrays are implemented as a linked list - hence a lookup time is O(n)
+          Arrays are implemented as a linked list_base - hence a find time is O(n)
 
     TODO:
           Utility va-args style function in TinyJS for executing a function directly
@@ -136,7 +136,7 @@
 #ifdef _WIN32
 #ifdef _DEBUG
    #ifndef DBG_NEW
-      #define DBG_NEW __allocate<  >( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+      #define DBG_NEW øallocate<  >( _NORMAL_BLOCK , __FILE__ , __LINE__ )
       #define ___new DBG_NEW
    #endif
 #endif //__DEBUG
@@ -1509,7 +1509,7 @@ string CScriptVar::getParsableString()
    {
       string funcStr;
       funcStr += "function (";
-      // get list of parameters
+      // get list_base of parameters
       CScriptVarLink *link = firstChild;
       while (link)
       {
@@ -1534,7 +1534,7 @@ void CScriptVar::getJSON(string &destination, const string linePrefix)
    if (isObject())
    {
       string indentedLinePrefix = linePrefix+"  ";
-      // children - handle with bracketed list
+      // children - handle with bracketed list_base
       destination += "{ \n";
       CScriptVarLink *link = firstChild;
       while (link)

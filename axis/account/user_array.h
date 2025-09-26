@@ -17,7 +17,7 @@ namespace account
 
 
       department *                                 m_paccount;
-      string_map < ::pointer<::account::user >>    m_map;
+      string_map_base < ::pointer<::account::user >>    m_map;
 
 
       user_array();

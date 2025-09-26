@@ -51,7 +51,7 @@ namespace user
       virtual int get_normal_dimension(enum_layout elayout = e_layout_design);
       virtual int get_ortogonal_dimension(enum_layout elayout = e_layout_design);
 
-      //void RelayEventSplitBar(::collection::index iSplitBar, ::enum_message emessage, ::wparam wparam, ::lparam lparam);
+      //void RelayEventSplitBar(::collection::index iSplitBar, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
       enum_orientation GetSplitOrientation();
       int GetMaxPos(::collection::index iPane, enum_layout elayout = e_layout_design);
       int GetMinPos(::collection::index iPane, enum_layout elayout = e_layout_design);

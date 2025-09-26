@@ -266,7 +266,7 @@
 //
 //   pblock->m_size = nAllocSize;
 //
-//   synchronous_lock lock(g_pmutgen);
+//   synchronous_lock lock(g_pmutgen, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   pblock->m_pprevious = nullptr;
 //
@@ -541,7 +541,7 @@
 //
 //   memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 //
-//   synchronous_lock lock(g_pmutgen);
+//   synchronous_lock lock(g_pmutgen, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (s_pmemdleakList == pblock)
 //   {
@@ -735,7 +735,7 @@
 //
 //   memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 //
-//   synchronous_lock lock(g_pmutgen);
+//   synchronous_lock lock(g_pmutgen, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (s_pmemdleakList == pblock)
 //   {

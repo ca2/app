@@ -105,11 +105,11 @@ namespace apex
       //
       //       //::user::interaction *                      m_puiMainContainer;
       //
-      //       string_table                                 m_stringtable;
-      //       string_table                                 m_stringtableStd;
-      //       atom_map < string >                            m_stringmap;
+      //       string_table_base                                 m_stringtable;
+      //       string_table_base                                 m_stringtableStd;
+      //       atom_map_base < string >                            m_stringmap;
       //
-      //       atom_map < ::pointer<::channel >>              m_mapNotify;
+      //       atom_map_base < ::pointer<::channel >>              m_mapNotify;
       //
       //       string                                       m_strLicense;
       //
@@ -160,7 +160,7 @@ namespace apex
       //
       //       ::pointer<::service_handler>                 m_pservicehandler;
       //
-      //       ::string_map < ::pointer < ::fs::folder_sync > >  m_fsfoldersyncmap;
+      //       ::string_map_base < ::pointer < ::fs::folder_sync > >  m_fsfoldersyncmap;
 
       application();
 
@@ -480,10 +480,10 @@ namespace apex
       //virtual bool is_set_finish() const override;
 
 
-      virtual void on_change_theme() override;
-
-
-      virtual string get_theme() override;
+      // virtual void on_change_theme() override;
+      //
+      //
+      // virtual string get_theme() override;
 
 
       //virtual bool start_application(::request * prequest);
@@ -504,18 +504,18 @@ namespace apex
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
       //pmessagebox->sync();
 
 
-      //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void ui_message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::platform::context::message_box;
-      //virtual void message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
 
       virtual void on_file_new() override;
@@ -933,7 +933,7 @@ namespace apex
       //virtual void add_frame(::user::interaction * puserinteraction);
       //virtual void erase_frame(::user::interaction * puserinteraction);
 
-      virtual void send_message_to_windows(::enum_message emessage, ::wparam wparam, ::lparam lparam) override; // with tbs in <3
+      virtual void send_message_to_windows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override; // with tbs in <3
 
       virtual void route_message_to_windows(::message::message* pmessage) override; // with tbs in <3
 
@@ -951,7 +951,7 @@ namespace apex
       // user virtual ::user::document * place_hold(::user::interaction * pinteraction);
 
 
-      virtual void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      virtual void post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
       //virtual ::image::icon * set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon);
@@ -1092,15 +1092,15 @@ namespace apex
       void route_command(::message::command* pcommand, bool bRouteToKeyDescendant = false) override;
 
 
-      //virtual pointer< ::extended::future < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
-      //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override;
+      //virtual pointer< ::extended::future < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
+      //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future()) override;
 
 
       //void EnableHtmlHelp();
 
 
-      //virtual int sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::scoped_string & scopedstrTitle, class ::time timeTimeout,unsigned int fuStyle = e_message_box_ok) override;
-      //virtual int sync_message_box(::user::interaction_base * puiOwner,const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int fuStyle = e_message_box_ok) override;
+      //virtual int sync_message_box_timeout(::user::interaction_base * puiOwner,::payload payload, const ::scoped_string & scopedstrTitle, class ::time timeTimeout,unsigned int fuStyle = ::user::e_message_box_ok) override;
+      //virtual int sync_message_box(::user::interaction_base * puiOwner,const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int fuStyle = ::user::e_message_box_ok) override;
 
 
       //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, const ::scoped_string & scopedstrId) override;

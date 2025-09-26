@@ -51,7 +51,7 @@ namespace graphics
 
          //estatus =
          
-         __øconstruct(m_pmemorymap);
+         øconstruct(m_pmemorymap);
 
          //if (!estatus)
          //{
@@ -105,7 +105,7 @@ namespace graphics
 
       m_pmutexBitmapSource = node()->create_local_named_mutex(this, false, strMutexName, nullptr);
 
-      synchronous_lock synchronouslock(m_pmutexBitmapSource);
+      synchronous_lock synchronouslock(m_pmutexBitmapSource, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::file::path pathFolder;
 
@@ -117,7 +117,7 @@ namespace graphics
 
       //auto estatus = 
       
-      __øconstruct(m_pmemorymap);
+      øconstruct(m_pmemorymap);
 
       //if (!estatus)
       //{
@@ -150,7 +150,7 @@ namespace graphics
       if (m_pmemorymap)
       {
 
-         synchronous_lock synchronouslock(m_pmutexBitmapSource);
+         synchronous_lock synchronouslock(m_pmutexBitmapSource, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto estatus = m_pmemorymap.release();
 
@@ -197,7 +197,7 @@ namespace graphics
 
       }
 
-      synchronous_lock synchronouslock(m_pmutexBitmapSource);
+      synchronous_lock synchronouslock(m_pmutexBitmapSource, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {

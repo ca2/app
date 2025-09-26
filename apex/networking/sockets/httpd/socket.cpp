@@ -95,13 +95,13 @@ namespace httpd
       if (m_typeSocketThread.is_empty())
       {
 
-         return __øcreate < ::sockets::socket_thread >(m_pfactorySocketThread);
+         return øcreate < ::sockets::socket_thread >(m_pfactorySocketThread);
 
       }
       else
       {
 
-         return __id_create(m_typeSocketThread, m_pfactorySocketThread);
+         return øid_create(m_typeSocketThread, m_pfactorySocketThread);
 
       }
 
@@ -206,7 +206,7 @@ namespace httpd
 
       auto timeNow = ::earth::time::now();
 
-      gregoriantime.set(timeNow, ::time::local());
+      gregoriantime.set(timeNow, ::time::local_offset());
 
       char slask[40]; // yyyy-mm-dd hh:mm:ss
 
@@ -230,9 +230,9 @@ namespace httpd
    }
 
 
-   //map < int, DH * > * g_pmapdh = nullptr;
+   //map_base < int, DH * > * g_pmapdh = nullptr;
 
-   //map < int, DH * > * dh_map()
+   //map_base < int, DH * > * dh_map()
    //{
 
    //   critical_section_lock synchronouslock(::globals_critical_section());
@@ -240,7 +240,7 @@ namespace httpd
    //   if (g_pmapdh == nullptr)
    //   {
 
-   //      g_pmapdh = ___new map < int, DH * > ();
+   //      g_pmapdh = ___new map_base < int, DH * > ();
 
    //   }
 

@@ -78,7 +78,7 @@ namespace user
    void interaction_layout::destroy_state()
    {
 
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //if (::is_set(m_pstate))
       //{

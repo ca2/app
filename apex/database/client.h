@@ -197,7 +197,7 @@ namespace database
 
 
       client_array();
-      virtual ~client_array();
+      ~client_array();
 
 
       virtual void add_client(client * pclient);

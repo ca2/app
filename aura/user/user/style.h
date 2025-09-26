@@ -17,7 +17,7 @@ namespace user
 
       ::collection::index                       m_iUpdate;
       ::pointer<::factory::factory>             m_pfactory;
-      map < ::user::enum_control_type, ::pointer<control_style >>m_controlstyle;
+      map_base < ::user::enum_control_type, ::pointer<control_style >>m_controlstyle;
       //::pointer<::user::plain_edit_style>   m_pplaineditstyel;
 
       ::write_text::font_pointer                 m_pfont;

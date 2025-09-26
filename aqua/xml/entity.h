@@ -29,7 +29,7 @@ namespace xml
 
    
    class CLASS_DECL_AQUA entities :
-	   public ::array < entity >
+	   virtual public ::array < entity >
    {
    public:
    

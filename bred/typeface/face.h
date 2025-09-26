@@ -20,7 +20,7 @@ namespace typeface
 
       int m_iPixelSize;
       ::string m_strFontName;
-      ::string_map<::typeface::character> m_mapCharacter;
+      ::string_map_base<::typeface::character> m_mapCharacter;
 //      unsigned int m_VAO, m_VBO;
       //::pointer < ::gpu::model_buffer > m_pmodelbufferBox;
 

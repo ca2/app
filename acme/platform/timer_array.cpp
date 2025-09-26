@@ -37,7 +37,7 @@ namespace acme
       
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (!m_bOk)
          {
@@ -46,7 +46,7 @@ namespace acme
 
          }
 
-         ptimer = __allocate timer_task();
+         ptimer = øallocate timer_task();
 
          ptimer->m_ptimercallback = this;
 
@@ -87,20 +87,20 @@ namespace acme
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         auto pair = m_timermap.plookup(uEvent);
+         auto iterator = m_timermap.find(uEvent);
 
-         if (pair.is_null())
+         if (!iterator)
          {
 
             return true;
 
          }
 
-         ptimer = pair->element2();
+         ptimer = iterator->payload();
 
-         m_timermap.erase_item(uEvent);
+         m_timermap.erase(iterator);
 
       }
 
@@ -114,28 +114,28 @@ namespace acme
    void timer_array::erase_timer(::timer * ptimer)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
 
          uptr uTimer = ptimer->m_uTimer;
 
-         auto pair = m_timermap.plookup(uTimer);
+         auto iterator = m_timermap.find(uTimer);
 
-         if (pair.is_null())
+         if (!iterator)
          {
 
             return;
 
          }
 
-         auto ptimerMapped = pair->element2();
+         auto ptimerMapped = iterator->payload();
 
          if(ptimerMapped == ptimer)
          {
 
-            m_timermap.erase_item(uTimer);
+            m_timermap.erase(iterator);
 
          }
 
@@ -218,17 +218,17 @@ namespace acme
 
          KEEP(m_bOk, false);
 
-         decltype(m_timermap) map;
+         decltype(m_timermap) map_base;
 
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            map = m_timermap;
+            map_base = m_timermap;
 
          }
 
-         for (auto & pair : map)
+         for (auto & pair : map_base)
          {
 
             auto ptimer = pair.element2();
@@ -263,17 +263,17 @@ namespace acme
 
          KEEP(m_bOk, false);
 
-         decltype(m_timermap) map;
+         decltype(m_timermap) map_base;
 
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            map = m_timermap;
+            map_base = m_timermap;
 
          }
 
-         for (auto & pair : map)
+         for (auto & pair : map_base)
          {
 
             try

@@ -186,7 +186,7 @@ namespace app_shader
 
          //estatus = 
          
-         __øconstruct(m_pshader);
+         øconstruct(m_pshader);
 
       }
 
@@ -384,17 +384,17 @@ namespace app_shader
 
             ::draw2d::brush_pointer pbrush;
 
-            __øconstruct(pbrush);
+            øconstruct(pbrush);
 
             pbrush->create_solid(colorBackground);
 
             ::write_text::font_pointer pfont;
 
-            __øconstruct(pfont);
+            øconstruct(pfont);
 
             pfont->create_font(e_font_sans_ui, 12_pt);
 
-            __defer_construct(m_pimageLabel);
+            ødefer_construct(m_pimageLabel);
 
             if (m_pimageLabel->g() == nullptr)
             {
@@ -511,13 +511,13 @@ namespace app_shader
 
             ::draw2d::brush_pointer pbrush;
 
-            __øconstruct(pbrush);
+            øconstruct(pbrush);
 
             pbrush->create_solid(colorBackground);
 
             ::write_text::font_pointer pfont;
 
-            __øconstruct(pfont);
+            øconstruct(pfont);
 
             auto pnode = system()->node();
 
@@ -525,7 +525,7 @@ namespace app_shader
 
             pfont->create_font(e_font_sans_ui, 12_pt);
 
-            __defer_construct(m_pimageError);
+            ødefer_construct(m_pimageError);
 
             if(m_pimageError->g() == nullptr)
             {
@@ -594,11 +594,11 @@ namespace app_shader
 
       //string strFontFamily = get_font();
 
-      //auto ppen = __øcreate < ::draw2d::pen > ();
+      //auto ppen = øcreate < ::draw2d::pen > ();
 
-      //auto pbrush = __øcreate < ::draw2d::brush >();
+      //auto pbrush = øcreate < ::draw2d::brush >();
 
-      //auto pfont = __øcreate < ::write_text::font > ();
+      //auto pfont = øcreate < ::write_text::font > ();
 
       //if (m_iDrawing == 3)
       //{
@@ -616,7 +616,7 @@ namespace app_shader
       //            if (m_pimage1.ok())
       //            {
 
-      //               __øconstruct(m_pimage2);
+      //               øconstruct(m_pimage2);
 
       //               m_pimage2->copy_from(m_pimage1);
 

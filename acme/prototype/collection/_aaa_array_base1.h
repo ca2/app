@@ -61,7 +61,7 @@
 //DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
 //
 //#define DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, CONTAINER, TYPE) \
-//ARRAY(const ::std::initializer_list < ::pointer<TYPE >>& list) : CONTAINER(list) { } \
+//ARRAY(const ::std::initializer_list < ::pointer<TYPE >>& list_base) : CONTAINER(list_base) { } \
 //DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
 //
 //#define DECLARE_ARRAY_OF(ARRAY, ITEM, TYPE) \
@@ -1905,7 +1905,7 @@ public:
 //base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > base_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::collection::index nIndex, ::collection::count nCount)
 //{
 //
-//   //ASSERT_VALID(this);
+//   //ASSERT_OK(this);
 //
 //   ::collection::index nUpperBound = nIndex + nCount;
 //

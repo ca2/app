@@ -15,7 +15,7 @@ namespace platform
 //
 //      string                                    m_strStoreServerBaseUrl;
 //
-//      string_to_string                          m_mapCachedLatestBuild;
+//      string_to_string_base                          m_mapCachedLatestBuild;
 //      //::pointer<::os_context>                 m_poscontext;
 //
 //
@@ -202,7 +202,7 @@ namespace platform
 //      using acme::handler_context::http_get;
       //::pointer < ::nano::http::response > http_get(const ::scoped_string& scopedstrUrl, const ::property_set & set) override;
 
-      //virtual void perform(::nano::http::get * pget);
+      //virtual void perform(::nano::http::get * defer_get);
 
 
    };

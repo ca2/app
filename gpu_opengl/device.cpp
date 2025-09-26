@@ -1,6 +1,7 @@
 // From gpu_opengl::device by
 // camilo on 2025-05-27 06:11 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "device.h"
 #include "program.h"
 #include "shader.h"
@@ -121,13 +122,13 @@ namespace gpu_opengl
 //
 //      }
 //      //glGenBuffers(1, &VAO);
-////      float vertices[] = {
+////      float vertexes[] = {
 //         // positions         // colors
 //  //        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
 //    //     -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
 //      //    0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top
 //      //};
-//      float vertices[] = {
+//      float vertexes[] = {
 //         // first triangle
 //          1.f,  1.f, 0.0f,  // top right
 //          1.f, -1.f, 0.0f,  // bottom right
@@ -162,7 +163,7 @@ namespace gpu_opengl
 //#endif
 //
 //      glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-//      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+//      glBufferData(GL_ARRAY_BUFFER, sizeof(vertexes), vertexes, GL_STATIC_DRAW);
 //
 //      // position attribute
 //      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
@@ -424,7 +425,7 @@ namespace gpu_opengl
 
    //   }
 
-   //   ::e_status estatus = __øconstruct(m_pbuffer);
+   //   ::e_status estatus = øconstruct(m_pbuffer);
 
    //   if (!estatus)
    //   {

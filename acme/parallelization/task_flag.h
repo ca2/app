@@ -57,7 +57,7 @@ inline ___keep_task_flag keep_task_flag(enum_task_flag eflag)
 
 #define __task_guard_ret(flag, ret) \
  \
-synchronous_lock synchronouslock(this->synchronization()); \
+synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX); \
  \
 if (flag) \
 { \

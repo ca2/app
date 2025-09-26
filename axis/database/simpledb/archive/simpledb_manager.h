@@ -17,22 +17,22 @@ namespace simpledb
       unsigned int                         m_dwBuildTimeWindow;
       unsigned int                         m_dwBuildTimeRandomWindow;
 
-      string_to_string          m_strmapFunUserKey;
+      string_to_string_base          m_strmapFunUserKey;
 
       string                        m_strPersistentError;
 
       critical_section              m_csPersistentStr;
       critical_section              m_csUiRedir;
       ::pointer < ::mutex >                         m_pmutexTagId;
-      string_to_string          m_tagid;
-      string_to_string          m_usersecuretagid;
+      string_to_string_base          m_tagid;
+      string_to_string_base          m_usersecuretagid;
       ::pointer < ::mutex >                         m_pmutexTagName;
-      string_to_string          m_tagname;
+      string_to_string_base          m_tagname;
 
       long long                       m_iDatabaseWaitTimeOut;
 
       ::pointer < ::mutex >                         m_pmutexSession;
-      string_map < ::simpledb::session * >      m_mapSession;
+      string_map_base < ::simpledb::session * >      m_mapSession;
 
 
       manager(::particle * pparticle);

@@ -75,7 +75,7 @@ namespace browser
 
          {
 
-            synchronous_lock synchronouslock(pimpact->synchronization());
+            synchronous_lock synchronouslock(pimpact->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*            pimpact->m_prender->m_pimageImage = pimage;
 

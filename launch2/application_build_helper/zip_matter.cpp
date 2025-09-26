@@ -35,7 +35,7 @@ namespace application_build_helper
 
       ::file::path pathMatter = m_pathFolder / "matter.txt";
 
-      //::file::path pathMatterZipList = m_pathFolder + "/_matter-zip-list.txt";
+      //::file::path pathMatterZipList = m_pathFolder + "/_matter-zip-list_base.txt";
 
       //auto estatus = file_system()->ensure_exists(pathMatter);
 
@@ -88,7 +88,7 @@ namespace application_build_helper
 
          ::pointer < ::folder > pfolder;
 
-         pfactoryFolderZip->__øconstruct(this, pfolder);
+         pfactoryFolderZip->øconstruct(this, pfolder);
 
          pfolder->open_for_writing(pwriter);
          //bool bFirst = true;

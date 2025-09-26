@@ -109,7 +109,7 @@ namespace file
    void file::open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
    {
 
-//      auto pfile = __øcreate <::file::file>();
+//      auto pfile = øcreate <::file::file>();
 //
 //      if (::is_null(pfile))
 //      {
@@ -311,6 +311,14 @@ namespace file
       memory.from_hex(block);
 
       write(memory);
+
+   }
+
+
+   void file::write_unsigned_char(unsigned char uch)
+   {
+
+      write(&uch, 1);
 
    }
 
@@ -725,13 +733,13 @@ namespace file
 
       string strFormat;
 
-      va_list list;
+      va_list list_base;
 
-      va_start(list, format);
+      va_start(list_base, format);
 
-      strFormat.formatf(format, list);
+      strFormat.formatf(format, list_base);
 
-      va_end(list);
+      va_end(list_base);
 
       write(strFormat);
 

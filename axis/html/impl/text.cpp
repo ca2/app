@@ -48,7 +48,7 @@ namespace html
       void text::implement_phase1(html_data * pdata, ::html::element * pelement)
       {
 
-         synchronous_lock lock(pdata->m_pcoredata->synchronization());
+         synchronous_lock lock(pdata->m_pcoredata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ::html::impl::element::implement_phase1(pdata, pelement);
 
@@ -82,7 +82,7 @@ namespace html
          if((!::is_set(m_pedit) || !m_pedit->is_window()) && pdata->m_pcoredata->m_bEdit)
          {
 
-            m_pedit = __allocate ::user::plain_edit();
+            m_pedit = øallocate ::user::plain_edit();
 
             m_pedit->initialize(pdata);
 
@@ -145,7 +145,7 @@ namespace html
       void text::layout_phase0(html_data * pdata)
       {
 
-         synchronous_lock lock(pdata->m_pcoredata->synchronization());
+         synchronous_lock lock(pdata->m_pcoredata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ::html::impl::element::layout_phase0(pdata);
 
@@ -780,7 +780,7 @@ namespace html
             //pgraphics->SetBkMode(TRANSPARENT);
          }
 
-         auto pbrushText = __øcreate < ::draw2d::brush > ();
+         auto pbrushText = øcreate < ::draw2d::brush > ();
 
          if(m_bHover && m_pelemental->m_pstyle->get_color("color", "hover", pdata, m_pelemental, color32))
          {
@@ -849,7 +849,7 @@ namespace html
          string strExtent3;
          character_count lim = 0;
 
-         auto pbrushBackground = __øcreate < ::draw2d::brush > ();
+         auto pbrushBackground = øcreate < ::draw2d::brush > ();
 
          if(!pdata->m_pcoredata->m_bEdit)
          {
@@ -1234,9 +1234,10 @@ namespace html
 
                   }
 
-                  unicode_increment(pszEnd);
+                  pszEnd = unicode_next(pszEnd);
 
                   iChar++;
+
                }
 
                iFind = iChar;

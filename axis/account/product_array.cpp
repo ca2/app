@@ -110,9 +110,9 @@ namespace account
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         m_map[scopedstrAppId] = __allocate ::account::product();
+         m_map[scopedstrAppId] = øallocate ::account::product();
 
          pproduct = get_product(scopedstrAppId);
 
@@ -176,7 +176,7 @@ namespace account
    bool product_array::clear_cache(const ::scoped_string & scopedstrAppId)
    {
 
-      return m_map.erase_item(scopedstrAppId);
+      return m_map.erase(scopedstrAppId);
 
    }
 

@@ -16,7 +16,7 @@ namespace user
    public:
 
 
-      //index_map < pointer_array < ::user::interaction > > m_mapControl;
+      //index_map_base < pointer_array < ::user::interaction > > m_mapControl;
 
 
       form_list();

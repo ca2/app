@@ -419,7 +419,7 @@ namespace acme
    template < class A >
    void array_makecombination(pointer_array < A > & comb, const A & a, A blindprefixa = A(), ::collection::index idx = 0)
    {
-      comb.add(__allocate A(blindprefixa));
+      comb.add(øallocate A(blindprefixa));
       for(::collection::index i = idx; i < a.get_count(); i++)
       {
          array_makecombination(comb, a, blindprefixa + make_array < A > (a[i]), i + 1);

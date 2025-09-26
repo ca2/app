@@ -27,7 +27,7 @@ namespace simple_ui
 {
 
 
-   message_box::message_box(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::duration durationTimeout):
+   message_box::message_box(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::duration durationTimeout):
       ::object(pparticle)
    {
 
@@ -78,7 +78,7 @@ namespace simple_ui
    void message_box::create_button(pointer_array < tap > & tapa,atom atom, const ::scoped_string & scopedstrText)
    {
 
-      auto ptap = __allocate ::simple_ui::tap();
+      auto ptap = øallocate ::simple_ui::tap();
 
       ptap->create_child(this);
 
@@ -165,7 +165,7 @@ namespace simple_ui
 
       rectangleFontopus.bottom() = rectangleFontopus.top() + h;
 
-      //auto pusersystem = __allocate ::user::system(WS_EX_LAYERED, nullptr, nullptr, 0, rectangleFontopus);
+      //auto pusersystem = øallocate ::user::system(WS_EX_LAYERED, nullptr, nullptr, 0, rectangleFontopus);
 
       if(!create_interaction(puiParent))
       {
@@ -178,33 +178,33 @@ namespace simple_ui
 
       informationf("(2) Just after create_window_ex for message_box (m_pimpl->m_puserinteraction) : %" PRIxPTR, m_pimpl->m_puserinteraction.m_p);
 
-      auto emessagebox = m_emessagebox & e_message_box_type_mask;
+      auto emessagebox = m_emessagebox & ::user::e_message_box_type_mask;
 
       switch(emessagebox)
       {
-      case e_message_box_ok_cancel:
+      case ::user::e_message_box_ok_cancel:
          create_a_button("ok","OK");
          create_a_button("cancel","Cancel");
          break;
-      case e_message_box_abort_retry_ignore:
+      case ::user::e_message_box_abort_retry_ignore:
          create_a_button("abort","Abort");
          create_a_button("retry","Retry");
          create_a_button("ignore","Ignore");
          break;
-      case e_message_box_yes_no_cancel:
+      case ::user::e_message_box_yes_no_cancel:
          create_a_button("yes","Yes");
          create_a_button("no","No");
          create_a_button("cancel","Cancel");
          break;
-      case e_message_box_yes_no:
+      case ::user::e_message_box_yes_no:
          create_a_button("yes","Yes");
          create_a_button("no","No");
          break;
-      case e_message_box_retry_cancel:
+      case ::user::e_message_box_retry_cancel:
          create_a_button("retry","Retry");
          create_a_button("cancel","Cancel");
          break;
-      case e_message_box_cancel_try_continue:
+      case ::user::e_message_box_cancel_try_continue:
          create_a_button("cancel","Cancel");
          create_a_button("try","Try");
          create_a_button("continue","Continue");
@@ -537,7 +537,7 @@ pmessagebox->sync();
 //
 //   {
 //
-//      ::pointer<::simple_ui::message_box>pmessagebox = __allocate ::simple_ui::message_box(get_app(),pText,lpCaption,uFlags);
+//      ::pointer<::simple_ui::message_box>pmessagebox = øallocate ::simple_ui::message_box(get_app(),pText,lpCaption,uFlags);
 //
 //      try
 //      {

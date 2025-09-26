@@ -75,7 +75,7 @@ namespace calculator
    token * scanner::look_ahead()
    {
 
-      m_ptoken = __allocate class token ();
+      m_ptoken = øallocate class token ();
 
       if (m_ptoken.is_null())
       {
@@ -87,7 +87,7 @@ namespace calculator
       while (unicode_is_space_char(m_range.m_begin))
       {
 
-         unicode_increment(m_range.m_begin);
+         m_range.m_begin = unicode_next(m_range.m_begin);
 
       }
 
@@ -193,7 +193,7 @@ namespace calculator
          while (unicode_is_space_char(m_range.m_begin))
          {
 
-            unicode_increment(m_range.m_begin);
+            m_range.m_begin = unicode_next(m_range.m_begin);
 
          }
          if(*m_range.m_begin == '(')

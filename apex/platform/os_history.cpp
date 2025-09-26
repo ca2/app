@@ -17,7 +17,7 @@ bool os_history::hist(const ::scoped_string & scopedstr)
 
    //pointer <  > plauncher;
    
-   auto plauncher = __øcreate<::apex::shell_launcher>();
+   auto plauncher = øcreate<::apex::shell_launcher>();
 
    if (!plauncher)
    {

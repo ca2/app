@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "str.h"
-//#include "string.h"
+#include "acme/prototype/string/utf8_character.h"
 #include "ch_class.h"
 #include "x/x_charcategory2.h"
 #include "x/x_charcategory_names.h"
@@ -138,8 +138,7 @@ void * gen_ch_class_reference_tables()
                break;
             default:
                character_count retEnd;
-               prev_char = unicode_to_utf8(
-                  ::str::get_escaped_char(ccs, pos, retEnd));
+               prev_char = ::utf8_character(::str::get_escaped_char(ccs, pos, retEnd));
                if(prev_char.is_empty())
                   break;
                cc->add_char(prev_char);
@@ -207,7 +206,7 @@ void * gen_ch_class_reference_tables()
 
             character_count retEnd;
 
-            string nextc = unicode_to_utf8(::str::get_escaped_char(ccs, pos+1, retEnd));
+            string nextc = ::utf8_character(::str::get_escaped_char(ccs, pos+1, retEnd));
 
             if(nextc.is_empty())
                break;

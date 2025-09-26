@@ -16,7 +16,7 @@ namespace sockets_bsd
    public:
 
 
-      string_map < map < const SSL_METHOD *, ::pointer<ssl_client_context >>> m_map;
+      string_map_base < map_base < const SSL_METHOD *, ::pointer<ssl_client_context >>> m_map;
 
 
       ssl_client_context_map();

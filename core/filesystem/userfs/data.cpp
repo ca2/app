@@ -49,7 +49,7 @@ namespace userfs
 
       //estatus = 
       
-      //__construct_new(m_pfsset);
+      //øconstruct_new(m_pfsset);
 
       //if (!estatus)
       //{
@@ -98,7 +98,7 @@ namespace userfs
 
    //   }
 
-   //      m_pitem = __allocate ::file::item(*pitem);
+   //      m_pitem = øallocate ::file::item(*pitem);
 
    //   //   try
    //   //   {
@@ -118,7 +118,7 @@ namespace userfs
 
    //   //      // auto pcontext = get_context();
 
-   //   //      m_pitem = __allocate ::file::item(m_papplication->defer_process_matter_path(strOldPath), strOldPath);
+   //   //      m_pitem = øallocate ::file::item(m_papplication->defer_process_matter_path(strOldPath), strOldPath);
 
    //   //      OnFileManagerBrowse(context + ::e_source_sync);
 
@@ -282,7 +282,7 @@ namespace userfs
 
       ::file::path pathFinal = m_papplication->defer_process_matter_path(pathUser);
 
-      ::pointer<::file::item>pitem = __allocate ::file::item(pathUser, pathFinal);
+      ::pointer<::file::item>pitem = øallocate ::file::item(pathUser, pathFinal);
 
       browse(pitem, context);
 
@@ -308,7 +308,7 @@ namespace userfs
 
       {
 
-         _synchronous_lock synchronouslock(fs_data()->synchronization());
+         _synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_pathFolder = pitem->user_path();
 
@@ -327,7 +327,7 @@ namespace userfs
 
          {
 
-            _synchronous_lock synchronouslock(fs_data()->synchronization());
+            _synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_listingRoot2 = listing;
 
@@ -355,7 +355,7 @@ namespace userfs
 
       pathItemUserPath = pitem->user_path();
 
-      //__construct_new(m_puserfslistdata);
+      //øconstruct_new(m_puserfslistdata);
 
       if(pathItemUserPath.is_empty())
       {
@@ -533,7 +533,7 @@ namespace userfs
 
          information() << "folder user : " << pathFolderUser;
 
-         //auto plistitem = __create_new<list_item>();
+         //auto plistitem = øcreate_new<list_item>();
 
          //plistitem->m_pathFinal = pathFinal;
 
@@ -546,7 +546,7 @@ namespace userfs
 
       {
 
-         synchronous_lock synchronouslock(fs_data()->synchronization());
+         synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_listingUser2 = listingUser;
 
@@ -620,7 +620,7 @@ namespace userfs
    ::fs::set * data::fs_data()
    {
 
-      if (__defer_construct_new(m_pfsset))
+      if (ødefer_construct_new(m_pfsset))
       {
 
 

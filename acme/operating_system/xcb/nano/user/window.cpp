@@ -711,7 +711,7 @@ namespace nano
 
                auto pdc = cairo_create(m_psurface);
 
-               m_pnanodevice = __allocate ::cairo::nano::graphics::device(pdc);
+               m_pnanodevice = øallocate ::cairo::nano::graphics::device(pdc);
 
             }
 
@@ -781,7 +781,7 @@ namespace nano
             if (pbutton->detail == XCB_BUTTON_INDEX_1)
             {
 
-               auto pmouse = __create_new < ::user::mouse >();
+               auto pmouse = øcreate_new < ::user::mouse >();
 
                pmouse->m_pointHost = {pbutton->event_x, pbutton->event_y};
 
@@ -793,7 +793,7 @@ namespace nano
             else if (pbutton->detail == XCB_BUTTON_INDEX_3)
             {
 
-               auto pmouse = __create_new < ::user::mouse >();
+               auto pmouse = øcreate_new < ::user::mouse >();
 
                pmouse->m_pointHost = {pbutton->event_x, pbutton->event_y};
 
@@ -820,7 +820,7 @@ namespace nano
             if (pbutton->detail == XCB_BUTTON_INDEX_1)
             {
 
-               auto pmouse = __create_new < ::user::mouse >();
+               auto pmouse = øcreate_new < ::user::mouse >();
 
                pmouse->m_pointHost = {pbutton->event_x, pbutton->event_y};
 
@@ -832,7 +832,7 @@ namespace nano
             else if (pbutton->detail == XCB_BUTTON_INDEX_3)
             {
 
-               auto pmouse = __create_new < ::user::mouse >();
+               auto pmouse = øcreate_new < ::user::mouse >();
 
                pmouse->m_pointHost = {pbutton->event_x, pbutton->event_y};
 
@@ -855,7 +855,7 @@ namespace nano
 
             }
 
-            auto pmouse = __create_new < ::user::mouse >();
+            auto pmouse = øcreate_new < ::user::mouse >();
 
             pmouse->m_pointHost = {pmotion->event_x, pmotion->event_y};
 
@@ -879,7 +879,7 @@ namespace nano
             if (m_pinterface->m_pchildHover)
             {
 
-               auto pmouse = __create_new < ::user::mouse >();
+               auto pmouse = øcreate_new < ::user::mouse >();
 
                pmouse->m_pointHost = {I32_MINIMUM, I32_MINIMUM};
 

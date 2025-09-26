@@ -5,7 +5,7 @@
 //#include "render.h"
 #include "document.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 #include "aura/user/user/button.h"
@@ -77,8 +77,8 @@ namespace app_integration
 
       ::user::impact::install_message_routing(psender);
 
-      MESSAGE_LINK(e_message_create,psender,this,&menu::on_message_create);
-      MESSAGE_LINK(e_message_destroy, psender, this, &menu::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create,psender,this,&menu::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, psender, this, &menu::on_message_destroy);
 
    }
 
@@ -101,7 +101,7 @@ namespace app_integration
 
       {
 
-         auto pbutton = __create_new < ::user::button >();
+         auto pbutton = øcreate_new < ::user::button >();
          pbutton->create_control(this, "openssl");
          pbutton->add_handler(this);
          pbutton->set_position({ 100, 100 });
@@ -113,7 +113,7 @@ namespace app_integration
 
       {
 
-         auto pbutton = __create_new < ::user::button >();
+         auto pbutton = øcreate_new < ::user::button >();
          pbutton->create_control(this, "ffmpeg");
          pbutton->add_handler(this);
          pbutton->set_position({ 100, 200 });
@@ -141,7 +141,7 @@ namespace app_integration
 
       ////auto estatus = 
       //
-      //__construct_new(m_prender);
+      //øconstruct_new(m_prender);
 
       //if(!estatus)
       //{

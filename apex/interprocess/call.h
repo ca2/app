@@ -12,7 +12,7 @@ namespace interprocess
 {
 
 
-   using task_map = atom_map < ::pointer< task > >;
+   using task_map = atom_map_base < ::pointer< task > >;
 
 
    class CLASS_DECL_APEX call :

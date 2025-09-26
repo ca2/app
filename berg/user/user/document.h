@@ -40,7 +40,7 @@ namespace user
       bool                                m_bAutoSaveModified;
 
       string                              m_strSaveFileExtension;
-      atom_map < ::procedure_array >      m_mapRoutine;
+      atom_map_base < ::procedure_array >      m_mapRoutine;
       bool                                m_bToolbar;
       ::pointer < ::data::data >          m_pdataIncoming;
 
@@ -226,7 +226,7 @@ namespace user
       ::pointer<DATA>__create_data()
       {
 
-         auto pdata = __create_new<DATA>();
+         auto pdata = øcreate_new<DATA>();
 
          if (!pdata)
          {

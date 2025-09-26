@@ -31,7 +31,7 @@ namespace platform
       //index                                                 m_iMainMonitor;
       //index                                                 m_iMainWorkspace;
 
-      atom_map < ::user::interaction * >                      m_mapboundui;
+      atom_map_base < ::user::interaction * >                      m_mapboundui;
 
       ::pointer<::write_text::font_list>                     m_pfontlistSingleColumn;
       ::pointer<::user::user>                            m_puser;

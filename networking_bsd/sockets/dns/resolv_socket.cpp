@@ -168,7 +168,7 @@ namespace sockets
 
             string result;
 
-            if(system()->sockets().m_resolvcache[m_query].lookup(m_data, result))
+            if(system()->sockets().m_resolvcache[m_query].find(m_data, result))
             {
 
                if (time(nullptr) - system()->sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl

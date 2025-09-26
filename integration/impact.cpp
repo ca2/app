@@ -5,7 +5,7 @@
 //#include "render.h"
 #include "document.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/platform/node.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -77,8 +77,8 @@ namespace app_integration
 
       ::user::impact::install_message_routing(psender);
 
-      MESSAGE_LINK(e_message_create, psender, this, &impact::on_message_create);
-      MESSAGE_LINK(e_message_destroy, psender, this, &impact::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create, psender, this, &impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, psender, this, &impact::on_message_destroy);
 
    }
 
@@ -121,7 +121,7 @@ namespace app_integration
 
       //auto estatus = 
 
-      //__construct_new(m_prender);
+      //øconstruct_new(m_prender);
 
       //if(!estatus)
       //{
@@ -212,7 +212,7 @@ namespace app_integration
       for (auto & str : m_straName)
       {
 
-         __construct_new(m_straaOutput.add_new());
+         øconstruct_new(m_straaOutput.add_new());
 
       }
 

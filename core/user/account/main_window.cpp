@@ -1,6 +1,6 @@
 // From simple_ui.cpp by camilo on 2022-08-28 11:46 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
@@ -75,7 +75,7 @@ namespace account
 
       //estatus = 
 
-      __construct_new(m_plogin);
+      øconstruct_new(m_plogin);
 
       //if (!estatus)
       //{
@@ -94,11 +94,11 @@ namespace account
 
       ::user::main_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &main_window::on_message_create);
-      MESSAGE_LINK(e_message_char, pchannel, this, &main_window::on_message_character);
-      //      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&main_window::on_message_left_button_down);
-      //      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&main_window::on_message_left_button_up);
-      //      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&main_window::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &main_window::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_char, pchannel, this, &main_window::on_message_character);
+      //      USER_MESSAGE_LINK(::user::e_message_left_button_down,pchannel,this,&main_window::on_message_left_button_down);
+      //      USER_MESSAGE_LINK(::user::e_message_left_button_up,pchannel,this,&main_window::on_message_left_button_up);
+      //      USER_MESSAGE_LINK(::user::e_message_mouse_move,pchannel,this,&main_window::on_message_mouse_move);
 
    }
 
@@ -272,7 +272,7 @@ namespace account
       if ((rectangleFontopus.width() < 300 || rectangleFontopus.height() < 300) && puiParent != nullptr)
       {
 
-         auto phyperlink = __create_new < ::hyperlink >();
+         auto phyperlink = øcreate_new < ::hyperlink >();
 
          phyperlink->m_strLink = "ca2account:this";
 
@@ -282,7 +282,7 @@ namespace account
 
       }
 
-      //auto pusersystem = __allocate ::user::system(0, nullptr, nullptr, 0, rectangleFontopus);
+      //auto pusersystem = øallocate ::user::system(0, nullptr, nullptr, 0, rectangleFontopus);
 
       //create_host(e_parallelization_synchronous);
 

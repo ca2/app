@@ -146,6 +146,9 @@ public:
    auto & topic() { return BASE_ITERATOR_TYPE::topic(); }
    auto & topic() const { return BASE_ITERATOR_TYPE::topic(); }
 
+   auto & item() { return BASE_ITERATOR_TYPE::item(); }
+   auto & item() const { return BASE_ITERATOR_TYPE::item(); }
+
    auto transfer_topic() { return ::transfer(BASE_ITERATOR_TYPE::transfer_topic()); }
 
    auto transfer() { return ::transfer(*this); }
@@ -177,9 +180,11 @@ public:
    list_iterator_element1(const const_iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
 
 
-   auto & topic() { return this->m_p->item(); }
-   auto & topic() const { return this->m_p->item(); }
+   auto & topic() { return this->m_p->key(); }
+   auto & topic() const { return this->m_p->key(); }
 
+   auto & item() { return this->m_p->key(); }
+   auto & item() const { return this->m_p->key(); }
 
    auto transfer_topic() { return ::transfer(this->m_p->transfer_item()); }
 
@@ -214,6 +219,8 @@ public:
    auto & topic() { return this->m_p->payload(); }
    auto & topic() const { return this->m_p->payload(); }
 
+   auto & item() { return this->m_p->payload(); }
+   auto & item() const { return this->m_p->payload(); }
 
    auto transfer_topic() { return ::transfer(this->m_p->transfer_payload()); }
 
@@ -411,7 +418,7 @@ public:
 
       }
 
-      throw "iterator is not part of list";
+      throw "iterator is not part of list_base";
 
    }
 
@@ -422,7 +429,8 @@ public:
    THIS_ITERATOR & operator =(nullptr_t) { this->m_p = nullptr;  return *this; }
 
 
-   constexpr bool operator == (THIS_ITERATOR iterator) const
+   template < typename ITERATOR >
+   constexpr bool operator == (ITERATOR iterator) const
    {
 
       return this->get() == iterator.get();
@@ -493,12 +501,12 @@ public:
 
 
 
-   auto & operator *() { return this->topic(); }
-   auto & operator *() const { return this->topic(); }
+   auto & operator *() { return this->item(); }
+   auto & operator *() const { return this->item(); }
 
 
-   auto operator ->() { return &this->topic(); }
-   auto operator ->() const { return &this->topic(); }
+   auto operator ->() { return &this->item(); }
+   auto operator ->() const { return &this->item(); }
 
 
    auto & back() { return this->get()->back(); }

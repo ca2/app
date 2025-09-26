@@ -258,7 +258,7 @@ namespace filemanager
 
             //   });
 
-            //papp->sync_output_error_message("Do you want to overwrite?\n\nThere is already a existing file with the same name: " + pathTarget.name() + e_message_box_icon_question + e_message_box_yes_no_cancel + parent(m_oswindowCallback));
+            //papp->sync_output_error_message("Do you want to overwrite?\n\nThere is already a existing file with the same name: " + pathTarget.name() + ::user::e_message_box_icon_question + ::user::e_message_box_yes_no_cancel + parent(m_oswindowCallback));
 
             //if(iResult == e_dialog_result_yes)
             //{

@@ -19,7 +19,7 @@ public:
    ::string_array_base                               m_straImplementationEnabled;
    ::string_array_base                               m_straImplementationOnShelfPath;
 
-   ::string_map < ::pointer < ::component_implementation > > m_mapImplementation;
+   ::string_map_base < ::pointer < ::component_implementation > > m_mapImplementation;
 
 
    component();

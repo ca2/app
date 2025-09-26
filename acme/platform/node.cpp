@@ -26,6 +26,7 @@
 //#include "acme/prototype/collection/array.h"
 //#include "acme/prototype/collection/string_array.h"
 #include "acme/nano/nano.h"
+#include "acme/prototype/data/block.h"
 #include "acme/user/micro/button.h"
 #include "acme/user/micro/message_box.h"
 #include "acme/user/micro/user.h"
@@ -312,7 +313,7 @@ namespace platform
    ::particle_pointer node::create_mutex()
    {
 
-      return __øcreate < ::mutex >();
+      return øcreate < ::mutex >();
 
    }
   
@@ -381,9 +382,11 @@ namespace platform
       else
       {
 
-         auto prequest = __create_new < ::request >();
+         auto prequest = øcreate_new < ::request >();
 
-         prequest->initialize_command_line2(::system()->m_strCommandLine);
+         ::string strCommandLine = ::system()->command_line();
+
+         prequest->initialize_command_line2(strCommandLine);
 
          psystem->m_papplication->property_set().merge(prequest->property_set());
 
@@ -810,7 +813,7 @@ namespace platform
    }
 
 
-   //__allocate < ::pointer < ::mutex > >(this, false, "Local\\ca2-appmatter")
+   //øallocate < ::pointer < ::mutex > >(this, false, "Local\\ca2-appmatter")
 
    ::pointer < ::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
    {
@@ -851,7 +854,7 @@ namespace platform
 
       return open_global_named_mutex(pparticleContext, strName);
 
-   //__allocate< ::install::pointer < ::mutex > >(this, process_platform_name()
+   //øallocate< ::install::pointer < ::mutex > >(this, process_platform_name()
 
    }
 
@@ -886,7 +889,7 @@ namespace platform
    bool node::erase_exclusive(const ::scoped_string & scopedstrName)
    {
 
-      return m_mapExclusive.erase_item(scopedstrName);
+      return m_mapExclusive.erase(scopedstrName);
 
    }
 
@@ -1430,7 +1433,7 @@ namespace platform
 
       }
 
-      auto phappening = __allocate manual_reset_happening();
+      auto phappening = øallocate manual_reset_happening();
 
       user_post([ procedure, phappening ]
       {
@@ -2410,15 +2413,15 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
 
    //   system()->do_graphics_and_windowing_system_factory();
 
-   //   return __create_new < ::micro::message_box >();
+   //   return øcreate_new < ::micro::message_box >();
 
    //}
 
 
-   //::pointer < ::subparticle > node::create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+   //::pointer < ::subparticle > node::create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
 
-   //   //auto psequencer = __create_new < ::sequencer < ::conversation > >();
+   //   //auto psequencer = øcreate_new < ::sequencer < ::conversation > >();
 
    //   auto pmessageboxconversation = create_new_message_box_conversation();
 
@@ -2433,10 +2436,10 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    //}
 
 
-   //::pointer < ::subparticle > node::create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+   //::pointer < ::subparticle > node::create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
 
-   //   ///auto psequencer = __create_new < ::sequencer < ::conversation > >();
+   //   ///auto psequencer = øcreate_new < ::sequencer < ::conversation > >();
 
    //   auto pmessageconversation = create_new_message_conversation();
 
@@ -2451,7 +2454,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    //}
 
 
-   //void node::micro::message_box(::sequence < ::conversation >* psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox)
+   //void node::micro::message_box(::sequence < ::conversation >* psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox)
    //{
 
 
@@ -2991,7 +2994,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    ::pointer < ::file::file_dialog > node::node_file_dialog()
    {
       
-      return __create_new < file_dialog >();
+      return øcreate_new < file_dialog >();
       
    }
 
@@ -3008,7 +3011,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    ::pointer < ::file::folder_dialog > node::node_folder_dialog()
    {
       
-      return __create_new < folder_dialog >();
+      return øcreate_new < folder_dialog >();
       
    }
 
@@ -3088,7 +3091,7 @@ bool node::defer_component_factory(const ::scoped_string & scopedstrComponent)
    if (scopedstrComponent == "nano_http")
    {
 
-      auto pfactory = __allocate::factory::factory();
+      auto pfactory = øallocate::factory::factory();
 
       nano_http_wininet_factory(pfactory);
 
@@ -3100,7 +3103,7 @@ bool node::defer_component_factory(const ::scoped_string & scopedstrComponent)
       else if (scopedstrComponent == "nano_compress")
       {
 
-         auto pfactory = __allocate::factory::factory();
+         auto pfactory = øallocate::factory::factory();
 
          nano_compress_windows_factory(pfactory);
 
@@ -3530,7 +3533,7 @@ bool node::_is_smart_git_installed()
    ::pointer < ::operating_system::application > node::process_identifier_application(::process_identifier processidentifier)
    {
       
-      auto papplication = __øcreate < ::operating_system::application >();
+      auto papplication = øcreate < ::operating_system::application >();
       
       papplication->open_by_process_identifier(processidentifier);
       
@@ -3547,7 +3550,7 @@ bool node::_is_smart_git_installed()
       for (auto & processidentifier : processidentifiera)
       {
 
-         auto papplication = __øcreate < ::operating_system::application >();
+         auto papplication = øcreate < ::operating_system::application >();
 
          papplication->open_by_process_identifier(processidentifier);
 
@@ -3666,7 +3669,7 @@ bool node::_is_smart_git_installed()
 
 #if !defined(ANDROID) && !defined(LINUX)
 
-#if !defined(__APPLE__)
+#if !defined(__APPLE__) && !defined(__BSD__)
 
 
    string node::_get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string& scopedstrFormat , int iSkip , void* caller_address, int iCount)
@@ -4261,7 +4264,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 //
 //         }
 //
-//         auto plink = __create_new < ::file::link >();
+//         auto plink = øcreate_new < ::file::link >();
 //
 //         string strLink = stra[0];
 //
@@ -4359,7 +4362,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 //
 //#else
 //
-//         auto plink = __create_new < ::file::link >();
+//         auto plink = øcreate_new < ::file::link >();
 //         
 //         string strLink;
 //
@@ -4952,25 +4955,25 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    ::file::path node::get_font_path_from_name(const ::scoped_string& scopedstrName)
    {
 
-      auto p = m_mapFont.plookup(scopedstrName);
+      auto iterator = m_mapFont.find(scopedstrName);
 
-      if (!p)
+      if (!iterator)
       {
 
          m_mapFont[scopedstrName].m_path = _get_font_path_from_name(scopedstrName);
 
-         p = m_mapFont.plookup(scopedstrName);
+         iterator = m_mapFont.find(scopedstrName);
 
       }
 
-      if (!p)
+      if (!iterator)
       {
       
          return {};
 
       }
 
-      return p->m_element2.m_path;
+      return iterator->m_element2.m_path;
 
    }
 
@@ -4981,6 +4984,105 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
       return {};
 
    }
+
+
+   void node::protocol_set_data(const ::file::path & path, const ::block & block)
+   {
+
+      ::string strProtocol = ::url::get_protocol(path);
+
+      ::string strPath = ::url::get_host(path) + ::url::get_raw_request_path(path);
+
+      on_protocol_set_data(strProtocol, strPath, block);
+
+   }
+
+
+   ::memory node:: protocol_get_data(const ::file::path & path)
+   {
+
+      ::string strProtocol = ::url::get_protocol(path);
+
+      ::string strPath = ::url::get_host(path) + ::url::get_raw_request_path(path);
+
+      return on_protocol_get_data(strProtocol, strPath);
+
+   }
+
+
+   void node::on_protocol_set_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath, const ::block & block)
+   {
+
+      if(scopedstrProtocol == "mediastore")
+      {
+
+         auto pdatablock = øcreate_new<::data::block>();
+
+         pdatablock->initialize_set_operation(scopedstrPath, "application/octet-stream", block);
+
+         øconstruct_new(pdatablock->m_pmanualresethappening);
+
+         this->post_media_store_operation(pdatablock);
+
+         pdatablock->m_pmanualresethappening->wait(1_min);
+
+      }
+      else
+      {
+
+         throw ::exception(error_not_supported, "Not yet supported protocol");
+
+      }
+
+   }
+
+
+   ::memory node::on_protocol_get_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath)
+   {
+
+      if(scopedstrProtocol == "mediastore")
+      {
+
+         auto pdatablock = øcreate_new<::data::block>();
+
+         pdatablock->initialize_get_operation(scopedstrPath, "application/octet-stream");
+
+         øconstruct_new(pdatablock->m_pmanualresethappening);
+
+         this->post_media_store_operation(pdatablock);
+
+         pdatablock->m_pmanualresethappening->wait(1_min);
+
+         return pdatablock->m_memory;
+
+      }
+      else
+      {
+
+         throw ::exception(error_not_supported, "Not yet supported protocol");
+
+         return {};
+
+      }
+
+   }
+
+//
+//   void acme_node_layer::media_store_set_data(const ::scoped_string & scopedstrPath, const ::block & block)
+//   {
+//
+//
+//   }
+//
+//
+//   virtual ::memory media_store_get_data(const ::scoped_string & scopedstrPath)
+//   {
+//
+//
+//
+//   }
+//
+
 
 } // namespace platform
 

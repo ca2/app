@@ -644,6 +644,7 @@ namespace sockets
       virtual bool IsSSLNegotiate();
       /** Set flag indicating ssl handshaking still in progress. */
       virtual void SetSSLNegotiate(bool x = true);
+      virtual void set_no_ssl_shutdown();
       /** OnAccept called with SSL Enabled.
       \return true if this is a tcp_socket with an incoming SSL connection */
       virtual bool IsSSLServer();
@@ -736,7 +737,7 @@ virtual string GetSocks4Host();
 //      \lparam port port number passed to Resolve */
 //      //virtual void OnResolved(int atom, ::networking::address * addr);
 //      //virtual void OnResolved(int atom, in6_addr & a, ::networking::port_t port);
-//      /** Request asynchronous reverse dns lookup.
+//      /** Request asynchronous reverse dns find.
 //      \lparam a in_addr to be translated */
 //      //int Resolve(in_addr a);
 //      //int Resolve(in6_addr& a);
@@ -744,7 +745,7 @@ virtual string GetSocks4Host();
 //      \lparam atom Resolve ID
 //      \lparam name Resolved hostname */
 //      //virtual void OnReverseResolved(int atom,const string & name);
-//      /** Callback indicating failed dns lookup.
+//      /** Callback indicating failed dns find.
 //      \lparam atom Resolve ID */
 //      //virtual void OnResolveFailed(int atom);
 //      //@}

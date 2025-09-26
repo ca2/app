@@ -222,11 +222,11 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
-      auto pitem = __create_new < ::geometry2d::rectangle_item >();
+      auto pitem = øcreate_new < ::geometry2d::rectangle_item >();
 
       pitem->m_item = rectangle;
 
@@ -243,13 +243,13 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
       //m_pshapea->add_shape(ellipseParam);
 
-      auto pitem = __create_new < ::geometry2d::ellipse_item >();
+      auto pitem = øcreate_new < ::geometry2d::ellipse_item >();
 
       pitem->m_item = ellipse;
 
@@ -284,13 +284,13 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
       //m_pshapea->add_shape(int_polygon);
 
-      auto pitem = __create_new < ::geometry2d::polygon_item >();
+      auto pitem = øcreate_new < ::geometry2d::polygon_item >();
 
       pitem->m_polygon = polygon;
 
@@ -309,11 +309,11 @@ namespace draw2d
 //         return false;
 //      }
 //
-//      auto pitem = __create_new < ::geometry2d::arc_item >();
+//      auto pitem = øcreate_new < ::geometry2d::arc_item >();
 //
 //      //pitem->m_rectangle = rectangle;
 //
-//      //auto parc = __allocate arc_double_shape< path > ();
+//      //auto parc = øallocate arc_double_shape< path > ();
 //
 //      auto & arc = pitem->m_item;
 //
@@ -341,7 +341,7 @@ namespace draw2d
 //      //if (!m_pshapea)
 //      //{
 //
-//      //   m_pshapea = __allocate shape_array < path> ();
+//      //   m_pshapea = øallocate shape_array < path> ();
 //
 //      //}
 //
@@ -373,7 +373,7 @@ namespace draw2d
 //
 //      }
 //
-//      auto pitem = __create_new<::geometry2d::arc_item>();
+//      auto pitem = øcreate_new<::geometry2d::arc_item>();
 //
 //      auto & arc = pitem->m_item;
 //
@@ -400,7 +400,7 @@ namespace draw2d
 //      //if (!m_pshapea)
 //      //{
 //
-//      //   m_pshapea = __allocate shape_array < path> ();
+//      //   m_pshapea = øallocate shape_array < path> ();
 //
 //      //}
 //
@@ -430,7 +430,7 @@ namespace draw2d
 
       }
 
-      auto pitem = __create_new < ::geometry2d::arc_item >();
+      auto pitem = øcreate_new < ::geometry2d::arc_item >();
 
       auto & arc = pitem->m_item;
 
@@ -446,7 +446,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -473,11 +473,11 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
-      m_itema.add(__create_new<::geometry2d::begin_figure_item>());
+      m_itema.add(øcreate_new<::geometry2d::begin_figure_item>());
 
       //m_pshapea->add_shape(e_shape_begin_figure);
 
@@ -496,13 +496,13 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
       // m_pshapea->add_shape(e_shape_close_figure);
 
-      m_itema.add(__create_new<::geometry2d::close_figure_item>());
+      m_itema.add(øcreate_new<::geometry2d::close_figure_item>());
 
       set_modified();
 
@@ -517,13 +517,13 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
       //m_pshapea->add_shape(e_shape_end_figure);
 
-      m_itema.add(__create_new<::geometry2d::end_figure_item>());
+      m_itema.add(øcreate_new<::geometry2d::end_figure_item>());
 
       set_modified();
 
@@ -535,7 +535,7 @@ namespace draw2d
    bool path::add_text_out(const ::double_point & point, const ::scoped_string & scopedstrText,::write_text::font_pointer pfont)
    {
 
-      auto pitem = __create_new < ::geometry2d::text_out_item >();
+      auto pitem = øcreate_new < ::geometry2d::text_out_item >();
 
       auto& textout = pitem->m_item;
 
@@ -548,7 +548,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -564,7 +564,7 @@ namespace draw2d
    bool path::add_draw_text(const ::scoped_string & scopedstrText, const ::double_rectangle& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext , ::write_text::font_pointer pfont)
    {
 
-      auto pitem = __create_new < ::geometry2d::draw_text_item >();
+      auto pitem = øcreate_new < ::geometry2d::draw_text_item >();
 
       auto & drawtext = pitem->m_item;
 
@@ -581,7 +581,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -597,7 +597,7 @@ namespace draw2d
    bool path::add_line(const double_point & p1, const double_point & p2)
    {
 
-      auto pitem = __create_new < ::geometry2d::line_item >();
+      auto pitem = øcreate_new < ::geometry2d::line_item >();
 
       auto & line = pitem->m_item;
 
@@ -619,9 +619,9 @@ namespace draw2d
    bool path::add_line(const double_point & point)
    {
 
-      //auto pline = __allocate double_line_shape < path > ();
+      //auto pline = øallocate double_line_shape < path > ();
 
-      auto pitem = __create_new < ::geometry2d::line_item >();
+      auto pitem = øcreate_new < ::geometry2d::line_item >();
 
       //pline->m_pholdee = this;
 
@@ -634,7 +634,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -655,7 +655,7 @@ namespace draw2d
    bool path::add_polygon(const ::double_point * ppoint, ::collection::count nCount)
    {
 
-      auto pitem = __create_new < ::geometry2d::polygon_item >();
+      auto pitem = øcreate_new < ::geometry2d::polygon_item >();
 
       //ppolygon->m_pholdee = this;
 
@@ -666,7 +666,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -682,9 +682,9 @@ namespace draw2d
    bool path::add_lines(const ::double_point * ppoint, ::collection::count nCount)
    {
 
-      //auto plines = __allocate lines_double_shape < path > ();
+      //auto plines = øallocate lines_double_shape < path > ();
 
-      auto pitem = __create_new < ::geometry2d::lines_item >();
+      auto pitem = øcreate_new < ::geometry2d::lines_item >();
 
       //plines->m_pholdee = this;
 
@@ -695,7 +695,7 @@ namespace draw2d
       //if (!m_pshapea)
       //{
 
-      //   m_pshapea = __allocate shape_array < path> ();
+      //   m_pshapea = øallocate shape_array < path> ();
 
       //}
 
@@ -1901,7 +1901,7 @@ namespace draw2d
          //if(!m_pshapea)
          //{
 
-         //   m_pshapea = __allocate shape_array <class path> ();
+         //   m_pshapea = øallocate shape_array <class path> ();
 
          //}
 
@@ -2137,7 +2137,7 @@ namespace draw2d
       //glVertex2f(0, pnsvgimage->height);
       //glEnd();
 
-      //auto ppen = __øcreate < ::draw2d::pen >();
+      //auto ppen = øcreate < ::draw2d::pen >();
 
       //ppen->create_solid(1.0, argb(255, 0, 128, 0));
 

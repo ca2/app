@@ -45,7 +45,7 @@ namespace winrt
    ::pointer<::crypto::hasher>hasher_algorithm::create_hasher()
    {
 
-      return __allocate hasher(m_pprovider->CreateHash(), ehash());
+      return øallocate hasher(m_pprovider->CreateHash(), ehash());
       
    }
 

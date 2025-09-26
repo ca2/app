@@ -109,7 +109,7 @@ void ::interprocess::call::send(const ::atom& idPid)
 ::pointer<synchronization_array>::interprocess::call::synca()
 {
 
-   auto psynca = __allocate synchronization_array();
+   auto psynca = øallocate synchronization_array();
 
    for (auto& ptask : this->m_mapTask.values())
    {
@@ -148,7 +148,7 @@ bool ::interprocess::call::_wait(const class ::wait & wait)
 
    auto psynca = synca();
 
-   synchronous_lock synchronouslock(psynca);
+   synchronous_lock synchronouslock(psynca, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    return synchronouslock.wait(wait);
 

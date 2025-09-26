@@ -24,19 +24,19 @@ namespace user
 
    //   switch(message)
    //   {
-   //   case e_message_right_button_down:
+   //   case ::user::e_message_right_button_down:
 
    //      OnNotifyIconContextMenu(uNotifyIcon);
 
    //      break;
 
-   //   case e_message_left_button_double_click:
+   //   case ::user::e_message_left_button_double_click:
 
    //      OnNotifyIconLButtonDblClk(uNotifyIcon);
 
    //      break;
 
-   //   case e_message_left_button_down:
+   //   case ::user::e_message_left_button_down:
 
    //      OnNotifyIconLButtonDown(uNotifyIcon);
 
@@ -167,7 +167,7 @@ namespace user
    ::application_menu * notify_icon_listener::menu()
    {
 
-      __defer_construct_new(m_papplicationmenu);
+      ødefer_construct_new(m_papplicationmenu);
 
       return m_papplicationmenu;
 
@@ -272,7 +272,7 @@ namespace user
 
    //   }
 
-   //   auto pitem = __allocate item(strName, strId, strLabel, strAccelerator, strDescription);
+   //   auto pitem = øallocate item(strName, strId, strLabel, strAccelerator, strDescription);
 
    //   pitem->m_bStockItem = bStockItem;
 

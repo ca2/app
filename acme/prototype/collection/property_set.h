@@ -7,7 +7,7 @@
 
 #include "acme/prototype/prototype/property.h"
 #include "acme/prototype/collection/atom_array.h"
-#include "acme/prototype/string/character_range.h"
+#include "acme/prototype/string/_character_range.h"
 //#include "payload_reference.h"
 
 
@@ -25,7 +25,7 @@ public:
    using property_holder_array_base::property_holder_array_base;
    using property_holder_array_base::operator =;
 
-   property_set_base(::std::initializer_list < ::payload > list);
+   property_set_base(::std::initializer_list < ::payload > list_base);
    // property_set() {}
    // property_set(const ::property_set & set);
    // property_set(::property_set && set);
@@ -51,7 +51,7 @@ public:
    //::property* find_by_text(const ::scoped_string & scopedstr, ::collection::index iStart = 0) const;
 
    ::collection::index index_of(const ::atom& atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i)
-   ::property * lookup(const ::atom & atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i)
+   ::property * find(const ::atom & atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i)
    ::property & property(const ::atom & atom); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
    const ::property& property(const ::atom& atom) const
    {
@@ -62,7 +62,7 @@ public:
 
 
    //::collection::index find(const ::atom_array_base& atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
-   ::property * lookup(const ::atom_array_base & atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
+   ::property * find(const ::atom_array_base & atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
    ::property & property(const ::atom_array_base & atoma); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
    const ::property& property(const ::atom_array_base& atoma) const
    {
@@ -108,9 +108,9 @@ public:
 
 
 
-   //template < character_range RANGE >
+   //template < primitive_character_range RANGE >
    //inline ::property & operator[](const RANGE & range) { return property(range); }
-   //template < character_range RANGE >
+   //template < primitive_character_range RANGE >
    //inline const ::property & operator[](const RANGE & range) const { return property(range); }
 
    //template < has_get_string HAS_GET_STRING >
@@ -200,9 +200,9 @@ public:
 
    bool is_true_or_empty(const ::atom & atom) const;
 
-   bool is_false(const ::atom & atom) const { auto p = lookup(atom); return !p || p->is_false(); }
+   bool is_false(const ::atom & atom) const { auto p = find(atom); return !p || p->is_false(); }
 
-   bool is_set_false(const ::atom & atom) const { auto p = lookup(atom); return p && p->is_set_false(); }
+   bool is_set_false(const ::atom & atom) const { auto p = find(atom); return p && p->is_set_false(); }
 
    bool is_set_empty(::collection::count countMinimum = 1) const;
 
@@ -227,9 +227,15 @@ public:
 
    ::payload get_payload(const ::atom & atom);
 
-   const ::payload & payload(const ::atom & atom) const;
+   const ::payload & get(const ::atom & atom) const;
 
-   ::payload & payload(const ::atom & atom, const ::payload & payloadDefault) const;
+   ::float_array_base get(const ::atom & atom, const ::float_array_base & floata) const;
+   ::double_array_base get(const ::atom& atom, const ::double_array_base& doublea) const;
+   ::string get(const ::atom& atom, const ::scoped_string & scopedstr) const;
+   int get(const ::atom& atom, const int & i) const;
+   long long get(const ::atom& atom, const long long & ll) const;
+   float get(const ::atom& atom, const float & f) const;
+   double get(const ::atom& atom, const double & d) const;
 
    bool get_bool(const ::atom & atom, bool bDefault = false) const;
    int get_int(const ::atom & atom, int iDefault = 0) const;
@@ -344,7 +350,7 @@ public:
    bool _get(const ::atom & atom, TYPE & t)
    {
 
-      auto pproperty = lookup(atom);
+      auto pproperty = find(atom);
 
       if (!pproperty)
       {
@@ -481,7 +487,7 @@ CLASS_DECL_ACME void property_set_skip_network_payload(::ansi_range & range);
 inline bool ::property_set_base::_get_string(string & strResult, const ::atom & atom) const
 {
 
-   auto pproperty = lookup(atom);
+   auto pproperty = find(atom);
 
    if (::is_null(pproperty))
    {
@@ -518,7 +524,6 @@ public:
 
 
 CLASS_DECL_ACME ::pointer < ::property_set > create_network_arguments_property_set(const ::scoped_string& scopedstrNetworkArguments);
-
 
 
 

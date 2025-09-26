@@ -15,7 +15,7 @@
 #include "TextBox.h"
 //#include <regex>
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/regular_expression/regular_expression.h"
 #include "acme/regular_expression/result.h"
@@ -848,8 +848,8 @@ namespace nanoui
 
          //auto psession = screen()->m_puserinteraction->get_session();
 
-         //if (action == ::e_message_key_down || action == GLFW_REPEAT) {
-         if (action == ::e_message_key_down)
+         //if (action == ::user::e_message_key_down || action == GLFW_REPEAT) {
+         if (action == ::user::e_message_key_down)
          {
 
             auto eid = application()->key_command(ekey, session());

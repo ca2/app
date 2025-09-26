@@ -44,7 +44,7 @@ namespace introjection
 
       //estatus = 
       
-      __construct_new(m_plibrary);
+      øconstruct_new(m_plibrary);
 
       //if (!estatus)
       //{

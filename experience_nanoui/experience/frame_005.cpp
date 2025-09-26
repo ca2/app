@@ -52,8 +52,8 @@ namespace experience_nanoui
    void frame_005::on_initialize_experience_frame()
    {
 
-      __øconstruct(m_pbrushGrip);
-      __øconstruct(m_pbrushTextCaption);
+      øconstruct(m_pbrushGrip);
+      øconstruct(m_pbrushTextCaption);
 
       //m_strStyle = "LightGreen";
 

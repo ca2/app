@@ -52,7 +52,12 @@ public:
 
    using TYPE::TYPE;
    using TYPE::operator = ;
+   using TYPE::operator += ;
+   using BASE_ARRAY = TYPE;
+   using RAW_BASE_ARRAY = typename BASE_ARRAY::RAW_BASE_ARRAY;
 
+
+   array_particle(const RAW_BASE_ARRAY& a) : BASE_ARRAY(a) {}
 
 
    void destroy() override
@@ -63,22 +68,67 @@ public:
    }
 
 
-   // virtual void write_to_stream(::binary_stream& stream)
-   // {
-   //
-   //    stream << (TYPE&)*this;
-   //
-   // }
-   //
-   //
-   // virtual void read_from_stream(::binary_stream& stream)
-   // {
-   //
-   //    stream >> (TYPE&)*this;
-   //
-   // }
+};
+
+
+template < typename TYPE >
+class comparable_eq_array_particle :
+   virtual public ::particle,
+   public TYPE
+{
+public:
+
+
+   using TYPE::TYPE;
+   using TYPE::operator = ;
+   using TYPE::operator += ;
+   using TYPE::operator -= ;
+   using BASE_ARRAY = TYPE;
+   using RAW_BASE_ARRAY = typename BASE_ARRAY::RAW_BASE_ARRAY;
+
+
+   comparable_eq_array_particle(const RAW_BASE_ARRAY& a) : BASE_ARRAY(a) {}
+
+
+   void destroy() override
+   {
+
+      TYPE::destroy();
+
+   }
 
 
 };
+
+
+template < typename TYPE >
+class comparable_array_particle :
+   virtual public ::particle,
+   public TYPE
+{
+public:
+
+
+   using TYPE::TYPE;
+   using TYPE::operator = ;
+   using TYPE::operator += ;
+   using TYPE::operator -= ;
+   using BASE_ARRAY = TYPE;
+   using RAW_BASE_ARRAY = typename BASE_ARRAY::RAW_BASE_ARRAY;
+
+
+   comparable_array_particle(const RAW_BASE_ARRAY& a) : BASE_ARRAY(a) { }
+
+
+   void destroy() override
+   {
+
+      TYPE::destroy();
+
+   }
+
+
+};
+
 
 

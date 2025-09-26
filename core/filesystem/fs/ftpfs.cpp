@@ -57,7 +57,7 @@ void ftpfs::initialize_ftpfs(::particle * pparticle, const ::scoped_string & sco
 //void ftpfs::initialize(::particle * pparticle)
 //{
 //
-//   auto estatus = __construct_new(this, m_pftpnet);
+//   auto estatus = øconstruct_new(this, m_pftpnet);
 //
 //   return estatus;
 //
@@ -67,7 +67,7 @@ void ftpfs::initialize_ftpfs(::particle * pparticle, const ::scoped_string & sco
 bool ftpfs::fast_has_subdir(const ::file::path & path)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ::time tickTimeout;
 
@@ -92,7 +92,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       dir_listing & dir = m_map[path];
 
@@ -167,7 +167,7 @@ bool ftpfs::enumerate(::file::listing_base & listing)
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
@@ -300,7 +300,7 @@ retry:
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       dir_listing & dir = m_map[listing.m_pathUser];
 
@@ -368,7 +368,7 @@ retry:
 
    //::time tickTimeout;
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    dir_listing & dir = m_map[path.folder()];
 
@@ -483,7 +483,7 @@ retry:
 
       file_pointer spfile;
 
-      spfile = __allocate ftpfs_file(this, pclient);
+      spfile = øallocate ftpfs_file(this, pclient);
 
       //auto result = 
       
@@ -522,7 +522,7 @@ bool ftpfs::file_exists(const ::file::path & path)
 void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, const ::scoped_string & scopedstrPath)
 {
 
-   auto plogon = __allocate ::ftp::logon();
+   auto plogon = øallocate ::ftp::logon();
 
    auto psystem = system();
 
@@ -544,13 +544,13 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, const ::scoped_st
    if (!pclient)
    {
 
-      pclient = __allocate ::ftp::client_socket();
+      pclient = øallocate ::ftp::client_socket();
 
       //pclient->initialize_socket(m_pftpnet->m_psockethandler);
 
       ::pointer<::ftp::output>& poutput = m_pftpnet->m_mapOutput[plogon->m_strToken];
 
-      poutput = __allocate ::ftp::output();
+      poutput = øallocate ::ftp::output();
 
       pclient->AttachObserver(poutput);
 

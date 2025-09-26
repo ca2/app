@@ -188,17 +188,17 @@ namespace sockets
    }
 
 
-   map < int, DH * > * g_pmapdh = nullptr;
+   map_base < int, DH * > * g_pmapdh = nullptr;
 
-   map < int, DH * > * dh_map()
+   map_base < int, DH * > * dh_map()
    {
 
-      synchronous_lock synchronouslock(::globals_critical_section());
+      synchronous_lock synchronouslock(::globals_critical_section(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (g_pmapdh == nullptr)
       {
 
-         g_pmapdh = ___new map < int, DH * > ();
+         g_pmapdh = ___new map_base < int, DH * > ();
 
       }
 
@@ -210,7 +210,7 @@ namespace sockets
    DH * get_dh(int keylength)
    {
 
-      synchronous_lock synchronouslock(::globals_critical_section());
+      synchronous_lock synchronouslock(::globals_critical_section(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return dh_map()->operator[](keylength);
 
@@ -220,7 +220,7 @@ namespace sockets
    void set_dh(int keylength, DH * pdh)
    {
 
-      synchronous_lock synchronouslock(::globals_critical_section());
+      synchronous_lock synchronouslock(::globals_critical_section(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       dh_map()->operator[](keylength) = pdh;
 

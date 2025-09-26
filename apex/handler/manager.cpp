@@ -104,12 +104,12 @@ class ::handler::signal * manager::signal(const ::atom & atom)
 class ::handler::signal * manager::signal(const ::atom & atom, const ::action_context& actioncontext)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (!m_psignalmap)
    {
 
-      m_psignalmap = __allocate ::handler::signal_map();
+      m_psignalmap = øallocate ::handler::signal_map();
 
    }
 
@@ -120,7 +120,7 @@ class ::handler::signal * manager::signal(const ::atom & atom, const ::action_co
    if (!psignal)
    {
 
-      psignal = __allocate class ::handler::signal (atom, this);
+      psignal = øallocate class ::handler::signal (atom, this);
 
       psignal->initialize(this);
 
@@ -209,7 +209,7 @@ class ::handler::signal * manager::signal(const ::atom & atom, const ::action_co
 //void manager::erase_signal_handler(const ::signal_handler& signalhandler)
 //{
 //   
-//   synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (!m_psignalmap)
 //   {
@@ -231,7 +231,7 @@ class ::handler::signal * manager::signal(const ::atom & atom, const ::action_co
 //void manager::erase_signal_handlers(::particle * pparticle)
 //{
 //   
-//   synchronous_lock synchronouslock(this->synchronization());
+//   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if (!m_psignalmap)
 //   {
@@ -481,7 +481,7 @@ void manager::destroy_signal_handling()
 void manager::erase_signal_handler(const ::signal_handler::base * pbase)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //auto values = m_psignalmap->values();
 
@@ -525,7 +525,7 @@ void manager::erase_signal_handler(const ::signal_handler::base * pbase)
 void manager::erase_handler(::object * pobject)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //auto values = m_psignalmap->values();
 

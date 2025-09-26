@@ -87,7 +87,7 @@ namespace xml
       //m_strName   = node.m_strName;
       //m_strValue  = node.m_strValue;
       //m_nodea     = node.m_nodea;
-      //m_ppropertyset      = __allocate(property_node.m_attra;
+      //m_ppropertyset      = øallocate(property_node.m_attra;
 
       return *this;
 
@@ -353,14 +353,14 @@ namespace xml
                }
                if(entity_value.has_character())
                {
-                  //::__øconstruct(m_pdocument, m_pdocument->m_pentitiesHash);
-                  //::__defer_construct(m_pdocument, m_pdocument->m_pentitiesHash);
-                  m_pdocument->__defer_construct(m_pdocument->m_pentitiesHash);
+                  //::øconstruct(m_pdocument, m_pdocument->m_pentitiesHash);
+                  //::ødefer_construct(m_pdocument, m_pdocument->m_pentitiesHash);
+                  m_pdocument->ødefer_construct(m_pdocument->m_pentitiesHash);
                   m_pdocument->m_pentitiesHash->set_at(entity_name, entity_value);
                }
                if(ext_entity_value.has_character())
                {
-                  m_pdocument->__defer_construct(m_pdocument->m_pentitiesExtHash);
+                  m_pdocument->ødefer_construct(m_pdocument->m_pentitiesExtHash);
                   m_pdocument->m_pentitiesExtHash->set_at(entity_name, ext_entity_value);
                }
             }
@@ -585,7 +585,7 @@ namespace xml
       if( m_pdocument )
       {
 
-         ::pointer<node>pnode = __allocate node(this);
+         ::pointer<node>pnode = øallocate node(this);
          pnode->m_pnodeParent = this;
          pnode->m_pdocument = m_pdocument;
          pnode->m_enode = ::data::e_node_xml_pi;
@@ -802,7 +802,7 @@ namespace xml
          //const_char_pointer xml =pszXml;
          //xml += 4; // "<!--";
 
-         auto pnode = __allocate node(this);
+         auto pnode = øallocate node(this);
          pnode->m_pnodeParent = pnodeParent;
          pnode->m_pdocument = m_pdocument;
          pnode->m_enode = ::data::e_node_xml_comment;
@@ -864,7 +864,7 @@ namespace xml
          //const_char_pointer xml = pszXml;
          //xml += 9;  // "<![CDATA["
 
-         auto pnode = __allocate node(this);
+         auto pnode = øallocate node(this);
          pnode->m_pnodeParent = this;
          pnode->m_pdocument = m_pdocument;
          pnode->m_enode = ::data::e_node_xml_cdata;
@@ -1095,7 +1095,7 @@ namespace xml
          //   pnode.release();
          //}
 
-         ::pointer<node>pnode = __allocate node(this);
+         ::pointer<node>pnode = øallocate node(this);
          //pnode->m_pnodeParent = this;
          //pnode->m_pdocument = m_pdocument;
          //pnode->m_enode = m_enode;
@@ -1217,7 +1217,7 @@ namespace xml
             // generate child nodes
             if(rangeXml.has_character() && *rangeXml.m_begin)
             {
-               //::pointer<node>pnode = __allocate node(this);
+               //::pointer<node>pnode = øallocate node(this);
                //if (m_pdocument == this)
                //{
                //   if (!m_pdocument->m_pnodeRoot)
@@ -1744,7 +1744,7 @@ namespace xml
 
    //========================================================
    // Name   : GetAttrs
-   // Desc   : find attributes with attr m_strName, return its list
+   // Desc   : find attributes with attr m_strName, return its list_base
    // Param  :
    // Return :
    //--------------------------------------------------------
@@ -1795,7 +1795,7 @@ namespace xml
 
    //========================================================
    // Name   : GetChilds
-   // Desc   : find m_nodea with m_strName and return m_nodea list
+   // Desc   : find m_nodea with m_strName and return m_nodea list_base
    // Param  :
    // Return :
    //--------------------------------------------------------
@@ -2316,7 +2316,7 @@ namespace xml
    node * node::add_child( const ::scoped_string & scopedstrName /*= nullptr*/, const ::scoped_string & scopedstrValue /*= nullptr*/ )
    {
       
-      auto pnode = __allocate node((node *) this);
+      auto pnode = øallocate node((node *) this);
 
       pnode->initialize(this);
       
@@ -2334,7 +2334,7 @@ namespace xml
    node * node::add_child(const ::scoped_string & scopedstrName, const ::property_set & set, const ::scoped_string & scopedstrValue)
    {
 
-      auto pnode = __allocate node((node *) this);
+      auto pnode = øallocate node((node *) this);
 
       pnode->m_strName = scopedstrName;
 
@@ -2394,7 +2394,7 @@ namespace xml
 
    //========================================================
    // Name   : get_attr
-   // Desc   : get attr with index in attr list
+   // Desc   : get attr with index in attr list_base
    // Param  :
    // Return :
    //--------------------------------------------------------
@@ -2485,7 +2485,7 @@ namespace xml
 
    //========================================================
    // Name   : detach_child
-   // Desc   : no delete object, just detach in list
+   // Desc   : no delete object, just detach in list_base
    // Param  :
    // Return :
    //--------------------------------------------------------
@@ -2505,7 +2505,7 @@ namespace xml
 
    //========================================================
    // Name   : detach_attr
-   // Desc   : no delete object, just detach in list
+   // Desc   : no delete object, just detach in list_base
    // Param  :
    // Return :
    //--------------------------------------------------------
@@ -2567,7 +2567,7 @@ namespace xml
          if(pnodeChild)
          {
 
-            auto pnodeNewChild = __allocate class node ();
+            auto pnodeNewChild = øallocate class node ();
 
             pnodeNewChild->get_xml_node()->CopyNode(pnodeChild->get_xml_node());
 
@@ -2593,7 +2593,7 @@ namespace xml
    node *   node::AppendChildBranch(node * pnode)
    {
 
-      auto pnodeNewChild =__allocate class node ();
+      auto pnodeNewChild =øallocate class node ();
 
       pnodeNewChild->CopyBranch(pnode);
 

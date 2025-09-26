@@ -750,7 +750,7 @@ bool tokenizer::get_next_word(string * pstrToken)
             
       }
 
-      unicode_increment(psz);
+      psz = (char *) unicode_next(psz);
 
    }
 

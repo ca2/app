@@ -620,9 +620,9 @@ namespace user
    //using item_pointer = ::pointer < ::user::item >;
    using item_array = ::pointer_array < item >;
 
-   using item_map = map < item_t, item_pointer >;
+   using item_map = map_base < item_t, item_pointer >;
 
-   using item_base_map = map < item_t, item_base_pointer >;
+   using item_base_map = map_base < item_t, item_base_pointer >;
 
 } // namespace user
 

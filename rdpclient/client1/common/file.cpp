@@ -980,7 +980,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		 * http://technet.microsoft.com/en-us/library/ff393709/
 		 *
 		 * This setting corresponds to the selection in the If server authentication
-		 * fails drop-down list on the Advanced tab under Options in RDC.
+		 * fails drop-down list_base on the Advanced tab under Options in RDC.
 		 *
 		 * Values:
 		 *
@@ -1162,7 +1162,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		 * Drives to redirect:
 		 *
 		 * Very similar to DevicesToRedirect, but can contain a
-		 * comma-separated list of drive letters to redirect.
+		 * comma-separated list_base of drive letters to redirect.
 		 */
 
 		freerdp_set_param_bool(settings, FreeRDP_RedirectDrives, true);

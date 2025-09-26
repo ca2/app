@@ -43,7 +43,7 @@ namespace userstack
       ::file::listing_base            m_straImagePath;
       string                     m_strCurrentImagePath;
       bool                       m_bDestroy;
-      int_rectangle_array                 m_rectangleaUpdate;
+      int_rectangle_array_base                 m_rectangleaUpdate;
       class ::time                       m_timeLastUpdate;
       ::pointer < ::mutex >                      m_pmutexDraw;
 

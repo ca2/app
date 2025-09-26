@@ -36,7 +36,7 @@ namespace menu
       m_puserinteractionHost = nullptr;
       m_bBreak = false;
       m_puserinteraction = nullptr;
-      m_pmenuitema = __allocate item_ptra(this);
+      m_pmenuitema = øallocate item_ptra(this);
       m_iLevel = 0;
       m_bPopup = false;
       m_item.m_eelement = e_element_item;
@@ -138,7 +138,7 @@ namespace menu
       {
          string strCommand = straCommand[i];
          string strCommandTitle = straCommandTitle[i];
-         auto pitemNewChild = __allocate item();
+         auto pitemNewChild = øallocate item();
          pitemNewChild->m_bPopup = false;
          if (strCommand.is_empty())
          {
@@ -189,7 +189,7 @@ namespace menu
    item * item::separator()
    {
 
-      auto pitem = __create_new<item>();
+      auto pitem = øcreate_new<item>();
 
       pitem->id() = id_separator;
 
@@ -271,7 +271,7 @@ namespace menu
 
          auto pnodeChild = pnode->child_at(i);
 
-         auto pitemNewChild = __create_new<item>();
+         auto pitemNewChild = øcreate_new<item>();
 
          pitemNewChild->m_pmenu = m_pmenu;
 

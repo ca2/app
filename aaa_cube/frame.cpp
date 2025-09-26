@@ -34,7 +34,7 @@ namespace cube
 
       ::simple_frame_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_close, pchannel, this, &frame::on_message_close);
+      USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &frame::on_message_close);
 
    }
    //void frame::assert_ok() const

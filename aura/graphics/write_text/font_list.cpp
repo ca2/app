@@ -98,7 +98,7 @@ namespace write_text
    bool font_list::set_sel_by_name(const ::scoped_string & scopedstr)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::collection::index iSel = find_name(scopedstr);
 
@@ -137,7 +137,7 @@ namespace write_text
       //information() << "font_list::_001OnDrawWide 2";
       //information() << "font_list::_001OnDrawWide 3";
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -172,7 +172,7 @@ namespace write_text
 
          }
 
-         _synchronous_lock synchronouslockEnumeration(m_pfontenumeration->synchronization());
+         _synchronous_lock synchronouslockEnumeration(m_pfontenumeration->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pstyle = m_puserinteraction->get_style();
 
@@ -376,7 +376,7 @@ namespace write_text
    void font_list::_001OnDrawSingleColumn(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -444,7 +444,7 @@ namespace write_text
          //if (bCheckHover && rectangle.contains_y(pointCursor.y()))
          //{
 
-         //   //m_puserinteraction->m_pitemHover = __allocate ::item({ ::e_element_item, i });
+         //   //m_puserinteraction->m_pitemHover = øallocate ::item({ ::e_element_item, i });
 
          //   m_puserinteraction->m_pitemHover = pfontlistitem;
 
@@ -510,7 +510,7 @@ namespace write_text
    void font_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_efontlist == e_font_list_wide)
       {
@@ -533,7 +533,7 @@ namespace write_text
 
       text_box* pbox = &pitem->m_box[iBox];
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (::is_null(pbox))
       {
@@ -553,7 +553,7 @@ namespace write_text
 
          string str = pitem->m_strName;
 
-         __øconstruct(pbox->m_pfont);
+         øconstruct(pbox->m_pfont);
 
          if (str.case_insensitive_order("GOUDY STOUT") == 0)
          {
@@ -878,7 +878,7 @@ namespace write_text
 
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_pfontenumeration = pfontenumeration;
 
@@ -1001,7 +1001,7 @@ namespace write_text
       if (pfontlistdata == nullptr)
       {
 
-         pfontlistdata = __create_new < font_list_data >();
+         pfontlistdata = øcreate_new < font_list_data >();
 
          pfontlistdata->m_iSerial = 0;
 
@@ -1009,7 +1009,7 @@ namespace write_text
 
          auto countFont = m_pfontenumerationitema->get_count();
 
-         __defer_construct_new(pfontlistdata->m_pitema);
+         ødefer_construct_new(pfontlistdata->m_pitema);
 
          pfontlistdata->m_pitema->set_size(countFont);
 
@@ -1023,7 +1023,7 @@ namespace write_text
 
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             for (::collection::index iItem = 0; iItem < pfontlistdata->item_count(); )
             {
@@ -1119,7 +1119,7 @@ namespace write_text
 
             {
 
-               _synchronous_lock synchronouslock(this->synchronization());
+               _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                if (pfontlistdata->m_iSerial != iSerial)
                {
@@ -1155,7 +1155,7 @@ namespace write_text
 
                bNew = true;
 
-               plistitem = __allocate font_list_item();
+               plistitem = øallocate font_list_item();
 
                plistitem->m_item.m_iItem = iItem;
 
@@ -1188,7 +1188,7 @@ namespace write_text
 
             {
 
-               _synchronous_lock synchronouslock(this->synchronization());
+               _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                if (pfontlistdata->m_iSerial != iSerial)
                {
@@ -1269,7 +1269,7 @@ namespace write_text
    void font_list::layout()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::int_size sizeTotal;
 
@@ -1329,7 +1329,7 @@ namespace write_text
 
       information() << "font_list::layout_wide";
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::int_size sizeTotal;
 
@@ -1556,7 +1556,7 @@ namespace write_text
    ::int_size font_list::layout_single_column()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::int_size sizeTotal;
 
@@ -1614,7 +1614,7 @@ namespace write_text
    ::item_pointer font_list::hit_test(const ::int_point & point, ::user::e_zorder ezorder)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_efontlist == e_font_list_wide)
       {
@@ -1635,14 +1635,14 @@ namespace write_text
    ::item_pointer font_list::hit_test_wide(const ::int_point & point)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pfontlistdata = m_pfontlistdata;
 
       if (!pfontlistdata)
       {
 
-         auto pitemNone = __allocate ::item(::e_element_none);
+         auto pitemNone = øallocate ::item(::e_element_none);
 
          return pitemNone;
 
@@ -1677,14 +1677,14 @@ namespace write_text
          if (pfontlistitem->m_box[BOX].m_rectangle.contains(point))
          {
 
-            //return __allocate ::item(::e_element_item, iItem);
+            //return øallocate ::item(::e_element_item, iItem);
             return pfontlistitem;
 
          }
 
       }
 
-      //auto pitemNone = __allocate ::item(::e_element_none);
+      //auto pitemNone = øallocate ::item(::e_element_none);
 
       //return pitemNone;
 
@@ -1696,14 +1696,14 @@ namespace write_text
    ::item_pointer font_list::hit_test_single_column(const ::int_point & point)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pfontlistdata = m_pfontlistdata;
 
       if (!pfontlistdata)
       {
 
-         auto pitemNone = __allocate ::item(::e_element_none);
+         auto pitemNone = øallocate ::item(::e_element_none);
 
          return pitemNone;
 
@@ -1734,7 +1734,7 @@ namespace write_text
 
       }
 
-      //auto pitemNone = __allocate ::item(::e_element_none);
+      //auto pitemNone = øallocate ::item(::e_element_none);
 
       // return pitemNone;
 
@@ -1763,7 +1763,7 @@ namespace write_text
    bool font_list::get_box_rect(::int_rectangle * lprect, ::collection::index i)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_efontlist == e_font_list_wide)
       {
@@ -1784,7 +1784,7 @@ namespace write_text
    bool font_list::get_box_rect_wide(::int_rectangle * lprect, ::collection::index i)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pfontlistdata = m_pfontlistdata;
 
@@ -1821,7 +1821,7 @@ namespace write_text
    bool font_list::get_box_rect_single_column(::int_rectangle * lprect, ::collection::index i)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pfontlistdata = m_pfontlistdata;
 
@@ -1891,7 +1891,7 @@ namespace write_text
    ::collection::index font_list::find_name(const ::scoped_string & scopedstr)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pfontlistdata = m_pfontlistdata;
 

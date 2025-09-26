@@ -72,7 +72,7 @@ namespace platform
 //
 //      //enum_exclusive_instance                              m_eexclusiveinstance;
 //
-//      //string_map < ::pointer<::acme::exclusive >>    m_mapExclusive;
+//      //string_map_base < ::pointer<::acme::exclusive >>    m_mapExclusive;
 //
 //      //bool                                            m_bService;
 //
@@ -83,11 +83,11 @@ namespace platform
 //      ::pointer < ::mutex >                                           m_pmutexMatterLocator;
 //
 //      //::pointer < ::mutex >                                         m_pmutexStr;
-//      //string_table                                    m_stringtable;
-//      //string_table                                    m_stringtableStd;
-//      //map < atom, atom, string, string >                  m_stringmap;
+//      //string_table_base                                    m_stringtable;
+//      //string_table_base                                    m_stringtableStd;
+//      //map_base < atom, atom, string, string >                  m_stringmap;
 //
-//      //atom_map < ::pointer<::channel >>                m_mapNotify;
+//      //atom_map_base < ::pointer<::channel >>                m_mapNotify;
 //
 //      //::pointer<image_context>                       m_pimagecontext;
 //
@@ -136,7 +136,7 @@ namespace platform
 //
 //
 //      //string_array_base                                    m_straAppInterest;
-//      //string_map < oswindow, oswindow >               m_mapAppInterest;
+//      //string_map_base < oswindow, oswindow >               m_mapAppInterest;
 //
 //      //int                                             m_iGcomBackgroundUpdateMillis;
 //
@@ -157,7 +157,7 @@ namespace platform
 
       virtual void enumerate_composite(matter_array& a);
 
-      ::aura::game* game();
+      virtual ::aura::game* game();
 
 
       //virtual void _001CloseApplication() override;
@@ -451,18 +451,18 @@ namespace platform
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
 //pmessagebox->sync();
 
 
-      //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void ui_message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::aura::context_thread::message_box;
-      //virtual void message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box_timeout(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
 
       //virtual void on_file_new() override;
@@ -803,7 +803,7 @@ namespace platform
       virtual void add_user_interaction(::user::interaction * puserinteraction);
       virtual void erase_user_interaction(::user::interaction * puserinteraction);
 
-      // virtual bool send_message_to_windows(::enum_message emessage, ::wparam wparam, ::lparam lparam) override; // with tbs in <3
+      // virtual bool send_message_to_windows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override; // with tbs in <3
       //
       // virtual bool route_message_to_windows(::message::message * pmessage) override; // with tbs in <3
 
@@ -818,7 +818,7 @@ namespace platform
       // // user virtual ::user::document * place_hold(::user::interaction * pinteraction);
       //
       //
-      // virtual void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      // virtual void post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
       //
       //
       //virtual ::image::icon * set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon);

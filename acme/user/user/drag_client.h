@@ -17,7 +17,7 @@ namespace user
    public:
 
 
-      map < ::item_t, ::pointer<::user::drag >>       m_mapDrag;
+      map_base < ::item_t, ::pointer<::user::drag >>       m_mapDrag;
       ::pointer<::user::drag>                         m_pdragCurrent;
 
 

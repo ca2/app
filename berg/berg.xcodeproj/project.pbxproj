@@ -103,6 +103,10 @@
 		9A5ECD2728CCC1C20084D354 /* tab_drop_target_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECD2328CCC1620084D354 /* tab_drop_target_window.cpp */; };
 		9A615C3B28B1C5EE00377F68 /* tab_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A615C3A28B1C5BD00377F68 /* tab_document.cpp */; };
 		9A615C3C28B1C5EF00377F68 /* tab_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A615C3A28B1C5BD00377F68 /* tab_document.cpp */; };
+		9A7FEB3A2E7F46D70082C6FD /* options_impact_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEB382E7F46D70082C6FD /* options_impact_handler.h */; };
+		9A7FEB3B2E7F46D70082C6FD /* options_impact_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEB392E7F46D70082C6FD /* options_impact_handler.cpp */; };
+		9A7FEB3C2E7F46D70082C6FD /* options_impact_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEB382E7F46D70082C6FD /* options_impact_handler.h */; };
+		9A7FEB3D2E7F46D70082C6FD /* options_impact_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEB392E7F46D70082C6FD /* options_impact_handler.cpp */; };
 		9A88DAF02ACDD65000A34627 /* auto_hide.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88DAEE2ACDD65000A34627 /* auto_hide.cpp */; };
 		9A88DAF12ACDD65000A34627 /* auto_hide.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88DAEF2ACDD65000A34627 /* auto_hide.h */; };
 		9A92318327EAE4B400B5A78D /* impact_kit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92318127EAE4B400B5A78D /* impact_kit.cpp */; };
@@ -410,11 +414,13 @@
 		9A615C3928B1C5BD00377F68 /* tab_document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tab_document.h; sourceTree = "<group>"; };
 		9A615C3A28B1C5BD00377F68 /* tab_document.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tab_document.cpp; sourceTree = "<group>"; };
 		9A6D3F132A2E2A360081052F /* tab_graphics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tab_graphics.cpp; sourceTree = "<group>"; };
+		9A7FEB382E7F46D70082C6FD /* options_impact_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = options_impact_handler.h; sourceTree = "<group>"; };
+		9A7FEB392E7F46D70082C6FD /* options_impact_handler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = options_impact_handler.cpp; sourceTree = "<group>"; };
 		9A88DAEE2ACDD65000A34627 /* auto_hide.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = auto_hide.cpp; sourceTree = "<group>"; };
 		9A88DAEF2ACDD65000A34627 /* auto_hide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = auto_hide.h; sourceTree = "<group>"; };
 		9A92318127EAE4B400B5A78D /* impact_kit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = impact_kit.cpp; sourceTree = "<group>"; };
 		9A92318227EAE4B400B5A78D /* impact_kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = impact_kit.h; sourceTree = "<group>"; };
-		9A93B6FA2846EB33005ACD11 /* libios_base.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_base.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A93B6FA2846EB33005ACD11 /* libios_berg.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_berg.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A94E73129E22AFD00C8C249 /* toolbar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = toolbar.cpp; sourceTree = "<group>"; };
 		9A94E73229E22AFD00C8C249 /* status_bar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = status_bar.h; sourceTree = "<group>"; };
 		9A94E73329E22AFD00C8C249 /* toolbar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = toolbar.h; sourceTree = "<group>"; };
@@ -444,7 +450,7 @@
 		9AA4DCEF2C2BA35C00DAC645 /* item.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = item.cpp; sourceTree = "<group>"; };
 		9AAFBF7E2A8B2C35005D10AB /* handler_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = handler_impact.h; sourceTree = "<group>"; };
 		9AAFBF7F2A8B2C35005D10AB /* handler_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = handler_impact.cpp; sourceTree = "<group>"; };
-		9AD117F324F51BE400177261 /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AD117F324F51BE400177261 /* libberg.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libberg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD1181E24F51C4000177261 /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AD1183024F51CE500177261 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -577,6 +583,8 @@
 		9A1D5DA22751A98B003D9B5F /* user */ = {
 			isa = PBXGroup;
 			children = (
+				9A7FEB382E7F46D70082C6FD /* options_impact_handler.h */,
+				9A7FEB392E7F46D70082C6FD /* options_impact_handler.cpp */,
 				9A1D5E1C2751A98C003D9B5F /* _.h */,
 				9A5ECD2028CCC14E0084D354 /* _constant.h */,
 				9A1D5DE82751A98C003D9B5F /* _data.h */,
@@ -798,8 +806,8 @@
 		9AD117F424F51BE400177261 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AD117F324F51BE400177261 /* libbase.dylib */,
-				9A93B6FA2846EB33005ACD11 /* libios_base.a */,
+				9AD117F324F51BE400177261 /* libberg.dylib */,
+				9A93B6FA2846EB33005ACD11 /* libios_berg.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -835,6 +843,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A7FEB3C2E7F46D70082C6FD /* options_impact_handler.h in Headers */,
 				9A93B69D2846EB33005ACD11 /* impact_kit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -843,6 +852,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A7FEB3A2E7F46D70082C6FD /* options_impact_handler.h in Headers */,
 				9A92318427EAE4B400B5A78D /* impact_kit.h in Headers */,
 				9AAFBF802A8B2C35005D10AB /* handler_impact.h in Headers */,
 				9AA3FA872A96236C004283CA /* form_handler.h in Headers */,
@@ -853,9 +863,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9A93B6992846EB33005ACD11 /* ios_base */ = {
+		9A93B6992846EB33005ACD11 /* ios_berg */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A93B6F72846EB33005ACD11 /* Build configuration list for PBXNativeTarget "ios_base" */;
+			buildConfigurationList = 9A93B6F72846EB33005ACD11 /* Build configuration list for PBXNativeTarget "ios_berg" */;
 			buildPhases = (
 				9A93B69C2846EB33005ACD11 /* Headers */,
 				9A93B69E2846EB33005ACD11 /* Sources */,
@@ -865,14 +875,14 @@
 			dependencies = (
 				9A93B6FF2846EB66005ACD11 /* PBXTargetDependency */,
 			);
-			name = ios_base;
+			name = ios_berg;
 			productName = base;
-			productReference = 9A93B6FA2846EB33005ACD11 /* libios_base.a */;
+			productReference = 9A93B6FA2846EB33005ACD11 /* libios_berg.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		9AD117F224F51BE400177261 /* base */ = {
+		9AD117F224F51BE400177261 /* berg */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AD117FC24F51BE400177261 /* Build configuration list for PBXNativeTarget "base" */;
+			buildConfigurationList = 9AD117FC24F51BE400177261 /* Build configuration list for PBXNativeTarget "berg" */;
 			buildPhases = (
 				9AD117EF24F51BE400177261 /* Headers */,
 				9AD117F024F51BE400177261 /* Sources */,
@@ -884,9 +894,9 @@
 			dependencies = (
 				9AE649FB252A664C00BED5B8 /* PBXTargetDependency */,
 			);
-			name = base;
+			name = berg;
 			productName = base;
-			productReference = 9AD117F324F51BE400177261 /* libbase.dylib */;
+			productReference = 9AD117F324F51BE400177261 /* libberg.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -904,7 +914,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9AD117EE24F51BE400177261 /* Build configuration list for PBXProject "base" */;
+			buildConfigurationList = 9AD117EE24F51BE400177261 /* Build configuration list for PBXProject "berg" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -923,8 +933,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				9AD117F224F51BE400177261 /* base */,
-				9A93B6992846EB33005ACD11 /* ios_base */,
+				9AD117F224F51BE400177261 /* berg */,
+				9A93B6992846EB33005ACD11 /* ios_berg */,
 			);
 		};
 /* End PBXProject section */
@@ -1054,6 +1064,7 @@
 				9A93B6EC2846EB33005ACD11 /* dock_manager.cpp in Sources */,
 				9A93B6ED2846EB33005ACD11 /* experience_updown.cpp in Sources */,
 				9A5ECD1C28CCC0B80084D354 /* document.cpp in Sources */,
+				9A7FEB3D2E7F46D70082C6FD /* options_impact_handler.cpp in Sources */,
 				9A50C7552B6C7F0400FDB101 /* form_handler.cpp in Sources */,
 				9A5ECD1E28CCC0BF0084D354 /* impact.cpp in Sources */,
 				9A93B6EE2846EB33005ACD11 /* experience.cpp in Sources */,
@@ -1145,6 +1156,7 @@
 				9A1D5F162751B537003D9B5F /* department.cpp in Sources */,
 				9A1D5F172751B537003D9B5F /* dock_manager.cpp in Sources */,
 				9A1D5F182751B537003D9B5F /* experience_updown.cpp in Sources */,
+				9A7FEB3B2E7F46D70082C6FD /* options_impact_handler.cpp in Sources */,
 				9A5ECD1D28CCC0B90084D354 /* document.cpp in Sources */,
 				9A5ECD1F28CCC0C00084D354 /* impact.cpp in Sources */,
 				9A1D5F192751B537003D9B5F /* experience.cpp in Sources */,
@@ -1267,18 +1279,20 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/source/app/include",
+				);
 				USER_HEADER_SEARCH_PATHS = (
 					.,
 					"$(WorkspaceDir)/source",
-					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/source/app/include",
+					"$(WorkspaceDir)/source/app/_include",
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration_selection/$(CONFIGURATION)",
 					"$(WorkspaceDir)/port/_",
-					"$(WorkspaceDir)/port/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -1361,18 +1375,20 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/source/app/include",
+				);
 				USER_HEADER_SEARCH_PATHS = (
 					.,
 					"$(WorkspaceDir)/source",
-					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/source/app/include",
+					"$(WorkspaceDir)/source/app/_include",
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration_selection/$(CONFIGURATION)",
 					"$(WorkspaceDir)/port/_",
-					"$(WorkspaceDir)/port/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -1421,7 +1437,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A93B6F72846EB33005ACD11 /* Build configuration list for PBXNativeTarget "ios_base" */ = {
+		9A93B6F72846EB33005ACD11 /* Build configuration list for PBXNativeTarget "ios_berg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A93B6F82846EB33005ACD11 /* Debug */,
@@ -1430,7 +1446,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AD117EE24F51BE400177261 /* Build configuration list for PBXProject "base" */ = {
+		9AD117EE24F51BE400177261 /* Build configuration list for PBXProject "berg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AD117FA24F51BE400177261 /* Debug */,
@@ -1439,7 +1455,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AD117FC24F51BE400177261 /* Build configuration list for PBXNativeTarget "base" */ = {
+		9AD117FC24F51BE400177261 /* Build configuration list for PBXNativeTarget "berg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AD117FD24F51BE400177261 /* Debug */,

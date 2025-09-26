@@ -1,7 +1,7 @@
 // Created by camilo on 2023-08-12 20:42 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "list2.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font.h"
@@ -36,7 +36,7 @@ namespace user
 
       ::user::scroll_base::install_message_routing(psender);
 
-      MESSAGE_LINK(e_message_create, psender, this, &list2::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, psender, this, &list2::on_message_create);
 
       // add_command_handler("generate_and_copy_button", { this, &form_001::_001OnGenerateAndCopyButton });
       //add_command_handler("clear_button", { this, &form_001::_001OnClearButton });
@@ -66,7 +66,7 @@ namespace user
          });*/
 
 
-      //auto puser = __create_new <user>();
+      //auto puser = øcreate_new <user>();
 
       //puser->m_strEmail = "aaa@aaa.com";
 
@@ -75,37 +75,37 @@ namespace user
 
       //plabelTitle->set_font(pfont);
 
-      //__construct_new(m_pstill);
+      //øconstruct_new(m_pstill);
 
-      //__construct_new(m_pedit);
+      //øconstruct_new(m_pedit);
 
-      //__construct_new(m_pbuttonClear);
+      //øconstruct_new(m_pbuttonClear);
 
-      //__construct_new(m_pbuttonGenerateAndCopy);
+      //øconstruct_new(m_pbuttonGenerateAndCopy);
 
-      //__construct_new(m_pstillKey);
+      //øconstruct_new(m_pstillKey);
 
-      //__construct_new(m_peditKey);
+      //øconstruct_new(m_peditKey);
 
-      //__construct_new(m_pstillTrial);
+      //øconstruct_new(m_pstillTrial);
 
-      //__construct_new(m_pcheckboxTrial);
+      //øconstruct_new(m_pcheckboxTrial);
 
-      //__construct_new(m_pstillDays);
+      //øconstruct_new(m_pstillDays);
 
-      //__construct_new(m_peditDays);
+      //øconstruct_new(m_peditDays);
 
-      //__construct_new(m_pstillYear);
+      //øconstruct_new(m_pstillYear);
 
-      //__construct_new(m_peditYear);
+      //øconstruct_new(m_peditYear);
       //
-      //__construct_new(m_pstillMonth);
+      //øconstruct_new(m_pstillMonth);
       //
-      //__construct_new(m_peditMonth);
+      //øconstruct_new(m_peditMonth);
 
-      //__construct_new(m_pstillDay);
+      //øconstruct_new(m_pstillDay);
 
-      //__construct_new(m_peditDay);
+      //øconstruct_new(m_peditDay);
 
       //m_pstill->create_control(this, "still");
 
@@ -806,7 +806,7 @@ namespace user
 
    //   _001OnUpdateItemCount(0);
 
-   //   auto pxmldocument = __create_new < xml::document >();
+   //   auto pxmldocument = øcreate_new < xml::document >();
 
    //   pxmldocument->load(strXml);
 
@@ -861,7 +861,7 @@ namespace user
    //                     }
 
    //                     */
-   //         m_useritema.add(__allocate Item(item));
+   //         m_useritema.add(øallocate Item(item));
    //         iNode++;
    //      }
    //   }
@@ -885,7 +885,7 @@ namespace user
    //         item.m_iImage = m_iIconSong;
 
 
-   //         m_useritema.add(__allocate Item(item));
+   //         m_useritema.add(øallocate Item(item));
    //         iNode++;
    //      }
    //   }
@@ -934,7 +934,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto pfont = __øcreate < ::write_text::font >();
+      auto pfont = øcreate < ::write_text::font >();
 
       pfont->create_font(e_font_sans_ui, 12_pt);
 
@@ -987,7 +987,7 @@ namespace user
 
    //   m_pitema->clear();
 
-   //   auto puser = __create_new <user>();
+   //   auto puser = øcreate_new <user>();
 
    //   puser->m_strEmail = "Loading...";
 
@@ -1011,12 +1011,12 @@ namespace user
 
    //   auto payload = api_get(strUrl, set);
 
-   //   auto pitema = __create_new < pointer_array < ::item > >();
+   //   auto pitema = øcreate_new < pointer_array < ::item > >();
 
    //   for (auto & row : payload.payload_array_reference())
    //   {
 
-   //      auto puser = __create_new <user>();
+   //      auto puser = øcreate_new <user>();
 
    //      puser->m_strEmail = row[0];
 
@@ -1030,7 +1030,7 @@ namespace user
 
    //   //auto iHttpStatusCode = set["http_status_code"].as_int();
 
-   //   //synchronous_lock synchronouslock(this->synchronization());
+   //   //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //if (str.is_empty() || iHttpStatusCode != 200)
    //   //{
@@ -1098,12 +1098,12 @@ namespace user
 
    //   update_data();
 
-   //   //auto pitema = __create_new < pointer_array < ::item > >();
+   //   //auto pitema = øcreate_new < pointer_array < ::item > >();
 
    //   //for (auto& row : payload.payload_array_reference())
    //   //{
 
-   //   //   auto puser = __create_new <user>();
+   //   //   auto puser = øcreate_new <user>();
 
    //   //   puser->m_strEmail = row[0];
 
@@ -1135,12 +1135,12 @@ namespace user
 
    //   update_data();
 
-   //   //auto pitema = __create_new < pointer_array < ::item > >();
+   //   //auto pitema = øcreate_new < pointer_array < ::item > >();
 
    //   //for (auto& row : payload.payload_array_reference())
    //   //{
 
-   //   //   auto puser = __create_new <user>();
+   //   //   auto puser = øcreate_new <user>();
 
    //   //   puser->m_strEmail = row[0];
 

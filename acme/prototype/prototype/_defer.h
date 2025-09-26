@@ -20,7 +20,7 @@
 //
 //      critical_section_lock lock(::factory_critical_section());
 //
-//      auto pfactory = __allocate ::factory::factory_item< TYPE, BASE_TYPE > ();
+//      auto pfactory = øallocate ::factory::factory_item< TYPE, BASE_TYPE > ();
 //
 //      factory()->set_at(atom, pfactory);
 //
@@ -47,7 +47,7 @@
 //
 //      }
 //
-//      auto pfactoryitem = __allocate ::factory::factory_item< TYPE, BASE_TYPE > ();
+//      auto pfactoryitem = øallocate ::factory::factory_item< TYPE, BASE_TYPE > ();
 //
 //      factory_item < BASE_TYPE >(atomSource) = pfactoryitem;
 //
@@ -62,7 +62,7 @@
 //
 //      critical_section_lock lock(::factory_critical_section());
 //
-//      auto pfactory = __allocate ::factory::factory_item< TYPE, BASE_TYPE > ();
+//      auto pfactory = øallocate ::factory::factory_item< TYPE, BASE_TYPE > ();
 //
 //      factory_item < BASE_TYPE >() = pfactory;
 //
@@ -77,7 +77,7 @@
 //
 //      critical_section_lock lock(::factory_critical_section());
 //
-//      auto pfactory = __allocate ::factory::reusable_factory_item< TYPE, BASE_TYPE > ();
+//      auto pfactory = øallocate ::factory::reusable_factory_item< TYPE, BASE_TYPE > ();
 //
 //      factory_item < BASE_TYPE >() = pfactory;
 //

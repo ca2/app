@@ -79,7 +79,7 @@ CLASS_DECL_AURA ::pointer<::user::interaction>create_system_message_window(::par
 #include <sys/time.h>
 #endif
 
-extern string_map < ::pointer<::acme::library >>* g_pmapLibrary;
+extern string_map_base < ::pointer<::acme::library >>* g_pmapLibrary;
 
 
 CLASS_DECL_AURA void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr);
@@ -216,7 +216,7 @@ namespace aura
 
       enable_trace_category(e_trace_category_graphics_thread, false);
     
-      //__øconstruct(g_pmutexImage);
+      //øconstruct(g_pmutexImage);
 
       m_bProdevianMouse = false;
 
@@ -305,6 +305,28 @@ namespace aura
    }
 
 
+   ::windowing::window* system::get_main_host_window()
+   {
+
+      ::cast<::windowing::windowing> pwindowing = this->windowing();
+
+      if (::is_set(pwindowing)) {
+
+         ::cast<::windowing::window> pwindowApplicationHost = pwindowing->get_application_host_window();
+
+         if (::is_set(pwindowApplicationHost)) {
+
+            return pwindowApplicationHost;
+
+         }
+
+      }
+
+      return nullptr;
+
+   }
+
+
    // void system::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    // {
    //
@@ -346,7 +368,7 @@ namespace aura
 
       }
 
-      __øconstruct(m_phardwaredevices);
+      øconstruct(m_phardwaredevices);
 
    }
 
@@ -387,7 +409,7 @@ namespace aura
 //   ::acme::library * system::get_library(const ::scoped_string & scopedstrLibrary1, bool bOpenCa2)
 //   {
 //
-//      synchronous_lock synchronouslock(m_pmutexLibrary);
+//      synchronous_lock synchronouslock(m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      string strLibrary(scopedstrLibrary1);
 //
@@ -403,12 +425,12 @@ namespace aura
 //      if (plibrary.is_null())
 //      {
 //
-//         __øconstruct(plibrary, on_get_library(strLibrary));
+//         øconstruct(plibrary, on_get_library(strLibrary));
 //
 //         if (plibrary.is_null())
 //         {
 //
-//            __construct_new(plibrary);
+//            øconstruct_new(plibrary);
 //
 //            if (!plibrary->open(strLibrary))
 //            {
@@ -855,7 +877,7 @@ namespace aura
 //
 //      }
 
-      //estatus = __construct_new(m_pxml);
+      //estatus = øconstruct_new(m_pxml);
 
       //if (!estatus)
       //{
@@ -972,7 +994,7 @@ namespace aura
 //
 //#ifndef APPLE_IOS
 //
-//         auto estatus = __construct_new(m_pmachinehappeningcentral);
+//         auto estatus = øconstruct_new(m_pmachinehappeningcentral);
 //
 //         if (!estatus)
 //         {
@@ -999,7 +1021,7 @@ namespace aura
 //
 //      }
 
-      //if(!__øconstruct(m_pfilesystem))
+      //if(!øconstruct(m_pfilesystem))
       //{
 
       //   error() <<"failed to initialize file-system";
@@ -1008,7 +1030,7 @@ namespace aura
 
       //}
 
-      //if(!__øconstruct(m_pdirectorysystem))
+      //if(!øconstruct(m_pdirectorysystem))
       //{
 
       //   error() <<"failed to initialize dir-system";
@@ -1062,7 +1084,7 @@ namespace aura
       ////informationf("Common App Data (matter) : " + directory()->commonappdata() + "\n");
       ////informationf("common app data (matter) : " + directory()->commonappdata() + "\n");
 
-      //__construct_new(m_pcrypto);
+      //øconstruct_new(m_pcrypto);
 
       //if (!::is_set(m_pcrypto))
       //{
@@ -1095,7 +1117,7 @@ namespace aura
    void system::initialize_draw2d()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 
       ::e_status estatus = ::success;
@@ -1111,6 +1133,15 @@ namespace aura
             m_pfactoryDraw2d->merge_to_global_factory();
 
          }
+
+         auto p = node()->create_mutex();
+
+         p->increment_reference_count();
+
+         ::write_text::font::s_pmutexFontTextMap = dynamic_cast < ::mutex *>( p.m_p);
+
+         information() << "creating write_text::font";
+
          //else
          //{
 
@@ -1182,7 +1213,7 @@ namespace aura
 
       ///estatus = 
       
-      __øconstruct(m_pdraw2d);
+      øconstruct(m_pdraw2d);
 
       //if (!estatus)
       //{
@@ -1310,7 +1341,7 @@ namespace aura
       else if (strImplementationName == "directx12")
       {
 
-         strImplementationName = "direct2d";
+         //strImplementationName = "direct2d";
 
       }
 
@@ -1656,7 +1687,7 @@ namespace aura
       else if (strImplementationName == "directx12")
       {
 
-         strImplementationName = "direct2d";
+         //strImplementationName = "direct2d";
 
       }
 
@@ -1906,7 +1937,7 @@ namespace aura
 //
 //#endif
 
-      //auto estatus = __construct_new(m_puserstr);
+      //auto estatus = øconstruct_new(m_puserstr);
 
       //if (!m_puserstr || !estatus)
       //{
@@ -1939,7 +1970,7 @@ namespace aura
 
       //throw ::exception(todo("filehandler"));
 
-      //estatus = __construct_new(m_pfilehandler);
+      //estatus = øconstruct_new(m_pfilehandler);
 
       //if (!estatus)
       //{
@@ -2220,7 +2251,7 @@ namespace aura
 
       //   auto psystem = system();
 
-      //   synchronous_lock synchronouslock(m_pmutexLibrary2);
+      //   synchronous_lock synchronouslock(m_pmutexLibrary2, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   if (m_mapLibrary["draw2d"].is_set() && m_mapLibrary["draw2d"]->is_opened())
       //   {
@@ -2409,10 +2440,10 @@ namespace aura
    }
 
 
-   //unsigned int system::os_post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //unsigned int system::os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   post_to_all_threads(emessage, wparam, lparam);
+   //   post_to_all_threads(eusermessage, wparam, lparam);
 
    //   return 0;
 
@@ -2436,13 +2467,13 @@ namespace aura
    //}
 
 
-//   int system::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFileName, int iLineNumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat,va_list list)
+//   int system::_debug_logging_report(int iReportType, const ::scoped_string & scopedstrFileName, int iLineNumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat,va_list list_base)
 //   {
 //
 //      if(!m_ptrace || !m_ptrace->m_bExtendedLog)
 //      {
 //
-//         return ::apex::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
+//         return ::apex::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list_base);
 //
 //      }
 //
@@ -2478,10 +2509,10 @@ namespace aura
 //      if(scopedstrFormat != nullptr)
 //      {
 //
-////         if(list != nullptr)
+////         if(list_base != nullptr)
 //         {
 //
-//            str2.format(scopedstrFormat,list);
+//            str2.format(scopedstrFormat,list_base);
 //
 //         }
 //         //     else
@@ -2555,18 +2586,18 @@ namespace aura
 //   ::pointer< ::mutex > system::get_openweather_city_mutex()
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_spmutexOpenweatherCity.is_null())
 //      {
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
-//         m_spmutexOpenweatherCity = __allocate ::pointer < ::mutex > ();
+//         m_spmutexOpenweatherCity = øallocate ::pointer < ::mutex > ();
 //
 //#else
 //
-//         m_spmutexOpenweatherCity = __allocate ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
+//         m_spmutexOpenweatherCity = øallocate ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
 //
 //#endif
 //
@@ -2664,16 +2695,16 @@ namespace aura
    //::apex::session * system::session(::collection::index iEdge)
    //{
 
-   //   auto ppair = m_sessionmap.plookup(iEdge);
+   //   auto iterator = m_sessionmap.find(iEdge);
 
-   //   if (!ppair)
+   //   if (!iterator)
    //   {
 
    //      return nullptr;
 
    //   }
 
-   //   return ppair->element2();
+   //   return iterator->element2();
 
    //}
 
@@ -2712,7 +2743,7 @@ namespace aura
 
    //   }
 
-   //   auto estatus = __construct_new(m_ptrace);
+   //   auto estatus = øconstruct_new(m_ptrace);
 
    //   if (!estatus)
    //   {
@@ -2810,7 +2841,7 @@ namespace aura
 //
 //#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__APPLE__)
 //
-//            auto plauncher = __create_new<::apex::shell_launcher>();
+//            auto plauncher = øcreate_new<::apex::shell_launcher>();
 //
 //            // auto pcontext = get_context();
 //            
@@ -2846,7 +2877,7 @@ namespace aura
 //            throw ::exception(todo);
 //
 //#else
-//            auto plauncher = __create_new<::apex::shell_launcher>();
+//            auto plauncher = øcreate_new<::apex::shell_launcher>();
 //
 //            // auto pcontext = get_context();
 //
@@ -2888,7 +2919,7 @@ namespace aura
 //
 //#else
 //
-//            auto plauncher = __create_new<::apex::shell_launcher>();
+//            auto plauncher = øcreate_new<::apex::shell_launcher>();
 //
 //            // auto pcontext = get_context();
 //
@@ -2924,7 +2955,7 @@ namespace aura
 //
 //#else
 //
-//            auto plauncher = __create_new<::apex::shell_launcher>();
+//            auto plauncher = øcreate_new<::apex::shell_launcher>();
 //
 //            // auto pcontext = get_context();
 //
@@ -3418,7 +3449,7 @@ namespace aura
    //bool system::defer_accumulate_on_open_file(string_array_base stra, const ::scoped_string & scopedstrExtra)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_timeCommandLineLast.Now();
 
@@ -3484,7 +3515,7 @@ namespace aura
 
    //      merge_accumulated_on_open_file(pcreate);
 
-   //      papp->post_object(e_message_system, e_system_message_create, pcreate);
+   //      papp->post_object(::user::e_message_system, e_system_message_create, pcreate);
 
    //   }
 
@@ -3496,7 +3527,7 @@ namespace aura
    bool system::on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto applicationa = session()->m_applicationa;
 
@@ -3796,7 +3827,7 @@ namespace aura
 
 #elif defined(LINUX)
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_rectangleaMonitor.get_count();
 
@@ -3840,7 +3871,7 @@ namespace aura
 //
 //#elif defined(LINUX)
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (iMonitor < 0 || iMonitor >= get_monitor_count())
 //      {
@@ -3986,7 +4017,7 @@ namespace aura
 //
 //#elif defined(LINUX)
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (iWorkspace < 0 || iWorkspace >= get_workspace_count())
 //      {
@@ -4131,7 +4162,7 @@ namespace aura
 //      if (strProfile.is_empty() && strTarget.is_empty() && strBrowser.is_empty())
 //      {
 //
-//         //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, e_message_box_ok);
+//         //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, ::user::e_message_box_ok);
 
 //pmessagebox->sync();
 //
@@ -4269,7 +4300,7 @@ namespace aura
 //         string * pstrNew = ___new string(strUrl);
 //
 //         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-//            ref __allocate< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
+//            ref øallocate< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
 //               {
 //
 //                  ::winrt::Windows::Foundation::Uri ^ uri = ref ___new ::winrt::Windows::Foundation::Uri (*pstrNew);
@@ -4363,7 +4394,7 @@ namespace aura
 //
 //            strParam = " -c \"" + strCmd + "\"";
 //
-//            //MessageBox(nullptr, strParam, path, e_message_box_ok);
+//            //MessageBox(nullptr, strParam, path, ::user::e_message_box_ok);
 //
 //            call_async(shell, strParam, pathHome, e_display_default, false);
 //
@@ -4759,7 +4790,7 @@ namespace aura
 //   ::thread* system::get_task(itask itask)
 //   {
 //
-//      synchronous_lock synchronouslock(m_pmutexTask);
+//      synchronous_lock synchronouslock(m_pmutexTask, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      return m_threadmap[itask];
 //
@@ -4769,11 +4800,11 @@ namespace aura
 //   itask system::get_thread_id(::thread* pthread)
 //   {
 //
-//      synchronous_lock synchronouslock(m_pmutexTask);
+//      synchronous_lock synchronouslock(m_pmutexTask, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      itask itask = null_itask;
 //
-//      if (!m_threadidmap.lookup(pthread, itask))
+//      if (!m_threadidmap.find(pthread, itask))
 //      {
 //
 //         return 0;
@@ -4788,7 +4819,7 @@ namespace aura
 //   void system::set_thread(itask itask, ::thread* pthread)
 //   {
 //
-//      synchronous_lock synchronouslock(m_pmutexTask);
+//      synchronous_lock synchronouslock(m_pmutexTask, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      m_threadmap[itask].reset(pthread REFERENCING_DEBUGGING_COMMA_P_NOTE(this, "thread::thread_set"));
 //
@@ -4803,7 +4834,7 @@ namespace aura
 //      if (!m_pestamira)
 //      {
 //
-//         __construct_new(m_pestamira);
+//         øconstruct_new(m_pestamira);
 //
 //         m_pestamira->init_instance();
 //
@@ -4816,7 +4847,7 @@ namespace aura
 //   void system::unset_thread(itask itask, ::thread * pthread)
 //   {
 //
-//      synchronous_lock synchronouslock(m_pmutexTask);
+//      synchronous_lock synchronouslock(m_pmutexTask, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //#if REFERENCING_DEBUGGING
 //
@@ -4868,7 +4899,7 @@ namespace aura
 //
 //      //auto estatus =
 //      
-//      pfactoryGpu->__øconstruct(this, m_pgpu);
+//      pfactoryGpu->øconstruct(this, m_pgpu);
 //
 //      //if (!estatus)
 //      //{
@@ -4914,14 +4945,14 @@ namespace aura
 
    //   }
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   auto & threadgroupa = m_taskgroupmap[epriority];
 
    //   if (threadgroupa.is_empty())
    //   {
 
-   //      auto pgroup = __allocate ::task_group(this, epriority);
+   //      auto pgroup = øallocate ::task_group(this, epriority);
 
    //      threadgroupa.add(pgroup);
 
@@ -4935,14 +4966,14 @@ namespace aura
    //::task_tool * system::task_tool(::enum_task_tool etool)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   auto& threadtoola = m_tasktoolmap[etool];
 
    //   if (threadtoola.is_empty())
    //   {
 
-   //      auto ptool = __allocate ::task_tool();
+   //      auto ptool = øallocate ::task_tool();
 
    //      ptool->id() = etool;
 
@@ -5145,7 +5176,7 @@ namespace aura
    //::pointer<::aura::session>system::on_create_session()
    //{
 
-   //   return __allocate ::axis::session();
+   //   return øallocate ::axis::session();
 
    //}
 
@@ -5519,7 +5550,7 @@ namespace aura
   //      m_ppatch = ___new aura::patch ();
   //      g_pszCooperativeLevel = "aura";
   //
-  //      estatus = __øconstruct(m_puserset, __allocate ::account::user_set(this));
+  //      estatus = øconstruct(m_puserset, øallocate ::account::user_set(this));
   //
   //      if (!estatus)
   //      {
@@ -5628,7 +5659,7 @@ namespace aura
 
    //   }
 
-   //   auto estatus = __construct_new(m_pxml);
+   //   auto estatus = øconstruct_new(m_pxml);
 
    //   if (!estatus)
    //   {
@@ -5692,7 +5723,7 @@ namespace aura
       if (!m_phistory)
       {
 
-         __construct_new(m_phistory);
+         øconstruct_new(m_phistory);
 
       }
 
@@ -5717,7 +5748,7 @@ if(!m_pimaging)
    if (application()->m_bImaging)
    {
 
-      __construct_new(m_pimaging);
+      øconstruct_new(m_pimaging);
 
    }
 }
@@ -5746,7 +5777,7 @@ if(!m_pimaging)
    //    if (application()->m_bImaging)
    //    {
    //
-   //       __construct_new(m_pimaging);
+   //       øconstruct_new(m_pimaging);
    //
    //    }
    //    /*/if (!estatus)
@@ -5931,7 +5962,7 @@ if(!m_pimaging)
 //   void system::init1()
 //   {
 //
-//      m_pfilehandler = __allocate ::filehandler::handler(this);
+//      m_pfilehandler = øallocate ::filehandler::handler(this);
 //
 //      //if (!::aura::application::init1())
 //      //{
@@ -6044,7 +6075,7 @@ if(!m_pimaging)
 
    //   if(m_phistory == nullptr)
    //   {
-   //      m_phistory = __allocate os_history(this);
+   //      m_phistory = øallocate os_history(this);
    //   }
 
    //   return true;
@@ -6078,7 +6109,7 @@ if(!m_pimaging)
 
    //   //}
 
-   //   //m_pbergedgemap = __allocate ::aura::session::map();
+   //   //m_pbergedgemap = øallocate ::aura::session::map();
 
 
    //   return true;
@@ -6159,7 +6190,7 @@ if(!m_pimaging)
    //::pointer<::aura::session>system::on_create_session()
    //{
 
-   //   return __allocate ::aura::session();
+   //   return øallocate ::aura::session();
 
    //}
 
@@ -6176,7 +6207,7 @@ if(!m_pimaging)
 
    //   }
 
-   //   if(!m_pbergedgemap->lookup(iEdge,pbergedge))
+   //   if(!m_pbergedgemap->find(iEdge,pbergedge))
    //   {
 
    //      return nullptr;
@@ -6200,7 +6231,7 @@ if(!m_pimaging)
    //void system::set_history(::apex::history* phistory)
    //{
 
-   //   auto estatus = __øconstruct(m_phistory, phistory);
+   //   auto estatus = øconstruct(m_phistory, phistory);
 
    //   if (!estatus)
    //   {
@@ -6385,7 +6416,7 @@ if(!m_pimaging)
 
    //   ::aura::session * pbergedge = nullptr;
 
-   //   while(m_pbergedgemap->lookup(iNewEdge,pbergedge))
+   //   while(m_pbergedgemap->find(iNewEdge,pbergedge))
    //   {
 
    //      iNewEdge++;
@@ -6710,11 +6741,11 @@ if(!m_pimaging)
        //}
 
        //auto estatus =
-       pfactory->__øconstruct(this, m_pestamira);
+       pfactory->øconstruct(this, m_pestamira);
 
       //auto estatus = 
       
-//      __øconstruct(m_pestamira, pfactory->create < ::aqua::estamira > ());
+//      øconstruct(m_pestamira, pfactory->create < ::aqua::estamira > ());
 
       //if (!estatus)
       //{
@@ -7087,7 +7118,7 @@ if(!m_pimaging)
    //bool system::on_application_menu_action(const ::scoped_string & scopedstrCommand)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   
 

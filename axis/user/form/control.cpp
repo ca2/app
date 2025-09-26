@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "control.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/handler/topic.h"
 #include "acme/handler/extended_topic.h"
@@ -70,7 +70,7 @@ namespace user
    //::pointer<class control_descriptor> form_control::new_form_control()
    //{
 
-   //   auto pdescriptor = __allocate ::user::control_descriptor();
+   //   auto pdescriptor = øallocate ::user::control_descriptor();
 
    //   m_controldescriptorset.add(pdescriptor);
 
@@ -878,12 +878,12 @@ namespace user
 
       form::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel,this,&form_control::on_message_create);
-      MESSAGE_LINK(e_message_after_create, pchannel,this,&form_control::_000OnPosCreate);
-      MESSAGE_LINK(e_message_language, pchannel,this,&form_control::_001OnAppLanguage);
-      //MESSAGE_LINK(e_message_key_down                     , pchannel,this,&form_control::on_message_key_down);
-      //MESSAGE_LINK(e_message_key_up                       , pchannel,this,&form_control::on_message_key_up);
-      MESSAGE_LINK(WM_USER + 123, pchannel,this,&form_control::_001OnUser123);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel,this,&form_control::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_after_create, pchannel,this,&form_control::_000OnPosCreate);
+      USER_MESSAGE_LINK(::user::e_message_language, pchannel,this,&form_control::_001OnAppLanguage);
+      //USER_MESSAGE_LINK(::user::e_message_key_down                     , pchannel,this,&form_control::on_message_key_down);
+      //USER_MESSAGE_LINK(::user::e_message_key_up                       , pchannel,this,&form_control::on_message_key_up);
+      USER_MESSAGE_LINK(WM_USER + 123, pchannel,this,&form_control::_001OnUser123);
 
       //install_update_data_message_routing(pchannel);
 
@@ -1068,7 +1068,7 @@ namespace user
    void form_control::WfiOnClose()
    {
 
-      post_message(e_message_close);
+      post_message(::user::e_message_close);
 
    }
 
@@ -1237,7 +1237,7 @@ namespace user
 
    ///*   ::pointer<object>pparticle;
 
-   //   __id_construct(pparticle, pdescriptor->m_type);
+   //   øid_construct(pparticle, pdescriptor->m_type);
 
    //   if(!pparticle)
    //   {
@@ -1709,7 +1709,7 @@ namespace user
       if(m_pcallback != nullptr)
       {
          
-         auto pextendedtopic = __allocate ::extended_topic(id_timer);
+         auto pextendedtopic = øallocate ::extended_topic(id_timer);
          
          pextendedtopic->m_puserelement = this;
          

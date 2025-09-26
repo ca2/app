@@ -30,7 +30,7 @@
      This is a 7x8 fixed-width Unicode font.  I have recoded this
      to an MS-DOS character mapping using the pfaedit font editor
      (http://pfaedit.sourceforge.net) along with a custom-coding
-     file I created called msdos.map, and have saved it as a BDF file,
+     file I created called msdos.map_base, and have saved it as a BDF file,
      Console-8.bdf.  The BDF file was transformed to the format
      seen within the present file by exporting it as a "hex" file
      with the xmbdfed editor (http://crl.nmsu.edu/~mleisher/xmbdfed.html).

@@ -46,7 +46,7 @@
   associated, and if so, frees the Pixmap.  In either case, it then goes
   ahead to free the object's actual memory.
 
-  A linked list is maintained of these Pixmaps that have magically been
+  A linked list_base is maintained of these Pixmaps that have magically been
 /*  created by getpimage->
 */
 
@@ -55,7 +55,7 @@
 #ifdef WITH_X
 
 //-------------------------------------------------------------------------
-// This is the stuff for the linked list of allocated memory blocks
+// This is the stuff for the linked list_base of allocated memory blocks
 // associated with Pixmaps.
 
 struct PixmappedBlock
@@ -70,7 +70,7 @@ static struct PixmappedBlock *PixmappedRoot = NULL;
 //-------------------------------------------------------------------------
 // This is the function which is called by getimage to associate a Pixmap
 // with an already-allocated memory block.  If the block is not in the
-// list already, it will be added.  If the block *is* in the list, its old
+// list_base already, it will be added.  If the block *is* in the list_base, its old
 // Pixmap will be freed and then the ___new one added.  Returns 0 on success,
 // non-zero if out of memory.
 
@@ -78,7 +78,7 @@ extern int
 AssociatePixmap (void *object, Pixmap handle)
 {
    struct PixmappedBlock *Block, *LastBlock = NULL;
-   // If the list is empty, just add the ___new block.
+   // If the list_base is empty, just add the ___new block.
    if (PixmappedRoot == NULL)
    {
       PixmappedRoot =
@@ -90,7 +90,7 @@ AssociatePixmap (void *object, Pixmap handle)
       PixmappedRoot->Next = NULL;
       return (0);
    }
-   // Navigate the linked list to see if this block is already in it!
+   // Navigate the linked list_base to see if this block is already in it!
    // Note that this is guaranteed to iterate at least once, so if it falls
    // through, we know that LastBlock has been initialized.
    for (Block = PixmappedRoot; Block != NULL;
@@ -108,7 +108,7 @@ AssociatePixmap (void *object, Pixmap handle)
          }
          return (0);
       }
-   // The block wasn't in the list, so add it.
+   // The block wasn't in the list_base, so add it.
    Block = (struct PixmappedBlock *) malloc (sizeof (struct PixmappedBlock));
    if (Block == NULL)
       return (1);
@@ -122,7 +122,7 @@ AssociatePixmap (void *object, Pixmap handle)
 //-------------------------------------------------------------------------
 // This is the replacement for "free".  Free the allocated object, as usual,
 // but if there's a Pixmap associated with the object, then free the Pixmap
-// and erase the Pixmap-association entry in the linked list.
+// and erase the Pixmap-association entry in the linked list_base.
 
 extern void
 freeTurbo (void *object)
@@ -131,10 +131,10 @@ freeTurbo (void *object)
    // We can free the regular memory right away, because we don't actually
    // use it for anything below; we're only interested in its pointer.
    freeUnix (object);
-   // Check if the list is empty.
+   // Check if the list_base is empty.
    if (PixmappedRoot == NULL)
       return;
-   // Navigate the linked list to see if this block is in it!
+   // Navigate the linked list_base to see if this block is in it!
    for (Block = PixmappedRoot; Block != NULL;
          LastBlock = Block, Block = Block->Next)
       if (Block->Object == object)

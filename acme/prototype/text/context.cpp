@@ -18,7 +18,7 @@ namespace text
    {
 
 
-      m_plocaleschema = __allocate ::text::international::locale_schema();
+      m_plocaleschema = øallocate ::text::international::locale_schema();
 
 
    }
@@ -222,7 +222,7 @@ namespace text
 
       return true;
 
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      string strMain = pszBaseDir;
 //
@@ -437,16 +437,21 @@ namespace text
                const schema * pschema = plocale->get_schema(scopedstrSchema);
                if(pschema != nullptr)
                {
-                  table = (*pschema)[atom];
-                  if(table.has_character())
-                     return table;
+                  
+                  auto p = pschema->find(atom);
+                  if (p)
+                  {
+
+                     return p->element2();
+
+                  }
                }
             }
 
             const schema * pschema = plocale->get_schema(scopedstrLocale);
             if(pschema != nullptr)
             {
-               auto ptable = pschema->find_item(atom);
+               auto ptable = pschema->find(atom);
                if(ptable && ptable->element2().has_character())
                   return ptable->element2();
             }
@@ -1140,7 +1145,7 @@ namespace text
    //bool context::match(string_array_base & stra, const ::scoped_string & scopedstr, ::atom idExpression, ::atom idRoot) const
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   string_array_base straCandstrate;
 

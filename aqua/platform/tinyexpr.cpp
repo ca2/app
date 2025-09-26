@@ -70,7 +70,7 @@ namespace tinyexpr
       union {double value; const double * bound; te_function function;};
       te_expr *context;
       
-      const te_variable *lookup;
+      const te_variable *find;
       int lookup_len;
       
       state(){}
@@ -213,9 +213,9 @@ namespace tinyexpr
    static const te_variable *find_lookup(const state *s, const_char_pointer name, int len) {
       int iters;
       const te_variable *var;
-      if (!s->lookup) return 0;
+      if (!s->find) return 0;
       
-      for (var = s->lookup, iters = s->lookup_len; iters; ++var, --iters) {
+      for (var = s->find, iters = s->lookup_len; iters; ++var, --iters) {
          if (strncmp(name, var->name, len) == 0 && var->name[len] == '\0') {
             return var;
          }
@@ -300,12 +300,12 @@ namespace tinyexpr
    }
    
    
-   static te_expr *list(state *s);
+   static te_expr *list_base(state *s);
    static te_expr *expr(state *s);
    static te_expr *power(state *s);
    
    static te_expr *base(state *s) {
-      /* <base>      =    <constant> | <variable> | <function-0> {"(" ")"} | <function-1> <power> | <function-X> "(" <expr> {"," <expr>} ")" | "(" <list> ")" */
+      /* <base>      =    <constant> | <variable> | <function-0> {"(" ")"} | <function-1> <power> | <function-X> "(" <expr> {"," <expr>} ")" | "(" <list_base> ")" */
       te_expr *ret;
       int arity;
       
@@ -380,7 +380,7 @@ namespace tinyexpr
             
          case TOK_OPEN:
             next_token(s);
-            ret = list(s);
+            ret = list_base(s);
             if (s->type != TOK_CLOSE) {
                s->type = TOK_ERROR;
             } else {
@@ -506,8 +506,8 @@ namespace tinyexpr
    }
    
    
-   static te_expr *list(state *s) {
-      /* <list>      =    <expr> {"," <expr>} */
+   static te_expr *list_base(state *s) {
+      /* <list_base>      =    <expr> {"," <expr>} */
       te_expr *ret = expr(s);
       
       while (s->type == TOK_SEP) {
@@ -596,11 +596,11 @@ namespace tinyexpr
    te_expr *te_compile(const_char_pointer expression, const te_variable *variables, int var_count, int *error) {
       state s;
       s.start = s.next = expression;
-      s.lookup = variables;
+      s.find = variables;
       s.lookup_len = var_count;
       
       next_token(&s);
-      te_expr *root = list(&s);
+      te_expr *root = list_base(&s);
       
       if (s.type != TOK_END) {
          te_free(root);

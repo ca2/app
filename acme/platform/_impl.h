@@ -74,7 +74,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      }
 //
-//      auto pappNew = __allocate APP();
+//      auto pappNew = øallocate APP();
 //
 //      if(pappNew == nullptr)
 //      {
@@ -150,7 +150,7 @@ const_char_pointer memory_counter_id(T * pthis)
 //
 //      _memory_counter_increment(scopedstr);
 //
-//      //synchronous_lock synchronouslock(g_pmutexMemoryCounters);
+//      //synchronous_lock synchronouslock(g_pmutexMemoryCounters, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      //int i = atoi(file_system()->as_string(path));
 //
@@ -431,7 +431,7 @@ const_char_pointer memory_counter_id(T * pthis)
 ////   while (c > 0)
 ////   {
 ////
-////      auto p = __allocate TYPE(&a);
+////      auto p = øallocate TYPE(&a);
 ////
 ////      stream >> *p;
 ////
@@ -500,7 +500,7 @@ const_char_pointer memory_counter_id(T * pthis)
 
 
 //template < typename T, typename ...Args >
-//inline T * __call__allocate(Args &&... args)
+//inline T * __calløallocate(Args &&... args)
 //{
 //
 //   auto p = ::platform::allocator::__callnew T (::std::forward < Args >(args)...);
@@ -520,7 +520,7 @@ const_char_pointer memory_counter_id(T * pthis)
 
 //
 //template < typename T >
-//inline T * __allocate_array(::collection::count c)
+//inline T * øallocate_array(::collection::count c)
 //{
 //
 //   auto p = ::platform::allocator::new  T[c];

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0793EA2B1CA4063B001374D8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0793EA2A1CA4063B001374D8 /* libaura.dylib */; };
-		0793EA2D1CA40726001374D8 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0793EA2C1CA40726001374D8 /* libbase.dylib */; };
+		0793EA2D1CA40726001374D8 /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0793EA2C1CA40726001374D8 /* libberg.dylib */; };
 		0793EA2F1CA4074C001374D8 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0793EA2E1CA4074C001374D8 /* libaxis.dylib */; };
 		07A6FBE01BA0E28F00D9C008 /* user_button.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6FBDC1BA0E28F00D9C008 /* user_button.h */; };
 		07A6FBE21BA0E28F00D9C008 /* user_control_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6FBDE1BA0E28F00D9C008 /* user_control_box.h */; };
@@ -114,7 +114,7 @@
 /* Begin PBXFileReference section */
 		077A022E1B4D5B2C001C85FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		0793EA2A1CA4063B001374D8 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = ../../app/aura/build/Debug/libaura.dylib; sourceTree = "<group>"; };
-		0793EA2C1CA40726001374D8 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = ../../app/base/build/Debug/libbase.dylib; sourceTree = "<group>"; };
+		0793EA2C1CA40726001374D8 /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = ../../app/base/build/Debug/libberg.dylib; sourceTree = "<group>"; };
 		0793EA2E1CA4074C001374D8 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = ../../app/axis/build/Debug/libaxis.dylib; sourceTree = "<group>"; };
 		07A6FBDB1BA0E28F00D9C008 /* user_button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_button.cpp; sourceTree = "<group>"; };
 		07A6FBDC1BA0E28F00D9C008 /* user_button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_button.h; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 		9A6630541D210AD200664CE3 /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../app/base/build/Debug-iphoneos/libios_base.dylib"; sourceTree = "<group>"; };
 		9A6630561D210AF800664CE3 /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../../../macos/app/axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
 		9A6630581D210B0200664CE3 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../../app/aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
-		9A6716831D1558630069A961 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../app/base/build/Debug-iphoneos/libbase.dylib"; sourceTree = "<group>"; };
+		9A6716831D1558630069A961 /* libberg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libberg.dylib; path = "../../app/base/build/Debug-iphoneos/libberg.dylib"; sourceTree = "<group>"; };
 		9A6716861D15586E0069A961 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../../app/axis/build/Debug-iphoneos/libaxis.dylib"; sourceTree = "<group>"; };
 		9A6716881D1558770069A961 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-ios-hcjyrbebieoraofrrypdpkveyzyc/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
 		9A9705B81915E3B400032B50 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../app/aura/.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -196,7 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0793EA2F1CA4074C001374D8 /* libaxis.dylib in Frameworks */,
-				0793EA2D1CA40726001374D8 /* libbase.dylib in Frameworks */,
+				0793EA2D1CA40726001374D8 /* libberg.dylib in Frameworks */,
 				0793EA2B1CA4063B001374D8 /* libaura.dylib in Frameworks */,
 				07B6597D190F44A9002DAADE /* Foundation.framework in Frameworks */,
 				9A8B50A919C90CD300E4F4D9 /* libcore.dylib in Frameworks */,
@@ -228,9 +228,9 @@
 				9A5CDDA91D20FEC60093150A /* libios_core.dylib */,
 				9A6716881D1558770069A961 /* libaura.dylib */,
 				9A6716861D15586E0069A961 /* libaxis.dylib */,
-				9A6716831D1558630069A961 /* libbase.dylib */,
+				9A6716831D1558630069A961 /* libberg.dylib */,
 				0793EA2E1CA4074C001374D8 /* libaxis.dylib */,
-				0793EA2C1CA40726001374D8 /* libbase.dylib */,
+				0793EA2C1CA40726001374D8 /* libberg.dylib */,
 				0793EA2A1CA4063B001374D8 /* libaura.dylib */,
 				077A022E1B4D5B2C001C85FF /* UIKit.framework */,
 				9AE24E5C1904CFE2001AEFFB /* Foundation.framework */,

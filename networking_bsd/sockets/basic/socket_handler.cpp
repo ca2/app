@@ -44,7 +44,7 @@ int __is_ok_socket(socket_id fd) {
 #define FD_COPY(pfdsetSrc, pfdsetDst) (*(pfdsetDst)) = (*(pfdsetSrc))
 
 #endif
-#include "acme/_finish.h"
+//#include "acme/_finish.h"
 
 
 namespace sockets_bsd
@@ -279,7 +279,7 @@ namespace sockets_bsd
          if (psocket->IsCloseAndDelete())
          {
 
-            m_delete.add_tail(psocket);
+            m_socketlistDelete.add_tail(psocket);
 
          }
 
@@ -287,9 +287,9 @@ namespace sockets_bsd
 
       }
 
-      socket_pointer plookup;
+      socket_pointer find;
 
-      if (m_socketmapAdd.lookup((int)psocket->GetSocketId(), plookup))
+      if (m_socketmapAdd.find((int)psocket->GetSocketId(), find))
       {
 
          information() << "add: Invalid socket " << (int)psocket->GetSocketId() << " Attempt to add socket already in add queue";
@@ -307,7 +307,7 @@ namespace sockets_bsd
          if (psocketImpl->m_timeConnectionMaximum > 0_s)
          {
 
-            socket_id_list_add(psocket->GetSocketId(), e_list_timeout);
+            m_socketlistTimeout.add_unique(psocket->GetSocketId());
 
          }
 
@@ -320,22 +320,22 @@ namespace sockets_bsd
          if (psocketImpl->m_timeKeepConnectionAfterLastIO > 0_s)
          {
 
-            socket_id_list_add(psocket->GetSocketId(), e_list_timeout);
+            m_socketlistTimeout.add_unique(psocket->GetSocketId());
 
          }
          else
          {
 
-            socket_id_list_erase(psocket->GetSocketId(), e_list_timeout);
+            m_socketlistTimeout.erase(psocket->GetSocketId());
 
          }
 
       }
 
-      if (psocket->IsDetach())
+      if (!m_bSlave && psocket->IsDetach())
       {
 
-         socket_id_list_add(psocket->GetSocketId(), e_list_detach);
+         m_socketlistDetach.add_unique(psocket->GetSocketId());
 
       }
 
@@ -356,17 +356,17 @@ namespace sockets_bsd
    void socket_handler::restart_socket(SOCKET socket)
    {
 
-      auto passociation = m_socketmap.find_item(socket);
+      auto iterator = m_socketmap.find(socket);
 
-      if (passociation->m_psocket->is_connecting())
+      if (iterator->m_psocket->is_connecting())
       {
          
-         ::pointer < ::sockets_bsd::base_socket > psocketImpl = passociation->m_psocket;
+         ::pointer < ::sockets_bsd::base_socket > psocketImpl = iterator->m_psocket;
 
          if (psocketImpl->m_timeConnectionMaximum > 0_s)
          {
 
-            socket_id_list_add(passociation->m_psocket->GetSocketId(), e_list_timeout);
+            m_socketlistTimeout.add_unique(iterator->m_psocket->GetSocketId());
 
          }
 
@@ -374,24 +374,24 @@ namespace sockets_bsd
       else
       {
 
-         ::pointer < ::sockets_bsd::base_socket > psocketImpl = passociation->m_psocket;
+         ::pointer < ::sockets_bsd::base_socket > psocketImpl = iterator->m_psocket;
 
          if (psocketImpl->m_timeKeepConnectionAfterLastIO > 0_s)
          {
 
-            ::pointer < ::sockets_bsd::base_socket > psocket2 = passociation->m_psocket;
+            ::pointer < ::sockets_bsd::base_socket > psocket2 = iterator->m_psocket;
 
-            socket_id_list_add(psocket2->GetSocketId(), e_list_timeout);
+            m_socketlistTimeout.add_unique(psocket2->GetSocketId());
 
          }
 
       }
 
-      passociation->m_psocket->m_estatus = ::success;
+      iterator->m_psocket->m_estatus = ::success;
 
-      m_socketmapAdd[passociation->element1()] = passociation->element2();
+      m_socketmapAdd[iterator->element1()] = iterator->element2();
 
-      auto xxx = m_socketmapAdd[passociation->element1()];
+      auto xxx = m_socketmapAdd[iterator->element1()];
 
    }
 
@@ -606,7 +606,7 @@ namespace sockets_bsd
    bool socket_handler::contains_socket_id(socket_id socketid)
    {
 
-      return m_socketmap.plookup(socketid);
+      return m_socketmap.find(socketid);
 
    }
 
@@ -616,21 +616,21 @@ namespace sockets_bsd
 
       socket_pointer psocket = pbasesocket;
 
-      if (::generic::map::contains_payload(m_socketmap, psocket))
+      if (::generic::map_base::contains_payload(m_socketmap, psocket))
       {
 
          return true;
 
       }
 
-      if (::generic::map::contains_payload(m_socketmapAdd, psocket))
+      if (::generic::map_base::contains_payload(m_socketmapAdd, psocket))
       {
 
          return true;
 
       }
 
-      if (m_delete.contains(psocket))
+      if (m_socketlistDelete.contains(psocket))
       {
 
          return true;
@@ -660,12 +660,12 @@ namespace sockets_bsd
 
             socket_pointer psocket;
 
-            if (!m_socketmap.lookup(socket, psocket)) // not found
+            if (!m_socketmap.find(socket, psocket)) // not found
             {
 
                warning() <<"socket_handler " << (int)socket << " Did not find expected socket using file descriptor(4)";
 
-               socket_id_list_erase(psocket->GetSocketId(), e_list_call_on_connect);
+               m_socketlistCallOnConnect.erase(psocket->GetSocketId());
 
             }
 
@@ -734,9 +734,9 @@ namespace sockets_bsd
 
                      }
 
-                     ptcpsocket->SetCallOnConnect(false);
+                     ptcpsocket->clear_call_on_connect();
 
-                     socket_id_list_erase(psocket->GetSocketId(), e_list_call_on_connect);
+                     m_socketlistCallOnConnect.erase(psocket->GetSocketId());
 
                   }
 
@@ -822,7 +822,7 @@ start_processing_adding:
 
             m_socketmap[passociationAdd->element1()] = passociationAdd->element2();
 
-            socket_id_list_add(socket, e_list_close);
+            m_socketlistClose.add_unique(socket);
 
             goto start_processing_adding;
 
@@ -868,7 +868,7 @@ start_processing_adding:
 
          m_socketmap[socket] = psocket;
 
-         m_socketmapAdd.erase_item(socket);
+         m_socketmapAdd.erase(socket);
 
          if (m_bSlave && psocket->IsDetach())
          {
@@ -1213,16 +1213,16 @@ end_processing_adding:
             //   if (bAnySet)
             //   {
 
-            //      auto ppairSocket = m_socketmap.plookup(socket);
+            //      auto iteratorSocket = m_socketmap.find(socket);
 
-            //      if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
+            //      if (::is_set(iteratorSocket) && ::is_set(iteratorSocket->m_psocket))
             //      {
 
             //         information() << "Bad fd in fd_set: " << socket;
 
             //         information() << "Deleting and removing socket: " << socket;
 
-            //         ppairSocket->m_psocket->SetCloseAndDelete();
+            //         iteratorSocket->m_psocket->SetCloseAndDelete();
 
             //      }
 
@@ -1232,8 +1232,8 @@ end_processing_adding:
 
          }
 
-         /// \no more todo rebuild fd_set's from active networking_bsd list (m_socketmap) here
-         /// done : http://jbmon.googlecode.com/svn/trunk/networking_bsd/SocketHandler.cpp : rebuild fd_set's from active networking_bsd list (m_socketmap) here
+         /// \no more todo rebuild fd_set's from active networking_bsd list_base (m_socketmap) here
+         /// done : http://jbmon.googlecode.com/svn/trunk/networking_bsd/SocketHandler.cpp : rebuild fd_set's from active networking_bsd list_base (m_socketmap) here
          {
 
             //FD_ZERO(&rfds);
@@ -1276,7 +1276,7 @@ end_processing_adding:
 
                         p->m_psocket->error() << " Select " << (int)p->m_socketid << "Bad fd in fd_set (2)"; // ->error() << LOG_LEVEL_ERROR);
 
-                        m_socketlistErase.add(p->m_socketid);
+                        m_socketlistErase.add_unique(p->m_socketid);
 
                      }
                      //else
@@ -1338,7 +1338,7 @@ end_processing_adding:
 
                      p->m_psocket->error() << "Select" << (int)p->m_socketid << "Bad fd in fd_set (3)"; // ->error() << LOG_LEVEL_ERROR);
 
-                     m_socketlistErase.add(p->m_socketid);
+                     m_socketlistErase.add_unique(p->m_socketid);
 
                   }
 
@@ -1350,7 +1350,7 @@ end_processing_adding:
 
                   p->m_psocket->error() << "Select" << (int)p->m_socketid << "Bad fd in fd_set (3)"; // ->error() << LOG_LEVEL_ERROR);
 
-                  m_socketlistErase.add(p->m_socketid);
+                  m_socketlistErase.add_unique(p->m_socketid);
 
                }
 
@@ -1388,7 +1388,7 @@ end_processing_adding:
 
          auto p = m_socketlist.begin();
 
-         for (; p.is_ok() && n; p++)
+         for (; m_socketlist.is_iterator_ok(p) && n; p++)
          {
             
             SOCKET socket = *p;
@@ -1396,7 +1396,7 @@ end_processing_adding:
             if (FD_ISSET(socket, &rfds))
             {
                
-               auto ppairSocket = m_socketmap.plookup(socket);
+               auto iteratorSocket = m_socketmap.find(socket);
 
                //if (m_iMaxKeepAliveCount > 0)
                //{
@@ -1405,56 +1405,56 @@ end_processing_adding:
 
                //}
 
-               if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket)) // found
+               if (::is_set(iteratorSocket) && ::is_set(iteratorSocket->m_psocket)) // found
                {
 
-                  //if (ppairSocket->m_psocket->m_iKeepAliveCount > 0)
+                  //if (iteratorSocket->m_psocket->m_iKeepAliveCount > 0)
                   //{
 
-                  //   output_debug_string("ppairSocket->m_psocket->m_iKeepAliveCount > 0");
+                  //   output_debug_string("iteratorSocket->m_psocket->m_iKeepAliveCount > 0");
 
                   //}
 
-                  //if (ppairSocket->m_psocket->base_socket_composite() && ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0)
+                  //if (iteratorSocket->m_psocket->base_socket_composite() && iteratorSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0)
                   //{
 
-                  //   output_debug_string("ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0");
+                  //   output_debug_string("iteratorSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0");
 
                   //}
 
                   // ___new SSL negotiate method
-                  if (ppairSocket->m_psocket->IsSSLNegotiate())
+                  if (iteratorSocket->m_psocket->IsSSLNegotiate())
                   {
 
-                     //ppairSocket->m_psocket->information() << "SSLNegotiate";
+                     //iteratorSocket->m_psocket->information() << "SSLNegotiate";
                      
-                     ppairSocket->m_psocket->SSLNegotiate();
+                     iteratorSocket->m_psocket->SSLNegotiate();
 
                   }
                   else
                   {
 
-                     //ppairSocket->m_psocket->information() << "OnRead";
+                     //iteratorSocket->m_psocket->information() << "OnRead";
                      
-                     ppairSocket->m_psocket->OnRead();
+                     iteratorSocket->m_psocket->OnRead();
 
                   }
 
-                  if (ppairSocket->m_psocket->m_iKeepAliveCount > 0)
+                  if (iteratorSocket->m_psocket->m_iKeepAliveCount > 0)
                   {
 
-                     //output_debug_string("ppairSocket->m_psocket->m_iKeepAliveCount > 0");
+                     //output_debug_string("iteratorSocket->m_psocket->m_iKeepAliveCount > 0");
 
-                     m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, ppairSocket->m_psocket->m_iKeepAliveCount);
+                     m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, iteratorSocket->m_psocket->m_iKeepAliveCount);
 
                   }
 
-                  if (ppairSocket->m_psocket && ppairSocket->m_psocket->m_iKeepAliveCount > 0)
+                  if (iteratorSocket->m_psocket && iteratorSocket->m_psocket->m_iKeepAliveCount > 0)
                   {
 
-                     //output_debug_string("ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0");
+                     //output_debug_string("iteratorSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0");
 
-                     m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, ppairSocket->m_psocket->m_iKeepAliveCount);
+                     m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, iteratorSocket->m_psocket->m_iKeepAliveCount);
 
                   }
 
@@ -1473,26 +1473,26 @@ end_processing_adding:
             if (FD_ISSET(socket, &wfds))
             {
                
-               auto ppairSocket = m_socketmap.plookup(socket);
+               auto iteratorSocket = m_socketmap.find(socket);
 
-               if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket)) // found
+               if (::is_set(iteratorSocket) && ::is_set(iteratorSocket->m_psocket)) // found
                {
 
                   // ___new SSL negotiate method
-                  if (ppairSocket->m_psocket->IsSSLNegotiate())
+                  if (iteratorSocket->m_psocket->IsSSLNegotiate())
                   {
 
-                     //ppairSocket->m_psocket->information() << "SSLNegotiate";
+                     //iteratorSocket->m_psocket->information() << "SSLNegotiate";
 
-                     ppairSocket->m_psocket->SSLNegotiate();
+                     iteratorSocket->m_psocket->SSLNegotiate();
 
                   }
                   else
                   {
 
-                     ppairSocket->m_psocket->information() << "OnWrite";
+                     iteratorSocket->m_psocket->information() << "OnWrite";
 
-                     ppairSocket->m_psocket->OnWrite();
+                     iteratorSocket->m_psocket->OnWrite();
 
                   }
 
@@ -1511,24 +1511,24 @@ end_processing_adding:
             if (FD_ISSET(socket, &efds))
             {
 
-               auto ppairSocket = m_socketmap.plookup(socket);
+               auto iteratorSocket = m_socketmap.find(socket);
 
-               if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket)) // found
+               if (::is_set(iteratorSocket) && ::is_set(iteratorSocket->m_psocket)) // found
                {
                   
                   // Out-Of-Band data
                   // recv with MSG_OOB
                   //posix_time tnow = time(nullptr);
 
-                  if (ppairSocket->m_psocket->has_timed_out())
+                  if (iteratorSocket->m_psocket->has_timed_out())
                   {
                   
-                     if (ppairSocket->m_psocket->is_connecting())
+                     if (iteratorSocket->m_psocket->is_connecting())
                      {
 
                         warning() << "socket_handler " << (int)socket << " stream_socket on_connection_timeout (3)";
 
-                        ppairSocket->m_psocket->on_connection_timeout();
+                        iteratorSocket->m_psocket->on_connection_timeout();
 
                      }
                      else
@@ -1536,7 +1536,7 @@ end_processing_adding:
 
                         warning() << "socket_handler " << (int)socket << " socket on_timeout(3)";
 
-                        ppairSocket->m_psocket->on_timeout();
+                        iteratorSocket->m_psocket->on_timeout();
 
                      }
 
@@ -1544,7 +1544,7 @@ end_processing_adding:
                   else
                   {
 
-                     ppairSocket->m_psocket->OnException();
+                     iteratorSocket->m_psocket->OnException();
 
                   }
 
@@ -1571,7 +1571,7 @@ end_processing_adding:
       bool check_max_fd = false;
 
       // check detach of socket if master handler - EVENT
-      if (!m_bSlave && m_socketlistDetach.get_size())
+      if (!m_bSlave && m_socketlistDetach.has_element())
       //if(m_socketlistDetach.has_element())
       {
 
@@ -1579,24 +1579,26 @@ end_processing_adding:
 
          //SOCKET socket = 0;
 
-         while(it != m_socketlistDetach.end())
+         while(m_socketlistDetach.is_iterator_ok(it))
          {
 
             auto socket = *it;
 
             it++;
             
-            auto ppairSocket = m_socketmap.plookup(socket);
+            auto iteratorSocket = m_socketmap.find(socket);
 
-            if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
+            if (::is_set(iteratorSocket) && ::is_set(iteratorSocket->m_psocket))
             {
 
-               auto psocket = ppairSocket->m_psocket;
+               auto psocket = iteratorSocket->m_psocket;
 
                if (psocket->IsDetach() && !psocket->IsDetached())
                {
 
                   erase_socket(socket);
+
+                  m_socketmap.erase(socket);
 
                   // After DetachSocket(), all calls to socket_handler() will return a object
                   // to the ___new slave socket_handler running in the ___new thread.
@@ -1610,8 +1612,6 @@ end_processing_adding:
                   {
 
                   }
-
-                  m_socketmap.erase_item(socket);
 
                   check_max_fd = true;
 
@@ -1645,19 +1645,19 @@ end_processing_adding:
 
                SOCKET socket = *p;
 
-               auto ppairSocket = m_socketmap.plookup(socket);
+               auto iteratorSocket = m_socketmap.find(socket);
 
-               if (ppairSocket.is_null() || ::is_null(ppairSocket->m_psocket)) // not found
+               if (iteratorSocket.is_null() || ::is_null(iteratorSocket->m_psocket)) // not found
                {
 
-                  ppairSocket = m_socketmapAdd.plookup(socket);
+                  iteratorSocket = m_socketmapAdd.find(socket);
 
-                  if (ppairSocket.is_null() || ::is_null(ppairSocket->m_psocket))
+                  if (iteratorSocket.is_null() || ::is_null(iteratorSocket->m_psocket))
                   {
 
                      warning() << "socket_handler " << (int)socket << " Did not find expected socket using file descriptor(f)";
 
-                     m_socketlistTimeout.erase_item(socket);
+                     m_socketlistTimeout.erase(socket);
 
                      goto restartSocketListTimeout;
 
@@ -1667,18 +1667,18 @@ end_processing_adding:
 
                }
                
-               if (ppairSocket.is_ok() && ::is_set(ppairSocket->m_psocket))
+               if (iteratorSocket.is_ok() && ::is_set(iteratorSocket->m_psocket))
                {
 
-                  if (ppairSocket->m_psocket->has_timed_out())
+                  if (iteratorSocket->m_psocket->has_timed_out())
                   {
 
-                     if (ppairSocket->m_psocket->is_connecting())
+                     if (iteratorSocket->m_psocket->is_connecting())
                      {
 
                         warning() << "socket_handler " << (int)socket << " stream_socket on_connection_timeout (g)";
 
-                        ppairSocket->m_psocket->on_connection_timeout();
+                        iteratorSocket->m_psocket->on_connection_timeout();
 
                      }
                      else
@@ -1686,11 +1686,11 @@ end_processing_adding:
 
                         warning() << "socket_handler " << (int)socket << " socket on_timeout (g)";
 
-                        ppairSocket->m_psocket->on_timeout();
+                        iteratorSocket->m_psocket->on_timeout();
 
                      }
 
-                     ppairSocket->m_psocket->SetCloseAndDelete();
+                     iteratorSocket->m_psocket->SetCloseAndDelete();
 
                   }
 
@@ -1715,19 +1715,19 @@ end_processing_adding:
          for (; p.is_ok(); p++)
          {
 
-            auto ppairSocket = m_socketmap.plookup(*p);
+            auto iteratorSocket = m_socketmap.find(*p);
 
-            if (ppairSocket.is_null() || ::is_null(ppairSocket->m_psocket))
+            if (iteratorSocket.is_null() || ::is_null(iteratorSocket->m_psocket))
             {
 
                warning() << "socket_handler " << (int)*p << " Did not find expected socket using file descriptor(g)";
 
             }
 
-            if (ppairSocket.is_ok() && ::is_set(ppairSocket->m_psocket))
+            if (iteratorSocket.is_ok() && ::is_set(iteratorSocket->m_psocket))
             {
 
-               ::cast < ::sockets::tcp_socket > ptcpsocket = ppairSocket->m_psocket;
+               ::cast < ::sockets::tcp_socket > ptcpsocket = iteratorSocket->m_psocket;
 
                if (::is_set(ptcpsocket))
                {
@@ -1737,7 +1737,7 @@ end_processing_adding:
 
                      SOCKET nn = *p; //(*it3).element1();
 
-                     ptcpsocket->SetRetryClientConnect(false);
+                     ptcpsocket->clear_retry_client_connect();
 
                      //information() << "close() before retry client connect\n");
 
@@ -1787,14 +1787,14 @@ end_processing_adding:
 
             socket_map* psocketmap = nullptr;
 
-            auto ppairSocket = m_socketmap.plookup(socket);
+            auto iteratorSocket = m_socketmap.find(socket);
 
-            if (ppairSocket.is_null() || ::is_null(ppairSocket->m_psocket)) // not found
+            if (iteratorSocket.is_null() || ::is_null(iteratorSocket->m_psocket)) // not found
             {
 
-               ppairSocket = m_socketmapAdd.plookup(socket);
+               iteratorSocket = m_socketmapAdd.find(socket);
 
-               if (ppairSocket.is_null() || ::is_null(ppairSocket->m_psocket))
+               if (iteratorSocket.is_null() || ::is_null(iteratorSocket->m_psocket))
                {
 
                   warning() << "socket_handler " << (int)socket << " Did not find expected socket using file descriptor(8)";
@@ -1815,10 +1815,10 @@ end_processing_adding:
 
             }
 
-            if (ppairSocket.is_ok() && ::is_set(ppairSocket->m_psocket))
+            if (iteratorSocket.is_ok() && ::is_set(iteratorSocket->m_psocket))
             {
 
-               auto psocket = ppairSocket->m_psocket;
+               auto psocket = iteratorSocket->m_psocket;
 
                if (psocket->IsCloseAndDelete())
                {
@@ -1910,9 +1910,9 @@ end_processing_adding:
 
                         auto psystem = system();
 
-                        synchronous_lock synchronouslock(__SystemNetworking(psystem)->m_pmutexPool);
+                        synchronous_lock synchronouslock(__SystemNetworking(psystem)->m_pmutexPool, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-                        auto ppoolsocket = __allocate pool_socket(psocket);
+                        auto ppoolsocket = øallocate pool_socket(psocket);
 
                         ppoolsocket->m_psockethandler = this;
 
@@ -1946,7 +1946,7 @@ end_processing_adding:
 
                      }
 
-                     psocket->OnDelete();
+                     //psocket->OnDelete();
 
                      if (psocket->DeleteByHandler())
                      {
@@ -1975,20 +1975,22 @@ end_processing_adding:
 
          erase_socket(socket);
 
-         auto ppairSocket = m_socketmap.plookup(socket);
+         auto p = m_socketmap.find(socket);
 
-         if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
+         if (::is_set(p) && ::is_set(p->m_psocket))
          {
 
-            ppairSocket->m_psocket->SetSocketHandler(nullptr);
+            auto psocket = p->m_psocket;
 
-            //ppairSocket->m_psocket->m_phandlerSlave.release();
+            psocket->SetSocketHandler(nullptr);
 
-            m_socketmap.erase_item(socket);
+            //iteratorSocket->m_psocket->m_phandlerSlave.release();
 
-            m_delete.erase_item(ppairSocket->m_psocket);
+            m_socketmap.erase(p);
 
-            m_socketmapAdd.erase_item(socket);
+            m_socketlistDelete.add_tail(psocket);
+
+            m_socketmapAdd.erase(socket);
 
          }
 
@@ -2005,12 +2007,12 @@ end_processing_adding:
 //      }
 
       // erase add's that fizzed
-      while (m_delete.has_element())
+      while (m_socketlistDelete.has_element())
       {
 
-         auto socket = ::transfer(m_delete.pick_head());
+         //bool bReallyHasElementLetsCheck = m_socketlistDelete.has_element();
 
-         auto psocket = socket.m_p;
+         auto psocket = ::transfer(m_socketlistDelete.pick_head());
 
          psocket->OnDelete();
 
@@ -2053,9 +2055,9 @@ end_processing_adding:
 
                      }
 
-                     m_trigger_src.erase_item(p->m_socketid);
+                     m_trigger_src.erase(p->m_socketid);
 
-                     m_trigger_dst.erase_item(p->m_socketid);
+                     m_trigger_dst.erase(p->m_socketid);
 
                      again = true;
 
@@ -2080,7 +2082,7 @@ end_processing_adding:
 //   bool socket_handler::Resolving(base_socket * p0)
 //   {
 //
-//      return m_resolve_q.plookup(p0) != nullptr;
+//      return m_resolve_q.find(p0) != nullptr;
 //
 //   }
 
@@ -2127,7 +2129,7 @@ end_processing_adding:
 
       ::collection::count iAdd = m_socketmapAdd.get_size();
 
-      ::collection::count iDelete = m_delete.get_size();
+      ::collection::count iDelete = m_socketlistDelete.get_size();
 
       return iSockets + iAdd + iDelete;
 
@@ -2170,7 +2172,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>presolvsocket = __allocate resolv_socket(pbasesocket, host, port);
+//      ::pointer<resolv_socket>presolvsocket = øallocate resolv_socket(pbasesocket, host, port);
 //
 //      presolvsocket->m_psockethandler = this;
 //
@@ -2207,7 +2209,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>resolv = __allocate resolv_socket(pbasesocket, host, port, true);
+//      ::pointer<resolv_socket>resolv = øallocate resolv_socket(pbasesocket, host, port, true);
 //
 //      resolv->m_psockethandler = this;
 //
@@ -2242,7 +2244,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>resolv = __allocate resolv_socket(pbasesocket, a);
+//      ::pointer<resolv_socket>resolv = øallocate resolv_socket(pbasesocket, a);
 //
 //      resolv->m_psockethandler = this;
 //
@@ -2277,7 +2279,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>resolv = __allocate resolv_socket(pbasesocket, a);
+//      ::pointer<resolv_socket>resolv = øallocate resolv_socket(pbasesocket, a);
 //
 //      resolv->m_psockethandler = this;
 //
@@ -2315,7 +2317,7 @@ end_processing_adding:
 //
 //         m_resolver_port = port;
 //
-//         auto presolvserver = __allocate resolv_server();
+//         auto presolvserver = øallocate resolv_server();
 //
 //         m_resolver = presolvserver;
 //
@@ -2395,7 +2397,7 @@ end_processing_adding:
 
       auto pnetworking2 = __SystemNetworking(system());
 
-      synchronous_lock synchronouslock(pnetworking2->m_pmutexPool);
+      synchronous_lock synchronouslock(pnetworking2->m_pmutexPool, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto p = pnetworking2->m_pool.begin();
 
@@ -2413,7 +2415,7 @@ end_processing_adding:
                   psocket->GetClientRemoteAddress() == ad)
             {
 
-               pnetworking2->m_pool.erase_item(p->m_socketid);
+               pnetworking2->m_pool.erase(p->m_socketid);
 
                psocket->SetRetain(); // avoid close in socket destructor
 
@@ -2461,7 +2463,7 @@ end_processing_adding:
 
       }
 
-      if(m_socketmap.erase_payload(psocketRemove))
+      if(m_socketmap.erase_first_payload(psocketRemove))
       {
 
          psocketRemove->warning() << "erase -1 socket destructor called while still in use";
@@ -2470,7 +2472,7 @@ end_processing_adding:
 
       }
 
-      if (m_socketmapAdd.erase_payload(psocketRemove))
+      if (m_socketmapAdd.erase_first_payload(psocketRemove))
       {
 
          psocketRemove->warning() << "erase -2 socket destructor called while still in use";
@@ -2479,7 +2481,7 @@ end_processing_adding:
 
       }
 
-      if (m_delete.erase_item(psocketRemove))
+      if (m_socketlistDelete.erase(psocketRemove))
       {
 
          psocketRemove->warning() << "erase -3 socket destructor called while still in use";
@@ -2505,10 +2507,10 @@ end_processing_adding:
    }
 
 
-   void socket_handler::CheckList(socket_id_list & list, const string & listname)
+   void socket_handler::CheckList(socket_id_list & list_base, const string & listname)
    {
 
-      auto p = list.begin();
+      auto p = list_base.begin();
 
       for(; p.is_ok() ; p++)
       {
@@ -2538,117 +2540,117 @@ end_processing_adding:
 
    }
 
-   socket_id_list& socket_handler::socket_id_list_get(enum_list elist)
-   {
+   //socket_id_list& socket_handler::socket_id_list_get(enum_list elist)
+   //{
 
-      switch (elist)
-      {
-      case e_list_call_on_connect:
-         return m_socketlistCallOnConnect;
-      case e_list_detach:
-         return m_socketlistDetach;
-      case e_list_timeout:
-         return m_socketlistTimeout;
-      case  e_list_retry_client_connect:
-         return m_socketlistRetryClientConnect;
-      case e_list_close:
-         return m_socketlistClose;
-      default:
-         return m_socketlistClose;
-      }
+   //   switch (elist)
+   //   {
+   //   case e_list_call_on_connect:
+   //      return m_socketlistCallOnConnect;
+   //   case e_list_detach:
+   //      return m_socketlistDetach;
+   //   case e_list_timeout:
+   //      return m_socketlistTimeout;
+   //   case  e_list_retry_client_connect:
+   //      return m_socketlistRetryClientConnect;
+   //   case e_list_close:
+   //      return m_socketlistClose;
+   //   default:
+   //      return m_socketlistClose;
+   //   }
 
-   }
-
-
-   void socket_handler::socket_id_list_modify(SOCKET s, enum_list elist, bool bAdd)
-   {
-
-      if (bAdd)
-      {
-
-         socket_id_list_add(s, elist);
-
-      }
-      else
-      {
-
-         socket_id_list_erase(s, elist);
-
-      }
-
-   }
-
-
-   void socket_handler::socket_id_list_add(SOCKET s, enum_list elist)
-   {
-
-      if (s == INVALID_SOCKET)
-      {
-         information() << "AddList:  invalid_socket";
-         return;
-      }
-
-      auto& socketlist = socket_id_list_get(elist);
-
-      //if (add)
-      //{
-      //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
-      //               (which_one == e_list_detach) ? "detach" :
-      //               (which_one == e_list_timeout) ? "time_out" :
-      //               (which_one == e_list_retry) ? "Retry" :
-      //               (which_one == e_list_close) ? "close" : "<undef>",
-      //               add ? "add" : "erase");*/
-      //}
-      //if (add)
-      //{
-      socketlist.add_tail_unique(s);
-         //if (which_one == e_list_close)
-         //{
-
-         //   //INFO(informationf("list_close");
-         //}
-         //return;
-      //}
-      // erase
-      //ref.erase(s);
-      //information() << "/AddList\n");
-   }
-
-
-   void socket_handler::socket_id_list_erase(SOCKET s, enum_list elist)
-   {
-
-      if (s == INVALID_SOCKET)
-      {
-         information() << "AddList:  invalid_socket";
-         return;
-      }
-
-      auto& socketlist = socket_id_list_get(elist);
-
-         //if (add)
-         //{
-         //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
-         //               (which_one == e_list_detach) ? "detach" :
-         //               (which_one == e_list_timeout) ? "time_out" :
-         //               (which_one == e_list_retry) ? "Retry" :
-         //               (which_one == e_list_close) ? "close" : "<undef>",
-         //               add ? "add" : "erase");*/
-         //}
-         //if (add)
-         //{
-      socketlist.erase_item(s);
-      //if (which_one == e_list_close)
-      //{
-
-      //   //INFO(informationf("list_close");
-      //}
-      //return;
    //}
-   // erase
-   //ref.erase(s);
-   //information() << "/AddList\n");
-   }
+
+
+   //void socket_handler::socket_id_list_modify(SOCKET s, enum_list elist, bool bAdd)
+   //{
+
+   //   if (bAdd)
+   //   {
+
+   //      socket_id_list_add(s, elist);
+
+   //   }
+   //   else
+   //   {
+
+   //      socket_id_list_erase(s, elist);
+
+   //   }
+
+   //}
+
+
+   //void socket_handler::socket_id_list_add(SOCKET s, enum_list elist)
+   //{
+
+   //   if (s == INVALID_SOCKET)
+   //   {
+   //      information() << "AddList:  invalid_socket";
+   //      return;
+   //   }
+
+   //   auto& socketlist = socket_id_list_get(elist);
+
+   //   //if (add)
+   //   //{
+   //   //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
+   //   //               (which_one == aaa_e_list_detach) ? "detach" :
+   //   //               (which_one == e_list_timeout) ? "time_out" :
+   //   //               (which_one == e_list_retry) ? "Retry" :
+   //   //               (which_one == e_list_close) ? "close" : "<undef>",
+   //   //               add ? "add" : "erase");*/
+   //   //}
+   //   //if (add)
+   //   //{
+   //   socketlist.add_tail_unique(s);
+   //      //if (which_one == e_list_close)
+   //      //{
+
+   //      //   //INFO(informationf("list_close");
+   //      //}
+   //      //return;
+   //   //}
+   //   // erase
+   //   //ref.erase(s);
+   //   //information() << "/AddList\n");
+   //}
+
+
+   //void socket_handler::socket_id_list_erase(SOCKET s, enum_list elist)
+   //{
+
+   //   if (s == INVALID_SOCKET)
+   //   {
+   //      information() << "AddList:  invalid_socket";
+   //      return;
+   //   }
+
+   //   auto& socketlist = socket_id_list_get(elist);
+
+   //      //if (add)
+   //      //{
+   //      //   /*         informationf("AddList);  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
+   //      //               (which_one == aaa_e_list_detach) ? "detach" :
+   //      //               (which_one == e_list_timeout) ? "time_out" :
+   //      //               (which_one == e_list_retry) ? "Retry" :
+   //      //               (which_one == e_list_close) ? "close" : "<undef>",
+   //      //               add ? "add" : "erase");*/
+   //      //}
+   //      //if (add)
+   //      //{
+   //   socketlist.erase(s);
+   //   //if (which_one == e_list_close)
+   //   //{
+
+   //   //   //INFO(informationf("list_close");
+   //   //}
+   //   //return;
+   ////}
+   //// erase
+   ////ref.erase(s);
+   ////information() << "/AddList\n");
+   //}
 
 
    void socket_handler::erase_socket(SOCKET s)
@@ -2656,12 +2658,25 @@ end_processing_adding:
 
       //set(s, false, false, false); // erase from fd_set's
 
-      m_socketlistCallOnConnect.erase_item(s);
-      m_socketlistDetach.erase_item(s);
-      m_socketlistTimeout.erase_item(s);
-      m_socketlistRetryClientConnect.erase_item(s);
-      m_socketlistClose.erase_item(s);
+      int iSocketList = 0;
+      auto psocketlistCallOnConnect = &m_socketlistCallOnConnect;
+      psocketlistCallOnConnect->erase(s);
 
+      iSocketList = 1;
+      auto psocketlistDetach = &m_socketlistDetach;
+      psocketlistDetach->erase(s);
+
+      iSocketList = 2;
+      auto psocketlistTimeout = &m_socketlistTimeout;
+      psocketlistTimeout->erase(s);
+
+      iSocketList = 3;
+      auto psocketlistRetryClientConnect = &m_socketlistRetryClientConnect;
+      psocketlistRetryClientConnect->erase(s);
+
+      iSocketList = 4;
+      auto psocketlistClose = &m_socketlistClose;
+      psocketlistClose->erase(s);
 
    }
 
@@ -2681,12 +2696,12 @@ end_processing_adding:
    bool socket_handler::Subscribe(int atom, ::sockets::base_socket * psocketDst)
    {
 
-      if (m_trigger_src.plookup(atom))
+      if (m_trigger_src.find(atom))
       {
 
          ::pointer < ::sockets_bsd::base_socket > psocketDst2 = psocketDst;
 
-         if (m_trigger_dst[atom].plookup(psocketDst2))
+         if (m_trigger_dst[atom].find(psocketDst2))
          {
 
             m_trigger_dst[atom][psocketDst2] = true;
@@ -2710,15 +2725,15 @@ end_processing_adding:
    bool socket_handler::Unsubscribe(int atom, ::sockets::base_socket * psocketDst)
    {
 
-      if (m_trigger_src.plookup(atom))
+      if (m_trigger_src.find(atom))
       {
 
          ::pointer < ::sockets_bsd::base_socket > psocketDst2 = psocketDst;
 
-         if (m_trigger_dst[atom].plookup(psocketDst2))
+         if (m_trigger_dst[atom].find(psocketDst2))
          {
 
-            m_trigger_dst[atom].erase_item(psocketDst2);
+            m_trigger_dst[atom].erase(psocketDst2);
 
             return true;
 
@@ -2744,9 +2759,9 @@ end_processing_adding:
 
          data.SetSource(dynamic_cast < base_socket * > (m_trigger_src[atom].m_p));
 
-         auto & map = m_trigger_dst[atom];
+         auto & map_base = m_trigger_dst[atom];
 
-         for(auto & pair : map)
+         for(auto & pair : map_base)
          {
 
             if (this->Valid(pair.m_pbasesocket))
@@ -2761,9 +2776,9 @@ end_processing_adding:
          if (bErase)
          {
 
-            m_trigger_src.erase_item(atom);
+            m_trigger_src.erase(atom);
 
-            m_trigger_dst.erase_item(atom);
+            m_trigger_dst.erase(atom);
 
          }
 

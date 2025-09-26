@@ -39,7 +39,7 @@ namespace aura
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_bOk)
       {
@@ -50,7 +50,7 @@ namespace aura
 
       delete_timer(uEvent);
 
-      auto ptimer = __allocate timer(this, uEvent, pfnTimer, pvoidData, mutex());
+      auto ptimer = øallocate timer(this, uEvent, pfnTimer, pvoidData, mutex());
 
       ptimer->set_context_thread(get_context_thread());
 
@@ -110,7 +110,7 @@ namespace aura
    bool timer_array::delete_timer(uptr uEvent)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto * ppair = m_map.plookup(uEvent);
 
@@ -135,7 +135,7 @@ namespace aura
    bool timer_array::erase_timer(::timer * ptimer)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -237,7 +237,7 @@ namespace aura
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          KEEP(m_bOk, false);
 
@@ -251,7 +251,7 @@ namespace aura
             try
             {
 
-               synchronous_lock synchronouslock(ptimer->mutex());
+               synchronous_lock synchronouslock(ptimer->mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                ptimer->clear(e_flag_success);
 
@@ -276,7 +276,7 @@ namespace aura
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          KEEP(m_bOk, false);
 

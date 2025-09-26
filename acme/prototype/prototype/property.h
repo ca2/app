@@ -224,7 +224,7 @@ CLASS_DECL_ACME void property_skip_network_payload_payload(::ansi_range & range)
 
 using property_holder_array_base = ::array_base < ::holder < ::property > >;
 
-//using property_map = map < ::atom, const ::atom &, payload, const ::payload &, ::property >;
+//using property_map = map_base < ::atom, const ::atom &, payload, const ::payload &, ::property >;
 
 
 //inline bool operator == (const ::scoped_string & scopedstr, const property & prop)
@@ -317,22 +317,22 @@ using property_holder_array_base = ::array_base < ::holder < ::property > >;
 //}
 //
 
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::property & property)
-{
+//template < typename ITERATOR_TYPE >
+//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::property & property)
+//{
+//
+//   return operator=(property.as_string());
+//
+//}
 
-   return operator=(property.as_string());
 
-}
-
-
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::property & property)
-{
-
-   return this->append(property);
-
-}
+// template < typename ITERATOR_TYPE >
+// string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::property & property)
+// {
+//
+//    return this->append(property);
+//
+// }
 
 
 template < typename ITERATOR_TYPE >

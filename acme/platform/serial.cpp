@@ -125,7 +125,7 @@ namespace serial
    size_t serial::read(unsigned char* buffer, size_t size)
    {
       
-      synchronous_lock lock(read_synchronization());
+      synchronous_lock lock(read_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return _read(buffer, size);
 
@@ -137,7 +137,7 @@ namespace serial
    size_t serial::read(memory& buffer, size_t size)
    {
 
-      synchronous_lock lock(read_synchronization());
+      synchronous_lock lock(read_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       memory bufferRead;
 
@@ -155,7 +155,7 @@ namespace serial
    size_t serial::read(string& buffer, size_t size)
    {
 
-      synchronous_lock lock(read_synchronization());
+      synchronous_lock lock(read_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       memory mem;
       
@@ -207,7 +207,7 @@ namespace serial
    string_array_base serial::readlines(size_t size, string eol)
    {
 
-      synchronous_lock lock(read_synchronization());
+      synchronous_lock lock(read_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string_array_base lines;
 
@@ -278,7 +278,7 @@ namespace serial
    size_t serial::write(const string& data)
    {
 
-      synchronous_lock lock(write_synchronization());
+      synchronous_lock lock(write_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return _write(reinterpret_cast<const unsigned char*>(data.c_str()), (size_t)data.length());
 
@@ -288,7 +288,7 @@ namespace serial
    size_t serial::write(const memory& data)
    {
 
-      synchronous_lock lock(write_synchronization());
+      synchronous_lock lock(write_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return _write(data.data(), (size_t)data.size());
 
@@ -298,7 +298,7 @@ namespace serial
    size_t serial::write(const unsigned char* data, size_t size)
    {
       
-      synchronous_lock lock(write_synchronization());
+      synchronous_lock lock(write_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return _write(data, size);
 
@@ -316,9 +316,9 @@ namespace serial
    void serial::setPort(const string& port)
    {
 
-      synchronous_lock readlock(read_synchronization());
+      synchronous_lock readlock(read_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      synchronous_lock writelock(write_synchronization());
+      synchronous_lock writelock(write_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       bool was_open = isOpen();
       
@@ -461,9 +461,9 @@ namespace serial
    void serial::flush()
    {
    
-      synchronous_lock readlock(read_synchronization());
+      synchronous_lock readlock(read_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      synchronous_lock writelock(write_synchronization());
+      synchronous_lock writelock(write_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       _flush();
 
@@ -473,7 +473,7 @@ namespace serial
    void serial::flushInput()
    {
       
-      synchronous_lock readlock(read_synchronization());
+      synchronous_lock readlock(read_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       _flushInput();
 
@@ -483,7 +483,7 @@ namespace serial
    void serial::flushOutput()
    {
 
-      synchronous_lock writelock(write_synchronization());
+      synchronous_lock writelock(write_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       _flushOutput();
 

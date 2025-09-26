@@ -277,7 +277,7 @@ namespace apex
       virtual bool on_get_task_name(string& strTaskName) override;
 
 
-      unsigned int os_post_to_all_threads(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      unsigned int os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
       //virtual void init_task() override;
@@ -309,7 +309,7 @@ namespace apex
 
       virtual int _debug_logging_report(int iReportType, const ::scoped_string& scopedstrFilename, int iLinenumber,
                                         const ::scoped_string& scopedstrModuleName, const_char_pointer pszFormat,
-                                        va_list list) override;
+                                        va_list list_base) override;
 
 
       virtual bool assert_failed_line(const ::scoped_string& scopedstrFileName, int iLine) override;
@@ -459,7 +459,7 @@ namespace apex
       void post_quit_to_all_threads() override;
 
 
-      void post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      void post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
 
       void dump_command_line_and_environment_variables_to_file() override;

@@ -147,7 +147,7 @@ namespace platform
 
       __check_refdbg
 
-      m_ptexttranslator = __allocate ::text::translator();
+      m_ptexttranslator = øallocate ::text::translator();
 
       __check_refdbg
 
@@ -258,7 +258,7 @@ namespace platform
    void context::initialize_context()
    {
 
-      __construct_new(m_ptexttranslator);
+      øconstruct_new(m_ptexttranslator);
 
 
       //auto estatus =
@@ -272,7 +272,7 @@ namespace platform
       //}
 
       /*estatus = */
-      __øconstruct(m_pfilecontext);
+      øconstruct(m_pfilecontext);
 
       //if (!estatus)
       //{
@@ -282,7 +282,7 @@ namespace platform
       //}
 
       //estatus =
-      __øconstruct(m_pdirectorycontext);
+      øconstruct(m_pdirectorycontext);
 
       //if (!estatus)
       //{
@@ -654,7 +654,7 @@ namespace platform
    //   file_pointer context::get_file(const ::payload& payloadFile, ::file::e_open eopen)
    //   {
    //
-   //      auto pfile = __øcreate < ::file::file >();
+   //      auto pfile = øcreate < ::file::file >();
    //
    //      auto path = payloadFile.file_path();
    //
@@ -847,14 +847,14 @@ namespace platform
 
       ::collection::count cScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
-      auto pcounter = __allocate ::parallelization::counter(cScan, procedureCompletion);
+      auto pcounter = øallocate ::parallelization::counter(cScan, procedureCompletion);
 
       auto ptask = ::get_task();
 
       for (::collection::index iOrder = 0; iOrder < cScan; iOrder++)
       {
 
-         auto ppredtask = __allocate forking_count_task(this, iOrder, iOrder + iStart, cScan, iCount, function);
+         auto ppredtask = øallocate forking_count_task(this, iOrder, iOrder + iStart, cScan, iCount, function);
 
          //if (::is_set(ptask))
          //{
@@ -1241,7 +1241,7 @@ namespace platform
    void context::add_matter_locator(const ::scoped_string & scopedstrApp)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string strMatterLocator = matter_locator(scopedstrApp);
 
@@ -1253,7 +1253,7 @@ namespace platform
    void context::add_matter_locator(::platform::application* papp)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string strMatterLocator = matter_locator(papp);
 
@@ -1264,18 +1264,18 @@ namespace platform
    }
 
 
-   //void context::http_sync(::nano::http::get * pget)
+   //void context::http_sync(::nano::http::get * defer_get)
    //{
    //
-   //   nano()->http()->sync(pget);
+   //   nano()->http()->sync(defer_get);
    //
    //}
 
 
-   //void context::http_async(::nano::http::get * pget, const ::function < void(::nano::http::get *) > & callback)
+   //void context::http_async(::nano::http::get * defer_get, const ::function < void(::nano::http::get *) > & callback)
    //{
    //
-   //   nano()->http()->async(pget);
+   //   nano()->http()->async(defer_get);
    //
    //}
 

@@ -67,6 +67,15 @@ namespace platform
    {
    }
 
+
+   ::windowing::window* aura_system_layer::get_main_host_window()
+   {
+
+      return nullptr;
+
+   }
+
+
    //
    // ::aura::session* get_session()
    // {
@@ -153,8 +162,8 @@ namespace platform
    // }
    //
 
-   //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override{}
-   //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override{}
+   //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override{}
+   //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future()) override{}
 
 
    //void aura_system_layer::create_html(){}
@@ -347,7 +356,7 @@ namespace platform
    //   if(idType.is_empty())
    //      return nullptr{}
 
-   //   synchronous_lock synchronouslock(m_pmutexFactory){}
+   //   synchronous_lock synchronouslock(m_pmutexFactory, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX){}
 
    //   return m_typemap[idType].m_p{}
 
@@ -490,7 +499,7 @@ namespace platform
 
 
    //virtual int _001OnDebugReport(int i1, const ::scoped_string & scopedstr1,int i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3,va_list args) override{}
-   //virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat, va_list list) override{}
+   //virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat, va_list list_base) override{}
    //virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override{}
 
    //virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override{}
@@ -835,12 +844,12 @@ namespace platform
    }
 
 
-   void aura_system_layer::_001AddPacks(string_to_string& base64map, string& str)
+   void aura_system_layer::_001AddPacks(string_to_string_base& base64map, string& str)
    {
    }
 
 
-   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override{}
+   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override{}
 
    //void windowing_send(const ::procedure & procedure) override{}
    //void windowing_post(const ::procedure & procedure) override{}

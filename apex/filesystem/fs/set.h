@@ -18,14 +18,14 @@ namespace fs
 
 
       pointer_array < data >               m_spafsdata;
-      string_map < ::pointer<data >>     m_fsdatamap;
+      string_map_base < ::pointer<data >>     m_fsdatamap;
 
 
       set();
       ~set() override;
 
 
-      string_map < ::pointer<data >>& fsmap();
+      string_map_base < ::pointer<data >>& fsmap();
       pointer_array < data > & fsa();
 
 

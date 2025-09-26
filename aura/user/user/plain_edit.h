@@ -292,7 +292,7 @@ namespace user
       bool                                m_bCustomFrameBefore;
       ::int_rectangle                              m_FullScreenWindowRect;
 
-      string_to_string                    m_base64map;
+      string_to_string_base                    m_base64map;
 
       bool                                m_bPassword;
       bool                                m_bEnterKeyOnPaste;
@@ -336,7 +336,7 @@ namespace user
 
 
       //bool                              m_bActionHover;
-      array < double_array >              m_daExtent;
+      array_base < double_array_base >    m_daExtent;
       ::file::insert_item *               m_pinsert;
       ::pointer < plain_text_set_sel_command >       m_ppropertysetsel;
       bool                                m_bParseDataPacks;

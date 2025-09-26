@@ -72,7 +72,7 @@ string_array_base get_c_args_from_string(const ::scoped_string & scopedstr)
          while (!unicode_is_whitespace(range.m_begin))
          {
 
-            unicode_increment(range.m_begin);
+            range.m_begin = unicode_next(range.m_begin);
 
             if (range.is_empty())
             {
@@ -168,7 +168,7 @@ string_array_base no_escape_get_c_args_from_string(const ::scoped_string & scope
          while (!unicode_is_whitespace(range.m_begin))
          {
 
-            unicode_increment(range.m_begin);
+            range.m_begin = unicode_next(range.m_begin);
 
             if (range.is_empty())
             {

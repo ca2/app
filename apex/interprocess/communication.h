@@ -13,7 +13,7 @@ namespace interprocess
 {
 
 
-   using task_map = atom_map < ::pointer< task > >;
+   using task_map = atom_map_base < ::pointer< task > >;
 
 
    class CLASS_DECL_APEX communication :
@@ -25,8 +25,8 @@ namespace interprocess
       interlocked_count                                        m_iTaskSeed;
       string                                                   m_strApp;
       ::atom                                                   m_atomApp;
-      string_map < ::pointer<::interprocess::caller > >        m_callermap;
-      string_map < ::pointer< ::mutex > >                      m_mapAppMutex;
+      string_map_base < ::pointer<::interprocess::caller > >        m_callermap;
+      string_map_base < ::pointer< ::mutex > >                      m_mapAppMutex;
       ::pointer<::interprocess::target>                        m_ptarget;
       string_array_base                                             m_straModule;
       ::pointer<::interprocess::handler>                       m_phandler;

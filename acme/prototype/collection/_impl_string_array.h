@@ -150,7 +150,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 string_base_array < Type, RawType, t_etypeContainer >::~string_base_array()
 {
 
-   // // ASSERT_VALID(this);
+   // // ASSERT_OK(this);
 
 }
 
@@ -170,7 +170,7 @@ string_base_array < Type, RawType, t_etypeContainer >::~string_base_array()
 //
 //   }
 //
-//    // ASSERT_VALID(this);
+//    // ASSERT_OK(this);
 //   ASSERT(this != &src);   // cannot append to itself
 //
 //   ::collection::count nOldSize = this->size();
@@ -221,7 +221,7 @@ void string_base_array < Type, RawType, t_etypeContainer >::copy(const string_ba
    if (this == &src)
       return;
 
-   // // ASSERT_VALID(this);
+   // // ASSERT_OK(this);
 
    auto nSrcSize = src.size();
 
@@ -252,7 +252,7 @@ void string_base_array < Type, RawType, t_etypeContainer >::copy(const ARRAY& sr
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 Type& string_base_array < Type, RawType, t_etypeContainer >::set_at_grow(::collection::index nIndex, const Type& newElement)
 {
-   // // ASSERT_VALID(this);
+   // // ASSERT_OK(this);
    ASSERT(nIndex >= 0);
 
    if (nIndex >= this->size())
@@ -465,7 +465,7 @@ RawType string_base_array < Type, RawType, t_etypeContainer >::_007GetLine(const
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 void string_base_array < Type, RawType, t_etypeContainer >::insert_empty(::collection::index nIndex, ::collection::count nCount)
 {
-   // // ASSERT_VALID(this);
+   // // ASSERT_OK(this);
    ASSERT(nIndex >= 0);    // will expand to meet need
    ASSERT(nCount > 0);     // zero or negative int_size not allowed
 
@@ -500,7 +500,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 Type& string_base_array < Type, RawType, t_etypeContainer >::insert_empty(::collection::index nIndex)
 {
 
-   //    // ASSERT_VALID(this);
+   //    // ASSERT_OK(this);
 
    ASSERT(nIndex >= 0);    // will expand to meet need
 
@@ -564,19 +564,31 @@ void string_base_array < Type, RawType, t_etypeContainer >::insert_at(::collecti
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_base_array < Type, RawType, t_etypeContainer >::insert_at(::collection::index nStartIndex, const string_base_array < Type, RawType, t_etypeContainer >& NewArray)
+template < primitive_container CONTAINER >
+void string_base_array < Type, RawType, t_etypeContainer >::insert_at(::collection::index nStartIndex, const CONTAINER & container)
 {
-   //    // ASSERT_VALID(this);
-   ASSERT(&NewArray != nullptr);
+   //    // ASSERT_OK(this);
+   ASSERT(&container != nullptr);
    //   ASSERT_KINDOF(string_base_array < Type, RawType, t_etypeContainer >, &NewArray);
-   //   ASSERT_VALID(&NewArray);
+   //   ASSERT_OK(&NewArray);
    ASSERT(nStartIndex >= 0);
 
-   if (NewArray.get_size() > 0)
+   if (container.size() > 0)
    {
-      insert_at(nStartIndex, NewArray.get_at(0), NewArray.get_size());
-      for (::collection::index i = 0; i < NewArray.get_size(); i++)
-         set_at(nStartIndex + i, NewArray.get_at(i));
+      ::collection::index i = 0;
+      for (auto& item : container)
+      {
+
+         if (i == 0)
+         {
+            this->insert_at(nStartIndex, item, container.size());
+         }
+         else
+         {
+            set_at(nStartIndex + i, item);
+         }
+         i++;
+      }
    }
 }
 
@@ -910,7 +922,7 @@ void string_base_array < Type, RawType, t_etypeContainer > ::_001AddTokens(const
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_base_array < Type, RawType, t_etypeContainer > ::add_smallest_tokens(const SCOPED_STRING& str, const RawStringArray& straSeparator, bool bAddEmpty, bool bWithSeparator)
+void string_base_array < Type, RawType, t_etypeContainer > ::add_smallest_tokens(const SCOPED_STRING& str, const BASE_RAW_STRING_ARRAY & straSeparator, bool bAddEmpty, bool bWithSeparator)
 {
 
    ::tokenizer strTokenizer(str);
@@ -1378,7 +1390,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 ::collection::index string_base_array < Type, RawType, t_etypeContainer > ::_066Find(const SCOPED_STRING& strParam) const
 {
 
-   RawString str(strParam);
+   BASE_RAW_STRING str(strParam);
 
    ::collection::index iSel = this->find_first(str);
 
@@ -2158,15 +2170,16 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_erase(const string_base_array& stra)
+template < primitive_container CONTAINER >
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::case_insensitive_erase(const CONTAINER & container)
 {
 
    ::collection::count count = 0;
 
-   for (::collection::index i = 0; i < stra.get_size(); i++)
+   for (auto & item : container)
    {
 
-      count += case_insensitive_erase(stra[i]);
+      count += this->case_insensitive_erase(item);
 
    }
 
@@ -2176,15 +2189,16 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_base_array < Type, RawType, t_etypeContainer > ::erase(const string_base_array& stra)
+template < primitive_container CONTAINER >
+::collection::count string_base_array < Type, RawType, t_etypeContainer > ::erase(const CONTAINER & container)
 {
 
    ::collection::count count = 0;
 
-   for (::collection::index i = 0; i < stra.get_size(); i++)
+   for (auto& item : container)
    {
 
-      count += erase(stra[i]);
+      count += this->erase(item);
 
    }
 
@@ -2639,11 +2653,8 @@ string_base_array < Type, RawType, t_etypeContainer >& string_base_array < Type,
 }
 
 
-
-
-
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_base_array < Type, RawType, t_etypeContainer > ::operator == (const typename string_base_array < Type, RawType, t_etypeContainer >::RawStringArray& a) const
+bool string_base_array < Type, RawType, t_etypeContainer > ::operator == (const typename string_base_array < Type, RawType, t_etypeContainer >::BASE_RAW_STRING_ARRAY & a) const
 {
 
    if (a.get_size() != get_size())
@@ -2671,7 +2682,7 @@ bool string_base_array < Type, RawType, t_etypeContainer > ::operator == (const 
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_base_array < Type, RawType, t_etypeContainer > ::operator != (const typename string_base_array < Type, RawType, t_etypeContainer >::RawStringArray& a) const
+bool string_base_array < Type, RawType, t_etypeContainer > ::operator != (const typename string_base_array < Type, RawType, t_etypeContainer >::BASE_RAW_STRING_ARRAY & a) const
 {
 
    return !operator == (a);
@@ -4034,10 +4045,10 @@ Type string_base_array < Type, RawType, t_etypeContainer > ::_008IfImplode(const
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::array < const ::ansi_character* > string_base_array < Type, RawType, t_etypeContainer > ::c_ansi_get(bool bMemoryAlloc) const
+::array_base < const ::ansi_character* > string_base_array < Type, RawType, t_etypeContainer > ::c_ansi_get(bool bMemoryAlloc) const
 {
 
-   ::array < const ::ansi_character* > psza;
+   ::array_base < const ::ansi_character* > psza;
 
    for (::collection::index i = 0; i < get_size(); i++)
    {

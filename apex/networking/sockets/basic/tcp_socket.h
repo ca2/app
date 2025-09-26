@@ -123,7 +123,7 @@ namespace sockets
             return _q;
          }
       };
-      typedef list<::pointer<output >> output_list;
+      typedef list_base<::pointer<output >> output_list;
 
       //::file::circular_file ibuf; ///< Circular input buffer
       //string m_strUrl;

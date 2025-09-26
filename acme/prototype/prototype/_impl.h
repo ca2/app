@@ -70,7 +70,7 @@ inline ::pointer<BASE_TYPE>particle::__call__create(::factory::factory* pfactory
 
 
 //template < typename BASE_TYPE >
-//inline ::pointer<BASE_TYPE>particle::__id_create(const ::atom & atom, ::factory::factory* pfactory)
+//inline ::pointer<BASE_TYPE>particle::øid_create(const ::atom & atom, ::factory::factory* pfactory)
 //{
 //
 //   auto pfactoryitem = pfactory->get_factory_item(atom);
@@ -99,12 +99,12 @@ inline ::pointer<BASE_TYPE>particle::__call__create(::factory::factory* pfactory
 
 
 template < typename TYPE >
-inline ::pointer<TYPE>particle::__call__create_new()
+inline ::pointer<TYPE>particle::__calløcreate_new()
 {
 
    //ASSERT(::is_set(this));
 
-   //return __call__create_new<TYPE>(this);
+   //return __calløcreate_new<TYPE>(this);
 
    //if (::is_null(pparticle))
    //{
@@ -131,12 +131,12 @@ inline ::pointer<TYPE>particle::__call__create_new()
 
 
 template < typename TYPE >
-inline ::pointer<TYPE>particle::__call__create_new_clone(TYPE * psrc)
+inline ::pointer<TYPE>particle::__calløcreate_new_clone(TYPE * psrc)
 {
 
    //ASSERT(::is_set(this));
 
-   //return __call__create_new<TYPE>(this);
+   //return __calløcreate_new<TYPE>(this);
 
    //if (::is_null(pparticle))
    //{
@@ -168,7 +168,7 @@ inline ::pointer<TYPE>particle::__call__create_new_clone(TYPE * psrc)
 //inline pointer < T > & pointer < T >::create(TEMPLATER)
 //{
 //
-//   __øconstruct(*this);
+//   øconstruct(*this);
 //
 //   return *this;
 //
@@ -229,7 +229,7 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 //
 //
 //template < typename BASE_TYPE >
-//inline void matter::__raw_construct(::pointer<BASE_TYPE>& p)
+//inline void matter::øraw_construct(::pointer<BASE_TYPE>& p)
 //{
 //
 //   if (!p)
@@ -279,7 +279,7 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__øconstruct(::pointer<BASE_TYPE>& p, const SOURCE * psource)
+//inline void matter::øconstruct(::pointer<BASE_TYPE>& p, const SOURCE * psource)
 //{
 //
 //   p = psource;
@@ -307,7 +307,7 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 //}
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__raw_construct(::pointer<BASE_TYPE>& p, const SOURCE * psource)
+//inline void matter::øraw_construct(::pointer<BASE_TYPE>& p, const SOURCE * psource)
 //{
 //
 //   p = psource;
@@ -326,26 +326,26 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 //}
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__øconstruct(::pointer<BASE_TYPE>& p, const ::pointer<SOURCE> psource)
+//inline void matter::øconstruct(::pointer<BASE_TYPE>& p, const ::pointer<SOURCE> psource)
 //{
 //
-//   return __øconstruct(p, psource.get());
+//   return øconstruct(p, psource.get());
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__raw_construct(::pointer<BASE_TYPE>& p, const ::pointer<SOURCE> psource)
+//inline void matter::øraw_construct(::pointer<BASE_TYPE>& p, const ::pointer<SOURCE> psource)
 //{
 //
-//   return __raw_construct(p, psource.get());
+//   return øraw_construct(p, psource.get());
 //
 //}
 //
 //
 //
 //template < typename BASE_TYPE >
-//inline void matter::__id_construct(::pointer<BASE_TYPE>& p, const ::atom & atom)
+//inline void matter::øid_construct(::pointer<BASE_TYPE>& p, const ::atom & atom)
 //{
 //
 //   auto & pfactory = factory_item(atom);
@@ -402,7 +402,7 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 //inline void matter::__raw_construct_new(::pointer<TYPE>& p)
 //{
 //
-//   auto ptypeNew = __allocate TYPE();
+//   auto ptypeNew = øallocate TYPE();
 //
 //   if (!ptypeNew)
 //   {
@@ -469,7 +469,7 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 //
 //#endif
 //
-//   auto ptypeNew = __allocate TYPE();
+//   auto ptypeNew = øallocate TYPE();
 //
 //   if (!ptypeNew)
 //   {
@@ -490,10 +490,10 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 
 //
 //template < typename TYPE >
-//inline void matter::__øconstruct(::pointer<TYPE>& p)
+//inline void matter::øconstruct(::pointer<TYPE>& p)
 //{
 //
-//   auto estatus = ::__øconstruct(p);
+//   auto estatus = ::øconstruct(p);
 //
 //   if (estatus && p)
 //   {
@@ -508,10 +508,10 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 //
 //
 //template < typename TYPE >
-//inline void matter::__id_construct(::pointer<TYPE>& p, const ::atom & atom)
+//inline void matter::øid_construct(::pointer<TYPE>& p, const ::atom & atom)
 //{
 //
-//   auto estatus = ::__id_construct(p, atom);
+//   auto estatus = ::øid_construct(p, atom);
 //
 //   if (estatus && p)
 //   {
@@ -526,10 +526,10 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 //
 //
 //template < typename TYPE >
-//inline void matter::__construct_new(::pointer<TYPE>& p)
+//inline void matter::øconstruct_new(::pointer<TYPE>& p)
 //{
 //
-//   auto estatus = ::__construct_new(p);
+//   auto estatus = ::øconstruct_new(p);
 //
 //   if(estatus.succeeded())
 //   {
@@ -550,7 +550,7 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 //   if (pcomposite)
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_pcompositea)
 //      {
@@ -580,7 +580,7 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 //   if (preference)
 //   {
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_preferencea)
 //      {
@@ -751,7 +751,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //   if (is_null())
 //   {
 //
-//      operator=(__øcreate < TYPE >());
+//      operator=(øcreate < TYPE >());
 //
 //   }
 //
@@ -1089,7 +1089,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //inline void future::pred(PRED pred)
 //{
 //
-//   m_pparticle = __allocate predicate_future < PRED >  (pred);
+//   m_pparticle = øallocate predicate_future < PRED >  (pred);
 //
 //}
 //
@@ -1126,7 +1126,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //
 //   auto pgroup = system()->task_group(epriority);
 //
-//   synchronous_lock slGroup(pgroup->synchronization());
+//   synchronous_lock slGroup(pgroup->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   ///   auto ptool = system()->task_tool(op_fork_count);
 //
@@ -1158,7 +1158,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //   for (::collection::index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
-//      ::pointer<predicate_holder_base>p = __allocate forking_count_predicate < PRED >  (iOrder, iOrder + iStart, iScan, iCount, pred);
+//      ::pointer<predicate_holder_base>p = øallocate forking_count_predicate < PRED >  (iOrder, iOrder + iStart, iScan, iCount, pred);
 //
 //      if (!pgroup->add_predicate(p))
 //      {
@@ -1198,11 +1198,11 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 
 
 //template < typename PRED >
-//method::method(PRED pred) : function(__allocate< predicate_method < PRED > >(pred)) { }
+//method::method(PRED pred) : function(øallocate< predicate_method < PRED > >(pred)) { }
 //
 //
 //template < typename PRED >
-//future::future(PRED pred) : function(__allocate< predicate_future < PRED > >(pred)) { }
+//future::future(PRED pred) : function(øallocate< predicate_future < PRED > >(pred)) { }
 
 
 
@@ -1264,7 +1264,7 @@ void reference_count_debug_release(TYPE * & p)
 
 
 //template < typename BASE_TYPE >
-//inline void object::__øconstruct(::pointer<BASE_TYPE> pcomposite)
+//inline void object::øconstruct(::pointer<BASE_TYPE> pcomposite)
 //{
 //
 //   if (!pcomposite)
@@ -1324,7 +1324,7 @@ void reference_count_debug_release(TYPE * & p)
 
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__øconstruct(::pointer<BASE_TYPE> pcomposite, const SOURCE* psource)
+//inline void object::øconstruct(::pointer<BASE_TYPE> pcomposite, const SOURCE* psource)
 //{
 //
 //   pcomposite = psource;
@@ -1353,7 +1353,7 @@ void reference_count_debug_release(TYPE * & p)
 //}
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__raw_construct(::pointer<BASE_TYPE> p, const SOURCE* psource)
+//inline void object::øraw_construct(::pointer<BASE_TYPE> p, const SOURCE* psource)
 //{
 //
 //   p = psource;
@@ -1373,34 +1373,34 @@ void reference_count_debug_release(TYPE * & p)
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__øconstruct(::pointer<BASE_TYPE> p, const ::pointer<SOURCE>psource)
+//inline void object::øconstruct(::pointer<BASE_TYPE> p, const ::pointer<SOURCE>psource)
 //{
 //
-//   /* return */ __øconstruct(p, psource.get());
+//   /* return */ øconstruct(p, psource.get());
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__øconstruct(::pointer<BASE_TYPE> p, const ptr < SOURCE > & psource)
+//inline void object::øconstruct(::pointer<BASE_TYPE> p, const ptr < SOURCE > & psource)
 //{
 //
-//   /* return */ __øconstruct(p, psource.get());
+//   /* return */ øconstruct(p, psource.get());
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void object::__raw_construct(::pointer<BASE_TYPE> p, const ::pointer<SOURCE>psource)
+//inline void object::øraw_construct(::pointer<BASE_TYPE> p, const ::pointer<SOURCE>psource)
 //{
 //
-//   /*return*/ __raw_construct(p, psource.get());
+//   /*return*/ øraw_construct(p, psource.get());
 //
 //}
 //
 //
 //template < typename BASE_TYPE >
-//inline void object::__id_construct(::pointer<BASE_TYPE> p, const ::atom& atom)
+//inline void object::øid_construct(::pointer<BASE_TYPE> p, const ::atom& atom)
 //{
 //
 //   auto& pfactory = factory_item(atom);
@@ -1457,7 +1457,7 @@ void reference_count_debug_release(TYPE * & p)
 //inline void object::__raw_construct_new(::pointer<TYPE> p)
 //{
 //
-//   auto ptypeNew = __allocate TYPE();
+//   auto ptypeNew = øallocate TYPE();
 //
 //   if (!ptypeNew)
 //   {
@@ -1485,10 +1485,10 @@ void reference_count_debug_release(TYPE * & p)
 //
 //
 //template < typename TYPE >
-//inline void object::__construct_new(::pointer<TYPE> p)
+//inline void object::øconstruct_new(::pointer<TYPE> p)
 //{
 //
-//   auto ptypeNew = __allocate TYPE();
+//   auto ptypeNew = øallocate TYPE();
 //
 //   if (!ptypeNew)
 //   {
@@ -1567,7 +1567,7 @@ void reference_count_debug_release(TYPE * & p)
 
 
 //template < typename TYPE >
-//inline void object::__øconstruct(::task_pointer& p, void (TYPE::* pfn)(), enum_priority epriority)
+//inline void object::øconstruct(::task_pointer& p, void (TYPE::* pfn)(), enum_priority epriority)
 //{
 //
 //   p = fork(pfn, epriority);
@@ -1586,7 +1586,7 @@ void reference_count_debug_release(TYPE * & p)
 //inline void object::__construct_below_normal(::task_pointer& p, void (TYPE::* pfn)())
 //{
 //
-//   return __øconstruct(p, pfn, e_priority_below_normal);
+//   return øconstruct(p, pfn, e_priority_below_normal);
 //
 //}
 //
@@ -1703,7 +1703,7 @@ void reference_count_debug_release(TYPE * & p)
 //   m_pparticle(nullptr)
 //{
 //
-//   operator=(p->__øcreate < T >());
+//   operator=(p->øcreate < T >());
 //
 //}
 
@@ -1741,7 +1741,7 @@ void reference_count_debug_release(TYPE * & p)
 //
 
 //template < typename TYPE >
-//inline bool particle::__defer_construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
+//inline bool particle::ødefer_construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
 //{
 //
 //   if (::is_set(p))
@@ -1751,7 +1751,7 @@ void reference_count_debug_release(TYPE * & p)
 //
 //   }
 //
-//   __øconstruct(p, pfactory);
+//   øconstruct(p, pfactory);
 //
 //   return true;
 //
@@ -1796,11 +1796,11 @@ constexpr long long posix_time::days() const { return m_iSecond / (24 * 60 * 60)
 
 
 //template < typename T, typename ...Args >
-//inline ::pointer < T > particle::__call__allocate(Args &&... args)
+//inline ::pointer < T > particle::__calløallocate(Args &&... args)
 //{
 //
 //   auto p = ::transfer(
-//      ::platform::allocator::__call__allocate< T >(
+//      ::platform::allocator::__calløallocate< T >(
 //         ::std::forward<Args>(args)...));
 //
 //   return ::transfer(p);

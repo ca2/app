@@ -1467,7 +1467,7 @@ template < typename OBJECT >
 inline pointer < T > & pointer < T >::create_new(OBJECT * pparticle)
 {
 
-   auto p = __allocate T();
+   auto p = øallocate T();
 
    //p.set_referer();
 
@@ -2063,7 +2063,7 @@ inline pointer < T >& pointer < T > ::operator = (pointer < T2 > && t)
 
 
 //template < typename TYPE >
-//inline ::pointer<TYPE> __call__create_new(::subparticle* pparticle)
+//inline ::pointer<TYPE> __calløcreate_new(::subparticle* pparticle)
 //{
 //
 //   if (::is_null(pparticle))
@@ -2073,7 +2073,7 @@ inline pointer < T >& pointer < T > ::operator = (pointer < T2 > && t)
 //
 //   }
 //
-//   auto p = __allocate TYPE();
+//   auto p = øallocate TYPE();
 //
 //   if (p)
 //   {
@@ -2088,10 +2088,10 @@ inline pointer < T >& pointer < T > ::operator = (pointer < T2 > && t)
 
 
 //template < typename TYPE >
-//inline void __construct_new(::subparticle* pparticle, ::pointer<TYPE>& p)
+//inline void øconstruct_new(::subparticle* pparticle, ::pointer<TYPE>& p)
 //{
 //
-//   p = __allocate TYPE();
+//   p = øallocate TYPE();
 //
 //   if (!p)
 //   {

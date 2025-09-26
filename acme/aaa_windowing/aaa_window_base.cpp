@@ -61,7 +61,7 @@ namespace windowing
 
       ::user::element::on_initialize_particle();
 
-      _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization());
+      _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       system()->acme_windowing()->m_windowbasea.add(this);
 
@@ -73,7 +73,7 @@ namespace windowing
 
       ::user::element::destroy();
 
-      _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization());
+      _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       system()->acme_windowing()->m_windowbasea.erase(this);
 
@@ -362,7 +362,7 @@ void window_base::handle(::topic * ptopic, ::handler_context * phandlercontext)
 //
 //    message_loop();
 //
-//    // auto pmanualresethappening = __allocate manual_reset_happening();
+//    // auto pmanualresethappening = øallocate manual_reset_happening();
 //    //
 //    // m_pinterface->m_psequencer->then([ pmanualresethappening](auto psequencer)
 //    // {
@@ -380,7 +380,7 @@ void window_base::handle(::topic * ptopic, ::handler_context * phandlercontext)
 //    //
 //    // }
 //    //
-//    // //   auto pmessagebox = pparticle->__create_new < message_box >();
+//    // //   auto pmessagebox = pparticle->øcreate_new < message_box >();
 //    // //
 //    // //   atom idResult;
 //    // //

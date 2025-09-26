@@ -103,7 +103,7 @@ namespace input
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_particleaMouseHandler.add(pparticle);
 
@@ -119,7 +119,7 @@ namespace input
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_particleaKeyboardHandler.add(pparticle);
 
@@ -135,7 +135,7 @@ namespace input
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_particleaMouseHandler.erase(pparticle);
 
@@ -151,7 +151,7 @@ namespace input
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_particleaKeyboardHandler.erase(pparticle);
 

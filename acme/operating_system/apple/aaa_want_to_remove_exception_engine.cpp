@@ -1759,7 +1759,7 @@
 //    void engine::backtrace(void ** ppui, int &c)
 //    {
 
-//       synchronous_lock synchronouslock(this->synchronization());
+//       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //       unsigned int maxframes = c;
 

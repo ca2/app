@@ -297,7 +297,7 @@ template < typename FUNCTION >
 class function;
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
-class list;
+class list_base;
 
 
 template < typename T >
@@ -308,25 +308,42 @@ template < typename SINGLE >
 struct make_single ;
 
 
-template < typename NODE >
-class node_set;
+enum enum_allocate
+{
+   e_allocate_normal,
+   e_allocate_malloc,
+};
+
+
+template < typename ITEM, enum_allocate t_eallocate = e_allocate_normal >
+class node_set_base;
 
 
 template < typename KEY, typename NODE = single < KEY > >
-using set = node_set < ::make_single < NODE > >;
+using set = node_set_base < ::make_single < NODE > >;
 
 
 template < typename T1, typename T2 >
 class pair;
 
 
-template < typename PAIR >
-class pair_map;
+template < typename PAIR, enum_allocate t_eallocate = e_allocate_normal >
+class pair_map_base;
+
+
+template < typename TYPE1, typename TYPE2, class PAIR = pair < TYPE1, TYPE2 >, enum_allocate t_eallocate = e_allocate_normal >
+using map_base = pair_map_base < PAIR, t_eallocate >;
+
+template < typename TYPE1, typename TYPE2, enum_allocate t_eallocate = e_allocate_normal, class PAIR = pair < TYPE1, TYPE2 > >
+using map_base2 = pair_map_base < PAIR, t_eallocate >;
+
+
+template<typename MAP_BASE>
+class map_particle;
 
 
 template < typename TYPE1, typename TYPE2, class PAIR = pair < TYPE1, TYPE2 > >
-using map = pair_map < PAIR >;
-
+using map = map_particle < map_base < TYPE1, TYPE2, PAIR > >;
 
 template<class ENUM>
 class flags;
@@ -338,16 +355,22 @@ class base_enum;
 
 
 template < typename TYPE, typename PAIR = pair < ::atom, TYPE > >
-using atom_map = ::map < atom, TYPE, PAIR >;
+using atom_map_base = ::map_base < atom, TYPE, PAIR >;
 
 
+template < typename TYPE >
+class comparable_eq_array_particle;
+
+
+template < typename TYPE >
+class comparable_array_particle;
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array_base < TYPE, ARG_TYPE > >
 class comparable_eq_array_base;
 
 template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array_base < TYPE, ARG_TYPE > >
-using comparable_eq_array = ::array_particle< comparable_eq_array_base< TYPE, ARG_TYPE, ARRAY_TYPE > >;
+using comparable_eq_array = ::comparable_eq_array_particle< comparable_eq_array_base< TYPE, ARG_TYPE, ARRAY_TYPE > >;
 
 
 //template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = array_non_particle < TYPE, ARG_TYPE > >
@@ -359,7 +382,7 @@ class comparable_array_base;
 
 
 template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array_base < TYPE, ARG_TYPE > >
-using comparable_array = ::array_particle< comparable_array_base< TYPE, ARG_TYPE, ARRAY_TYPE > >;
+using comparable_array = ::comparable_array_particle< comparable_array_base< TYPE, ARG_TYPE, ARRAY_TYPE > >;
 
 
 //template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = non_particle_comparable_eq_array < TYPE, ARG_TYPE > >
@@ -469,9 +492,9 @@ using procedure = ::function < void() >;
 
 class procedure_array;
 
-using procedure_map = ::atom_map < ::procedure_array >;
+using procedure_map = ::atom_map_base < ::procedure_array >;
 
-using procedure_list = ::list < ::procedure >;
+using procedure_list_base = ::list_base < ::procedure >;
 
 
 
@@ -892,7 +915,7 @@ using enum_application_capability_array = ::comparable_array < enum_application_
 ////::matter_pointer __handle_function(PREDICATE predicate)
 ////{
 ////
-////   return __allocate han<PREDICATE> (predicate);
+////   return øallocate han<PREDICATE> (predicate);
 ////
 ////}
 
@@ -916,7 +939,7 @@ auto as_non_const(const T * p)
 
 
 template < typename TYPE >
-using index_map = map < ::collection::index, TYPE >;
+using index_map_base = map_base < ::collection::index, TYPE >;
 
 
 
@@ -936,14 +959,14 @@ using dereference = typename dereference_struct < T >::type;
 
 //
 //template < typename T, typename ...Args >
-//inline T * __call__allocate(Args &&... args);
+//inline T * __calløallocate(Args &&... args);
 //
 //template < typename T >
 //inline void __call__delete(T * p);
 //
 //
 //template < typename T >
-//inline T * __allocate_array(::collection::count c);
+//inline T * øallocate_array(::collection::count c);
 
 
 //#if REFERENCING_DEBUGGING
@@ -989,8 +1012,6 @@ using raw_enum_of = typename raw_enum_of_struct<erase_const_effemeral<ENUM>>::ty
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
 
 
-template <typename T1, typename T2>
-inline bool is_equivalent(T1 t1, T2 t2);
 
 
 
@@ -1048,10 +1069,15 @@ class pointer_array_base;
 template<class T, typename ARG_T = const T *, typename ARRAY_BASE = array_base<::pointer<T>, ARG_T>>
 class pointer_array; // = ::array_particle < pointer_array_base < T, ARG_T, ARRAY_BASE > >;
 
+template<typename TYPE, int t_iSize, enum_array t_earray = e_array_none, typename ARG_TYPE = const TYPE &>
+class block_array;
+
+template<typename TYPE, typename ARG_TYPE>
+class array_range;
 
 
-template<class T, int t_preallocated_array_size, typename ARG_T = const T *, typename ARRAY_BASE = array_base<::pointer<T>, ARG_T> >
-using preallocated_pointer_array_base = pointer_array_base<T, ARG_T, preallocated_array_base<ARRAY_BASE, t_preallocated_array_size>>;
+template<class T, int t_preallocated_array_size, typename ARG_T = const T * >
+using preallocated_pointer_array_base = pointer_array_base<T, ARG_T, ::block_array < ::pointer < T >,t_preallocated_array_size, e_array_none, ARG_T > >;
 
 
 using particle_array_base = pointer_array_base<particle>;
@@ -1078,7 +1104,7 @@ inline ::pointer<T> pointer_transfer(T *p);
 
 
 template<typename T, typename... Args>
-inline ::pointer<T> __call__allocate(Args &&...args);
+inline ::pointer<T> __calløallocate(Args &&...args);
 
 
 using manager_pointer = ::pointer<manager>;
@@ -1150,7 +1176,7 @@ namespace platform
 {
 
 
-   using session_map = ::index_map<::pointer<::platform::session>>;
+   using session_map = ::index_map_base<::pointer<::platform::session>>;
 
 
 } // namespace platform

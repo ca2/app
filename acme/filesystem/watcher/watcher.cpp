@@ -68,7 +68,7 @@ namespace file
    //watch_id watcher::watch_folder_with_listener_function(const ::file::path & pathFolder, listener_function function, bool bRecursive)
    //{
 
-   //   return watch_folder_with_listener(pathFolder, __allocate listener(function), bRecursive);
+   //   return watch_folder_with_listener(pathFolder, øallocate listener(function), bRecursive);
 
    //}
 
@@ -112,15 +112,15 @@ namespace file
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer<watch>pwatch;
 
-      __øconstruct(pwatch);
+      øconstruct(pwatch);
 
       pwatch->m_pwatcher = this;
 
-      m_watchset.set_at(pwatch);
+      m_watchset.set_item(pwatch);
 
       //if (m_bCreateWatchThread)
       //{
@@ -137,7 +137,7 @@ namespace file
       if (!pwatch->open(pathFolder, bRecursive))
       {
 
-         m_watchset.erase_item(pwatch);
+         m_watchset.erase(pwatch);
 
          return nullptr;
 
@@ -179,11 +179,11 @@ namespace file
    void watcher::erase_watch(::file::watch *pwatch, ::function < void () > functionErased)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto ppair = m_watchset.plookup(pwatch);
+      auto iterator = m_watchset.find(pwatch);
 
-      if (!ppair)
+      if (!iterator)
       {
 
          return;
@@ -222,7 +222,7 @@ namespace file
    void watcher::erase_watch(const ::file::path & pathFolder)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (auto & item : m_watchset)
       {

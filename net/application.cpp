@@ -50,7 +50,7 @@ IMPLEMENT_APPLICATION_FACTORY();
    void application::on_request(::request * prequest)
    {
 
-      __construct_new(m_pwindow);
+      øconstruct_new(m_pwindow);
 
       m_pwindow->create_main_window();
 

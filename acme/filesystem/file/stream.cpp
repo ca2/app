@@ -923,7 +923,7 @@ bool  stream_base::is_version(int i)
 //   if (!m_pvarOptions)
 //   {
 //
-//      m_pvarOptions = __allocate ::payload();
+//      m_pvarOptions = øallocate ::payload();
 //
 //   }
 //
@@ -944,7 +944,7 @@ bool  stream_base::is_version(int i)
 //
 //   auto atom = text_to_factory_id(strText);
 //
-//   return __id_create < ::matter >(atom);
+//   return øid_create < ::matter >(atom);
 //
 //}
 //

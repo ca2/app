@@ -325,7 +325,7 @@ namespace universal_windows
 
             ::pointer<::user::message>spbase;
 
-            auto pkey = __allocate ::message::key();
+            auto pkey = øallocate ::message::key();
 
             spbase = pkey;
 
@@ -333,7 +333,7 @@ namespace universal_windows
 
             bool bSpecialKey = false;
 
-            pkey->m_emessage = e_message_key_down;
+            pkey->m_emessage = ::user::e_message_key_down;
             pkey->m_puserinteraction = session()->m_puserinteractionHost;
             pkey->m_nChar = 0;
             pkey->m_ekey = ::user::e_key_refer_to_text_member;

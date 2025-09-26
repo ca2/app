@@ -47,7 +47,7 @@ namespace graphics
 
       //}
 
-      //__construct_new(m_pim);
+      //øconstruct_new(m_pim);
 
 #ifdef MACOS
 
@@ -62,7 +62,7 @@ namespace graphics
       for (auto & pbufferitem : m_bufferitema)
       {
 
-         __construct_new(pbufferitem);
+         øconstruct_new(pbufferitem);
 
          //pimage->defer_create_synchronization();
 
@@ -142,7 +142,7 @@ namespace graphics
    ::collection::index multiple_buffer::find_best_buffer(const ::int_size & size)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       bool bFoundExact = false;
 
@@ -339,7 +339,7 @@ namespace graphics
    bool multiple_buffer::buffer_lock_round_swap_key_buffers()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_iDone = m_iBuffer;
 
@@ -385,7 +385,7 @@ namespace graphics
    void multiple_buffer::update_screen()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto puserinteraction = m_pwindow->user_interaction();
 
@@ -402,7 +402,7 @@ namespace graphics
 
       auto pitem = get_screen_item();
 
-      synchronous_lock slScreen(pitem->m_pmutex);
+      synchronous_lock slScreen(pitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //auto bOk = update_screen(get_screen_item());
 

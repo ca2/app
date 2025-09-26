@@ -30,7 +30,7 @@ CLASS_DECL_ACME bool __default_alloc_hook(size_t, bool, int);
 // A failure hook returns whether to permit allocation
 typedef bool (* __ALLOC_HOOK)(size_t nSize, bool bObject, int lRequestNumber);
 
-// set __allocate< hook, return old  >(never nullptr)
+// set øallocate< hook, return old  >(never nullptr)
 //CLASS_DECL_ACME __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);
 
 
@@ -61,7 +61,7 @@ CLASS_DECL_ACME bool __enable_memory_tracking(bool bTrack);
 /////////////////////////////////////////////////////////////////////////////
 // Non-diagnostic memory routines
 
-CLASS_DECL_ACME int c_cdecl __allocate_handler(size_t /* nSize */);
+CLASS_DECL_ACME int c_cdecl øallocate_handler(size_t /* nSize */);
 
 
 

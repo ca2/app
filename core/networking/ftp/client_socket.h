@@ -100,7 +100,7 @@ namespace ftp
       const string                          mc_strRemoteDirectorySeparator; ///< directory separator character which is used on the FTP server
 
       memory                     m_vBuffer;                  ///< buffer for sending and receiving
-      string_list                m_qResponseBuffer;          ///< buffer for server-responses
+      string_list_base                m_qResponseBuffer;          ///< buffer for server-responses
       ::pointer<representation>        m_apCurrentRepresentation;  ///< representation currently set
 
       //this class is now a tcp_socket and it is this control connection socket
@@ -109,7 +109,7 @@ namespace ftp
       bool                       m_fTransferInProgress;      ///< if true, a file transfer is in progress
       bool                       m_fAbortTransfer;           ///< indicates that a running filetransfer should be canceled
       bool                       m_fResumeIfPossible;        ///< try to resume download/upload if possible
-      observer_array             m_setObserver;              ///< list of observers, which are notified about particular actions
+      observer_array             m_setObserver;              ///< list_base of observers, which are notified about particular actions
       ::pointer<logon>          m_plogon;            ///< logon-info, which was used at the last call of login
 
       enum_state                    m_estate;

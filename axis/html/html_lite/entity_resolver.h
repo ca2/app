@@ -51,7 +51,7 @@ public:
    
    
    class CharEntityRefs :
-      public string_map < char >
+      public string_map_base < char >
    {
    public:
       

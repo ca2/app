@@ -21,7 +21,7 @@
 ::file::path macos_app_path(::directory_system * pdirectorysystem, const ::scoped_string & scopedstrApp)
 {
 
-   ::file::path path = pdirectorysystem->home() / "Library/papp Support/ca2/mypath" / (strApp + ".txt");
+   ::file::path path = pdirectorysystem->home() / "Library/papp Support/ca2/mypath" / (scopedstrApp + ".txt");
 
    return pdirectorysystem->m_pfilesystem->as_string(path);
 
@@ -111,7 +111,7 @@ CLASS_DECL_ACME ::file::path core_app_path(::directory_system * pdirectorysystem
 
    ::file::path path = getenv("HOME");
 
-   path /= "Library/papp Support/ca2/mypath" / strApp;
+   path /= "Library/papp Support/ca2/mypath" / scopedstrApp;
 
    path += ".txt";
 

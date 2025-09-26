@@ -10,7 +10,7 @@
 // {
 
 
-//    call_message_handler_task::call_message_handler_task(interaction * pinteraction, ::enum_message emessage, ::wparam wparam, ::lparam lparam) :
+//    call_message_handler_task::call_message_handler_task(interaction * pinteraction, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) :
 //       id()(atom),
 //       m_pinteraction(pinteraction),
 //       m_wparam(wparam),

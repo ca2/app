@@ -87,7 +87,7 @@
    
       //printf("It is a path\n");
 
-      auto PWD = plookupEnvironment->lookup("slashed_pwd");
+      auto PWD = plookupEnvironment->find("slashed_pwd");
 
 //      printf("PWD: %s\n", PWD.c_str());
    
@@ -245,7 +245,7 @@ bool path_get_next_path(::scoped_string & scopedstr, ::string_range < const_char
 
    ::scoped_string scopedstrPath;
 
-   auto PATH = plookupEnvironment->lookup("PATH");
+   auto PATH = plookupEnvironment->find("PATH");
 
    if(PATH.nok())
    {

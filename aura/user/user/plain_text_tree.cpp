@@ -23,7 +23,7 @@ namespace user
       m_iSelBeg            = -1;
       m_iSelEnd            = -1;
 
-      __construct_new(m_peditfile);
+      øconstruct_new(m_peditfile);
 
    }
 

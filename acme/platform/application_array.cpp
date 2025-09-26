@@ -74,7 +74,7 @@ namespace platform
    ::platform::application * application_array::find_by_app_id(const ::scoped_string & scopedstrAppId)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    restart:
 
@@ -161,7 +161,7 @@ namespace platform
    }
 
 
-   bool application_array::lookup(const ::scoped_string & scopedstrAppId, ::pointer<::platform::application>& papp)
+   bool application_array::find(const ::scoped_string & scopedstrAppId, ::pointer<::platform::application>& papp)
    {
 
       papp = find_running_defer_try_quit_damaged(scopedstrAppId);

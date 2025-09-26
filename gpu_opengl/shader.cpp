@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "lock.h"
+//#include "_gpu_opengl.h"
 #include "input_layout.h"
 #include "render_target.h"
 #include "renderer.h"
@@ -42,6 +42,7 @@ namespace gpu_opengl
    shader::shader()
    {
 
+      m_ecullmode = ::gpu::e_cull_mode_none;
 
    }
 
@@ -281,6 +282,13 @@ namespace gpu_opengl
 
    void shader::_bind()
    {
+
+      auto pgpucontext = m_pgpurenderer->m_pgpucontext;
+
+      pgpucontext->set_cull_face(m_ecullmode);
+
+      //glFrontFace(GL_CCW); // counter-clockwise is front face (default)
+      ///glFrontFace(GL_CW); // counter-clockwise is front face (default)
 
       if (m_bEnableBlend)
       {
@@ -836,7 +844,9 @@ namespace gpu_opengl
          case ::gpu::e_type_mat4:
             _set_mat4(p->m_pszName, *(glm::mat4*)(m_propertiesPush.data() + iLen));
             break;
-
+        default:
+        throw ::exception(error_not_expected);
+        break;
          }
 
          auto iLenItem = ::gpu::get_type_size(p->m_etype);
@@ -856,7 +866,7 @@ namespace gpu_opengl
    //::gpu::payload * shader::get_payload(const ::scoped_string & scopedstrUniform)
    //{
    //   
-   //   auto p = m_mapLayout.plookup(scopedstrUniform);
+   //   auto p = m_mapLayout.find(scopedstrUniform);
 
    //   if (!p)
    //   {
@@ -867,7 +877,7 @@ namespace gpu_opengl
 
    //      m_mapLayout.set_at(scopedstrUniform, payload);
    //      
-   //      auto p = m_mapLayout.plookup(scopedstrUniform);
+   //      auto p = m_mapLayout.find(scopedstrUniform);
 
    //   }
 

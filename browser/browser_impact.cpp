@@ -70,12 +70,12 @@ namespace browser
 
       impact_base::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create,pchannel,this,&impact::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::on_message_destroy);
-      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact::_001OnMouse);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::_001OnMouse);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &impact::_001OnMouse);
+      USER_MESSAGE_LINK(::user::e_message_create,pchannel,this,&impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &impact::on_message_destroy);
+      //USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &impact::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &impact::_001OnMouse);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &impact::_001OnMouse);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &impact::_001OnMouse);
 
    }
 
@@ -106,7 +106,7 @@ namespace browser
 
       bool bAlternate = string(id()).case_insensitive_contains("switcher");
 
-      m_prender = __allocate render(get_app(), bAlternate);
+      m_prender = øallocate render(get_app(), bAlternate);
 
       m_prender->m_pimpact = this;
 
@@ -160,7 +160,7 @@ namespace browser
 
          {
 
-            synchronous_lock synchronouslock(m_pmutexText);
+            synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             calc_processed_browser(m_strProcessedHellomultiverse);
 
@@ -168,7 +168,7 @@ namespace browser
 
          {
 
-            synchronous_lock synchronouslock(m_pmutexText);
+            synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             if (m_bPendingImageChange)
             {
@@ -210,11 +210,11 @@ namespace browser
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       {
 
-         synchronous_lock slText(m_pmutexText);
+         synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if(m_strNewHelloBrowser.is_empty())
          {
@@ -328,7 +328,7 @@ namespace browser
       happening.x() = point.x();
       happening.y() = point.y();
 
-      if (pmouse->m_emessage == e_message_left_button_down)
+      if (pmouse->m_emessage == ::user::e_message_left_button_down)
       {
 
          papp->m_ppaneimpact->m_pimpactLastBilbo = this;
@@ -336,13 +336,13 @@ namespace browser
          m_pbrowser->GetHost()->SendMouseClickEvent(happening, cef_mouse_button_type_t::MBT_LEFT, false, 1);
 
       }
-      else if (pmouse->m_emessage == e_message_left_button_up)
+      else if (pmouse->m_emessage == ::user::e_message_left_button_up)
       {
 
          m_pbrowser->GetHost()->SendMouseClickEvent(happening, cef_mouse_button_type_t::MBT_LEFT, true, 1);
 
       }
-      else if (pmouse->m_emessage == e_message_mouse_move)
+      else if (pmouse->m_emessage == ::user::e_message_mouse_move)
       {
 
          m_pbrowser->GetHost()->SendMouseMoveEvent(happening, false);
@@ -471,7 +471,7 @@ namespace browser
    void impact::calc_processed_browser(string & strProcessedHellomultiverse)
    {
 
-      synchronous_lock slText(m_pmutexText);
+      synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string str;
 
@@ -598,7 +598,7 @@ namespace browser
    string impact::get_browser()
    {
 
-      synchronous_lock synchronouslock(m_pmutexText);
+      synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(m_strHelloBrowser.c_str() != m_strNewHelloBrowser.c_str())
       {
@@ -662,7 +662,7 @@ namespace browser
       if (m_prender != nullptr)
       {
 
-         synchronous_lock synchronouslock(m_pmutexText);
+         synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_strProcessedHellomultiverse != m_prender->m_strHelloBrowser)
          {
@@ -683,7 +683,7 @@ namespace browser
    void impact::on_draw_image_layer(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_prender->m_bImageEnable && m_prender->m_pimageImage->is_ok())
       {
@@ -720,7 +720,7 @@ namespace browser
 
 /*                  pimage->stretch_image(m_prender->m_pimageImage);
 
-                  synchronous_lock synchronouslock(this->synchronization());
+                  synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*                  m_prender->m_pimageImageStretched = pimage;
 
@@ -749,7 +749,7 @@ namespace browser
 
       {
 
-         synchronous_lock synchronouslock(m_pmutexText);
+         synchronous_lock synchronouslock(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_strNewHelloBrowser = strText;
 
@@ -844,7 +844,7 @@ namespace browser
 
    //BOOL impact::PreTranslateMessage(MSG* pMsg)
    //{
-   //   if (pMsg->message == e_message_key_down)
+   //   if (pMsg->message == ::user::e_message_key_down)
    //   {
    //      if (pMsg->wParam == VK_F5)
    //      {
@@ -890,7 +890,7 @@ namespace browser
                       int height)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pixmap p;
 

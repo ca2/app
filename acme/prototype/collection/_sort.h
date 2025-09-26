@@ -1412,10 +1412,10 @@ namespace sort
 
 
    template < typename LIST, typename PRED>
-   void predicate_quick_sort_list(LIST & list, PRED pred)
+   void predicate_quick_sort_list(LIST & list_base, PRED pred)
    {
 
-      if (list.get_size() < 2)
+      if (list_base.get_size() < 2)
       {
 
          return;
@@ -1433,8 +1433,8 @@ namespace sort
       node * iUpperBound;
       node * iLPos, * iUPos, * iMPos;
 
-      stackLowerBound.push(list.m_phead);
-      stackUpperBound.push(list.m_ptail);
+      stackLowerBound.push(list_base.m_phead);
+      stackUpperBound.push(list_base.m_ptail);
       while (true)
       {
          iLowerBound = stackLowerBound.pop();
@@ -1450,7 +1450,7 @@ namespace sort
                   goto break_mid_loop;
                if (pred(iUPos->m_value, iMPos->m_value))
                {
-                  list.__swap(iMPos, iUPos);
+                  list_base.__swap(iMPos, iUPos);
                   break;
                }
                iUPos = iUPos->m_pprevious;
@@ -1462,7 +1462,7 @@ namespace sort
                   goto break_mid_loop;
                if (pred(iMPos->m_value, iLPos->m_value))
                {
-                  list.__swap(iLPos, iMPos);
+                  list_base.__swap(iLPos, iMPos);
                   break;
                }
                iLPos = iLPos->m_pnext;
@@ -1488,28 +1488,28 @@ namespace sort
 
 
    template < typename LIST, typename PRED >
-   void predicate_quick_sort_list_descending(LIST & list, PRED pred)
+   void predicate_quick_sort_list_descending(LIST & list_base, PRED pred)
    {
 
-      predicate_quick_sort_list(list, [&](auto & a, auto & b) { return pred(b, a); });
+      predicate_quick_sort_list(list_base, [&](auto & a, auto & b) { return pred(b, a); });
 
    }
 
 
    template < typename LIST >
-   void quick_sort_list(LIST & list, bool bAscendent = true)
+   void quick_sort_list(LIST & list_base, bool bAscendent = true)
    {
 
       if (bAscendent)
       {
 
-         predicate_quick_sort_list(list, [](auto & a, auto & b) { return a < b; });
+         predicate_quick_sort_list(list_base, [](auto & a, auto & b) { return a < b; });
 
       }
       else
       {
 
-         predicate_quick_sort_list(list, [](auto & a, auto & b) { return b < a; });
+         predicate_quick_sort_list(list_base, [](auto & a, auto & b) { return b < a; });
 
       }
 
@@ -1882,7 +1882,7 @@ namespace sort
 
 
 //template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-//void comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+//void comparable_list_base<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
 //quick_sort(bool bAscendent)
 //{
 //

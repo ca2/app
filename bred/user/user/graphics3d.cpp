@@ -6,7 +6,7 @@
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/input.h"
 #include "bred/graphics3d/scene.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/node.h"
@@ -22,6 +22,7 @@
 #include "aura/platform/application.h"
 #include "bred/gpu/graphics.h"
 #include "bred/gpu/renderer.h"
+#include "bred/prodevian/immersion.h"
 
 
 namespace user
@@ -31,8 +32,8 @@ namespace user
    graphics3d::graphics3d()
    {
 
-      m_emouse = ::graphics3d::e_mouse_updateLook;
-      m_ekeyboard = ::graphics3d::e_keyboard_updateMovement;
+      //m_emouse = ::graphics3d::e_mouse_updateLook;
+      //m_ekeyboard = ::graphics3d::e_keyboard_updateMovement;
       ////m_bAbsoluteMousePosition = false;
       //m_bShouldClose = false;
       m_bFrameBufferResized = false;
@@ -51,14 +52,14 @@ namespace user
 
       ::user::box::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &graphics3d::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &graphics3d::on_message_destroy);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &graphics3d::on_message_key_down);
-      MESSAGE_LINK(e_message_key_up, pchannel, this, &graphics3d::on_message_key_up);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &graphics3d::on_message_mouse_move);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &graphics3d::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &graphics3d::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &graphics3d::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &graphics3d::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &graphics3d::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &graphics3d::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &graphics3d::on_message_key_up);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &graphics3d::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &graphics3d::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &graphics3d::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &graphics3d::on_message_mouse_leave);
 
    }
 
@@ -107,6 +108,8 @@ namespace user
 
          on_mouse_move(point);
 
+         track_mouse_leave();
+
       }
 
    }
@@ -154,7 +157,7 @@ namespace user
 
          m_pkeymap->m_pimpact = this;
 
-         __øconstruct(m_pengine);
+         øconstruct(m_pengine);
 
          m_pengine->initialize_engine(this);
 
@@ -165,7 +168,7 @@ namespace user
    }
 
 
-   ::pointer < ::graphics3d::scene > graphics3d::create_main_scene()
+   ::pointer < ::prodevian::immersion > graphics3d::create_immersion()
    {
 
       throw ::interface_only();
@@ -178,12 +181,30 @@ namespace user
    void graphics3d::on_load_engine()
    {
 
-      m_pengine->m_pinput->m_fMoveSpeed = 3.f;
-      m_pengine->m_pinput->m_fLookSpeed =  1.5f;
 
-      auto psceneMain = create_main_scene();
+      auto pgpucontextEngine = m_pengine->gpu_context();
 
-      m_pengine->set_current_scene(psceneMain);
+      pgpucontextEngine->m_pengine = m_pengine;
+
+      auto pimmersion = create_immersion();
+
+      pimmersion->initialize_immersion_layer(m_pengine);
+
+      m_pengine->m_pimmersionlayer = pimmersion;
+
+      m_pengine->m_pimmersionlayer->m_pengine = m_pengine;
+
+      m_pengine->m_pimmersionlayer->m_passetmanager->preloadGlobalAssets();
+
+      auto psceneMain = m_pengine->m_pimmersionlayer->create_main_scene();
+
+      m_pengine->m_pimmersionlayer->m_pscene = psceneMain;
+
+      //auto pimmersion = create_immersion();
+
+      // auto psceneMain = create_main_scene();
+      //
+      // m_pengine->m_pimmersionlayer->set_current_scene(psceneMain);
 
 
 
@@ -201,10 +222,15 @@ namespace user
    void graphics3d::on_mouse_out()
    {
 
-      if (m_emouse == ::graphics3d::e_mouse_updateLook)
+      if (m_pengine)
       {
 
-         m_pengine->m_pinput->_001OnMouseOut();
+         if (m_pengine->m_pinput)
+         {
+
+            m_pengine->m_pinput->_001OnMouseOut();
+
+         }
 
       }
 
@@ -475,7 +501,7 @@ namespace user
    ::pointer < ::graphics3d::key_map > graphics3d::get_default_key_map()
    {
 
-      auto pmap = __create_new < ::graphics3d::key_map>();
+      auto pmap = øcreate_new < ::graphics3d::key_map>();
       using namespace ::graphics3d;
 
       pmap->map(e_key_moveLeft, ::user::e_key_a);
@@ -512,50 +538,29 @@ namespace user
    }
 
 
-   void graphics3d::prepare_mouse_input()
-   {
+   //void graphics3d::prepare_mouse_input()
+   //{
 
-      if (m_emouse == ::graphics3d::e_mouse_updateLook)
-      {
+   //   m_pengine->m_pinput->prepare_mouse_input();
 
-         m_pengine->m_pinput->_001PrepareMouseInput();
-
-      }
-
-   }
+   //}
 
 
-   void graphics3d::process_mouse_input()
-   {
+   //void graphics3d::process_mouse_input()
+   //{
 
-      if (m_emouse == ::graphics3d::e_mouse_updateLook)
-      {
+   //   m_pengine->m_pinput->process_mouse_input();
 
-         m_pengine->m_pinput->process_mouse_input_updateLook();
-
-      }
-
-   }
+   //}
 
 
-   void graphics3d::process_keyboard_input()
-   {
 
-      if (m_ekeyboard == ::graphics3d::e_keyboard_updateMovement)
-      {
+   //void graphics3d::process_keyboard_input()
+   //{
 
-         m_pengine->m_pinput->process_keyboard_input_updateMovement();
+   //   m_pengine->m_pinput->process_keyboard_input();
 
-      }
-      else if (m_ekeyboard == ::graphics3d::e_keyboard_spaceExplorer)
-      {
-
-         m_pengine->m_pinput->process_keyboard_input_spaceExplorer();
-
-      }
-
-   }
-
+   //}
 
 } // namespace user
 

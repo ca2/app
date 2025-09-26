@@ -153,14 +153,14 @@ namespace sockets_bsd
    {
       if (IsIpv6())
       {
-         auto paddress = __allocate ::networking_bsd::address();
+         auto paddress = øallocate ::networking_bsd::address();
          paddress->set_family(AF_INET6, port);
          //::networking::address ad(AF_INET6, port);
          return Bind(paddress.m_p, depth);
       }
       else
       {
-         auto paddress = __allocate ::networking_bsd::address();
+         auto paddress = øallocate ::networking_bsd::address();
          paddress->set_family(AF_INET, port);
          return Bind(paddress.m_p, depth);
       }
@@ -185,13 +185,13 @@ namespace sockets_bsd
    {
       if (IsIpv6())
       {
-         auto paddress = __allocate ::networking_bsd::address();
+         auto paddress = øallocate ::networking_bsd::address();
          paddress->set_family(AF_INET6, port);
          return Bind(paddress->u.m_addr6.sin6_addr, port, protocol, depth);
       }
       else
       {
-         auto paddress = __allocate ::networking_bsd::address();
+         auto paddress = øallocate ::networking_bsd::address();
          paddress->set_family(AF_INET, port);
          return Bind(paddress->u.m_addr.sin_addr, port, protocol, depth);
       }
@@ -251,7 +251,7 @@ namespace sockets_bsd
    int listen_socket_impl::Bind(in_addr a,::networking::port_t port,int depth)
    {
 
-      auto paddress = __allocate ::networking_bsd::address();
+      auto paddress = øallocate ::networking_bsd::address();
 
       paddress->set_address(a, port);
 
@@ -274,7 +274,7 @@ namespace sockets_bsd
    int listen_socket_impl::Bind(in_addr a,::networking::port_t port,const string & protocol,int depth)
    {
 
-      auto paddress = __allocate ::networking_bsd::address();
+      auto paddress = øallocate ::networking_bsd::address();
 
       paddress->set_address(a, port);
 
@@ -289,7 +289,7 @@ namespace sockets_bsd
    int listen_socket_impl::Bind(in6_addr a,::networking::port_t port,int depth)
    {
 
-      auto paddress = __allocate ::networking_bsd::address();
+      auto paddress = øallocate ::networking_bsd::address();
 
       paddress->set_address(a, port);
 
@@ -313,7 +313,7 @@ namespace sockets_bsd
    int listen_socket_impl::Bind(in6_addr a,::networking::port_t port,const string & protocol,int depth)
    {
 
-      auto paddress = __allocate ::networking_bsd::address();
+      auto paddress = øallocate ::networking_bsd::address();
 
       paddress->set_address(a, port);
 
@@ -569,7 +569,7 @@ namespace sockets_bsd
       psocketImpl->OnOptions(m_iFamily, m_iSocketType, m_iProtocolType, socketAccept);
       printf_line("listen_socket_impl::OnRead 4");
       //psocketImpl-> SetNonblocking(true);
-      auto paddressRemote = __allocate ::networking_bsd::address();
+      auto paddressRemote = øallocate ::networking_bsd::address();
       paddressRemote->set_address(sockaddr.c, sockaddr_len);
       printf_line("listen_socket_impl::OnRead 5");
       //tmp->SetRemoteHostname(::networking::address(*psa));
@@ -587,7 +587,7 @@ namespace sockets_bsd
       {
          // %! OnSSLAccept calls SSLNegotiate that can finish in this one call.
          // %! If that happens and negotiation fails, the 'tmp' instance is
-         // %! still added to the list of active networking_bsd in the sockethandler.
+         // %! still added to the list_base of active networking_bsd in the sockethandler.
          // %! See bugfix for this in socket_handler::Select - don't set rwx
          // %! flags if IsCloseAndDelete() flag is true.
          // %! An even better fugbix (see tcp_socket::OnSSLAccept) now avoids

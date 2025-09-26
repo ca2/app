@@ -43,7 +43,7 @@ namespace datetime
 
          int_rectangle rectangle;
          GetRect(&rectangle, e_element_clock);
-         auto ppen = __øcreate < ::draw2d::pen >();
+         auto ppen = øcreate < ::draw2d::pen >();
 
          ppen->create_solid(1, argb(255, 0, 0, 0));
          pgraphics->set(ppen);
@@ -51,8 +51,8 @@ namespace datetime
 
          int_point pointCenter(rectangle.center());
 
-         auto ppenHour = __øcreate < ::draw2d::pen >();
-         auto ppenMinute = __øcreate < ::draw2d::pen >();
+         auto ppenHour = øcreate < ::draw2d::pen >();
+         auto ppenMinute = øcreate < ::draw2d::pen >();
 
          ppenHour->create_solid(5, argb(255, 0, 0, 0));
          ppenMinute->create_solid(1, argb(255, 0, 0, 0));
@@ -88,7 +88,7 @@ namespace datetime
          double dRMinute = rectangle.width() * 15 / 32;
          double dRSecond = rectangle.width() * 16 / 32;
 
-         auto ppenHM = __øcreate < ::draw2d::pen >();
+         auto ppenHM = øcreate < ::draw2d::pen >();
          ppenHM->create_solid(2, argb(255, 0, 0, 0));
          pgraphics->set(ppenHM);
 
@@ -106,7 +106,7 @@ namespace datetime
             pointMinute.offset(pointCenter);
             pgraphics->line(pointCenter, pointMinute);
          }
-         auto ppenRed = __øcreate < ::draw2d::pen >();
+         auto ppenRed = øcreate < ::draw2d::pen >();
          ppenRed->create_solid(1, argb(255, 200, 0, 0));
          pgraphics->set(ppenRed);
          //pgraphics->set_current_point(pointCenter);

@@ -108,7 +108,7 @@ popsession* s = nullptr;
 		err=resp?resp:strdup("pop3_list");
 		goto error;
 	}
-	s->list=list2array(resp);
+	s->list_base=list2array(resp);
 	free(resp);resp=nullptr;
 	resp=pop3_uidl(s->sock,0);
 	if((!resp) || pop3_error(resp)){
@@ -236,7 +236,7 @@ char* resp;
 	free(resp); 
 	
 	/* no more message of this atom*/
-	session->list[atom]=0;
+	session->list_base[atom]=0;
 	free(session->uidl[atom]);
 	session->uidl[atom]=nullptr;
 	return(0);
@@ -275,8 +275,8 @@ char* resp;
 		free(session); session=nullptr;
 		return(-1);
 	}
-	freelistarray(session->list);
-	session->list=list2array(resp);
+	freelistarray(session->list_base);
+	session->list_base=list2array(resp);
 	free(resp);resp=nullptr;
 	resp=pop3_uidl(session->sock,0);
 	if((!resp) || pop3_error(resp)){
@@ -303,7 +303,7 @@ char* resp;
 	pop3_disconnect(session->sock, session->server);
     free(session->server);
 	free(session->connection);
-	free(session->list);
+	free(session->list_base);
 	for(i=0;i<=session->last;i++){
 		free(session->uidl[i]);
 	}

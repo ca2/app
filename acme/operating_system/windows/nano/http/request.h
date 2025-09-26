@@ -32,7 +32,7 @@ namespace windows
 
             bool send_request();
 
-            bool get_response(::nano::http::get * pget);
+            bool get_response(::nano::http::get * defer_get);
 
 
          };

@@ -12,13 +12,13 @@ namespace text
    {
 
 
-      string_to_string* g_pmapRTL;
+      string_to_string_base* g_pmapRTL;
 
 
       void create_rtl_map()
       {
 
-         g_pmapRTL = ___new string_to_string();
+         g_pmapRTL = ___new string_to_string_base();
 
       }
 
@@ -634,12 +634,12 @@ namespace text
       inline ::string rl_id(const ::scoped_string& scopedstrLocale)
       {
 
-         auto ppair = g_pmapRTL->plookup(scopedstrLocale);
+         auto iterator = g_pmapRTL->find(scopedstrLocale);
 
-         if (::is_ok(ppair))
+         if (iterator)
          {
 
-            return ppair->element2();
+            return iterator->element2();
 
          }
 

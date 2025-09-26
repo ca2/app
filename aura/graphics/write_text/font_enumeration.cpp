@@ -87,7 +87,7 @@ namespace write_text
    bool font_enumeration::has_font_name(const ::scoped_string & scopedstr)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (auto& m_pfontenumerationitema : *m_pfontenumerationitema)
       {
@@ -109,7 +109,7 @@ namespace write_text
    ::pointer<::write_text::font_enumeration_item>font_enumeration::similar_font(const ::scoped_string & scopedstr)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer<::write_text::font_enumeration_item>pitemFound;
 
@@ -198,7 +198,7 @@ namespace write_text
 
       ::pointer<::write_text::font_enumeration_item_array>pitema;
 
-      pitema = __allocate ::write_text::font_enumeration_item_array();
+      pitema = øallocate ::write_text::font_enumeration_item_array();
 
       auto psystem = system();
 
@@ -241,7 +241,7 @@ namespace write_text
 
       ::pointer<::write_text::font_enumeration_item_array>pitema;
 
-      pitema = __allocate ::write_text::font_enumeration_item_array();
+      pitema = øallocate ::write_text::font_enumeration_item_array();
 
       auto psystem = system();
 

@@ -141,7 +141,7 @@ namespace file
       ::pointer < ::subparticle > exception::clone()
       {
 
-         auto pexception = __allocate ::file::exception(*this);
+         auto pexception = øallocate ::file::exception(*this);
 
          return pexception;
 
@@ -195,7 +195,7 @@ namespace file
       //      {
       //
       //         PROCESS_INFO_t stInfo;
-      //         //if( !m_stProcessInfo.lookup( OpenedFileInfo.dwPID, stInfo))
+      //         //if( !m_stProcessInfo.find( OpenedFileInfo.dwPID, stInfo))
       //         {
       //            TCHAR tcFileName[MAX_PATH];
       //            string csModule;
@@ -383,7 +383,7 @@ namespace file
       //void throw ::exception(const ::e_status & estatus, int lOsError, const ::file::path& path)
       //{
 
-      //   throw ::exception(estatus, lOsError, -1, path, e_null);
+      //   throw ::exception(estatus, lOsError, -1, path, {});
 
       //}
 
@@ -414,7 +414,7 @@ namespace file
       //void  throw ::file::exception(errno_status(errno), (int iErrNo, const ::file::path& path)
       //{
 
-      //   throw _exception(errno_status(iErrNo), -1, iErrNo, path, e_null);
+      //   throw _exception(errno_status(iErrNo), -1, iErrNo, path, {});
 
       //}
 

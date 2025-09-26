@@ -3,6 +3,8 @@
 #include "context.h"
 #include "device.h"
 #include "cpu_buffer.h"
+#include "frame_ephemeral.h"
+#include "frame_storage.h"
 #include "layer.h"
 #include "render.h"
 #include "renderer.h"
@@ -137,7 +139,7 @@ namespace gpu
    ::pointer < ::gpu::context > device::allocate_context()
    {
 
-      auto pgpucontext = __øcreate< ::gpu::context >();
+      auto pgpucontext = øcreate< ::gpu::context >();
 
       return pgpucontext;
 
@@ -260,7 +262,7 @@ namespace gpu
    //::gpu::context* device::get_main_context()
    //{
 
-   //   if (__defer_construct(m_pgpucontextMain))
+   //   if (ødefer_construct(m_pgpucontextMain))
    //   {
 
    //      ::cast < ::user::interaction > puserinteractionMain = m_papplication->m_pacmeuserinteractionMain;
@@ -285,7 +287,7 @@ namespace gpu
    ::pointer < ::gpu::context > device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::int_size& size)
    {
 
-      auto pgpucontext = __øcreate<::gpu::context>();
+      auto pgpucontext = øcreate<::gpu::context>();
 
       pgpucontext->create_draw2d_context(this, eoutput, size);
 
@@ -407,13 +409,13 @@ namespace gpu
    //   //
    //   //      }
    //   //      //glGenBuffers(1, &VAO);
-   //   ////      float vertices[] = {
+   //   ////      float vertexes[] = {
    //   //         // positions         // colors
    //   //  //        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
    //   //    //     -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
    //   //      //    0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top
    //   //      //};
-   //   //      float vertices[] = {
+   //   //      float vertexes[] = {
    //   //         // first triangle
    //   //          1.f,  1.f, 0.0f,  // top right
    //   //          1.f, -1.f, 0.0f,  // bottom right
@@ -430,7 +432,7 @@ namespace gpu
    //         //glBindVertexArray(m_VAO);
 
    //         //glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-   //         //glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+   //         //glBufferData(GL_ARRAY_BUFFER, sizeof(vertexes), vertexes, GL_STATIC_DRAW);
 
    //         //// position attribute
    //         //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
@@ -526,7 +528,7 @@ namespace gpu
 
    //   }
 
-   //   //__øconstruct(m_pbuffer);
+   //   //øconstruct(m_pbuffer);
 
    //   //m_pbuffer->m_pimage = image()->create_image(size);
 
@@ -574,7 +576,7 @@ namespace gpu
 
    //         }
 
-   //         __defer_construct(m_pcpubuffer);
+   //         ødefer_construct(m_pcpubuffer);
 
    //         m_pcpubuffer->initialize_cpu_buffer(this);
 
@@ -615,7 +617,7 @@ namespace gpu
 
    //         //}
 
-   //         //__defer_construct(m_pcpubuffer);
+   //         //ødefer_construct(m_pcpubuffer);
 
    //         //m_pcpubuffer->m_pgpucontext = this;
 
@@ -677,7 +679,7 @@ namespace gpu
 
    //         }
 
-   //         synchronous_lock synchronouslock(m_pcpubuffer->synchronization());
+   //         synchronous_lock synchronouslock(m_pcpubuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //         m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
 
@@ -781,7 +783,7 @@ namespace gpu
       if (!m_pgpucontextMain)
       {
 
-         __øconstruct(m_pgpucontextMain);
+         øconstruct(m_pgpucontextMain);
 
          ::gpu::enum_output eoutput;
 
@@ -855,7 +857,7 @@ namespace gpu
       if (!m_pgpucontextMainDraw2d)
       {
 
-         __øconstruct(m_pgpucontextMainDraw2d);
+         øconstruct(m_pgpucontextMainDraw2d);
 
          m_pgpucontextMainDraw2d->m_etype = ::gpu::context::e_type_draw2d;
 
@@ -925,6 +927,45 @@ namespace gpu
 
       m_iCurrentFrame2 = (m_iCurrentFrame2 + 1) % iFrameCount;
 
+      auto& pframestorage = m_framestoragea.ø(m_iCurrentFrame2);
+
+      if (!pframestorage)
+      {
+
+         øconstruct(pframestorage);
+
+         pframestorage->initialize_gpu_frame_storage(this);
+
+      }
+
+      pframestorage->m_iBuffer = 0;
+
+      pframestorage->m_iBufferOffset = 0;
+
+      auto& pframeephemeral = m_frameephemerala.ø(m_iCurrentFrame2);
+
+      øconstruct(pframeephemeral);
+
+   }
+
+   
+   void device::on_end_frame()
+   {
+
+      auto pframestorage = current_frame_storage();
+
+      try
+      {
+
+         pframestorage->on_end_frame();
+
+      }
+      catch (...)
+      {
+
+
+      }
+
    }
 
 
@@ -986,7 +1027,7 @@ namespace gpu
 
       auto & ppoolgroupFrame = m_poolgroupaFrame.element_at_grow(iFrameIndex);
 
-      __defer_construct_new(ppoolgroupFrame);
+      ødefer_construct_new(ppoolgroupFrame);
 
       ppoolgroupFrame->m_pallocator = this;
 
@@ -998,9 +1039,9 @@ namespace gpu
    ::pointer_array<::particle >* device::frame_particle_array(int iFrameIndex)
    {
       
-      auto& particleaFrame = m_particleaFrame.element_at_grow(iFrameIndex);
+      auto& pparticleaFrame = m_particleaFrame.element_at_grow(iFrameIndex);
 
-      return &particleaFrame;
+      return pparticleaFrame;
 
    }
 
@@ -1039,7 +1080,7 @@ namespace gpu
    //   ::gpu::shader::enum_flag eflag)
    //{
 
-   //   auto pshader = __øcreate < ::gpu::shader >();
+   //   auto pshader = øcreate < ::gpu::shader >();
 
    //   pshader->initialize_shader(this, pathVert, pathFrag, eslota, pLocalDescriptorSet, pVertexInput, pproperties, eflag);
 
@@ -1064,7 +1105,7 @@ namespace gpu
    //   if (!m_prenderer)
    //   {
 
-   //      __øconstruct(m_prenderer);
+   //      øconstruct(m_prenderer);
 
    //      m_prenderer->initialize_renderer(this);
 
@@ -1194,7 +1235,7 @@ namespace gpu
    void device::on_top_end_frame()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto procedureaOnTopFrameEnd = ::transfer(m_procedureaOnTopFrameEnd);
 
@@ -1287,11 +1328,11 @@ namespace gpu
       m_iLayer = m_iLayerCount;
       m_iLayerCount++;
 
-      __defer_construct_new(m_playera);
+      ødefer_construct_new(m_playera);
 
       auto & player = m_playera->element_at_grow(m_iLayer);
 
-      __defer_construct(player);
+      ødefer_construct(player);
 
       auto iFrameIndex = pgpurenderer->m_pgpurendertarget->get_frame_index();
 
@@ -1341,6 +1382,22 @@ namespace gpu
       auto& player = layera[m_iLayer];
 
       return player;
+
+   }
+
+
+   frame_storage* device::current_frame_storage()
+   {
+
+      return m_framestoragea.ø(m_iCurrentFrame2);
+
+   }
+
+
+   ::gpu::frame_ephemeral* device::current_frame_ephemeral()
+   {
+
+      return m_frameephemerala.ø(m_iCurrentFrame2);
 
    }
 

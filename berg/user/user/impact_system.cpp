@@ -149,7 +149,7 @@ namespace user
 
       //auto estatus = 
       
-      papp->__id_construct(pdocument, m_typeatomDocument);
+      papp->øid_construct(pdocument, m_typeatomDocument);
 
       if (!pdocument)
       {
@@ -183,7 +183,7 @@ namespace user
       if (!pusersystem)
       {
 
-         pusersystem = __allocate ::user::system();
+         pusersystem = øallocate ::user::system();
 
          prequest->m_pmatterUserPayload = pusersystem;
 
@@ -232,7 +232,7 @@ namespace user
 
       //auto estatus =
       
-      papp->__id_construct(pframe, m_typeatomFrame);
+      papp->øid_construct(pframe, m_typeatomFrame);
 
       if (!pframe)
       {
@@ -430,7 +430,7 @@ namespace user
 //
 //      //if (dumpcontext.GetDepth() > 0)
 //      //{
-//      //   dumpcontext << "\ndocument list = {";
+//      //   dumpcontext << "\ndocument list_base = {";
 //      //   ::collection::count count = get_document_count();
 //      //   for (::collection::index index = 0; index < count; index++)
 //      //   {

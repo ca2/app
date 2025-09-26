@@ -26,7 +26,7 @@ namespace sockets
       //socket_map                 m_socketmapAdd; ///< Sockets to be added to sockets map
       //socket_pointer_list        m_delete; ///< Sockets to be deleted (failed when add)
       bool                       m_b_use_mutex; ///< ::pointer < ::mutex > correctly initialized
-      //socket_id                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list
+      //socket_id                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list_base
       //::collection::count                    m_countR;
       //::collection::count                    m_countW;
       //::collection::count                    m_countE;
@@ -38,7 +38,7 @@ namespace sockets
       posix_time                     m_tlast; ///< timeout control
 
       // state lists
-      //socket_id_list                m_socketidlist; ///< Active file descriptor list
+      //socket_id_list                m_socketidlist; ///< Active file descriptor list_base
       //socket_id_list                m_socketidlistErase; ///< File descriptors that are to be erased from m_sockets
       //socket_id_list                m_socketidlistCallOnConnect; ///< checklist CallOnConnect
       //socket_id_list                m_socketidlistDetach; ///< checklist detach
@@ -168,7 +168,7 @@ namespace sockets
       \lparam port Port number will be echoed in base_socket::OnResolved callback */
       //int Resolve(base_socket *,const ::scoped_string & scopedstrHost,::networking::port_t port) override;
       //int Resolve6(base_socket *,const ::scoped_string & scopedstrHost,::networking::port_t port) override;
-      /** Do a reverse dns lookup. */
+      /** Do a reverse dns find. */
       //int Resolve(base_socket *,in_addr a) override;
       //int Resolve(base_socket *,in6_addr& a) override;
       /** get listen port of asynchronous dns server. */

@@ -4,7 +4,7 @@
 #include "top_edit_impact.h"
 #include "top_impact.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "aura/message/user.h"
 #include "berg/user/user/document.h"
@@ -37,8 +37,8 @@ namespace userex
 
       ::user::show < ::user::plain_edit >::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &top_edit_impact::on_message_create);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &top_edit_impact::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &top_edit_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &top_edit_impact::on_message_key_down);
 
    }
 

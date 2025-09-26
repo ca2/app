@@ -1219,7 +1219,7 @@ namespace hi5
    /*++
    * @method: twit::friendshipDestroy
    *
-   * @description: method to delete a twitter user from friend list (unfollow a user)
+   * @description: method to delete a twitter user from friend list_base (unfollow a user)
    *
    * @input: userInfo - user atom or screen name of a user
    *         isUserId - true if userInfo contains a user atom instead of screen name

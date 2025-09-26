@@ -24,6 +24,12 @@ public:
    inline interlocked_long_long(long long i = 0);
 
 
+   inline interlocked_long_long(const interlocked_long_long& ll);
+
+
+   inline interlocked_long_long(interlocked_long_long && ll);
+
+
    inline interlocked_long_long& operator = (long long i);
 
 
@@ -102,6 +108,20 @@ inline interlocked_long_long::interlocked_long_long(long long i) :
    m_ll(i)
 {
 
+}
+
+
+inline interlocked_long_long::interlocked_long_long(const interlocked_long_long & ll) :
+   m_ll(ll.m_ll)
+{
+
+}
+
+
+inline interlocked_long_long::interlocked_long_long(interlocked_long_long && ll) :
+   m_ll(ll.m_ll)
+{
+   ll.m_ll = 0;
 }
 
 

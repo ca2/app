@@ -679,7 +679,7 @@ string_array_base get_c_args_from_c(const ::scoped_string & scopedstr)
          while (!unicode_is_whitespace(range.m_begin))
          {
 
-            unicode_increment(range.m_begin);
+            range.m_begin = (char *) unicode_next(range.m_begin);
 
             if (range.is_empty())
             {
@@ -787,7 +787,7 @@ string_array_base get_c_args_for_c(const ::scoped_string & scopedstr)
          while (!unicode_is_whitespace(range.m_begin))
          {
 
-            unicode_increment(range.m_begin);
+            range.m_begin = unicode_next(range.m_begin);
 
             if (range.is_empty())
             {
@@ -918,7 +918,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
          if (*pszParse == '\\')
          {
 
-            unicode_increment(pszParse);
+            pszParse = unicode_next(pszParse);
 
          }
          else if (*pszParse == chQuote)
@@ -950,7 +950,7 @@ string transform_to_c_arg(const ::scoped_string & scopedstr)
 
       }
 
-      unicode_increment(pszParse);
+      pszParse = unicode_next(pszParse);
 
    }
 

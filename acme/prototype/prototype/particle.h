@@ -127,7 +127,16 @@ public:
 
 
    }
-   
+
+   particle(::particle&& particle) :
+      ::quantum(::transfer(particle)),
+      ::subparticle(::transfer(particle)),
+      ::signal_handler::base(::transfer(particle))
+   {
+
+
+   }
+
    
 //#else
 //   particle() : m_countReference(1) {}
@@ -396,48 +405,53 @@ public:
    virtual void fatalf(const_char_pointer pszFormat, ...) const;
 
 
-#if defined(__STD_FORMAT__)
+//#if defined(__STD_FORMAT__)
    
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-   template<typename... Ts>
-   void trace(enum_trace_level etracelevel, const std::format_string<Ts...> fmt, Ts&&... args) const
+   template<typename... Args>
+   void trace(enum_trace_level etracelevel, std::format_string<Args...> fmt, Args&&... args) const
    {
 
       auto statement = ::transfer(log_statement());
 
       statement(etracelevel)(trace_category());
 
-      statement.format_output(fmt, ::std::forward<Ts>(args)...);
+      statement.format_output(fmt, ::std::forward<Args>(args)...);
 
    }
 
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-   template<typename... Ts>
-   void information(const std::format_string<Ts...> fmt, Ts&&... args) const
+   template<typename... Args>
+   void debug(std::format_string<Args...> fmt, Args &&...args) const
    {
-      trace(e_trace_level_information, fmt, ::std::forward<Ts>(args)...);
+      trace(e_trace_level_debug, fmt, ::std::forward<Args>(args)...);
+   }
+   template<typename... Args>
+   void information(std::format_string<Args...> fmt, Args&&... args) const
+   {
+      trace(e_trace_level_information, fmt, ::std::forward<Args>(args)...);
    }
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-   template<typename... Ts>
-   void warning(const std::format_string<Ts...> fmt, Ts&&... args) const
+   template<typename... Args>
+   void warning(std::format_string<Args...> fmt, Args&&... args) const
    {
-      trace(e_trace_level_warning, fmt, ::std::forward<Ts>(args)...);
+      trace(e_trace_level_warning, fmt, ::std::forward<Args>(args)...);
    }
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-   template<typename... Ts>
-   void error(const std::format_string<Ts...> fmt, Ts&&... args) const
+   template<typename... Args>
+   void error(std::format_string<Args...> fmt, Args&&... args) const
    {
-      trace(e_trace_level_error, fmt, ::std::forward<Ts>(args)...);
+      trace(e_trace_level_error, fmt, ::std::forward<Args>(args)...);
    }
    // With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-   template<typename... Ts>
-   void fatal(const std::format_string<Ts...> fmt, Ts&&... args) const
+   template<typename... Args>
+   void fatal(std::format_string<Args...> fmt, Args&&... args) const
    {
-      trace(e_trace_level_fatal, fmt, ::std::forward<Ts>(args)...);
+      trace(e_trace_level_fatal, fmt, ::std::forward<Args>(args)...);
    }
 
 
-#endif
+//#endif
    
 
    void trace(enum_trace_level etracelevel, const ::scoped_string & scopedstr) const;
@@ -471,7 +485,7 @@ public:
 
 
    // ThomasBorregaardSorensen!! Like handlers
-   virtual lresult message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam);
+   virtual lresult message_handler(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
    virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);
    virtual void handle(const ::call & call);
    virtual void handle_message(::message::message * pmessage);
@@ -479,7 +493,7 @@ public:
 
    using subparticle::call;
    // ThomasBorregaardSorensen!! Like handlers
-   virtual lresult message_call(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+   virtual lresult message_call(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
    virtual void call_handle(::topic * ptopic, ::handler_context * phandlercontext);
    virtual void call_handle_message(::message::message* pmessage);
    virtual void call_handle_item(::item* pitem);
@@ -532,14 +546,14 @@ public:
    [[nodiscard]] virtual bool should_run_async() const;
 
 
-   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
-   //virtual ::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   //virtual ::pointer < ::message_box > exception_message_box(const ::exception& exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   //virtual ::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   //virtual ::pointer < ::message_box > exception_message_console(const ::exception& exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > exception_message_box(const ::exception& exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > exception_message_console(const ::exception& exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
    //virtual void display(::message_box * pmessagebox);
    //virtual void display_exception(const ::exception& exception, ::message_box * pmessagebox);
@@ -555,17 +569,17 @@ public:
    ::pointer<subparticle>__call__id_create(const ::atom& atom, ::factory::factory * pfactory = nullptr);
 
    template < typename TYPE >
-   inline ::pointer<TYPE> __call__create_new();
+   inline ::pointer<TYPE> __calløcreate_new();
 
    template < typename TYPE >
-   inline ::pointer<TYPE> __call__create_new_clone(TYPE * p);
+   inline ::pointer<TYPE> __calløcreate_new_clone(TYPE * p);
 
    template < typename T, typename ...Args >
-   ::pointer < T > __call__allocate_and_initialize(Args &&... args)
+   ::pointer < T > __calløallocate_and_initialize(Args &&... args)
    {
 
       auto p = ::transfer(
-         ::platform::allocator::__call__allocate< T >(
+         ::platform::allocator::__calløallocate< T >(
             ::std::forward<Args>(args)...));
 
       p->initialize(this);
@@ -605,7 +619,7 @@ public:
    ::pointer < T > create_clone(const T * pSource)
    {
 
-      auto p = this->__øcreate< T >();
+      auto p = this->øcreate< T >();
 
       if (!p)
       {
@@ -633,10 +647,10 @@ public:
 
    /// consumes a referer
    template < typename T >
-   ::pointer < T > __call__create_new_clone(const T * pSource)
+   ::pointer < T > __calløcreate_new_clone(const T * pSource)
    {
 
-      auto p = this->__create_new< T >();
+      auto p = this->øcreate_new< T >();
 
       if (!p)
       {
@@ -827,7 +841,7 @@ public:
    // virtual ::core::user * coreuser();
 
 
-   virtual void process_owned_procedure_list(::procedure_list & procedurelist, bool & bHandled);
+   virtual void process_owned_procedure_list(::procedure_list_base & procedurelist, bool & bHandled);
 
 
    virtual memory_file_pointer create_memory_file();
@@ -846,10 +860,14 @@ public:
 
 
    //template < typename T, typename ...Args >
-   //inline ::pointer < T > __call__allocate(Args &&... args);
+   //inline ::pointer < T > __calløallocate(Args &&... args);
 
 
    //inline ::particle * __call__add_referer(const ::reference_referer & referer) const;
+
+
+   virtual void assert_particle_ok() const;
+
 
 
 };
@@ -1104,56 +1122,56 @@ inline long long global_release(T*& p);
 //
 //
 //// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-//template<typename... Ts>
-//inline void information(const std::format_string<Ts...> fmt, Ts&&... args)
+//template<typename... Args>
+//inline void information(const std::format_string<Args...> fmt, Args&&... args)
 //{
 //
 //   auto statement = log_statement();
 //
 //   statement(e_trace_level_information);
 //
-//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//   statement.format_output(fmt, std::forward<Args>(args)...);
 //
 //}
 //
 //
 //// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-//template<typename... Ts>
-//inline void warning(const std::format_string<Ts...> fmt, Ts&&... args)
+//template<typename... Args>
+//inline void warning(const std::format_string<Args...> fmt, Args&&... args)
 //{
 //
 //   auto statement = log_statement();
 //
 //   statement(e_trace_level_warning);
 //
-//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//   statement.format_output(fmt, std::forward<Args>(args)...);
 //
 //}
 //
 //// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-//template<typename... Ts>
-//void error(const std::format_string<Ts...> fmt, Ts&&... args)
+//template<typename... Args>
+//void error(const std::format_string<Args...> fmt, Args&&... args)
 //{
 //
 //   auto statement = log_statement();
 //
 //   statement(e_trace_level_error);
 //
-//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//   statement.format_output(fmt, std::forward<Args>(args)...);
 //
 //}
 //
 //
 //// With help from speccylad(twitch)/turd(discord) 2023-10-27 ~09:00 BRT
-//template<typename... Ts>
-//void fatal(const std::format_string<Ts...> fmt, Ts&&... args)
+//template<typename... Args>
+//void fatal(const std::format_string<Args...> fmt, Args&&... args)
 //{
 //
 //   auto statement = log_statement();
 //
 //   statement(e_trace_level_fatal);
 //
-//   statement.format_output(fmt, std::forward<Ts>(args)...);
+//   statement.format_output(fmt, std::forward<Args>(args)...);
 //
 //}
 //
@@ -1313,6 +1331,33 @@ CLASS_DECL_ACME void error(const ::scoped_string& scopedstr);
 CLASS_DECL_ACME void fatal(const ::scoped_string& scopedstr);
 
 
+template <typename... Args>
+void debug(std::string_view fmt, Args&&... args)
+{
+   ::debug(format(fmt, std::make_format_args(args...)));
+}
+template <typename... Args>
+void information(std::string_view fmt, Args&&... args)
+{
+   ::information(format(fmt, std::make_format_args(args...)));
+}
+template <typename... Args>
+void warning(std::string_view fmt, Args&&... args)
+{
+   ::warning(format(fmt, std::make_format_args(args...)));
+}
+template <typename... Args>
+void error(std::string_view fmt, Args&&... args)
+{
+   ::error(format(fmt, std::make_format_args(args...)));
+}
+template <typename... Args>
+void fatal(std::string_view fmt, Args&&... args)
+{
+   ::fatal(format(fmt, std::make_format_args(args...)));
+}
+
+
 CLASS_DECL_ACME void debugf(const ::ansi_character* pszFormat, ...);
 CLASS_DECL_ACME void informationf(const ::ansi_character* pszFormat, ...);
 CLASS_DECL_ACME void warningf(const ::ansi_character* pszFormat, ...);
@@ -1347,3 +1392,56 @@ CLASS_DECL_ACME void fatalf(const ::ansi_character* pszFormat, ...);
 //    }
 //
 // };
+
+
+template < primitive_container CONTAINER >
+inline void __assert_container_ok(const CONTAINER * pcontainer, const_char_pointer pszFileName, int nLine)
+{
+
+   if (pcontainer == nullptr)
+   {
+
+      if(!__assert_failed_line(pszFileName, nLine))
+      {
+
+         debug_break();
+
+      }
+
+      return;
+
+   }
+
+   if (!is_memory_segment_ok(pcontainer, sizeof(::particle)))
+   {
+
+      if (__assert_failed_line(pszFileName, nLine))
+      {
+
+         debug_break();
+
+      }
+
+      return;
+
+   }
+
+   if (!is_memory_segment_ok(pcontainer, sizeof(CONTAINER)))
+   {
+
+      if (!__assert_failed_line(pszFileName, nLine))
+      {
+
+         debug_break();
+
+      }
+
+      return;
+
+   }
+
+   pcontainer->container_ok();
+
+}
+
+

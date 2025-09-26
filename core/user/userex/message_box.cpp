@@ -67,7 +67,7 @@ namespace userex
 //   string application::dialog_box(const ::scoped_string & scopedstrMatter, ::property_set & propertyset)
 //   {
 //      
-//      auto pbox = __create_new <::userex::message_box >();
+//      auto pbox = øcreate_new <::userex::message_box >();
 //      
 //      //box.form_callback_as_property_set();
 //      

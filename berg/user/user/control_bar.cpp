@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "control_bar.h"
 #include "frame_window.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -51,17 +51,17 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
 //#ifdef WINDOWS
-//      MESSAGE_LINK(WM_CTLCOLOR, pchannel, this, &control_bar::_001OnCtlColor);
+//      USER_MESSAGE_LINK(WM_CTLCOLOR, pchannel, this, &control_bar::_001OnCtlColor);
 //#endif
-      MESSAGE_LINK(e_message_size_parent, pchannel, this, &control_bar::_001OnSizeParent);
-      MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &control_bar::_001OnWindowPosChanging);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::on_message_mouse_move);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_bar::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &control_bar::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &control_bar::_001OnMouseActivate);
-      MESSAGE_LINK(e_message_create, pchannel, this, &control_bar::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &control_bar::on_message_destroy);
-      MESSAGE_LINK(e_message_help_hit_test, pchannel, this, &control_bar::_001OnHelpHitTest);
+      USER_MESSAGE_LINK(::user::e_message_size_parent, pchannel, this, &control_bar::_001OnSizeParent);
+      USER_MESSAGE_LINK(::user::e_message_window_position_changing, pchannel, this, &control_bar::_001OnWindowPosChanging);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &control_bar::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &control_bar::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &control_bar::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &control_bar::_001OnMouseActivate);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &control_bar::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &control_bar::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_help_hit_test, pchannel, this, &control_bar::_001OnHelpHitTest);
    }
 
 
@@ -154,7 +154,7 @@ namespace user
    /*
    bool control_bar::AllocElements(int nElements, int cbElement)
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       ASSERT(nElements >= 0 && cbElement >= 0);
       ASSERT(m_pData != nullptr || m_nCount == 0);
 
@@ -180,7 +180,7 @@ namespace user
    control_bar::~control_bar()
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       if (m_pframewindowDockSite)
       {
@@ -299,7 +299,7 @@ namespace user
 
    void control_bar::pre_translate_message(::message::message * pmessage)
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       //trans   ASSERT(get_handle() != nullptr);
 
       // allow tooltip messages to be filtered
@@ -315,11 +315,11 @@ namespace user
 //
 //      unsigned int message;
 //
-//      message = pmessage->m_emessage.umessage();
+//      message = pmessage->m_eusermessage.umessage();
 //
 //      // handle CBRS_FLYBY style (status bar flyby help)
 //      if (((m_dwStyle & CBRS_FLYBY) ||
-//            message == e_message_left_button_down || message == e_message_left_button_up) &&
+//            message == ::user::e_message_left_button_down || message == ::user::e_message_left_button_up) &&
 //            ((message >= WM_MOUSEFIRST && message <= WM_MOUSELAST)))
 ////          (message >= WM_NCMOUSEFIRST && message <= WM_NCMOUSELAST)))
 //      {
@@ -373,20 +373,20 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-//      ASSERT_VALID(this);
+//      ASSERT_OK(this);
 //
 //      lresult lResult;
 //
 //      unsigned int message;
 //
-//      message = pmessage->m_emessage.umessage();
+//      message = pmessage->m_eusermessage.umessage();
 //
 //      switch (message)
 //      {
 //      case WM_NOTIFY:
-//      case e_message_command:
+//      case ::user::e_message_command:
 //      case WM_DRAWITEM:
-//      case e_message_measure_item:
+//      case ::user::e_message_measure_item:
 //      case WM_DELETEITEM:
 //      case WM_COMPAREITEM:
 //      case WM_VKEYTOITEM:
@@ -401,7 +401,7 @@ namespace user
 //
 //         // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
 ////#ifdef WINDOWS_DESKTOP
-////            if(pmessage->m_emessage == WM_NOTIFY)
+////            if(pmessage->m_eusermessage == WM_NOTIFY)
 ////            {
 ////               NMHDR* pNMHDR = (NMHDR*)pmessage->m_lparam.m_lparam;
 ////               if (pNMHDR->code == TTN_NEEDTEXTA || pNMHDR->code == TTN_NEEDTEXTW)
@@ -437,7 +437,7 @@ namespace user
    {
       __UNREFERENCED_PARAMETER(pmessage);
 //      ::pointer<::user::message>pmessage(pmessage);
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
    }
 
@@ -548,7 +548,7 @@ namespace user
 
          // erase parts not drawn
          spgraphics->IntersectClipRect(rectangleWindow);
-         SendMessage(e_message_erase_background, (WPARAM)spgraphics->get_handle1());
+         SendMessage(::user::e_message_erase_background, (WPARAM)spgraphics->get_handle1());
 
          // draw gripper in non-client area
          DrawGripper(&spgraphics, rectangleWindow);*/
@@ -575,7 +575,7 @@ namespace user
 
       // erase parts not drawn
       //pgraphics->IntersectClipRect(rectangleWindow);
-      //SendMessage(e_message_erase_background, (WPARAM)spgraphics->get_handle1());
+      //SendMessage(::user::e_message_erase_background, (WPARAM)spgraphics->get_handle1());
       pgraphics->reset_clip();
 
       auto rectangle = ::double_rectangle_dimension(0, 0, rectangleWindow.width(), rectangleWindow.height());
@@ -661,7 +661,7 @@ namespace user
       // // update the indicators before becoming visible
       // ::user::message base(this);
       // LRESULT lresult;
-      // base.set(this, e_message_idle_update_command_user_interface, true, (LPARAM) 0, lresult);
+      // base.set(this, ::user::e_message_idle_update_command_user_interface, true, (LPARAM) 0, lresult);
       // _001OnIdleUpdateCmdUI(&base);
 
    }
@@ -918,8 +918,8 @@ namespace user
    void control_bar::DoPaint(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ASSERT_VALID(this);
-      //ASSERT_VALID(pgraphics);
+      ASSERT_OK(this);
+      //ASSERT_OK(pgraphics);
 
       // paint inside client area
       ::int_rectangle rectangle;
@@ -936,9 +936,9 @@ namespace user
    void control_bar::DrawBorders(::draw2d::graphics_pointer & pgraphics, ::int_rectangle& rectangle)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
-      ASSERT_VALID(pgraphics);
+      ASSERT_OK(pgraphics);
 
       unsigned int uStyle = m_dwStyle;
       if (!(uStyle & CBRS_BORDER_ANY))
@@ -1013,7 +1013,7 @@ namespace user
          if(uStyle & CBRS_GRIPPER)
          {
 
-            auto ppen = __øcreate < ::draw2d::pen > ();
+            auto ppen = øcreate < ::draw2d::pen > ();
 
             ppen->create_solid(1, clr);
 
@@ -1150,7 +1150,7 @@ namespace user
    // input int_rectangle should be client int_rectangle int_size
    void control_bar::CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::int_rectangle& rectangle, bool bHorz) const
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       unsigned int uStyle = m_dwStyle;
 
       if (uStyle & CBRS_BORDER_LEFT)

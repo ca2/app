@@ -175,7 +175,7 @@ namespace html
 
       address_array_base < impl::table* >    m_tableptra;
 
-      //string_map < ::image::image_pointer >     m_imagemap;
+      //string_map_base < ::image::image_pointer >     m_imagemap;
 
       pointer_array_base < font >            m_fonta;
 

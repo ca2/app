@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "image_list.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
@@ -89,7 +89,7 @@ namespace user
    ::image::image *image_list::get_current_image()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_iaSel.get_count() != 1)
       {
@@ -125,8 +125,8 @@ namespace user
 
       //install_click_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &image_list::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &image_list::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &image_list::on_message_destroy);
 
    }
 
@@ -197,8 +197,8 @@ namespace user
 
       }
 
-      __construct_new(m_pimagea);
-      __construct_new(m_pimageaThumb);
+      øconstruct_new(m_pimagea);
+      øconstruct_new(m_pimageaThumb);
 
 
    }
@@ -380,7 +380,7 @@ namespace user
 
       ////item = ::e_element_none;
 
-      //auto pitemNone = __allocate ::item(e_element_none);
+      //auto pitemNone = øallocate ::item(e_element_none);
 
       //return pitemNone;
 
@@ -390,7 +390,7 @@ namespace user
    void image_list::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pstyle = get_style(pgraphics);
 
@@ -415,7 +415,7 @@ namespace user
    void image_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pstyle = get_style(pgraphics);
 
@@ -463,7 +463,7 @@ namespace user
          {
 
             continue;
-            //pitem = __create_new<item>();
+            //pitem = øcreate_new<item>();
 
             //pitem->m_item.m_iItem = iImage;
 
@@ -503,7 +503,7 @@ namespace user
             if (pimageSrc.ok())
             {
 
-               __defer_construct_new(m_pimageaThumb);
+               ødefer_construct_new(m_pimageaThumb);
 
                if (m_pimageaThumb->image_count() < m_pimagea->image_count())
                {
@@ -515,7 +515,7 @@ namespace user
                if (m_pimageaThumb->image_at(iImage)->is_null())
                {
 
-                  __øconstruct(m_pimageaThumb->image_at(iImage));
+                  øconstruct(m_pimageaThumb->image_at(iImage));
 
                }
 
@@ -719,7 +719,7 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       int left = m_iMargin;
 
@@ -731,7 +731,7 @@ namespace user
 
       ::int_rectangle rectangleTotal;
 
-      __defer_construct_new(main_content().m_pitema);
+      ødefer_construct_new(main_content().m_pitema);
 
       for (::collection::index iImage = 0; iImage < m_pimagea->image_count(); iImage++)
       {
@@ -741,7 +741,7 @@ namespace user
          if (pitem == nullptr)
          {
 
-            pitem = __create_new<::item>();
+            pitem = øcreate_new<::item>();
 
             pitem->m_item.m_iItem = iImage;
 
@@ -847,8 +847,8 @@ namespace user
       ::user::impact::install_message_routing(pchannel);
       ::user::image_list::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &image_list_impact::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_impact::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &image_list_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &image_list_impact::on_message_destroy);
 
    }
 
@@ -918,12 +918,12 @@ namespace user
    ::item_pointer image_list::current_item()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_iaSel.get_count() == 1)
       {
 
-         return __allocate ::item(e_element_item, m_iaSel[0]);
+         return øallocate ::item(e_element_item, m_iaSel[0]);
 
       }
 
@@ -935,7 +935,7 @@ namespace user
    index_array image_list::get_selection()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_iaSel;
 
@@ -945,7 +945,7 @@ namespace user
    void image_list::set_current_item(::collection::index iFind, const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_iaSel.erase_all();
 
@@ -957,7 +957,7 @@ namespace user
    void image_list::set_selection(const index_array & ia, const ::action_context & context)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!::acme::array::equals_non_unique_unordered(ia, m_iaSel))
       {

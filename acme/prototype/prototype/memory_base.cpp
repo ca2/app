@@ -650,9 +650,13 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
       memory mem;
 
-      mem.set_size(utf_to_utf_length((char *) data(),(const ::wd16_character *)&data()[2],size() - 2));
+      auto srclen = size() - 2;
 
-      utf_to_utf((char *) mem.data(),(const ::wide_character *)&data()[2],(int)(size() - 2));
+      auto lengthSrc = srclen;
+
+      mem.set_size(utf_to_utf_length2((char *) data(),(const ::wd16_character *)&data()[2], lengthSrc));
+
+      utf_to_utf((char *) mem.data(),(const ::wide_character *)&data()[2],lengthSrc);
 
       return { (const_char_pointer )mem.data(), mem.size() };
 
@@ -662,9 +666,13 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
       memory mem;
 
-      mem.set_size(utf_to_utf_length((char *) data(),(const ::wd16_character *)&data()[3],size() - 3));
+      auto srclen = size() - 3;
 
-      utf_to_utf((char *)mem.data(),(const ::wd16_character *)&data()[3],(int)(size() - 3));
+      auto lengthSrc = srclen;
+
+      mem.set_size(utf_to_utf_length2((char *) data(),(const ::wd16_character *)&data()[3],lengthSrc));
+
+      utf_to_utf((char *)mem.data(),(const ::wd16_character *)&data()[3],lengthSrc);
 
       return { (const_char_pointer )mem.data(), mem.size() };
 
@@ -729,11 +737,15 @@ string memory_base::as_utf8() const
          && data()[1] == 60)
    {
 
-      auto s = utf_to_utf_length(strResult, (::wd16_character*)&data()[2], (int)(size() - 2));
+      auto srclen = size() - 2;
+
+      auto lengthSrc = srclen;
+
+      auto s = utf_to_utf_length2(strResult, (::wd16_character*)&data()[2], lengthSrc);
 
       auto p = strResult.get_buffer(s);
 
-      utf_to_utf(p, (::wd16_character *)&data()[2], (int)(size() - 2));
+      utf_to_utf(p, (::wd16_character *)&data()[2], lengthSrc);
 
       strResult.release_buffer();
 
@@ -752,11 +764,15 @@ string memory_base::as_utf8() const
       //}
 #endif
 
-      auto s = utf_to_utf_length(strResult, (::wd16_character*)&data()[2], (int)(size() - 2));
+      auto srclen = size() - 2;
+
+      auto lengthSrc = srclen;
+
+      auto s = utf_to_utf_length2(strResult, (::wd16_character*)&data()[2], lengthSrc);
 
       auto p = strResult.get_buffer(s);
 
-      utf_to_utf(p, (const ::wd16_character *)&data()[2], (int)(size() - 2));
+      utf_to_utf(p, (const ::wd16_character *)&data()[2], lengthSrc);
 
       strResult.release_buffer();
 
@@ -1969,7 +1985,7 @@ memsize memory_base::length() const
 ::subparticle_pointer memory_base::clone()
 {
 
-   auto pmemory = __allocate ::memory ();
+   auto pmemory = øallocate ::memory ();
 
    pmemory->copy_from(this);
 
@@ -2339,7 +2355,7 @@ namespace acme
 //   if (memcontainer.get_memory() == nullptr)
 //   {
 //
-//      memcontainer.set_memory(__allocate memory(&memcontainer));
+//      memcontainer.set_memory(øallocate memory(&memcontainer));
 //
 //   }
 //
@@ -2357,7 +2373,7 @@ namespace acme
 //   if (memcontainer.get_memory() == nullptr)
 //   {
 //
-//      memcontainer.set_memory(__allocate memory(&memcontainer));
+//      memcontainer.set_memory(øallocate memory(&memcontainer));
 //
 //   }
 //

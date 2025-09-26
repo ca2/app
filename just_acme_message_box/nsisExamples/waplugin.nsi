@@ -188,13 +188,13 @@ Function ConnectInternet
     
     Pop $R0
     StrCmp $R0 "online" connected
-      MessageBox e_message_box_ok|e_message_box_icon_stop "Cannot connect to the internet."
+      MessageBox ::user::e_message_box_ok|::user::e_message_box_icon_stop "Cannot connect to the internet."
       Quit
     
     noie3:
   
     ; IE3 not installed
-    MessageBox e_message_box_ok|MB_ICONINFORMATION "Please connect to the internet now."
+    MessageBox ::user::e_message_box_ok|MB_ICONINFORMATION "Please connect to the internet now."
     
     connected:
   

@@ -24,8 +24,8 @@ namespace user
       int                  m_iPo;
 
 
-      string_to_string     m_stringmap;
-      string_to_string     m_stringmapHeader;
+      string_to_string_base     m_stringmap;
+      string_to_string_base     m_stringmapHeader;
       bool                 m_bLoadedDefaultResource;
       bool                 m_bLoadedDefaultResourceHeader;
       bool                 m_bLoadedDefaultResourceRet;

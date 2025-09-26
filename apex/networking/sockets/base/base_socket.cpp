@@ -160,7 +160,7 @@ namespace sockets
    ::pointer < ::sockets::socket_thread > base_socket::create_socket_thread()
    {
 
-      return __øcreate < ::sockets::socket_thread >();
+      return øcreate < ::sockets::socket_thread >();
 
    }
 
@@ -1176,6 +1176,14 @@ namespace sockets
    }
 
 
+   void base_socket::set_no_ssl_shutdown()
+   {
+
+      base_socket_impl()->set_no_ssl_shutdown();
+
+   }
+
+
    bool base_socket::IsSSLServer()
    {
       
@@ -1448,7 +1456,7 @@ namespace sockets
 
    //   SetDetached();
 
-   //   auto psocketthread = __allocate socket_thread();
+   //   auto psocketthread = øallocate socket_thread();
 
    //   psocketthread->transfer(passociation, psocketmap);
 
@@ -3306,7 +3314,7 @@ namespace sockets
 
 //#ifdef BSD_STYLE_SOCKETS
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (m_psslcontext->m_pclientcontext->get_session() != nullptr)
 //      {
@@ -3323,7 +3331,7 @@ namespace sockets
    void base_socket::get_ssl_session()
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       base_socket_impl()->get_ssl_session();
 

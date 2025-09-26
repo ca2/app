@@ -72,7 +72,7 @@ namespace datetime
 
       //}
          
-      ///*estatus = */ __construct_new(m_pinternational);
+      ///*estatus = */ øconstruct_new(m_pinternational);
 
       //if (!estatus)
       //{
@@ -81,7 +81,7 @@ namespace datetime
 
       //}
 
-//      /*estatus = */ __construct_new(m_pstr);
+//      /*estatus = */ øconstruct_new(m_pstr);
 
       //if (!estatus)
       //{
@@ -1737,7 +1737,7 @@ namespace datetime
                   set["day"].as_int(),
                   set["hour"].as_int(),
                   set["minute"].as_int(),
-                  set["second"].as_int(), ::time::local());
+                  set["second"].as_int(), ::time::local_offset());
 
             }
 

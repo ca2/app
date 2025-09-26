@@ -1,45 +1,41 @@
 //
-// Created by camilo on 6/23/21 08:19 BRT <3ThomasBS_!!
+// Created by camilo on 2025-08-31 02:16 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 
 
-#include "acme/prototype/prototype/property_object.h"
-#include "acme/prototype/geometry2d/point.h"
+#include "acme/constant/message.h"
+#include "acme/prototype/prototype/memory.h"
 
 
-namespace acme
+namespace platform
 {
 
 
-   class CLASS_DECL_ACME message :
-      virtual public ::property_object
+   class CLASS_DECL_ACME message : virtual public ::particle
    {
    public:
 
 
-      message_union        m_union;
+      enum_message m_emessage;
 
-      class ::time         m_time;
-      long long         m_iTimestamp;
-      ::double_point       m_pointMessage;
-      ::enum_message       m_emessage;
-      wparam               m_wparam;
-      lparam               m_lparam;
-      lresult              m_lresult;
-      bool                 m_bRet = false;
+      long long m_llWparam;
+      long long m_llLparam;
+      ::memory m_memory;
 
 
-      virtual ::user::activation_token * user_activation_token();
+      message();
+      ~message() override;
 
-   private:
 
-      int id() { return 0; }
+      void initialize_message(enum_message emessage, long long llWparam = 0,
+                                          long long llLparam = 0, const ::block &block = {});
+
 
    };
 
 
-} // namespace acme
+} // namespace platform
 
 
 

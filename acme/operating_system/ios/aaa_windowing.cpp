@@ -350,7 +350,7 @@ oswindow set_focus(oswindow window)
          if(windowOld->m_pimpl->m_bFocus)
          {
             
-            windowOld->m_pimpl->m_puserinteraction->send_message(e_message_kill_focus);
+            windowOld->m_pimpl->m_puserinteraction->send_message(::user::e_message_kill_focus);
 
          }
 
@@ -372,7 +372,7 @@ oswindow set_focus(oswindow window)
          if(!window->m_pimpl->m_puserinteraction->m_bFocus)
          {
 
-            window->m_pimpl->m_puserinteraction->send_message(e_message_set_focus);
+            window->m_pimpl->m_puserinteraction->send_message(::user::e_message_set_focus);
 
          }
 
@@ -413,7 +413,7 @@ oswindow get_active_window()
 void deactivate_window(oswindow window)
 {
 
-   synchronous_lock synchronouslock(g_poswindowdataptra->synchronization());
+   synchronous_lock synchronouslock(g_poswindowdataptra->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(window == g_oswindowActive)
    {

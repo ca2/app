@@ -30,7 +30,7 @@ namespace nano
          }
 
 
-         string_map<::pointer<::nano::account::user>> m_usermap;
+         string_map_base<::pointer<::nano::account::user>> m_usermap;
 
          account();
          ~account() override;

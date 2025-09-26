@@ -29,6 +29,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
+
+#include "immersion_layer.h"
 // Function to flip a mat4 along the Z-axis
 glm::mat4 flipZMat4(const glm::mat4& mat) {
    // Create a rotation matrix that flips along the Y-axis (180 degrees)
@@ -67,10 +69,6 @@ namespace graphics3d
 
       //m_papproach = m_papplication->get_gpu_approach();
 
-      m_pinput = __allocate::graphics3d::input();
-      m_pinput->m_pusergraphics3d = m_pusergraphics3d;
-      m_pinput->m_pengine = this;
-      m_pinput->m_pkeymap = m_pusergraphics3d->m_pkeymap;
 
    }
 
@@ -111,16 +109,18 @@ namespace graphics3d
 
          {
 
-            _synchronous_lock synchronouslock(m_pscene->synchronization());
+            auto pscene = m_pimmersionlayer->m_pscene;
 
-            if (m_pscene->global_ubo().size() > 0)
+            _synchronous_lock synchronouslock(pscene->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+            if (pscene->global_ubo().size() > 0)
             {
 
                update_global_ubo(gpu_context());
 
             }
 
-            m_pscene->on_render(gpu_context());
+            pscene->on_render(gpu_context());
 
          }
 
@@ -147,7 +147,7 @@ namespace graphics3d
    void engine::create_global_ubo(::gpu::context* pgpucontext)
    {
 
-      auto iGlobalUboSize = m_pscene->global_ubo().size();
+      auto iGlobalUboSize = m_pimmersionlayer->m_pscene->global_ubo().size();
 
       if (iGlobalUboSize > 0)
       {
@@ -225,36 +225,63 @@ namespace graphics3d
    void engine::on_update_frame()
    {
 
-      if (!m_pcamera)
+      //auto &pcameraScene = m_pimmersionlayer->m_pscene->m_pcameraScene;
+
+      //if (!pcameraScene)
+      //{
+      //   pcameraScene = m_pimmersionlayer->m_pscene->get_default_camera();
+      //   ::pointer <::database::client> pdatabaseclient = m_papplication;
+
+      //   if (pdatabaseclient)
+      //   {
+
+      //      //pdatabaseclient->datastream()->get_block("camera", m_pcamera->as_block());
+      //      //pdatabaseclient->datastream()->get_block("transform", as_memory_block(m_transform));
+      //      //pdatabaseclient->datastream()->get_block("input", m_pinput->as_block());
+
+      //   }
+
+      //}
+
+      if (m_pimmersionlayer)
       {
 
-         m_pcamera = m_pscene->get_default_camera();
-
-         m_transform.translation = m_pcamera->m_locationPosition;
-
-         m_transform.rotation.x = m_pcamera->m_fPitch;
-
-         m_transform.rotation.y = m_pcamera->m_fYaw;
-
-         //VkcCamera camera(glm::vec3(0.0f, 2.0f, -10.0f), .0f, 0.0f);
-
-         //auto viewerObject = __øcreate <::graphics3d::scene_object>();
-         //papp->m_pimpact->m_bLastMouse = true;
-         //viewerObject->m_transform.translation.z = -2.5f;
-         //m_transform.translation.z = -2.5f;
-
-         ::pointer <::database::client> pdatabaseclient = m_papplication;
-
-         if (pdatabaseclient)
+         if (m_pimmersionlayer->m_pscene)
          {
 
-            //pdatabaseclient->datastream()->get_block("camera", m_pcamera->as_block());
-            //pdatabaseclient->datastream()->get_block("transform", as_memory_block(m_transform));
-            //pdatabaseclient->datastream()->get_block("input", m_pinput->as_block());
+            if (!m_pimmersionlayer->m_pscene->m_pcameraCurrent)
+            {
+
+               m_pimmersionlayer->m_pscene->m_pcameraCurrent = m_pimmersionlayer->m_pscene->m_pcameraScene;
+
+            }
 
          }
 
       }
+
+
+      //m_pimmersionlayer->on_prepare_camera();
+
+      //if (pcameraScene)
+      //{
+
+      //   m_transform.m_vec3Position = pcameraScene->m_locationPosition;
+
+      //   m_transform.m_vec3Rotation.x = pcameraScene->m_fPitch;
+
+      //   m_transform.m_vec3Rotation.y = pcameraScene->m_fYaw;
+
+      //}
+
+         //VkcCamera camera(glm::vec3(0.0f, 2.0f, -10.0f), .0f, 0.0f);
+
+         //auto viewerObject = øcreate <::graphics3d::scene_object>();
+         //papp->m_pimpact->m_bLastMouse = true;
+         //viewerObject->m_transform.translation.z = -2.5f;
+         //m_transform.translation.z = -2.5f;
+
+
 
       //m_fFrameTime = fFrameTime;
 
@@ -270,57 +297,60 @@ namespace graphics3d
 
       //m_pcamera->setViewYXZ(m_transform.translation, m_transform.rotation);
 
-
-      float aspect = m_pusergraphics3d->getAspectRatio();
-
-      m_pcamera->setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 100.f);
-
-      m_pcamera->UpdateCameraVectors();
-
-      //if (m_fYScale < 0)
+      //if (pcameraScene)
       //{
 
-      //   m_pcamera->m_matrixImpact = glm::lookAtRH(m_pcamera->m_locationPosition,
-      //      m_pcamera->m_locationPosition + m_pcamera->m_poleFront,
-      //      m_pcamera->m_poleWorldUp);
+      //   float aspect = m_pusergraphics3d->getAspectRatio();
+
+      //   pcameraScene->setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 100.f);
+
+      //   pcameraScene->UpdateCameraVectors();
+
+
+      //   // if (m_fYScale < 0)
+      //   //{
+
+      //   //   m_pcamera->m_matrixImpact = glm::lookAtRH(m_pcamera->m_locationPosition,
+      //   //      m_pcamera->m_locationPosition + m_pcamera->m_poleFront,
+      //   //      m_pcamera->m_poleWorldUp);
+
+      //   //}
+      //   // else
+      //   //{
+
+      //   glm::mat4 matrixImpact;
+      //   if (m_fYScale < 0)
+      //   {
+      //      matrixImpact =
+      //         glm::lookAtRH(pcameraScene->m_locationPosition,
+      //                       pcameraScene->m_locationPosition + pcameraScene->m_poleFront, pcameraScene->m_poleWorldUp);
+      //      // matrixImpact[2][0] = -matrixImpact[2][0];
+      //      // matrixImpact[2][1] = -matrixImpact[2][1];
+      //      // matrixImpact[2][2] = -matrixImpact[2][2];
+      //      // matrixImpact[2][3] = -matrixImpact[2][3];
+      //   }
+      //   else
+      //   {
+      //      matrixImpact =
+      //         glm::lookAtRH(pcameraScene->m_locationPosition,
+      //                       pcameraScene->m_locationPosition + pcameraScene->m_poleFront, pcameraScene->m_poleWorldUp);
+      //   }
+      //   pcameraScene->m_matrixImpact = matrixImpact;
+      //   //}
+
+      //   pcameraScene->m_matrixAntImpact = glm::inverse(pcameraScene->m_matrixImpact);
 
       //}
-      //else
-      //{
-
-      glm::mat4 matrixImpact;
-          if (m_fYScale < 0)
-          {
-             matrixImpact=glm::lookAtRH(m_pcamera->m_locationPosition,
-                m_pcamera->m_locationPosition + m_pcamera->m_poleFront,
-                m_pcamera->m_poleWorldUp);
-             //matrixImpact[2][0] = -matrixImpact[2][0];
-             //matrixImpact[2][1] = -matrixImpact[2][1];
-             //matrixImpact[2][2] = -matrixImpact[2][2];
-             //matrixImpact[2][3] = -matrixImpact[2][3];
-          }
-          else
-          {
-             matrixImpact=glm::lookAtRH(m_pcamera->m_locationPosition,
-                m_pcamera->m_locationPosition + m_pcamera->m_poleFront,
-                m_pcamera->m_poleWorldUp);
-
-
-          }
-             m_pcamera->m_matrixImpact = matrixImpact;
-      //}
-
-      m_pcamera->m_matrixAntImpact = glm::inverse(m_pcamera->m_matrixImpact);
 
    }
 
 
-   glm::mat4 engine::model_matrix(TransformComponent& transformcomponent)
+   glm::mat4 engine::model_matrix(::graphics3d::transform& transform)
    {
 
-      auto translation = transformcomponent.translation;
-      auto rotation = transformcomponent.rotation;
-      auto scale = transformcomponent.scale;
+      auto translation = transform.m_vec3Position;
+      auto rotation = transform.m_vec3Rotation;
+      auto scale = transform.m_vec3Scale;
 
       scale.z = scale.z * m_fYScale;
       //glm::mat4 makeViewMatrix(glm::vec3 translation, glm::vec3 rotationEulerDegrees, )
@@ -385,7 +415,7 @@ namespace graphics3d
    }
 
    
-   glm::mat4 engine::normal_matrix(TransformComponent& transformcomponent)
+   glm::mat4 engine::normal_matrix(::graphics3d::transform& transformcomponent)
    {
 
       auto m = model_matrix(transformcomponent);
@@ -494,10 +524,10 @@ namespace graphics3d
 
             if (pdatabaseclient)
             {
-
+               auto &pcameraScene = m_pimmersionlayer->m_pscene->m_pcameraScene;
                pdatabaseclient->datastream()->set("input", m_pinput->as_block());
                pdatabaseclient->datastream()->set("transform", as_memory_block(m_transform));
-               pdatabaseclient->datastream()->set("camera", m_pcamera->as_block());
+               pdatabaseclient->datastream()->set("camera", pcameraScene->as_block());
 
             }
 
@@ -599,7 +629,11 @@ namespace graphics3d
       m_rectanglePlacementNew = rectanglePlacement;
 
       get_gpu_context()->_send([this, rectanglePlacement]()
-         {
+      {
+
+            auto pgpurenderer = gpu_context()->get_gpu_renderer();
+
+            pgpurenderer->on_resize(rectanglePlacement.size());
 
             m_pusergraphics3d->on_load_engine();
 
@@ -624,14 +658,16 @@ namespace graphics3d
    void engine::update_global_ubo(::gpu::context* pgpucontext)
    {
 
-      if (m_pscene->global_ubo().size() > 0)
+      auto pscene = m_pimmersionlayer->m_pscene;
+
+      if (pscene->global_ubo().size() > 0)
       {
 
-         m_pscene->on_update_global_ubo(pgpucontext);
+         pscene->on_update(pgpucontext);
          
          auto pcontext = gpu_context();
 
-         pcontext->update_global_ubo(m_pscene->global_ubo().m_block);
+         pcontext->update_global_ubo(pscene->global_ubo().m_block);
 
       }
 
@@ -679,6 +715,14 @@ namespace graphics3d
 
 
       //}
+
+   }
+
+
+   ::graphics3d::scene * engine::current_scene()
+   {
+
+      return m_pimmersionlayer->m_pscene;
 
    }
 
@@ -835,16 +879,16 @@ namespace graphics3d
             //   //return;
 
 
-            //   //m_pinput = __allocate::graphics3d::input();
+            //   //m_pinput = øallocate::graphics3d::input();
 
             //   //m_pinput->m_pimpact = m_pimpact;
 
-            //   //m_pcamera = __allocate::graphics3d::camera(glm::vec3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
+            //   //m_pcamera = øallocate::graphics3d::camera(glm::vec3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
 
             //   ////m_pcamera->m_pimpact
 
             //   ////m_pglcapplication = m_pimpact->start_opengl_application();
-            //   ////__øconstruct(m_pgpucontextCompositor);
+            //   ////øconstruct(m_pgpucontextCompositor);
 
             //   //if (!m_papplication->m_bUseSwapChainWindow)
             //   //{
@@ -853,7 +897,7 @@ namespace graphics3d
 
             //   //}
 
-            //   //m_prenderer = __allocate::graphics3d_opengl::renderer();
+            //   //m_prenderer = øallocate::graphics3d_opengl::renderer();
 
             //   ////return;
             //   //// Initialize the game logic and scene data
@@ -909,7 +953,7 @@ namespace graphics3d
       //if (!m_prenderer)
       //{
 
-      //   __øconstruct(m_prenderer);
+      //   øconstruct(m_prenderer);
 
       //   //::graphics3d::engine::m_prenderer = m_prenderer;
 
@@ -921,13 +965,13 @@ namespace graphics3d
       //m_prenderer->on_context_resize();
       //m_pglobalpool->initialize_pool(pgpucontext);
 
-      //= __allocate
+      //= øallocate
       //   descriptor_pool::Builder(pgpucontext)
       //   .setMaxSets(swap_chain_render_pass::MAX_FRAMES_IN_FLIGHT)
       //   .addPoolSize(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, swap_chain_render_pass::MAX_FRAMES_IN_FLIGHT)
       //   .build();
 
-      //pgpucontext = __allocate context(m_pvulkandevice);
+      //pgpucontext = øallocate context(m_pvulkandevice);
 
       //          m_prenderer->getRenderPass(),
         //        globalSetLayout->getDescriptorSetLayout()
@@ -935,16 +979,18 @@ namespace graphics3d
 
       auto pcontext = gpu_context();
 
-      m_pscene->defer_load_scene(pcontext);
+      auto pscene = m_pimmersionlayer->m_pscene;
 
-      engine_on_after_load_scene(m_pscene);
+      pscene->defer_load_scene(pcontext);
+
+      engine_on_after_load_scene(pscene);
 
       if (!m_bCreatedGlobalUbo)
       {
 
          m_bCreatedGlobalUbo = true;
 
-         auto iGlobalUboSize = m_pscene->global_ubo().size();
+         auto iGlobalUboSize = pscene->global_ubo().size();
 
          if (iGlobalUboSize > 0)
          {
@@ -993,16 +1039,16 @@ namespace graphics3d
       //         //return;
       //
       //
-      //         //m_pinput = __allocate::graphics3d::input();
+      //         //m_pinput = øallocate::graphics3d::input();
       //
       //         //m_pinput->m_pimpact = m_pimpact;
       //
-      //         //m_pcamera = __allocate::graphics3d::camera(glm::vec3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
+      //         //m_pcamera = øallocate::graphics3d::camera(glm::vec3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
       //
       //         ////m_pcamera->m_pimpact
       //
       //         ////m_pglcapplication = m_pimpact->start_opengl_application();
-      //         ////__øconstruct(m_pgpucontextCompositor);
+      //         ////øconstruct(m_pgpucontextCompositor);
       //
       //         //if (!m_papplication->m_bUseSwapChainWindow)
       //         //{
@@ -1011,7 +1057,7 @@ namespace graphics3d
       //
       //         //}
       //
-      //         //m_prenderer = __allocate::graphics3d_opengl::renderer();
+      //         //m_prenderer = øallocate::graphics3d_opengl::renderer();
       //
       //         ////return;
       //         //// Initialize the game logic and scene data
@@ -1044,7 +1090,7 @@ namespace graphics3d
    }
 
 
-   model<::graphics3d::Vertex> engine::create_tinyobjloader_model(const ::file::path& path)
+   ::pointer < ::graphics3d::renderable > engine::_load_wavefront_obj_renderable(const ::file::path& path)
    {
 
       tinyobjloader_Builder builder{};
@@ -1053,9 +1099,11 @@ namespace graphics3d
 
       builder.loadModel(pcontext, path);
 
-      model<::graphics3d::Vertex> pmodel;
+      ::pointer < ::gpu::model_buffer > pmodel;
 
-      pmodel.initialize_model(pcontext->m_pgpurenderer, builder);
+      øconstruct(pmodel);
+
+      pmodel->initialize_model(pcontext, builder);
 
       return pmodel;
 
@@ -1063,21 +1111,21 @@ namespace graphics3d
 
 
 
-
-   void engine::add_scene(::graphics3d::scene* pscene)
-   {
-
-      m_mapScene[pscene->m_strName] = pscene;
-
-   }
-
-
-   void engine::set_current_scene(::graphics3d::scene* pscene)
-   {
-
-      m_pscene = pscene;
-
-   }
+   //
+   // void engine::add_scene(::graphics3d::scene* pscene)
+   // {
+   //
+   //    m_mapScene[pscene->m_strName] = pscene;
+   //
+   // }
+   //
+   //
+   // void engine::set_current_scene(::graphics3d::scene* pscene)
+   // {
+   //
+   //    m_pscene = pscene;
+   //
+   // }
 
 
 } // namespace graphics3d

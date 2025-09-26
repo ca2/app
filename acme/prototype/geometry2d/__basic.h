@@ -36,7 +36,7 @@ template < typename RECTANGLE_BASE_TYPE, typename POINT_TYPE, typename SIZE_TYPE
 class rectangle_type;
 
 template < typename POINT_TYPE >
-class point_base_array;
+class point_array_base;
 
 
 

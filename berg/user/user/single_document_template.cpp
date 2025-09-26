@@ -4,7 +4,7 @@
 #include "impact.h"
 #include "frame_window.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/handler/request.h"
 #include "apex/platform/application.h"
@@ -216,7 +216,7 @@ namespace user
 
          ASSERT_KINDOF(frame_window, pframe);
 
-         ASSERT_VALID(pframe);
+         ASSERT_OK(pframe);
 
       }
       else
@@ -284,12 +284,12 @@ namespace user
       //else
       //{
 
-      ASSERT_VALID(pframe);
+      ASSERT_OK(pframe);
 
       //if (! || !pusersystem->m_prequest)   // send initial update
       //{
 
-      //pframe->send_message_to_descendants(e_message_system_update, id_initial_update, (lparam)0, true, true);
+      //pframe->send_message_to_descendants(::user::e_message_system_update, id_initial_update, (lparam)0, true, true);
 
       //}
 
@@ -449,12 +449,12 @@ namespace user
 //   void single_document_template::on_request_continuation(::user::document * pdocument, ::user::frame_window * pframewindow, ::request * prequest)
 //   {
 //
-//      ASSERT_VALID(pframewindow);
+//      ASSERT_OK(pframewindow);
 //
 //      //if (! || !pusersystem->m_prequest)   // send initial update
 //      //{
 //
-//        pframewindow->send_message_to_descendants(e_message_system_update, id_initial_update, (lparam) 0, true, true);
+//        pframewindow->send_message_to_descendants(::user::e_message_system_update, id_initial_update, (lparam) 0, true, true);
 //
 //      //}
 //

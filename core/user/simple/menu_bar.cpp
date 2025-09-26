@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "menu_bar.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/user/user/content.h"
 #include "aura/message/user.h"
@@ -21,7 +21,7 @@
 simple_menu_bar::simple_menu_bar()
 {
 
-   __construct_new(m_pmenu);
+   øconstruct_new(m_pmenu);
 
    m_bTracking = false;
    m_iTopMenuCount = 0;
@@ -41,22 +41,22 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
 
    simple_toolbar::install_message_routing(pchannel);
 
-   //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_menu_bar::on_message_mouse_move);
-   //MESSAGE_LINK(e_message_non_client_mouse_move, pchannel, this, &simple_menu_bar::_001OnNcMouseMove);
-   MESSAGE_LINK(e_message_create, pchannel, this, &simple_menu_bar::on_message_create);
-   MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_menu_bar::on_message_key_down);
-   MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_menu_bar::on_message_destroy);
+   //USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &simple_menu_bar::on_message_mouse_move);
+   //USER_MESSAGE_LINK(::user::e_message_non_client_mouse_move, pchannel, this, &simple_menu_bar::_001OnNcMouseMove);
+   USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &simple_menu_bar::on_message_create);
+   USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &simple_menu_bar::on_message_key_down);
+   USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &simple_menu_bar::on_message_destroy);
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   MESSAGE_LINK(WM_MENUCHAR, pchannel, this, &simple_menu_bar::_001OnMenuChar);
+//   USER_MESSAGE_LINK(WM_MENUCHAR, pchannel, this, &simple_menu_bar::_001OnMenuChar);
 //
 //#endif
 
-   //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &simple_menu_bar::on_message_left_button_down);
-   //MESSAGE_LINK(e_message_language, pchannel, this, &simple_menu_bar::_001OnAppLanguage);
+   //USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &simple_menu_bar::on_message_left_button_down);
+   //USER_MESSAGE_LINK(::user::e_message_language, pchannel, this, &simple_menu_bar::_001OnAppLanguage);
 
-   //MESSAGE_LINK(e_message_erase_background               , pchannel, this, *simple_menu_bar::_001On);
+   //USER_MESSAGE_LINK(::user::e_message_erase_background               , pchannel, this, *simple_menu_bar::_001On);
 
 }
 
@@ -168,7 +168,7 @@ bool simple_menu_bar::_track_popup_menu(::collection::index iItem)
    information() << "simple_menu_bar::_track_popup_menu" << iItem;
    
    m_iTracking = iItem;
-   m_pitemPressed = __allocate ::item(::e_element_item, iItem);
+   m_pitemPressed = øallocate ::item(::e_element_item, iItem);
    set_need_redraw();
    auto statusrectangle = index_element_rectangle(iItem, ::e_element_item, ::user::e_state_none);
    client_to_screen()(statusrectangle);
@@ -206,7 +206,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 
    auto puserinteraction = pusermessage->user_interaction();
 
-   if (pusermessage->m_emessage == e_message_user && puserinteraction == this)
+   if (pusermessage->m_eusermessage == ::user::e_message_user && puserinteraction == this)
    {
 
       if (pusermessage->m_wparam == 33)
@@ -218,7 +218,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 
    }
 
-   information() << "simple_menu_bar::pre_translate_message messageID="<<(int) pusermessage->m_emessage<<" wParam="<<pusermessage->m_wparam.m_number<<" lParam=" << pusermessage->m_lparam.m_lparam;
+   information() << "simple_menu_bar::pre_translate_message messageID="<<(int) pusermessage->m_eusermessage<<" wParam="<<pusermessage->m_wparam.m_number<<" lParam=" << pusermessage->m_lparam.m_lparam;
 
    return simple_toolbar::pre_translate_message(pmessage);
 
@@ -273,7 +273,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 //
 //   if (code == MSGF_MENU)
 //   {
-//      if (pmsg->message == e_message_mouse_move)
+//      if (pmsg->message == ::user::e_message_mouse_move)
 //      {
 //
 //         unsigned int fwKeys = (unsigned int)pmsg->wParam; // key flags
@@ -312,7 +312,7 @@ bool simple_menu_bar::_track_popup_menu(const ::int_point & point)
    //   if (m_itemHitTest.is_valid_item(m_iTopMenuCount) && item != m_iTracking)
    //   {
    //      informationf("simple_menu_bar::OnMouseMove simple_menu_bar::_track_popup_menu % d\n", item.m_iItem);
-   //      //            SendMessage(e_message_key_down, VK_ESCAPE);
+   //      //            SendMessage(::user::e_message_key_down, VK_ESCAPE);
    //      //            if(m_iTracking >= 0)
    //      //          {
    //      send_message(WM_CANCELMODE);
@@ -447,7 +447,7 @@ void simple_menu_bar::OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool
          {
             // allow reflections
             if (::user::interaction::on_command(0,
-               MAKELONG((index)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+               MAKELONG((index)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
                &state, nullptr))
                continue;
 
@@ -663,7 +663,7 @@ bool simple_menu_bar::ReloadMenuBar()
 //bool simple_menu_bar::create_window_ex(::user::interaction * puiParent, unsigned int dwCtrlStyle, unsigned int uStyle, ::atom atom)
 //{
 //
-//   ASSERT_VALID(puiParent);   // must have a parent
+//   ASSERT_OK(puiParent);   // must have a parent
 //   ASSERT(!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
 //
 //   //SetBorders(rectangle);

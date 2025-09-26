@@ -76,7 +76,7 @@ namespace interprocess
 
       //call_procedures(CREATE_ROUTINE);
 
-      /*estatus = */ __øconstruct(m_ptarget);
+      /*estatus = */ øconstruct(m_ptarget);
 
       //if (!estatus)
       //{
@@ -319,20 +319,20 @@ namespace interprocess
    void communication::start(const ::scoped_string & scopedstrApp)
    {
 
-      synchronous_lock sl1(synchronization());
+      synchronous_lock sl1(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto & pmutex = m_mapAppMutex[scopedstrApp];
 
       if (pmutex.is_null())
       {
 
-         __øconstruct(pmutex);
+         øconstruct(pmutex);
 
       }
 
       sl1.unlock();
 
-      synchronous_lock synchronouslock(pmutex);
+      synchronous_lock synchronouslock(pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto idaPid = get_pid(scopedstrApp);
 
@@ -350,7 +350,7 @@ namespace interprocess
 
       }
 
-      auto plauncher = __øcreate < ::apex::app_launcher>();
+      auto plauncher = øcreate < ::apex::app_launcher>();
 
       plauncher->initialize_app_launcher(this, node()->process_platform_name(), scopedstrApp);
 
@@ -408,7 +408,7 @@ namespace interprocess
       if (m_callermap[strKey].is_null())
       {
 
-         m_callermap[strKey] = __øcreate < ::interprocess::caller>();
+         m_callermap[strKey] = øcreate < ::interprocess::caller>();
 
       }
 
@@ -425,7 +425,7 @@ namespace interprocess
       if (m_callermap[strKey].is_null())
       {
 
-         m_callermap[strKey] = __øcreate<::interprocess::caller>();
+         m_callermap[strKey] = øcreate<::interprocess::caller>();
 
       }
 
@@ -449,7 +449,7 @@ namespace interprocess
       if (m_callermap[strKey].is_null())
       {
 
-         m_callermap[strKey] = __øcreate < ::interprocess::caller>();
+         m_callermap[strKey] = øcreate < ::interprocess::caller>();
 
       }
 
@@ -498,7 +498,7 @@ namespace interprocess
 
 #elif defined(__APPLE__)
 
-      string strAppId(strApp);
+      string strAppId(scopedstrApp);
 
 //      strAppId.find_replace("\\", "-");
 //
@@ -727,9 +727,9 @@ namespace interprocess
    ::pointer<::interprocess::task>communication::create_task(::interprocess::call * pcall, const ::atom & idPid)
    {
 
-      auto pobjectTask = __allocate ::interprocess::task(pcall, idPid, m_iTaskSeed++);
+      auto pobjectTask = øallocate ::interprocess::task(pcall, idPid, m_iTaskSeed++);
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -743,7 +743,7 @@ namespace interprocess
    ::pointer<::interprocess::task>communication::get_task(long long iTask)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_mapTask[iTask];
 
@@ -753,7 +753,7 @@ namespace interprocess
    ::pointer<::interprocess::call>communication::create_call(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
    {
 
-      return __allocate ::interprocess::call(this, scopedstrApp, scopedstrObject, scopedstrMember);
+      return øallocate ::interprocess::call(this, scopedstrApp, scopedstrObject, scopedstrMember);
 
    }
 

@@ -171,7 +171,7 @@ namespace xml
 
       bool contains(const ::property_set & set) const { return m_set.contains(set); }
       
-      ::property * lookup_attribute(const ::scoped_string & scopedstr) { return m_set.lookup(scopedstr); }
+      ::property * lookup_attribute(const ::scoped_string & scopedstr) { return m_set.find(scopedstr); }
 
       template < typename TYPE >
       bool _get_attribute(const ::atom & atom, TYPE & t) { return m_set._get(atom, t); }

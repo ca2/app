@@ -77,7 +77,7 @@ namespace helloaxis
 
 
                string_array_base                          m_stra23;
-               string_map < ::image::image_pointer >    m_mapDib23;
+               string_map_base < ::image::image_pointer >    m_mapDib23;
                bool                             m_b23;
                unsigned int                         m_uiCurrent23;
                string                           m_strCurrent23;
@@ -97,7 +97,7 @@ namespace helloaxis
       virtual ~render();
 
 
-      string get_helloaura() { synchronous_lock slText(m_pmutexText);  string str(m_strHelloAxis.c_str()); return str; }
+      string get_helloaura() { synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);  string str(m_strHelloAxis.c_str()); return str; }
 
 
       virtual void     run() override;

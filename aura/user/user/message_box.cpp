@@ -9,7 +9,7 @@
 #include "user.h"
 #include "style.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 //#include "acme/handler/sequence.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -24,7 +24,7 @@ namespace user
 {
 
 
-   //message_box::message_box(const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox) :
+   //message_box::message_box(const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox) :
    message_box::message_box() :
       m_strFontName("serif"),
       m_size(100, 40),
@@ -38,7 +38,7 @@ namespace user
 
       enable_drag(pitemClient, e_zorder_back);
 
-      auto pitemResize = __allocate ::item(e_element_resize);
+      auto pitemResize = øallocate ::item(e_element_resize);
 
       enable_drag(pitemResize, e_zorder_back);
 
@@ -77,7 +77,7 @@ namespace user
    void message_box::on_realize(::message_box * pmessagebox)
    {
 
-      //auto psequencer = __allocate ::sequencer <::conversation > ();
+      //auto psequencer = øallocate ::sequencer <::conversation > ();
 
       //psequencer->m_psequence = this;
 
@@ -91,13 +91,13 @@ namespace user
 
       strMessage.case_insensitive_replace_with(" \n", "<br>");
 
-      __construct_new(m_pstill);
+      øconstruct_new(m_pstill);
 
       m_pstill->set_window_text(strMessage);
 
       m_stra.add_lines(strMessage);
 
-      m_pbuttonClose = __allocate ::user::button("", e_dialog_result_close);
+      m_pbuttonClose = øallocate ::user::button("", e_dialog_result_close);
 
       m_pbuttonClose->set_button_style(::user::button::e_style_stock_icon);
 
@@ -156,7 +156,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &message_box::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &message_box::on_message_create);
 
    }
 
@@ -359,13 +359,13 @@ namespace user
 
       ::draw2d::graphics_pointer pgraphics;
 
-      __øconstruct(pgraphics);
+      øconstruct(pgraphics);
 
       pgraphics->create_memory_graphics();
 
       pgraphics->m_pdraw2dhost = this;
 
-      m_pinteractionScaler = __allocate ::user::interaction_scaler();
+      m_pinteractionScaler = øallocate ::user::interaction_scaler();
 
       m_pinteractionScaler->on_display_change(this);
 
@@ -511,7 +511,7 @@ namespace aura
 {
 
 
-   //pointer< ::extended::future < ::conversation > > system::message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::future < ::conversation > > system::message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //{
 
    //   auto pnode = m_pnode;

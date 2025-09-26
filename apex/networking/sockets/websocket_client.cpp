@@ -743,7 +743,7 @@ namespace sockets
    void websocket_client::write(const void * p, ::memsize s)
    {
 
-      synchronous_lock synchronouslock(m_pmutexWebsocketWrite);
+      synchronous_lock synchronouslock(m_pmutexWebsocketWrite, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       http_client_socket::write(p, s);
 

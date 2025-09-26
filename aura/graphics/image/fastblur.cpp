@@ -236,7 +236,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,unsigned int* destination)
          vymin = nullptr;
       }
 
-      // lookup table for clamping pixel offsets
+      // find table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
       // of the input data
       vxmin = ___new int[cx + 100 + div2];
@@ -1078,10 +1078,10 @@ auto tick2 = ::time::now();
       // temporary output space for first pass.
       //vector4* tsurface = ___new vector4[wh];
 
-      // lookup table for clamping pixel offsets
+      // find table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
       // of the input data
-      //int* const vmin = __allocate< int[maximum >(w,h)];
+      //int* const vmin = øallocate< int[maximum >(w,h)];
 
       // calculate divisor for pulling an output from the kernel
       //   the kernel is pyramid shaped.

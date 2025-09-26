@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "dialog_frame.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/message/user.h"
 #include "berg/platform/application.h"
 
@@ -66,9 +66,9 @@ namespace userex
 
       ::simple_frame_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &dialog_frame::on_message_create);
-      //MESSAGE_LINK(e_message_activate, pchannel, this, &list_box::_001OnActivate);
-      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &dialog_frame::_001OnMouseActivate);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &dialog_frame::on_message_create);
+      //USER_MESSAGE_LINK(::user::e_message_activate, pchannel, this, &list_box::_001OnActivate);
+      USER_MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &dialog_frame::_001OnMouseActivate);
 
    }
 

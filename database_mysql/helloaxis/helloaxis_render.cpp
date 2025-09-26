@@ -128,9 +128,9 @@ namespace helloaxis
       if (m_bNewLayout)
       {
 
-         synchronous_lock sl2(m_pmutexWork);
-         synchronous_lock sl3(m_pmutexDraw);
-         synchronous_lock sl4(m_pmutexSwap);
+         synchronous_lock sl2(m_pmutexWork, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         synchronous_lock sl3(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         synchronous_lock sl4(m_pmutexSwap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*         bool bNewSize = m_pimage->width() != sizeNew.cx() || m_pimage->m_size.cy() != sizeNew.cy();
 
@@ -326,7 +326,7 @@ namespace helloaxis
 
       {
 
-         synchronous_lock synchronouslock(m_pmutexWork);
+         synchronous_lock synchronouslock(m_pmutexWork, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*         ::image::image_pointer pimage = m_pimageWork;
 
@@ -371,7 +371,7 @@ namespace helloaxis
 
       //_001OnPostProcess(m_pimageWork);
 
-      synchronous_lock slDraw(m_pmutexDraw);
+      synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bDib1)
       {
@@ -388,7 +388,7 @@ namespace helloaxis
 
       }
 
-      synchronous_lock slSwap(m_pmutexSwap);
+      synchronous_lock slSwap(m_pmutexSwap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bDib1)
       {
@@ -429,7 +429,7 @@ namespace helloaxis
 
       //      int iCount = 30;
 
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
       double T = 2.3;
 
@@ -465,7 +465,7 @@ namespace helloaxis
 
       {
 
-         synchronous_lock slText(m_pmutexText);
+         synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          strHelloAxis = get_helloaxis().c_str(); // rationale : string allocation fork *for parallelization*
 
@@ -496,7 +496,7 @@ namespace helloaxis
 
             {
 
-               synchronous_lock slDib(m_pmutexDib);
+               synchronous_lock slDib(m_pmutexDib, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*               if (m_pimage->initialize(m_cxCache1, m_cyCache1, int (m_dMaxRadius)))
                {
@@ -539,7 +539,7 @@ namespace helloaxis
 
       {
 
-         synchronous_lock slText(m_pmutexText);
+         synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (strHelloAxis != get_helloaxis() || m_cxCache1 != m_cxTarget || m_cyCache1 != m_cyTarget || m_pimageTemplate->area() <= 0)
             return;
@@ -642,7 +642,7 @@ namespace helloaxis
       if(!m_bFirstDone)
       {
 
-         synchronous_lock slText(m_pmutexText);
+         synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (strHelloAxis == get_helloaxis() && m_cxCache1 == m_cxTarget && m_cyCache1 == m_cyTarget)
          {
@@ -677,7 +677,7 @@ namespace helloaxis
 
       //      int iCount = 30;
 
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
       double T = 2.3;
 
@@ -751,7 +751,7 @@ namespace helloaxis
 
       {
 
-         synchronous_lock slDib(m_pmutexDib);
+         synchronous_lock slDib(m_pmutexDib, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (!session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
          {
@@ -1066,7 +1066,7 @@ auto m_tick23 = ::time::now();
                if (m_strLast23.has_character())
                {
 
-                  synchronous_lock synchronouslock(m_pmutexDib23);
+                  synchronous_lock synchronouslock(m_pmutexDib23, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*                  auto & pimage = image23(m_strLast23);
 
@@ -1084,7 +1084,7 @@ auto m_tick23 = ::time::now();
                if (m_strCurrent23.has_character())
                {
 
-                  synchronous_lock synchronouslock(m_pmutexDib23);
+                  synchronous_lock synchronouslock(m_pmutexDib23, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*                  auto & pimage = image23(m_strCurrent23);
 
@@ -1103,7 +1103,7 @@ auto m_tick23 = ::time::now();
             else if (m_strCurrent23.has_character())
             {
 
-               synchronous_lock synchronouslock(m_pmutexDib23);
+               synchronous_lock synchronouslock(m_pmutexDib23, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*               auto & pimage = image23(m_strCurrent23);
 
@@ -1148,7 +1148,7 @@ auto m_tick23 = ::time::now();
 
                float fHeight = 100.0;
 
-               auto pfont = __øcreate < ::write_text::font > ();
+               auto pfont = øcreate < ::write_text::font > ();
 
                pfont->create_pixel_font(pnode->font_name(e_font_sans), fHeight, e_font_weight_bold);
 
@@ -1174,7 +1174,7 @@ auto m_tick23 = ::time::now();
 
             ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 
-            auto pbrush = __øcreate < ::draw2d::brush >();
+            auto pbrush = øcreate < ::draw2d::brush >();
 
             pbrush->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
 
@@ -1201,9 +1201,9 @@ auto m_tick23 = ::time::now();
       if (m_bFast || !m_bFirstDone || m_timeLastFast.elapsed() < m_timeFastAnime)
       {
 
-//         synchronous_lock sl1(m_pimpact->get_wnd()->synchronization());
+//         synchronous_lock sl1(m_pimpact->get_wnd()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         synchronous_lock slDraw(m_pmutexDraw);
+         synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_bFast || m_pimageFast->is_null())
          {
@@ -1255,9 +1255,9 @@ auto m_tick23 = ::time::now();
 
       ::image::image_pointer pimageFast = m_pimageFast;
 
-      synchronous_lock synchronouslock(m_pmutexDraw);
+      synchronous_lock synchronouslock(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      synchronous_lock slSwap(m_pmutexSwap);
+      synchronous_lock slSwap(m_pmutexSwap, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 /*      pimage = m_pimageOut;
 
@@ -1327,7 +1327,7 @@ auto m_tick23 = ::time::now();
    void render::defer_update_bilbo()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (auto & bilbo : m_bilboa)
       {
@@ -1358,7 +1358,7 @@ auto m_tick23 = ::time::now();
       for (auto str23 : m_stra23)
       {
 
-         synchronous_lock synchronouslock(m_pmutexDib23);
+         synchronous_lock synchronouslock(m_pmutexDib23, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          image23(str23);
 
@@ -1381,7 +1381,7 @@ auto m_tick23 = ::time::now();
       if (m_cx <= 0 || m_cy <= 0)
          return;
 
-      synchronous_lock slDraw(m_pmutexDraw);
+      synchronous_lock slDraw(m_pmutexDraw, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::int_size sizeNew = ::int_size(m_cx, m_cy);
 
@@ -1400,7 +1400,7 @@ auto m_tick23 = ::time::now();
 
       float fHeight = 100.0;
 
-      auto pfont = __øcreate < ::write_text::font > ();
+      auto pfont = øcreate < ::write_text::font > ();
 
 //      pfont->create_pixel_font(m_pimpact->m_strFont, fHeight, e_font_weight_bold);
 
@@ -1424,17 +1424,17 @@ auto m_tick23 = ::time::now();
 
       size = pgraphics->get_text_extent(strHelloAxis);
 
-      auto ppath = __øcreate < ::draw2d::path > ();
+      auto ppath = øcreate < ::draw2d::path > ();
 
       ppath->m_bFill = false;
 
       ppath->add_string((m_cx - size.cx()) / 2, (m_cy - size.cy()) / 2, strHelloAxis, m_pfont);
 
-      auto ppen = __øcreate < ::draw2d::pen > ();
+      auto ppen = øcreate < ::draw2d::pen > ();
 
       ppen->create_solid(1.0, argb(255, 90, 90, 80));
 
-      auto ppenW = __øcreate < ::draw2d::pen > ();
+      auto ppenW = øcreate < ::draw2d::pen > ();
 
       ppenW->create_solid(3.0, argb(84, 255, 255, 255));
 

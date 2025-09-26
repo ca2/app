@@ -48,7 +48,7 @@ namespace gpu_opengl
 
       void _on_begin_render(::gpu::frame * pframe) override;
 
-      virtual void on_begin_render(::gpu::frame* pframe);
+      void on_begin_render(::gpu::frame* pframe) override;
 
       void Clear() const;
 

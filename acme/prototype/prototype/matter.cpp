@@ -682,7 +682,7 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 
 
 
-//::pointer < ::subparticle > matter::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+//::pointer < ::subparticle > matter::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 //{
 //
 //   auto psequence = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -749,7 +749,7 @@ bool matter::handle_call(::payload & payload, const ::scoped_string & scopedstrO
 //::topic_pointer matter::create_topic(const ::atom & atom)
 //{
 //
-//   auto ptopic = __allocate ::topic(atom);
+//   auto ptopic = øallocate ::topic(atom);
 //
 //   ptopic->m_papplication = system();
 //
@@ -761,16 +761,16 @@ bool matter::handle_call(::payload & payload, const ::scoped_string & scopedstrO
 bool matter::__get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payload)
 {
 
-   auto psynchronizer = __allocate ::parallelization::synchronizer();
+   auto psynchronizer = øallocate ::parallelization::synchronizer();
 
    psynchronizer->set_nok();
 
-   auto function = [functionReturn, &payload, psynchronizer]()
+   auto function = [this, functionReturn, &payload, psynchronizer]()
    {
 
       auto payloadReturn = functionReturn();
 
-      synchronous_lock synchronizationlock(psynchronizer->synchronization());
+      synchronous_lock synchronizationlock(psynchronizer->synchronization(), this, SYNCHRONOUS_LOCK_SUFFIX);
 
       psynchronizer->m_happeningGoingToWrite.set_happening();
 
@@ -818,7 +818,7 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 void matter::__send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedureParam)
 {
 
-   auto psignalization = __allocate ::parallelization::signalization();
+   auto psignalization = øallocate ::parallelization::signalization();
 
    auto procedure = procedureParam;
 

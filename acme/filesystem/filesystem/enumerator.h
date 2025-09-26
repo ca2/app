@@ -39,7 +39,7 @@ namespace file
       // throws exception if listing enumeration fails for some reason.
       virtual bool enumerate(listing_base & listing);
 
-      virtual bool list(string_array_base & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag = ::file::e_flag_file_or_folder);
+      virtual bool list_base(string_array_base & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag = ::file::e_flag_file_or_folder);
 
       virtual listing_base get_folders(const ::scoped_string & scopedstr);
 

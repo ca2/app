@@ -29,7 +29,7 @@ namespace user
 
       ::pointer < ::experience::department >             m_pexperience;
 
-      //atom_map < ::pointer < ::user::impact_system > >   m_mapimpactsystem;
+      //atom_map_base < ::pointer < ::user::impact_system > >   m_mapimpactsystem;
 
       //::user::impact_system * m_ptemplateHtmlChildForm1;
 
@@ -74,7 +74,7 @@ namespace user
 
       //virtual void destroy() override;
 
-      //virtual void SendMessageToWindows(::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void SendMessageToWindows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
       //virtual void term() override;
 

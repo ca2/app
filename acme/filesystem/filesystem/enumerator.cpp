@@ -49,7 +49,7 @@ namespace file
 
       string_array_base stra;
 
-      if(list(stra, listing.m_pathFinal, listing.m_eflag))
+      if(list_base(stra, listing.m_pathFinal, listing.m_eflag))
       {
 
          return false;
@@ -85,7 +85,7 @@ namespace file
    }
 
 
-   bool enumerator::list(string_array_base & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
+   bool enumerator::list_base(string_array_base & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
    {
 
       ::file::listing_base listing;

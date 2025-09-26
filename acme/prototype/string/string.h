@@ -21,7 +21,8 @@
 //#endif
 
 
-#include "utf8_character.h"
+//#include "utf8_character.h"
+#include "inline_string.h"
 
 //#ifdef   _STDIO_H_
 //#error "already included?!?! WHAT?!?! (After including acme/prototype/string/string.h(4))"

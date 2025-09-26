@@ -146,7 +146,7 @@ namespace user
       //virtual ::frequency get_output_per_second();
 
 
-      //::pointer<::message::message>get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
+      //::pointer<::message::message>get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
       void destroy() override;
 
       virtual ::user::interaction * get_host_user_interaction();
@@ -404,11 +404,11 @@ namespace user
       //virtual lresult send(::message::message * pmessage);
       //virtual bool post(::message::message * pmessage);
 
-      virtual lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {});
+      virtual lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {});
 
       virtual lresult send_message(::message::message * pmessage);
 
-      virtual lresult message_call(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {});
+      virtual lresult message_call(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {});
       virtual lresult message_call(::message::message * pmessage);
 
       virtual void on_message(::message::message * pmessage);
@@ -419,9 +419,9 @@ namespace user
 
 #endif
 
-      lresult message_handler(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      lresult message_handler(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
-      virtual void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+      virtual void post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
       virtual void post_simple_command(const enum_simple_command & ecommand, const ::lparam & lparam = 0);
 
@@ -543,7 +543,7 @@ namespace user
 
       virtual bool is_top_level_window();
 
-      virtual void send_message_to_descendants(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bDeep = true, bool bOnlyPerm = false);
+      virtual void send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bDeep = true, bool bOnlyPerm = false);
 
       virtual void route_message_to_descendants(::message::message * pmessage);
       virtual void pre_translate_message(::message::message * pmessage);
@@ -718,8 +718,8 @@ namespace user
       virtual void _001OnAfterExitAppearance();
 
 
-      //virtual lresult send_message(const ::enum_message & emessage, const ::wparam & wparam = 0, const ::lparam & lparam = 0);
-      //virtual bool post_message(const ::enum_message & emessage, const ::wparam & wparam = 0, const ::lparam & lparam = 0);
+      //virtual lresult send_message(const ::user::enum_message & emessage, const ::wparam & wparam = 0, const ::lparam & lparam = 0);
+      //virtual bool post_message(const ::user::enum_message & emessage, const ::wparam & wparam = 0, const ::lparam & lparam = 0);
       //virtual void message_handler(::message::message * pmessage);
       //virtual void pre_translate_message(::message::message * pmessage);
 
@@ -747,7 +747,7 @@ namespace user
 
 
 
-      virtual void set_need_redraw(const ::int_rectangle_array & rectangleaScreenNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function = nullptr, bool bAscendants = true);
+      virtual void set_need_redraw(const ::int_rectangle_array_base & rectangleaScreenNeedRedraw = {}, ::draw2d::graphics * pgraphics = nullptr, ::function < void() > function = nullptr, bool bAscendants = true);
       virtual void set_need_load_form_data();
       virtual void set_need_save_form_data();
       virtual void post_redraw(bool bAscendants = true);
@@ -767,7 +767,7 @@ namespace user
       pointer < T > get_typed_parent()
       {
 
-         ASSERT_VALID(this);
+         ASSERT_OK(this);
 
          pointer < T > p;
 

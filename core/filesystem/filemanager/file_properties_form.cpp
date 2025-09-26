@@ -67,7 +67,7 @@ namespace filemanager
 
       }
 
-      auto prequest = __create_new< ::request >();
+      auto prequest = øcreate_new< ::request >();
 
       prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
@@ -137,7 +137,7 @@ namespace filemanager
    //::pointer<::user::impact_kit>file_properties_form::get_impact_kit()
    //{
 
-   //   auto pimpactkit = __create_new < ::user::impact_kit >();
+   //   auto pimpactkit = øcreate_new < ::user::impact_kit >();
 
    //   pimpactkit->add_impact_item(1, "general", this);
 

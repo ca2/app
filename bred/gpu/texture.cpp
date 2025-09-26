@@ -213,7 +213,7 @@ namespace gpu
       m_iAtlasY = iAtlasY;
       m_iAtlasCurrentRowHeight = iAtlasH;
 
-      auto ppixmap = __øcreate<::gpu::pixmap>();
+      auto ppixmap = øcreate<::gpu::pixmap>();
 
       ppixmap->initialize_gpu_pixmap(this, 
          {iAtlasX, iAtlasY,
@@ -308,7 +308,7 @@ namespace gpu
 
       }
 
-      __defer_construct(m_ptextureDepth);
+      ødefer_construct(m_ptextureDepth);
 
       m_ptextureDepth->initialize_depth_texture(m_pgpurenderer, m_rectangleTarget);
 
@@ -327,6 +327,14 @@ namespace gpu
    void texture::set_pixels(const ::int_rectangle& rectangle, const void* data)
    {
 
+
+   }
+
+
+   bool texture::is_in_shader_sampling_state()
+   {
+
+      return true;
 
    }
 

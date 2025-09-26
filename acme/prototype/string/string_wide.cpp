@@ -1,27 +1,27 @@
 #include "framework.h"
 //#include "string.h"
-
-
-template < >
-CLASS_DECL_ACME base_data < string_heap_data < ::wd16_character > > * __nil < base_data < string_heap_data < ::wd16_character > > >()
-{
-
-   static base_data < string_heap_data < ::wd16_character > > s_wd16stringNil;
-
-   return &s_wd16stringNil;
-
-}
-
-
-template < >
-CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < base_data < string_heap_data < ::wd32_character > > >()
-{
-
-   static base_data < string_heap_data < ::wd32_character > > s_wd32stringNil;
-
-   return &s_wd32stringNil;
-
-}
+//
+//
+// template < >
+// CLASS_DECL_ACME base_data < string_heap_data < ::wd16_character > > * __nil < base_data < string_heap_data < ::wd16_character > > >()
+// {
+//
+//    static base_data < string_heap_data < ::wd16_character > > s_wd16stringNil;
+//
+//    return &s_wd16stringNil;
+//
+// }
+//
+//
+// template < >
+// CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < base_data < string_heap_data < ::wd32_character > > >()
+// {
+//
+//    static base_data < string_heap_data < ::wd32_character > > s_wd32stringNil;
+//
+//    return &s_wd32stringNil;
+//
+// }
 
 //const unichar * wstring::g_pszWindowsBBQBUNC(L"\\\\?\\UNC");
 //const unichar * wstring::g_pszWindowsBBQB(L"\\\\?\\");

@@ -9,7 +9,7 @@
 #include "aura/user/user/notify_icon.h"
 #include "tab_drop_target_window.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -286,9 +286,9 @@ namespace user
 
       impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &tab_impact::on_message_create);
-      MESSAGE_LINK(WM_USER + 1122, pchannel, this, &tab_impact::_001OnMenuMessage);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_impact::on_message_set_focus);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &tab_impact::on_message_create);
+      USER_MESSAGE_LINK(WM_USER + 1122, pchannel, this, &tab_impact::_001OnMenuMessage);
+      USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &tab_impact::on_message_set_focus);
 
    }
 
@@ -304,7 +304,7 @@ namespace user
    void tab_impact::_001OnRemoveTab(class tab_pane * ptabpane)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (ptabpane->m_pplaceholder.is_set())
       {
@@ -364,7 +364,7 @@ namespace user
 
       }
 
-      m_impactdatamap.erase_item(idTab);
+      m_impactdatamap.erase(idTab);
 
       ::user::tab::_001OnRemoveTab(ptabpane);
 
@@ -495,7 +495,7 @@ namespace user
 
       create_tab_by_id(::user::tab::index_id(pchannel->get_data()->m_iClickTab));
 
-      m_pdroptargetwindow = __allocate tab_drop_target_window();
+      m_pdroptargetwindow = øallocate tab_drop_target_window();
 
       m_pdroptargetwindow->initialize_tab_drop_target_window(this, (int)pchannel->get_data()->m_iClickTab);
 
@@ -688,7 +688,7 @@ namespace user
 
                __check_refdbg
 
-               _synchronous_lock synchronouslock(this->synchronization());
+               _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                __check_refdbg
 
@@ -830,7 +830,7 @@ namespace user
    void tab_impact::on_after_change_cur_sel()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto ptabdata = get_data();
 
@@ -1171,7 +1171,7 @@ namespace user
          && pframe->notify_icon())
       {
 
-         __defer_construct_new(pmenu->m_pmenuitem);
+         ødefer_construct_new(pmenu->m_pmenuitem);
 
          user()->from_application_menu(
             pmenu->m_pmenuitem,
@@ -1183,7 +1183,7 @@ namespace user
          //if (!pmenu->m_pmenuitem->m_pmenuitema)
          //{
 
-         //   pmenu->m_pmenuitem->m_pmenuitema = __allocate ::menu::item_ptra(pmenu->m_pmenuitem);
+         //   pmenu->m_pmenuitem->m_pmenuitema = øallocate ::menu::item_ptra(pmenu->m_pmenuitem);
 
          //}
 
@@ -1199,7 +1199,7 @@ namespace user
 
          //   }
 
-         //   auto pmenuitem = __create_new < ::menu::item >();
+         //   auto pmenuitem = øcreate_new < ::menu::item >();
 
          //   pmenuitem->m_pmenu = pmenu;
 
@@ -1311,7 +1311,7 @@ namespace user
 
    //         {
 
-   //            _synchronous_lock synchronouslock(this->synchronization());
+   //            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //            if (pimpactdata->m_strCreatorDataTitle.has_character() && ppane->id() == pimpactdata->id())
    //            {

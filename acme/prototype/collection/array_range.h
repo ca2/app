@@ -9,12 +9,43 @@
 
 //
 ///// consecutive items arranged as array of ITEM
-//template < typename RANGE_TYPE >
-//class array_range :
-//   public RANGE_TYPE
-//{
-//public:
-//
+template < typename TYPE, typename ARG_TYPE >
+class array_range :
+   public ::range < TYPE * >
+{
+public:
+
+   
+   using BASE_RANGE = ::range<TYPE *>;
+   using RAW_BASE_ARRAY = array_range;
+   using BASE_RAW_RANGE = ::range<TYPE *>;
+   using BASE_TYPE = TYPE;
+
+
+   using BASE_RANGE::BASE_RANGE;
+
+
+   ::collection::count size() const { return this->m_end - this->m_begin; }
+   ::collection::count get_count() const { return this->size(); }
+
+
+   inline ::collection::index get_lower_bound(::collection::index i = 0) const;
+   inline ::collection::index get_middle_index(::collection::index i = 0) const;
+   inline ::collection::index get_upper_bound(::collection::index i = -1) const;
+   inline ::collection::index lower_bound(::collection::index i = 0) const { return this->get_lower_bound(i); }
+   inline ::collection::index upper_bound(::collection::index i = -1) const { return this->get_upper_bound(i); }
+   inline ::collection::index first_index(::collection::index i = 0) const { return this->lower_bound(i); }
+   inline ::collection::index middle_index(::collection::index i = 0) const { return this->get_middle_index(i); }
+   inline ::collection::index last_index(::collection::index i = -1) const { return this->get_upper_bound(i); }
+   inline bool bounds(::collection::index i) const;
+   inline bool contains_index(::collection::index i) const { return bounds(i); }
+
+
+   inline bool prepare_first_last(::collection::index& first, ::collection::index& last) const;
+   inline bool prepare_first_in_count_last_out(::collection::index& first, ::collection::count& inCountLastOut) const;
+
+
+   //
 //
 //   using BASE_RANGE = RANGE_TYPE;
 //
@@ -148,7 +179,18 @@
 //   }
 //
 //
-//};
+
+constexpr bool array_range_ok() const { return true; }
+
+
+   TYPE &element_at(::collection::index i) { return this->m_begin[i]; }
+   const TYPE &element_at(::collection::index i) const { return this->m_begin[i]; }
+   TYPE &operator[](::collection::index i) { return this->m_begin[i]; }
+   const TYPE &operator[](::collection::index i) const { return this->m_begin[i]; }
+
+
+
+};
 //
 
 //template < primitive_character CHARACTER >
@@ -508,6 +550,99 @@
 //
 //
 //
+
+
+
+
+
+
+template<typename TYPE, typename ARG_TYPE>
+inline ::collection::index array_range<TYPE, ARG_TYPE>::get_lower_bound(::collection::index i) const
+{
+   return i < this->size() ? i : -1;
+}
+
+template<typename TYPE, typename ARG_TYPE>
+inline ::collection::index
+array_range<TYPE, ARG_TYPE>::get_middle_index(::collection::index iIndex) const
+{
+   return this->size() / 2 + iIndex;
+}
+
+
+template<typename TYPE, typename ARG_TYPE>
+inline ::collection::index
+array_range<TYPE, ARG_TYPE>::get_upper_bound(::collection::index iIndex) const
+{
+   return this->size() + iIndex;
+}
+
+template<typename TYPE, typename ARG_TYPE>
+inline bool array_range<TYPE, ARG_TYPE>::bounds(::collection::index i) const
+{
+   return i >= 0 && i < this->size();
+}
+
+
+
+template<typename TYPE, typename ARG_TYPE>
+bool array_range<TYPE, ARG_TYPE>::prepare_first_last(::collection::index& first,
+   ::collection::index& last) const
+{
+
+   if (first < 0)
+   {
+
+      first += this->array_get_count();
+
+   }
+
+   if (last < 0)
+   {
+
+      last += this->array_get_count();
+
+   }
+
+   return last >= first;
+}
+
+
+template<typename TYPE, typename ARG_TYPE>
+bool array_range<TYPE, ARG_TYPE >::prepare_first_in_count_last_out(
+   ::collection::index& first, ::collection::count& in_count_out_last) const
+{
+
+   if (first < 0)
+   {
+
+      first += this->array_get_count();
+
+   }
+
+   if (first < 0)
+   {
+
+      first = 0;
+
+   }
+
+   if (in_count_out_last < 0)
+   {
+
+      in_count_out_last += this->array_get_count();
+
+   }
+   else
+   {
+
+      in_count_out_last = first + in_count_out_last - 1;
+
+   }
+
+   return in_count_out_last >= first;
+
+}
 
 
 

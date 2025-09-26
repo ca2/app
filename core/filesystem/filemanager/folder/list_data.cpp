@@ -67,7 +67,7 @@ namespace filemanager
       void list_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (psubitem->m_iSubItem == 0)
          {
@@ -101,7 +101,7 @@ namespace filemanager
       void list_data::GetSel(::user::list * plist, string_array_base & stra)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          string_array_base wstraTotal;
 
@@ -141,7 +141,7 @@ namespace filemanager
       ::collection::count list_data::_001GetItemCount()
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          string_array_base straTotal;
 
@@ -160,7 +160,7 @@ namespace filemanager
       bool list_data::add_unique(const string_array_base & stra)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          string_array_base straFolderPath;
 
@@ -195,7 +195,7 @@ namespace filemanager
       bool list_data::add_unique(const string_array_base & stra, int_array_base & baRecursive)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          string_array_base straFolderPath;
 
@@ -258,7 +258,7 @@ namespace filemanager
       bool list_data::erase(const string_array_base & stra)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          string_array_base straFolderPath;
 
@@ -336,7 +336,7 @@ namespace filemanager
       bool list_data::set_recursive(::collection::index iItem, bool bRecursive)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          int_array_base iaRecursive;
 
@@ -374,7 +374,7 @@ namespace filemanager
       bool list_data::get_recursive(::collection::index iItem)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          int_array_base iaRecursive;
 

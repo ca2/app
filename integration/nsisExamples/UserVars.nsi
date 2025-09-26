@@ -35,7 +35,7 @@ Section "Dummy Section" SecDummy
      StrCpy $0 "Admin"
      StrCpy "$Name" $0
      StrCpy "$serial" "12345"
-     MessageBox e_message_box_ok "User Name: $Name $\n$\nSerial Number: $serial"
+     MessageBox ::user::e_message_box_ok "User Name: $Name $\n$\nSerial Number: $serial"
 
      CreateDirectory $INSTDIR
      WriteUninstaller "$INSTDIR\Uninst.exe"
@@ -64,6 +64,6 @@ SectionEnd
 Function un.OnUninstSuccess
 
      HideWindow
-     MessageBox e_message_box_ok "$Info"
+     MessageBox ::user::e_message_box_ok "$Info"
      
 FunctionEnd

@@ -49,7 +49,7 @@ public:
 
       m_bKept = true;
 
-      _synchronous_lock synchronouslock(m_pmatterLock->synchronization());
+      _synchronous_lock synchronouslock(m_pmatterLock->synchronization(), m_pmatterLock, SYNCHRONOUS_LOCK_SUFFIX);
 
       this->set(m_bKeepValue);
 
@@ -68,7 +68,7 @@ public:
 
       m_bKept = false;
 
-      _synchronous_lock synchronouslock(m_pmatterLock->synchronization());
+      _synchronous_lock synchronouslock(m_pmatterLock->synchronization(), m_pmatterLock, SYNCHRONOUS_LOCK_SUFFIX);
 
       this->set(m_bKeepAwayValue);
 

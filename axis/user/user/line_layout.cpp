@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "line_layout.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/platform/node.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/user/user/interaction_array.h"
@@ -51,9 +51,9 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &line_layout::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &line_layout::on_message_destroy);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &line_layout::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &line_layout::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &line_layout::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &line_layout::on_message_show_window);
 
    }
 
@@ -154,7 +154,7 @@ namespace user
 
       {
 
-         //synchronous_lock synchronouslock(this->synchronization());
+         //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //auto children = synchronized_get_children();
 

@@ -114,7 +114,7 @@ CLASS_DECL_ACME void trace_category_static_term();
 //extern const_char_pointer g_pszTopLevelDomainList[];
 
 
-enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::enum_message_box & emessagebox);
+enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::user::enum_message_box & emessagebox);
 
 
 
@@ -416,9 +416,9 @@ namespace platform
 
       //::output_debug_string("Going to create simple log\n");
 
-      //m_plogger = __create_new < ::simple_log >();
+      //m_plogger = øcreate_new < ::simple_log >();
 
-      __øconstruct(m_plogger);
+      øconstruct(m_plogger);
 
       //::output_debug_string("output_debug_string : simple log created\n");
 
@@ -489,7 +489,7 @@ namespace platform
 
       //m_bOnInitializeWindowObject = false;
 
-      //m_pcleanuptask = __allocate ::parallelization::cleanup_task();
+      //m_pcleanuptask = øallocate ::parallelization::cleanup_task();
 
       //m_pcleanuptask->begin();
       //factory()->add_factory_item<::acme::idpool>();
@@ -498,9 +498,9 @@ namespace platform
       //m_pdirectorysystem = nullptr;
       //m_ppathsystem = nullptr;
 
-      __defer_construct_new(m_pmathematics);
+      ødefer_construct_new(m_pmathematics);
 
-      __defer_construct_new(m_pprototype);
+      ødefer_construct_new(m_pprototype);
 
       //::plane_system::on_initialize_particle();
 
@@ -540,7 +540,7 @@ namespace platform
 
       //information() << "initialize_system create nano";
 
-      //__øconstruct(m_pnano);
+      //øconstruct(m_pnano);
 
       //m_psystemimpl = ___new system_impl();
 
@@ -688,7 +688,7 @@ namespace platform
       if (!m_psystemfactory)
       {
 
-         __construct_new(m_psystemfactory);
+         øconstruct_new(m_psystemfactory);
 
       }
 
@@ -737,7 +737,7 @@ namespace platform
 
 #if !defined(WINDOWS)
 
-      __øconstruct(m_pexceptiontranslator);
+      øconstruct(m_pexceptiontranslator);
 
       m_pexceptiontranslator->attach();
 
@@ -745,7 +745,7 @@ namespace platform
 
       //information() << "create_os_node going to create node";
 
-      __øconstruct(m_pnode);
+      øconstruct(m_pnode);
 
       m_pnode = m_pnode;
 
@@ -834,19 +834,19 @@ namespace platform
 
 #endif
 
-      __construct_new(m_purlcontext);
+      øconstruct_new(m_purlcontext);
 
       //::acme::idpool::init(this);
 
 //      /// Create/Replace logger
 
-      __construct_new(m_pdatetime);
+      øconstruct_new(m_pdatetime);
 
 
 
       m_pnode->m_htaskSystem = m_htask;
 
-      //auto estatus = __defer_construct_new(m_pfactorysquare);
+      //auto estatus = ødefer_construct_new(m_pfactorysquare);
 
       //if (!estatus)
       //{
@@ -864,7 +864,7 @@ namespace platform
 
       // }
 
-      //estatus = __øconstruct(m_pnode);
+      //estatus = øconstruct(m_pnode);
 
       //if (!m_pnode)
       //{
@@ -873,9 +873,9 @@ namespace platform
 
       //}
 
-      //auto estatus = __raw_construct(m_pdirectorysystem);
+      //auto estatus = øraw_construct(m_pdirectorysystem);
 
-      __raw_construct(m_pdirectorysystem);
+      øraw_construct(m_pdirectorysystem);
 
       /*if (!estatus)
        {
@@ -888,9 +888,9 @@ namespace platform
 
        //    m_pdirectorysystem->increment_reference_count();
 
-       //estatus = __raw_construct(m_pfilesystem);
+       //estatus = øraw_construct(m_pfilesystem);
 
-      __raw_construct(m_pfilesystem);
+      øraw_construct(m_pfilesystem);
 
       //if (!estatus)
       //{
@@ -899,9 +899,9 @@ namespace platform
 
       //}
 
-      //estatus = __raw_construct(m_ppathsystem);
+      //estatus = øraw_construct(m_ppathsystem);
 
-      __raw_construct(m_ppathsystem);
+      øraw_construct(m_ppathsystem);
 
       //if (!estatus)
       //{
@@ -971,12 +971,12 @@ namespace platform
       //if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
       //{
 
-      //   //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
+      //   //debug_box("zzzAPPzzz app", "zzzAPPzzz app", ::user::e_message_box_icon_information);
 
       //}
       //estatus =
 
-      __øconstruct(m_pfilesystem);
+      øconstruct(m_pfilesystem);
 
       //if(!estatus)
       //{
@@ -991,7 +991,7 @@ namespace platform
 
       //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
-      __øconstruct(m_pdirectorysystem);
+      øconstruct(m_pdirectorysystem);
 
       //if (!estatus)
       //{
@@ -1290,7 +1290,7 @@ namespace platform
    unsigned int system::crc32(unsigned int uCrc, const ::block & block)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_pcompressZlibCrc32)
       {
@@ -1421,16 +1421,16 @@ namespace platform
    }
 
 
-   //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //{
 
-   //   auto psequence = __allocate ::sequence < ::conversation > ();
+   //   auto psequence = øallocate ::sequence < ::conversation > ();
 
    //   psequence->set_status(error_interface_only);
 
    //   //return presult;
 
-   //   //auto pprocess = __allocate status < enum_dialog_result > ();
+   //   //auto pprocess = øallocate status < enum_dialog_result > ();
 
    //   //pprocess->set_result(message_box_for_console(scopedstrText, pszTitle, emessagebox));
 
@@ -1512,7 +1512,7 @@ namespace platform
       catch (::exception & exception)
       {
 
-         //auto pmessagebox = __initialize_new ::message_box(exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
+         //auto pmessagebox = __initialize_new ::message_box(exception.m_strMessage, m_strAppId, ::user::e_message_box_ok, exception.m_strDetails);
 
 //pmessagebox->sync();
 
@@ -1613,7 +1613,7 @@ namespace platform
 
          //initialize_nano_window(factory());
 
-         __construct_new(m_pnano);
+         øconstruct_new(m_pnano);
 
       }
 
@@ -1653,7 +1653,7 @@ namespace platform
    //
    //      initialize_nano_http(factory());
    //
-   //      __øconstruct(m_pnanohttp);
+   //      øconstruct(m_pnanohttp);
    //
    //   }
    //
@@ -1670,7 +1670,7 @@ namespace platform
    //
    //         initialize_nano_http(factory());
    //
-   //         __øconstruct(m_pnanohttp);
+   //         øconstruct(m_pnanohttp);
    //
    //      }
    //
@@ -1873,7 +1873,7 @@ namespace platform
    //   if (!plibrary)
    //   {
 
-   //      plibrary = __allocate ::acme::library();
+   //      plibrary = øallocate ::acme::library();
 
    //      plibrary->initialize_matter(this);
 
@@ -1942,7 +1942,7 @@ namespace platform
    //
    //#ifdef CUBE
    //
-   //      _synchronous_lock synchronouslock(m_pmutexContainerizedLibrary);
+   //      _synchronous_lock synchronouslock(m_pmutexContainerizedLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //      auto & plibrary = m_mapContainerizedLibrary[strComponent][strImplementation];
    //
@@ -1965,11 +1965,11 @@ namespace platform
    //
    //      }
    //
-   //      plibrary = __allocate ::acme::library();
+   //      plibrary = øallocate ::acme::library();
    //
    //      plibrary->initialize_matter(this);
    //
-   //      __construct_new(plibrary->m_pfactory);
+   //      øconstruct_new(plibrary->m_pfactory);
    //
    //      plibrary->m_pfactory->initialize_matter(this);
    //
@@ -2013,7 +2013,7 @@ namespace platform
    //
    //      }
    //
-   //      __construct_new(pfactory);
+   //      øconstruct_new(pfactory);
    //
    //      plibrary->m_pfactory->initialize_matter(this);
    //
@@ -2062,9 +2062,9 @@ namespace platform
    ::pointer<::regular_expression::context>system::get_regular_expression_context(const ::scoped_string & scopedstrStyle)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      __defer_construct_new(m_pmapRegularExpressionContext);
+      ødefer_construct_new(m_pmapRegularExpressionContext);
 
       auto & pcontext = (*m_pmapRegularExpressionContext)[pszStyle];
 
@@ -2080,7 +2080,7 @@ namespace platform
 
          }
 
-         pfactory->__øconstruct(this, pcontext);
+         pfactory->øconstruct(this, pcontext);
 
       }
 
@@ -2221,7 +2221,7 @@ namespace platform
       ::pointer<::platform::session>psession;
 
       //auto estatus =
-      __raw_construct(psession);
+      øraw_construct(psession);
 
       psession->set_platform();
 
@@ -2255,7 +2255,7 @@ namespace platform
    ::platform::session * system::session(::collection::index iEdge)
    {
 
-      auto iterator = m_sessionmap.plookup(iEdge);
+      auto iterator = m_sessionmap.find(iEdge);
 
       if (iterator.is_null())
       {
@@ -2425,7 +2425,7 @@ namespace platform
 
          m_bPostedInitialRequest = true;
 
-         auto prequest = __create_new< ::request>();
+         auto prequest = øcreate_new< ::request>();
 
          auto strCommandLine = ::system()->m_strCommandLine;
 
@@ -3253,7 +3253,7 @@ namespace platform
 
 
 
-   //::pointer < ::subparticle > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+   //::pointer < ::subparticle > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
    //{
    //
    //   auto psequencer = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -3299,7 +3299,7 @@ namespace platform
          if (strAppId.is_empty() || ::system()->is_console())
          {
 
-            papp = __øcreate < ::platform::application >();
+            papp = øcreate < ::platform::application >();
 
             papp->increment_reference_count();
 
@@ -3329,9 +3329,9 @@ namespace platform
 
 #ifndef UNIVERSAL_WINDOWS
 
-               //            output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
+               //            output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", ::user::e_message_box_icon_error);
 
-               //output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. ", "ca2", e_message_box_icon_error);
+               //output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. ", "ca2", ::user::e_message_box_icon_error);
 
                informationf("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + "ca2");
 
@@ -3375,7 +3375,7 @@ namespace platform
             if (pfactory)
             {
 
-               papp = __øcreate < ::platform::application >(pfactory);
+               papp = øcreate < ::platform::application >(pfactory);
 
                if (!papp)
                {
@@ -3516,7 +3516,7 @@ namespace platform
    //   void system::windowing_send(const ::procedure & procedure)
    //   {
    //
-   //      auto pmanualresethappening = __allocate manual_reset_happening();
+   //      auto pmanualresethappening = øallocate manual_reset_happening();
    //
    //      windowing_post([pmanualresethappening, procedure]()
    //                     {
@@ -3862,7 +3862,7 @@ namespace platform
    void system::on_application_dark_mode_change()
    {
 
-      auto ptopic = __allocate::topic(id_application_dark_mode_change);
+      auto ptopic = øallocate::topic(id_application_dark_mode_change);
 
       application()->handle(ptopic, nullptr);
 
@@ -4025,7 +4025,7 @@ namespace platform
       if (!m_pmicrouser)
       {
 
-         __construct_new(m_pmicrouser);
+         øconstruct_new(m_pmicrouser);
 
       }
 
@@ -4042,7 +4042,7 @@ namespace platform
 
          do_graphics_and_windowing_system_factory();
 
-         __øconstruct(m_pacmewindowing);
+         øconstruct(m_pacmewindowing);
 
       }
 
@@ -4089,7 +4089,7 @@ namespace platform
 
 
 //   ::pointer < ::message_box > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
-//                                                       const ::e_message_box & emessagebox,
+//                                                       const ::user::e_message_box & emessagebox,
 //                                                       const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //   {
 //      
@@ -4106,7 +4106,7 @@ namespace platform
    //::pointer < ::message_box > system::exception_message_box(
    //    const ::exception & exception, const ::scoped_string & scopedstrMessage, 
    //   const ::scoped_string & scopedstrTitle,
-   //    const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+   //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
    //   return micro_user()->exception_message_box(
    //exception,
@@ -4120,7 +4120,7 @@ namespace platform
 
 
    //::pointer < ::message_box > system::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
-   //                                                           const ::e_message_box & emessagebox,
+   //                                                           const ::user::e_message_box & emessagebox,
    //                                                           const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
    //   
@@ -4137,7 +4137,7 @@ namespace platform
    //::pointer < ::message_box > system::exception_message_console(
    //    const ::exception & exception, const ::scoped_string & scopedstrMessage,
    //   const ::scoped_string & scopedstrTitle,
-   //    const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+   //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
 
    //   return micro_user()->exception_message_console(
@@ -4159,7 +4159,7 @@ namespace platform
 
    //      do_graphics_and_windowing_system_factory();
 
-   //      __øconstruct(m_pwindowingbase);
+   //      øconstruct(m_pwindowingbase);
 
    //   }
 
@@ -4307,7 +4307,7 @@ void system_on_open_file(void * pSystem, const_char_pointer pszFile)
 //
 //         //   //auto pfuture = __sync_future();
 //
-//         //   //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
+//         //   //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", ::user::e_message_box_icon_exclamation | ::user::e_message_box_yes_no_cancel, pfuture);
 //
 //         //   //pfuture->wait(10_s);
 //

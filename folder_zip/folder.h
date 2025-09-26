@@ -24,6 +24,8 @@ namespace folder_zip
       bool                    m_bOwnFile;
       unz_file_info           m_unzfileinfo;
 
+      ::string m_strLogNotFound;
+
 
       folder();
       ~folder() override;
@@ -65,7 +67,7 @@ namespace folder_zip
       bool enumerate(::file::listing_base& listing) override;
       //bool perform_file_relative_name_listing(::file::listing_base& listing) override;
 
-
+      void didnt_locate_file(const_char_pointer pszFile);
 
    };
 

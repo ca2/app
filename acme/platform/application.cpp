@@ -4,6 +4,7 @@
 // app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "application.h"
+#include "message.h"
 #include "acme.h"
 #include "application_menu.h"
 #include "acme/exception/exit.h"
@@ -48,6 +49,21 @@ CLASS_DECL_ACME::file::path get_module_path();
 #endif
 
 
+void _001TestSlashedPath();
+void _001Test001(const ::scoped_string& scopedstr)
+{
+
+   ::string str;
+
+   str = scopedstr;
+
+   str += "123";
+
+   ::debug() << str;
+
+}
+
+
 namespace platform
 {
 
@@ -55,18 +71,23 @@ namespace platform
    application::application()
    {
 
-      
+      m_bUseCloudStorageForAppData = true;
       m_gpu.m_bUseSwapChainWindow = false;
       m_gpu.m_eoutputDraw2d = ::gpu::e_output_none;
       m_gpu.m_eoutputEngine = ::gpu::e_output_none;
 
+      int cx = 204;
 
+      _001Test001(::as_string(cx));
       //m_bTransferToContainer = true;
       //m_bTransferredToContainer = false;
 
-      m_pfilesystemoptions = __allocate::filesystem::file_system_options();
+      m_pfilesystemoptions = øallocate::filesystem::file_system_options();
 
       m_bApplicationFirstRequest = true;
+
+
+      _001TestSlashedPath();
 
       //if (!::platform::platform::s_pplatform->m_papplication)
       //{
@@ -289,7 +310,7 @@ void application::start_application()
    ::application_menu * application::application_menu()
    {
 
-      if (__defer_construct_new(m_papplicationmenu))
+      if (ødefer_construct_new(m_papplicationmenu))
       {
 
          m_papplicationmenu->m_strName = application_title();
@@ -395,7 +416,7 @@ void application::start_application()
          if (!m_bGUIReady)
          {
 
-            auto pusermessage = __create_new < user_message >();
+            auto pusermessage = øcreate_new < user_message >();
 
             pusermessage->m_estatus = estatus;
 
@@ -428,7 +449,7 @@ void application::start_application()
       auto pmessagebox = __initialize_new::message_box(
          "Application needs iCloud and it is not Available",
          "iCloud is not Available.",
-         e_message_box_ok | e_message_box_icon_exclamation);
+         ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation);
 
       pmessagebox->sync();
 
@@ -701,7 +722,7 @@ void application::start_application()
    ::file::path application::get_module_path()
    {
 
-      _synchronous_lock synchronizationlock(synchronization());
+      _synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_bModulePath)
       {
@@ -734,7 +755,7 @@ void application::start_application()
    ::file::path application::get_module_folder()
    {
 
-      _synchronous_lock synchronizationlock(synchronization());
+      _synchronous_lock synchronizationlock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_bModuleFolder)
       {
@@ -1115,7 +1136,7 @@ void application::start_application()
    void application::user_confirm_close_application()
    {
 
-      auto pmessagebox = __initialize_new::message_box("Are you sure you want to close application?", nullptr, e_message_box_yes_no);
+      auto pmessagebox = __initialize_new::message_box("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
 
       pmessagebox->async()
          << [this, pmessagebox]()
@@ -1191,7 +1212,29 @@ void application::start_application()
    ::file::path application::get_app_localconfig_folder()
    {
 
-      ::file::path pathFolder = directory_system()->roaming() / m_strAppId;
+      ::file::path pathFolder;
+
+      if (m_bUseCloudStorageForAppData)
+      {
+
+         pathFolder = "dropbox-app://";
+
+      }
+      else
+      {
+
+         pathFolder = directory_system()->roaming() / m_strAppId;
+
+      }
+
+      if (m_bUseComputerNameInAppLocalConfigFolder)
+      {
+
+         auto strComputerName = node()->get_computer_name();
+
+         pathFolder /= strComputerName;
+
+      }
 
       return pathFolder;
 
@@ -1274,6 +1317,37 @@ void application::start_application()
 
    }
 
+
+   void application::on_application_message(::platform::message * pmessage)
+   {
+
+      auto emessage = pmessage->m_emessage;
+
+      if(emessage == ::e_message_request_uri)
+      {
+
+         ::string strUri = pmessage->m_memory.get_string();
+
+         system()->handle_uri(strUri);
+
+      }
+      else if (emessage == ::e_message_open_file_request)
+      {
+
+         auto prequest = øcreate_new <::request>();
+
+         ::string strUri = pmessage->m_memory.get_string();
+
+         prequest->m_payloadFile = strUri;
+
+         prequest->m_ecommand = ::e_command_file_open;
+
+         this->request(prequest);
+
+      }
+
+
+   }
 
 
    void application::set_locale(const scoped_string& scopedstrLocale, const ::action_context& context)
@@ -1369,7 +1443,7 @@ void application::start_application()
       if (straMatterLocator.has_elements())
       {
 
-         stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map", "map"));
+         stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map_base", "map_base"));
 
       }
 
@@ -1698,7 +1772,7 @@ void application::start_application()
          auto pmessagebox = __initialize_new::message_box(
             "Application failed to initialize (1).\n\n" + e.m_strMessage,
             m_strAppName,
-            e_message_box_ok,
+            ::user::e_message_box_ok,
             e.m_strMessage + "\n" + e.m_strDetails);
 
          pmessagebox->sync();
@@ -1761,7 +1835,7 @@ void application::start_application()
          auto pmessagebox = __initialize_new::message_box(
             "Application failed to initialize (4). Unknown exception",
             m_strAppName,
-            e_message_box_ok,
+            ::user::e_message_box_ok,
             exception.m_strMessage + "\n\n" + exception.get_consolidated_details(this));
 
          pmessagebox->sync();
@@ -1830,7 +1904,7 @@ void application::start_application()
    //      //
    //      //         }
 
-   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", ::user::e_message_box_icon_information);
 
    //      //auto estatus =
    //      on_before_launching();
@@ -1906,7 +1980,7 @@ void application::start_application()
 
       psystem->install_progress_add_up(); // 2
 
-      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
+      //xxdebug_box("init1 ok", "init1 ok", ::user::e_message_box_icon_information);
 
       ping();
 
@@ -1923,7 +1997,7 @@ void application::start_application()
 
       psystem->install_progress_add_up(); // 3
 
-      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
+      //xxdebug_box("init2 ok", "init2 ok", ::user::e_message_box_icon_information);
 
       ping();
 
@@ -1940,7 +2014,7 @@ void application::start_application()
 
       psystem->install_progress_add_up(); // 4
 
-      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
+      //xxdebug_box("init3 ok", "init3 ok", ::user::e_message_box_icon_information);
 
       ping();
 
@@ -1994,7 +2068,7 @@ void application::start_application()
 
    //      application_pos_run();
 
-   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", ::user::e_message_box_icon_information);
 
    //   }
    //   catch (...)
@@ -2269,13 +2343,13 @@ void application::start_application()
 
       strMessage = lines.implode("\n");
 
-      auto picon = __øcreate < ::nano::graphics::icon>();
+      auto picon = øcreate < ::nano::graphics::icon>();
 
       auto pfile = file()->get("matter://main/icon.png");
 
       picon->load_image_from_file(pfile);
 
-      auto paboutbox = __initialize_new_with(system()->acme_windowing()) ::message_box("About\n\n" + strMessage, nullptr, e_message_box_ok, "", picon);
+      auto paboutbox = __initialize_new_with(system()->acme_windowing()) ::message_box("About\n\n" + strMessage, nullptr, ::user::e_message_box_ok, "", picon);
 
       //psequencer->then([this, strPath](auto pconversation)
       //      {
@@ -2390,7 +2464,7 @@ void application::start_application()
    void application::did_pick_document_at_url(const ::scoped_string & scopedstrUrl)
    {
 
-      auto prequest = __create_new <::request>();
+      auto prequest = øcreate_new <::request>();
 
       prequest->m_payloadFile = scopedstrUrl;
 
@@ -2404,7 +2478,7 @@ void application::start_application()
    void application::did_pick_document_at_urls(const ::string_array_base& straUrl)
    {
 
-      auto prequest = __create_new <::request>();
+      auto prequest = øcreate_new <::request>();
 
       prequest->m_payloadFile = straUrl;
 

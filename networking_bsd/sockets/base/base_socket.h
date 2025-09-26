@@ -128,7 +128,8 @@ namespace sockets_bsd
       bool                    m_bLineProtocol; ///< Line protocol mode flag
       bool                    m_skip_c; ///< Skip element2() char of CRLF or LFCR sequence in OnRead
       char                    m_c; ///< First char in CRLF or LFCR sequence
-      scoped_string           m_scopedstrLine; ///< Current line in line protocol mode
+      //scoped_string           m_scopedstrLine; ///< Current line in line protocol mode
+      string                  m_strLine;
 
       ::e_status             m_estatus;
       //class ::time              m_timeStart;
@@ -621,6 +622,8 @@ namespace sockets_bsd
       bool IsSSLNegotiate() override;
       /** Set flag indicating ssl handshaking still in progress. */
       void SetSSLNegotiate(bool x = true) override;
+      /** Set flag indicating that ssl shutdown shouldn't be called when stopping the connection. */
+      void set_no_ssl_shutdown() override;
       /** OnAccept called with SSL Enabled.
       \return true if this is a tcp_socket with an incoming SSL connection */
       bool IsSSLServer() override;
@@ -715,7 +718,7 @@ namespace sockets_bsd
       \lparam port port number passed to Resolve */
       //virtual void OnResolved(int atom, ::networking::address * addr);
       //virtual void OnResolved(int atom, in6_addr & a, ::networking::port_t port);
-      /** Request asynchronous reverse dns lookup.
+      /** Request asynchronous reverse dns find.
       \lparam a in_addr to be translated */
       //int Resolve(in_addr a);
       //int Resolve(in6_addr& a);
@@ -723,7 +726,7 @@ namespace sockets_bsd
       \lparam atom Resolve ID
       \lparam name Resolved hostname */
       //virtual void OnReverseResolved(int atom,const string & name);
-      /** Callback indicating failed dns lookup.
+      /** Callback indicating failed dns find.
       \lparam atom Resolve ID */
       //virtual void OnResolveFailed(int atom);
       //@}
@@ -808,7 +811,7 @@ __declare_pair_tuple_size(::sockets::socket_map);
 #endif
 
 
-using socket_id_list = ::comparable_list < socket_id >;
+using socket_id_list = ::comparable_list_base < socket_id >;
 
 
 

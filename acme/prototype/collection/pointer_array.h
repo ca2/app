@@ -75,10 +75,10 @@ public:
    }
 
 
-   // pointer_array_base(const std::initializer_list < ::pointer<T >>& list)
+   // pointer_array_base(const std::initializer_list < ::pointer<T >>& list_base)
    // {
    //
-   //    for(auto & p : list)
+   //    for(auto & p : list_base)
    //    {
    //
    //       add(p);
@@ -102,7 +102,7 @@ public:
 
       pointer < T > & p = BASE_ARRAY::add_new();
 
-      pparticle->__øconstruct(p);
+      pparticle->øconstruct(p);
 
       return p;
 
@@ -187,8 +187,7 @@ public:
       return nIndex;
 
    }
-   
-
+ 
    template < primitive_container CONTAINER >
    ::collection::index append(const CONTAINER & a)
    {
@@ -257,8 +256,25 @@ public:
 
 
    /// consumes a referer
-   bool add_unique(T * p)
+   template < typename T2 >
+   bool add_unique(const T2 * p2)
    {
+
+      if (::is_null(p2))
+      {
+
+         return false;
+
+      }
+
+      auto p = dynamic_cast <T*> ((T2*)p2);
+
+      if (::is_null(p))
+      {
+
+         return false;
+
+      }
 
       if (contains(p))
       {
@@ -270,6 +286,39 @@ public:
       this->add_item(p);
 
       return true;
+
+   }
+
+
+   /// consumes a referer
+   template < typename T2 >
+   bool add_unique(const ::pointer < T2 > & p2)
+   {
+
+      return this->add_unique(p2.m_p);
+
+   }
+
+
+   template < typename T2 >
+   ::collection::count add_unique(const pointer_array_base < T2 > & a)
+   {
+
+      ::collection::count c = 0;
+
+      for(auto & p : a)
+      {
+
+         if (this->add_unique(p))
+         {
+          
+            c++;
+
+         }
+
+      }
+
+      return c;
 
    }
 
@@ -313,22 +362,6 @@ public:
 
    }
 
-   ::collection::count add_unique(const pointer_array_base & a)
-   {
-
-      ::collection::count c = 0;
-
-      for (::collection::index i = 0; i < a.get_count(); i++)
-      {
-
-         if (add_unique((T *) a[i]))
-            c++;
-
-      }
-
-      return c;
-
-   }
 
    bool contains(const T * p, ::collection::index iStart = 0, ::collection::count nCount = -1) const
    {
@@ -1831,7 +1864,7 @@ template < typename OBJECT >
    for (; i < c; i++)
    {
 
-      pparticle->__øconstruct(this->element_at(i));
+      pparticle->øconstruct(this->element_at(i));
 
    }
 

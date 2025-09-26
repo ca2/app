@@ -3,7 +3,7 @@
 #include "combo_box.h"
 #include "acme/handler/item.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/constant/timer.h"
 #include "acme/handler/topic.h"
@@ -120,20 +120,20 @@ namespace user
 
       //install_click_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &list_box::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &list_box::on_message_destroy);
-      MESSAGE_LINK(e_message_activate, pchannel, this, &list_box::on_message_activate);
-      //MESSAGE_LINK(e_message_set_focus, pchannel, this, &list_box::on_message_set_focus);
-      //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &list_box::on_message_kill_focus);
-      MESSAGE_LINK(e_message_close, pchannel, this, &list_box::on_message_close);
-      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &list_box::on_message_key_down);
-      MESSAGE_LINK(e_message_key_up, pchannel, this, &list_box::on_message_key_up);
-      MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, (::user::interaction*)this, &interaction::on_message_left_button_down);
-      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
-      //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &list_box::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &list_box::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &list_box::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_activate, pchannel, this, &list_box::on_message_activate);
+      //USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &list_box::on_message_set_focus);
+      //USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &list_box::on_message_kill_focus);
+      USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &list_box::on_message_close);
+      USER_MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &list_box::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &list_box::on_message_key_up);
+      USER_MESSAGE_LINK(::user::e_message_non_client_left_button_down, pchannel, (::user::interaction*)this, &interaction::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
+      USER_MESSAGE_LINK(::user::e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
+      //USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &list_box::on_message_show_window);
 
    }
 
@@ -169,7 +169,7 @@ namespace user
             //if (pimpl)
             //{
 
-            //   synchronous_lock synchronouslock(pimpl->synchronization());
+            //   synchronous_lock synchronouslock(pimpl->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             //   pimpl->m_userinteractionaHideOnConfigurationChange.add_unique_interaction(this);
 
@@ -343,7 +343,7 @@ namespace user
    void list_box::reset_content()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_straList.erase_all();
 
@@ -420,7 +420,7 @@ namespace user
                if (pwindow)
                {
 
-                  _synchronous_lock synchronouslock(pwindow->synchronization());
+                  _synchronous_lock synchronouslock(pwindow->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   pwindow->m_userinteractionaHideOnConfigurationChange.erase_interaction(this);
 
@@ -488,7 +488,7 @@ namespace user
 
       colorBackground = get_color(pstyle, ::e_element_background);
 
-      auto pbrushBk = __øcreate < ::draw2d::brush >();
+      auto pbrushBk = øcreate < ::draw2d::brush >();
 
       pbrushBk->create_solid(colorBackground);
 
@@ -519,7 +519,7 @@ namespace user
 
       auto pitemCurrent = current_item();
 
-      auto pbrush = __øcreate < ::draw2d::brush >();
+      auto pbrush = øcreate < ::draw2d::brush >();
 
       for (::collection::index iItem = 0; iItem < iListItemCount; iItem++)
       {
@@ -601,7 +601,7 @@ namespace user
 
       ::color::color crBorder = argb(255, 0, 0, 0);
 
-      auto ppen = __øcreate < ::draw2d::pen >();
+      auto ppen = øcreate < ::draw2d::pen >();
 
       ppen->create_solid(1.0, crBorder);
 
@@ -645,7 +645,7 @@ namespace user
    void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, ::int_size* psize)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -1040,13 +1040,13 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_down)
       {
 
-         m_pcombo->m_pitemHover = __allocate ::item(e_element_item, minimum(m_pcombo->m_pitemHover->m_item.m_iItem + 1, m_pcombo->_001GetListCount() - 1));
+         m_pcombo->m_pitemHover = øallocate ::item(e_element_item, minimum(m_pcombo->m_pitemHover->m_item.m_iItem + 1, m_pcombo->_001GetListCount() - 1));
 
       }
       else if (pkey->m_ekey == ::user::e_key_up)
       {
 
-         m_pcombo->m_pitemHover = __allocate ::item(e_element_item, maximum(m_pcombo->m_pitemHover->m_item.m_iItem - 1, 0));
+         m_pcombo->m_pitemHover = øallocate ::item(e_element_item, maximum(m_pcombo->m_pitemHover->m_item.m_iItem - 1, 0));
 
       }
       else if (pkey->m_ekey == ::user::e_key_return)
@@ -1212,11 +1212,11 @@ namespace user
          if (rectangleItem.contains(point))
          {
 
-            __defer_construct_new(main_content().m_pitema);
+            ødefer_construct_new(main_content().m_pitema);
 
             auto& pitemNew = this->main_content().m_pitema->element_at_grow(iItem);
 
-            if (__defer_construct_new(pitemNew))
+            if (ødefer_construct_new(pitemNew))
             {
 
                pitemNew->m_item.m_eelement = e_element_item;
@@ -1242,11 +1242,11 @@ namespace user
       if (rectangleItem.contains(point))
       {
 
-         return __allocate ::item(e_element_search_edit);
+         return øallocate ::item(e_element_search_edit);
 
       }
 
-      auto pitemNone = __allocate ::item(e_element_none);
+      auto pitemNone = øallocate ::item(e_element_none);
 
       return pitemNone;
 
@@ -1364,7 +1364,7 @@ namespace user
       if (!::is_set(m_pcombo->m_pitemHover))
       {
 
-         m_pcombo->m_pitemHover = __allocate ::item(::e_element_item, 0);
+         m_pcombo->m_pitemHover = øallocate ::item(::e_element_item, 0);
 
       }
 
@@ -1540,7 +1540,7 @@ namespace user
 
       }
 
-      set_current_item(__allocate ::item(::e_element_item, iSel), context);
+      set_current_item(øallocate ::item(::e_element_item, iSel), context);
 
    }
 
@@ -1557,7 +1557,7 @@ namespace user
 
       }
 
-      set_current_item(__allocate ::item(::e_element_item, iSel), context);
+      set_current_item(øallocate ::item(::e_element_item, iSel), context);
 
    }
 
@@ -1571,7 +1571,7 @@ namespace user
 
       }
 
-      set_current_item(__allocate ::item(::e_element_item, iIndex), context);
+      set_current_item(øallocate ::item(::e_element_item, iIndex), context);
 
    }
 
@@ -1645,9 +1645,9 @@ namespace user
 
             {
 
-               synchronous_lock synchronouslock(session()->synchronization());
+               synchronous_lock synchronouslock(session()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-               auto pinteraction = __create_new < ::user::interaction >();
+               auto pinteraction = øcreate_new < ::user::interaction >();
 
                auto puser = user();
 
@@ -1663,7 +1663,7 @@ namespace user
 
             {
 
-               synchronous_lock synchronouslock(session()->synchronization());
+               synchronous_lock synchronouslock(session()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                auto puser = user();
 

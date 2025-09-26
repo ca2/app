@@ -37,74 +37,7 @@ namespace file
    //    }
 
 
-   inline path path::slashed_path(const ::scoped_string & scopedstr) const
-   {
-
-      string strPath;
-
-      strPath = this->c_str();
-
-      if (strPath.is_empty())
-      {
-
-         return scopedstr;
-
-      }
-
-      bool bJustAfterProtocol1 = this->ends(":/");
-
-      bool bJustAfterProtocol2 = this->ends("://");
-
-      if (bJustAfterProtocol1 || bJustAfterProtocol2 || m_epath == e_path_url)
-      {
-
-         ::string str = scopedstr;
-
-         str.find_replace("\\", "/");
-
-         str.trim_left("/");
-
-         if (bJustAfterProtocol2)
-         {
-
-            return ::file::path(strPath + str, e_path_url);
-
-         }
-         else
-         {
-
-            return ::file::path(strPath + "/" + str, e_path_url);
-
-         }
-
-      }
-
-      //strPath += separator();
-
-      //str.trim_left("\\/");
-
-      if (strPath == "/"_ansi)
-      {
-
-         return ::file::path("/"_ansi + scopedstr.skip_any_character_in("\\/"_ansi), e_path_file);
-
-      }
-      else
-      {
-
-         return ::file::path(strPath + "/"_ansi + scopedstr.skip_any_character_in("\\/"_ansi), e_path_file);
-
-      }
-
-   }
-
-
 } // namespace file
-
-
-
-
-
 
 
 namespace file
@@ -525,7 +458,7 @@ namespace file
    }
 
 
-   inline path & path::ascend()
+   inline path& path::ascend()
    {
 
       return *this = parent();
@@ -533,7 +466,7 @@ namespace file
    }
 
 
-   inline path & path::ascend(int i)
+   inline path& path::ascend(int i)
    {
 
       while (i > 0)
@@ -580,12 +513,12 @@ namespace file
        //}
 
 
-   inline path & path::operator += (const ::scoped_string & scopedstr)
+   inline path& path::operator += (const ::scoped_string& scopedstr)
    {
 
       auto pathThis = *this;
 
-      ::string::operator = (file_path_normalize(((const ::string &)pathThis) + scopedstr, this->m_epath));
+      ::string::operator = (file_path_normalize(((const ::string&)pathThis) + scopedstr, this->m_epath));
 
       return *this;
 
@@ -724,7 +657,7 @@ namespace file
     //}
 
 
-   inline void path::set_all_extensions(const ::scoped_string & scopedstrExtension)
+   inline void path::set_all_extensions(const ::scoped_string& scopedstrExtension)
    {
 
       string strExtension(scopedstrExtension);
@@ -749,7 +682,7 @@ namespace file
    }
 
 
-   inline void path::set_final_extension(const ::scoped_string & scopedstrExtension)
+   inline void path::set_final_extension(const ::scoped_string& scopedstrExtension)
    {
 
       string strExtension(scopedstrExtension);
@@ -774,7 +707,7 @@ namespace file
    }
 
 
-   inline void path::set_extension_if_no_extension(const ::scoped_string & scopedstrExtension)
+   inline void path::set_extension_if_no_extension(const ::scoped_string& scopedstrExtension)
    {
 
       if (this->final_extension().is_empty())
@@ -785,7 +718,7 @@ namespace file
          if (::has_character(p))
          {
 
-            this->operator = (((::ansi_string &)*this) + "." + scopedstrExtension(p));
+            this->operator = (((::ansi_string&)*this) + "." + scopedstrExtension(p));
 
          }
 
@@ -793,7 +726,7 @@ namespace file
 
    }
 
-   
+
    inline void path::defer_set_extension(const ::string_array_base& straPreserveExtensions)
    {
 
@@ -803,7 +736,7 @@ namespace file
 
 
 
-   inline void path::defer_set_extension(const ::string_array_base& straPreserveExtensions, const ::string_array_base & straRelatedExtensions)
+   inline void path::defer_set_extension(const ::string_array_base& straPreserveExtensions, const ::string_array_base& straRelatedExtensions)
    {
 
       if (straPreserveExtensions.is_empty())
@@ -870,7 +803,7 @@ namespace file
 
          }
 
-      }while(bErased);
+      } while (bErased);
 
       if (strRearSuffix.has_character())
       {
@@ -890,7 +823,7 @@ namespace file
    }
 
 
-   inline ::file::path path::with_all_extensions(const ::scoped_string & scopedstrExtension) const
+   inline ::file::path path::with_all_extensions(const ::scoped_string& scopedstrExtension) const
    {
 
       ::file::path path(*this);
@@ -902,7 +835,7 @@ namespace file
    }
 
 
-   inline ::file::path path::with_final_extension(const ::scoped_string & scopedstrExtension) const
+   inline ::file::path path::with_final_extension(const ::scoped_string& scopedstrExtension) const
    {
 
       ::file::path path(*this);
@@ -914,7 +847,7 @@ namespace file
    }
 
 
-   inline ::file::path path::with_extension_if_no_extension(const ::scoped_string & scopedstrExtension) const
+   inline ::file::path path::with_extension_if_no_extension(const ::scoped_string& scopedstrExtension) const
    {
 
       ::file::path path(*this);
@@ -938,13 +871,13 @@ namespace file
    {
 
       return with_deferred_extension(
-                                     pfiledialog->m_filedialogfilter[0].get_preserve_extensions(),
-                                     pfiledialog->m_filedialogfilter.get_all_related_extensions());
+         pfiledialog->m_filedialogfilter[0].get_preserve_extensions(),
+         pfiledialog->m_filedialogfilter.get_all_related_extensions());
 
    }
 
 
-   inline ::file::path path::with_deferred_extension(const ::string_array_base & straPreserveExtensions, const ::string_array_base& straRelatedExtensions) const
+   inline ::file::path path::with_deferred_extension(const ::string_array_base& straPreserveExtensions, const ::string_array_base& straRelatedExtensions) const
    {
 
       ::file::path path(*this);
@@ -979,7 +912,7 @@ namespace file
    }
 
 
-   inline path & path::set_file_path(const ::scoped_string & scopedstrFile)
+   inline path& path::set_file_path(const ::scoped_string& scopedstrFile)
    {
 
       operator = (scopedstrFile);
@@ -991,7 +924,7 @@ namespace file
    }
 
 
-   inline path & path::set_folder_path(const ::scoped_string & scopedstrFolder)
+   inline path& path::set_folder_path(const ::scoped_string& scopedstrFolder)
    {
 
       operator = (scopedstrFolder);
@@ -1003,20 +936,20 @@ namespace file
    }
 
 
-   inline path & path::set_file_path()
+   inline path& path::set_file_path()
    {
 
-      m_etype = (enum_type) ((m_etype | e_type_file2) & ~e_type_folder2);
+      m_etype = (enum_type)((m_etype | e_type_file2) & ~e_type_folder2);
 
       return *this;
 
    }
 
 
-   inline path & path::set_folder_path()
+   inline path& path::set_folder_path()
    {
 
-      m_etype = (enum_type) ((m_etype | e_type_folder2) & ~e_type_file2);
+      m_etype = (enum_type)((m_etype | e_type_folder2) & ~e_type_file2);
 
       return *this;
 
@@ -1057,14 +990,14 @@ namespace file
    }
 
 
-   inline path & path::operator = (const ::file::path & path)
+   inline path& path::operator = (const ::file::path& path)
    {
 
       if (&path != this)
       {
 
-         string::operator  = ((const string &)path);
-         *((path_meta *)this) = (const path_meta &)path;
+         string::operator  = ((const string&)path);
+         *((path_meta*)this) = (const path_meta&)path;
          //#ifdef WINDOWS_DESKTOP
          //         m_idlist = path.m_idlist;
          //#endif
@@ -1289,7 +1222,7 @@ namespace file
    }
 
 
-   inline path & path::operator -= (int i)
+   inline path& path::operator -= (int i)
    {
 
       return ascend(i);
@@ -1313,7 +1246,7 @@ namespace file
    }
 
 
-   inline bool path::operator == (const ::scoped_string & scopedstr) const
+   inline bool path::operator == (const ::scoped_string& scopedstr) const
    {
 
       return operator == (path(scopedstr));
@@ -1321,7 +1254,7 @@ namespace file
    }
 
 
-   inline bool path::operator != (const ::ansi_string & str) const
+   inline bool path::operator != (const ::ansi_string& str) const
    {
 
       return operator != (path(str));
@@ -1337,7 +1270,7 @@ namespace file
    // }
 
 
-   inline ::file::path & path::patch_base_path(const ::file::path & pathBase)
+   inline ::file::path& path::patch_base_path(const ::file::path& pathBase)
    {
 
       auto iBasePathLength = m_iBasePathLength;
@@ -1360,7 +1293,7 @@ namespace file
    }
 
 
-   inline bool path::operator != (const path & path) const
+   inline bool path::operator != (const path& path) const
    {
 
       return !operator==(path);
@@ -1519,7 +1452,7 @@ namespace file
       if (::url::is(*this))
       {
 
-         return (const ::scoped_string &)*this;
+         return (const ::scoped_string&)*this;
 
       }
       else
@@ -1529,43 +1462,43 @@ namespace file
 
          str += *this;
 
-         return (const ::scoped_string&) str;
+         return (const ::scoped_string&)str;
 
       }
 
    }
 
 
-inline const_ansi_range path::_get_count_parts_from_beginning(::collection::count cPathPartCountToConsume) const
-{
-   
-   return ::string::_get_count_parts_from_beginning(cPathPartCountToConsume, '/');
+   inline const_ansi_range path::_get_count_parts_from_beginning(::collection::count cPathPartCountToConsume) const
+   {
 
-}
+      return ::string::_get_count_parts_from_beginning(cPathPartCountToConsume, '/');
+
+   }
 
 
-inline const_ansi_range path::get_count_parts_from_beginning(::collection::count cPathPartCountToConsume) const
-{
-   
-   return ::string::_get_count_parts_from_beginning(cPathPartCountToConsume, '/');
+   inline const_ansi_range path::get_count_parts_from_beginning(::collection::count cPathPartCountToConsume) const
+   {
 
-}
+      return ::string::_get_count_parts_from_beginning(cPathPartCountToConsume, '/');
 
-// bool path::has_count_parts_from_beginning_eat(::collection::count cPathPartCountToConsume)
-//{
-//    
-//    auto range = this->get_count_parts_from_beginning(cPathPartCountToConsume);
-//    
-//    if(::is_null(range.m_begin))
-//    {
-//       
-//       return false;
-//       
-//    }
-//
-//    return this->_assign(range.m_begin, range.size());
-//   
-//}
+   }
+
+   // bool path::has_count_parts_from_beginning_eat(::collection::count cPathPartCountToConsume)
+   //{
+   //    
+   //    auto range = this->get_count_parts_from_beginning(cPathPartCountToConsume);
+   //    
+   //    if(::is_null(range.m_begin))
+   //    {
+   //       
+   //       return false;
+   //       
+   //    }
+   //
+   //    return this->_assign(range.m_begin, range.size());
+   //   
+   //}
 
 
 } // namespace file
@@ -1574,7 +1507,7 @@ inline const_ansi_range path::get_count_parts_from_beginning(::collection::count
 
 
 
-template < character_range RANGE1, character_range RANGE2 >
+template < primitive_character_range RANGE1, primitive_character_range RANGE2 >
 ::file::path operator / (const RANGE1& range1, const RANGE2& range2)
 {
 
@@ -1584,7 +1517,7 @@ template < character_range RANGE1, character_range RANGE2 >
 
 
 
-template < character_pointer CHARACTER_POINTER, character_range RANGE >
+template < character_pointer CHARACTER_POINTER, primitive_character_range RANGE >
 ::file::path operator / (CHARACTER_POINTER p, const RANGE& range)
 {
 
@@ -1595,7 +1528,7 @@ template < character_pointer CHARACTER_POINTER, character_range RANGE >
 
 
 
-template < character_range RANGE, character_count n >
+template < primitive_character_range RANGE, character_count n >
 ::file::path operator / (const typename RANGE::CHARACTER(&sz)[n], const RANGE& range)
 {
 
@@ -1605,7 +1538,7 @@ template < character_range RANGE, character_count n >
 
 
 
-//template < primitive_character ITERATOR_TYPE2, int t_size, character_range RANGE >
+//template < primitive_character ITERATOR_TYPE2, int t_size, primitive_character_range RANGE >
 //::file::path operator / (const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a, const RANGE& range)
 //{
 //
@@ -1614,16 +1547,29 @@ template < character_range RANGE, character_count n >
 //}
 
 
-template < character_range RANGE, character_pointer CHARACTER_POINTER >
+template < primitive_character_range RANGE, character_pointer CHARACTER_POINTER >
 ::file::path operator / (const RANGE& range, CHARACTER_POINTER p)
 {
 
-   return ::transfer(::file::path(range) / ::file::path(p));
+   if constexpr (::std::is_same<RANGE, ::file::path>::value)
+   {
+      
+      return ::transfer(range.slashed_path(p));
+
+   }
+   else
+   {
+
+      ::file::path path(range);
+
+      return ::transfer(path.slashed_path(p));
+
+   }
 
 }
 
 
-//template < character_range RANGE, typename ITERATOR_TYPE2, int t_size >
+//template < primitive_character_range RANGE, typename ITERATOR_TYPE2, int t_size >
 //::file::path operator / (const RANGE& range, const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
 //{
 //

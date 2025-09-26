@@ -26,7 +26,7 @@ void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppoin
 //   int nReturnCode = 0;
 //
 //
-//   ::android::main_init_data * pinitmaindata  = __allocate ::android::main_init_data();
+//   ::android::main_init_data * pinitmaindata  = øallocate ::android::main_init_data();
 //
 //
 //   pinitmaindata->m_hInstance             = nullptr;
@@ -56,7 +56,7 @@ void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppoin
 //
 //   psystem->init_main_data(pinitmaindata);
 //
-//   //message_box(nullptr, "box1", "box1", e_message_box_icon_information);
+//   //message_box(nullptr, "box1", "box1", ::user::e_message_box_icon_information);
 //
 //   nReturnCode = psystem->main();
 //
@@ -86,7 +86,7 @@ void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppoin
 //
 //      int nReturnCode = 0;
 //
-//      ::android::main_init_data * pinitmaindata  = __allocate ::android::main_init_data();
+//      ::android::main_init_data * pinitmaindata  = øallocate ::android::main_init_data();
 //
 //      pinitmaindata->m_hInstance             = hInstance;
 //      pinitmaindata->m_hPrevInstance         = hPrevInstance;

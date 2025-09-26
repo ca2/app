@@ -52,7 +52,7 @@ namespace experience_core
       if (::is_null(m_pfont))
       {
 
-         __øconstruct(m_pfont);
+         øconstruct(m_pfont);
 
          //auto pnode = node();
 
@@ -141,11 +141,11 @@ namespace experience_core
 
       auto & pholdeeTab = pdata->m_pholdee;
 
-      __defer_construct_new(pholdeeTab);
+      ødefer_construct_new(pholdeeTab);
 
       auto & pgroupTabTheme = pholdeeTab->m_map[::draw2d::e_change_theme][0];
 
-      __defer_construct_new(pgroupTabTheme);
+      ødefer_construct_new(pgroupTabTheme);
 
       for (int iPane = 0; iPane < pdata->m_tabpanea.get_size(); iPane++)
       {
@@ -161,11 +161,11 @@ namespace experience_core
 
          auto & pholdee = ppane->m_pholdee;
 
-         __defer_construct_new(pholdee);
+         ødefer_construct_new(pholdee);
 
          auto & pgroupPaneLayout = pholdee->m_map[::draw2d::e_change_layout][0];
 
-         __defer_construct_new(pgroupPaneLayout);
+         ødefer_construct_new(pgroupPaneLayout);
 
          ::user::e_state estate = ::user::e_state_none;
 
@@ -246,7 +246,7 @@ namespace experience_core
             if (bPaneSelected)
             {
 
-               if(__defer_construct(ppath)) {
+               if(ødefer_construct(ppath)) {
 
                   ppath->begin_figure();
 
@@ -278,7 +278,7 @@ namespace experience_core
 
                   auto & ppen = pgroupTabTheme->m_pena.element_at_grow(__e_selected);
 
-                  if (__defer_construct(ppen))
+                  if (ødefer_construct(ppen))
                   {
 
                      ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
@@ -311,7 +311,7 @@ namespace experience_core
 
                   auto & pbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_selected);
 
-                  if (__defer_construct(pbrush))
+                  if (ødefer_construct(pbrush))
                   {
 
                      auto colorText = ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_selected);
@@ -353,7 +353,7 @@ namespace experience_core
 
                      auto & ppen = pgroupTabTheme->m_pena.element_at_grow(__e_hover);
 
-                     if (__defer_construct(ppen))
+                     if (ødefer_construct(ppen))
                      {
 
                         ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
@@ -372,7 +372,7 @@ namespace experience_core
 
                      auto& pbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_hover);
 
-                     if (__defer_construct(pbrush))
+                     if (ødefer_construct(pbrush))
                      {
 
                         auto colorText = ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover);
@@ -401,7 +401,7 @@ namespace experience_core
 
                      auto & ppen = pgroupTabTheme->m_pena.element_at_grow(__e_none);
 
-                     if (__defer_construct(ppen))
+                     if (ødefer_construct(ppen))
                      {
 
                         ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
@@ -433,7 +433,7 @@ namespace experience_core
 
                      auto & pbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_none);
 
-                     if (__defer_construct(pbrush))
+                     if (ødefer_construct(pbrush))
                      {
 
                         auto colorText = ptab->get_color(pstyle, ::e_element_item_text);
@@ -481,7 +481,7 @@ namespace experience_core
 
                }
 
-               if (__defer_construct(ppath))
+               if (ødefer_construct(ppath))
                {
 
                   ppath->m_pointUserOffset = ptab->m_pointBarDragScroll;
@@ -500,7 +500,7 @@ namespace experience_core
 
                   auto & pbrush = pgroupPaneLayout->m_brusha.element_at_grow(__e_selected);
 
-                  if (__defer_construct(pbrush))
+                  if (ødefer_construct(pbrush))
                   {
 
                      pbrush->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
@@ -523,7 +523,7 @@ namespace experience_core
 
                   auto & ppen = pgroupTabTheme->m_pena.element_at_grow(__e_hover);
 
-                  if (__defer_construct(ppen))
+                  if (ødefer_construct(ppen))
                   {
 
                      ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
@@ -580,7 +580,7 @@ namespace experience_core
 
                   auto & pbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_selected);
 
-                  if (__defer_construct(pbrush))
+                  if (ødefer_construct(pbrush))
                   {
 
                      auto colorText = ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_selected);
@@ -599,7 +599,7 @@ namespace experience_core
 
                // Normal (NOT Selected)
 
-               if (__defer_construct(ppath))
+               if (ødefer_construct(ppath))
                {
 
                   ppath->m_pointUserOffset = ptab->m_pointBarDragScroll;
@@ -625,7 +625,7 @@ namespace experience_core
 
                      auto & pbrush = pgroupPaneLayout->m_brusha.element_at_grow(__e_hover);
 
-                     if (__defer_construct(pbrush))
+                     if (ødefer_construct(pbrush))
                      {
 
                         pbrush->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
@@ -646,7 +646,7 @@ namespace experience_core
 
                      auto & ppen = pgroupTabTheme->m_pena.element_at_grow(__e_hover);
 
-                     if (__defer_construct(ppen))
+                     if (ødefer_construct(ppen))
                      {
 
                         ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
@@ -682,7 +682,7 @@ namespace experience_core
 
                      auto & pbrush = pgroupTabTheme->m_brusha.element_at_grow(__e_hover);
 
-                     if (__defer_construct(pbrush))
+                     if (ødefer_construct(pbrush))
                      {
 
                         auto colorText = ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover);
@@ -703,7 +703,7 @@ namespace experience_core
 
                      auto & pbrush = pgroupPaneLayout->m_brusha.element_at_grow(__e_none);
 
-                     if (__defer_construct(pbrush))
+                     if (ødefer_construct(pbrush))
                      {
 
                         pbrush->CreateLinearGradientBrush(
@@ -730,10 +730,10 @@ namespace experience_core
 
                      auto & ppen = pgroupTabTheme->m_pena.element_at_grow(__e_none);
 
-                     if (__defer_construct(ppen))
+                     if (ødefer_construct(ppen))
                      {
 
-                        ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
+                        ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_item_border));
 
                      }
 
@@ -769,7 +769,7 @@ namespace experience_core
                      if (!pbrush)
                      {
 
-                        __defer_construct(pbrush);
+                        ødefer_construct(pbrush);
 
                         auto colorText = ptab->get_color(pstyle, ::e_element_item_text);
 
@@ -850,7 +850,7 @@ namespace experience_core
                {
                 
                   
-                  auto ppath = __øcreate < ::draw2d::path >();
+                  auto ppath = øcreate < ::draw2d::path >();
                   
                   ppath->begin_figure();
                   
@@ -862,7 +862,7 @@ namespace experience_core
                   
                   ppath->close_figure();
                   
-                  auto pbrush = __øcreate < ::draw2d::brush >();
+                  auto pbrush = øcreate < ::draw2d::brush >();
                   
                   pbrush->create_solid( argb(127, 0, 0, 0));
                   
@@ -895,7 +895,7 @@ namespace experience_core
                else
                {
                   
-                  auto ppath = __øcreate < ::draw2d::path >();
+                  auto ppath = øcreate < ::draw2d::path >();
                   
                   ppath->begin_figure();
                   
@@ -907,7 +907,7 @@ namespace experience_core
                   
                   ppath->close_figure();
                   
-                  auto pbrush = __øcreate < ::draw2d::brush >();
+                  auto pbrush = øcreate < ::draw2d::brush >();
                   
                   pbrush->create_solid( argb(127, 0, 0, 0));
                   
@@ -999,7 +999,7 @@ namespace experience_core
 
                }
 
-               auto pbrush = __øcreate < ::draw2d::brush >();
+               auto pbrush = øcreate < ::draw2d::brush >();
 
                pbrush->create_solid(colorText);
 
@@ -1545,7 +1545,23 @@ namespace experience_core
          else if (econtroltype == ::user::e_control_type_tab)
          {
 
-            if (eelement == ::e_element_item_text)
+            if (eelement == ::e_element_item_border)
+            {
+               if (is_dark_mode())
+               {
+
+                  return argb(255, 255, 255,  255);
+
+               }
+               else
+               {
+
+                  return argb(255, 25, 25, 25);
+
+               }
+
+            }
+            else if (eelement == ::e_element_item_text)
             {
 
                if (estate & ::user::e_state_hover)
@@ -1972,13 +1988,13 @@ namespace experience_core
 
       ::pointer < ::simple_scroll_bar > pbar = pscrollbar;
 
-      auto ppenDraw = __øcreate < ::draw2d::pen >();
+      auto ppenDraw = øcreate < ::draw2d::pen >();
 
       ppenDraw->create_solid(1, colorBorder);
 
       ::color::color colorTrack = pscrollbar->scrollbar_color(this, ::e_element_scrollbar_trackbar);
 
-      auto pbrushDraw = __øcreate < ::draw2d::brush >();
+      auto pbrushDraw = øcreate < ::draw2d::brush >();
 
       pbrushDraw->create_solid(colorTrack);
 
@@ -2142,7 +2158,7 @@ namespace experience_core
 
       }
 
-      auto ppenGrip = __øcreate < ::draw2d::pen >();
+      auto ppenGrip = øcreate < ::draw2d::pen >();
 
       ppenGrip->create_solid(2.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_trackbar));
 
@@ -2177,7 +2193,7 @@ namespace experience_core
 
          auto rectangleA = pbar->get_buttonA_rectangle(rectangleX);
 
-         auto ppenArrow = __øcreate < ::draw2d::pen >();
+         auto ppenArrow = øcreate < ::draw2d::pen >();
 
          ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
 
@@ -2195,7 +2211,7 @@ namespace experience_core
 
          auto rectangleB = pbar->get_buttonB_rectangle(rectangleX);
 
-         auto ppenArrow = __øcreate < ::draw2d::pen >();
+         auto ppenArrow = øcreate < ::draw2d::pen >();
 
          ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
 
@@ -2238,7 +2254,7 @@ namespace experience_core
 
       {
 
-         auto ppenArrow = __øcreate < ::draw2d::pen >();
+         auto ppenArrow = øcreate < ::draw2d::pen >();
 
          ppenArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
          ppenArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;

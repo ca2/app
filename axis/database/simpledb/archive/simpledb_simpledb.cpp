@@ -27,7 +27,7 @@ namespace simpledb
    bool simpledb::InitializeDataCentral()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bInitialized)
       {
@@ -55,14 +55,14 @@ namespace simpledb
 //#endif
       }
 
-      m_pserver = __allocate db_server(get_app());
+      m_pserver = øallocate db_server(get_app());
 
 
       m_pserver->add_client(this);
 
       if (!m_pserver->initialize())
       {
-         message_box(nullptr, "Could not initialize simpledb.", e_message_box_ok);
+         message_box(nullptr, "Could not initialize simpledb.", ::user::e_message_box_ok);
          return false;
       }
 
@@ -106,7 +106,7 @@ namespace simpledb
    bool simpledb::FinalizeDataCentral()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_bInitialized)
       {

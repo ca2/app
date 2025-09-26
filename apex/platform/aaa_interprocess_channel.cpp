@@ -403,7 +403,7 @@ namespace interprocess_channel
    //void handler::dispatch_message(::string && strMessage)
    //{
 
-   //   auto pdispatchitem = __allocate class dispatch_item (::transfer(strMessage));
+   //   auto pdispatchitem = øallocate class dispatch_item (::transfer(strMessage));
 
    //   dispatch_item(::transfer(pdispatchitem));
 
@@ -413,7 +413,7 @@ namespace interprocess_channel
    //void handler::dispatch_message(unsigned long long uData, ::memory && memory)
    //{
 
-   //   auto pdispatchitem = __allocate class dispatch_item (uData, ::transfer(memory));
+   //   auto pdispatchitem = øallocate class dispatch_item (uData, ::transfer(memory));
 
    //   dispatch_item(::transfer(pdispatchitem));
 
@@ -423,7 +423,7 @@ namespace interprocess_channel
    //void handler::dispatch_item(::pointer<class dispatch_item> && pdispatchitem)
    //{
 
-   //   synchronous_lock synchronouslock(m_pmutexDispatch);
+   //   synchronous_lock synchronouslock(m_pmutexDispatch, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   bool bWasEmpty = m_dispatchitema.is_empty();
 

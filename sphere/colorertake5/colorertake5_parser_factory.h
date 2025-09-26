@@ -119,8 +119,8 @@ namespace colorertake5
          stream * catalogFIS;
          ErrorHandler *fileErrorHandler;
          string_array_base hrcLocations;
-         string_map < string_map < string_array_base >, const string_map < string_array_base > & > hrdLocations;
-         string_to_string hrdDescriptions;
+         string_map_base < string_map_base < string_array_base >, const string_map_base < string_array_base > & > hrdLocations;
+         string_to_string_base hrdDescriptions;
          HRCParser  *hrcParser;
          ::pointer<::xml::node>atalog;
 

@@ -187,7 +187,7 @@ namespace core
 
       print_line("core::user::initialize\n");
 
-      ::berg::user::initialize(pparticle);
+      ::berg::user::user::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -205,7 +205,7 @@ namespace core
    {
 
 
-      ::berg::user::init1();
+      ::berg::user::user::init1();
 
       factory()->add_factory_item < ::user::picture::picture_impl >();
 
@@ -236,7 +236,7 @@ namespace core
    void user::init()
    {
 
-      ::berg::user::init();
+      ::berg::user::user::init();
 
       //if (!::berg::user::init())
       //{
@@ -375,7 +375,7 @@ namespace core
 
       //estatus = 
 
-      __øconstruct(m_phtml);
+      øconstruct(m_phtml);
 
       //if(!estatus)
       //{
@@ -505,7 +505,7 @@ namespace core
    void user::init2()
    {
 
-      ::berg::user::init2();
+      ::berg::user::user::init2();
 
       //if (!::acme::department::init2())
       //{
@@ -569,13 +569,13 @@ namespace core
    //{
 
    //   return nullptr;
-   //   //auto pbox = pparticle->__create_new < class ::userex::message_box >();
+   //   //auto pbox = pparticle->øcreate_new < class ::userex::message_box >();
 
    //   ////auto pfuture = pbox->::extended::asynchronous< ::future<::conversation > >::future();
 
    //   //auto psequence = pbox->sequence();
 
-   //   //// todo add property set to list;
+   //   //// todo add property set to list_base;
    //   //pbox->get_property_set().merge(propertyset);
 
    //   ////r
@@ -596,12 +596,12 @@ namespace core
    //}
 
 
-   //pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
+   //pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //{
 
    //   return nullptr;
 
-   //   //auto pbox = pparticle->__create_new < ::userex::message_box >();
+   //   //auto pbox = pparticle->øcreate_new < ::userex::message_box >();
 
    //   //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 
@@ -632,15 +632,15 @@ namespace core
 
    //   //string strMatter;
 
-   //   //auto emessageboxType = emessagebox & e_message_box_type_mask;
+   //   //auto emessageboxType = emessagebox & ::user::e_message_box_type_mask;
 
-   //   //if(emessageboxType == e_message_box_yes_no_cancel)
+   //   //if(emessageboxType == ::user::e_message_box_yes_no_cancel)
    //   //{
 
    //   //   strMatter = "system\\user\\message_box\\yesnocancel.xhtml";
 
    //   //}
-   //   //else if (emessageboxType == e_message_box_yes_no)
+   //   //else if (emessageboxType == ::user::e_message_box_yes_no)
    //   //{
 
    //   //   strMatter = "system\\user\\message_box\\yesno.xhtml";
@@ -731,12 +731,12 @@ namespace core
    //}
 
 
-   //pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::e_message_box & emessagebox)
+   //pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::user::e_message_box & emessagebox)
    //{
 
    //   //__UNREFERENCED_PARAMETER(puiOwner);
 
-   //   //auto pbox = pparticle->__create_new < ::userex::message_box >();
+   //   //auto pbox = pparticle->øcreate_new < ::userex::message_box >();
 
    //   //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 
@@ -754,9 +754,9 @@ namespace core
 
    //   //string strMatter;
 
-   //   //auto emessageboxType = emessagebox & e_message_box_type_mask;
+   //   //auto emessageboxType = emessagebox & ::user::e_message_box_type_mask;
 
-   //   //if (emessageboxType == e_message_box_yes_no_cancel)
+   //   //if (emessageboxType == ::user::e_message_box_yes_no_cancel)
    //   //{
 
    //   //   strMatter = "system\\user\\message_box_timeout\\yesnocancel.xhtml";
@@ -1027,7 +1027,7 @@ namespace core
 
    //   //}
 
-   //   auto prequest = ::__create_new < ::request >(pparticle);
+   //   auto prequest = ::øcreate_new < ::request >(pparticle);
 
    //   prequest->m_bMakeVisible = false;
 
@@ -1109,7 +1109,7 @@ namespace core
 
    //   }
 
-   //   auto prequest = ::__create_new < ::request > (pparticle);
+   //   auto prequest = ::øcreate_new < ::request > (pparticle);
 
    //   prequest->m_bMakeVisible = true;
 
@@ -1192,7 +1192,7 @@ namespace core
 
       information() << "default_create_list_header : " << typeListHeader.as_string();
 
-      return pparticle->__id_create < ::user::list_header >(typeListHeader);
+      return pparticle->øid_create < ::user::list_header >(typeListHeader);
 
    }
 
@@ -1200,7 +1200,7 @@ namespace core
    ::pointer<::user::mesh_data>user::default_create_mesh_data(::particle * pparticle)
    {
 
-      return pparticle->__id_create < ::user::mesh_data >(default_type_list_data());
+      return pparticle->øid_create < ::user::mesh_data >(default_type_list_data());
 
    }
 
@@ -1208,7 +1208,7 @@ namespace core
    ::pointer<::user::list_data>user::default_create_list_data(::particle * pparticle)
    {
 
-      return pparticle->__id_create <::user::list_data >(default_type_list_data());
+      return pparticle->øid_create <::user::list_data >(default_type_list_data());
 
    }
 
@@ -1561,14 +1561,6 @@ namespace core
 
 
 
-} //namespace core
-
-
-
-namespace core
-{
-
-
    void user::initialize_userex()
    {
 
@@ -1587,7 +1579,7 @@ namespace core
    //::pointer<::user::user>application::create_userex()
    //{
 
-   //   return __allocate ::user::user();
+   //   return øallocate ::user::user();
 
    //}
 
@@ -1878,7 +1870,6 @@ namespace core
    __namespace_object_factory(user, ::system_setup::flag_object_user);
 
 
-
 } // namespace userex
 
 
@@ -1886,32 +1877,13 @@ namespace user
 {
 
 
-   ::pointer<::user::mesh_data>mesh::create_mesh_data()
-   {
-
-      return user()->default_create_mesh_data(this);
-
-   }
+   ::pointer<::user::mesh_data> mesh::create_mesh_data() { return user()->default_create_mesh_data(this); }
 
 
-   ::pointer<::user::list_header>list::create_list_header()
-   {
-
-      return user()->default_create_list_header(this);
-
-   }
+   ::pointer<::user::list_header> list::create_list_header() { return user()->default_create_list_header(this); }
 
 
-   ::pointer<::user::mesh_data>list::create_mesh_data()
-   {
-
-      return user()->default_create_list_data(this);
-
-   }
-
-
-
-
+   ::pointer<::user::mesh_data> list::create_mesh_data() { return user()->default_create_list_data(this); }
 
 
 } // namespace user

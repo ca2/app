@@ -145,7 +145,7 @@ namespace regular_expression_pcre2
 //
 //      PCRE2_SIZE* ovector = pcre2_get_ovector_pointer(m_pcreContext->m_pimpl->m_pmd);
 //
-//      auto prangeaMatches = __allocate ::strsize_range_array();
+//      auto prangeaMatches = øallocate ::strsize_range_array();
 //
 //      for (character_count i = 0; i < c; i++)
 //      {

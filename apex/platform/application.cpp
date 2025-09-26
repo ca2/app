@@ -6,7 +6,7 @@
 #include "node.h"
 //#include "os_context.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/not_implemented.h"
@@ -245,7 +245,7 @@ namespace apex
       //m_pimaging = nullptr;
 
 
-      //m_phandler = __allocate ::handler(this);
+      //m_phandler = øallocate ::handler(this);
 
 
       //m_bAuraProcessInitialize = false;
@@ -479,11 +479,11 @@ namespace apex
    }
 
 
-   void application::on_change_theme()
-   {
-
-
-   }
+   // void application::on_change_theme()
+   // {
+   //
+   //
+   // }
 
 
    //string application::get_theme()
@@ -604,7 +604,7 @@ namespace apex
 
       }
 
-      pfsfoldersync = pfactory->__øcreate < ::fs::folder_sync >(this);
+      pfsfoldersync = pfactory->øcreate < ::fs::folder_sync >(this);
 
       return pfsfoldersync;
 
@@ -648,7 +648,7 @@ namespace apex
 
       ::thread::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_close, pchannel, this, &application::on_message_close);
+      USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &application::on_message_close);
 
       add_command_handler("try_close_application", { this, &application::on_message_app_exit });
       add_command_handler("switch_context_theme", { this, &application::_001OnSwitchContextTheme });
@@ -668,7 +668,7 @@ namespace apex
    bool application::enable_application_events(::particle * pparticle, bool bEnable)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (bEnable)
       {
@@ -1132,7 +1132,7 @@ namespace apex
       //   /*        if (m_pfsdata.is_null())
       //           {
 
-      //              __øconstruct(m_pfsdata, __allocate ::fs::set());
+      //              øconstruct(m_pfsdata, øallocate ::fs::set());
 
       //           }*/
 
@@ -1153,7 +1153,7 @@ namespace apex
 
       //pfsset->root_ones();
 
-      auto pnativefs = __create_new < ::fs::native>();
+      auto pnativefs = øcreate_new < ::fs::native>();
 
       pfsset->m_spafsdata.add(pnativefs);
 
@@ -1169,7 +1169,7 @@ namespace apex
    }
 
 
-   //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::auto pmessagebox = __initialize_new ::message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -1179,7 +1179,7 @@ namespace apex
    //}
 
 
-   //void application::ui_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!get_session() || !psession->userex())
@@ -1194,7 +1194,7 @@ namespace apex
    //}
 
 
-   //void application::ui_message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!get_session() || !psession->userex())
@@ -1209,7 +1209,7 @@ namespace apex
    //}
 
 
-   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -1228,7 +1228,7 @@ namespace apex
    //}
 
 
-   //void application::message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_timeout(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
@@ -1414,12 +1414,12 @@ namespace apex
 
       }
 
-      synchronous_lock synchronouslock(m_pmutexStr);
+      synchronous_lock synchronouslock(m_pmutexStr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (m_stringtableStd.lookup(strTable, pmap))
+      if (m_stringtableStd.find(strTable, pmap))
       {
 
-         if (pmap->lookup(strString, str))
+         if (pmap->find(strString, str))
          {
 
             return true;
@@ -1427,10 +1427,10 @@ namespace apex
          }
 
       }
-      else if (m_stringtable.lookup(strTable, pmap))
+      else if (m_stringtable.find(strTable, pmap))
       {
 
-         if (pmap->lookup(strString, str))
+         if (pmap->find(strString, str))
          {
 
             return true;
@@ -1536,7 +1536,7 @@ namespace apex
    void application::_001CloseApplication()
    {
 
-      post_message(e_message_close, 0, 0);
+      post_message(::user::e_message_close, 0, 0);
 
    }
 
@@ -1705,7 +1705,7 @@ namespace apex
    //      //
    //      //         }
 
-   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", ::user::e_message_box_icon_information);
 
    //      //auto estatus =
    //      on_before_launching();
@@ -1884,7 +1884,7 @@ namespace apex
 
    //   ::thread::on_pos_run_thread();
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //try
    //   //{
@@ -2013,9 +2013,9 @@ namespace apex
 
                //          payload["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80 style=\"display:block;\"><br/><br/>";
 
-               //message_box(strMessage, m_strAppName, timeTimeout, e_message_box_icon_asterisk);
+               //message_box(strMessage, m_strAppName, timeTimeout, ::user::e_message_box_icon_asterisk);
 
-               //message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
+               //message_box(strMessage, m_strAppName, ::user::e_message_box_icon_asterisk);
 
                informationf(strMessage);
 
@@ -2048,7 +2048,7 @@ namespace apex
 
       }
 
-      //xxdebug_box("check_exclusive ok", "check_exclusive ok", e_message_box_icon_information);
+      //xxdebug_box("check_exclusive ok", "check_exclusive ok", ::user::e_message_box_icon_information);
 
       //if (m_bInitializeDataCentral)
       //{
@@ -2591,7 +2591,7 @@ namespace apex
 
    //      handle_exception(e);
 
-   //      auto pmessagebox = __initialize_new ::message_box("Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
+   //      auto pmessagebox = __initialize_new ::message_box("Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, ::user::e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
 
 //pmessagebox->sync();
 
@@ -2659,7 +2659,7 @@ namespace apex
    //   catch (const ::exception & exception)
    //   {
 
-   //      message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName, e_message_box_ok,
+   //      message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName, ::user::e_message_box_ok,
    //         exception.m_strMessage + "\n\n" + exception.m_strDetails + "\n\n" + exception.m_strCallstack);
 
    //      throw exception;
@@ -2895,7 +2895,7 @@ namespace apex
 
       auto psystem = system();
 
-      _synchronous_lock synchronouslock(psystem->m_pmutexSystemAppData);
+      _synchronous_lock synchronouslock(psystem->m_pmutexSystemAppData, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string strId(scopedstrId);
       //string strSystemLocale = psystem->m_strLocale;
@@ -3138,7 +3138,7 @@ namespace apex
       //if (m_psimpledb.is_null())
       //{
 
-      //   __construct_new(m_psimpledb);
+      //   øconstruct_new(m_psimpledb);
 
       //}
 
@@ -3268,7 +3268,7 @@ namespace apex
 
    //   psystem->install_progress_add_up(); // 2
 
-   //   //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
+   //   //xxdebug_box("init1 ok", "init1 ok", ::user::e_message_box_icon_information);
 
    //   ping();
 
@@ -3285,7 +3285,7 @@ namespace apex
 
    //   psystem->install_progress_add_up(); // 3
 
-   //   //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
+   //   //xxdebug_box("init2 ok", "init2 ok", ::user::e_message_box_icon_information);
 
    //   ping();
 
@@ -3302,7 +3302,7 @@ namespace apex
 
    //   psystem->install_progress_add_up(); // 4
 
-   //   //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
+   //   //xxdebug_box("init3 ok", "init3 ok", ::user::e_message_box_icon_information);
 
    //   ping();
 
@@ -3350,7 +3350,7 @@ namespace apex
    //   try
    //   {
 
-   //      return __allocate ::interprocess::channel();
+   //      return øallocate ::interprocess::channel();
 
    //   }
    //   catch (...)
@@ -3381,7 +3381,7 @@ namespace apex
       auto psystem = system();
 
       //estatus =
-      m_puserlanguagemap = __allocate ::user::language_map();
+      m_puserlanguagemap = øallocate ::user::language_map();
 
       //REFDBG(m_puserlanguagemap.add_reference_item({ this, __FUNCTION_FILE_LINE__ }));
 
@@ -4421,7 +4421,7 @@ namespace apex
    void application::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine)
    {
 
-      auto prequest = __create_new < ::request >();
+      auto prequest = øcreate_new < ::request >();
 
       prequest->initialize_command_line2(scopedstrCommandLine);
 
@@ -4750,7 +4750,7 @@ namespace apex
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          file()->add_contents(directory()->appdata() / (file()->module().name() + "_log_error.txt"), strMessage);
 
@@ -4936,7 +4936,7 @@ namespace apex
    void application::install_trace(const ::scoped_string & scopedstr)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //::install::trace_file(this, m_strInstallTraceLabel).print(str);
 
@@ -4946,7 +4946,7 @@ namespace apex
    void application::install_trace(double dRate)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
 
@@ -5068,7 +5068,7 @@ namespace apex
    }
 
 
-   void application::send_message_to_windows(::enum_message emessage, ::wparam wparam, ::lparam lparam) // with tbs in <3
+   void application::send_message_to_windows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) // with tbs in <3
    {
 
       //::pointer<::user::interaction>puserinteraction;
@@ -5200,7 +5200,7 @@ namespace apex
    void application::send_language_change_message()
    {
 
-      ::message::message message(e_message_language);
+      ::message::message message(::user::e_message_language);
 
       route_message_to_windows(&message);
 
@@ -5248,12 +5248,12 @@ namespace apex
    //}
 
 
-   void application::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void application::post_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
-      //return ::thread::post_message(emessage, wparam, lparam);
+      //return ::thread::post_message(eusermessage, wparam, lparam);
 
-      ::thread::post_message(emessage, wparam, lparam);
+      ::thread::post_message(eusermessage, wparam, lparam);
 
    }
 
@@ -5427,7 +5427,7 @@ namespace apex
    //
    //      {
    //
-   //         _synchronous_lock synchronouslock(this->synchronization());
+   //         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //         ptra = m_particleaddressaEventHook;
    //
@@ -5601,7 +5601,7 @@ namespace apex
    //void application::record(::create * pcommand)
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   get_command()->m_createa.add(pcommand);
 
@@ -5713,11 +5713,11 @@ namespace apex
    string application::load_string(const ::atom & atom)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexStr);
+      _synchronous_lock synchronouslock(m_pmutexStr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string str;
 
-      if (m_stringmap.lookup(atom, str))
+      if (m_stringmap.find(atom, str))
       {
 
          return str;
@@ -5759,7 +5759,7 @@ namespace apex
 
       //throw ::exception(todo("xml"));
 
-      //auto pdocument = __allocate ::xml::document();
+      //auto pdocument = øallocate ::xml::document();
 
       //if (!pdocument->load(atom) || !*pdocument)
       //{
@@ -5819,14 +5819,14 @@ namespace apex
 
    //   }
 
-   //   _synchronous_lock synchronouslock(m_pmutexStr);
+   //   _synchronous_lock synchronouslock(m_pmutexStr, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   //   ::pointer<string_to_string>pmap;
+   //   ::pointer<string_to_string_base>pmap;
 
-   //   if (m_stringtableStd.lookup(strTable, pmap))
+   //   if (m_stringtableStd.find(strTable, pmap))
    //   {
 
-   //      if (pmap != nullptr && pmap->lookup(strString, str))
+   //      if (pmap != nullptr && pmap->find(strString, str))
    //      {
 
    //         return true;
@@ -5834,10 +5834,10 @@ namespace apex
    //      }
 
    //   }
-   //   else if (m_stringtable.lookup(strTable, pmap))
+   //   else if (m_stringtable.find(strTable, pmap))
    //   {
 
-   //      if (pmap != nullptr && pmap->lookup(strString, str))
+   //      if (pmap != nullptr && pmap->find(strString, str))
    //      {
 
    //         return true;
@@ -5929,7 +5929,7 @@ namespace apex
    void application::_001TryCloseApplication()
    {
 
-      post_message(e_message_close, 1, 0);
+      post_message(::user::e_message_close, 1, 0);
 
    }
 
@@ -5966,7 +5966,7 @@ namespace apex
       //
       //::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(
       //::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-      //ref __allocate< ::winrt::Windows::UI::Core::DispatchedHandler([this] >()
+      //ref øallocate< ::winrt::Windows::UI::Core::DispatchedHandler([this] >()
       //{
       //::winrt::Windows::UI::ImpactManagement::ApplicationImpact::GetForCurrentImpact()->TryConsolidateAsync();
       //}));
@@ -6272,7 +6272,7 @@ namespace apex
    //   if (m_psimpledb.is_null())
    //   {
 
-   //      __construct_new(m_psimpledb);
+   //      øconstruct_new(m_psimpledb);
 
    //   }
 
@@ -6600,7 +6600,7 @@ namespace apex
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_straActivationMessage.add(scopedstrMessage);
 
@@ -6614,7 +6614,7 @@ namespace apex
    bool application::has_activation_message() const
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return m_straActivationMessage.has_element();
 
@@ -6624,7 +6624,7 @@ namespace apex
    void application::handle_posted_activation_message()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_bAttendedFirstRequest)
       {
@@ -6692,7 +6692,7 @@ namespace apex
 
       auto psystem = system();
 
-      auto plocaleschema = __create_new < ::text::international::locale_schema >();
+      auto plocaleschema = øcreate_new < ::text::international::locale_schema >();
 
       //psession->fill_locale_schema(localeschema);
 
@@ -7189,7 +7189,7 @@ namespace apex
          if (pmutex->has_already_exists_flag())
          {
 
-            //            output_error_message("Could not launch spa installer. It is already running.", e_message_box_ok);
+            //            output_error_message("Could not launch spa installer. It is already running.", ::user::e_message_box_ok);
 
               // return -35;
 
@@ -7360,7 +7360,7 @@ namespace apex
    //::html::html * application::create_html()
    //{
 
-   //   return __allocate< ::html::html(get_app >());
+   //   return øallocate< ::html::html(get_app >());
 
    //}
 
@@ -7685,10 +7685,10 @@ namespace apex
 
       // handle certain messages in thread
 
-      switch (pmessage->m_emessage)
+      switch (pmessage->m_eusermessage)
       {
-      case e_message_create:
-      case e_message_paint:
+      case ::user::e_message_create:
+      case ::user::e_message_paint:
 
          return thread::process_window_procedure_exception(e, pmessage);
             
@@ -7701,7 +7701,7 @@ namespace apex
       //linux unsigned int nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const ::string & nIDP = "Internal Failure";
       pmessage->m_lresult = 0;        // sensible default
-      if (pmessage->m_emessage == e_message_command)
+      if (pmessage->m_eusermessage == ::user::e_message_command)
       {
 
          if (pmessage->m_lparam == 0)
@@ -7718,7 +7718,7 @@ namespace apex
       if (e.estatus() == error_no_memory)
       {
 
-         report_error(e, e_message_box_icon_exclamation | e_message_box_system_modal, nullptr);
+         report_error(e, ::user::e_message_box_icon_exclamation | ::user::e_message_box_system_modal, nullptr);
 
       }
       else if (e.estatus() == error_user)
@@ -7726,7 +7726,7 @@ namespace apex
 
          // ::account::user has not been alerted yet of this catastrophic problem
 
-         report_error(e, e_message_box_icon_stop, nullptr);
+         report_error(e, ::user::e_message_box_icon_stop, nullptr);
 
       }
 
@@ -8124,7 +8124,7 @@ namespace apex
    /*   void application::LoadStdProfileSettings(unsigned int nMaxMRU)
    {
    __UNREFERENCED_PARAMETER(nMaxMRU);
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    // 0 by default means not set
    m_nNumThumbnailPages = GetProfileInt(gen_ThumbnailSection, gen_ThumbnailEntry, 0);
@@ -8263,7 +8263,7 @@ namespace apex
    //
    //void application::SaveStdProfileSettings()
    //{
-   //ASSERT_VALID(this);
+   //ASSERT_OK(this);
    //
    //
    ////      if (m_nNumThumbnailPages != 0)
@@ -8289,7 +8289,7 @@ namespace apex
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle task
+   //      // trans pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle task
    //
    //      //trans pMainWnd->WinHelp(dwData, nCmd);
    //   }
@@ -8306,7 +8306,7 @@ namespace apex
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle task
+   //      // trans pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle task
    //
    //      // trans pMainWnd->HtmlHelp(dwData, nCmd);
    //   }
@@ -8321,7 +8321,7 @@ namespace apex
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(e_message_kick_idle); // trigger idle task
+   //      // trans pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle task
    //      // trans pMainWnd->WinHelpInternal(dwData, nCmd);
    //   }
    //
@@ -8530,7 +8530,7 @@ namespace apex
    //ENSURE(pMainWnd->is_frame_window());
    //pMainWnd->OnContextHelp();
    //m_bHelpMode = pMainWnd->m_bHelpMode;
-   //pMainWnd->PostMessage(e_message_kick_idle); // trigger idle task */
+   //pMainWnd->PostMessage(::user::e_message_kick_idle); // trigger idle task */
    //}
    //
    ///////////////////////////////////////////////////////////////////////////////
@@ -8622,7 +8622,7 @@ namespace apex
    //
    ////ASSERT(m_pacmeuserinteractionMain != nullptr);
    //
-   ////m_pacmeuserinteractionMain->m_puiThis->send_message(e_message_close);
+   ////m_pacmeuserinteractionMain->m_puiThis->send_message(::user::e_message_close);
    //
    //}
    //
@@ -9169,7 +9169,7 @@ namespace apex
    ::property_set * application::existing_propset(object * pparticle)
    {
    single_lock synchronouslock(&m_mapObjectSet, true);
-   auto point = m_mapObjectSet.plookup(pparticle);
+   auto point = m_mapObjectSet.find(pparticle);
    if(point == nullptr)
    return nullptr;
    return &point->m_value;
@@ -9378,7 +9378,7 @@ namespace apex
    //   //ASSERT(::windows_definition::CurrentInstanceHandle == m_hInstance);
 
    //   /*      if (m_pdocmanager != nullptr)
-   //   ASSERT_VALID(m_pdocmanager);*/
+   //   ASSERT_OK(m_pdocmanager);*/
    //}
 
    //   void application::dump(dump_context& dumpcontext) const
@@ -9994,7 +9994,7 @@ namespace apex
    //::pointer<::apex::application>application::create_platform(::apex::session* psession)
    //{
    //
-   //   return __allocate ::apex::session();
+   //   return øallocate ::apex::session();
    //
    //}
 
@@ -10015,12 +10015,12 @@ namespace apex
    }
 
 
-   string application::get_theme()
-   {
-
-      return "";
-
-   }
+   // string application::get_theme()
+   // {
+   //
+   //    return "";
+   //
+   // }
 
 
    void application::initialize_contextualized_theme()
@@ -10189,7 +10189,7 @@ namespace apex
    }
 
 
-   //pointer< ::extended::future < ::conversation > > application::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::future < ::conversation > > application::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //{
    //
    //   auto psystem = system();
@@ -10242,7 +10242,7 @@ namespace apex
    class networking::application * application::networking_application(::networking::application_handler * papplicationhandlerCreateNetworkApplication)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_pnetworkingapplication)
       {
@@ -10259,7 +10259,7 @@ namespace apex
    void application::create_networking_application(const ::scoped_string & scopedstrHostName, ::networking::application_handler * papplicationhandlerCreateNetworkApplication)
    {
 
-      __defer_construct(m_pnetworkingapplication);
+      ødefer_construct(m_pnetworkingapplication);
 
       if (::is_set(papplicationhandlerCreateNetworkApplication))
       {
@@ -10419,7 +10419,7 @@ namespace apex
          
          system()->defer_innate_ui();
          
-         auto pdialog = __øcreate < ::innate_ui::dialog>();
+         auto pdialog = øcreate < ::innate_ui::dialog>();
          
          pdialog->create();
          
@@ -10435,7 +10435,7 @@ namespace apex
          
          int y = 30;
          
-         auto pstillIcon = __øcreate < ::innate_ui::still>();
+         auto pstillIcon = øcreate < ::innate_ui::still>();
          
          pstillIcon->create_icon_still(pdialog);
          
@@ -10450,7 +10450,7 @@ namespace apex
          for (auto str : stra)
          {
             
-            auto pstill = __øcreate < ::innate_ui::still>();
+            auto pstill = øcreate < ::innate_ui::still>();
             
             pstill->create_child(pdialog);
             
@@ -10466,7 +10466,7 @@ namespace apex
          
          y += 30;
          
-         auto pbutton = __øcreate < ::innate_ui::button>();
+         auto pbutton = øcreate < ::innate_ui::button>();
          
          pbutton->create_child(pdialog);
          

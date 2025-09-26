@@ -427,7 +427,7 @@ SizingNone:
                      for (::collection::index i = 0; i < 9; i++)
                      {
 
-                        auto ppen = __øcreate < ::draw2d::pen > ();
+                        auto ppen = øcreate < ::draw2d::pen > ();
 
                         ppen->create_solid(1.0, argb((i+1) * 5, 0, 0, 0));
 

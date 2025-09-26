@@ -989,7 +989,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //class rectangle_type;
 //
 //template < typename POINT_TYPE >
-//class point_base_array;
+//class point_array_base;
 //
 //
 //namespace design
@@ -1074,10 +1074,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //using double_rectangle = rectangle_type < ::double_rectangle, ::double_point, ::double_size >;
 //
 //
-//using int_point_array = point_base_array < int_point >;
-//using long_long_point_array = point_base_array < long_long_point >;
-//using float_point_array = point_base_array < float_point >;
-//using double_point_array = point_base_array < double_point >;
+//using int_point_array = point_array_base < int_point >;
+//using long_long_point_array = point_array_base < long_long_point >;
+//using float_point_array = point_array_base < float_point >;
+//using double_point_array = point_array_base < double_point >;
 //
 //
 //using rectangle = ::double_rectangle;
@@ -1812,22 +1812,22 @@ template < primitive_number NUMBER >
 class arc_type;
 
 template < primitive_number NUMBER >
-class point_base_array;
+class point_array_base;
 
 template < primitive_number NUMBER >
-class polygon_type;
+class polygon_base;
 
 template < primitive_number NUMBER >
-class poly_polygon_type;
+class poly_polygon_base;
 
 template < primitive_number NUMBER >
-class point_base_array;
+class point_array_base;
 
 template < primitive_number NUMBER >
-class size_base_array;
+class size_array_base;
 
 template < primitive_number NUMBER >
-class rectangle_base_array;
+class rectangle_array_base;
 
 template < primitive_number NUMBER >
 class lines_base;
@@ -1869,47 +1869,86 @@ using float_arc = arc_type < float >;
 using double_arc = arc_type < double >;
 
 
-using int_point_array = point_base_array < int >;
-using long_long_point_array = point_base_array < long long >;
-using float_point_array = point_base_array < float >;
-using double_point_array = point_base_array < double >;
+using int_point_array_base = point_array_base < int >;
+using long_long_point_array_base = point_array_base < long long >;
+using float_point_array_base = point_array_base < float >;
+using double_point_array_base = point_array_base < double >;
 
 
-using int_polygon = polygon_type < int >;
-using long_long_polygon = polygon_type < long long >;
-using float_polygon = polygon_type < float >;
-using double_polygon = polygon_type < double >;
+using int_point_array = ::array_particle < int_point_array_base >;
+using long_long_point_array = ::array_particle < long_long_point_array_base >;
+using float_point_array= ::array_particle < float_point_array_base >;
+using double_point_array = ::array_particle < double_point_array_base >;
 
 
-using int_poly_polygon = poly_polygon_type < int >;
-using long_long_poly_polygon = poly_polygon_type < long long >;
-using float_poly_polygon = poly_polygon_type < float >;
-using double_poly_polygon = poly_polygon_type < double >;
+using int_polygon_base = polygon_base < int >;
+using long_long_polygon_base = polygon_base < long long >;
+using float_polygon_base = polygon_base < float >;
+using double_polygon_base = polygon_base < double >;
 
 
-using int_point_array = point_base_array < int >;
-using long_long_point_array = point_base_array < long long >;
-using float_point_array = point_base_array < float >;
-using double_point_array = point_base_array < double >;
+using int_polygon = ::array_particle < int_polygon_base >;
+using long_long_polygon = ::array_particle < long_long_polygon_base >;
+using float_polygon = ::array_particle < float_polygon_base >;
+using double_polygon = ::array_particle < double_polygon_base >;
 
 
-using int_size_array = size_base_array < int >;
-using long_long_size_array = size_base_array < long long >;
-using float_size_array = size_base_array < float >;
-using double_size_array = size_base_array < double >;
+using int_poly_polygon_base = poly_polygon_base < int >;
+using long_long_poly_polygon_base = poly_polygon_base < long long >;
+using float_poly_polygon_base = poly_polygon_base < float >;
+using double_poly_polygon_base = poly_polygon_base < double >;
 
 
-using int_rectangle_array = rectangle_base_array < int >;
-using long_long_rectangle_array = rectangle_base_array < long long >;
-using float_rectangle_array = rectangle_base_array < float >;
-using double_rectangle_array = rectangle_base_array < double >;
+using int_poly_polygon = ::array_particle < int_poly_polygon_base >;
+using long_long_poly_polygon = ::array_particle < long_long_poly_polygon_base >;
+using float_poly_polygon = ::array_particle < float_poly_polygon_base >;
+using double_poly_polygon = ::array_particle < double_poly_polygon_base >;
 
 
-using int_lines = lines_base < int >;
-using long_long_lines = lines_base < long long >;
-using float_lines = lines_base < float >;
-using double_lines = lines_base < double >;
+using int_point_array_base = point_array_base < int >;
+using long_long_point_array_base = point_array_base < long long >;
+using float_point_array_base = point_array_base < float >;
+using double_point_array_base = point_array_base < double >;
 
+
+using int_point_array = ::array_particle < int_point_array_base >;
+using long_long_point_array = ::array_particle < long_long_point_array_base >;
+using float_point_array = ::array_particle < float_point_array_base >;
+using double_point_array = ::array_particle < double_point_array_base >;
+
+
+using int_size_array_base = size_array_base < int >;
+using long_long_size_array_base = size_array_base < long long >;
+using float_size_array_base = size_array_base < float >;
+using double_size_array_base = size_array_base < double >;
+
+
+using int_size_array = ::array_particle < int_size_array_base >;
+using long_long_size_array = ::array_particle < long_long_size_array_base >;
+using float_size_array = ::array_particle < float_size_array_base >;
+using double_size_array = ::array_particle < double_size_array_base >;
+
+
+using int_rectangle_array_base = rectangle_array_base < int >;
+using long_long_rectangle_array_base = rectangle_array_base < long long >;
+using float_rectangle_array_base = rectangle_array_base < float >;
+using double_rectangle_array_base = rectangle_array_base < double >;
+
+
+using int_rectangle_array = ::array_particle < int_rectangle_array_base >;
+using long_long_rectangle_array = ::array_particle < long_long_rectangle_array_base >;
+using float_rectangle_array = ::array_particle < float_rectangle_array_base >;
+using double_rectangle_array = ::array_particle < double_rectangle_array_base >;
+
+using int_lines_base = lines_base < int >;
+using long_long_lines_base = lines_base < long long >;
+using float_lines_base = lines_base < float >;
+using double_lines_base = lines_base < double >;
+
+using int_lines = ::array_particle < int_lines_base >;
+using long_long_lines = ::array_particle < long_long_lines_base >;
+using float_lines = ::array_particle < float_lines_base >;
+using double_lines = ::array_particle < double_lines_base >;
 
 template < struct_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
 inline void copy(RECTANGLE1 * prectangle1, const RECTANGLE2 * prectangle2)

@@ -4,7 +4,7 @@
 #include "render.h"
 #include <math.h>
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
@@ -57,10 +57,10 @@ namespace app_shader
    {
 
       ::user::main_window::install_message_routing(psender);
-      MESSAGE_LINK(e_message_create,psender,this,&main_window::on_message_create);
-      MESSAGE_LINK(e_message_destroy, psender, this, &main_window::on_message_destroy);
-      MESSAGE_LINK(e_message_key_down, psender, this, &main_window::on_message_key_down);
-      MESSAGE_LINK(e_message_switch, psender, this, &main_window::on_message_switch);
+      USER_MESSAGE_LINK(::user::e_message_create,psender,this,&main_window::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, psender, this, &main_window::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_key_down, psender, this, &main_window::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_switch, psender, this, &main_window::on_message_switch);
 
    }
 
@@ -83,7 +83,7 @@ namespace app_shader
 
 //      {
 //
-//         tool().add_item(__allocate ::item(e_element_close_button, id_close_app));
+//         tool().add_item(øallocate ::item(e_element_close_button, id_close_app));
 //
 ////         auto pitem = user_item(::e_element_close_button);
 ////
@@ -98,7 +98,7 @@ namespace app_shader
 
       {
 
-         tool().add_item(__allocate ::item(::e_element_switch_button, ::id_switch));
+         tool().add_item(øallocate ::item(::e_element_switch_button, ::id_switch));
 
 //         auto pitem = user_item(::e_element_switch_button);
 //
@@ -108,7 +108,7 @@ namespace app_shader
 
 //      {
 //
-//         tool().add_item(__allocate ::item(::e_element_maximize_button, ::id_maximize));
+//         tool().add_item(øallocate ::item(::e_element_maximize_button, ::id_maximize));
 //
 //         //auto pitem = user_item(::e_element_maximize_button);
 //
@@ -125,7 +125,7 @@ namespace app_shader
 //      {
 //
 //
-//         tool().add_item(__allocate ::item(e_element_minimize_button, id_minimize));
+//         tool().add_item(øallocate ::item(e_element_minimize_button, id_minimize));
 //
 ////         auto pitem = user_item(::e_element_minimize_button);
 ////
@@ -299,7 +299,7 @@ namespace app_shader
 
          //::user::lock_sketch_to_design lockSketchToDesign(this);
 
-         auto prender = __create_new < render >();
+         auto prender = øcreate_new < render >();
 
          if (!prender)
          {
@@ -318,7 +318,7 @@ namespace app_shader
 
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_maprender[scopedstrShaderPath] = prender;
 

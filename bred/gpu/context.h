@@ -18,6 +18,8 @@ namespace gpu
 {
 
 
+
+
    class renderer;
 
    class image_data
@@ -81,7 +83,8 @@ namespace gpu
 
 
       //int                                    m_iTopicTexture = -1;
-      bool                                   m_bCullFace = false;
+      //bool                                   m_bCullFace = false;
+      ::gpu::enum_cull_mode                  m_ecullmode;
       //bool m_bOffscreen = true;
       int                                    m_iOverrideFrame = -1;
       enum_type                              m_etype;
@@ -123,7 +126,7 @@ namespace gpu
       //int                                    m_iScanOffscreen;
       //::memory                               m_memoryOffscreen;
       ::pointer < ::gpu::swap_chain >          m_pgpuswapchain;
-      ::string_map < ::pointer < ::gpu::texture > > m_texturemap;
+      ::string_map_base < ::pointer < ::gpu::texture > > m_texturemap;
       ::pointer_array < ::gpu::shader >         m_shaderaRetire;
 
 
@@ -144,7 +147,7 @@ namespace gpu
       void _send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;
 
-      virtual void øconstruct(::pointer < ::gpu::shader >& pgpushader);
+      virtual void construct(::pointer < ::gpu::shader >& pgpushader);
 
       virtual ::gpu::texture* texture(const ::file::path& path);
 
@@ -158,11 +161,17 @@ namespace gpu
 
       virtual void defer_make_current();
 
-      virtual ::pointer < ::gpu::command_buffer > beginSingleTimeCommands(::gpu::enum_command_buffer ecommandbuffer = ::gpu::e_command_buffer_graphics);
+      virtual ::pointer < ::gpu::command_buffer > beginSingleTimeCommands(::gpu::queue * pgpuqueue, ::gpu::enum_command_buffer ecommandbuffer = ::gpu::e_command_buffer_graphics);
       virtual void endSingleTimeCommands(::gpu::command_buffer * pcommandbuffer);
 
       virtual ::gpu::command_buffer* defer_get_upload_command_buffer();
       virtual void defer_end_upload_command_buffer();
+
+
+      virtual ::gpu::queue * transfer_queue();
+      virtual ::gpu::queue * graphics_queue();
+      virtual ::gpu::queue * present_queue();
+
 
 
       virtual void _context_lock();
@@ -232,7 +241,7 @@ namespace gpu
 
       //virtual ::gpu::renderer* new_draw2d_renderer();
       //virtual void set_topic_texture(int iIndex);
-      virtual void set_cull_face(bool bSet = true);
+      virtual void set_cull_face(::gpu::enum_cull_mode ecullmode);
 
       virtual ::int_rectangle rectangle();
       virtual void set_placement(const ::int_rectangle & rectanglePlacement);
@@ -349,15 +358,90 @@ namespace gpu
       virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe);
 
 
+      //::pointer<::graphics3d::renderable> load_model();
+      virtual ::pointer<::graphics3d::renderable> load_model(const ::gpu::renderable_t & renderable);
+      virtual ::pointer<::gpu::texture> load_cube_map(
+         const ::scoped_string & scopedstrName,
+         const ::file::path & path, 
+         bool b32);
+      virtual ::pointer<::gpu::texture> load_sandbox_texture(const ::scoped_string &scopedstrName,
+                                                             const ::file::path &path,
+                                                             const ::scoped_string &scopedstrImageFormat);
+
+      // // ::pointer<::graphics3d::renderable> loadGLTFmodel(
+      // //    const ::scoped_string &name,
+      // //    const ::scoped_string &filepath,
+      // //    uint32_t gltfFlags,
+      // //    float scale);
+      //
+      //
+      // ::pointer<::graphics3d::renderable> loadObjModel(
+      //      const ::scoped_string &name,
+      //      const ::scoped_string &filepath,
+      //      bool isSkybox
+      //      );
+      //
+      //
+      // ::pointer<::graphics3d::renderable> loadGLTFmodel(
+      //    const ::scoped_string &name,
+      //    const ::scoped_string &filepath,
+      //    uint32_t gltfFlags,
+      //    float scale
+      //    );
+
+      virtual ::pointer<::graphics3d::renderable> load_wavefront_obj_renderable(const ::gpu::renderable_t & model);
+
+      virtual ::pointer<::graphics3d::renderable> _load_wavefront_obj_renderable(const ::gpu::renderable_t & model);
+
+      virtual ::pointer<::graphics3d::renderable> load_gltf_model(const ::gpu::renderable_t & model);
+
+      virtual ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t & model);
+
+
+      /// @brief generatePrefilteredEnvMap
+      /// @param environmentCubeExisting 
+      /// @param prenderableSkybox 
+      /// @return 
+      virtual ::pointer<::gpu::texture> generatePrefilteredEnvMap(
+         ::gpu::texture *environmentCubeExisting,
+         ::graphics3d::renderable *prenderableSkybox);
+
+      /// generate irradianceCube
+      /// @return irradianceCube
+      virtual ::pointer < ::gpu::texture > generateIrradianceMap(
+//         ::gpu::texture * irradianceCube,
+         ::gpu::texture * environmentCube,
+         ::graphics3d::renderable * prenderableSkybox);
+      // ::pointer<::gpu::texture> loadCubemap(
+      //    const ::scoped_string& name,
+      //    const ::scoped_string& ktxFilename,
+      //    VkFormat format,
+      //    VkImageUsageFlags usageFlags,
+      //    VkImageLayout initialLayout);
+      //    virtual void generateBRDFlut(
+      //     ::gpu::texture * lutBrdf);
+      /// generate lutBrdf
+      /// @return lutBrdf
+      virtual ::pointer < ::gpu::texture > generateBRDFlut();
+
+
+
+      //::pointer < ::graphics3d::renderable> create_tinyobj_renderable(const ::file::path& path);
+
+      //::pointer < ::graphics3d::renderable > create_tinyobj(const ::file::path& path);
+      // scene_object * get_tinyobj(const ::file::path& path);
+      //
+      // inline scene_object & tinyobj(const ::file::path& path)
+      // {
+      //
+      //    return *get_tinyobj(path);
+      //
+      // }
    };
 
 
 
-
-
-
 } // namespace gpu
-
 
 
 

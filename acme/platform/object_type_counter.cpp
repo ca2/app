@@ -7,7 +7,7 @@ long long g_iObjTypCtr = 0;
 
 critical_section g_csObjTypCtr;
 
-map < const_char_pointer ,const_char_pointer ,long long, long long > * g_pmapObjTypCtr = nullptr;
+map_base < const_char_pointer ,const_char_pointer ,long long, long long > * g_pmapObjTypCtr = nullptr;
 
 void object_type_counter_increment(::particle * pparticle)
 {

@@ -95,7 +95,7 @@
 			<Add option="-laura" />
 			<Add option="-laxis" />
 			<Add option="-lgcom" />
-			<Add option="-lbase" />
+			<Add option="-lberg" />
 			<Add option="-lbred" />
 			<Add option="-lcore" />
 			<Add option="-Wl,-z,defs" />

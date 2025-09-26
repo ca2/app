@@ -37,7 +37,6 @@ bool           get_utf8_char(string & strChar, const_char_pointer &psz, const_ch
 string         get_utf8_char(const_char_pointer pszBeg, const_char_pointer psz, character_count i);
 string         utf8_next_char(const_char_pointer pszBeg, const_char_pointer psz, character_count i = 0);
 string         utf8_previous_char(const_char_pointer pszBeg, const_char_pointer psz, character_count i = 0);
-CLASS_DECL_ACME utf8_character         unicode_to_utf8(long long ch);
 CLASS_DECL_ACME character_count        unicode_to_utf8_length(long long ch);
 int            unicode_to_utf8_2_or_more(::ansi_character * dest, int ch);
 

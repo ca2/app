@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "message_queue.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/operating_system/message.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/scoped_restore.h"
@@ -16,7 +16,7 @@
 #endif
 
 
-//#define e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
+//#define ::user::e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
 #if defined(LINUX) // || defined(__ANDROID__)
 
 
@@ -51,7 +51,7 @@ void message_queue::on_initialize_particle()
 }
 
 
-void message_queue::post_message(oswindow oswindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+void message_queue::post_message(oswindow oswindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    if (m_bQuit)
@@ -65,7 +65,7 @@ void message_queue::post_message(oswindow oswindow, ::enum_message emessage, ::w
    MESSAGE message;
 
    message.m_oswindow = oswindow;
-   message.m_emessage = emessage;
+   message.m_eusermessage = eusermessage;
    message.m_wparam = wparam;
    message.m_lparam = lparam;
    message.m_point.x() = I32_MINIMUM;
@@ -88,14 +88,14 @@ void message_queue::post_message(const MESSAGE & message)
 
    }
 
-   if (message.m_emessage == e_message_quit)
+   if (message.m_eusermessage == ::user::e_message_quit)
    {
 
-      informationf("message_queue::post_message e_message_quit\n");
+      informationf("message_queue::post_message ::user::e_message_quit\n");
 
    }
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_messagea.add(message);
    
@@ -122,13 +122,13 @@ void message_queue::post_message(const MESSAGE & message)
 void message_queue::kick_idle()
 {
 
-   //synchronous_lock synchronouslock(this->synchronization());
+   //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //m_bKickIdle = true;
 
    //m_happeningNewMessage.set_happening();
 
-   post_message(nullptr, e_message_kick_idle, {}, {});
+   post_message(nullptr, ::user::e_message_kick_idle, {}, {});
 
 }
 
@@ -154,7 +154,7 @@ void message_queue::kick_idle()
 
    }
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(m_eflagElement & (::enum_flag) (1ll <<37))
    {
@@ -187,7 +187,7 @@ void message_queue::kick_idle()
 
          auto & message = m_messagea[i];
 
-         if (message.m_emessage == e_message_quit)
+         if (message.m_eusermessage == ::user::e_message_quit)
          {
 
             m_bQuit = true;
@@ -203,7 +203,7 @@ void message_queue::kick_idle()
 
          }
 
-         auto emessage = message.m_emessage;
+         auto emessage = message.m_eusermessage;
 
          if ((oswindow == nullptr || message.m_oswindow == oswindow) && emessage >= iFilterMinimum && emessage <= iFilterMaximum)
          {
@@ -267,7 +267,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,unsigned int 
 
    }
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(m_eflagElement & (::enum_flag) (1ll <<37))
    {
@@ -299,7 +299,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,unsigned int 
 
       MESSAGE & msg = m_messagea[i];
 
-      if((oswindow == nullptr || msg.m_oswindow == oswindow) && msg.m_emessage >= wMsgFilterMin && msg.m_emessage <= wMsgFilterMax)
+      if((oswindow == nullptr || msg.m_oswindow == oswindow) && msg.m_eusermessage >= wMsgFilterMin && msg.m_eusermessage <= wMsgFilterMax)
       {
 
          *pMsg = msg;

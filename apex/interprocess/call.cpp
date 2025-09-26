@@ -119,7 +119,7 @@ namespace interprocess
    ::pointer<synchronization_array>call::synca()
    {
 
-      auto psynca = __allocate synchronization_array();
+      auto psynca = øallocate synchronization_array();
 
       for (auto & ptask : this->m_mapTask.payloads())
       {
@@ -158,7 +158,7 @@ namespace interprocess
 
       auto psynca = synca();
 
-      synchronous_lock synchronouslock(psynca);
+      synchronous_lock synchronouslock(psynca, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return synchronouslock.wait(timeWait).ok();
 

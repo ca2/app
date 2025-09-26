@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "font_list.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -60,11 +60,11 @@ namespace user
 
       ::user::list_box::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &font_list::on_message_create);
-      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &font_list::on_message_left_button_down);
-      //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &font_list::on_message_mouse_move);
-      MESSAGE_LINK(e_message_close, pchannel, this, &font_list::on_message_close);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &font_list::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &font_list::on_message_create);
+      //USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &font_list::on_message_left_button_down);
+      //USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &font_list::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &font_list::on_message_close);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &font_list::on_message_show_window);
 
    }
 
@@ -103,7 +103,7 @@ namespace user
          if (m_pfontlist.is_null() || m_pfontlist->get_font_list_type() != ::write_text::e_font_list_wide)
          {
 
-            __defer_construct_new(m_pfontlist);
+            ødefer_construct_new(m_pfontlist);
 
             m_pfontlist->m_puserinteraction = this;
 
@@ -127,7 +127,7 @@ namespace user
    void font_list::set_font_branch(const ::scoped_string & scopedstrFontBranch)
    {
 
-      __defer_construct_new(m_pfontlist);
+      ødefer_construct_new(m_pfontlist);
 
       m_pfontlist->set_font_branch(scopedstrFontBranch);
 
@@ -342,7 +342,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bEnsureVisible)
       {
@@ -461,7 +461,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pstyle = get_style(pgraphics);
 
@@ -522,7 +522,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       
       if(!m_pfontlist->m_pfontlistdata)
       {
@@ -564,7 +564,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer < ::write_text::font_list_item > pfontlistitem = m_pfontlist->m_pfontlistdata->item_at(iItemHover);
 
@@ -592,7 +592,7 @@ namespace user
    ::item_pointer font_list::current_item()
    {
 
-      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!::is_item_set(main_content().m_pitemCurrent))
       {
@@ -609,7 +609,7 @@ namespace user
    ::item_pointer font_list::hover_item()
    {
 
-      _synchronous_lock synchronouslock(m_pfontlist->synchronization());
+      _synchronous_lock synchronouslock(m_pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!::is_item_set(m_pitemHover))
       {

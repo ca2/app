@@ -4,7 +4,7 @@
 #include "frame_window.h"
 #include "impact.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/request.h"
 #include "acme/platform/scoped_restore.h"
 #include "berg/platform/application.h"
@@ -207,7 +207,7 @@ namespace user
 
       }
 
-      ASSERT_VALID(pFrame);
+      ASSERT_OK(pFrame);
 
       if(prequest->m_pdata)
       {
@@ -273,7 +273,7 @@ namespace user
             // prepare aura for async operations and also async failures
             // ::account::user has be alerted to what failed in on_open_document
             warning()(e_trace_category_appmsg) << "::user::document::on_open_document returned false.\n";
-            pFrame->post_message(e_message_destroy_window);
+            pFrame->post_message(::user::e_message_destroy_window);
             return;
 
          }

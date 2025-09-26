@@ -49,7 +49,7 @@ namespace user
    void display::display_post(const ::procedure & procedure)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_procedureaPost.add(procedure);
 
@@ -71,7 +71,7 @@ namespace user
    bool display::display_posted_routine_step()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_procedureaPost.has_element())
       {

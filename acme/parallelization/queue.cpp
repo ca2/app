@@ -30,7 +30,7 @@ namespace parallelization
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_procedurea.add(procedure);
 
@@ -46,7 +46,7 @@ namespace parallelization
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_ptask == ::get_task())
          {
@@ -62,7 +62,7 @@ namespace parallelization
       }
 
 
-      auto phappening = __create_new < manual_reset_happening >();
+      auto phappening = øcreate_new < manual_reset_happening >();
 
       async([procedure, phappening]()
          {
@@ -81,7 +81,7 @@ namespace parallelization
    void queue::defer_run()   
    {
 
-      _synchronous_lock synchronouscock(this->synchronization());
+      _synchronous_lock synchronouscock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_procedurea.is_empty())
       {
@@ -96,7 +96,7 @@ namespace parallelization
          m_ptask = m_pobjectFork->fork([this]()
             {
 
-               _synchronous_lock synchronouslock(this->synchronization());
+               _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                while (m_procedurea.has_element())
                {

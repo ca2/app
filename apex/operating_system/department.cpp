@@ -58,7 +58,7 @@ namespace operating_system
 
       string strRead;
       
-      auto pprocessor = __create_new < process_processor >();
+      auto pprocessor = øcreate_new < process_processor >();
       
       pprocessor->process(scopedstrCmdLine, time, pbPotentialTimeout, &strRead);
 
@@ -73,7 +73,7 @@ namespace operating_system
 
       //process_processor proc(scopedstrCmdLine, dur, pbPotentialTimeout);
       
-      auto pprocessor = __create_new < process_processor >();
+      auto pprocessor = øcreate_new < process_processor >();
       
       pprocessor->process(scopedstrCmdLine, time, pbPotentialTimeout);
 
@@ -85,7 +85,7 @@ namespace operating_system
    exit_status department::synch(const ::scoped_string & scopedstrCmdLine, ::e_display edisplay, const class time & time, bool * pbPotentialTimeout)
    {
 
-      auto pprocessor = __create_new < process_processor >();
+      auto pprocessor = øcreate_new < process_processor >();
       
       pprocessor->process(scopedstrCmdLine, time, pbPotentialTimeout);
 
@@ -130,7 +130,7 @@ namespace operating_system
 //
 //      return proc.m_exitstatus;
       
-      auto pprocessor = __create_new < process_processor >();
+      auto pprocessor = øcreate_new < process_processor >();
       
       pprocessor->process(scopedstrCmdLine, time, pbPotentialTimeout, nullptr, true);
 
@@ -152,7 +152,7 @@ namespace operating_system
 
       m_strCmdLine = scopedstrCmdLine;
       
-      __øconstruct(m_pprocess);
+      øconstruct(m_pprocess);
 
       m_pstrRead = pstrRead;
 
@@ -373,7 +373,7 @@ namespace operating_system
 
       m_bElevated = bElevated;
 
-      m_pthread = __create_new < process_thread > ();
+      m_pthread = øcreate_new < process_thread > ();
 
       m_pthread->construct_process_thread(scopedstrCmdLine, dur, &m_bPotentialTimeout, pstrRead, bElevated);
 

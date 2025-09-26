@@ -955,7 +955,7 @@ bool directory_system::enumerate(::file::listing_base & listing)
 bool directory_system::defer_enumerate_media_library(::file::listing_base& listing)
 {
 
-   _synchronous_lock sl(m_pmutexMediaLibrary);
+   _synchronous_lock sl(m_pmutexMediaLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    for (auto& pair : m_medialibraryitemmap)
    {
@@ -1020,7 +1020,7 @@ bool directory_system::defer_enumerate_protocol(::file::listing_base& listing)
 ::media_library::item* directory_system::media_library_item(const ::file::path& path)
 {
 
-   _synchronous_lock sl(m_pmutexMediaLibrary);
+   _synchronous_lock sl(m_pmutexMediaLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strId(path);
 
@@ -1117,10 +1117,10 @@ bool directory_system::defer_media_library_representative_file_name(::file::path
 
 
 
-bool directory_system::list(string_array_base & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
+bool directory_system::list_base(string_array_base & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
 {
 
-   return ::file::enumerator::list(stra, scopedstr, eflag);
+   return ::file::enumerator::list_base(stra, scopedstr, eflag);
 
 }
 
@@ -1298,10 +1298,10 @@ void directory_system::erase_recursively(const ::file::path &path)
 }
 
 
-string_to_string directory_system::map_content(const ::file::path & path)
+string_to_string_base directory_system::map_content(const ::file::path & path)
 {
 
-   ::string_to_string stringmap;
+   ::string_to_string_base stringmap;
 
    ::file::listing_base listing;
 
@@ -1388,7 +1388,7 @@ void directory_system::change_to_home()
 void directory_system::add_media_library_item(::media_library::item* pmedialibraryitem)
 {
 
-   _synchronous_lock lock(m_pmutexMediaLibrary);
+   _synchronous_lock lock(m_pmutexMediaLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto emedialibrary = pmedialibraryitem->media_library_type();
 
@@ -1575,7 +1575,7 @@ void directory_system::init_system()
 
    }
 
-   //__øconstruct(m_pfilewatcher);
+   //øconstruct(m_pfilewatcher);
 
    pdirectorysystem->create(this->bookmark());
 
@@ -1589,7 +1589,7 @@ void directory_system::init_system()
    //if (m_pziputil == nullptr)
    //{
 
-   //   m_pziputil = __allocate ::zip::util();
+   //   m_pziputil = øallocate ::zip::util();
 
    //}
 

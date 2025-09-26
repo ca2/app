@@ -60,7 +60,7 @@ int main(Array < String ^ > ^ refstra)
 
    class acme_acme acme;
 
-   ap(acme_main_data) pmaindata = __allocate acme_main_data(refstra);
+   ap(acme_main_data) pmaindata = øallocate acme_main_data(refstra);
 
 #ifdef MAIN_STRING
 
@@ -150,9 +150,9 @@ int WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //         //KEEP(thread_flag_prevent_create_thread);
 //
 //
-//         pacme = __allocate class acme_acme ();
+//         pacme = øallocate class acme_acme ();
 //
-//         pmaindata = __allocate acme_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
+//         pmaindata = øallocate acme_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
 //
 //#ifdef MAIN_RUNNER0
 //

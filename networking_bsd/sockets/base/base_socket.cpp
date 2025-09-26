@@ -179,7 +179,24 @@ namespace sockets_bsd
       else
       {
 
-         m_psockethandler = phandler;
+         auto psockethandlerOld = m_psockethandler;
+
+         if (psockethandlerOld != phandler)
+         {
+
+            m_psockethandler = phandler;
+
+            if (psockethandlerOld)
+            {
+
+               psockethandlerOld->erase(this);
+
+            }
+
+         }
+
+
+
 
       }
 
@@ -428,7 +445,7 @@ namespace sockets_bsd
 
             ::pointer < ::sockets_bsd::socket_handler > phandler = socket_handler();
 
-            phandler->socket_id_list_modify(m_socketid, e_list_close, bCloseAndDelete);
+            phandler->m_socketlistClose.change(m_socketid, bCloseAndDelete);
 
          }
 
@@ -909,6 +926,10 @@ namespace sockets_bsd
       m_bSsl = bSslNegotiate;
    }
 
+   void base_socket::set_no_ssl_shutdown()
+   {
+
+   }
 
    bool base_socket::IsSSLServer()
    {
@@ -1187,7 +1208,7 @@ namespace sockets_bsd
 
    //   SetDetached();
 
-   //   auto psocketthread = __allocate socket_thread();
+   //   auto psocketthread = øallocate socket_thread();
 
    //   psocketthread->initialize_socket_thread(this);
 
@@ -2675,13 +2696,13 @@ bool base_socket::SetSoKeepalive(bool x)
          if (m_timeKeepConnectionAfterLastIO > 0_s)
          {
 
-            phandler->socket_id_list_add(GetSocketId(), e_list_timeout);
+            phandler->m_socketlistTimeout.add_unique(GetSocketId());
 
          }
          else
          {
 
-            phandler->socket_id_list_erase(GetSocketId(), e_list_timeout);
+            phandler->m_socketlistTimeout.erase(GetSocketId());
 
          }
 
@@ -2835,7 +2856,7 @@ bool base_socket::SetSoKeepalive(bool x)
          for (; i < n && LineProtocol(); i++)
          {
             auto pNextLine = strpbrk(buf + i, "\r\n");
-            if (pNextLine) i = pNextLine - buf;
+            if (pNextLine) i = (int)(pNextLine - buf);
             while ((buf[i] == 13 || buf[i] == 10) && LineProtocol())
             {
                char c = buf[i];
@@ -2843,10 +2864,10 @@ bool base_socket::SetSoKeepalive(bool x)
                if (buf[x])
                {
 
-                  m_scopedstrLine += {buf + x, i - x};
+                  m_strLine += {buf + x, i - x};
 
                }
-               OnLine( m_scopedstrLine);
+               OnLine( m_strLine);
                if(IsCloseAndDelete())
                   break;
                i++;
@@ -2858,7 +2879,7 @@ bool base_socket::SetSoKeepalive(bool x)
                   i++;
                }
                x = i;
-               m_scopedstrLine.destroy();
+               m_strLine.destroy();
             }
             if (!LineProtocol())
             {
@@ -2897,7 +2918,7 @@ bool base_socket::SetSoKeepalive(bool x)
          else if (buf[x])
          {
 
-            m_scopedstrLine.assign_copy({buf + x, string_safe_length(buf+x)});
+            m_strLine.assign(buf + x, string_safe_length(buf+x));
 
          }
 
@@ -3020,7 +3041,7 @@ bool base_socket::SetSoKeepalive(bool x)
 
 #ifdef BSD_STYLE_SOCKETS
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_psslcontext->m_pclientcontext->session() != nullptr)
       {
@@ -3037,7 +3058,7 @@ bool base_socket::SetSoKeepalive(bool x)
    void base_socket::get_ssl_session()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 #ifdef BSD_STYLE_SOCKETS
       if (m_psslcontext->m_pclientcontext->m_psslsession == nullptr)

@@ -1,7 +1,5 @@
 #include "framework.h"
 #include "department.h"
-#include "experience.h"
-#include "frame.h"
 #include "acme/exception/exit.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -10,46 +8,40 @@
 #include "axis/platform/session.h"
 #include "berg/platform/system.h"
 #include "berg/user/user/user.h"
-
+#include "experience.h"
+#include "frame.h"
 
 
 namespace experience
 {
 
 
-   department::department()
-   {
-
-   }
+   department::department() {}
 
 
-   department::~department()
-   {
-
-   }
+   department::~department() {}
 
 
-   ::pointer<::experience::experience>department::create_experience(::particle * pparticle, const ::scoped_string & scopedstrExperienceRequest)
+   ::pointer<::experience::experience> department::create_experience(::particle *pparticle,
+                                                                     const ::scoped_string &scopedstrExperienceRequest)
    {
 
       string strExperience = experience_name(scopedstrExperienceRequest);
 
-      auto & pfactory = system()->factory("experience", strExperience);
+      auto &pfactory = system()->factory("experience", strExperience);
 
       if (!pfactory)
       {
 
          return nullptr;
-
       }
 
-      auto pexperience = __øcreate <::experience::experience>(pfactory);
+      auto pexperience = øcreate<::experience::experience>(pfactory);
 
-      if(pexperience == nullptr)
+      if (pexperience == nullptr)
       {
 
          return nullptr;
-
       }
 
       pexperience->initialize(pparticle);
@@ -59,16 +51,16 @@ namespace experience
       pexperience->m_strExperience = strExperience;
 
       return ::transfer(pexperience);
-
    }
 
 
-   ::pointer<::experience::experience>department::experience(::particle * pparticle, const ::scoped_string & scopedstrExperienceRequest)
+   ::pointer<::experience::experience> department::experience(::particle *pparticle,
+                                                              const ::scoped_string &scopedstrExperienceRequest)
    {
 
-      auto & pexperience = m_mapExperience[experience_name(scopedstrExperienceRequest)];
+      auto &pexperience = m_mapExperience[experience_name(scopedstrExperienceRequest)];
 
-      if(pexperience == nullptr)
+      if (pexperience == nullptr)
       {
 
          string_array_base straExperience;
@@ -76,7 +68,6 @@ namespace experience
          {
 
             straExperience.add(scopedstrExperienceRequest);
-
          }
 
          {
@@ -86,7 +77,6 @@ namespace experience
             auto strExperience = psystem->payload("experience").as_string();
 
             straExperience.add(strExperience);
-
          }
 
          {
@@ -98,7 +88,6 @@ namespace experience
                auto strExperience = papp->preferred_experience();
 
                straExperience.add(strExperience);
-
             }
 
             {
@@ -106,7 +95,6 @@ namespace experience
                auto strExperience = papp->payload("experience");
 
                straExperience.add(strExperience);
-
             }
 
             {
@@ -115,26 +103,26 @@ namespace experience
 
                {
 
-                  auto strExperience = file()->safe_get_string(directory_system()->config() / papp->m_strAppName / "experience.txt");
+                  auto strExperience =
+                     file()->safe_get_string(directory_system()->config() / papp->m_strAppName / "experience.txt");
 
                   straExperience.add(strExperience);
-
                }
 
                {
 
-                  auto strExperience = file()->safe_get_string(directory_system()->config() / ::file::path(papp->m_strAppName).folder() / "experience.txt");
+                  auto strExperience = file()->safe_get_string(
+                     directory_system()->config() / ::file::path(papp->m_strAppName).folder() / "experience.txt");
 
                   straExperience.add(strExperience);
-
                }
 
                {
 
-                  auto strExperience = file()->safe_get_string(directory_system()->config() / ::file::path(papp->m_strAppName).name() / "experience.txt");
+                  auto strExperience = file()->safe_get_string(
+                     directory_system()->config() / ::file::path(papp->m_strAppName).name() / "experience.txt");
 
                   straExperience.add(strExperience);
-
                }
 
                {
@@ -142,19 +130,16 @@ namespace experience
                   auto strExperience = file()->safe_get_string(directory_system()->config() / "system/experience.txt");
 
                   straExperience.add(strExperience);
-
                }
 
                {
 
-                  string strExperience = file()->safe_get_string(directory_system()->config() / "system/experience.txt");
+                  string strExperience =
+                     file()->safe_get_string(directory_system()->config() / "system/experience.txt");
 
                   straExperience.add(strExperience);
-
                }
-
             }
-
          }
 
          straExperience.add(" core  ");
@@ -171,9 +156,9 @@ namespace experience
 
          straExperience.case_insensitive_erase_duplicates();
 
-         ::pointer<::experience::experience>pexperienceSelected;
+         ::pointer<::experience::experience> pexperienceSelected;
 
-         for (auto& str : straExperience)
+         for (auto &str: straExperience)
          {
 
             pexperienceSelected = create_experience(pparticle, str);
@@ -182,9 +167,7 @@ namespace experience
             {
 
                break;
-
             }
-
          }
 
          if (pexperienceSelected.is_null())
@@ -193,19 +176,18 @@ namespace experience
             auto psystem = system();
 
             throw exit_exception(::error_exit_system, psystem, "no experience_* plugin installed");
-
          }
 
          pexperience = pexperienceSelected;
-
       }
 
       return pexperience;
-
    }
 
 
-   ::pointer<::experience::frame>department::frame_experience(::particle * pparticle, const ::scoped_string & scopedstrExperienceRequest, const ::scoped_string & scopedstrFrameSchema)
+   ::pointer<::experience::frame> department::frame_experience(::particle *pparticle,
+                                                               const ::scoped_string &scopedstrExperienceRequest,
+                                                               const ::scoped_string &scopedstrFrameSchema)
    {
 
       auto strExperience = experience_name(scopedstrExperienceRequest);
@@ -216,34 +198,31 @@ namespace experience
       {
 
          return nullptr;
-
       }
 
       auto pframe = pexperience->frame_experience(scopedstrFrameSchema);
 
-      if(!pframe)
+      if (!pframe)
       {
 
          output_error_message("no department plugin able to produce u frame");
 
          return nullptr;
-
       }
 
       pframe->initialize(pexperience);
 
       pframe->m_pexperience = pexperience;
 
-      pframe->m_strExperience = strExperience;
+      pframe->m_strExperience = pexperience->m_strExperience;
 
       pframe->m_strFrameSchema = scopedstrFrameSchema;
 
       return pframe;
-
    }
 
 
-   CLASS_DECL_BERG string experience_name(const ::scoped_string & scopedstr)
+   CLASS_DECL_BERG string experience_name(const ::scoped_string &scopedstr)
    {
 
       string strExperience;
@@ -255,7 +234,6 @@ namespace experience
       strExperience.case_insensitive_begins_eat("experience_");
 
       return strExperience;
-
    }
 
 
@@ -271,11 +249,11 @@ namespace berg
 
       information() << "berg::user::initialize1_experience start";
 
-      //auto estatus = 
-      
-      __construct_new(m_pexperience);
+      // auto estatus =
 
-      //if (!estatus)
+      øconstruct_new(m_pexperience);
+
+      // if (!estatus)
       //{
 
       //   //m_result.add(estatus);
@@ -286,13 +264,13 @@ namespace berg
 
       //}
 
-      //m_pexperience->construct(this);
+      // m_pexperience->construct(this);
 
-      //estatus = 
-      
+      // estatus =
+
       m_pexperience->init();
 
-      //if(!estatus)
+      // if(!estatus)
       //{
 
       //   //m_result.add(estatus);
@@ -305,12 +283,8 @@ namespace berg
 
       information() << "ok";
 
-      //return ::success;
-
+      // return ::success;
    }
 
-   
+
 } // namespace berg
-
-
-

@@ -22,6 +22,7 @@
 #include "acme/platform/http.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/path.h"
 //#include "apex/networking/http/context.h"
 #include "acme/platform/node.h"
 
@@ -581,7 +582,7 @@ bool directory_context::_enumerate(::file::listing_base& listing)
       else
       {
 
-         auto pfolder = __øcreate < ::folder >(pfactory);
+         auto pfolder = øcreate < ::folder >(pfactory);
 
          if (!pfolder)
          {
@@ -981,7 +982,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
 
    //         unsigned int dwLastError;
 
-            //if (!m_isdirmap.lookup(pcszPath, bHasSubFolder, dwLastError))
+            //if (!m_isdirmap.find(pcszPath, bHasSubFolder, dwLastError))
 
             //{
             //   return false;
@@ -1119,7 +1120,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
 //   //   else
 //   //   {
 //
-//   //      auto pfolder = __øcreate< ::folder >(pfactory);
+//   //      auto pfolder = øcreate< ::folder >(pfactory);
 //
 //   //      if (!pfolder)
 //   //      {
@@ -1321,7 +1322,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
       else
       {
 
-         auto pfolder = __øcreate< ::folder >(pfactory);
+         auto pfolder = øcreate< ::folder >(pfactory);
 
          if (!pfolder)
          {
@@ -1411,7 +1412,7 @@ bool directory_context::name_is(const ::file::path& strPath)
       else
       {
 
-         auto pfolder = __øcreate < ::folder >(pfactory);
+         auto pfolder = øcreate < ::folder >(pfactory);
 
          if (!pfolder)
          {
@@ -1446,7 +1447,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 
       //      zip_context zip(this);
             //            unsigned int dwLastError;
-                        //if (m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
+                        //if (m_isdirmap.find(strPath, bHasSubFolder, dwLastError))
                         //   return bHasSubFolder;
         //    bHasSubFolder = zip.has_sub_folder(strPath);
             //m_isdirmap.set(strPath, bHasSubFolder, get_last_error());
@@ -1466,15 +1467,15 @@ bool directory_context::name_is(const ::file::path& strPath)
 //      }
 //
 //
-//      bool directory_context::is_dir_map::lookup(const ::file::path & path, bool &bIsDir, unsigned int & dwLastError)
+//      bool directory_context::is_dir_map::find(const ::file::path & path, bool &bIsDir, unsigned int & dwLastError)
 //      {
 //
-//         return lookup(path, bIsDir, dwLastError, (int) path.length());
+//         return find(path, bIsDir, dwLastError, (int) path.length());
 //
 //      }
 //
 //
-//      bool directory_context::is_dir_map::lookup(const ::file::path & path, bool &bIsDir, unsigned int &dwLastError, int iLastChar)
+//      bool directory_context::is_dir_map::find(const ::file::path & path, bool &bIsDir, unsigned int &dwLastError, int iLastChar)
 //      {
 //
 //         if (path.get_length() <= 0)
@@ -1759,7 +1760,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //
 //         is_dir * pdir = this;
 //
-//         ::pointer<is_dir>pfind(__allocate is_dir());
+//         ::pointer<is_dir>pfind(øallocate is_dir());
 //
 //         index iFind0 = 0;
 //         index iFind3 = 0;
@@ -1826,7 +1827,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //
 //                  pdir = pfind;
 //
-//                  pfind = __allocate is_dir();
+//                  pfind = øallocate is_dir();
 //                  iFind0 = iFind3 + 1;
 //               }
 //            }
@@ -1931,7 +1932,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::install()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto psystem = system();
 
@@ -1943,7 +1944,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::config()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto psystem = system();
 
@@ -1955,7 +1956,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::home()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto psystem = system();
 
@@ -1969,7 +1970,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 
 //   __UNREFERENCED_PARAMETER(pparticle);
 
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 //   return m_pathUser;
 
@@ -1979,7 +1980,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 ::file::path directory_context::module()
 {
 
-   //_synchronous_lock synchronouslock(this->synchronization());
+   //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto papplication = application();
 
@@ -1991,7 +1992,7 @@ bool directory_context::name_is(const ::file::path& strPath)
 //::file::path directory_context::ca2module()
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   auto psystem = system();
 //
@@ -2070,7 +2071,7 @@ void directory_context::erase(const ::file::path& path, bool bRecursive)
 void directory_context::get_matter_locator(string_array_base& straMatterLocator, bool bIncludeMain)
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    straMatterLocator.erase_all();
 
@@ -2142,7 +2143,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
       }
 
-      _synchronous_lock synchronouslock(psystem->matter_mutex());
+      _synchronous_lock synchronouslock(psystem->matter_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::property_set set;
 
@@ -2381,7 +2382,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
          pathCache = psystem->directory_system()->m_pathLocalAppMatterCacheFolder / pathLs0 / (patha[0] + ".map_question");
 
-         information() << "cache map path: " << pathCache;
+         information() << "cache map_base path: " << pathCache;
 
          path = file()->as_string(pathCache);
 
@@ -2455,6 +2456,8 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
    //   ptextcontext = session()->text_context();
 
    //}
+
+   ::string strLogNotFound;
 
    if (psystem->directory_system()->m_bMatterFromHttpCache)
    {
@@ -2602,12 +2605,14 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
             strMatter.replace_with("/", "\\");
 
-            auto etype = file()->resource_get_type(strMatter);
+            auto etype = file()->resource_get_type(strMatter, &strLogNotFound);
 
             if (::is_existing_file_or_folder(etype))
             {
 
                path = "zipresource://" + strMatter;
+
+               informationf("The file %s was found in zip folder.", path.c_str());
 
                path.m_etype = etype;
 
@@ -2653,6 +2658,8 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
    }
 
    bOk = false;
+
+   information(strLogNotFound);
 
    path = "itdoesntexist." + ::as_string(::long_long_millisecond());
 
@@ -2734,7 +2741,7 @@ ret:
    string_array_base straMatterLocator;
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       straMatterLocator = get_app()->m_straMatterLocator;
 
@@ -2841,7 +2848,7 @@ ret:
 //::file::path directory_context::commonappdata(const ::scoped_string& scopedstrAppId, const ::scoped_string& scopedstrBuild, const ::scoped_string& scopedstrPlatform, const ::scoped_string& scopedstrConfiguration)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   string strAppId(scopedstrAppId);
 //
@@ -2881,7 +2888,7 @@ ret:
 //   const ::scoped_string& scopedstrSchema)
 //{
 //
-//   _synchronous_lock synchronouslock(this->synchronization());
+//   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   string strLocale(scopedstrLocale);
 //
@@ -3164,7 +3171,7 @@ bool directory_context::is_inside(const ::file::path & pathFolder, const ::file:
 //         if(m_strApiCc.has_character())
 //            return m_strApiCc;
 //
-//         _synchronous_lock synchronouslock(m_pmutex);
+//         _synchronous_lock synchronouslock(m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //
 //

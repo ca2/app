@@ -13,7 +13,7 @@
 //
 //   //   {
 //
-//   //      auto psystem = __allocate ::apex::system();
+//   //      auto psystem = øallocate ::apex::system();
 //
 //   //      psystem->system_construct(&mainstruct, argc, argv);
 //
@@ -23,7 +23,7 @@
 //
 //   //}
 //
-//   auto psystem = __allocate ::apex::system();
+//   auto psystem = øallocate ::apex::system();
 //
 //   psystem->console_initialize();
 //

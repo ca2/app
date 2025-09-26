@@ -16,7 +16,7 @@
 //
 //      }
 //
-//      auto pappNew = __allocate APP();
+//      auto pappNew = øallocate APP();
 //
 //      if(pappNew == nullptr)
 //      {
@@ -109,7 +109,7 @@
 //
 //   }
 //
-//  synchronous_lock synchronouslock(channel_mutex());
+//  synchronous_lock synchronouslock(channel_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //  ::object* pobjectReceiver = dynamic_cast <::object*> (preceiverDerived);
 //
@@ -175,7 +175,7 @@
 //     if (proutea.is_null())
 //     {
 //
-//        proutea = __allocate ::message::route_array();
+//        proutea = øallocate ::message::route_array();
 //
 //     }
 //
@@ -199,7 +199,7 @@
 //::message::typed_route < MESSAGE > & channel::get_typed_route (const ::atom & atom, RECEIVER * preceiverDerived)
 //{
 //
-//  synchronous_lock synchronouslock(s_pmutexChannel);
+//  synchronous_lock synchronouslock(s_pmutexChannel, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //  ::object * pobjectReceiver = dynamic_cast < ::object * > (preceiverDerived);
 //
@@ -256,7 +256,7 @@
 //     if (proutea.is_null())
 //     {
 //
-//        proutea = __allocate ::message::route_array();
+//        proutea = øallocate ::message::route_array();
 //
 //     }
 //
@@ -326,7 +326,7 @@
 //   while (c > 0)
 //   {
 //
-//      auto p = __allocate TYPE(&a);
+//      auto p = øallocate TYPE(&a);
 //
 //      stream >> *p;
 //

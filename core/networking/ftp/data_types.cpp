@@ -242,7 +242,7 @@ namespace ftp
 
    const command::iextended_info& command::info2::Get(enum_command enCommand)
    {
-      auto p = GetInstance().find_item(enCommand);
+      auto p = GetInstance().find(enCommand);
       ASSERT(p);
       return *p->element2();
    }

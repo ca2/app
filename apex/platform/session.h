@@ -57,7 +57,7 @@ namespace apex
 //       // apex commented
 //       //::pointer<::user::keyboard>                        m_pkeyboard;
 //
-//       ::pointer < ::map < ::user::enum_key, bool > >        m_pmapKeyPressed;
+//       ::pointer < ::map_base < ::user::enum_key, bool > >        m_pmapKeyPressed;
 //
 //       bool                                                  m_bProgrammerMode;
 //
@@ -108,7 +108,7 @@ namespace apex
 //
 //
 //       // apex commented
-//       //atom_map < ::layered * >                      m_mapboundui;
+//       //atom_map_base < ::layered * >                      m_mapboundui;
 //
 //
 //
@@ -330,7 +330,7 @@ namespace apex
       // //virtual ::collection::count get_desk_monitor_count();
       // //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::int_rectangle * prectangle);
 
-      // virtual void  get_monitor(int_rectangle_array & rectaMonitor, int_rectangle_array & rectaIntersect, const ::int_rectangle & rectangle);
+      // virtual void  get_monitor(int_rectangle_array_base & rectaMonitor, int_rectangle_array_base & rectaIntersect, const ::int_rectangle & rectangle);
 
       // // apex commented
       // //virtual ::collection::index initial_frame_position(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bMove, ::user::interaction * pinteraction);

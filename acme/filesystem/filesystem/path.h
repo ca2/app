@@ -6,7 +6,7 @@
 //#include "acme/prototype/datetime/file_time.h"
 #include  "acme/prototype/prototype/particle.h"
 //#include "acme/prototype/prototype/pointer.h"
-#include "acme/prototype/string/character_range.h"
+#include "acme/prototype/string/_character_range.h"
 
 
 class windows_path;
@@ -46,14 +46,14 @@ namespace file
 
 
    // not rigorous at all file::path ... more "ryg"orous with performance and like you should know what are you doing
-   class path :
+   class CLASS_DECL_ACME path :
       public string,
       public path_meta
    {
    public:
 
 
-      using BASe_RANGE = typename ::string::BASE_RANGE;
+      using BASE_RANGE = typename ::string::BASE_RANGE;
       using CHARACTER = typename BASE_RANGE::CHARACTER;
       using ITEM = CHARACTER;
 
@@ -65,15 +65,22 @@ namespace file
       //path(enum_for_moving) { }
       //path(enum_get_buffer, character_count len) { get_buffer(len); }
       path(const path & path) : string(path), path_meta(path) {}
+      path(path&& path) : string(::transfer(path)), path_meta(::transfer(path)) {}
       //template < typename ITERATOR_TYPE, int t_size >
       //path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
-      //template < character_range RANGE >
+      //template < primitive_character_range RANGE >
       //path(const RANGE & range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
       // 
       // 
       // 
-      
-      template < character_range RANGE >
+      // template < primitive_character_range RANGE >
+      // inline path(const RANGE& range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalizePath = true, long long iSize = -1)
+      //    requires
+      //    (!(::std::is_base_of_v < path, RANGE >
+      //       || ::std::is_same_v < path, RANGE >)) :
+      //    string(range)
+
+      template < primitive_character_range RANGE >
       inline path(const RANGE& range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalizePath = true, long long iSize = -1)
          requires
          (!(::std::is_base_of_v < path, RANGE >
@@ -131,7 +138,7 @@ namespace file
       //path(const_char_pointer pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
       //path(const ::wd16_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
       //path(const ::wd32_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
-      //template < character_range CHARACTER_RANGE >
+      //template < primitive_character_range CHARACTER_RANGE >
       //path(const CHARACTER_RANGE & range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
 
       //template<typed_range<::ansi_character *> RANGE>
@@ -189,10 +196,10 @@ namespace file
       //path(const const_wd16_range & wd16range, character_count start, character_count len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd16range, start, len); }
       //path(const const_wd32_range & wd32range, character_count start, character_count len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd32range, start, len); }
       template < primitive_character CHARACTER2 >
-      path(const CHARACTER2 * start, const CHARACTER2 * end, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) : 
+      path(const CHARACTER2 * start, const CHARACTER2 * end, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) :
          path(::string(start, end), epath, etype, bNormalize, iSize) {}
       template < primitive_character CHARACTER2 >
-      path(const CHARACTER2 * start, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) : 
+      path(const CHARACTER2 * start, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) :
          path(::string(start), epath, etype, bNormalize, iSize) {}
       template < primitive_character CHARACTER2 >
       path(const CHARACTER2 * start, character_count len, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) :
@@ -390,7 +397,7 @@ namespace file
       path & operator = (const ::file::path & path);
 
       template < primitive_character CHARACTER2 >
-      path & operator = (const ::range < const CHARACTER2 *> & range)
+      path & operator = (const ::character_range < const CHARACTER2 *> & range)
       {
 
          auto path = ::file::path(range);
@@ -664,6 +671,16 @@ namespace file
 
 } // namespace file
 
+template<>
+struct std::formatter<::file::path> : std::formatter<std::string_view> {
+   template<typename FormatContext>
+   auto format(const ::file::path& p, FormatContext& ctx) const {
+      return std::formatter<std::string_view>::format(
+         std::string_view(p.begin(), p.end()), ctx);
+   }
+};
+
+
 
 
 
@@ -726,8 +743,8 @@ CLASS_DECL_ACME bool path_begins_eat(::string& strUri, const ::scoped_string& sc
 
 template < primitive_character CHARACTER >
 ::file::path operator / (
-   const ::range < const CHARACTER* >& range1,
-   const ::range < const CHARACTER* >& range2)
+   const ::character_range < const CHARACTER* >& range1,
+   const ::character_range < const CHARACTER* >& range2)
 {
 
    return ::file::path(range1).slashed_path(range2);
@@ -737,7 +754,7 @@ template < primitive_character CHARACTER >
 
 template < primitive_character CHARACTER, character_count n >
 ::file::path operator / (
-   const ::range < const CHARACTER* >& range,
+   const ::character_range < const CHARACTER* >& range,
    const CHARACTER(&s)[n])
 {
 
@@ -749,7 +766,7 @@ template < primitive_character CHARACTER, character_count n >
 template < primitive_character CHARACTER, character_count n >
 ::file::path operator / (
    const CHARACTER(&s)[n],
-   const ::range < const CHARACTER* >& range)
+   const ::character_range < const CHARACTER* >& range)
 {
 
    return ::file::path(::as_string_literal< CHARACTER, n>(s)) / ::file::path(range);
@@ -759,7 +776,7 @@ template < primitive_character CHARACTER, character_count n >
 
 template < primitive_character CHARACTER, typed_character_pointer < CHARACTER > TYPED_CHARACTER_POINTER >
 ::file::path operator / (
-   const ::range < const CHARACTER* >& range,
+   const ::character_range < const CHARACTER* >& range,
    TYPED_CHARACTER_POINTER p)
 {
 
@@ -771,7 +788,7 @@ template < primitive_character CHARACTER, typed_character_pointer < CHARACTER > 
 template < character_pointer CHARACTER_POINTER >
 ::file::path operator / (
    CHARACTER_POINTER p,
-   const ::range < const ::decay< CHARACTER_POINTER > * > & range
+   const ::character_range < const ::decay< CHARACTER_POINTER > * > & range
    )
 {
 
@@ -782,7 +799,7 @@ template < character_pointer CHARACTER_POINTER >
 
 //template < primitive_character CHARACTER, int t_size >
 //::file::path operator / (
-//   const ::range < const CHARACTER* >& range,
+//   const ::character_range < const CHARACTER* >& range,
 //   const const_string_range_static_array< const CHARACTER *, t_size > & a)
 //{
 //
@@ -793,13 +810,15 @@ template < character_pointer CHARACTER_POINTER >
 
 template < primitive_character CHARACTER >
 ::file::path operator / (
-   const ::range < const CHARACTER* >& range,
+   const ::character_range < const CHARACTER* >& range,
    const ::atom & atom)
 {
 
    return ::file::path(range) / ::file::path(atom.as_string());
 
 }
+
+
 
 
 

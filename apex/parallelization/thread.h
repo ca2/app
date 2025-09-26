@@ -102,8 +102,8 @@ public:
    bool                                               m_bTemporary;
    ::pointer<::object>                                m_pobjectScript;
 
-   ::pointer_array_base < ::message::message >        m_messagea;
-   numeric_array_base < enum_message >                m_emessageaGetLast;
+   ::pointer_array_base < ::user::message >           m_messagea;
+   numeric_array_base < ::user::enum_message >        m_emessageaGetLast;
 
 #ifdef WINDOWS
    ::raw_array_base < MESSAGE >                       m_messageaInitialQueue;
@@ -163,7 +163,7 @@ public:
 
    bool peek_message(MESSAGE * pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, bool bRemoveMessage = false);
    void get_message(MESSAGE * pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax);
-   void post_message(oswindow oswindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam);
+   void post_message(oswindow oswindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
 
    ::user::interaction_base_array & userprimitivea();
@@ -253,13 +253,13 @@ public:
    //inline bool command_value_is_true(const ::atom& atom) const;
 
 
-   virtual void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+   virtual void post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
-   virtual void send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const class time & timeTimeout = ::time::infinity());
+   virtual void send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const class time & timeTimeout = ::time::infinity());
 
-   virtual void post_element(const ::enum_message & emessage, const ::wparam & wparam, ::particle * pparticle);
+   virtual void post_element(const ::user::enum_message & emessage, const ::wparam & wparam, ::particle * pparticle);
 
-   virtual void send_element(const ::enum_message & emessage, const ::wparam & wparam, ::particle * pparticle, const class time & timeTimeout = ::time::infinity());
+   virtual void send_element(const ::user::enum_message & emessage, const ::wparam & wparam, ::particle * pparticle, const class time & timeTimeout = ::time::infinity());
 
 
    DECLARE_MESSAGE_HANDLER(on_message_branch);
@@ -527,7 +527,7 @@ protected:
 
 
 
-using id_thread_map = atom_map < ::pointer<thread > >;
+using id_thread_map = atom_map_base < ::pointer<thread > >;
 
 
 //CLASS_DECL_APEX void sleep(const time& time);

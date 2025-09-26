@@ -242,7 +242,7 @@ namespace sockets_bsd
 #endif
 
 
-   int SctpSocket::getpaddrs(sctp_assoc_t atom,list<string>& vec)
+   int SctpSocket::getpaddrs(sctp_assoc_t atom,list_base<string>& vec)
    {
       struct sockaddr *point = nullptr;
       int n = sctp_getpaddrs(GetSocketId(), atom, &point);
@@ -260,7 +260,7 @@ namespace sockets_bsd
    }
 
 
-   int SctpSocket::getladdrs(sctp_assoc_t atom,list<string>& vec)
+   int SctpSocket::getladdrs(sctp_assoc_t atom,list_base<string>& vec)
    {
       struct sockaddr *point = nullptr;
       int n = sctp_getladdrs(GetSocketId(), atom, &point);

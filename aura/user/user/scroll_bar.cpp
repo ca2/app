@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "scroll_bar.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/user/user/content.h"
 #include "aura/platform/draw_context2.h"
@@ -64,7 +64,7 @@ namespace user
    void scroll_bar::post_scroll_message(enum_scroll_command ecommand, double dPosition)
    {
 
-      auto pscroll = __allocate ::message::scroll();
+      auto pscroll = øallocate ::message::scroll();
 
       pscroll->m_ecommand = ecommand;
 
@@ -86,13 +86,13 @@ namespace user
       if(m_eorientation == e_orientation_horizontal)
       {
 
-         pscroll->m_emessage = e_message_scroll_x;
+         pscroll->m_eusermessage = ::user::e_message_scroll_x;
 
       }
       else
       {
 
-         pscroll->m_emessage = e_message_scroll_y;
+         pscroll->m_eusermessage = ::user::e_message_scroll_y;
 
       }
 

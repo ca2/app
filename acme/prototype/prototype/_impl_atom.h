@@ -6,6 +6,7 @@
 
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 
 
 template < typename ITERATOR_TYPE >
@@ -173,15 +174,15 @@ inline mutable_string_range < ITERATOR_TYPE >::mutable_string_range(const block 
 //}
 
 
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::atom & atom)
-{
-
-   assign_range(atom.as_string());
-
-   return *this;
-
-}
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::atom & atom)
+//{
+//
+//   assign_range(atom.as_string());
+//
+//   return *this;
+//
+//}
 
 
 //template < typename ITERATOR_TYPE >
@@ -227,16 +228,16 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator =
 //}
 
 
-template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator = (const block & block)
-{
-
-   this->m_begin = (const CHARACTER *)block.data();
-   this->m_end = (const CHARACTER *)block.end();
-
-   return *this;
-
-}
+// template < typename ITERATOR_TYPE >
+// inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator = (const block & block)
+// {
+//
+//    this->m_begin = (const CHARACTER *)block.data();
+//    this->m_end = (const CHARACTER *)block.end();
+//
+//    return *this;
+//
+// }
 
 
 inline atom::atom()
@@ -290,16 +291,20 @@ inline atom::atom(enum_element eelement) :
 // }
 
 
-inline atom::atom(enum_message emessage) :
-        m_etype(e_type_message),
-        m_iLargest((::iptr)emessage) // used m_iLargest to reset 64-bit field
+inline atom::atom(::user::enum_message eusermessage) :
+        m_etype(e_type_user_message),
+        m_iLargest((::iptr)eusermessage) // used m_iLargest to reset 64-bit field
 {
 
+}
+inline atom::atom(::enum_message emessage) :
+    m_etype(e_type_message), m_iLargest((::iptr)emessage) // used m_iLargest to reset 64-bit field
+{
 }
 
 
 // inline atom::atom(ENUM_MESSAGE EMESSAGE) :
-//         atom((::enum_message)EMESSAGE)
+//         atom((::user::enum_message)EMESSAGE)
 // {
 //
 // }
@@ -402,7 +407,7 @@ inline atom::atom(enum_type etypeAdd, const ::atom & atom)
 
       m_etype = (enum_type) (etypeAdd | e_type_text);
 
-      m_str.construct1(atom.m_str);
+      m_str.construct_from_string(atom.m_str);
 
    }
    else if (atom.is_integer())
@@ -432,7 +437,7 @@ inline atom::atom(::atom && atom)
    {
       if (atom.m_etype & e_type_text)
       {
-         m_str.construct1(::transfer(atom.m_str));
+         m_str.construct_from_string(::transfer(atom.m_str));
       }
       else
       {
@@ -452,7 +457,7 @@ inline atom::atom(const atom & atom)
 
       m_etype = atom.m_etype;
 
-      m_str.construct1(atom.m_str);
+      m_str.construct_from_string(atom.m_str);
 
    }
    else
@@ -675,7 +680,7 @@ inline atom & atom::operator = (const atom & atom)
       else if (atom.is_text())
       {
 
-         m_str.construct1(atom.m_str);
+         m_str.construct_from_string(atom.m_str);
 
       }
       else
@@ -694,7 +699,7 @@ inline atom & atom::operator = (const atom & atom)
 }
 
 
-template < character_range RANGE >
+template < primitive_character_range RANGE >
 inline bool atom::operator == (const RANGE & range) const
 {
 
@@ -804,7 +809,7 @@ inline bool atom::operator == (CHARACTER_POINTER p) const
 }
 
 
-template < character_range RANGE >
+template < primitive_character_range RANGE >
 inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 {
 
@@ -1066,33 +1071,51 @@ inline ::std::strong_ordering atom::operator <=>(const ::domain_id & domainid) c
 //}
 //
 
-inline bool atom::operator == (::enum_message emessage) const
+
+inline bool atom::operator == (::user::enum_message eusermessage) const
 {
 
    return ::comparison::tuple
            (
                    [&]() { return m_etype == e_type_message; },
-                   [&]() { return m_emessage == emessage; }
+                   [&]() { return m_eusermessage == eusermessage; }
            );
 
 }
 
 
 
-inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
+inline ::std::strong_ordering atom::operator <=>(::user::enum_message eusermessage) const
 {
 
    return ::comparison::tuple
            (
                    [&]() { return m_etype <=> e_type_message; },
-                   [&]() { return m_emessage <=> emessage; }
+                   [&]() { return m_eusermessage <=> eusermessage; }
            );
 
 }
 
 
 
-//inline bool atom::operator != (::enum_message emessage) const
+
+inline bool atom::operator==(::enum_message emessage) const
+{
+
+   return ::comparison::tuple([&]() { return m_etype == e_type_message; },
+                              [&]() { return m_emessage == emessage; });
+}
+
+
+inline ::std::strong_ordering atom::operator<=>(::enum_message emessage) const
+{
+
+   return ::comparison::tuple([&]() { return m_etype <=> e_type_message; },
+                              [&]() { return m_emessage <=> emessage; });
+}
+
+
+//inline bool atom::operator != (::user::enum_message eusermessage) const
 //{
 //
 //   return order(emessage) != 0;
@@ -1100,7 +1123,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
 //}
 //
 //
-//inline bool atom::operator < (::enum_message emessage) const
+//inline bool atom::operator < (::user::enum_message eusermessage) const
 //{
 //
 //   return order(emessage) < 0;
@@ -1108,7 +1131,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
 //}
 //
 //
-//inline bool atom::operator <= (::enum_message emessage) const
+//inline bool atom::operator <= (::user::enum_message eusermessage) const
 //{
 //
 //   return order(emessage) <= 0;
@@ -1116,7 +1139,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
 //}
 //
 //
-//inline bool atom::operator > (::enum_message emessage) const
+//inline bool atom::operator > (::user::enum_message eusermessage) const
 //{
 //
 //   return order(emessage) > 0;
@@ -1124,7 +1147,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_message emessage) const
 //}
 //
 //
-//inline bool atom::operator >= (::enum_message emessage) const
+//inline bool atom::operator >= (::user::enum_message eusermessage) const
 //{
 //
 //   return order(emessage) >= 0;
@@ -1341,11 +1364,18 @@ inline ::iptr atom::as_iptr() const
 }
 
 
-inline enum_message atom::as_emessage() const
+inline ::user::enum_message atom::as_eusermessage() const
 {
 
-   return m_etype == e_type_message ? m_emessage : (enum_message) e_message_undefined;
+   return m_etype == e_type_user_message ? m_eusermessage : (::user::enum_message) ::user::e_message_undefined;
 
+}
+
+
+inline ::enum_message atom::as_emessage1() const
+{
+
+   return m_etype == e_type_message ? m_emessage : (::enum_message)::e_message_undefined;
 }
 
 
@@ -1700,13 +1730,13 @@ inline void from_string(::atom & atom, const_char_pointer psz)
 //}
 
 
-template < typename CHAR >
-string_base < CHAR > & string_base < CHAR >::operator +=(const ::atom & atom)
-{
-
-   return append(atom);
-
-}
+// template < typename CHAR >
+// string_base < CHAR > & string_base < CHAR >::operator +=(const ::atom & atom)
+// {
+//
+//    return append(atom);
+//
+// }
 
 
 //template < typename ITERATOR_TYPE >

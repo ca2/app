@@ -6,7 +6,7 @@
 #include "impact_system.h"
 #include "toolbar.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/request.h"
@@ -82,7 +82,7 @@ namespace user
       m_bHelpMode = 0;    // not in Shift+F1 help mode
       m_dwPromptContext = 0;
 
-      m_pNextFrameWnd = nullptr;         // not in list yet
+      m_pNextFrameWnd = nullptr;         // not in list_base yet
 
       m_bInRecalcLayout = false;
       m_nShowDelay = -1;              // no delay pending
@@ -208,15 +208,15 @@ namespace user
 
       ::user::main_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &frame_window::on_message_destroy);
-      MESSAGE_LINK(e_message_create, pchannel, this, &frame_window::on_message_create);
-      MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::on_message_size);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &frame_window::on_message_set_focus);
-      MESSAGE_LINK(e_message_activate, pchannel, this, &frame_window::_001OnActivate);
-      MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &frame_window::_001OnNcActivate);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &frame_window::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &frame_window::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &frame_window::on_message_size);
+      USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &frame_window::on_message_set_focus);
+      USER_MESSAGE_LINK(::user::e_message_activate, pchannel, this, &frame_window::_001OnActivate);
+      USER_MESSAGE_LINK(::user::e_message_non_client_activate, pchannel, this, &frame_window::_001OnNcActivate);
 #ifdef WINDOWS_DESKTOP
-      //MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
-      //MESSAGE_LINK(WM_QUERYENDSESSION, pchannel, this, &frame_window::_001OnQueryEndSession);
+      //USER_MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
+      //USER_MESSAGE_LINK(WM_QUERYENDSESSION, pchannel, this, &frame_window::_001OnQueryEndSession);
 #endif
 
    }
@@ -381,9 +381,9 @@ namespace user
 //   lresult frame_window::send_create_message()
 //   {
 //      
-//      auto pcreate = __create_new < ::message::create >();
+//      auto pcreate = øcreate_new < ::message::create >();
 //      
-//      pcreate->id() = e_message_create;
+//      pcreate->id() = ::user::e_message_create;
 //      
 //      pcreate->m_pusersystem = m_pusersystem;
 //      
@@ -410,7 +410,7 @@ namespace user
    ON_MESSAGE(WM_POPMESSAGESTRING, &frame_window::OnPopMessageString)
    ON_MESSAGE(WM_SETMESSAGESTRING, &frame_window::OnSetMessageString)
    ON_MESSAGE(WM_HELPPROMPTADDR, &frame_window::OnHelpPromptAddr)
-   ON_MESSAGE_VOID(e_message_idle_update_command_user_interface, frame_window::OnIdleUpdateCmdUI)
+   ON_MESSAGE_VOID(::user::e_message_idle_update_command_user_interface, frame_window::OnIdleUpdateCmdUI)
    ON_WM_ENTERIDLE()
    ON_e_message_hscroll()
    ON_e_message_vscroll()
@@ -431,7 +431,7 @@ namespace user
    ON_WM_QUERYNEWPALETTE()
    ON_WM_PALETTECHANGED()
    ON_MESSAGE(WM_COMMANDHELP, &frame_window::OnCommandHelp)
-   ON_MESSAGE(e_message_help_hit_test, &frame_window::OnHelpHitTest)
+   ON_MESSAGE(::user::e_message_help_hit_test, &frame_window::OnHelpHitTest)
    ON_MESSAGE(WM_ACTIVATETOPLEVEL, &frame_window::OnActivateTopLevel)
    // turning on and off standard frame gadgetry
    ON_UPDATE_::message::command(ID_VIEW_STATUS_BAR, &frame_window::OnUpdateControlBarMenu)
@@ -522,7 +522,7 @@ namespace user
 
       ENSURE_ARG(pmessage != nullptr);
       // check for special cancel modes for combo interactiones
-      //if (pMsg->message == e_message_left_button_down || pMsg->message == e_message_non_client_left_button_down)
+      //if (pMsg->message == ::user::e_message_left_button_down || pMsg->message == ::user::e_message_non_client_left_button_down)
       //   __cancel_modes(pMsg->oswindow);    // filter clicks
 
       ::pointer<::message::key>pkey = pmessage;
@@ -541,7 +541,7 @@ namespace user
                if (pimpl.is_set())
                {
 
-                  //synchronous_lock synchronouslock(pimpl->m_spgraphics->synchronization());
+                  //synchronous_lock synchronouslock(pimpl->m_spgraphics->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   ::image::image_pointer pimage1;
 
@@ -555,7 +555,7 @@ namespace user
 
                   auto pbufferitem = pimpl->m_pgraphicsgraphics->on_begin_draw(e_graphics_draw);
 
-                  synchronous_lock synchronouslock(pbufferitem->m_pmutex);
+                  synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   auto rectangleTarget = ::double_rectangle(rectangle.size());
 
@@ -579,7 +579,7 @@ namespace user
 
                   //auto estatus = 
                   
-                  __øconstruct(pimage2);
+                  øconstruct(pimage2);
 
                   //if (!estatus)
                   //{
@@ -641,7 +641,7 @@ namespace user
 
 
 
-      /* trans if (pMsg->message >= e_message_key_first && pMsg->message <= e_message_key_last)
+      /* trans if (pMsg->message >= ::user::e_message_key_first && pMsg->message <= ::user::e_message_key_last)
       {
       // finally, translate the message
       HACCEL hAccel = GetDefaultAccelerator();
@@ -704,7 +704,7 @@ namespace user
       ::pointer<::user::frame_window>pFrameWnd = top_level_frame();
       ENSURE_VALID(pFrameWnd);
       pFrameWnd->m_bHelpMode = m_bHelpMode = HELP_INACTIVE;
-      PostMessage(e_message_kick_idle);   // trigger idle update
+      PostMessage(::user::e_message_kick_idle);   // trigger idle update
       */
    }
 
@@ -770,7 +770,7 @@ namespace user
    //   {
    //   // route as help
    //   if (!SendMessage(WM_COMMANDHELP, 0, HID_BASE_COMMAND+nID))
-   //   SendMessage(e_message_command, ID_DEFAULT_HELP);
+   //   SendMessage(::user::e_message_command, ID_DEFAULT_HELP);
    //   return true;
    //   }
    //   */
@@ -798,7 +798,7 @@ namespace user
       m_puiptraDisable->erase_all();
 
       /*
-      // disable all windows connected to this frame (and add them to the list)
+      // disable all windows connected to this frame (and add them to the list_base)
       ::pointer<::user::interaction>oswindow = psystem->get_desktop_window()->GetWindow(GW_CHILD);
 
       while (oswindow != nullptr)
@@ -910,13 +910,13 @@ namespace user
 
       //   // cause normal focus logic to kick in
       //   if (psystem->get_active_ui() == this)
-      //      send_message(e_message_activate, WA_ACTIVE);
+      //      send_message(::user::e_message_activate, WA_ACTIVE);
       //}
 
-      //// force e_message_non_client_activate because Windows may think it is unecessary
+      //// force ::user::e_message_non_client_activate because Windows may think it is unecessary
       //if (bEnable && (m_nFlags & WF_STAYACTIVE))
-      //   send_message(e_message_non_client_activate, true);
-      //// force e_message_non_client_activate for floating windows too
+      //   send_message(::user::e_message_non_client_activate, true);
+      //// force ::user::e_message_non_client_activate for floating windows too
    }
 
 
@@ -957,7 +957,7 @@ namespace user
 
    //   m_strFrameTitle = pszWindowName;    // save title for later
 
-   //   auto pusersystem = __allocate ::user::system(dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate);
+   //   auto pusersystem = øallocate ::user::system(dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate);
 
    //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->id()))
    //   {
@@ -1167,7 +1167,7 @@ namespace user
 
       //informationf("\nm_bLayoutEnable false");
 
-      //auto pusersystem = __allocate ::user::system(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate);
+      //auto pusersystem = øallocate ::user::system(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate);
 
       //if (!create_window_ex(pusersystem, puiParent, pcreate->id()))
       //{
@@ -1526,7 +1526,15 @@ namespace user
          //m_bLockSketchToDesign = false;
 
          // send initial update to all views (and other controls) in the frame
-         send_message_to_descendants(e_message_system_update, id_initial_update, (lparam)0, true, true);
+         send_message_to_descendants(::user::e_message_system_update, id_initial_update, (lparam)0, true, true);
+
+         m_bNeedPerformLayout = true;
+
+         set_need_layout();
+
+         set_need_redraw();
+
+         post_redraw();
 
          // give ::user::impact a chance to save the focus (CFormImpact needs this)
          if (pimpact != nullptr)
@@ -1724,7 +1732,7 @@ namespace user
       if (pActiveImpact != nullptr)
       {
          // trans const MESSAGE* pMsg = GetCurrentMessage();
-         // trans pActiveImpact->SendMessage(e_message_scroll_x, pMsg->wParam, pMsg->lParam);
+         // trans pActiveImpact->SendMessage(::user::e_message_scroll_x, pMsg->wParam, pMsg->lParam);
       }
    }
 
@@ -1734,7 +1742,7 @@ namespace user
       if (pActiveImpact != nullptr)
       {
          // trans      const MESSAGE* pMsg = GetCurrentMessage();
-         // trans      pActiveImpact->SendMessage(e_message_scroll_y, pMsg->wParam, pMsg->lParam);
+         // trans      pActiveImpact->SendMessage(::user::e_message_scroll_y, pMsg->wParam, pMsg->lParam);
       }
    }
    */
@@ -1903,7 +1911,7 @@ namespace user
    //      case SC_TASKLIST:
    //      if (!SendMessage(WM_COMMANDHELP, 0,
    //      HID_BASE_COMMAND+ID_COMMAND_FROM_SC(nItemID)))
-   //      SendMessage(e_message_command, ID_DEFAULT_HELP);
+   //      SendMessage(::user::e_message_command, ID_DEFAULT_HELP);
    //      return;
    //      }*/
    //   }
@@ -1963,7 +1971,7 @@ namespace user
 
       // m_bNeedRepositionBars = true;
 
-      m_bNeedPerformLayout = true;
+      set_need_perform_layout();
 
       set_need_layout();
 
@@ -2078,7 +2086,7 @@ namespace user
    ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type_atom & typeatom)
    {
 
-      ::pointer < toolbar> ptoolbar = __id_create (typeatom);
+      ::pointer < toolbar> ptoolbar = øid_create (typeatom);
 
       ptoolbar->m_dwStyle = uStyle;
 
@@ -2210,7 +2218,7 @@ namespace user
    ::user::document * frame_window::get_active_document()
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       ::pointer<::user::impact>pimpact = get_active_impact();
 
@@ -2300,7 +2308,7 @@ namespace user
    //      else if (wParam != 0)
    //      {
 
-   //         // map SC_CLOSE to PREVIEW_CLOSE when in print thumbnail mode
+   //         // map_base SC_CLOSE to PREVIEW_CLOSE when in print thumbnail mode
    //         /*         if (wParam == __IDS_SCCLOSE && m_lpfnCloseProc != nullptr)
    //         wParam = __IDS_PREVIEW_CLOSE;*/
 
@@ -2674,7 +2682,7 @@ namespace user
 //
 //      LRESULT lResult = 0;
 //
-//      // convert from MSH_MOUSEWHEEL to e_message_mouse_wheel
+//      // convert from MSH_MOUSEWHEEL to ::user::e_message_mouse_wheel
 //
 //#ifdef WINDOWS_DESKTOP
 //
@@ -2689,12 +2697,12 @@ namespace user
 //      const oswindow hwDesktop = ::get_desktop_window();
 //
 //      if (hwFocus == nullptr)
-//         lResult = send_message(e_message_mouse_wheel, (wParam << 16) | keyState, lParam);
+//         lResult = send_message(::user::e_message_mouse_wheel, (wParam << 16) | keyState, lParam);
 //      else
 //      {
 //         do
 //         {
-//            lResult = ::SendMessage(hwFocus, e_message_mouse_wheel,
+//            lResult = ::SendMessage(hwFocus, ::user::e_message_mouse_wheel,
 //                                    (wParam << 16) | keyState, lParam);
 //            hwFocus = ::GetParent(hwFocus);
 //         }
@@ -2875,7 +2883,7 @@ namespace user
       m_rectangleBorder.Null();
       m_dwPromptContext = 0;
 
-      m_pNextFrameWnd = nullptr;         // not in list yet
+      m_pNextFrameWnd = nullptr;         // not in list_base yet
 
       m_bInRecalcLayout = false;
       m_nShowDelay = -1;              // no delay pending
@@ -3111,6 +3119,8 @@ namespace user
 
       if(pstyle)
       {
+
+         ::get_task()->payload("debug") = 123;
 
          if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
          {

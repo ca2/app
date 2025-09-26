@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "context.h"
 #include "device_egl.h"
 #include "swap_chain.h"
@@ -21,7 +22,7 @@ namespace gpu_opengl
    //::pointer <::gpu::context > allocate_egl_context(::particle * pparticle)
    //{
 
-     // return pparticle->__create_new < device_egl >();
+     // return pparticle->øcreate_new < device_egl >();
 
    //}
 
@@ -139,7 +140,7 @@ namespace gpu_opengl
 //
 //      };
 //
-//      //synchronous_lock synchronouslock(x11_mutex());
+//      //synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      //xdisplay display(x11_get_display());
 //
@@ -292,7 +293,7 @@ namespace gpu_opengl
 //
 //      };
 //
-//      //synchronous_lock synchronouslock(x11_mutex());
+//      //synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      //xdisplay display(x11_get_display());
 //
@@ -436,7 +437,7 @@ namespace gpu_opengl
 
       };
 
-      //synchronous_lock synchronouslock(x11_mutex());
+      //synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //xdisplay display(x11_get_display());
 

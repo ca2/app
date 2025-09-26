@@ -152,7 +152,7 @@ public:
 
       //auto psystem = ::apexacmesystem();
 
-      synchronous_lock slGroup(system()->synchronization());
+      synchronous_lock slGroup(system()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ///   auto ptool = ::apexacmesystem()->task_tool(op_fork_count);
 
@@ -186,7 +186,7 @@ public:
 
          throw ::exception(todo);
 
-//         ::pointer<predicate_holder_base>pusermessage = __allocate forking_count_predicate < PRED > (pparticle, iOrder, iOrder + iStart, iScan, iCount, pred);
+//         ::pointer<predicate_holder_base>pusermessage = øallocate forking_count_predicate < PRED > (pparticle, iOrder, iOrder + iStart, iScan, iCount, pred);
 //
 //         if (!add_predicate(pusermessage))
 //         {
@@ -234,8 +234,8 @@ inline ::collection::count fork_count_end(::particle * pparticle, ::collection::
 
 
 
-using task_group_map = map < enum_priority, pointer_array < ::task_group > >;
-using task_tool_map = map < enum_task_tool, pointer_array < ::task_tool > >;
+using task_group_map = map_base < enum_priority, pointer_array < ::task_group > >;
+using task_tool_map = map_base < enum_task_tool, pointer_array < ::task_tool > >;
 
 
 

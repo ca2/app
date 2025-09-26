@@ -247,6 +247,8 @@ enum enum_type
    e_type_long_long_array,
    e_type_memory,
    e_type_path,
+   e_type_float_array,
+   e_type_double_array,
    e_type_last_element,
 
    // enum
@@ -360,7 +362,7 @@ enum enum_trace_level
 };
 
 
-constexpr int trace_level_letter(enum_trace_level etracelevel)
+constexpr char trace_level_letter(enum_trace_level etracelevel)
 {
 
    return etracelevel < 0|| etracelevel >= e_trace_level_count? ' ': " IWEF"[(int)etracelevel];
@@ -578,6 +580,13 @@ enum enum_display
 
 
 };
+
+CLASS_DECL_ACME enum_display equivalence_sink(enum_display edisplay);
+
+inline bool is_equivalent(enum_display edisplay1, enum_display edisplay2)
+{
+   return equivalence_sink(edisplay1) == equivalence_sink(edisplay2);
+}
 
 
 enum enum_system_command
@@ -813,7 +822,7 @@ enum enum_item : long long
 
 #include "_geometry.h"
 
-#include "message_box.h"
+#include "user_message_box.h"
 
 
 
@@ -872,7 +881,7 @@ enum enum_extract
 struct default_initialization_t{};
 
 
-struct no_initialize{};
+//struct no_initialize{};
 
 
 //enum zero_t
@@ -920,16 +929,6 @@ enum enum_raw
 
 
    e_raw
-
-
-};
-
-
-enum enum_null
-{
-
-
-   e_null
 
 
 };

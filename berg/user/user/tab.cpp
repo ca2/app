@@ -4,7 +4,7 @@
 #include "tab_pane.h"
 #include "tab_data.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/exception/exit.h"
 #include "acme/handler/item.h"
@@ -96,7 +96,7 @@ namespace user
 
       //estatus = 
 
-      __defer_construct_new(m_pdata);
+      ødefer_construct_new(m_pdata);
 
       //if (estatus == ::success)
       //{
@@ -170,7 +170,7 @@ namespace user
 
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (iIndex < 0)
       {
@@ -228,7 +228,7 @@ namespace user
 
       auto & ppane = get_data()->m_tabpanea.add_new();
 
-      __construct_new(ppane);
+      øconstruct_new(ppane);
 
       ppane->initialize_tab_pane(this);
 
@@ -242,7 +242,7 @@ namespace user
       ppane->m_bPermanent = bPermanent;
       ppane->m_pplaceholder = pholder;
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (atom.is_empty())
       {
@@ -275,7 +275,7 @@ namespace user
 
       auto & ppane = get_data()->m_tabpanea.add_new();
 
-      __construct_new(ppane);
+      øconstruct_new(ppane);
 
       ppane->initialize_tab_pane(this);
 
@@ -283,7 +283,7 @@ namespace user
       ppane->m_bPermanent = bPermanent;
       ppane->set_title(scopedstrName);
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (atom.is_empty())
       {
@@ -382,7 +382,7 @@ namespace user
    void tab::erase_tab(::collection::index iIndex, bool bVisible)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (iIndex < 0 || iIndex >= get_data()->m_tabpanea.get_size())
       {
@@ -445,7 +445,7 @@ namespace user
    void tab::erase_all_tabs()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       get_data()->m_tabpanea.erase_all();
 
@@ -1182,7 +1182,7 @@ namespace user
    void tab::defer_erase_child_pane(::user::interaction * pinteraction)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::collection::index iIndex = find_child_pane(pinteraction);
 
@@ -1252,7 +1252,7 @@ namespace user
       if(!should_draw())
       {
        
-         auto pitemNone = __allocate ::item(e_element_none);
+         auto pitemNone = øallocate ::item(e_element_none);
 
          return pitemNone;
          
@@ -1260,7 +1260,7 @@ namespace user
 
       auto pointCursor = point;
 
-      //_synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::int_rectangle rectangleScroll;
 
@@ -1337,7 +1337,7 @@ namespace user
                         if (rectangleText.contains(point))
                         {
 
-                           return __allocate ::item((enum_element)((int)e_element_split + iTitle), iIndex);
+                           return øallocate ::item((enum_element)((int)e_element_split + iTitle), iIndex);
 
                         }
 
@@ -1378,7 +1378,7 @@ namespace user
                   user_item(ppane)->m_rectangle2 = rectangle;
 
                   return ppane;
-                  //return __allocate ::item(e_element_tab, iIndex);
+                  //return øallocate ::item(e_element_tab, iIndex);
 
                }
 
@@ -1388,7 +1388,7 @@ namespace user
 
       }
 
-      auto pitemNone = __allocate ::item(e_element_none);
+      auto pitemNone = øallocate ::item(e_element_none);
 
       return pitemNone;
 
@@ -1439,7 +1439,7 @@ namespace user
          if(!m_pitemTabFarScroll)
          {
             
-            m_pitemTabFarScroll = __allocate ::item(::e_element_tab_far_scroll, -1);
+            m_pitemTabFarScroll = øallocate ::item(::e_element_tab_far_scroll, -1);
             
             enable_drag(m_pitemTabFarScroll, ::user::e_zorder_front);
             
@@ -1452,7 +1452,7 @@ namespace user
          if(!m_pitemTabNearScroll)
          {
             
-            m_pitemTabNearScroll = __allocate ::item(::e_element_tab_near_scroll, -1);
+            m_pitemTabNearScroll = øallocate ::item(::e_element_tab_near_scroll, -1);
             
             enable_drag(m_pitemTabNearScroll, ::user::e_zorder_front);
             
@@ -1581,7 +1581,7 @@ namespace user
 
       set_default_mouse_cursor(pcursor);
 
-      __construct_new(get_data()->m_pimagelist);
+      øconstruct_new(get_data()->m_pimagelist);
 
       get_data()->m_pimagelist->create(16, 16, 0, 0, 16);
 
@@ -1654,17 +1654,17 @@ namespace user
 
       //install_hover_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &tab::on_message_create);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tab::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tab::on_message_left_button_up);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tab::on_message_left_button_double_click);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tab::on_message_mouse_move);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tab::on_message_mouse_leave);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &tab::on_message_show_window);
-      MESSAGE_LINK(e_message_language, pchannel, this, &tab::_001OnAppLanguage);
-      MESSAGE_LINK(e_message_start_tab_drag, pchannel, this, &tab::_001OnStartTabDrag);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &tab::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &tab::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &tab::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &tab::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &tab::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &tab::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &tab::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_language, pchannel, this, &tab::_001OnAppLanguage);
+      USER_MESSAGE_LINK(::user::e_message_start_tab_drag, pchannel, this, &tab::_001OnStartTabDrag);
 
-      ////MESSAGE_LINK(e_message_timer, pchannel, this, &tab::on_timer);
+      ////USER_MESSAGE_LINK(::user::e_message_timer, pchannel, this, &tab::on_timer);
 
    }
 
@@ -1676,7 +1676,7 @@ namespace user
        
       {
 
-         _synchronous_lock lock(get_data()->synchronization());
+         _synchronous_lock lock(get_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          get_data()->m_idaSel.erase_all();
 
@@ -1723,7 +1723,7 @@ namespace user
 
       auto pdata = get_data();
 
-      _synchronous_lock lock(pdata->synchronization());
+      _synchronous_lock lock(pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return pdata->m_tabpanea.predicate_find_first([ptabpaneFind](auto & ptabpane)
          {
@@ -1747,7 +1747,7 @@ namespace user
 
       auto pdata = get_data();
 
-      _synchronous_lock lock(pdata->synchronization());
+      _synchronous_lock lock(pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return pdata->m_tabpanea.predicate_index_index(iVisibleIndex, [](auto & ptabpane)
          {
@@ -1771,7 +1771,7 @@ namespace user
 
       auto pdata = get_data();
 
-      _synchronous_lock lock(pdata->synchronization());
+      _synchronous_lock lock(pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return pdata->m_tabpanea.index_predicate_index(iIndex, [](auto & ptabpane)
          {
@@ -1788,7 +1788,7 @@ namespace user
 
       auto pdata = get_data();
 
-      _synchronous_lock lock(pdata->synchronization());
+      _synchronous_lock lock(pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return pdata->m_tabpanea.predicate_contains([atom](auto & ptabpane)
          {
@@ -1805,7 +1805,7 @@ namespace user
 
       auto pdata = get_data();
 
-      _synchronous_lock lock(pdata->synchronization());
+      _synchronous_lock lock(pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return pdata->m_tabpanea.predicate_find_first([atom](auto & ptabpane)
          {
@@ -1823,7 +1823,7 @@ namespace user
 
       auto pdata = get_data();
 
-      _synchronous_lock lock(pdata->synchronization());
+      _synchronous_lock lock(pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (iIndex < 0 || iIndex >= pdata->m_tabpanea.get_count())
       {
@@ -2712,7 +2712,7 @@ namespace user
    void tab::get_child_rect(::int_rectangle & rectangle)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       rectangle = get_data()->m_rectangleHosting;
 
@@ -2808,7 +2808,7 @@ namespace user
 
             m_estate = state_drag_commanded;
 
-            post_message(e_message_start_tab_drag);
+            post_message(::user::e_message_start_tab_drag);
 
          }
          else
@@ -2860,7 +2860,7 @@ namespace user
 
    //         client_to_screen(rectangleTabScreen);
 
-   //         if ((pmouse->m_emessage == e_message_left_button_down || pmouse->m_emessage == e_message_left_button_up) && rectangleTabScreen.contains(pmouse->m_point))
+   //         if ((pmouse->m_emessage == ::user::e_message_left_button_down || pmouse->m_emessage == ::user::e_message_left_button_up) && rectangleTabScreen.contains(pmouse->m_point))
    //         {
 
    //            route_message(pmouse);
@@ -2873,7 +2873,7 @@ namespace user
    //            }
 
    //         }
-   //         else if (pmouse->m_emessage == e_message_mouse_move)
+   //         else if (pmouse->m_emessage == ::user::e_message_mouse_move)
    //         {
 
    //            route_message(pmouse);
@@ -2894,7 +2894,7 @@ namespace user
    //      }
 
    //   }
-   //   else if(pmouse->m_emessage == e_message_mouse_move)
+   //   else if(pmouse->m_emessage == ::user::e_message_mouse_move)
    //   {
 
    //   }

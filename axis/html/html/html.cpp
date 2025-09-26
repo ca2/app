@@ -42,8 +42,8 @@ namespace html
 
       //}
 
-      //__construct_new(this, m_pentitysolver = ___new LiteHTMLEntityResolver(pparticle);
-      __construct_new(m_pentitysolver);
+      //øconstruct_new(this, m_pentitysolver = ___new LiteHTMLEntityResolver(pparticle);
+      øconstruct_new(m_pentitysolver);
 
       m_clrInvalid = color::white;
       m_percentMax = USHRT_MAX;
@@ -286,7 +286,7 @@ namespace html
             strChar.formatf("&#%d;", iChar);
             str += strChar;
          }
-         unicode_increment(psz);
+         psz = unicode_next(psz);
       }
       return str;
    }
@@ -341,7 +341,7 @@ namespace html
             str += strChar;
          }
          
-         unicode_increment(psz);
+         psz = unicode_next(psz);
 
       }
       return str;
@@ -845,7 +845,7 @@ namespace axis
       //auto estatus =
          
          
-         __construct_new(m_phtml);
+         øconstruct_new(m_phtml);
 
       //if (!estatus)
       //{

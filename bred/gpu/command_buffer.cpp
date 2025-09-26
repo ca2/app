@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "command_buffer.h"
 #include "frame.h"
+#include "queue.h"
 #include "render_target.h"
 
 
@@ -49,7 +50,7 @@ namespace gpu
 
    //   ::pointer <command_buffer > pcommandbuffer;
 
-   //   __defer_construct_new(pcommandbuffer);
+   //   ødefer_construct_new(pcommandbuffer);
 
    //   ::cast < device > pdevice= m_pgpucontext->m_pgpudevice;
 
@@ -60,10 +61,12 @@ namespace gpu
    //}
 
 
-   void command_buffer::initialize_command_buffer(::gpu::render_target* pgpurendertarget, enum_command_buffer ecommandbuffer)
+   void command_buffer::initialize_command_buffer(::gpu::render_target* pgpurendertarget, ::gpu::queue * pqueue, enum_command_buffer ecommandbuffer)
    {
 
       m_pgpurendertarget = pgpurendertarget;
+
+      m_pgpuqueue = pqueue;
 
       m_ecommandbuffer = ecommandbuffer;
 
@@ -127,14 +130,14 @@ namespace gpu
    }
 
 
-   void command_buffer::draw_vertices(int iVertexCount)
+   void command_buffer::draw_vertexes(int iVertexCount)
    {
 
 
    }
 
 
-   void command_buffer::draw_indices(int iIndexCount)
+   void command_buffer::draw_indexes(int iIndexCount)
    {
 
 

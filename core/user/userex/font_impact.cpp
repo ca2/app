@@ -3,7 +3,7 @@
 #include "top_impact.h"
 #include "top_edit_impact.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "aura/graphics/write_text/font_list.h"
 #include "aura/user/user/frame_interaction.h"
@@ -42,8 +42,8 @@ namespace userex
 
       ::user::split_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &font_impact::on_message_create);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &font_impact::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &font_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &font_impact::on_message_show_window);
 
    }
 
@@ -77,7 +77,7 @@ namespace userex
          if (m_ptopimpact != nullptr && ptopic->m_puserelement == m_ptopimpact->m_peditimpact)
          {
 
-            synchronous_lock synchronouslock(m_pimpact->m_pfontlist->synchronization());
+            synchronous_lock synchronouslock(m_pimpact->m_pfontlist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             string strText;
 
@@ -103,7 +103,7 @@ namespace userex
 
                m_ptopimpact->m_peditimpact->set_text(strText, ::e_source_sync);
 
-               __defer_construct(m_ptopimpact->m_peditimpact->m_pfont);
+               ødefer_construct(m_ptopimpact->m_peditimpact->m_pfont);
 
                m_ptopimpact->m_peditimpact->m_pfont->set_family_name(strText);
 
@@ -154,7 +154,7 @@ namespace userex
       if (m_pimpact == nullptr)
       {
 
-         output_error_message("Could not create file list ::user::impact");
+         output_error_message("Could not create file list_base ::user::impact");
 
       }
 
@@ -196,7 +196,7 @@ namespace userex
 
          m_ptopimpact->m_peditimpact->set_text(scopedstr, ::e_source_sync);
 
-         __defer_construct(m_ptopimpact->m_peditimpact->m_pfont);
+         ødefer_construct(m_ptopimpact->m_peditimpact->m_pfont);
 
          m_ptopimpact->m_peditimpact->m_pfont->set_family_name(scopedstr);
 

@@ -8,7 +8,7 @@
 #include "span.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_key.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/node.h"
@@ -112,17 +112,17 @@ namespace user
 
          ::user::interaction::install_message_routing(pchannel);
 
-         MESSAGE_LINK(e_message_create, pchannel, this, &edit::on_message_create);
-         MESSAGE_LINK(e_message_destroy, pchannel, this, &edit::on_message_destroy);
-         MESSAGE_LINK(e_message_show_window, pchannel, this, &edit::on_message_show_window);
-         MESSAGE_LINK(e_message_left_button_down, pchannel, this, &edit::on_message_left_button_down);
-         MESSAGE_LINK(e_message_left_button_up, pchannel, this, &edit::on_message_left_button_up);
-         MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit::on_message_mouse_move);
-         MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit::on_message_mouse_leave);
-         MESSAGE_LINK(e_message_key_down, pchannel, this, &edit::on_message_key_down);
-         MESSAGE_LINK(e_message_key_up, pchannel, this, &edit::on_message_key_up);
-//         MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit::on_message_set_focus);
-         //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit::on_message_kill_focus);
+         USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &edit::on_message_create);
+         USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &edit::on_message_destroy);
+         USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &edit::on_message_show_window);
+         USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &edit::on_message_left_button_down);
+         USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &edit::on_message_left_button_up);
+         USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &edit::on_message_mouse_move);
+         USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &edit::on_message_mouse_leave);
+         USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &edit::on_message_key_down);
+         USER_MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &edit::on_message_key_up);
+//         USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &edit::on_message_set_focus);
+         //USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &edit::on_message_kill_focus);
          
 #ifdef WINDOWS_DESKTOP
 
@@ -147,7 +147,7 @@ namespace user
 
          }
 
-         __construct_new(m_plinea);
+         øconstruct_new(m_plinea);
 
          
 
@@ -423,7 +423,7 @@ namespace user
 
          //m_rectangle = rectangle;
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -457,7 +457,7 @@ namespace user
 
          //bool bFirstParagraph = true;
 
-         auto plinea = __allocate pointer_array < line > ();
+         auto plinea = øallocate pointer_array < line > ();
 
          ::pointer<line>pline;
 
@@ -466,7 +466,7 @@ namespace user
    //if (m_spana.first().m_pformat >= m_pformathost.get_count())
    //{
 
-   //   m_pformathost.add(__allocate format(this));
+   //   m_pformathost.add(øallocate format(this));
 
    //}
 
@@ -480,7 +480,7 @@ namespace user
          //   if (m_spana.first_pointer()->m_iFormat >= m_pformathost.get_count())
          //   {
 
-         //      m_pformathost.add(__allocate format(this));
+         //      m_pformathost.add(øallocate format(this));
 
          //   }
 
@@ -543,9 +543,9 @@ namespace user
 
                defer_add_line();
 
-               __construct_new(pline);
+               øconstruct_new(pline);
 
-               //pline = __allocate line();
+               //pline = øallocate line();
 
                x = (int)rectangle.left();
 
@@ -555,7 +555,7 @@ namespace user
 
                x = (int)rectangle.left();
 
-               //pbox = __allocate box(pspan);
+               //pbox = øallocate box(pspan);
 
                //index iSpan = find_char_span(m_spana, iCharLayout);
 
@@ -646,7 +646,7 @@ namespace user
                   if (pline->is_empty())
                   {
 
-                     auto pbox = __allocate box(pspan);
+                     auto pbox = øallocate box(pspan);
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -705,7 +705,7 @@ namespace user
                   if (cWords > 0)
                   {
 
-                     auto pbox = __allocate box(pspan);
+                     auto pbox = øallocate box(pspan);
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -754,7 +754,7 @@ namespace user
 
                      longest_word(strSlice, dPosition, strWord, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int)rectangleX.right() - x);
 
-                     auto pbox = __allocate box(pspan);
+                     auto pbox = øallocate box(pspan);
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -788,7 +788,7 @@ namespace user
                else
                {
 
-                  auto pbox = __allocate box(pspan);
+                  auto pbox = øallocate box(pspan);
 
                   pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -888,7 +888,7 @@ namespace user
       void edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -1155,7 +1155,7 @@ namespace user
 
             ::image::image_pointer pimage;
 
-            __øconstruct(pimage);
+            øconstruct(pimage);
 
             pimage->create(m_ppictureimpl->m_rectangleDrawing.size());
 
@@ -1291,7 +1291,7 @@ namespace user
          if (!m_prichtextdataOwned)
          {
 
-            __construct_new(m_prichtextdataOwned);
+            øconstruct_new(m_prichtextdataOwned);
 
             m_prichtextdataOwned->initialize_data();
 
@@ -1891,7 +1891,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         _synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ::collection::index iSelBeg = get_sel_beg();
 
@@ -1907,7 +1907,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         _synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          update_span_cache(prichtextdata->m_spana);
 
@@ -1988,7 +1988,7 @@ namespace user
       void edit::_001GetLayoutText(string & str) const
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          str = layout_text(*m_plinea);
 
@@ -2008,7 +2008,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         _synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (iLine < 0)
          {
@@ -2056,7 +2056,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         _synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //double xLast = 0.0;
 
@@ -2179,7 +2179,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         _synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto plinea = m_plinea;
 
@@ -2252,7 +2252,7 @@ namespace user
       void edit::internal_update_sel_char()
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //m_iSelBeg = sel_char(*plinea, m_iSelBeg3, m_ebiasBeg);
 
@@ -2338,7 +2338,7 @@ namespace user
       character_count edit::_001GetLayoutTextLength() const
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto plinea = m_plinea;
 
@@ -2357,13 +2357,13 @@ namespace user
       void edit::draw_text(::draw2d::graphics_pointer & pgraphics, const ::double_rectangle & rectangleBox)
       {
 
-         _synchronous_lock synchronouslock(pgraphics->synchronization());
+         _synchronous_lock synchronouslock(pgraphics->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         _synchronous_lock sl1(this->synchronization());
+         _synchronous_lock sl1(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         //_synchronous_lock sl2(m_plinea->synchronization());
+         //_synchronous_lock sl2(m_plinea->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         //_synchronous_lock sl3(m_pformathost->synchronization());
+         //_synchronous_lock sl3(m_pformathost->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -2387,7 +2387,7 @@ namespace user
                //if (pformat.is_null())
                //{
 
-               //   pformat = __allocate format(this);
+               //   pformat = øallocate format(this);
 
                //}
 
@@ -2410,14 +2410,14 @@ namespace user
                if (m_ppictureimpl != nullptr && m_ppictureimpl->m_bOutline)
                {
 
-                  auto ppath = __øcreate < ::draw2d::path >();
+                  auto ppath = øcreate < ::draw2d::path >();
 
                   //ppath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
                   ppath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
 
-                  auto ppen = __øcreate < ::draw2d::pen >();
+                  auto ppen = øcreate < ::draw2d::pen >();
 
-                  auto pbrush = __øcreate < ::draw2d::brush >();
+                  auto pbrush = øcreate < ::draw2d::brush >();
 
                   ppen->create_solid(m_ppictureimpl->m_iOutlineWidth, ::color::color(m_ppictureimpl->m_hlsOutline));
 

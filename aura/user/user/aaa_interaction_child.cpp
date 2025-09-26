@@ -204,16 +204,16 @@ namespace user
 
          }
 
-         //m_puserinteraction->send_message(e_message_create, 0, (lparam)(lparam)& pusersystem->m_createstruct);
+         //m_puserinteraction->send_message(::user::e_message_create, 0, (lparam)(lparam)& pusersystem->m_createstruct);
          if (!(m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created))
          {
-//            auto pmessage = __create_new <::message::create>();
-//            pmessage->m_emessage = e_message_create;
+//            auto pmessage = øcreate_new <::message::create>();
+//            pmessage->m_emessage = ::user::e_message_create;
 //            m_puserinteraction->send_message(pmessage);
 
 //            m_puserinteraction->send_create_message();
             
-            m_puserinteraction->send_message(e_message_create);
+            m_puserinteraction->send_message(::user::e_message_create);
             
          }
 
@@ -251,7 +251,7 @@ namespace user
 //   bool interaction_child::create_child(::user::interaction * pinteraction, ::user::interaction_base * pprimitiveParent)
 //   {
 //
-//      auto pusersystem = __allocate ::user::system();
+//      auto pusersystem = øallocate ::user::system();
 //
 //      ::int_rectangle rectangle;
 //
@@ -320,9 +320,9 @@ namespace user
 
       last_install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_child::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &interaction_child::on_message_destroy);
 
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_child::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &interaction_child::on_message_show_window);
 
       m_puserinteraction->install_message_routing(pchannel);
 
@@ -475,7 +475,7 @@ namespace user
       try
       {
 
-         puserinteraction->send_message(e_message_destroy);
+         puserinteraction->send_message(::user::e_message_destroy);
 
       }
       catch (...)
@@ -487,7 +487,7 @@ namespace user
       try
       {
 
-         puserinteraction->send_message(e_message_non_client_destroy);
+         puserinteraction->send_message(::user::e_message_non_client_destroy);
 
       }
       catch (...)
@@ -529,7 +529,7 @@ namespace user
 
          /////auto pkey = pmessage->m_pkey;
 
-         //if (message == e_message_key_down)
+         //if (message == ::user::e_message_key_down)
          //{
 
          //   informationf("\n Key Down Event ");
@@ -583,7 +583,7 @@ namespace user
 
       //}
 
-      //if (message == e_message_event)
+      //if (message == ::user::e_message_event)
       //{
 
       //   ::user::control_event * phappening = pmessage->m_lparam.cast < ::user::control_event >();
@@ -687,7 +687,7 @@ namespace user
 //
 //            //ModifyStyle(0, WS_VISIBLE);
 //
-//            m_puserinteraction->send_message(e_message_show_window, 1);
+//            m_puserinteraction->send_message(::user::e_message_show_window, 1);
 //
 //         }
 //         else
@@ -695,7 +695,7 @@ namespace user
 //
 //            ///ModifyStyle(WS_VISIBLE, 0);
 //
-//            m_puserinteraction->send_message(e_message_show_window, 0);
+//            m_puserinteraction->send_message(::user::e_message_show_window, 0);
 //
 //         }
 //

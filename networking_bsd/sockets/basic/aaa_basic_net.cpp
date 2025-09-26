@@ -813,7 +813,7 @@
 ////bool net::reverse_schedule(reverse_cache_item * pitem)
 ////{
 ////
-////   synchronous_lock synchronouslock(this->synchronization());
+////   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   m_reversecacheaRequest.add(pitem);
 ////
@@ -889,7 +889,7 @@
 ////
 ////   }
 ////
-////   pitem = __allocate reverse_cache_item();
+////   pitem = øallocate reverse_cache_item();
 ////
 ////   pitem->m_address = address;
 ////

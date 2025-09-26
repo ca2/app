@@ -1,7 +1,7 @@
 #include "framework.h"
 ////#include "berg/user/simple/_component.h"
 #include "main_frame.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/request.h"
 #include "aura/message/user.h"
 #include "aura/user/user/system.h"
@@ -35,7 +35,7 @@ void simple_main_frame::install_message_routing(::channel * pchannel)
 
    simple_frame_window::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_create,pchannel,this,&simple_main_frame::on_message_create);
+   USER_MESSAGE_LINK(::user::e_message_create,pchannel,this,&simple_main_frame::on_message_create);
 
 }
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "statusbar.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/exception/interface_only.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
@@ -40,15 +40,15 @@ namespace user
 
    void status_bar::install_message_routing(::channel * pchannel)
    {
-      MESSAGE_LINK(e_message_non_client_hit_test, pchannel, this, &status_bar::_001OnNcHitTest);
-      MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &status_bar::on_message_non_client_calculate_size);
-      MESSAGE_LINK(e_message_size, pchannel, this, &status_bar::on_message_size);
-      MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &status_bar::_001OnWindowPosChanging);
+      USER_MESSAGE_LINK(::user::e_message_non_client_hit_test, pchannel, this, &status_bar::_001OnNcHitTest);
+      USER_MESSAGE_LINK(::user::e_message_non_client_calc_size, pchannel, this, &status_bar::on_message_non_client_calculate_size);
+      USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &status_bar::on_message_size);
+      USER_MESSAGE_LINK(::user::e_message_window_position_changing, pchannel, this, &status_bar::_001OnWindowPosChanging);
 //#ifdef WINDOWS_DESKTOP
-//      MESSAGE_LINK(WM_SETTEXT, pchannel, this, &status_bar::_001OnSetText);
-//      MESSAGE_LINK(WM_GETTEXT, pchannel, this, &status_bar::_001OnGetText);
-//      MESSAGE_LINK(WM_GETTEXTLENGTH, pchannel, this, &status_bar::_001OnGetTextLength);
-//      MESSAGE_LINK(SB_SETMINHEIGHT, pchannel, this, &status_bar::_001OnSetMinHeight);
+//      USER_MESSAGE_LINK(WM_SETTEXT, pchannel, this, &status_bar::_001OnSetText);
+//      USER_MESSAGE_LINK(WM_GETTEXT, pchannel, this, &status_bar::_001OnGetText);
+//      USER_MESSAGE_LINK(WM_GETTEXTLENGTH, pchannel, this, &status_bar::_001OnGetTextLength);
+//      USER_MESSAGE_LINK(SB_SETMINHEIGHT, pchannel, this, &status_bar::_001OnSetMinHeight);
 //#endif
    }
 
@@ -63,7 +63,7 @@ namespace user
 //   bool status_bar::create_window_ex(::user::interaction * puiParent,unsigned int dwCtrlStyle,unsigned int uStyle, atom strId)
 //   {
 //
-//      ASSERT_VALID(puiParent);   // must have a parent
+//      ASSERT_OK(puiParent);   // must have a parent
 //
 //
 //      // save the style (some of these style bits are aura API specific)
@@ -94,7 +94,7 @@ namespace user
 
    bool status_bar::SetIndicators(string_array_base & stra)
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       ASSERT(stra.get_count() >= 1);  // must be at least one of them
       //ASSERT(pIDArray == nullptr ||
 
@@ -187,7 +187,7 @@ namespace user
       {
    #pragma push_macro("___new")
    
-         __allocate<  >( &pSBP->strText ) string;
+         øallocate<  >( &pSBP->strText ) string;
    #pragma pop_macro("___new")
          ++pSBP;
       }*/
@@ -198,7 +198,7 @@ namespace user
    void status_bar::CalcInsideRect(::draw2d::graphics_pointer & pgraphics, ::int_rectangle& rectangle, bool bHorz)
    {
 
-//      ASSERT_VALID(this);
+//      ASSERT_OK(this);
 //      ASSERT(is_window());
 //      ASSERT(bHorz);  // vertical status bar not supported
 //
@@ -224,7 +224,7 @@ namespace user
 //
    void status_bar::UpdateAllPanes(bool bUpdateRects, bool bUpdateText)
    {
-//      ASSERT_VALID(this);
+//      ASSERT_OK(this);
 //      ASSERT(is_window());
 //
 //#ifdef WINDOWS_DESKTOP
@@ -314,7 +314,7 @@ namespace user
 
    int status_bar::CommandToIndex(atom atom)
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       if (m_panecompositea.get_count() <= 0)
          return -1;
@@ -331,14 +331,14 @@ namespace user
 
    atom status_bar::GetItemId(int nIndex)
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       return _GetPanePtr(nIndex)->id();
    }
 
    void status_bar::GetItemRect(int nIndex, ::int_rectangle * prectangle)
 
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       ASSERT(is_window());
 
 //#ifdef WINDOWS_DESKTOP
@@ -380,7 +380,7 @@ namespace user
    void status_bar::GetPaneInfo(int nIndex, atom & atom, unsigned int& nStyle,
                                 int& cxWidth)
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
       atom = pSBP->id();
@@ -392,7 +392,7 @@ namespace user
    void status_bar::SetPaneInfo(int nIndex, const ::atom & atom, unsigned int nStyle, int cxWidth)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       bool bChanged = false;
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
@@ -421,7 +421,7 @@ namespace user
 
    void status_bar::GetPaneText(int nIndex, string & s)
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
       s = pSBP->strText;
@@ -429,7 +429,7 @@ namespace user
 
    string status_bar::GetPaneText(int nIndex)
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
       return pSBP->strText;
@@ -438,7 +438,7 @@ namespace user
    bool status_bar::SetPaneText(int nIndex, const ::scoped_string & scopedstrNewText, bool bUpdate)
 
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       ASSERT(is_window());
 
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
@@ -491,7 +491,7 @@ namespace user
 
    int_size status_bar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool, bool bHorz)
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       ASSERT(is_window());
 
       // determinme int_size of font being used by the status bar
@@ -613,7 +613,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      if (pmessage->m_emessage != WM_DRAWITEM)
+//      if (pmessage->m_eusermessage != WM_DRAWITEM)
 //      {
 //
 //         return ::user::interaction::OnChildNotify(pmessage);
@@ -651,7 +651,7 @@ namespace user
 
    void status_bar::on_message_size(::message::message * pmessage)
    {
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       ASSERT(is_window());
 
       pmessage->previous();
@@ -679,7 +679,7 @@ namespace user
    void status_bar::_001OnSetText(::message::message * pmessage)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       ASSERT(is_window());
 
       int nIndex = CommandToIndex(nullptr);
@@ -697,7 +697,7 @@ namespace user
    void status_bar::_001OnGetText(::message::message * pmessage)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       ASSERT(is_window());
 
@@ -752,7 +752,7 @@ namespace user
    void status_bar::_001OnGetTextLength(::message::message * pmessage)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       ASSERT(is_window());
 

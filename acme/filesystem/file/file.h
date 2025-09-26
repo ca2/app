@@ -156,6 +156,8 @@ namespace file
 
       using ::file::writable::write;
       void write(const void * p, memsize s) override;
+
+      virtual void write_unsigned_char(unsigned char uch);
       
       using ::file::writable::defer_write;
       memsize defer_write(const void * dataToWrite, memsize amountToWrite) override;

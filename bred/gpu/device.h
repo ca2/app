@@ -18,6 +18,9 @@ namespace gpu
 {
 
 
+   class frame_storage;
+
+
    enum enum_device_target
    {
 
@@ -76,7 +79,12 @@ namespace gpu
       enum_device_target                        m_edevicetarget;
       ::procedure_array                         m_procedureaOnTopFrameEnd;
       ::pointer_array < pool_group >            m_poolgroupaFrame;
-      ::array < ::pointer_array < ::particle > >m_particleaFrame;
+      ::pointer_array < ::pointer_array < ::particle > >m_particleaFrame;
+
+      ::pointer_array < ::gpu::frame_storage >     m_framestoragea;
+      ::pointer_array < ::gpu::frame_ephemeral >   m_frameephemerala;
+      ::pointer < ::gpu::frame_ephemeral >         m_pframeephemeralStrict;
+
 
       
 
@@ -104,13 +112,15 @@ namespace gpu
       virtual void on_initialize_gpu_device();
 
       virtual void on_new_frame();
+      virtual void on_end_frame();
       virtual int get_frame_index2();
       virtual int get_frame_count();
       virtual void restart_frame_counter();
       virtual bool is_starting_frame()const;
 
 
-
+      virtual ::gpu::frame_storage* current_frame_storage();
+      virtual ::gpu::frame_ephemeral* current_frame_ephemeral();
 
 
       virtual ::file::path shader_path(const ::file::path& pathShader);
@@ -177,6 +187,8 @@ namespace gpu
 //      virtual void set_bitmap_1(::image::image* pimage);
 
       //virtual void swap_buffers();
+
+
 
 
       //virtual void create_window_buffer(void* pHwnd);

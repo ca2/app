@@ -59,17 +59,17 @@ namespace user
 
       }
 
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_box::on_message_mouse_move);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &combo_box::on_message_mouse_leave);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &combo_box::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &combo_box::on_message_left_button_up);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &combo_box::on_message_left_button_double_click);
-      MESSAGE_LINK(e_message_key_down,pchannel,this,&combo_box::on_message_key_down);
-      MESSAGE_LINK(e_message_key_up,pchannel,this,&combo_box::on_message_key_up);
-      MESSAGE_LINK(e_message_set_focus,pchannel,this,&combo_box::on_message_set_focus);
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_box::on_message_kill_focus);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_box::on_message_show_window);
-      MESSAGE_LINK(e_message_reposition, pchannel, this, &combo_box::on_message_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &combo_box::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &combo_box::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &combo_box::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &combo_box::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &combo_box::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_key_down,pchannel,this,&combo_box::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_up,pchannel,this,&combo_box::on_message_key_up);
+      USER_MESSAGE_LINK(::user::e_message_set_focus,pchannel,this,&combo_box::on_message_set_focus);
+      USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &combo_box::on_message_kill_focus);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &combo_box::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &combo_box::on_message_move);
 
    }
 
@@ -188,7 +188,7 @@ namespace user
 
       this->rectangle(rectangleX);
 
-      auto pbrush = __øcreate < ::draw2d::brush > ();
+      auto pbrush = øcreate < ::draw2d::brush > ();
 
       if(m_bEdit)
       {
@@ -305,7 +305,7 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleDropIn);
 
-      auto ppath = __øcreate < ::draw2d::path > ();
+      auto ppath = øcreate < ::draw2d::path > ();
 
       point_array pointa;
 
@@ -499,7 +499,7 @@ namespace user
          if (m_plist.is_set())
          {
 
-            m_plist->post_message(e_message_close);
+            m_plist->post_message(::user::e_message_close);
 
          }
 
@@ -684,7 +684,7 @@ namespace user
          if (m_plist->get_safe_handle() != pkillfocus->m_oswindowNew)
          {
 
-            m_plist->post_message(e_message_close);
+            m_plist->post_message(::user::e_message_close);
 
          }
 
@@ -982,7 +982,7 @@ namespace user
          throw ::exception(todo);
 #endif
          break;
-      case e_message_measure_item:
+      case ::user::e_message_measure_item:
 #ifdef WINODWSEX
          MeasureItem((LPMEASUREITEMSTRUCT)pusermessage->m_lparam);
 #else
@@ -1152,7 +1152,7 @@ namespace user
    void combo_box::reset_content()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_straList.erase_all();
 
@@ -1513,7 +1513,7 @@ namespace user
 
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ASSERT(m_edatamode == data_mode_opaque);
 

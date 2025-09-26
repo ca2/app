@@ -2,7 +2,7 @@
 
 
 template < class PAYLOAD, typename ARG_VALUE = argument_of < PAYLOAD > >
-using file_path_map = map < ::file::path, PAYLOAD, argument_of < ::file::path >, ARG_VALUE > ;
+using file_path_map = map_base < ::file::path, PAYLOAD, argument_of < ::file::path >, ARG_VALUE > ;
 
 using file_path_to_intptr = file_path_map < iptr, iptr > ;
 

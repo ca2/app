@@ -11,7 +11,7 @@
 #include "check_box.h"
 #include "notify_icon.h"
 #include "progress.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -168,7 +168,7 @@ namespace user
 
          //auto estatus = 
 
-         if (__defer_construct_new(m_puserstyle))
+         if (ødefer_construct_new(m_puserstyle))
          {
 
             //if (!estatus)
@@ -760,9 +760,9 @@ namespace user
       if (!m_pshell)
       {
 
-         //estatus = __øconstruct(m_pshell, __allocate ::windows::shell());
+         //estatus = øconstruct(m_pshell, øallocate ::windows::shell());
          //estatus =
-         __øconstruct(m_pshell);
+         øconstruct(m_pshell);
 
          //if (!estatus)
          //{
@@ -798,7 +798,7 @@ namespace user
    void user::set_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_pmousefocusLButtonDown = pmousefocus;
 
@@ -808,7 +808,7 @@ namespace user
    void user::defer_erase_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pmousefocusLButtonDown == pmousefocus)
       {
@@ -836,7 +836,7 @@ namespace user
    }
 
 
-   void user::SendMessageToWindows(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void user::SendMessageToWindows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       auto psession = session();
@@ -846,7 +846,7 @@ namespace user
 
          ::pointer<::aura::application>pappAura = papp;
 
-         _synchronous_lock synchronouslock(pappAura->m_pmutexFrame);
+         _synchronous_lock synchronouslock(pappAura->m_pmutexFrame, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ::pointer<::user::interaction>pinteraction;
 
@@ -856,9 +856,9 @@ namespace user
             if (pinteraction != nullptr && pinteraction->is_window())
             {
 
-               pinteraction->send_message(emessage, wparam, lparam);
+               pinteraction->send_message(eusermessage, wparam, lparam);
 
-               pinteraction->send_message_to_descendants(emessage, wparam, lparam);
+               pinteraction->send_message_to_descendants(eusermessage, wparam, lparam);
 
             }
 
@@ -980,7 +980,7 @@ namespace user
    CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::user::interaction * pinteractionParent)
    {
 
-      auto pinteraction = pparticle->__create_new < ::user::interaction >();
+      auto pinteraction = pparticle->øcreate_new < ::user::interaction >();
 
       pinteraction->create_child(pinteractionParent);
 
@@ -1157,7 +1157,7 @@ namespace aura
       if (m_pfontlistSingleColumn.is_null())
       {
 
-         m_pfontlistSingleColumn = __create_new < ::write_text::font_list > ();
+         m_pfontlistSingleColumn = øcreate_new < ::write_text::font_list > ();
 
          m_pfontlistSingleColumn->set_font_list_type(::write_text::e_font_list_single_column);
 
@@ -1512,14 +1512,14 @@ namespace user
 
       }
 
-      auto emessage = pmouse->m_emessage;
+      auto emessage = pmouse->m_eusermessage;
 
-      if(emessage == e_message_left_button_down
-       //|| emessage == e_message_left_button_up
-       || emessage == e_message_right_button_down
-       //|| emessage == e_message_right_button_up
-       || emessage == e_message_middle_button_down
-       //|| emessage == e_message_middle_button_up
+      if(emessage == ::user::e_message_left_button_down
+       //|| emessage == ::user::e_message_left_button_up
+       || emessage == ::user::e_message_right_button_down
+       //|| emessage == ::user::e_message_right_button_up
+       || emessage == ::user::e_message_middle_button_down
+       //|| emessage == ::user::e_message_middle_button_up
        )
        {
 
@@ -1530,7 +1530,7 @@ namespace user
 
             {
 
-               _synchronous_lock synchronouslock(this->synchronization());
+               _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                ::generic::container::copy(uiptraToolWindow, m_uiptraToolWindow);
 
@@ -1547,7 +1547,7 @@ namespace user
                   if (pinteraction->m_ewindowflag & e_window_flag_focus)
                   {
 
-                     pinteraction->post_message(e_message_kill_focus);
+                     pinteraction->post_message(::user::e_message_kill_focus);
 
                   }
 
@@ -1591,7 +1591,7 @@ namespace user
 
    //      desktop_environment()->windowing() = windowing();
 
-   //      //__øconstruct(windowing());
+   //      //øconstruct(windowing());
 
    //      //m_pdesktopenvironment->windowing() = windowing();
 
@@ -1617,7 +1617,7 @@ namespace user
 
       bool bDoneALotOfThings = false;
 
-      _synchronous_lock synchronouslock(m_pmutexRunnable);
+      _synchronous_lock synchronouslock(m_pmutexRunnable, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       while (m_listRunnable.has_elements() && ::task_get_run())
       {
@@ -1666,7 +1666,7 @@ namespace user
    //
    //    //   system()->do_graphics_and_windowing_system_factory();
    //
-   //    //   __øconstruct(windowing());
+   //    //   øconstruct(windowing());
    //
    //    //   windowing()->initialize_windowing(this);
    //
@@ -1699,7 +1699,7 @@ namespace user
    //    if (!m_pdesktopenvironment)
    //    {
    //
-   //       __øconstruct(m_pdesktopenvironment);
+   //       øconstruct(m_pdesktopenvironment);
    //
    //
    //    }
@@ -1720,7 +1720,7 @@ namespace user
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return __allocate ::user::plain_edit();
+      return øallocate ::user::plain_edit();
 
    }
 

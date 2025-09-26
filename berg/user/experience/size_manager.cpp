@@ -2,7 +2,7 @@
 #include "size_manager.h"
 #include "frame_window.h"
 #include "frame.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "apex/parallelization/thread.h"
@@ -67,8 +67,8 @@ namespace experience
    {
 
       ASSERT(
-         pmouse->m_emessage == e_message_parent_left_button_down
-         || pmouse->m_emessage == e_message_non_client_left_button_down);
+         pmouse->m_eusermessage == ::user::e_message_parent_left_button_down
+         || pmouse->m_eusermessage == ::user::e_message_non_client_left_button_down);
 
       if(!m_pframewindow->is_sizing_enabled())
       {
@@ -177,7 +177,7 @@ namespace experience
 
       m_eframeSizing = eframeSizing;
 
-      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.add(e_message_mouse_move);
+      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.add(::user::e_message_mouse_move);
 
       m_pframewindow->on_start_layout_experience(e_layout_experience_sizing);
 
@@ -201,9 +201,9 @@ namespace experience
       //information() << "size_manager::on_message_mouse_move : " << pmouse->m_pointAbsolute;
 
       ASSERT(
-         pmouse->m_emessage == e_message_mouse_move 
-         || pmouse->m_emessage == e_message_parent_mouse_move
-         || pmouse->m_emessage == e_message_non_client_mouse_move);
+         pmouse->m_eusermessage == ::user::e_message_mouse_move
+         || pmouse->m_eusermessage == ::user::e_message_parent_mouse_move
+         || pmouse->m_eusermessage == ::user::e_message_non_client_mouse_move);
 
       if(m_eframeSizing != e_frame_none)
       {
@@ -399,7 +399,7 @@ namespace experience
 
       }
 
-      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.erase(e_message_mouse_move);
+      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.erase(::user::e_message_mouse_move);
 
       auto eframeSizing = m_eframeSizing;
 

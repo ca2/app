@@ -13,7 +13,7 @@
 //
 //   const ::scoped_string & scopedstr;
 //
-//   synchronous_lock synchronouslock(::exception_engine().mutex());
+//   synchronous_lock synchronouslock(::exception_engine().mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //#if defined(LINUX)
 //

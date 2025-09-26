@@ -15,7 +15,7 @@ namespace windowing
 
 
    simple_ui_display::simple_ui_display(const string &strMessageParam, const string &strTitle,
-                                        const ::e_message_box &emessagebox) :
+                                        const ::::user::e_message_box &emessagebox) :
       m_strTitle(strTitle),
       m_strFontName("serif"),
       m_size(100, 40),
@@ -37,29 +37,29 @@ namespace windowing
 
       switch (uType)
       {
-         case e_message_box_ok:
+         case ::user::e_message_box_ok:
             m_buttona.add(new_button("OK", e_dialog_result_ok));
             m_buttona.add(new_button("Cancel", e_dialog_result_cancel));
             break;
-         case e_message_box_abort_retry_ignore:
+         case ::user::e_message_box_abort_retry_ignore:
             m_buttona.add(new_button("Abort", e_dialog_result_abort));
             m_buttona.add(new_button("Retry", e_dialog_result_retry));
             m_buttona.add(new_button("Ignore", e_dialog_result_ignore));
             break;
-         case e_message_box_yes_no_cancel:
+         case ::user::e_message_box_yes_no_cancel:
             m_buttona.add(new_button("Yes", e_dialog_result_yes));
             m_buttona.add(new_button("No", e_dialog_result_no));
             m_buttona.add(new_button("Cancel", e_dialog_result_cancel));
             break;
-         case e_message_box_yes_no:
+         case ::user::e_message_box_yes_no:
             m_buttona.add(new_button("Yes", e_dialog_result_yes));
             m_buttona.add(new_button("No", e_dialog_result_no));
             break;
-         case e_message_box_retry_cancel:
+         case ::user::e_message_box_retry_cancel:
             m_buttona.add(new_button("Retry", e_dialog_result_retry));
             m_buttona.add(new_button("Cancel", e_dialog_result_cancel));
             break;
-         case e_message_box_cancel_try_continue:
+         case ::user::e_message_box_cancel_try_continue:
             m_buttona.add(new_button("Cancel", e_dialog_result_cancel));
             m_buttona.add(new_button("Try", e_dialog_result_retry));
             m_buttona.add(new_button("Continue", e_dialog_result_continue));
@@ -485,7 +485,7 @@ namespace windowing
 
 //      {
 //
-//         synchronous_lock synchronouslock(x11_mutex());
+//         synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         Display *pdisplay = x11_get_display();
 //

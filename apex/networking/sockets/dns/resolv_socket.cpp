@@ -174,7 +174,7 @@ namespace sockets
 
          //   string result;
 
-         //   if(system()->networking()->m_resolvcache[m_query].lookup(m_data, result))
+         //   if(system()->networking()->m_resolvcache[m_query].find(m_data, result))
          //   {
 
          //      if (time(nullptr) - system()->networking()->m_resolvtimeout[m_query][m_data] < 3600) // ttl

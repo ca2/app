@@ -363,6 +363,7 @@ enum enum_id : ::uptr
    //id_defer_post_initial_request,
    id_implementation_enabled,
    id_implementation_disabled,
+   id_change_theme,
 
 
 };

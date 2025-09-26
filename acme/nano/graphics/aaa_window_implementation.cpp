@@ -290,7 +290,7 @@
 //
 //    message_loop();
 //
-//    auto pmanualresethappening = __allocate manual_reset_happening();
+//    auto pmanualresethappening = øallocate manual_reset_happening();
 //
 //    m_pinterface->m_psequencer->then([ pmanualresethappening](auto psequencer)
 //    {
@@ -308,7 +308,7 @@
 //
 //    }
 //
-//    //   auto pmessagebox = pparticle->__create_new < message_box >();
+//    //   auto pmessagebox = pparticle->øcreate_new < message_box >();
 //    //
 //    //   atom idResult;
 //    //

@@ -2,7 +2,7 @@
 #include "core_data.h"
 #include "data.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/task_keep.h"
@@ -116,7 +116,7 @@ namespace html
       if (pelement->m_pimpl->m_bHover)
       {
 
-         if (!pelement->m_pimpl->m_mapFont.lookup("hover", iFont))
+         if (!pelement->m_pimpl->m_mapFont.find("hover", iFont))
          {
 
             iFont = create_font(pelement);
@@ -126,7 +126,7 @@ namespace html
       }
       else if (pelement->m_pimpl->has_link())
       {
-         if (!pelement->m_pimpl->m_mapFont.lookup("link", iFont))
+         if (!pelement->m_pimpl->m_mapFont.find("link", iFont))
          {
             iFont = create_font(pelement);
             pelement->m_pimpl->m_mapFont.set_at("link", iFont);
@@ -135,7 +135,7 @@ namespace html
       }
       else
       {
-         if (!pelement->m_pimpl->m_mapFont.lookup("", iFont))
+         if (!pelement->m_pimpl->m_mapFont.find("", iFont))
          {
             iFont = create_font(pelement);
             pelement->m_pimpl->m_mapFont.set_at("", iFont);
@@ -198,7 +198,7 @@ namespace html
          if (*m_fonta[i] == font)
             return i;
       }
-      auto pfont = __allocate class font (font);
+      auto pfont = øallocate class font (font);
       pfont->create(this);
       m_fonta.add(pfont);
       pfont->m_iIndex = (int)m_fonta.get_upper_bound();
@@ -209,7 +209,7 @@ namespace html
    void core_data::delete_contents()
    {
 
-      synchronous_lock lock(synchronization());
+      synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       destroy();
 
@@ -264,7 +264,7 @@ namespace html
 
       delete_contents();
 
-      auto phtmlreader = __create_new < lite_html_reader >();
+      auto phtmlreader = øcreate_new < lite_html_reader >();
 
       ::html::reader reader;
 
@@ -296,7 +296,7 @@ namespace html
 
       }
 
-      m_pelement = __allocate ::html::element ();
+      m_pelement = øallocate ::html::element ();
 
       m_pelement->initialize_html_elemental(this);
 
@@ -356,7 +356,7 @@ namespace html
 
       }
 
-      MESSAGE_LINK(e_message_key_down, m_puserinteraction, this, &core_data::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_down, m_puserinteraction, this, &core_data::on_message_key_down);
       
       m_bImplemented = true;
       
@@ -401,7 +401,7 @@ namespace html
    void core_data::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_bImplemented)
       {
@@ -451,7 +451,7 @@ namespace html
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_pgraphics = pgraphics;
 
@@ -603,7 +603,7 @@ namespace html
    bool core_data::load_image(image* pimage)
    {
 
-      synchronous_lock lockImage(pimage->synchronization());
+      synchronous_lock lockImage(pimage->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       bool bRet = false;
 
@@ -633,7 +633,7 @@ namespace html
       if (m_puserinteraction != nullptr)
       {
 
-         m_puserinteraction->post_message(e_message_image_loaded);
+         m_puserinteraction->post_message(::user::e_message_image_loaded);
 
       }
 
@@ -663,7 +663,7 @@ namespace html
       if (strPath.begins_eat("ext://"))
       {
 
-         auto phyperlink =__create_new < hyperlink>();
+         auto phyperlink =øcreate_new < hyperlink>();
 
          phyperlink->m_strLink = strPath;
 
@@ -710,7 +710,7 @@ namespace html
 
       //int iRetry = 0;
 
-      synchronous_lock lock(synchronization());
+      synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //restart:
 
@@ -926,7 +926,7 @@ namespace html
 
       //auto estatus = 
       
-      __øconstruct(pimage);
+      øconstruct(pimage);
       
       //if (!estatus)
       //{
@@ -944,7 +944,7 @@ namespace html
 
       }*/
 
-      synchronous_lock lock(synchronization());
+      synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_puserinteraction = pform;
 
@@ -977,7 +977,7 @@ namespace html
 
       //auto estatus = 
       
-      __øconstruct(pimage);
+      øconstruct(pimage);
 
       //if (!estatus)
       //{
@@ -997,7 +997,7 @@ namespace html
 
       //}
 
-      synchronous_lock lock(synchronization());
+      synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_puserinteraction = pform;
 
@@ -1019,7 +1019,7 @@ namespace html
 
       //auto estatus = 
       
-      __øconstruct(pimage);
+      øconstruct(pimage);
       
       //if (!estatus)
       //{
@@ -1039,7 +1039,7 @@ namespace html
 
       //}
 
-      synchronous_lock lock(synchronization());
+      synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_puserinteraction = pform;
 

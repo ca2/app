@@ -144,9 +144,9 @@ namespace user
       ::pointer<span>span::fork()
       { 
 
-         synchronous_lock synchronouslock(m_pdata->synchronization());
+         synchronous_lock synchronouslock(m_pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
          
-         auto pspan = __allocate class span (m_pdata);
+         auto pspan = øallocate class span (m_pdata);
          
          pspan->m_pformat = m_pdata->add_format();
 
@@ -160,7 +160,7 @@ namespace user
       ::pointer<span>span::fork(const class format* pformat, const e_attribute& eattribute)
       {
 
-         synchronous_lock synchronouslock(m_pdata->synchronization());
+         synchronous_lock synchronouslock(m_pdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pspan = fork();
 
@@ -174,7 +174,7 @@ namespace user
       ::pointer<format>span::fork_format()
       {
 
-         return __allocate class format (*m_pformat);
+         return øallocate class format (*m_pformat);
 
       }
 

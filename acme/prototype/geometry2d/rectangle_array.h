@@ -5,13 +5,12 @@
 
 
 template < primitive_number NUMBER >
-class rectangle_base_array :
-public ::array < ::rectangle_type < NUMBER > >
+class rectangle_array_base :
+public ::array_base < ::rectangle_type < NUMBER > >
 {
 public:
 
-
-   //using BASE_ARRAY_TYPE = array < ::rectangle_type < NUMBER > >;
+   using BASE_ARRAY = ::array_base < ::rectangle_type < NUMBER > >;
    //using RECTANGLE_BASE_TYPE = ::rectangle_type < NUMBER >;
    //using UNIT_TYPE = typename ::rectangle_type < NUMBER >::UNIT_TYPE;
    using UNIT_TYPE = NUMBER;
@@ -19,14 +18,15 @@ public:
    //using SIZE_TYPE = typename ::rectangle_type < NUMBER >::SIZE_TYPE;
 
    
-   using array < ::rectangle_type < NUMBER > >::array;
-   rectangle_base_array(const rectangle_base_array & a) noexcept : array < ::rectangle_type < NUMBER > > (a) { }
-   rectangle_base_array(rectangle_base_array && a) noexcept : array < ::rectangle_type < NUMBER > >(::transfer(a)) { }
+   using BASE_ARRAY::BASE_ARRAY;
+   using BASE_ARRAY::operator =;
+   //rectangle_array_base(const rectangle_array_base & a) noexcept : array < ::rectangle_type < NUMBER > > (a) { }
+   //rectangle_array_base(rectangle_array_base && a) noexcept : array < ::rectangle_type < NUMBER > >(::transfer(a)) { }
 
    
-   virtual ~rectangle_base_array();
+   //~rectangle_array_base();
 
-   using array < ::rectangle_type < NUMBER > >::add;
+   using array_base < ::rectangle_type < NUMBER > >::add;
    void add(const ::rectangle_type < NUMBER > & rectangle);
    void add(UNIT_TYPE left, UNIT_TYPE top, UNIT_TYPE right, UNIT_TYPE bottom);
    void add(const ::point_type < NUMBER > & point, const ::size_type < NUMBER > & size);
@@ -76,15 +76,15 @@ public:
 
    }
 
-   rectangle_base_array& operator = (const rectangle_base_array& array) { ::array < ::rectangle_type < NUMBER > >::operator=(array); return *this; }
-   rectangle_base_array& operator = (rectangle_base_array&& array) { ::array < ::rectangle_type < NUMBER > >::operator=(::transfer(array)); return *this; }
-   rectangle_base_array& operator = (std::initializer_list < ::rectangle_type < NUMBER > > initializer_list) { ::array < ::rectangle_type < NUMBER > > ::operator=(initializer_list); return *this; }
+   //rectangle_array_base& operator = (const rectangle_array_base& array) { ::array < ::rectangle_type < NUMBER > >::operator=(array); return *this; }
+   //rectangle_array_base& operator = (rectangle_array_base&& array) { ::array < ::rectangle_type < NUMBER > >::operator=(::transfer(array)); return *this; }
+   //rectangle_array_base& operator = (std::initializer_list < ::rectangle_type < NUMBER > > initializer_list) { ::array < ::rectangle_type < NUMBER > > ::operator=(initializer_list); return *this; }
 
 
 };
 
 template < primitive_number NUMBER >
-inline void rectangle_base_array < NUMBER >::offset(::point_type < NUMBER > point)
+inline void rectangle_array_base < NUMBER >::offset(::point_type < NUMBER > point)
 {
    offset(point.x(), point.y());
 }
@@ -92,14 +92,14 @@ inline void rectangle_base_array < NUMBER >::offset(::point_type < NUMBER > poin
 
 
 
-template < primitive_number NUMBER >
-rectangle_base_array < NUMBER >::~rectangle_base_array()
-{
+//template < primitive_number NUMBER >
+//rectangle_array_base < NUMBER >::~rectangle_array_base()
+//{
+//
+//}
 
-}
-
 template < primitive_number NUMBER >
-void rectangle_base_array < NUMBER >::offset(UNIT_TYPE cx, UNIT_TYPE cy)
+void rectangle_array_base < NUMBER >::offset(UNIT_TYPE cx, UNIT_TYPE cy)
 {
 
    for (int i = 0; i < this->get_size(); i++)
@@ -118,7 +118,7 @@ void rectangle_base_array < NUMBER >::offset(UNIT_TYPE cx, UNIT_TYPE cy)
 
 
 template < primitive_number NUMBER >
-::rectangle_type < NUMBER > rectangle_base_array < NUMBER >::union_rect()
+::rectangle_type < NUMBER > rectangle_array_base < NUMBER >::union_rect()
 {
    
    if(this->is_empty())
@@ -145,7 +145,7 @@ template < primitive_number NUMBER >
 
 
 template < primitive_number NUMBER >
-void rectangle_base_array < NUMBER >::get_box(::rectangle_type < NUMBER > * prectangle)
+void rectangle_array_base < NUMBER >::get_box(::rectangle_type < NUMBER > * prectangle)
 
 {
 
@@ -156,7 +156,7 @@ void rectangle_base_array < NUMBER >::get_box(::rectangle_type < NUMBER > * prec
 
 
 template < primitive_number NUMBER >
-void rectangle_base_array < NUMBER >::intersect(const ::rectangle_type < NUMBER > & rectangle)
+void rectangle_array_base < NUMBER >::intersect(const ::rectangle_type < NUMBER > & rectangle)
 {
 
    for (::collection::index i = 0; i < this->get_size();)
@@ -183,42 +183,42 @@ void rectangle_base_array < NUMBER >::intersect(const ::rectangle_type < NUMBER 
 
 
 template < primitive_number NUMBER >
-void rectangle_base_array < NUMBER >::add(const ::rectangle_type < NUMBER > & rectangle)
+void rectangle_array_base < NUMBER >::add(const ::rectangle_type < NUMBER > & rectangle)
 {
-   array < ::rectangle_type < NUMBER > >::add(rectangle);
+   array_base < ::rectangle_type < NUMBER > >::add(rectangle);
 }
 
 
 template < primitive_number NUMBER >
-void rectangle_base_array < NUMBER >::add(UNIT_TYPE left, UNIT_TYPE top, UNIT_TYPE right, UNIT_TYPE bottom)
+void rectangle_array_base < NUMBER >::add(UNIT_TYPE left, UNIT_TYPE top, UNIT_TYPE right, UNIT_TYPE bottom)
 {
    add(::rectangle_type < NUMBER >(left, top, right, bottom));
 }
 
 
 template < primitive_number NUMBER >
-void rectangle_base_array < NUMBER >::add_dim(UNIT_TYPE x, UNIT_TYPE y, UNIT_TYPE cx, UNIT_TYPE cy)
+void rectangle_array_base < NUMBER >::add_dim(UNIT_TYPE x, UNIT_TYPE y, UNIT_TYPE cx, UNIT_TYPE cy)
 {
    add(int_rectangle_dimension(x, y, cx, cy));
 }
 
 
 template < primitive_number NUMBER >
-void rectangle_base_array < NUMBER >::add(const ::point_type < NUMBER > & point, const ::size_type < NUMBER > & size)
+void rectangle_array_base < NUMBER >::add(const ::point_type < NUMBER > & point, const ::size_type < NUMBER > & size)
 {
    add(::rectangle_type < NUMBER >(point, size));
 }
 
 
 template < primitive_number NUMBER >
-void rectangle_base_array < NUMBER >::add(const ::size_type < NUMBER > & size)
+void rectangle_array_base < NUMBER >::add(const ::size_type < NUMBER > & size)
 {
    this->add(::rectangle_type < NUMBER >(size));
 }
 
 
 template < primitive_number NUMBER >
-::collection::index rectangle_base_array < NUMBER >::max_normal_intersect_area(const ::rectangle_type < NUMBER > & rectangleParam, const ::rectangle_type < NUMBER > & rectangleModel)
+::collection::index rectangle_array_base < NUMBER >::max_normal_intersect_area(const ::rectangle_type < NUMBER > & rectangleParam, const ::rectangle_type < NUMBER > & rectangleModel)
 {
 
    ::collection::index iFound = -1;
@@ -257,7 +257,7 @@ template < primitive_number NUMBER >
 }
 
 
-CLASS_DECL_ACME int_rectangle_array get_top_left_oriented_damaged_areas_by_resizing(const ::int_rectangle & rectangleNew, const ::int_rectangle & rectangleOld, bool bOnlyGrowing = true);
+CLASS_DECL_ACME int_rectangle_array_base get_top_left_oriented_damaged_areas_by_resizing(const ::int_rectangle & rectangleNew, const ::int_rectangle & rectangleOld, bool bOnlyGrowing = true);
 
 
 

@@ -15,7 +15,7 @@ namespace user
    public:
 
 
-      index_to_index_to_string        m_map;
+      index_to_index_to_string_base        m_map;
 
 
       list_cache();

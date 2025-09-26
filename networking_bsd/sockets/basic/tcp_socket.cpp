@@ -84,7 +84,7 @@ void SSL_set_app_data2(SSL* ssl, void* arg)
 int current_session_key(::sockets_bsd::tcp_socket* c, ssl_ticket_key* key)
 {
    int result = false;
-   _synchronous_lock synchronouslock(c->synchronization());
+   _synchronous_lock synchronouslock(c->synchronization(), c, SYNCHRONOUS_LOCK_SUFFIX);
    if (c->m_ticketkeya.has_elements())
    {
       *key = c->m_ticketkeya.first();
@@ -99,7 +99,7 @@ int find_session_key(::sockets_bsd::tcp_socket* c, unsigned char key_name[16], s
 {
 
    int result = false;
-   _synchronous_lock synchronouslock(c->synchronization());
+   _synchronous_lock synchronouslock(c->synchronization(), c, SYNCHRONOUS_LOCK_SUFFIX);
    for (auto& ticketkey : c->m_ticketkeya)
    {
       // Check if we have a match for tickets.
@@ -123,7 +123,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
 
    ::sockets_bsd::tcp_socket* c = (::sockets_bsd::tcp_socket*)SSL_get_app_data2(ssl);
 
-   _synchronous_lock synchronouslock(c->synchronization());
+   _synchronous_lock synchronouslock(c->synchronization(), c, SYNCHRONOUS_LOCK_SUFFIX);
    //auto conn = static_cast<Connection*>(SSL_get_app_data(ssl));
    //auto handler = static_cast<ClientHandler*>(conn->data);
    //auto worker = handler->get_worker();
@@ -542,7 +542,7 @@ m_ibuf(isize)
 
       ::pointer < ::networking_bsd::address > paddress2 = paddress;
 
-      auto paddressBind2 = __allocate::networking_bsd::address();
+      auto paddressBind2 = øallocate::networking_bsd::address();
 
       paddressBind2->set_family(paddress2->get_family());
 
@@ -742,7 +742,7 @@ m_ibuf(isize)
       else
       {
          attach(s);
-         SetCallOnConnect(); // base_socket_handler must call OnConnect
+         set_call_on_connect(); // base_socket_handler must call OnConnect
       }
 
       set_connection_start_time();
@@ -847,7 +847,7 @@ m_ibuf(isize)
 
          ::pointer < ::networking_bsd::address > pnetworkingbsdaddress = paddress;
 
-         auto paddressLocal = __allocate::networking_bsd::address();
+         auto paddressLocal = øallocate::networking_bsd::address();
 
          paddressLocal->set_family(pnetworkingbsdaddress->get_family());
 
@@ -1350,7 +1350,7 @@ m_ibuf(isize)
       if (is_true("from_pool") && CallOnConnect())
       {
 
-         SetCallOnConnect(false);
+         clear_call_on_connect();
          SetConnected(true);
          OnConnect();
 
@@ -1365,7 +1365,7 @@ m_ibuf(isize)
          {
             set(!IsDisableRead(), false);
             set_connecting(false);
-            SetCallOnConnect();
+            set_call_on_connect();
             return;
          }
 
@@ -1687,7 +1687,7 @@ m_ibuf(isize)
 
             }
 
-            m_obuf_top = __allocate output(TCP_OUTPUT_CAPACITY);
+            m_obuf_top = øallocate output(TCP_OUTPUT_CAPACITY);
 
          }
 
@@ -1880,7 +1880,7 @@ m_ibuf(isize)
       else
       {
 
-         SetRetryClientConnect();
+         set_retry_client_connect();
 
       }
 
@@ -1965,7 +1965,7 @@ m_ibuf(isize)
 
       SetNonblocking(false);
 
-      //synchronous_lock slMap(pnetworking2->m_clientcontextmap.m_pmutex);
+      //synchronous_lock slMap(pnetworking2->m_clientcontextmap.m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (is_true("from_pool"))
          return;
@@ -2074,7 +2074,7 @@ m_ibuf(isize)
 
       SetNonblocking(false);
 
-      //synchronous_lock slMap(pnetworking2->m_servercontextmap.m_pmutex);
+      //synchronous_lock slMap(pnetworking2->m_servercontextmap.m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       {
          if (m_psslcontext.is_set()
@@ -2090,7 +2090,7 @@ m_ibuf(isize)
       }
 
 
-      //synchronous_lock synchronouslock(m_pmutexSslCtx);
+      //synchronous_lock synchronouslock(m_pmutexSslCtx, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //slMap.unlock();
 
@@ -2361,6 +2361,23 @@ m_ibuf(isize)
    }
 
 
+   void tcp_socket::set_no_ssl_shutdown()
+   {
+
+      if (!m_psslcontext)
+      {
+
+         warning() << "tcp_socket::set_no_ssl_shutdown: SSL Context is nullptr";
+
+         return;
+
+      }
+
+      m_psslcontext->m_bNoSslShutdown = true;
+
+   }
+
+
    bool tcp_socket::SSLNegotiate_Server()
    {
 
@@ -2432,6 +2449,24 @@ m_ibuf(isize)
          {
 
             information() << "SSL_accept return code is SSL_ERROR_WANT_ACCEPT";
+
+         }
+         else if (iSslError == SSL_ERROR_SSL)
+         {
+
+            // According to OpenSSL documentation, if SSL_ERROR_SSL 
+            // error has happened, a fatal error occurred and 
+            // SSL_shutdown shouldn't be called.
+
+            information() << "SSLNegotiate SSL_accept() failed with SSL_ERROR_SSL (1) network error = : " << iError;
+
+            set_no_ssl_shutdown();
+
+            SetSSLNegotiate(false);
+
+            SetCloseAndDelete(true);
+
+            OnSSLAcceptFailed();
 
          }
          else
@@ -2651,7 +2686,7 @@ m_ibuf(isize)
 
       ::pointer<ssl_client_context>psslclientcontext = clientcontextmap.get_context(context, pmethod);
 
-      m_psslcontext = __allocate ssl_context();
+      m_psslcontext = øallocate ssl_context();
 
       m_psslcontext->m_pclientcontext = psslclientcontext;
 
@@ -2664,14 +2699,14 @@ m_ibuf(isize)
       if (m_psslcontext.is_null())
       {
 
-         m_psslcontext = __allocate ssl_context();
+         m_psslcontext = øallocate ssl_context();
 
       }
 
       if (m_psslcontext->m_pclientcontext.is_null())
       {
 
-         m_psslcontext->m_pclientcontext = __allocate ssl_client_context(meth_in != nullptr ? meth_in : TLS_server_method());
+         m_psslcontext->m_pclientcontext = øallocate ssl_client_context(meth_in != nullptr ? meth_in : TLS_server_method());
 
          m_psslcontext->m_pclientcontext->initialize(this);
 
@@ -2799,7 +2834,7 @@ m_ibuf(isize)
 
 
       {
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
          int i;
 
          //auto psystem = system();
@@ -3146,7 +3181,7 @@ m_ibuf(isize)
          if (OnConnectRetry())
          {
 
-            SetRetryClientConnect();
+            set_retry_client_connect();
 
          }
          else

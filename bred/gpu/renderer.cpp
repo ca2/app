@@ -7,6 +7,7 @@
 #include "device.h"
 #include "frame.h"
 #include "layer.h"
+#include "queue.h"
 #include "texture.h"
 #include "renderer.h"
 #include "render_state.h"
@@ -79,7 +80,7 @@ namespace gpu
 
       m_pgpucontext = pgpucontext;
 
-      __defer_construct_new(m_prenderstate);
+      ødefer_construct_new(m_prenderstate);
 
       //m_pgpucontext->m_prenderer = this;
 
@@ -127,7 +128,7 @@ namespace gpu
       //      else if (eoutput == ::gpu::e_output_gpu_buffer)
       //      {
       //
-      //         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+      //         auto poffscreenrendertargetview = øallocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
       //#ifdef WINDOWS_DESKTOP
       //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
       //#else
@@ -140,18 +141,18 @@ namespace gpu
       //      else if (eoutput == ::gpu::e_output_color_and_alpha_accumulation_buffers)
       //      {
       //
-      //         auto paccumulationrendertargetview = __allocate accumulation_render_target(this, m_extentRenderer, m_prendertargetview);
+      //         auto paccumulationrendertargetview = øallocate accumulation_render_target(this, m_extentRenderer, m_prendertargetview);
       //         paccumulationrendertargetview->m_formatImage = VK_FORMAT_R32G32B32A32_SFLOAT;
       //         paccumulationrendertargetview->m_formatAlphaAccumulation = VK_FORMAT_R32_SFLOAT;
       //         m_prendertargetview = paccumulationrendertargetview;
       //
-      //         //__construct_new(m_prendererResolve);
+      //         //øconstruct_new(m_prendererResolve);
       //
       //         //m_prendererResolve->initialize_renderer(m_pgpucontext, ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers);
       //
       //         //m_prendererResolve->set_placement(m_pgpucontext->rectangle);
       //         //
-      //         //            auto poffscreenrendertargetview = __allocate offscreen_render_target(m_pgpucontext, m_extentRenderer, m_prendertargetviewResolve);
+      //         //            auto poffscreenrendertargetview = øallocate offscreen_render_target(m_pgpucontext, m_extentRenderer, m_prendertargetviewResolve);
       //         //#ifdef WINDOWS_DESKTOP
       //         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
       //         //#else
@@ -162,7 +163,7 @@ namespace gpu
       //      else if (eoutput == ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers)
       //      {
       //
-      //         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+      //         auto poffscreenrendertargetview = øallocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
       //#ifdef WINDOWS_DESKTOP
       //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
       //#else
@@ -215,7 +216,7 @@ namespace gpu
    ::pointer < texture> renderer::create_image_texture(const ::int_size& size, bool bWithDepth)
    {
 
-      auto ptexture = __øcreate< texture>();
+      auto ptexture = øcreate< texture>();
 
       ptexture->initialize_image_texture(this, size, bWithDepth);
 
@@ -237,7 +238,7 @@ namespace gpu
       ::gpu::shader::enum_flag eflag)
    {
 
-      auto pshader = __øcreate < ::gpu::shader >();
+      auto pshader = øcreate < ::gpu::shader >();
       pshader->initialize_shader(this,
          pathVert, pathFrag, eslota,
          pLocalDescriptorSet, ppropertiesPush, pinputlayout, eflag);
@@ -422,9 +423,11 @@ namespace gpu
 
          auto& pcommandbuffer = m_commandbuffera[i];
 
-         __defer_construct(pcommandbuffer);
+         ødefer_construct(pcommandbuffer);
 
-         pcommandbuffer->initialize_command_buffer(m_pgpurendertarget,
+         pcommandbuffer->initialize_command_buffer(
+            m_pgpurendertarget,
+            m_pgpucontext->graphics_queue(),
             e_command_buffer_graphics);
 
       }
@@ -759,7 +762,7 @@ namespace gpu
    //#endif
    //
    //
-   //   __defer_construct(m_pimageFromGpu);
+   //   ødefer_construct(m_pimageFromGpu);
    //
    //   auto size = m_pgpucontext->m_pcpubuffer->m_pixmap.m_size;
    //
@@ -878,7 +881,17 @@ namespace gpu
       if (!bLayerStarted)
       {
 
-         _on_begin_render(pframe);
+         auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+
+         auto etypeGpuContext = m_pgpucontext->m_etype;
+
+         if (!bUseSwapChain
+            || etypeGpuContext != ::gpu::context::e_type_window)
+         {
+
+            _on_begin_render(pframe);
+
+         }
 
       }
 
@@ -1019,7 +1032,7 @@ namespace gpu
    //   //   || eoutput == ::gpu::e_output_gpu_buffer)
    //   //{
 
-   //   //   pgpurendertarget = __allocate offscreen_render_target();
+   //   //   pgpurendertarget = øallocate offscreen_render_target();
    //   //   //#ifdef WINDOWS_DESKTOP
    //   //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   //   //#else
@@ -1031,7 +1044,7 @@ namespace gpu
    //   //}
    //   //else if (eoutput == ::gpu::e_output_swap_chain)
    //   //{
-   //   //   pgpurendertarget = __allocate offscreen_render_target();
+   //   //   pgpurendertarget = øallocate offscreen_render_target();
    //   //   //#ifdef WINDOWS_DESKTOP
    //   //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   //   //#else
@@ -1039,7 +1052,7 @@ namespace gpu
    //   //   //#endif
    //   //   //m_pgpurendertarget = poffscreenrendertargetview;
 
-   //   //   //m_prendertargetview = __allocate swap_chain_render_target(this, size, m_prendertargetview);
+   //   //   //m_prendertargetview = øallocate swap_chain_render_target(this, size, m_prendertargetview);
    //   //   //m_prendererResolve.release();
 
    //   //}
@@ -1090,7 +1103,7 @@ namespace gpu
    ::pointer < render_target > renderer::on_create_render_target()
    {
 
-      auto prendertarget = __øcreate<render_target>();
+      auto prendertarget = øcreate<render_target>();
 
       prendertarget->m_bAdvancedPipelineSynchronization = true;
 
@@ -1102,7 +1115,7 @@ namespace gpu
    ::pointer < swap_chain > renderer::on_create_swap_chain()
    {
 
-      return __øcreate<swap_chain>();
+      return øcreate<swap_chain>();
 
    }
 
@@ -1252,13 +1265,15 @@ namespace gpu
       if (!bForDrawing)
       {
 
+         frame_prefix();
+
          on_frame(::gpu::current_frame());
 
          return;
 
       }
 
-      frame_prefix();
+//      frame_prefix();
 
       on_frame(::gpu::current_frame());
 
@@ -1371,11 +1386,45 @@ namespace gpu
    ::pointer < frame > renderer::beginFrame()
    {
 
+      if (m_procedureaPostOnJustBeforeFrameNextStart.has_element())
+      {
+
+         try
+         {
+
+            for (auto & procedure : m_procedureaPostOnJustBeforeFrameNextStart)
+            {
+
+               try
+               {
+
+                  procedure();
+
+               }
+               catch (...)
+               {
+
+
+               }
+
+            }
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+         m_procedureaPostOnJustBeforeFrameNextStart.clear();
+
+      }
+
       auto pcontext = m_pgpucontext;
 
       auto pgpudevice = pcontext->m_pgpudevice;
 
-      auto pgpuframe = __øcreate < ::gpu::frame >();
+      auto pgpuframe = øcreate < ::gpu::frame >();
 
       ::gpu::set_current_frame(pgpuframe);
 
@@ -1426,8 +1475,12 @@ namespace gpu
 
       m_pgpurendertarget->m_pgpuframe = pgpuframe;
 
-      if (!m_papplication->m_gpu.m_bUseSwapChainWindow
-         || m_pgpucontext->m_etype != ::gpu::context::e_type_window)
+      auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+
+      auto etypeGpuContext = m_pgpucontext->m_etype;
+
+      if (!bUseSwapChain
+         || etypeGpuContext != ::gpu::context::e_type_window)
       {
 
          wait_command_buffer_ready();
@@ -1447,6 +1500,37 @@ namespace gpu
       m_prenderstate->on_happening(e_happening_end_frame);
 
       isFrameStarted = false;
+
+      if (m_procedureaOnAfterEndFrame.has_element())
+      {
+
+         try
+         {
+
+            for (auto &procedure: m_procedureaOnAfterEndFrame)
+            {
+               try
+               {
+
+                  procedure();
+
+               }
+               catch (...)
+               {
+
+
+               }
+            }
+
+         }
+         catch (...)
+         {
+
+
+         }
+         m_procedureaOnAfterEndFrame.clear();
+
+      }
 
       if (m_timeLast5s.elapsed() > 5_s)
       {
@@ -1543,7 +1627,7 @@ namespace gpu
       //   ////if (!m_pgpucontextOutput)
       //   ////{
 
-      //   ////   __øconstruct(m_pgpucontextOutput);
+      //   ////   øconstruct(m_pgpucontextOutput);
 
       //   ////   m_pgpucontextOutput = m_papplication->get_gpu()->get_device(pwindow, pwindow->get_window_rectangle())->start_swap_chain_context(this, pwindow);
 
@@ -1620,6 +1704,26 @@ namespace gpu
       //}
 
    }
+
+
+   void renderer::post_on_after_end_frame(const ::procedure &procedure)
+   {
+
+      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      m_procedureaOnAfterEndFrame.add(procedure);
+
+   }
+
+
+   void renderer::post_on_just_before_frame_next_start(const ::procedure & procedure)
+   {
+
+      m_procedureaPostOnJustBeforeFrameNextStart.add(procedure);
+
+   }
+
+
 
 
 } // namespace gpu

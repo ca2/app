@@ -370,7 +370,7 @@ namespace serial
       /*! Reads in multiple lines until the serial port times out.
        *
        * This requires a timeout > 0 before it can be run. It will read until a
-       * timeout occurs and return a list of strings.
+       * timeout occurs and return a list_base of strings.
        *
        * \lparam int_size A maximum length of combined lines, defaults to 65536 (2^16)
        *

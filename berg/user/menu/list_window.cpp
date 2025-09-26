@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "list_window.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "berg/user/menu/item.h"
 #include "berg/user/menu/item_ptra.h"
@@ -49,9 +49,9 @@ namespace user
 
       menu::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &menu_list_window::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_list_window::on_message_destroy);
-      MESSAGE_LINK(e_message_close, pchannel, this, &menu_list_window::on_message_close);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &menu_list_window::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &menu_list_window::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &menu_list_window::on_message_close);
 
    }
 

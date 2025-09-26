@@ -479,7 +479,7 @@ namespace fs_raw_folder_protocol_dropbox
 //
 //         auto stra = sync_exclusion_list(callbackStatus);
 //
-//         //auto stra = _dropbox_lines("exclude list", callbackStatus);
+//         //auto stra = _dropbox_lines("exclude list_base", callbackStatus);
 //
 //         if (m_iStableOkCount >= 5)
 //         {
@@ -856,7 +856,7 @@ namespace fs_raw_folder_protocol_dropbox
 ////   string_array_base folder::sync_exclusion_list(const ::function<void(const ::scoped_string&)>& callbackStatus)
 ////   {
 ////
-////      auto stra = _dropbox_lines("exclude list", callbackStatus);
+////      auto stra = _dropbox_lines("exclude list_base", callbackStatus);
 ////
 ////      if (stra.size() == 1 && stra.first().case_insensitive_contains("no directories"))
 ////      {

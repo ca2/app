@@ -42,7 +42,12 @@ namespace platform
    {
       return id_none;
    }
-
+//   ::file::path acme_node_layer::synchronously_request_document_folder()
+//   {
+//
+//      return {};
+//
+//   }
 
     void acme_node_layer::notify_system_started()
     {
@@ -812,12 +817,12 @@ namespace platform
    //virtual ::pointer<::conversation> create_new_message_conversation(){}
 
 
-   //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon){}
+   //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon){}
 
 
-   //void acme_node_layer::micro::message_box(::sequence < ::conversation > * psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box& emessagebox){}
+   //void acme_node_layer::micro::message_box(::sequence < ::conversation > * psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox){}
 
-   //virtual ::pointer < ::subparticle > create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon){}
+   //virtual ::pointer < ::subparticle > create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon){}
 
 
    void acme_node_layer::shell_launch(const ::scoped_string & scopedstrAppId)
@@ -1963,4 +1968,62 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    }
 
 
-}
+   void acme_node_layer::protocol_set_data(const ::file::path & path, const ::block & block)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   ::memory acme_node_layer:: protocol_get_data(const ::file::path & path)
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
+   void acme_node_layer::on_protocol_set_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath, const ::block & block)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   ::memory acme_node_layer::on_protocol_get_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath)
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
+   void acme_node_layer::post_media_store_operation(::data::block* pdatablock)
+   {
+
+      throw interface_only();
+
+   }
+
+
+   ::memory media_store_get_data(const ::scoped_string & scopedstrPath)
+   {
+
+      throw interface_only();
+
+      return {};
+
+
+   }
+
+
+ } // namespace platform
+
+
+

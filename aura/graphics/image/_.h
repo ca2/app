@@ -153,7 +153,7 @@ namespace image
 //
 //   virtual bool hue_offset(double dRate)= 0;
 //
-//   virtual bool map(bool bApplyAlphaTransform = true) const= 0; // some implementations may requrire to map to m_pcolorref before manipulate it
+//   virtual bool map(bool bApplyAlphaTransform = true) const= 0; // some implementations may requrire to map_base to m_pcolorref before manipulate it
 //   virtual bool unmap() const= 0; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 //   virtual bool set_mapped()= 0;
 //

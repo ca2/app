@@ -48,9 +48,9 @@ void defer_term_ui();
 
 //bool is_verbose();
 
-//extern string_map < ::pointer<::acme::library >> g_pmapLibrary;
+//extern string_map_base < ::pointer<::acme::library >> g_pmapLibrary;
 //extern ::pointer< ::mutex > psystem->m_pmutexLibrary;
-//extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
+//extern string_map_base < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
 int_bool point_is_window_origin(::int_point ptHitTest, oswindow oswindowExclude, int iMargin);
 
@@ -200,7 +200,7 @@ namespace axis
 
    //   ::pointer<::apex::application>papp;
 
-   //   if (m_applicationa.lookup(scopedstrAppId, papp))
+   //   if (m_applicationa.find(scopedstrAppId, papp))
    //   {
 
    //      return papp;
@@ -307,7 +307,7 @@ namespace axis
 //
 //
 //         }
-//         synchronous_lock synchronouslock(psystem->m_pmutexLibrary);
+//         synchronous_lock synchronouslock(psystem->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //         ::pointer<::acme::library>& plibrary = psystem->m_mapLibrary[pszAppId];
 //
@@ -364,7 +364,7 @@ namespace axis
 //                  else
 //                  {
 //
-//                     plibrary = __allocate ::acme::library();
+//                     plibrary = øallocate ::acme::library();
 //
 //                     plibrary->initialize_aura_library(pparticle, 0, nullptr);
 //
@@ -515,8 +515,8 @@ namespace axis
 //      if (!papp->is_serviceable() || papp->is_user_service())
 //      {
 //
-//         psystem->m_spmutexUserAppData = __allocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
-//         psystem->m_spmutexSystemAppData = __allocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
+//         psystem->m_spmutexUserAppData = øallocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
+//         psystem->m_spmutexSystemAppData = øallocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
 //
 //      }
 //
@@ -816,7 +816,7 @@ namespace axis
    //   //   return estatus;
 
    //   //}
-   //   auto estatus = __øconstruct(m_puser);
+   //   auto estatus = øconstruct(m_puser);
 
    //   if (!estatus || !m_puser)
    //   {
@@ -873,7 +873,7 @@ namespace axis
 
 
 
-   //   auto estatus = __construct_new(m_puserex);
+   //   auto estatus = øconstruct_new(m_puserex);
 
    //   if (!estatus)
    //   {
@@ -1202,7 +1202,7 @@ namespace axis
 
       auto puser = pcredentials->m_puser;
 
-      //auto pdialog = ::__create_new<::account::dialog>();
+      //auto pdialog = ::øcreate_new<::account::dialog>();
 
       //pdialog->initialize_account_dialog(pcredentials);
 

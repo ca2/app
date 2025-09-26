@@ -925,7 +925,7 @@ memory_file & memory_file::operator = (const memory_file & file)
 //CLASS_DECL_ACME memory_file_pointer create_memory_file(::memory_base & memory)
 //{
 //   
-//   return __allocate ::memory_file(memory); 
+//   return øallocate ::memory_file(memory); 
 //
 //}
 //
@@ -933,7 +933,7 @@ memory_file & memory_file::operator = (const memory_file & file)
 //CLASS_DECL_ACME memory_file_pointer create_memory_file(const ::block & block)
 //{
 //   
-//   return __allocate ::memory_file(block); 
+//   return øallocate ::memory_file(block); 
 //
 //}
 //
@@ -941,7 +941,7 @@ memory_file & memory_file::operator = (const memory_file & file)
 //CLASS_DECL_ACME memory_file_pointer create_memory_file_as_copy(const memory & memory) 
 //{
 //   
-//   return __allocate ::memory_file(__initialize_new ::memory (memory)); 
+//   return øallocate ::memory_file(__initialize_new ::memory (memory)); 
 //
 //}
 //

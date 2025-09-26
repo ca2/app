@@ -68,7 +68,7 @@ void xfplayer_impact_line::initialize_xfplayer_impact_line(xfplayer_impact_linea
    //   
    //}
    
-   __øconstruct(m_pfont);
+   øconstruct(m_pfont);
 
    m_pContainer = pContainer;
    m_bEnhancedEmboss = true;
@@ -116,7 +116,7 @@ xfplayer_impact_line::~xfplayer_impact_line()
 bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, int flags, const ::int_rectangle & rectangle)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    __UNREFERENCED_PARAMETER(flags);
 
@@ -156,7 +156,7 @@ bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, c
 void xfplayer_impact_line::add_char(::wide_character wch, character_count & index)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_str += wch;
 
@@ -175,7 +175,7 @@ void xfplayer_impact_line::add_char(::wide_character wch, character_count & inde
 void xfplayer_impact_line::add_char(::wide_character wch, character_count & index, ::write_text::font * pFont)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    __UNREFERENCED_PARAMETER(pFont);
    index++;
@@ -193,17 +193,17 @@ void xfplayer_impact_line::GetPlacement(::int_rectangle * prectangle)
 
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    *prectangle = m_rectangle;
 
 }
 
 
-bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array & rectaModified, bool bRecalcLayout)
+bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array_base & rectaModified, bool bRecalcLayout)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strFinal(m_str);
 
@@ -457,10 +457,10 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 }
 
 
-bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array & rectaModified, ::collection::count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen)
+bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array_base & rectaModified, ::collection::count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::int_rectangle rectanglePlacement;
 
@@ -509,7 +509,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
       strFinal = m_str;
       pgraphics->set(sppen);
 
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
       pbrushText->create_solid(
 
@@ -559,7 +559,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
       iLeftOffset = iLeftDiff - (int)m_dAnimateProgress;
 
       pgraphics->set(sppen);
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
       pbrushText->create_solid(crColor);
 
@@ -773,7 +773,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
 
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_bCacheEmboss = false;
 
@@ -839,7 +839,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    if (m_bColonPrefix)
    {
 
-      __øconstruct(m_pfontPrefix);
+      øconstruct(m_pfontPrefix);
 
       *m_pfontPrefix = *m_pfont;
 
@@ -1083,7 +1083,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
 void xfplayer_impact_line::SetAutoSize(bool bAutoSize)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_bAutoSizeX = bAutoSize;
    m_bAutoSizeY = bAutoSize;
@@ -1092,7 +1092,7 @@ void xfplayer_impact_line::SetAutoSize(bool bAutoSize)
 void xfplayer_impact_line::SetAlign(int iAlign)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_iAlign = iAlign;
 }
@@ -1127,7 +1127,7 @@ xfplayer_impact_line & xfplayer_impact_line::operator = (const xfplayer_impact_l
 void xfplayer_impact_line::Show(bool bShow)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (bShow && !m_bVisible)
    {
@@ -1151,10 +1151,10 @@ void xfplayer_impact_line::Show(bool bShow)
 }
 
 
-void xfplayer_impact_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics, int_rectangle_array &  rectaModified)
+void xfplayer_impact_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics, int_rectangle_array_base &  rectaModified)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (IsVisible())
    {
@@ -1196,7 +1196,7 @@ void xfplayer_impact_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics,
 void xfplayer_impact_line::SetAnimateType(int iAnimateType)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_iAnimateType = iAnimateType;
    m_dAnimateProgress = 0.0;
@@ -1206,7 +1206,7 @@ void xfplayer_impact_line::SetAnimateType(int iAnimateType)
 void xfplayer_impact_line::SetTextEffect(int iTextEffect)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_iTextEffect = iTextEffect;
 }
@@ -1215,7 +1215,7 @@ void xfplayer_impact_line::SetEmbossPen(::draw2d::pen *pPen)
 
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_lpPenEmboss = pPen;
 
@@ -1225,7 +1225,7 @@ void xfplayer_impact_line::SetEmbossPen(::draw2d::pen *pPen)
 void xfplayer_impact_line::SetForegroundColor(::color32_t color32)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_colorForeground = color32;
 }
@@ -1238,7 +1238,7 @@ void xfplayer_impact_line::SetForegroundColor(::color32_t color32)
 int xfplayer_impact_line::MapToFontEffect(int iLineEffect)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    switch (iLineEffect)
    {
@@ -1254,7 +1254,7 @@ int xfplayer_impact_line::MapToFontEffect(int iLineEffect)
 void xfplayer_impact_line::SetAnimateIncrement(double dIncrement)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_dAnimateProgressIncrement = dIncrement;
 }
@@ -1278,7 +1278,7 @@ void xfplayer_impact_line::SetRenderCriticalSection(critical_section * pcs)
 int xfplayer_impact_line::SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * ppenRight)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_ppenLyricLeft = ppenLeft;
    m_ppenLyricRight = ppenRight;
@@ -1288,7 +1288,7 @@ int xfplayer_impact_line::SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen *
 int xfplayer_impact_line::SetLyricColors(::color::color colorLeft, ::color::color colorRight)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_colorLyricLeft = colorLeft;
    m_colorLyricRight = colorRight;
@@ -1300,7 +1300,7 @@ int xfplayer_impact_line::SetLyricColors(::color::color colorLeft, ::color::colo
 void xfplayer_impact_line::SetPlacement(const ::int_rectangle & rectangle)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_rectangle = rectangle;
 
@@ -1322,7 +1322,7 @@ void xfplayer_impact_line::AddVmsFont(::write_text::font * pfont)
 void xfplayer_impact_line::Invalidate(const int_rectangle & rectangleParam)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::int_rectangle rectanglePlacement;
 
@@ -1353,7 +1353,7 @@ void xfplayer_impact_line::Invalidate(const int_rectangle & rectangleParam)
 void xfplayer_impact_line::Validate(const int_rectangle & rectangleParam)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::int_rectangle rectanglePlacement;
 
@@ -1384,7 +1384,7 @@ void xfplayer_impact_line::Validate(const int_rectangle & rectangleParam)
 bool xfplayer_impact_line::IsVisible()
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    return m_bVisible;
 
@@ -1394,7 +1394,7 @@ bool xfplayer_impact_line::IsVisible()
 void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, int iLeft, int iTop, int iWidth, ::color32_t color32, ::color::color crOutline, character_count iLen, double dBlend)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    embossed_text_out(
    pgraphics,
@@ -1415,7 +1415,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, ::image::image *pimageCache, const ::scoped_string & scopedstr, int iLeft, int iTop, int iWidth, ::color32_t color32, ::color::color crOutline, character_count iLen, double dBlend)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    __UNREFERENCED_PARAMETER(pimageCache);
 
@@ -1432,7 +1432,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
       ::draw2d::pen_pointer ppen;
 
-      __øconstruct(ppen);
+      øconstruct(ppen);
 
       ppen->create_solid(iWidth * 2, crOutline);
 
@@ -1440,7 +1440,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
       pgraphics->stroke_path();
 
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
       pbrushText->create_solid(color32);
 
@@ -1548,7 +1548,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 void xfplayer_impact_line::SetColors(::color32_t color32, ::color::color crOutline)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_cr = color32;
    m_colorOutline = crOutline;
@@ -1561,7 +1561,7 @@ void xfplayer_impact_line::SetColors(::color32_t color32, ::color::color crOutli
 //void xfplayer_impact_line::GetLogFont(LOGFONTW &lf)
 //{
 //
-//   _synchronous_lock synchronouslock(m_pContainer->mutex());
+//   _synchronous_lock synchronouslock(m_pContainer->mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   //lf = m_logfont;
 //}
@@ -1573,7 +1573,7 @@ void xfplayer_impact_line::SetColors(::color32_t color32, ::color::color crOutli
 void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::image::image_pointer & pimageCache)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (!m_bEnhancedEmboss)
    {
@@ -1673,7 +1673,7 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 void xfplayer_impact_line::SetFont(::write_text::font * pfont)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_pfont = pfont;
 
@@ -1683,7 +1683,7 @@ void xfplayer_impact_line::SetFont(::write_text::font * pfont)
 void xfplayer_impact_line::PrepareURLLinks()
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string str;
 
@@ -1710,7 +1710,7 @@ void xfplayer_impact_line::PrepareURLLinks()
 bool xfplayer_impact_line::CharHasLink(character_count iChar)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    return GetCharLink(iChar) > -1;
 }
@@ -1718,7 +1718,7 @@ bool xfplayer_impact_line::CharHasLink(character_count iChar)
 bool xfplayer_impact_line::GetCharLink(string & str, character_count iChar)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::collection::index iLink = GetCharLink(iChar);
    if (iLink < 0)
@@ -1730,7 +1730,7 @@ bool xfplayer_impact_line::GetCharLink(string & str, character_count iChar)
 ::user::enum_line_hit xfplayer_impact_line::get_link(string & strUrl, const ::int_point & pointCursor)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    character_count iChar;
    ::user::enum_line_hit etest = hit_test(pointCursor, iChar);
@@ -1744,7 +1744,7 @@ bool xfplayer_impact_line::GetCharLink(string & str, character_count iChar)
 ::collection::index xfplayer_impact_line::GetCharLink(character_count iChar)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    for (::collection::index i = 0; i < m_iaLinkStart.get_size(); i++)
    {
@@ -1760,7 +1760,7 @@ bool xfplayer_impact_line::GetCharLink(string & str, character_count iChar)
 ::user::enum_line_hit xfplayer_impact_line::hit_test(const int_point &pointCursorParam, character_count &iChar)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    bool bInside;
    
@@ -1817,7 +1817,7 @@ bool xfplayer_impact_line::GetCharLink(string & str, character_count iChar)
 bool xfplayer_impact_line::CalcChar(const ::int_point & point, character_count &iChar)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::int_rectangle rectanglePlacement;
    
@@ -1861,7 +1861,7 @@ bool xfplayer_impact_line::CalcChar(const ::int_point & point, character_count &
 void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
@@ -2001,7 +2001,7 @@ void xfplayer_impact_line::OnSetCursor(::message::message * pmessage)
 void xfplayer_impact_line::OnLButtonDown(::message::message * pmessage)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
@@ -2024,7 +2024,7 @@ void xfplayer_impact_line::OnLButtonDown(::message::message * pmessage)
 void xfplayer_impact_line::OnLButtonUp(::message::message * pmessage)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
@@ -2046,7 +2046,7 @@ void xfplayer_impact_line::OnLButtonUp(::message::message * pmessage)
 
          ASSERT(m_puserinteraction->is_window());
 
-         auto phyperlink = __create_new < ::hyperlink >();
+         auto phyperlink = øcreate_new < ::hyperlink >();
 
          phyperlink->m_strLink = str;
 
@@ -2086,7 +2086,7 @@ void xfplayer_impact_line::on_timer(::timer * ptimer)
 ::write_text::font * xfplayer_impact_line::GetFont()
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    return m_pfont;
 
@@ -2096,7 +2096,7 @@ void xfplayer_impact_line::on_timer(::timer * ptimer)
 void xfplayer_impact_line::set_blend(double d)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ASSERT(d >= 0.0);
 
@@ -2117,7 +2117,7 @@ void xfplayer_impact_line::set_blend(double d)
 void xfplayer_impact_line::update_hover(int_point &pointCursor)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::collection::index iLine = m_iIndex;
 
@@ -2185,7 +2185,7 @@ bool xfplayer_impact_line::is_hover()
 ::collection::index xfplayer_impact_line::GetLinkIndex(::collection::index iLine, character_count iChar)
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (!has_link())
    {
@@ -2209,7 +2209,7 @@ bool xfplayer_impact_line::is_hover()
 bool xfplayer_impact_line::has_link()
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    return m_iaLinkStart.get_count() > 0;
 
@@ -2227,7 +2227,7 @@ bool xfplayer_impact_line::has_link()
 inline xfplayer_impact_line_selection & xfplayer_impact_line::GetSelection()
 {
 
-   _synchronous_lock synchronouslock(m_pContainer->synchronization());
+   _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (m_pContainer == nullptr)
    {

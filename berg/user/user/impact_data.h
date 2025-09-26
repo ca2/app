@@ -43,7 +43,7 @@ namespace user
 
 
    class CLASS_DECL_BERG impact_data_map :
-      public atom_map < ::pointer<impact_data >>
+      public atom_map_base < ::pointer<impact_data >>
    {
    public:
 

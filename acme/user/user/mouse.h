@@ -8,8 +8,7 @@
 #pragma once
 
 
-
-#include "acme/platform/message.h"
+#include "acme/platform/acme_message.h"
 #include "acme/prototype/geometry2d/point.h"
 
 

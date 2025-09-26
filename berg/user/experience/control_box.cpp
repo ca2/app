@@ -4,7 +4,7 @@
 #include "frame.h"
 #include "button.h"
 #include "experience.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/system.h"
 #include "acme/platform/timer.h"
@@ -226,14 +226,14 @@ namespace experience
          if (top_level()->layout().is_moving())
          {
 
-            //informationf("experience control_box : top level is moving : ignoring e_message_timer");
+            //informationf("experience control_box : top level is moving : ignoring ::user::e_message_timer");
 
             return;
 
          } else if (top_level()->layout().is_sizing())
          {
 
-            //informationf("experience control_box : top level is sizing : ignoring e_message_timer");
+            //informationf("experience control_box : top level is sizing : ignoring ::user::e_message_timer");
 
             return;
 
@@ -349,14 +349,14 @@ namespace experience
 
       auto_hide_on_message_create(pmessage);
 
-      __øconstruct(m_pbrushButtonBack);
-      __øconstruct(m_pbrushButtonBackSel);
-      __øconstruct(m_pbrushButtonBackFocus);
-      __øconstruct(m_pbrushButtonBackDisabled);
-      __øconstruct(m_ppenButtonBack);
-      __øconstruct(m_ppenButtonBackSel);
-      __øconstruct(m_ppenButtonBackFocus);
-      __øconstruct(m_ppenButtonBackDisabled);
+      øconstruct(m_pbrushButtonBack);
+      øconstruct(m_pbrushButtonBackSel);
+      øconstruct(m_pbrushButtonBackFocus);
+      øconstruct(m_pbrushButtonBackDisabled);
+      øconstruct(m_ppenButtonBack);
+      øconstruct(m_ppenButtonBackSel);
+      øconstruct(m_ppenButtonBackFocus);
+      øconstruct(m_ppenButtonBackDisabled);
 
 
       pmessage->previous();
@@ -371,7 +371,7 @@ namespace experience
       if (!m_pfontMarlett)
       {
 
-         __øconstruct(m_pfontMarlett);
+         øconstruct(m_pfontMarlett);
 
          m_pfontMarlett->create_font("Marlett", 16_px);
 
@@ -406,15 +406,15 @@ namespace experience
 
       ::user::interaction::install_message_routing(pframewindow);
 
-      MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::on_message_show_window);
-      MESSAGE_LINK(e_message_create, pframewindow, this, &control_box::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pframewindow, this, &control_box::on_message_destroy);
-      MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::on_message_mouse_move);
-      MESSAGE_LINK(e_message_mouse_leave, pframewindow, this, &control_box::on_message_mouse_leave);
-      MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pframewindow, this, &control_box::on_message_left_button_up);
-      MESSAGE_LINK(e_message_reposition, pframewindow, this, &control_box::on_message_move);
-      MESSAGE_LINK(e_message_size, pframewindow, this, &control_box::on_message_size);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pframewindow, this, &control_box::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pframewindow, this, &control_box::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pframewindow, this, &control_box::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pframewindow, this, &control_box::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave, pframewindow, this, &control_box::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pframewindow, this, &control_box::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_reposition, pframewindow, this, &control_box::on_message_move);
+      USER_MESSAGE_LINK(::user::e_message_size, pframewindow, this, &control_box::on_message_size);
 
    }
 
@@ -680,9 +680,9 @@ namespace experience
    control_box::item * control_box::get_item(enum_button ebutton, bool bCreate)
    {
 
-      auto ppair = m_itemmap.plookup(ebutton);
+      auto iterator = m_itemmap.find(ebutton);
 
-      if (!ppair)
+      if (!iterator)
       {
 
          return nullptr;
@@ -692,11 +692,11 @@ namespace experience
       if (bCreate)
       {
 
-         __defer_construct_new(ppair->m_element2);
+         ødefer_construct_new(iterator->m_element2);
 
       }
 
-      return ppair->m_element2;
+      return iterator->m_element2;
 
    }
 
@@ -717,7 +717,7 @@ namespace experience
 
       auto pfactory = m_pframewindow->m_pframe->m_pexperience->m_pfactory;
 
-      pfactory->__defer_construct(this, pbutton);
+      pfactory->ødefer_construct(this, pbutton);
 
       pbutton->display(e_display_none);
 
@@ -912,7 +912,7 @@ namespace experience
 
       //auto estatus =
 
-      __defer_construct_new(pitem);
+      ødefer_construct_new(pitem);
 
       //if (!estatus)
       //{
@@ -1273,7 +1273,7 @@ namespace experience
 //         if(!m_pshapeaClip)
 //         {
 //
-//            __construct_new(m_pshapeaClip);
+//            øconstruct_new(m_pshapeaClip);
 //
 //            ::user::interaction * pinteraction = this;
 //
@@ -1286,9 +1286,9 @@ namespace experience
 //
 //               screen_to_client(rectangleFocus);
 //
-//               m_pshapeaClip->add_item(__allocate rectangle_shape(rectangleFocus));
+//               m_pshapeaClip->add_item(øallocate rectangle_shape(rectangleFocus));
 //
-//               m_pshapeaClip->add_item(__allocate intersect_clip_shape());
+//               m_pshapeaClip->add_item(øallocate intersect_clip_shape());
 //
 //               pinteraction = pinteraction->get_parent();
 //

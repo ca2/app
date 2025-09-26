@@ -42,7 +42,7 @@ namespace userfs
 
       //estatus = 
       
-      //__construct_new(m_pfsset);
+      //øconstruct_new(m_pfsset);
 
       //if (!estatus)
       //{
@@ -112,7 +112,7 @@ namespace userfs
       return true;
       //{
 
-      //   synchronous_lock synchronouslock(fs_data()->synchronization());
+      //   synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   m_pathFolder = pitem->user_path();
 
@@ -131,7 +131,7 @@ namespace userfs
 
       //   {
 
-      //      synchronous_lock synchronouslock(fs_data()->synchronization());
+      //      synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //      m_listingRoot = listing;
 
@@ -322,7 +322,7 @@ namespace userfs
 
       //{
 
-      //   synchronous_lock synchronouslock(fs_data()->synchronization());
+      //   synchronous_lock synchronouslock(fs_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //   m_listingUser2 = listingUser;
 

@@ -1,6 +1,6 @@
 // Refactored by camilo on 2022-11-04 05:43 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-
+#include "_template.h"
 #include <string.h>
 #include <stdio.h>
 // CLASS_DECL_ACME  constexpr character_count     character_count_to_byte_length(const_ansichar_trigger, character_count nCharLength) { return (::memsize)((nCharLength) * sizeof(::ansi_character)); }
@@ -49,14 +49,30 @@ CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_collate(con
 
 // defined at block
 // CLASS_DECL_ACME character_count string_get_length(const ::ansi_character* psz) noexcept { return strlen(psz); }
-CLASS_DECL_ACME character_count string_get_length(const ::ansi_character* psz, character_count sizeMaximumInterest) noexcept 
+CLASS_DECL_ACME character_count string_get_length2(const ::ansi_character* psz, character_count lengthMax) noexcept 
 { 
-   character_count size = 0;
-   sizeMaximumInterest++;
-   while (*psz && sizeMaximumInterest > 0) { psz++; size++; sizeMaximumInterest--; }
-   return sizeMaximumInterest == 0 ? -1 : size;
+
+   return _string_get_length2(psz, lengthMax);
+   
+   // character_count size = 0;
+
+   // while (lengthMax > 0 && *psz) 
+   // { 
+      
+   //    psz++; 
+      
+   //    size++; 
+      
+   //    lengthMax--; 
+   
+   // }
+
+   // return size;
+
 }
-CLASS_DECL_ACME character_count string_safe_length(const ::ansi_character* psz, character_count sizeMaximumInterest) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz, sizeMaximumInterest); }
+
+
+CLASS_DECL_ACME character_count string_safe_length2(const ::ansi_character* psz, character_count sizeMaximumInterest) noexcept { if (::is_null(psz)) return 0; return string_get_length2(psz, sizeMaximumInterest); }
 // defined at block
 //CLASS_DECL_ACME character_count string_safe_length(const ::ansi_character* psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
 CLASS_DECL_ACME ::ansi_character * string_lowercase(::ansi_character * psz, character_count size) noexcept { ansi_lwr_s(psz, size); return  psz; }
@@ -180,7 +196,7 @@ CLASS_DECL_ACME ::ansi_character * string_reverse(::ansi_character * psz) noexce
 
    ::ansi_character * pDec;
 
-   while ((pDec = (::ansi_character *)unicode_decrement(psz, p)) != nullptr)
+   while ((pDec = (::ansi_character *)unicode_prior(psz, p)) != nullptr)
    {
 
       strReverse.append(pDec, pDec - p);

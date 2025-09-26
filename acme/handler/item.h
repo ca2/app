@@ -402,7 +402,7 @@ inline bool in_element_range(const ::item * pitem, enum_element eelement, int iC
 inline ::pointer<::item>new_item_with_index(::collection::index iIndex)
 {
 
-   return __allocate ::item(::e_element_item, iIndex);
+   return øallocate ::item(::e_element_item, iIndex);
 
 }
 

@@ -83,7 +83,7 @@
 //
 //      wordexp(scopedstrCommandLine, &we, 0);
 //
-//      char ** argv = __allocate_array< char * >(we.we_wordc+1);
+//      char ** argv = øallocate_array< char * >(we.we_wordc+1);
 //
 //      ::memory_copy(argv, we.we_wordv, we.we_wordc * sizeof(char*));
 //

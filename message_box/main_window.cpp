@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "main_window.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 //#include "acme/handler/sequence.h"
 #include "acme/platform/system.h"
@@ -33,9 +33,9 @@ namespace app_message_box
 
       ::app_app::main_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &main_window::on_message_create);
-      MESSAGE_LINK(e_message_close, pchannel, this, &main_window::on_message_close);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &main_window::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &main_window::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &main_window::on_message_close);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &main_window::on_message_destroy);
 
    }
 
@@ -45,7 +45,7 @@ namespace app_message_box
 
       //::app_app::main_window::on_create_user_interaction();
 
-      __øconstruct(m_pbuttonShowMessageBox);
+      øconstruct(m_pbuttonShowMessageBox);
 
       m_pbuttonShowMessageBox->create_child(this);
 
@@ -69,7 +69,7 @@ namespace app_message_box
 
       pmessage->m_bRet = true;
 
-      auto pmessagebox = __initialize_new ::message_box("Are you sure you want to close application?", nullptr, e_message_box_yes_no);
+      auto pmessagebox = __initialize_new ::message_box("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
 
       pmessagebox->async()
          << [this, pmessagebox]()
@@ -161,7 +161,7 @@ namespace app_message_box
    void main_window::show_message_box()
    {
 
-      auto pmessagebox = __initialize_new ::message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+      auto pmessagebox = __initialize_new ::message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, ::user::e_message_box_yes_no_cancel);
 
       pmessagebox->async()
          << [this, pmessagebox]()
@@ -170,7 +170,7 @@ namespace app_message_box
             if (pmessagebox->m_payloadResult == e_dialog_result_yes)
             {
 
-               post_message(e_message_close);
+               post_message(::user::e_message_close);
 
             }
             else if (pmessagebox->m_payloadResult == e_dialog_result_cancel)

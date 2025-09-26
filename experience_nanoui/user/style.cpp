@@ -51,7 +51,7 @@ namespace experience_nanoui
       if (::is_null(m_pfont))
       {
 
-         __øconstruct(m_pfont);
+         øconstruct(m_pfont);
 
          m_pfont->create_font(e_font_sans_ui, 12_pt, e_font_weight_normal);
 
@@ -86,9 +86,9 @@ namespace experience_nanoui
 
       auto pstyle = ptab->get_style(pgraphics);
 
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
-      auto ppenBorder = __øcreate < ::draw2d::pen > ();
+      auto ppenBorder = øcreate < ::draw2d::pen > ();
 
       static int iCurrentTab = -1;
 
@@ -177,7 +177,7 @@ namespace experience_nanoui
 
             }
 
-            auto ppath = __øcreate < ::draw2d::path > ();
+            auto ppath = øcreate < ::draw2d::path > ();
 
             if(ptab->get_data()->m_idaSel.contains(ppane->id()))
             {
@@ -301,7 +301,7 @@ namespace experience_nanoui
 
             }
 
-            auto ppath = __øcreate < ::draw2d::path >();
+            auto ppath = øcreate < ::draw2d::path >();
 
             if(ptab->get_data()->m_idaSel.contains(ppane->id()))
             {
@@ -389,7 +389,7 @@ namespace experience_nanoui
                else
                {
 
-                  auto pbrushFill = __øcreate < ::draw2d::brush >();
+                  auto pbrushFill = øcreate < ::draw2d::brush >();
 
                   pbrushFill->CreateLinearGradientBrush(
                      rectangleBorder.top_left(),
@@ -554,7 +554,7 @@ namespace experience_nanoui
 
                }
 
-               auto pbrush = __øcreate < ::draw2d::brush >();
+               auto pbrush = øcreate < ::draw2d::brush >();
 
                pbrush->create_solid(colorText);
 
@@ -1495,13 +1495,13 @@ namespace experience_nanoui
 
       ::pointer < ::simple_scroll_bar > pbar = pscrollbar;
 
-      auto ppenDraw = __øcreate < ::draw2d::pen > ();
+      auto ppenDraw = øcreate < ::draw2d::pen > ();
 
       ppenDraw->create_solid(1, colorBorder);
 
       ::color::color colorTrack = pscrollbar->scrollbar_color(this, ::e_element_scrollbar_trackbar);
 
-      auto pbrushDraw = __øcreate < ::draw2d::brush > ();
+      auto pbrushDraw = øcreate < ::draw2d::brush > ();
 
       pbrushDraw->create_solid(colorTrack);
 
@@ -1665,7 +1665,7 @@ namespace experience_nanoui
 
       }
 
-      auto ppenGrip = __øcreate < ::draw2d::pen > ();
+      auto ppenGrip = øcreate < ::draw2d::pen > ();
 
       ppenGrip->create_solid(2.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_trackbar));
 
@@ -1702,7 +1702,7 @@ namespace experience_nanoui
 
       }
 
-      auto ppenArrow = __øcreate < ::draw2d::pen > ();
+      auto ppenArrow = øcreate < ::draw2d::pen > ();
 
       ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
 

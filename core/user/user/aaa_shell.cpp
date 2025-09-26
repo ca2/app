@@ -130,7 +130,7 @@ namespace user
          m_iActiveThreadCount = 0;
          m_iMaxThreadCount = 1;
 
-         m_pevNewImageKey = __allocate manual_reset_happening();
+         m_pevNewImageKey = øallocate manual_reset_happening();
 
          m_pevNewImageKey->m_eobject += e_object_alertable_wait;
 
@@ -170,7 +170,7 @@ namespace user
 
          }
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          add_thread();
 
@@ -189,9 +189,9 @@ namespace user
       void shell::add_thread()
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         auto pthread  = __allocate thread(this);
+         auto pthread  = øallocate thread(this);
 
          add_composite(pthread);
 
@@ -239,7 +239,7 @@ namespace user
       bool shell::reserve_image(const image_key & imagekey, int & iImage)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (contains_image(imagekey, iImage))
          {
@@ -258,7 +258,7 @@ namespace user
       int shell::_reserve_image(const image_key & key)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          int iImage = -1;
 
@@ -281,7 +281,7 @@ namespace user
       bool shell::contains_image(const image_key & imagekey, int & iImage)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_imagemap.lookup(imagekey, iImage))
          {
@@ -298,7 +298,7 @@ namespace user
       void shell::add_size_interest(::int_array iaSize)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto cAddedCount = m_iaSize.add_unique(iaSize);
 
@@ -317,7 +317,7 @@ namespace user
       void shell::set_size_interest(::int_array iaSize)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          iaSize.sort();
 
@@ -336,7 +336,7 @@ namespace user
       void shell::on_update_sizes_interest()
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_imagemap.erase_all();
 
@@ -355,7 +355,7 @@ namespace user
             if (m_pimagelist[iSize].is_null())
             {
 
-               m_pimagelist[iSize] = __allocate ::image::image_list();
+               m_pimagelist[iSize] = øallocate ::image::image_list();
                m_pimagelist[iSize]->create(iSize, iSize, 0, 10, 10);
 
             }
@@ -369,7 +369,7 @@ namespace user
             if (m_pimagelistHover[iSize].is_null())
             {
 
-               m_pimagelistHover[iSize] = __allocate ::image::image_list();
+               m_pimagelistHover[iSize] = øallocate ::image::image_list();
                m_pimagelistHover[iSize]->create(iSize, iSize, 0, 10, 10);
 
             }
@@ -400,7 +400,7 @@ namespace user
 
                m_pevNewImageKey->wait();
 
-               synchronous_lock synchronouslock(this->synchronization());
+               synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                if (m_imagekeySchedule.has_elements())
                {
@@ -447,7 +447,7 @@ namespace user
       ::image::image_list * shell::GetImageList(int iSize)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_bPendingUpdate)
          {
@@ -492,7 +492,7 @@ namespace user
       ::image::image_list * shell::GetImageListHover(int iSize)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_bPendingUpdate)
          {
@@ -557,7 +557,7 @@ namespace user
       int shell::get_file_image(const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          image_key imagekey(strPath, m_strShellThemePrefix, eattribute, eicon, crBk);
 
@@ -602,7 +602,7 @@ namespace user
       int shell::get_file_image(const image_key & imagekey)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_bPendingUpdate)
          {
@@ -641,7 +641,7 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             m_imagekeySchedule.add(imagekey);
 
@@ -720,7 +720,7 @@ namespace user
 
                int iImage = m_pshell->impl_get_file_image(imagekey);
 
-               synchronous_lock synchronouslock(m_pshell->mutex());
+               synchronous_lock synchronouslock(m_pshell->mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                if (iImage & I32_MINIMUM)
                {

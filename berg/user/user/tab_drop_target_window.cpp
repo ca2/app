@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "tab_drop_target_window.h"
 #include "tab.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 
@@ -60,7 +60,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tab_drop_target_window::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &tab_drop_target_window::on_message_left_button_up);
 
    }
 

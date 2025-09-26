@@ -13124,7 +13124,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>message::simple_command::~simple_command()</fn>
       <dir>/xcore/app/aura/../aura/message</dir>
-      <file>e_message_simple_command.h</file>
+      <file>::user::e_message_simple_command.h</file>
       <line>7</line>
     </frame>
     <frame>

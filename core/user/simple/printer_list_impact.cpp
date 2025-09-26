@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/prototype/data/listener.h"
 #include "aura/graphics/draw2d/printer.h"
@@ -26,7 +26,7 @@ void simple_printer_list_impact::install_message_routing(::channel * pchannel)
 {
 
    simple_list_impact::install_message_routing(pchannel);
-   MESSAGE_LINK(e_message_create, pchannel, this, &simple_printer_list_impact::on_message_create);
+   USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &simple_printer_list_impact::on_message_create);
 
 }
 
@@ -99,7 +99,7 @@ bool simple_printer_list_impact::on_click(::item * pitem, ::user::mouse * pmouse
 
    ::pointer<::user::print_task>pprinttask;
 
-   __øconstruct(pprinttask);
+   øconstruct(pprinttask);
 
    pprinttask->increment_reference_count();
 

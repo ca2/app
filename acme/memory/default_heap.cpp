@@ -124,7 +124,7 @@
 //
 //      //memdleak_block * pblock = &((memdleak_block *)psizeOld)[-1];
 //
-//      //synchronous_lock lock(g_pmutgen);
+//      //synchronous_lock lock(g_pmutgen, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      //if(s_pmemdleakList == pblock)
 //      //{
@@ -240,7 +240,7 @@
 //            if(s_pmemdleakList != nullptr)
 //            {
 //
-//               synchronous_lock lock(g_pmutgen);
+//               synchronous_lock lock(g_pmutgen, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //               if(s_pmemdleakList == pblock)
 //               {
@@ -285,7 +285,7 @@
 ////
 ////#endif
 ////
-////   synchronous_lock lock(g_pmutgen);
+////   synchronous_lock lock(g_pmutgen, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////   memdleak_block * pblock = s_pmemdleakList;
 ////

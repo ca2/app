@@ -5,7 +5,7 @@
 #include "list_impact.h"
 #include "info_impact.h"
 #include "operation.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/message/user.h"
 #include "berg/user/user/split_layout.h"
 
@@ -32,7 +32,7 @@ namespace filemanager
 
       get_document()->m_poperationthread->m_pimpact = this;
 
-      m_pviewcreator = __allocate ::user::impact_creator();
+      m_pviewcreator = øallocate ::user::impact_creator();
 
       SetPaneCount(2);
 
@@ -47,7 +47,7 @@ namespace filemanager
       if(m_plistview == nullptr)
       {
 
-         output_error_message("Could not create transfer list ::user::impact");
+         output_error_message("Could not create transfer list_base ::user::impact");
 
       }
 
@@ -68,9 +68,9 @@ namespace filemanager
    void operation_impact::install_message_routing(::channel * pchannel)
    {
       ::user::split_impact::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create,pchannel,this,&operation_impact::on_message_create);
-      MESSAGE_LINK(e_message_main_post,pchannel,this,&operation_impact::_001OnMainPostMessage);
-      MESSAGE_LINK(e_message_destroy,pchannel,this,&operation_impact::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create,pchannel,this,&operation_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_main_post,pchannel,this,&operation_impact::_001OnMainPostMessage);
+      USER_MESSAGE_LINK(::user::e_message_destroy,pchannel,this,&operation_impact::on_message_destroy);
    }
 
    ::pointer<operation_document>operation_impact::get_document()

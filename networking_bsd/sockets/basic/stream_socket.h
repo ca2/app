@@ -81,7 +81,9 @@ namespace sockets_bsd
       // e_list_call_on_connect
 
       /** Instruct socket to call OnConnect callback next sockethandler cycle. */
-      void SetCallOnConnect(bool x = true) override;
+      void set_call_on_connect() override;
+
+      void clear_call_on_connect() override;
 
       /** Check call on connect flag.
       \return true if OnConnect() should be called a.s.a.int_point */
@@ -90,7 +92,9 @@ namespace sockets_bsd
       // e_list_retry
 
       /** set flag to initiate a connection attempt after a connection timeout. */
-      void SetRetryClientConnect(bool x = true) override;
+      void set_retry_client_connect() override;
+
+      void clear_retry_client_connect() override;
 
       /** Check if a connection attempt should be made.
       \return true when another attempt should be made */

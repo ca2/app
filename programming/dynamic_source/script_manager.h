@@ -73,27 +73,27 @@ namespace dynamic_source
 
       ::semaphore                                           m_semCompiler;
       ::pointer < ::mutex >                                 m_pmutexIncludeMatches;
-      string_map < ::logic::boolean >                       m_mapIncludeMatchesFileExists2;
-      string_map < ::logic::boolean >                       m_mapIncludeMatchesIsDir2;
+      string_map_base < ::logic::boolean >                       m_mapIncludeMatchesFileExists2;
+      string_map_base < ::logic::boolean >                       m_mapIncludeMatchesIsDir2;
       ::pointer < ::mutex >                                 m_pmutexIncludeHasScript;
-      string_map < ::logic::boolean >                       m_mapIncludeHasScript2;
+      string_map_base < ::logic::boolean >                       m_mapIncludeHasScript2;
       ::pointer < ::mutex >                                 m_pmutexShouldBuild;
-      string_map < ::logic::boolean >                       m_mapShouldBuild2;
+      string_map_base < ::logic::boolean >                       m_mapShouldBuild2;
       ::pointer < ::mutex >                                 m_pmutexIncludeExpandMd5;
-      string_to_string                                      m_mapIncludeExpandMd5;
+      string_to_string_base                                      m_mapIncludeExpandMd5;
       //::pointer<::user::message_window>                  m_pmessagequeue;
 
       int                                                   m_iTunnelPluginCount;
       ::pointer < ::mutex >                                 m_pmutexOutLink;
-      string_map < ::pointer<::sockets::link_out_socket > > m_mapOutLink;
+      string_map_base < ::pointer<::sockets::link_out_socket > > m_mapOutLink;
       ::pointer < ::mutex >                                 m_pmutexInLink;
       ::pointer<::sockets::in_link_map>                     m_pmapInLink;
       ::pointer < ::mutex >                                 m_pmutexTunnel;
-      strmap(tunnel_map_item)                               m_mapTunnel;
+      ::string_map < tunnel_map_item >                      m_mapTunnel;
 
 
       ::pointer < ::mutex >                                 m_pmutexImageSize;
-      string_map < ::int_size >                             m_mapImageSize;
+      string_map_base < ::int_size >                             m_mapImageSize;
 
 
 
@@ -118,7 +118,7 @@ namespace dynamic_source
       class ::time                                          m_timeDatabaseWaitTimeOut;
 
       ::pointer < ::mutex >                                 m_pmutexSession;
-      string_map < ::pointer<::dynamic_source::session > >  m_mapSession;
+      string_map_base < ::pointer<::dynamic_source::session > >  m_mapSession;
       ::pointer < ::mutex >                                 m_pmutexMusicDbPool;
       ::pointer < ::mutex >                                 m_pmutexWayDbPool;
       ::pointer<script_cache>                               m_pcache;
@@ -126,17 +126,17 @@ namespace dynamic_source
       class ::time                                          m_timeBuildInterval;
       class ::time                                          m_timeTimeRandomInterval;
 
-      string_to_string                                      m_strmapFunUserKey;
+      string_to_string_base                                      m_strmapFunUserKey;
 
       string                                                m_strPersistentError;
 
       ::pointer < ::mutex >                                 m_pmutexPersistentStr;
       ::pointer < ::mutex >                                 m_pmutexUiRedir;
       ::pointer < ::mutex >                                 m_pmutexTagId;
-      string_to_string                                      m_tagid;
-      string_to_string                                      m_usersecuretagid;
+      string_to_string_base                                      m_tagid;
+      string_to_string_base                                      m_usersecuretagid;
       ::pointer < ::mutex >                                 m_pmutexTagName;
-      string_to_string                                      m_tagname;
+      string_to_string_base                                      m_tagname;
 
 
       string                                                m_strSeed;

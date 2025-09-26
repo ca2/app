@@ -57,7 +57,7 @@ namespace introjection
 
       ::particle_pointer                                     m_pmutexLibrary;
 
-      string_map < ::pointer<library >>               m_lib;
+      string_map_base < ::pointer<library >>               m_lib;
 
 
       compiler();

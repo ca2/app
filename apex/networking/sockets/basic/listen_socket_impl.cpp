@@ -411,7 +411,7 @@ namespace sockets
       //      {
       //         // %! OnSSLAccept calls SSLNegotiate that can finish in this one call.
       //         // %! If that happens and negotiation fails, the 'tmp' instance is
-      //         // %! still added to the list of active sockets in the sockethandler.
+      //         // %! still added to the list_base of active sockets in the sockethandler.
       //         // %! See bugfix for this in socket_handler::Select - don't set rwx
       //         // %! flags if IsCloseAndDelete() flag is true.
       //         // %! An even better fugbix (see tcp_socket::OnSSLAccept) now avoids
@@ -461,7 +461,7 @@ namespace sockets
 
       socket::initialize(pparticle);
 
-      __øconstruct(m_plistensocketImpl);
+      øconstruct(m_plistensocketImpl);
 
       //m_p2 = m_plistensocketImpl->m_p2;
 
@@ -508,7 +508,7 @@ namespace sockets
    ::pointer<listen_socket_impl>listen_socket_impl::create_listen_socket_impl()
    {
 
-      return __øcreate < listen_socket_impl >();
+      return øcreate < listen_socket_impl >();
 
    }
 
@@ -520,7 +520,7 @@ namespace sockets
 
       return nullptr;
 
-      //return __øcreate < listen_socket_impl >();
+      //return øcreate < listen_socket_impl >();
 
    }
 

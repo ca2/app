@@ -76,7 +76,7 @@ html_document::~html_document()
 //void html_document::create_html_data()
 //{
 //
-//   auto estatus = __construct_new(m_phtmldata);
+//   auto estatus = øconstruct_new(m_phtmldata);
 //
 //   if (!estatus)
 //   {
@@ -89,7 +89,7 @@ html_document::~html_document()
 //
 //   pdata->m_pdocument = this;
 //
-//   pdata->m_pcoredata = __allocate ::html::core_data();
+//   pdata->m_pcoredata = øallocate ::html::core_data();
 //
 //   pdata->m_pcoredata->initialize_html_data(pdata);
 //
@@ -266,7 +266,7 @@ void html_document::soft_reload()
 
    auto pparticleSynchronization = get_html_data()->synchronization();
 
-   synchronous_lock lock(pparticleSynchronization);
+   synchronous_lock lock(pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string str = get_html_data()->m_pcoredata->m_strSource;
 
@@ -389,7 +389,7 @@ void html_document::on_command(::message::command * pcommand)
 
 #ifndef UNIVERSAL_WINDOWS
 
-      auto plauncher = __allocate ::apex::shell_launcher();
+      auto plauncher = øallocate ::apex::shell_launcher();
       
       plauncher->setup(nullptr, "open", get_file_path(), nullptr, get_file_path().folder(), e_display_normal);
 

@@ -2,7 +2,7 @@
 #include "button.h"
 #include "menu.h"
 #include "aura/user/user/calc_size.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -93,8 +93,8 @@ namespace user
 
       ::user::button::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &menu_button::on_message_create);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &menu_button::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &menu_button::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &menu_button::on_message_mouse_move);
 
    }
 
@@ -135,7 +135,7 @@ namespace user
 
          //pgraphics->fill_rectangle(rectangleX, _001GetButtonBackgroundColor());
 
-         //auto ppen = __øcreate < ::draw2d::pen > ();
+         //auto ppen = øcreate < ::draw2d::pen > ();
 
          //ppen->create_solid(1.0, _001GetColor(color_button_text));
 
@@ -154,11 +154,11 @@ namespace user
       if (m_pmenuitem != nullptr && m_pmenuitem->m_bPopup)
       {
 
-         auto pbrush = __øcreate < ::draw2d::brush > ();
+         auto pbrush = øcreate < ::draw2d::brush > ();
 
          pbrush->create_solid(argb(255, 0, 0, 0));
 
-         auto ppen = __øcreate < ::draw2d::pen > ();
+         auto ppen = øcreate < ::draw2d::pen > ();
 
          ppen->create_solid(1, rgb(0, 0, 0));
          pgraphics->set(ppen);

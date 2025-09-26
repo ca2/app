@@ -49,7 +49,7 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::particle * 
 #include <sys/time.h>
 #endif
 
-extern string_map < ::pointer<::acme::library >>* g_pmapLibrary;
+extern string_map_base < ::pointer<::acme::library >>* g_pmapLibrary;
 
 
 CLASS_DECL_AXIS void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr);
@@ -166,7 +166,7 @@ namespace axis
 
       //estatus = 
       
-      __construct_new(m_pemaildepartment);
+      øconstruct_new(m_pemaildepartment);
 
       //if (!estatus)
       //{
@@ -228,7 +228,7 @@ namespace axis
       //if (!pfactorySimpledb)
       //{
 
-      //   estatus = __construct_new(pfactorySimpledb);
+      //   estatus = øconstruct_new(pfactorySimpledb);
 
       //   if (!estatus)
       //   {

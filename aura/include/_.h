@@ -195,7 +195,7 @@ namespace aura
 ////
 ////
 ////#if defined(_DEBUG) && !defined(NO_AURA_MEMORY_MANAGEMENT)
-////#define ACME_NEW __allocate<  >(__FILE__, __LINE__)
+////#define ACME_NEW øallocate<  >(__FILE__, __LINE__)
 ////#else
 ////#define ACME_NEW ___new
 ////#endif
@@ -257,7 +257,7 @@ namespace aura
 ////
 ////#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && !::__assert_failed_line(__FILE__, __LINE__) && (::debug_break(), 0)) || (!is_debugger_attached() && (throw_assert_exception(__FILE__, __LINE__), 0))))
 ////#define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
-////#define ASSERT_VALID(pOb)  ::__assert_particle_ok(pOb, __FILE__, __LINE__)
+////#define ASSERT_OK(p)  ::__assert_particle_ok(p, __FILE__, __LINE__)
 ////
 ////
 ////#else
@@ -266,13 +266,13 @@ namespace aura
 ////#define ASSERT(f)
 ////#define _ASSUME(cond)
 ////#if defined(__ANDROID__)
-////#define ASSERT_VALID(cond)
+////#define ASSERT_OK(cond)
 ////#elif defined(__APPLE__)
-////#define ASSERT_VALID(cond)
+////#define ASSERT_OK(cond)
 ////#elif defined(LINUX)
-////#define ASSERT_VALID(cond)
+////#define ASSERT_OK(cond)
 ////#else
-////#define ASSERT_VALID(cond) __noop;
+////#define ASSERT_OK(cond) __noop;
 ////#endif
 ////#endif
 ////
@@ -1067,7 +1067,7 @@ namespace aura
 ////class pair;
 ////
 ////template < class KEY, class ARG_KEY, class PAYLOAD, ARG_VALUE = argument_of < PAYLOAD >, class PAIR = pair < KEY, PAYLOAD, ARG_KEY, ARG_VALUE > >
-////class map;
+////class map_base;
 ////
 ////template < class ENUM >
 ////class flags;
@@ -1117,16 +1117,16 @@ namespace aura
 //////   class scroll_state;
 //////
 //////
-//////   //using color_map = map < e_color, e_color, ::color::color, ::color::color >;
-//////   //using font_map = map < e_font, e_font, ::write_text::font_pointer >;
+//////   //using color_map = map_base < e_color, e_color, ::color::color, ::color::color >;
+//////   //using font_map = map_base < e_font, e_font, ::write_text::font_pointer >;
 //////   using eflag = flags < enum_flag >;
-//////   //using flag_map = map < enum_flag, enum_flag, bool, bool >;
-//////   //using rect_map = ::map < e_rect, e_rect, style_rect >;
-//////   //using int_map = ::map < e_int, e_int, int, int >;
-//////   //using double_map = ::map < e_double, e_double, double, double >;
-//////   //using color_map = map < e_color, e_color, ::color::color, ::color::color >;
+//////   //using flag_map = map_base < enum_flag, enum_flag, bool, bool >;
+//////   //using rect_map = ::map_base < e_rect, e_rect, style_rect >;
+//////   //using int_map = ::map_base < e_int, e_int, int, int >;
+//////   //using double_map = ::map_base < e_double, e_double, double, double >;
+//////   //using color_map = map_base < e_color, e_color, ::color::color, ::color::color >;
 //////   //using eelement = base_enum < enum_element >;
-//////   //using translucency_map = ::map < enum_element, enum_element, enum_translucency, enum_translucency >;
+//////   //using translucency_map = ::map_base < enum_element, enum_element, enum_translucency, enum_translucency >;
 //////
 //////
 //////

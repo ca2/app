@@ -152,14 +152,26 @@ namespace sockets_bsd
    }
 
 
-   void stream_socket::SetCallOnConnect(bool bCallOnConnect)
+   void stream_socket::set_call_on_connect()
    {
 
       ::pointer < ::sockets_bsd::socket_handler > phandler = m_psockethandler;
 
-      phandler->socket_id_list_modify(GetSocketId(), e_list_call_on_connect, bCallOnConnect);
+      phandler->m_socketlistCallOnConnect.add_unique(GetSocketId());
 
-      m_bCallOnConnect = bCallOnConnect;
+      m_bCallOnConnect = true;
+
+   }
+
+
+   void stream_socket::clear_call_on_connect()
+   {
+
+      ::pointer < ::sockets_bsd::socket_handler > phandler = m_psockethandler;
+
+      phandler->m_socketlistCallOnConnect.erase(GetSocketId());
+
+      m_bCallOnConnect = false;
 
    }
 
@@ -172,14 +184,26 @@ namespace sockets_bsd
    }
 
 
-   void stream_socket::SetRetryClientConnect(bool bSetRetryClientConnect)
+   void stream_socket::set_retry_client_connect()
    {
 
       ::pointer < ::sockets_bsd::socket_handler > phandler = m_psockethandler;
 
-      phandler->socket_id_list_modify(GetSocketId(), e_list_retry_client_connect, bSetRetryClientConnect);
+      phandler->m_socketlistRetryClientConnect.add_unique(GetSocketId());
 
-      m_bRetryClientConnect = bSetRetryClientConnect;
+      m_bRetryClientConnect = true;
+
+   }
+
+
+   void stream_socket::clear_retry_client_connect()
+   {
+
+      ::pointer < ::sockets_bsd::socket_handler > phandler = m_psockethandler;
+
+      phandler->m_socketlistRetryClientConnect.erase(GetSocketId());
+
+      m_bRetryClientConnect = false;
 
    }
 

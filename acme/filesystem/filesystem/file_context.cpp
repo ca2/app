@@ -25,6 +25,7 @@
 #include "acme/prototype/datetime/datetime.h"
 #include "acme/prototype/prototype/read_only_memory.h"
 #include "acme/prototype/string/base64.h"
+#include "acme/filesystem/file/protocol_file.h"
 //#include "acme/prototype/string/hex.h"
 #include "acme/prototype/string/str.h"
 //#include "acme/user/user/conversation.h"
@@ -234,6 +235,34 @@ bool file_context::exists(const ::file::path & pathParam)
 ::file::enum_type file_context::safe_get_type(const ::file::path & path, ::payload * pvarQuery)
 {
 
+   if (path.begins("zipresource://"))
+   {
+
+      ::file::path pathInZip(path);
+
+      pathInZip.begins_eat("zipresource://");
+
+         ::folder *pfolder = nullptr;
+
+         {
+
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+            pfolder = resource_folder();
+
+            if (::is_null(pfolder))
+            {
+
+               return ::file::e_type_doesnt_exist;
+            }
+         }
+
+         _synchronous_lock synchronouslock(pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+
+         return pfolder->type(pathInZip);
+   }
+
    if (path.begins("http://") || path.begins("https://"))
    {
 
@@ -420,7 +449,7 @@ file_context::time(const ::file::path & pathBase, int iMaxLevel, const ::scoped_
 
    auto psystem = system();
 
-   _synchronous_lock lockMachineEvent(psystem->synchronization());
+   _synchronous_lock lockMachineEvent(psystem->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::file::path str;
 
@@ -664,7 +693,7 @@ bool file_context::try_create_file(const ::file::path & path, bool bTryDelete)
 
    ::pointer<::file::file>pfile;
 
-   __øconstruct(pfile);
+   øconstruct(pfile);
 
    if (!m_estatus)
    {
@@ -1429,7 +1458,7 @@ void file_context::calculate_main_resource_memory()
    try
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pfactory = system()->folder_factory();
 
@@ -1458,11 +1487,11 @@ void file_context::calculate_main_resource_memory()
 
       }
 
-      auto pmemory = __allocate read_only_memory(block);
+      auto pmemory = øallocate read_only_memory(block);
 
-      auto pfile = __allocate::memory_file(pmemory);
+      auto pfile = øallocate::memory_file(pmemory);
 
-      system()->folder_factory()->__øconstruct(m_papplication, m_pfolderResource);
+      system()->folder_factory()->øconstruct(m_papplication, m_pfolderResource);
 
       m_pfolderResource->initialize(this);
 
@@ -1495,7 +1524,7 @@ void file_context::calculate_main_resource_memory()
 
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pfolder = resource_folder();
 
@@ -1508,7 +1537,7 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-   _synchronous_lock synchronouslock(pfolder->synchronization());
+   _synchronous_lock synchronouslock(pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strPath(path);
 
@@ -1584,14 +1613,14 @@ void file_context::calculate_main_resource_memory()
 }
 
 
-::file::enum_type file_context::resource_get_type(const ::file::path & path)
+::file::enum_type file_context::resource_get_type(const ::file::path & path, string * pstrLogNotFound)
 {
 
    ::folder * pfolder = nullptr;
 
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pfolder = resource_folder();
 
@@ -1604,7 +1633,7 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-   _synchronous_lock synchronouslock(pfolder->synchronization());
+   _synchronous_lock synchronouslock(pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strPath(path);
 
@@ -2337,7 +2366,7 @@ void file_context::replace_with(const ::file::path & pathContext, const ::scoped
    }
    //if (strFail.has_character())
    //{
-   //   App(papp).message_box(nullptr, strFail, e_message_box_icon_exclamation);
+   //   App(papp).message_box(nullptr, strFail, ::user::e_message_box_icon_exclamation);
    //}
 
    //return e;
@@ -2685,7 +2714,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //
 //   ::pointer<::file::file>pfile2;
 //
-//   __øconstruct(pfile2);
+//   øconstruct(pfile2);
 //
 //   memsize iBufSize = 1024 * 1024;
 //
@@ -2755,7 +2784,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //   long long iLen;
 //   MD5_CTX ctx;
 //
-//   auto pfile2 = __øcreate < ::file::file >();
+//   auto pfile2 = øcreate < ::file::file >();
 //
 //   memsize uRead;
 //
@@ -3169,7 +3198,7 @@ file_pointer file_context::file_get_file(::file::path path, ::file::e_open eopen
 
    file_pointer pfile;
 
-   __øconstruct(pfile);
+   øconstruct(pfile);
 
    pfile->open(path, eopen);
 
@@ -3240,7 +3269,7 @@ file_pointer file_context::data_get_file(const ::scoped_string & scopedstrData, 
          if (strEncoding.case_insensitive_order("base64") == 0)
          {
 
-            ::pointer<memory_file>pmemoryfile = __allocate memory_file();
+            ::pointer<memory_file>pmemoryfile = øallocate memory_file();
 
             auto psystem = system();
 
@@ -3283,7 +3312,7 @@ folder_pointer file_context::get_folder(::file::file * pfile, const ::scoped_str
 
    }
 
-   auto pfolder = __øcreate < ::folder >(pfactory);
+   auto pfolder = øcreate < ::folder >(pfactory);
 
    if (!pfolder)
    {
@@ -3337,7 +3366,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    }
 
-   auto pdomain = __create_new < ::url_domain >();
+   auto pdomain = øcreate_new < ::url_domain >();
 
    pdomain->create(url.connect().host());
 
@@ -3403,7 +3432,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
    while_predicateicate_Sleep(60 * 1000, [&]()
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex());
+      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       return system()->http_download_array()->contains(url.as_string()) || system()->http_exists_array()->contains(url.as_string());
 
@@ -3417,7 +3446,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex());
+      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (bDoCache && file_system()->exists(pathCache))
       {
@@ -3440,23 +3469,23 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
    if (bDoCache)
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex());
+      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       system()->http_download_array()->add(url.as_string());
 
    }
 
-   auto pget = __øcreate < ::nano::http::get >();
+   auto defer_get = øcreate < ::nano::http::get >();
 
-   pget->m_url = url;
+   defer_get->m_url = url;
 
-   pget->m_timeSyncTimeout = 5_hour;
+   defer_get->m_timeSyncTimeout = 5_hour;
 
    auto pmemoryfile = create_memory_file();
 
-   pget->want_memory_response(pmemoryfile->get_memory());
+   defer_get->want_memory_response(pmemoryfile->get_memory());
 
-   pget->call();
+   defer_get->call();
 
    const_char_pointer pszData = (const_char_pointer )pmemoryfile->get_memory()->data();
 
@@ -3466,7 +3495,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
   /// ::property_set & set = payloadFile["http_set"].property_set_reference();
 
-   pmemoryfile->payload("http_set") = ::transfer(pget->property_set());
+   pmemoryfile->payload("http_set") = ::transfer(defer_get->property_set());
    //{
 
    //   return ::error_failed;
@@ -3476,7 +3505,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
    if (bDoCache)
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex());
+      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -3656,7 +3685,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
          if (eopen & ::file::e_open_no_exception_on_open)
          {
 
-            pfile = __allocate::file::file();
+            pfile = øallocate::file::file();
 
             pfile->m_estatus = error_not_a_file;
 
@@ -3736,7 +3765,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
       if (eopen & ::file::e_open_no_exception_on_open)
       {
 
-         __construct_new(pfile);
+         øconstruct_new(pfile);
 
          pfile->m_estatus = error_file_not_found;
 
@@ -3831,6 +3860,17 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 ::file_pointer file_context::defer_get_protocol_file(const ::scoped_string & scopedstrProtocol, const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
+   if(scopedstrProtocol == "mediastore")
+   {
+
+      auto pfile = øcreate_new < ::protocol_file >();
+
+      pfile->open(path, eopen, pfileexception);
+
+      return pfile;
+
+   }
+
    return nullptr;
 
 }
@@ -3841,7 +3881,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 
    ::file_pointer pfile;
 
-   __øconstruct(pfile);
+   øconstruct(pfile);
 
    pfile->open(path, eopen, pfileexception);
 

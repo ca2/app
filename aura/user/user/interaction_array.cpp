@@ -70,7 +70,7 @@ namespace user
    bool interaction_ptra::get_child(::pointer<::user::interaction>& pinteraction)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (get_count() <= 0)
       {
@@ -126,7 +126,7 @@ namespace user
    bool interaction_ptra::rget_child(::pointer<::user::interaction>& pinteraction)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (get_count() <= 0)
       {
@@ -431,7 +431,7 @@ namespace user
    }
 
 
-   void interaction_array::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void interaction_array::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       for (int i = 0; i < this->interaction_count(); i++)
@@ -440,7 +440,7 @@ namespace user
          try
          {
 
-            this->interaction_at(i)->send_message(emessage, wparam, lparam);
+            this->interaction_at(i)->send_message(eusermessage, wparam, lparam);
 
          }
          catch (...)
@@ -453,7 +453,7 @@ namespace user
    }
 
 
-   void interaction_array::send_message_to_descendants(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bRecursive)
+   void interaction_array::send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, bool bRecursive)
    {
 
       for (int i = 0; i < this->interaction_count(); i++)
@@ -462,7 +462,7 @@ namespace user
          try
          {
 
-            this->interaction_at(i)->send_message_to_descendants(emessage, wparam, lparam, bRecursive);
+            this->interaction_at(i)->send_message_to_descendants(eusermessage, wparam, lparam, bRecursive);
 
          }
          catch (...)

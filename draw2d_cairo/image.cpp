@@ -42,7 +42,7 @@ namespace draw2d_cairo
    //void image::read(::binary_stream & stream)
    //{
 
-   //   _synchronous_lock ml(::draw2d_cairo::mutex());
+   //   _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ::image::image::read(stream);
 
@@ -61,7 +61,7 @@ namespace draw2d_cairo
    //void image::write(::binary_stream & stream) const
    //{
 
-   //   _synchronous_lock ml(::draw2d_cairo::mutex());
+   //   _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   ::image::image::write(stream);
 
@@ -125,9 +125,9 @@ namespace draw2d_cairo
 
       }
 
-      auto pbitmap = __øcreate < ::draw2d::bitmap >();
+      auto pbitmap = øcreate < ::draw2d::bitmap >();
 
-      auto pgraphics = __øcreate < ::draw2d::graphics >();
+      auto pgraphics = øcreate < ::draw2d::graphics >();
 
       //if(pbitmap.is_null() || pgraphics.is_null())
       //{
@@ -489,7 +489,7 @@ namespace draw2d_cairo
    void image::_map(bool bApplyAlphaTransform)
    {
 
-      _synchronous_lock ml(::draw2d_cairo::mutex());
+      _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bMapped)
       {
@@ -579,7 +579,7 @@ namespace draw2d_cairo
    void image::_unmap()
    {
 
-      _synchronous_lock ml(::draw2d_cairo::mutex());
+      _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_bMapped)
       {
@@ -773,7 +773,7 @@ namespace draw2d_cairo
 //
 //      m_spgraphics->set_origin(0, 0);
 //
-//      map(true);
+//      map_base(true);
 //
 //      ::int_rectangle rectangle(rectangleWindow);
 //
@@ -902,7 +902,7 @@ namespace draw2d_cairo
 ////
 ////      m_spgraphics->set_origin(0, 0);
 ////
-////      map(true);
+////      map_base(true);
 ////
 ////      ::int_rectangle rectangle(rectangleWindow);
 ////
@@ -947,7 +947,7 @@ namespace draw2d_cairo
 //
 //      m_spgraphics->set_origin(0, 0);
 //
-//      map(false);
+//      map_base(false);
 //
 //      ::int_rectangle rectangle(rectangleWindow);
 //

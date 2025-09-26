@@ -2,6 +2,7 @@
 
 
 #include "acme/prototype/mathematics/mathematics.h"
+#include "bred/gpu/model_buffer.h"
 #include "bred/graphics3d/model.h"
 
 
@@ -37,10 +38,10 @@ namespace graphics3d
 
       };
 
-      using shape = ::graphics3d::model_data < Vertex >;
+      using shape = ::gpu::model_data < Vertex >;
       //struct shape {
-      //   ::array<float> vertices;  // Positions, colors, texture coordinates, and normals
-      //   ::array<unsigned int> indices;
+      //   ::array<float> vertexes;  // Positions, colors, texture coordinates, and normals
+      //   ::array<unsigned int> indexes;
       //};
 
       // Generate a graphics3d with position, color, texture coordinates, and normals
@@ -51,7 +52,7 @@ namespace graphics3d
          float halfSize = size / 2.0f;
 
          // Vertices for a graphics3d
-         shape.m_vertices ={
+         shape.m_vertexes ={
             // Front face
             {{ -halfSize, -halfSize,  halfSize}, { -0.5f, -0.5f,  0.5f},  { 0.0f, 0.0f}},   // bottom-left (red)
             {{ halfSize, -halfSize,  halfSize},   {0.5f, -0.5f,  0.5f},   {1.0f, 0.0f}},   // bottom-right (green)
@@ -91,7 +92,7 @@ namespace graphics3d
 
 
          // Indices for the graphics3d (two triangles per face)
-         shape.m_indices = {
+         shape.m_indexes = {
             // Front face
             0, 1, 2,  2, 3, 0,
 
@@ -124,7 +125,7 @@ namespace graphics3d
          float halfDepth = depth / 2.0f;
 
          // Vertices for a plane
-         shape.m_vertices = {
+         shape.m_vertexes = {
             // Position               // Color           // texture coords 
             {{ -halfWidth, 0.0f, -halfDepth}, { 1.0f, 0.0f, 0.0f},  {0.0f, 0.0f}},
            { { halfWidth, 0.0f, -halfDepth},  {0.0f, 1.0f, 0.0f},  {1.0f, 0.0f}},
@@ -133,7 +134,7 @@ namespace graphics3d
          };
 
          // Indices for a plane (two triangles)
-         shape.m_indices = {
+         shape.m_indexes = {
              0, 1, 2, 2, 3, 0
          };
 
@@ -148,7 +149,7 @@ namespace graphics3d
          float halfHeight = height / 2.0f;
 
          // Vertices for a wall
-         shape.m_vertices ={
+         shape.m_vertexes ={
             // Position               // Color           // texture coords 
             {{ -halfWidth, -halfHeight, 0.0f},  {-0.5f, -0.5f,  0.5f},   {0.0f, 0.0f}},   // bottom-left (red)
             {{ halfWidth, -halfHeight, 0.0f},   {0.5f, -0.5f,  0.5f},   {1.0f, 0.0f}},   // bottom-right (green)
@@ -158,7 +159,7 @@ namespace graphics3d
 
 
          // Indices for a wall (two triangles)
-         shape.m_indices ={
+         shape.m_indexes ={
              0, 1, 2, 2, 3, 0
          };
 
@@ -182,8 +183,8 @@ namespace graphics3d
             xy = radius * cosf(stackAngle);              // r * cos(u)
             vertex.m_position.z = radius * sinf(stackAngle);               // r * sin(u)
 
-            // add (sectorCount+1) vertices per stack
-            // the first and last vertices have same position and normal, but different tex coords
+            // add (sectorCount+1) vertexes per stack
+            // the first and last vertexes have same position and normal, but different tex coords
             for (unsigned int j = 0; j <= sectorCount; ++j) {
                sectorAngle = j * sectorStep;           // from 0 to 2pi
 
@@ -200,7 +201,7 @@ namespace graphics3d
                vertex.m_uv.x = (float)j / sectorCount;
                vertex.m_uv.y = (float)i / stackCount;
 
-               shape.m_vertices.add(vertex);
+               shape.m_vertexes.add(vertex);
 
             }
          }
@@ -214,16 +215,16 @@ namespace graphics3d
             for (unsigned int j = 0; j < sectorCount; ++j, ++k1, ++k2) {
                if (i != 0) {
                   // triangle 1
-                  shape.m_indices.add(k1);
-                  shape.m_indices.add(k2);
-                  shape.m_indices.add(k1 + 1);
+                  shape.m_indexes.add(k1);
+                  shape.m_indexes.add(k2);
+                  shape.m_indexes.add(k1 + 1);
                }
 
                if (i != (stackCount - 1)) {
                   // triangle 2
-                  shape.m_indices.add(k1 + 1);
-                  shape.m_indices.add(k2);
-                  shape.m_indices.add(k2 + 1);
+                  shape.m_indexes.add(k1 + 1);
+                  shape.m_indexes.add(k2);
+                  shape.m_indexes.add(k2 + 1);
                }
             }
          }
@@ -235,14 +236,14 @@ namespace graphics3d
       //static shape CreateRay(float length) {
       //   shape shape;
 
-      //   // Define vertices for the ray (start at origin, end at specified length)
-      //   shape.vertices = {
+      //   // Define vertexes for the ray (start at origin, end at specified length)
+      //   shape.vertexes = {
       //       0.0f, 0.0f, 0.0f,  // Ray start
       //       0.0f, 0.0f, length, // Ray end
       //   };
 
-      //   // Define indices for the ray (one line)
-      //   shape.indices = {
+      //   // Define indexes for the ray (one line)
+      //   shape.indexes = {
       //       0, 1,
       //   };
 
@@ -255,11 +256,7 @@ namespace graphics3d
 } // namespace graphics3d
 
 
-BEGIN_GPU_PROPERTIES(::graphics3d::shape_factory::Vertex)
-GPU_PROPERTY("position", ::gpu::e_type_seq3)
-GPU_PROPERTY("normal", ::gpu::e_type_seq3)
-GPU_PROPERTY("uv", ::gpu::e_type_seq2)
-END_GPU_PROPERTIES()
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::graphics3d::shape_factory::Vertex)
 
 
 

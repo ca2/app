@@ -424,7 +424,7 @@ oswindow_data * oswindow_get(Window window)
 bool oswindow_data::bamf_set_icon()
 {
 
-   auto pdesktopfile = __create_new < ::linux::desktop_file >();
+   auto pdesktopfile = øcreate_new < ::linux::desktop_file >();
 
    pdesktopfile->set_app_id(get_app()->m_strAppId);
 
@@ -1063,7 +1063,7 @@ void oswindow_data::exit_full_screen()
 void oswindow_data::exit_zoomed()
 {
 
-   synchronous_lock synchronouslock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    xdisplay d(display());
 
@@ -1319,7 +1319,7 @@ bool oswindow_data::set_window_position(class ::zorder zorder, int x, int y, int
 bool oswindow_data::_set_window_pos(class ::zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags)
 {
 
-   synchronous_lock synchronouslock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    windowing_output_debug_string("::oswindow_data::set_window_position 1");
 

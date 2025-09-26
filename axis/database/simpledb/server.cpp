@@ -75,7 +75,7 @@ namespace simpledb
 
       //}
 
-      pfactoryDatabase->__øconstruct(this, m_pdatabaseLocal);
+      pfactoryDatabase->øconstruct(this, m_pdatabaseLocal);
 
       //if (!estatus)
       //{
@@ -84,7 +84,7 @@ namespace simpledb
 
       //}
 
-      _synchronous_lock synchronouslock(m_pdatabaseLocal->synchronization());
+      _synchronous_lock synchronouslock(m_pdatabaseLocal->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //estatus = pdatabase->set_finish(this);
 
@@ -119,7 +119,7 @@ namespace simpledb
 
       //estatus =
       
-      __construct_new(m_psimpledb);
+      øconstruct_new(m_psimpledb);
 
       //if (!estatus)
       //{
@@ -149,7 +149,7 @@ namespace simpledb
 
       //estatus = 
       
-      __construct_new(m_pstorage);
+      øconstruct_new(m_pstorage);
 
       //if (!estatus)
       //{
@@ -169,7 +169,7 @@ namespace simpledb
 
       //}
 
-      //m_pstorage = __allocate storage(this);
+      //m_pstorage = øallocate storage(this);
 
       m_bWorking = true;
 
@@ -198,7 +198,7 @@ namespace simpledb
 
       //auto estatus = 
       
-      __construct_new(m_psimpledb);
+      øconstruct_new(m_psimpledb);
 
       //if (!estatus)
       //{
@@ -236,7 +236,7 @@ namespace simpledb
       try
       {
 
-         _synchronous_lock synchronouslock(pdatabase->synchronization());
+         _synchronous_lock synchronouslock(pdatabase->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ::payload item = pdatabase->query_item("select COUNT(*) from sqlite_master where type like 'table' and name like '" + strTable + "'");
 

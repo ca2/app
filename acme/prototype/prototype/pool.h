@@ -73,14 +73,14 @@ public:
    TYPE* get()
    {
 
-      _synchronous_lock synchronouslock(m_ppoolgroup->synchronization());
+      _synchronous_lock synchronouslock(m_ppoolgroup->synchronization(), m_ppoolgroup, SYNCHRONOUS_LOCK_SUFFIX);
 
       TYPE* pGet;
 
       if (m_aPool.is_empty())
       {
 
-         auto p = m_ppoolgroup->m_pallocator->__øcreate<TYPE >();
+         auto p = m_ppoolgroup->m_pallocator->øcreate<TYPE >();
 
          p->m_ppool = this;
 

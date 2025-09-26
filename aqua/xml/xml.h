@@ -15,10 +15,10 @@ namespace xml
    public:
 
 
-      ::pointer<entities>          m_pentities;
-      ::pointer<disp_option>       m_poptionDefault;
-      ::pointer<parse_info>        m_pparseinfoDefault;
-      ::pointer<string_to_string>  m_pentitiesHashDefault;
+      ::pointer < entities >                                   m_pentities;
+      ::pointer < disp_option >                                m_poptionDefault;
+      ::pointer < parse_info >                                 m_pparseinfoDefault;
+      ::pointer < ::map_particle < string_to_string_base > >   m_pentitiesHashDefault;
       
 
 

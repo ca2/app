@@ -6,6 +6,8 @@
 
 namespace image
 {
+
+
    image_extension::image_extension()
    {
 
@@ -22,8 +24,10 @@ namespace image
       ::release(m_pframea);
       ::release(m_pmap);
 
-
    }
+
+
 } // namespace image
+
 
 

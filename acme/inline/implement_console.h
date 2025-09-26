@@ -160,7 +160,7 @@ int main(int argc, char ** argv, char ** envp)
       else
       {
 
-         auto pmessagebox = __initialize_new_with(::system()) ::message_box(exception, "Exception", "Exception", e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
+         auto pmessagebox = __initialize_new_with(::system()) ::message_box(exception, "Exception", "Exception", ::user::e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
 
          pmessagebox->sync();
 
@@ -214,7 +214,7 @@ int main(int argc, char ** argv, char ** envp)
 //
 //   //set_argc_argv_envp(argc, argv, envp);
 //
-//   ::pointer<APPLICATION_CLASS>papp(__allocate APPLICATION_CLASS());
+//   ::pointer<APPLICATION_CLASS>papp(øallocate APPLICATION_CLASS());
 //
 //#ifdef NO_NETWORKING
 //

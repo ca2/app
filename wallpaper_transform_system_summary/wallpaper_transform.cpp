@@ -31,7 +31,7 @@ namespace wallpaper_transform_system_summary
 
       ::particle::initialize(pparticle);
 
-      __øconstruct(m_pfont);
+      øconstruct(m_pfont);
 
       m_pfont->create_font(e_font_sans_ui, 24_pt);
 

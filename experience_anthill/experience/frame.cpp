@@ -367,11 +367,11 @@ namespace experience_anthill
 
       }
 
-      __øconstruct(m_ppenText1);
-      __øconstruct(m_ppenFace1);
-      __øconstruct(m_ppenHilight1);
-      __øconstruct(m_ppenShadow1);
-      __øconstruct(m_ppenDkShadow1);
+      øconstruct(m_ppenText1);
+      øconstruct(m_ppenFace1);
+      øconstruct(m_ppenHilight1);
+      øconstruct(m_ppenShadow1);
+      øconstruct(m_ppenDkShadow1);
 
 
       m_minSize = int_size(144, 48);
@@ -462,7 +462,7 @@ namespace experience_anthill
       if (eborder & e_border_top || eborder & e_border_left)
       {
 
-         __øconstruct(ppen);
+         øconstruct(ppen);
 
          ppen->create_solid(1.0, crTopLeft);
 
@@ -487,7 +487,7 @@ namespace experience_anthill
       if ((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != crBottomRight))
       {
 
-         __øconstruct(ppen);
+         øconstruct(ppen);
 
          ppen->create_solid(1.0, crBottomRight);
 
@@ -680,7 +680,7 @@ namespace experience_anthill
          if(strWindowText.has_character())
          {
 
-            auto pbrushText = __øcreate<::draw2d::brush>();
+            auto pbrushText = øcreate<::draw2d::brush>();
 
             pbrushText->create_solid(m_colorCaptionText);
 

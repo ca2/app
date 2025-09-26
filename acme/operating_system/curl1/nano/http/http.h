@@ -32,7 +32,7 @@ namespace curl
 
             //void asynchronous_memory(const ::scoped_string & scopedstrUrl, ::pointer < ::nano::httasynchronous_http_response > pasynchronoushttpresponse) override;
 
-            void async(::nano::http::get * pget) override;
+            void async(::nano::http::get * defer_get) override;
 
 
          };

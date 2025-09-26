@@ -256,7 +256,7 @@ namespace user
 
          __check_refdbg
 
-         factoryitem = __allocate ::factory::factory_item< IMPACT, IMPACT > ();
+         factoryitem = øallocate ::factory::factory_item< IMPACT, IMPACT > ();
 
          __check_refdbg
 

@@ -55,7 +55,7 @@ namespace platform
       //::pointer < ::platform::system  >      m_psystemComposite;
 
       ::pointer < ::particle >               m_pparticleHttpTextSynchronization;
-      ::string_map < ::string_to_string >    m_mapText;
+      ::string_map_base < ::string_to_string_base >    m_mapText;
       ::pointer < ::platform::application >  m_papplicationMain;
 
       system();
@@ -78,7 +78,7 @@ namespace platform
 //      void main()
 //      {
 //         
-//         auto pfactoryitem = __allocate ::factory::factory_item < APPLICATION, ::platform::application >;
+//         auto pfactoryitem = øallocate ::factory::factory_item < APPLICATION, ::platform::application >;
 //
 //         this->application_main(pfactoryitem);
 //         
@@ -213,7 +213,7 @@ namespace platform
       //virtual ::http_system * http_system();
 
       virtual string get_system_platform() override;
-      virtual string get_system_configuration() override;
+      //virtual string get_system_configuration() override;
 
 
 
@@ -424,7 +424,7 @@ namespace platform
 #endif
 
 
-   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
 
 
    //virtual void on_initialize_window_object();
@@ -463,7 +463,7 @@ namespace platform
 //
 //      long long iValue;
 //
-//      if (m_mapTextToEnum[typeid(e).name()].lookup(scopedstr, iValue))
+//      if (m_mapTextToEnum[typeid(e).name()].find(scopedstr, iValue))
 //      {
 //
 //         e = (ENUM)iValue;
@@ -530,7 +530,7 @@ namespace platform
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       
-      void call_message(const ::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle) override;
+      void call_message(const ::user::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle) override;
     
 
       //virtual void add_handler(::particle * pmatter, bool bPriority = false);
@@ -678,13 +678,13 @@ namespace platform
 
       //::pointer < ::message_box > & realize(::pointer < ::message_box > & pmessagebox);
 
-      //::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
 
@@ -798,8 +798,8 @@ namespace platform
 //       virtual string crypto_md5_text(const ::scoped_string & scopedstr);
 //
 //
-//       //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
-//       //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override;
+//       //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
+//       //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future()) override;
 //
 //
 //       //virtual void create_html();
@@ -994,7 +994,7 @@ namespace platform
 //       //   if(idType.is_empty())
 //       //      return nullptr;
 //
-//       //   synchronous_lock synchronouslock(m_pmutexFactory);
+//       //   synchronous_lock synchronouslock(m_pmutexFactory, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //       //   return m_typemap[idType].m_p;
 //
@@ -1079,7 +1079,7 @@ namespace platform
 //
 //
 //       //virtual int _001OnDebugReport(int i1, const ::scoped_string & scopedstr1,int i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3,va_list args) override;
-//       //virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat, va_list list) override;
+//       //virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat, va_list list_base) override;
 //       //virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
 //
 //       //virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
@@ -1427,9 +1427,9 @@ namespace platform
 //
 //       virtual void initialize_estamira();
 //
-//       virtual void _001AddPacks(string_to_string & base64map, string & str);
+//       virtual void _001AddPacks(string_to_string_base & base64map, string & str);
 //
-//       //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+//       //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
 //
 //       //void windowing_send(const ::procedure & procedure) override;
 //       //void windowing_post(const ::procedure & procedure) override;

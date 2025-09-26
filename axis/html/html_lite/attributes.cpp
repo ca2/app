@@ -421,7 +421,7 @@ bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
 
       strKey.make_lower();
 
-      if (preader->m_phtml->m_namedcolor.lookup(strKey, color))
+      if (preader->m_phtml->m_namedcolor.find(strKey, color))
       {
 
          return color.m_estatus == ::success_color_index;
@@ -479,7 +479,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
 
       strKey.make_lower();
 
-      if(preader->m_phtml->m_namedcolor.lookup(strKey, color))
+      if(preader->m_phtml->m_namedcolor.find(strKey, color))
       {
 
          // is this a system named color value?

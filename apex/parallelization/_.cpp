@@ -163,7 +163,7 @@ namespace parallelization
    }
 
 
-   CLASS_DECL_APEX void post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   CLASS_DECL_APEX void post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       critical_section_lock criticalsectionlock(&::system()->m_criticalsectionThreadStorage);
@@ -176,7 +176,7 @@ namespace parallelization
 
             ::pointer<::thread>pthread = pair.element2().m_ptask;
 
-            pthread->post_message(emessage, wparam, lparam);
+            pthread->post_message(eusermessage, wparam, lparam);
 
          }
          catch (...)
@@ -919,7 +919,7 @@ void thread_ptra::destroy()
    try
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for (::collection::index i = 0; i < get_count(); i++)
       {
@@ -930,7 +930,7 @@ void thread_ptra::destroy()
          {
 
             /// this is quite dangerous
-            //synchronous_lock slThread(pthread->synchronization());
+            //synchronous_lock slThread(pthread->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             pthread->destroy();
 
@@ -994,7 +994,7 @@ void thread_ptra::wait(const class time & timeWait, ::particle & particleSynchro
    try
    {
 
-      //      synchronous_lock synchronouslock(psyncParent);
+      //      synchronous_lock synchronouslock(psyncParent, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       //
       ::collection::count cCount = get_count_except_current_thread();
 

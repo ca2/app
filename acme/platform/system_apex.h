@@ -216,7 +216,7 @@ namespace platform
       //
 
 
-      virtual unsigned int os_post_to_all_threads(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+      virtual unsigned int os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
 
       //
@@ -249,7 +249,7 @@ namespace platform
 
 
       virtual int _001OnDebugReport(int i1,const ::scoped_string & scopedstr1,int i2,const ::scoped_string & scopedstr2,const ::scoped_string & scopedstr3,va_list args);
-      virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list);
+      virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::scoped_string & scopedstrModuleName, const_char_pointer pszFormat, va_list list_base);
       virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine);
 
       virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine);
@@ -389,7 +389,7 @@ namespace platform
 
 
       virtual void post_quit_to_all_threads();
-      virtual void post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam);
+      virtual void post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
 
       virtual void dump_command_line_and_environment_variables_to_file();

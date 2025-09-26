@@ -14,9 +14,9 @@ namespace graphics3d
 
 
    mesh::mesh()/*
-   {const ::array<float>& vertices, const ::array<unsigned int>& indices,
+   {const ::array<float>& vertexes, const ::array<unsigned int>& indexes,
       unsigned int vertexOffset, unsigned int indexOffset, unsigned int indexCount)
-      : m_Vertices(vertices), m_Indices(indices), m_VertexOffset(vertexOffset),
+      : m_Vertices(vertexes), m_Indices(indexes), m_VertexOffset(vertexOffset),
       m_IndexOffset(indexOffset), m_IndexCount(indexCount) */
    {
 
@@ -35,7 +35,7 @@ namespace graphics3d
    }
 
 
-   void mesh::initialize_mesh(const model_data<Vertex>& data)
+   void mesh::initialize_mesh(const ::gpu::model_data<Vertex>& data)
    {
       
       m_modeldata = data;
@@ -109,14 +109,16 @@ namespace graphics3d
    void mesh::SetupMesh() 
    {
 
-      //__defer_construct(m_pmodel);
+      //ødefer_construct(m_pmodel);
 
       //::graphics3d::model_data<Vertex> data;
 
-      //data.m_vertices = m_Vertices;
-      //data.m_indices = m_Indices;
+      //data.m_vertexes = m_Vertices;
+      //data.m_indexes = m_Indices;
 
-      m_pmodel.initialize_model(m_pgpucontext->m_pgpurenderer, m_modeldata);
+      øconstruct_new(m_pmodel);
+
+      m_pmodel->initialize_model(m_pgpucontext, m_modeldata);
 
       // m_pmodel->initialize_model(m_pgpucontext->m_pgpurenderer, );
 

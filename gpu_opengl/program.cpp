@@ -1,4 +1,5 @@
 #include "framework.h"
+//#include "_gpu_opengl.h"
 #include "program.h"
 //#include "bred/gpu/shader.h"
 //
@@ -28,7 +29,7 @@
 //
 //      //::e_status estatus = 
 //      
-//      pparticle->__øconstruct(m_pshader);
+//      pparticle->øconstruct(m_pshader);
 //
 //      //if (!estatus)
 //      //{

@@ -36,16 +36,16 @@ namespace colorertake5
       enum QualifyNameType { QNT_DEFINE, QNT_SCHEME, QNT_ENTITY };
 
       // types and packages
-      string_map<file_type_impl *>       fileTypeHash;
+      string_map_base<file_type_impl *>       fileTypeHash;
       // types, not packages
       address_array < file_type_impl * >       fileTypeVector;
 
-      string_map<scheme_impl *>          schemeHash;
-      string_map<int>                   disabledSchemes;
+      string_map_base<scheme_impl *>          schemeHash;
+      string_map_base<int>                   disabledSchemes;
 
       address_array < region * >   regionNamesVector;
-      string_map<region *>   regionNamesHash;
-      string_to_string              schemeEntitiesHash;
+      string_map_base<region *>   regionNamesHash;
+      string_to_string_base              schemeEntitiesHash;
 
       string versionName;
 

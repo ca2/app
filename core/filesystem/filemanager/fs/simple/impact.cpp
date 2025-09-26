@@ -3,7 +3,7 @@
 #include "list_impact.h"
 #include "tree.h"
 #include "acme/handler/item.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/platform/http.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/platform/application.h"
@@ -48,7 +48,7 @@ namespace filemanager
 
             ::user::split_impact::install_message_routing(pchannel);
 
-            MESSAGE_LINK(e_message_destroy, pchannel, this, &::filemanager::fs::simple::impact::on_message_destroy);
+            USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &::filemanager::fs::simple::impact::on_message_destroy);
 
          }
 
@@ -86,7 +86,7 @@ namespace filemanager
 
             initialize_split_layout();
 
-            __construct_new(m_ptree);
+            øconstruct_new(m_ptree);
 
             m_ptree->m_pserver = this;
 
@@ -159,7 +159,7 @@ namespace filemanager
 
                   // auto pcontext = get_context();
 
-               auto phttpmessage = __create_new < ::http::message >();
+               auto phttpmessage = øcreate_new < ::http::message >();
 
                phttpmessage->payload("request") = "";
 

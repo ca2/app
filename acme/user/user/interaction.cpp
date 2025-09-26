@@ -361,7 +361,7 @@ namespace acme
       //void interaction::resize_to_fit()
       //{
 
-      //   auto pdevice = __øcreate < ::nano::graphics::device >();
+      //   auto pdevice = øcreate < ::nano::graphics::device >();
 
       //   auto size = pdevice->get_text_extents(m_strText, nano_user_theme()->m_pfont);
 
@@ -828,7 +828,7 @@ namespace acme
             if (m_ptimerarray.is_null())
             {
 
-               __construct_new(m_ptimerarray);
+               øconstruct_new(m_ptimerarray);
 
                m_ptimerarray->m_pcallback = this;
 
@@ -910,7 +910,7 @@ namespace acme
 
          //   do_asynchronously();
 
-         //   auto pmanualresethappening = __allocate manual_reset_happening();
+         //   auto pmanualresethappening = øallocate manual_reset_happening();
 
          //   if (m_psequencer)
          //   {
@@ -1043,7 +1043,7 @@ namespace acme
          //void interaction::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
          //{
 
-         //   auto pbutton = __allocate ::micro::button();
+         //   auto pbutton = øallocate ::micro::button();
 
          //   pbutton->m_strText = scopedstrText;
          //   pbutton->id() = edialogresult;
@@ -1969,7 +1969,7 @@ namespace acme
          void interaction::on_create_window_object()
          {
 
-            __øconstruct(m_pacmewindowingwindow, ::system()->m_pfactoryAcmeWindowing);
+            øconstruct(m_pacmewindowingwindow, ::system()->m_pfactoryAcmeWindowing);
 
          }
 

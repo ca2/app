@@ -103,7 +103,7 @@ namespace color
        set rectangle [expr {(($int_rectangle-1)*$s+1)*$l}]
        set g [expr {(($g-1)*$s+1)*$l}]
        set b [expr {(($b-1)*$s+1)*$l}]
-       return [list $int_rectangle $g $b]
+       return [list_base $int_rectangle $g $b]
    }
 
 

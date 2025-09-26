@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "form.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -173,7 +173,7 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
 
          get_html_data()->m_pcoredata->m_box = rectangleX;
 
-         synchronous_lock lock(get_html_data()->synchronization());
+         synchronous_lock lock(get_html_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto pimage = image()->create_image({ 50,  50 });
 
@@ -197,21 +197,21 @@ void html_form::install_message_routing(::channel * pchannel)
 
    ::user::form_window::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_create, pchannel, this, &html_form::on_message_create);
+   USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &html_form::on_message_create);
 
-   //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
-   //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
-   MESSAGE_LINK(e_message_key_down, pchannel, this, &::html_form::on_message_key_down);
-   //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
+   //USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
+   //USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
+   USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &::html_form::on_message_key_down);
+   //USER_MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
 
-   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &html_form::on_message_left_button_down);
-   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form::on_message_mouse_move);
-   MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &html_form::on_message_mouse_leave);
-   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &html_form::on_message_left_button_up);
+   USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &html_form::on_message_left_button_down);
+   USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &html_form::on_message_mouse_move);
+   USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &html_form::on_message_mouse_leave);
+   USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &html_form::on_message_left_button_up);
 
-   MESSAGE_LINK(e_message_image_loaded, pchannel, this, &html_form::_001OnImageLoaded);
+   USER_MESSAGE_LINK(::user::e_message_image_loaded, pchannel, this, &html_form::_001OnImageLoaded);
 
-   MESSAGE_LINK(e_message_destroy, pchannel, this, &html_form::on_message_destroy);
+   USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &html_form::on_message_destroy);
 
 }
 
@@ -240,7 +240,7 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(get_html_data() == nullptr)
    {
@@ -349,14 +349,14 @@ void html_form::on_message_mouse_move(::message::message * pmessage)
 
    host_to_client()(point);
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(::is_set(get_html_data()) 
       && ::is_set(get_html_data()->m_pcoredata) 
       && ::is_set(get_html_data()->m_pcoredata->m_pelement))
    {
 
-      synchronous_lock synchronouslock(get_html_data()->synchronization());
+      synchronous_lock synchronouslock(get_html_data()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       html::element * pelement = get_html_data()->m_pcoredata->m_pelement->hit_test(get_html_data(), point);
 
@@ -509,7 +509,7 @@ void html_form::soft_reload()
 
       auto pparticleSynchronization = phtmldata->synchronization();
 
-      synchronous_lock lock(pparticleSynchronization);
+      synchronous_lock lock(pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       str = phtmldata->m_pcoredata->m_strSource;
 
@@ -709,7 +709,7 @@ void html_form::create_html_data()
 
    //auto estatus = 
    
-   __construct_new(m_phtmldata);
+   øconstruct_new(m_phtmldata);
 
    //if (!estatus)
    //{
@@ -720,7 +720,7 @@ void html_form::create_html_data()
       
    //estatus = 
    
-   m_phtmldata->__construct_new(m_phtmldata->m_pcompositeCoreData);
+   m_phtmldata->øconstruct_new(m_phtmldata->m_pcompositeCoreData);
 
    //if (!estatus)
    //{

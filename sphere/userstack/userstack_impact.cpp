@@ -38,12 +38,12 @@ namespace userstack
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::on_message_destroy);
-      MESSAGE_LINK(e_message_paint, pchannel, this, &impact::_001OnPaint);
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
-      MESSAGE_LINK(e_message_context_menu, pchannel, this, &impact::on_message_context_menu);
-      //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &impact::on_message_set_cursor);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &impact::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_paint, pchannel, this, &impact::_001OnPaint);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_context_menu, pchannel, this, &impact::on_message_context_menu);
+      //USER_MESSAGE_LINK(::user::e_message_set_cursor, pchannel, this, &impact::on_message_set_cursor);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
 
 //
 

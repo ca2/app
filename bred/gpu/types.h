@@ -5,13 +5,6 @@
 #include "acme/constant/gpu.h"
 #include "bred/gpu/properties.h"
 
-#define GLM_ENABLE_EXPERIMENTAL
-#define GLM_FORCE_RADIANS	
-#define GLM_FORCE_DEPTH_ZERO_TO_ONE
-#include <glm/glm.hpp>
-#include <glm/gtx/hash.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
 
 #include <functional>
 
@@ -42,16 +35,21 @@ namespace gpu
 
 	};
 
+	struct quad_texcoords_textColor
+	{
+
+		glm::vec4 quad;
+		glm::vec4 texcoords;
+		glm::vec4 textColor;  // r, g, b, a
+
+	};
+
+
+
 
 
 } // namespace gpu
 
 
-
-BEGIN_GPU_PROPERTIES(::gpu::projection_quad_texcoords_textColor)
-GPU_PROPERTY("projection", ::gpu::e_type_mat4)
-GPU_PROPERTY("quad", ::gpu::e_type_seq4)
-GPU_PROPERTY("texcoords", ::gpu::e_type_seq4)
-GPU_PROPERTY("textColor", ::gpu::e_type_seq4)
-END_GPU_PROPERTIES()
-
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::projection_quad_texcoords_textColor)
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::quad_texcoords_textColor)

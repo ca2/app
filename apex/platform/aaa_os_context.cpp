@@ -468,7 +468,7 @@
 ////
 ////         }
 ////
-////         auto plink = __create_new < ::file::link >();
+////         auto plink = øcreate_new < ::file::link >();
 ////
 ////         string strLink = stra[0];
 ////
@@ -566,7 +566,7 @@
 ////
 ////#else
 ////
-////         auto plink = __create_new < ::file::link >();
+////         auto plink = øcreate_new < ::file::link >();
 ////
 ////         string strLink;
 ////

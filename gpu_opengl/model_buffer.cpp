@@ -1,5 +1,6 @@
 // Created by camilo on 2025-06-11 01:08 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "command_buffer.h"
 #include "context.h"
 #include "input_layout.h"

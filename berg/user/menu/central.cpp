@@ -37,7 +37,7 @@ namespace user
 
       defer_initialize();
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       int iIndex;
 
@@ -123,7 +123,7 @@ namespace user
 
       int iImage;
 
-      if(!m_mapCommandImage.lookup(atom, iImage))
+      if(!m_mapCommandImage.find(atom, iImage))
       {
 
          return -1;
@@ -140,7 +140,7 @@ namespace user
 
       atom atom;
 
-      if(!m_mapImageCommand.lookup(iImage, atom))
+      if(!m_mapImageCommand.find(iImage, atom))
       {
 
          return ::atom();
@@ -155,7 +155,7 @@ namespace user
    void menu_central::defer_initialize()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pimagelist)
       {
@@ -164,12 +164,12 @@ namespace user
 
       }
 
-      __øconstruct(m_pfontMenu);
+      øconstruct(m_pfontMenu);
 
-      __construct_new(m_pimagelist);
-      __construct_new(m_pimagelistHue);
-      __construct_new(m_pimagelistBlend);
-      __construct_new(m_pimagelistHueLight);
+      øconstruct_new(m_pimagelist);
+      øconstruct_new(m_pimagelistHue);
+      øconstruct_new(m_pimagelistBlend);
+      øconstruct_new(m_pimagelistHueLight);
 
       VERIFY(m_pfontMenu->create_font(e_font_sans, 11_pt));
 

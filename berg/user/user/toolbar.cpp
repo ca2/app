@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "toolbar.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/id.h"
 #include "acme/constant/timer.h"
 #include "acme/user/user/content.h"
@@ -106,16 +106,16 @@ namespace user
 
       ::user::control_bar::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_non_client_hit_test, pchannel, this, &toolbar::_001OnNcHitTest);
-      MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &toolbar::on_message_non_client_calculate_size);
-      MESSAGE_LINK(e_message_create, pchannel, this, &toolbar::on_message_create);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &toolbar::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_non_client_hit_test, pchannel, this, &toolbar::_001OnNcHitTest);
+      USER_MESSAGE_LINK(::user::e_message_non_client_calc_size, pchannel, this, &toolbar::on_message_non_client_calculate_size);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &toolbar::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &toolbar::on_message_left_button_double_click);
       //#ifdef WINDOWS_DESKTOP
-//      MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
-//      MESSAGE_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);
-//      MESSAGE_LINK(WM_SETTINGCHANGE, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
-//      MESSAGE_LINK(WM_SETFONT, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
-//      MESSAGE_LINK(WM_SYSCOLORCHANGE, pchannel, this, &toolbar::_001OnSysColorChange);
+//      USER_MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
+//      USER_MESSAGE_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);
+//      USER_MESSAGE_LINK(WM_SETTINGCHANGE, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
+//      USER_MESSAGE_LINK(WM_SETFONT, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);
+//      USER_MESSAGE_LINK(WM_SYSCOLORCHANGE, pchannel, this, &toolbar::_001OnSysColorChange);
 //#endif
 
    }
@@ -168,7 +168,7 @@ namespace user
 
          // allow reflections
          //if (::user::interaction::on_command(0,
-         //   MAKELONG((index)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+         //   MAKELONG((index)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
          //   &state, nullptr))
          //   continue;
 
@@ -224,7 +224,7 @@ namespace user
 //   bool toolbar::create_toolbar(::user::interaction * puiParent,unsigned int dwCtrlStyle,unsigned int uStyle, atom nID)
 //   {
 //
-//      ASSERT_VALID(puiParent);   // must have a parent
+//      ASSERT_OK(puiParent);   // must have a parent
 //      ASSERT (!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
 //
 //      //SetBorders(rectangleBorders);
@@ -258,7 +258,7 @@ namespace user
    void toolbar::set_owner(::user::interaction * pinteractionNewOwner)
    {
       //#ifdef WINDOWS_DESKTOP
-      //      ASSERT_VALID(this);
+      //      ASSERT_OK(this);
       //      ASSERT(is_window());
       //      default_window_procedure(TB_SETPARENT, (WPARAM)pOwnerWnd.m_p, 0);
       //#else
@@ -274,7 +274,7 @@ namespace user
    void toolbar::SetSizes(const ::int_size & sizeButton, const ::int_size & sizeImage)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       // sizes must be non-zero and positive
       ASSERT(sizeButton.cx() > 0 && sizeButton.cy() > 0);
@@ -309,7 +309,7 @@ namespace user
    void toolbar::SetHeight(::collection::index cyHeight)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
 
       ::collection::index nHeight = cyHeight;
       if (m_dwStyle & CBRS_BORDER_TOP)
@@ -340,7 +340,7 @@ namespace user
    //
    //   bool toolbar::from(HBITMAP hbmImageWell)
    //   {
-   //      ASSERT_VALID(this);
+   //      ASSERT_OK(this);
    //      ASSERT(hbmImageWell != nullptr);
    //
    //      // the caller must manage changing system colors
@@ -398,7 +398,7 @@ namespace user
 
       //#ifdef WINDOWS_DESKTOP
       //
-      //      ASSERT_VALID(this);
+      //      ASSERT_OK(this);
       //
       //      ASSERT(nIDCount >= 1);  // must be at least one of them
       //
@@ -535,7 +535,7 @@ namespace user
    ////
    ////   index toolbar::CommandToIndex(unsigned int nIDFind)
    ////   {
-   ////      ASSERT_VALID(this);
+   ////      ASSERT_OK(this);
    ////      ASSERT(is_window());
    ////
    ////#ifdef WINDOWS_DESKTOP
@@ -548,7 +548,7 @@ namespace user
 
    //   unsigned int toolbar::GetItemID(index nIndex)
    //   {
-   //      ASSERT_VALID(this);
+   //      ASSERT_OK(this);
    //      ASSERT(is_window());
    //
    ////#ifdef WINDOWS_DESKTOP
@@ -564,7 +564,7 @@ namespace user
    //   void toolbar::GetItemRect(index nIndex, ::int_rectangle * prectangle)
    //
    //   {
-   //      ASSERT_VALID(this);
+   //      ASSERT_OK(this);
    //      ASSERT(is_window());
    //
    //      // handle any delayed on_layout
@@ -982,7 +982,7 @@ namespace user
    int_size toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, unsigned int dwMode, ::collection::index nLength)
    {
       //#ifdef WINDOWS_DESKTOP
-      //      ASSERT_VALID(this);
+      //      ASSERT_OK(this);
       //      ASSERT(is_window());
       //      if (dwMode & LM_HORZDOCK)
       //         ASSERT(dwMode & LM_HORZ);
@@ -1259,7 +1259,7 @@ namespace user
    ::collection::index toolbar::tool_item_image(const ::atom & atom)
    {
       //#ifdef WINDOWS_DESKTOP
-      //      ASSERT_VALID(this);
+      //      ASSERT_OK(this);
       //      ASSERT(is_window());
       //
       //      TBBUTTON button;
@@ -1277,7 +1277,7 @@ namespace user
 
    //   void toolbar::SetButtonInfo(const ::atom & atom, unsigned int nID, unsigned int nStyle, ::collection::index iImage)
    //   {
-   //      ASSERT_VALID(this);
+   //      ASSERT_OK(this);
    ////#ifdef WINDOWS_DESKTOP
    ////      TBBUTTON button;
    ////      _GetButton(nIndex, &button);
@@ -1305,35 +1305,35 @@ namespace user
       tool_item_by_atom(atom)->m_str = scopedstr;
 
       //throw todo;
-//      // attempt to lookup string index in map
+//      // attempt to find string index in map_base
 //      iptr nString = -1;
 //      void * p;
 //      string wstrText(scopedstrText);
 //
-//      if (m_pStringMap != nullptr && m_pStringMap->lookup(wstrText, p))
+//      if (m_pStringMap != nullptr && m_pStringMap->find(wstrText, p))
 //         nString = (iptr)p;
 //
-//      // add ___new string if not already in map
+//      // add ___new string if not already in map_base
 //      if (nString == -1)
 //      {
-//         // initialize map if necessary
+//         // initialize map_base if necessary
 //         if (m_pStringMap == nullptr)
-//            m_pStringMap = ___new string_to_ptr();
+//            m_pStringMap = ___new string_to_ptr_base();
 //
 //         string str;
 //         str = pszText;
 //
-//         // add ___new string to toolbar list
+//         // add ___new string to toolbar list_base
 //         string strTemp(str);
 //         throw ::interface_only();
 //         // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const ::string &)(const unichar *)strTemp);
 //         if (nString == -1)
 //            return false;
 //
-//         // cache string away in string map
+//         // cache string away in string map_base
 //         m_pStringMap->set_at(wstrText, (void *)nString);
 //
-//         ASSERT(m_pStringMap->lookup(wstrText, p));
+//         ASSERT(m_pStringMap->find(wstrText, p));
 //
 //      }
 
@@ -1390,7 +1390,7 @@ namespace user
    //   //
    //   //         _GetButton(nIndex, &button);
    //   //
-   //   //         // look in map for matching iString
+   //   //         // look in map_base for matching iString
    //   //         POSITION pos = m_pStringMap->get_start_position();
    //   //
    //   //         string str;
@@ -1701,7 +1701,7 @@ namespace user
          {
             // allow reflections
             if (::user::interaction::on_command(0,
-               MAKELONG((index)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+               MAKELONG((index)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
                &state, nullptr))
                continue;
 
@@ -1781,7 +1781,7 @@ namespace user
    int_size toolbar::CalcSimpleLayout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ASSERT_VALID(this);
+      ASSERT_OK(this);
       ASSERT(is_window());
 
       ::int_size sizeResult(0, 0);
@@ -1951,9 +1951,9 @@ namespace user
    void toolbar::load_xml_toolbar(const ::payload & payloadFile)
    {
 
-      ::pointer < ::item_array > pitema = __create_new < ::item_array >();
+      ::pointer < ::item_array > pitema = øcreate_new < ::item_array >();
 
-      auto pxmldocument = __create_new < ::xml::document >();
+      auto pxmldocument = øcreate_new < ::xml::document >();
 
       auto strXml = file()->safe_get_string(payloadFile);
 
@@ -2003,7 +2003,7 @@ namespace user
          if (pchild->get_name() == "button")
          {
 
-            ptoolitem = __create_new < ::user::tool_item >();
+            ptoolitem = øcreate_new < ::user::tool_item >();
 
             //main_content().indexed_set_item_at(iItem, ptoolitem);
 
@@ -2055,7 +2055,7 @@ namespace user
          else if (pchild->get_name() == "separator")
          {
 
-            ptoolitem = __create_new < ::user::tool_item >();
+            ptoolitem = øcreate_new < ::user::tool_item >();
 
             //main_content().indexed_set_item_at(iItem, ptoolitem);
 
@@ -2074,7 +2074,7 @@ namespace user
       }
 
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if(main_content().m_pitema)
       {
@@ -2085,7 +2085,7 @@ namespace user
       else
       {
 
-         __defer_construct_new(main_content().m_pitema);
+         ødefer_construct_new(main_content().m_pitema);
 
       }
 

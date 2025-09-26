@@ -118,7 +118,7 @@ namespace filemanager
       if(m_pfilelist == nullptr)
       {
 
-         output_error_message("Could not create file list ::user::impact");
+         output_error_message("Could not create file list_base ::user::impact");
 
       }
 
@@ -137,7 +137,7 @@ namespace filemanager
       if(m_ppropform == nullptr)
       {
 
-         m_ppropform = __allocate file_properties_form();
+         m_ppropform = øallocate file_properties_form();
 
       }
 

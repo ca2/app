@@ -102,9 +102,9 @@ void Window::on_destroy_window()
       if (!m_button_panel) 
       {
       
-         m_button_panel = __allocate Widget(this);
+         m_button_panel = øallocate Widget(this);
 
-         m_button_panel->set_layout(__allocate BoxLayout(e_orientation_horizontal, e_alignment_middle, 0, 4));
+         m_button_panel->set_layout(øallocate BoxLayout(e_orientation_horizontal, e_alignment_middle, 0, 4));
 
       }
 
@@ -331,7 +331,7 @@ void Window::on_destroy_window()
                         rectangleOld.right(),
                         rectangleOld.bottom());
             
-            ::int_rectangle_array rectanglea;
+            ::int_rectangle_array_base rectanglea;
             
             rectanglea.add(rectangleOld);
 
@@ -548,7 +548,7 @@ void Window::on_destroy_window()
    //void Window::_nanoui_to_user(::user::interaction * puserinteraction)
    //{
    //
-   //   //puserinteraction->__øconstruct(m_pbox);
+   //   //puserinteraction->øconstruct(m_pbox);
    //
    //   //m_pbox->create_control(puserinteraction, (iptr)(void*) this);
    //

@@ -3,7 +3,7 @@
 #include "control_box.h"
 #include "frame_window.h"
 #include "dock_manager.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/message/user.h"
@@ -44,17 +44,17 @@ namespace experience
 
       ::user::button::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &button::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &button::on_message_show_window);
 
       if(m_ebutton == e_button_dock)
       {
 
          auto pdockmanager = m_pcontrolbox->m_pframewindow->m_pdockmanager.get();
 
-         MESSAGE_LINK(e_message_left_button_down   , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_left_button_down  );
-         MESSAGE_LINK(e_message_mouse_move         , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_mouse_move        );
-         MESSAGE_LINK(e_message_parent_mouse_move  , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_mouse_move);
-         MESSAGE_LINK(e_message_left_button_up     , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_left_button_up    );
+         USER_MESSAGE_LINK(::user::e_message_left_button_down   , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_left_button_down  );
+         USER_MESSAGE_LINK(::user::e_message_mouse_move         , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_mouse_move        );
+         USER_MESSAGE_LINK(::user::e_message_parent_mouse_move  , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_mouse_move);
+         USER_MESSAGE_LINK(::user::e_message_left_button_up     , pchannel, pdockmanager, &::experience::dock_manager::dock_button_on_message_left_button_up    );
 
       }
 
@@ -152,7 +152,7 @@ namespace experience
 //         if(!m_pshapeaClip)
 //         {
 //
-//            __construct_new(m_pshapeaClip);
+//            øconstruct_new(m_pshapeaClip);
 //
 //            ::user::interaction * pinteraction = this;
 //
@@ -169,9 +169,9 @@ namespace experience
 //
 //               host_to_client(rectangleFocus);
 //
-//               m_pshapeaClip->add_item(__allocate rectangle_shape(rectangleFocus));
+//               m_pshapeaClip->add_item(øallocate rectangle_shape(rectangleFocus));
 //
-//               m_pshapeaClip->add_item(__allocate intersect_clip_shape());
+//               m_pshapeaClip->add_item(øallocate intersect_clip_shape());
 //
 //               i++;
 //
@@ -199,7 +199,7 @@ namespace experience
    ::item_pointer button::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pregion.is_null() || !m_pregion->contains(point))
       {
@@ -210,7 +210,7 @@ namespace experience
             if(has_mouse_capture())
             {
 
-               return __allocate ::item(::e_element_non_client);
+               return øallocate ::item(::e_element_non_client);
 
             }
 
@@ -221,7 +221,7 @@ namespace experience
          //   if(m_pcontrolbox->m_pframewindow->dock_manager()->window_is_docking())
          //   {
 
-         //      return __allocate ::item(::e_element_non_client);
+         //      return øallocate ::item(::e_element_non_client);
 
          //   }
 

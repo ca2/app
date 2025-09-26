@@ -6,6 +6,44 @@
 #define MEMDFREE 0
 void * g_pDebugPointer = nullptr;
 
+#define MEMDUPFREE2 0
+
+#if MEMDUPFREE2
+
+class memdupfree2
+{
+   public:
+
+      ::critical_section m_csFree;
+      map_base2<void*, void*, e_allocate_malloc> m_mapFree;
+
+      void on_alloc(void* p)
+      {
+         critical_section_lock l(&m_csFree);
+         m_mapFree.erase(p);
+
+      }
+
+      void on_free(void* p)
+      {
+         critical_section_lock l(&m_csFree);
+         auto found = m_mapFree.find(p);
+
+         if (found)
+         {
+
+            output_debug_string("Oh Lord!!");
+
+         }
+
+         m_mapFree.set_at(p, p);
+
+      }
+
+} g_memfreedup2;
+
+
+#endif
 
 //#include "acme/platform/acme.h"
 
@@ -115,9 +153,16 @@ void * plex_heap_alloc_sync::Alloc()
 
    void * pnode = m_pnodeFree;
 
+#if MEMDUPFREE2
+
+   g_memfreedup2.on_alloc(pnode);
+
+#endif
+
    m_pnodeFree = m_pnodeFree->m_pnext;
 
    ::zero(pnode, m_nAllocSize);
+
 
    return pnode;
 
@@ -206,6 +251,12 @@ void plex_heap_alloc_sync::Free(void * pParam)
 
    critical_section_lock synchronouslock(&m_criticalsection);
 
+#if MEMDUPFREE2
+
+   g_memfreedup2.on_free(pParam);
+
+#endif
+
 #if MEMDFREE // Free Debug - duplicate freeing ?
 
    node * pnodeFree = m_pnodeFree;
@@ -216,7 +267,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
       if (pnode == pnodeFree) // dbgsnp - debug snippet
       {
 
-         // already in free list
+         // already in free list_base
 
          if (is_debugger_attached())
          {

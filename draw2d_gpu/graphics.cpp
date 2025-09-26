@@ -402,7 +402,7 @@ void main() {
 
       }
 
-      //if (__defer_construct(m_pgpucontextOpenGL))
+      //if (ødefer_construct(m_pgpucontextOpenGL))
       //{
 
       //if (!m_pgpucontextCompositor)
@@ -743,7 +743,7 @@ void main() {
 
    //      //}
 
-   //      //m_pgraphics = __allocate< plusplus::Graphics((plusplus::Bitmap *) m_pbitmap->get_os_data >());
+   //      //m_pgraphics = øallocate< plusplus::Graphics((plusplus::Bitmap *) m_pbitmap->get_os_data >());
 
    //      //m_pgraphics->SetPageUnit(plusplus::UnitPixel);
 
@@ -1125,11 +1125,11 @@ void main() {
 
       //   int iFrameCount = prenderer->get_frame_count();
 
-      //   m_psetdescriptorlayoutRectangle = ::gpu_vulkan::set_descriptor_layout::Builder(m_pgpucontextCompositor)
+      //   m_psetdescriptorlayoutRectangle = ::gpu_vulkan::descriptor_set_layout::Builder(m_pgpucontextCompositor)
       //      .addBinding(0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
       //      .build();
 
-      //   auto pdescriptorpoolbuilder = __allocate::gpu_vulkan::descriptor_pool::Builder();
+      //   auto pdescriptorpoolbuilder = øallocate::gpu_vulkan::descriptor_pool::Builder();
 
       //   pdescriptorpoolbuilder->initialize_builder(m_pgpucontextCompositor);
       //   pdescriptorpoolbuilder->setMaxSets(iFrameCount * 10);
@@ -1145,11 +1145,11 @@ void main() {
 
       //   int iFrameCount = prenderer->get_frame_count();
 
-      //   m_psetdescriptorlayoutRectangle = ::gpu_vulkan::set_descriptor_layout::Builder(m_pgpucontextCompositor)
+      //   m_psetdescriptorlayoutRectangle = ::gpu_vulkan::descriptor_set_layout::Builder(m_pgpucontextCompositor)
       //      .addBinding(0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
       //      .build();
 
-      //   auto pdescriptorpoolbuilder = __allocate::gpu_vulkan::descriptor_pool::Builder();
+      //   auto pdescriptorpoolbuilder = øallocate::gpu_vulkan::descriptor_pool::Builder();
 
       //   pdescriptorpoolbuilder->initialize_builder(m_pgpucontextCompositor);
       //   pdescriptorpoolbuilder->setMaxSets(iFrameCount * 10);
@@ -1166,7 +1166,7 @@ void main() {
          if (!m_pshaderSourceRectangle)
          {
 
-            //auto pshadervertexinput = __allocate::gpu_vulkan::shader_vertex_input();
+            //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
 
             //pshadervertexinput->m_bindings.add(
             //   {
@@ -1179,7 +1179,7 @@ void main() {
             //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
 
 
-            auto pshaderRectangle = __create_new<::gpu::shader>();
+            auto pshaderRectangle = øcreate_new<::gpu::shader>();
 
             m_pshaderSourceRectangle = pshaderRectangle;
             //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
@@ -1212,7 +1212,7 @@ void main() {
          if (!m_pshaderBlendRectangle)
          {
 
-            //auto pshadervertexinput = __allocate::gpu_vulkan::shader_vertex_input();
+            //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
 
             //pshadervertexinput->m_bindings.add(
             //   {
@@ -1224,7 +1224,7 @@ void main() {
             //pshadervertexinput->m_attribs.add({ .location = 0, .binding = 0, .format = VK_FORMAT_R32G32B32_SFLOAT, .offset = offsetof(RectangleVertex, pos) });
             //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
 
-            auto pshaderRectangle = __create_new<::gpu::shader>();
+            auto pshaderRectangle = øcreate_new<::gpu::shader>();
 
             m_pshaderBlendRectangle = pshaderRectangle;
             //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
@@ -1328,7 +1328,7 @@ void main() {
 
       pmodelbufferRectangle->draw(pcommandbuffer);
 
-      //vkCmdDraw(pcommandbuffer->m_vkcommandbuffer, 6, 1, 0, 0); // 6 vertices for two triangles
+      //vkCmdDraw(pcommandbuffer->m_vkcommandbuffer, 6, 1, 0, 0); // 6 vertexes for two triangles
       //vkCmdEndRenderPass(cmd);
 
 
@@ -3681,7 +3681,7 @@ void main() {
       //      if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
       //            nMapMode != MM_TEXT)
       //      {
-      //         // when using a constrained map mode, map against physical inch
+      //         // when using a constrained map_base mode, map_base against physical inch
       //         ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
       //         DPtoLP(LPSIZE32);
       //         ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
@@ -3692,7 +3692,7 @@ void main() {
       //         double cxPerInch, cyPerInch;
       //         if (this != nullptr)
       //         {
-      //            ASSERT_VALID(this);
+      //            ASSERT_OK(this);
       //            // ASSERT(m_hdc != nullptr);  // no HDC attached or created?
       //            cxPerInch = GetDeviceCaps(LOGPIXELSX);
       //            cyPerInch = GetDeviceCaps(LOGPIXELSY);
@@ -3716,7 +3716,7 @@ void main() {
       //      if (this != nullptr && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
       //            nMapMode != MM_TEXT)
       //      {
-      //         // when using a constrained map mode, map against physical inch
+      //         // when using a constrained map_base mode, map_base against physical inch
       //         ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
       //         LPtoDP(LPSIZE32);
       //         ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
@@ -3727,7 +3727,7 @@ void main() {
       //         double cxPerInch, cyPerInch;
       //         if (this != nullptr)
       //         {
-      //            ASSERT_VALID(this);
+      //            ASSERT_OK(this);
       //            // ASSERT(m_hdc != nullptr);  // no HDC attached or created?
       //            cxPerInch = GetDeviceCaps(LOGPIXELSX);
       //            cyPerInch = GetDeviceCaps(LOGPIXELSY);
@@ -3926,7 +3926,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
 //::draw2d::graphics * ::draw2d_gpu::graphics::from_handle(HDC hDC)
 //{
-//hdc_map* pMap = ::windows_definition::MapHDC(true); //create map if not exist
+//hdc_map* pMap = ::windows_definition::MapHDC(true); //create map_base if not exist
 //ASSERT(pMap != nullptr);
 //      ::draw2d::graphics * pgraphics = (::draw2d::graphics *)pMap->from_handle(hDC);
    //    ASSERT(pgraphics == nullptr || (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->m_hdc == hDC);
@@ -3951,7 +3951,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //   //if(hdc != nullptr)
    //   //{
 
-   //   //   m_pgraphics = __allocate< ::plusplus::Graphics( >(HDC) hdc);
+   //   //   m_pgraphics = øallocate< ::plusplus::Graphics( >(HDC) hdc);
 
    //   //   m_pgraphics->SetPageUnit(plusplus::UnitPixel);
 
@@ -3974,7 +3974,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //   }
    //   // remember early to avoid leak
    //   set_handle1(hDC);
-   //   hdc_map* pMap = ::windows_definition::MapHDC(true); // create map if not exist
+   //   hdc_map* pMap = ::windows_definition::MapHDC(true); // create map_base if not exist
    //   ASSERT(pMap != nullptr);
    //   pMap->set_permanent(m_hdc, this);
 
@@ -5076,7 +5076,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    {
       return 1;
       //      ::draw2d::graphics * pgraphics = (::draw2d::graphics *)lParam;
-      //      ASSERT_VALID(pgraphics);
+      //      ASSERT_OK(pgraphics);
       //
       //      switch (pMetaRec->rdFunction)
       //      {
@@ -5122,7 +5122,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
       //         break;
       //      case META_SETBKCOLOR:
       //      {
-      //         auto pbrush = __øcreate < ::draw2d::brush >();
+      //         auto pbrush = øcreate < ::draw2d::brush >();
       //         
       //         pbrush->create_solid(*(UNALIGNED color32_t*)& pMetaRec->rdParm[0]);
       //         (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->SelectObject(brush);
@@ -5423,7 +5423,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
          float h = ch.Size.y;
          y = maximum(h, y);
          //// update VBO for each character
-         //float vertices[6][4] = {
+         //float vertexes[6][4] = {
          //    { xpos,     ypos + h,   0.0f, 0.0f },
          //    { xpos,     ypos,       0.0f, 1.0f },
          //    { xpos + w, ypos,       1.0f, 1.0f },
@@ -5438,7 +5438,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
             //// update content of VBO memory
             //glBindBuffer(GL_ARRAY_BUFFER, pfont->m_VBO);
-            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
 
             //glBindBuffer(GL_ARRAY_BUFFER, 0);
             //// render quad
@@ -5830,7 +5830,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 }
 )fragmentshader";
 
-         m_pgpushaderTextOut = __create_new < ::gpu::shader >();
+         m_pgpushaderTextOut = øcreate_new < ::gpu::shader >();
 
          auto pcontext = gpu_context();
 
@@ -5918,7 +5918,7 @@ color = vec4(c.r,c.g, c.b, c.a);
          float w = ch.Size.x;
          float h = ch.Size.y;
          // update VBO for each character
-         array< ::graphics3d::sequence2_uv> vertices = {
+         array< ::graphics3d::sequence2_uv> vertexes = {
              {{ xpos,     ypos + h},{   0.0f, 0.0f} },
              {{ xpos,     ypos},{       0.0f, 1.0f} },
              {{ xpos + w, ypos},{       1.0f, 1.0f} },
@@ -5935,11 +5935,11 @@ color = vec4(c.r,c.g, c.b, c.a);
             if (pmodelbuffer->is_null())
             {
 
-               pmodelbuffer->create_vertices < ::graphics3d::sequence2_uv>(6);
+               pmodelbuffer->create_vertexes < ::graphics3d::sequence2_uv>(6);
 
             }
 
-            pmodelbuffer->set_vertices(vertices);
+            pmodelbuffer->set_vertexes(vertexes);
 
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
             //GLCheckError("");
@@ -5947,7 +5947,7 @@ color = vec4(c.r,c.g, c.b, c.a);
             //int iVbo = pface->m_FaceVBO;
             //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
             //GLCheckError("");
-            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
             //GLCheckError("");
             //glBindBuffer(GL_ARRAY_BUFFER, 0);
             //GLCheckError("");
@@ -5964,7 +5964,7 @@ color = vec4(c.r,c.g, c.b, c.a);
             //int iVbo = pface->m_FaceVBO;
             //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
             //GLCheckError("");
-            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
             //GLCheckError("");
             //glBindBuffer(GL_ARRAY_BUFFER, 0);
             //GLCheckError("");
@@ -6376,7 +6376,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    //plusplus::Pen * graphics::gl2d_pen()
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   if(m_ppen.is_null())
    //   {
@@ -6477,7 +6477,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    void graphics::flush()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //      m_pgraphics->Flush();
 
@@ -6489,7 +6489,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    void graphics::sync_flush()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //m_pgraphics->Flush(plusplus::FlushIntentionSync);
 
@@ -6529,7 +6529,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 
    //   return;
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   draw2d_gpu_enum_fonts fonts(itema);
 
@@ -7030,7 +7030,7 @@ BOOL CALLBACK draw2d_gpu_EnumFamCallBack(LPLOGFONT lplf, LPNEWTEXTMETRIC lpntm, 
    else if (FontType & TRUETYPE_FONTTYPE)
    {
 
-      pfonts->m_itema.add(__allocate::write_text::font_enumeration_item(lplf->lfFaceName));
+      pfonts->m_itema.add(øallocate::write_text::font_enumeration_item(lplf->lfFaceName));
 
    }
    else

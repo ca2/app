@@ -49,7 +49,7 @@ namespace account
 //   credentials * department::create_credentials()
 //   {
 //
-//      return __allocate network_credentials(m_pstorage);
+//      return øallocate network_credentials(m_pstorage);
 //
 //   }
 //
@@ -265,7 +265,7 @@ namespace account
 
       //estatus = 
       
-      __construct_new(m_ptaskpool);
+      øconstruct_new(m_ptaskpool);
 
       //if (!estatus)
       //{
@@ -274,7 +274,7 @@ namespace account
 
       //}
 
-      auto pstorage = __allocate system_storage();
+      auto pstorage = øallocate system_storage();
 
       m_pstorage = pstorage;
 
@@ -289,9 +289,9 @@ namespace account
 
       //}
 
-      m_pauthenticator = __create_new< network_authenticator >();
+      m_pauthenticator = øcreate_new< network_authenticator >();
 
-      auto pusera = __allocate user_array();
+      auto pusera = øallocate user_array();
       
       m_pusera = pusera;
 
@@ -306,7 +306,7 @@ namespace account
 
       //}
 
-      m_pproducta = __allocate product_array();
+      m_pproducta = øallocate product_array();
 
       //estatus = 
       
@@ -335,7 +335,7 @@ namespace account
    void department::not_auth(::file::path pathUrl)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto puser = get_user(pathUrl);
 

@@ -14,10 +14,10 @@ namespace sockets_bsd
 
 
    /* type, host, result */
-   typedef string_map < ::string_to_string >       resolv_cache_t;
+   typedef string_map_base < ::string_to_string_base >       resolv_cache_t;
 
    /* type, host, time */
-   typedef string_map < string_map < posix_time > >    resolv_timeout_t;
+   typedef string_map_base < string_map_base < posix_time > >    resolv_timeout_t;
 
 
 } // namespace sockets_bsd
@@ -55,7 +55,7 @@ namespace networking_bsd
       bool           m_local_resolved; ///< ResolveLocal has been called if true
       bool           m_bInitialized;
 
-      string_map<::pointer <cert>>m_certmap;
+      string_map_base<::pointer <cert>>m_certmap;
       ::pointer < ::mutex >                              m_pmutexCert;
 
 
@@ -116,8 +116,8 @@ namespace networking_bsd
 
       ::pointer < ::mutex >                              m_pmutexCache;
       ::pointer < ::mutex >                              m_pmutexReverseCache;
-      string_map < dns_cache_item >                      m_mapCache;
-      string_map < ::pointer<reverse_cache_item >>       m_mapReverseCache;
+      string_map_base < dns_cache_item >                      m_mapCache;
+      string_map_base < ::pointer<reverse_cache_item >>       m_mapReverseCache;
       ::pointer_array <reverse_cache_item >              m_reversecacheaRequest;
       ::task_pointer                                     m_pthreadReverse;
       long long                                          m_iListenSocket;
@@ -145,7 +145,7 @@ namespace networking_bsd
 #endif
 
       ::pointer < ::mutex >                              m_pmutexPool;
-      ::sockets_bsd::socket_map                          m_pool; ///< Active sockets map
+      ::sockets_bsd::socket_map                          m_pool; ///< Active sockets map_base
 
 
       networking();
@@ -233,7 +233,7 @@ namespace networking_bsd
 
       ::pointer<::networking::address> create_address(const ::scoped_string & scopedstrAddress, ::networking::enum_address_type eaddresstypePreferred = ::networking::e_address_type_none, ::networking::port_t port = 0) override;
 
-      bool lookup(::networking_bsd::address * paddress, ::networking::enum_address_type eaddresstypePreferred, const ::scoped_string & scopedstrAddress);
+      bool find(::networking_bsd::address * paddress, ::networking::enum_address_type eaddresstypePreferred, const ::scoped_string & scopedstrAddress);
 
       bool lookup_ipv4(::networking_bsd::address * paddress, const ::scoped_string & scopedstrAddress);
 

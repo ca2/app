@@ -144,7 +144,7 @@ namespace data
 
       m_bFill = false;
 
-      //m_proot = __allocate tree_item <  ITEM >();
+      //m_proot = øallocate tree_item <  ITEM >();
 
       //if (m_proot == nullptr)
       //{
@@ -159,7 +159,7 @@ namespace data
 
       this->m_ptree = this;
 
-      this->m_ptreeitemParent = __allocate tree_item <  ITEM >();
+      this->m_ptreeitemParent = øallocate tree_item <  ITEM >();
 
       this->m_ptreeitemParent->insert(e_relative_first_child, this);
 
@@ -475,7 +475,7 @@ return;
    //::collection::count tree <  ITEM >::get_proper_item_count()
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   return get_base_item()->get_proper_item_count();
 
@@ -543,7 +543,7 @@ return;
 
       }
 
-      auto ptreeitemNew = __allocate tree_item <  ITEM >();
+      auto ptreeitemNew = øallocate tree_item <  ITEM >();
 
       if (!ptreeitemNew)
       {
@@ -570,7 +570,7 @@ return;
    ::pointer < ::data::tree_item <  ITEM > > tree <  ITEM >::create_tree_item()
    {
 
-      return __create_new < ::data::tree_item <  ITEM > >();
+      return øcreate_new < ::data::tree_item <  ITEM > >();
 
    }
 
@@ -623,7 +623,7 @@ return;
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (pitemNew == nullptr)
       {
@@ -1016,7 +1016,7 @@ return;
    //void tree <  ITEM >::start_fill_children()
    //{
 
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_bFill = true;
 

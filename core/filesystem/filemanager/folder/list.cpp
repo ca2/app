@@ -1,7 +1,7 @@
 #include "framework.h"
 ////#include "data.h"
 #include "list.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/filesystem/file/item.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -38,10 +38,10 @@ namespace filemanager
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &folder_list::on_message_left_button_double_click);
+      USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &folder_list::on_message_left_button_double_click);
 
 //#ifdef WINDOWS_DESKTOP
-//      MESSAGE_LINK(WM_CANCELMODE, pchannel, this, &folder_list::_001OnCancelMode);
+//      USER_MESSAGE_LINK(WM_CANCELMODE, pchannel, this, &folder_list::_001OnCancelMode);
 //#endif
 
    }
@@ -84,7 +84,7 @@ namespace filemanager
 
          ::file::path filepathUser = m_papplication->defer_process_matter_path(filepathFinal);
 
-         auto pfileitem = __allocate ::file::item(filepathUser, filepathFinal);
+         auto pfileitem = øallocate ::file::item(filepathUser, filepathFinal);
 
          filemanager_document()->on_file_manager_open_folder(pfileitem, ::e_source_user);
 
@@ -183,7 +183,7 @@ namespace filemanager
          //      unsigned int uFlags;
          if (pcolumn->m_pimagelist == nullptr)
          {
-            pcolumn->m_pimagelist = __allocate ::image::image_list();
+            pcolumn->m_pimagelist = øallocate ::image::image_list();
          }
          ::image::image_list_pointer pil = pcolumn->m_pimagelist;
          //if(pil->GetSafeHandle() != nullptr)
@@ -242,7 +242,7 @@ namespace filemanager
                0x00100000);
                if(hr == NOERROR)
                {
-               if(!m_iconmap.lookup(hicon, iImage))
+               if(!m_iconmap.find(hicon, iImage))
                {
                iImage = pil->add(hicon);
                m_iconmap.set_at(hicon, iImage);
@@ -264,7 +264,7 @@ namespace filemanager
                IMAGE_ICON,
                16, 16,
                LR_CREATEDIBSECTION);
-               if(!m_iconmap.lookup(hicon, iImage))
+               if(!m_iconmap.find(hicon, iImage))
                {
                iImage = pil->add(hicon);
                m_iconmap.set_at(hicon, iImage);

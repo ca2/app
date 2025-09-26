@@ -40,15 +40,15 @@ public:
    bool                                   m_bDetails = false;
    string                                 m_strMessage;
    string                                 m_strTitle;
-   e_message_box                          m_emessagebox;
+   ::user::e_message_box                          m_emessagebox;
    string                                 m_strDetails;
    ::pointer < ::nano::graphics::icon >   m_picon;
    ::payload                              m_payloadResult;
    ::pointer < ::user::activation_token > m_puseractivationtoken;
 
-   message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = {}, const ::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = {}, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
    message_box(const ::exception & exception, const ::scoped_string & strMoreDetails);
-   message_box(const ::exception & exception, const ::scoped_string & strMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   message_box(const ::exception & exception, const ::scoped_string & strMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
    ~message_box() override;
 
 #ifdef _DEBUG
@@ -58,7 +58,7 @@ public:
    
    //virtual ::string get_conversation_message();
    //virtual ::string get_conversation_title();
-   //virtual ::e_message_box get_conversation_flags();
+   //virtual ::user::e_message_box get_conversation_flags();
    //virtual ::string get_conversation_details();
    //virtual ::payload get_conversation_result();
    

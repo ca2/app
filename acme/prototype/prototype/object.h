@@ -17,7 +17,7 @@ protected:
 
    ::pointer < ::object >                                               m_pobjectParentTask;
    ::pointer < ::pointer_array < ::particle > >                         m_pparticleaChildrenTask;
-   ::pointer < atom_map < ::pointer < ::parallelization::queue > > >    m_pqueuemap;
+   ::pointer < ::map_particle < atom_map_base < ::pointer < ::parallelization::queue > > > >    m_pqueuemap;
 
 
    ::procedure_array                                                    m_procedureaDestroying;
@@ -102,6 +102,9 @@ public:
 
 
    virtual void task_erase(::task* ptask) override;
+
+
+   virtual void notify(::enum_id eid, ::handler_context * phandlercontext = nullptr);
 
 
    virtual void sleep(const class ::time& time);
@@ -200,7 +203,7 @@ public:
 
    //virtual void do_request(::request * prequest);
 
-   //virtual pointer< ::extended::sequence < ::conversation > >  message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
+   //virtual pointer< ::extended::sequence < ::conversation > >  message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok);
    //{
    //
    //   return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);
@@ -208,15 +211,15 @@ public:
    //}
 
 
-   //virtual void message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future());
    //{
 
    //   return message_box_timeout(nullptr, pszMessage, pszTitle, timeTimeout, emessagebox, process);
 
    //}
 
-   //virtual void message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
-   //virtual void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future());
 
    //virtual void release_references();
 
@@ -246,7 +249,7 @@ public:
 
       }
 
-      __defer_construct_new(ptask);
+      ødefer_construct_new(ptask);
 
       ptask->m_procedure = procedure;
 

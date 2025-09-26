@@ -12,7 +12,7 @@ namespace app_app
       virtual public ::aura::application
    {
    public:
-
+      ::pointer<::app_app::main_window> m_pmainwindow;
 
       application();
       ~application() override;

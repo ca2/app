@@ -1,10 +1,10 @@
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "approach.h"
 #include "command_buffer.h"
 #include "context.h"
+#include "cpu_buffer.h"
 #include "device.h"
-#include "gpu_opengl/context.h"
-#include "gpu_opengl/cpu_buffer.h"
 #include "frame.h"
 #include "frame_buffer.h"
 #include "lock.h"
@@ -20,7 +20,7 @@
 #include "bred/gpu/render_state.h"
 #include "bred/user/user/graphics3d.h"
 #include "aura/windowing/window.h"
-#include <glad/glad.h>
+//#include <glad/glad.h>
 
 
 
@@ -204,7 +204,7 @@ namespace gpu_opengl
       //if (!m_pgpurendertarget->m_pgpuframe)
       //{
 
-      //   __øconstruct(m_pgpurendertarget->m_pgpuframe);/* = __create_new < ::gpu_opengl::frame >()*/;
+      //   øconstruct(m_pgpurendertarget->m_pgpuframe);/* = øcreate_new < ::gpu_opengl::frame >()*/;
 
       //}
 
@@ -678,7 +678,7 @@ namespace gpu_opengl
    //   //   || eoutput == ::gpu::e_output_gpu_buffer)
    //   //{
 
-   //   //   auto poffscreenrendertargetview = __allocate offscreen_render_target();
+   //   //   auto poffscreenrendertargetview = øallocate offscreen_render_target();
    //   //   //#ifdef WINDOWS_DESKTOP
    //   //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   //   //#else
@@ -690,7 +690,7 @@ namespace gpu_opengl
    //   //}
    //   //else if (eoutput == ::gpu::e_output_swap_chain)
    //   //{
-   //   //   auto poffscreenrendertargetview = __allocate offscreen_render_target();
+   //   //   auto poffscreenrendertargetview = øallocate offscreen_render_target();
    //   //   //#ifdef WINDOWS_DESKTOP
    //   //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   //   //#else
@@ -698,14 +698,14 @@ namespace gpu_opengl
    //   //   //#endif
    //   //   m_pgpurendertarget = poffscreenrendertargetview;
 
-   //   //   //m_prendertargetview = __allocate swap_chain_render_target(this, size, m_prendertargetview);
+   //   //   //m_prendertargetview = øallocate swap_chain_render_target(this, size, m_prendertargetview);
    //   //   //m_prendererResolve.release();
 
    //   //}
    //   ////      else if (eoutput == ::gpu::e_output_gpu_buffer)
    //   ////      {
    //   ////
-   //   ////         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+   //   ////         auto poffscreenrendertargetview = øallocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
    //   ////#ifdef WINDOWS_DESKTOP
    //   ////         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   ////#else
@@ -718,18 +718,18 @@ namespace gpu_opengl
    //   ////      else if (eoutput == ::gpu::e_output_color_and_alpha_accumulation_buffers)
    //   ////      {
    //   ////
-   //   ////         auto paccumulationrendertargetview = __allocate accumulation_render_target(this, m_extentRenderer, m_prendertargetview);
+   //   ////         auto paccumulationrendertargetview = øallocate accumulation_render_target(this, m_extentRenderer, m_prendertargetview);
    //   ////         paccumulationrendertargetview->m_formatImage = VK_FORMAT_R32G32B32A32_SFLOAT;
    //   ////         paccumulationrendertargetview->m_formatAlphaAccumulation = VK_FORMAT_R32_SFLOAT;
    //   ////         m_prendertargetview = paccumulationrendertargetview;
    //   ////
-   //   ////         //__construct_new(m_prendererResolve);
+   //   ////         //øconstruct_new(m_prendererResolve);
    //   ////
    //   ////         //m_prendererResolve->initialize_renderer(m_pgpucontext, ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers);
    //   ////
    //   ////         //m_prendererResolve->set_placement(m_pgpucontext->rectangle);
    //   ////         //
-   //   ////         //            auto poffscreenrendertargetview = __allocate offscreen_render_target(m_pgpucontext, m_extentRenderer, m_prendertargetviewResolve);
+   //   ////         //            auto poffscreenrendertargetview = øallocate offscreen_render_target(m_pgpucontext, m_extentRenderer, m_prendertargetviewResolve);
    //   ////         //#ifdef WINDOWS_DESKTOP
    //   ////         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   ////         //#else
@@ -740,7 +740,7 @@ namespace gpu_opengl
    //   ////      else if (eoutput == ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers)
    //   ////      {
    //   ////
-   //   ////         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+   //   ////         auto poffscreenrendertargetview = øallocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
    //   ////#ifdef WINDOWS_DESKTOP
    //   ////         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
    //   ////#else
@@ -776,7 +776,7 @@ namespace gpu_opengl
    //::pointer < ::gpu::render_target > renderer::allocate_offscreen_render_target()
    //{
 
-   //   auto poffscreenrendertarget = __allocate offscreen_render_target();
+   //   auto poffscreenrendertarget = øallocate offscreen_render_target();
 
    //   return poffscreenrendertarget;
 
@@ -790,7 +790,7 @@ namespace gpu_opengl
    //      || eoutput == ::gpu::e_output_gpu_buffer)
    //   {
 
-   //      auto poffscreenrendertarget = __allocate offscreen_render_target();
+   //      auto poffscreenrendertarget = øallocate offscreen_render_target();
 
    //      m_pgpurendertarget = poffscreenrendertarget;
 
@@ -1160,7 +1160,7 @@ namespace gpu_opengl
 ////}
 ////)frag";
 ////
-////                     m_pshaderCopyTextureOnEndDraw = __create_new < ::gpu_opengl::shader >();
+////                     m_pshaderCopyTextureOnEndDraw = øcreate_new < ::gpu_opengl::shader >();
 ////
 ////                     m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
 ////                        this,
@@ -1329,7 +1329,7 @@ namespace gpu_opengl
       if (!m_pshaderBlend)
       {
 
-         __øconstruct(m_pshaderBlend);
+         øconstruct(m_pshaderBlend);
 
          const_char_pointer quad_vertex_shader = "#version 330 core\n"
             "layout(location = 0) in vec2 pos;\n"
@@ -1482,7 +1482,7 @@ namespace gpu_opengl
       if (!m_pshaderBlend2)
       {
 
-         __construct_new(m_pshaderBlend2);
+         øconstruct_new(m_pshaderBlend2);
 
          m_pshaderBlend2->initialize_shader_with_block(
             this,
@@ -1641,7 +1641,7 @@ namespace gpu_opengl
       if (!m_pshaderBlend2)
       {
 
-         __construct_new(m_pshaderBlend2);
+         øconstruct_new(m_pshaderBlend2);
 
          m_pshaderBlend2->initialize_shader_with_block(
             this,
@@ -1845,7 +1845,7 @@ namespace gpu_opengl
       if (!m_pshaderBlend2)
       {
 
-         __construct_new(m_pshaderBlend2);
+         øconstruct_new(m_pshaderBlend2);
 
          m_pshaderBlend2->initialize_shader_with_block(
             this,

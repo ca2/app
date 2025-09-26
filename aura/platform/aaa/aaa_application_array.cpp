@@ -70,7 +70,7 @@ application_array::~application_array()
 ::aura::application * application_array::find_by_app_name(string strAppName)
 {
 
-   //synchronous_lock synchronouslock(this->synchronization());
+   //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
 restart:
 

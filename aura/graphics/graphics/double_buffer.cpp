@@ -42,14 +42,14 @@ namespace graphics
       //}
       m_bufferitema.set_size(2);
 
-      __construct_new(m_bufferitema[0]);
-      __øconstruct(m_bufferitema[0]->m_pimage2);
-      __øconstruct(m_bufferitema[0]->m_pmutex);
+      øconstruct_new(m_bufferitema[0]);
+      øconstruct(m_bufferitema[0]->m_pimage2);
+      øconstruct(m_bufferitema[0]->m_pmutex);
       m_bufferitema[0]->m_pimage2->id() = 0;
 
-      __construct_new(m_bufferitema[1]);
-      __øconstruct(m_bufferitema[1]->m_pimage2);
-      __øconstruct(m_bufferitema[1]->m_pmutex);
+      øconstruct_new(m_bufferitema[1]);
+      øconstruct(m_bufferitema[1]->m_pimage2);
+      øconstruct(m_bufferitema[1]->m_pmutex);
       m_bufferitema[1]->m_pimage2->id() = 1;
 
       //return estatus;
@@ -304,11 +304,11 @@ namespace graphics
 
       }
 
-      _synchronous_lock sl(this->synchronization());
+      _synchronous_lock sl(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      _synchronous_lock slBuffer(get_buffer_item()->m_pmutex);
+      _synchronous_lock slBuffer(get_buffer_item()->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      _synchronous_lock slScreen(get_screen_item()->m_pmutex);
+      _synchronous_lock slScreen(get_screen_item()->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_iCurrentBuffer == 0)
       {
@@ -398,11 +398,11 @@ namespace graphics
    void double_buffer::update_screen()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pitemScreen = get_screen_item();
 
-      _synchronous_lock synchronouslockScreen(pitemScreen->m_pmutex);
+      _synchronous_lock synchronouslockScreen(pitemScreen->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       synchronouslock.unlock();
 

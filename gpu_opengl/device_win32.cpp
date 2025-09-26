@@ -1,6 +1,7 @@
 // from device_win32 by
 // camilo on 2025-05-30 03:37 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "_gpu_opengl.h"
 #include "context.h"
 #include "device_win32.h"
 #include "approach.h"
@@ -24,7 +25,7 @@ namespace gpu_opengl
    //::pointer < ::gpu::context > allocate_system_context(::particle* pparticle)
    //{
 
-   //   return pparticle->__create_new <context_win32>();
+   //   return pparticle->øcreate_new <context_win32>();
 
    //}
 
@@ -775,7 +776,7 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
 
       ::pointer < ::gpu::context > pgpucontext;
 
-      __øconstruct(pgpucontext);
+      øconstruct(pgpucontext);
 
       return pgpucontext;
 

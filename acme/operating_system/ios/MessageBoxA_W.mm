@@ -28,33 +28,33 @@ int _ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, u
    enum_dialog_result eresult2 = e_dialog_result_cancel;
    enum_dialog_result eresult3 = e_dialog_result_cancel;
    
-   enum_message_box emessageboxType = (enum_message_box) (uType & e_message_box_type_mask);
+   enum_message_box emessageboxType = (enum_message_box) (uType & ::user::e_message_box_type_mask);
    
    switch(emessageboxType)
    {
-      case e_message_box_ok_cancel:
+      case ::user::e_message_box_ok_cancel:
          strButton1 = "OK"; eresult1 = e_dialog_result_ok;
          strButton2 = "Cancel"; eresult2 = e_dialog_result_cancel;
          break;
-      case e_message_box_abort_retry_ignore:
+      case ::user::e_message_box_abort_retry_ignore:
          strButton1 = "Abort"; eresult1 = e_dialog_result_abort;
          strButton2 = "Retry";eresult2 = e_dialog_result_retry;
          strButton3 = "Ignore";eresult3 = e_dialog_result_ignore;
          break;
-      case e_message_box_yes_no_cancel:
+      case ::user::e_message_box_yes_no_cancel:
          strButton1 = "Yes";eresult1 = e_dialog_result_yes;
          strButton2 = "No";eresult2 = e_dialog_result_no;
          strButton3 = "Cancel";eresult3 = e_dialog_result_cancel;
          break;
-      case e_message_box_yes_no:
+      case ::user::e_message_box_yes_no:
          strButton1 = "Yes"; eresult1 = e_dialog_result_yes;
          strButton2 = "No";eresult2 = e_dialog_result_no;
          break;
-      case e_message_box_retry_cancel:
+      case ::user::e_message_box_retry_cancel:
          strButton1 = "Retry"; eresult1 = e_dialog_result_retry;
          strButton2 = "Cancel";eresult2 = e_dialog_result_cancel;
          break;
-      case e_message_box_cancel_try_continue:
+      case ::user::e_message_box_cancel_try_continue:
          strButton1 = "Cancel"; eresult1 = e_dialog_result_cancel;
          strButton2 = "Try Again";eresult2 = e_dialog_result_try_again;
          strButton3 = "Continue";eresult3 = e_dialog_result_continue;
@@ -115,22 +115,22 @@ int _ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, u
 //         enum_dialog_result eresult = e_dialog_result_cancel;
 //             switch(emessageboxType)
 //             {
-//                case e_message_box_ok_cancel:
+//                case ::user::e_message_box_ok_cancel:
 //                       eresult= e_dialog_result_ok;
 //                   break;
-//                case e_message_box_abort_retry_ignore:
+//                case ::user::e_message_box_abort_retry_ignore:
 //                       eresult= e_dialog_result_abort;
 //                   break;
-//                case e_message_box_yes_no_cancel:
+//                case ::user::e_message_box_yes_no_cancel:
 //                       eresult= e_dialog_result_yes;
 //                   break;
-//                case e_message_box_yes_no:
+//                case ::user::e_message_box_yes_no:
 //                       eresult= e_dialog_result_yes;
 //                   break;
-//                case e_message_box_retry_cancel:
+//                case ::user::e_message_box_retry_cancel:
 //                       eresult= e_dialog_result_retry;
 //                   break;
-//                case e_message_box_cancel_try_continue:
+//                case ::user::e_message_box_cancel_try_continue:
 //                       eresult= e_dialog_result_cancel;
 //                   break;
 //                default:
@@ -157,22 +157,22 @@ int _ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, u
 //         enum_dialog_result eresult = e_dialog_result_cancel;
 //             switch(emessageboxType)
 //             {
-//                case e_message_box_ok_cancel:
+//                case ::user::e_message_box_ok_cancel:
 //                       eresult= e_dialog_result_cancel;
 //                   break;
-//                case e_message_box_abort_retry_ignore:
+//                case ::user::e_message_box_abort_retry_ignore:
 //                       eresult= e_dialog_result_retry;
 //                   break;
-//                case e_message_box_yes_no_cancel:
+//                case ::user::e_message_box_yes_no_cancel:
 //                       eresult= e_dialog_result_no;
 //                   break;
-//                case e_message_box_yes_no:
+//                case ::user::e_message_box_yes_no:
 //                       eresult= e_dialog_result_no;
 //                   break;
-//                case e_message_box_retry_cancel:
+//                case ::user::e_message_box_retry_cancel:
 //                       eresult= e_dialog_result_cancel;
 //                   break;
-//                case e_message_box_cancel_try_continue:
+//                case ::user::e_message_box_cancel_try_continue:
 //                       eresult= e_dialog_result_try_again;
 //                   break;
 //                default:
@@ -198,19 +198,19 @@ int _ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, u
 //
 //             switch(uType)
 //             {
-//                case e_message_box_ok_cancel:
+//                case ::user::e_message_box_ok_cancel:
 //                   break;
-//                case e_message_box_abort_retry_ignore:
+//                case ::user::e_message_box_abort_retry_ignore:
 //                       eresult= e_dialog_result_ignore;
 //                   break;
-//                case e_message_box_yes_no_cancel:
+//                case ::user::e_message_box_yes_no_cancel:
 //                       eresult= e_dialog_result_cancel;
 //                   break;
-//                case e_message_box_yes_no:
+//                case ::user::e_message_box_yes_no:
 //                   break;
-//                case e_message_box_retry_cancel:
+//                case ::user::e_message_box_retry_cancel:
 //                   break;
-//                case e_message_box_cancel_try_continue:
+//                case ::user::e_message_box_cancel_try_continue:
 //                       eresult= e_dialog_result_continue;
 //                   break;
 //                default:
@@ -237,13 +237,13 @@ int _ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, u
 //    enum_dialog_result eresult =e_dialog_result_ok;
 //    switch(uType)
 //    {
-//       case e_message_box_ok_cancel:
+//       case ::user::e_message_box_ok_cancel:
 //          if(b1)
 //              eresult= e_dialog_result_ok;
 //          else if(b2)
 //              eresult= e_dialog_result_cancel;
 //          break;
-//       case e_message_box_abort_retry_ignore:
+//       case ::user::e_message_box_abort_retry_ignore:
 //          if(b1)
 //              eresult= e_dialog_result_abort;
 //          else if(b2)
@@ -251,7 +251,7 @@ int _ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, u
 //          else if(b3)
 //              eresult= e_dialog_result_ignore;
 //          break;
-//       case e_message_box_yes_no_cancel:
+//       case ::user::e_message_box_yes_no_cancel:
 //          if(b1)
 //              eresult= e_dialog_result_yes;
 //          else if(b2)
@@ -259,19 +259,19 @@ int _ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, u
 //          else if(b3)
 //              eresult= e_dialog_result_cancel;
 //          break;
-//       case e_message_box_yes_no:
+//       case ::user::e_message_box_yes_no:
 //          if(b1)
 //              eresult= e_dialog_result_yes;
 //          else if(b2)
 //              eresult= e_dialog_result_no;
 //          break;
-//       case e_message_box_retry_cancel:
+//       case ::user::e_message_box_retry_cancel:
 //          if(b1)
 //              eresult= e_dialog_result_retry;
 //          else if(b2)
 //              eresult= e_dialog_result_cancel;
 //          break;
-//       case e_message_box_cancel_try_continue:
+//       case ::user::e_message_box_cancel_try_continue:
 //          if(b1)
 //              eresult= e_dialog_result_cancel;
 //          else if(b2)

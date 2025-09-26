@@ -52,9 +52,6 @@ namespace user
 {
 
 
-   class list;
-
-
    class CLASS_DECL_CORE list_header :
       virtual public box
    {
@@ -101,14 +98,14 @@ namespace user
       enum_element                      m_eelementLButtonDown;
       ::collection::index                         m_iItemLButtonDown;
 
-      list *                        m_plist;
+      ::user::list *                        m_plist;
 
 
       list_header();
       virtual ~list_header();
 
       void install_message_routing(::channel * pchannel) override;
-      void SetBaseListCtrlInterface(list * pinterface);
+      void SetBaseListCtrlInterface(::user::list * pinterface);
 
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;

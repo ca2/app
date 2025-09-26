@@ -53,7 +53,6 @@
 namespace berg
 {
 
-
    user::user()
    {
 
@@ -77,7 +76,7 @@ namespace berg
 
       print_line("berg::user::initialize");
 
-      ::axis::user::initialize(pparticle);
+      ::axis::user::user::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -166,7 +165,7 @@ namespace berg
    {
 
 
-      ::axis::user::init1();
+      ::axis::user::user::init1();
 
 
       factory()->add_factory_item <::user::document >();
@@ -204,7 +203,7 @@ namespace berg
    void user::init()
    {
 
-      ::axis::user::init();
+      ::axis::user::user::init();
 
       //if (!::axis::user::init())
       //{
@@ -236,7 +235,7 @@ namespace berg
 
       //auto estatus = 
 
-      __construct_new(m_pmenucentral);
+      øconstruct_new(m_pmenucentral);
 
       //if (!estatus)
       //{
@@ -403,7 +402,7 @@ namespace berg
 
       ::user::document_manager_container::destroy();
 
-      ::axis::user::destroy();
+      ::axis::user::user::destroy();
 
 
 
@@ -446,7 +445,7 @@ namespace berg
    }
 
 
-   void user::SendMessageToWindows(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   void user::SendMessageToWindows(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       //auto pappBase = get_app();
@@ -458,7 +457,7 @@ namespace berg
 
          ::pointer<::berg::application>pappItem = pappApex;
 
-         synchronous_lock synchronouslock(pappItem->m_pmutexFrame);
+         synchronous_lock synchronouslock(pappItem->m_pmutexFrame, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ::pointer<::user::interaction>pinteraction;
 
@@ -468,9 +467,9 @@ namespace berg
             if (pinteraction != nullptr && pinteraction->is_window())
             {
 
-               pinteraction->send_message(emessage, wparam, lparam);
+               pinteraction->send_message(eusermessage, wparam, lparam);
 
-               pinteraction->send_message_to_descendants(emessage, wparam, lparam);
+               pinteraction->send_message_to_descendants(eusermessage, wparam, lparam);
 
             }
 
@@ -545,7 +544,7 @@ namespace berg
    ::pointer<::user::menu_interaction>user::create_menu_button(::user::style * pstyle, ::menu::item * pmenuitem)
    {
 
-      auto pmenubutton = __allocate::user::menu_button();
+      auto pmenubutton = øallocate::user::menu_button();
 
       pmenubutton->initialize_menu_interaction(pmenuitem);
 
@@ -599,7 +598,7 @@ namespace berg
       __UNREFERENCED_PARAMETER(hInstance);
       __UNREFERENCED_PARAMETER(pParam);
 
-      auto pinteraction = __allocate::user::interaction();
+      auto pinteraction = øallocate::user::interaction();
 
       pinteraction->create_child(puiParent);
 
@@ -619,12 +618,6 @@ namespace berg
 
 #endif
 
-
-} // namespace user
-
-
-namespace berg
-{
 
 
    //void application::close(::aura::e_end eend)
@@ -793,7 +786,7 @@ namespace berg
    //   if (m_pfontlistSingleColumn.is_null())
    //   {
 
-   //      __øconstruct(m_pfontlistSingleColumn, __create_new < ::write_text::font_list > ());
+   //      øconstruct(m_pfontlistSingleColumn, øcreate_new < ::write_text::font_list > ());
 
    //      m_pfontlistSingleColumn->m_etype = ::write_text::font_list::type_single_column;
 
@@ -1102,7 +1095,7 @@ namespace berg
    ::pointer<::menu::item > user::menu_item_from_application_menu(::application_menu * papplicationmenu, ::user::menu * pmenu)
    {
 
-      auto pmenuitem = __create_new < ::menu::item >();
+      auto pmenuitem = øcreate_new < ::menu::item >();
 
       from_application_menu(pmenuitem, papplicationmenu, pmenu);
 
@@ -1114,7 +1107,7 @@ namespace berg
    ::pointer<::menu::item > user::popup_menu_item_from_application_menu(::application_menu * papplicationmenu, ::user::menu * pmenu)
    {
 
-      auto pmenuitem = __create_new < ::menu::item >();
+      auto pmenuitem = øcreate_new < ::menu::item >();
 
       popup_from_application_menu(pmenuitem, papplicationmenu, pmenu);
 
@@ -1168,7 +1161,7 @@ namespace berg
       if (papplicationmenu)
       {
 
-         auto pusermenu = pmenu->__create_new < ::user::menu >();
+         auto pusermenu = pmenu->øcreate_new < ::user::menu >();
 
          pusermenu->m_pmenuitem = menu_item_from_application_menu(papplicationmenu, pusermenu);
 
@@ -1201,7 +1194,7 @@ namespace berg
 
       }
 
-      ::pointer<::user::menu>pmenu = pparticleContext->__øcreate <  ::user::menu  >();
+      ::pointer<::user::menu>pmenu = pparticleContext->øcreate <  ::user::menu  >();
 
       if (!pmenu->load_xml_menu(strXml))
       {
@@ -1225,7 +1218,7 @@ namespace berg
       ptrackpopup->m_pmenuImplementation = pusermenu;
 
 
-      //__defer_construct(pitem->m_pmenu);
+      //ødefer_construct(pitem->m_pmenu);
 
       //pitem->m_pmenu->m_pmenuitem = pitem;
 
@@ -1272,7 +1265,7 @@ namespace berg
    //   ::pointer<::user::menu> user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, int iFlags, const ::int_point & point, const ::int_size & sizeMinimum, ::channel * pchannelNotify)
    //   {
    //
-   //      ::pointer<::user::menu> pmenu = __øcreate <  ::user::menu  >();
+   //      ::pointer<::user::menu> pmenu = øcreate <  ::user::menu  >();
    //
    //      auto pmenuitem = menu_item_from_application_menu(papplicationmenu, pmenu);
    //
@@ -1301,7 +1294,7 @@ namespace berg
    //         
    //      }
    //      
-   //      ::pointer<::user::menu>pmenu = pinteraction->__øcreate <  ::user::menu  >();
+   //      ::pointer<::user::menu>pmenu = pinteraction->øcreate <  ::user::menu  >();
    //
    //      if (!pmenu->load_xml_menu(strXml))
    //      {
@@ -1354,7 +1347,7 @@ namespace berg
 
       ::user::style_pointer pstyle;
 
-      pexperience->m_pfactory->__øconstruct(papp, pstyle);
+      pexperience->m_pfactory->øconstruct(papp, pstyle);
 
       if (!pstyle)
       {
@@ -1374,7 +1367,7 @@ namespace berg
       if (!pstyle)
       {
 
-         output_error_message("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.", nullptr, e_message_box_ok);
+         output_error_message("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.", nullptr, ::user::e_message_box_ok);
 
          throw ::exit_exception(::error_exit_system, system());
 
@@ -1579,7 +1572,7 @@ namespace berg
 
       }
 
-      auto prequest = __create_new< ::request >();
+      auto prequest = øcreate_new< ::request >();
 
       prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
@@ -1711,7 +1704,7 @@ namespace berg
 
          }
 
-         auto prequest = pparticle->__create_new < ::request >();
+         auto prequest = pparticle->øcreate_new < ::request >();
 
          prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
@@ -1815,7 +1808,7 @@ namespace berg
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return __allocate::user::show < ::calculator::edit >();
+      return øallocate::user::show < ::calculator::edit >();
 
    }
 
@@ -1838,7 +1831,7 @@ namespace berg
 
          add_impact_system(
             atom,
-            __allocate::user::multiple_document_template(
+            øallocate::user::multiple_document_template(
                "system/form",
                ::type < form_document >(),
                get_simple_child_frame_type_info(),
@@ -1882,7 +1875,7 @@ namespace berg
    ::pointer < ::user::interaction > user::create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pgraphics, ::menu::item * pmenuitem)
    {
 
-      auto pmenubutton = __allocate::user::menu_button();
+      auto pmenubutton = øallocate::user::menu_button();
 
       pmenubutton->initialize_menu_interaction(pmenuitem);
 

@@ -17,7 +17,7 @@ namespace filemanager
 
       enum EMode
       {
-         ModeNormal, // a bit ridiculous that folder list
+         ModeNormal, // a bit ridiculous that folder list_base
          ModeConfigurationItem,
       };
 
@@ -54,7 +54,7 @@ namespace filemanager
       };
 
       FolderArray                      m_foldera;
-      map < ::image::icon *, int >    m_iconmap;
+      map_base < ::image::icon *, int >    m_iconmap;
 
 
       folder_list ();

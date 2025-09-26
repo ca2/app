@@ -5,6 +5,11 @@
 
 
 CLASS_DECL_ACME void __what__(int i);
+namespace c
+{
+
+   class string;
+} // namespace c
 
 
 #include "string_iterator.h"
@@ -36,21 +41,21 @@ CLASS_DECL_ACME void __what__(int i);
 //#ifdef   _STDIO_H_
 //#error "already included?!?! WHAT?!?! (After including acme/prototype/string/string_base.h(C))"_ansi
 //#endif
-#if defined(__STD_FORMAT)
+//#if defined(__STD_FORMAT)
 #include <format>
-#endif
+//#endif
 //#ifdef   _STDIO_H_
 //#error "already included?!?! WHAT?!?! (After including <format>)"_ansi
 //#endif
 
-template < typename ITERATOR_TYPE >
-using string_natural_pointer =
-::natural_pointer < 
-   ::string_heap_data <
-   dereference <
-   get_type_item_pointer < ITERATOR_TYPE >
-   >
-   >, ::heap::e_memory_string >;
+// template < typename ITERATOR_TYPE >
+// using string_natural_pointer =
+// ::natural_pointer <
+//    ::string_heap_data <
+//    dereference <
+//    get_type_item_pointer < ITERATOR_TYPE >
+//    >
+//    >, ::heap::e_memory_string >;
 
 
 enum enum_canonical
@@ -74,8 +79,8 @@ using get_word_function = ::function < const_string_range < ITERATOR_TYPE >(cons
 
 template < typename ITERATOR_TYPE >
 class string_base :
-   public ::const_string_range < ITERATOR_TYPE >,
-   public ::string_natural_pointer < ITERATOR_TYPE >
+   public ::const_string_range < ITERATOR_TYPE >
+ //  , public ::string_natural_pointer < ITERATOR_TYPE >
 {
 public:
    
@@ -87,14 +92,14 @@ public:
 
 
 
-   using NATURAL_POINTER = string_natural_pointer < this_iterator >;
-   using BASE_DATA = typename NATURAL_POINTER::BASE_DATA;
+   //using NATURAL_POINTER = string_natural_pointer < this_iterator >;
    //using META_DATA = typename NATURAL_POINTER::META_DATA;
    using PRIMITIVE_STRING_TAG = PRIMITIVE_STRING_TAG_TYPE;
    using ITEM_POINTER = get_type_item_pointer< this_iterator >;
    using ITEM = ::const_string_range < ITERATOR_TYPE >::ITEM;
    using CHARACTER = ::const_string_range < ITERATOR_TYPE >::CHARACTER;
    //using THIS_RAW_RANGE = typename BASE_RANGE::THIS_RAW_RANGE;
+   using BASE_DATA = BASE_RANGE::BASE_DATA;
    using SCOPED_STRING = scoped_string_base < this_iterator >;
 
 
@@ -108,11 +113,32 @@ public:
    //string_base(const ::wd32_character * psz);
    //string_base(const ::std::string & str) : string_base(str.c_str()) { }
 
+
+   template < typed_character_pointer < typename scoped_string_base < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+   string_base(CHARACTER_POINTER start, CHARACTER_POINTER end, enum_range erange) :
+      BASE_RANGE(no_initialize_t{})
+   {
+
+      this->construct_from_a_range(start, end, erange);
+
+   }
+
+
+   template < other_character_pointer < typename scoped_string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER_POINTER >
+   string_base(OTHER_CHARACTER_POINTER start, OTHER_CHARACTER_POINTER end, enum_range erange = e_range_none) :
+      BASE_RANGE(no_initialize_t{})
+   {
+
+      this->construct_from_a_range(start, end, erange);
+
+   }
+
+
    string_base(const string_base& str) :
-      ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
+      BASE_RANGE(no_initialize_t{})
    { 
       
-      construct1(str); 
+      this->construct_from_string(str);
    
    }
    
@@ -148,60 +174,66 @@ public:
 
    //}
 
+
    template < typename RANGE >
    string_base(const RANGE & str) requires
-      (::std::is_base_of_v < ::range < const typename string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE >
+      (::std::is_base_of_v < ::character_range < const typename string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE >
       && !
       (::std::is_base_of_v < string_base < ITERATOR_TYPE >, RANGE >
          || ::std::is_same_v < string_base < ITERATOR_TYPE >, RANGE >)) :
       ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
    {
-      
-      construct10(str);
+
+      construct_from_a_range(str);
 
    }
 
 
    template < typename RANGE, typename RANGE2 >
    string_base(const RANGE& range1, const RANGE2 & range2) requires
-      ::std::is_base_of_v < ::range < const typename string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE >
+      ::std::is_base_of_v < ::character_range < const typename string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE >
       &&
-      ::std::is_base_of_v < ::range < const typename string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE2 >:
+      ::std::is_base_of_v < ::character_range < const typename string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE2 >:
       ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
    {
 
-      construct40(range1, range2);
+      construct_from_two_ranges_concatenation(range1, range2);
 
    }
 
    
    template < typename OTHER_CHARACTER >
-   string_base(const ::range < const OTHER_CHARACTER* >& range)
+   string_base(const ::character_range < const OTHER_CHARACTER* >& range)
    requires other_primitive_character < OTHER_CHARACTER, CHARACTER >:
       ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
    {
 
-      construct20(range);
+      this->construct20(range.m_begin, range.size(), range.m_erange);
 
    }
 
 
-   //string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(no_initialize_t{}) { construct10(ansistr); }
-   //string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(no_initialize_t{}) { construct10(wd16str); }
-   //string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(no_initialize_t{}) { construct10(wd32str); }
+   //string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(ansistr); }
+   //string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(wd16str); }
+   //string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(wd32str); }
    string_base(string_base && str) :
       ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
    { 
       this->m_begin = str.m_begin; 
       this->m_end = str.m_end;
       this->m_erange = str.m_erange;
+      this->m_pbasedata = str.m_pbasedata;
       str.m_begin = nullptr; 
-      str.m_end = nullptr; 
+      str.m_end = nullptr;
+      str.m_erange = e_range_none;
+      str.m_pbasedata = nullptr;
    }
 
-   //void _construct(const ::ansi_string & ansistr) { construct10(ansistr); }
-   //void _construct(const ::wd16_string & wd16str) { construct10(wd16str); }
-   //void _construct(const ::wd32_string & wd32str) { construct10(wd32str); }
+   string_base(const ::c::string & cstring);
+
+   //void _construct(const ::ansi_string & ansistr) { construct_from_a_range(ansistr); }
+   //void _construct(const ::wd16_string & wd16str) { construct_from_a_range(wd16str); }
+   //void _construct(const ::wd32_string & wd32str) { construct_from_a_range(wd32str); }
    //void _construct(string_base && str)
    //{
    //   this->m_begin = str.m_begin;
@@ -226,19 +258,19 @@ public:
 
 
    //template<typed_range<::ansi_character *> RANGE>
-   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
+   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
    //template<typed_range<::wd16_character *> RANGE>
-   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
+   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
    //template<typed_range<::wd32_character *> RANGE>
-   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
+   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
 
 
    //template<typed_range<const_char_pointer >RANGE>
-   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
+   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
    //template<typed_range<const ::wd16_character *> RANGE>
-   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
+   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
    //template<typed_range<const ::wd32_character *> RANGE>
-   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
+   //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
 
    //template < int t_size >
    //inline string_base(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a);
@@ -266,9 +298,9 @@ public:
    //xxxstring_base(const const_ansi_range & ansirange) : NATURAL_POINTER(no_initialize_t{}) { construct2(ansirange.begin(), ansirange.size()); }
    //xxxstring_base(const const_wd16_range & wd16range) : NATURAL_POINTER(no_initialize_t{}) { construct2(wd16range.begin(), wd16range.size()); }
    //xxxstring_base(const const_wd32_range & wd32range) : NATURAL_POINTER(no_initialize_t{}) { construct2(wd32range.begin(), wd32range.size()); }
-   //string_base(const const_ansi_range & ansirange) : NATURAL_POINTER(no_initialize_t{}) { construct10(ansirange); }
-   //string_base(const const_wd16_range & wd16range) : NATURAL_POINTER(no_initialize_t{}) { construct10(wd16range); }
-   //string_base(const const_wd32_range & wd32range) : NATURAL_POINTER(no_initialize_t{}) { construct10(wd32range); }
+   //string_base(const const_ansi_range & ansirange) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(ansirange); }
+   //string_base(const const_wd16_range & wd16range) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(wd16range); }
+   //string_base(const const_wd32_range & wd32range) : NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(wd32range); }
    //string_base(const const_ansi_range & ansirange, character_count length) : NATURAL_POINTER(no_initialize_t{})  { construct2(ansirange, 0, length); }
    //string_base(const const_wd16_range & wd16range, character_count length) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd16range, 0, length); }
    //string_base(const const_wd32_range & wd32range, character_count length) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd32range, 0, length); }
@@ -280,16 +312,16 @@ public:
    template < primitive_block BLOCK >
    string_base(const BLOCK & block) : string_base((const CHARACTER *)block.begin(), (const CHARACTER *)block.end()) {}
    template < character_pointer CHARACTER_POINTER >
-   string_base(CHARACTER_POINTER start, character_count length) : ::const_string_range<ITERATOR_TYPE>(no_initialize_t{}) { construct5(start, length); }
+   string_base(CHARACTER_POINTER start, character_count length) : ::const_string_range<ITERATOR_TYPE>(no_initialize_t{}) { construct_from_range(start, length); }
    template < character_pointer CHARACTER_POINTER >
    string_base(CHARACTER_POINTER start, CHARACTER_POINTER end) : string_base(start, end-start) { }
    template < character_pointer CHARACTER_POINTER >
    string_base(CHARACTER_POINTER s1, CHARACTER_POINTER e1, CHARACTER_POINTER s2, CHARACTER_POINTER e2);
    template < character_pointer CHARACTER_POINTER >
-   string_base(CHARACTER_POINTER start) : string_base(start, string_safe_length(start), e_range_null_terminated) {}
+   string_base(CHARACTER_POINTER start) : string_base(start, string_safe_length(start)) {}
    template < primitive_character CHARACTER2 >
    string_base(const CHARACTER2*start, character_count length, enum_range erange) :
-      string_base(::range<const CHARACTER2 *> {start, length, erange}) {}
+      string_base(start, start + length, erange) { }
    //template < typename ITERATOR_TYPE2, int t_size >
    //string_base(const const_string_range_static_array < ITERATOR_TYPE2, t_size >& a);
    //   template < primitive_character CHARACTER2 >
@@ -314,11 +346,11 @@ public:
    //string_base(const string_base & str, character_count length) : string_base(str, 0, length) { }
    //string_base(const string_base & str, character_count length);
 //   template < primitive_character CHARACTER2 >
-//   string_base(const ::range < const CHARACTER2 * > & strSource) : string_base(strSource, 0, strSource.size()) {}
+//   string_base(const ::character_range < const CHARACTER2 * > & strSource) : string_base(strSource, 0, strSource.size()) {}
 //   template < primitive_character CHARACTER2 >
-//   string_base(const ::range < const CHARACTER2 * > & strSource, character_count length) : string_base(strSource, 0, minimum(strSource.size(), length)) {}
+//   string_base(const ::character_range < const CHARACTER2 * > & strSource, character_count length) : string_base(strSource, 0, minimum(strSource.size(), length)) {}
 //   template < primitive_character CHARACTER2 >
-//   string_base(const ::range < const CHARACTER2 * > & strSource, character_count length);
+//   string_base(const ::character_range < const CHARACTER2 * > & strSource, character_count length);
    //string_base(const simple_ansistring& simpleansistr);
    //string_base(const simple_wd16string& simplewd16str);
    //string_base(const simple_wd32string& simplewd32str);
@@ -330,8 +362,8 @@ public:
    //string_base(::ansi_character ansich) : string_base(&ansich, 1) {}
    //string_base(::wd16_character wd16ch) : string_base(&wd16ch, 1) {}
    //string_base(::wd32_character wd32ch) : string_base(&wd32ch, 1) {}
-   //string_base(const ::string & cstr) :NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
-   //string_base(const ::scoped_wstring & scopedwstr) :NATURAL_POINTER(no_initialize_t{}) { construct10(scopedwstr); }
+   //string_base(const ::string & cstr) :NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
+   //string_base(const ::scoped_wstring & scopedwstr) :NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(scopedwstr); }
 #if defined(__STD_FORMAT__)
    string_base(const ::std::string & str) : string_base(str.c_str()) { }
 #endif
@@ -348,34 +380,48 @@ public:
    }
 
 
-   inline void __destroy()
-   {
+   // inline static void string_data_increment_reference_count(ITERATOR_TYPE piterator)
+   // {
+   //
+   //    auto pdataSource = BASE_DATA::base_data_from_data(piterator);
+   //
+   //    pdataSource->base_data_increment_reference_count();
+   //
+   // }
 
-      auto pbasedata = this->base_data_from_data(this->m_begin);
 
-      this->base_data_release(pbasedata);
+   // inline void __release()
+   // {
+   //
+   //    auto pbasedata = this->base_data_from_data(this->m_begin);
+   //
+   //    this->release_base_data(pbasedata);
+   //
+   // }
 
-   }
 
-
-
-   inline void _destroy()
-   {
-
-      if (this->is_string() && ::is_set(this->m_begin))
-      {
-
-         __destroy();
-
-      }
-
-   }
-
-   
+   // inline void _release()
+   // {
+   //
+   //    if (this->has_string_storage() && ::is_set(this->m_begin))
+   //    {
+   //
+   //       __release();
+   //
+   //    }
+   //
+   // }
+   //
+   //
    inline void destroy()
    {
 
-      this->_destroy();
+      if (this->has_string_storage() && ::is_set(this->m_begin))
+      {
+
+         ::release_base_data(this->m_pbasedata);
+
+      }
 
       this->m_begin = nullptr;
 
@@ -394,19 +440,13 @@ public:
    void default_construct()
    {
 
-      //NATURAL_POINTER::natural_pointer_default_construct();
+      this->m_begin = ønil_character_data<CHARACTER>::get();
 
-      auto pbasedata = this->base_data_default_data();
+      this->m_end = this->m_begin;
 
-      //if (this->m_begin != pbasedata->c_data())
-      //{
+      this->m_erange = e_range_string_literal;
 
-         this->m_begin = pbasedata->c_data();
-         this->m_end = pbasedata->c_data();
-         this->m_erange = e_range_string_literal;
-
-      //}
-
+      this->m_pbasedata = nullptr;
 
    }
 
@@ -419,23 +459,120 @@ public:
    }*/
 
 
-   void construct1(const string_base& str);
+   template < typed_character_pointer < typename scoped_string_base < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+   void construct_from_a_range(CHARACTER_POINTER start, CHARACTER_POINTER end, enum_range erange = e_range_none, BASE_DATA * pbasedata = nullptr)
+   {
+
+      if (end <= start)
+      {
+
+         this->default_construct();
+
+         return;
+
+      }
+
+      if (::is_set(pbasedata))
+      {
+
+         this->m_begin = start;
+
+         this->m_end = end;
+
+         //this->m_erange = (enum_range) (erange & ~e_range_scoped_ownership);
+
+         this->m_pbasedata = pbasedata;
+
+         pbasedata->base_data_increment_reference_count();
+
+         return;
+
+      }
+
+      auto lengthNew = end - start;
+
+      pbasedata = create_string_data(lengthNew + 1);
+
+      auto pdata = pbasedata->data();
+
+      this->m_begin = pdata;
+
+      this->m_end = this->m_begin + lengthNew;
+
+      memory_transfer(pdata, start, lengthNew);
+
+      this->_set_length(lengthNew);
+
+      this->m_erange = e_range_none;
+
+      this->m_pbasedata = pbasedata;
+
+   }
+
+
+   template < other_character_pointer < typename scoped_string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER_POINTER >
+   void construct_from_a_range(OTHER_CHARACTER_POINTER start, OTHER_CHARACTER_POINTER end, enum_range erange = e_range_none)
+   {
+
+      auto length = end - start;
+
+      auto lengthNew = utf_to_utf_length(this->m_begin, start, length);
+
+      if (::is_null(start) || end <= start)
+      {
+
+         this->default_construct();
+
+         return;
+
+      }
+
+
+      auto pbasedata = BASE_DATA::create_base_data(lengthNew + 1);
+
+      auto pdata = pbasedata->data();
+
+      this->m_pbasedata = pbasedata;
+
+      this->m_erange = e_range_none;
+
+      this->m_begin = pdata;
+
+      utf_to_utf(this->m_begin, start, lengthNew);
+
+      this->_set_length(lengthNew);
+
+   }
+
+
+   void construct_from_string(const string_base& str);
 
 
    //template < typename RANGE >
-   //void construct10(const RANGE& range) requires 
-   //   ::std::is_base_of_v < ::range < const typename string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE >
+   //void construct_from_a_range(const RANGE& range) requires 
+   //   ::std::is_base_of_v < ::character_range < const typename string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE >
    //   && !
    //   (::std::is_base_of_v < string_base < ITERATOR_TYPE >, RANGE >
    //      || ::std::is_same_v < string_base < ITERATOR_TYPE >, RANGE >)
-   template < typename RANGE >
-   void construct10(const RANGE& range)
+   template < primitive_character_range RANGE >
+   void construct_from_a_range(const RANGE& range)
    {
 
-      if (range.m_erange & e_range_string)
+      if (range.m_pbasedata)
       {
 
-         this->construct1(*(const string_base*)&range);
+         if constexpr (sizeof(typename RANGE::ITEM) == sizeof(CHARACTER))
+         {
+
+            this->construct_from_string(*(const string_base*)&range);
+
+         }
+         else
+         {
+
+            this->construct_from_range(range.data(), range.size());
+
+         }
 
       }
       else if (range.m_erange & e_range_string_literal)
@@ -444,12 +581,13 @@ public:
          this->m_begin = range.m_begin;
          this->m_end = range.m_end;
          this->m_erange = range.m_erange;
+         this->m_pbasedata = nullptr;
 
       }
       else
       {
 
-         this->construct5(range.data(), range.size());
+         this->construct_from_range(range.data(), range.size());
 
       }
 
@@ -458,42 +596,42 @@ public:
 
    //template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
 
-   template < typename OTHER_CHARACTER >
-   void construct20(const ::range < const OTHER_CHARACTER* >& range)
-    requires other_primitive_character < OTHER_CHARACTER, CHARACTER > ;
+   // template < typename OTHER_CHARACTER >
+   // void construct20(const ::character_range < const OTHER_CHARACTER* >& range)
+   //  requires other_primitive_character < OTHER_CHARACTER, CHARACTER > ;
 
 
-   inline void construct1(const ITERATOR_TYPE psz, character_count length);
+   //inline void construct_from_string(const ITERATOR_TYPE psz, character_count length);
 
-   inline void construct2(const ::range < const CHARACTER * > & range);
+   inline void construct2(const ::character_range < const CHARACTER * > & range);
 
 
-   inline void construct5(ITERATOR_TYPE pSrc, character_count length);
+   inline void construct_from_range(ITERATOR_TYPE pSrc, character_count length);
 
    template < typename OTHER_CHARACTER_POINTER >
-   inline void construct5(OTHER_CHARACTER_POINTER pSrc, character_count length)
+   inline void construct_from_range(OTHER_CHARACTER_POINTER pSrc, character_count length)
     requires other_character_pointer < OTHER_CHARACTER_POINTER, ITERATOR_TYPE > ;
 
    //template < primitive_character CHARACTER2 >
-    //   //inline void construct10(const ::range < const CHARACTER2 * > & range);
+    //   //inline void construct_from_a_range(const ::character_range < const CHARACTER2 * > & range);
 
     //template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
    template < typename OTHER_CHARACTER >
    inline void construct20(const OTHER_CHARACTER * psz, character_count length, enum_range erange)
-    requires other_primitive_character < OTHER_CHARACTER, CHARACTER >;
+    requires (other_primitive_character < OTHER_CHARACTER, CHARACTER >);
 
    //template < primitive_character CHARACTER2 >
-   //inline void construct40(const CHARACTER2* s1, character_count n1, const CHARACTER2* s2, character_count n2);
+   //inline void construct_from_two_ranges_concatenation(const CHARACTER2* s1, character_count n1, const CHARACTER2* s2, character_count n2);
 
 
 
    template < typename RANGE1, typename RANGE2 >
-   void construct40(const RANGE1& range1, const RANGE2& range2);
+   void construct_from_two_ranges_concatenation(const RANGE1& range1, const RANGE2& range2);
 
    //   template < primitive_character CHARACTER2 >
-//   inline void construct2(const ::range < const CHARACTER2 * > & str);
+//   inline void construct2(const ::character_range < const CHARACTER2 * > & str);
 //   template < primitive_character CHARACTER2 >
-//   inline void construct2(const ::range < const CHARACTER2 * > & str);
+//   inline void construct2(const ::character_range < const CHARACTER2 * > & str);
 
 
    template < primitive_character CHARACTER2 >
@@ -571,7 +709,7 @@ public:
    //inline operator const CONST_STRING_RANGE & () const noexcept { return this->data(); }
 
 //#if defined(UNIVERSAL_WINDOWS)
-   //inline operator String ^ () const { return ref __allocate< String(wd16_string >(*this)); }
+   //inline operator String ^ () const { return ref øallocate< String(wd16_string >(*this)); }
 //#endif
 
    string_base to_string_base() const { return *this; }
@@ -624,68 +762,128 @@ public:
 //      return *this;
 //   }
 //   string_base & operator = (string_base && string_base) { NATURAL_POINTER::operator=(::transfer(string_base)); return *this; }
-   string_base & operator = (ansi_character ansich) { assign(ansich); return *this; }
-   string_base & operator = (wd16_character wd16ch) { assign(wd16ch); return *this; }
-   string_base & operator = (wd32_character wd32ch) { assign(wd32ch); return *this; }
-   string_base & operator = (const ansi_character * pansisz) { assign(pansisz); return *this; }
-   string_base & operator = (const wd16_character * pwd16sz) { assign(pwd16sz); return *this; }
-   string_base & operator = (const wd32_character * pwd32sz) { assign(pwd32sz); return *this; }
-   string_base & operator = (const ::atom & atom);
-   string_base & operator = (const ::payload & payload);
-   string_base & operator = (const ::property & property);
-   //template < typename ITERATOR_TYPE2, int t_size >
-   //string_base& operator = (const const_string_range_static_array < ITERATOR_TYPE2, t_size >& a) { return assign(a); }
-   template < character_count n >
-   string_base & operator = (const ::inline_string < ::ansi_character, n > & inlinestring) { assign(inlinestring.begin(), inlinestring.size()); return *this; }
-   //   template < has_as_string HAS_AS_STRING >
-   //   string_base & operator = (const HAS_AS_STRING & has_as_string)
-   //   {
-   //
-   //      return operator =(has_as_string.as_string());
-   //
-   //   }
+   ////string_base & operator = (ansi_character ansich) { assign(ansich); return *this; }
+   ////string_base & operator = (wd16_character wd16ch) { assign(wd16ch); return *this; }
+   ////string_base & operator = (wd32_character wd32ch) { assign(wd32ch); return *this; }
+   ////string_base & operator = (const ansi_character * pansisz) { assign(pansisz); return *this; }
+   ////string_base & operator = (const wd16_character * pwd16sz) { assign(pwd16sz); return *this; }
+   ////string_base & operator = (const wd32_character * pwd32sz) { assign(pwd32sz); return *this; }
+   //string_base & operator = (const ::atom & atom);
+   //string_base & operator = (const ::payload & payload);
+   //string_base & operator = (const ::property & property);
+   ////template < typename ITERATOR_TYPE2, int t_size >
+   ////string_base& operator = (const const_string_range_static_array < ITERATOR_TYPE2, t_size >& a) { return assign(a); }
+   //template < character_count n >
+   //string_base & operator = (const ::inline_string < ::ansi_character, n > & inlinestring) { assign(inlinestring.begin(), inlinestring.size()); return *this; }
+   ////   template < has_as_string HAS_AS_STRING >
+   ////   string_base & operator = (const HAS_AS_STRING & has_as_string)
+   ////   {
+   ////
+   ////      return operator =(has_as_string.as_string());
+   ////
+   ////   }
 
-      //string_base & operator = (const_char_pointer pansichar);
-      //string_base & operator = (const ::wd16_character * pwd16char);
-      //string_base & operator = (const ::wd32_character * pwd32char);
-      //string_base & operator = (const natural_ansistring & ansistr);
-      //string_base & operator = (const natural_wd16string & wd16str);
-      //string_base & operator = (const natural_wd32string & wd32str);
-   string_base & operator = (const const_ansi_range & ansirange) {assign_range(ansirange); return *this;}
-   string_base & operator = (const const_wd16_range & wd16range) {assign_range(wd16range); return *this;}
-   string_base & operator = (const const_wd32_range & wd32range) {assign_range(wd32range); return *this;}
-   string_base & operator = (const ansi_string & ansistr) { assign_range(ansistr); return *this;}
-   string_base & operator = (const wd16_string & wd16str) { assign_range(wd16str); return *this;}
-   string_base & operator = (const wd32_string & wd32str) { assign_range(wd32str); return *this;}
-   string_base & operator = (string_base && str) { assign_range(::transfer(str)); return *this; }
+   //   //string_base & operator = (const_char_pointer pansichar);
+   //   //string_base & operator = (const ::wd16_character * pwd16char);
+   //   //string_base & operator = (const ::wd32_character * pwd32char);
+   //   //string_base & operator = (const natural_ansistring & ansistr);
+   //   //string_base & operator = (const natural_wd16string & wd16str);
+   //   //string_base & operator = (const natural_wd32string & wd32str);
+   ////string_base & operator = (const const_ansi_range & ansirange) {assign_range(ansirange); return *this;}
+   ////string_base & operator = (const const_wd16_range & wd16range) {assign_range(wd16range); return *this;}
+   ////string_base & operator = (const const_wd32_range & wd32range) {assign_range(wd32range); return *this;}
+   ////string_base & operator = (const ansi_string & ansistr) { assign_range(ansistr); return *this;}
+   ////string_base & operator = (const wd16_string & wd16str) { assign_range(wd16str); return *this;}
+   ////string_base & operator = (const wd32_string & wd32str) { assign_range(wd32str); return *this;}
 
-   template < primitive_block BLOCK >
-   string_base & operator = (const BLOCK & block) { assign((const CHARACTER *)block.begin(), (const CHARACTER *)block.end()); return *this; }
-      //template < primitive_character CHARACTER2 >
-      //string_base & operator = (const ::range < const CHARACTER2 * > & str);
-      //string_base & operator = (string_base && str);
-   string_base & operator = (const ::inline_number_string & inline_number_string) {assign(inline_number_string.begin(), inline_number_string.end()); return *this;}
-   string_base & operator = (const scoped_ansi_string & ansistr);
-   string_base & operator = (const scoped_wd16_string & wd16str);
-   string_base & operator = (const scoped_wd32_string & wd32str);
-#ifdef __STD_FORMAT__
-   string_base& operator = (const ::std::string &str) { operator =(str.c_str()); return *this; }
-#endif
-      //string_base & operator = (const string_base & str);
-      //string_base & operator = (const string_base & str);
-      //string_base & operator = (::ansi_character ansich);
-      //string_base & operator = (::wd16_character wd16ch);
-   //   string_base & operator = (::wd32_character wd32ch);
-   //#ifdef WINDOWS
-     // string_base & operator = (const USHORT * pshSrc) { return operator=((const ::wd16_character *)pshSrc); }
-   //#endif
-   //#ifdef UNIVERSAL_WINDOWS
-     // string_base& operator = (String^& str) { return operator=(str->Begin()); }
-   //#endif
-      //string_base & operator = (const ::atom & atom);
-      //string_base & operator = (const ::payload & payload);
-      //string_base & operator = (const ::property & property);
+   string_base &operator =(const string_base & str)
+   {
+      this->assign_range(str);
+      return *this;
+   }
 
+
+
+   template < typename RANGE >
+   string_base & operator = (const RANGE & str) requires
+      (::std::is_base_of_v < ::character_range < const typename string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE >
+      && !
+      (::std::is_base_of_v < string_base < ITERATOR_TYPE >, RANGE >
+         || ::std::is_same_v < string_base < ITERATOR_TYPE >, RANGE >))
+   {
+      this->assign_range(str);
+      return *this;
+   }
+
+
+   template < primitive_character_range SOME_RANGE >
+   string_base &operator=(SOME_RANGE && range)
+   {
+      this->transfer_range(::transfer(range));
+      return *this;
+   }
+
+
+   //string_base &operator=(string_base &&str)
+   //{
+   //   transfer_range(::transfer(str));
+   //   return *this;
+   //}
+
+//
+//
+//   //template<primitive_character MAY_BE_OTHER_CHARACTER>
+//   //string_base &operator=(MAY_BE_OTHER_CHARACTER character)
+//   //{
+//   //   assign(character);
+//   //   return *this;
+//   //}
+//
+//
+//   //template<primitive_character MAY_BE_OTHER_CHARACTER>
+//   //string_base &operator=(const MAY_BE_OTHER_CHARACTER * psz)
+//   //{
+//   //   assign(psz);
+//   //   return *this;
+//   //}
+//
+//   //template<typename MAY_BE_OTHER_CHARACTER_RANGE>
+//   //string_base &operator=(const MAY_BE_OTHER_CHARACTER_RANGE &range)
+//   //   requires (other_character_range<MAY_BE_OTHER_CHARACTER_RANGE, CHARACTER> ||
+//   //   !::std::is_base_of< string_base, MAY_BE_OTHER_CHARACTER_RANGE>::value)
+//   //{
+//   //   assign_range(range);
+//   //   return *this;
+//   //}
+//
+//
+//   template < primitive_block BLOCK >
+//   string_base & operator = (const BLOCK & block) { assign((const CHARACTER *)block.begin(), (const CHARACTER *)block.end()); return *this; }
+//      //template < primitive_character CHARACTER2 >
+//      //string_base & operator = (const ::character_range < const CHARACTER2 * > & str);
+//      //string_base & operator = (string_base && str);
+//   string_base & operator = (const ::inline_number_string & inline_number_string) {assign(inline_number_string.begin(), inline_number_string.end()); return *this;}
+//   string_base & operator = (const scoped_ansi_string & ansistr);
+//   string_base & operator = (const scoped_wd16_string & wd16str);
+//   string_base & operator = (const scoped_wd32_string & wd32str);
+//#ifdef __STD_FORMAT__
+//   string_base& operator = (const ::std::string &str) { operator =(str.c_str()); return *this; }
+//#endif
+//      //string_base & operator = (const string_base & str);
+//      //string_base & operator = (const string_base & str);
+//      //string_base & operator = (::ansi_character ansich);
+//      //string_base & operator = (::wd16_character wd16ch);
+//   //   string_base & operator = (::wd32_character wd32ch);
+//   //#ifdef WINDOWS
+//     // string_base & operator = (const USHORT * pshSrc) { return operator=((const ::wd16_character *)pshSrc); }
+//   //#endif
+//   //#ifdef UNIVERSAL_WINDOWS
+//     // string_base& operator = (String^& str) { return operator=(str->Begin()); }
+//   //#endif
+//      //string_base & operator = (const ::atom & atom);
+//      //string_base & operator = (const ::payload & payload);
+//      //string_base & operator = (const ::property & property);
+//
    //   template < int t_nSize >
      // inline string_base & operator=(const static_string<CHARACTER, t_nSize > & ansistrSrc);
 
@@ -704,24 +902,29 @@ public:
 
       // so exhaustively implementing them at least
       // for most relevant and proper acme types
-   string_base & operator += (const_char_pointer psz) { append(psz); return *this; }
-   string_base & operator += (const ::wd16_character * psz) { append(psz); return *this; }
-   string_base & operator += (const ::wd32_character * psz) { append(psz); return *this; }
-   string_base & operator += (::ansi_character ansich) { append(&ansich, 1); return *this; }
-   string_base & operator += (::wd16_character wd16ch) { append(&wd16ch, 1); return *this; }
-   string_base & operator += (::wd32_character wd32ch) { append(&wd32ch, 1); return *this; }
-   string_base & operator += (const ::const_ansi_range & range) { append(range); return *this; }
-   string_base & operator += (const ::const_wd16_range & range) { append(range); return *this; }
-   string_base & operator += (const ::const_wd32_range & range) { append(range); return *this; }
-   string_base & operator += (const inline_number_string & inlinenumberstring) { append((const ::const_ansi_range &)inlinenumberstring); return *this; }
-   string_base & operator += (const ::atom & atom);
-   string_base & operator += (const ::payload & payload);
-   string_base & operator += (const ::property & property);
+   string_base & operator += (const SCOPED_STRING & scopedstr);
+
+   template < primitive_character CHARACTER >
+   string_base & operator += (CHARACTER character) { this->append_character(character); return *this; }
+
+   // string_base & operator += (const_char_pointer psz) { append(psz); return *this; }
+   // string_base & operator += (const ::wd16_character * psz) { append(psz); return *this; }
+   // string_base & operator += (const ::wd32_character * psz) { append(psz); return *this; }
+   // string_base & operator += (::ansi_character ansich) { append(&ansich, 1); return *this; }
+   // string_base & operator += (::wd16_character wd16ch) { append(&wd16ch, 1); return *this; }
+   // string_base & operator += (::wd32_character wd32ch) { append(&wd32ch, 1); return *this; }
+   // string_base & operator += (const ::const_ansi_range & range) { append(range); return *this; }
+   // string_base & operator += (const ::const_wd16_range & range) { append(range); return *this; }
+   // string_base & operator += (const ::const_wd32_range & range) { append(range); return *this; }
+   // string_base & operator += (const inline_number_string & inlinenumberstring) { append((const ::const_ansi_range &)inlinenumberstring); return *this; }
+   // string_base & operator += (const ::atom & atom);
+   // string_base & operator += (const ::payload & payload);
+   // string_base & operator += (const ::property & property);
    //template < typename ITERATOR_TYPE2, int t_size >
    //string_base& operator += (const const_string_range_static_array < ITERATOR_TYPE2, t_size >& a) { return append(a); }
-#ifdef __STD_FORMAT__
-   string_base& operator += (const ::std::string& str) { operator +=(str.c_str()); return *this; }
-#endif
+//#ifdef __STD_FORMAT__
+   //string_base& operator += (const ::std::string& str) { operator +=(str.c_str()); return *this; }
+//#endif
 //   template < has_as_string HAS_AS_STRING >
 //   string_base & operator += (const HAS_AS_STRING & has_as_string) { return operator +=(has_as_string.as_string()); }
 
@@ -811,98 +1014,186 @@ public:
 //   }
 
 
-   template < typed_character_range < CHARACTER > TYPED_CHARACTER_RANGE >
-   inline string_base & assign_range(const TYPED_CHARACTER_RANGE & range)
+   template<typename SAME_CHARACTER_RANGE >
+   string_base &assign_range(const SAME_CHARACTER_RANGE & range) 
+      requires (typed_character_range<SAME_CHARACTER_RANGE, CHARACTER>)
    {
 
-      if((::range<const CHARACTER *>*)(this) != (::range<const CHARACTER *>*)(&range))
+      if ((::character_range<const CHARACTER *> *)(this) == (::character_range<const CHARACTER *> *)(&range))
       {
 
-         BASE_DATA* pdata;
+         return *this;
 
-         if (this->m_erange & e_range_string)
+      }
+
+      auto pdataThis = this->m_pbasedata;
+
+      if (range.m_pbasedata)
+      {
+
+         this->m_begin = range.m_begin;
+
+         this->m_end = range.m_end;
+
+         //this->m_erange = (enum_range)(range.m_erange & ~e_range_scoped_ownership);
+
+         this->m_pbasedata = range.m_pbasedata;
+
+         this->m_pbasedata->base_data_increment_reference_count();
+
+      }
+      else if (::is_null(range.m_begin) || range.m_end <= range.m_begin)
+      {
+
+         this->default_construct();
+
+      }
+      else
+      {
+
+         auto length = range.size();
+
+         auto lengthNew = string_safe_length2(range.m_begin, length);
+
+         if (::is_set(pdataThis) &&
+            !pdataThis->base_data_is_shared() &&
+            lengthNew <= pdataThis->storage_character_count())
          {
 
-            pdata = BASE_DATA::base_data_from_data(this->m_begin);
-
-            //this->__destroy();
+            pdataThis = nullptr;
 
          }
          else
          {
 
-            pdata = nullptr;
+            auto pbasedata = this->create_string_data2(lengthNew, this->m_erange);
+
+            this->m_begin = pbasedata->data();
 
          }
 
-         construct10(range);
+         ::memory_transfer((void *) this->m_begin, range.m_begin, sizeof(CHARACTER) * lengthNew);
 
-         if (pdata)
-         {
-
-            if (pdata->data() != this->begin())
-            {
-
-               this->base_data_release(pdata);
-
-            }
-
-         }
+         this->_set_length(lengthNew);
 
       }
 
-      return *this;
-
-   }
-
-
-   template < typed_character_range < CHARACTER > TYPED_CHARACTER_RANGE >
-   inline string_base & assign_range(TYPED_CHARACTER_RANGE && range)
-   {
-
-      if((::range<const CHARACTER *>*)(this) != (::range<const CHARACTER *>*)(&range))
+      if (pdataThis)
       {
 
-         if (this->m_erange & e_range_string)
-         {
-
-            this->__destroy();
-
-         }
-
-         this->m_begin = range.m_begin;
-         this->m_end = range.m_end;
-         this->m_erange = range.m_erange;
-
-         range.m_begin = nullptr;
-         range.m_end = nullptr;
-         range.m_erange = e_range_none;
+         ::release_base_data(pdataThis);
 
       }
 
       return *this;
 
    }
-   template < other_character_range < CHARACTER > OTHER_CHARACTER_RANGE >
-   inline string_base & assign_range(const OTHER_CHARACTER_RANGE & range)
+
+
+   template<typename SAME_CHARACTER_RANGE>
+   string_base &transfer_range(SAME_CHARACTER_RANGE &&range)
+      requires(typed_character_range<SAME_CHARACTER_RANGE, CHARACTER>)
    {
 
-      this->assign(range.m_begin, range.m_end);
+      if((::character_range<const CHARACTER *>*)(this) == (::character_range<const CHARACTER *>*)(&range))
+      {
 
+         return *this;
+
+      }
+
+      auto pdataThis = this->m_pbasedata;
+
+      if (::is_set(range.m_pbasedata))
+      {
+
+         this->m_begin = range.m_begin;
+
+         this->m_end = range.m_end;
+
+         //this->m_erange = (enum_range) (range.m_erange & ~e_range_scoped_ownership);
+
+         this->m_pbasedata = range.m_pbasedata;
+
+      }
+      else if (::is_null(range.m_begin) || range.m_end <= range.m_begin)
+      {
+
+         this->default_construct();
+
+      }
+      else
+      {
+
+         auto lengthNew = range.size();
+
+         if (::is_set(pdataThis) &&
+            !pdataThis->base_data_is_shared() &&
+            lengthNew <= pdataThis->storage_character_count())
+         {
+
+            pdataThis = nullptr;
+
+         }
+         else
+         {
+
+            auto pbasedata = this->create_string_data2(lengthNew, this->m_erange);
+
+            this->m_begin = pbasedata->data();
+
+         }
+
+         ::memory_transfer((void *) this->m_begin, range.m_begin, sizeof(CHARACTER) * lengthNew);
+
+         this->_set_length(lengthNew);
+
+      }
+
+      if (pdataThis)
+      {
+
+         ::release_base_data(pdataThis);
+
+      }
+
+      range.m_begin = nullptr;
+
+      range.m_end = nullptr;
+
+      range.m_erange = e_range_none;
+
+      range.m_pbasedata = nullptr;
+
+      return *this;
+
+
+   }
+
+   
+   template<typename OTHER_CHARACTER_RANGE>
+   string_base &assign_range(const OTHER_CHARACTER_RANGE &range)
+      requires(other_character_range<OTHER_CHARACTER_RANGE, CHARACTER>)
+   {
+      
+      this->assign(range.m_begin, range.m_end);
+      
       return *this;
 
    }
 
 
-
-   template < other_character_range < CHARACTER > OTHER_CHARACTER_RANGE >
-   inline string_base & assign_range(OTHER_CHARACTER_RANGE && range)
+   template < typename OTHER_CHARACTER_RANGE >
+   inline string_base & transfer_range(OTHER_CHARACTER_RANGE && range)
+      requires(other_character_range<OTHER_CHARACTER_RANGE, CHARACTER>)
    {
-
+      
       this->assign(range.m_begin, range.m_end);
 
       range.m_begin = nullptr;
+
       range.m_end = nullptr;
+
       range.m_erange = e_range_none;
 
       return *this;
@@ -914,7 +1205,7 @@ public:
    inline string_base & assign(const BLOCK & block) { return assign((const CHARACTER *)block.data(),(const CHARACTER *) block.end()); }
 
    //   template < primitive_character CHARACTER2 >
-   //   inline string_base& assign(const ::range < const CHARACTER2 * > & str);
+   //   inline string_base& assign(const ::character_range < const CHARACTER2 * > & str);
       //inline string_base & assign(const ansi_string & ansistr);
       //inline string_base & assign(const wd16_string & wd16str);
       //inline string_base & assign(const wd32_string & wd32str);
@@ -941,8 +1232,10 @@ public:
 
    }
 
+
    template < primitive_character CHARACTER2 >
    inline string_base & assign(const CHARACTER2 * start, const CHARACTER2 * end);
+
 
    template < primitive_character CHARACTER2 >
    inline string_base & assign(const CHARACTER2 * pszSrc, character_count length);
@@ -966,8 +1259,13 @@ public:
 //   }
    //template < primitive_block BLOCK >
    //inline string_base& assign(const BLOCK & pszSrc, character_count length);
-   template < primitive_character CHARACTER2 >
-   inline string_base & _assign(const CHARACTER2 * pszSrc, character_count length);
+   template < primitive_character SAME_SIZE_CHARACTER >
+   inline string_base & _assign(const SAME_SIZE_CHARACTER * pszSrc, character_count length)
+   requires (sizeof(SAME_SIZE_CHARACTER) == sizeof(CHARACTER));
+
+   template < primitive_character OTHER_SIZE_CHARACTER >
+   inline string_base & _assign(const OTHER_SIZE_CHARACTER * pszSrc, character_count length)
+   requires (sizeof(OTHER_SIZE_CHARACTER) != sizeof(CHARACTER));
    //inline string_base& assign(const ::wd16_character* pwd16szSrc, character_count length);
    //inline string_base& assign(const ::wd32_character* pwd32szSrc, character_count length);
    template < primitive_character CHARACTER2 >
@@ -1009,11 +1307,11 @@ public:
    //inline string_base & append(const ::const_wd32_range & range);
 
 
-   inline string_base& append(const ::range < ITERATOR_TYPE >& range){ _append(range.m_begin, range.size());  return *this; }
+   inline string_base& append(const ::character_range < ITERATOR_TYPE >& range){ _append(range.m_begin, range.size());  return *this; }
 
 
    template < typename OTHER_CHARACTER >
-   inline string_base& append(const ::range < const OTHER_CHARACTER* >& range)
+   inline string_base& append(const ::character_range < const OTHER_CHARACTER* >& range)
     requires other_primitive_character < OTHER_CHARACTER, CHARACTER >
    {_append(range.m_begin, range.size()); return *this; }
    
@@ -1078,10 +1376,10 @@ public:
    inline void empty()
    {
 
-      if (this->is_string())
+      if (this->has_string_storage())
       {
 
-         this->base_data_release(this->base_data_from_data(this->m_begin));
+         release_base_data(this->m_pbasedata);
 
       }
 
@@ -1149,76 +1447,82 @@ public:
    //}
 
 
-   inline CHARACTER* construct_string(character_count character_count)
-   {
 
-      auto pbasedata = this->base_data_create(character_count + 1);
 
-      auto p = pbasedata->data();
-
-      this->m_begin = p;
-
-      this->m_end = p + character_count;
-
-      this->m_erange = e_range_string | e_range_null_terminated;
-
-      return p;
-
-   }
+   // inline CHARACTER * construct_string(character_count character_count)
+   // {
+   //
+   //    auto pbasedata = BASE_DATA::create_base_data(character_count + 1);
+   //
+   //    this->m_begin = pbasedata->data();
+   //
+   //    this->m_end = this->m_begin + character_count;
+   //
+   //    this->m_erange = e_range_none;
+   //
+   //    this->m_pbasedata = pbasedata;
+   //
+   //    return (CHARACTER *) this->m_begin;
+   //
+   // }
 
 
    template < bool t_bPreserve = false>
    inline CHARACTER * get_buffer(character_count characterCount = -1)
    {
 
-      auto p = (CHARACTER *) this->m_begin;
+      this->defer_set_size<t_bPreserve>(characterCount);
 
-      if (this->m_erange & e_range_string)
-      {
+      return (CHARACTER*)this->m_begin;
 
-         auto pbasedata = this->base_data_from_data(this->m_begin);
-
-#ifdef _DEBUG
-
-         if (::is_set(pbasedata) && pbasedata->m_countReference <= 0)
-         {
-
-            __what__(1);
-
-         }
-
-#endif
-
-         if (::is_null(pbasedata) || pbasedata->base_data_is_shared() || characterCount > pbasedata->storage_character_count())
-         {
-
-            p = fork_string<true, t_bPreserve >(characterCount > 0 ? characterCount : this->size());
-
-         }
-         else
-         {
-
-            this->m_end = this->m_begin + (characterCount > 0 ? characterCount : this->size());
-
-         }
-         //else
-         //{
-
-         //   this->metadata()->set_character_count(characterCount);
-
-         //   this->m_end = this->m_begin + characterCount;
-
-         //}
-
-      }
-      else
-      {
-
-         p = create_string<t_bPreserve>(characterCount);
-
-      }
-
-      return p;
+//       auto p = (CHARACTER *) this->m_begin;
+//
+//       if (::is_set(this->m_pbasedata))
+//       {
+//
+//          auto pbasedata = this->m_pbasedata;
+//
+// #ifdef _DEBUG
+//
+//          if (::is_set(pbasedata) && pbasedata->m_countReference <= 0)
+//          {
+//
+//             __what__(1);
+//
+//          }
+//
+// #endif
+//
+//          if (::is_null(pbasedata) || pbasedata->base_data_is_shared() || characterCount > pbasedata->storage_character_count())
+//          {
+//
+//             defer_set_size<true, t_bPreserve >(characterCount > 0 ? characterCount : this->size());
+//
+//          }
+//          else
+//          {
+//
+//             this->m_end = this->m_begin + (characterCount > 0 ? characterCount : this->size());
+//
+//          }
+//          //else
+//          //{
+//
+//          //   this->metadata()->set_character_count(characterCount);
+//
+//          //   this->m_end = this->m_begin + characterCount;
+//
+//          //}
+//
+//       }
+//       else
+//       {
+//
+//          p = create_string<t_bPreserve>(characterCount);
+//
+//       }
+//
+//       return p;
 
    }
 
@@ -1356,103 +1660,201 @@ public:
    }
 
 
+   /// bit less drafty, more conclusive: t_bWasString template is rather easily, fastly
+   /// and cheaply deductable, dynamically
+   /// and more correctly determined by the presence of m_pbasedata
    /// draft: all allocation, release and assignment done
-   template < bool t_bWasString, bool t_bPreserve >
-   inline CHARACTER * fork_string(character_count characterCount)
+   /// changed name fork_string to defer_set_size
+   /// to sound friendlier and convey the idea that
+   /// probably this->_set_length(lengthNew);
+   /// should still be called
+   template < bool t_bPreserve >
+   //inline CHARACTER * fork_string(character_count characterCount)
+   inline void defer_set_size(character_count characterCount)
    {
-
-      BASE_DATA* pbasedataOld;
 
       auto old_size = this->size();
 
-      auto new_size = characterCount;
+      auto lengthNew = characterCount;
 
-      auto pold = (CHARACTER * )this->m_begin;
+      auto pbasedataOld = this->m_pbasedata;
+
+      auto pdataOld = this->m_begin;
 
       /// if this string had heap string storage,
       /// checks if old storage can hold new requested size.
-      if constexpr (t_bWasString)
+      if (::is_set(pbasedataOld) &&
+         !pbasedataOld->base_data_is_shared() &&
+         lengthNew <= pbasedataOld->storage_character_count())
       {
 
-         pbasedataOld = this->base_data_from_data(this->m_begin);
+//         this->_set_length(lengthNew);
 
-         if (::is_set(pbasedataOld) &&
-            !pbasedataOld->base_data_is_shared() &&
-            new_size <= pbasedataOld->storage_character_count())
-         {
+         //return (CHARACTER *) this->m_begin;
 
-            this->m_end = pold + new_size;
-
-            pold[new_size] = CHARACTER{};
-
-            return pold;
-
-         }
+         return;
 
       }
 
-      memsize allocationSize = (new_size +1) * sizeof(CHARACTER);
+      //auto allocationSize 
 
-      if constexpr(t_bWasString)
-      {
+      //if constexpr(t_bWasString)
+      //{
 
-         if (this->m_erange & e_range_buffer && allocationSize >= 16_KiB)
-         {
+      //   if (this->m_erange & e_range_buffer && lengthNew >= 16_KiB)
+      //   {
 
-            allocationSize *= 2;
+      //      allocationSize *= 2;
 
-         }
+      //   }
 
-      }
+      //}
 
-      auto pbasedata = this->base_data_create(allocationSize);
+      auto pbasedata = this->create_string_data2(lengthNew, this->m_erange);
 
-      auto p = pbasedata->data();
+      auto pdata = pbasedata->data();
 
-      if constexpr (t_bWasString)
+      if (pbasedataOld)
       {
 
          ASSERT(::is_null(pbasedataOld) || pbasedataOld->m_countReference >= 1);
 
       }
 
-      if (::is_set(pold))
+      if (::is_set(pdataOld))
       {
 
          if constexpr (t_bPreserve)
          {
 
-            auto sizeCopy = minimum(old_size, new_size);
+            auto sizeCopy = minimum(old_size, lengthNew);
 
             if (sizeCopy > 0)
             {
 
-               memory_copy((void*)p, pold, sizeCopy * sizeof(CHARACTER));
+               memory_copy((void*)pdata, pdataOld, sizeCopy * sizeof(CHARACTER));
 
             }
 
          }
 
-         if constexpr (t_bWasString)
-         {
+      }
 
-            this->base_data_release(pbasedataOld);
+      if (::is_set(pbasedataOld))
+      {
 
-         }
+         //if constexpr (t_bWasString)
+         //{
+
+            ::release_base_data(pbasedataOld);
+
+         //}
 
       }
 
-      this->m_begin = p;
+      this->m_begin = pdata;
 
-      this->m_end = p + new_size;
+      //this->_set_length(lengthNew);
 
-      this->m_erange = e_range_string;
-
-      p[new_size] = CHARACTER{};
-
-      return p;
+      //return pdata;
 
    }
+
+
+   // /// draft: all allocation, release and assignment done
+   // template < bool t_bWasString, bool t_bPreserve >
+   // inline CHARACTER * fork_string(character_count characterCount)
+   // {
+   //
+   //    auto old_size = this->size();
+   //
+   //    auto lengthNew = characterCount;
+   //
+   //    auto pbasedataOld = this->m_pbasedata;
+   //
+   //    auto pdataOld = this->m_begin;
+   //
+   //    /// if this string had heap string storage,
+   //    /// checks if old storage can hold new requested size.
+   //    if constexpr (t_bWasString)
+   //    {
+   //
+   //       if (::is_set(pbasedataOld) &&
+   //          !pbasedataOld->base_data_is_shared() &&
+   //          lengthNew <= pbasedataOld->storage_character_count())
+   //       {
+   //
+   //          this->_set_length(lengthNew);
+   //
+   //          return (CHARACTER *) this->m_begin;
+   //
+   //       }
+   //
+   //    }
+   //
+   //    //auto allocationSize
+   //
+   //    //if constexpr(t_bWasString)
+   //    //{
+   //
+   //    //   if (this->m_erange & e_range_buffer && lengthNew >= 16_KiB)
+   //    //   {
+   //
+   //    //      allocationSize *= 2;
+   //
+   //    //   }
+   //
+   //    //}
+   //
+   //    auto pbasedata = this->create_string_data2(lengthNew, this->m_erange);
+   //
+   //    auto pdata = pbasedata->data();
+   //
+   //    if constexpr (t_bWasString)
+   //    {
+   //
+   //       ASSERT(::is_null(pbasedataOld) || pbasedataOld->m_countReference >= 1);
+   //
+   //    }
+   //
+   //    if (::is_set(pdataOld))
+   //    {
+   //
+   //       if constexpr (t_bPreserve)
+   //       {
+   //
+   //          auto sizeCopy = minimum(old_size, lengthNew);
+   //
+   //          if (sizeCopy > 0)
+   //          {
+   //
+   //             memory_copy((void*)pdata, pdataOld, sizeCopy * sizeof(CHARACTER));
+   //
+   //          }
+   //
+   //       }
+   //
+   //    }
+   //
+   //    if (::is_set(pbasedataOld))
+   //    {
+   //
+   //       if constexpr (t_bWasString)
+   //       {
+   //
+   //          ::release_base_data(pbasedataOld);
+   //
+   //       }
+   //
+   //    }
+   //
+   //    this->m_begin = pdata;
+   //
+   //    this->_set_length(lengthNew);
+   //
+   //    return pdata;
+   //
+   // }
 
 
    ///// <summary>
@@ -1476,31 +1878,32 @@ public:
    //CHARACTER * fork_string(character_count character_count);
 
 
-   template < bool t_bPreserve >
-   CHARACTER * defer_fork_string(character_count character_count)
-   {
-
-      if (this->m_erange & e_range_string)
-      {
-
-         return fork_string<false, t_bPreserve>(character_count);
-
-      }
-
-      auto pbasedata = this->base_data_from_data(this->m_begin);
-
-      auto p = pbasedata->data();
-
-      if (::is_null(pbasedata) || pbasedata->base_data_is_shared() || character_count > pbasedata->storage_character_count())
-      {
-
-         p = fork_string<true, t_bPreserve>(character_count);
-
-      }
-
-      return p;
-
-   }
+   // template < bool t_bPreserve >
+   // CHARACTER * defer_fork_string(character_count character_count)
+   // {
+   //
+   //    if (::is_null(this->m_pbasedata))
+   //    {
+   //
+   //       return fork_string<false, t_bPreserve>(character_count);
+   //
+   //    }
+   //
+   //    auto pbasedata = this->m_pbasedata;
+   //
+   //    auto p = pbasedata->data();
+   //
+   //    if (::is_set(pbasedata)
+   //       && (pbasedata->base_data_is_shared() || character_count > pbasedata->storage_character_count()))
+   //    {
+   //
+   //       p = fork_string<true, t_bPreserve>(character_count);
+   //
+   //    }
+   //
+   //    return p;
+   //
+   // }
 
 
    //void _fork_string();
@@ -1951,7 +2354,7 @@ public:
          if (this->first() == character1 && this->last() == character2)
          {
 
-            *this = this->substr(1, length() - 2);
+            *this = this->substr(1, this->length() - 2);
 
             return true;
 
@@ -1999,48 +2402,6 @@ public:
    //BASE_RANGE substr(START start, const_iterator p) const { return substr(start, (p - this->m_begin) - start); }
 
 
-   inline memsize storage_size() const
-   { 
-
-      if (!(this->m_erange & e_range_string))
-      {
-
-         return 0;
-
-      }
-
-      auto pbasedata = this->base_data_from_data(this->m_begin);
-      
-      return pbasedata->storage_size(); 
-      
-   }
-
-
-   inline character_count storage_character_count() const
-   {
-
-      if (!(this->m_erange & e_range_string))
-      {
-
-         return 0;
-
-      }
-
-      auto s = this->storage_size();
-
-      auto n = null_terminated_byte_length_to_character_count(this->m_begin, s);
-
-      return n;
-
-   }
-
-
-   inline character_count length() const { return this->m_end - this->m_begin; }
-   inline character_count size() const { return this->length(); }
-   inline memsize character_count_in_bytes() const;
-   inline memsize null_terminated_character_count_in_bytes() const;
-
-
 
    string_base & formatf(const CHARACTER * pszFormat, ...);
 
@@ -2051,26 +2412,31 @@ public:
    string_base & append_formatf_arguments(const CHARACTER * pszFormat, va_list args);
 
    
-#if defined(__STD_FORMAT__)
+//#if defined(__STD_FORMAT__)
 
-   template<typename... Ts>
-   string_base & format(const ::std::format_string<Ts...> fmt, Ts&&... args)
+
+
+
+   template<typename... Args>
+   string_base & format(::std::format_string<Args...> fmt, Args&&... args)
    {
 
-      return operator=(std::format(fmt, std::forward<Ts>(args)...));
+      auto s = std::format(fmt, std::forward<Args>(args)...);
+
+      return this->assign(s.c_str(), s.size());
 
    }
 
-   template<typename... Ts>
-   string_base & append_format(const std::format_string<Ts...> fmt, Ts&&... args)
+   template<typename... Args>
+   string_base & append_format(std::format_string<Args...> fmt, Args&&... args)
    {
 
-      return this->operator +=(std::format(fmt, std::forward<Ts>(args)...));
+      return this->operator +=(std::format(fmt, std::forward<Args>(args)...));
 
    }
 
    
-#endif
+//#endif
 
    //void FormatMessage(const CHARACTER * pszFormat, ...);
 
@@ -2489,27 +2855,10 @@ template < primitive_character CHARACTER2, has_as_string HAS_AS_STRING >
 
 
 
-inline string & operator <<(string & str, const_char_pointer psz)
-{
-
-   str += psz;
-
-   return str;
-
-}
-
+inline string & operator <<(string & str, const_char_pointer psz);
 
 template < primitive_integral INTEGRAL >
-inline string & operator <<(string & str, INTEGRAL i)
-{
-
-   str += ::as_string(i);
-
-   return str;
-
-}
-
-
+inline string & operator <<(string & str, INTEGRAL i);
 
 using a_string_function = ::function < ::string(void) >;
 
@@ -2524,9 +2873,8 @@ using a_string_function = ::function < ::string(void) >;
 //#include <format>
 
 
-
 //template <> 
-//struct std::formatter<::string> :
+//struct std::formatter<::string > :
 //   public std::formatter<std::string>
 //{
 //
@@ -2534,13 +2882,13 @@ using a_string_function = ::function < ::string(void) >;
 //   auto format(const ::string& s, Context& ctx) const
 //   {
 //
-//      return std::formatter<string>::format(std::format("{}"_ansi, s.c_str()), ctx);
+//      return std::formatter<string>::format(std::format("{}", s.c_str()), ctx);
 //   }
-//
+
 //};
 
 
-#if defined(__STD_FORMAT__)
+//#if defined(__STD_FORMAT__)
 
 // Simple specialization for strings in the Ca2 framework.
 // This just uses ::string::c_str() to format.
@@ -2557,8 +2905,11 @@ template < >
 struct std::formatter<::string > :
    public ::std::formatter< ::std::string_view >
 {
-   auto format(const ::scoped_string & scopedstr, std::format_context& ctx) const {
-      return ::std::formatter<::std::string_view>::format(::std::string_view{ str.begin(), str.end() }, ctx);
+   template < typename FormatContext >
+   auto format(const ::string & str, FormatContext & context) const
+   {
+      return ::std::formatter<::std::string_view>::format(
+         ::std::string_view{ str.begin(), str.end() }, context);
    }
 };
 
@@ -2573,7 +2924,7 @@ format(const std::format_string<Args...> fmt, Args&&... args) noexcept
 }
 
 
-#endif
+//#endif
 
 
 [[nodiscard]] inline ::string formatf(const_char_pointer pszFormat, ...) noexcept
@@ -2768,8 +3119,8 @@ CLASS_DECL_ACME ::string _(const ::string & cstr);
 
 template < primitive_character CHARACTER, other_primitive_character < CHARACTER > CHARACTER2 >
 ::string_base < const CHARACTER* > operator + (
-   const ::range < const CHARACTER* >& range1,
-   const ::range < const CHARACTER2* >& range2)
+   const ::character_range < const CHARACTER* >& range1,
+   const ::character_range < const CHARACTER2* >& range2)
 {
 
    return range1 + ::string_base < const CHARACTER* >(range2);
@@ -2780,7 +3131,7 @@ template < primitive_character CHARACTER, other_primitive_character < CHARACTER 
 template < character_pointer CHARACTER_POINTER >
 ::string_base < const  non_const < erase_pointer<CHARACTER_POINTER>> * > operator + (
    CHARACTER_POINTER p,
-   const ::range < const non_const< erase_pointer < CHARACTER_POINTER > > * > & range
+   const ::character_range < const non_const< erase_pointer < CHARACTER_POINTER > > * > & range
    )
 {
 
@@ -2805,41 +3156,127 @@ template < character_pointer CHARACTER_POINTER, other_character_range < ::decay 
 
 }
 
+//
+// template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+// character_count __utf_length(CHARACTER * ptrigger, character_count *& plen, const CHARACTER2 * pSource, character_count lenSource)
+// {
+//
+//    return *plen++ = utf_to_utf_length(ptrigger, pSource, lenSource);
+//
+// }
+//
+//
+// template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+// void __utf_concatenate_to(CHARACTER *& p, character_count *& plen, const CHARACTER2 * pSource, character_count lenSource)
+// {
+//
+//    utf_to_utf(p, pSource, lenSource);
+//
+//    p += *plen++;
+//
+// }
 
 
-template < typename ITERATOR_TYPE >
-template < primitive_character CHARACTER >
-character_count range<ITERATOR_TYPE>::__utf_length(CHARACTER * ptrigger, character_count *& plen) const
-{
-
-   return *plen++ = __utf_to_utf_length(ptrigger, this->m_begin, this->size());
-
-}
-
-
-template < typename ITERATOR_TYPE >
-template < primitive_character CHARACTER >
-void range<ITERATOR_TYPE>::__utf_concatenate_to(CHARACTER *& p, character_count *& plen) const
-{
-
-   utf_to_utf(p, this->m_begin, this->size());
-
-   p += *plen++;
-
-}
-
-
-
-
-
-
-template < character_range RANGE, typed_character_pointer < typename RANGE::CHARACTER > CHARACTER_POINTER >
+template < primitive_character_range RANGE, typed_character_pointer < typename RANGE::CHARACTER > CHARACTER_POINTER >
 ::string_base < typename RANGE::const_iterator > operator + (const RANGE& range, CHARACTER_POINTER psz)
 {
 
-   return { range, ::const_string_range <typename RANGE::const_iterator >(psz, psz + string_safe_length(psz), e_range_null_terminated) };
+   return { range, ::const_string_range <typename RANGE::const_iterator >(psz, psz + string_safe_length(psz)) };
 
 }
+
+//
+//// variadic formatting function
+//template <typename... Args>
+//::string format(::std::string_view fmt, Args&&... args)
+//{
+//   
+//   auto s = std::vformat(fmt, std::make_format_args(args...));
+//
+//   return ::string(s.c_str(),s.size());
+//
+//}
+//
+
+
+// template < typename ITERATOR_TYPE >
+// inline typename ::character_range < ITERATOR_TYPE >::CHARACTER * create_string_data(character_count character_count)
+// {
+//
+//    auto p = ::string_base < ITERATOR_TYPE >::create_string_data(character_count);
+//
+//    return p;
+//
+// }
+
+//
+// template < typename RANGE, typename ITERATOR_TYPE >
+// inline RANGE & create_string(RANGE & rangeTarget, const ::character_range < ITERATOR_TYPE > & rangeSource)
+// requires (::std::is_base_of < ::character_range < ITERATOR_TYPE >, RANGE >::value)
+// {
+//
+//    auto length = rangeSource.size();
+//
+//    rangeTarget.m_begin = create_string_data<ITERATOR_TYPE>(length);
+//
+//    rangeTarget.m_end = rangeTarget.m_begin + length;
+//
+//    rangeTarget.m_erange = e_range_string;
+//
+//    return rangeTarget;
+//
+// }
+//
+//
+// template < typename RANGE, typename OTHER_ITERATOR_TYPE >
+// inline RANGE & create_string(RANGE & rangeTarget, const ::character_range < OTHER_ITERATOR_TYPE > & rangeSource)
+// requires (sizeof(get_iterator_item < OTHER_ITERATOR_TYPE >) != sizeof(typename RANGE::ITEM)
+//    && ::std::is_base_of < ::character_range < typename RANGE::this_iterator >, RANGE >::value)
+// {
+//
+//    auto length = utf_to_utf_length(rangeTarget.m_begin, rangeSource, rangeSource.size());
+//
+//    rangeTarget.m_begin = create_string_data < typename RANGE::this_iterator >(length);
+//
+//    rangeTarget.m_end = rangeTarget.m_begin + length;
+//
+//    utf_to_utf(rangeTarget.m_begin, rangeSource.m_begin, length);
+//
+//    rangeTarget.m_erange = e_range_string;
+//
+//    return rangeTarget;
+//
+// }
+
+
+////template < character_count n >
+////scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), BASE_RANGE(e_zero_initialize) { _construct1(cha); }
+////template < typed_character_pointer < typename scoped_string_base < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+//template < typename RANGE, typename ITERATOR_TYPE >
+//RANGE & create_string(RANGE & range, ITERATOR_TYPE start, ITERATOR_TYPE end, enum_range erange)
+//requires (::std::is_base_of < ::character_range < ITERATOR_TYPE >, RANGE >::value)
+//{
+//
+//   auto lengthNew = range.size();
+//
+//   auto pbasedata = BASE_DATA::create_base_data(lengthNew);
+//
+//   auto pdata = pbasedata->data();
+//
+//   range.m_begin = pdata;
+//
+//   ::memory_transfer(range.m_begin, start, length);
+//
+//   range._set_length(lengthNew);
+//
+//   range.m_erange = e_range_none;
+//
+//   range.m_pbasedata = pbasedata;
+//
+//   return range;
+//
+//}
+//
 
 
 

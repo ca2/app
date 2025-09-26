@@ -86,7 +86,7 @@ bool context::is_system() const
 void context::initialize_context()
 {
 
-   auto estatus = __øconstruct(m_phttp);
+   auto estatus = øconstruct(m_phttp);
 
    if(!estatus)
    {
@@ -95,7 +95,7 @@ void context::initialize_context()
 
    }
 
-   estatus = __øconstruct(m_pfile);
+   estatus = øconstruct(m_pfile);
 
    if (!estatus)
    {
@@ -104,7 +104,7 @@ void context::initialize_context()
 
    }
 
-   estatus = __øconstruct(m_pdir);
+   estatus = øconstruct(m_pdir);
 
    if (!estatus)
    {
@@ -165,7 +165,7 @@ void context::initialize_context()
 
    }
 
-   estatus = __øconstruct(m_pos);
+   estatus = øconstruct(m_pos);
 
    if (!estatus)
    {
@@ -998,7 +998,7 @@ string context::load_string(const ::scoped_string & scopedstr)
 void context::on_update_matter_locator()
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_straMatterLocator.erase_all();
 
@@ -1049,7 +1049,7 @@ string context::matter_locator(::aura::application * papp)
 void context::add_matter_locator(string strApp)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strMatterLocator = matter_locator(strApp);
 
@@ -1066,7 +1066,7 @@ void context::add_matter_locator(string strApp)
 void context::add_matter_locator(::aura::application * papp)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string strMatterLocator = matter_locator(papp);
 

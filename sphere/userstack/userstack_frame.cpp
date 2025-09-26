@@ -59,11 +59,11 @@ namespace userstack
    void frame::install_message_routing(::channel * pchannel)
    {
       simple_frame_window::install_message_routing(pchannel);
-      //MESSAGE_LINK(e_message_close,          pchannel, this, &frame::on_message_close);
-//      //MESSAGE_LINK(e_message_timer,          pchannel, this, &frame::on_timer);
-      MESSAGE_LINK(e_message_create,         pchannel, this, &frame::on_message_create);
-      MESSAGE_LINK(WM_APP + 1,        pchannel, this, &frame::_001OnApp1);
-      MESSAGE_LINK(e_message_mouse_leave,     pchannel, this, &frame::on_message_mouse_leave);
+      //USER_MESSAGE_LINK(::user::e_message_close,          pchannel, this, &frame::on_message_close);
+//      //USER_MESSAGE_LINK(::user::e_message_timer,          pchannel, this, &frame::on_timer);
+      USER_MESSAGE_LINK(::user::e_message_create,         pchannel, this, &frame::on_message_create);
+      USER_MESSAGE_LINK(WM_APP + 1,        pchannel, this, &frame::_001OnApp1);
+      USER_MESSAGE_LINK(::user::e_message_mouse_leave,     pchannel, this, &frame::on_message_mouse_leave);
    }
 
 
@@ -163,7 +163,7 @@ namespace userstack
       psession->m_pointCursor = pmouse->m_point;
 //      ::aspheresp(::aura::application) pappParent = &App(papp->get_app()->m_pcoreapp);
 //      ::aspheresp(::aura::application) papp = &papp;
-      /*      if(pmouse->m_uiMessage == e_message_mouse_move
+      /*      if(pmouse->m_uiMessage == ::user::e_message_mouse_move
             && m_pdocument != nullptr
             && m_pdocument->m_pplatformdocument != nullptr
             && m_pdocument->m_pplatformdocument->get_platform_frame() != nullptr)
@@ -390,7 +390,7 @@ namespace userstack
       try
       {
 
-         if(pmsg->message != e_message_kick_idle)
+         if(pmsg->message != ::user::e_message_kick_idle)
          {
 
             ::pointer<::user::message> spbase;

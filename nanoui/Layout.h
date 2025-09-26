@@ -425,7 +425,7 @@ namespace nanoui
       ::float_array m_row_stretch;
 
       /// The mapping of widgets to their specified anchor points.
-      ::map<Widget*, Anchor> m_anchor;
+      ::map_base<Widget*, Anchor> m_anchor;
 
       /// The margin around this AdvancedGridLayout.
       int m_iMargin;
@@ -464,7 +464,7 @@ namespace nanoui
       const Anchor & anchor(Widget* pwidget) const 
       {
          
-         auto p = m_anchor.plookup(pwidget);
+         auto p = m_anchor.find(pwidget);
 
          if (m_anchor.is_end(p))
          {

@@ -130,7 +130,7 @@ namespace windowing
       //::int_rectangle                           m_rectangleUpdateBuffer;
       ::thread_pointer                          m_pthreadMouseLeave;
 
-      //::list < ::pointer<::message::message >> m_messagelist;
+      //::list_base < ::pointer<::message::message >> m_messagelist;
 
       ::int_point                               m_pointInside;
       //::user::interaction_base *                       m_pprimitiveFocus;
@@ -174,7 +174,7 @@ namespace windowing
 
       ::int_size                                m_sizeDrawnBuffer;
 
-      //      ::int_rectangle_array                     m_rectangleaNeedRedraw;
+      //      ::int_rectangle_array_base                     m_rectangleaNeedRedraw;
       ::pointer_array < ::user::redraw_item > m_redrawitema;
 
       ::pointer < ::user::interaction >         m_puiLastLButtonDown;
@@ -429,9 +429,9 @@ namespace windowing
 
       virtual void win_update_graphics();
 
-      virtual lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+      virtual lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
-      void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      void post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
       void set_window_text(const ::scoped_string & scopedstr) override;
@@ -535,7 +535,7 @@ namespace windowing
       virtual void _window_show_change_visibility(::e_display edisplay, const ::user::activation & useractivation);
 
 
-      virtual void non_top_most_upper_window_rects(::int_rectangle_array & recta);
+      virtual void non_top_most_upper_window_rects(::int_rectangle_array_base & recta);
 
       void default_message_handler(::message::message * pmessage) override;
 
@@ -923,7 +923,7 @@ namespace windowing
 //
 //#endif   // WINVER >= 0x0500
 //
-      lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
+      lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
 
       lresult send_message(::message::message * pmessage) override;
 
@@ -935,7 +935,7 @@ namespace windowing
       //#endif
 
 
-      //void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      //void post_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
       //virtual bool SendNotifyMessage(unsigned int message,wparam wParam,lparam lParam);
@@ -1153,7 +1153,7 @@ namespace windowing
 
       //bool FlashWindow(bool bInvert);
 
-      //virtual int message_box(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption = nullptr,unsigned int nType = e_message_box_ok);
+      //virtual int message_box(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption = nullptr,unsigned int nType = ::user::e_message_box_ok);
 
 
 //#if(WINVER >= 0x0500)
@@ -1335,7 +1335,7 @@ namespace windowing
 
       //virtual void on_visual_applied();
 
-      virtual void set_need_redraw(const ::int_rectangle_array & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr, bool bAscendants = true);
+      virtual void set_need_redraw(const ::int_rectangle_array_base & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr, bool bAscendants = true);
       //virtual bool needs_to_draw(const ::int_rectangle& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);
       void post_redraw(bool bAscendants = true) override;
 
@@ -1359,12 +1359,12 @@ namespace windowing
       virtual long long _001GetRectTopLeftWeightedArea(const ::int_rectangle & rect);
 
       virtual long long opaque_area(const ::int_rectangle & rect);
-      virtual void approximate_occlusion_rects(int_rectangle_array & raTest);
+      virtual void approximate_occlusion_rects(int_rectangle_array_base & raTest);
 
       virtual long long opaque_area();
 
       /// from top to bottom
-      //virtual void non_top_most_upper_window_rects(::int_rectangle_array & recta);
+      //virtual void non_top_most_upper_window_rects(::int_rectangle_array_base & recta);
 
 
       virtual void android_fill_plasma(const void * pixels, int width, int height, int stride, long long time_ms);
@@ -1397,7 +1397,7 @@ namespace windowing
       //virtual void queue_message_handler(::message::message * pmessage);
 
 
-      virtual ::pointer<::message::message>get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
+      virtual ::pointer<::message::message>get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::user::enum_message_prototype eprototype = ::user::e_message_prototype_none) override;
 
 
       //virtual void enable_window(bool bEnable = true);
@@ -1508,13 +1508,13 @@ namespace windowing
       //virtual bool _is_window();
 
 
-      //virtual ::lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {});
+      //virtual ::lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {});
 
       //virtual ::lresult send_message(::message::message * pmessage);
 
       using ::channel::message_handler;
 
-      virtual lresult message_handler(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      virtual lresult message_handler(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
       //virtual void post_message(const ::atom & atom, const ::wparam & wparam = {}, ::const ::lparam & lparam = {});
@@ -1621,7 +1621,7 @@ namespace windowing
       virtual ::user::interaction * get_child_by_id(const ::atom & atom, ::collection::index iItem = -1, int iLevel = -1) override;
 
 
-      //virtual void set_need_redraw(const ::int_rectangle_array & rectangleaNeedRedraw = {}, function<void()> function = nullptr, bool bAscendants = true);
+      //virtual void set_need_redraw(const ::int_rectangle_array_base & rectangleaNeedRedraw = {}, function<void()> function = nullptr, bool bAscendants = true);
 
 
       //virtual bool RedrawWindow(const ::int_rectangle & rectangleUpdate = {}, ::draw2d::region * prgnUpdate = nullptr, unsigned int flags = 0);
@@ -1722,10 +1722,10 @@ namespace windowing
       //virtual ::user::frame_interaction * EnsureParentFrame();
 
 
-      virtual lresult message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point = {}) override;
+      virtual lresult message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point = {}) override;
       virtual lresult message_call(::message::message * pmessage) override;
 
-      virtual void send_message_to_descendants(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bDeep = true, bool bOnlyPerm = false) override;
+      virtual void send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bDeep = true, bool bOnlyPerm = false) override;
 
 
 

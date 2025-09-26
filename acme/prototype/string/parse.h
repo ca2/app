@@ -53,12 +53,12 @@ public:
    character_count  m_iLen;
 
    parse();
-   parse(::range < const_char_pointer >range) : parse(range.begin(), range.size()) {}
-   parse(::range < const_char_pointer >range, ::range < const_char_pointer >splits):parse(range.begin(), range.size(), splits) {}
-   parse(::range < const_char_pointer >range, ::range < const_char_pointer >splits, short nospace):parse(range.begin(), range.size(),splits,nospace) {}
-   parse(const_char_pointer psz, character_count iLen);
-   parse(const_char_pointer psz, character_count iLen, ::range < const_char_pointer >splits);
-   parse(const_char_pointer psz, character_count iLen, ::range < const_char_pointer >splits, short);
+   parse(::character_range < const_char_pointer >range) : parse(range.begin(), range.size(), range.m_erange, range.m_pbasedata) {}
+   parse(::character_range < const_char_pointer >range, ::character_range < const_char_pointer > splits):parse(range.begin(), range.size(), splits, range.m_erange, range.m_pbasedata) {}
+   parse(::character_range < const_char_pointer >range, ::character_range < const_char_pointer > splits, short nospace):parse(range.begin(), range.size(), splits, nospace, range.m_erange, range.m_pbasedata) {}
+   parse(const_char_pointer psz, character_count iLen, enum_range erange = e_range_none, base_data<ansi_character > * pbasedata = nullptr);
+   parse(const_char_pointer psz, character_count iLen, ::character_range < const_char_pointer > splits, enum_range erange = e_range_none, base_data<ansi_character > * pbasedata = nullptr);
+   parse(const_char_pointer psz, character_count iLen, ::character_range < const_char_pointer > splits, short nospace, enum_range erange = e_range_none, base_data<ansi_character > * pbasedata = nullptr);
    ~parse();
    short issplit(const char);
    void getsplit();

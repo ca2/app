@@ -48,6 +48,13 @@ namespace windowing
    }
 
 
+   void text_editor_interface::set_editor_text_and_selection(const ::scoped_string & scopedstrText, character_count iStart, character_count iEnd)
+   {
+
+
+   }
+
+
    void text_editor_interface::show_software_keyboard()
    {
 

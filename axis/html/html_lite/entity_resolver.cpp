@@ -28,7 +28,7 @@
 //#if !BROAD_PRECOMPILED_HEADER
 ////#include "axis/html/html_lite/_.h"
 //#endif
-//#include "acme/prototype/string/str.h"
+#include "acme/prototype/string/utf8_character.h"
 #include "entity_resolver.h"
 
 
@@ -210,7 +210,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
 
          unsigned int  ulNum = (unsigned int) ::strtoul(pszBegin, nullptr, aura);
 
-         strChar = unicode_to_utf8(ulNum);
+         strChar = ::utf8_character(ulNum);
          return (int) (pszEnd - pszEntity + 1);
 
       }
@@ -260,7 +260,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
       }
 
       // is this a known entity object?
-      if (m_CharEntityRefs.lookup(strKey, chTemp))
+      if (m_CharEntityRefs.find(strKey, chTemp))
       {
          union
          {

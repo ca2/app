@@ -223,12 +223,12 @@ namespace fs
 
       defer_initialize();
 
-      class ::time millisLast;
+      class ::time timeLast;
 
-      if(m_mapfileLast.lookup(path, millisLast))
+      if(m_mapfileLast.find(path, timeLast))
       {
 
-         if(millisLast.elapsed() > *system()->file_listing_cache_time())
+         if(timeLast.elapsed() > *system()->file_listing_cache_time())
          {
             
             ::file::listing_base listing;
@@ -247,10 +247,10 @@ namespace fs
          
       }
 
-      if(m_mapdirLast.lookup(path, millisLast))
+      if(m_mapdirLast.find(path, timeLast))
       {
          
-         if(millisLast.elapsed() > system()->m_timeFileListingCache)
+         if(timeLast.elapsed() > system()->m_timeFileListingCache)
          {
             
             ::file::listing_base listing;
@@ -262,28 +262,36 @@ namespace fs
          }
          else
          {
+
             return 1;
+
          }
+
       }
 
-      if(m_mapfileLast.lookup(path, millisLast))
+      if(m_mapfileLast.find(path, timeLast))
       {
 
-         if(millisLast.elapsed() > system()->m_timeFileListingCache)
+         if(timeLast.elapsed() > system()->m_timeFileListingCache)
          {
+
             return 0;
+
          }
          else
          {
+
             return 1;
+
          }
+
       }
       else
       {
+
          return 0;
+
       }
-
-
 
       /*string strUrl;
 
@@ -336,7 +344,7 @@ namespace fs
    file_pointer remote_native::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception)
    {
 
-      file_pointer pfile = __allocate remote_native_file(payloadFile);
+      file_pointer pfile = øallocate remote_native_file(payloadFile);
 
       //auto result =
       pfile->open(payloadFile, eopen, ppfileexception);

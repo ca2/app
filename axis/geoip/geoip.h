@@ -34,7 +34,7 @@ typedef struct GeoIPTag {
    char record_length;
    int charset; /* 0 iso-8859-1 1 utf8 */
    int record_iter; /* used in GeoIP_next_record */
-   int netmask; /* netmask of last lookup - set using depth in _GeoIP_seek_record */
+   int netmask; /* netmask of last find - set using depth in _GeoIP_seek_record */
    posix_time last_mtime_check;
 } GeoIP;
 

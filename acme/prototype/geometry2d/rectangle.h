@@ -33,7 +33,7 @@ public:
    using UNIT_TYPE = NUMBER;
    using POINT_TYPE = point_type < NUMBER >;
    using SIZE_TYPE = size_type < NUMBER >;
-   //using POINT_ARRAY_TYPE = point_base_array < POINT_TYPE >;
+   //using POINT_ARRAY_TYPE = point_array_base < POINT_TYPE >;
 
    rectangle_type() { }
    rectangle_type(no_initialize_t) { }

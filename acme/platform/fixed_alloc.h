@@ -19,13 +19,13 @@ public:
 
    struct node
    {
-      node* pNext;   // only valid when in free list
+      node* pNext;   // only valid when in free list_base
    };
 
    ::heap::allocator * m_pallocator;
    unsigned int m_nAllocSize;   // int_size of each block from Alloc
    unsigned int m_nBlockSize;   // number of blocks to get at a time
-   ::plex* m_pBlocks;   // linked list of blocks (is nBlocks*nAllocSize)
+   ::plex* m_pBlocks;   // linked list_base of blocks (is nBlocks*nAllocSize)
    node* m_pnodeFree;   // first free node (nullptr if no free nodes)
 
 
@@ -52,7 +52,7 @@ inline void * fixed_alloc_no_sync::Alloc()
    {
       NewBlock();
    }
-   // erase the first available node from the free list
+   // erase the first available node from the free list_base
    void * pNode = m_pnodeFree;
    m_pnodeFree = m_pnodeFree->pNext;
    return (void *) (((unsigned char *)pNode) + 16);
@@ -63,7 +63,7 @@ inline void fixed_alloc_no_sync::Free(void * p)
    p = (void *) (((unsigned char *)p) - 16);
    if (p != nullptr)
    {
-      // simply return the node to the free list
+      // simply return the node to the free list_base
       node* pNode = (node*)p;
       pNode->pNext = m_pnodeFree;
       m_pnodeFree = pNode;
@@ -160,7 +160,7 @@ fixed_alloc * class_name::s_palloc = nullptr;
 
 
 #define IMPLEMENT_AXIS_FIXED_ALLOC_CONSTRUCTOR(class_name, block_size) \
-class_name::s_palloc = __allocate< fixed_alloc(sizeof >(class_name), block_size);
+class_name::s_palloc = øallocate< fixed_alloc(sizeof >(class_name), block_size);
 
 #define IMPLEMENT_AXIS_FIXED_ALLOC_DESTRUCTOR(class_name) \
 if(class_name::s_palloc != nullptr) \

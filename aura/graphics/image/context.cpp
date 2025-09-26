@@ -93,6 +93,40 @@ namespace image
    }
 
 
+   unsigned char * image_context::like_stbi_load_from_memory(
+      const unsigned char * buffer, int len, int * x, int * y,
+                                               int * channels_in_file, int desired_channels)
+   {
+
+      auto pmemoryfile = create_memory_file({buffer, len});
+
+      auto pimage = this->image_from_file(pmemoryfile);
+
+      *x = pimage->width();
+
+      *y = pimage->height();
+
+      *channels_in_file = 4;
+
+      int target_scan = *x * 4;
+
+      auto pimage32 = (image32_t *) memory_allocate( *y * target_scan);
+
+      pimage32->copy({*x, *y}, target_scan, pimage);
+
+      return (unsigned char *) pimage32;
+
+   }
+
+
+   void image_context::like_stbi_image_free(void * data)
+   {
+
+      memory_free(data);
+
+   }
+
+
    void image_context::on_destroy()
    {
 
@@ -104,7 +138,7 @@ namespace image
    ::image::image_pointer image_context::create_image()
    {
 
-      auto pimage = __øcreate < ::image::image >();
+      auto pimage = øcreate < ::image::image >();
 
       if (!pimage)
       {
@@ -121,7 +155,7 @@ namespace image
    ::image::image_pointer image_context::create_image(const ::int_size& size, const image32_t* pcolor, int iScan, ::enum_flag eflagCreate)
    {
 
-      auto pimage = m_papplication->__øcreate < ::image::image >();
+      auto pimage = m_papplication->øcreate < ::image::image >();
 
       if (!pimage)
       {
@@ -149,7 +183,7 @@ namespace image
    ::image::pool_image image_context::pool_image(const ::int_size& size)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto& imagea = m_imagepool[size];
 
@@ -168,7 +202,7 @@ namespace image
    void image_context::release_pool_image(::image::pool_image* ppoolimage)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto& imagea = m_imagepool[ppoolimage->image()->size()];
 
@@ -184,7 +218,7 @@ namespace image
 
       int iImage = -1;
 
-      if (!m_mapPathInt.lookup(path, iImage))
+      if (!m_mapPathInt.find(path, iImage))
       {
 
          iImage = m_iImageSeed;
@@ -276,6 +310,14 @@ namespace image
    }
 
 
+   ::image::image_pointer
+   image_context::image_from_file(const ::payload &payloadFile,                                 const ::image::load_options &loadoptions)
+   {
+
+      return get_image(payloadFile, loadoptions);
+
+   }
+
 
    ::image::image_pointer image_context::_load_image_from_file(const ::payload& payloadFile, const ::payload& varOptions)
    {
@@ -301,7 +343,7 @@ namespace image
 
       ::image::icon_pointer picon;
 
-      __øconstruct(picon);
+      øconstruct(picon);
 
       _get_icon(picon, payloadFile);
 
@@ -315,7 +357,7 @@ namespace image
 
       ::image::image_pointer pimage;
 
-      __øconstruct(pimage);
+      øconstruct(pimage);
 
       _get_image(pimage, payloadFile, loadoptions);
 
@@ -343,7 +385,7 @@ namespace image
 
       }
 
-      __defer_construct(pimage);
+      ødefer_construct(pimage);
 
       _matter_image(pimage, scopedstrMatter, loadoptions);
 
@@ -371,7 +413,7 @@ namespace image
 
       }
 
-      __defer_construct(pimage);
+      ødefer_construct(pimage);
 
       if (loadoptions.pparticleSync)
       {
@@ -408,7 +450,7 @@ namespace image
 
       //auto estatus = 
 
-      __defer_construct(pimage);
+      ødefer_construct(pimage);
 
       //if (!estatus)
       //{
@@ -440,7 +482,7 @@ namespace image
 
       //auto estatus = 
 
-      __øconstruct(pimage);
+      øconstruct(pimage);
 
       /*if (!estatus)
       {
@@ -472,7 +514,7 @@ namespace image
 
       //auto estatus = 
 
-      __øconstruct(pimage);
+      øconstruct(pimage);
 
       //if (!estatus)
       //{
@@ -504,7 +546,7 @@ namespace image
 
       //auto estatus = 
 
-      __øconstruct(pimage);
+      øconstruct(pimage);
 
       //if (!estatus)
       //{
@@ -535,7 +577,7 @@ namespace image
       ::image::image_pointer pimage;
 
       //auto estatus = 
-      __øconstruct(pimage);
+      øconstruct(pimage);
 
       //if (!estatus)
       //{
@@ -570,7 +612,7 @@ namespace image
    void image_context::_load_icon(::image::icon* picon, const ::payload& payloadFile)
    {
 
-      auto pwindowingicon = __øcreate < ::windowing::icon >();
+      auto pwindowingicon = øcreate < ::windowing::icon >();
 
       pwindowingicon->load_file(payloadFile);
 
@@ -925,7 +967,7 @@ namespace image
    //
    //   ::pointer<image_frame_array>pframea;
    //
-   //   __construct_new(pframea);
+   //   øconstruct_new(pframea);
    //
    //   pframea->m_pimage = this;
    //
@@ -991,13 +1033,13 @@ namespace image
 
       ::pointer<image_frame_array>pframea;
 
-      __construct_new(pframea);
+      øconstruct_new(pframea);
 
       pframea->m_pimage = this;
 
       ::image::image_pointer pimageCompose;
 
-      pimage->__øconstruct(pimageCompose);
+      pimage->øconstruct(pimageCompose);
 
       pimageCompose->set_ok_flag();
 
@@ -1236,14 +1278,14 @@ namespace image
 
       }
 
-      _synchronous_lock synchronouslock(image_synchronization());
+      _synchronous_lock synchronouslock(image_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto& pimage = system()->m_mapImage[path];
 
       if (!pimage)
       {
 
-         pimage = __øcreate<::image::image>();
+         pimage = øcreate<::image::image>();
 
          pimage->set_nok();
 

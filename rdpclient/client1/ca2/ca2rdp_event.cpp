@@ -178,25 +178,25 @@ void ca2rdp_send_mouse_button_event(rdpInput* input, const ::atom & atom, ::int_
 
    switch(emessage)
    {
-   case e_message_mouse_move:
+   case ::user::e_message_mouse_move:
       flags = PTR_FLAGS_MOVE;
       break;
-   case e_message_left_button_down:
+   case ::user::e_message_left_button_down:
       flags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON1;
       break;
-   case e_message_left_button_up:
+   case ::user::e_message_left_button_up:
       flags = PTR_FLAGS_BUTTON1;
       break;
-   case e_message_right_button_down:
+   case ::user::e_message_right_button_down:
       flags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON2;
       break;
-   case e_message_right_button_up:
+   case ::user::e_message_right_button_up:
       flags = PTR_FLAGS_BUTTON2;
       break;
-   case e_message_middle_button_down:
+   case ::user::e_message_middle_button_down:
       flags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON3;
       break;
-   case e_message_middle_button_up:
+   case ::user::e_message_middle_button_up:
       flags = PTR_FLAGS_BUTTON3;
       break;
    default:

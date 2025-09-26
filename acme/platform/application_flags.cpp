@@ -730,7 +730,7 @@ string apple_get_bundle_identifier();
 //   if (file_system()->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
 //   {
 //
-//      //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
+//      //debug_box("zzzAPPzzz app", "zzzAPPzzz app", ::user::e_message_box_icon_information);
 //
 //   }
 //
@@ -875,12 +875,12 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////      uid_t uid = atoi(strUid);
 ////
-////      output_error_message("going to seteuid to: " + as_string(uid), "going to seteuid", e_message_box_ok);
+////      output_error_message("going to seteuid to: " + as_string(uid), "going to seteuid", ::user::e_message_box_ok);
 ////
 ////      if (seteuid(uid) == 0)
 ////      {
 ////
-////         output_error_message("uid=" + as_string(uid), "seteuid success", e_message_box_ok);
+////         output_error_message("uid=" + as_string(uid), "seteuid success", ::user::e_message_box_ok);
 ////
 ////      }
 ////      else
@@ -892,7 +892,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////         strError.formatf("errno=%d uid=%d", iErr);
 ////
-////         //message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
+////         //message_box(strError, "seteuid failed", ::user::e_message_box_icon_exclamation);
 ////
 ////      }
 ////
@@ -1047,7 +1047,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //   // cold start (never previously called program and its Dlls...)?
 //   psystem->m_timeMainStart = m_timeStart;
 //
-//   //xxdebug_box("box1", "box1", e_message_box_icon_information);
+//   //xxdebug_box("box1", "box1", ::user::e_message_box_icon_information);
 ////
 //  // ::file::path pathOutputDebugString = directory_system()->system() / strAppId / "information.txt" ;
 //
@@ -1096,7 +1096,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //         string strLibrary = ::future::app_id_to_app_name(strAppId);
 //
-//         m_plibrary = __allocate ::acme::library();
+//         m_plibrary = øallocate ::acme::library();
 //
 //         m_plibrary->initialize(psystem);
 //
@@ -1170,7 +1170,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //      //   if (pfnDeferTerm == nullptr)
 //      //   {
 //
-//      //      output_error_message("Missing corresponding defer_*_term for the defer_*_init backbone library." + e_message_box_icon_error);
+//      //      output_error_message("Missing corresponding defer_*_term for the defer_*_init backbone library." + ::user::e_message_box_icon_error);
 //
 //      //      on_result(error_failed);
 //
@@ -1406,7 +1406,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //CLASS_DECL_APEX long apex_prefix(::apex::system * psystem)
 //{
 //
-//   //pmaindata->m_pappcore = __allocate app_core(pmaindata);
+//   //pmaindata->m_pappcore = øallocate app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -1430,7 +1430,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //CLASS_DECL_APEX long apex_fork(::apex::system * psystem, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication)
 //{
 //
-//   //pmaindata->m_pappcore = __allocate app_core(pmaindata);
+//   //pmaindata->m_pappcore = øallocate app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {

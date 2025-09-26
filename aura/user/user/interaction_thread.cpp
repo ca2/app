@@ -5,7 +5,7 @@
 #include "interaction.h"
 #include "user.h"
 #include "system.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/node.h"
@@ -14,6 +14,7 @@
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/platform/session.h"
+
 
 
 #ifdef WINDOWS_DESKTOP
@@ -268,7 +269,7 @@ namespace user
 
       }
 
-      //__øconstruct(m_pwindow->m_puserinteraction, m_pwindow->m_puserinteraction->m_pthreadUserInteraction);
+      //øconstruct(m_pwindow->m_puserinteraction, m_pwindow->m_puserinteraction->m_pthreadUserInteraction);
 
       m_eflagElement += e_flag_running;
 
@@ -306,7 +307,7 @@ namespace user
       //   if (is_debugger_attached())
       //   {
 
-      //      output_error_message("Window not created", "Window not created", e_message_box_icon_warning);
+      //      output_error_message("Window not created", "Window not created", ::user::e_message_box_icon_warning);
 
       //   }
 
@@ -429,7 +430,7 @@ namespace user
    //      
    //      get_message(&m_message, nullptr, 0, 0);
 
-   //      if(m_message.m_emessage == e_message_quit)
+   //      if(m_message.m_emessage == ::user::e_message_quit)
    //      {
 
    //         if (m_strDebugType.contains("filemanager"))
@@ -439,9 +440,9 @@ namespace user
 
    //         }
 
-   //         information()(e_trace_category_appmsg) << ::type(this).name() << " thread::pump_message - Received e_message_quit.\n";
+   //         information()(e_trace_category_appmsg) << ::type(this).name() << " thread::pump_message - Received ::user::e_message_quit.\n";
 
-   //         //::information(::type(this).name()) << " thread::pump_message - Received e_message_quit.\n");
+   //         //::information(::type(this).name()) << " thread::pump_message - Received ::user::e_message_quit.\n");
 
    //         m_nDisablePumpCount++; // application must die
    //         // Note: prevents calling message loop things in 'exit_thread'
@@ -450,36 +451,36 @@ namespace user
 
    //      }
 
-   //      if(m_message.m_emessage == e_message_left_button_down)
+   //      if(m_message.m_emessage == ::user::e_message_left_button_down)
    //      {
 
-   //         informationf("pump_message e_message_left_button_down");
+   //         informationf("pump_message ::user::e_message_left_button_down");
 
    //      }
 
-   //      if (m_message.m_emessage == e_message_quit)
+   //      if (m_message.m_emessage == ::user::e_message_quit)
    //      {
 
 
    //      }
 
-   //      if(m_message.m_emessage == e_message_left_button_down)
+   //      if(m_message.m_emessage == ::user::e_message_left_button_down)
    //      {
 
    //         informationf("::user::thread::LBUTTONDOWN");
 
    //      }
-   //      else if(m_message.m_emessage == e_message_left_button_up)
+   //      else if(m_message.m_emessage == ::user::e_message_left_button_up)
    //      {
 
    //         informationf("::user::thread::LBUTTONUP");
 
    //      }
 
-   //      if (m_message.m_emessage != e_message_kick_idle && m_message.m_emessage != e_message_quit)
+   //      if (m_message.m_emessage != ::user::e_message_kick_idle && m_message.m_emessage != ::user::e_message_quit)
    //      {
 
-   //         if (m_message.m_emessage == e_message_destroy_window)
+   //         if (m_message.m_emessage == ::user::e_message_destroy_window)
    //         {
 
    //            if (m_strDebugType.contains("notify_icon"))
@@ -557,21 +558,21 @@ namespace user
 
          auto & message = m_message;
 
-         if (message.m_emessage == e_message_mouse_move)
+         if (message.m_eusermessage == ::user::e_message_mouse_move)
          {
 
 
          }
-         else if (message.m_emessage == e_message_left_button_down)
+         else if (message.m_eusermessage == ::user::e_message_left_button_down)
          {
 
-            informationf("e_message_left_button_down");
+            informationf("::user::e_message_left_button_down");
 
          }
-         else if (message.m_emessage == e_message_left_button_up)
+         else if (message.m_eusermessage == ::user::e_message_left_button_up)
          {
 
-            informationf("e_message_left_button_up");
+            informationf("::user::e_message_left_button_up");
 
          }
 
@@ -602,10 +603,10 @@ namespace user
                if (puserframe)
                {
 
-                  if (message.m_emessage == ::e_message_redraw)
+                  if (message.m_eusermessage == ::user::e_message_redraw)
                   {
 
-                     throw ::exception(error_failed, "Please post e_message_redraw directly to the graphics thread");
+                     throw ::exception(error_failed, "Please post ::user::e_message_redraw directly to the graphics thread");
 
                      //string strType = ::type(puserinteraction).name();
 
@@ -627,30 +628,30 @@ namespace user
                   else
                   {
 
-                     if (message.m_emessage == e_message_left_button_down)
+                     if (message.m_eusermessage == ::user::e_message_left_button_down)
                      {
 
-                        informationf("e_message_left_button_down");
+                        informationf("::user::e_message_left_button_down");
 
                      }
-                     else if (message.m_emessage == e_message_left_button_up)
+                     else if (message.m_eusermessage == ::user::e_message_left_button_up)
                      {
 
-                        informationf("e_message_left_button_up");
+                        informationf("::user::e_message_left_button_up");
 
                      }
 
                      ::cast < ::user::interaction > puserinteractionFrame = puserframe;
 
-                     auto pmessage = puserinteractionFrame->get_message(message.m_emessage, message.m_wparam, message.m_lparam);
+                     auto pmessage = puserinteractionFrame->get_message(message.m_eusermessage, message.m_wparam, message.m_lparam);
 
                      if (pmessage)
                      {
 
-                        if (pmessage->m_emessage == e_message_left_button_down)
+                        if (pmessage->m_eusermessage == ::user::e_message_left_button_down)
                         {
 
-                           informationf("e_message_left_button_down");
+                           informationf("::user::e_message_left_button_down");
 
                         }
 
@@ -750,13 +751,13 @@ namespace user
          if (::is_set(puserinteraction))
          {
 
-            auto emessage = pmessage->m_emessage;
+            auto eusermessage = pmessage->m_eusermessage;
 
             //throw ::exception(todo("interaction"));
             //throw ::exception(todo("thread"));
 
 //            //short circuit for frequent messages
-//            if (iMessage == e_message_apply_visual)
+//            if (iMessage == ::user::e_message_apply_visual)
 //            {
 //
 //               //throw ::exception(todo("interaction"));
@@ -773,7 +774,7 @@ namespace user
 //
 //            }
 //            else
-            if (emessage == e_message_update_notify_icon)
+            if (eusermessage == ::user::e_message_update_notify_icon)
             {
 
                puserinteraction->route_message(pusermessage);
@@ -781,7 +782,7 @@ namespace user
                return true;
 
             }
-            //            else if (iMessage == e_message_simple_command)
+            //            else if (iMessage == ::user::e_message_simple_command)
             //            {
             //
             //               puserinteraction->m_pinteractionimpl->_001OnApplyVisual(pusermessage);
@@ -790,7 +791,7 @@ namespace user
             //
             //            }
 
-                        //if (iMessage > e_message_midi_sequence_event)
+                        //if (iMessage > ::user::e_message_midi_sequence_event)
                         //{
 
                         //   return true;
@@ -921,7 +922,7 @@ namespace user
    //
    //            BOOL    fEaten;
    //
-   //            if (e_message_key_down == lpMsg->message)
+   //            if (::user::e_message_key_down == lpMsg->message)
    //            {
    //               // does an ime want it?
    //               if (m_pkeystrokemgr->TestKeyDown(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten &&
@@ -930,7 +931,7 @@ namespace user
    //                  continue;
    //               }
    //            }
-   //            else if (e_message_key_up == lpMsg->message)
+   //            else if (::user::e_message_key_up == lpMsg->message)
    //            {
    //               // does an ime want it?
    //               if (m_pkeystrokemgr->TestKeyUp(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten &&
@@ -987,7 +988,7 @@ namespace user
    //
    //      //m_happeningApplyVisual.reset_happening();
    //
-   //      m_pwindow->m_puserinteraction->post_message(e_message_apply_visual);
+   //      m_pwindow->m_puserinteraction->post_message(::user::e_message_apply_visual);
    //
    //   }
 
@@ -1003,7 +1004,7 @@ namespace user
    void thread::destroy()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_pwindow.defer_destroy();
 
@@ -1065,7 +1066,7 @@ namespace user
    //   //   information() << "notify_icon";
    //   //}
 
-   //   //_synchronous_lock synchronouslock(this->synchronization());
+   //   //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   //m_pwindow->m_puserinteraction.release();
 

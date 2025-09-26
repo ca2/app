@@ -28,7 +28,7 @@ namespace platform
 
             auto psystem = system();
 
-            _synchronous_lock(psystem->synchronization());
+            _synchronous_lock synchronouslock(psystem->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             auto pfactory = psystem->factory();
 
@@ -45,7 +45,7 @@ namespace platform
 
             }
 
-            __øconstruct(p);
+            øconstruct(p);
 
          }
 

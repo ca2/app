@@ -24,17 +24,17 @@ namespace simple_ui
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &top::on_message_create);
-      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&top::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&top::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&top::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &top::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down,pchannel,this,&top::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up,pchannel,this,&top::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move,pchannel,this,&top::on_message_mouse_move);
 
-      MESSAGE_LINK(e_message_activate, pchannel, this, &top::_001OnActivate);
-      MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &top::_001OnNcActivate);
+      USER_MESSAGE_LINK(::user::e_message_activate, pchannel, this, &top::_001OnActivate);
+      USER_MESSAGE_LINK(::user::e_message_non_client_activate, pchannel, this, &top::_001OnNcActivate);
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &top::_001OnSysCommand);
+//      USER_MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &top::_001OnSysCommand);
 //
 //#endif
 

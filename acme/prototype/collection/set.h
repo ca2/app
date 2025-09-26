@@ -7,220 +7,58 @@
 #include "single.h"
 
 
-
-template < typename NODE >
-class node_set :
-   virtual public ::particle,
-   public ::range < ::list_iterator < ::set_node < NODE > * > >
+template < typename ITEM, enum_allocate t_eallocate >
+class node_set_base :
+   public ::range < ::list_iterator < ::set_node < ITEM > * > >
 {
 public:
 
 
-   using HASH_TABLE = set_dynamic_hash_table < NODE >;
-   using ITEM = typename ::set_node < NODE >::ITEM;
-   using ARG_ITEM = typename ::set_node < NODE >::ARG_ITEM;
+   using BASE_RANGE = ::range < ::list_iterator < ::set_node < ITEM > * > >;
 
 
-   using node = ::set_node < NODE > ;
-   using single = node;
+   using BASE_NODE = ::set_node < ITEM > ;
+   using BASE_ITEM = typename BASE_NODE::BASE_ITEM;
+   using HASH_TABLE = set_dynamic_hash_table < ITEM >;
+   using KEY = typename BASE_NODE::KEY;
+   using ARG_KEY = typename BASE_NODE::ARG_KEY;
+   using PAYLOAD = typename BASE_NODE::PAYLOAD;
+   using ARG_PAYLOAD = typename BASE_NODE::ARG_PAYLOAD;
 
-   using ITEM_TYPE = node;
-
-   using BASE_RANGE = ::range < ::list_iterator < node * > >;
-
-   using CONTAINER_ITEM_TYPE = node;
+   using CONST_ARG_KEY = const non_const<typename BASE_NODE::ARG_KEY>;
 
    using iterator = typename BASE_RANGE::iterator;
    using const_iterator = typename BASE_RANGE::const_iterator;
 
-
-   //__declare_iterator_struct_ok(set, iterator, m_pnode, ::is_set(this->m_pnode));
-
-
-//   template < typename iterator > struct make_iterator : iterator
-//   {
-//
-//      using CONTAINER = typename iterator::CONTAINER;
-//
-//      using iterator::iterator;
-//
-//      make_iterator()
-//      {
-//         this->m_pnode = (iterator)nullptr;
-//         this->m_pcontainer = (CONTAINER*)nullptr;
-//         this->m_pnodeBeg = (iterator)nullptr;
-//         this->m_pnodeEnd = (iterator) nullptr;
-//      }
-//
-//      make_iterator(const iterator iterator, const CONTAINER * pset = nullptr)
-//      {
-//         this->m_pnode = (iterator) iterator;
-//         this->m_pcontainer = (CONTAINER *) pset;
-//         this->m_pnodeBeg = (iterator) iterator;
-//         this->m_pnodeEnd = (iterator) nullptr;
-//      }
-//
-//
-//      make_iterator(const make_iterator & iterator)
-//      {
-//         this->m_pnode = iterator.m_pnode;
-//         this->m_pcontainer = iterator.m_pcontainer;
-//         this->m_pnodeBeg = (iterator) iterator.m_pnodeBeg;
-//         this->m_pnodeEnd = (iterator) iterator.m_pnodeEnd;
-//      }
-//
-//
-//      make_iterator begin() const
-//      {
-//
-//         return make_iterator(this->m_pcontainer->get_start(), this->m_pcontainer);
-//
-//      }
-//
-//
-//      make_iterator end() const
-//      {
-//
-//         return make_iterator(nullptr, this->m_pcontainer);
-//
-//      }
-//
-//
-//      make_iterator & operator ++ ()
-//      {
-//
-//         this->m_pnode = this->m_pnode->m_next;
-//
-//         return *this;
-//
-//      }
-//
-//      template < typename PRED >
-//      void each(PRED pred)
-//      {
-//
-//         while (this->ok())
-//         {
-//
-//#ifdef CPP17
-//
-//            if (returns_false(pred, true, this->operator *()))
-//            {
-//
-//               break;
-//
-//            }
-//
-//#else
-//
-//            pred(this->operator *());
-//
-//            //if (returns_false(pred, true, this->operator *()))
-//            //{
-//
-//              // break;
-//
-//            //}
-//
-//
-//#endif
-//
-//            this->operator ++();
-//
-//         }
-//
-//      }
-//
-//
-//      make_iterator operator ++ (int)
-//      {
-//
-//         make_iterator iterator = this->m_pnode;
-//
-//         this->m_pnode = this->m_pnode->m_next;
-//
-//         return iterator;
-//
-//      }
-//
-//
-//      bool operator == (const make_iterator & it) const
-//      {
-//
-//         if (this == &it)
-//         {
-//
-//            return true;
-//
-//         }
-//
-//         if (this->m_pnode == nullptr && it.m_pnode == nullptr && it.m_pcontainer == nullptr)
-//         {
-//
-//            return true;
-//
-//         }
-//
-//         if (this->m_pcontainer != it.m_pcontainer)
-//         {
-//
-//            return false;
-//
-//         }
-//
-//         return this->m_pnode == it.m_pnode;
-//
-//      }
-//
-//
-//
-//      bool operator != (const make_iterator & it) const
-//      {
-//
-//         return !operator == (it);
-//
-//      }
-//
-//
-//      make_iterator & operator = (const make_iterator & it)
-//      {
-//
-//         if (this != &it)
-//         {
-//
-//            this->m_pcontainer = it.m_pcontainer;
-//
-//            this->m_pnode = it.m_pnode;
-//
-//         }
-//
-//         return *this;
-//
-//      }
-//
-//   };
-//
-//
-//   //__declare_iterator(dereferenced_value_iterator, this->m_pnode->item());
-//   //__declare_iterator(value_iterator, &this->m_pnode->item());
-//   __declare_iterator(key_iterator, &this->m_pnode->item());
-//   __declare_iterator(iterator, this->m_pnode);
-//
-
-   //using deferenced_iterator = dereferenced_value_iterator;
+   using item_iterator = ::element1_list_iterator < BASE_NODE * >;
+   using payload_iterator = ::element2_list_iterator < BASE_NODE * >;
+   using const_item_iterator = typename item_iterator::const_iterator;
+   using const_payload_iterator = typename payload_iterator::const_iterator;
 
 
-
-   HASH_TABLE           m_hashtable;
-   ::collection::count              m_nCount;
-   //iterator              m_begin;
+   HASH_TABLE                       m_hashtable;
+   ::collection::count              m_count;
 
 
-   node_set();
-   node_set(node singles[], int iCount);
-   node_set(const ::std::initializer_list < NODE > & list);
-   node_set(const node_set & m);
-   virtual ~node_set();
+   node_set_base();
+   template <typename T, ::collection::count count>
+   node_set_base(const T (&itema)[count]) :
+      node_set_base(itema, count)
+   {
+
+   }
+   node_set_base(BASE_ITEM * pitem, int iCount);
+   node_set_base(const ::std::initializer_list < BASE_ITEM > & list_base);
+   node_set_base(const node_set_base & m);
+
+   //
+   // pair_map_base();
+   // pair_map_base(const PAIR * iterator, ::collection::count c);
+   // pair_map_base(const ::std::initializer_list < PAIR > & list_base);
+   // pair_map_base(const pair_map_base & m);
+   // ~pair_map_base();
+
+   ~node_set_base();
 
    void construct();
 
@@ -231,84 +69,82 @@ public:
    bool is_empty() const;
    bool empty() const;
 
+   bool find(ARG_KEY key, PAYLOAD & payload) const;
 
+   const_iterator find(ARG_KEY key) const;
 
-   //inline iterator begin() { return iterator(get_start(), this); }
-   //inline iterator end() { return iterator(nullptr, this); }
+   iterator get(ARG_KEY key);
 
+   PAYLOAD * defer_get(ARG_KEY key) const;
 
-   //inline const_iterator begin() const { return const_iterator(((set *)this)->get_start(), this); }
-   //inline const_iterator end() const { return consst_iterator(nullptr, (set *)this); }
-
-
-   //lookup
-   bool lookup(ARG_ITEM item, ITEM& rValue) const;
-   const_iterator plookup(ARG_ITEM item) const;
-   iterator plookup(ARG_ITEM item);
-
-
-   bool should_set(ARG_ITEM item)
+   bool should_set(ARG_KEY key)
    { 
       
-      if (has(item))
+      if (has(key))
       {
 
          return false;
 
       }
 
-      set_at(item);
+      set_key(key);
 
       return true;
 
    }
 
 
-   
-   ITEM * pget(ARG_ITEM item);
+   // PAYLOAD * payload(ARG_KEY key);
+   // const PAYLOAD * payload(ARG_KEY key) const
+   // {
+   //
+   //    return ((node_set_base *)this)->defer_get(key);
+   //
+   // }
 
 
-   template < typename TITEM >
-   auto pop(const TITEM & item)
+   template < typename TKEY >
+   auto pop(const TKEY & key)
    {
 
-      auto value = operator[](item);
+      auto p = this->find(key);
 
-      erase_key(item);
+      auto payload = p->payload();
 
-      return value;
+      this->erase(p);
+
+      return payload;
 
    }
 
    //Operations
-   //lookup and add if not there
-   ITEM & operator[](ARG_ITEM item);
-   const ITEM & operator[](ARG_ITEM item) const;
+   //find and add if not there
+   PAYLOAD & operator[](ARG_KEY key);
+   const PAYLOAD & operator[](ARG_KEY key) const;
 
-   iterator get_item(ARG_ITEM item);
-   iterator find_item(ARG_ITEM item);
-   const_iterator find_item(ARG_ITEM item) const;
+   //iterator find_iterator(ARG_KEY key);
+   //const_iterator find_iterator(ARG_KEY key) const;
 
-   //add a __allocate<  >(item) node
-   inline iterator set_at(ARG_ITEM item);
+   inline iterator set_key(ARG_KEY key);
 
-   //add a __allocate<  >(item, value) node
-   void set_payload(const NODE& payload)
+   iterator set_item(const BASE_ITEM & item)
    {
-      set_at(payload.item());
+
+      return set_at((ARG_KEY) item.key(), (ARG_PAYLOAD) item.payload());
+
    }
 
    bool erase(iterator iterator);
 
-   bool toggle(ARG_ITEM item)
+   bool toggle(ARG_KEY key)
    {
 
-      auto iterator = this->find_item(item);
+      auto pnode = this->find(key);
 
-      if (::is_ok(iterator))
+      if (pnode)
       {
 
-         this->erase(iterator);
+         this->erase(pnode);
 
          return false;
 
@@ -316,7 +152,7 @@ public:
       else
       {
 
-         set_at(item);
+         set_item(key);
 
          return true;
 
@@ -324,14 +160,28 @@ public:
 
    }
 
-   //removing existing (item, ?) node
-   inline bool erase_item(ARG_ITEM item) { auto p = this->find_item(item);  return p ? this->erase(p) : false; }
 
-   //template < typename iterator >
-   //inline iterator erase(iterator it) { return ::acme::iterator::erase(*this, it); }
+   inline bool erase(ARG_KEY key)
+   { 
+      
+      auto p = this->find(key);  
+
+      if (!p)
+      {
+
+         return false;
+
+      }
+      
+      this->erase(p);
+
+      return true;
+   
+   }
+
 
    template < typename iterator >
-   inline void erase(const iterator & begin, const iterator & last)
+   inline void erase_range(const iterator & begin, const iterator & last)
    {
 
       for(auto it = begin; it != last; it++)
@@ -348,31 +198,14 @@ public:
 
    void erase_all();
    void clear();
-   void Empty();
-
-//   inline auto singles() { return iterator(nullptr, this); }
-//   inline auto singles() const { return const_iterator(nullptr, this); }
-////   inline auto values() const { return value_iterator(nullptr, this); }
-//   inline auto keys() const { return key_iterator(nullptr, this); }
+   //void Empty();
 
 
+   ::collection::count count(ARG_KEY key) const;
+   bool has(ARG_KEY key) const;
+   bool contains(ARG_KEY key) const;
 
-   ::collection::count count(const ITEM & t) const;
-   bool has(const ITEM & t) const;
-   bool contains(const ITEM & t) const;
 
-   //iterating all (item, value) singles
-//   POSITION get_start_position() const;
-
-   //const iterator get_start() const;
-   //iterator get_start();
-
-   //void get_next(iterator & rNextPosition, ITEM& rKey, ITEM& rValue) const;
-
-   //const iterator get_next(const iteratorpnodeRet) const;
-   //iterator get_next(const iteratorpnodeRet);
-
-   //advanced features for derived classes
    unsigned int GetHashTableSize() const
    {
       
@@ -384,37 +217,10 @@ public:
    void InitHashTable(unsigned int hashSize,bool bAllocNow = true);
 
 
-   ITEM get(ARG_ITEM argkey, ARG_ITEM valueDefault);
+   PAYLOAD defer_get(ARG_KEY argkey, ARG_PAYLOAD valueDefault) const;
 
 
-   //iterator next(iterator & iterator)
-   //{
-   //   if(iterator == nullptr)
-   //   {
-   //      iterator = get_start();
-   //   }
-   //   else
-   //   {
-   //      iterator = get_next(iterator);
-   //   }
-   //   return iterator;
-   //}
-
-   //const iterator next(const iterator & iterator) const
-   //{
-   //   if(iterator == nullptr)
-   //   {
-   //      iterator = get_start();
-   //   }
-   //   else
-   //   {
-   //      iterator = get_next(iterator);
-   //   }
-   //   return iterator;
-   //}
-
-
-   void assign(node_set & set)
+   void assign(node_set_base & set)
    {
 
       auto it = set.begin();
@@ -422,7 +228,7 @@ public:
       while(it.is_set())
       {
 
-         set_payload(*it);
+         set_item(*it);
 
          it++;
 
@@ -431,38 +237,14 @@ public:
    }
    
 
-   //inline iterator find_item(ARG_ITEM item) const { return find_node(item); }
+   BASE_NODE* __new_node(ARG_KEY key);
+   void __delete_node(BASE_NODE* pnode);
 
-   //inline iterator find(ARG_ITEM item) { return find_item(item); }
-   //const_iterator find (ARG_ITEM item) const { return find_item(item); }
+   iterator _new(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash);
+   void _free(iterator pnode);
+   iterator _find(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash) const;
+   //iterator _get(ARG_KEY key);
 
-
-   iterator new_node(ARG_ITEM item);
-   void free_node(iterator iterator);
-   iterator find_item(ARG_ITEM, unsigned int&, unsigned int&) const;
-
-
-   //// void assert_ok() const override;
-   //// void dump(dump_context & dumpcontext) const override;
-
-
-
-   //template < class ARRAY >
-   //bool erase_key_array(ARRAY a)
-   //{
-
-   //   bool bRemoved = false;
-
-   //   for(::collection::index i = 0; i < a.get_count(); i++)
-   //   {
-
-   //      bRemoved |= erase_item(a[i]);
-
-   //   }
-
-   //   return bRemoved;
-
-   //}
 
    template < primitive_container CONTAINER >
    ::collection::count erase_nodes(CONTAINER container)
@@ -470,10 +252,10 @@ public:
 
       ::collection::count countRemoved = 0;
 
-      for(auto & item : container)
+      for(auto & KEY : container)
       {
 
-         if(this->erase(item))
+         if(this->erase(KEY))
          {
 
             countRemoved++;
@@ -486,40 +268,24 @@ public:
 
    }
 
-//   virtual void on_after_read() {}
-
-   //::range < iterator > elements()
-   //{
-   //   return range < iterator >(begin(),end());
-   //}
-   //
-   //::range < const_iterator > elements() const
-   //{
-   //   return range < const_iterator >(begin(),end());
-   //}
-
-   //NODE & element_at(::collection::index iIndex)
-   //{
-   //   return elements().element_at(iIndex);
-   //}
 
    template < typename PRED >
-   typename node_set < NODE >::iterator predicate_find(PRED pred)
+   iterator predicate_find(PRED pred)
    {
 
-      auto point = this->get_start();
+      auto p = this->begin();
 
-      while (point != nullptr)
+      while (p)
       {
 
-         if (pred(point))
+         if (pred(p))
          {
 
-            return point;
+            return p.m_p;
 
          }
 
-         point = this->get_next(point);
+         p++;
 
       }
 
@@ -527,7 +293,7 @@ public:
 
    }
 
-   node_set & operator = (const node_set & m);
+   node_set_base & operator = (const node_set_base & m);
 
 
    template < typename TYPE >
@@ -563,13 +329,13 @@ public:
 
 
    template < primitive_container CONTAINER >
-   void add_items(const CONTAINER& container)
+   void add_keys(const CONTAINER& container)
    {
 
       for (auto& item : container)
       {
 
-         this->set_at(item);
+         this->set_key(item.key());
 
       }
 
@@ -577,127 +343,386 @@ public:
 
 
    template < primitive_container CONTAINER >
-   void erase_items(const CONTAINER& container)
+   void erase_keys(const CONTAINER& container)
    {
 
-      for (auto& item : container)
+      for (auto& KEY : container)
       {
 
-         this->erase_item(item);
+         this->erase_key(KEY);
 
       }
 
    }
 
+
+   void container_ok() const;
+
+
+   //void construct();
+
+
+   // ::collection::count get_count() const;
+   // ::collection::count get_size() const;
+   // ::collection::count size() const;
+   // ::collection::count count() const;
+   // bool is_empty() const;
+   // bool empty() const;
+   //
+
+
+   //find
+   //bool find(ARG_KEY key, PAYLOAD& rValue) const;
+   //const_iterator find(ARG_KEY key) const;
+   //iterator find(ARG_KEY key);
+
+
+   //PAYLOAD * defer_get(ARG_KEY key);
+
+
+   //inline typename pair_map_base < PAIR >::iterator get_item(ARG_KEY key);
+
+
+   // template < typename TITEM >
+   // auto pop(const TITEM & key)
+   // {
+   //
+   //    auto value = operator[](key);
+   //
+   //    this->erase_item(key);
+   //
+   //    return value;
+   //
+   // }
+   //
+   // // //Operations
+   // //find and add if not there
+   // inline PAYLOAD & operator[](ARG_KEY key);
+   // inline const PAYLOAD & operator[](ARG_KEY key) const;
+
+
+   iterator set_at(ARG_KEY key, ARG_PAYLOAD payload)
+   {
+
+      auto p = this->get(key);
+
+      p->defer_set_payload(payload);
+
+      return p;
+
+   }
+
+
+   //bool unhash(iterator iterator);
+
+   //removing existing (key, ?) node
+   //inline bool erase_item(ARG_KEY key) { auto p = this->find_item(key);  return p ? this->erase(p) : false; }
+
+
+   template < typename PAYLOAD2 >
+   iterator find_first_payload(const PAYLOAD2 & payload) const;
+
+
+   template < typename PAYLOAD2 >
+   inline bool erase_first_payload(const PAYLOAD2 payload)
+   {
+
+      auto iterator = this->find_first_payload(payload);
+
+      if (!iterator)
+      {
+
+         return false;
+
+      }
+
+      this->erase(iterator);
+
+      return true;
+
+   }
+
+
+
+   inline auto items() { return ::range<item_iterator>(*(item_iterator *)&this->begin(), *(item_iterator *)&this->end()); }
+   inline auto payloads() { return ::range<payload_iterator>(*(payload_iterator *)&this->begin(), *(payload_iterator *)&this->end()); }
+   inline auto items() const { return ::range<const_item_iterator>((item_iterator)this->begin(), (item_iterator)this->end()); }
+   inline auto payloads() const { return ::range<const_payload_iterator>((payload_iterator )this->begin(), (payload_iterator)this->end()); }
+
+
+
+   //
+   // ::collection::count key_count(ARG_KEY key) const;
+   // bool has_key(ARG_KEY key) const;
+   // bool contains_key(ARG_KEY key) const;
+
+   //iterating all (key, value) pairs
+//   POSITION get_start_position() const;
+
+   //inline const iterator get_start() const;
+   //inline iterator get_start();
+
+   //void get_next(iterator & rNextPosition, ITEM& rKey, PAYLOAD& rValue) const;
+
+   //const iterator get_next(const iteratorpnodeRet) const;
+   //iterator get_next(const iteratorpnodeRet);
+
+   // //advanced features for derived classes
+   // unsigned int GetHashTableSize() const
+   // {
+   //
+   //    return this->m_hashtable.GetHashTableSize();
+   // //
+   // // }
+   //
+   //
+   // void InitHashTable(unsigned int hashSize,bool bAllocNow = true);
+   //
+   //
+   // PAYLOAD get(ARG_KEY key, ARG_PAYLOAD valueDefault);
+   //
+
+
+   void set(node_set_base & nodesetbase)
+   {
+
+      for(auto & item : nodesetbase)
+      {
+
+         set_item(item);
+
+      }
+
+   }
+
+
+   //inline iterator find_item(ARG_KEY key) const { return find_node(key); }
+
+   //using BASE_SET::find_item;
+   //inline const_iterator find_item(ARG_KEY key) const { return ((pair_map_base *) this)->find_item(key); }
+
+
+   //BASE_NODE * new_node(ARG_KEY key, unsigned int uiPack, unsigned int uiHash);
+   inline void hash(iterator iterator, unsigned int uiPack, unsigned int uiHash);
+   void attach(iterator iterator, unsigned int uiPack, unsigned int uiHash);
+   //bool erase(iterator iterator);
+   void detach(iterator iterator);
+   void hash(unsigned int& uiPack, unsigned int& uiHash, ARG_KEY) const;
+   //inline iterator node_at(ARG_KEY, unsigned int & uiPack, unsigned int & uiHash) const;
+   //inline const_iterator node_at(ARG_KEY, unsigned int& uiPack, unsigned int& uiHash) const;
+
+   // void transfer(iterator iterator, pair_map_base * iterator_map = nullptr);
+   // void transfer(pair_map_base* iterator_map, ARG_KEY key);
+
+   //// void assert_ok() const override;
+   //// void dump(dump_context & dumpcontext) const override;
+
+
+   template < class ARRAY >
+   bool erase_key_array(ARRAY a)
+   {
+
+      bool bRemoved = false;
+
+      for(::collection::index i = 0; i < a.get_count(); i++)
+      {
+
+         bRemoved |= erase_key(a[i]);
+
+      }
+
+      return bRemoved;
+
+   }
+
+
+   template < class ARRAY >
+   ::collection::count erase_node_array(ARRAY a)
+   {
+
+      ::collection::count countRemoved = 0;
+
+      for(::collection::index i = 0; i < a.get_count(); i++)
+      {
+
+         if(erase_node(a[i]))
+         {
+
+            countRemoved++;
+
+         }
+
+      }
+
+      return countRemoved;
+
+   }
+
+   //virtual void on_after_read() override {}
+
+
+   //PAIR & element_at(::collection::index iIndex)
+   //{
+   //   return this->elements().element_at(iIndex);
+   //}
+   //
+   // template < typename PRED >
+   // typename BASE_NODE * predicate_find(PRED pred)
+   // {
+   //
+   //    auto pnode = this->begin();
+   //
+   //    while (::is_ok(pnode))
+   //    {
+   //
+   //       if (pred(pnode))
+   //       {
+   //
+   //          return p;
+   //
+   //       }
+   //
+   //       p++;
+   //
+   //    }
+   //
+   //    return nullptr;
+   //
+   // }
+
+   // node_set_base & operator = (const node_set_base & m);
+   //
+   //
+   // template < typename TYPE >
+   // ::pointer<TYPE>get_typed_ptr(::collection::index i = 0)
+   // {
+   //
+   //    ::pointer<TYPE>p;
+   //
+   //   for(auto & node : *this)
+   //   {
+   //
+   //       p = (*node).element2();
+   //
+   //       if(p)
+   //       {
+   //
+   //           if(i <= 0)
+   //           {
+   //
+   //               return p;
+   //
+   //           }
+   //
+   //           i--;
+   //
+   //       }
+   //
+   //   }
+   //
+   //   return nullptr;
+   //
+   // }
+   //
+
+
+   void transfer(iterator iterator, node_set_base * pnodesetbase = nullptr);
+   void transfer(node_set_base * pnodesetbase, ARG_KEY key);
+
+
 };
 
 
-template < typename NODE >
-inline ::collection::count node_set < NODE >::get_count() const
+template < typename NODE, enum_allocate t_eallocate >
+inline ::collection::count node_set_base < NODE, t_eallocate >::get_count() const
 {
-   return m_nCount;
+   return m_count;
 }
 
-template < typename NODE >
-inline ::collection::count node_set < NODE >::get_size() const
+template < typename NODE, enum_allocate t_eallocate >
+inline ::collection::count node_set_base < NODE, t_eallocate >::get_size() const
 {
-   return m_nCount;
+   return m_count;
 }
 
-template < typename NODE >
-inline ::collection::count node_set < NODE >::count() const
+template < typename NODE, enum_allocate t_eallocate >
+inline ::collection::count node_set_base < NODE, t_eallocate >::count() const
 {
-   return m_nCount;
+   return m_count;
 }
 
-template < typename NODE >
-inline ::collection::count node_set < NODE >::size() const
+template < typename NODE, enum_allocate t_eallocate >
+inline ::collection::count node_set_base < NODE, t_eallocate >::size() const
 {
-   return m_nCount;
+   return m_count;
 }
 
-template < typename NODE >
-node_set < NODE > & node_set < NODE >::operator = (const node_set & m)
+template < typename NODE, enum_allocate t_eallocate >
+node_set_base < NODE, t_eallocate > & node_set_base < NODE, t_eallocate >::operator = (const node_set_base & m)
 {
+
    if(this != &m)
    {
 
       erase_all();
 
-      for(auto & node : m)
+      for(auto & item : m)
       {
 
-         set_at(node.item());
+         set_item(item);
 
       }
 
    }
+
    return *this;
-}
 
-template < typename NODE >
-inline bool node_set < NODE >::is_empty() const
-{
-   return m_nCount == 0;
-}
-
-template < typename NODE >
-inline bool node_set < NODE >::empty() const
-{
-   return m_nCount == 0;
 }
 
 
-template < typename NODE >
-inline typename node_set < NODE >::iterator node_set < NODE >::set_at(ARG_ITEM item)
+template < typename NODE, enum_allocate t_eallocate >
+inline bool node_set_base < NODE, t_eallocate >::is_empty() const
 {
 
-   iterator iterator = get_item(item);
+   return m_count == 0;
 
-   //iterator->item() = newValue;
+}
+
+
+template < typename NODE, enum_allocate t_eallocate >
+inline bool node_set_base < NODE, t_eallocate >::empty() const
+{
+
+   return m_count == 0;
+
+}
+
+
+template < typename NODE, enum_allocate t_eallocate >
+inline typename node_set_base < NODE, t_eallocate >::iterator
+node_set_base < NODE, t_eallocate >::set_key(ARG_KEY key)
+{
+
+   auto iterator = get(key);
 
    return iterator;
 
 }
 
 
-//template < typename NODE >
-//inline typename node_set < NODE >::iterator node_set < NODE >::get_start() const
-//{
-//   return (m_nCount == 0) ? nullptr : BEFORE_START_POSITION;
-//}
-
-//template < typename NODE >
-//const typename node_set < NODE >::iterator node_set < NODE >::get_start() const
-//{
-//
-//   return this->m_begin;
-//
-//}
-//
-//template < typename NODE >
-//typename node_set < NODE >::iterator node_set < NODE >::get_start()
-//{
-//
-//   return this->m_begin;
-//
-//}
-
-/////////////////////////////////////////////////////////////////////////////
-// node_set < NODE > out-of-line functions
-template < typename NODE >
-void node_set < NODE >::construct()
+template < typename NODE, enum_allocate t_eallocate >
+void node_set_base < NODE, t_eallocate >::construct()
 {
 
-   m_nCount          = 0;
+   m_count          = 0;
    this->m_begin      = nullptr;
    this->m_end = nullptr;
 
 }
 
 
-template < typename NODE >
-node_set < NODE >::node_set()
+template < typename NODE, enum_allocate t_eallocate >
+node_set_base < NODE, t_eallocate >::node_set_base()
 {
 
    construct();
@@ -705,57 +730,63 @@ node_set < NODE >::node_set()
 }
 
 
-template < typename NODE >
-node_set < NODE >::node_set(const ::std::initializer_list < NODE > & list)
+template < typename NODE, enum_allocate t_eallocate >
+node_set_base < NODE, t_eallocate >::node_set_base(const ::std::initializer_list < BASE_ITEM > & items)
 {
 
    construct();
 
-   for(auto & pair_item : list)
+   for(auto & item : items)
    {
 
-      set_at(pair_item.item());
+      set_item(item);
 
    }
 
 }
 
-template < typename NODE >
-node_set < NODE >::node_set(node singles[], int iCount)
+
+template < typename NODE, enum_allocate t_eallocate >
+node_set_base < NODE, t_eallocate >::node_set_base(BASE_ITEM * pitem, int iCount)
 {
+
    construct();
+
    for(int i = 0; i < iCount; i++)
    {
-      set_at(singles[i].item());
+
+      set_item(pitem[i]);
+
    }
+
 }
 
 
-template < typename NODE >
-node_set < NODE >::node_set(const node_set & m)
+template < typename NODE, enum_allocate t_eallocate >
+node_set_base < NODE, t_eallocate >::node_set_base(const node_set_base & m)
 {
    
    construct();
 
-   for(auto & pair : m)
+   for(auto & item : m)
    {
 
-      set_at(pair.item());
+      set_item(item);
 
    }
 
 }
 
 
-template < typename NODE >
-void node_set < NODE >::erase_all()
+template < typename NODE, enum_allocate t_eallocate >
+void node_set_base < NODE, t_eallocate >::erase_all()
 {
 
-   //ASSERT_VALID(this);
+   //ASSERT_OK(this);
 
    if(this->begin())
    {
-      // destroy elements (items and loads - item load pair)
+      // destroy elements (KEYs and loads - KEY load pair)
 
       iterator pnext;
 
@@ -773,7 +804,7 @@ void node_set < NODE >::erase_all()
 
    m_hashtable.erase_all();
 
-   m_nCount = 0;
+   m_count = 0;
    //this->m_pnodeFree = nullptr;
 
    //if(m_pplex != nullptr)
@@ -789,99 +820,148 @@ void node_set < NODE >::erase_all()
 }
 
 
-template < typename NODE >
-inline void node_set < NODE >::clear()
+template < typename NODE, enum_allocate t_eallocate >
+inline void node_set_base < NODE, t_eallocate >::clear()
 {
    erase_all();
 }
 
-template < typename NODE >
-inline void node_set < NODE >::Empty()
-{
-   clear();
-}
+//template < typename NODE, enum_allocate t_eallocate >
+//inline void node_set_base < NODE, t_eallocate >::Empty()
+//{
+//   clear();
+//}
 
-template < typename NODE >
-node_set < NODE >::~node_set()
+template < typename NODE, enum_allocate t_eallocate >
+node_set_base < NODE, t_eallocate >::~node_set_base()
 {
    erase_all();
-   ASSERT(m_nCount == 0);
+   ASSERT(m_count == 0);
 }
 
-template < typename NODE >
-typename node_set < NODE >::iterator
-node_set < NODE >::new_node(ARG_ITEM item)
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::BASE_NODE* 
+node_set_base < NODE, t_eallocate >::__new_node(ARG_KEY key)
 {
-
-   //if(this->m_pnodeFree == nullptr)
-   //{
-   //   // add another block
-   //   //plex * newBlock = plex::create(m_pplex, m_nBlockSize, sizeof(set::node));
-   //   //// chain them into free list
-   //   //set::iterator iterator = (set::iterator) newBlock->data();
-   //   //// free in reverse order to make it easier to debug
-   //   //::collection::index i = m_nBlockSize - 1;
-   //   //for (iterator = &iterator[i]; i >= 0; i--, iterator--)
-   //   //{
-   //   //   iterator->m_next = this->m_pnodeFree;
-   //   //   this->m_pnodeFree = iterator;
-
-   //   //}
-   //   this->m_pnodeFree = ___new node();
-
-   //}
-
-   //ENSURE(this->m_pnodeFree != nullptr);  // we must have something
-
-   typename node_set < NODE >::iterator iterator = __raw_new node (item);
-
-   //this->m_pnodeFree  = this->m_pnodeFree->m_next;
-
-   //zero_pointer(iterator);
-
-   if(this->begin())
+   
+   if constexpr(t_eallocate == e_allocate_malloc)
    {
 
-      this->m_begin->m_back   = iterator.get();
+      auto pnode = (BASE_NODE*)::malloc(sizeof(BASE_NODE));
+
+      ::new (pnode) BASE_NODE(key);
+
+      return pnode;
 
    }
+   else
+   {
+      
+      auto pnode = __raw_new BASE_NODE(key);
 
-   iterator->m_next            = this->m_begin.get();
+      return pnode;
 
-   this->m_begin               = iterator;
+   }
+   
+}
 
-   this->m_begin->m_back      = nullptr;
 
-   m_nCount++;
+template < typename NODE, enum_allocate t_eallocate >
+void node_set_base < NODE, t_eallocate >::__delete_node(BASE_NODE* pnode)
+{
 
-   ASSERT(m_nCount > 0);  // make sure we don't overflow
+   if constexpr (t_eallocate == e_allocate_malloc)
+   {
 
-   return iterator;
+      pnode->~BASE_NODE();
+
+      ::free(pnode);
+
+   }
+   else
+   {
+
+      delete pnode;
+
+   }
 
 }
 
 
-template < typename NODE >
-void node_set < NODE >::free_node(iterator iterator)
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::iterator node_set_base < NODE, t_eallocate >::_new(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash)
 {
 
-   auto next = iterator->m_next;
-
-   if(iterator->m_next != nullptr)
+   // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
+   if (::is_null(m_hashtable.m_ppHash))
    {
 
-      iterator->m_next->m_back = iterator->m_back;
+      InitHashTable(m_hashtable.GetHashTableSize());
 
    }
 
-   if(iterator->m_back != nullptr)
+   ENSURE(m_hashtable.m_ppHash);
+
+   auto p = this->__new_node(key);
+
+   if(this->m_begin)
    {
 
-      iterator->m_back->m_next = iterator->m_next;
+      this->m_begin.m_p->m_back = p;
 
    }
 
-   if(this->m_begin == iterator)
+   if(m_hashtable.m_ppHash[uiPack])
+   {
+
+      m_hashtable.m_ppHash[uiPack]->m_pbackHash = &p->m_nextHash;
+
+   }
+
+   p->m_nextHash        = m_hashtable.m_ppHash[uiPack];
+
+   m_hashtable.m_ppHash[uiPack] = p;
+
+   p->m_pbackHash       = &m_hashtable.m_ppHash[uiPack];
+
+   p->m_next            = this->m_begin.get();
+
+   this->m_begin              = p;
+
+   this->m_begin.m_p->m_back  = nullptr;
+
+   m_count++;
+
+   ASSERT(m_count > 0);  // make sure we don't overflow
+
+   return p;
+
+}
+
+
+template < typename NODE, enum_allocate t_eallocate >
+void node_set_base < NODE, t_eallocate >::_free(iterator iterator)
+{
+
+   auto pnode = iterator.m_p;
+
+   auto next = pnode->m_next;
+
+   if(pnode->m_next != nullptr)
+   {
+
+      pnode->m_next->m_back = pnode->m_back;
+
+   }
+
+   if(pnode->m_back != nullptr)
+   {
+
+      pnode->m_back->m_next = pnode->m_next;
+
+   }
+
+   if(this->m_begin.get() == pnode)
    {
 
       this->m_begin = next;
@@ -889,7 +969,7 @@ void node_set < NODE >::free_node(iterator iterator)
       if(this->m_begin)
       {
 
-         this->m_begin->m_back = nullptr;
+         this->m_begin.m_p->m_back = nullptr;
 
       }
 
@@ -897,18 +977,18 @@ void node_set < NODE >::free_node(iterator iterator)
 
    //__delete(iterator.get());
 
-   delete iterator.get();
+   this->__delete_node(pnode);
 
    //iterator->m_next = this->m_pnodeFree;
 
    //this->m_pnodeFree = iterator;
 
-   m_nCount--;
+   m_count--;
 
-   ASSERT(m_nCount >= 0);  // make sure we don't underflow
+   ASSERT(m_count >= 0);  // make sure we don't underflow
 
    // if no more elements, cleanup completely
-   if (m_nCount == 0)
+   if (m_count == 0)
    {
 
       erase_all();
@@ -918,14 +998,14 @@ void node_set < NODE >::free_node(iterator iterator)
 }
 
 
-template < typename NODE >
-typename node_set < NODE >::iterator
-node_set < NODE >::find_item(ARG_ITEM item, unsigned int& nHashBucket, unsigned int& nHashValue) const
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::iterator
+node_set_base < NODE, t_eallocate >::_find(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash) const
 {
 
-   nHashValue = ::as_hash32(item).m_u;
+   uiHash = ::as_hash32(key).m_u;
 
-   nHashBucket = nHashValue % m_hashtable.GetHashTableSize();
+   uiPack = uiHash % m_hashtable.GetHashTableSize();
 
    if (is_empty())
    {
@@ -934,10 +1014,10 @@ node_set < NODE >::find_item(ARG_ITEM item, unsigned int& nHashBucket, unsigned 
 
    }
 
-   for(auto p = m_hashtable.m_ppHash[nHashBucket]; p; p = p->m_nextHash)
+   for(auto p = m_hashtable.m_ppHash[uiPack]; p; p = p->m_nextHash)
    {
 
-      if (EqualElements<ARG_ITEM>(p->item(), item))
+      if (EqualElements<ARG_KEY>(p->key(), key))
       {
 
          return p;
@@ -951,239 +1031,241 @@ node_set < NODE >::find_item(ARG_ITEM item, unsigned int& nHashBucket, unsigned 
 }
 
 
-template < typename NODE >
-bool node_set < NODE >::lookup(ARG_ITEM item, ITEM& rValue) const
+// template < typename NODE, enum_allocate t_eallocate >
+// bool node_set_base < NODE, t_eallocate >::find(ARG_KEY key, PAYLOAD & payload) const
+// {
+//
+//    unsigned int uiPack, uiHash;
+//
+//    auto p = find_node(key, uiPack, uiHash);
+//
+//    if (!p)
+//    {
+//
+//       return false;  // not in set
+//
+//    }
+//
+//    payload = p->payload();
+//
+//    return true;
+//
+// }
+
+//
+// //template < typename NODE, enum_allocate t_eallocate >
+//
+//
+// template < typename NODE, enum_allocate t_eallocate >
+// typename node_set_base < NODE, t_eallocate >::const_iterator
+// node_set_base < NODE, t_eallocate >::find(ARG_KEY key) const
+// {
+//
+//    return ((node_set_base *)this)->find(key);
+//
+// }
+
+
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::const_iterator
+node_set_base < NODE, t_eallocate >::find(ARG_KEY key) const
 {
 
-   unsigned int nHashBucket, nHashValue;
+   unsigned int uiPack;
 
-   auto p = find_item(item, nHashBucket, nHashValue);
+   unsigned int uiHash;
 
-   if (!p)
+   auto pnode = _find(key, uiPack, uiHash);
+
+   return pnode;
+
+}
+
+
+template < typename NODE, enum_allocate t_eallocate >
+bool node_set_base < NODE, t_eallocate >::find(ARG_KEY key, PAYLOAD & payload) const
+{
+
+   auto iterator = find(key);
+
+   if (!iterator)
    {
 
-      return false;  // not in set
+      return false;
 
    }
 
-   rValue = p->item();
+   payload = iterator->payload();
 
    return true;
 
 }
 
 
-//template < typename NODE >
-//typename node_set < NODE >::iterator node_set < NODE >::find (ARG_ITEM item)
-//{
-//   return iterator(plookup(item), this);
-//}
-//
-//template < typename NODE >
-//typename node_set < NODE >::const_iterator node_set < NODE >::find (ARG_ITEM item) const
-//{
-//   return const_iterator((iterator) plookup(item), (set *) this);
-//}
-
-
-template < typename NODE >
-typename node_set < NODE >::const_iterator node_set < NODE >::plookup(ARG_ITEM item) const
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::PAYLOAD *
+node_set_base < NODE, t_eallocate >::defer_get(ARG_KEY key) const
 {
 
-   return find_item(item);
+   auto iterator = find(key);
 
-}
-
-
-template < typename NODE >
-typename node_set < NODE >::iterator node_set < NODE >::plookup(ARG_ITEM item)
-{
-
-   unsigned int nHashBucket, nHashValue;
-
-   auto p = find_item(item, nHashBucket, nHashValue);
-
-   return p;
-
-}
-
-
-template < typename NODE >
-typename node_set < NODE >::ITEM * node_set < NODE >::pget(ARG_ITEM item)
-{
-
-   auto p = plookup(item);
-
-   if (!p)
+   if (!iterator)
    {
 
       return nullptr;
 
    }
-      
-   return &p->item();
+
+   return &iterator->payload();
 
 }
 
 
-template < typename NODE >
-inline typename node_set < NODE >::iterator node_set < NODE >::find_item(ARG_ITEM item) 
+// template < typename NODE, enum_allocate t_eallocate >
+// inline typename node_set_base < NODE, t_eallocate >::iterator
+// node_set_base < NODE, t_eallocate >::find(ARG_KEY key)
+// {
+//
+//    unsigned int nCluster, nHash;
+//
+//    auto iterator = ((node_set_base *)this)->_find(key, nCluster, nHash);
+//
+//    return iterator;
+//
+// }
+
+
+// template < typename NODE, enum_allocate t_eallocate >
+// inline typename node_set_base < NODE, t_eallocate >::const_iterator
+// node_set_base < NODE, t_eallocate >::find(ARG_KEY key) const
+// {
+//
+//    return ((node_set_base *)this)->find(key);
+//
+// }
+//
+// template < typename NODE, enum_allocate t_eallocate >
+// typename node_set_base < NODE, t_eallocate >::const_iterator
+// node_set_base < NODE, t_eallocate >::get(ARG_KEY key) const
+// {
+//
+//    return ((node_set_base*)this)->get(key);
+//
+// }
+
+
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::iterator
+node_set_base < NODE, t_eallocate >::get(ARG_KEY key)
 {
 
-   unsigned int nHashBucket, nHashValue;
+   unsigned int uiPack, uiHash;
 
-   return ((node_set *)this)->find_item(item, nHashBucket, nHashValue);
+   auto iterator = _find(key, uiPack, uiHash);
 
-}
-
-
-
-template < typename NODE >
-inline typename node_set < NODE >::const_iterator node_set < NODE >::find_item(ARG_ITEM item) const
-{
-
-   unsigned int nHashBucket, nHashValue;
-
-   return find_item(item, nHashBucket, nHashValue);
-
-}
-
-
-template < typename NODE >
-typename node_set < NODE >::iterator node_set < NODE >::get_item(ARG_ITEM item)
-{
-
-   unsigned int nHashBucket, nHashValue;
-
-   auto p = find_item(item, nHashBucket, nHashValue);
-
-   if(!p)
+   if(!iterator)
    {
 
-      // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
-      if (::is_null(m_hashtable.m_ppHash))
-      {
-
-         InitHashTable(m_hashtable.GetHashTableSize());
-
-      }
-
-      ENSURE(m_hashtable.m_ppHash);
-
-      p = new_node(item);
-
-      if(m_hashtable.m_ppHash[nHashBucket])
-      {
-
-         m_hashtable.m_ppHash[nHashBucket]->m_pbackHash = &p->m_nextHash;
-
-      }
-
-      p->m_nextHash        = m_hashtable.m_ppHash[nHashBucket].get();
-
-      m_hashtable.m_ppHash[nHashBucket] = p;
-
-      p->m_pbackHash       = &m_hashtable.m_ppHash[nHashBucket].get();
+      iterator = _new(key, uiPack, uiHash);
 
    }
 
-   return p;
+   return iterator;
 
 }
 
 
-template < typename NODE >
-typename node_set < NODE >::ITEM & node_set < NODE >::operator[](ARG_ITEM item)
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::PAYLOAD & node_set_base < NODE, t_eallocate >::operator[](ARG_KEY key)
 {
 
-   return get_item(item)->item();
+   return get(key)->payload();
 
 }
 
 
-template < typename NODE >
-const typename node_set < NODE >::ITEM & node_set < NODE >::operator[](ARG_ITEM item) const
+template < typename NODE, enum_allocate t_eallocate >
+const typename node_set_base < NODE, t_eallocate >::PAYLOAD & node_set_base < NODE, t_eallocate >::operator[](ARG_KEY key) const
 {
 
-   auto p = find_item(item);
+   auto iterator = find(key);
 
-   if (!p)
+   if (!iterator)
    {
 
       throw_exception(error_key_not_found);
 
    }
 
-   return p->item();
+   return iterator->payload();
 
 }
 
 
-template < typename NODE >
-inline bool node_set < NODE >::erase(iterator iterator)
-// erase - return true if erased
+template < typename NODE, enum_allocate t_eallocate >
+inline bool node_set_base < NODE, t_eallocate >::erase(iterator iterator)
 {
 
-   if(iterator->m_nextHash != nullptr)
+   if(iterator.m_p->m_nextHash != nullptr)
    {
 
-      iterator->m_nextHash->m_pbackHash = iterator->m_pbackHash;
+      iterator.m_p->m_nextHash->m_pbackHash = iterator.m_p->m_pbackHash;
 
    }
 
-   *iterator->m_pbackHash = iterator->m_nextHash;
+   *iterator.m_p->m_pbackHash = iterator.m_p->m_nextHash;
 
-   free_node(iterator);
+   _free(iterator);
 
    return true;
 
 }
 
 
-template < typename NODE >
-inline ::collection::count node_set < NODE >::count(const ITEM & item) const
+template < typename NODE, enum_allocate t_eallocate >
+inline ::collection::count node_set_base < NODE, t_eallocate >::count(ARG_KEY key) const
 {
 
-   return this->plookup(item) ? 1 : 0;
+   return this->find(key) ? 1 : 0;
 
 }
 
 
-template < typename NODE >
-bool node_set < NODE >::has(const ITEM & item) const
+template < typename NODE, enum_allocate t_eallocate >
+bool node_set_base < NODE, t_eallocate >::has(ARG_KEY key) const
 {
 
-   return this->plookup(item) ? 1 : 0;
+   return this->count(key) > 0;
 
 }
 
 
-template < typename NODE >
-bool node_set < NODE >::contains(const ITEM & item) const
+template < typename NODE, enum_allocate t_eallocate >
+bool node_set_base < NODE, t_eallocate >::contains(ARG_KEY key) const
 {
 
-   return this->plookup(item) ? 1 : 0;
+   return this->has(key);
 
 }
 
 
-//template < typename NODE >
-//void node_set < NODE >::get_next(iterator & iterator,
-//      ITEM& rKey, ITEM& rValue) const
+//template < typename NODE, enum_allocate t_eallocate >
+//void node_set_base < NODE, t_eallocate >::get_next(iterator & iterator,
+//      KEY& rKey, KEY& payload) const
 //{
 //
-//   rKey = iterator->item();
+//   rKey = iterator->KEY();
 //
-//   rValue = iterator->item();
+//   payload = iterator->KEY();
 //
 //   iterator = iterator->m_next;
 //
 //}
 //
 //
-//template < typename NODE >
-//inline const typename node_set < NODE >::iterator
-//node_set < NODE >::get_next(const iterator iterator) const
+//template < typename NODE, enum_allocate t_eallocate >
+//inline const typename node_set_base < NODE, t_eallocate >::iterator
+//node_set_base < NODE, t_eallocate >::get_next(const iterator iterator) const
 //{
 //
 //   return iterator->m_next;
@@ -1191,9 +1273,9 @@ bool node_set < NODE >::contains(const ITEM & item) const
 //}
 //
 //
-//template < typename NODE >
-//inline typename node_set < NODE >::iterator
-//node_set < NODE >::get_next(const iterator iterator)
+//template < typename NODE, enum_allocate t_eallocate >
+//inline typename node_set_base < NODE, t_eallocate >::iterator
+//node_set_base < NODE, t_eallocate >::get_next(const iterator iterator)
 //{
 //
 //   return iterator->m_next;
@@ -1201,34 +1283,33 @@ bool node_set < NODE >::contains(const ITEM & item) const
 //}
 
 
-template < typename NODE >
-typename node_set < NODE >::ITEM node_set < NODE > ::
-get(ARG_ITEM argkey, ARG_ITEM valueDefault)
+template < typename NODE, enum_allocate t_eallocate >
+typename node_set_base < NODE, t_eallocate >::PAYLOAD node_set_base < NODE, t_eallocate > ::defer_get(ARG_KEY key, ARG_PAYLOAD payloadDefault) const
 {
    
-   auto p = plookup(argkey);
+   auto iterator = find(key);
 
-   if (!p)
+   if (!iterator)
    {
 
-      return valueDefault;
+      return payloadDefault;
 
    }
 
-   return p->item();
+   return iterator->payload();
 
 }
 
 
-//template < typename NODE >
-//void node_set < NODE >::assert_ok() const
+//template < typename NODE, enum_allocate t_eallocate >
+//void node_set_base < NODE, t_eallocate >::assert_ok() const
 //{
 //
 //   ::matter::assert_ok();
 //
 //   ASSERT(GetHashTableSize() > 0);
 //
-//   ASSERT(m_nCount == 0 || m_hashtable.m_ppHash != nullptr);
+//   ASSERT(m_count == 0 || m_hashtable.m_ppHash != nullptr);
 //   // non-empty set should have hash table
 //
 //}
@@ -1240,42 +1321,42 @@ using dword_set = set < unsigned int >;
 
 using uptr_set = set < ::uptr >;
 
-//template < typename ITEM_TYPE >
-//class item
+//template < typename KEY_TYPE >
+//class KEY
 //{
 //
 //
-//   using ITEM = ITEM_TYPE;
-//   using TYPE = ITEM;
-//   using ARG_TYPE = argument_of < ITEM & >;
+//   using KEY = KEY_TYPE;
+//   using TYPE = KEY;
+//   using ARG_TYPE = argument_of < KEY & >;
 //
 //
 //   // Contract
-//   // ITEM & item();
-//   // ITEM & item();
-//   // const ITEM & item() const;
-//   // const ITEM & item() const;
+//   // KEY & KEY();
+//   // KEY & KEY();
+//   // ARG_KEY key() const;
+//   // ARG_KEY key() const;
 //
 //};
 
 
-template < typename NODE >
-using key_set = node_set < NODE >;
+template < typename NODE, enum_allocate t_eallocate >
+using key_set = node_set_base < NODE, t_eallocate >;
 
 
 #define __declare_key(xkeytype, xkey) \
-struct xkeytype : public ::item < xkeytype > \
+struct xkeytype : public ::KEY < xkeytype > \
 { \
 \
-   PAIR_DEFAULT_IMPL(xkeytype, ITEM, const ITEM &, xkey); \
-   ITEM & item() { return xkey; } \
-   const ITEM & item() const { return xkey; } \
+   PAIR_DEFAULT_IMPL(xkeytype, KEY, ARG_KEY, xkey); \
+   KEY & KEY() { return xkey; } \
+   ARG_KEY key() const { return xkey; } \
 }
 
 
 #ifdef CPP17
-#define __declare_key_tuple_size(item) \
-template<> ALIENATED_ANDROID_ANARCHY ::std::tuple_size< item > : ::std::integral_constant<size_t, 1> {} }
+#define __declare_key_tuple_size(KEY) \
+template<> ALIENATED_ANDROID_ANARCHY ::std::tuple_size< KEY > : ::std::integral_constant<size_t, 1> {} }
 #endif
 
 
@@ -1308,16 +1389,16 @@ using string_set = set < string >;
 //#pragma once
 
 
-template < typename NODE >
-void node_set < NODE >::InitHashTable(
+template < typename NODE, enum_allocate t_eallocate >
+void node_set_base < NODE, t_eallocate >::InitHashTable(
    unsigned int nHashSize, bool bAllocNow)
 //
 // Used to force allocation of a hash table or to override the default
 //   hash table int_size of (which is fairly small)
 {
 
-   //ASSERT_VALID(this);
-   ASSERT(this->m_nCount == 0);
+   //ASSERT_OK(this);
+   ASSERT(this->m_count == 0);
    ASSERT(nHashSize > 0);
 
    this->m_hashtable.InitHashTable(nHashSize,bAllocNow);
@@ -1325,50 +1406,233 @@ void node_set < NODE >::InitHashTable(
 }
 
 
-//template < typename NODE >
-//void node_set < NODE >::dump(dump_context& dumpcontext) const
-//{
-//
-//   ::matter::dump(dumpcontext);
-//
-//   //dumpcontext << "with " << this->m_nCount << " elements";
-//   //if (dumpcontext.GetDepth() > 0)
-//   //{
-//   //   // Dump in format "[item] -> value"
-//
-//   //   const iterator iterator = get_start();
-//   //   while (iterator != nullptr)
-//   //   {
-//   //      iterator = get_next(iterator);
-//   //      dumpcontext << "\n\t[";
-//   //      dump_elements<ITEM>(dumpcontext, &iterator->item(), 1);
-//   //   }
-//   //}
-//
-//   //dumpcontext << "\n";
-//}
-//
-//
-//
-
-
-
-
-template < typename NODE >
-inline bool node_set < NODE >::unhash(iterator iterator)
+template < typename NODE, enum_allocate t_eallocate >
+inline bool node_set_base < NODE, t_eallocate >::unhash(iterator iterator)
 // erase - return true if erased
 {
 
-   if(::is_set(iterator->m_nextHash))
+   if(::is_set(iterator.m_p->m_nextHash))
    {
 
-      iterator->m_nextHash->m_pbackHash = iterator->m_pbackHash;
+      iterator.m_p->m_nextHash->m_pbackHash = iterator.m_p->m_pbackHash;
 
    }
 
-   *iterator->m_pbackHash = iterator->m_nextHash;
+   *iterator.m_p->m_pbackHash = iterator.m_p->m_nextHash;
 
    return true;
 
 }
+
+
+template < typename ITEM, enum_allocate t_eallocate >
+void node_set_base < ITEM, t_eallocate >::transfer(node_set_base* pnodesetbase, ARG_KEY key)
+{
+
+   unsigned int uiPack;
+
+   unsigned int uiHash;
+
+   auto pnode = pnodesetbase->_find(key, uiPack, uiHash);
+
+   if (pnode)
+   {
+
+      pnodesetbase->detach(pnode);
+
+      attach(pnode, uiPack, uiHash);
+
+   }
+
+}
+
+
+template < typename ITEM, enum_allocate t_eallocate >
+void node_set_base < ITEM, t_eallocate >::transfer(iterator iterator, node_set_base * pnodesetbase)
+{
+
+   if (pnodesetbase == this)
+   {
+
+      return;
+
+   }
+
+   if (::is_set(pnodesetbase))
+   {
+
+      pnodesetbase->detach(iterator);
+
+   }
+
+   unsigned int uiPack;
+
+   unsigned int uiHash;
+
+   hash(uiPack, uiHash, iterator->key());
+
+   attach(iterator, uiPack, uiHash);
+
+}
+
+
+
+template < typename ITEM, enum_allocate t_eallocate >
+void node_set_base < ITEM, t_eallocate >::attach(iterator iterator, unsigned int uiPack, unsigned int uiHash)
+{
+
+   hash(iterator, uiPack, uiHash);
+
+   auto pnode = iterator.m_p;
+
+   if (this->m_begin)
+   {
+
+      this->m_begin.m_p->m_back = pnode;
+
+   }
+
+   pnode->m_next = this->begin().m_p;
+
+   this->begin() = pnode;
+
+   this->begin().m_p->m_back = nullptr;
+
+   this->m_count++;
+
+   ASSERT(this->m_count > 0);  // make sure we don't overflow
+
+}
+
+
+template < typename ITEM, enum_allocate t_eallocate >
+void node_set_base < ITEM, t_eallocate >::hash(iterator iterator, unsigned int uiPack, unsigned int uiHash)
+{
+
+   auto pnode = iterator.m_p;
+
+   // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
+   if (::is_null(this->m_hashtable.m_ppHash))
+   {
+
+      InitHashTable(this->m_hashtable.GetHashTableSize());
+
+   }
+
+   if (::is_set(this->m_hashtable.m_ppHash[uiPack]))
+   {
+
+      this->m_hashtable.m_ppHash[uiPack]->m_pbackHash = &pnode->m_nextHash;
+
+   }
+
+   pnode->m_nextHash = this->m_hashtable.m_ppHash[uiPack];
+
+   this->m_hashtable.m_ppHash[uiPack] = pnode;
+
+   pnode->m_pbackHash = &this->m_hashtable.m_ppHash[uiPack];
+
+}
+
+
+template < typename ITEM, enum_allocate t_eallocate >
+void node_set_base < ITEM, t_eallocate >::hash(unsigned int& uiPack, unsigned int& uiHash, ARG_KEY key) const
+{
+
+   uiHash = ::as_hash32(key).m_u;
+
+   uiPack = uiHash % this->m_hashtable.GetHashTableSize();
+
+}
+
+
+template < typename ITEM, enum_allocate t_eallocate >
+void node_set_base < ITEM, t_eallocate >::detach(iterator iterator)
+{
+
+   auto pnode = iterator.m_p;
+
+   this->unhash(iterator);
+
+   auto next = pnode->m_next;
+
+   if (::is_set(pnode->m_next))
+   {
+
+      pnode->m_next->m_back = pnode->m_back;
+
+   }
+
+   if (::is_set(pnode->m_back))
+   {
+
+      pnode->m_back->m_next = pnode->m_next;
+
+   }
+
+   if (this->m_begin.get() == pnode)
+   {
+
+      this->m_begin = next;
+
+      if (::is_set(this->m_begin))
+      {
+
+         this->m_begin.m_p->m_back = nullptr;
+
+      }
+
+   }
+
+   //delete iterator;
+
+   //iterator->m_next = this->m_pnodeFree;
+
+   //this->m_pnodeFree = iterator;
+
+   this->m_count--;
+
+   ASSERT(this->m_count >= 0);  // make sure we don't underflow
+
+   // if no more elements, cleanup completely
+   if (this->m_count == 0)
+   {
+
+      this->erase_all();
+
+   }
+
+}
+
+
+
+
+
+template < typename ITEM, enum_allocate t_eallocate >
+template < typename PAYLOAD2 >
+inline typename node_set_base < ITEM, t_eallocate >::iterator
+node_set_base < ITEM, t_eallocate >::find_first_payload(const PAYLOAD2 & payload) const
+{
+
+   auto p = this->begin();
+
+   while(p)
+   {
+
+      if(p->payload() == payload)
+      {
+
+         return p;
+
+      }
+
+      p++;
+
+   }
+
+   return nullptr;
+
+}
+
+
 

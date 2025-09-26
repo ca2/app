@@ -67,7 +67,7 @@ namespace geometry2d
 
       //m_eregion = ::draw2d::e_region_rect;
 
-      auto pitem = __create_new < rectangle_item >();
+      auto pitem = øcreate_new < rectangle_item >();
 
       pitem->m_item = rectangle;
 
@@ -90,7 +90,7 @@ namespace geometry2d
 
       //m_eregion = ::draw2d::e_region_ellipse;
 
-      auto pitem = __create_new < ellipse_item >();
+      auto pitem = øcreate_new < ellipse_item >();
 
       pitem->m_item = ellipse;
 
@@ -114,7 +114,7 @@ namespace geometry2d
 
       //m_eregion = ::draw2d::e_region_polygon;
 
-      auto pitem = __create_new < polygon_item >();
+      auto pitem = øcreate_new < polygon_item >();
 
       pitem->m_polygon.set_size(nCount);
 
@@ -152,7 +152,7 @@ namespace geometry2d
 
       //m_eregion = ::draw2d::e_region_polygon;
 
-      auto pitem = __create_new < polygon_item>();
+      auto pitem = øcreate_new < polygon_item>();
 
       pitem->m_polygon.set_size(nCount);
 
@@ -188,14 +188,14 @@ namespace geometry2d
 
       //m_eregion = ::draw2d::e_region_polygon;
 
-      auto pitem = __create_new < poly_polygon_item >();
+      auto pitem = øcreate_new < poly_polygon_item >();
 
       pitem->m_polypolygon.set_size(nCount);
 
       for (::collection::index i = 0; i < nCount; i++)
       {
 
-         pitem->m_polypolygon[i] = __allocate array_particle< double_polygon >();
+         pitem->m_polypolygon[i] = øallocate array_particle< double_polygon >();
 
          pitem->m_polypolygon[i]->set_size(ppolycounts[i]);
 
@@ -234,14 +234,14 @@ namespace geometry2d
 
       //m_eregion = ::draw2d::e_region_poly_polygon;
 
-      auto pitem = __create_new < poly_polygon_item >();
+      auto pitem = øcreate_new < poly_polygon_item >();
 
       pitem->m_polypolygon.set_size(nCount);
 
       for (::collection::index i = 0; i < nCount; i++)
       {
 
-         pitem->m_polypolygon[i] = __allocate double_polygon();
+         pitem->m_polypolygon[i] = øallocate double_polygon();
 
          pitem->m_polypolygon[i]->set_size(ppolycounts[i]);
 
@@ -279,7 +279,7 @@ namespace geometry2d
 
       //m_eregion = ::draw2d::e_region_poly_polygon;
 
-      auto pitem = __create_new < poly_polygon_item >();
+      auto pitem = øcreate_new < poly_polygon_item >();
 
       pitem->m_polypolygon = polypolygon;
 
@@ -308,7 +308,7 @@ namespace geometry2d
 
       //m_eregion = ::draw2d::e_region_combine;
 
-      auto pitem = __create_new < combine_item >();
+      auto pitem = øcreate_new < combine_item >();
 
       pitem->m_pregion1 = pregion1;
 

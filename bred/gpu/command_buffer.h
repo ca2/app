@@ -25,6 +25,7 @@ namespace gpu
       enum_state                          m_estate = e_state_none;
       enum_command_buffer                 m_ecommandbuffer;
       ::pointer < ::gpu::render_target >  m_pgpurendertarget;
+      ::pointer < ::gpu::queue >          m_pgpuqueue;
       bool                                m_bLoadingCommandBuffer;
       ::collection::index                 m_iFrameIndex;
       ::string                            m_strAnnotation;
@@ -35,7 +36,7 @@ namespace gpu
       ~command_buffer() override;
 
 
-      virtual void initialize_command_buffer(::gpu::render_target* pgpurendertarget, enum_command_buffer ecommandbuffer);
+      virtual void initialize_command_buffer(::gpu::render_target* pgpurendertarget, ::gpu::queue * pqueue, enum_command_buffer ecommandbuffer);
 
       virtual void begin_command_buffer(bool bOneTime);
 
@@ -53,8 +54,8 @@ namespace gpu
 
       virtual void draw(int a);
 
-      virtual void draw_vertices(int iVertexCount);
-      virtual void draw_indices(int iIndexCount);
+      virtual void draw_vertexes(int iVertexCount);
+      virtual void draw_indexes(int iIndexCount);
 
 
       virtual void draw(::gpu::pixmap * ppixmap);

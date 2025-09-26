@@ -4,7 +4,7 @@
 #include "data.h"
 #include "context_menu.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/application.h"
 #include "acme/platform/session.h"
@@ -444,7 +444,7 @@ namespace filemanager
 
       //auto pparticleSynchronization = m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr;
 
-      //synchronous_lock synchronouslock(pparticleSynchronization);
+      //synchronous_lock synchronouslock(pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //// auto pcontext = get_context();
 
@@ -483,7 +483,7 @@ namespace filemanager
       //            if (ptreeitemChild == nullptr)
       //            {
 
-      //               pitemChild = __allocate ::userfs::item(this);
+      //               pitemChild = øallocate ::userfs::item(this);
 
       //               pitemChild->set_user_path(pathAscendant);
 
@@ -554,7 +554,7 @@ namespace filemanager
       //      if (ptreeitemChild.is_null())
       //      {
 
-      //         ptreeitemChild = __allocate ::data::tree_item();
+      //         ptreeitemChild = øallocate ::data::tree_item();
 
       //         ptreeitemChild->m_ptree = this;
 
@@ -579,7 +579,7 @@ namespace filemanager
       //      if (!pitemChild)
       //      {
 
-      //         pitemChild = __allocate ::userfs::item(this);
+      //         pitemChild = øallocate ::userfs::item(this);
 
       //         ptreeitemChild->m_pitem = pitemChild;
 
@@ -637,7 +637,7 @@ namespace filemanager
       //      if (ptreeitemChild.is_null())
       //      {
 
-      //         ptreeitemChild = __allocate ::data::tree_item();
+      //         ptreeitemChild = øallocate ::data::tree_item();
 
       //         ptreeitemChild->m_ptree = this;
 
@@ -660,7 +660,7 @@ namespace filemanager
       //      if (!pitemChild)
       //      {
 
-      //         pitemChild = __allocate ::userfs::item(this);
+      //         pitemChild = øallocate ::userfs::item(this);
 
       //         ptreeitemChild->m_pitem = pitemChild;
 
@@ -842,7 +842,7 @@ return;
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::file::path_array_base patha;
       
@@ -892,7 +892,7 @@ return;
          if (!pchild)
          {
 
-            auto pitemNew = __allocate ::userfs::item(this);
+            auto pitemNew = øallocate ::userfs::item(this);
 
             pitemNew->set_user_path(path);
 
@@ -989,7 +989,7 @@ return;
 
    //auto pparticleSynchronization = m_usertreea.has_elements() ? m_usertreea[0]->synchronization() : nullptr;
 
-   //synchronous_lock synchronouslock(pparticleSynchronization);
+   //synchronous_lock synchronouslock(pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //// auto pcontext = get_context();
 
@@ -1028,7 +1028,7 @@ return;
    //            if (ptreeitemChild == nullptr)
    //            {
 
-   //               pitemChild = __allocate ::userfs::item(this);
+   //               pitemChild = øallocate ::userfs::item(this);
 
    //               pitemChild->set_user_path(pathAscendant);
 
@@ -1099,7 +1099,7 @@ return;
    //      if (ptreeitemChild.is_null())
    //      {
 
-   //         ptreeitemChild = __allocate ::data::tree_item();
+   //         ptreeitemChild = øallocate ::data::tree_item();
 
    //         ptreeitemChild->m_ptree = this;
 
@@ -1124,7 +1124,7 @@ return;
    //      if (!pitemChild)
    //      {
 
-   //         pitemChild = __allocate ::userfs::item(this);
+   //         pitemChild = øallocate ::userfs::item(this);
 
    //         ptreeitemChild->m_pitem = pitemChild;
 
@@ -1228,9 +1228,9 @@ return;
       ::filemanager_impact_base::install_message_routing(pchannel);
       ::userfs::tree_data::install_message_routing(pchannel);
 
-      MESSAGE_LINK(MessageMainPost, pchannel,  this,  &tree_data::_001OnMainPostMessage);
-      MESSAGE_LINK(e_message_context_menu, pchannel, this, &tree_data::on_message_context_menu);
-      MESSAGE_LINK(e_message_create, pchannel, this, &tree_data::on_message_create);
+      USER_MESSAGE_LINK(MessageMainPost, pchannel,  this,  &tree_data::_001OnMainPostMessage);
+      USER_MESSAGE_LINK(::user::e_message_context_menu, pchannel, this, &tree_data::on_message_context_menu);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &tree_data::on_message_create);
 
    }
 
@@ -1258,7 +1258,7 @@ return;
 //   {
 //      IShellFolder * psf;
 //
-//      if(m_mapFolder.lookup(efolder, psf))
+//      if(m_mapFolder.find(efolder, psf))
 //      {
 //         return psf;
 //      }
@@ -1358,7 +1358,7 @@ return;
 
       auto puserfsitem = dynamic_cast < ::userfs::item *> (ptreeitembase->_item());
 
-      auto pfileitem = __allocate ::file::item(*puserfsitem);
+      auto pfileitem = øallocate ::file::item(*puserfsitem);
 
       filemanager_document()->browse(pfileitem, context);
 

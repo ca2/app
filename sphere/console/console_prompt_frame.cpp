@@ -210,12 +210,12 @@ namespace console
    void prompt_frame::install_message_routing(::channel * pchannel)
    {
       simple_frame_window::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &prompt_frame::on_message_create);
-      MESSAGE_LINK(e_message_close, pchannel, this, &prompt_frame::on_message_close);
-//      //MESSAGE_LINK(e_message_timer, pchannel, this, &prompt_frame::on_timer);
-      MESSAGE_LINK(e_message_reposition, pchannel, this, &prompt_frame::on_message_move);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &prompt_frame::on_message_show_window);
-      MESSAGE_LINK(WM_APP + 2000, pchannel, this, &prompt_frame::_001OnApp2000);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &prompt_frame::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &prompt_frame::on_message_close);
+//      //USER_MESSAGE_LINK(::user::e_message_timer, pchannel, this, &prompt_frame::on_timer);
+      USER_MESSAGE_LINK(::user::e_message_reposition, pchannel, this, &prompt_frame::on_message_move);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &prompt_frame::on_message_show_window);
+      USER_MESSAGE_LINK(WM_APP + 2000, pchannel, this, &prompt_frame::_001OnApp2000);
    }
 
 

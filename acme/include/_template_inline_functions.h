@@ -205,7 +205,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //template < typename TYPE > inline TYPE*& __defer_new(TYPE*& p)
 //{
 //
-//   if (!p) p = __allocate TYPE();
+//   if (!p) p = øallocate TYPE();
 //
 //   return p;
 //
@@ -578,7 +578,6 @@ constexpr void append_and_step_if_true(bool b, CHARACTER *& p, CHARACTER charact
 }
 
 
-
 template < primitive_iterator ITERATOR, primitive_iterator BEGIN >
 constexpr bool iterator_is_before_begin(ITERATOR p, BEGIN)
 {
@@ -590,19 +589,19 @@ constexpr bool iterator_is_before_begin(ITERATOR p, BEGIN)
 
 
 template < primitive_iterator ITERATOR, primitive_iterator END >
-constexpr bool iterator_is_end(ITERATOR p, END)
+constexpr bool iterator_is_end(ITERATOR p, END pend)
 {
 
-   return p.is_null();
+   return p.is_null() || p == pend;
 
 }
 
 
 template < primitive_iterator ITERATOR, primitive_iterator BEGIN, primitive_iterator END >
-constexpr bool iterator_is_ok(ITERATOR p, BEGIN, END)
+constexpr bool iterator_is_ok(ITERATOR p, BEGIN, END pend)
 {
 
-   return p.is_ok();
+   return p.is_ok() && p != pend;
 
 }
 

@@ -20,9 +20,9 @@ namespace user
       //::user::multiple_document_template *         m_ptemplateProgress2;
 
 
-      //map < ::type, ::user::impact_system * >      m_mapTemplate;
+      //map_base < ::type, ::user::impact_system * >      m_mapTemplate;
 
-      //atom_map < ::user::impact_system * >           m_mapimpactsystem;
+      //atom_map_base < ::user::impact_system * >           m_mapimpactsystem;
 
 
       //::pointer<::userex::userex>             m_puserex;
@@ -45,7 +45,7 @@ namespace user
       //::pointer<::user::keyboard>             m_pkeyboard;
 
       //index                                      m_iEdge;
-      //::map < ::user::enum_key, ::user::enum_key, bool, bool > *  m_pmapKeyPressed;
+      //::map_base < ::user::enum_key, ::user::enum_key, bool, bool > *  m_pmapKeyPressed;
 
       //bool                                       m_bProgrammerMode;
 
@@ -62,7 +62,7 @@ namespace user
       //e_cursor                                              m_ecursor;
 
       //::pointer<::user::theme>                           m_ptheme;
-      //string_map < ::pointer<::user::theme >>            m_mapTheme;
+      //string_map_base < ::pointer<::user::theme >>            m_mapTheme;
 
       //::user::interaction *                                 m_puiCapture;
       //bool                                                  m_bDrawCursor;
@@ -90,14 +90,14 @@ namespace user
 
 
       //bool                                                  m_bSystemSynchronizedScreen;
-      //int_rectangle_array                                            m_rectangleaMonitor;
-      //int_rectangle_array                                            m_rectangleaWorkspace;
+      //int_rectangle_array_base                                            m_rectangleaMonitor;
+      //int_rectangle_array_base                                            m_rectangleaWorkspace;
       //index                                                 m_iMainMonitor;
       //index                                                 m_iMainWorkspace;
 
 
 
-      //atom_map < ::user::interaction * >                      m_mapboundui;
+      //atom_map_base < ::user::interaction * >                      m_mapboundui;
 
 
 

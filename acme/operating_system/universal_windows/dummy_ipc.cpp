@@ -216,7 +216,7 @@
 //
 //         m_pp->result = m_pp->folderTopic->CreateFileQuery();
 //
-//         m_pp->result->ContentsChanged += ref __allocate< TypedEventHandler < ::winrt::Windows::Storage::Search::IStorageQueryResultBase ^,Object ^ >([this] >(::winrt::Windows::Storage::Search::IStorageQueryResultBase ^ result,Object ^ o)
+//         m_pp->result->ContentsChanged += ref øallocate< TypedEventHandler < ::winrt::Windows::Storage::Search::IStorageQueryResultBase ^,Object ^ >([this] >(::winrt::Windows::Storage::Search::IStorageQueryResultBase ^ result,Object ^ o)
 //         {
 //
 //            ::winrt::Windows::Storage::StorageFile ^ f = ::wait(result->Folder->GetFileAsync(wstring("acme.topic")));
@@ -340,7 +340,7 @@
 //      }
 //
 //
-//      //LRESULT CALLBACK rx::s_message_queue_proc(oswindow oswindow,::enum_message emessage, ::wparam wparam, ::lparam lparam)
+//      //LRESULT CALLBACK rx::s_message_queue_proc(oswindow oswindow,::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 //      //{
 //
 //      //   //int iRet = 0;
@@ -390,7 +390,7 @@
 //      //}
 //
 //
-//      //LRESULT rx::message_queue_proc(::enum_message emessage, ::wparam wparam, ::lparam lparam)
+//      //LRESULT rx::message_queue_proc(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 //      //{
 //
 //      //   //if(message == WM_USER + 100)

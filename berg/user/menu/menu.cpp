@@ -3,7 +3,7 @@
 #include "interaction.h"
 #include "acme/constant/id.h"
 #include "acme/constant/timer.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/timer.h"
@@ -132,16 +132,16 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &menu::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu::on_message_destroy);
-      MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &menu::_001OnNcActivate);
-      MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &menu::on_message_non_client_calculate_size);
-      MESSAGE_LINK(e_message_enable, pchannel, this, &menu::_001OnEnable);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &menu::on_message_show_window);
-      MESSAGE_LINK(e_message_close, pchannel, this, &menu::on_message_close);
-      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &menu::_001OnMouseActivate);
-      MESSAGE_LINK(e_message_activate, pchannel, this, &menu::_001OnActivate);
-      MESSAGE_LINK(e_message_non_client_create, pchannel, this, &menu::_001OnNcCreate);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &menu::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &menu::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_non_client_activate, pchannel, this, &menu::_001OnNcActivate);
+      USER_MESSAGE_LINK(::user::e_message_non_client_calc_size, pchannel, this, &menu::on_message_non_client_calculate_size);
+      USER_MESSAGE_LINK(::user::e_message_enable, pchannel, this, &menu::_001OnEnable);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &menu::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_close, pchannel, this, &menu::on_message_close);
+      USER_MESSAGE_LINK(::user::e_message_mouse_activate, pchannel, this, &menu::_001OnMouseActivate);
+      USER_MESSAGE_LINK(::user::e_message_activate, pchannel, this, &menu::_001OnActivate);
+      USER_MESSAGE_LINK(::user::e_message_non_client_create, pchannel, this, &menu::_001OnNcCreate);
 
    }
 
@@ -225,7 +225,7 @@ namespace user
       if (m_pmenuitem.is_null())
       {
 
-         m_pmenuitem = __øcreate <  ::menu::item  >();
+         m_pmenuitem = øcreate <  ::menu::item  >();
 
       }
 
@@ -363,7 +363,7 @@ namespace user
       if (m_pmenuitem.is_null())
       {
 
-         m_pmenuitem = __øcreate <  ::menu::item  >();
+         m_pmenuitem = øcreate <  ::menu::item  >();
 
       }
 
@@ -399,7 +399,7 @@ namespace user
 
       system()->_xml();
 
-      auto pxmldocument = __create_new < ::xml::document >();
+      auto pxmldocument = øcreate_new < ::xml::document >();
 
       try
       {
@@ -518,7 +518,7 @@ namespace user
          if (m_pitemClose.is_null())
          {
 
-            m_pitemClose = __allocate::menu::item();
+            m_pitemClose = øallocate::menu::item();
 
             m_pitemClose->id() = "close_menu";
 
@@ -595,7 +595,7 @@ namespace user
       if (m_pmenuitem.is_null())
       {
 
-         m_pmenuitem = __øcreate <  ::menu::item  >();
+         m_pmenuitem = øcreate <  ::menu::item  >();
 
       }
 
@@ -679,7 +679,7 @@ namespace user
          //}
 
 #else
-         //auto pusersystem = __allocate ::user::system(iStyleEx, nullptr, nullptr, 0, nullptr, pcreate);
+         //auto pusersystem = øallocate ::user::system(iStyleEx, nullptr, nullptr, 0, nullptr, pcreate);
 
          //if (!create_window_ex(pusersystem, puiParent))
          //if (!create_host())
@@ -779,7 +779,7 @@ namespace user
 
             order(e_zorder_top_most);
 
-            m_bNeedPerformLayout = true;
+            set_need_perform_layout();
 
             set_need_layout();
 
@@ -1138,7 +1138,7 @@ namespace user
       if (!m_bInline && !ptopic->m_bRet)
       {
 
-         post_message(e_message_close);
+         post_message(::user::e_message_close);
 
          if (m_pmenuParent)
          {
@@ -1228,7 +1228,7 @@ namespace user
       ////
       ////                           m_pmenuitemSub = pitem;
       ////
-      ////                           m_psubmenu = __allocate menu(pitem);
+      ////                           m_psubmenu = øallocate menu(pitem);
       ////
       ////                           m_psubmenu->initialize(this);
       ////
@@ -1366,7 +1366,7 @@ namespace user
 
                defer_close();
 
-               // this may be destroyed by e_message_close above
+               // this may be destroyed by ::user::e_message_close above
 
                if (::is_set(pchannelNotify))
                {
@@ -1408,7 +1408,7 @@ namespace user
 
       hide_sub_menu();
 
-      auto pusermenu = __allocate::user::menu(pmenuitem);
+      auto pusermenu = øallocate::user::menu(pmenuitem);
 
       pusermenu->initialize(this);
 
@@ -1420,7 +1420,7 @@ namespace user
 
       m_pmenuSubMenu->update_track_rectangle(rectangle);
 
-      auto ptrackpopup = __allocate::menu::track_popup(pusermenu,
+      auto ptrackpopup = øallocate::menu::track_popup(pusermenu,
          pmenuitem->m_puserinteraction,
          m_pchannelNotify,
          mouse_cursor_position(),
@@ -1440,7 +1440,7 @@ namespace user
 
          m_pmenuSubMenu->m_bCloseParentOnClose = false;
 
-         m_pmenuSubMenu->post_message(e_message_close);
+         m_pmenuSubMenu->post_message(::user::e_message_close);
 
          m_pmenuSubMenu = nullptr;
          //m_pitemSubMenu.release();
@@ -1534,12 +1534,12 @@ namespace user
 
          //if (m_atomSubMenu.has_character())
          //{
-         //   m_psubmenu->send_message(e_message_close);
+         //   m_psubmenu->send_message(::user::e_message_close);
          //   m_psubmenu = nullptr;
          //   m_atomSubMenu.is_empty();
          //}
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_pmenuitemShowSubMenu2)
          {
@@ -1571,7 +1571,7 @@ namespace user
 
             //   m_atomSubMenu = m_atomTimerMenu;
 
-            //   m_psubmenu = __allocate menu(pmenuitema->find(m_atomTimerMenu));
+            //   m_psubmenu = øallocate menu(pmenuitema->find(m_atomTimerMenu));
 
             //   m_psubmenu->initialize(this);
 
@@ -1593,7 +1593,7 @@ namespace user
 
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             update_command(m_pmenuitem);
 
@@ -1615,7 +1615,7 @@ namespace user
          //      if(puiTarget != nullptr)
          //      {
          //         /* xxx if(puserinteractionParent->on_command(0,
-         //          MAKELONG((int)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+         //          MAKELONG((int)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
          //          &commandui, nullptr))
          //          continue;*/
          //         if(puiTarget->_001SendUpdateCmdUi(&commandui))
@@ -1683,7 +1683,7 @@ namespace user
    //             {
    //                /*
    //                 if(puserinteractionParent->on_command(0,
-   //                 MAKELONG((int)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+   //                 MAKELONG((int)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
    //                 &commandui, nullptr))
    //                 continue;
    //                 */
@@ -1838,7 +1838,7 @@ namespace user
             if (m_pmenuParent != nullptr)
             {
 
-               m_pmenuParent->post_message(e_message_close);
+               m_pmenuParent->post_message(::user::e_message_close);
 
             }
 
@@ -1954,7 +1954,7 @@ namespace user
 
       }
 
-      auto pmenucommand = __create_new< ::menu::command>();
+      auto pmenucommand = øcreate_new< ::menu::command>();
 
       pmenucommand->m_pitema = pitemParent->m_pmenuitema;
 
@@ -2207,7 +2207,9 @@ namespace user
 
       auto pstyle = ptopowner->get_style(pgraphics);
 
-      pgraphics->set(get_font(pstyle));
+      auto pfont = pstyle->get_font(this, e_element_text);
+
+      pgraphics->set(pfont);
 
       auto metrics = pgraphics->get_text_metrics();
 

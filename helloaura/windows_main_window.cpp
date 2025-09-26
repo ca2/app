@@ -113,17 +113,17 @@ BOOL InitInstance(::helloaura::render * prender, HINSTANCE hInstance, int nCmdSh
 //
 //  PURPOSE:  Processes messages for the main window.
 //
-//  e_message_command  - process the application menu
-//  e_message_paint    - Paint the main window
-//  e_message_destroy  - post a quit message and return
+//  ::user::e_message_command  - process the application menu
+//  ::user::e_message_paint    - Paint the main window
+//  ::user::e_message_destroy  - post a quit message and return
 //
 //
-LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+LRESULT CALLBACK WndProc(HWND hWnd, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    ::helloaura::render * prender;
 
-   if (message == e_message_create)
+   if (message == ::user::e_message_create)
    {
 
       prender = (::helloaura::render *)((LPCREATESTRUCT)lParam)->lpCreateParams;
@@ -144,7 +144,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::
 
    switch (message)
    {
-   case e_message_command:
+   case ::user::e_message_command:
    {
       int wmId = LOWORD(wParam);
       // Parse the menu selections:
@@ -161,7 +161,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::
       }
    }
    break;
-   case e_message_timer:
+   case ::user::e_message_timer:
    {
       if (wParam == 123)
       {
@@ -171,9 +171,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::
    }
    break
    ;
-   case e_message_erase_background:
+   case ::user::e_message_erase_background:
       return 1;
-   case e_message_paint:
+   case ::user::e_message_paint:
    {
       PAINTSTRUCT ps;
       HDC hdc = BeginPaint(hWnd, &ps);
@@ -201,7 +201,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::
 
    }
    break;
-   case e_message_size:
+   case ::user::e_message_size:
    {
 
       ::this->rectangle(hWnd, prender->m_rectangleX);
@@ -220,7 +220,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::
       prender->m_bFast = true;
 
    } break;
-   case e_message_destroy:
+   case ::user::e_message_destroy:
       PostQuitMessage(0);
       break;
    default:
@@ -230,7 +230,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::
 }
 
 // Message handler for about box.
-INT_PTR CALLBACK About(HWND hDlg, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+INT_PTR CALLBACK About(HWND hDlg, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
    __UNREFERENCED_PARAMETER(lParam);
    switch (message)
@@ -238,7 +238,7 @@ INT_PTR CALLBACK About(HWND hDlg, ::enum_message emessage, ::wparam wparam, ::lp
    case WM_INITDIALOG:
       return (INT_PTR)true;
 
-   case e_message_command:
+   case ::user::e_message_command:
       if (LOWORD(wParam) == e_dialog_result_ok || LOWORD(wParam) == e_dialog_result_cancel)
       {
          EndDialog(hDlg, LOWORD(wParam));

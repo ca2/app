@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "toolbar.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/exception/bad_unit_exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/user/user/content.h"
@@ -114,13 +114,13 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 
    ::user::toolbar::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_create       , pchannel, this, &simple_toolbar::on_message_create);
-   MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &simple_toolbar::on_message_left_button_double_click);
-   //MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &simple_toolbar::on_message_mouse_move);
-   //MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &simple_toolbar::on_message_left_button_down);
-   //MESSAGE_LINK(e_message_left_button_up    , pchannel, this, &simple_toolbar::on_message_left_button_up);
-   //MESSAGE_LINK(e_message_non_client_hit_test    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
-   //MESSAGE_LINK(e_message_mouse_leave   , pchannel, this, &simple_toolbar::on_message_mouse_leave);
+   USER_MESSAGE_LINK(::user::e_message_create       , pchannel, this, &simple_toolbar::on_message_create);
+   USER_MESSAGE_LINK(::user::e_message_left_button_double_click, pchannel, this, &simple_toolbar::on_message_left_button_double_click);
+   //USER_MESSAGE_LINK(::user::e_message_mouse_move    , pchannel, this, &simple_toolbar::on_message_mouse_move);
+   //USER_MESSAGE_LINK(::user::e_message_left_button_down  , pchannel, this, &simple_toolbar::on_message_left_button_down);
+   //USER_MESSAGE_LINK(::user::e_message_left_button_up    , pchannel, this, &simple_toolbar::on_message_left_button_up);
+   //USER_MESSAGE_LINK(::user::e_message_non_client_hit_test    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
+   //USER_MESSAGE_LINK(::user::e_message_mouse_leave   , pchannel, this, &simple_toolbar::on_message_mouse_leave);
 
    //install_click_default_mouse_handling(pchannel);
    
@@ -141,7 +141,7 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 //bool simple_toolbar::create_toolbar(::user::interaction * puiParent, unsigned int dwCtrlStyle, unsigned int uStyle, atom nID)
 //{
 //
-//   ASSERT_VALID(puiParent);   // must have a parent
+//   ASSERT_OK(puiParent);   // must have a parent
 //   ASSERT(!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
 //
 //   //SetBorders(rectangleBorders);
@@ -206,7 +206,7 @@ int_size simple_toolbar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, 
 int_size simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
 {
 
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    ASSERT(is_window());
 
@@ -421,7 +421,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //
 //   // erase parts not drawn
 //   //pgraphics->IntersectClipRect(rectangleWindow);
-//   //SendMessage(e_message_erase_background, (WPARAM)pgraphics->get_handle1());
+//   //SendMessage(::user::e_message_erase_background, (WPARAM)pgraphics->get_handle1());
 //
 //   // draw gripper in non-client area
 //   DrawGripper(pgraphics, rectangleWindow);
@@ -466,7 +466,7 @@ void simple_toolbar::on_message_create(::message::message * pmessage)
 //
 //         // allow reflections
 //         //if (::user::interaction::on_command(0,
-//         //   MAKELONG((index)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+//         //   MAKELONG((index)CN_UPDATE_::message::command, ::user::e_message_command+WM_REFLECT_BASE),
 //         //   &state, nullptr))
 //         //   continue;
 //
@@ -841,11 +841,11 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
             if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               auto ppen = __øcreate < ::draw2d::pen > ();
+               auto ppen = øcreate < ::draw2d::pen > ();
 
                ppen->create_solid(1, argb(190, 92, 184, 92));
 
-               auto pbrush = __øcreate < ::draw2d::brush >();
+               auto pbrush = øcreate < ::draw2d::brush >();
 
                pbrush->create_solid(argb(123, 180, 184, 255));
 
@@ -893,11 +893,11 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
          if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
          {
 
-            auto ppen = __øcreate < ::draw2d::pen > ();
+            auto ppen = øcreate < ::draw2d::pen > ();
 
             ppen->create_solid(1, argb(255, 92, 92, 92));
 
-            auto pbrush = __øcreate < ::draw2d::brush >();
+            auto pbrush = øcreate < ::draw2d::brush >();
 
             pbrush->create_solid(argb(255, 255, 255, 255));
 
@@ -1009,7 +1009,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
       m_fontsize = pgraphics->m_pfont->m_fontsize;
 
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
       if (!(estate & ::user::e_state_disabled))
       {
@@ -1148,7 +1148,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
 void simple_toolbar::SetSizes(const ::int_size & sizeButton, const ::int_size & sizeImage)
 {
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    // sizes must be non-zero and positive
    ASSERT(sizeButton.cx() > 0 && sizeButton.cy() > 0);
@@ -1185,7 +1185,7 @@ void simple_toolbar::SetSizes(const ::int_size & sizeButton, const ::int_size & 
 bool simple_toolbar::LoadBitmap(const ::scoped_string & scopedstrResourceName)
 
 {
-ASSERT_VALID(this);
+ASSERT_OK(this);
 ASSERT(scopedstrResourceName != nullptr);
 
 
@@ -1496,7 +1496,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //      if (pTarget != nullptr)
 //      {
 //
-//         pTarget->send_message_to_descendants(e_message_idle_update_command_user_interface);
+//         pTarget->send_message_to_descendants(::user::e_message_idle_update_command_user_interface);
 //
 //      }
 //
@@ -1890,7 +1890,7 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
 ::collection::index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, ::collection::index nCount, ::collection::index nWidth)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::collection::count countNewlyWrapped = 0;
 
@@ -2247,7 +2247,7 @@ int_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, unsi
 
    //}
 
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    if (!is_window())
    {

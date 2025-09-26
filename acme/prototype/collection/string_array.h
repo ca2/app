@@ -49,42 +49,34 @@ public:
 
 
    using BASE_ARRAY = comparable_array_base < Type, const Type &, comparable_eq_array_base < Type, const Type &, array_base < Type, const Type &, ::typed::def < Type >, ::heap::typed_memory < Type, ::heap::e_memory_array >, t_etypeContainer > > >;
-   typedef Type                                                      String;
-   typedef RawType                                                   RawString;
-   typedef string_base_array < RawType, RawType, t_etypeContainer >    RawStringArray;
-   using CHARACTER = typename Type::CHARACTER;
-   using RANGE = typename RawType::RANGE;
-   typedef Type BASE_TYPE;
-   typedef const Type & BASE_ARG_TYPE;
-   using SCOPED_STRING = typename RawType::SCOPED_STRING;
+   using RAW_BASE_ARRAY = typename BASE_ARRAY::RAW_BASE_ARRAY;
+   using BASE_STRING = Type;
+   using BASE_RAW_STRING = RawType;
+   using BASE_RAW_STRING_ARRAY = ::string_base_array < RawType, RawType, t_etypeContainer >;
+   using CHARACTER = typename BASE_STRING::CHARACTER;
+   using RAW_RANGE = typename BASE_RAW_STRING::RANGE;
+   using BASE_TYPE = BASE_STRING;
+   using BASE_ARG_TYPE = const BASE_STRING &;
+   using SCOPED_STRING = typename BASE_STRING::SCOPED_STRING;
 
    using THIS_RAW_RANGE = typename BASE_ARRAY::THIS_RAW_RANGE;
    using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
-
+   using this_iterator = typename BASE_ARRAY::this_iterator;
 
    using BASE_ARRAY::BASE_ARRAY;
-   using BASE_ARRAY::operator =;
+   //using BASE_ARRAY::operator =;
 
 
-//   string_base_array() {}
-
-   // template < typename T >
-   // string_base_array(const ::std::initializer_list < T > & l)
-   // {
-   //    for (auto & e : l)
-   //    {
-   //       add(e);
-   //    }
-   // }
-
-   //string_base_array(const string_base_array & array);
-   //string_base_array(string_base_array && array);
-   //#ifdef UNIVERSAL_WINDOWS
-   //   string_base_array(Platform::Array < Platform::String ^ > ^ refstra);
-   //#endif
+   string_base_array(const RAW_BASE_ARRAY& a) : BASE_ARRAY(a) {}
    string_base_array(CHARACTER * const * ppsz, ::collection::count c);
    ~string_base_array();
 
+   template < primitive_container CONTAINER >
+   string_base_array & operator = (const CONTAINER & container)
+   {
+      this->assign_a_container(container);
+      return *this;
+   }
 
    ::collection::count get_size() const;
    ::collection::count get_count() const;
@@ -177,7 +169,8 @@ public:
 
    Type & insert_at(::collection::index nIndex, const Type & strElement);
    void insert_at(::collection::index nIndex, const Type & strElement, ::collection::count nCount);
-   void insert_at(::collection::index nStartIndex, const string_base_array & NewArray);
+   template < primitive_container CONTAINER >
+   void insert_at(::collection::index nStartIndex, const CONTAINER & container);
 
 
    string_base_array slice(::collection::index iStart, ::collection::count iCount = -1) const;
@@ -226,6 +219,15 @@ public:
       va_end(arguments);
 
       return str;
+
+   }
+
+
+   template<typename... Args>
+   auto & append_format(std::format_string<Args...> fmt, Args&&... args)
+   {
+
+      return this->add_new().format(fmt, std::forward<Args>(args)...);
 
    }
 
@@ -429,8 +431,11 @@ public:
    ::collection::count erase(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1);
 
 
-   ::collection::count case_insensitive_erase(const string_base_array & stra);
-   ::collection::count erase(const string_base_array & stra);
+   template < primitive_container CONTAINER >
+   ::collection::count case_insensitive_erase(const CONTAINER & container);
+
+   template < primitive_container CONTAINER >
+   ::collection::count erase(const CONTAINER & container);
 
    string_base_array & explode(const SCOPED_STRING & strSeparator, const SCOPED_STRING & str, bool bAddEmpty = true);
 
@@ -498,8 +503,8 @@ public:
    //   string_base_array operator +(const string_base_array & stra) const;
 
 
-   bool operator == (const RawStringArray & a) const;
-   bool operator != (const RawStringArray & a) const;
+   bool operator == (const BASE_RAW_STRING_ARRAY & a) const;
+   bool operator != (const BASE_RAW_STRING_ARRAY & a) const;
 
 
    void replace_with(const SCOPED_STRING & strNew, const SCOPED_STRING & strOld);
@@ -513,7 +518,7 @@ public:
 
    void add_tokens(const SCOPED_STRING & str, const SCOPED_STRING & strSeparator, bool bAddEmpty = true);
 
-   void add_smallest_tokens(const SCOPED_STRING & str, const RawStringArray & straSeparator, bool bAddEmpty = true, bool bWithSeparator = false);
+   void add_smallest_tokens(const SCOPED_STRING & str, const BASE_RAW_STRING_ARRAY & straSeparator, bool bAddEmpty = true, bool bWithSeparator = false);
 
    void add_words(const SCOPED_STRING & str);
 
@@ -617,7 +622,7 @@ public:
 
 
    // c_get
-   ::array < const_char_pointer >c_ansi_get(bool bMemoryAlloc = false) const;
+   ::array_base < const_char_pointer >c_ansi_get(bool bMemoryAlloc = false) const;
    //::array < const ::wide_character * > c_wide_get(bool bMemoryAlloc = false) const;
    void c_add(char ** ppsz, ::collection::count iCount, bool bMemoryAlloc = false);
    void c_add(char ** ppsz, bool bMemoryAlloc = false);
@@ -626,7 +631,7 @@ public:
 
    void feed_line(const ::scoped_string& scopedstr, bool bCarriage)
    {
-      if (this->m_earray & e_array_carriage_return)
+      if (this->m_erange & e_range_array_carriage_return)
       {
          if (this->has_elements())
          {
@@ -638,7 +643,7 @@ public:
          }
          if (!bCarriage)
          {
-            this->m_earray -= e_array_carriage_return;
+            this->m_erange = (::enum_range) (this->m_erange & ~e_range_array_carriage_return);
          }
       }
       else
@@ -646,7 +651,7 @@ public:
          this->add(scopedstr);
          if (bCarriage)
          {
-            this->m_earray |= e_array_carriage_return;
+            this->m_erange = (::enum_range)(this->m_erange | e_range_array_carriage_return);
          }
 
       }

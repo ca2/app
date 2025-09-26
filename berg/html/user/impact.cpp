@@ -2,7 +2,7 @@
 #include "impact.h"
 #include "document.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/handler/topic.h"
 #include "axis/html/html/data.h"
 
@@ -40,10 +40,10 @@ void html_impact::install_message_routing(::channel * pchannel)
 
    ::html_form::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_destroy, pchannel, this, &html_impact::on_message_destroy);
-   MESSAGE_LINK(e_message_create, pchannel, this, &html_impact::on_message_create);
-   MESSAGE_LINK(e_message_context_menu, pchannel, this, &html_impact::on_message_context_menu);
-   //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &html_impact::on_message_set_cursor);
+   USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &html_impact::on_message_destroy);
+   USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &html_impact::on_message_create);
+   USER_MESSAGE_LINK(::user::e_message_context_menu, pchannel, this, &html_impact::on_message_context_menu);
+   //USER_MESSAGE_LINK(::user::e_message_set_cursor, pchannel, this, &html_impact::on_message_set_cursor);
 
 }
 
@@ -191,7 +191,7 @@ void html_impact::on_document_complete(const ::scoped_string & scopedstrUrl)
 //
 //         {
 //
-//            synchronous_lock synchronouslock(this->synchronization());
+//            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //            if (get_html_data() == nullptr)
 //            {
@@ -239,7 +239,7 @@ void html_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
 
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             if (get_html_data() == nullptr)
             {

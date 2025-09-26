@@ -41,9 +41,9 @@ namespace data
 
          pdata->m_listenera.erase(this);
 
-         m_datamap.erase_item(pdata->id());
+         m_datamap.erase(pdata->id());
 
-         //::acme::map::erase_value(m_datamap, pdata);
+         //::acme::map_base::erase_value(m_datamap, pdata);
 
          return true;
 

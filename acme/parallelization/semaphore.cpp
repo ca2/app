@@ -263,7 +263,7 @@ bool semaphore::_wait(const class time & timeWait)
 //void semaphore_timer_handler (int signum)
 //{
 //
-//   synchronous_lock synchronouslock(g_pmutexSemaphore);
+//   synchronous_lock synchronouslock(g_pmutexSemaphore, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //   if(g_pthreadaSemaphore != nullptr)
 //   {

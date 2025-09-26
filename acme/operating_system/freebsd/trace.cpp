@@ -94,8 +94,8 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //   ENSURE_ARG(pmessage != nullptr);
 //   ::pointer<::user::message>pusermessage(pmessage);
 //
-//   if (pusermessage->m_emessage == e_message_mouse_move || pusermessage->m_emessage == e_message_non_client_mouse_move ||
-//      pusermessage->m_emessage == e_message_non_client_hit_test || pusermessage->m_emessage == e_message_set_cursor ||
+//   if (pusermessage->m_emessage == ::user::e_message_mouse_move || pusermessage->m_emessage == ::user::e_message_non_client_mouse_move ||
+//      pusermessage->m_emessage == ::user::e_message_non_client_hit_test || pusermessage->m_emessage == ::user::e_message_set_cursor ||
 //      pusermessage->id() == WM_CTLCOLORBTN ||
 //      pusermessage->id() == WM_CTLCOLORDLG ||
 //      pusermessage->id() == WM_CTLCOLOREDIT ||
@@ -191,9 +191,9 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //   ENSURE_ARG(pmsg != nullptr);
 
 //
-//   if (pmsg->message == e_message_mouse_move || lpmsg->message == e_message_non_client_mouse_move ||
+//   if (pmsg->message == ::user::e_message_mouse_move || lpmsg->message == ::user::e_message_non_client_mouse_move ||
 
-//      pmsg->message == e_message_non_client_hit_test || lpmsg->message == e_message_set_cursor ||
+//      pmsg->message == ::user::e_message_non_client_hit_test || lpmsg->message == ::user::e_message_set_cursor ||
 
 //      pmsg->message == WM_CTLCOLORBTN ||
 

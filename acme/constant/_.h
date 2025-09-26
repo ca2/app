@@ -23,6 +23,19 @@ enum enum_start_reference
 };
 
 
+enum enum_array : int
+{
+
+   e_array_none = 0,
+   // e_array_zeroe_on_allocation = 1,
+   // e_array_preallocated = 2,
+   e_array_raw = 8,
+   // e_array_carriage_return = 4,
+   // e_array_disable_referencing_debugging = 1ll << 52,
+
+};
+
+
 enum enum_font_awesome : int;
 
 
@@ -50,7 +63,11 @@ class eimpact;
 
 
 enum enum_simple_command : int;
-enum enum_message : unsigned int;
+namespace user
+{
+   enum enum_message : unsigned int;
+} // namespace user
+enum enum_message : int;
 enum enum_impact : long long;
 enum enum_id : ::uptr;
 enum enum_check : int;

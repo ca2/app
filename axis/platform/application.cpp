@@ -70,7 +70,7 @@ namespace axis
    ::pointer < ::geo::geo > application::create_geo()
    {
 
-      return __create_new < ::geo::geo >();;
+      return øcreate_new < ::geo::geo >();;
 
    }
 
@@ -714,7 +714,7 @@ namespace axis
       if (m_psimpledb.is_null())
       {
 
-         __construct_new(m_psimpledb);
+         øconstruct_new(m_psimpledb);
 
       }
 
@@ -838,7 +838,7 @@ namespace axis
 //
 //      psystem->install_progress_add_up(); // 2
 //
-//      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
+//      //xxdebug_box("init1 ok", "init1 ok", ::user::e_message_box_icon_information);
 //
 //      m_timeHeartBeat.Now();
 //
@@ -853,7 +853,7 @@ namespace axis
 //
 //      psystem->install_progress_add_up(); // 3
 //
-//      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
+//      //xxdebug_box("init2 ok", "init2 ok", ::user::e_message_box_icon_information);
 //
 //      m_timeHeartBeat.Now();
 //
@@ -868,7 +868,7 @@ namespace axis
 //
 //      psystem->install_progress_add_up(); // 4
 //
-//      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
+//      //xxdebug_box("init3 ok", "init3 ok", ::user::e_message_box_icon_information);
 //
 //      m_timeHeartBeat.Now();
 //

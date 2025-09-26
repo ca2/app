@@ -3,7 +3,7 @@
 #include "frame_window.h"
 #include "impact.h"
 #include "impact_exception.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/exception/interface_only.h"
 #include "berg/platform/application.h"
 #include "place_holder.h"
@@ -63,8 +63,8 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact_host::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact_host::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &impact_host::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &impact_host::on_message_destroy);
 
    }
 
@@ -183,7 +183,7 @@ namespace user
 
       {
 
-         auto pimpactkit = __create_new < ::user::impact_kit >();
+         auto pimpactkit = øcreate_new < ::user::impact_kit >();
 
          add_impact_kit2(pimpactkit);
 
@@ -449,7 +449,7 @@ namespace user
    impact_data * impact_host::new_impact_data(const atom & atom)
    {
 
-      auto pimpactdata  = __allocate ::user::impact_data(atom);
+      auto pimpactdata  = øallocate ::user::impact_data(atom);
 
       m_impactdatamap[atom] = pimpactdata;
 
@@ -575,7 +575,7 @@ namespace user
       if(!bCallOnCreateImpact)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          return m_impactdatamap[atom];
 
@@ -924,30 +924,30 @@ namespace user
    void impact_host::hide_all_except(const atom_array & ida)
    {
 
-      auto ppair = m_impactdatamap.begin();
+      auto iterator = m_impactdatamap.begin();
 
-      while(ppair)
+      while(iterator)
       {
 
-         if(!ida.contains(ppair->element1()))
+         if(!ida.contains(iterator->element1()))
          {
 
             try
             {
 
-               if (ppair->element2())
+               if (iterator->element2())
                {
 
-                  if (ppair->element2()->m_pplaceholder != nullptr)
+                  if (iterator->element2()->m_pplaceholder != nullptr)
                   {
 
-                     ppair->element2()->m_pplaceholder->hide();
+                     iterator->element2()->m_pplaceholder->hide();
 
                   }
-                  else if (ppair->element2()->m_puserinteraction != nullptr)
+                  else if (iterator->element2()->m_puserinteraction != nullptr)
                   {
 
-                     ppair->element2()->m_puserinteraction->hide();
+                     iterator->element2()->m_puserinteraction->hide();
 
                   }
 
@@ -961,7 +961,7 @@ namespace user
 
          }
 
-         ppair++;
+         iterator++;
 
       }
 

@@ -88,7 +88,7 @@ namespace colorertake5
                      hrd_descr = hrd_name;
                   }
                   hrdDescriptions.set_at(hrd_class + "-" + hrd_name, hrd_descr);
-                  string_map<string_array_base> & hrdClass = hrdLocations[hrd_class];
+                  string_map_base<string_array_base> & hrdClass = hrdLocations[hrd_class];
                   string_array_base & hrdLocV =  hrdClass[hrd_name];
                   ::pointer<::xml::node>oc = hrd->first_child();
                   while(loc != nullptr)
@@ -160,7 +160,7 @@ namespace colorertake5
    //return hrdLocations.key(idx);
    //};
    //string ParserFactory::enumerateHRDInstances(const string &classID, int idx){
-   //string_map<pointer_object<string_array_base>> *hash = hrdLocations.pget(classID);
+   //string_map_base<pointer_object<string_array_base>> *hash = hrdLocations.defer_get(classID);
    //if (hash == nullptr) return "";
    //return hash->key(idx);
    //};
@@ -254,18 +254,18 @@ namespace colorertake5
    StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID)
    {
 
-      string_map<string_array_base> * hrdClass = nullptr;
+      string_map_base<string_array_base> * hrdClass = nullptr;
 
       if (classID.is_empty())
       {
 
-         hrdClass = hrdLocations.pget(("rgb"));
+         hrdClass = hrdLocations.defer_get(("rgb"));
 
       }
       else
       {
 
-         hrdClass = hrdLocations.pget(classID);
+         hrdClass = hrdLocations.defer_get(classID);
 
       }
 
@@ -279,14 +279,14 @@ namespace colorertake5
 #ifndef UNIVERSAL_WINDOWS
          hrd = getenv("COLORER5HRD");
 #endif
-         hrdLocV = (hrd) ? hrdClass->pget((hrd)) : hrdClass->pget(("default"));
+         hrdLocV = (hrd) ? hrdClass->defer_get((hrd)) : hrdClass->defer_get(("default"));
          if(hrdLocV == nullptr)
          {
-            hrdLocV = hrdClass->pget(("default"));
+            hrdLocV = hrdClass->defer_get(("default"));
          }
       }
       else
-         hrdLocV = hrdClass->pget(nameID);
+         hrdLocV = hrdClass->defer_get(nameID);
       if (hrdLocV == nullptr)
          throw ::exception(ParserFactoryException(string("can't find hrdName '")+nameID+"'"));
 
@@ -332,14 +332,14 @@ namespace colorertake5
    TextHRDMapper *ParserFactory::createTextMapper(string nameID)
    {
       // fixed class 'text'
-      string_map<string_array_base> *hrdClass = hrdLocations.pget(("text"));
+      string_map_base<string_array_base> *hrdClass = hrdLocations.defer_get(("text"));
       if (hrdClass == nullptr) throw ::exception(ParserFactoryException(string("can't find hrdClass 'text'")));
 
       string_array_base *hrdLocV = nullptr;
       if (nameID.is_empty())
-         hrdLocV = hrdClass->pget(("default"));
+         hrdLocV = hrdClass->defer_get(("default"));
       else
-         hrdLocV = hrdClass->pget(nameID);
+         hrdLocV = hrdClass->defer_get(nameID);
       if (hrdLocV == nullptr)
          throw ::exception(ParserFactoryException(string("can't find hrdName '")+nameID+"'"));
 

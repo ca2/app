@@ -24,7 +24,7 @@ bool g_bDraw2dDisableReferencingDebugging = false;
 //{
 //
 //
-//   extern CLASS_DECL_AURA string_map < int_to_string > * g_pmapFontFaceName;
+//   extern CLASS_DECL_AURA string_map_base < int_to_string > * g_pmapFontFaceName;
 //
 //
 //   extern CLASS_DECL_AURA critical_section * g_pcsFont;
@@ -70,11 +70,11 @@ namespace draw2d
 
       //}
 
-      __construct_new(m_pimagea);
+      øconstruct_new(m_pimagea);
 
       //estatus = 
 
-      __construct_new(m_papi);
+      øconstruct_new(m_papi);
 
       //if (!estatus)
       //{
@@ -301,7 +301,7 @@ namespace draw2d
 
       ::acme::department::process_init();
 
-      //_synchronous_lock synchronouslock(this->synchronization());
+      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //if (!m_papi->open())
       //{
@@ -352,7 +352,7 @@ namespace draw2d
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          try
          {
@@ -421,7 +421,7 @@ namespace draw2d
    ::draw2d::graphics_pointer draw2d::create_graphics(::draw2d::host * pdraw2dhost)
    {
 
-      auto pgraphics = pdraw2dhost->__øcreate< ::draw2d::graphics>();
+      auto pgraphics = pdraw2dhost->øcreate< ::draw2d::graphics>();
 
       pgraphics->m_pdraw2dhost = pdraw2dhost;
 
@@ -447,7 +447,7 @@ namespace draw2d
 
       ::draw2d::brush_pointer pbrush;
 
-      __øconstruct(pbrush);
+      øconstruct(pbrush);
 
       pbrush->create_solid(color);
 
@@ -471,7 +471,7 @@ namespace draw2d
       catch (...)
       {
 
-         output_error_message("except", "except", e_message_box_ok);
+         output_error_message("except", "except", ::user::e_message_box_ok);
 
       }
 
@@ -513,22 +513,18 @@ namespace draw2d
 
       };
 
-      emboss_predicate(
-         pgraphics,
-         rectangle,
-         pred,
-         blur,
-         imageBlur,
-         colorGlow,
-         iSpreadRadius,
-         iBlurRadius,
-         iBlur,
-         bUpdate,
-         colorfilter);
+      ///bool bRaspiBilbo = scopedstrText.case_insensitive_begins("bilbo-raspi-");
+
+      //if (!bRaspiBilbo)
+      {
+
+         emboss_predicate(pgraphics, rectangle, pred, blur, imageBlur, colorGlow, iSpreadRadius, iBlurRadius, iBlur,
+                          bUpdate, colorfilter);
+      }
 
       auto opacity = colorfilter.opacity();
 
-      auto pbrushText = __øcreate < ::draw2d::brush >();
+      auto pbrushText = øcreate < ::draw2d::brush >();
 
       pbrushText->create_solid(colorText & opacity);
 
@@ -590,7 +586,7 @@ void draw2d::emboss_predicate(
 
       //auto estatus =
 
-      __øconstruct(pimage);
+      øconstruct(pimage);
 
       //if (!estatus)
       //{
@@ -612,7 +608,7 @@ void draw2d::emboss_predicate(
 
       pimage->fill_byte(0);
 
-      auto pbrushText = __øcreate < ::draw2d::brush >();
+      auto pbrushText = øcreate < ::draw2d::brush >();
 
       pbrushText->create_solid(argb(255, 255, 255, 255));
       pimage->get_graphics()->set(pbrushText);
@@ -699,7 +695,7 @@ void draw2d::emboss_predicate(
       int iRadius2 = iRadius * iRadius;
       int r2;
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto & filter = m_alpha_spread__24CC_filterMap[iRadius];
 
@@ -712,7 +708,7 @@ void draw2d::emboss_predicate(
       else
       {
 
-         filter = __allocate memory();
+         filter = øallocate memory();
 
          filter->set_size(iFilterArea);
 
@@ -1017,7 +1013,7 @@ void draw2d::emboss_predicate(
       image32_t u32SpreadSetColor(colorSpreadSetColor, pimageDst->m_colorindexes);
 
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
 
@@ -1027,7 +1023,7 @@ void draw2d::emboss_predicate(
       }
       else
       {
-         filter = __allocate memory();
+         filter = øallocate memory();
          filter->set_size(iFilterArea);
          pFilter = filter->begin();
          for (y = 0; y < iFilterH; y++)
@@ -1330,7 +1326,7 @@ void draw2d::emboss_predicate(
 
       //estatus = 
 
-      __øconstruct(m_pwritetext);
+      øconstruct(m_pwritetext);
 
       //if (!estatus)
       //{

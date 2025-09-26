@@ -168,7 +168,7 @@
 //
 //
 //template < class STREAM, class KEY, class ARG_KEY, class PAYLOAD, class ARG_VALUE, class PAIR >
-//inline void __exchange(STREAM & s, map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m)
+//inline void __exchange(STREAM & s, map_base < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m)
 //{
 //
 //   if (s.is_storing())
@@ -205,8 +205,8 @@
 //      {
 //
 //         c--;
-//         typename map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_KEY element1;
-//         //typename map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_VALUE element2;
+//         typename map_base < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_KEY element1;
+//         //typename map_base < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_VALUE element2;
 //         s >> element1;
 //         //if (s.fail())
 //           // break;
@@ -751,7 +751,7 @@
 //
 ////void payload_stream::write_object(const ::atom & atom, ::atom & idFactory, ::particle * pparticle)
 ////{
-////   payload_stream binary_stream(__allocate< ::payload(&payload()[atom].propset >()));
+////   payload_stream binary_stream(øallocate< ::payload(&payload()[atom].propset >()));
 ////   binary_stream.exchange("", idFactory);
 ////   pparticle->exchange(binary_stream);
 ////}
@@ -759,10 +759,10 @@
 ////
 ////::pointer<::matter>payload_stream::read_object(const ::atom & atom)
 ////{
-////   payload_stream binary_stream(__allocate< ::payload(&payload()[atom].propset >()));
+////   payload_stream binary_stream(øallocate< ::payload(&payload()[atom].propset >()));
 ////   ::atom idFactory;
 ////   binary_stream.exchange("", idFactory);
-////   auto pparticle = __id_create<::matter>(idFactory);
+////   auto pparticle = øid_create<::matter>(idFactory);
 ////   pparticle->exchange(binary_stream);
 ////   return pparticle;
 ////}

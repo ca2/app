@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "group_image_list.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/graphics/image/context.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
@@ -86,7 +86,7 @@ namespace userex
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &group_image_list_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &group_image_list_impact::on_message_create);
 
 
    }
@@ -95,7 +95,7 @@ namespace userex
    ::userex::image_list_impact * group_image_list_impact::add_group(::atom idGroup, const ::scoped_string & scopedstrIcon, const ::scoped_string & scopedstrTitle, ::file::path pathFolder)
    {
 
-      ::pointer<group>pgroup = __allocate group();
+      ::pointer<group>pgroup = øallocate group();
 
       pgroup->m_iIndex = m_groupa.get_size();
 
@@ -139,7 +139,7 @@ namespace userex
 
       m_atomaHandledCommands.add(id());
 
-      __construct_new(m_pbuttonMenu);
+      øconstruct_new(m_pbuttonMenu);
 
       m_pbuttonMenu->create_control(this, id());
 

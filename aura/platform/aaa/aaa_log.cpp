@@ -87,7 +87,7 @@ pdirectorysystem->system() / "trace.txt";
    void log::initialize_aura_log(enum_trace_level etracelevelMin, const ::atom & atom)
    {
 
-      auto estatus = __construct_new(m_ptrace);
+      auto estatus = øconstruct_new(m_ptrace);
 
       if (!estatus)
       {
@@ -166,7 +166,7 @@ pdirectorysystem->system() / "trace.txt";
       //set_trace_category(trace_category_socket, "category_Socket", e_trace_level_warning);       // socket traces
 
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bInitialized)
       {
@@ -260,7 +260,7 @@ pdirectorysystem->system() / "log.txt"))
             strCaption = "Assertion Failed";
 
             information(wstring(str));
-            /*if(message_box(nullptr, str, strCaption, e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
+            /*if(message_box(nullptr, str, strCaption, ::user::e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
             {
                string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(scopedstrFileName)+ "\" /command \"edit.goto "+as_string(iLine)+"\"";
                ::system(strCmdLine);
@@ -323,7 +323,7 @@ pdirectorysystem->system() / "log.txt"))
 
       const ::scoped_string & scopedstrTopicText = ::is_set(pparticle) ? pparticle->topic_text() : nullptr;
 
-      synchronous_lock sl2(m_pmutexTrace);
+      synchronous_lock sl2(m_pmutexTrace, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::aura::trace::category * pcategory = nullptr;
 
@@ -724,7 +724,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    void log::destroy()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (!m_bInitialized)
       {

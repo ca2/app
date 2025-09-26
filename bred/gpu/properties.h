@@ -2,8 +2,8 @@
 #pragma once
 
 
-#include "bred/gpu/_.h"
-#include <glm/glm.hpp>
+//#include "bred/gpu/_.h"
+//#include <glm/glm.hpp>
 
 template < typename TYPE >
 inline ::gpu::property* gpu_properties()
@@ -251,12 +251,12 @@ namespace gpu
 		memsize size() const { return m_block.size(); }
 		::collection::count count() const { return ::is_null(m_pproperties) ? 0:m_pproperties->count(); }
 		unsigned char* data() const { return m_block.data(); }
-		void* plookup(const_char_pointer pszName) {
+		void* find(const_char_pointer pszName) {
 			auto iOffset = m_pproperties->get_offset(pszName);
 			return m_block.data() + iOffset;
 		}
 		template < typename T>
-		T& as(const_char_pointer pszName) { return *(T*)plookup(pszName); }
+		T& as(const_char_pointer pszName) { return *(T*)find(pszName); }
 		float& as_float(const_char_pointer pszName) { return as<float>(pszName); }
 		int& as_int(const_char_pointer pszName) { return as<int>(pszName); }
 		glm::vec2& seq2(const_char_pointer pszName) { return as<glm::vec2>(pszName); }
@@ -458,11 +458,14 @@ namespace gpu
 } // namespace gpu
 
 
+#define DECLARE_GPU_PROPERTIES(rooting, type)                                                                                     \
+template<>                                                 \
+rooting ::gpu::property *gpu_properties<type>();
 
 
 #define BEGIN_GPU_PROPERTIES(type) \
 	template < >	\
-   inline ::gpu::property * gpu_properties<type>() \
+   CLASS_DECL_EXPORT ::gpu::property * gpu_properties<type>() \
    { \
       static ::gpu::property s_pproperty[]= {
 

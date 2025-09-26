@@ -17,7 +17,7 @@ namespace user
 
       //pointer_array < ::user::impact_system >       m_templateptra;
 
-      atom_map < ::pointer < ::user::impact_system > > m_mapImpactSystem;
+      atom_map_base < ::pointer < ::user::impact_system > > m_mapImpactSystem;
 
 
       static const char gen_ShellOpenFmt[];

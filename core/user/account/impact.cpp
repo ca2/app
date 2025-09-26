@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "impact.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/crypto/crypto.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/icon.h"
@@ -102,7 +102,7 @@ namespace account
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &impact::on_message_create);
 
    }
 
@@ -560,7 +560,7 @@ namespace account
 
       pcredentials->m_estatus = error_credentials;
 
-      synchronous_lock synchronouslock(m_pmutexResponse);
+      synchronous_lock synchronouslock(m_pmutexResponse, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_strRequestUrl = pcredentials->m_puser->m_pathUrl;
 

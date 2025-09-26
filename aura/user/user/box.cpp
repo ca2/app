@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "box.h"
 #include "acme/platform/__string.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/platform/scoped_restore.h"
@@ -50,9 +50,9 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &box::on_message_create);
-      MESSAGE_LINK(e_message_size, pchannel, this, &box::on_message_size);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &box::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &box::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &box::on_message_size);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &box::on_message_show_window);
 
    }
 
@@ -961,7 +961,7 @@ namespace user
    string box::calculate_display()
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       string strDisplay;
 
@@ -999,7 +999,7 @@ namespace user
    void box::defer_update_display()
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_strDisplay = calculate_display();
 

@@ -28,12 +28,12 @@ void simple_mesh_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
 
    }
 
-   auto passoc = m_map.plookup(psubitem->m_pitem->m_iItem);
+   auto passoc = m_map.find(psubitem->m_pitem->m_iItem);
 
    if(passoc)
    {
 
-      auto passoc2 = passoc->element2().plookup(psubitem->m_pcolumn->m_iColumn);
+      auto passoc2 = passoc->element2().find(psubitem->m_pcolumn->m_iColumn);
 
       if(passoc2)
       {

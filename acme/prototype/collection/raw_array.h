@@ -16,10 +16,11 @@ class raw_array_base :
 public:
 
 
-   typedef TYPE BASE_TYPE;
-   typedef ARG_TYPE BASE_ARG_TYPE;
+   using BASE_TYPE = TYPE;
+   using BASE_ARG_TYPE = ARG_TYPE;
    using BASE_ARRAY = array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
-   using ARRAY_BASE = base_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >;
+   using ARRAY_BASE = base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
+   using BASE_RAW_RANGE = typename BASE_ARRAY::BASE_RAW_RANGE;
    using iterator = typename ARRAY_BASE::iterator;
    using const_iterator = typename ARRAY_BASE::const_iterator;
 
@@ -70,8 +71,8 @@ public:
    ::collection::index add_item(ARG_TYPE newElement);
    ::collection::index append(const TYPE * p, ::collection::count c);
    ::collection::index append(const raw_array_base& src);
-   virtual TYPE * add_new(::collection::count count);
-   virtual TYPE & add_new();
+   TYPE * add_new(::collection::count count);
+   TYPE & add_new();
 
    //::collection::index append(const raw_array_base& src);
    //void copy(const raw_array_base& src);
@@ -498,7 +499,7 @@ inline ::collection::index raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etyp
 //::collection::count raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::allocate(::collection::count nNewSize, ::collection::count nGrowBy)
 //{
 //   ::collection::count countOld = get_count();
-//   ASSERT_VALID(this);
+//   ASSERT_OK(this);
 //   ASSERT(nNewSize >= 0);
 //
 //   if(nNewSize < 0 )
@@ -530,10 +531,10 @@ inline ::collection::index raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etyp
 //#endif
 //      ::collection::count nAllocSize = maximum(nNewSize, m_countAddUp);
 ////
-//      m_begin = (TYPE*) __allocate< unsigned char[(size_t)nAllocSize * sizeof >(TYPE)];
+//      m_begin = (TYPE*) øallocate< unsigned char[(size_t)nAllocSize * sizeof >(TYPE)];
 //      //memory_set((void *)m_begin, 0, (size_t)nAllocSize * sizeof(TYPE));
 ////      for( ::collection::index i = 0; i < nNewSize; i++ )
-//  //       ::__allocate< ( (void *) >( m_begin + i ) ) TYPE;
+//  //       ::øallocate< ( (void *) >( m_begin + i ) ) TYPE;
 ////
 //      m_nSize = nNewSize;
 //      m_countAllocation = nAllocSize;
@@ -547,7 +548,7 @@ inline ::collection::index raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etyp
 ////         memory_set((void *)(m_begin + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
 ////         for( int i = 0; i < nNewSize-m_nSize; i++ )
 ////
-////            ::__allocate< ( (void *) >( m_begin + m_nSize + i ) ) TYPE;
+////            ::øallocate< ( (void *) >( m_begin + m_nSize + i ) ) TYPE;
 ////
 //      }
 //      else if (m_nSize > nNewSize)
@@ -584,7 +585,7 @@ inline ::collection::index raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etyp
 //      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 //#endif
 //
-//      TYPE* pNewData = (TYPE*) __allocate< unsigned char[(size_t)nNewMax * sizeof >(TYPE)];
+//      TYPE* pNewData = (TYPE*) øallocate< unsigned char[(size_t)nNewMax * sizeof >(TYPE)];
 //
 //
 //      // copy ___new data from old
@@ -596,7 +597,7 @@ inline ::collection::index raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etyp
 ////      memory_set((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
 ////      for( int i = 0; i < nNewSize-m_nSize; i++ )
 ////
-////         ::__allocate< ( (void *) >( pNewData + m_nSize + i ) ) TYPE;
+////         ::øallocate< ( (void *) >( pNewData + m_nSize + i ) ) TYPE;
 ////
 //      // get rid of old stuff (note: no destructors called)
 //      delete[] (unsigned char*)m_begin;
@@ -612,7 +613,7 @@ inline ::collection::index raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etyp
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 //void raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::free_extra()
 //{
-//   ASSERT_VALID(this);
+//   ASSERT_OK(this);
 //
 //   if (m_nSize != m_countAllocation)
 //   {
@@ -623,7 +624,7 @@ inline ::collection::index raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etyp
 //      TYPE* pNewData = nullptr;
 //      if (m_nSize != 0)
 //      {
-//         pNewData = (TYPE*) __allocate< unsigned char[m_nSize * sizeof >(TYPE)];
+//         pNewData = (TYPE*) øallocate< unsigned char[m_nSize * sizeof >(TYPE)];
 //         // copy ___new data from old
 //         ::safe_memory_copy(pNewData, m_nSize * sizeof(TYPE),
 //            m_begin, m_nSize * sizeof(TYPE));
@@ -639,7 +640,7 @@ inline ::collection::index raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etyp
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 //void base_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::set_at_grow(::collection::index nIndex, ARG_TYPE newElement)
 //{
-//   //ASSERT_VALID(this);
+//   //ASSERT_OK(this);
 //   //ASSERT(nIndex >= 0);
 //
 //   if(nIndex < 0)
@@ -680,9 +681,9 @@ TYPE & raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::insert
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 //::collection::index raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::insert_at(::collection::index nStartIndex, raw_array_base * pNewArray)
 //{
-//   ASSERT_VALID(this);
+//   ASSERT_OK(this);
 //   ASSERT(pNewArray != nullptr);
-//   ASSERT_VALID(pNewArray);
+//   ASSERT_OK(pNewArray);
 //   ASSERT(nStartIndex >= 0);
 //
 //   if(pNewArray == nullptr || nStartIndex < 0)
@@ -1219,7 +1220,7 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 ////::collection::count raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::allocate(::collection::count nNewSize, ::collection::count nGrowBy)
 ////{
 ////   ::collection::count countOld = get_count();
-////   ASSERT_VALID(this);
+////   ASSERT_OK(this);
 ////   ASSERT(nNewSize >= 0);
 ////
 ////   if(nNewSize < 0 )
@@ -1251,10 +1252,10 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 ////#endif
 ////      ::collection::count nAllocSize = maximum(nNewSize, m_countAddUp);
 //////
-////      m_begin = (TYPE*) __allocate< unsigned char[(size_t)nAllocSize * sizeof >(TYPE)];
+////      m_begin = (TYPE*) øallocate< unsigned char[(size_t)nAllocSize * sizeof >(TYPE)];
 ////      //memory_set((void *)m_begin, 0, (size_t)nAllocSize * sizeof(TYPE));
 //////      for( ::collection::index i = 0; i < nNewSize; i++ )
-////  //       ::__allocate< ( (void *) >( m_begin + i ) ) TYPE;
+////  //       ::øallocate< ( (void *) >( m_begin + i ) ) TYPE;
 //////
 ////      m_nSize = nNewSize;
 ////      m_countAllocation = nAllocSize;
@@ -1268,7 +1269,7 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 //////         memory_set((void *)(m_begin + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
 //////         for( int i = 0; i < nNewSize-m_nSize; i++ )
 //////
-//////            ::__allocate< ( (void *) >( m_begin + m_nSize + i ) ) TYPE;
+//////            ::øallocate< ( (void *) >( m_begin + m_nSize + i ) ) TYPE;
 //////
 ////      }
 ////      else if (m_nSize > nNewSize)
@@ -1305,7 +1306,7 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 ////      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 ////#endif
 ////
-////      TYPE* pNewData = (TYPE*) __allocate< unsigned char[(size_t)nNewMax * sizeof >(TYPE)];
+////      TYPE* pNewData = (TYPE*) øallocate< unsigned char[(size_t)nNewMax * sizeof >(TYPE)];
 ////
 ////
 ////      // copy ___new data from old
@@ -1317,7 +1318,7 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 //////      memory_set((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
 //////      for( int i = 0; i < nNewSize-m_nSize; i++ )
 //////
-//////         ::__allocate< ( (void *) >( pNewData + m_nSize + i ) ) TYPE;
+//////         ::øallocate< ( (void *) >( pNewData + m_nSize + i ) ) TYPE;
 //////
 ////      // get rid of old stuff (note: no destructors called)
 ////      delete[] (unsigned char*)m_begin;
@@ -1333,7 +1334,7 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 ////void raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::free_extra()
 ////{
-////   ASSERT_VALID(this);
+////   ASSERT_OK(this);
 ////
 ////   if (m_nSize != m_countAllocation)
 ////   {
@@ -1344,7 +1345,7 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 ////      TYPE* pNewData = nullptr;
 ////      if (m_nSize != 0)
 ////      {
-////         pNewData = (TYPE*) __allocate< unsigned char[m_nSize * sizeof >(TYPE)];
+////         pNewData = (TYPE*) øallocate< unsigned char[m_nSize * sizeof >(TYPE)];
 ////         // copy ___new data from old
 ////         ::safe_memory_copy(pNewData, m_nSize * sizeof(TYPE),
 ////            m_begin, m_nSize * sizeof(TYPE));
@@ -1360,7 +1361,7 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 ////void base_array < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::set_at_grow(::collection::index nIndex, ARG_TYPE newElement)
 ////{
-////   //ASSERT_VALID(this);
+////   //ASSERT_OK(this);
 ////   //ASSERT(nIndex >= 0);
 ////
 ////   if(nIndex < 0)
@@ -1399,9 +1400,9 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 ////template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 ////::collection::index raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::insert_at(::collection::index nStartIndex, raw_array_base * pNewArray)
 ////{
-////   ASSERT_VALID(this);
+////   ASSERT_OK(this);
 ////   ASSERT(pNewArray != nullptr);
-////   ASSERT_VALID(pNewArray);
+////   ASSERT_OK(pNewArray);
 ////   ASSERT(nStartIndex >= 0);
 ////
 ////   if(pNewArray == nullptr || nStartIndex < 0)

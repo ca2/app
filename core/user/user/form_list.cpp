@@ -4,7 +4,7 @@
 #include "list_column_array.h"
 #include "list_item.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/handler/item.h"
@@ -84,15 +84,15 @@ namespace user
    void form_list::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &form_list::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &form_list::on_message_key_down);
 
       form_mesh::install_message_routing(pchannel);
 
-      list::install_message_routing(pchannel);
+      ::user::list::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_scroll_y, pchannel, this, &form_list::on_message_scroll_y);
+      USER_MESSAGE_LINK(::user::e_message_scroll_y, pchannel, this, &form_list::on_message_scroll_y);
 
-      MESSAGE_LINK(e_message_scroll_x, pchannel, this, &form_list::on_message_scroll_x);
+      USER_MESSAGE_LINK(::user::e_message_scroll_x, pchannel, this, &form_list::on_message_scroll_x);
 
    }
 
@@ -123,13 +123,13 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto pextendedtopic = __allocate ::extended_topic(id_click);
+               auto pextendedtopic = øallocate ::extended_topic(id_click);
 
                pextendedtopic->m_puserelement = pinteraction;
 
                m_pitemControl = pitem;
 
-               send_message(e_message_subject, 0, pextendedtopic);
+               send_message(::user::e_message_subject, 0, pextendedtopic);
 
             }
 
@@ -210,7 +210,7 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto pextendedtopic = __allocate ::extended_topic(::id_click);
+               auto pextendedtopic = øallocate ::extended_topic(::id_click);
 
                pextendedtopic->m_puserelement = pinteraction;
 
@@ -218,7 +218,7 @@ namespace user
 
                m_pitemControl = pitem;
 
-               send_message(e_message_subject, 0, pextendedtopic);
+               send_message(::user::e_message_subject, 0, pextendedtopic);
 
             }
 
@@ -389,7 +389,7 @@ namespace user
    interaction * form_list::_001GetControl(::collection::index iItem, ::collection::index iSubItem)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::user::list_column * pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
@@ -410,7 +410,7 @@ namespace user
    interaction * form_list::_001GetControl(draw_list_subitem * psubitem)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::user::list_column * pcolumn = psubitem->m_pcolumn;
 
@@ -807,7 +807,7 @@ namespace user
 
             auto iFind = pcombo->_001FindListText(psubitem->m_strText);
 
-            pcombo->set_current_item(__allocate ::item(::e_element_item, iFind), ::e_source_sync);
+            pcombo->set_current_item(øallocate ::item(::e_element_item, iFind), ::e_source_sync);
 
          }
 
@@ -1004,7 +1004,7 @@ namespace user
 
                   _001SetSubItemText(psubitemTarget);
 
-                  //::pointer<::list::column>pcolumn = m_pcolumna->get_by_subitem(iSubItemTarget);
+                  //::pointer<::user::list::column>pcolumn = m_pcolumna->get_by_subitem(iSubItemTarget);
                   //
                   //if (pcolumn.is_set() && m_controldescriptorset.bounds(pcolumn->m_iControl))
                   //{
@@ -1125,7 +1125,7 @@ namespace user
 
    void form_list::on_timer(::timer * ptimer)
    {
-      list::on_timer(ptimer);
+      ::user::list::on_timer(ptimer);
    }
 
    void form_list::_001OnMessageNotify(::message::message * pmessage)
@@ -1172,7 +1172,7 @@ namespace user
 
    //   //_001RemoveControls();
 
-   //   list::_001UpdateColumns();
+   //   ::user::list::_001UpdateColumns();
 
    //}
 
@@ -1181,12 +1181,12 @@ namespace user
    //{
    //   switch(eprop)
    //   {
-   //   case list::PropertyBaseWndInterface:
-   //   case list::PropertyDrawBaseWndInterface:
+   //   case ::user::list::PropertyBaseWndInterface:
+   //   case ::user::list::PropertyDrawBaseWndInterface:
    //   {
    //      const ::user::interaction_base ** ppinterface = (const ::user::interaction_base **) lparam;
 
-   //      *ppinterface = (list *)this;
+   //      *ppinterface = (::user::list *)this;
    //   }
    //   return 1;
    //   default:
@@ -1198,7 +1198,7 @@ namespace user
    void form_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      list::_001OnDraw(pgraphics);
+      ::user::list::_001OnDraw(pgraphics);
 
    }
 
@@ -1313,7 +1313,7 @@ namespace user
 
       ::int_rectangle rectangle;
 
-      //auto pitem = __allocate draw_list_item(this);
+      //auto pitem = øallocate draw_list_item(this);
 
       return ::is_subitem(m_pitemControl, pinteraction->m_item.m_iSubItem);
 
@@ -1350,7 +1350,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          for (::collection::index i = 0; i < m_pcolumna->get_size(); i++)
          {
@@ -1398,7 +1398,7 @@ namespace user
    //
    //      screen_to_client()(point);
    //
-   //      if (pmouse->m_emessage == e_message_left_button_down)
+   //      if (pmouse->m_emessage == ::user::e_message_left_button_down)
    //      {
    //
    //         index iItem;
@@ -1446,7 +1446,7 @@ namespace user
    //
    //      }
    //
-   //      //else if(emessage == e_message_left_button_up)
+   //      //else if(emessage == ::user::e_message_left_button_up)
    //      //{
    //      //int iItem;
    //      //int iSubItem;
@@ -1517,7 +1517,7 @@ namespace user
    //
    //      //::int_point point = pmouse->m_point;
    //      //screen_to_client()(point);
-   //      ///*      if(emessage == e_message_left_button_down)
+   //      ///*      if(emessage == ::user::e_message_left_button_down)
    //      //      {
    //      //      int iItem;
    //      //      int iSubItem;
@@ -1537,7 +1537,7 @@ namespace user
    //      //      }
    //      //      }
    //      //      }
-   //      //      else if(emessage == e_message_left_button_up)
+   //      //      else if(emessage == ::user::e_message_left_button_up)
    //      //      {
    //      //      int iItem;
    //      //      int iSubItem;
@@ -2211,7 +2211,7 @@ namespace user
 
       auto & puserinteractiona = pcolumn->m_puserinteractiona;
 
-      __defer_construct_new(puserinteractiona);
+      ødefer_construct_new(puserinteractiona);
 
       ::collection::index iIndex = iItem - m_iTopDisplayIndex;
 

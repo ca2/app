@@ -184,7 +184,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
 {
    
    //set_apex_system_as_thread();
-   //MessageBox(NULL, "applicationDidFinishLaunching", "applicationDidFinishLaunching", e_message_box_ok);
+   //MessageBox(NULL, "applicationDidFinishLaunching", "applicationDidFinishLaunching", ::user::e_message_box_ok);
    
    //defer_run_system();
    
@@ -194,7 +194,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
 - (BOOL)applicationShouldHandleReopen:(UIApplication *)sender hasVisibleWindows:(BOOL)flag
 {
    
-   //MessageBox(NULL, "applicationShouldHandleReopen", "applicationShouldHandleReopen", e_message_box_ok);
+   //MessageBox(NULL, "applicationShouldHandleReopen", "applicationShouldHandleReopen", ::user::e_message_box_ok);
    
    system_id_update(application_system(m_papplication), id_app_activated, 0);
 
@@ -273,7 +273,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
    //file_put_contents("/eco/006.txt", "open");
    //file_add_contents_raw("/eco/006.txt", [[url absoluteString] UTF8String]);
    
-   //MessageBox(NULL, "application: openFile", "application: openFile", e_message_box_ok);
+   //MessageBox(NULL, "application: openFile", "application: openFile", ::user::e_message_box_ok);
    
    system_on_open_file(application_system(m_papplication), [[url absoluteString] UTF8String]);
    
@@ -286,7 +286,7 @@ willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> 
    //file_put_contents("/eco/007.txt", "openFileWithoutUI");
    //file_add_contents_raw("/eco/007.txt", [filename UTF8String]);
    
-   //MessageBox(NULL, "application: openFile", "application: openFile", e_message_box_ok);
+   //MessageBox(NULL, "application: openFile", "application: openFile", ::user::e_message_box_ok);
    
    system_on_open_file(application_system(m_papplication), [filename UTF8String]);
    
@@ -789,7 +789,7 @@ void acme_ios_application_main(::platform::application * papplication, int argc,
 //{
 //   
 //   set_apex_system_as_thread();
-//   //MessageBox(NULL, "applicationDidFinishLaunching", "applicationDidFinishLaunching", e_message_box_ok);
+//   //MessageBox(NULL, "applicationDidFinishLaunching", "applicationDidFinishLaunching", ::user::e_message_box_ok);
 //   
 //   defer_run_system();
 //   
@@ -799,7 +799,7 @@ void acme_ios_application_main(::platform::application * papplication, int argc,
 //- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
 //{
 //   
-//   //MessageBox(NULL, "applicationShouldHandleReopen", "applicationShouldHandleReopen", e_message_box_ok);
+//   //MessageBox(NULL, "applicationShouldHandleReopen", "applicationShouldHandleReopen", ::user::e_message_box_ok);
 //   
 //   system_call_update_app_activated();
 //
@@ -819,7 +819,7 @@ void acme_ios_application_main(::platform::application * papplication, int argc,
 //{
 //   
 //   file_put_contents("/eco/001.txt", "applicationOpenUntitledFile");
-//   //MessageBox(NULL, "applicationOpenUntitledFile", "applicationOpenUntitledFile", e_message_box_ok);
+//   //MessageBox(NULL, "applicationOpenUntitledFile", "applicationOpenUntitledFile", ::user::e_message_box_ok);
 //   
 //   defer_run_system();
 //   
@@ -837,7 +837,7 @@ void acme_ios_application_main(::platform::application * papplication, int argc,
 //   file_put_contents("/eco/002.txt", "applicationOpenFile");
 //   file_put_contents("/eco/003.txt", [filename UTF8String]);
 //
-//   //MessageBox(NULL, "application: openFile", "application: openFile", e_message_box_ok);
+//   //MessageBox(NULL, "application: openFile", "application: openFile", ::user::e_message_box_ok);
 //   
 //   defer_run_system([filename UTF8String]);
 //   
@@ -879,7 +879,7 @@ void acme_ios_application_main(::platform::application * papplication, int argc,
 //   file_put_contents("/eco/006.txt", "open");
 //   file_add_contents_raw("/eco/006.txt", [[url absoluteString] UTF8String]);
 //   
-//   //MessageBox(NULL, "application: openFile", "application: openFile", e_message_box_ok);
+//   //MessageBox(NULL, "application: openFile", "application: openFile", ::user::e_message_box_ok);
 //   
 //   defer_run_system([[url absoluteString] UTF8String]);
 //}
@@ -890,7 +890,7 @@ void acme_ios_application_main(::platform::application * papplication, int argc,
 //   file_put_contents("/eco/007.txt", "openFileWithoutUI");
 //   file_add_contents_raw("/eco/007.txt", [filename UTF8String]);
 //   
-//   //MessageBox(NULL, "application: openFile", "application: openFile", e_message_box_ok);
+//   //MessageBox(NULL, "application: openFile", "application: openFile", ::user::e_message_box_ok);
 //   
 //   defer_run_system([filename UTF8String]);
 //}

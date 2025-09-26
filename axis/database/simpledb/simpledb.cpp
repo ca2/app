@@ -67,7 +67,7 @@ namespace simpledb
    bool simpledb::erase(const ::scoped_string & strDataKey)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       class server * pserver = server();
 
@@ -99,7 +99,7 @@ namespace simpledb
    bool simpledb::load(const ::scoped_string & strDataKey, get_memory getmemory)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       class server * pserver = server();
 
@@ -150,14 +150,14 @@ namespace simpledb
       if (!pserver->m_bRemote)
       {
 
-         auto ppair = pstorage->m_map.plookup(strKey);
+         auto iterator = pstorage->m_map.find(strKey);
 
-         if (ppair)
+         if (iterator)
          {
 
-            getmemory.get(ppair->element2().m_memory);
+            getmemory.get(iterator->element2().m_memory);
 
-            return ppair->m_element2.m_bData;
+            return iterator->m_element2.m_bData;
 
          }
 
@@ -167,7 +167,7 @@ namespace simpledb
 
          auto pparticleSynchronization = pdatabase->synchronization();
 
-         _synchronous_lock slDatabase(pparticleSynchronization);
+         _synchronous_lock slDatabase(pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //retry_statement:
 
@@ -216,14 +216,14 @@ namespace simpledb
 
          synchronouslock._lock();
 
-         auto ppair = pstorage->m_map.plookup(strKey);
+         auto iterator = pstorage->m_map.find(strKey);
 
-         if (ppair && ppair->element2().m_tick.elapsed() < m_timeRemoteTimeout)
+         if (iterator && iterator->element2().m_tick.elapsed() < m_timeRemoteTimeout)
          {
 
-            getmemory.get(ppair->element2().m_memory);
+            getmemory.get(iterator->element2().m_memory);
 
-            return ppair->m_element2.m_bData;
+            return iterator->m_element2.m_bData;
 
          }
 
@@ -315,7 +315,7 @@ namespace simpledb
    void simpledb::save(const ::scoped_string & strDataKey, block block)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       class server * pserver = server();
 
@@ -375,13 +375,13 @@ namespace simpledb
 
          }
 
-         string_map < class item >::iterator iterator{};
+         string_map_base < class item >::iterator iterator{};
 
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            iterator = pstorage->m_map.plookup(strKey);
+            iterator = pstorage->m_map.find(strKey);
 
          }
 
@@ -390,7 +390,7 @@ namespace simpledb
          if (iterator.is_ok())
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             if (iterator->element2().m_memory == block)
             {
@@ -404,7 +404,7 @@ namespace simpledb
          if (pstorage->m_pthreadlocal.is_null())
          {
 
-            pstorage->m_pthreadlocal = __allocate thread_localdatabase();
+            pstorage->m_pthreadlocal = øallocate thread_localdatabase();
 
             pstorage->m_pthreadlocal->initialize(pstorage);
 
@@ -424,7 +424,7 @@ namespace simpledb
 
          stritem.m_bData = true;
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          pstorage->m_map.set_at(strKey, stritem);
 
@@ -437,7 +437,7 @@ namespace simpledb
          if (pstorage->m_pthread.is_null())
          {
 
-            pstorage->m_pthread = __allocate thread();
+            pstorage->m_pthread = øallocate thread();
 
             pstorage->m_pthread->m_pstorage = pstorage;
 
@@ -455,7 +455,7 @@ namespace simpledb
 
          stritem.m_bData = true;
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          pstorage->m_map.set_at(strKey, stritem);
 

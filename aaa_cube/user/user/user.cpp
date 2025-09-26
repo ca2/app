@@ -255,7 +255,7 @@ void user::init(){
 //
 //      //estatus = 
 //
-//      __øconstruct(m_phtml);
+//      øconstruct(m_phtml);
 //
 //      //if(!estatus)
 //      //{
@@ -449,7 +449,7 @@ void user::destroy()
 //   {
 //
 //      return nullptr;
-//      //auto pbox = pparticle->__create_new < class ::userex::message_box >();
+//      //auto pbox = pparticle->øcreate_new < class ::userex::message_box >();
 //
 //      ////auto pfuture = pbox->::extended::asynchronous< ::future<::conversation > >::future();
 //
@@ -476,12 +476,12 @@ void user::destroy()
 //   }
 //
 //
-//   pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
+//   pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox)
 //   {
 //
 //      return nullptr;
 //
-//      //auto pbox = pparticle->__create_new < ::userex::message_box >();
+//      //auto pbox = pparticle->øcreate_new < ::userex::message_box >();
 //
 //      //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 //
@@ -512,15 +512,15 @@ void user::destroy()
 //
 //      //string strMatter;
 //
-//      //auto emessageboxType = emessagebox & e_message_box_type_mask;
+//      //auto emessageboxType = emessagebox & ::user::e_message_box_type_mask;
 //
-//      //if(emessageboxType == e_message_box_yes_no_cancel)
+//      //if(emessageboxType == ::user::e_message_box_yes_no_cancel)
 //      //{
 //
 //      //   strMatter = "system\\user\\message_box\\yesnocancel.xhtml";
 //
 //      //}
-//      //else if (emessageboxType == e_message_box_yes_no)
+//      //else if (emessageboxType == ::user::e_message_box_yes_no)
 //      //{
 //
 //      //   strMatter = "system\\user\\message_box\\yesno.xhtml";
@@ -611,12 +611,12 @@ void user::destroy()
 //   }
 //
 //
-//   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::e_message_box & emessagebox)
+//   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const class time & timeTimeout, const ::::user::e_message_box & emessagebox)
 //   {
 //
 //      //__UNREFERENCED_PARAMETER(puiOwner);
 //
-//      //auto pbox = pparticle->__create_new < ::userex::message_box >();
+//      //auto pbox = pparticle->øcreate_new < ::userex::message_box >();
 //
 //      //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 //
@@ -634,9 +634,9 @@ void user::destroy()
 //
 //      //string strMatter;
 //
-//      //auto emessageboxType = emessagebox & e_message_box_type_mask;
+//      //auto emessageboxType = emessagebox & ::user::e_message_box_type_mask;
 //
-//      //if (emessageboxType == e_message_box_yes_no_cancel)
+//      //if (emessageboxType == ::user::e_message_box_yes_no_cancel)
 //      //{
 //
 //      //   strMatter = "system\\user\\message_box_timeout\\yesnocancel.xhtml";
@@ -905,7 +905,7 @@ void user::destroy()
 //
 //   //   //}
 //
-//   //   auto prequest = ::__create_new < ::request >(pparticle);
+//   //   auto prequest = ::øcreate_new < ::request >(pparticle);
 //
 //   //   prequest->m_bMakeVisible = false;
 //
@@ -987,7 +987,7 @@ void user::destroy()
 //
 //   //   }
 //
-//   //   auto prequest = ::__create_new < ::request > (pparticle);
+//   //   auto prequest = ::øcreate_new < ::request > (pparticle);
 //
 //   //   prequest->m_bMakeVisible = true;
 //
@@ -1465,7 +1465,7 @@ void user::destroy()
 //   //::pointer<::user::user>application::create_userex()
 //   //{
 //
-//   //   return __allocate ::user::user();
+//   //   return øallocate ::user::user();
 //
 //   //}
 //

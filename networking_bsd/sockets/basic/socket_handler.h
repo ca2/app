@@ -19,7 +19,7 @@ namespace sockets_bsd
    class base_socket;
    class resolv_server;
 
-   typedef comparable_list < socket_pointer > socket_pointer_list;
+   typedef comparable_list_base < socket_pointer > socket_pointer_list;
 
 
    class CLASS_DECL_NETWORKING_BSD socket_handler :
@@ -31,11 +31,11 @@ namespace sockets_bsd
       int m_iMaxKeepAliveCount = 0;
       ::pointer<::apex::log>    m_splogger; ///< Registered log class, or nullptr
 
-      socket_map                 m_socketmap; ///< Active sockets map
-      socket_map                 m_socketmapAdd; ///< Sockets to be added to sockets map
-      socket_pointer_list        m_delete; ///< Sockets to be deleted (failed when add)
+      socket_map                 m_socketmap; ///< Active sockets map_base
+      socket_map                 m_socketmapAdd; ///< Sockets to be added to sockets map_base
+      socket_pointer_list        m_socketlistDelete; ///< Sockets to be deleted (failed when add)
       bool                       m_b_use_mutex; ///< ::pointer < ::mutex > correctly initialized
-      //SOCKET                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list
+      //SOCKET                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list_base
       //::collection::count                    m_countR;
       //::collection::count                    m_countW;
       //::collection::count                    m_countE;
@@ -53,7 +53,7 @@ namespace sockets_bsd
       ::earth::time                 m_tlast; ///< timeout control
 
       // state lists
-      socket_id_list                m_socketlist; ///< Active file descriptor list
+      socket_id_list                m_socketlist; ///< Active file descriptor list_base
       socket_id_list                m_socketlistErase; ///< File descriptors that are to be erased from m_sockets
       socket_id_list                m_socketlistCallOnConnect; ///< checklist CallOnConnect
       socket_id_list                m_socketlistDetach; ///< checklist detach
@@ -94,7 +94,7 @@ namespace sockets_bsd
 
       //resolv_server * resolver();
 
-      /** add base_socket instance to base_socket map. Removal is always automatic. */
+      /** add base_socket instance to base_socket map_base. Removal is always automatic. */
       void restart_socket(SOCKET socket) override;
 
       //void add(const ::sockets::socket_pointer & psocket) override;
@@ -137,11 +137,11 @@ namespace sockets_bsd
       \lparam int_point listen_socket class pointer (use GetPort to identify which one) */
       bool OkToAccept(::sockets::base_socket *int_point) override;
 
-      /** Called by base_socket when a base_socket changes state. */
-      socket_id_list& socket_id_list_get(enum_list elist) override;
-      void socket_id_list_modify(SOCKET s, enum_list elist, bool bAdd) override;
-      void socket_id_list_add(SOCKET s, enum_list elist) override;
-      void socket_id_list_erase(SOCKET s, enum_list elist) override;
+      ///** Called by base_socket when a base_socket changes state. */
+      //socket_id_list& socket_id_list_get(enum_list elist) override;
+      //void socket_id_list_modify(SOCKET s, enum_list elist, bool bAdd) override;
+      //void socket_id_list_add(SOCKET s, enum_list elist) override;
+      //void socket_id_list_erase(SOCKET s, enum_list elist) override;
 
       void erase_socket(SOCKET s) override;
 
@@ -190,7 +190,7 @@ namespace sockets_bsd
       \lparam port Port number will be echoed in base_socket::OnResolved callback */
       //int Resolve(base_socket *,const ::scoped_string & scopedstrHost,port_t port) override;
       //int Resolve6(base_socket *,const ::scoped_string & scopedstrHost,port_t port) override;
-      /** Do a reverse dns lookup. */
+      /** Do a reverse dns find. */
       //int Resolve(base_socket *,in_addr a) override;
       //int Resolve(base_socket *,in6_addr& a) override;
       /** get listen port of asynchronous dns server. */
@@ -223,7 +223,7 @@ namespace sockets_bsd
 
 
       void CheckList(socket_id_list&,const string &); ///< Used by CheckSanity
-      /** erase base_socket from base_socket map, used by base_socket class. */
+      /** erase base_socket from base_socket map_base, used by base_socket class. */
       //void erase(::sockets::base_socket *) override;
 
 

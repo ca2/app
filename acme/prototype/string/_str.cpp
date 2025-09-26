@@ -1683,7 +1683,7 @@ character_count str::find_ww(const ::scoped_string & scopedstrOld, const ::scope
       do
       {
 
-         unicode_increment(pszIter);
+         pszIter = unicode_next(pszIter);
 
       } while (*pszIter != '\0' && unicode_is_letter_or_digit(pszIter));
 
@@ -1731,7 +1731,7 @@ character_count str::find_aww(const ::scoped_string & scopedstrOld, const ::scop
       do
       {
 
-         unicode_increment(pszIter);
+         pszIter = unicode_next(pszIter);
 
       } while (*pszIter != '\0' && unicode_is_letter(pszIter));
 
@@ -1879,7 +1879,7 @@ void str::calc_v1(const ::scoped_string & scopedstrParam, bool & bHasUpper, bool
          break;
       }
       
-      unicode_increment(psz);
+      psz = unicode_next(psz);
 
    }
 
@@ -1999,86 +1999,6 @@ string str::get_word(const ::scoped_string & scopedstr, const ::scoped_string & 
    }
 
 }
-
-// GitHub MightyPork / utf8_encode.c
-
-utf8_character unicode_to_utf8(long long i)
-{
-
-   utf8_character utf8character;
-   auto & out = utf8character.m_sz;
-   if (i <= 0x7F) {
-      // Plain ASCII
-      out[0] = (char)i;
-      out[1] = 0;
-      utf8character.m_end = utf8character.m_begin + 1;
-   }
-   else if (i <= 0x07FF) {
-      // 2-unsigned char unicode
-      out[0] = (char)(((i >> 6) & 0x1F) | 0xC0);
-      out[1] = (char)(((i >> 0) & 0x3F) | 0x80);
-      out[2] = 0;
-      utf8character.m_end = utf8character.m_begin + 2;
-   }
-   else if (i <= 0xFFFF) {
-      // 3-unsigned char unicode
-      out[0] = (char)(((i >> 12) & 0x0F) | 0xE0);
-      out[1] = (char)(((i >> 6) & 0x3F) | 0x80);
-      out[2] = (char)(((i >> 0) & 0x3F) | 0x80);
-      out[3] = 0;
-      utf8character.m_end = utf8character.m_begin + 3;
-   }
-   else if (i <= 0x10FFFF) {
-      // 4-unsigned char unicode
-      out[0] = (char)(((i >> 18) & 0x07) | 0xF0);
-      out[1] = (char)(((i >> 12) & 0x3F) | 0x80);
-      out[2] = (char)(((i >> 6) & 0x3F) | 0x80);
-      out[3] = (char)(((i >> 0) & 0x3F) | 0x80);
-      out[4] = 0;
-      utf8character.m_end = utf8character.m_begin + 4;
-   }
-   else {
-      // error - use replacement character
-      out[0] = (char)0xEF;
-      out[1] = (char)0xBF;
-      out[2] = (char)0xBD;
-      out[3] = 0;
-      utf8character.m_end = utf8character.m_begin + 3;
-   }
-
-   return utf8character;
-
-}
-
-
-character_count unicode_to_utf8_length(long long i)
-{
-   if (i <0)
-   {
-      return -1;
-   }
-   else if (i <= 0x7F)
-   {
-      return 1;
-   }
-   else if (i <= 0x07FF)
-   {
-      return 2;
-   }
-   else if (i <= 0xFFFF) 
-   {
-      return 3;
-   }
-   else if (i <= 0x10FFFF) 
-   {
-      return 4;
-   }
-   else
-   {
-      return -1;
-   }
-}
-
 
 
 
@@ -2480,7 +2400,7 @@ string get_utf8_char(const_char_pointer pszBeg, const_char_pointer psz, ::collec
       while (i != 0)
       {
 
-         unicode_increment(psz);
+         psz = (char *) unicode_next(psz);
 
          if (*psz == '\0')
          {
@@ -2621,7 +2541,7 @@ bool str::get_curly_content(const_char_pointer psz, string & str)
 
    const_char_pointer pszChar;
 
-   for (pszChar = unicode_next(psz); pszChar != nullptr; unicode_increment(pszChar))
+   for (pszChar = (char *) unicode_next(psz); pszChar != nullptr; pszChar = unicode_next(pszChar))
    {
 
       if (*pszChar == '}')
@@ -2675,7 +2595,7 @@ bool str::is_simple_natural(const_char_pointer pszCandidate, character_count iCo
 
       }
 
-      unicode_increment(psz);
+      psz = unicode_next(psz);
 
       iCount--;
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "form.h"
 #include "form_callback.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/exception/interface_only.h"
 #include "aura/message/user.h"
 #include "aura/platform/session.h"
@@ -157,7 +157,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &form::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &form::on_message_create);
 
    }
 

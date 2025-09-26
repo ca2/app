@@ -131,7 +131,7 @@ exception::~exception()
 ::pointer < ::subparticle > exception::clone()
 {
 
-   auto pexception = __allocate::exception(*this);
+   auto pexception = øallocate::exception(*this);
 
    return pexception;
 
@@ -285,7 +285,7 @@ string exception::get_consolidated_details(::particle * pparticle) const
 
 
 
-//   int exception::report_error(unsigned int nType /* = e_message_box_ok */, const ::scoped_string & scopedstrMessageId /* = nullptr */)
+//   int exception::report_error(unsigned int nType /* = ::user::e_message_box_ok */, const ::scoped_string & scopedstrMessageId /* = nullptr */)
 //   {
 //      string   strErrorMessage;
 //      int     nDisposition;
@@ -509,7 +509,7 @@ CLASS_DECL_ACME const_char_pointer status_short_description(const ::e_status & e
 //
 //   }
 //
-//   auto pmessagebox = __initialize_new ::message_box(pparticle, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation, strDetails);
+//   auto pmessagebox = __initialize_new ::message_box(pparticle, strMessage, strTitle, ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation, strDetails);
 
 //pmessagebox->sync();
 //

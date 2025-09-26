@@ -35,14 +35,14 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &still::on_message_create);
-      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &still::on_message_left_button_down);
-      //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &still::on_message_left_button_up);
-      //MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &still::on_message_middle_button_down);
-      //MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &still::on_message_middle_button_up);
-      //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &still::on_message_mouse_move);
-      //MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &still::on_message_mouse_leave);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &still::on_message_key_down);
+      USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &still::on_message_create);
+      //USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &still::on_message_left_button_down);
+      //USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &still::on_message_left_button_up);
+      //USER_MESSAGE_LINK(::user::e_message_middle_button_down, pchannel, this, &still::on_message_middle_button_down);
+      //USER_MESSAGE_LINK(::user::e_message_middle_button_up, pchannel, this, &still::on_message_middle_button_up);
+      //USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &still::on_message_mouse_move);
+      //USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &still::on_message_mouse_leave);
+      USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &still::on_message_key_down);
 
    }
 
@@ -159,13 +159,13 @@ namespace user
          else
          {
 
-            //auto pbrush = __øcreate < ::draw2d::brush >();
+            //auto pbrush = øcreate < ::draw2d::brush >();
 
             //pbrush->create_solid(pgraphics->get_current_pen()->m_cr);
 
             //pgraphics->set(pbrush);
 
-            auto ppen = __øcreate < ::draw2d::pen > ();
+            auto ppen = øcreate < ::draw2d::pen > ();
 
             ppen->m_color = pgraphics->get_current_brush()->m_color;
 
@@ -372,7 +372,7 @@ namespace user
    //   //      topic.m_puserinteraction = this;
    //   //      topic.id() = ::id_mouse_enter;
    //   //      get_parent()->send_message(
-   //   //      e_message_event, 0, (LPARAM)&ev);
+   //   //      ::user::e_message_event, 0, (LPARAM)&ev);
    //   //      //               m_bActionHover = true;
    //   //   }
    //   //   else if (iHover == -1)
@@ -381,7 +381,7 @@ namespace user
    //   //      topic.m_puserinteraction = this;
    //   //      topic.id() = ::id_mouse_leave;
    //   //      get_parent()->send_message(
-   //   //      e_message_event, 0, (LPARAM)&ev);
+   //   //      ::user::e_message_event, 0, (LPARAM)&ev);
    //   //      //             m_bActionHover = false;
    //   //   }
    //   //}
@@ -404,7 +404,7 @@ namespace user
    //   //   topic.id() = ::id_mouse_leave;
    //   //   if (get_parent() != nullptr)
    //   //   {
-   //   //      get_parent()->send_message(e_message_event, 0, (LPARAM)&ev);
+   //   //      get_parent()->send_message(::user::e_message_event, 0, (LPARAM)&ev);
    //   //   }
    //   //}
 
@@ -728,7 +728,7 @@ namespace user
       }
 
 
-      auto pbrushText = __øcreate < ::draw2d::brush > ();
+      auto pbrushText = øcreate < ::draw2d::brush > ();
 
 
       if (!is_window_enabled())

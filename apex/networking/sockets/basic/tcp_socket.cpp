@@ -98,7 +98,7 @@ namespace sockets
       if (!m_ptcpsocketImpl)
       {
 
-         __øconstruct(m_ptcpsocketImpl);
+         øconstruct(m_ptcpsocketImpl);
 
          m_ptcpsocketImpl->m_ptcpsocketInterface = this;
 
@@ -1241,7 +1241,7 @@ return true;
 
       //      }
 
-      //      m_obuf_top = __allocate output(TCP_OUTPUT_CAPACITY);
+      //      m_obuf_top = øallocate output(TCP_OUTPUT_CAPACITY);
 
       //   }
 
@@ -1480,7 +1480,7 @@ return true;
 
 //      SetNonblocking(true);
 //
-//      //synchronous_lock slMap(psystem->sockets().m_clientcontextmap.m_pmutex);
+//      //synchronous_lock slMap(psystem->sockets().m_clientcontextmap.m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (is_true("from_pool"))
 //         return;
@@ -1588,7 +1588,7 @@ return true;
 
       SetNonblocking(true);
 
-      //synchronous_lock slMap(psystem->sockets().m_servercontextmap.m_pmutex);
+      //synchronous_lock slMap(psystem->sockets().m_servercontextmap.m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //{
       //   if(m_psslcontext.is_set()
@@ -1604,7 +1604,7 @@ return true;
       //}
 
 
-      //synchronous_lock synchronouslock(m_pmutexSslCtx);
+      //synchronous_lock synchronouslock(m_pmutexSslCtx, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //slMap.unlock();
 
@@ -1937,7 +1937,7 @@ return true;
 
    //   ::pointer<ssl_client_context>psslclientcontext = clientcontextmap.get_context(context, pmethod);
 
-   //   m_psslcontext = __allocate ssl_context();
+   //   m_psslcontext = øallocate ssl_context();
 
    //   m_psslcontext->m_pclientcontext = psslclientcontext;
 
@@ -1950,14 +1950,14 @@ return true;
 //      if (m_psslcontext.is_null())
 //      {
 //
-//         m_psslcontext = __allocate ssl_context();
+//         m_psslcontext = øallocate ssl_context();
 //
 //      }
 //
 //      if (m_psslcontext->m_pclientcontext.is_null())
 //      {
 //
-//         m_psslcontext->m_pclientcontext = __allocate(ssl_client_context(meth_in != nullptr ? meth_in : TLS_server_method()));
+//         m_psslcontext->m_pclientcontext = øallocate(ssl_client_context(meth_in != nullptr ? meth_in : TLS_server_method()));
 //
 //         m_psslcontext->m_pclientcontext->initialize(get_app());
 //
@@ -2141,7 +2141,7 @@ return true;
 //
 //
 //      {
-//         synchronous_lock synchronouslock(this->synchronization());
+//         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //         int i;
 //
 //         auto psystem = system();

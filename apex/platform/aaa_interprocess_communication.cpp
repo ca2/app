@@ -52,7 +52,7 @@ void interprocess_intercommunication::initialize_interprocess_communication(::pa
 
    call_routines_with_id(CREATE_ROUTINE);
 
-   /*estatus = */ __øconstruct(m_prx);
+   /*estatus = */ øconstruct(m_prx);
 
    //if (!estatus)
    //{
@@ -112,20 +112,20 @@ void interprocess_intercommunication::destroy()
 void interprocess_intercommunication::start(const ::scoped_string & scopedstrApp)
 {
 
-   synchronous_lock sl1(mutex());
+   synchronous_lock sl1(mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto & pmutex = m_mapAppMutex[strApp];
 
    if(pmutex.is_null())
    {
 
-      pmutex = __allocate ::pointer < ::mutex > ();
+      pmutex = øallocate ::pointer < ::mutex > ();
 
    }
 
    sl1.unlock();
 
-   synchronous_lock synchronouslock(pmutex);
+   synchronous_lock synchronouslock(pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto idaPid = get_pid(strApp);
 
@@ -143,7 +143,7 @@ void interprocess_intercommunication::start(const ::scoped_string & scopedstrApp
 
    }
 
-   auto plauncher = __allocate ::apex::app_launcher();
+   auto plauncher = øallocate ::apex::app_launcher();
    
    plauncher->initialize_app_launcher(this, process_platform_name(), strApp);
 
@@ -201,7 +201,7 @@ started:
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __øcreate < ::inteprocess::caller>();
+      m_txmap[strKey] = øcreate < ::inteprocess::caller>();
 
    }
 
@@ -218,7 +218,7 @@ void interprocess_intercommunication::connect(const ::scoped_string & scopedstrA
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __øcreate<::inteprocess::caller>();
+      m_txmap[strKey] = øcreate<::inteprocess::caller>();
 
    }
 
@@ -242,7 +242,7 @@ void interprocess_intercommunication::connect(const ::scoped_string & scopedstrA
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __øcreate < ::inteprocess::caller>();
+      m_txmap[strKey] = øcreate < ::inteprocess::caller>();
 
    }
 
@@ -520,9 +520,9 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 ::pointer<::interprocess::task>interprocess_intercommunication::create_task(::interprocess::call * pcall, const ::atom & idPid)
 {
 
-   auto pobjectTask = __allocate ::interprocess::task(pcall, idPid, m_iTaskSeed++);
+   auto pobjectTask = øallocate ::interprocess::task(pcall, idPid, m_iTaskSeed++);
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -536,7 +536,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 ::pointer<::interprocess::task>interprocess_intercommunication::get_task(long long iTask)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    return m_mapTask[iTask];
 
@@ -546,7 +546,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 ::pointer<::interprocess::call>interprocess_intercommunication::create_call(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
 {
 
-   return __allocate ::interprocess::call(this, strApp, strObject, strMember);
+   return øallocate ::interprocess::call(this, strApp, strObject, strMember);
 
 }
 

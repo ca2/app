@@ -49,7 +49,7 @@ namespace aura
 
       }
 
-      string strTheme = get_theme();
+      string strTheme = name();
 
       auto iFind = m_straTheme.find_first(strTheme);
 
@@ -115,14 +115,16 @@ namespace aura
    void theme::on_change_theme()
    {
 
-      string strTheme = get_theme();
+      string strTheme = name();
 
       //throw ::exception(todo("core"));
       // Sess(this).userex()->shell()->m_strShellThemePrefix = "app_core_desk/" + strTheme + "/";
 
       m_pcolors = m_mapColors[strTheme];
 
-      m_pathTheme = ::file::path("theme") / get_theme();
+      m_pathTheme = ::file::path("theme") / theme_id();
+
+      notify(id_change_theme);
 
       //auto applicationa = psystem->m_applicationa;
 
@@ -353,10 +355,20 @@ namespace aura
    }
 
 
-   string theme::get_theme()
+   string theme::theme_id()
    {
 
       return m_strTheme;
+
+   }
+
+
+   string theme::name()
+   {
+
+      // temporarily...
+
+      return this->theme_id();
 
    }
 
@@ -539,9 +551,9 @@ namespace aura
       auto & blue = m_mapColors["blue"];
       auto & lite = m_mapColors["lite"];
 
-      dark = __allocate colors();
-      blue = __allocate colors();
-      lite = __allocate colors();
+      dark = øallocate colors();
+      blue = øallocate colors();
+      lite = øallocate colors();
       
       m_pcolors = lite;
 

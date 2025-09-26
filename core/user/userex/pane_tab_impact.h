@@ -31,7 +31,7 @@ namespace userex
 
       
       ::pointer<pane_impact>                    m_ppaneimpact;
-      atom_map < ::pointer<::object >>          m_mapFileManager;
+      atom_map_base < ::pointer<::object >>          m_mapFileManager;
       ::pointer<::user::document>               m_pdocAppOptions;
       ::pointer<font_impact>                    m_pfontimpact;
       ::pointer<::user::color_selector_impact>  m_pcolorselectorimpact;

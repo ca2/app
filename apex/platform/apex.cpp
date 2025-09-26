@@ -80,7 +80,7 @@ void on_term_thread();
 ////   CLASS_DECL_APEX critical_section* g_pcsFont = nullptr;
 ////
 ////
-////   CLASS_DECL_APEX string_to_string * g_pmapFontFaceName = nullptr;
+////   CLASS_DECL_APEX string_to_string_base * g_pmapFontFaceName = nullptr;
 ////
 //
 ////   ::pointer< ::mutex > g_pmutexChildren;
@@ -401,7 +401,7 @@ void on_term_thread();
 //////
 //////#endif
 ////
-////      //::channel::s_pmutexChannel = __allocate mutex();
+////      //::channel::s_pmutexChannel = øallocate mutex();
 ////
 ////      //g_papexstrpool = ___new apex_str_pool();
 ////
@@ -425,7 +425,7 @@ void on_term_thread();
 //////
 //////      g_pcsFont = ___new critical_section();
 //////
-//////      g_pmapFontFaceName = ___new string_to_string();
+//////      g_pmapFontFaceName = ___new string_to_string_base();
 ////
 ////      //g_pmutexThreadDeferredCreation = aaa_memory_new ::pointer < ::mutex >;
 ////
@@ -518,7 +518,7 @@ void on_term_thread();
 ////      //try
 ////      //{
 ////
-////      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
+////      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////      //   g_pmapLibCall->erase_all();
 ////
@@ -532,7 +532,7 @@ void on_term_thread();
 ////      //try
 ////      //{
 ////
-////      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
+////      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 ////
 ////      //   psystem->g_mapLibrary.erase_all();
 ////
@@ -870,7 +870,7 @@ void on_term_thread();
 //      CLASS_DECL_APEX void init()
 //      {
 //
-//         xxdebug_box("axis.dll axis_static_start (0)", "box", e_message_box_ok);
+//         xxdebug_box("axis.dll axis_static_start (0)", "box", ::user::e_message_box_ok);
 
 //         sqlite3_config(SQLITE_CONFIG_MULTITHREAD);
 
@@ -1008,7 +1008,7 @@ void on_term_thread();
 ////      CLASS_DECL_APEX void init()
 ////      {
 ////
-////         xxdebug_box("apex.dll base_static_start (0)", "box", e_message_box_ok);
+////         xxdebug_box("apex.dll base_static_start (0)", "box", ::user::e_message_box_ok);
 ////
 ////         //#ifdef __ANDROID__
 ////         //

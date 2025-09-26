@@ -82,7 +82,7 @@ namespace image
 
       defer_create_synchronization();
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_iSize = 0;
       m_iGrow = nGrow;
@@ -92,7 +92,7 @@ namespace image
 
       system()->draw2d();
 
-      __defer_construct(m_pimage);
+      ødefer_construct(m_pimage);
 
       if (m_iSize > 0)
       {
@@ -109,7 +109,7 @@ namespace image
    void image_list::realize(::draw2d::graphics * pgraphics) const
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_pimage->realize(pgraphics);
 
@@ -119,7 +119,7 @@ namespace image
    image_list & image_list::operator=(const image_list & imagelist)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (this != &imagelist)
       {
@@ -144,7 +144,7 @@ namespace image
    void image_list::draw(::draw2d::graphics * pgraphics, int iImage, const ::double_point & point, int iFlag)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       __UNREFERENCED_PARAMETER(iFlag);
 
@@ -168,7 +168,7 @@ namespace image
    void image_list::draw(::draw2d::graphics * pgraphics, int iImage, const ::double_point & point, int iFlag, const class ::opacity & opacity)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_pimage->nok())
       {
@@ -230,7 +230,7 @@ namespace image
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (iImage >= get_image_count())
       {
@@ -292,7 +292,7 @@ namespace image
 
       ::draw2d::lock draw2dlock(this);
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (iItem < 0)
       {
@@ -326,7 +326,7 @@ namespace image
    //
    //   }
    //
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //   iItem = reserve_image(iItem);
    //
@@ -368,7 +368,7 @@ namespace image
    //
    //   }
    //
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //   iItem = reserve_image(iItem);
    //
@@ -384,7 +384,7 @@ namespace image
    //
    //   auto rectangleTarget = ::double_rectangle(pointDst, sizeDst);
    //
-   //   auto pdraw2dicon = __øcreate < ::image::icon >();
+   //   auto pdraw2dicon = øcreate < ::image::icon >();
    //
    //   pdraw2dicon->initialize_with_windowing_icon(picon);
    //
@@ -398,7 +398,7 @@ namespace image
    //int image_list::add_icon(::payload payloadFile, int iItem)
    //{
    //
-   //   auto picon = __øcreate < ::windowing::icon >();
+   //   auto picon = øcreate < ::windowing::icon >();
    //
    //   if (!picon)
    //   {
@@ -455,7 +455,7 @@ namespace image
    //int image_list::add_file(::payload payloadFile, int iItem)
    //{
    //
-   //   _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //   iItem = reserve_image(iItem);
    //
@@ -493,7 +493,7 @@ namespace image
 
       ::draw2d::lock draw2dlock(this);
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       iItem = reserve_image(iItem);
 
@@ -606,7 +606,7 @@ namespace image
    //int image_list::add_image(image_list * pil, int iImage, int iItem)
    //{
    //
-   //   _synchronous_lock synchronouslock(pil->synchronization());
+   //   _synchronous_lock synchronouslock(pil->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
    //   return add_image(pil->m_pimage, iImage * pil->m_size.cx(), 0, iItem);
    //
@@ -660,7 +660,7 @@ namespace image
    bool image_list::_grow(int iAddUpHint)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       int cx = m_size.cx();
 
@@ -729,7 +729,7 @@ namespace image
 
       pinfo->m_pimage = m_pimage;
 
-      //auto estatus = ((image_list*)this)->__øconstruct(pinfo->m_pimage);
+      //auto estatus = ((image_list*)this)->øconstruct(pinfo->m_pimage);
 
       //pinfo->m_pimage->copy_from(m_pimage);
 

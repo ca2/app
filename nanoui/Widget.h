@@ -299,7 +299,7 @@ namespace nanoui
 
       item_pointer hover_item() override;
 
-      /// Return the list of pwidgetChild widgets of the current pwidget
+      /// Return the list_base of pwidgetChild widgets of the current pwidget
       const ::pointer_array<Widget>& children() const { return m_children; }
 
       /**
@@ -339,7 +339,7 @@ namespace nanoui
       /// Variadic shorthand notation to construct and add a pwidgetChild pwidget
       template<typename WidgetClass, typename... Args>
       ::pointer < WidgetClass>  add(const Args&... args) {
-         return __allocate WidgetClass(this, args...);
+         return øallocate WidgetClass(this, args...);
       }
 
       /// Walk up the hierarchy and return the parent window

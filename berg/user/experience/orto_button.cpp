@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "orto_button.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/handler/item.h"
 #include "acme/platform/timer.h"
@@ -101,13 +101,13 @@ namespace experience
       else
       {
 
-         auto pbrush = __øcreate < ::draw2d::brush >();
+         auto pbrush = øcreate < ::draw2d::brush >();
 
          pbrush->create_solid(crText);
 
          pgraphics->set(pbrush);
 
-         auto ppen = __øcreate < ::draw2d::pen > ();
+         auto ppen = øcreate < ::draw2d::pen > ();
 
          ppen->m_dWidth = 1.0;
 
@@ -157,7 +157,7 @@ namespace experience
    //{
    //   MESSAGE * pmsg = (MESSAGE *)lParam;
 
-   //   if (wParam == e_message_mouse_move)
+   //   if (wParam == ::user::e_message_mouse_move)
    //   {
    //      ::int_point pointCursor = pmsg->pt;
 
@@ -239,7 +239,7 @@ namespace experience
 
       rectangleX = ::user::interaction::rectangle();
 
-      __defer_construct(m_pregion);
+      ødefer_construct(m_pregion);
       
       ::double_ellipse ellipse;
       
@@ -255,11 +255,11 @@ namespace experience
 
       ::user::button::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &orto_button::on_message_show_window);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &orto_button::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &orto_button::on_message_left_button_up);
-      //MESSAGE_LINK(e_message_size, pchannel, this, &orto_button::on_message_size);
-      //   //MESSAGE_LINK(e_message_timer, pchannel, this,&orto_button::on_timer);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &orto_button::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &orto_button::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &orto_button::on_message_left_button_up);
+      //USER_MESSAGE_LINK(::user::e_message_size, pchannel, this, &orto_button::on_message_size);
+      //   //USER_MESSAGE_LINK(::user::e_message_timer, pchannel, this,&orto_button::on_timer);
    }
 
 
@@ -270,7 +270,7 @@ namespace experience
       if (m_pregion.is_null())
       {
 
-         return __allocate ::item(::e_element_none);
+         return øallocate ::item(::e_element_none);
 
       }
 

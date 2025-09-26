@@ -228,7 +228,7 @@ namespace networking
    //::sockets::listen_socket * networking::new_listen_socket(const ::type_atom& type)
    //{
 
-   //   auto plistensocket = __øcreate< ::sockets::listen_socket >();
+   //   auto plistensocket = øcreate< ::sockets::listen_socket >();
 
    //   plistensocket->initialize_listen_socket(type);
 
@@ -436,7 +436,7 @@ namespace networking
 //
 //      single_lock synchronouslock(m_pmutexCache, true);
 //      dns_cache_item item;
-//      if (m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_timeLastChecked.elapsed()) < (5_minute)))))
+//      if (m_mapCache.find(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_timeLastChecked.elapsed()) < (5_minute)))))
 //      {
 //         if (item.m_bOk)
 //         {
@@ -561,7 +561,7 @@ namespace networking
 //      }
 //
 //      //      ::time tick2= ::time::now();
-//      //      informationf("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+//      //      informationf("DNS find networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
 //         //       (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
 //         //     (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
 //         //   (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
@@ -804,7 +804,7 @@ namespace networking
          {
             struct sockaddr_in *point = (struct sockaddr_in *)sa;
             ::sockets::address_pointer addr;
-            addr(__allocate< ::sockets::ipv4_address(get_app >(), *int_point));
+            addr(øallocate< ::sockets::ipv4_address(get_app >(), *int_point));
             return addr;
          }
          break;
@@ -813,7 +813,7 @@ namespace networking
          {
             struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
             ::sockets::address_pointer addr;
-            addr(__allocate< ::sockets::ipv6_address(get_app >(), *int_point));
+            addr(øallocate< ::sockets::ipv6_address(get_app >(), *int_point));
             return addr;
          }
          break;
@@ -955,7 +955,7 @@ namespace networking
 //#ifdef NO_GETADDRINFO
 //      if ((ai_flags & AI_NUMERICHOST) != 0 || isipv6(host))
 //      {
-//         //         list<string> vec;
+//         //         list_base<string> vec;
 //         index x = 0;
 //         for (::collection::index i = 0; i <= host.get_length(); i++)
 //         {
@@ -987,7 +987,7 @@ namespace networking
 //         index sz = vec.get_length(); // number of unsigned char pairs
 //         ::collection::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
 //         unsigned short addr16[8];
-//         for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
+//         for (list_base<string>::iterator it = vec.begin(); it != vec.end(); it++)
 //         {
 //            string bytepair = *it;
 //            if (bytepair.get_length())
@@ -1087,7 +1087,7 @@ namespace networking
    //bool networking::reverse_schedule(reverse_cache_item* pitem)
    //{
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    //   m_reversecacheaRequest.add(pitem);
 
@@ -1163,7 +1163,7 @@ namespace networking
 
       //}
 
-      //pitem = __allocate reverse_cache_item();
+      //pitem = øallocate reverse_cache_item();
 
       //pitem->m_address = address;
 
@@ -1258,7 +1258,7 @@ namespace networking
 //         }
 //         else
 //         {
-//            // %! TODO: ipv6 reverse lookup
+//            // %! TODO: ipv6 reverse find
 //            struct sockaddr_in6* sa_in = (struct sockaddr_in6*)sa;
 //            struct hostent* h = gethostbyaddr((const_char_pointer )&sa_in->sin6_addr, sizeof(sa_in->sin6_addr), AF_INET6);
 //            if (h)

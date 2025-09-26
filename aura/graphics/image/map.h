@@ -37,16 +37,40 @@ namespace image
 {
 
 
-   class image_map :
-      virtual public map < enum_image, ::image::image_pointer >
+   class CLASS_DECL_AURA image_map_base :
+      public map_base < enum_image, ::image::image_pointer >
    {
    public:
+
+
+      using BASE_MAP = map_base < enum_image, ::image::image_pointer >;
+
+
+      using BASE_MAP::BASE_MAP;
+      using BASE_MAP::operator =;
+
 
    };
 
 
-   class CLASS_DECL_AURA size_image :
-      virtual public map < int_size, ::image::image_pointer >
+   class CLASS_DECL_AURA image_map :
+      virtual public map_particle < image_map_base >
+   {
+   public:
+
+
+      using BASE_MAP = map_particle < image_map_base >;
+
+
+      using BASE_MAP::BASE_MAP;
+      using BASE_MAP::operator =;
+
+
+   };
+
+
+   class CLASS_DECL_AURA size_image_base :
+      public map_base < int_size, ::image::image_pointer >
    {
    public:
 
@@ -58,19 +82,35 @@ namespace image
    };
 
 
-   using image_descriptor_map_base = map < image_header, ::image::image_pointer >;
-
-
-   class CLASS_DECL_AURA image_descriptor_map :
-      virtual public image_descriptor_map_base
+   class CLASS_DECL_AURA size_image :
+      virtual public map_particle < size_image_base >
    {
    public:
+
+
+      using BASE_MAP = map_particle < size_image_base >;
+
+
+      using BASE_MAP::BASE_MAP;
+      using BASE_MAP::operator =;
+
+
+   };
+
+
+   class CLASS_DECL_AURA image_descriptor_map_base :
+      public map_base < image_header, ::image::image_pointer >
+   {
+   public:
+
+
+      using BASE_PAIR_MAP = map_base < image_header, ::image::image_pointer >;
 
 
       int m_iLimitCount;
 
 
-      image_descriptor_map(int iLimitCount = 500)
+      image_descriptor_map_base(int iLimitCount = 500)
       {
 
          m_iLimitCount = iLimitCount;
@@ -78,12 +118,31 @@ namespace image
       }
 
 
-      ::image::image *operator[](const image_header & key);
+      ::image::image_pointer & operator[](const image_header & key);
 
 
       void erase_bigger();
 
+
    };
+
+
+   class CLASS_DECL_AURA image_descriptor_map :
+      virtual public map_particle < image_descriptor_map_base >
+   {
+   public:
+
+
+      using BASE_MAP = map_particle < image_descriptor_map_base >;
+
+
+      using BASE_MAP::BASE_MAP;
+      using BASE_MAP::operator =;
+
+
+   };
+
+
 
 
 } // namespace image

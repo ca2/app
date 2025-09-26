@@ -62,7 +62,7 @@ bool str::to(long long & i, int iBase, const ::scoped_string & scopedstr)
 
 #else
 
-   long long iConversion = ::ansi_to_long_long(str, (const_char_pointer *) & pszEnd, iBase);
+   long long iConversion = ::ansi_to_long_long(scopedstr, (const_char_pointer *) & pszEnd, iBase);
 
 #endif
 
@@ -93,7 +93,7 @@ bool str::to(int & i, int iBase, const ::scoped_string & scopedstr)
 
 #else
 
-   long long iConversion = ::ansi_to_long_long(str, (const_char_pointer *) & pszEnd, iBase);
+   long long iConversion = ::ansi_to_long_long(scopedstr, (const_char_pointer *) & pszEnd, iBase);
 
 #endif
 
@@ -232,7 +232,7 @@ iptr str::to_iptr(const ::scoped_string & scopedstr)
 
 #if defined(_LP64) || defined(_AMD64_)
 
-   return to_long_long(str);
+   return to_long_long(scopedstr);
 
 #else
    return to_int(scopedstr);

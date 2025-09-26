@@ -54,7 +54,7 @@ namespace simpledb
       table * ptable = nullptr;
       string strName(scopedstrName);
       strName.make_lower();
-      if(!m_mapTable.lookup(strName, ptable))
+      if(!m_mapTable.find(strName, ptable))
       {
          ptable = create_table(strName);
          m_mapTable.set_at(strName, ptable);
@@ -69,7 +69,7 @@ namespace simpledb
 
    ::simpledb::dataset * database::create_dataset()
    {
-      return __allocate< ::simpledb::dataset(const_cast < ::simpledb::database * >  >(this));
+      return øallocate< ::simpledb::dataset(const_cast < ::simpledb::database * >  >(this));
    }
 
 

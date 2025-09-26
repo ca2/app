@@ -76,7 +76,7 @@ Function ValidateCustom
 
   ReadINIStr ${TEMP1} "$PLUGINSDIR\test.ini" "Field 4" "State"
   StrCmp ${TEMP1} 1 done
-    MessageBox e_message_box_icon_exclamation|e_message_box_ok "You must select at least one install option!"
+    MessageBox ::user::e_message_box_icon_exclamation|::user::e_message_box_ok "You must select at least one install option!"
     Abort
 
   done:

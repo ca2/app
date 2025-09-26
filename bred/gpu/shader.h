@@ -80,13 +80,13 @@ namespace gpu
          int m_i1FragmentShader = -1;
          int m_i2FragmentShader = -1;
       };
-      //::string_map<constant_buffer> m_mapConstantBuffer;
+      //::string_map_base<constant_buffer> m_mapConstantBuffer;
       //struct sampler_and_texture
       //{
 
       //   int m_i;
       //};
-      //::string_map<sampler_and_texture> m_mapSamplerAndTexture;
+      //::string_map_base<sampler_and_texture> m_mapSamplerAndTexture;
       bool                                m_bClearColor;
       ::color::color                      m_colorClear;
       ::gpu::enum_topology                m_etopology;
@@ -103,7 +103,7 @@ namespace gpu
 
       string                     m_strError;
 
-      //string_map < payload >     m_mapLayout;
+      //string_map_base < payload >     m_mapLayout;
 
       ::pointer < renderer >     m_pgpurenderer;
 
@@ -124,6 +124,11 @@ namespace gpu
       ::pointer < input_layout > m_pinputlayout;
       class ::time               m_timeRetire;
       //bool m_bTextureAndSampler;
+      int                        m_iPushConstants = -1;
+      ::string                   m_strPushConstantsDebugging;
+
+      ::gpu::texture *           m_pgputextureBound = nullptr;
+
 
 
       shader();
@@ -204,6 +209,8 @@ namespace gpu
 
 
       virtual void push_properties();
+
+      virtual void set_push_properties(const ::block& block);
 
 
       //virtual void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value);

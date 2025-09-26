@@ -151,34 +151,70 @@ inline sequence_continuation particle::async()
 
 
 
-   template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
 ::collection::count base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::_allocate(::collection::count nNewSize, bool bShrink, bool bRaw, const TYPE * ptype)
 {
 
-   if (this->m_earray & e_array_preallocated)
-   {
+   //if (this->m_erange & e_range_array_allocate)
+   //{
 
-      if (nNewSize > this->m_countAllocation)
-      {
+   //   if (nNewSize > this->m_countAllocation)
+   //   {
 
-         throw ::exception(error_wrong_state);
+   //      throw ::exception(error_wrong_state);
 
-      }
+   //   }
 
-      if (ptype)
-      {
+   //   if (nNewSize > this->m_countAllocation + this->m_countAllocationOffset)
+   //   {
 
-         auto nOldSize = this->size();
+   //      auto countOffset = this->m_countAllocationOffset;
 
-         TYPED::copy_construct_count(this->m_begin + nOldSize, nNewSize - nOldSize, *ptype);
+   //      for (auto p = this->m_begin; p < this->m_end; p++)
+   //      {
 
-      }
+   //         p[countOffset] = *p;
 
-      this->m_end = this->m_begin + nNewSize;
+   //      }
 
-      return nNewSize;
+   //      this->m_begin += countOffset;
 
-   }
+   //      this->m_end += countOffset;
+
+   //      this->m_countAllocationOffset = 0;
+
+   //   }
+
+   //   if (ptype)
+   //   {
+
+   //      auto nOldSize = this->size();
+
+   //      TYPED::destruct_count(this->m_begin + nOldSize, nNewSize - nOldSize);
+
+   //      TYPED::copy_construct_count(this->m_begin + nOldSize, nNewSize - nOldSize, *ptype);
+
+   //   }
+
+   //   this->m_end = this->m_begin + nNewSize;
+
+   //   if (this->m_end == this->m_begin)
+   //   {
+
+   //      if (this->m_countAllocationOffset != 0)
+   //      {
+
+   //         this->m_begin += this->m_countAllocationOffset;
+
+   //         this->m_end = this->m_begin;
+
+   //      }
+
+   //   }
+
+   //   return nNewSize;
+
+   //}
 
    ASSERT(nNewSize >= 0);
 
@@ -209,7 +245,7 @@ inline sequence_continuation particle::async()
          if(bShrink)
          {
             
-            if(!(this->m_earray & e_array_preallocated))
+            //if(!(this->m_erange & e_range_array_allocate))
             {
                
                MEMORY::free(this->m_begin + this->m_countAllocationOffset);
@@ -218,21 +254,22 @@ inline sequence_continuation particle::async()
                
 
             }
-            else
-            {
-             
-               this->m_end = this->m_begin;
-               
-            }
+            //else
+            //{
+            // 
+            //   TYPED::construct_count(this->m_begin, this->size());
+            //   this->m_end = this->m_begin;
+
+            //}
 
             this->m_countAllocationOffset = 0;
-            
+
 
          }
          else
          {
 
-            if (this->m_earray & e_array_zeroe_on_allocation)
+            if (this->m_erange & e_range_array_clear_on_allocate)
             {
 
                memset(this->m_begin, 0, maximum(0, countOld) * sizeof(TYPE));
@@ -244,16 +281,16 @@ inline sequence_continuation particle::async()
       }
 
       this->m_end = this->m_begin;
-      
+
    }
    else if(this->m_begin == nullptr)
    {
 
       if(nNewSize > UPTR_MAXIMUM / sizeof(TYPE))
       {
-         
+
          throw_exception(error_no_memory);
-         
+
       }
 
       auto nAllocSize = maximum(nNewSize, m_countAddUp);
@@ -309,29 +346,29 @@ inline sequence_continuation particle::async()
 
 #endif
 
-      if (this->m_earray & e_array_zeroe_on_allocation)
+      if (this->m_erange & e_range_array_clear_on_allocate)
       {
 
          memset(this->m_begin, 0, nAllocSize * sizeof(TYPE));
 
       }
-      
+
       if(!bRaw)
       {
-         
+
          if (::is_null(ptype))
          {
-            
+
             TYPED::construct_count(this->m_begin, nNewSize);
-            
+
          }
          else
          {
-            
+
             TYPED::copy_construct_count(this->m_begin, nNewSize, *ptype);
-            
+
          }
-         
+
       }
 
       this->m_end = this->m_begin + nNewSize;
@@ -369,10 +406,15 @@ inline sequence_continuation particle::async()
 
             TYPED::destruct_count(this->m_begin + nNewSize, countOld - nNewSize);
 
-            if (this->m_earray & e_array_zeroe_on_allocation)
+            if (this->m_erange & e_range_array_clear_on_allocate)
             {
 
                memset(this->m_begin + nNewSize, 0, (countOld - nNewSize) * sizeof(TYPE));
+
+            }
+            else
+            {
+               TYPED::construct_count(this->m_begin + nNewSize, countOld - nNewSize);
 
             }
 
@@ -476,7 +518,7 @@ inline sequence_continuation particle::async()
       // copy ___new data from old
       ::safe_memory_copy2(pNewData, (size_t)countNewAllocation, this->m_begin, (size_t) countOld);
 
-      if (this->m_earray & e_array_zeroe_on_allocation)
+      if (this->m_erange & e_range_array_clear_on_allocate)
       {
 
          memset(this->m_begin + countOld, 0, (countNewAllocation - countOld) * sizeof(TYPE));
@@ -509,19 +551,19 @@ inline sequence_continuation particle::async()
          
       }
       
-      if(!(this->m_earray & e_array_preallocated))
+      //if(!(this->m_erange & e_range_array_allocate))
       {
          
          // get rid of old stuff (note: no destructors called)
          MEMORY::free(this->m_begin + this->m_countAllocationOffset);
          
       }
-      else
-      {
-         
-         this->m_earray -= e_array_preallocated;
-         
-      }
+      //else
+      //{
+      //   
+      //   this->m_erange = (::enum_range) (this->m_erange & ~e_range_array_allocate);
+      //   
+      //}
 
       this->m_begin = pNewData;
 
@@ -536,3 +578,143 @@ inline sequence_continuation particle::async()
    return countOld;
 
 }
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
+void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_base_ok() const
+{
+
+   if (this->m_begin)
+   {
+
+      ASSERT(this->m_end);
+
+      ASSERT(this->m_countAllocation > 0);
+
+   }
+   else
+   {
+
+      ASSERT(!this->m_end);
+
+      ASSERT(this->m_countAllocation == 0);
+
+   }
+
+}
+
+
+
+template < class TYPE, class ARG_TYPE >
+void list_base < TYPE, ARG_TYPE >::list_base_ok() const
+{
+
+   if (this->m_begin)
+   {
+
+      ASSERT(this->m_end);
+
+      ASSERT(this->m_count > 0);
+
+   }
+   else
+   {
+
+      ASSERT(!this->m_end);
+
+      ASSERT(this->m_count == 0);
+
+   }
+
+}
+
+
+template < typename ITEM, enum_allocate t_eallocate >
+void node_set_base < ITEM, t_eallocate >::container_ok() const
+{
+
+   if (this->m_begin)
+   {
+
+      ASSERT(this->m_end);
+
+      ASSERT(this->m_count > 0);
+
+   }
+   else
+   {
+
+      ASSERT(!this->m_end);
+
+      ASSERT(this->m_count == 0);
+
+   }
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(const base_array< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array)
+{
+
+   this->m_begin = nullptr;
+   this->m_end = nullptr;
+   this->m_erange = e_range_none;
+   //this->m_erange = e_array_none;
+   m_countAddUp = 0;
+   m_countAllocation = 0;
+   m_countAllocationOffset = 0;
+   set_size(array.get_size());
+
+   for (::collection::index i = 0; i < array.get_size(); i++)
+   {
+
+      element_at(i) = array[i];
+
+   }
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(base_array< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > && array) noexcept :
+   ARRAY_RANGE(no_initialize_t{})
+{
+
+   this->m_begin = array.m_begin;
+   this->m_end = array.m_end;
+   this->m_erange = array.m_erange;
+   this->m_countAddUp = array.m_countAddUp;
+   this->m_countAllocation = array.m_countAllocation;
+   this->m_countAllocationOffset = array.m_countAllocationOffset;
+
+   array.m_begin = nullptr;
+   array.m_end = nullptr;
+   array.m_erange = e_range_none;
+   array.m_countAllocation = 0;
+   array.m_countAllocation = 0;
+   array.m_countAllocationOffset = 0;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+template < typename OTHER_RANGE >
+base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::
+base_array(const OTHER_RANGE & range) requires
+(container_range < OTHER_RANGE >
+   && !::std::is_base_of_v < base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >, ::std::remove_cvref_t < OTHER_RANGE > >) :
+   base_array()
+{ 
+
+   for (auto p = range.begin(); range.is_iterator_ok(p); p++)
+   {
+
+      this->add((ARG_TYPE) *p);
+
+   }
+
+}
+
+
+

@@ -13,18 +13,25 @@ public:
 
 
    //using BASE_RANGE = comparable_eq_range < ARRAY_TYPE >;
-   using BASE_RANGE = ARRAY_TYPE;
-
    using BASE_ARRAY = ARRAY_TYPE;
+   using RAW_BASE_ARRAY = typename BASE_ARRAY::RAW_BASE_ARRAY;
+
+   using BASE_RANGE = typename BASE_ARRAY::BASE_RAW_RANGE;
 
    using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
 
    using iterator = typename ARRAY_TYPE::iterator;
    using const_iterator = typename ARRAY_TYPE::const_iterator;
+   
+   using this_iterator = typename BASE_ARRAY::this_iterator;
 
 
-   using ARRAY_TYPE::ARRAY_TYPE;
-   using ARRAY_TYPE::operator =;
+
+   using BASE_ARRAY::BASE_ARRAY;
+   using BASE_ARRAY::operator =;
+   using BASE_ARRAY::operator +=;
+
+   comparable_eq_array_base(const RAW_BASE_ARRAY& a) : BASE_ARRAY(a) {}
 
    // comparable_eq_array_base(no_initialize_t):BASE_RANGE(no_initialize_t{}){}
    // comparable_eq_array_base(nullptr_t):BASE_RANGE(nullptr){}
@@ -73,7 +80,7 @@ public:
    ::collection::count erase(ARG_TYPE t);
    ::collection::count erase(ARG_TYPE t, ::collection::index find, ::collection::index last = -1, ::collection::count countMin = 0, ::collection::count countMax = -1);
    template < primitive_container CONTAINER>
-   ::collection::count erase_container(const CONTAINER & container);
+   ::collection::count erase(const CONTAINER & container);
 
 
    bool add_unique(ARG_TYPE t);
@@ -89,6 +96,47 @@ public:
    // set
    void merge(const comparable_eq_array_base & a);
    void intersect(const comparable_eq_array_base & a);
+
+   comparable_eq_array_base & operator -= (const TYPE & t)
+   {
+
+      this->erase(t);
+
+      return *this;
+
+   }
+
+
+   template < primitive_range RANGE >
+   comparable_eq_array_base & operator -= (const RANGE & range)
+   {
+
+      for (auto & item : range)
+      {
+
+         this->erase(item);
+
+      }
+
+      return *this;
+
+   }
+
+
+   comparable_eq_array_base & operator -= (const std::initializer_list < TYPE > & initializer_list)
+   {
+
+      for (auto & item : initializer_list)
+      {
+
+         this->erase(item);
+
+      }
+
+      return *this;
+
+   }
+
 
    // set operators
    //comparable_eq_array_base & operator -= (const TYPE & t);
@@ -130,7 +178,6 @@ public:
    }
 
    
-   using BASE_ARRAY::operator +=;
 
 
    TYPE get_next(ARG_TYPE t)
@@ -433,26 +480,27 @@ inline CONTAINER& operator &= (CONTAINER& container, const CONTAINER& container2
 }
 
 
-template < primitive_container CONTAINER >
-inline CONTAINER & operator -= (CONTAINER & container, const typename CONTAINER::CONTAINER_ITEM_TYPE& t)
-{
+// template < primitive_container CONTAINER >
+// inline CONTAINER & operator -= (CONTAINER & container, const typename CONTAINER::CONTAINER_ITEM_TYPE& t)
+// {
+//
+//    container.erase(t);
+//
+//    return container;
+//
+// }
+//
+//
+// template < primitive_container CONTAINER, primitive_container CONTAINER2 >
+// inline CONTAINER& operator -= (CONTAINER& container, const CONTAINER2& container2)
+// {
+//
+//    container.erase_container(container2);
+//
+//    return container;
+//
+// }
 
-   container.erase(t);
-
-   return container;
-
-}
-
-
-template < primitive_container CONTAINER, primitive_container CONTAINER2 >
-inline CONTAINER& operator -= (CONTAINER& container, const CONTAINER2& container2)
-{
-
-   container.erase_container(container2);
-
-   return container;
-
-}
 
 
 template < primitive_container CONTAINER1, primitive_container CONTAINER2 >
@@ -603,7 +651,7 @@ erase(ARG_TYPE t)
 template <class TYPE,class ARG_TYPE, class ARRAY_TYPE >
 template < primitive_container CONTAINER>
 ::collection::index comparable_eq_array_base < TYPE, ARG_TYPE, ARRAY_TYPE >::
-erase_container(const CONTAINER & container)
+erase(const CONTAINER & container)
 {
 
    ::collection::count count = 0;

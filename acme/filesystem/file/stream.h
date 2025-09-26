@@ -160,6 +160,7 @@ public:
    e_str_flag                       m_estrflag;
    ::file::e_iostate                m_iostate;
    memsize                          m_gcount;
+   ::file::enum_stream              m_estream = ::file::e_stream_none;
 
 
    stream_base()
@@ -231,8 +232,34 @@ public:
 
    //}
 
+
+
 };
 
+template < typename S, typename T >
+void stream_exchange(S & s, T & t)
+{
+
+   if(s.m_estream == ::file::e_stream_output)
+   {
+
+      s << t;
+
+   }
+   else if(s.m_estream == ::file::e_stream_input)
+   {
+
+      s >> t;
+
+   }
+   else
+   {
+
+      throw "wrong state m_estream is bad";
+
+   }
+
+}
 
 
 //template < typename POINTER_TYPE >
@@ -762,7 +789,7 @@ public:
 //inline binary_stream & operator >> (binary_stream & s, e_set_loading) { s->set_loading(); return s; }
 //
 //template < class KEY, class ARG_KEY, class PAYLOAD, class ARG_VALUE, class PAIR >
-//inline binary_stream & operator >>(binary_stream & s, map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m);
+//inline binary_stream & operator >>(binary_stream & s, map_base < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m);
 //
 //template <  typename TYPE >
 //inline binary_stream & operator >>(binary_stream & s, pointer_array < TYPE > & a);
@@ -841,7 +868,7 @@ public:
 
 //
 //template < class KEY, class ARG_KEY, class PAYLOAD, class ARG_VALUE, class PAIR >
-//inline binary_stream & operator <<(binary_stream & s, const map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m);
+//inline binary_stream & operator <<(binary_stream & s, const map_base < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m);
 //
 //template < typename TYPE >
 //inline binary_stream & operator <<(binary_stream & s, const pointer_array < TYPE > & a);

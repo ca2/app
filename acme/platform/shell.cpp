@@ -59,7 +59,7 @@ namespace acme
             if (*psz == ' ')
             {
 
-               unicode_increment(psz);
+               psz = (char *) unicode_next(psz);
 
             }
             else if (*psz == '\"')
@@ -67,7 +67,7 @@ namespace acme
 
                quote = '\"';
 
-               unicode_increment(psz);
+               psz = (char *) unicode_next(psz);
 
                argv[argc++] = (char*)psz;
 
@@ -79,7 +79,7 @@ namespace acme
 
                quote = '\'';
 
-               unicode_increment(psz);
+               psz = (char *) unicode_next(psz);
 
                argv[argc++] = (char*)psz;
 
@@ -91,7 +91,7 @@ namespace acme
 
                argv[argc++] = (char*)psz;
 
-               unicode_increment(psz);
+               psz = (char *) unicode_next(psz);
 
                e = state_non_space;
 
@@ -106,13 +106,13 @@ namespace acme
 
                memory_transfer(psz, psz + 1, ansi_len(psz));
 
-               unicode_increment(psz);
+               psz = (char *) unicode_next(psz);
 
             }
             else if (*psz == quote)
             {
 
-               p = unicode_next(psz);
+               p = (char *) unicode_next(psz);
 
                *psz = '\0';
 
@@ -124,7 +124,7 @@ namespace acme
             else
             {
 
-               unicode_increment(psz);
+               psz = (char *) unicode_next(psz);
 
             }
 
@@ -135,7 +135,7 @@ namespace acme
             if (*psz == ' ')
             {
 
-               p = unicode_next(psz);
+               p = (char *) unicode_next(psz);
 
                *psz = '\0';
 
@@ -147,7 +147,7 @@ namespace acme
             else
             {
 
-               unicode_increment(psz);
+               psz = (char *) unicode_next(psz);
 
             }
 
@@ -185,7 +185,7 @@ namespace acme
 
       status_pointer <::string> pstring;
 
-      __construct_new(pstring);
+      øconstruct_new(pstring);
 
       trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
          {
@@ -235,7 +235,7 @@ namespace acme
 
       status_pointer <::string> pstring;
 
-      __construct_new(pstring);
+      øconstruct_new(pstring);
 
       trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
          {
@@ -279,7 +279,7 @@ namespace acme
 
       status_pointer <::string> pstring;
 
-      __construct_new(pstring);
+      øconstruct_new(pstring);
 
       trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
          {
@@ -590,7 +590,7 @@ namespace acme
 
    //   status_pointer <::string> pstring;
 
-   //   __construct_new(pstring);
+   //   øconstruct_new(pstring);
 
    //   trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
    //      {

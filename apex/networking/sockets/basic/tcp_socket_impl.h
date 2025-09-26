@@ -117,7 +117,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //            return _q;
 //         }
 //      };
-//      typedef list<::pointer<output >> output_list;
+//      typedef list_base<::pointer<output >> output_list;
 //
 //      ::file::circular_file ibuf; ///< Circular input buffer
 //      string m_strUrl;

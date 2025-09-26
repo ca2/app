@@ -49,9 +49,9 @@ namespace experience_anthill
    void frame_005::on_initialize_experience_frame()
    {
 
-      __øconstruct(m_pbrushGrip);
+      øconstruct(m_pbrushGrip);
 
-      __øconstruct(m_pbrushTextCaption);
+      øconstruct(m_pbrushTextCaption);
 
       //   
 

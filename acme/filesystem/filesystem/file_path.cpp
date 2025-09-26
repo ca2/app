@@ -297,9 +297,13 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
                   ansi_cpy(&psz[iNewPosition], p);
 
-                  iLen -= p - &psz[iNewPosition];
+                  auto sizeDecrease = p - &psz[iNewPosition];
+
+                  iLen -= sizeDecrease;
 
                   p = &psz[iNewPosition];
+
+                  pend -= sizeDecrease;
 
                }
                else
@@ -926,6 +930,13 @@ string file_path_normalize(const ::scoped_string & scopedstrPath, enum_path epat
 
 bool file_path_normalize_inline(string & strPath, enum_path & epath)
 {
+
+   if (!strPath.find_first_character_in("\\/"))
+   {
+
+      return true;
+
+   }
 
    if (epath == e_path_data)
    {

@@ -16,7 +16,7 @@ DECLARE_ENUMERATION(e_window_flag, enum_window_flag);
 //
 //
 //   e_window_flag() { m_ewindowflag = (enum_window_flag)0; }
-//   ewindowflag(const std::initializer_list < enum_window_flag >& list) { m_ewindowflag = (enum_window_flag)0; for (auto& e : list) add(e); }
+//   ewindowflag(const std::initializer_list < enum_window_flag >& list_base) { m_ewindowflag = (enum_window_flag)0; for (auto& e : list_base) add(e); }
 //   ewindowflag(enum_window_flag e) { m_ewindowflag = e; }
 //   ewindowflag(long long i) { m_ewindowflag = (enum_window_flag)i; }
 //   ewindowflag(const ewindowflag& e) { m_ewindowflag = e.m_ewindowflag; }

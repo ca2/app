@@ -51,7 +51,7 @@ public:
    sockets::http_session *                   m_phttpsession;
 
 
-   string_map < db_long_set_item >           m_map;
+   string_map_base < db_long_set_item >           m_map;
    bool                                      m_bIndexed;
 
    ::mysql::database *                       m_pmysqldbUser;
@@ -213,7 +213,7 @@ bool db_long_set::load(const ::string & lpKey, long long * plValue)
 
       db_long_set_item longitem;
 
-      if(m_pcore->m_map.lookup(lpKey,longitem) && longitem.m_timeTimeout > ::get_tick())
+      if(m_pcore->m_map.find(lpKey,longitem) && longitem.m_timeTimeout > ::get_tick())
       {
          *plValue = longitem.m_l;
          return true;

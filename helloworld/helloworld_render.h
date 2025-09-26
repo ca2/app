@@ -93,7 +93,7 @@ namespace helloworld
 
 
       //string_array_base                          m_stra23;
-      //string_map < ::image::image_pointer >    m_mapDib23;
+      //string_map_base < ::image::image_pointer >    m_mapDib23;
       //bool                             m_b23;
       //unsigned int                         m_uiCurrent23;
       //string                           m_strCurrent23;
@@ -115,7 +115,7 @@ namespace helloworld
 
       virtual string get_helloaura() override;
 
-      // { synchronous_lock slText(m_pmutexText);  string str(m_strHelloWorld.c_str()); return str; }
+      // { synchronous_lock slText(m_pmutexText, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);  string str(m_strHelloWorld.c_str()); return str; }
 
 
       virtual int run();

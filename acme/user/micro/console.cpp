@@ -119,7 +119,7 @@ namespace micro
 
          iButton = -1;
 
-         if (m_mapCharIndex.lookup(ch, iButton))
+         if (m_mapCharIndex.find(ch, iButton))
          {
 
             break;

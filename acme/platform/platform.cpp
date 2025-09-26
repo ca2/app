@@ -192,6 +192,99 @@ namespace platform
    }
 
 
+   ::string platform::command_line() const
+   {
+
+      if (m_bCommandLineSystemNative)
+      {
+
+         return m_strCommandLineSystemNative;
+
+      }
+
+      if (!m_bCommandLineCalculated)
+      {
+
+         ((platform*)this)->calculate_command_line();
+
+      }
+
+      return m_strCommandLineCalculated;
+
+   }
+
+
+   void platform::calculate_command_line()
+   {
+
+      m_bCommandLineCalculated = true;
+
+      ::string_array stra;
+
+      auto argc = m_argc;
+
+      auto args = m_args;
+
+#ifdef WINDOWS
+
+      auto wargs = m_wargs;
+
+      if (!args && !wargs)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+#elif !defined(ANDROID)
+
+      if (!args)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+#endif
+
+      for (int i = 0; i < argc; i++)
+      {
+
+         ::string strArg;
+
+#ifdef WINDOWS
+
+         if (wargs[i])
+         {
+
+            strArg = wargs[i];
+
+         }
+         else
+#endif
+         {
+
+            strArg = args[i];
+
+         }
+
+         if (strArg.contains_any_character_in(" \t\r\n"))
+         {
+
+            strArg.surround("\"");
+
+         }
+
+         stra.add(strArg);
+
+      }
+
+      ::string strCommandLineCalculated = stra.implode(" ");
+
+      m_strCommandLineCalculated = strCommandLineCalculated;
+
+   }
+
 
    void platform::platform_initialize()
    {
@@ -298,7 +391,8 @@ namespace platform
       m_hinstanceThis = hinstanceThis;
       m_hinstancePrev = hinstancePrev;
       //m_strCommandLine = pCmdLine; // pCmdLine lacks the executable file path arg[0]
-      m_strCommandLine = ::GetCommandLineW();
+      m_strCommandLineSystemNative = ::GetCommandLineW();
+      m_bCommandLineSystemNative = true;
       m_nCmdShow = nCmdShow;
 
       m_argc = __argc;
@@ -617,7 +711,7 @@ namespace platform
       if (!pfactory)
       {
 
-         ::system()->__construct_new(pfactory);
+         ::system()->øconstruct_new(pfactory);
 
       }
 
@@ -748,7 +842,7 @@ namespace platform
       // if (!m_psystem)
       // {
       //
-      //    factory()->__raw_construct(m_psystem);
+      //    factory()->øraw_construct(m_psystem);
       //
       //    m_psystem->set_platform();
       //
@@ -779,9 +873,10 @@ g_bWindowingOutputDebugString = true;
 
       //__raw_construct_new(m_pcomponentfactorymap);
 
-      //m_pfactory = __allocate ::factory::factory();
+      //m_pfactory = øallocate ::factory::factory();
 
-      m_pfactory->InitHashTable(16189);
+
+      m_pfactory->InitHashTable(16381);
 
       //::acme::acme::g_pstaticstatic->m_pfactorya = ___new factory_array();
 
@@ -821,16 +916,16 @@ g_bWindowingOutputDebugString = true;
 
       critical_section_lock cs(&m_criticalsection);
 
-      auto p = m_pfactory->find_item(atom);
+      auto iterator = m_pfactory->find(atom);
 
-      if (!p)
+      if (!iterator)
       {
 
          return false;
 
       }
 
-      if (!p->element2())
+      if (!iterator->payload())
       {
 
          return false;
@@ -910,7 +1005,7 @@ g_bWindowingOutputDebugString = true;
 
          }
 
-         plibrary = system()->__create_new < ::acme::library >();
+         plibrary = system()->øcreate_new < ::acme::library >();
 
          plibrary->m_strName = strLibrary;
 
@@ -962,7 +1057,7 @@ g_bWindowingOutputDebugString = true;
       //    if(strComponent == "nano_http")
       //    {
       //
-      //       pfactory = system()->__create_new < ::factory::factory >();
+      //       pfactory = system()->øcreate_new < ::factory::factory >();
       //
       //       initialize_nano_http(pfactory);
       //
@@ -972,7 +1067,7 @@ g_bWindowingOutputDebugString = true;
       //    else if(strComponent == "nano_user")
       //    {
       //
-      //       pfactory = system()->__create_new < ::factory::factory >();
+      //       pfactory = system()->øcreate_new < ::factory::factory >();
       //
       //       initialize_nano_user(pfactory);
       //
@@ -1010,7 +1105,7 @@ g_bWindowingOutputDebugString = true;
       //   if (pfnFactory)
       //   {
 
-      //      pfactory = system()->__create_new < ::factory::factory >();
+      //      pfactory = system()->øcreate_new < ::factory::factory >();
 
       //      pfnFactory(pfactory);
 
@@ -1083,7 +1178,7 @@ g_bWindowingOutputDebugString = true;
       //    if(strComponent == "nano_http")
       //    {
       //
-      //       pfactory = system()->__create_new < ::factory::factory >();
+      //       pfactory = system()->øcreate_new < ::factory::factory >();
       //
       //       initialize_nano_http(pfactory);
       //
@@ -1093,7 +1188,7 @@ g_bWindowingOutputDebugString = true;
       //    else if(strComponent == "nano_user")
       //    {
       //
-      //       pfactory = system()->__create_new < ::factory::factory >();
+      //       pfactory = system()->øcreate_new < ::factory::factory >();
       //
       //       initialize_nano_user(pfactory);
       //
@@ -1131,7 +1226,7 @@ g_bWindowingOutputDebugString = true;
          if (pfnFactory)
          {
 
-            pfactory = system()->__create_new < ::factory::factory >();
+            pfactory = system()->øcreate_new < ::factory::factory >();
 
             pfnFactory(pfactory);
 
@@ -1194,7 +1289,7 @@ g_bWindowingOutputDebugString = true;
    ////
    ////      }
    ////
-   ////      plibrary = system()->__create_new < ::acme::library >();
+   ////      plibrary = system()->øcreate_new < ::acme::library >();
    ////
    ////      plibrary->m_strName = strLibrary;
    ////
@@ -1254,7 +1349,7 @@ g_bWindowingOutputDebugString = true;
 
          string strDetails = exception.get_consolidated_details(this);
 
-         auto pmessagebox = __initialize_new_with(this) ::message_box(strMessage, "Library Loading Failure", e_message_box_ok | e_message_box_icon_warning,
+         auto pmessagebox = __initialize_new_with(this) ::message_box(strMessage, "Library Loading Failure", ::user::e_message_box_ok | ::user::e_message_box_icon_warning,
             strDetails);
 
          pmessagebox->async();
@@ -1273,7 +1368,7 @@ g_bWindowingOutputDebugString = true;
 
       //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
-      auto plibrary = __create_new < ::acme::library >();
+      auto plibrary = øcreate_new < ::acme::library >();
 
       __check_refdbg
       //plibrary->initialize_matter(this);
@@ -1329,7 +1424,7 @@ g_bWindowingOutputDebugString = true;
 
       }
 
-      auto plibrary = __create_new < ::acme::library >();
+      auto plibrary = øcreate_new < ::acme::library >();
 
       plibrary->m_strName = scopedstrLibrary;
 
@@ -1362,7 +1457,7 @@ g_bWindowingOutputDebugString = true;
   //    {
 
     //     auto pmessagebox = __initialize_new_with(this) ::message_box(librarynotloaded.get_message(),
-            //"Library not loaded", e_message_box_icon_error, librarynotloaded.m_strDetails);
+            //"Library not loaded", ::user::e_message_box_icon_error, librarynotloaded.m_strDetails);
 
       //   pmessagebox->async();
 

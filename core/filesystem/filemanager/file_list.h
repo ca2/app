@@ -24,7 +24,7 @@ namespace filemanager
       class ::time                          m_timeLastFileSizeGet;
 
 
-      //map < icon_key,const icon_key &,icon,icon & > m_iconmap;
+      //map_base < icon_key,const icon_key &,icon,icon & > m_iconmap;
 
 //#ifdef WINDOWS_DESKTOP
 //      IShellFolder *                   m_pshellfolder;

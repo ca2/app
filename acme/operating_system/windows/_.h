@@ -58,7 +58,7 @@ inline void copy(MESSAGE & message, const MSG & msg)
 {
 
    message.m_oswindow = (oswindow)(msg.hwnd);
-   message.m_emessage = (enum_message)msg.message;
+   message.m_eusermessage = (::user::enum_message)msg.message;
    message.m_wparam = msg.wParam;
    message.m_lparam = msg.lParam;
    message.m_point.x() = msg.pt.x;
@@ -73,7 +73,7 @@ inline void copy(MSG & msg, const MESSAGE & message)
 {
 
    msg.hwnd = (HWND)(message.m_oswindow);
-   msg.message = (UINT)message.m_emessage;
+   msg.message = (UINT)message.m_eusermessage;
    msg.wParam = message.m_wparam;
    msg.lParam = message.m_lparam;
    msg.pt.x = message.m_point.x();

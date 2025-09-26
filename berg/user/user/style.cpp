@@ -142,7 +142,7 @@ namespace berg
 //   {
 //
 //      if (pcontext->m_econtroltype != control_none
-//            && m_map.lookup(pcontext->m_econtroltype, pcontext->pstyle))
+//            && m_map.find(pcontext->m_econtroltype, pcontext->pstyle))
 //      {
 //
 //         return;
@@ -379,7 +379,7 @@ namespace berg
 //      if (pstyle.is_null())
 //      {
 //
-//         pstyle = __allocate style(this);
+//         pstyle = øallocate style(this);
 //
 //      }
 //

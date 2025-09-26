@@ -14,7 +14,7 @@ FT_Library __ftlibrary();
 // {
 
 
-//    extern CLASS_DECL_AURA string_map < int_to_string > * g_pmapFontFaceName;
+//    extern CLASS_DECL_AURA string_map_base < int_to_string > * g_pmapFontFaceName;
 
 
 //    extern CLASS_DECL_AURA critical_section * g_pcsFont;
@@ -49,7 +49,7 @@ return g_pdraw2dcairo;
       g_pdraw2dcairo = this;
       //defer_create_synchronization();
 
-      //m_pmutexFont = __allocate ::pointer < ::mutex > ();
+      //m_pmutexFont = øallocate ::pointer < ::mutex > ();
 
       //add_factory_item < e_cursor_set >();
 
@@ -117,7 +117,7 @@ return g_pdraw2dcairo;
 
       //}
 
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      if (!m_papi->open())
 //      {
@@ -198,7 +198,7 @@ return g_pdraw2dcairo;
    void draw2d::term()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -259,7 +259,7 @@ return g_pdraw2dcairo;
 //      catch (...)
 //      {
 //
-//         output_error_message("except", "except", e_message_box_ok);
+//         output_error_message("except", "except", ::user::e_message_box_ok);
 //
 //      }
 //
@@ -314,7 +314,7 @@ return g_pdraw2dcairo;
 //
 //      auto bA = colorfilter.opacity().get_alpha();
 //
-//      auto pbrushText = __øcreate < ::draw2d::brush > ();
+//      auto pbrushText = øcreate < ::draw2d::brush > ();
 //      pbrushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
 //      pgraphics->set(pbrushText);
 //      pgraphics->set(pfont);
@@ -358,7 +358,7 @@ return g_pdraw2dcairo;
 //      int iRadius2 = iRadius * iRadius;
 //      int r2;
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      auto & filter = m_alpha_spread__24CC_filterMap[iRadius];
 //
@@ -371,7 +371,7 @@ return g_pdraw2dcairo;
 //      else
 //      {
 //
-//         filter = __allocate memory();
+//         filter = øallocate memory();
 //
 //         filter->set_size(iFilterArea);
 //
@@ -673,7 +673,7 @@ return g_pdraw2dcairo;
 //      int rSquare;
 //
 //
-//      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
 //      auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
 //
@@ -683,7 +683,7 @@ return g_pdraw2dcairo;
 //      }
 //      else
 //      {
-//         filter = __allocate memory();
+//         filter = øallocate memory();
 //         filter->set_size(iFilterArea);
 //         pFilter = filter->get_data();
 //         for (y = 0; y < iFilterH; y++)
@@ -952,7 +952,7 @@ return g_pdraw2dcairo;
 //
 //      ::pointer<ttf_util>putil;
 //
-//      ::e_status estatus = __construct_new(putil);
+//      ::e_status estatus = øconstruct_new(putil);
 //
 //      if (pdoc->load(strSystemFonts))
 //      {
@@ -1007,7 +1007,7 @@ return g_pdraw2dcairo;
 //
 //                        path /= strFile;
 //
-//                        pitem = __allocate ::write_text::font_enumeration_item();
+//                        pitem = øallocate ::write_text::font_enumeration_item();
 //
 //                        if (::file_system()->exists(path))
 //                        {
@@ -1053,7 +1053,7 @@ return g_pdraw2dcairo;
 //            for (auto& path : patha)
 //            {
 //
-//               pitem = __allocate ::write_text::font_enumeration_item();
+//               pitem = øallocate ::write_text::font_enumeration_item();
 //
 //               pitem->m_strFile = path;
 //
@@ -1084,7 +1084,7 @@ return g_pdraw2dcairo;
 //
 //#ifdef pnode->font_name(e_font_mono)
 //
-//         pitem = __allocate ::write_text::font_enumeration_item();
+//         pitem = øallocate ::write_text::font_enumeration_item();
 //
 //         pitem->m_strFile = pnode->font_name(e_font_mono);
 //
@@ -1097,7 +1097,7 @@ return g_pdraw2dcairo;
 //
 //#ifdef pnode->font_name(e_font_sans)
 //
-//         pitem = __allocate ::write_text::font_enumeration_item();
+//         pitem = øallocate ::write_text::font_enumeration_item();
 //
 //         pitem->m_strFile = pnode->font_name(e_font_sans);
 //
@@ -1110,7 +1110,7 @@ return g_pdraw2dcairo;
 //
 //#ifdef pnode->font_name(e_font_serif)
 //
-//         pitem = __allocate ::write_text::font_enumeration_item();
+//         pitem = øallocate ::write_text::font_enumeration_item();
 //
 //         pitem->m_strFile = pnode->font_name(e_font_serif);
 //
@@ -1123,7 +1123,7 @@ return g_pdraw2dcairo;
 //
 //#ifdef pnode->font_name(e_font_sans_ex)
 //
-//         pitem = __allocate ::write_text::font_enumeration_item();
+//         pitem = øallocate ::write_text::font_enumeration_item();
 //
 //         pitem->m_strFile = pnode->font_name(e_font_sans_ex);
 //
@@ -1136,7 +1136,7 @@ return g_pdraw2dcairo;
 //
 //#ifdef pnode->font_name(e_font_serif_ex)
 //
-//         pitem = __allocate ::write_text::font_enumeration_item();
+//         pitem = øallocate ::write_text::font_enumeration_item();
 //
 //         pitem->m_strFile = pnode->font_name(e_font_serif_ex);
 //
@@ -1149,7 +1149,7 @@ return g_pdraw2dcairo;
 //
 //#ifdef pnode->font_name(e_font_sans_fx)
 //
-//         pitem = __allocate ::write_text::font_enumeration_item();
+//         pitem = øallocate ::write_text::font_enumeration_item();
 //
 //         pitem->m_strFile = pnode->font_name(e_font_sans_fx);
 //
@@ -1162,7 +1162,7 @@ return g_pdraw2dcairo;
 //
 //#ifdef pnode->font_name(e_font_serif_fx)
 //
-//         pitem = __allocate ::write_text::font_enumeration_item();
+//         pitem = øallocate ::write_text::font_enumeration_item();
 //
 //         pitem->m_strFile = pnode->font_name(e_font_serif_fx);
 //
@@ -1175,7 +1175,7 @@ return g_pdraw2dcairo;
 //
 //#ifdef FONT_SANS_FX2
 //
-//         pitem = __allocate ::write_text::font_enumeration_item();
+//         pitem = øallocate ::write_text::font_enumeration_item();
 //
 //         pitem->m_strFile = FONT_SANS_FX2;
 //
@@ -1219,16 +1219,16 @@ return g_pdraw2dcairo;
 //      if (!estatus)
 //      {
 //
-//         informationf("([a-z0-9_]+)_factory has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
+//         informationf("([a-z0-9_]+)_factory has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", ::user::e_message_box_ok);
 //
 //         return estatus;
 //
 //      }
 //
 //
-//      synchronous_lock synchronouslock(psystem->m_pmutexLibrary);
+//      synchronous_lock synchronouslock(psystem->m_pmutexLibrary, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//      estatus = __øconstruct(m_pwritetext);
+//      estatus = øconstruct(m_pwritetext);
 //
 //      if (!estatus)
 //      {
@@ -1431,7 +1431,7 @@ return g_pdraw2dcairo;
 
       }
 
-      pprivatefont = __allocate private_font();
+      pprivatefont = øallocate private_font();
 
       FT_Face ftface{};
 
@@ -1467,7 +1467,7 @@ return g_pdraw2dcairo;
    cairo_font_face_t * draw2d::private_ftface_from_file(::platform::context * pcontext, const ::payload & payloadFile)
    {
 
-      synchronous_lock synchronouslock(::draw2d_cairo::mutex());
+      synchronous_lock synchronouslock(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::file::path pathFile = payloadFile.as_file_path();
 

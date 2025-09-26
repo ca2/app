@@ -12,6 +12,7 @@
 #include "acme/prototype/string/str.h"
 #include "apex/platform/context.h"
 #include "apex/platform/system.h"
+#include "apex/platform/node.h"
 
 
 #include "acme/prototype/collection/_array.h"
@@ -148,6 +149,8 @@ namespace networking_bsd
 
       m_bInitialized = true;
 
+      m_pmutexReverseCache = node()->create_mutex();
+
       //if(psystem->m_bGudoNetCache)
       {
 
@@ -160,7 +163,7 @@ namespace networking_bsd
 
       //return estatus;
 
-      //auto paddressdepartment = pparticle->__create_new<class ::networking::address_department>();
+      //auto paddressdepartment = pparticle->øcreate_new<class ::networking::address_department>();
 
       //paddressdepartment->increment_reference_count();
 
@@ -168,13 +171,13 @@ namespace networking_bsd
 
       mathematics()->random(m_baTicketKey);
 
-      m_psslinit = __create_new<::sockets_bsd::SSLInitializer>();
+      m_psslinit = øcreate_new<::sockets_bsd::SSLInitializer>();
 
-      __øconstruct(m_pmutexCert);
+      øconstruct(m_pmutexCert);
 
-      //estatus = __construct_new(m_pnet);
+      //estatus = øconstruct_new(m_pnet);
 
-      //__construct_new(m_pnet);
+      //øconstruct_new(m_pnet);
 
       //if (!m_pnet)
       //{
@@ -206,7 +209,7 @@ namespace networking_bsd
    //      {
    //
    //#ifdef WINDOWS
-   //         __øconstruct(m_pportforward);
+   //         øconstruct(m_pportforward);
    //#endif
    //
    //      }
@@ -518,7 +521,7 @@ namespace networking_bsd
 
       single_lock synchronouslock(m_pmutexCache, true);
       dns_cache_item item;
-      if (m_mapCache.lookup(scopedstr, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_timeLastChecked.elapsed()) < (5_minute)))))
+      if (m_mapCache.find(scopedstr, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_timeLastChecked.elapsed()) < (5_minute)))))
       {
          if (item.m_bOk)
          {
@@ -643,7 +646,7 @@ namespace networking_bsd
       }
 
       //      ::time tick2= ::time::now();
-      //      informationf("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+      //      informationf("DNS find networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          //       (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
          //     (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
          //   (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
@@ -831,7 +834,7 @@ namespace networking_bsd
          {
             struct sockaddr_in *point = (struct sockaddr_in *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(__allocate< ::networking_bsd::ipv4_address(get_app >(), *int_point));
+            addr(øallocate< ::networking_bsd::ipv4_address(get_app >(), *int_point));
             return addr;
          }
          break;
@@ -840,7 +843,7 @@ namespace networking_bsd
          {
             struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(__allocate< ::networking_bsd::ipv6_address(get_app >(), *int_point));
+            addr(øallocate< ::networking_bsd::ipv6_address(get_app >(), *int_point));
             return addr;
          }
          break;
@@ -989,7 +992,7 @@ namespace networking_bsd
 #ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv6(host))
       {
-         //         list<string> vec;
+         //         list_base<string> vec;
          ::collection::index x = 0;
          for (::collection::index i = 0; i <= host.get_length(); i++)
          {
@@ -1021,7 +1024,7 @@ namespace networking_bsd
          ::collection::index sz = vec.get_length(); // number of unsigned char pairs
          ::collection::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
          unsigned short addr16[8];
-         for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
+         for (list_base<string>::iterator it = vec.begin(); it != vec.end(); it++)
          {
             string bytepair = *it;
             if (bytepair.get_length())
@@ -1122,7 +1125,7 @@ namespace networking_bsd
 
       {
 
-         _synchronous_lock synchronouslock(m_pmutexReverseCache);
+         _synchronous_lock synchronouslock(m_pmutexReverseCache, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_reversecacheaRequest.add(pitem);
 
@@ -1249,7 +1252,7 @@ namespace networking_bsd
    bool networking::reverse(string& hostname, ::networking::address* paddress)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexReverseCache);
+      _synchronous_lock synchronouslock(m_pmutexReverseCache, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto& pitem = m_mapReverseCache[paddress->get_display_number()];
 
@@ -1266,7 +1269,7 @@ namespace networking_bsd
 
          ::pointer<reverse_cache_item > pitemWait;
 
-         __construct_new(pitemWait);
+         øconstruct_new(pitemWait);
 
          pitemWait->m_paddress = paddress;
 
@@ -1286,7 +1289,7 @@ namespace networking_bsd
 
          ::pointer<reverse_cache_item > pitemNew;
 
-         __construct_new(pitemNew);
+         øconstruct_new(pitemNew);
 
          pitemNew->m_paddress = paddress;
 
@@ -1399,7 +1402,7 @@ namespace networking_bsd
          }
          else
          {
-            // %! TODO: ipv6 reverse lookup
+            // %! TODO: ipv6 reverse find
             struct sockaddr_in6* sa_in = (struct sockaddr_in6*)sa;
             struct hostent* h = gethostbyaddr((const_char_pointer )&sa_in->sin6_addr, sizeof(sa_in->sin6_addr), AF_INET6);
             if (h)
@@ -1704,7 +1707,7 @@ namespace networking_bsd
       if (this != &item)
       {
 
-         auto paddress = __allocate address();
+         auto paddress = øallocate address();
 
          *paddress = *item.m_paddress;
 
@@ -2065,7 +2068,7 @@ namespace networking_bsd
    //
    //      single_lock synchronouslock(m_pmutexCache, true);
    //      dns_cache_item item;
-   //      if(m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_timeLastChecked.elapsed()) < (5 * 60 * 1000)))))
+   //      if(m_mapCache.find(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_timeLastChecked.elapsed()) < (5 * 60 * 1000)))))
    //      {
    //         if (item.m_bOk)
    //         {
@@ -2190,7 +2193,7 @@ namespace networking_bsd
    //   }
    //
    ////      ::time tick2= ::time::now();
-   ////      informationf("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+   ////      informationf("DNS find networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
    //   //       (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
    //   //     (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
    //   //   (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
@@ -2353,7 +2356,7 @@ namespace networking_bsd
          {
             struct sockaddr_in *point = (struct sockaddr_in *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(__allocate< ::networking_bsd::ipv4_address(get_app >(), *int_point));
+            addr(øallocate< ::networking_bsd::ipv4_address(get_app >(), *int_point));
             return addr;
          }
          break;
@@ -2362,7 +2365,7 @@ namespace networking_bsd
          {
             struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(__allocate< ::networking_bsd::ipv6_address(get_app >(), *int_point));
+            addr(øallocate< ::networking_bsd::ipv6_address(get_app >(), *int_point));
             return addr;
          }
          break;
@@ -2504,7 +2507,7 @@ namespace networking_bsd
       //#ifdef NO_GETADDRINFO
       //   if ((ai_flags & AI_NUMERICHOST) != 0 || isipv6(host))
       //   {
-      //      //         list<string> vec;
+      //      //         list_base<string> vec;
       //      index x = 0;
       //      for (::collection::index i = 0; i <= host.get_length(); i++)
       //      {
@@ -2536,7 +2539,7 @@ namespace networking_bsd
       //      index sz = vec.get_length(); // number of unsigned char pairs
       //      ::collection::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
       //      unsigned short addr16[8];
-      //      for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
+      //      for (list_base<string>::iterator it = vec.begin(); it != vec.end(); it++)
       //      {
       //         string bytepair = *it;
       //         if (bytepair.get_length())
@@ -2628,7 +2631,7 @@ namespace networking_bsd
       //bool networking::reverse_schedule(reverse_cache_item * pitem)
       //{
       //
-      //   synchronous_lock synchronouslock(this->synchronization());
+      //   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
       //
       //   m_reversecacheaRequest.add(pitem);
       //
@@ -2704,7 +2707,7 @@ namespace networking_bsd
       //
       //   }
       //
-      //   pitem = __allocate reverse_cache_item();
+      //   pitem = øallocate reverse_cache_item();
       //
       //   pitem->m_address = address;
       //
@@ -2799,7 +2802,7 @@ namespace networking_bsd
       //      }
       //      else
       //      {
-      //         // %! TODO: ipv6 reverse lookup
+      //         // %! TODO: ipv6 reverse find
       //         struct sockaddr_in6* sa_in = (struct sockaddr_in6*)sa;
       //         struct hostent* h = gethostbyaddr((const_char_pointer )&sa_in->sin6_addr, sizeof(sa_in->sin6_addr), AF_INET6);
       //         if (h)
@@ -3349,7 +3352,7 @@ namespace networking_bsd
 //
 //   //}
 //
-//   auto paddressdepartment = pparticle->__create_new<class ::networking::address_department>();
+//   auto paddressdepartment = pparticle->øcreate_new<class ::networking::address_department>();
 //
 //   paddressdepartment->increment_reference_count();
 //
@@ -3357,11 +3360,11 @@ namespace networking_bsd
 //
 //   generate_random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
 //
-//   m_psslinit = __create_new<::networking_bsd::SSLInitializer>();
+//   m_psslinit = øcreate_new<::networking_bsd::SSLInitializer>();
 //
-//   //estatus = __construct_new(m_pnet);
+//   //estatus = øconstruct_new(m_pnet);
 //
-//   __construct_new(m_pnet);
+//   øconstruct_new(m_pnet);
 //
 //   if (!m_pnet)
 //   {
@@ -3393,7 +3396,7 @@ namespace networking_bsd
 ////      {
 ////
 ////#ifdef WINDOWS
-////         __øconstruct(m_pportforward);
+////         øconstruct(m_pportforward);
 ////#endif
 ////
 ////      }
@@ -3457,7 +3460,7 @@ namespace networking_bsd
    ::pointer<address>networking::create_ip4_address(unsigned int u, ::networking::port_t port)
    {
 
-      auto paddress2 = __allocate address();
+      auto paddress2 = øallocate address();
 
 #if defined(BSD_STYLE_SOCKETS)
 
@@ -3490,7 +3493,7 @@ namespace networking_bsd
    ::pointer<address>networking::create_ip6_address(void* p128bits, ::networking::port_t port)
    {
 
-      auto paddress2 = __allocate address();
+      auto paddress2 = øallocate address();
 #if defined(BSD_STYLE_SOCKETS)
 
       auto a = *paddress2;
@@ -3511,7 +3514,7 @@ namespace networking_bsd
    }
 
 
-   bool networking::lookup(::networking_bsd::address* paddress, ::networking::enum_address_type eaddresstypePreferred, const ::scoped_string & scopedstrAddress)
+   bool networking::find(::networking_bsd::address* paddress, ::networking::enum_address_type eaddresstypePreferred, const ::scoped_string & scopedstrAddress)
    {
 
       if (eaddresstypePreferred == ::networking::e_address_type_ipv4)
@@ -3613,7 +3616,7 @@ namespace networking_bsd
    ::pointer<::networking::address> networking::create_address(const ::scoped_string & scopedstrAddress, ::networking::enum_address_type eaddresstypePreferred, ::networking::port_t port)
    {
 
-      auto paddress = __allocate address();
+      auto paddress = øallocate address();
 
       if (::from_string(paddress->u.m_addr6.sin6_addr, scopedstrAddress) == ::success)
       {
@@ -3655,7 +3658,7 @@ namespace networking_bsd
          return paddress;
 
       }
-      else if (lookup(paddress, eaddresstypePreferred, scopedstrAddress))
+      else if (find(paddress, eaddresstypePreferred, scopedstrAddress))
       {
 
          paddress->set_service_number(port);
@@ -3672,7 +3675,7 @@ namespace networking_bsd
    ::pointer<::networking::address>networking::create_ip4_address(const ::scoped_string & scopedstrAddress, ::networking::port_t port)
    {
 
-      auto paddress = __allocate address();
+      auto paddress = øallocate address();
 
       if (!convert(paddress->u.m_addr.sin_addr, scopedstrAddress))
       {
@@ -3693,7 +3696,7 @@ namespace networking_bsd
    ::pointer<::networking::address>networking::create_ip6_address(const ::scoped_string & scopedstrAddress, ::networking::port_t port)
    {
 
-      auto paddress2 = __allocate address();
+      auto paddress2 = øallocate address();
 
       if (!convert(paddress2->u.m_addr6.sin6_addr, scopedstrAddress))
       {
@@ -3870,7 +3873,7 @@ cert::~cert()
    cert* networking::get_cert(const ::scoped_string& keyfile)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexCert);
+      _synchronous_lock synchronouslock(m_pmutexCert, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto& pcert = m_certmap[keyfile];
 
@@ -3881,7 +3884,7 @@ cert::~cert()
 
       }
 
-      __construct_new(pcert);
+      øconstruct_new(pcert);
 
       string strCert;
 

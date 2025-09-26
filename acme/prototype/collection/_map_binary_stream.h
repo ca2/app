@@ -3,7 +3,7 @@
 
 
 template <  typename PAIR >
-inline binary_stream & operator <<(binary_stream & stream, const pair_map < PAIR > & m)
+inline binary_stream & operator <<(binary_stream & stream, const pair_map_base < PAIR > & m)
 {
 
 
@@ -11,15 +11,15 @@ inline binary_stream & operator <<(binary_stream & stream, const pair_map < PAIR
 
    stream << c;
 
-   for (auto & pair : m)
+   for (auto & item : m)
    {
 
-      stream << pair.element1();
+      stream << item.element1();
 
       //if (s.fail())
         // break;
 
-      stream << pair.element2();
+      stream << item.element2();
 
       //if (s.fail())
         // break;
@@ -32,7 +32,7 @@ inline binary_stream & operator <<(binary_stream & stream, const pair_map < PAIR
 
 
 template < typename PAIR >
-inline binary_stream & operator >>(binary_stream & stream, pair_map < PAIR > & m)
+inline binary_stream & operator >>(binary_stream & stream, pair_map_base < PAIR > & m)
 {
 
    ::collection::count c = 0;
@@ -46,10 +46,9 @@ inline binary_stream & operator >>(binary_stream & stream, pair_map < PAIR > & m
 
       i--;
 
-      typename pair_map < PAIR >::BASE_ITEM element1;
-      //typename map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_VALUE element2;
-      
-      stream >> element1;
+      typename pair_map_base < PAIR >::KEY key;
+
+      stream >> key;
 
       if (stream.nok())
       {
@@ -57,13 +56,15 @@ inline binary_stream & operator >>(binary_stream & stream, pair_map < PAIR > & m
          break;
 
       }
+
+      auto & payload = m[key];
       
-      stream >> m[element1];
+      stream >> payload;
       
       if (stream.nok())
       {
 
-         m.erase_item(element1);
+         m.erase(key);
 
          break;
 

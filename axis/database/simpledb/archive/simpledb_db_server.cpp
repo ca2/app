@@ -63,8 +63,8 @@ bool db_server::initialize_user(::simpledb::database * pmysqldbUser, const ::sco
    m_psimpledbUser    = pmysqldbUser;
    m_strUser         = pszUser;
 
-//   m_plongset        = __allocate db_long_set(this);
-   m_pstrset         = __allocate db_str_set(this);
+//   m_plongset        = øallocate db_long_set(this);
+   m_pstrset         = øallocate db_str_set(this);
 
    if(!create_message_queue())
       return false;
@@ -93,7 +93,7 @@ bool db_server::initialize()
 
    }
 
-   m_pdb          = __allocate ::sqlite::database(this);
+   m_pdb          = øallocate ::sqlite::database(this);
 
    ::pointer<::handler>phandler = psystem->handler();
 
@@ -156,9 +156,9 @@ pdirectorysystem->system() / "database.sqlite";
 
    m_pdb->create_string_set("stringtable");
 
-//   m_plongset     = __allocate db_long_set(this);
+//   m_plongset     = øallocate db_long_set(this);
 
-   m_pstrset      = __allocate db_str_set(this);
+   m_pstrset      = øallocate db_str_set(this);
 
    int iBufferSize = 128 * 1024;
 
@@ -230,7 +230,7 @@ bool db_server::create_message_queue()
 
    //   //set_timer(1258477, 484, nullptr);
 
-   //   ////MESSAGE_LINK(e_message_timer, m_pimpl, this, &db_server::on_timer);
+   //   ////USER_MESSAGE_LINK(::user::e_message_timer, m_pimpl, this, &db_server::on_timer);
 
    //}
 
@@ -293,7 +293,7 @@ bool db_server::data_server_load(::database::client * pclient, ::string strDataK
 bool db_server::data_server_save(::database::client * pclient, ::string strDataKey, memory & memory, ::update * pupdate)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    __UNREFERENCED_PARAMETER(pparticle);
 
@@ -359,7 +359,7 @@ bool db_server::save(const ::scoped_string & strDataKey, const ::scoped_string &
 
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if(get_db_str_set() == nullptr)
    {
@@ -377,7 +377,7 @@ bool db_server::save(const ::scoped_string & strDataKey, const ::scoped_string &
 bool db_server::save(const ::scoped_string & strDataKey, memory & mem)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    string str;
 

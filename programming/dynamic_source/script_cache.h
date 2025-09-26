@@ -15,7 +15,7 @@ namespace dynamic_source
    public:
 
 
-      string_map < ::pointer<script >>    m_map;
+      string_map_base < ::pointer<script >>    m_map;
       script_manager *                    m_pmanager;
 
 

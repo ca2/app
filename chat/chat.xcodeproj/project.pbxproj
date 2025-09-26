@@ -15,7 +15,7 @@
 		0730AFDE1BA10CEC001D28DB /* calculator_token.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFD01BA10CEC001D28DB /* calculator_token.h */; };
 		0730AFE01BA10CEC001D28DB /* calculator_value.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFD21BA10CEC001D28DB /* calculator_value.h */; };
 		0730AFE21BA10CF9001D28DB /* _math_math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0730AFE11BA10CF9001D28DB /* _math_math.cpp */; };
-		0730AFE51BA10D6C001D28DB /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0730AFC01BA10CAC001D28DB /* libbase.dylib */; };
+		0730AFE51BA10D6C001D28DB /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0730AFC01BA10CAC001D28DB /* libberg.dylib */; };
 		0730AFF51BA11478001D28DB /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2EA37319A62C9E004DAFFC /* libaxis.dylib */; };
 		07B65767190F3CA2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65766190F3CA2002DAADE /* Foundation.framework */; };
 		07B65775190F3CA2002DAADE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65774190F3CA2002DAADE /* XCTest.framework */; };
@@ -41,28 +41,28 @@
 /* Begin PBXContainerItemProxy section */
 		0730AFBF1BA10CAC001D28DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0730AFB51BA10CAC001D28DB /* base.xcodeproj */;
+			containerPortal = 0730AFB51BA10CAC001D28DB /* berg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
 			remoteInfo = base;
 		};
 		0730AFC11BA10CAC001D28DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0730AFB51BA10CAC001D28DB /* base.xcodeproj */;
+			containerPortal = 0730AFB51BA10CAC001D28DB /* berg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
 			remoteInfo = ios_base;
 		};
 		0730AFC31BA10CAC001D28DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0730AFB51BA10CAC001D28DB /* base.xcodeproj */;
+			containerPortal = 0730AFB51BA10CAC001D28DB /* berg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = base_iosTests;
 		};
 		0730AFE31BA10D62001D28DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0730AFB51BA10CAC001D28DB /* base.xcodeproj */;
+			containerPortal = 0730AFB51BA10CAC001D28DB /* berg.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
 			remoteInfo = base;
@@ -152,7 +152,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0730AFB51BA10CAC001D28DB /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../base/base.xcodeproj; sourceTree = SOURCE_ROOT; };
+		0730AFB51BA10CAC001D28DB /* berg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = berg.xcodeproj; path = ../berg/berg.xcodeproj; sourceTree = SOURCE_ROOT; };
 		0730AFC71BA10CEC001D28DB /* calculator_element.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_element.h; sourceTree = "<group>"; };
 		0730AFC91BA10CEC001D28DB /* calculator_parser_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_parser_exception.h; sourceTree = "<group>"; };
 		0730AFCB1BA10CEC001D28DB /* calculator_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_parser.h; sourceTree = "<group>"; };
@@ -212,7 +212,7 @@
 			files = (
 				07C8A4771B71DD67000226A8 /* libaura.dylib in Frameworks */,
 				0730AFF51BA11478001D28DB /* libaxis.dylib in Frameworks */,
-				0730AFE51BA10D6C001D28DB /* libbase.dylib in Frameworks */,
+				0730AFE51BA10D6C001D28DB /* libberg.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,8 +222,8 @@
 		0730AFB61BA10CAC001D28DB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0730AFC01BA10CAC001D28DB /* libbase.dylib */,
-				0730AFC21BA10CAC001D28DB /* libbase.dylib */,
+				0730AFC01BA10CAC001D28DB /* libberg.dylib */,
+				0730AFC21BA10CAC001D28DB /* libberg.dylib */,
 				0730AFC41BA10CAC001D28DB /* base_iosTests.xctest */,
 			);
 			name = Products;
@@ -298,7 +298,7 @@
 			children = (
 				07C8A4691B71DD44000226A8 /* aura.xcodeproj */,
 				9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */,
-				0730AFB51BA10CAC001D28DB /* base.xcodeproj */,
+				0730AFB51BA10CAC001D28DB /* berg.xcodeproj */,
 				0730AFE11BA10CF9001D28DB /* _math_math.cpp */,
 				07DA47B61B71EFF7006F27E6 /* calculator */,
 				9ACABEAC17BD04FF004C3F85 /* math */,
@@ -471,7 +471,7 @@
 				},
 				{
 					ProductGroup = 0730AFB61BA10CAC001D28DB /* Products */;
-					ProjectRef = 0730AFB51BA10CAC001D28DB /* base.xcodeproj */;
+					ProjectRef = 0730AFB51BA10CAC001D28DB /* berg.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -484,17 +484,17 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		0730AFC01BA10CAC001D28DB /* libbase.dylib */ = {
+		0730AFC01BA10CAC001D28DB /* libberg.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libbase.dylib;
+			path = libberg.dylib;
 			remoteRef = 0730AFBF1BA10CAC001D28DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0730AFC21BA10CAC001D28DB /* libbase.dylib */ = {
+		0730AFC21BA10CAC001D28DB /* libberg.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libbase.dylib;
+			path = libberg.dylib;
 			remoteRef = 0730AFC11BA10CAC001D28DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

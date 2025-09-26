@@ -135,7 +135,7 @@ template < typename OBJECT >
 inline void __exchange(::payload_stream& s, ::pointer<OBJECT> pparticle)
 {
 
-   s.__defer_construct(pparticle);
+   s.ødefer_construct(pparticle);
 
    __exchange(s, *pparticle);
 

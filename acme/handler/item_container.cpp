@@ -102,7 +102,7 @@ void item_container::indexed_add_item(::item * pitem)
    if (!m_pitema)
    {
 
-      __defer_construct_new(m_pitema);
+      ødefer_construct_new(m_pitema);
 
    }
 
@@ -146,7 +146,7 @@ void item_container::indexed_add_item(::item * pitem)
 //   if (!puseritem)
 //   {
 //
-//      __construct_new(puseritem);
+//      øconstruct_new(puseritem);
 //
 //   }
 //
@@ -259,7 +259,7 @@ bool item_container::contains_item(const ::atom & atom) const
 ::item_pointer item_container::add_item(enum_element eelement, ::collection::index iItem)
 {
 
-   auto pitem = __allocate ::item(eelement, iItem);
+   auto pitem = øallocate ::item(eelement, iItem);
 
    pitem->initialize(this);
 

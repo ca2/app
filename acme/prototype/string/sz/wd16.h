@@ -11,7 +11,6 @@
 //CLASS_DECL_ACME  constexpr character_count     byte_length_to_character_count(const_wd16char_trigger, memsize nByteLength);
 
 
-
 CLASS_DECL_ACME void string_count_copy(::wd16_character * pchDest, const ::wd16_character * pchSrc, character_count nChars) noexcept;
 CLASS_DECL_ACME void string_count_copy(::wd16_character * pchDest, size_t nDestLen, const ::wd16_character * pchSrc, character_count nChars) noexcept;
 CLASS_DECL_ACME void overlapped_string_count_copy(::wd16_character * pchDest, const ::wd16_character * pchSrc, character_count nChars) noexcept;
@@ -45,9 +44,9 @@ inline ::std::strong_ordering _case_insensitive_string_count_compare(const ::wd1
 
 
 CLASS_DECL_ACME character_count string_get_length(const ::wd16_character * psz) noexcept;
-CLASS_DECL_ACME character_count string_get_length(const ::wd16_character* psz, character_count sizeMaximumInterest) noexcept;
+CLASS_DECL_ACME character_count string_get_length2(const ::wd16_character* psz, character_count sizeMaximumInterest) noexcept;
 CLASS_DECL_ACME character_count string_safe_length(const ::wd16_character * psz) noexcept;
-CLASS_DECL_ACME character_count string_safe_length(const ::wd16_character* psz, character_count sizeMaximumInterest) noexcept;
+CLASS_DECL_ACME character_count string_safe_length2(const ::wd16_character* psz, character_count sizeMaximumInterest) noexcept;
 CLASS_DECL_ACME ::wd16_character * string_lowercase(::wd16_character * psz, character_count size) noexcept;
 
 

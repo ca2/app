@@ -520,8 +520,8 @@ namespace tts_sapi
 
          bool bTts = false;
 
-         //if((!m_tts.lookup(strLang, bTts) || bTts) && m_voice[strLang].is_set() || (!is_speaking(strLang) && m_time.elapsed()[strLang] > 30 * 1000))
-         //if (!m_tts.lookup(strLang, bTts))
+         //if((!m_tts.find(strLang, bTts) || bTts) && m_voice[strLang].is_set() || (!is_speaking(strLang) && m_time.elapsed()[strLang] > 30 * 1000))
+         //if (!m_tts.find(strLang, bTts))
          //{
 
          //   if (initialize(strLang))
@@ -575,7 +575,7 @@ namespace tts_sapi
 
          //}
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          defer_co_initialize_ex(false);
 
@@ -778,7 +778,7 @@ namespace tts_sapi
 
          //}
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          defer_co_initialize_ex(false);
 
@@ -962,7 +962,7 @@ namespace tts_sapi
 
          }
 
-         synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          if (m_voice[strLang].is_null())
          {

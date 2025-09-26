@@ -90,43 +90,43 @@ namespace experience_core
       if(strSchema == "001")
       {
 
-         return __create_new< ::experience_core::frame_001 >();
+         return øcreate_new< ::experience_core::frame_001 >();
 
       }
       else if(strSchema == "002")
       {
                
-         return __create_new< ::experience_core::frame_002 >();
+         return øcreate_new< ::experience_core::frame_002 >();
 
       }
       else if(strSchema == "005")
       {
                
-         return __create_new< ::experience_core::frame_005 >();
+         return øcreate_new< ::experience_core::frame_005 >();
 
       }
       else if(strSchema == "008")
       {
                
-         return __create_new< ::experience_core::frame_008 >();
+         return øcreate_new< ::experience_core::frame_008 >();
 
       }
       else if(strSchema == "011")
       {
                
-         return __create_new< ::experience_core::frame_011 >();
+         return øcreate_new< ::experience_core::frame_011 >();
 
       }
       else if (strSchema == "022")
       {
 
-         return __create_new < ::experience_core::frame_022>();
+         return øcreate_new < ::experience_core::frame_022>();
 
       }
       else if(strSchema == "Minimal001")
       {
 
-         return __create_new< ::experience_core::frame_Minimal001 >();
+         return øcreate_new< ::experience_core::frame_Minimal001 >();
 
       }
 

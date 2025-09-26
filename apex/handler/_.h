@@ -44,12 +44,17 @@
 
 
 class manager;
+
+
 namespace handler
 {
 
-   using signal_map = ::atom_map < ::pointer < class signal > >;
+   using signal_map_base = ::atom_map_base < ::pointer < class signal > >;
+
+   using signal_map = ::map_particle < signal_map_base >;
 
 } // namespace handler
+
 
 class manager_room;
 

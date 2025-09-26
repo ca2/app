@@ -19,7 +19,7 @@ namespace xml
    static const char chXMLEscape = '\\';   // for m_strValue field escape
 
 
-   document::document(parse_info * pparseinfo, string_to_string * pentitiesHash)
+   document::document(parse_info * pparseinfo, string_to_string_base * pentitiesHash)
       //m_pparseinfo(pparseinfo),
       //m_pentitiesHash
    {
@@ -214,7 +214,7 @@ namespace xml
 
       }
 
-      auto pnode = __allocate class node ((node *) this);
+      auto pnode = øallocate class node ((node *) this);
 
       m_nodea.add(pnode);
 
@@ -323,7 +323,7 @@ namespace xml
    //   {
 
    //      // Not found: create one.
-   //      auto pnodeRoot = __allocate ::xml::node((document *)this);
+   //      auto pnodeRoot = øallocate ::xml::node((document *)this);
 
    //      pnodeRoot->set_name("root");
    //      pnodeRoot->m_pnodeParent = (node *)this;
@@ -376,7 +376,7 @@ namespace xml
 
          }
 
-         unicode_increment(rangeXml.m_begin);
+         rangeXml.m_begin = unicode_next(rangeXml.m_begin);
 
       }
 

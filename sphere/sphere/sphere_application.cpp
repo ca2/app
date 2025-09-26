@@ -452,9 +452,9 @@ namespace sphere
       if (m_pconsole.is_null())
       {
 
-         m_pconsole = __allocate ::console::department(this);
+         m_pconsole = øallocate ::console::department(this);
 
-         MESSAGE_LINK(WM_APP + 3243, this, m_pconsole.m_p, &console::department::_001OnImpact);
+         USER_MESSAGE_LINK(WM_APP + 3243, this, m_pconsole.m_p, &console::department::_001OnImpact);
 
 
       }
@@ -470,7 +470,7 @@ namespace sphere
       if (m_pprompt.is_null())
       {
 
-         m_pprompt = __allocate ::prompt::department(this);
+         m_pprompt = øallocate ::prompt::department(this);
 
       }
 
@@ -485,7 +485,7 @@ namespace sphere
       if (m_pfilehandler.is_null())
       {
 
-         m_pfilehandler = __allocate ::filehandler::department(this);
+         m_pfilehandler = øallocate ::filehandler::department(this);
 
       }
 
@@ -500,7 +500,7 @@ namespace sphere
       if (m_pcalculator.is_null())
       {
 
-         m_pcalculator = __allocate ::calculator::department(this);
+         m_pcalculator = øallocate ::calculator::department(this);
 
       }
 
@@ -702,13 +702,13 @@ namespace sphere
                get_document() != nullptr && get_document()->get_typed_impact < pane_impact >() != nullptr
                && (!pcreate->m_pappbias.is_set() || pcreate->m_pappbias->m_puserinteractionParent == nullptr))
             {
-               //message_box(nullptr, "request3", "request3", e_message_box_icon_exclamation);
+               //message_box(nullptr, "request3", "request3", ::user::e_message_box_icon_exclamation);
                get_document()->get_typed_impact < pane_impact >()->set_current_tab_by_id("app:" + pcreate->m_strApp);
                App(m_pappCurrent).do_request(pcreate);
             }
             else
             {
-               //message_box(nullptr, "request4", "request4", e_message_box_icon_exclamation);
+               //message_box(nullptr, "request4", "request4", ::user::e_message_box_icon_exclamation);
                on_request(pcreate);
             }
          }
@@ -728,7 +728,7 @@ namespace sphere
 
       ::pointer<::aura::application>papp;
 
-      if (appptra().lookup(scopedstrAppId, papp))
+      if (appptra().find(scopedstrAppId, papp))
       {
 
          return papp;
@@ -815,7 +815,7 @@ namespace sphere
 
       ::pointer<::aura::application>papp;
 
-      if (appptra().lookup(string(scopedstrType) + ":" + string(scopedstrAppId), papp) && papp.is_set())
+      if (appptra().find(string(scopedstrType) + ":" + string(scopedstrAppId), papp) && papp.is_set())
       {
 
          //::pointer<pane_impact>ppaneimpact = m_ppaneimpact;

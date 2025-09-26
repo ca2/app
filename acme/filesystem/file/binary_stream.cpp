@@ -279,13 +279,13 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
       stream << *payload.m_pi;
       break;
    case e_type_plong_long:
-      stream << *payload.m_phi;
+      stream << *payload.m_pll;
       break;
    case e_type_punsigned_int:
       stream << *payload.m_pui;
       break;
    case e_type_punsigned_long_long:
-      stream << *payload.m_phn;
+      stream << *payload.m_pull;
       break;
    case e_type_double:
       stream << payload.m_d;
@@ -669,7 +669,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
       //case e_type_property:
       //{
 
-      //   auto pproperty = __allocate ::property_particle();
+      //   auto pproperty = øallocate ::property_particle();
 
       //   *this >> pproperty->object();
 
@@ -825,7 +825,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 
    auto atom = text_to_factory_id(scopedstrText);
 
-   return __id_create(atom);
+   return øid_create(atom);
 
 }
 
@@ -837,7 +837,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 
    *this >> typeatom;
 
-   auto pparticle = __id_create(typeatom);
+   auto pparticle = øid_create(typeatom);
 
    pparticle->read_from_stream(*this);
 

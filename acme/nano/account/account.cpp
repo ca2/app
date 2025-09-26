@@ -44,7 +44,7 @@ namespace nano
       ::pointer<::nano::account::user> account::get_user(const ::pointer < ::nano::account::id > & pid)
       {
 
-         _synchronous_lock lock(this->synchronization());
+         _synchronous_lock lock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          auto &puser = m_usermap[pid->as_string()];
 

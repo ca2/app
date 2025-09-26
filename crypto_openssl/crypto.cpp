@@ -1099,7 +1099,7 @@ namespace crypto_openssl
 //               ::winrt::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 //
 //
-//         return __allocate ::crypto::rsa(get_app(), provider->CreateKeyPair(1024));
+//         return øallocate ::crypto::rsa(get_app(), provider->CreateKeyPair(1024));
 //
 //      }
 //
@@ -1237,7 +1237,7 @@ namespace crypto_openssl
    ::pointer<::crypto::rsa>crypto::create_rsa_key(const ::scoped_string & scopedstrRsa)
    {
 
-      auto popensslrsa = __allocate ::crypto_openssl::rsa();
+      auto popensslrsa = øallocate ::crypto_openssl::rsa();
 
       throw todo;
 
@@ -1249,7 +1249,7 @@ namespace crypto_openssl
    ::pointer<::crypto::rsa>crypto::generate_rsa_key()
    {
 
-      auto popensslrsa = __allocate ::crypto_openssl::rsa();
+      auto popensslrsa = øallocate ::crypto_openssl::rsa();
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
 
@@ -1458,7 +1458,7 @@ namespace crypto_openssl
 
       }
 
-      auto popensslrsa = __allocate ::crypto_openssl::rsa();
+      auto popensslrsa = øallocate ::crypto_openssl::rsa();
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
 
@@ -1497,7 +1497,7 @@ namespace crypto_openssl
 
       }
 
-      auto popensslrsa = __allocate ::crypto_openssl::rsa();
+      auto popensslrsa = øallocate ::crypto_openssl::rsa();
 
       throw todo;
 
@@ -1520,7 +1520,7 @@ namespace crypto_openssl
    {
 
       //auto estatus = 
-      __defer_construct(m_pinitializer, system()->m_pfactoryCrypto);
+      ødefer_construct(m_pinitializer, system()->m_pfactoryCrypto);
 
       //if (!estatus)
       //{

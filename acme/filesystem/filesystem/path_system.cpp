@@ -573,7 +573,7 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
       }
 
-      auto plink = __create_new < ::file::link >();
+      auto plink = øcreate_new < ::file::link >();
 
       string strLink = stra[0];
 
@@ -671,7 +671,7 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
 #else
 
-      auto plink = __create_new < ::file::link >();
+      auto plink = øcreate_new < ::file::link >();
       
       string strLink;
 
@@ -923,7 +923,7 @@ void path_system::determine_executable(::file::path & path)
    if (scopedstrCommand.contains('/'))
    {
 
-      auto PWD = plookupEnvironment->lookup("slashed_pwd");
+      auto PWD = plookupEnvironment->find("slashed_pwd");
 
       auto path = defer_apply_working_directory(scopedstrCommand, PWD);
 
@@ -1058,7 +1058,7 @@ bool path_system::get_next_path(::scoped_string & scopedstr, ::string::BASE_RANG
 
    ::scoped_string scopedstrPath;
 
-   auto PATH = plookupEnvironment->lookup("PATH");
+   auto PATH = plookupEnvironment->find("PATH");
 
    if(PATH.nok())
    {

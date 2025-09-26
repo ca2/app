@@ -333,7 +333,7 @@ namespace application_build_helper
       catch (const ::exception & e)
       {
 
-         fprintf(stderr, "\n\nFatal! Failed to open package map file: %s\n(Does it exist?)\n\n\n", pathPackageMap.c_str());
+         fprintf(stderr, "\n\nFatal! Failed to open package map_base file: %s\n(Does it exist?)\n\n\n", pathPackageMap.c_str());
 
          throw e;
 
@@ -342,7 +342,7 @@ namespace application_build_helper
       if (::is_null(m_piniPackageMap))
       {
 
-         fprintf(stderr, "\n\nFatal! Failed to open package map file: %s\n(Does it exist?)\n\n\n", pathPackageMap.c_str());
+         fprintf(stderr, "\n\nFatal! Failed to open package map_base file: %s\n(Does it exist?)\n\n\n", pathPackageMap.c_str());
 
          throw ::exception(error_failed);
 
@@ -1124,18 +1124,18 @@ namespace application_build_helper
 
       string strName = stra[1];
 
-      auto & map = m_mapBinaryToProject[strRoot];
+      auto & map_base = m_mapBinaryToProject[strRoot];
 
-      if (map["(--loaded--)"].is_empty())
+      if (map_base["(--loaded--)"].is_empty())
       {
 
-         load_map(map, "binary_to_project", strRoot);
+         load_map(map_base, "binary_to_project", strRoot);
 
       }
 
       string strRename;
 
-      strRename = map[strBinary];
+      strRename = map_base[strBinary];
 
       if (strRename.is_empty())
       {
@@ -1167,18 +1167,18 @@ namespace application_build_helper
 
       string strName = stra[1];
 
-      auto & map = m_mapProjectToBinary[strRoot];
+      auto & map_base = m_mapProjectToBinary[strRoot];
 
-      if (map["(--loaded--)"].is_empty())
+      if (map_base["(--loaded--)"].is_empty())
       {
 
-         load_map(map, "project_to_binary", strRoot);
+         load_map(map_base, "project_to_binary", strRoot);
 
       }
 
       string strRename;
 
-      strRename = map[strProject];
+      strRename = map_base[strProject];
 
       if (strRename.is_empty())
       {
@@ -1192,7 +1192,7 @@ namespace application_build_helper
    }
 
 
-   void application_build_helper::load_map(string_to_string & map, const ::scoped_string & scopedstrMap, const ::scoped_string & scopedstrRoot)
+   void application_build_helper::load_map(string_to_string_base & map_base, const ::scoped_string & scopedstrMap, const ::scoped_string & scopedstrRoot)
    {
 
       ::file::path pathMapBase;
@@ -1238,13 +1238,13 @@ namespace application_build_helper
 
             strRename.trim();
 
-            map[strName] = strRename;
+            map_base[strName] = strRename;
 
          }
 
       }
 
-      map["(--loaded--)"] = "true";
+      map_base["(--loaded--)"] = "true";
 
    }
 

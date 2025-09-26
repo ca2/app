@@ -79,7 +79,7 @@ string salt(::ca::application * papp, const ::scoped_string & scopedstrSourceSal
          return ""; 
       } 
       unsigned int dwAlloc = (dwNeeded + sizeof(HMODULE)) * 2;
-      HMODULE * pmodulea = __allocate< HMODULE[dwAlloc / sizeof >(HMODULE)]; 
+      HMODULE * pmodulea = øallocate< HMODULE[dwAlloc / sizeof >(HMODULE)]; 
       if(pmodulea == nullptr) 
          return ""; 
       if(!EnumProcessModules(::GetCurrentProcess(),  pmodulea,  dwAlloc,  &dwNeeded)) 

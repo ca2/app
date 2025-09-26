@@ -198,9 +198,9 @@ netbsd_cleanup(0);
 
 //   acme::acme acme;
 //
-//   auto pplatform = __allocate subsystem();
+//   auto pplatform = øallocate subsystem();
 //
-//   auto pmainhold = __allocate main_hold();
+//   auto pmainhold = øallocate main_hold();
 
 //   ::main acme;
 //
@@ -252,7 +252,7 @@ netbsd_cleanup(0);
 //
 //   return iExitCode;
 //
-////   ///auto pmainhold = __allocate main_hold();
+////   ///auto pmainhold = øallocate main_hold();
 ////
 ////   auto papp = IDENTIFIER_CONCATENATE(new_, APP)();
 ////

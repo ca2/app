@@ -69,7 +69,7 @@ void imaging::initialize(::particle * pparticle)
 
    //return estatus;
 
-   __construct_new(m_pimageaWork);
+   øconstruct_new(m_pimageaWork);
 
 }
 
@@ -1549,7 +1549,7 @@ void imaging::BitmapDivBlend(
    ::image::image_pointer pimage;
 
    //auto estatus = 
-   __øconstruct(pimage);
+   øconstruct(pimage);
 
    /*if (!estatus)
    {
@@ -5150,11 +5150,11 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
    auto pdraw2d = psystem->draw2d();
 
-   synchronous_lock synchronouslock(pdraw2d->synchronization());
+   synchronous_lock synchronouslock(pdraw2d->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    auto & pmemory = pdraw2d->m_alpha_spread__32CC_filterMap[iRadius];
 
-   system()->__construct_new(pmemory);
+   system()->øconstruct_new(pmemory);
 
    if (pmemory->size() != iFilterArea)
    {
@@ -6960,7 +6960,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,int left,int top, const
 
    }
 
-   auto pbrushText = __øcreate < ::draw2d::brush > ();
+   auto pbrushText = øcreate < ::draw2d::brush > ();
 
    if(dBlend >= 1.0)
    {
@@ -7050,7 +7050,7 @@ void image_context::set_cursor_image(const ::image::image *pimage, int xHotSpot,
 ::image::image_pointer imaging::get_work_image()
 {
 
-   synchronous_lock synchronouslock(m_pmutexWork);
+   synchronous_lock synchronouslock(m_pmutexWork, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (m_pimageaWork->has_no_image())
    {
@@ -7087,7 +7087,7 @@ void imaging::free_work_image(::image::image *pimage)
 
    }
 
-   synchronous_lock synchronouslock(m_pmutexWork);
+   synchronous_lock synchronouslock(m_pmutexWork, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_pimageaWork->m_imagea.push(pimage);
 

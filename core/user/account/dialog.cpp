@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "login.h"
 #include "dialog.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/user_key.h"
 #include "acme/constant/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -70,7 +70,7 @@ namespace account
 
       //estatus = 
       
-      __construct_new(m_plogin);
+      øconstruct_new(m_plogin);
 
       //if (!estatus)
       //{
@@ -89,12 +89,12 @@ namespace account
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create,pchannel,this,&dialog::on_message_create);
-      MESSAGE_LINK(e_message_char,pchannel,this,&dialog::on_message_character);
-      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&dialog::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&dialog::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&dialog::on_message_mouse_move);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &dialog::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_create,pchannel,this,&dialog::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_char,pchannel,this,&dialog::on_message_character);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down,pchannel,this,&dialog::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up,pchannel,this,&dialog::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_mouse_move,pchannel,this,&dialog::on_message_mouse_move);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &dialog::on_message_show_window);
 
    }
 
@@ -190,9 +190,9 @@ namespace account
 
                {
 
-                  synchronous_lock slInteractive(m_pcredentials->synchronization());
+                  synchronous_lock slInteractive(m_pcredentials->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-                  pcredentials = __allocate ::account::credentials(*m_pcredentials);
+                  pcredentials = øallocate ::account::credentials(*m_pcredentials);
 
                }
 
@@ -329,7 +329,7 @@ namespace account
          if(papp != nullptr)
          {
 
-            auto phyperlink = __create_new < ::hyperlink >();
+            auto phyperlink = øcreate_new < ::hyperlink >();
 
             phyperlink->m_strLink = "ca2account:this";
 
@@ -341,7 +341,7 @@ namespace account
          else
          {
 
-            auto phyperlink = __create_new < ::hyperlink >();
+            auto phyperlink = øcreate_new < ::hyperlink >();
 
             phyperlink->m_strLink = "ca2account:this";
 
@@ -382,7 +382,7 @@ namespace account
 
 #endif
 
-      // auto pusersystem = __allocate ::user::system(rectangleFontopus);
+      // auto pusersystem = øallocate ::user::system(rectangleFontopus);
       create_child(puiParent);
       //if(!create_child(puiParent))
       //{

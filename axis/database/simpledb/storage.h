@@ -21,7 +21,7 @@ namespace simpledb
 
       ::pointer<sockets::socket_handler>                m_phandler;
       ::pointer<sockets::http_session>                  m_phttpsession;
-      string_map < item >                                m_map;
+      string_map_base < item >                                m_map;
       bool                                               m_bIndexed;
       ::pointer<server>                                 m_pserver;
       string                                             m_strUser;

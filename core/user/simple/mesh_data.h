@@ -11,7 +11,7 @@ public:
 
 
 
-   index_map < index_map < string > >          m_map;
+   index_map_base < index_map_base < string > >          m_map;
 
 
    simple_mesh_data();

@@ -4,31 +4,51 @@
 //template < typename SAME_AS, typename COMPARE >
 //concept same_as = ::std::is_same_v< SAME_AS, COMPARE >;
 
+#include "acme/prototype/comparison/compare.h"
+
 
 enum enum_range : int
 {
 
    e_range_none = 0,
-   e_range_null_terminated = 1,
-   e_range_string = 2,
+   //e_range_null_terminated = 1,
+   //e_range_string = 2,
    /// last time crazy attempt on 2025-04-25
    /// it is very difficult and possibly not
    /// much portable to determine a string
    /// literal.
    /// A simple char sz[20]= "stackstring"
    /// matches template<> const char (&s)[n];
-   e_range_string_literal = 4, 
-   /// scoped ownership seems also not usable
-   /// once a ownership is done, reference
-   /// count is incremented and then it should
-   /// be decremented. scoped ownership tends 
-   /// to just follow e_range_string flag,
-   /// so using e_range_string is enough. 
-   e_range_scoped_ownership = 32768,
+   e_range_string_literal = 4,
+   ///// scoped ownership seems also not usable
+   ///// once a ownership is done, reference
+   ///// count is incremented and then it should
+   ///// be decremented. scoped ownership tends
+   ///// to just follow e_range_string flag,
+   ///// so using e_range_string is enough.
+
+   /// e_range_scoped_ownership
+   /// scoped_string_base shouldn't increment or decrement string references
+   /// it should be reference neutral
+   /// it can forward a string referenced by it normally as
+   /// a string, but shoudln't be referencing or releasing reference itself
+   /// This flag e_range_scoped_ownership holds a reference count of that should be released
+   /// by the scoped string.
+   /// Its created when there is conversion between string with different character sizes
+   /// or allocation to add null terminator.
+   /// It can forward the reference to be used as a string normally.
+   /// but in this case, it should release a single reference when destroying the scoped string.
+   //e_range_scoped_ownership = 32768,
    e_range_buffer = 65536,
    //e_range_read_only = 4,
    //e_range_read_only_and_null_terminated = 5,
    //e_range_scoped_string_allocation = 2,
+   //e_range_array_allocate = 128,
+   e_range_array_carriage_return = 256,
+   e_range_array_clear_on_allocate = 512,
+
+   //e_range_node_malloc = 1024,
+
 
 };
 
@@ -237,18 +257,17 @@ public:
    {
    }
 
-   constexpr range(nullptr_t) : range(nullptr, nullptr, e_range_none)
+   constexpr range(nullptr_t) :
+      range(nullptr, nullptr, e_range_none)
    {
 
    };
 
-   constexpr range() : range(nullptr, nullptr, e_range_none)
+   constexpr range() : 
+      range(nullptr, nullptr, e_range_none)
    {
    }
 
-   constexpr range(range & range)
-      : m_begin(range.m_begin), m_end(range.m_end), m_erange(range.m_erange) {}
-   constexpr range(range&& range) : m_begin(range.m_begin), m_end(range.m_end), m_erange(range.m_erange) { range.m_begin = nullptr; range.m_end = nullptr; range.m_erange = e_range_none; }
 
    template<::collection::count count>
    constexpr range(const ITEM(&array)[count], enum_range erange = e_range_none) 
@@ -287,19 +306,48 @@ public:
    //}
 
 
-   template<typed_range<iterator> RANGE>
-   constexpr range(const RANGE & range) : m_begin((this_iterator)range.begin()), m_end((this_iterator)range.end()), m_erange(range.m_erange)
+   template<typed_range<iterator> TYPED_RANGE>
+   constexpr range(const TYPED_RANGE& range) 
+      requires(!::std::is_same_v < TYPED_RANGE, THIS_RANGE >) :
+      m_begin((this_iterator)range.begin()), 
+      m_end((this_iterator)range.end()), 
+      m_erange(range.m_erange)
    {
+
+
    }
 
-   template<typed_range<const_iterator> RANGE>
-   constexpr range(const RANGE & range) : m_begin((this_iterator)range.m_begin), m_end((this_iterator)range.m_end), m_erange(e_range_none)
+
+   constexpr range(const range & range) :
+      m_begin(range.m_begin),
+      m_end(range.m_end),
+      m_erange(range.m_erange)
    {
+
    }
+
+
+   constexpr range(range && range) :
+      m_begin(range.m_begin),
+      m_end(range.m_end),
+      m_erange(range.m_erange)
+   {
+
+      range.m_begin = nullptr;
+      range.m_end = nullptr;
+      range.m_erange = e_range_none;
+
+   }
+
 
    template<typename TYPE>
-   constexpr range(TYPE *& p) : m_begin((this_iterator)p), m_end((this_iterator)find_first_null_character(p)),m_erange(e_range_null_terminated)
+   constexpr range(TYPE *& p) : 
+      m_begin((this_iterator)p), 
+      m_end((this_iterator)find_first_null_character(p)),
+      //m_erange(e_range_null_terminated)
+      m_erange(e_range_none)
    {
+
    }
 
 
@@ -318,9 +366,13 @@ public:
    constexpr range(this_iterator begin, EQUALITY equality) : 
       m_begin(begin), 
       m_end((this_iterator)find_first_null_character(begin, equality)),
-      m_erange(e_range_null_terminated)
+      //m_erange(e_range_null_terminated)
+   m_erange(e_range_none)
    {
    }
+
+
+
 
 
    range & operator =(const range & range)
@@ -358,9 +410,22 @@ public:
    }
 
 
-   constexpr bool is_string() const { return m_erange & e_range_string; }
-   constexpr void set_string_flag() { m_erange = (enum_range)(m_erange | e_range_string); }
-   constexpr void clear_string_flag() { m_erange = (enum_range) (m_erange & ~e_range_string); }
+   void set_null()
+   {
+
+      this->m_begin = nullptr;
+
+      this->m_end = nullptr;
+
+      this->m_erange = e_range_none;
+
+   }
+
+
+
+   //constexpr bool is_string() const { return m_erange & e_range_string; }
+   //constexpr void set_string_flag() { m_erange = (enum_range)(m_erange | e_range_string); }
+   //constexpr void clear_string_flag() { m_erange = (enum_range) (m_erange & ~e_range_string); }
 
 
    template < primitive_integral START >
@@ -380,14 +445,16 @@ public:
 
    }
 
+   //
+   // template < primitive_character CHARACTER >
+   // character_count __utf_length(CHARACTER * ptrigger, character_count *& plen) const;
+   //
+   //
+   // template < primitive_character CHARACTER >
+   // void __utf_concatenate_to(CHARACTER *& p, character_count *& plen) const;
+   //
 
-   template < primitive_character CHARACTER >
-   character_count __utf_length(CHARACTER * ptrigger, character_count *& plen) const;
-
-
-   template < primitive_character CHARACTER >
-   void __utf_concatenate_to(CHARACTER *& p, character_count *& plen) const;
-
+   ::collection::count array_get_count() const { return this->m_end - this->m_begin; }
 
    template < same_as < ITEM > A_ITEM > 
    void block_concatenate_to(A_ITEM * & p)
@@ -459,12 +526,12 @@ public:
 
    const_iterator begin() const
    {
-      return m_begin;
+      return (const_iterator) m_begin;
    }
 
    const_iterator end() const
    {
-      return m_end;
+      return (const_iterator) m_end;
    }
 
    this_iterator & begin(this_iterator begin)
@@ -534,12 +601,25 @@ public:
 
    }
 
-   constexpr bool iterator_ok(const_iterator iterator) const
+
+   constexpr bool is_iterator_ok(const_iterator iterator) const
    {
 
-      return ::iterator_is_ok(iterator, m_begin, m_end);
+      return !this->is_end(iterator);
+
 
    }
+
+
+
+
+
+   //constexpr bool iterator_ok(const_iterator iterator) const
+   //{
+
+   //   return ::iterator_is_ok(iterator, m_begin, m_end);
+
+   //}
 
    //constexpr bool is_end() const
    //{
@@ -700,8 +780,47 @@ public:
    //   }
 
 
-   static constexpr bool
-      _initialize_order(::std::strong_ordering & order, const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock)
+   //static constexpr bool
+   //   _initialize_order(::std::strong_ordering & order, const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock)
+   //{
+
+   //   if (range.is_empty())
+   //   {
+
+   //      if (rangeBlock.is_empty())
+   //      {
+
+   //         order = ::std::strong_ordering::equal;
+
+   //         return true;
+
+   //      }
+   //      else
+   //      {
+
+   //         order = ::std::strong_ordering::greater;
+
+   //         return true;
+
+   //      }
+
+   //   }
+   //   else if (rangeBlock.is_empty())
+   //   {
+
+   //      order = ::std::strong_ordering::less;
+
+   //      return true;
+
+   //   }
+
+   //   return false;
+
+   //}
+
+
+   /*static constexpr bool
+      _initialize_partial_order(::std::partial_ordering& partialorder, const THIS_RAW_RANGE& range, const THIS_RAW_RANGE& rangeBlock)
    {
 
       if (range.is_empty())
@@ -710,7 +829,7 @@ public:
          if (rangeBlock.is_empty())
          {
 
-            order = ::std::strong_ordering::equal;
+            partialorder = ::std::partial_ordering::equivalent;
 
             return true;
 
@@ -718,7 +837,7 @@ public:
          else
          {
 
-            order = ::std::strong_ordering::greater;
+            partialorder = ::std::partial_ordering::greater;
 
             return true;
 
@@ -728,7 +847,7 @@ public:
       else if (rangeBlock.is_empty())
       {
 
-         order = ::std::strong_ordering::less;
+         partialorder = ::std::partial_ordering::less;
 
          return true;
 
@@ -736,11 +855,14 @@ public:
 
       return false;
 
-   }
+   }*/
+
 
    template<::comparison::ordering<ITEM> ORDERING>
    static constexpr auto _static_order(THIS_RAW_RANGE range, THIS_RAW_RANGE rangeBlock, ORDERING ordering)
    {
+
+      using TORDERING = decltype(ordering.order(*range.begin(), *rangeBlock.begin()));
 
       do
       {
@@ -760,32 +882,45 @@ public:
 
       } while (!range.is_end(range.begin()) && !rangeBlock.is_end(rangeBlock.begin()));
 
-      return range.size() <=> rangeBlock.size();
+      return  ::as< TORDERING, ::std::strong_ordering >(range.size() <=> rangeBlock.size());
 
    }
 
 
+
+
    template<::comparison::ordering<ITEM> ORDERING>
-   static constexpr ::std::strong_ordering
+   static constexpr auto
       static_order(const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock, ORDERING ordering)
    {
 
-      std::strong_ordering order(::std::strong_ordering::less);
-
-      if (_initialize_order(order, range, rangeBlock))
-      {
-
-         return order;
-
-      }
 
       return _static_order(range, rangeBlock, ordering);
 
    }
 
 
+   //template<::comparison::partial_ordering<ITEM> PARTIAL_ORDERING>
+   //static constexpr ::std::partial_ordering
+   //   static_partial_order(const THIS_RAW_RANGE& range, const THIS_RAW_RANGE& rangeBlock, PARTIAL_ORDERING partialordering)
+   //{
+
+   //   std::partial_ordering order(::std::partial_ordering::less);
+
+   //   if (_initialize_partial_order(order, range, rangeBlock))
+   //   {
+
+   //      return order;
+
+   //   }
+
+   //   return _static_partial_order(range, rangeBlock, partialordering);
+
+   //}
+
+
    template<::comparison::ordering<ITEM> ORDERING>
-   constexpr ::std::strong_ordering _order(const THIS_RAW_RANGE & rangeBlock, ORDERING ordering) const
+   constexpr auto _order(const THIS_RAW_RANGE & rangeBlock, ORDERING ordering) const
    {
 
       return _static_order(*this, rangeBlock, ordering);
@@ -794,13 +929,20 @@ public:
 
 
    template<::comparison::ordering<ITEM> ORDERING>
-   constexpr ::std::strong_ordering order(const THIS_RAW_RANGE & rangeBlock, ORDERING ordering) const
+   constexpr auto order(const THIS_RAW_RANGE & rangeBlock, ORDERING ordering) const
    {
 
       return static_order(*this, rangeBlock, ordering);
 
    }
 
+   //template<::comparison::partial_ordering<ITEM> PARTIAL_ORDERING>
+   //constexpr ::std::partial_ordering partial_order(const THIS_RAW_RANGE& rangeBlock, PARTIAL_ORDERING partialordering) const
+   //{
+
+   //   return static_partial_order(*this, rangeBlock, partialordering);
+
+   //}
 
    //   template<::comparison::ordering<ITEM> ORDERING>
    //   constexpr ::std::strong_ordering
@@ -2532,7 +2674,7 @@ constexpr bool null_terminated_ends(const ITEM * pz, const ITEM * pzSuffix, EQUA
 
 
 template < primitive_character CHARACTER, character_count n >
-constexpr class ::range < const CHARACTER* > as_string_literal(const CHARACTER* s)
+constexpr class ::character_range < const CHARACTER* > as_string_literal(const CHARACTER* s)
 {
 
    if constexpr (n >= 1)
@@ -2541,13 +2683,14 @@ constexpr class ::range < const CHARACTER* > as_string_literal(const CHARACTER* 
       if (s[n - 1] == CHARACTER{})
       {
 
-         return { s, s + n - 1, e_range_null_terminated };
+         return { s, s + n - 1 };
 
       }
 
    }
 
-   return { s, s + n, e_range_none };
+   return { s, s + n };
 
 }
+
 

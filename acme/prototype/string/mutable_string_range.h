@@ -284,7 +284,7 @@ inline ::hash32 _string_range_unsigned_int_hash(::string_range<const CHARACTER *
 
 
 template<primitive_character CHARACTER>
-constexpr ::range<const CHARACTER *> _string_range(const CHARACTER *psz) {
+constexpr ::character_range<const CHARACTER *> _string_range(const CHARACTER *psz) {
 
    return {psz, psz + string_safe_length(psz)};
 
@@ -292,7 +292,7 @@ constexpr ::range<const CHARACTER *> _string_range(const CHARACTER *psz) {
 
 
 template<primitive_character CHARACTER>
-constexpr ::range<const CHARACTER *>
+constexpr ::character_range<const CHARACTER *>
 _start_count_string_range(const CHARACTER *psz, memsize start, memsize count) {
 
    auto pend = psz + string_safe_length(psz);
@@ -323,8 +323,7 @@ inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string
    string_range < ITERATOR_TYPE >
    {
       this->m_begin + minimum(start, sizeThis),
-      this->m_begin + end,
-      !(*this->m_end) ? e_range_null_terminated : e_range_none
+      this->m_begin + end
    };
 
 

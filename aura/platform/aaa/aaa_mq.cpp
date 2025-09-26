@@ -67,7 +67,7 @@ int_bool message_queue::post_message(const MESSAGE & message)
 
    }
 
-   synchronous_lock ml(synchronization());
+   synchronous_lock ml(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    m_messagea.add(message);
 
@@ -88,7 +88,7 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, unsigned 
 
    }
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    while (true)
    {
@@ -98,7 +98,7 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, unsigned 
 
          MESSAGE & msg = m_messagea[i];
 
-         if (msg.message == e_message_quit)
+         if (msg.message == ::user::e_message_quit)
          {
 
             m_bQuit = true;
@@ -175,7 +175,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,unsigned i
 
    }
 
-   synchronous_lock synchronouslock(this->synchronization());
+   synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    ::collection::count count = m_messagea.get_count();
 
@@ -350,7 +350,7 @@ CLASS_DECL_AURA int_bool post_ui_message(const MESSAGE & message)
 //
 //   itask idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 //
-//   auto pmq = ::get_message_queue(idthread, message.message != e_message_quit);
+//   auto pmq = ::get_message_queue(idthread, message.message != ::user::e_message_quit);
 //
 //   if(pmq == nullptr)
 //   {
@@ -420,7 +420,7 @@ CLASS_DECL_AURA void mq_clear(class ::task_index & taskindex)
 
    }
 
-   synchronous_lock ml(pmq->mutex());
+   synchronous_lock ml(pmq->mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    pmq->m_messagea.erase_all();
 

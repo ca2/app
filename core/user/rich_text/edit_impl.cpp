@@ -5,7 +5,7 @@
 #include "data.h"
 #include "format.h"
 #include "acme/constant/id.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "acme/constant/timer.h"
 #include "acme/constant/user_key.h"
 #include "acme/filesystem/file/memory_file.h"
@@ -104,17 +104,17 @@ namespace user
 
          ::user::rich_text::edit::install_message_routing(pchannel);
 
-         MESSAGE_LINK(e_message_create, pchannel, this, &edit_impl::on_message_create);
-         MESSAGE_LINK(e_message_destroy, pchannel, this, &edit_impl::on_message_destroy);
-         MESSAGE_LINK(e_message_show_window, pchannel, this, &edit_impl::on_message_show_window);
-         MESSAGE_LINK(e_message_left_button_down, pchannel, this, &edit_impl::on_message_left_button_down);
-         MESSAGE_LINK(e_message_left_button_up, pchannel, this, &edit_impl::on_message_left_button_up);
-         MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit_impl::on_message_mouse_move);
-         MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit_impl::on_message_mouse_leave);
-         MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_impl::on_message_key_down);
-         MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_impl::on_message_key_up);
-         //MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_impl::on_message_set_focus);
-         //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_impl::on_message_kill_focus);
+         USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &edit_impl::on_message_create);
+         USER_MESSAGE_LINK(::user::e_message_destroy, pchannel, this, &edit_impl::on_message_destroy);
+         USER_MESSAGE_LINK(::user::e_message_show_window, pchannel, this, &edit_impl::on_message_show_window);
+         USER_MESSAGE_LINK(::user::e_message_left_button_down, pchannel, this, &edit_impl::on_message_left_button_down);
+         USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &edit_impl::on_message_left_button_up);
+         USER_MESSAGE_LINK(::user::e_message_mouse_move, pchannel, this, &edit_impl::on_message_mouse_move);
+         USER_MESSAGE_LINK(::user::e_message_mouse_leave, pchannel, this, &edit_impl::on_message_mouse_leave);
+         USER_MESSAGE_LINK(::user::e_message_key_down, pchannel, this, &edit_impl::on_message_key_down);
+         USER_MESSAGE_LINK(::user::e_message_key_up, pchannel, this, &edit_impl::on_message_key_up);
+         //USER_MESSAGE_LINK(::user::e_message_set_focus, pchannel, this, &edit_impl::on_message_set_focus);
+         //USER_MESSAGE_LINK(::user::e_message_kill_focus, pchannel, this, &edit_impl::on_message_kill_focus);
 
 
          text_composition_composite::initialize_text_composition_client(pchannel, this);
@@ -327,9 +327,9 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         _synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         auto pformatSelectionCommon = __create_new < format >();
+         auto pformatSelectionCommon = øcreate_new < format >();
 
          pformatSelectionCommon->initialize_user_rich_text_format(prichtextdata);
 
@@ -674,7 +674,7 @@ namespace user
          if (!r.contains(point))
          {
 
-            auto pitem = __allocate ::item(e_element_none);
+            auto pitem = øallocate ::item(e_element_none);
 
             return pitem;
 
@@ -707,7 +707,7 @@ namespace user
 
          //return prichtextdata->hit_test(point);
 
-         auto pitem = __allocate ::item(e_element_item);
+         auto pitem = øallocate ::item(e_element_item);
 
          auto prichtextdata = get_rich_text_data();
 
@@ -871,7 +871,7 @@ namespace user
       void edit_impl::draw_impl(::draw2d::graphics_pointer & pgraphics)
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          //pgraphics->offset_origin(m_pointScroll.x(), m_pointScroll.y());
 
@@ -905,7 +905,7 @@ namespace user
 
          return _000OnDraw(pgraphics);
 
-         //_synchronous_lock synchronouslock(this->synchronization());
+         //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          ////pgraphics->offset_origin(m_pointScroll.x(), m_pointScroll.y());
 
@@ -1081,7 +1081,7 @@ namespace user
 
                auto prichtextdata = get_rich_text_data();
 
-               _synchronous_lock synchronouslock(prichtextdata->synchronization());
+               _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                if (pformattool->m_eattribute & e_attribute_align)
                {
@@ -1207,7 +1207,7 @@ namespace user
       void edit_impl::on_message_key_down(::message::message * pmessage)
       {
 
-         //_synchronous_lock synchronouslock(this->synchronization());
+         //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          {
 
@@ -1520,7 +1520,7 @@ namespace user
 
             auto prichtextdata = get_rich_text_data();
 
-            _synchronous_lock synchronouslock(prichtextdata->synchronization());
+            _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             character_count i1 = get_sel_beg();
 
@@ -1657,7 +1657,7 @@ namespace user
 
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             bool bControl = psession->is_key_pressed(::user::e_key_control);
 
@@ -1742,7 +1742,7 @@ namespace user
 
                   {
 
-                     _synchronous_lock synchronouslock(prichtextdata->synchronization());
+                     _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                      character_count i1 = get_sel_beg();
 
@@ -1809,7 +1809,7 @@ namespace user
 
                auto prichtextdata = get_rich_text_data();
 
-               _synchronous_lock synchronouslock(prichtextdata->synchronization());
+               _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                double x;
 
@@ -1847,7 +1847,7 @@ namespace user
 
                auto prichtextdata = get_rich_text_data();
 
-               _synchronous_lock synchronouslock(prichtextdata->synchronization());
+               _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                double x;
 
@@ -1887,7 +1887,7 @@ namespace user
                if (!bShift && m_iSelBeg > m_iSelEnd)
                {
 
-                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   m_iSelEnd = m_iSelBeg;
 
@@ -1899,7 +1899,7 @@ namespace user
 
                   auto prichtextdata = get_rich_text_data();
 
-                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   m_iSelBeg = m_iSelEnd;
 
@@ -1911,7 +1911,7 @@ namespace user
 
                   auto prichtextdata = get_rich_text_data();
 
-                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   if (m_iSelEnd < _001GetLayoutTextLength())
                   {
@@ -1952,7 +1952,7 @@ namespace user
                if (!bShift && m_iSelBeg < m_iSelEnd)
                {
 
-                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   m_iSelEnd = m_iSelBeg;
 
@@ -1964,7 +1964,7 @@ namespace user
 
                   auto prichtextdata = get_rich_text_data();
 
-                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   m_iSelBeg = m_iSelEnd;
 
@@ -1976,7 +1976,7 @@ namespace user
 
                   auto prichtextdata = get_rich_text_data();
 
-                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                   string strText;
 
@@ -2009,7 +2009,7 @@ namespace user
 
                auto prichtextdata = get_rich_text_data();
 
-               _synchronous_lock synchronouslock(prichtextdata->synchronization());
+               _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                if (bControl)
                {
@@ -2045,7 +2045,7 @@ namespace user
 
                auto prichtextdata = get_rich_text_data();
 
-               _synchronous_lock synchronouslock(prichtextdata->synchronization());
+               _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
                if (bControl)
                {

@@ -29,7 +29,7 @@ public:
    };
 
 
-   string_map < dir_listing >    m_map;
+   string_map_base < dir_listing >    m_map;
 
 
    //file_path_map < unsigned int >    m_mapdirTimeout;

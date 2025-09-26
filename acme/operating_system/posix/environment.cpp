@@ -8,7 +8,7 @@ namespace acme_posix
 {
 
 
-   ::status < ::string > environment::lookup(const ::scoped_string & scopedstrKey)
+   ::status < ::string > environment::find(const ::scoped_string & scopedstrKey)
    {
 
       // Special keys
@@ -62,7 +62,7 @@ namespace acme_posix
 ::pointer < ::operating_system::environment > operating_system_get_environment()
 {
 
-   auto p = __allocate ::acme_posix::environment();
+   auto p = øallocate ::acme_posix::environment();
    
    return p;
 

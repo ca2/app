@@ -10,7 +10,7 @@ namespace data
 
 
    typedef CLASS_DECL_ACME pointer_array < listener > listener_array;
-   typedef CLASS_DECL_ACME atom_map < ::pointer<data >>data_map;
+   typedef CLASS_DECL_ACME atom_map_base < ::pointer<data >>data_map;
 
 
    class CLASS_DECL_ACME data :

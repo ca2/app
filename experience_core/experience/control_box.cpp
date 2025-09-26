@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "control_box.h"
-#include "acme/constant/message.h"
+#include "acme/constant/user_message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/user/user/frame_interaction.h"
 
@@ -133,9 +133,9 @@ namespace experience_core
 
       ::experience::control_box::install_message_routing(pframewindow);
 
-      MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::on_message_show_window);
-      MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pframewindow, this, &control_box::on_message_left_button_up);
+      USER_MESSAGE_LINK(::user::e_message_show_window, pframewindow, this, &control_box::on_message_show_window);
+      USER_MESSAGE_LINK(::user::e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pframewindow, this, &control_box::on_message_left_button_up);
 
    }
 

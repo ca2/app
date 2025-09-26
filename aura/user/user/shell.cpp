@@ -136,7 +136,7 @@ namespace user
       m_iActiveThreadCount = 0;
       m_iMaxThreadCount = 1;
 
-      m_pevNewImageKey = __allocate manual_reset_happening();
+      m_pevNewImageKey = øallocate manual_reset_happening();
 
       m_pevNewImageKey->m_eflagElement += e_flag_alertable_wait;
 
@@ -182,7 +182,7 @@ namespace user
 
       branch_synchronously();
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       //return success;
 
@@ -218,7 +218,7 @@ namespace user
 
       ::draw2d::lock lock(this);
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (contains_image(getfileimage.m_imagekey, getfileimage.m_iImage))
       {
@@ -237,7 +237,7 @@ namespace user
    int shell::_reserve_image(const image_key & key)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       int iImage = -1;
 
@@ -260,9 +260,9 @@ namespace user
    bool shell::contains_image(const image_key & imagekey, int & iImage)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (m_imagemap.lookup(imagekey, iImage))
+      if (m_imagemap.find(imagekey, iImage))
       {
 
          return true;
@@ -277,7 +277,7 @@ namespace user
    void shell::add_size_interest(::int_array_base iaSize)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto cAddedCount = m_iaSize.append_unique(iaSize);
 
@@ -296,7 +296,7 @@ namespace user
    void shell::set_size_interest(::int_array_base iaSize)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::sort::QuickSortAsc(iaSize);
 
@@ -398,7 +398,7 @@ namespace user
    void shell::on_update_sizes_interest()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       m_imagemap.erase_all();
 
@@ -417,7 +417,7 @@ namespace user
          if (m_pimagelist[iSize].is_null())
          {
 
-            m_pimagelist[iSize] = __create_new < ::image::image_list >();
+            m_pimagelist[iSize] = øcreate_new < ::image::image_list >();
             m_pimagelist[iSize]->create(iSize, iSize, 0, 10, 10);
 
          }
@@ -431,7 +431,7 @@ namespace user
          if (m_pimagelistHover[iSize].is_null())
          {
 
-            m_pimagelistHover[iSize] = __create_new < ::image::image_list >();
+            m_pimagelistHover[iSize] = øcreate_new < ::image::image_list >();
 
             m_pimagelistHover[iSize]->create(iSize, iSize, 0, 10, 10);
 
@@ -462,7 +462,7 @@ namespace user
 
             m_pevNewImageKey->wait(500_ms);
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             if (m_imagekeySchedule.has_elements())
             {
@@ -527,7 +527,7 @@ namespace user
       if (getfileimage.m_pathProcessed.is_empty())
       {
 
-         ::file::path pathProcessed = m_papplication->defer_process_matter_path(getfileimage.m_imagekey.m_strPath);
+         ::file::path pathProcessed = m_papplication->defer_process_path(getfileimage.m_imagekey.m_strPath);
 
          getfileimage.m_pathProcessed = pathProcessed;
 
@@ -560,7 +560,7 @@ namespace user
    ::image::image_list * shell::GetImageList(int iSize)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bPendingUpdate)
       {
@@ -605,7 +605,7 @@ namespace user
    ::image::image_list * shell::GetImageListHover(int iSize)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bPendingUpdate)
       {
@@ -684,7 +684,7 @@ namespace user
    int shell::get_file_image(const ::file::path & path, const ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       image_key imagekey(path, m_strShellThemePrefix, eattribute, eicon);
 
@@ -696,7 +696,7 @@ namespace user
    int shell::get_file_image(const image_key & imagekey)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (m_bPendingUpdate)
       {
@@ -707,7 +707,7 @@ namespace user
 
       int iImage;
 
-      if (m_imagemap.lookup(imagekey, iImage))
+      if (m_imagemap.find(imagekey, iImage))
       {
 
          if (iImage == 0x80000001)
@@ -735,7 +735,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          m_imagekeySchedule.add(imagekey);
 
@@ -751,7 +751,7 @@ namespace user
    void shell::warn_when_ok(const ::file::path & path, const ::user::interaction_array & userinteractionaInterested)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       for(auto & puserinteraction : userinteractionaInterested.m_interactiona)
       {
@@ -766,7 +766,7 @@ namespace user
    void shell::warn_ok(const ::file::path & path)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       bool bErasedAnyAtForLoop;
 
@@ -788,7 +788,7 @@ namespace user
                if (pair.m_element2.is_empty())
                {
 
-                  m_mapInterest.erase_item(pair.m_element1);
+                  m_mapInterest.erase(pair.m_element1);
 
                   bErasedAnyAtForLoop = true;
 
@@ -915,8 +915,8 @@ namespace user
 //            str.trim();
 //            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, directory()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
 //            HICON hicon48 = (HICON) ::LoadImage(nullptr, directory()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-//            _synchronous_lock sl1(m_pil48Hover->synchronization());
-//            _synchronous_lock sl2(m_pil48->synchronization());
+//            _synchronous_lock sl1(m_pil48Hover->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//            _synchronous_lock sl2(m_pil48->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //            iImage = m_pil16->add_icon_os_data(hicon16);
 //            m_pil48Hover->add_icon_os_data(hicon48);
 //
@@ -1079,8 +1079,8 @@ namespace user
             str.trim();
             /*HICON hicon16 = (HICON) ::LoadImage(nullptr, directory()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
             HICON hicon48 = (HICON) ::LoadImage(nullptr, directory()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-            _synchronous_lock sl1(m_pil48Hover->synchronization());
-            _synchronous_lock sl2(m_pil48->synchronization());
+            _synchronous_lock sl1(m_pil48Hover->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+            _synchronous_lock sl2(m_pil48->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
             iImage = m_pil16->add_icon_os_data(hicon16);
             m_pil48Hover->add_icon_os_data(hicon48);
 
@@ -1708,6 +1708,19 @@ namespace user
 
             auto eicon = m_pgetfileimage->m_imagekey.m_eicon;
 
+            if (strPath == "C:/Users/camilo/OneDrive/Pictures/_")
+            {
+
+               information() << "Ok... let's debug " << strPath;
+
+            }
+            else if (strPath == "image://_")
+            {
+
+               information() << "Ok... let's debug (4)" << strPath;
+
+            }
+
             _get_file_image(*m_pgetfileimage);
 
             m_pgetfileimage->m_imagekey.m_strPath = strPath;
@@ -1718,12 +1731,12 @@ namespace user
 
             m_pgetfileimage->m_imagekey.m_eicon = eicon;
 
-            _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
             if (m_pgetfileimage->m_iImage & I32_MINIMUM)
             {
 
-               m_imagemap.erase_item(m_pgetfileimage->m_imagekey);
+               m_imagemap.erase(m_pgetfileimage->m_imagekey);
 
             }
             else
@@ -1758,7 +1771,7 @@ namespace user
    void shell::set_icon(int iImage, const ::file::path & pathIcon)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto iaSize = m_iaSize;
 
@@ -1766,11 +1779,11 @@ namespace user
 
       ::file::path path = m_papplication->defer_process_matter_path(pathIcon);
 
-      auto pwindowingicon = __øcreate < windowing::icon >();
+      auto pwindowingicon = øcreate < windowing::icon >();
 
       pwindowingicon->load_file(path);
 
-      auto pdraw2dicon = __øcreate < ::image::icon >();
+      auto pdraw2dicon = øcreate < ::image::icon >();
 
       pdraw2dicon->initialize_with_windowing_icon(pwindowingicon);
 
@@ -1822,7 +1835,7 @@ namespace user
    void shell::set_image(int iImage, int iSize, ::image::image_drawing imagedrawing)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pimagelist = m_pimagelist[iSize];
 
@@ -1830,9 +1843,9 @@ namespace user
 
       synchronouslock.unlock();
 
-      _synchronous_lock sl(pimagelist->synchronization());
+      _synchronous_lock sl(pimagelist->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      _synchronous_lock slHover(pimagelistHover->synchronization());
+      _synchronous_lock slHover(pimagelistHover->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       pimagelist->set(iImage, imagedrawing);
 

@@ -110,15 +110,15 @@ BOOL InitInstance(::particle * pparticle, HINSTANCE hInstance, int nCmdShow)
 //
 //  PURPOSE:  Processes messages for the main window.
 //
-//  e_message_command  - process the application menu
-//  e_message_paint    - Paint the main window
-//  e_message_destroy  - post a quit message and return
+//  ::user::e_message_command  - process the application menu
+//  ::user::e_message_paint    - Paint the main window
+//  ::user::e_message_destroy  - post a quit message and return
 //
 //
-LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+LRESULT CALLBACK WndProc(HWND hWnd, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
    ::aura::application * papp;
-   if (message == e_message_create)
+   if (message == ::user::e_message_create)
    {
       papp = (::aura::application *)((LPCREATESTRUCT)lParam)->lpCreateParams;
       SetWindowLongPtr(hWnd, GWL_USERDATA, (LONG_PTR)papp);
@@ -129,7 +129,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::
    }
    switch (message)
    {
-   case e_message_command:
+   case ::user::e_message_command:
    {
       int wmId = LOWORD(wParam);
       // Parse the menu selections:
@@ -146,7 +146,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::
       }
    }
    break;
-   case e_message_paint:
+   case ::user::e_message_paint:
    {
       PAINTSTRUCT ps;
       HDC hdc = BeginPaint(hWnd, &ps);
@@ -155,7 +155,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::
       EndPaint(hWnd, &ps);
    }
    break;
-   case e_message_destroy:
+   case ::user::e_message_destroy:
       PostQuitMessage(0);
       break;
    default:
@@ -165,7 +165,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::
 }
 
 // Message handler for about box.
-INT_PTR CALLBACK About(HWND hDlg, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+INT_PTR CALLBACK About(HWND hDlg, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
    __UNREFERENCED_PARAMETER(lParam);
    switch (message)
@@ -173,7 +173,7 @@ INT_PTR CALLBACK About(HWND hDlg, ::enum_message emessage, ::wparam wparam, ::lp
    case WM_INITDIALOG:
       return (INT_PTR)true;
 
-   case e_message_command:
+   case ::user::e_message_command:
       if (LOWORD(wParam) == e_dialog_result_ok || LOWORD(wParam) == e_dialog_result_cancel)
       {
          EndDialog(hDlg, LOWORD(wParam));

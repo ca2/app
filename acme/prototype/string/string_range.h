@@ -13,10 +13,12 @@ class string_range :
 {
 public:
 
+   
+   using BASE_RANGE = ::const_string_range < ITERATOR_TYPE >;
+   using RAW_CHARACTER_RANGE = typename BASE_RANGE::RAW_CHARACTER_RANGE;
+
 
    //using BASE_RANGE = ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >;
-
-   using BASE_RANGE = ::const_string_range < ITERATOR_TYPE >;
 
    using THIS_RANGE = ::string_range < ITERATOR_TYPE >;
 
@@ -61,15 +63,16 @@ public:
 
    string_range() {}
 
-   template<typed_range<iterator> RANGE>
-   explicit string_range(const RANGE & range) : BASE_RANGE(range) {}
+   template<typed_range<iterator> TYPED_RANGE>
+   constexpr string_range(const TYPED_RANGE& range) 
+      requires(!::std::is_same_v < TYPED_RANGE, THIS_RANGE >) :
+      BASE_RANGE(range) { }
 
-   template<typed_range<const_iterator> RANGE>
-   explicit string_range(const RANGE & range) : BASE_RANGE(range) {}
+   constexpr string_range(const string_range & range) :
+      BASE_RANGE(range) { }
 
-   string_range(const THIS_RANGE & range) : BASE_RANGE(range) {}
-
-   string_range(THIS_RANGE && range) : BASE_RANGE(::transfer(range)) {}
+   constexpr string_range(string_range && range) :
+      BASE_RANGE(::transfer(range)) { }
 
    string_range(this_iterator begin, this_iterator end) : BASE_RANGE(begin, end) {}
    string_range(this_iterator begin, this_iterator end, enum_range erange) : BASE_RANGE(begin, end, erange) {}
@@ -90,7 +93,7 @@ public:
 
 
    template < character_pointer CHARACTER_POINTER >
-   string_range(CHARACTER_POINTER start) : BASE_RANGE(start, start + string_safe_length(start), e_range_null_terminated) {}
+   string_range(CHARACTER_POINTER start) : BASE_RANGE(start, start + string_safe_length(start)) {}
 
    //explicit string_range(ITERATOR_TYPE psz) : string_range(scopedstr, 0, string_safe_length(scopedstr)) {}
 
@@ -188,18 +191,18 @@ public:
             this->m_erange = e_range_none;
 
          }
-         else
-         {
-
-            this->m_erange =(enum_range) ( this->m_erange & ~e_range_string);
-         }
-
-      }
-      else if(e != this->m_end)
-      {
-         this->m_erange = (enum_range)(this->m_erange & ~e_range_null_terminated);
+         // else
+         // {
+         //
+         //    this->m_erange =(enum_range) ( this->m_erange & ~e_range_string);
+         //}
 
       }
+      // else if(e != this->m_end)
+      // {
+      //    this->m_erange = (enum_range)(this->m_erange & ~e_range_null_terminated);
+      //
+      // }
       this->m_begin = s;
       this->m_end = e;
       return *this;
@@ -236,20 +239,63 @@ public:
    //    character_count offset_of(const CHARACTER *p) const { return ::offset_of(p, data()); }
 
 
-   string_range & operator=(const THIS_RANGE & range)
+
+   string_range &operator =(const string_range & range)
    {
       BASE_RANGE::operator=(range);
       return *this;
    }
 
-   string_range & operator=(string_range && range) {
-      BASE_RANGE::operator=(::transfer(range));
+   template < primitive_range SOME_RANGE >
+   string_range &operator=(SOME_RANGE && range) requires
+   (sizeof(typename SOME_RANGE::ITEM) == sizeof(ITEM))
+   {
+
+      auto pbasedataOld = this->m_pbasedata;
+
+      BASE_RANGE::operator=(range);
+
+      if (pbasedataOld)
+      {
+
+         ::release_base_data(pbasedataOld);
+
+      }
+
+      // if (range.m_erange & e_range_string)
+      // {
+      //
+      //    ((STRING_BASE*)&range)->__destroy();
+      //
+      // }
+
+      range.m_begin = nullptr;
+
+      range.m_end = nullptr;
+
+      range.m_erange = e_range_none;
+
+      range.m_pbasedata = nullptr;
+
       return *this;
+
    }
 
-   //string_range & operator=(const atom & atom);
 
-   string_range & operator=(const block & block);
+   // string_range & operator=(const THIS_RANGE & range)
+   // {
+   //    BASE_RANGE::operator=(range);
+   //    return *this;
+   // }
+   //
+   // string_range & operator=(string_range && range) {
+   //    BASE_RANGE::operator=(::transfer(range));
+   //    return *this;
+   // }
+   //
+   // //string_range & operator=(const atom & atom);
+   //
+   // string_range & operator=(const block & block);
 
 
 
@@ -1548,7 +1594,7 @@ public:
      //    ::character_count count_left(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->skip_any_character_in(range) - this->begin(); }
 
 
-   void add_to_begin(::character_count size)
+   void shift_begin(::character_count size)
    {
 
       if(size)
@@ -1556,14 +1602,14 @@ public:
 
          this->m_begin += size;
 
-         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
+         //this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
 
       }
 
    }
 
 
-   void add_to_end(::character_count size)
+   void shift_end(::character_count size)
    {
 
       if(size)
@@ -1571,7 +1617,7 @@ public:
 
          this->m_end += size;
 
-         this->m_erange = (enum_range)(this->m_erange & ~(e_range_string | e_range_null_terminated));
+         //this->m_erange = (enum_range)(this->m_erange & ~(e_range_string | e_range_null_terminated));
 
       }
 
@@ -1586,7 +1632,7 @@ public:
 
          this->m_begin = p;
 
-         this->m_erange = (enum_range) (this->m_erange  & ~e_range_string);
+         //this->m_erange = (enum_range) (this->m_erange  & ~e_range_string);
 
       }
 
@@ -1601,14 +1647,14 @@ public:
 
          this->m_end = p;
 
-         this->m_erange = (enum_range)(this->m_erange & ~(e_range_string | e_range_null_terminated));
+         //this->m_erange = (enum_range)(this->m_erange & ~(e_range_string));
 
       }
 
    }
 
 
-   string_range & trim_left(const SCOPED_STRING & range) RELEASENOTHROW { add_to_begin(this->count_left(range));
+   string_range & trim_left(const SCOPED_STRING & range) RELEASENOTHROW { shift_begin(this->count_left(range));
          return *this; }
 
    //    const_iterator rear_find_first_whitespace() const RELEASENOTHROW { return this->rear_find_first_character_in("\t\r\n "); }
@@ -1617,7 +1663,7 @@ public:
    //
    //    ::character_count count_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->m_end - this->rear_skip_any_character_in(range); }
 
-   string_range & trim_right(const SCOPED_STRING & range) RELEASENOTHROW { add_to_end(-this->count_right(range)); return *this; }
+   string_range & trim_right(const SCOPED_STRING & range) RELEASENOTHROW { shift_end(-this->count_right(range)); return *this; }
 
    //    ::character_count count_left_and_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { ::character_count c; return ((c = count_left(range)) == this->size()) ? c : c + count_right(range); }
 
@@ -1640,9 +1686,9 @@ public:
 
       }
 
-      this->add_to_begin(1);
+      this->shift_begin(1);
 
-      this->add_to_end(-1);
+      this->shift_end(-1);
 
       return true;
 
@@ -2026,9 +2072,7 @@ template < primitive_character CHARACTER, primitive_integral INTEGRAL >
 
    return {
       p,
-      p + n,
-      p[n] == CHARACTER{} ?
-      e_range_null_terminated : e_range_none
+      p + n
    };
 
 }

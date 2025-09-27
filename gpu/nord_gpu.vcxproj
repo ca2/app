@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{576B7916-147F-49F2-84B8-360D703894B5}</ProjectGuid>
+    <Keyword>Android</Keyword>
+    <ApplicationType>Android</ApplicationType>
+    <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
+    <ProjectName>aqua</ProjectName>
+    <RootNamespace>app</RootNamespace>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <AndroidAPILevel>android-26</AndroidAPILevel>
+    <UseOfStl>c++_static</UseOfStl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <UseOfStl>c++_static</UseOfStl>
+    <AndroidAPILevel>android-26</AndroidAPILevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <AndroidAPILevel>android-26</AndroidAPILevel>
+    <UseOfStl>c++_static</UseOfStl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <UseOfStl>c++_static</UseOfStl>
+    <AndroidAPILevel>android-26</AndroidAPILevel>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <Import Project="..\..\..\operating_system\operating_system-android\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <Import Project="..\..\..\operating_system\operating_system-android\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <Import Project="..\..\..\operating_system\operating_system-android\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <Import Project="..\..\..\operating_system\operating_system-android\Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <ClCompile>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CppLanguageStandard>
+      </CppLanguageStandard>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CLanguageStandard>c11</CLanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <LibraryDependencies>jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <UnresolvedSymbolReferences>true</UnresolvedSymbolReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\operating_system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\operating_system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <WholeArchiveBegin>true</WholeArchiveBegin>
+      <FunctionBinding>false</FunctionBinding>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <CppLanguageStandard>
+      </CppLanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link />
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\operating_system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\operating_system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <LibraryDependencies>jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <WholeArchiveBegin>true</WholeArchiveBegin>
+      <FunctionBinding>false</FunctionBinding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <DebugInformationFormat>FullDebug</DebugInformationFormat>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <CppLanguageStandard>
+      </CppLanguageStandard>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
+      <Optimization>Full</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\operating_system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\operating_system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <WholeArchiveBegin>true</WholeArchiveBegin>
+      <FunctionBinding>false</FunctionBinding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <ClCompile>
+      <DebugInformationFormat>FullDebug</DebugInformationFormat>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <CppLanguageStandard>
+      </CppLanguageStandard>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\operating_system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\operating_system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <WholeArchiveBegin>true</WholeArchiveBegin>
+      <FunctionBinding>false</FunctionBinding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="audio\audio.cpp" />
+    <ClCompile Include="audio\audio_mixer.cpp" />
+    <ClCompile Include="audio\audio_mixer_user.cpp" />
+    <ClCompile Include="audio\audio_wave_out.cpp" />
+    <ClCompile Include="audio\sound_track_player.cpp" />
+    <ClCompile Include="audio\speaker.cpp" />
+    <ClCompile Include="audio\text_to_speech_client.cpp" />
+    <ClCompile Include="constant\idpool.cpp" />
+    <ClCompile Include="framework.cpp" />
+    <ClCompile Include="game\estamira.cpp" />
+    <ClCompile Include="game\game.cpp" />
+    <ClCompile Include="multimedia\decoder.cpp" />
+    <ClCompile Include="multimedia\decoder_plugin.cpp" />
+    <ClCompile Include="multimedia\exception.cpp" />
+    <ClCompile Include="multimedia\file_application.cpp" />
+    <ClCompile Include="multimedia\multimedia.cpp" />
+    <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\session.cpp" />
+    <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="user\controller.cpp" />
+    <ClCompile Include="xml\data.cpp" />
+    <ClCompile Include="xml\disp_option.cpp" />
+    <ClCompile Include="xml\document.cpp" />
+    <ClCompile Include="xml\edit.cpp" />
+    <ClCompile Include="xml\entity.cpp" />
+    <ClCompile Include="xml\exception.cpp" />
+    <ClCompile Include="xml\exportable.cpp" />
+    <ClCompile Include="xml\importable.cpp" />
+    <ClCompile Include="xml\input_tree.cpp" />
+    <ClCompile Include="xml\node.cpp" />
+    <ClCompile Include="xml\output_tree.cpp" />
+    <ClCompile Include="xml\parse_info.cpp" />
+    <ClCompile Include="xml\property_exchange.cpp" />
+    <ClCompile Include="xml\tree_base.cpp" />
+    <ClCompile Include="xml\tree_schema.cpp" />
+    <ClCompile Include="xml\var_exchange.cpp" />
+    <ClCompile Include="xml\xml.cpp" />
+    <ClCompile Include="xml\xmlite.cpp" />
+    <ClCompile Include="_.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="audio\audio.h" />
+    <ClInclude Include="audio\audio_mixer.h" />
+    <ClInclude Include="audio\audio_mixer_user.h" />
+    <ClInclude Include="audio\out.h" />
+    <ClInclude Include="audio\sound_track_player.h" />
+    <ClInclude Include="audio\speaker.h" />
+    <ClInclude Include="audio\text_to_speech_client.h" />
+    <ClInclude Include="audio\_.h" />
+    <ClInclude Include="audio\_c.h" />
+    <ClInclude Include="constant\idpool.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="framework_c.h" />
+    <ClInclude Include="game\estamira.h" />
+    <ClInclude Include="game\game.h" />
+    <ClInclude Include="game\_.h" />
+    <ClInclude Include="include\objc.h" />
+    <ClInclude Include="include\objcpp.h" />
+    <ClInclude Include="include\winrt.h" />
+    <ClInclude Include="include\_.h" />
+    <ClInclude Include="include\_audio.h" />
+    <ClInclude Include="include\_c.h" />
+    <ClInclude Include="include\_c_bridge.h" />
+    <ClInclude Include="include\_include.h" />
+    <ClInclude Include="include\_no_templates.h" />
+    <ClInclude Include="include\_setup.h" />
+    <ClInclude Include="inline\application.h" />
+    <ClInclude Include="inline\application_common.h" />
+    <ClInclude Include="inline\library.h" />
+    <ClInclude Include="inline\_acid_app_impl.h" />
+    <ClInclude Include="inline\_application.h" />
+    <ClInclude Include="inline\_app_impl1.h" />
+    <ClInclude Include="inline\_console.h" />
+    <ClInclude Include="inline\_draw2d_impl.h" />
+    <ClInclude Include="inline\_new_impl.h" />
+    <ClInclude Include="inline\__debug_box_clear_impl.h" />
+    <ClInclude Include="inline\__debug_box_set_impl.h" />
+    <ClInclude Include="multimedia\audio.h" />
+    <ClInclude Include="multimedia\audio\audio_c.h" />
+    <ClInclude Include="multimedia\audio\out.h" />
+    <ClInclude Include="multimedia\audio\sound_track_player.h" />
+    <ClInclude Include="multimedia\audio\speaker.h" />
+    <ClInclude Include="multimedia\audio\text_to_speech_client.h" />
+    <ClInclude Include="multimedia\audio\_.h" />
+    <ClInclude Include="multimedia\audio\_c_audio.h" />
+    <ClInclude Include="multimedia\decoder.h" />
+    <ClInclude Include="multimedia\decoder_plugin.h" />
+    <ClInclude Include="multimedia\exception.h" />
+    <ClInclude Include="multimedia\file_application.h" />
+    <ClInclude Include="multimedia\multimedia.h" />
+    <ClInclude Include="multimedia\_.h" />
+    <ClInclude Include="multimedia\_c.h" />
+    <ClInclude Include="platform\aaa_layer.h" />
+    <ClInclude Include="platform\application.h" />
+    <ClInclude Include="platform\session.h" />
+    <ClInclude Include="platform\system.h" />
+    <ClInclude Include="platform\_impl.h" />
+    <ClInclude Include="platform\_platform.h" />
+    <ClInclude Include="user\controller.h" />
+    <ClInclude Include="xml\base_array.h" />
+    <ClInclude Include="xml\data.h" />
+    <ClInclude Include="xml\disp_option.h" />
+    <ClInclude Include="xml\document.h" />
+    <ClInclude Include="xml\edit.h" />
+    <ClInclude Include="xml\entity.h" />
+    <ClInclude Include="xml\exception.h" />
+    <ClInclude Include="xml\exportable.h" />
+    <ClInclude Include="xml\glue.h" />
+    <ClInclude Include="xml\importable.h" />
+    <ClInclude Include="xml\input_tree.h" />
+    <ClInclude Include="xml\node.h" />
+    <ClInclude Include="xml\output_tree.h" />
+    <ClInclude Include="xml\parse_info.h" />
+    <ClInclude Include="xml\property_exchange.h" />
+    <ClInclude Include="xml\smart_pointer_array.h" />
+    <ClInclude Include="xml\stream.h" />
+    <ClInclude Include="xml\tree_base.h" />
+    <ClInclude Include="xml\tree_schema.h" />
+    <ClInclude Include="xml\var_exchange.h" />
+    <ClInclude Include="xml\xml.h" />
+    <ClInclude Include="xml\xmlite.h" />
+    <ClInclude Include="xml\_.h" />
+    <ClInclude Include="xml\_constant.h" />
+    <ClInclude Include="xml\_geometry2d_impl.h" />
+    <ClInclude Include="xml\_impl.h" />
+    <ClInclude Include="_audio.h" />
+    <ClInclude Include="_defer.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

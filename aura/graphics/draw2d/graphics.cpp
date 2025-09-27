@@ -4269,7 +4269,7 @@ namespace draw2d
    double_size graphics::get_text_extent(const scoped_string & scopedstr)
    {
 
-      auto size = get_text_extent(scopedstr, scopedstr.size());
+      auto size = _get_text_extent(scopedstr);
 
       return size;
 

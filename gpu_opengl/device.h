@@ -78,7 +78,7 @@ namespace gpu_opengl
    };
 
 
-} // namespace gpu
+} // namespace gpu_opengl
 
 
 

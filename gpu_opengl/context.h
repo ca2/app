@@ -144,12 +144,13 @@ namespace gpu_opengl
 
       //void copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource) override;
 
+      ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t &model) override;
 
    };
 
 
 
-} // namespace gpu
+} // namespace gpu_opengl
 
 
 

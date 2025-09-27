@@ -4,6 +4,7 @@
 #include "context.h"
 #include "device.h"
 #include "frame_buffer.h"
+#include "gltf_model.h"
 #include "lock.h"
 #include "model_buffer.h"
 #include "program.h"
@@ -2716,6 +2717,22 @@ color = vec4(c.r,c.g, c.b, c.a);
       return ::as_block(pfragmentshader);
    }
 
+
+
+   ::pointer<::graphics3d::renderable> context::_load_gltf_model(const ::gpu::renderable_t &model)
+   {
+      // if (auto it = m_mapgltfModel.find(name); it != m_mapgltfModel.end())
+      //  return it->element2();
+
+      auto pmodel = øcreate_new<::gpu_opengl::gltf_model>();
+
+      ::cast<::gpu_vulkan::queue> pqueueGraphics = graphics_queue();
+
+      pmodel->loadFromFile(model.m_path.c_str(), this, pqueueGraphics->m_vkqueue, model.m_iFlags, model.m_fScale);
+
+      // m_mapgltfModel[name] = model;
+      return pmodel;
+   }
 
 } // namespace gpu_opengl
 

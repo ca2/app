@@ -139,7 +139,14 @@ namespace gpu
          //m_poolmodelbufferCharacter.m_ppoolgroup = ppoolgroupFrame;
          //m_poolmodelbufferLine.m_ppoolgroup = ppoolgroupFrame;
 
-         prenderer->current_frame_particle_array()->clear();
+         auto pparticlea = prenderer->current_frame_particle_array();
+
+         if (pparticlea)
+         {
+
+            pparticlea->clear();
+
+         }
 
       }
 
@@ -1085,7 +1092,7 @@ namespace gpu
 
 
    
-   double_size graphics::get_text_extent(const ::scoped_string& scopedstr)
+   double_size graphics::_get_text_extent(const ::scoped_string& scopedstr)
    {
 
       auto pcontext = gpu_context();

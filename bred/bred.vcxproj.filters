@@ -384,6 +384,9 @@
     <ClInclude Include="graphics3d\render_systems\scene_render_system.h">
       <Filter>Header Files\graphics3d\render_systems</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\mesh.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">

@@ -956,23 +956,9 @@ public:
 
    void ensure_index_ok(::collection::index nIndex) const { if (nIndex < 0 || nIndex >= this->size()) throw_exception(error_index_out_of_bounds); }
 
-   inline const TYPE * ptr_at(::collection::index nIndex) const { return this->m_begin + nIndex; }
-   inline TYPE * ptr_at(::collection::index nIndex) { return this->m_begin + nIndex; }
 
-   inline const TYPE & element_at(::collection::index nIndex) const;
-   inline TYPE & element_at(::collection::index nIndex);
-
-   inline const TYPE& at(::collection::index nIndex) const { ensure_index_ok(nIndex); return element_at(nIndex); }
-   inline TYPE& at(::collection::index nIndex) { ensure_index_ok(nIndex); return element_at(nIndex); }
-
-   inline TYPE & first(::collection::index n = 0);
-   inline const TYPE & first(::collection::index n = 0) const;
-
-   inline TYPE & last(::collection::index n = -1);
-   inline const TYPE & last(::collection::index n = -1) const;
-
-   inline TYPE & middle(::collection::index n = 0);
-   inline const TYPE & middle(::collection::index n = 0) const;
+   inline const TYPE& at(::collection::index nIndex) const { ensure_index_ok(nIndex); return this->element_at(nIndex); }
+   inline TYPE& at(::collection::index nIndex) { ensure_index_ok(nIndex); return this->element_at(nIndex); }
 
    inline void set_at_grow(::collection::index nIndex, ARG_TYPE newElement);
    inline TYPE & element_at_grow(::collection::index nIndex);
@@ -1413,7 +1399,7 @@ public:
          if (pred(this->m_begin[i]))
          {
 
-            return &element_at(i);
+            return &this->element_at(i);
 
          }
 
@@ -3319,26 +3305,26 @@ inline void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::zer
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline const TYPE& base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at(::collection::index nIndex) const
-{
-
-   ASSERT(nIndex >= 0 && nIndex < this->size());
-
-   return this->m_begin[nIndex];
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline TYPE& base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at(::collection::index nIndex)
-{
-
-   ASSERT(nIndex >= 0 && nIndex < this->size());
-
-   return this->m_begin[nIndex];
-
-}
+//template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
+//inline const TYPE& base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at(::collection::index nIndex) const
+//{
+//
+//   ASSERT(nIndex >= 0 && nIndex < this->size());
+//
+//   return this->m_begin[nIndex];
+//
+//}
+//
+//
+//template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
+//inline TYPE& base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at(::collection::index nIndex)
+//{
+//
+//   ASSERT(nIndex >= 0 && nIndex < this->size());
+//
+//   return this->m_begin[nIndex];
+//
+//}
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
 //inline const TYPE& array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::first(::collection::index nIndex) const
@@ -3432,59 +3418,6 @@ inline void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::__s
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline const TYPE& base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::first(::collection::index nIndex) const
-{
-
-   return this->element_at(nIndex);
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline TYPE & base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::first(::collection::index nIndex)
-{
-
-   return this->element_at(nIndex);
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline const TYPE & base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::last(::collection::index i) const
-{
-
-   return element_at(this->get_upper_bound(i));
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline TYPE & base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::last(::collection::index i)
-{
-
-   return element_at(this->get_upper_bound(i));
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline const TYPE & base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::middle(::collection::index i) const
-{
-
-   return element_at(this->get_middle_index(i));
-
-}
-
-
-template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline TYPE & base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::middle(::collection::index i)
-{
-
-   return element_at(this->get_middle_index(i));
-
-}
-
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
 void  base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::set_all(const TYPE & t)
@@ -3532,7 +3465,7 @@ inline TYPE base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop(
 
    ::collection::index i = this->get_upper_bound(n);
 
-   TYPE t = element_at(i);
+   TYPE t = this->element_at(i);
 
    this->erase_at(i);
 
@@ -3610,7 +3543,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 inline TYPE base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::takeAt(::collection::index i)
 {
 
-   TYPE t = element_at(i);
+   TYPE t = this->element_at(i);
 
    this->erase_at(i);
 
@@ -3623,7 +3556,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 inline TYPE base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::takeFirst(::collection::index i)
 {
 
-   TYPE t = element_at(i);
+   TYPE t = this->element_at(i);
 
    this->erase_at(i);
 
@@ -3638,7 +3571,7 @@ inline TYPE base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::take
 
    ::collection::index i = this->get_upper_bound(n);
 
-   TYPE t = element_at(i);
+   TYPE t = this->element_at(i);
 
    this->erase_at(i);
 
@@ -3669,7 +3602,7 @@ base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(::col
    for (::collection::index i = 0; i < c; i++)
    {
 
-      element_at(i) = p[i];
+      this->element_at(i) = p[i];
 
    }
 

@@ -669,7 +669,7 @@ base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(const
    for (::collection::index i = 0; i < array.get_size(); i++)
    {
 
-      element_at(i) = array[i];
+      this->element_at(i) = array[i];
 
    }
 

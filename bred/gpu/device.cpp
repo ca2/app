@@ -1041,6 +1041,13 @@ namespace gpu
       
       auto& pparticleaFrame = m_particleaFrame.element_at_grow(iFrameIndex);
 
+      if (!pparticleaFrame)
+      {
+
+         øconstruct_new(pparticleaFrame);
+
+      }
+
       return pparticleaFrame;
 
    }

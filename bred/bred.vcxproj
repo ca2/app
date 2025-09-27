@@ -360,6 +360,7 @@
     <ClInclude Include="gpu\hlsl_context.h" />
     <ClInclude Include="gpu\input_layout.h" />
     <ClInclude Include="gpu\memory_buffer.h" />
+    <ClInclude Include="gpu\mesh.h" />
     <ClInclude Include="gpu\model_buffer.h" />
     <ClInclude Include="gpu\object.h" />
     <ClInclude Include="gpu\pixmap.h" />

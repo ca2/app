@@ -291,7 +291,7 @@ namespace opengl
    }
 
 
-} // namespace gpu
+} // namespace gpu_opengl
 
 
 

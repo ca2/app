@@ -723,7 +723,7 @@
 //    }
 //
 //
-// } // namespace gpu
+// } // namespace gpu_opengl
 //
 //
 //

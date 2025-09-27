@@ -6,6 +6,25 @@ project(gpu_opengl CXX)
 message(STATUS "PROJECT_NAME is ${PROJECT_NAME}")
 
 list(APPEND library_source
+   gltf/_constant.h
+   gltf/material.h
+   gltf/mesh.cpp
+   gltf/mesh.h
+   gltf/model.cpp
+   gltf/model.h
+   gltf/vertex.h
+   ibl/brdfconvolutionframebuffer.cpp
+   ibl/brdfconvolutionframebuffer.h
+   ibl/cubemapframebuffer.cpp
+   ibl/cubemapframebuffer.h
+   ibl/diffuseirradiancemap.cpp
+   ibl/diffuseirradiancemap.h
+   ibl/hdricube.cpp
+   ibl/hdricube.h
+   ibl/mipmapcubemapframebuffer.cpp
+   ibl/mipmapcubemapframebuffer.h
+   ibl/specularmap.cpp
+   ibl/specularmap.h
         _.cpp
         _.h
         _factory.cpp
@@ -26,6 +45,11 @@ list(APPEND library_source
         frame.h
         frame_buffer.cpp
         frame_buffer.h
+   gltf_mesh.cpp
+   gltf_mesh.h
+
+   gltf_model.cpp
+   gltf_model.h
         framework.cpp
         framework.h
         image_opengl.cpp
@@ -101,6 +125,7 @@ list(APPEND library_references
         aura
         berg
         bred
+   gpu
         )
 
 
@@ -122,7 +147,9 @@ else()
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   gltf_model.cpp
+   gltf_model.h)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 if (NOT ${NO_PRECOMPILED_HEADER})

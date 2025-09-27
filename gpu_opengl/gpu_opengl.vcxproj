@@ -213,7 +213,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <AdditionalDependencies>glu32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glad.lib;assimp.lib;glu32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ShowProgress>NotSet</ShowProgress>
@@ -342,7 +342,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <AdditionalDependencies>assimp.lib;glu32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glad.lib;assimp.lib;glu32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ShowProgress>NotSet</ShowProgress>
@@ -485,7 +485,7 @@
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>assimp.lib;glu32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glad.lib;assimp.lib;glu32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <MapFileName>
       </MapFileName>
       <OptimizeReferences>false</OptimizeReferences>
@@ -603,7 +603,7 @@
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>assimp.lib;glu32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glad.lib;assimp.lib;glu32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
@@ -727,6 +727,7 @@
     <ClInclude Include="device_win32.h" />
     <ClInclude Include="frame.h" />
     <ClInclude Include="frame_buffer.h" />
+    <ClInclude Include="gltf_mesh.h" />
     <ClInclude Include="input_layout.h" />
     <ClInclude Include="lock.h" />
     <ClInclude Include="memory_buffer.h" />
@@ -786,6 +787,7 @@
     <ClCompile Include="device.cpp" />
     <ClCompile Include="device_win32.cpp" />
     <ClCompile Include="frame_buffer.cpp" />
+    <ClCompile Include="gltf_mesh.cpp" />
     <ClCompile Include="input_layout.cpp" />
     <ClCompile Include="lock.cpp" />
     <ClCompile Include="memory_buffer.cpp" />
@@ -840,6 +842,9 @@
     </ProjectReference>
     <ProjectReference Include="..\bred\bred.vcxproj">
       <Project>{dfbf067f-aff9-4bd6-a5e1-72af984d1476}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\gpu\gpu.vcxproj">
+      <Project>{d728fd54-84d0-4b93-9d34-43338f285886}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -959,7 +959,7 @@ using dereference = typename dereference_struct < T >::type;
 
 //
 //template < typename T, typename ...Args >
-//inline T * __calløallocate(Args &&... args);
+//inline T * __call_allocate(Args &&... args);
 //
 //template < typename T >
 //inline void __call__delete(T * p);
@@ -1104,7 +1104,7 @@ inline ::pointer<T> pointer_transfer(T *p);
 
 
 template<typename T, typename... Args>
-inline ::pointer<T> __calløallocate(Args &&...args);
+inline ::pointer<T> __call_allocate(Args &&...args);
 
 
 using manager_pointer = ::pointer<manager>;

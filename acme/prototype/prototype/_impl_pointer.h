@@ -2063,7 +2063,7 @@ inline pointer < T >& pointer < T > ::operator = (pointer < T2 > && t)
 
 
 //template < typename TYPE >
-//inline ::pointer<TYPE> __calløcreate_new(::subparticle* pparticle)
+//inline ::pointer<TYPE> __call__create_new(::subparticle* pparticle)
 //{
 //
 //   if (::is_null(pparticle))

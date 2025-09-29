@@ -967,7 +967,7 @@ public:
    inline void set_each(ARG_TYPE element, ::collection::index iStart = 0, ::collection::count c = -1);
 
    template < ::std::size_t N >
-   TYPE & get() { return element_at(N); }
+   TYPE & get() { return this->element_at(N); }
 
 
    void reserve(::collection::count newAllocationSize);

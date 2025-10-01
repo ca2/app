@@ -248,5 +248,14 @@ void _001TestSlashedPath()
 
    ::print_line(pathUrl);
 
+   printf_line("just logging error number error_opengl=%08x", error_opengl);
+   
+   ::enum_status estatusFFFFF830 = (::enum_status) 0xfffff830;
+
+   printf_line("just logging error number estatusFFFFF830=%08x", estatusFFFFF830);
+   
+   printf_line("just logging error number estatusFFFFF830=%08x", estatusFFFFF830);
+   
+   
 
 }

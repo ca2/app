@@ -1646,6 +1646,7 @@ void task::__task_main()
       {
 
          error() << "Exception reached task procedure : " << exception;
+         error() << "Exception call stack : " << exception.m_strCallStackTrace;
 
       }
       catch (...)

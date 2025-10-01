@@ -570,8 +570,13 @@ void subparticle::_wait()
    {
 
       //try { throw "errorABC1"; } catch(...){}
-
-      printf_line("particle::wait ptask is NULL, going to do NOT transacted wait");
+       
+       if(!is_main_thread())
+       {
+           
+           printf_line("particle::wait ptask is NULL, going to do NOT transacted wait");
+           
+       }
 
       _wait();
 

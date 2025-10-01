@@ -155,7 +155,7 @@ void Window::on_destroy_window()
    void Window::draw(::nano2d::context * pcontext)
    {
 
-      information() << "Draw Window!! " << typeid(*this).name();
+      //information() << "Draw Window!! " << typeid(*this).name();
 
 //      if (m_offsetToApplyOnDraw.cx() != 0 || m_offsetToApplyOnDraw.cy() != 0)
 //      {

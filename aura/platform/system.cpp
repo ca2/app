@@ -1136,6 +1136,8 @@ namespace aura
 
          auto p = node()->create_mutex();
 
+         __refdbg_add_referer
+
          p->increment_reference_count();
 
          ::write_text::font::s_pmutexFontTextMap = dynamic_cast < ::mutex *>( p.m_p);

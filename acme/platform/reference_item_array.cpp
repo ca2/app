@@ -81,14 +81,18 @@ reference_item_array::~reference_item_array()
 
    if (g_bDefaultEnableObjectReferenceCountDebug)
    {
+      
+      auto psubparticleParent = m_psubparticleParent;
 
-      if (::is_set(m_psubparticleParent))
+      if (::is_set(psubparticleParent))
       {
          
-         if (m_psubparticleParent->m_preferenceitema)
+         auto preferenceitema = psubparticleParent->m_preferenceitema;
+         
+         if (::is_set(preferenceitema))
          {
 
-            m_psubparticleParent->m_preferenceitema->erase_item_array(this);
+            preferenceitema->erase_item_array(this);
 
          }
 

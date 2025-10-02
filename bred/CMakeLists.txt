@@ -146,6 +146,8 @@ list(APPEND library_source
    graphics3d/model.h
    graphics3d/scene_object.cpp
    graphics3d/scene_object.h
+   graphics3d/scene_renderable.cpp
+   graphics3d/scene_renderable.h
    #graphics3d/scene_system.cpp
    #graphics3d/scene_system.h
    graphics3d/types.cpp

@@ -180,7 +180,7 @@ namespace nanoui
       if (m_bChecked) 
       {
 
-         informationf("draw \"%s\" Checked!!", m_strAnnotation.c_str());
+         //informationf("draw \"%s\" Checked!!", m_strAnnotation.c_str());
 
          pcontext->font_size(icon_scale() * m_size.cy());
          
@@ -204,7 +204,7 @@ namespace nanoui
       else
       {
 
-         informationf("no draw \"%s\" Not checked!!", m_strAnnotation.c_str());
+         //informationf("no draw \"%s\" Not checked!!", m_strAnnotation.c_str());
 
       }
 

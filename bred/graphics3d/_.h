@@ -27,6 +27,7 @@ namespace graphics3d
 
    class scene;
    class scene_object;
+   class scene_renderable;
 
    class input;
    class camera;
@@ -40,7 +41,7 @@ namespace graphics3d
    //class renderer;
    class asset_manager;
 
-   class scene;
+   class scene_base;
    class frame;
    class skybox;
    class renderable;
@@ -49,7 +50,7 @@ namespace graphics3d
    class point_light;
 
 
-   using scene_object_map = ::string_map<::pointer<scene_object>>;
+   using scene_renderable_map = ::string_map<::pointer<scene_renderable>>;
    using skybox_map = ::string_map<::pointer<skybox>>;
 
    

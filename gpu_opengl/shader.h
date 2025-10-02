@@ -102,12 +102,12 @@ namespace gpu_opengl
       void set_bool(const ::scoped_string& scopedstrName, bool value) override;
       void set_int(const ::scoped_string& scopedstrName, int value) override;
       void set_float(const ::scoped_string& scopedstrName, float value) override;
-      void set_vec2(const ::scoped_string& scopedstrName, float x, float y) override;
-      void set_vec2(const ::scoped_string& scopedstrName, const ::glm::vec2& a) override;
-      void set_vec3(const ::scoped_string& scopedstrName, float x, float y, float z) override;
-      void set_vec3(const ::scoped_string& scopedstrName, const ::glm::vec3& a) override;
-      void set_vec4(const ::scoped_string& scopedstrName, float x, float y, float z, float w) override;
-      void set_vec4(const ::scoped_string& scopedstrName, const ::glm::vec4& a) override;
+      void set_seq2(const ::scoped_string& scopedstrName, float x, float y) override;
+      void set_seq2(const ::scoped_string& scopedstrName, const ::glm::vec2& a) override;
+      void set_seq3(const ::scoped_string& scopedstrName, float x, float y, float z) override;
+      void set_seq3(const ::scoped_string& scopedstrName, const ::glm::vec3& a) override;
+      void set_seq4(const ::scoped_string& scopedstrName, float x, float y, float z, float w) override;
+      void set_seq4(const ::scoped_string& scopedstrName, const ::glm::vec4& a) override;
       void set_mat2(const ::scoped_string& scopedstrName, const ::glm::mat2& a) override;
       void set_mat3(const ::scoped_string& scopedstrName, const ::glm::mat3& a) override;
       void set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a) override;

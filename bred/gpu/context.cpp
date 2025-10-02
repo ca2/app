@@ -3,7 +3,6 @@
 #include "context.h"
 #include "debug_scope.h"
 #include "device.h"
-#include "context_lock.h"
 #include "cpu_buffer.h"
 #include "guard.h"
 #include "input_layout.h"
@@ -373,7 +372,6 @@ namespace gpu
    }
 
 
-
    ::gpu::texture* context::texture(const ::file::path& path)
    {
 
@@ -405,6 +403,39 @@ namespace gpu
 
    }
 
+
+   ::gpu::texture* context::generic_texture(const ::file::path& path, int iAssimpTextureType)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      auto& ptexture = m_texturemapGeneric[path];
+
+      if (!ptexture)
+      {
+
+         load_generic_texture(ptexture, path, iAssimpTextureType);
+
+      }
+
+      return ptexture;
+
+   }
+
+
+   void context::load_generic_texture(::pointer < ::gpu::texture >& ptexture, const ::file::path& path, int iAssimpTextureType)
+   {
+
+      throw interface_only();
+
+      // if (ødefer_construct(ptexture))
+      // {
+      //
+      //    ptexture->initialize_image_texture(m_pgpurenderer, path);
+      //
+      // }
+
+   }
 
    void context::defer_make_current()
    {
@@ -1046,6 +1077,8 @@ return {};
       //::gpu::rear_guard rear_guard(this);
 
       auto procedure = procedureParam;
+
+      procedure.set_timeout(5_min);
 
       _send([this, procedure]()
          {
@@ -1757,7 +1790,7 @@ return {};
    void context::on_end_layer(::gpu::layer* player)
    {
 
-      ::gpu::context_lock contextlock(this);
+      //::gpu::context_lock contextlock(this);
 
       defer_unbind_shader();
 
@@ -2076,8 +2109,15 @@ return {};
 
       return {};
 
-         }
+   }
 
+   
+   ::pointer<::gpu::texture> context::cubemap_from_hdr(const ::file::path & path)
+   {
+
+      return {};
+
+   }
 
 
    // ::pointer < ::graphics3d::renderable> context::create_tinyobj_renderable(const ::file::path& path)
@@ -2090,32 +2130,6 @@ return {};
    // }
 
 
-   ::pointer < ::gpu::texture > context::generateBRDFlut()
-   {
-
-      return {};
-
-   }
-
-
-   ::pointer<::gpu::texture> context::generatePrefilteredEnvMap(
-      ::gpu::texture *environmentCubeExisting,
-      ::graphics3d::renderable *prenderableSkybox)
-   {
-
-      return {};
-
-   }
-
-
-   ::pointer < ::gpu::texture > context::generateIrradianceMap(
-//         ::gpu::texture * irradianceCube,
-   ::gpu::texture * environmentCube, ::graphics3d::renderable *prenderableSkybox)
-   {
-
-      return {};
-
-   }
 
 
 } // namespace gpu

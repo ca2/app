@@ -500,7 +500,7 @@ const_char_pointer memory_counter_id(T * pthis)
 
 
 //template < typename T, typename ...Args >
-//inline T * __calløallocate(Args &&... args)
+//inline T * __call_allocate(Args &&... args)
 //{
 //
 //   auto p = ::platform::allocator::__callnew T (::std::forward < Args >(args)...);

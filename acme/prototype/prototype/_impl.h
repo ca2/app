@@ -99,12 +99,12 @@ inline ::pointer<BASE_TYPE>particle::__call__create(::factory::factory* pfactory
 
 
 template < typename TYPE >
-inline ::pointer<TYPE>particle::__calløcreate_new()
+inline ::pointer<TYPE>particle::__call__create_new()
 {
 
    //ASSERT(::is_set(this));
 
-   //return __calløcreate_new<TYPE>(this);
+   //return __call__create_new<TYPE>(this);
 
    //if (::is_null(pparticle))
    //{
@@ -131,12 +131,12 @@ inline ::pointer<TYPE>particle::__calløcreate_new()
 
 
 template < typename TYPE >
-inline ::pointer<TYPE>particle::__calløcreate_new_clone(TYPE * psrc)
+inline ::pointer<TYPE>particle::__call__create_new_clone(TYPE * psrc)
 {
 
    //ASSERT(::is_set(this));
 
-   //return __calløcreate_new<TYPE>(this);
+   //return __call__create_new<TYPE>(this);
 
    //if (::is_null(pparticle))
    //{
@@ -1796,11 +1796,11 @@ constexpr long long posix_time::days() const { return m_iSecond / (24 * 60 * 60)
 
 
 //template < typename T, typename ...Args >
-//inline ::pointer < T > particle::__calløallocate(Args &&... args)
+//inline ::pointer < T > particle::__call_allocate(Args &&... args)
 //{
 //
 //   auto p = ::transfer(
-//      ::platform::allocator::__calløallocate< T >(
+//      ::platform::allocator::__call_allocate< T >(
 //         ::std::forward<Args>(args)...));
 //
 //   return ::transfer(p);

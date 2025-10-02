@@ -292,7 +292,7 @@ namespace programming
 #ifdef WINDOWS_DESKTOP
 
       unsigned int dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = __raw_new wchar_t[dwSize + 1];
+      LPWSTR lpsz = øraw_new wchar_t[dwSize + 1];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
       str += lpsz;
       delete []lpsz;

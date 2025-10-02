@@ -171,8 +171,8 @@ namespace gpu
       using ::draw2d::graphics::line;
       void line(double x1, double y1, double x2, double y2, ::draw2d::pen* ppen) override;
 
-      using ::draw2d::graphics::get_text_extent;
-      double_size get_text_extent(const ::scoped_string& scopedstr) override;
+      //using ::draw2d::graphics::get_text_extent;
+      double_size _get_text_extent(const ::scoped_string& scopedstr) override;
 
 
       using ::draw2d::graphics::get_text_metrics;

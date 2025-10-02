@@ -25,6 +25,7 @@ namespace gpu
       enum_renderable_usage m_erenderableusage;
       int m_iFlags = -1;
       float m_fScale = 1.0f;
+      bool m_bExternalPbr = false;
 
 
       renderable_t();

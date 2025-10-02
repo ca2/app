@@ -78,6 +78,8 @@ namespace gpu
 
       }
 
+      m_bExternalPbr = entry["external_pbr"].is_true();
+
    }
 
 

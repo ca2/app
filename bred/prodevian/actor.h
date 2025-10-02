@@ -1,4 +1,7 @@
 #pragma once
+
+
+#include "bred/graphics3d/scene_renderable.h"
 #include "bred/graphics3d/game_object.h"
 #include "bred/graphics3d/window_input.h"
 //#include "SceneFoundry/sandbox_game/player_input.h"
@@ -16,7 +19,7 @@ namespace prodevian
 
 
    class CLASS_DECL_BRED actor :
-      virtual public ::graphics3d::scene_object
+      virtual public ::graphics3d::scene_renderable
    {
    public:
 
@@ -37,7 +40,7 @@ namespace prodevian
       actor();
 
 
-      void initialize_prodevian_actor(::graphics3d::scene * pscene);
+      void initialize_prodevian_actor(graphics3d::scene_base * pscene);
 
       virtual void on_initialize_actor();
 

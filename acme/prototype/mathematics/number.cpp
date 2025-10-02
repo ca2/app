@@ -8,7 +8,7 @@ namespace mathematics
    number::number()
    {
       
-      m_pimpl = __raw_new value_impl();
+      m_pimpl = øraw_new value_impl();
 
    }
 

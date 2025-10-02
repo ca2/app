@@ -48,7 +48,7 @@ namespace graphics3d
 
 
 
-   void render_system::update(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
+   void render_system::update(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
    {
 
       on_update(pgpucontext, pscene);
@@ -56,14 +56,14 @@ namespace graphics3d
    }
 
 
-   void render_system::on_update(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
+   void render_system::on_update(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
    {
 
 
    }
 
 
-   void render_system::render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
+   void render_system::render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
    {
 
       //testall pgpucontext->current_target_texture()->bind_render_target();
@@ -73,7 +73,7 @@ namespace graphics3d
    }
 
 
-   void render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
+   void render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
    {
 
 
@@ -106,13 +106,13 @@ namespace graphics3d
       if (scopedstr.case_insensitive_equals("scene"))
       {
 
-         return e_render_system_scene;
+         return e_render_system_gltf_scene;
 
       }
       else if (scopedstr.case_insensitive_equals("gltf"))
       {
 
-         return e_render_system_gltf;
+         return e_render_system_gltf_ibl;
       }
       else if (scopedstr.case_insensitive_begins("wavefront"))
       {

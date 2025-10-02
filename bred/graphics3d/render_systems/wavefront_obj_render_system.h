@@ -65,8 +65,8 @@ namespace graphics3d
 
 
 	   void on_prepare(::gpu::context* pgpucontext) override;
-	   void on_update(::gpu::context* pgpucontext, ::graphics3d::scene* pscene) override;
-	   void on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene) override;
+	   void on_update(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene) override;
+	   void on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene) override;
 
 
 		//void on_render() override;

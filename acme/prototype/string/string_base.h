@@ -1675,7 +1675,7 @@ public:
 
       auto old_size = this->size();
 
-      auto lengthNew = characterCount;
+      auto lengthNew = characterCount < 0 ? old_size + characterCount + 1 : characterCount;
 
       auto pbasedataOld = this->m_pbasedata;
 

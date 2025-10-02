@@ -3,9 +3,10 @@
 #include "acme/exception/interface_only.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/frame.h"
+#include "bred/graphics3d/asset_manager.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/input.h"
-#include "bred/graphics3d/scene.h"
+#include "bred/graphics3d/scene_base.h"
 #include "acme/constant/user_message.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/handler/topic.h"
@@ -199,6 +200,10 @@ namespace user
       auto psceneMain = m_pengine->m_pimmersionlayer->create_main_scene();
 
       m_pengine->m_pimmersionlayer->m_pscene = psceneMain;
+
+      psceneMain->m_pgpucontext = pgpucontextEngine;
+
+      //psceneMain->generateIbl();
 
       //auto pimmersion = create_immersion();
 

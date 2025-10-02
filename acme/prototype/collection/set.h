@@ -335,7 +335,7 @@ public:
       for (auto& item : container)
       {
 
-         this->set_key(item.key());
+         this->set_key(item);
 
       }
 
@@ -349,7 +349,7 @@ public:
       for (auto& KEY : container)
       {
 
-         this->erase_key(KEY);
+         this->erase(KEY);
 
       }
 
@@ -857,7 +857,7 @@ node_set_base < NODE, t_eallocate >::__new_node(ARG_KEY key)
    else
    {
       
-      auto pnode = __raw_new BASE_NODE(key);
+      auto pnode = øraw_new BASE_NODE(key);
 
       return pnode;
 

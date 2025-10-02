@@ -79,7 +79,7 @@ namespace allocator
 
       //auto preferencereferer = ::platform::allocator::__callnew reference_referer (::transfer(referer));
 
-      auto preferencereferer = __raw_new ::reference_referer(referer);
+      auto preferencereferer = øraw_new ::reference_referer(referer);
 
       return preferencereferer;
 
@@ -701,7 +701,7 @@ namespace allocator
       if(pparticle->is_referencing_debugging_enabled())
       {
 
-         //pparticle->m_preferenceitema = __raw_new reference_item_array (pparticle, pparticleParent);
+         //pparticle->m_preferenceitema = øraw_new reference_item_array (pparticle, pparticleParent);
 
          pparticle->m_preferenceitema = new reference_item_array (pparticle, pparticleParent);
 

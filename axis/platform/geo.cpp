@@ -422,7 +422,7 @@ namespace geo
       if (!pcity)
       {
 
-         auto pcityNew = __raw_new openweather_city();
+         auto pcityNew = øraw_new openweather_city();
 
          pcityNew->m_iIndex = openweather_find_city2(
             scopedstrQuery,

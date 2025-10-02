@@ -976,7 +976,7 @@ namespace gpu
    }
 
 
-   void renderer::on_after_load_scene(::graphics3d::scene* pscene)
+   void renderer::on_after_load_scene(::graphics3d::scene_base* pscene)
    {
 
       auto pcommandbufferLoadAssets = ::transfer(m_pcommandbufferLoadAssets);

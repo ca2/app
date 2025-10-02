@@ -36,6 +36,14 @@ namespace gpu
    }
 
 
+
+   void texture::initialize_hdr_texture_on_memory(::gpu::renderer *prenderer, const ::block & block)
+   {
+
+
+   }
+
+
    void texture::initialize_image_texture(::gpu::renderer * pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea, enum_type etype)
    {
 

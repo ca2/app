@@ -788,7 +788,7 @@ pointer < TYPE > clone(TYPE * p);
 
 
 //template < typename TYPE >
-//inline ::pointer<TYPE> __calløcreate_new( ::subparticle* pparticle);
+//inline ::pointer<TYPE> __call__create_new( ::subparticle* pparticle);
 
 
 template < typename TARGET, typename SOURCE >
@@ -1465,7 +1465,7 @@ public:
    __pointer_site(const ::reference_referer & referer, ::reference_referer ** pprefererGet = nullptr)
    {
 
-      //m_preferer = __raw_new ::reference_referer(referer);
+      //m_preferer = øraw_new ::reference_referer(referer);
 
       m_preferer = ::allocator::push_referer(referer);
 

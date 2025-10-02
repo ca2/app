@@ -6,7 +6,7 @@
 #include "bred/gpu/texture.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/immersion_layer.h"
-#include "bred/graphics3d/scene.h"
+#include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/skybox.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/context.h"
@@ -259,7 +259,7 @@ namespace graphics3d
 
       auto pscene = pimmersionlayer->m_pscene;
 
-      auto pskybox = pscene->m_pskyboxCurrent;
+      auto pskybox = pscene->current_skybox();
 
       if (::is_null(pskybox))
       {
@@ -289,13 +289,14 @@ namespace graphics3d
 
    void skybox_render_system::draw(::gpu::command_buffer* pgpucommandbuffer)
    {
+
       auto pengine = m_pengine;
 
       auto pimmersionlayer = pengine->m_pimmersionlayer;
 
       auto pscene = pimmersionlayer->m_pscene;
 
-      auto pskybox = pscene->m_pskyboxCurrent;
+      auto pskybox = pscene->current_skybox();
 
       if (::is_null(pskybox))
       {
@@ -312,14 +313,13 @@ namespace graphics3d
    void skybox_render_system::unbind(::gpu::command_buffer* pgpucommandbuffer)
    {
 
-
       auto pengine = m_pengine;
 
       auto pimmersionlayer = pengine->m_pimmersionlayer;
 
       auto pscene = pimmersionlayer->m_pscene;
 
-      auto pskybox = pscene->m_pskyboxCurrent;
+      auto pskybox = pscene->current_skybox();
 
       if (::is_null(pskybox))
       {
@@ -327,13 +327,15 @@ namespace graphics3d
          return;
 
       }
+
       pskybox->m_pmodelCube->unbind(pgpucommandbuffer);
+
       m_pshader->unbind();
 
    }
 
 
-   void skybox_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
+   void skybox_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
    {
 
       auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());

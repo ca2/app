@@ -79,6 +79,8 @@ list(APPEND library_source
    graphics3d/render_systems/gltf_render_system.h
    graphics3d/render_systems/point_light_render_system.cpp
    graphics3d/render_systems/point_light_render_system.h
+   graphics3d/render_systems/scene_render_system.cpp
+   graphics3d/render_systems/scene_render_system.h
    graphics3d/render_systems/skybox_ibl_render_system.cpp
    graphics3d/render_systems/skybox_ibl_render_system.h
    graphics3d/render_systems/skybox_render_system.cpp
@@ -106,6 +108,7 @@ list(APPEND library_source
    graphics3d/game_object.h
    graphics3d/model.h
    graphics3d/provider.h
+   graphics3d/render_system.cpp
    graphics3d/render_system.h
    graphics3d/renderer.h
    graphics3d/resource.h

@@ -81,6 +81,21 @@ public:
    ::collection::count erase(ARG_TYPE t, ::collection::index find, ::collection::index last = -1, ::collection::count countMin = 0, ::collection::count countMax = -1);
    template < primitive_container CONTAINER>
    ::collection::count erase(const CONTAINER & container);
+   ::collection::count erase(iterator start, iterator end)
+   {
+      
+      ::collection::count c = 0;
+      
+      for(auto p = start; p != end; p++)
+      {
+         
+         c+=this->erase(*p);
+         
+      }
+      
+      return c;
+      
+   }
 
 
    bool add_unique(ARG_TYPE t);

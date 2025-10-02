@@ -1,6 +1,7 @@
 #include "framework.h"
 //#include "pipeline.h"
 #include "skybox_ibl_render_system.h"
+#include "bred/gpu/command_buffer.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/shader.h"
@@ -9,7 +10,7 @@
 #include "bred/graphics3d/game_object.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/frame.h"
-#include "bred/graphics3d/scene.h"
+#include "bred/graphics3d/scene_base.h"
 #include "bred/graphics3d/shape_factory.h"
 #include "bred/graphics3d/skybox.h"
 
@@ -153,14 +154,21 @@ namespace graphics3d
 	   m_pshader->m_ecullmode = ::gpu::e_cull_mode_none;
 	   m_pshader->m_bindingCubeSampler.set();
 
-	   m_pshader->initialize_shader(pgpucontext->m_pgpurenderer,
-         "matter://shaders/skybox_ibl.vert",
-         "matter://shaders/skybox_ibl.frag",
-         {::gpu::shader::e_descriptor_set_slot_global},
-         nullptr,
-         nullptr,
-         pgpucontext->input_layout<::gltf::CubeVertex>()
-      );
+      if (m_bHdr)
+      {
+
+         m_pshader->initialize_shader(pgpucontext->m_pgpurenderer, "matter://shaders/skybox_ibl.vert",
+                                      "matter://shaders/skybox_ibl_hdr.frag", {::gpu::shader::e_descriptor_set_slot_global},
+                                      nullptr, nullptr, pgpucontext->input_layout<::gltf::CubeVertex>());
+      }
+      else
+      {
+
+         m_pshader->initialize_shader(pgpucontext->m_pgpurenderer, "matter://shaders/skybox_ibl.vert",
+                                      "matter://shaders/skybox_ibl.frag", {::gpu::shader::e_descriptor_set_slot_global},
+                                      nullptr, nullptr, pgpucontext->input_layout<::gltf::CubeVertex>());
+
+      }
 
 
 
@@ -173,7 +181,7 @@ namespace graphics3d
 	// }
  //
 
-   void skybox_ibl_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
+   void skybox_ibl_render_system::on_render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene)
 	{
 
 		//if (!m_bHasCubemap) return;
@@ -183,11 +191,33 @@ namespace graphics3d
 	   //auto pscene = pengine->current_scene();
 
 		//if (!m_skyboxModel) return;
-		auto pskyboxCurrent = pscene->current_sky_box();
-		if (!pskyboxCurrent) {
-			return; // nothing to draw
+
+      auto pskybox = pscene->current_skybox();
+
+      if (::is_null(pskybox))
+      {
+
+         return; // nothing to draw
+
+      }
+
+      auto prenderableSkyboxModel = pskybox->m_prenderable;
+
+      if (!prenderableSkyboxModel)
+      {
+
+			throw ::exception(error_wrong_state);
+
 		}
 
+		auto ptextureSkybox = pskybox->m_ptexture;
+
+      if (!ptextureSkybox)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
 
 	   auto pgpudevice = pgpucontext->m_pgpudevice;
 
@@ -202,10 +232,10 @@ namespace graphics3d
 
 	   //auto pskybox = pscene->m_psceneobjectSkybox;
 
-	   auto ptextureCubeMap = pskyboxCurrent->m_ptexture;
+      //auto ptextureCubeMap = prenderableSkyboxModel->get_target_texture();
       //auto ptextureCubeMap = pscene->current_sky_box_texture();
 
-	   m_pshader->bind(ptextureDst, ptextureCubeMap);
+	   m_pshader->bind(ptextureDst, ptextureSkybox);
 		//IGameObject * skyObj = skyOpt->get();
 
 		//sASSERT(m_skyboxDescriptorSet != VK_NULL_HANDLE && "Skybox descriptor set is not allocated!");
@@ -233,14 +263,18 @@ namespace graphics3d
       auto pframe = ::gpu::current_frame();
 
 		//auto prenderable = pskyboxCurrent->renderable();
-      auto prenderable = pskyboxCurrent->m_prenderable;
+      auto prenderable = prenderableSkyboxModel;
 
 	   if (prenderable)
 		{
 
+         pframe->m_pgpucommandbuffer->m_erendersystem = ::graphics3d::e_render_system_skybox_ibl;
+
 			prenderable->bind(pframe->m_pgpucommandbuffer);
 
 			prenderable->draw(pframe->m_pgpucommandbuffer);
+
+         prenderable->unbind(pframe->m_pgpucommandbuffer);
 
 		}
 

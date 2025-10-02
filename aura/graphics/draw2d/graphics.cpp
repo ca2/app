@@ -4164,9 +4164,7 @@ namespace draw2d
 
       character_count iLen;
 
-      ::string str(scopedstr);
-
-      const_char_pointer pszStart = str;
+      const_char_pointer pszStart = scopedstr.begin();
 
       const_char_pointer psz = pszStart;
 
@@ -4175,7 +4173,7 @@ namespace draw2d
       while (*psz && iRange < iStart + iCount)
       {
 
-         const_char_pointer pszNext = unicode_next(scopedstr.m_begin);
+         const_char_pointer pszNext = unicode_next(psz);
 
          if (pszNext == nullptr)
          {
@@ -4197,7 +4195,7 @@ namespace draw2d
          
          ::string_array_base stra;
          
-         stra.add_lines({ str.begin(), iAsciiCharCount });
+         stra.add_lines({ scopedstr.begin(), iAsciiCharCount });
          
          ::string strLastLine = stra.last();
          
@@ -4269,7 +4267,7 @@ namespace draw2d
    double_size graphics::get_text_extent(const scoped_string & scopedstr)
    {
 
-      auto size = get_text_extent(scopedstr, scopedstr.size());
+      auto size = _get_text_extent(scopedstr);
 
       return size;
 

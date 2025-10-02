@@ -29,7 +29,7 @@ public:
    auto_pointer(create_new_t)
    {
 
-      m_p = __raw_new T;
+      m_p = øraw_new T;
       //m_bArray = false;
 
    }

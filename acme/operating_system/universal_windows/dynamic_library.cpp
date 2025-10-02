@@ -622,7 +622,7 @@ namespace operating_system
    CLASS_DECL_ACME::operating_system::dynamic_library * new_dynamic_library()
    {
 
-      return __raw_new::universal_windows::dynamic_library();
+      return øraw_new::universal_windows::dynamic_library();
 
    }
 

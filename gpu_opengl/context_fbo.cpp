@@ -471,7 +471,7 @@ informationf(string(#x) + ": " + ::as_string(value) + "\n");     \
    }
 
 
-} // namespace gpu
+} // namespace gpu_opengl
 
 
 

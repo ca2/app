@@ -139,7 +139,14 @@ namespace gpu
          //m_poolmodelbufferCharacter.m_ppoolgroup = ppoolgroupFrame;
          //m_poolmodelbufferLine.m_ppoolgroup = ppoolgroupFrame;
 
-         prenderer->current_frame_particle_array()->clear();
+         auto pparticlea = prenderer->current_frame_particle_array();
+
+         if (pparticlea)
+         {
+
+            pparticlea->clear();
+
+         }
 
       }
 
@@ -1085,7 +1092,7 @@ namespace gpu
 
 
    
-   double_size graphics::get_text_extent(const ::scoped_string& scopedstr)
+   double_size graphics::_get_text_extent(const ::scoped_string& scopedstr)
    {
 
       auto pcontext = gpu_context();
@@ -1306,7 +1313,7 @@ namespace gpu
       //shader.use();
       ::cast<::gpu::shader>pshader = m_pgpushaderTextOut;
       ::glm::vec4 vec4TextColor{ __expand_float_pre_rgba(color) };
-      pshader->set_vec4("textColor", vec4TextColor);
+      pshader->set_seq4("textColor", vec4TextColor);
       // glUniform3f(glGetUniformLocation(shader.ID, "textColor"), color.x, color.y, color.z);
       //pshader->setup_sampler_and_texture("text", 0);
       //auto pcontext = gpu_context();
@@ -1353,12 +1360,12 @@ namespace gpu
 
       auto psz = str.c_str();
 
-      if (str == "Options")
-      {
+      //if (str == "Options")
+      //{
 
-         warning() << "draw_text: " << str;
+      //   warning() << "draw_text: " << str;
 
-      }
+      //}
       //float scale;
       //if (pfont->m_fontsize.eunit() == e_unit_point)
       //{
@@ -1460,7 +1467,7 @@ namespace gpu
                   );
 
 
-               pshader->set_vec4("quad", quad);
+               pshader->set_seq4("quad", quad);
 
             }
 
@@ -1480,7 +1487,7 @@ namespace gpu
 
                ::glm::vec4 texcoords(l, t, r, b);
 
-               pshader->set_vec4("texcoords", texcoords);
+               pshader->set_seq4("texcoords", texcoords);
 
             }
 

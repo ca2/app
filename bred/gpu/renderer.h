@@ -249,7 +249,7 @@ namespace gpu
       //virtual void take_snapshot(layer* player);
 
 
-      virtual void on_after_load_scene(::graphics3d::scene* pscene);
+      virtual void on_after_load_scene(::graphics3d::scene_base* pscene);
 
       virtual void post_on_after_end_frame(const ::procedure &procedure);
 

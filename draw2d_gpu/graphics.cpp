@@ -5845,7 +5845,7 @@ color = vec4(c.r,c.g, c.b, c.a);
       auto color = m_pbrush->m_color;
       //shader.use();
       ::cast<::gpu::shader>pshader = m_pgpushaderTextOut;
-      pshader->set_vec4("textColor", { __expand_float_pre_rgba(color) });
+      pshader->set_seq4("textColor", { __expand_float_pre_rgba(color) });
       // glUniform3f(glGetUniformLocation(shader.ID, "textColor"), color.x, color.y, color.z);
 
       //auto pcontext = gpu_context();

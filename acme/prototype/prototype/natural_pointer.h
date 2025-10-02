@@ -97,7 +97,7 @@ public:
       auto p = ::acme::get()->m_pheapmanagement->memory(ememory)->allocate(
          memsizeAllocation + memsizeBaseData, &memsizeAllocation);
 
-      auto pbasedata = __raw_new (p) base_data((memsizeAllocation - memsizeBaseData) / sizeof(DATA));
+      auto pbasedata = øraw_new (p) base_data((memsizeAllocation - memsizeBaseData) / sizeof(DATA));
 
       return pbasedata;
 
@@ -444,7 +444,7 @@ public:
 // //
 // //       auto p = memory()->allocate(sizeStorageInBytes + sizeof(BASE), &sizeStorageInBytes);
 // //
-// //       auto pbasedata = __raw_new (p) BASE_DATA();
+// //       auto pbasedata = øraw_new (p) BASE_DATA();
 // //
 // //       pbasedata->m_sizeStorageInBytes = sizeStorageInBytes - sizeof(BASE);
 // //

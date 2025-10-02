@@ -286,8 +286,8 @@ namespace app_shader
                   
                   float y = (float)pointCursor.y();
                   
-                  m_pgpushader->set_vec2("mouse", x, y);
-                  m_pgpushader->set_vec2("iMouse", x, y);
+                  m_pgpushader->set_seq2("mouse", x, y);
+                  m_pgpushader->set_seq2("iMouse", x, y);
                   
                }
                
@@ -297,8 +297,8 @@ namespace app_shader
                   
                   float cy = (float)m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage->height();
                   
-                  m_pgpushader->set_vec2("resolution", cx, cy);
-                  m_pgpushader->set_vec2("iResolution", cx, cy);
+                  m_pgpushader->set_seq2("resolution", cx, cy);
+                  m_pgpushader->set_seq2("iResolution", cx, cy);
                   
                }
                

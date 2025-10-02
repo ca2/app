@@ -30,6 +30,7 @@ namespace gpu
       ::collection::index                 m_iFrameIndex;
       ::string                            m_strAnnotation;
       ::pointer_array < ::particle >      m_particleaHold;
+      ::graphics3d::enum_render_system    m_erendersystem;
 
 
       command_buffer();

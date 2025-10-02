@@ -3,78 +3,87 @@
 #pragma once
 
 
-#include "gpu/cube.h"
+ #include "gpu/cube.h"
 
 
-namespace gpu_opengl
-{
-   /**
-    * A unit cube mesh with only position coordinates.
-    */
-   class Cube :
-   virtual public ::gpu::Cube
-   {
-   public:
-      Cube();
-      ~Cube() override;
+ namespace gpu_opengl
+ {
+    /**
+     * A unit cube mesh with only position coordinates.
+     */
+    class cube :
+    virtual public ::gpu::cube
+    {
+    public:
 
 
-      void Draw();
+       unsigned int m_uVAO, m_uVBO;
 
-   //private:
-      void loadVertexData();
-
-   //private:
-      unsigned int mVAO, mVBO;
-
-     //  std::vector<float> mVertices = {
-     //     // positions
-     //     -1.0f,  1.0f, -1.0f,
-     //     -1.0f, -1.0f, -1.0f,
-     //      1.0f, -1.0f, -1.0f,
-     //      1.0f, -1.0f, -1.0f,
-     //      1.0f,  1.0f, -1.0f,
-     //     -1.0f,  1.0f, -1.0f,
-     //
-     //     -1.0f, -1.0f,  1.0f,
-     //     -1.0f, -1.0f, -1.0f,
-     //     -1.0f,  1.0f, -1.0f,
-     //     -1.0f,  1.0f, -1.0f,
-     //     -1.0f,  1.0f,  1.0f,
-     //     -1.0f, -1.0f,  1.0f,
-     //
-     //      1.0f, -1.0f, -1.0f,
-     //      1.0f, -1.0f,  1.0f,
-     //      1.0f,  1.0f,  1.0f,
-     //      1.0f,  1.0f,  1.0f,
-     //      1.0f,  1.0f, -1.0f,
-     //      1.0f, -1.0f, -1.0f,
-     //
-     //     -1.0f, -1.0f,  1.0f,
-     //     -1.0f,  1.0f,  1.0f,
-     //      1.0f,  1.0f,  1.0f,
-     //      1.0f,  1.0f,  1.0f,
-     //      1.0f, -1.0f,  1.0f,
-     //     -1.0f, -1.0f,  1.0f,
-     //
-     //     -1.0f,  1.0f, -1.0f,
-     //      1.0f,  1.0f, -1.0f,
-     //      1.0f,  1.0f,  1.0f,
-     //      1.0f,  1.0f,  1.0f,
-     //     -1.0f,  1.0f,  1.0f,
-     //     -1.0f,  1.0f, -1.0f,
-     //
-     //     -1.0f, -1.0f, -1.0f,
-     //     -1.0f, -1.0f,  1.0f,
-     //      1.0f, -1.0f, -1.0f,
-     //      1.0f, -1.0f, -1.0f,
-     //     -1.0f, -1.0f,  1.0f,
-     //      1.0f, -1.0f,  1.0f
-     // };
-   };
+       cube();
+       ~cube() override;
 
 
-} // namespace gpu_opengl
+
+       virtual void initialize_gpu_cube(::gpu::context* pgpucontext);
+
+
+       void draw(::gpu::command_buffer *pcommandbuffer) override;
+
+       //void Draw();
+
+    //private:
+       ///void loadVertexData();
+
+    //private:
+
+      //  std::vector<float> mVertices = {
+      //     // positions
+      //     -1.0f,  1.0f, -1.0f,
+      //     -1.0f, -1.0f, -1.0f,
+      //      1.0f, -1.0f, -1.0f,
+      //      1.0f, -1.0f, -1.0f,
+      //      1.0f,  1.0f, -1.0f,
+      //     -1.0f,  1.0f, -1.0f,
+      //
+      //     -1.0f, -1.0f,  1.0f,
+      //     -1.0f, -1.0f, -1.0f,
+      //     -1.0f,  1.0f, -1.0f,
+      //     -1.0f,  1.0f, -1.0f,
+      //     -1.0f,  1.0f,  1.0f,
+      //     -1.0f, -1.0f,  1.0f,
+      //
+      //      1.0f, -1.0f, -1.0f,
+      //      1.0f, -1.0f,  1.0f,
+      //      1.0f,  1.0f,  1.0f,
+      //      1.0f,  1.0f,  1.0f,
+      //      1.0f,  1.0f, -1.0f,
+      //      1.0f, -1.0f, -1.0f,
+      //
+      //     -1.0f, -1.0f,  1.0f,
+      //     -1.0f,  1.0f,  1.0f,
+      //      1.0f,  1.0f,  1.0f,
+      //      1.0f,  1.0f,  1.0f,
+      //      1.0f, -1.0f,  1.0f,
+      //     -1.0f, -1.0f,  1.0f,
+      //
+      //     -1.0f,  1.0f, -1.0f,
+      //      1.0f,  1.0f, -1.0f,
+      //      1.0f,  1.0f,  1.0f,
+      //      1.0f,  1.0f,  1.0f,
+      //     -1.0f,  1.0f,  1.0f,
+      //     -1.0f,  1.0f, -1.0f,
+      //
+      //     -1.0f, -1.0f, -1.0f,
+      //     -1.0f, -1.0f,  1.0f,
+      //      1.0f, -1.0f, -1.0f,
+      //      1.0f, -1.0f, -1.0f,
+      //     -1.0f, -1.0f,  1.0f,
+      //      1.0f, -1.0f,  1.0f
+      // };
+    };
+
+
+ } // namespace gpu_opengl
 
 
 

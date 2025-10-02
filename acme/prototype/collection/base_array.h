@@ -361,18 +361,7 @@ public:
 
          auto psource = a.data();
 
-         while(c > 0)
-         {
-
-            *ptarget = *psource;
-
-            ptarget++;
-
-            psource++;
-
-            c--;
-
-         }
+         TYPED::copy_count(ptarget, psource, c);
 
       }
 

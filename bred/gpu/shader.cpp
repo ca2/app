@@ -390,7 +390,7 @@ namespace gpu
    }
 
 
-   void shader::set_vec2(const ::scoped_string& scopedstrName, float x, float y)
+   void shader::set_seq2(const ::scoped_string& scopedstrName, float x, float y)
    {
 
       ::string strName(scopedstrName);
@@ -403,7 +403,7 @@ namespace gpu
    }
 
 
-   void shader::set_vec2(const ::scoped_string& scopedstrName, const glm::vec2& a)
+   void shader::set_seq2(const ::scoped_string& scopedstrName, const glm::vec2& a)
    {
 
       ::string strName(scopedstrName);
@@ -413,7 +413,7 @@ namespace gpu
    }
 
    
-   void shader::set_vec3(const ::scoped_string& scopedstrName, float x, float y, float z)
+   void shader::set_seq3(const ::scoped_string& scopedstrName, float x, float y, float z)
    {
 
       ::string strName(scopedstrName);
@@ -427,7 +427,7 @@ namespace gpu
    }
 
 
-   void shader::set_vec3(const ::scoped_string& scopedstrName, const glm::vec3& a)
+   void shader::set_seq3(const ::scoped_string& scopedstrName, const glm::vec3& a)
    {
 
       ::string strName(scopedstrName);
@@ -437,7 +437,7 @@ namespace gpu
    }
 
 
-   void shader::set_vec4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
+   void shader::set_seq4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
    {
 
       ::string strName(scopedstrName);
@@ -452,7 +452,7 @@ namespace gpu
    }
 
 
-   void shader::set_vec4(const ::scoped_string& scopedstrName, const glm::vec4& a)
+   void shader::set_seq4(const ::scoped_string& scopedstrName, const glm::vec4& a)
    {
 
       //auto p = m_mapConstantBuffer.find(scopedstrName);
@@ -521,6 +521,16 @@ namespace gpu
          m_propertiesPush.mat4(strName) = a;
 
       }
+
+   }
+
+
+   void shader::setModelViewProjectionMatrices(glm::mat4 &model, glm::mat4 &view, glm::mat4 &projection)
+   {
+      
+      set_mat4("model", model);
+      set_mat4("view", view);
+      set_mat4("projection", projection);
 
    }
 

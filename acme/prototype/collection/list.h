@@ -2039,7 +2039,7 @@ typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::add_head
 
    //ASSERT_OK(this);
 
-   auto p = __raw_new typename list_base < TYPE, ARG_TYPE >::NODE (newElement);
+   auto p = øraw_new typename list_base < TYPE, ARG_TYPE >::NODE (newElement);
 
    _add_head_node(p);
 
@@ -2054,7 +2054,7 @@ typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::add_tail
 
    ASSERT_OK(this);
 
-   auto p = __raw_new typename list_base < TYPE, ARG_TYPE >::NODE(newElement);
+   auto p = øraw_new typename list_base < TYPE, ARG_TYPE >::NODE(newElement);
 
    _add_tail_node(p);
 
@@ -2069,7 +2069,7 @@ typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::transfer
 
    ASSERT_OK(this);
 
-   auto p = __raw_new typename list_base < TYPE, ARG_TYPE >::NODE (::transfer(newElement));
+   auto p = øraw_new typename list_base < TYPE, ARG_TYPE >::NODE (::transfer(newElement));
 
    _add_head_node(p);
 
@@ -2084,7 +2084,7 @@ typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::transfer
 
    ASSERT_OK(this);
 
-   auto p = __raw_new typename list_base < TYPE, ARG_TYPE >::NODE (::transfer(newElement));
+   auto p = øraw_new typename list_base < TYPE, ARG_TYPE >::NODE (::transfer(newElement));
 
    _add_tail_node(p);
 
@@ -2108,7 +2108,7 @@ typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::insert_b
    // Insert it before position
    auto old = position;
    iterator p;
-   p = __raw_new typename list_base < TYPE, ARG_TYPE >::NODE (newElement);
+   p = øraw_new typename list_base < TYPE, ARG_TYPE >::NODE (newElement);
    p.back() = old.back();
    p.next() = old;
    p.topic() = newElement;
@@ -2147,7 +2147,7 @@ typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::insert_a
    auto old = position;
    ASSERT(is_memory_segment_ok(old.get(), sizeof(typename list_base < TYPE, ARG_TYPE >::NODE)));
    iterator p;
-   p = __raw_new typename list_base < TYPE, ARG_TYPE >::NODE(newElement);
+   p = øraw_new typename list_base < TYPE, ARG_TYPE >::NODE(newElement);
    p.back() = old;
    p.next() = old.next();
    p.topic() = newElement;

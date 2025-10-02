@@ -5869,7 +5869,7 @@ payload_array & payload::payload_array_reference ()
 //
 //#endif
 
-      //auto psetNew = __raw_new ::property_set();
+      //auto psetNew = øraw_new ::property_set();
 
 #if REFERENCING_DEBUGGING
 

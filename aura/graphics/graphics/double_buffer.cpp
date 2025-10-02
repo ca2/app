@@ -2,6 +2,7 @@
 #include "double_buffer.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/application.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/graphics/image/image.h"
 #include "aura/windowing/window.h"
@@ -409,7 +410,12 @@ namespace graphics
       if (!pitemScreen->m_pimage2.ok())
       {
 
-         warning() << "pitemScreen->m_pimage2 not ok!";
+         if (!m_papplication->m_gpu.m_bUseSwapChainWindow)
+         {
+
+            warning() << "pitemScreen->m_pimage2 not ok!";
+
+         }
 
          return;
 

@@ -282,12 +282,12 @@ class __new_refdbg_continuation_site;
 #define __delete delete __delete_site(__refdbg_referer__) <<
 
 
-#define __raw_new __raw_new_site() << new
+#define øraw_new __raw_new_site() << new
 
 
 #define __new_refdbg_continuation __new_refdbg_continuation_site() << new
 
-//#define __raw_new new
+//#define øraw_new new
 
 
 

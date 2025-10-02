@@ -286,9 +286,9 @@ namespace html
       if (m_ptag == nullptr)
       {
 
-         m_ptag = __raw_new tag(nullptr);
+         m_ptag = øraw_new tag(nullptr);
 
-         class value * pvalue = __raw_new class value (m_ptag);
+         class value * pvalue = øraw_new class value (m_ptag);
 
          m_ptag->baseptra().add(pvalue);
 

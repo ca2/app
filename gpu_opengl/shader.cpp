@@ -57,7 +57,7 @@ namespace gpu_opengl
    unsigned int shader::create_shader(const ::block& blockSource, GLenum type)
    {
 
-      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+      //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
       unsigned int uShader;
 
@@ -112,17 +112,21 @@ namespace gpu_opengl
    void shader::on_initialize_shader()
    {
 
+      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+
       if (m_memoryVertex.is_empty())
       {
 
-         m_memoryVertex = file()->as_memory(m_pgpurenderer->m_pgpucontext->m_pgpudevice->shader_path(m_pathVertex));
+         auto pathVertex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->shader_path(m_pathVertex);
+         m_memoryVertex = file()->as_memory(pathVertex);
 
       }
 
       if (m_memoryFragment.is_empty())
       {
 
-         m_memoryFragment = file()->as_memory(m_pgpurenderer->m_pgpucontext->m_pgpudevice->shader_path(m_pathFragment));
+         auto pathFragment = m_pgpurenderer->m_pgpucontext->m_pgpudevice->shader_path(m_pathFragment);
+         m_memoryFragment = file()->as_memory(pathFragment);
 
       }
 
@@ -146,10 +150,13 @@ namespace gpu_opengl
       //#endif
 
       m_ProgramID = glCreateProgram();
+      GLCheckError("Couldn't create opengl program");
 
       glAttachShader(m_ProgramID, uVertex);
+      GLCheckError("Couldn't attach vertex shader to program");
 
       glAttachShader(m_ProgramID, uFragment);
+      GLCheckError("Couldn't attach fragment shader to program");
 
       //#if !defined(__APPLE__) && !defined(__ANDROID__)
       //
@@ -952,13 +959,13 @@ namespace gpu_opengl
    }
    
    
-   void shader::set_vec2(const ::scoped_string& scopedstrName, float x, float y)
+   void shader::set_seq2(const ::scoped_string& scopedstrName, float x, float y)
    {
 
       if (m_propertiesPush.m_pproperties)
       {
 
-         ::gpu::shader::set_vec2(scopedstrName, x, y);
+         ::gpu::shader::set_seq2(scopedstrName, x, y);
 
       }
       else
@@ -971,13 +978,13 @@ namespace gpu_opengl
    }
    
    
-   void shader::set_vec2(const ::scoped_string& scopedstrName, const ::glm::vec2& a)
+   void shader::set_seq2(const ::scoped_string& scopedstrName, const ::glm::vec2& a)
    {
 
       if (m_propertiesPush.m_pproperties)
       {
 
-         ::gpu::shader::set_vec2(scopedstrName, a);
+         ::gpu::shader::set_seq2(scopedstrName, a);
 
       }
       else
@@ -990,13 +997,13 @@ namespace gpu_opengl
    }
    
    
-   void shader::set_vec3(const ::scoped_string& scopedstrName, float x, float y, float z)
+   void shader::set_seq3(const ::scoped_string& scopedstrName, float x, float y, float z)
    {
 
       if (m_propertiesPush.m_pproperties)
       {
 
-         ::gpu::shader::set_vec3(scopedstrName, x, y, z);
+         ::gpu::shader::set_seq3(scopedstrName, x, y, z);
 
       }
       else
@@ -1009,13 +1016,13 @@ namespace gpu_opengl
    }
    
    
-   void shader::set_vec3(const ::scoped_string& scopedstrName, const ::glm::vec3& a)
+   void shader::set_seq3(const ::scoped_string& scopedstrName, const ::glm::vec3& a)
    {
 
       if (m_propertiesPush.m_pproperties)
       {
 
-         ::gpu::shader::set_vec3(scopedstrName, a);
+         ::gpu::shader::set_seq3(scopedstrName, a);
 
       }
       else
@@ -1028,13 +1035,13 @@ namespace gpu_opengl
    }
 
 
-   void shader::set_vec4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
+   void shader::set_seq4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
    {
 
       if (m_propertiesPush.m_pproperties)
       {
 
-         ::gpu::shader::set_vec4(scopedstrName, x, y, z, w);
+         ::gpu::shader::set_seq4(scopedstrName, x, y, z, w);
 
       }
       else
@@ -1047,13 +1054,13 @@ namespace gpu_opengl
    }
 
 
-   void shader::set_vec4(const ::scoped_string& scopedstrName, const ::glm::vec4& a)
+   void shader::set_seq4(const ::scoped_string& scopedstrName, const ::glm::vec4& a)
    {
 
       if (m_propertiesPush.m_pproperties)
       {
 
-         ::gpu::shader::set_vec4(scopedstrName, a);
+         ::gpu::shader::set_seq4(scopedstrName, a);
 
       }
       else

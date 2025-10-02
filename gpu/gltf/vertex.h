@@ -7,27 +7,26 @@ namespace gpu
 {
 
 
-namespace gpu
-{
+   namespace gltf
+   {
 
 
-namespace gltf
-{
-
-{
-/**
- * gltf::vertex attributes.
- */
-struct gltf::vertex {
-   glm::vec3 mPosition;
-   glm::vec3 mNormal;
-   glm::vec2 mTextureCoordinates;
-   glm::vec3 mTangent;
-   glm::vec3 mBitangent;
-};
-
-
-} // namespace gltf
+      /**
+       * gltf::vertex attributes.
+       */
+      struct vertex
+      {
+         glm::vec3 mPosition;
+         glm::vec3 mNormal;
+         glm::vec2 mTextureCoordinates;
+         glm::vec4 mColor;
+         glm::vec4 mTangent; // w = bitangent sign
+         //glm::vec3 mTangent;
+         //glm::vec3 mBitangent;
+      };
 
 
-} namespace // gpu
+   } // namespace gltf
+
+
+} // namespace gpu

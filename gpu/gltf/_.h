@@ -11,13 +11,15 @@ namespace gpu
    namespace gltf
    {
 
+      
       class material;
 
       class mesh;
 
       class model;
 
-      class vertex;
+      struct vertex;
+
 
    } // namespace gltf
 

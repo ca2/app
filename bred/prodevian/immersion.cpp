@@ -1,7 +1,7 @@
 #include "framework.h"
 // immersion.cpp
 #include "immersion.h"
-#include "graphics3d/scene.h"
+#include "bred/graphics3d/scene_base.h"
 //#include "SceneFoundry/graphics3d/render_systems/point_light_render_system.h"
 //#include <spdlog/spdlog.h>
 
@@ -40,7 +40,7 @@ namespace prodevian
    }
 
 
-   ::pointer < ::graphics3d::scene > immersion::create_main_scene()
+   ::pointer < ::graphics3d::scene_base > immersion::create_main_scene()
    {
 
       return {};

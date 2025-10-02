@@ -723,12 +723,12 @@ namespace folder_zip
 
          }
 
-         if (strstr(szItem, "Thomas Borregaard") != nullptr)
-         {
+         //if (strstr(szItem, "Thomas Borregaard") != nullptr)
+         //{
 
-            output_debug_string("Thommi!!");
+         //   output_debug_string("Thommi!!");
 
-         }
+         //}
 
          err = unzGoToNextFile(pf);
 

@@ -192,7 +192,7 @@
     <ClInclude Include="graphics3d\model.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\scene.h">
+    <ClInclude Include="graphics3d\scene_base.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
     <ClInclude Include="graphics3d\scene_object.h">
@@ -387,6 +387,9 @@
     <ClInclude Include="gpu\mesh.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="graphics3d\scene_renderable.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -428,7 +431,7 @@
     <ClCompile Include="graphics3d\model.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\scene.cpp">
+    <ClCompile Include="graphics3d\scene_base.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
     <ClCompile Include="graphics3d\scene_object.cpp">
@@ -539,9 +542,6 @@
     <ClCompile Include="gpu\frame_ephemeral.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\render_systems\gltf_render_system.cpp">
-      <Filter>Source Files\graphics3d\render_systems</Filter>
-    </ClCompile>
     <ClCompile Include="graphics3d\render_systems\wavefront_obj_render_system.cpp">
       <Filter>Source Files\graphics3d\render_systems</Filter>
     </ClCompile>
@@ -601,6 +601,12 @@
     </ClCompile>
     <ClCompile Include="graphics3d\render_systems\scene_render_system.cpp">
       <Filter>Source Files\graphics3d\render_systems</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\render_systems\gltf_render_system.cpp">
+      <Filter>Source Files\graphics3d\render_systems</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\scene_renderable.cpp">
+      <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

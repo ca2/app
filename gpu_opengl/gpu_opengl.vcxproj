@@ -474,6 +474,7 @@
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>GLAD_GLAPI_EXPORT;_$(ProjectName)_project;_output_type_$(OutputType);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
@@ -723,11 +724,34 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="cube.h" />
     <ClInclude Include="device.h" />
     <ClInclude Include="device_win32.h" />
     <ClInclude Include="frame.h" />
     <ClInclude Include="frame_buffer.h" />
+    <ClInclude Include="gltf\material.h" />
+    <ClInclude Include="gltf\mesh.h" />
+    <ClInclude Include="gltf\model.h" />
+    <ClInclude Include="gltf\vertex.h" />
+    <ClInclude Include="gltf\_constant.h" />
     <ClInclude Include="gltf_mesh.h" />
+    <ClInclude Include="ibl\brdf_convolution_framebuffer.h" />
+    <ClInclude Include="ibl\cubemap_framebuffer.h" />
+    <ClInclude Include="ibl\diffuse_irradiance_map.h" />
+    <ClInclude Include="ibl\equirectangular_cubemap.h" />
+    <ClInclude Include="ibl\hdri_cube.h" />
+    <ClInclude Include="ibl\mipmap_cubemap_framebuffer.h" />
+    <ClInclude Include="ibl\shaders\brdfconvolution.frag.h" />
+    <ClInclude Include="ibl\shaders\brdfconvolution.vert.h" />
+    <ClInclude Include="ibl\shaders\diffuseirradiance.frag.h" />
+    <ClInclude Include="ibl\shaders\diffuseirradiance.vert.h" />
+    <ClInclude Include="ibl\shaders\hdricube.frag.h" />
+    <ClInclude Include="ibl\shaders\hdricube.vert.h" />
+    <ClInclude Include="ibl\shaders\pbr.frag.h" />
+    <ClInclude Include="ibl\shaders\pbr.vert.h" />
+    <ClInclude Include="ibl\shaders\specularenv.frag.h" />
+    <ClInclude Include="ibl\shaders\specularenv.vert.h" />
+    <ClInclude Include="ibl\specular_map.h" />
     <ClInclude Include="input_layout.h" />
     <ClInclude Include="lock.h" />
     <ClInclude Include="memory_buffer.h" />
@@ -784,10 +808,21 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="cube.cpp" />
     <ClCompile Include="device.cpp" />
     <ClCompile Include="device_win32.cpp" />
     <ClCompile Include="frame_buffer.cpp" />
-    <ClCompile Include="gltf_mesh.cpp" />
+    <ClCompile Include="full_screen_quad.cpp" />
+    <ClCompile Include="gltf\mesh.cpp" />
+    <ClCompile Include="gltf\model.cpp" />
+    <ClCompile Include="hdr_texture.cpp" />
+    <ClCompile Include="ibl\brdf_convolution_framebuffer.cpp" />
+    <ClCompile Include="ibl\cubemap_framebuffer.cpp" />
+    <ClCompile Include="ibl\diffuse_irradiance_map.cpp" />
+    <ClCompile Include="ibl\equirectangular_cubemap.cpp" />
+    <ClCompile Include="ibl\hdri_cube.cpp" />
+    <ClCompile Include="ibl\mipmap_cubemap_framebuffer.cpp" />
+    <ClCompile Include="ibl\specular_map.cpp" />
     <ClCompile Include="input_layout.cpp" />
     <ClCompile Include="lock.cpp" />
     <ClCompile Include="memory_buffer.cpp" />
@@ -846,6 +881,22 @@
     <ProjectReference Include="..\gpu\gpu.vcxproj">
       <Project>{d728fd54-84d0-4b93-9d34-43338f285886}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ibl\shaders\brdfconvolution.frag" />
+    <None Include="ibl\shaders\brdfconvolution.vert" />
+    <None Include="ibl\shaders\diffuseirradiance1.frag" />
+    <None Include="ibl\shaders\diffuseirradiance.vert" />
+    <None Include="ibl\shaders\hdricube.frag" />
+    <None Include="ibl\shaders\hdricube.vert" />
+    <CustomBuild Include="ibl\shaders\pbr1.frag">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <CustomBuild Include="ibl\shaders\pbr1.vert">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <None Include="ibl\shaders\specularenv.frag" />
+    <None Include="ibl\shaders\specularenv.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

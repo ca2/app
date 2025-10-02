@@ -26,10 +26,8 @@ namespace graphics3d
       //::string_map < OBJmodelHandle> m_objModelCache;
       //::string_map < GLTFmodelHandle> m_gltfModelCache;
       ::string_map < ::pointer < ::graphics3d::renderable>>             m_mapRenderable;
-      ::string_map<::pointer<::graphics3d::renderable>>                 m_mapSkyboxRenderable;
-      ::graphics3d::skybox_map                                          m_mapSkybox;
-      ::pointer<::graphics3d::renderable>                               m_prenderableSkybox;
-      ::graphics3d::scene_object_map                                    m_mapAliasSceneObject;
+      ::string_map<::pointer<::graphics3d::renderable>>                 m_mapSkyboxRenderableModel;
+      ::graphics3d::scene_renderable_map                                m_mapAliasSceneRenderable;
       //::string_map < ::pointer < ::graphics3d::renderable>>             m_mapGltf;
 
       //::pointer < ::gpu::model_buffer >                                 m_pgpumodelbufferSkybox;
@@ -48,9 +46,6 @@ namespace graphics3d
       ::pointer < ::gpu::texture >                                      m_ptextureIrradianceCube;
       ::pointer < ::gpu::texture >                                      m_ptexturePrefilteredCube;
       ::pointer < ::gpu::texture >                                      m_ptextureEnvironmentCube;
-
-      //::pointer < ::graphics3d::skybox>                                 m_pskyboxCurrent;
-
 
       asset_manager();
       ~asset_manager();
@@ -94,9 +89,9 @@ namespace graphics3d
          // VkImageLayout initialLayout
       );
 
-      virtual void generateBRDFlut();
-      virtual void generateIrradianceMap();
-      virtual void generatePrefilteredEnvMap();
+      //virtual void generateBRDFlut();
+      //virtual void generateIrradianceMap();
+      //virtual void generatePrefilteredEnvMap();
 
       //using OBJmodelHandle = ::pointer<graphics3d::sandbox_object_model>;
       //using GLTFmodelHandle = ::pointer<graphics3d::gltf::Model>;

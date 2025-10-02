@@ -87,7 +87,7 @@ namespace graphics3d
 
 
 
-		virtual void engine_on_after_load_scene(::graphics3d::scene* pscene);
+		virtual void engine_on_after_load_scene(::graphics3d::scene_base* pscene);
 
 
 		float dt() { return m_fFrameTime; }
@@ -103,7 +103,7 @@ namespace graphics3d
 		
       virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics);
 
-      virtual ::graphics3d::scene * current_scene();
+      virtual ::graphics3d::scene_base * current_scene();
 
 
 		virtual void do_frame_step(::gpu::context * pgpucontextUpper);

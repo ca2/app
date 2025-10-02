@@ -8,24 +8,24 @@ namespace gpu
 {
 
 
-   namepspace ibl
+   namespace ibl
    {
 
 
 
-      class BrdfConvolutionFramebuffer;
+      class brdf_convolution_framebuffer;
 
-      class CubemapFramebuffer;
+      class cubemap_framebuffer;
 
-      class DiffuseIrradianceMap;
+      class diffuse_irradiance_map;
 
-      class EquirectangularCubemap;
+      class equirectangular_cubemap;
 
-      class HDRICube;
+      class hdri_cube;
 
-      class MipmapCubemapFramebuffer;
+      class mipmap_cubemap_framebuffer;
 
-      class SpecularMap;
+      class specular_map;
 
 
    } // namepspace ibl

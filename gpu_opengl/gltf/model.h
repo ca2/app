@@ -40,14 +40,14 @@ namespace gpu_opengl
           * Load a glTF 2.0 model.
           * @param path
           */
-         model()
+         model();
          ~model() override;
 
 
-         void load_gltf_model(const ::scoped_string &scopedstr);
+         //void load_gltf_model(const ::scoped_string &scopedstr);
 
 
-         void load_gltf_model(const ::scoped_string &scopedstr, bool flipTexturesVertically);
+         //void load_gltf_model(const ::scoped_string &scopedstr, bool flipTexturesVertically);
 
 
          /**
@@ -55,31 +55,31 @@ namespace gpu_opengl
           * present in the model file.
           * @param path
           */
-         void load_gltf_model(const ::scoped_string &scopedstr, Material *pmaterial, bool flipTexturesVertically);
+         //void load_gltf_model(const ::scoped_string &scopedstr, ::gpu::gltf::material *pmaterial, bool flipTexturesVertically);
 
 
          //Model(::string path, std::shared_ptr<Material> material, bool flipTexturesVertically);
          //void Draw(Shader &shader);
 
-         void draw(::gpu::command_buffer *pcommandbuffer) override;
+         //void draw(::gpu::command_buffer *pcommandbuffer) override;
 
 
-         void loadModel(::string path, bool flipTexturesVertically);
+         //void loadModel(::string path, bool flipTexturesVertically);
 
 
          // recursively load all meshes in the node tree
-         void processNode(aiNode *node, const aiScene *scene);
+         //void processNode(aiNode *node, const aiScene *scene);
 
 
          // convert assimp mesh to our own mesh class
-         ::gpu::gltf::mesh * processMesh(aiMesh *mesh, const aiScene *scene);
+         //::pointer < ::gpu::gltf::mesh > processMesh(aiMesh *mesh, const aiScene *scene) override;
 
 
          // loads the first texture of given type
-         ::gpu::texture *loadMaterialTexture(aiMaterial *material, aiTextureType type);
+         //::gpu::texture *loadMaterialTexture(aiMaterial *material, aiTextureType type);
 
 
-         unsigned int textureFromFile(const char *fileName, ::string directory, aiTextureType type);
+         //unsigned int textureFromFile(const char *fileName, ::string directory, aiTextureType type);
 
       };
 

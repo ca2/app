@@ -22,7 +22,7 @@ namespace gpu
       /**
        * A collection of meshes.
        */
-      class model :
+      class CLASS_DECL_GPU model :
          virtual public context_object,
          virtual public ::graphics3d::renderable
       {
@@ -34,7 +34,7 @@ namespace gpu
          ::string                                  m_strDirectory;
          ::string_map<::pointer<::gpu::texture> >  m_mapTexture;
          ::pointer<material>                       m_pmaterialOverride;
-
+         bool m_bExternalPbr = false;
 
          /**
           * Load a glTF 2.0 model.
@@ -45,11 +45,13 @@ namespace gpu
 
          ~model() override;
 
+         ::gpu::texture *get_target_texture() override;
 
-         virtual void load_gltf_model(const ::scoped_string &scopedstr);
+
+         virtual void initialize_gpu_gltf_model(::gpu::context *pgpucontext, const ::gpu::renderable_t &model);
 
 
-         virtual void load_gltf_model(const ::scoped_string &scopedstr, bool flipTexturesVertically);
+         virtual void initialize_gpu_gltf_model(::gpu::context * pgpucontext,  const ::file::path & path, bool flipTexturesVertically, bool bExternalPbr);
 
 
          /**
@@ -57,8 +59,10 @@ namespace gpu
           * present in the model file.
           * @param path
           */
-         virtual void load_gltf_model(const ::scoped_string &scopedstr, material *pmaterial,
-                                      bool flipTexturesVertically);
+         virtual void initialize_gpu_gltf_model(::gpu::context * pgpucontext,
+            const ::file::path & path,
+            ::gpu::gltf::material *pmaterial,
+                                      bool flipTexturesVertically, bool bExternalPbr);
 
 
          //Model(::string path, std::shared_ptr<Material> material, bool flipTexturesVertically);
@@ -67,7 +71,7 @@ namespace gpu
          virtual void draw(::gpu::command_buffer *pcommandbuffer) override;
 
 
-         virtual void loadModel(::string path, bool flipTexturesVertically);
+         virtual void loadModel(const ::file::path & path, bool flipTexturesVertically, bool bExternalPbr);
 
 
          // recursively load all meshes in the node tree
@@ -75,14 +79,15 @@ namespace gpu
 
 
          // convert assimp mesh to our own mesh class
-         virtual ::gpu::gltf::mesh *processMesh(aiMesh *mesh, const aiScene *scene);
+         virtual ::pointer < ::gpu::gltf::mesh > processMesh(aiMesh *mesh, const aiScene *scene);
 
 
          // loads the first texture of given type
          virtual ::gpu::texture *loadMaterialTexture(aiMaterial *material, aiTextureType type);
+         virtual ::gpu::texture *loadMaterialTexture(const ::scoped_string & scopedstr, aiTextureType type);
 
 
-         virtual unsigned int textureFromFile(const char *fileName, ::string directory, aiTextureType type);
+         //virtual ::gpu::texture> textureFromFile(const char *fileName, ::string directory, aiTextureType type);
 
       };
 

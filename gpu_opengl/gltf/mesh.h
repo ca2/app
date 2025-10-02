@@ -3,58 +3,64 @@
 #pragma once
 
 
-#include "bred/gpu/context_object.h"
-#include "bred/graphics3d/renderable.h"
+#include "gpu/gltf/mesh.h"
+
+// #include "bred/gpu/context_object.h"
+// #include "bred/graphics3d/renderable.h"
 
 
-#include <assimp/Importer.hpp>
-#include <assimp/postprocess.h>
-#include <assimp/scene.h>
-#include <glm/glm.hpp>
-//#include <string>
-//#include <vector>
+// #include <assimp/Importer.hpp>
+// #include <assimp/postprocess.h>
+// #include <assimp/scene.h>
+// #include <glm/glm.hpp>
+// //#include <string>
+// //#include <vector>
+//
+// #include "gpu/gltf/material.h"
+// #include "gpu/gltf/mesh.h"
+// #include "bred/gpu/shader.h"
 
-#include "gpu/gpu/gltf_material.h"
-#include "bred/gpu/shader.h"
-#include "gpu/gpu/gltf_material.h"
 
 namespace gpu_opengl
 {
 
 
-namespace gltf
-{
-   /**
-    * A gltf_mesh is a collection of geometry paired with a material.
-    */
-   class mesh :
-      virtual public context_object,
-      virtual public ::graphics3d::renderable
+   namespace gltf
    {
-   public:
+      /**
+       * A gltf_mesh is a collection of geometry paired with a material.
+       */
+      class mesh :
+         virtual public ::gpu::gltf::mesh
+      {
+      public:
+
+         // OpenGL data structures
+         unsigned int m_uVAO, m_uVBO, m_uEBO;
+
+         //array_base<gltf::vertex> m_vertexa;
+         // unsigned_int_array m_indexa;
+         // ::pointer<gltf_material> m_pmaterial;
+         //
+
+         mesh();
+         ~mesh() override;
 
 
-      array_base<gltf::vertex> m_vertexa;
-      unsigned_int_array m_indexa;
-      ::pointer < gltf_material > m_pmaterial;
-
-      gltf_mesh();
+         //void initialize_gpu_gltf_mesh(const ::array_base<::gpu::gltf::vertex> &vertexa,
+         //                          const ::unsigned_int_array &indexa, ::gpu::gltf::material *pmaterial) override;
 
 
-      void initialize_gltf_mesh(const ::array_base < gltf::vertex > & vertexa,
-         const ::unsigned_int_array & indexa, gltf_material  *pmaterial);
+         void init() override;
 
-      virtual void init();
-
-   // private:
-   //    // OpenGL data structures
-   //    unsigned int mVAO, mVBO, mEBO;
-   };
+         void draw(::gpu::command_buffer *pcommandbuffer) override;
+         // private:
+         //    // OpenGL data structures
+         //    unsigned int mVAO, mVBO, mEBO;
+      };
 
 
-} // namespace gltf
+   } // namespace gltf
 
 
-}// namespace gpu_opengl
-
-
+} // namespace gpu_opengl

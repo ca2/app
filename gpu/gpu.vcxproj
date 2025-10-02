@@ -77,15 +77,25 @@
   <ItemGroup>
     <ClInclude Include="console.h" />
     <ClInclude Include="constant\idpool.h" />
+    <ClInclude Include="context.h" />
     <ClInclude Include="cube.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="full_screen_quad.h" />
     <ClInclude Include="game\_.h" />
     <ClInclude Include="gltf\material.h" />
     <ClInclude Include="gltf\mesh.h" />
     <ClInclude Include="gltf\model.h" />
     <ClInclude Include="gltf\vertex.h" />
     <ClInclude Include="gltf\_constant.h" />
-    <ClInclude Include="hdrtexture.h" />
+    <ClInclude Include="hdr_texture.h" />
+    <ClInclude Include="ibl\brdf_convolution_framebuffer.h" />
+    <ClInclude Include="ibl\cubemap_framebuffer.h" />
+    <ClInclude Include="ibl\diffuse_irradiance_map.h" />
+    <ClInclude Include="ibl\equirectangular_cubemap.h" />
+    <ClInclude Include="ibl\hdri_cube.h" />
+    <ClInclude Include="ibl\mipmap_cubemap_framebuffer.h" />
+    <ClInclude Include="ibl\specular_map.h" />
+    <ClInclude Include="ibl\_.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="include\_.h" />
     <ClInclude Include="inline\application.h" />
@@ -116,10 +126,12 @@
     <ClInclude Include="user\controller.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="_.h" />
+    <ClInclude Include="_ktx.h" />
     <ClInclude Include="__defer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="constant\idpool.cpp" />
+    <ClCompile Include="context.cpp" />
     <ClCompile Include="cube.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -141,26 +153,19 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="full_screen_quad.cpp" />
     <ClCompile Include="gltf\mesh.cpp" />
     <ClCompile Include="gltf\model.cpp" />
-    <ClCompile Include="gpu\model.cpp" />
-    <ClCompile Include="hdrtexture.cpp" />
-    <ClCompile Include="ibl\brdfconvolutionframebuffer.cpp" />
-    <ClCompile Include="ibl\cubemapframebuffer.cpp" />
-    <ClCompile Include="ibl\diffuseirradiancemap.cpp" />
-    <ClCompile Include="ibl\equirectangularcubemap.cpp" />
-    <ClCompile Include="ibl\hdricube.cpp" />
-    <ClCompile Include="ibl\mipmapcubemapframebuffer.cpp" />
-    <ClCompile Include="ibl\specularmap.cpp" />
-    <ClCompile Include="operating_system\windows\audio.cpp" />
-    <ClCompile Include="operating_system\windows\system.cpp" />
-    <ClCompile Include="platform\application.cpp" />
-    <ClCompile Include="platform\hwid.cpp" />
-    <ClCompile Include="platform\session.cpp" />
-    <ClCompile Include="platform\sha256.cpp" />
-    <ClCompile Include="platform\system.cpp" />
-    <ClCompile Include="platform\tinyexpr.cpp" />
+    <ClCompile Include="hdr_texture.cpp" />
+    <ClCompile Include="ibl\brdf_convolution_framebuffer.cpp" />
+    <ClCompile Include="ibl\cubemap_framebuffer.cpp" />
+    <ClCompile Include="ibl\diffuse_irradiance_map.cpp" />
+    <ClCompile Include="ibl\equirectangular_cubemap.cpp" />
+    <ClCompile Include="ibl\hdri_cube.cpp" />
+    <ClCompile Include="ibl\mipmap_cubemap_framebuffer.cpp" />
+    <ClCompile Include="ibl\specular_map.cpp" />
     <ClCompile Include="_.cpp" />
+    <ClCompile Include="_ktx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\acme\acme.vcxproj">
@@ -670,7 +675,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>Mfplat.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;Mfplat.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EnableCOMDATFolding>
       </EnableCOMDATFolding>
       <OptimizeReferences>false</OptimizeReferences>

@@ -41,7 +41,7 @@ static memory getUUID()
 #endif
 
 #ifdef LINUX
-    const auto static get = [](const ::string & fn)
+    const auto static get = [](const ::scoped_string & scopedstr fn)
     {
         ::string res;
         std::fstream in(fn, std::ios_base::in | std::ios_base::binary);

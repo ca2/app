@@ -408,8 +408,9 @@
     <ClInclude Include="graphics3d\render_systems\skybox_ibl_render_system.h" />
     <ClInclude Include="graphics3d\render_systems\skybox_render_system.h" />
     <ClInclude Include="graphics3d\resource.h" />
-    <ClInclude Include="graphics3d\scene.h" />
+    <ClInclude Include="graphics3d\scene_base.h" />
     <ClInclude Include="graphics3d\scene_object.h" />
+    <ClInclude Include="graphics3d\scene_renderable.h" />
     <ClInclude Include="graphics3d\scene_system.h" />
     <ClInclude Include="graphics3d\shapes.h" />
     <ClInclude Include="graphics3d\shape_factory.h" />
@@ -527,8 +528,9 @@
     <ClCompile Include="graphics3d\render_systems\point_light_render_system.cpp" />
     <ClCompile Include="graphics3d\render_systems\skybox_ibl_render_system.cpp" />
     <ClCompile Include="graphics3d\render_systems\skybox_render_system.cpp" />
-    <ClCompile Include="graphics3d\scene.cpp" />
+    <ClCompile Include="graphics3d\scene_base.cpp" />
     <ClCompile Include="graphics3d\scene_object.cpp" />
+    <ClCompile Include="graphics3d\scene_renderable.cpp" />
     <ClCompile Include="graphics3d\shader.cpp" />
     <ClCompile Include="graphics3d\shape_factory.cpp" />
     <ClCompile Include="graphics3d\skybox.cpp" />

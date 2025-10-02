@@ -88,37 +88,6 @@ namespace graphics3d
    // }
 
 
-   void asset_manager::generateBRDFlut()
-   {
-
-      auto pgpucontext = m_pengine->gpu_context();
-
-      m_ptextureLuBrdf = pgpucontext->generateBRDFlut();
-   }
-
-
-   void asset_manager::generateIrradianceMap()
-   {
-
-      auto pgpucontext = m_pengine->gpu_context();
-
-      m_ptextureIrradianceCube =
-         pgpucontext->generateIrradianceMap(m_ptextureEnvironmentCube, m_prenderableSkybox);
-
-   }
-
-
-   void asset_manager::generatePrefilteredEnvMap() 
-   
-   {
-   
-         auto pgpucontext = m_pengine->gpu_context();
-
-      m_ptexturePrefilteredCube = pgpucontext->generatePrefilteredEnvMap(m_ptextureEnvironmentCube, m_prenderableSkybox);
-
-   }
-
-
    graphics3d::renderable *asset_manager::get_renderable(const ::scoped_string &name)
    {
       auto p = m_mapRenderable.find(name);
@@ -256,11 +225,11 @@ namespace graphics3d
                      // {
                      //    m_pmodelSkybox = pmodel;
                      // }
-                     if (prenderable->renderable_usage() == ::gpu::e_renderable_usage_skybox)
-                     {
-                        //m_mapSkyboxRenderable[strName] = prenderable;
-                        m_prenderableSkybox = prenderable;
-                     }
+                     //if (prenderable->renderable_usage() == ::gpu::e_renderable_usage_skybox)
+                     //{
+                     //   //m_mapSkyboxRenderable[strName] = prenderable;
+                     //   m_prenderableSkybox = prenderable;
+                     //}
                      informationf("[asset_manager] Successfully loaded glTF model '%s' from '%s'",
                                  prenderable->m_strName.c_str(), prenderable->m_path.c_str());
                   }
@@ -275,7 +244,15 @@ namespace graphics3d
                {
                   errorf("[asset_manager] Failed to load model '%s': %s", strName.c_str(), e.get_message().c_str());
                }
-               m_mapRenderable.set_at(strName, prenderable);
+               if (prenderable->renderable_usage() == ::gpu::e_renderable_usage_skybox)
+               {
+
+                  m_mapSkyboxRenderableModel.set_at(strName, prenderable);
+               }
+               else
+               {
+                  m_mapRenderable.set_at(strName, prenderable);
+               }
             }
          }
 
@@ -401,6 +378,7 @@ namespace graphics3d
                   // prefer explicit "environment" : true in JSON or name match
                   loadedEnvironmentCubemap = ptextureCubemap;
                }
+
             }
             catch (const ::exception &e)
             {
@@ -438,37 +416,13 @@ namespace graphics3d
       // irradianceCube = øcreate_pointer<graphics3d::texture>(&m_pgpudevice);
       // prefilteredCube = øcreate_pointer<graphics3d::texture>(&m_pgpudevice);
 
-      try
-      {
-         // Generate BRDF LUT first (your existing function)
-         generateBRDFlut();
-      }
-      catch (...)
-      {
-
-      }
-
-      // Now generate irradiance and prefiltered maps using environmentCube (must be valid)
-      if (!m_ptextureEnvironmentCube)
-      {
-         error("[asset_manager] environmentCube is null - aborting IBL generation to avoid descriptor errors.");
-      }
-      else
-      {
-         try
-         {
-            generateIrradianceMap();
-            generatePrefilteredEnvMap();
-            information("[asset_manager] IBL assets generated successfully.");
-         }
-         catch (const ::exception &e)
-         {
-            errorf("[asset_manager] IBL generation failed: %s", e.get_message().c_str());
-         }
-      }
+      // setup_ibl();
 
       information("Assets loaded");
+
+
    }
+
 
    //
    // void asset_manager::generatePrefilteredEnvMap()

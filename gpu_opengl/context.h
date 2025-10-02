@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "bred/gpu/context.h"
-#include "acme/prototype/prototype/memory.h"
+#include "gpu/context.h"
+//#include "acme/prototype/prototype/memory.h"
 
 
 namespace gpu_opengl
@@ -10,7 +10,7 @@ namespace gpu_opengl
 
 
    class CLASS_DECL_GPU_OPENGL context :
-      virtual public ::gpu::context
+      virtual public ::gpu_gpu::context
    {
    public:
 
@@ -70,6 +70,10 @@ namespace gpu_opengl
 
       ::memory white_to_color_sampler_vert() override;
       ::memory white_to_color_sampler_frag() override;
+
+
+      void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const file::path &path, int iAssimpTextureType) override;
+
 
       //virtual void create_offscreen_buffer(const ::int_size& size);
       //virtual void _create_offscreen_buffer(const ::int_size& size);
@@ -145,6 +149,47 @@ namespace gpu_opengl
       //void copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource) override;
 
       ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t &model) override;
+
+      ::pointer<::gpu::texture> load_cube_map(const ::scoped_string &scopedstrName, const ::file::path &path,
+                                              bool b32) override;
+
+      // ::pointer<::gpu::texture> loadCubemap(
+      //    const ::scoped_string& name,
+      //    const ::scoped_string& ktxFilename,
+      //    VkFormat format,
+      //    VkQueue vkqueueCopy,
+      //    VkImageUsageFlags usageFlags,
+      //    VkImageLayout initialLayout);
+      ::pointer<::gpu::texture> loadCubemap(
+         const ::scoped_string& name,
+         const ::file::path & pathFile,
+         bool b32);
+
+//       /// @brief generatePrefilteredEnvMap
+//       /// @param environmentCubeExisting
+//       /// @param prenderableSkybox
+//       /// @return
+//       virtual ::pointer<::gpu::texture> generatePrefilteredEnvMap(
+//          ::gpu::texture *environmentCubeExisting,
+//          ::graphics3d::renderable *prenderableSkybox);
+//
+//       /// generate irradianceCube
+//       /// @return irradianceCube
+//       virtual ::pointer < ::gpu::texture > generateIrradianceMap(
+// //         ::gpu::texture * irradianceCube,
+//          ::gpu::texture * environmentCube,
+//          ::graphics3d::renderable * prenderableSkybox);
+//       // ::pointer<::gpu::texture> loadCubemap(
+//       //    const ::scoped_string& name,
+//       //    const ::scoped_string& ktxFilename,
+//       //    VkFormat format,
+//       //    VkImageUsageFlags usageFlags,
+//       //    VkImageLayout initialLayout);
+//       //    virtual void generateBRDFlut(
+//       //     ::gpu::texture * lutBrdf);
+//       /// generate lutBrdf
+//       /// @return lutBrdf
+//       virtual ::pointer < ::gpu::texture > generateBRDFlut();
 
    };
 

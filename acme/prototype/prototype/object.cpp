@@ -104,7 +104,7 @@ void object::create_object_meta()
 
    }
 
-   m_pmeta = __raw_new object_meta();
+   m_pmeta = øraw_new object_meta();
 
 }
 

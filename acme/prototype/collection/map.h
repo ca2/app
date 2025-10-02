@@ -601,7 +601,7 @@ public:
 //
 //    //ENSURE(this->m_pnodeFree != nullptr);  // we must have something
 //
-//    auto p = __raw_new BASE_NODE (key);
+//    auto p = øraw_new BASE_NODE (key);
 //
 //    attach(p, nHashBucket, nHashValue);
 //

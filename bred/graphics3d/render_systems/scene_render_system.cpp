@@ -142,7 +142,7 @@ namespace graphics3d
    //}
 
 
-   void scene_render_system::on_render(::gpu::context *pgpucontext, ::graphics3d::scene *pscene)
+   void scene_render_system::on_render(::gpu::context *pgpucontext, ::graphics3d::scene_base *pscene)
    {
 
 

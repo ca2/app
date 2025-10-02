@@ -301,7 +301,7 @@ namespace platform
 
       ////factory_init();
 
-::acme::g_paAura = __raw_new ::array < matter* > ();
+::acme::g_paAura = øraw_new ::array < matter* > ();
 
 ////::task_on_after_new_particle(g_paAura);
 #if REFERENCING_DEBUGGING
@@ -867,7 +867,7 @@ g_bWindowingOutputDebugString = true;
    void platform::factory_initialize()
    {
 
-      m_pfactory = { transfer_t{}, __raw_new::factory::factory() };
+      m_pfactory = { transfer_t{}, øraw_new::factory::factory() };
 
       //__raw_construct_new(m_pfactorymap);
 

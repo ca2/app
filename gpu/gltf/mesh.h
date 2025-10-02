@@ -27,23 +27,34 @@ namespace gpu
       /**
        * A gltf_mesh is a collection of geometry paired with a material.
        */
-      class mesh : virtual public context_object, virtual public ::graphics3d::renderable
+      class CLASS_DECL_GPU mesh :
+         virtual public context_object, 
+         virtual public ::graphics3d::renderable
       {
       public:
 
 
-         array_base<gltf::vertex> m_vertexa;
+         raw_array_base<::gpu::gltf::vertex> m_vertexa;
          unsigned_int_array m_indexa;
-         ::pointer<gltf_material> m_pmaterial;
+         ::pointer<::gpu::gltf::material> m_pmaterial;
+         struct UniformBlock {
+            glm::mat4 matrix;
+            glm::mat4 jointMatrix[64]{};
+            float jointcount{ 0 };
+         } uniformBlock;
 
-         gltf_mesh();
-         ~gltf_mesh() override;
+
+         mesh();
+         ~mesh() override;
 
 
-         void initialize_gltf_mesh(const ::array_base<gltf::vertex> &vertexa, const ::unsigned_int_array &indexa,
-                                   gltf_material *pmaterial);
+         virtual void initialize_gpu_gltf_mesh(const ::raw_array_base<gltf::vertex> &vertexa, const ::unsigned_int_array &indexa,
+                                   ::gpu::gltf::material *pmaterial);
 
          virtual void init();
+
+
+         void draw(::gpu::command_buffer *pcommandbuffer) override;
 
          // private:
          //    // OpenGL data structures

@@ -5,7 +5,7 @@
 
 
 #include "bred/gpu/properties.h"
-#include "bred/graphics3d/scene_object.h"
+#include "bred/graphics3d/scene_renderable.h"
 
 
 DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::gpu::point_light)
@@ -17,7 +17,7 @@ namespace graphics3d
 
 
    class point_light :
-      virtual public scene_object
+      virtual public scene_renderable
    {
    public:
 

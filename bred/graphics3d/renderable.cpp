@@ -55,6 +55,14 @@ namespace graphics3d
    // }
 
 
+   ::gpu::texture *renderable::get_target_texture() 
+   {
+   
+      return nullptr;
+   
+   }
+
+
    void renderable::bind(::gpu::command_buffer *pcommandbuffer)
    {
 

@@ -8,6 +8,9 @@ GPU_PROPERTY("position", ::gpu::e_type_seq2)
 GPU_PROPERTY("uv", ::gpu::e_type_seq2)
 END_GPU_PROPERTIES()
 
+BEGIN_GPU_PROPERTIES(::glm::vec3)
+GPU_PROPERTY("position", ::gpu::e_type_seq3)
+END_GPU_PROPERTIES()
 
 BEGIN_GPU_PROPERTIES(::graphics3d::sequence3_color)
 GPU_PROPERTY("position", ::gpu::e_type_seq3)

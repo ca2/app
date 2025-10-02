@@ -220,12 +220,15 @@ namespace gpu_opengl
    void swap_chain::present(::gpu::texture* pgputexture)
    {
 
-      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
-
-      if (!m_pshaderCopyTextureOnEndDraw)
+      try
       {
 
-         auto pvertexshader = R"vert(#version 330 core
+         ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+
+         if (!m_pshaderCopyTextureOnEndDraw)
+         {
+
+            auto pvertexshader = R"vert(#version 330 core
 layout(location = 0) in vec2 aPos;
 layout(location = 1) in vec2 aTexCoord;
 
@@ -238,7 +241,7 @@ void main() {
 )vert";
 
 
-         auto pfragmentshader = R"frag(#version 330 core
+            auto pfragmentshader = R"frag(#version 330 core
 in vec2 TexCoord;
 out vec4 FragColor;
 
@@ -257,125 +260,123 @@ void main() {
 }
 )frag";
 
-         m_pshaderCopyTextureOnEndDraw = øcreate_new < ::gpu_opengl::shader >();
+            m_pshaderCopyTextureOnEndDraw = øcreate_new<::gpu_opengl::shader>();
 
-         m_pshaderCopyTextureOnEndDraw->m_bEnableBlend = false;
+            m_pshaderCopyTextureOnEndDraw->m_bEnableBlend = false;
 
-         m_pshaderCopyTextureOnEndDraw->m_bDisableDepthTest = true;
+            m_pshaderCopyTextureOnEndDraw->m_bDisableDepthTest = true;
 
-         m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
-            m_pgpurenderer,
-            pvertexshader, pfragmentshader,
-            {},
-            {},
-            {},
-            m_pgpucontext->input_layout(::gpu_properties <::graphics3d::sequence2_uv>())
-         );
+            m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
+               m_pgpurenderer, pvertexshader, pfragmentshader, {}, {}, {},
+               m_pgpucontext->input_layout(::gpu_properties<::graphics3d::sequence2_uv>()));
+         }
 
+         glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-      }
+         auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
-      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+         pcommandbuffer->set_viewport(m_pgpucontext->m_rectangle.size());
 
-      auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+         pcommandbuffer->set_scissor(m_pgpucontext->m_rectangle.size());
 
-      pcommandbuffer->set_viewport(m_pgpucontext->m_rectangle.size());
+         glDrawBuffer(GL_BACK);
 
-      pcommandbuffer->set_scissor(m_pgpucontext->m_rectangle.size());
+         glClearColor(0.f, 0.5f, 0.f, 0.5f);
+         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+         glDisable(GL_BLEND);
+         glDisable(GL_DEPTH_TEST);
 
-      glDrawBuffer(GL_BACK);
-
-      glClearColor(0.f, 0.5f, 0.f, 0.5f);
-      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-      glDisable(GL_BLEND);
-      glDisable(GL_DEPTH_TEST);
-
-      if (1)
-      {
-
-   /*      if (!m_VAOFullScreenQuad)
+         if (1)
          {
 
-            m_VAOFullScreenQuad = createFullscreenQuad(m_VBOFullScreenQuad);
+            /*      if (!m_VAOFullScreenQuad)
+                  {
 
-         }*/
+                     m_VAOFullScreenQuad = createFullscreenQuad(m_VBOFullScreenQuad);
 
-
-         auto pmodelbufferFullscreenQuad = m_pgpucontext->sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_frame());
-
-         m_pshaderCopyTextureOnEndDraw->_bind();
-
-         m_pshaderCopyTextureOnEndDraw->bind_source(pgputexture);
-
-         pmodelbufferFullscreenQuad->bind(pcommandbuffer);
-
-         pmodelbufferFullscreenQuad->draw(pcommandbuffer);
-
-         pmodelbufferFullscreenQuad->unbind(pcommandbuffer);
-
-         //int iGlError00 = glGetError();
-
-         //glDrawArrays(GL_TRIANGLES, 0, 6); // assuming 2 triangles (quad)
-
-         //int iGlError01 = glGetError();
-
-         //glBindVertexArray(0);
-
-         //int iGlErrorA = glGetError();
-
-         //debug() << "gl error";
+                  }*/
 
 
-         //glActiveTexture(GL_TEXTURE0);
+            auto pmodelbufferFullscreenQuad =
+               m_pgpucontext->sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_frame());
 
-         //int iGlError1 = glGetError();
+            m_pshaderCopyTextureOnEndDraw->_bind();
 
-         //::cast < texture > ptexture = pgputexture;
+            m_pshaderCopyTextureOnEndDraw->bind_source(pgputexture);
 
-         //GLuint tex = ptexture->m_gluTextureID;
+            pmodelbufferFullscreenQuad->bind(pcommandbuffer);
 
-         //glBindTexture(GL_TEXTURE_2D, tex);
+            pmodelbufferFullscreenQuad->draw(pcommandbuffer);
 
-         //int iGlError2 = glGetError();
+            pmodelbufferFullscreenQuad->unbind(pcommandbuffer);
 
-         //::cast < ::gpu_opengl::shader > pshaderOnEndDraw = m_pshaderCopyTextureOnEndDraw;
+            // int iGlError00 = glGetError();
 
-         //pshaderOnEndDraw->_set_int("uTexture", 0);
+            // glDrawArrays(GL_TRIANGLES, 0, 6); // assuming 2 triangles (quad)
 
-         //if (!m_VAOFullScreenQuad)
-         //{
+            // int iGlError01 = glGetError();
 
-         //   m_VAOFullScreenQuad = createFullscreenQuad(m_VBOFullScreenQuad);
+            // glBindVertexArray(0);
 
-         //}
+            // int iGlErrorA = glGetError();
 
-         //glBindVertexArray(m_VAOFullScreenQuad);
+            // debug() << "gl error";
 
-         //int iGlError00 = glGetError();
 
-         //glDrawArrays(GL_TRIANGLES, 0, 6); // assuming 2 triangles (quad)
+            // glActiveTexture(GL_TEXTURE0);
 
-         //int iGlError01 = glGetError();
+            // int iGlError1 = glGetError();
 
-         //glBindVertexArray(0);
+            //::cast < texture > ptexture = pgputexture;
 
-         //int iGlErrorA = glGetError();
+            // GLuint tex = ptexture->m_gluTextureID;
 
-         //glBindTexture(GL_TEXTURE_2D, 0);
+            // glBindTexture(GL_TEXTURE_2D, tex);
 
-         //int iGlErrorB = glGetError();
+            // int iGlError2 = glGetError();
 
-         //debug() << "gl error";
+            //::cast < ::gpu_opengl::shader > pshaderOnEndDraw = m_pshaderCopyTextureOnEndDraw;
 
-         m_pshaderCopyTextureOnEndDraw->unbind();
+            // pshaderOnEndDraw->_set_int("uTexture", 0);
+
+            // if (!m_VAOFullScreenQuad)
+            //{
+
+            //   m_VAOFullScreenQuad = createFullscreenQuad(m_VBOFullScreenQuad);
+
+            //}
+
+            // glBindVertexArray(m_VAOFullScreenQuad);
+
+            // int iGlError00 = glGetError();
+
+            // glDrawArrays(GL_TRIANGLES, 0, 6); // assuming 2 triangles (quad)
+
+            // int iGlError01 = glGetError();
+
+            // glBindVertexArray(0);
+
+            // int iGlErrorA = glGetError();
+
+            // glBindTexture(GL_TEXTURE_2D, 0);
+
+            // int iGlErrorB = glGetError();
+
+            // debug() << "gl error";
+
+            m_pshaderCopyTextureOnEndDraw->unbind();
+         }
+
+
+         ::cast<device> pdevice = m_pgpurenderer->m_pgpucontext->m_pgpudevice;
+
+         pdevice->_swap_buffers();
+      }
+      catch (...)
+      {
 
 
       }
-
-
-      ::cast < device > pdevice = m_pgpurenderer->m_pgpucontext->m_pgpudevice;
-
-      pdevice->_swap_buffers();
 
 
    }

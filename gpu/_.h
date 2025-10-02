@@ -9,29 +9,25 @@
 //#error "already included?!?! WHAT?!?! (At aqua:a)"
 //#endif
 
-#undef PLATFORM_LAYER_NAME
-#define PLATFORM_LAYER_NAME gpu
+//#undef PLATFORM_LAYER_NAME
+//#define PLATFORM_LAYER_NAME gpu
 
 #if defined(_gpu_project)
 #define CLASS_DECL_GPU  CLASS_DECL_EXPORT
-#define LIBIDN_BUILDING
 #else
 #define CLASS_DECL_GPU  CLASS_DECL_IMPORT
 #endif
-
-
-#undef __spin_namespace
 
 
 namespace gpu
 {
 
 
-   class Cube;
+   class cube;
 
-   class FullscreenQuad;
+   class full_screen_quad;
 
-   class HDRTexture;
+   //class hdr_texture;
 
 
 } // namespace gpu

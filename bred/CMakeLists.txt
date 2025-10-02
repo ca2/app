@@ -144,8 +144,6 @@ list(APPEND library_source
    graphics3d/key_map.h
    graphics3d/model.cpp
    graphics3d/model.h
-   graphics3d/scene.cpp
-   graphics3d/scene.h
    graphics3d/scene_object.cpp
    graphics3d/scene_object.h
    #graphics3d/scene_system.cpp

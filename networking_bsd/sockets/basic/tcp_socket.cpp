@@ -18,6 +18,7 @@
 
 //::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s);
 
+CLASS_DECL_ACME::collection::count get_count_of_opened_sockets();
 
 #if defined(LINUX) || defined(__BSD__)
 #undef USE_MISC
@@ -2459,6 +2460,8 @@ m_ibuf(isize)
             // SSL_shutdown shouldn't be called.
 
             information() << "SSLNegotiate SSL_accept() failed with SSL_ERROR_SSL (1) network error = : " << iError;
+
+            information() << "Number of opened sockets: " << get_count_of_opened_sockets();
 
             set_no_ssl_shutdown();
 

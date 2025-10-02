@@ -112,7 +112,8 @@ list(APPEND library_source
    graphics3d/render_system.h
    graphics3d/renderer.h
    graphics3d/resource.h
-   graphics3d/scene.h
+   graphics3d/scene_base.cpp
+   graphics3d/scene_base.h
    graphics3d/scene_object.cpp
    graphics3d/scene_object.h
    graphics3d/shape_factory.cpp
@@ -125,7 +126,6 @@ list(APPEND library_source
    graphics3d/renderable.cpp
    graphics3d/renderable.h
    graphics3d/render_system.cpp
-   graphics3d/scene.cpp
    graphics3d/_.h
    #graphics3d/aaa_context.cpp
    #graphics3d/aaa_context.h
@@ -144,10 +144,10 @@ list(APPEND library_source
    graphics3d/key_map.h
    graphics3d/model.cpp
    graphics3d/model.h
-   graphics3d/scene.cpp
-   graphics3d/scene.h
    graphics3d/scene_object.cpp
    graphics3d/scene_object.h
+   graphics3d/scene_renderable.cpp
+   graphics3d/scene_renderable.h
    #graphics3d/scene_system.cpp
    #graphics3d/scene_system.h
    graphics3d/types.cpp

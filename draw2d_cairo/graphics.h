@@ -393,8 +393,8 @@ namespace draw2d_cairo
       //virtual bool draw_text_ex(const ::scoped_string & scopedstr, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams = nullptr) override;
       void draw_text_ex(const ::scoped_string & scopedstr, const ::double_rectangle & double_rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
-      double_size get_text_extent(const ::scoped_string & scopedstr, character_count iIndex) override;
-      double_size get_text_extent(const ::scoped_string & scopedstr) override;
+      double_size _get_text_extent(const ::scoped_string & scopedstr, character_count iIndex) override;
+      double_size _get_text_extent(const ::scoped_string & scopedstr) override;
       //double_size get_text_extent(const block & block) override;
       bool _GetTextExtent(double_size & double_size, const_char_pointer lpszString, character_count nCount, character_count iIndex);
       //double_size get_text_extent(const ::scoped_string & scopedstr, character_count iIndex) override;

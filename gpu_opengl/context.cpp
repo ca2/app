@@ -32,7 +32,7 @@
 // #include <GL/glew.h>       // or glad, depending on your setup
 // #include <GLFW/glfw3.h>
 //
-#include <ktx.h>
+#include <ktx/ktx.h>
 //#include <ktxvulkan.h>     // not needed for GL, but included in libktx installs
 //
 // // Utility: load whole file into memory

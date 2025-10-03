@@ -25,7 +25,7 @@
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
 #include "glm/mat4x4.hpp"
-#include "port/graphics3d/assimp/assimp/code/Common/StbCommon.h"
+//#include <assimp/Common/StbCommon.h>
 
 
 // ```cpp
@@ -36,7 +36,7 @@
 // #include <GL/glew.h>       // or glad, depending on your setup
 // #include <GLFW/glfw3.h>
 //
-#include <ktx.h>
+#include <ktx/ktx.h>
 
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/immersion_layer.h"

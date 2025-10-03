@@ -1,6 +1,7 @@
 // From windows_common/networking.cpp by camilo on 2025-10-02 20:51 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "acme/operating_system/networking.h"
+#include <unistd.h>
 
 
 int _open_socket(int af, int type, int protocol)

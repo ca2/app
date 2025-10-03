@@ -64,6 +64,11 @@ berg
 bred
 )
 
+if (${LINUX} OR ${__BSD__} OR ${ANDROID})
+   list(APPEND library_references
+      ktx
+   )
+endif()
 
 list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
@@ -98,9 +103,15 @@ if (MSVC)
    #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
    target_link_libraries(${PROJECT_NAME} PRIVATE assimp ktx ${library_references} )
 elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
-   target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
-   target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
-   target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
+
+   pkg_check_modules(${PROJECT_NAME}_PKGCONFIG assimp)
+
+
+   target_compile_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
+   target_compile_options(static_${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
+   target_link_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS})
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})
 
    target_link_libraries(${PROJECT_NAME} PRIVATE)
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})

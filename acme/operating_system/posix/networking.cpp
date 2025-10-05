@@ -38,7 +38,11 @@ int _close_socket(int s)
 }
 
 
+#if defined(__BSD__)
+int _accept_socket(int s, sockaddr* addr, socklen_t* addrlen)
+#else
 int _accept_socket(int s, sockaddr* addr, int* addrlen)
+#endif
 {
 
    auto socket = ::accept(s, addr, addrlen);

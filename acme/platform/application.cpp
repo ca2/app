@@ -160,7 +160,7 @@ namespace platform
        }*/
        //   ::acme::finalize_system();
 
-      printf_line("platform::application destroyed");
+      //printf_line("platform::application destroyed");
       
    }
 

@@ -44,6 +44,9 @@ namespace sockets
 
       ::pointer<::networking::email>   m_pemail;
 
+      ::string m_strError;
+
+      bool m_bEnded;
 
    //public:
       smtp_socket();
@@ -53,6 +56,10 @@ namespace sockets
 
 
       void OnLine(const ::scoped_string & scopedstrLine) override;
+
+
+
+      void OnException() override;
 
       /** \return 'false' to abort */
       //virtual bool OnHello(const string & domain) = 0;
